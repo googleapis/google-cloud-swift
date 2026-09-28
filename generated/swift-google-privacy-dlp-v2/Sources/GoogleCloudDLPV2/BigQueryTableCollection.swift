@@ -70,7 +70,7 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleWKT._AnyPackabl
       pattern = $0
     }
     if let includeRegexes = try container.decodeIfPresent(
-      BigQueryRegexes?.self, forKey: .includeRegexes)
+      BigQueryRegexes.self, forKey: .includeRegexes)
     {
       try patternCheckAndSet(.includeRegexes(includeRegexes))
     }
@@ -99,7 +99,7 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The first filter containing a pattern that matches a table will be used.
   public enum PatternOneOf: Codable, Equatable, Sendable {
     /// A collection of regular expressions to match a BigQuery table against.
-    indirect case includeRegexes(BigQueryRegexes?)
+    indirect case includeRegexes(BigQueryRegexes)
   }
 
   public static var _anyTypeUrl: Swift.String {

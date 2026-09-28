@@ -258,14 +258,13 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     if let autodetect = try container.decodeIfPresent(Swift.Bool.self, forKey: .autodetect) {
       try buildTemplateCheckAndSet(.autodetect(autodetect))
     }
-    if let build = try container.decodeIfPresent(Build?.self, forKey: .build) {
+    if let build = try container.decodeIfPresent(Build.self, forKey: .build) {
       try buildTemplateCheckAndSet(.build(build))
     }
     if let filename = try container.decodeIfPresent(Swift.String.self, forKey: .filename) {
       try buildTemplateCheckAndSet(.filename(filename))
     }
-    if let gitFileSource = try container.decodeIfPresent(
-      GitFileSource?.self, forKey: .gitFileSource)
+    if let gitFileSource = try container.decodeIfPresent(GitFileSource.self, forKey: .gitFileSource)
     {
       try buildTemplateCheckAndSet(.gitFileSource(gitFileSource))
     }
@@ -328,12 +327,12 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Currently only available for GitHub App Triggers.
     case autodetect(Swift.Bool)
     /// Contents of the build template.
-    indirect case build(Build?)
+    indirect case build(Build)
     /// Path, from the source root, to the build configuration file
     /// (i.e. cloudbuild.yaml).
     case filename(Swift.String)
     /// The file source describing the local or remote Build template.
-    indirect case gitFileSource(GitFileSource?)
+    indirect case gitFileSource(GitFileSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

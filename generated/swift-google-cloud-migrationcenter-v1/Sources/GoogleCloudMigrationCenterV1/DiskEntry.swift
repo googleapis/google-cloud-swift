@@ -124,7 +124,7 @@ public struct DiskEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       platformSpecific = $0
     }
-    if let vmware = try container.decodeIfPresent(VmwareDiskConfig?.self, forKey: .vmware) {
+    if let vmware = try container.decodeIfPresent(VmwareDiskConfig.self, forKey: .vmware) {
       try platformSpecificCheckAndSet(.vmware(vmware))
     }
     self.platformSpecific = platformSpecific
@@ -310,7 +310,7 @@ public struct DiskEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Additional details for specific platforms.
   public enum PlatformSpecificOneOf: Codable, Equatable, Sendable {
     /// VMware disk details.
-    indirect case vmware(VmwareDiskConfig?)
+    indirect case vmware(VmwareDiskConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

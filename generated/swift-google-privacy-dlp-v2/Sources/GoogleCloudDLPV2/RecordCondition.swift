@@ -308,7 +308,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
         type = $0
       }
       if let conditions = try container.decodeIfPresent(
-        RecordCondition.Conditions?.self, forKey: .conditions)
+        RecordCondition.Conditions.self, forKey: .conditions)
       {
         try typeCheckAndSet(.conditions(conditions))
       }
@@ -447,7 +447,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Expression types.
     public enum TypeOneOf: Codable, Equatable, Sendable {
       /// Conditions to apply to the expression.
-      indirect case conditions(RecordCondition.Conditions?)
+      indirect case conditions(RecordCondition.Conditions)
     }
 
     public static var _anyTypeUrl: Swift.String {

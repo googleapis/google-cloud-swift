@@ -100,7 +100,7 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleWKT._AnyPackab
       try labelCheckAndSet(.assetNamespace(assetNamespace))
     }
     if let ingestionLabel = try container.decodeIfPresent(
-      IngestionLabel?.self, forKey: .ingestionLabel)
+      IngestionLabel.self, forKey: .ingestionLabel)
     {
       try labelCheckAndSet(.ingestionLabel(ingestionLabel))
     }
@@ -142,7 +142,7 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleWKT._AnyPackab
     /// of the customer's events.
     case assetNamespace(Swift.String)
     /// The ingestion label configured in the forwarder of the customer's events.
-    indirect case ingestionLabel(IngestionLabel?)
+    indirect case ingestionLabel(IngestionLabel)
   }
 
   public static var _anyTypeUrl: Swift.String {

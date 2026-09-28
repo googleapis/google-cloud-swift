@@ -76,24 +76,23 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let storageSource = try container.decodeIfPresent(
-      StorageSource?.self, forKey: .storageSource)
+    if let storageSource = try container.decodeIfPresent(StorageSource.self, forKey: .storageSource)
     {
       try sourceCheckAndSet(.storageSource(storageSource))
     }
-    if let repoSource = try container.decodeIfPresent(RepoSource?.self, forKey: .repoSource) {
+    if let repoSource = try container.decodeIfPresent(RepoSource.self, forKey: .repoSource) {
       try sourceCheckAndSet(.repoSource(repoSource))
     }
-    if let gitSource = try container.decodeIfPresent(GitSource?.self, forKey: .gitSource) {
+    if let gitSource = try container.decodeIfPresent(GitSource.self, forKey: .gitSource) {
       try sourceCheckAndSet(.gitSource(gitSource))
     }
     if let storageSourceManifest = try container.decodeIfPresent(
-      StorageSourceManifest?.self, forKey: .storageSourceManifest)
+      StorageSourceManifest.self, forKey: .storageSourceManifest)
     {
       try sourceCheckAndSet(.storageSourceManifest(storageSourceManifest))
     }
     if let connectedRepository = try container.decodeIfPresent(
-      ConnectedRepository?.self, forKey: .connectedRepository)
+      ConnectedRepository.self, forKey: .connectedRepository)
     {
       try sourceCheckAndSet(.connectedRepository(connectedRepository))
     }
@@ -129,19 +128,19 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Location of source.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// If provided, get the source from this location in Cloud Storage.
-    indirect case storageSource(StorageSource?)
+    indirect case storageSource(StorageSource)
     /// If provided, get the source from this location in a Cloud Source
     /// Repository.
-    indirect case repoSource(RepoSource?)
+    indirect case repoSource(RepoSource)
     /// If provided, get the source from this Git repository.
-    indirect case gitSource(GitSource?)
+    indirect case gitSource(GitSource)
     /// If provided, get the source from this manifest in Cloud Storage.
     /// This feature is in Preview; see description
     /// [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
-    indirect case storageSourceManifest(StorageSourceManifest?)
+    indirect case storageSourceManifest(StorageSourceManifest)
     /// Optional. If provided, get the source from this 2nd-gen Google Cloud
     /// Build repository resource.
-    indirect case connectedRepository(ConnectedRepository?)
+    indirect case connectedRepository(ConnectedRepository)
   }
 
   public static var _anyTypeUrl: Swift.String {

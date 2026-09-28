@@ -71,7 +71,7 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
       action = $0
     }
     if let customContextUpdates = try container.decodeIfPresent(
-      CustomContextUpdates?.self, forKey: .customContextUpdates)
+      CustomContextUpdates.self, forKey: .customContextUpdates)
     {
       try actionCheckAndSet(.customContextUpdates(customContextUpdates))
     }
@@ -105,7 +105,7 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
   public enum ActionOneOf: Codable, Equatable, Sendable {
     /// A collection of updates to apply to specific custom contexts.
     /// Use this to add, update or delete individual contexts by key.
-    indirect case customContextUpdates(CustomContextUpdates?)
+    indirect case customContextUpdates(CustomContextUpdates)
     /// If set, must be set to true and all existing object custom contexts will
     /// be deleted.
     case clearAll(Swift.Bool)

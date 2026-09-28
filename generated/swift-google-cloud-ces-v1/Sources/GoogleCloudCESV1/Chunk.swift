@@ -92,33 +92,32 @@ public struct Chunk: Codable, Equatable, GoogleWKT._AnyPackable,
     if let transcript = try container.decodeIfPresent(Swift.String.self, forKey: .transcript) {
       try dataCheckAndSet(.transcript(transcript))
     }
-    if let blob = try container.decodeIfPresent(Blob?.self, forKey: .blob) {
+    if let blob = try container.decodeIfPresent(Blob.self, forKey: .blob) {
       try dataCheckAndSet(.blob(blob))
     }
-    if let payload = try container.decodeIfPresent(GoogleWKT.WKTStruct?.self, forKey: .payload) {
+    if let payload = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .payload) {
       try dataCheckAndSet(.payload(payload))
     }
-    if let image = try container.decodeIfPresent(Image?.self, forKey: .image) {
+    if let image = try container.decodeIfPresent(Image.self, forKey: .image) {
       try dataCheckAndSet(.image(image))
     }
-    if let toolCall = try container.decodeIfPresent(ToolCall?.self, forKey: .toolCall) {
+    if let toolCall = try container.decodeIfPresent(ToolCall.self, forKey: .toolCall) {
       try dataCheckAndSet(.toolCall(toolCall))
     }
-    if let toolResponse = try container.decodeIfPresent(ToolResponse?.self, forKey: .toolResponse) {
+    if let toolResponse = try container.decodeIfPresent(ToolResponse.self, forKey: .toolResponse) {
       try dataCheckAndSet(.toolResponse(toolResponse))
     }
-    if let agentTransfer = try container.decodeIfPresent(
-      AgentTransfer?.self, forKey: .agentTransfer)
+    if let agentTransfer = try container.decodeIfPresent(AgentTransfer.self, forKey: .agentTransfer)
     {
       try dataCheckAndSet(.agentTransfer(agentTransfer))
     }
     if let updatedVariables = try container.decodeIfPresent(
-      GoogleWKT.WKTStruct?.self, forKey: .updatedVariables)
+      GoogleWKT.WKTStruct.self, forKey: .updatedVariables)
     {
       try dataCheckAndSet(.updatedVariables(updatedVariables))
     }
     if let defaultVariables = try container.decodeIfPresent(
-      GoogleWKT.WKTStruct?.self, forKey: .defaultVariables)
+      GoogleWKT.WKTStruct.self, forKey: .defaultVariables)
     {
       try dataCheckAndSet(.defaultVariables(defaultVariables))
     }
@@ -168,23 +167,23 @@ public struct Chunk: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. Transcript associated with the audio.
     case transcript(Swift.String)
     /// Optional. Blob data.
-    indirect case blob(Blob?)
+    indirect case blob(Blob)
     /// Optional. Custom payload data.
-    indirect case payload(GoogleWKT.WKTStruct?)
+    indirect case payload(GoogleWKT.WKTStruct)
     /// Optional. Image data.
-    indirect case image(Image?)
+    indirect case image(Image)
     /// Optional. Tool execution request.
-    indirect case toolCall(ToolCall?)
+    indirect case toolCall(ToolCall)
     /// Optional. Tool execution response.
-    indirect case toolResponse(ToolResponse?)
+    indirect case toolResponse(ToolResponse)
     /// Optional. Agent transfer event.
-    indirect case agentTransfer(AgentTransfer?)
+    indirect case agentTransfer(AgentTransfer)
     /// A struct represents variables that were updated in the conversation,
     /// keyed by variable names.
-    indirect case updatedVariables(GoogleWKT.WKTStruct?)
+    indirect case updatedVariables(GoogleWKT.WKTStruct)
     /// A struct represents default variables at the start of the conversation,
     /// keyed by variable names.
-    indirect case defaultVariables(GoogleWKT.WKTStruct?)
+    indirect case defaultVariables(GoogleWKT.WKTStruct)
   }
 
   public static var _anyTypeUrl: Swift.String {

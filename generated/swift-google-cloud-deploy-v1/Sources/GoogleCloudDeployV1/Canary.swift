@@ -79,12 +79,12 @@ public struct Canary: Codable, Equatable, GoogleWKT._AnyPackable,
       mode = $0
     }
     if let canaryDeployment = try container.decodeIfPresent(
-      CanaryDeployment?.self, forKey: .canaryDeployment)
+      CanaryDeployment.self, forKey: .canaryDeployment)
     {
       try modeCheckAndSet(.canaryDeployment(canaryDeployment))
     }
     if let customCanaryDeployment = try container.decodeIfPresent(
-      CustomCanaryDeployment?.self, forKey: .customCanaryDeployment)
+      CustomCanaryDeployment.self, forKey: .customCanaryDeployment)
     {
       try modeCheckAndSet(.customCanaryDeployment(customCanaryDeployment))
     }
@@ -115,11 +115,11 @@ public struct Canary: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The mode to use for the canary deployment strategy.
   public enum ModeOneOf: Codable, Equatable, Sendable {
     /// Optional. Configures the progressive based deployment for a Target.
-    indirect case canaryDeployment(CanaryDeployment?)
+    indirect case canaryDeployment(CanaryDeployment)
     /// Optional. Configures the progressive based deployment for a Target, but
     /// allows customizing at the phase level where a phase represents each of
     /// the percentage deployments.
-    indirect case customCanaryDeployment(CustomCanaryDeployment?)
+    indirect case customCanaryDeployment(CustomCanaryDeployment)
   }
 
   public static var _anyTypeUrl: Swift.String {

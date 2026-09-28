@@ -88,35 +88,34 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       action = $0
     }
     if let accessControl = try container.decodeIfPresent(
-      AccessControlAction?.self, forKey: .accessControl)
+      AccessControlAction.self, forKey: .accessControl)
     {
       try actionCheckAndSet(.accessControl(accessControl))
     }
     if let dataValidation = try container.decodeIfPresent(
-      DataValidationAction?.self, forKey: .dataValidation)
+      DataValidationAction.self, forKey: .dataValidation)
     {
       try actionCheckAndSet(.dataValidation(dataValidation))
     }
-    if let dataUpdate = try container.decodeIfPresent(DataUpdateAction?.self, forKey: .dataUpdate) {
+    if let dataUpdate = try container.decodeIfPresent(DataUpdateAction.self, forKey: .dataUpdate) {
       try actionCheckAndSet(.dataUpdate(dataUpdate))
     }
-    if let addToFolder = try container.decodeIfPresent(
-      AddToFolderAction?.self, forKey: .addToFolder)
+    if let addToFolder = try container.decodeIfPresent(AddToFolderAction.self, forKey: .addToFolder)
     {
       try actionCheckAndSet(.addToFolder(addToFolder))
     }
     if let publishToPubSub = try container.decodeIfPresent(
-      PublishAction?.self, forKey: .publishToPubSub)
+      PublishAction.self, forKey: .publishToPubSub)
     {
       try actionCheckAndSet(.publishToPubSub(publishToPubSub))
     }
     if let removeFromFolderAction = try container.decodeIfPresent(
-      RemoveFromFolderAction?.self, forKey: .removeFromFolderAction)
+      RemoveFromFolderAction.self, forKey: .removeFromFolderAction)
     {
       try actionCheckAndSet(.removeFromFolderAction(removeFromFolderAction))
     }
     if let deleteDocumentAction = try container.decodeIfPresent(
-      DeleteDocumentAction?.self, forKey: .deleteDocumentAction)
+      DeleteDocumentAction.self, forKey: .deleteDocumentAction)
     {
       try actionCheckAndSet(.deleteDocumentAction(deleteDocumentAction))
     }
@@ -156,19 +155,19 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Action triggering access control operations.
-    indirect case accessControl(AccessControlAction?)
+    indirect case accessControl(AccessControlAction)
     /// Action triggering data validation operations.
-    indirect case dataValidation(DataValidationAction?)
+    indirect case dataValidation(DataValidationAction)
     /// Action triggering data update operations.
-    indirect case dataUpdate(DataUpdateAction?)
+    indirect case dataUpdate(DataUpdateAction)
     /// Action triggering create document link operation.
-    indirect case addToFolder(AddToFolderAction?)
+    indirect case addToFolder(AddToFolderAction)
     /// Action publish to Pub/Sub operation.
-    indirect case publishToPubSub(PublishAction?)
+    indirect case publishToPubSub(PublishAction)
     /// Action removing a document from a folder.
-    indirect case removeFromFolderAction(RemoveFromFolderAction?)
+    indirect case removeFromFolderAction(RemoveFromFolderAction)
     /// Action deleting the document.
-    indirect case deleteDocumentAction(DeleteDocumentAction?)
+    indirect case deleteDocumentAction(DeleteDocumentAction)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -80,7 +80,7 @@ public struct PublishRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       format = $0
     }
-    if let protoMessage = try container.decodeIfPresent(CloudEvent?.self, forKey: .protoMessage) {
+    if let protoMessage = try container.decodeIfPresent(CloudEvent.self, forKey: .protoMessage) {
       try formatCheckAndSet(.protoMessage(protoMessage))
     }
     if let jsonMessage = try container.decodeIfPresent(Swift.String.self, forKey: .jsonMessage) {
@@ -119,7 +119,7 @@ public struct PublishRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The Protobuf format of the CloudEvent being published. Specification can
     /// be found here:
     /// https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/protobuf-format.md
-    indirect case protoMessage(CloudEvent?)
+    indirect case protoMessage(CloudEvent)
     /// The JSON format of the CloudEvent being published. Specification can be
     /// found here:
     /// https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md

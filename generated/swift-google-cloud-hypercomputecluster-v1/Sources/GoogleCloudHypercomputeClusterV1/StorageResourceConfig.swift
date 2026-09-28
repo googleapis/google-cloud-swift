@@ -81,28 +81,28 @@ public struct StorageResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       config = $0
     }
     if let newFilestore = try container.decodeIfPresent(
-      NewFilestoreConfig?.self, forKey: .newFilestore)
+      NewFilestoreConfig.self, forKey: .newFilestore)
     {
       try configCheckAndSet(.newFilestore(newFilestore))
     }
     if let existingFilestore = try container.decodeIfPresent(
-      ExistingFilestoreConfig?.self, forKey: .existingFilestore)
+      ExistingFilestoreConfig.self, forKey: .existingFilestore)
     {
       try configCheckAndSet(.existingFilestore(existingFilestore))
     }
-    if let newBucket = try container.decodeIfPresent(NewBucketConfig?.self, forKey: .newBucket) {
+    if let newBucket = try container.decodeIfPresent(NewBucketConfig.self, forKey: .newBucket) {
       try configCheckAndSet(.newBucket(newBucket))
     }
     if let existingBucket = try container.decodeIfPresent(
-      ExistingBucketConfig?.self, forKey: .existingBucket)
+      ExistingBucketConfig.self, forKey: .existingBucket)
     {
       try configCheckAndSet(.existingBucket(existingBucket))
     }
-    if let newLustre = try container.decodeIfPresent(NewLustreConfig?.self, forKey: .newLustre) {
+    if let newLustre = try container.decodeIfPresent(NewLustreConfig.self, forKey: .newLustre) {
       try configCheckAndSet(.newLustre(newLustre))
     }
     if let existingLustre = try container.decodeIfPresent(
-      ExistingLustreConfig?.self, forKey: .existingLustre)
+      ExistingLustreConfig.self, forKey: .existingLustre)
     {
       try configCheckAndSet(.existingLustre(existingLustre))
     }
@@ -141,22 +141,22 @@ public struct StorageResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that a new Filestore instance
     /// should be created.
-    indirect case newFilestore(NewFilestoreConfig?)
+    indirect case newFilestore(NewFilestoreConfig)
     /// Optional. Immutable. If set, indicates that an existing Filestore
     /// instance should be imported.
-    indirect case existingFilestore(ExistingFilestoreConfig?)
+    indirect case existingFilestore(ExistingFilestoreConfig)
     /// Optional. Immutable. If set, indicates that a new Cloud Storage bucket
     /// should be created.
-    indirect case newBucket(NewBucketConfig?)
+    indirect case newBucket(NewBucketConfig)
     /// Optional. Immutable. If set, indicates that an existing Cloud Storage
     /// bucket should be imported.
-    indirect case existingBucket(ExistingBucketConfig?)
+    indirect case existingBucket(ExistingBucketConfig)
     /// Optional. Immutable. If set, indicates that a new Managed Lustre instance
     /// should be created.
-    indirect case newLustre(NewLustreConfig?)
+    indirect case newLustre(NewLustreConfig)
     /// Optional. Immutable. If set, indicates that an existing Managed Lustre
     /// instance should be imported.
-    indirect case existingLustre(ExistingLustreConfig?)
+    indirect case existingLustre(ExistingLustreConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -68,7 +68,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
       rule = $0
     }
     if let rolloutRestriction = try container.decodeIfPresent(
-      RolloutRestriction?.self, forKey: .rolloutRestriction)
+      RolloutRestriction.self, forKey: .rolloutRestriction)
     {
       try ruleCheckAndSet(.rolloutRestriction(rolloutRestriction))
     }
@@ -95,7 +95,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum RuleOneOf: Codable, Equatable, Sendable {
     /// Optional. Rollout restrictions.
-    indirect case rolloutRestriction(RolloutRestriction?)
+    indirect case rolloutRestriction(RolloutRestriction)
   }
 
   public static var _anyTypeUrl: Swift.String {

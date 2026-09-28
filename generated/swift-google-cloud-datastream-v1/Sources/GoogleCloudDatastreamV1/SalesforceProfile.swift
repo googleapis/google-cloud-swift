@@ -79,12 +79,12 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       credentials = $0
     }
     if let userCredentials = try container.decodeIfPresent(
-      SalesforceProfile.UserCredentials?.self, forKey: .userCredentials)
+      SalesforceProfile.UserCredentials.self, forKey: .userCredentials)
     {
       try credentialsCheckAndSet(.userCredentials(userCredentials))
     }
     if let oauth2ClientCredentials = try container.decodeIfPresent(
-      SalesforceProfile.Oauth2ClientCredentials?.self, forKey: .oauth2ClientCredentials)
+      SalesforceProfile.Oauth2ClientCredentials.self, forKey: .oauth2ClientCredentials)
     {
       try credentialsCheckAndSet(.oauth2ClientCredentials(oauth2ClientCredentials))
     }
@@ -326,9 +326,9 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Credentials for Salesforce connection.
   public enum CredentialsOneOf: Codable, Equatable, Sendable {
     /// User-password authentication.
-    indirect case userCredentials(SalesforceProfile.UserCredentials?)
+    indirect case userCredentials(SalesforceProfile.UserCredentials)
     /// Connected app authentication.
-    indirect case oauth2ClientCredentials(SalesforceProfile.Oauth2ClientCredentials?)
+    indirect case oauth2ClientCredentials(SalesforceProfile.Oauth2ClientCredentials)
   }
 
   public static var _anyTypeUrl: Swift.String {

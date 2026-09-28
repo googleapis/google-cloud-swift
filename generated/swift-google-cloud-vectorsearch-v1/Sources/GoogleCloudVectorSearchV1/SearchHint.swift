@@ -70,10 +70,10 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       indexType = $0
     }
-    if let knnHint = try container.decodeIfPresent(SearchHint.KnnHint?.self, forKey: .knnHint) {
+    if let knnHint = try container.decodeIfPresent(SearchHint.KnnHint.self, forKey: .knnHint) {
       try indexTypeCheckAndSet(.knnHint(knnHint))
     }
-    if let indexHint = try container.decodeIfPresent(SearchHint.IndexHint?.self, forKey: .indexHint)
+    if let indexHint = try container.decodeIfPresent(SearchHint.IndexHint.self, forKey: .indexHint)
     {
       try indexTypeCheckAndSet(.indexHint(indexHint))
     }
@@ -163,7 +163,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
         params = $0
       }
       if let denseScannParams = try container.decodeIfPresent(
-        SearchHint.IndexHint.DenseScannParams?.self, forKey: .denseScannParams)
+        SearchHint.IndexHint.DenseScannParams.self, forKey: .denseScannParams)
       {
         try paramsCheckAndSet(.denseScannParams(denseScannParams))
       }
@@ -261,7 +261,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The parameters for the index.
     public enum ParamsOneOf: Codable, Equatable, Sendable {
       /// Optional. Dense ScaNN parameters.
-      indirect case denseScannParams(SearchHint.IndexHint.DenseScannParams?)
+      indirect case denseScannParams(SearchHint.IndexHint.DenseScannParams)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -337,9 +337,9 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum IndexTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. If set, the search will use the system's default
     /// K-Nearest Neighbor (KNN) index engine.
-    indirect case knnHint(SearchHint.KnnHint?)
+    indirect case knnHint(SearchHint.KnnHint)
     /// Optional. Specifies that the search should use a particular index.
-    indirect case indexHint(SearchHint.IndexHint?)
+    indirect case indexHint(SearchHint.IndexHint)
   }
 
   public static var _anyTypeUrl: Swift.String {

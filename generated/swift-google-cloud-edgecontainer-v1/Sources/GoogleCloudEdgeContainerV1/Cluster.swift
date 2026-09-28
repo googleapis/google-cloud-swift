@@ -353,11 +353,11 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
         config = $0
       }
       if let remote = try container.decodeIfPresent(
-        Cluster.ControlPlane.Remote?.self, forKey: .remote)
+        Cluster.ControlPlane.Remote.self, forKey: .remote)
       {
         try configCheckAndSet(.remote(remote))
       }
-      if let local = try container.decodeIfPresent(Cluster.ControlPlane.Local?.self, forKey: .local)
+      if let local = try container.decodeIfPresent(Cluster.ControlPlane.Local.self, forKey: .local)
       {
         try configCheckAndSet(.local(local))
       }
@@ -687,7 +687,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public enum ConfigOneOf: Codable, Equatable, Sendable {
       /// Remote control plane configuration.
-      indirect case remote(Cluster.ControlPlane.Remote?)
+      indirect case remote(Cluster.ControlPlane.Remote)
       /// Local control plane configuration.
       ///
       /// Warning: Local control plane clusters must be created in their own
@@ -695,7 +695,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       /// project with any other type of clusters, including non-GDCE clusters.
       /// Mixing local control plane GDCE clusters with any other type of
       /// clusters in the same project can result in data loss.
-      indirect case local(Cluster.ControlPlane.Local?)
+      indirect case local(Cluster.ControlPlane.Local)
     }
 
     public static var _anyTypeUrl: Swift.String {

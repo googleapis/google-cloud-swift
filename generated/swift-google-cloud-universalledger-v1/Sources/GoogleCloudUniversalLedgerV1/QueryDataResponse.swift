@@ -79,11 +79,11 @@ public struct QueryDataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       kind = $0
     }
-    if let account = try container.decodeIfPresent(Account?.self, forKey: .account) {
+    if let account = try container.decodeIfPresent(Account.self, forKey: .account) {
       try kindCheckAndSet(.account(account))
     }
     if let transactionState = try container.decodeIfPresent(
-      TransactionState?.self, forKey: .transactionState)
+      TransactionState.self, forKey: .transactionState)
     {
       try kindCheckAndSet(.transactionState(transactionState))
     }
@@ -114,9 +114,9 @@ public struct QueryDataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The query-specific result.
   public enum KindOneOf: Codable, Equatable, Sendable {
     /// The account information, if the query was for an account.
-    indirect case account(Account?)
+    indirect case account(Account)
     /// The state of a transaction, if the query was for a transaction.
-    indirect case transactionState(TransactionState?)
+    indirect case transactionState(TransactionState)
   }
 
   public static var _anyTypeUrl: Swift.String {

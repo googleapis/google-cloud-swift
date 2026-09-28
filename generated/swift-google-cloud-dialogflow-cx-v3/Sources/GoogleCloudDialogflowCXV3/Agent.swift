@@ -417,7 +417,7 @@
           gitSettings = $0
         }
         if let githubSettings = try container.decodeIfPresent(
-          Agent.GitIntegrationSettings.GithubSettings?.self, forKey: .githubSettings)
+          Agent.GitIntegrationSettings.GithubSettings.self, forKey: .githubSettings)
         {
           try gitSettingsCheckAndSet(.githubSettings(githubSettings))
         }
@@ -551,7 +551,7 @@
       /// The git settings to specific systems.
       public enum GitSettingsOneOf: Codable, Equatable, Sendable {
         /// GitHub settings.
-        indirect case githubSettings(Agent.GitIntegrationSettings.GithubSettings?)
+        indirect case githubSettings(Agent.GitIntegrationSettings.GithubSettings)
       }
 
       public static var _anyTypeUrl: Swift.String {

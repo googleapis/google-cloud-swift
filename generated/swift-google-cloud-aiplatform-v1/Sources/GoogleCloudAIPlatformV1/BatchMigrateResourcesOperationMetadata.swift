@@ -158,7 +158,7 @@
           }
           result = $0
         }
-        if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+        if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
           try resultCheckAndSet(.error(error))
         }
         if let model = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
@@ -198,7 +198,7 @@
       /// migrated resource name will be filled.
       public enum ResultOneOf: Codable, Equatable, Sendable {
         /// The error result of the migration request in case of failure.
-        indirect case error(GoogleRpc.Status?)
+        indirect case error(GoogleRpc.Status)
         /// Migrated model resource name.
         case model(Swift.String)
         /// Migrated dataset resource name.

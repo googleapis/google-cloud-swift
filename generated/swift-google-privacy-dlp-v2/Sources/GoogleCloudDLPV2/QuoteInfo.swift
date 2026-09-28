@@ -68,7 +68,7 @@ public struct QuoteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       parsedQuote = $0
     }
-    if let dateTime = try container.decodeIfPresent(DateTime?.self, forKey: .dateTime) {
+    if let dateTime = try container.decodeIfPresent(DateTime.self, forKey: .dateTime) {
       try parsedQuoteCheckAndSet(.dateTime(dateTime))
     }
     self.parsedQuote = parsedQuote
@@ -95,7 +95,7 @@ public struct QuoteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Object representation of the quote.
   public enum ParsedQuoteOneOf: Codable, Equatable, Sendable {
     /// The date time indicated by the quote.
-    indirect case dateTime(DateTime?)
+    indirect case dateTime(DateTime)
   }
 
   public static var _anyTypeUrl: Swift.String {

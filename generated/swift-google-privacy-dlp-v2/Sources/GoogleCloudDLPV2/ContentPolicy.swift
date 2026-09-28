@@ -390,7 +390,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           condition = $0
         }
         if let infoTypeCondition = try container.decodeIfPresent(
-          ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition?.self,
+          ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition.self,
           forKey: .infoTypeCondition)
         {
           try conditionCheckAndSet(.infoTypeCondition(infoTypeCondition))
@@ -480,13 +480,13 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
             infoTypeCondition = $0
           }
           if let infoTypes = try container.decodeIfPresent(
-            ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition.InfoTypes?.self,
+            ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition.InfoTypes.self,
             forKey: .infoTypes)
           {
             try infoTypeConditionCheckAndSet(.infoTypes(infoTypes))
           }
           if let anyInfoType = try container.decodeIfPresent(
-            GoogleWKT.WKTEmpty?.self, forKey: .anyInfoType)
+            GoogleWKT.WKTEmpty.self, forKey: .anyInfoType)
           {
             try infoTypeConditionCheckAndSet(.anyInfoType(anyInfoType))
           }
@@ -589,9 +589,9 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         public enum InfoTypeConditionOneOf: Codable, Equatable, Sendable {
           /// match any of these info types.
           indirect case infoTypes(
-            ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition.InfoTypes?)
+            ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition.InfoTypes)
           /// match any info types.
-          indirect case anyInfoType(GoogleWKT.WKTEmpty?)
+          indirect case anyInfoType(GoogleWKT.WKTEmpty)
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -609,7 +609,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// A condition.
       public enum ConditionOneOf: Codable, Equatable, Sendable {
         /// A condition based on info types.
-        indirect case infoTypeCondition(ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition?)
+        indirect case infoTypeCondition(ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -686,7 +686,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         destination = $0
       }
       if let logToBigQuery = try container.decodeIfPresent(
-        ContentPolicy.LoggingConfig.LogToBigQuery?.self, forKey: .logToBigQuery)
+        ContentPolicy.LoggingConfig.LogToBigQuery.self, forKey: .logToBigQuery)
       {
         try destinationCheckAndSet(.logToBigQuery(logToBigQuery))
       }
@@ -802,7 +802,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The destination for the action logs.
     public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Optional. Log the actions taken to a BigQuery table.
-      indirect case logToBigQuery(ContentPolicy.LoggingConfig.LogToBigQuery?)
+      indirect case logToBigQuery(ContentPolicy.LoggingConfig.LogToBigQuery)
     }
 
     public static var _anyTypeUrl: Swift.String {

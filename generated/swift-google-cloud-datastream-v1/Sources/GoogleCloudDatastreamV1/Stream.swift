@@ -170,12 +170,12 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
       backfillStrategy = $0
     }
     if let backfillAll = try container.decodeIfPresent(
-      Stream.BackfillAllStrategy?.self, forKey: .backfillAll)
+      Stream.BackfillAllStrategy.self, forKey: .backfillAll)
     {
       try backfillStrategyCheckAndSet(.backfillAll(backfillAll))
     }
     if let backfillNone = try container.decodeIfPresent(
-      Stream.BackfillNoneStrategy?.self, forKey: .backfillNone)
+      Stream.BackfillNoneStrategy.self, forKey: .backfillNone)
     {
       try backfillStrategyCheckAndSet(.backfillNone(backfillNone))
     }
@@ -279,32 +279,32 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
         excludedObjects = $0
       }
       if let oracleExcludedObjects = try container.decodeIfPresent(
-        OracleRdbms?.self, forKey: .oracleExcludedObjects)
+        OracleRdbms.self, forKey: .oracleExcludedObjects)
       {
         try excludedObjectsCheckAndSet(.oracleExcludedObjects(oracleExcludedObjects))
       }
       if let mysqlExcludedObjects = try container.decodeIfPresent(
-        MysqlRdbms?.self, forKey: .mysqlExcludedObjects)
+        MysqlRdbms.self, forKey: .mysqlExcludedObjects)
       {
         try excludedObjectsCheckAndSet(.mysqlExcludedObjects(mysqlExcludedObjects))
       }
       if let postgresqlExcludedObjects = try container.decodeIfPresent(
-        PostgresqlRdbms?.self, forKey: .postgresqlExcludedObjects)
+        PostgresqlRdbms.self, forKey: .postgresqlExcludedObjects)
       {
         try excludedObjectsCheckAndSet(.postgresqlExcludedObjects(postgresqlExcludedObjects))
       }
       if let sqlServerExcludedObjects = try container.decodeIfPresent(
-        SqlServerRdbms?.self, forKey: .sqlServerExcludedObjects)
+        SqlServerRdbms.self, forKey: .sqlServerExcludedObjects)
       {
         try excludedObjectsCheckAndSet(.sqlServerExcludedObjects(sqlServerExcludedObjects))
       }
       if let salesforceExcludedObjects = try container.decodeIfPresent(
-        SalesforceOrg?.self, forKey: .salesforceExcludedObjects)
+        SalesforceOrg.self, forKey: .salesforceExcludedObjects)
       {
         try excludedObjectsCheckAndSet(.salesforceExcludedObjects(salesforceExcludedObjects))
       }
       if let mongodbExcludedObjects = try container.decodeIfPresent(
-        MongodbCluster?.self, forKey: .mongodbExcludedObjects)
+        MongodbCluster.self, forKey: .mongodbExcludedObjects)
       {
         try excludedObjectsCheckAndSet(.mongodbExcludedObjects(mongodbExcludedObjects))
       }
@@ -342,17 +342,17 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// List of objects to exclude.
     public enum ExcludedObjectsOneOf: Codable, Equatable, Sendable {
       /// Oracle data source objects to avoid backfilling.
-      indirect case oracleExcludedObjects(OracleRdbms?)
+      indirect case oracleExcludedObjects(OracleRdbms)
       /// MySQL data source objects to avoid backfilling.
-      indirect case mysqlExcludedObjects(MysqlRdbms?)
+      indirect case mysqlExcludedObjects(MysqlRdbms)
       /// PostgreSQL data source objects to avoid backfilling.
-      indirect case postgresqlExcludedObjects(PostgresqlRdbms?)
+      indirect case postgresqlExcludedObjects(PostgresqlRdbms)
       /// SQLServer data source objects to avoid backfilling
-      indirect case sqlServerExcludedObjects(SqlServerRdbms?)
+      indirect case sqlServerExcludedObjects(SqlServerRdbms)
       /// Salesforce data source objects to avoid backfilling
-      indirect case salesforceExcludedObjects(SalesforceOrg?)
+      indirect case salesforceExcludedObjects(SalesforceOrg)
       /// MongoDB data source objects to avoid backfilling
-      indirect case mongodbExcludedObjects(MongodbCluster?)
+      indirect case mongodbExcludedObjects(MongodbCluster)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -590,9 +590,9 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum BackfillStrategyOneOf: Codable, Equatable, Sendable {
     /// Automatically backfill objects included in the stream source
     /// configuration. Specific objects can be excluded.
-    indirect case backfillAll(Stream.BackfillAllStrategy?)
+    indirect case backfillAll(Stream.BackfillAllStrategy)
     /// Do not automatically backfill any objects.
-    indirect case backfillNone(Stream.BackfillNoneStrategy?)
+    indirect case backfillNone(Stream.BackfillNoneStrategy)
   }
 
   public static var _anyTypeUrl: Swift.String {

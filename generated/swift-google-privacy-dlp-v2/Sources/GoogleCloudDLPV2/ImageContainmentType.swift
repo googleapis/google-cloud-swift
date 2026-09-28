@@ -73,13 +73,13 @@ public struct ImageContainmentType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       type = $0
     }
-    if let encloses = try container.decodeIfPresent(Encloses?.self, forKey: .encloses) {
+    if let encloses = try container.decodeIfPresent(Encloses.self, forKey: .encloses) {
       try typeCheckAndSet(.encloses(encloses))
     }
-    if let fullyInside = try container.decodeIfPresent(FullyInside?.self, forKey: .fullyInside) {
+    if let fullyInside = try container.decodeIfPresent(FullyInside.self, forKey: .fullyInside) {
       try typeCheckAndSet(.fullyInside(fullyInside))
     }
-    if let overlaps = try container.decodeIfPresent(Overlap?.self, forKey: .overlaps) {
+    if let overlaps = try container.decodeIfPresent(Overlap.self, forKey: .overlaps) {
       try typeCheckAndSet(.overlaps(overlaps))
     }
     self.type = type
@@ -112,13 +112,13 @@ public struct ImageContainmentType: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// The context finding's bounding box must fully contain the target
     /// finding's bounding box.
-    indirect case encloses(Encloses?)
+    indirect case encloses(Encloses)
     /// The context finding's bounding box must be fully inside the target
     /// finding's bounding box.
-    indirect case fullyInside(FullyInside?)
+    indirect case fullyInside(FullyInside)
     /// The context finding's bounding box and the target finding's bounding box
     /// must have a non-zero intersection.
-    indirect case overlaps(Overlap?)
+    indirect case overlaps(Overlap)
   }
 
   public static var _anyTypeUrl: Swift.String {

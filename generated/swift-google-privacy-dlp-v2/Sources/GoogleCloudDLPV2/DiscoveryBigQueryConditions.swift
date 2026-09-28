@@ -91,7 +91,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
       }
       includedTypes = $0
     }
-    if let types = try container.decodeIfPresent(BigQueryTableTypes?.self, forKey: .types) {
+    if let types = try container.decodeIfPresent(BigQueryTableTypes.self, forKey: .types) {
       try includedTypesCheckAndSet(.types(types))
     }
     if let typeCollection = try container.decodeIfPresent(
@@ -207,7 +207,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
   /// for all unsupported tables.
   public enum IncludedTypesOneOf: Codable, Equatable, Sendable {
     /// Restrict discovery to specific table types.
-    indirect case types(BigQueryTableTypes?)
+    indirect case types(BigQueryTableTypes)
     /// Restrict discovery to categories of table types.
     case typeCollection(BigQueryTableTypeCollection)
   }

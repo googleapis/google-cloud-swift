@@ -74,17 +74,17 @@ public struct DataProfileBigQueryRowSchema: Codable, Equatable, GoogleWKT._AnyPa
       dataProfile = $0
     }
     if let tableProfile = try container.decodeIfPresent(
-      TableDataProfile?.self, forKey: .tableProfile)
+      TableDataProfile.self, forKey: .tableProfile)
     {
       try dataProfileCheckAndSet(.tableProfile(tableProfile))
     }
     if let columnProfile = try container.decodeIfPresent(
-      ColumnDataProfile?.self, forKey: .columnProfile)
+      ColumnDataProfile.self, forKey: .columnProfile)
     {
       try dataProfileCheckAndSet(.columnProfile(columnProfile))
     }
     if let fileStoreProfile = try container.decodeIfPresent(
-      FileStoreDataProfile?.self, forKey: .fileStoreProfile)
+      FileStoreDataProfile.self, forKey: .fileStoreProfile)
     {
       try dataProfileCheckAndSet(.fileStoreProfile(fileStoreProfile))
     }
@@ -116,11 +116,11 @@ public struct DataProfileBigQueryRowSchema: Codable, Equatable, GoogleWKT._AnyPa
   /// Data profile type.
   public enum DataProfileOneOf: Codable, Equatable, Sendable {
     /// Table data profile column
-    indirect case tableProfile(TableDataProfile?)
+    indirect case tableProfile(TableDataProfile)
     /// Column data profile column
-    indirect case columnProfile(ColumnDataProfile?)
+    indirect case columnProfile(ColumnDataProfile)
     /// File store data profile column.
-    indirect case fileStoreProfile(FileStoreDataProfile?)
+    indirect case fileStoreProfile(FileStoreDataProfile)
   }
 
   public static var _anyTypeUrl: Swift.String {

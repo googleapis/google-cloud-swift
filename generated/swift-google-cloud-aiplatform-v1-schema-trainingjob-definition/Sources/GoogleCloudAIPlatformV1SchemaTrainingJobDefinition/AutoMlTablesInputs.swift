@@ -318,43 +318,43 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         transformationDetail = $0
       }
       if let auto = try container.decodeIfPresent(
-        AutoMlTablesInputs.Transformation.AutoTransformation?.self, forKey: .auto)
+        AutoMlTablesInputs.Transformation.AutoTransformation.self, forKey: .auto)
       {
         try transformationDetailCheckAndSet(.auto(auto))
       }
       if let numeric = try container.decodeIfPresent(
-        AutoMlTablesInputs.Transformation.NumericTransformation?.self, forKey: .numeric)
+        AutoMlTablesInputs.Transformation.NumericTransformation.self, forKey: .numeric)
       {
         try transformationDetailCheckAndSet(.numeric(numeric))
       }
       if let categorical = try container.decodeIfPresent(
-        AutoMlTablesInputs.Transformation.CategoricalTransformation?.self, forKey: .categorical)
+        AutoMlTablesInputs.Transformation.CategoricalTransformation.self, forKey: .categorical)
       {
         try transformationDetailCheckAndSet(.categorical(categorical))
       }
       if let timestamp = try container.decodeIfPresent(
-        AutoMlTablesInputs.Transformation.TimestampTransformation?.self, forKey: .timestamp)
+        AutoMlTablesInputs.Transformation.TimestampTransformation.self, forKey: .timestamp)
       {
         try transformationDetailCheckAndSet(.timestamp(timestamp))
       }
       if let text = try container.decodeIfPresent(
-        AutoMlTablesInputs.Transformation.TextTransformation?.self, forKey: .text)
+        AutoMlTablesInputs.Transformation.TextTransformation.self, forKey: .text)
       {
         try transformationDetailCheckAndSet(.text(text))
       }
       if let repeatedNumeric = try container.decodeIfPresent(
-        AutoMlTablesInputs.Transformation.NumericArrayTransformation?.self, forKey: .repeatedNumeric
-      ) {
+        AutoMlTablesInputs.Transformation.NumericArrayTransformation.self, forKey: .repeatedNumeric)
+      {
         try transformationDetailCheckAndSet(.repeatedNumeric(repeatedNumeric))
       }
       if let repeatedCategorical = try container.decodeIfPresent(
-        AutoMlTablesInputs.Transformation.CategoricalArrayTransformation?.self,
+        AutoMlTablesInputs.Transformation.CategoricalArrayTransformation.self,
         forKey: .repeatedCategorical)
       {
         try transformationDetailCheckAndSet(.repeatedCategorical(repeatedCategorical))
       }
       if let repeatedText = try container.decodeIfPresent(
-        AutoMlTablesInputs.Transformation.TextArrayTransformation?.self, forKey: .repeatedText)
+        AutoMlTablesInputs.Transformation.TextArrayTransformation.self, forKey: .repeatedText)
       {
         try transformationDetailCheckAndSet(.repeatedText(repeatedText))
       }
@@ -1049,15 +1049,15 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The transformation that the training pipeline will apply to the input
     /// columns.
     public enum TransformationDetailOneOf: Codable, Equatable, Sendable {
-      indirect case auto(AutoMlTablesInputs.Transformation.AutoTransformation?)
-      indirect case numeric(AutoMlTablesInputs.Transformation.NumericTransformation?)
-      indirect case categorical(AutoMlTablesInputs.Transformation.CategoricalTransformation?)
-      indirect case timestamp(AutoMlTablesInputs.Transformation.TimestampTransformation?)
-      indirect case text(AutoMlTablesInputs.Transformation.TextTransformation?)
-      indirect case repeatedNumeric(AutoMlTablesInputs.Transformation.NumericArrayTransformation?)
+      indirect case auto(AutoMlTablesInputs.Transformation.AutoTransformation)
+      indirect case numeric(AutoMlTablesInputs.Transformation.NumericTransformation)
+      indirect case categorical(AutoMlTablesInputs.Transformation.CategoricalTransformation)
+      indirect case timestamp(AutoMlTablesInputs.Transformation.TimestampTransformation)
+      indirect case text(AutoMlTablesInputs.Transformation.TextTransformation)
+      indirect case repeatedNumeric(AutoMlTablesInputs.Transformation.NumericArrayTransformation)
       indirect case repeatedCategorical(
-        AutoMlTablesInputs.Transformation.CategoricalArrayTransformation?)
-      indirect case repeatedText(AutoMlTablesInputs.Transformation.TextArrayTransformation?)
+        AutoMlTablesInputs.Transformation.CategoricalArrayTransformation)
+      indirect case repeatedText(AutoMlTablesInputs.Transformation.TextArrayTransformation)
     }
 
     public static var _anyTypeUrl: Swift.String {

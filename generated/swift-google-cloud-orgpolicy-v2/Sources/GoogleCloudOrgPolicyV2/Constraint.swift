@@ -159,12 +159,12 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
       constraintType = $0
     }
     if let listConstraint = try container.decodeIfPresent(
-      Constraint.ListConstraint?.self, forKey: .listConstraint)
+      Constraint.ListConstraint.self, forKey: .listConstraint)
     {
       try constraintTypeCheckAndSet(.listConstraint(listConstraint))
     }
     if let booleanConstraint = try container.decodeIfPresent(
-      Constraint.BooleanConstraint?.self, forKey: .booleanConstraint)
+      Constraint.BooleanConstraint.self, forKey: .booleanConstraint)
     {
       try constraintTypeCheckAndSet(.booleanConstraint(booleanConstraint))
     }
@@ -1182,9 +1182,9 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Immutable after creation.
   public enum ConstraintTypeOneOf: Codable, Equatable, Sendable {
     /// Defines this constraint as being a list constraint.
-    indirect case listConstraint(Constraint.ListConstraint?)
+    indirect case listConstraint(Constraint.ListConstraint)
     /// Defines this constraint as being a boolean constraint.
-    indirect case booleanConstraint(Constraint.BooleanConstraint?)
+    indirect case booleanConstraint(Constraint.BooleanConstraint)
   }
 
   public static var _anyTypeUrl: Swift.String {

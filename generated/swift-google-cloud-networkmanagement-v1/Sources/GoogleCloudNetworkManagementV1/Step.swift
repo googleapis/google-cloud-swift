@@ -183,164 +183,163 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       stepInfo = $0
     }
-    if let instance = try container.decodeIfPresent(InstanceInfo?.self, forKey: .instance) {
+    if let instance = try container.decodeIfPresent(InstanceInfo.self, forKey: .instance) {
       try stepInfoCheckAndSet(.instance(instance))
     }
-    if let firewall = try container.decodeIfPresent(FirewallInfo?.self, forKey: .firewall) {
+    if let firewall = try container.decodeIfPresent(FirewallInfo.self, forKey: .firewall) {
       try stepInfoCheckAndSet(.firewall(firewall))
     }
-    if let route = try container.decodeIfPresent(RouteInfo?.self, forKey: .route) {
+    if let route = try container.decodeIfPresent(RouteInfo.self, forKey: .route) {
       try stepInfoCheckAndSet(.route(route))
     }
-    if let endpoint = try container.decodeIfPresent(EndpointInfo?.self, forKey: .endpoint) {
+    if let endpoint = try container.decodeIfPresent(EndpointInfo.self, forKey: .endpoint) {
       try stepInfoCheckAndSet(.endpoint(endpoint))
     }
     if let googleService = try container.decodeIfPresent(
-      GoogleServiceInfo?.self, forKey: .googleService)
+      GoogleServiceInfo.self, forKey: .googleService)
     {
       try stepInfoCheckAndSet(.googleService(googleService))
     }
     if let forwardingRule = try container.decodeIfPresent(
-      ForwardingRuleInfo?.self, forKey: .forwardingRule)
+      ForwardingRuleInfo.self, forKey: .forwardingRule)
     {
       try stepInfoCheckAndSet(.forwardingRule(forwardingRule))
     }
     if let hybridSubnet = try container.decodeIfPresent(
-      HybridSubnetInfo?.self, forKey: .hybridSubnet)
+      HybridSubnetInfo.self, forKey: .hybridSubnet)
     {
       try stepInfoCheckAndSet(.hybridSubnet(hybridSubnet))
     }
-    if let vpnGateway = try container.decodeIfPresent(VpnGatewayInfo?.self, forKey: .vpnGateway) {
+    if let vpnGateway = try container.decodeIfPresent(VpnGatewayInfo.self, forKey: .vpnGateway) {
       try stepInfoCheckAndSet(.vpnGateway(vpnGateway))
     }
-    if let vpnTunnel = try container.decodeIfPresent(VpnTunnelInfo?.self, forKey: .vpnTunnel) {
+    if let vpnTunnel = try container.decodeIfPresent(VpnTunnelInfo.self, forKey: .vpnTunnel) {
       try stepInfoCheckAndSet(.vpnTunnel(vpnTunnel))
     }
     if let interconnectAttachment = try container.decodeIfPresent(
-      InterconnectAttachmentInfo?.self, forKey: .interconnectAttachment)
+      InterconnectAttachmentInfo.self, forKey: .interconnectAttachment)
     {
       try stepInfoCheckAndSet(.interconnectAttachment(interconnectAttachment))
     }
     if let vpcConnector = try container.decodeIfPresent(
-      VpcConnectorInfo?.self, forKey: .vpcConnector)
+      VpcConnectorInfo.self, forKey: .vpcConnector)
     {
       try stepInfoCheckAndSet(.vpcConnector(vpcConnector))
     }
     if let directVpcEgressConnection = try container.decodeIfPresent(
-      DirectVpcEgressConnectionInfo?.self, forKey: .directVpcEgressConnection)
+      DirectVpcEgressConnectionInfo.self, forKey: .directVpcEgressConnection)
     {
       try stepInfoCheckAndSet(.directVpcEgressConnection(directVpcEgressConnection))
     }
     if let serverlessExternalConnection = try container.decodeIfPresent(
-      ServerlessExternalConnectionInfo?.self, forKey: .serverlessExternalConnection)
+      ServerlessExternalConnectionInfo.self, forKey: .serverlessExternalConnection)
     {
       try stepInfoCheckAndSet(.serverlessExternalConnection(serverlessExternalConnection))
     }
-    if let deliver = try container.decodeIfPresent(DeliverInfo?.self, forKey: .deliver) {
+    if let deliver = try container.decodeIfPresent(DeliverInfo.self, forKey: .deliver) {
       try stepInfoCheckAndSet(.deliver(deliver))
     }
-    if let forward = try container.decodeIfPresent(ForwardInfo?.self, forKey: .forward) {
+    if let forward = try container.decodeIfPresent(ForwardInfo.self, forKey: .forward) {
       try stepInfoCheckAndSet(.forward(forward))
     }
-    if let abort = try container.decodeIfPresent(AbortInfo?.self, forKey: .abort) {
+    if let abort = try container.decodeIfPresent(AbortInfo.self, forKey: .abort) {
       try stepInfoCheckAndSet(.abort(abort))
     }
-    if let drop = try container.decodeIfPresent(DropInfo?.self, forKey: .drop) {
+    if let drop = try container.decodeIfPresent(DropInfo.self, forKey: .drop) {
       try stepInfoCheckAndSet(.drop(drop))
     }
     if let loadBalancer = try container.decodeIfPresent(
-      LoadBalancerInfo?.self, forKey: .loadBalancer)
+      LoadBalancerInfo.self, forKey: .loadBalancer)
     {
       try stepInfoCheckAndSet(.loadBalancer(loadBalancer))
     }
-    if let network = try container.decodeIfPresent(NetworkInfo?.self, forKey: .network) {
+    if let network = try container.decodeIfPresent(NetworkInfo.self, forKey: .network) {
       try stepInfoCheckAndSet(.network(network))
     }
-    if let gkeMaster = try container.decodeIfPresent(GKEMasterInfo?.self, forKey: .gkeMaster) {
+    if let gkeMaster = try container.decodeIfPresent(GKEMasterInfo.self, forKey: .gkeMaster) {
       try stepInfoCheckAndSet(.gkeMaster(gkeMaster))
     }
-    if let gkePod = try container.decodeIfPresent(GkePodInfo?.self, forKey: .gkePod) {
+    if let gkePod = try container.decodeIfPresent(GkePodInfo.self, forKey: .gkePod) {
       try stepInfoCheckAndSet(.gkePod(gkePod))
     }
     if let ipMasqueradingSkipped = try container.decodeIfPresent(
-      IpMasqueradingSkippedInfo?.self, forKey: .ipMasqueradingSkipped)
+      IpMasqueradingSkippedInfo.self, forKey: .ipMasqueradingSkipped)
     {
       try stepInfoCheckAndSet(.ipMasqueradingSkipped(ipMasqueradingSkipped))
     }
     if let gkeNetworkPolicy = try container.decodeIfPresent(
-      GkeNetworkPolicyInfo?.self, forKey: .gkeNetworkPolicy)
+      GkeNetworkPolicyInfo.self, forKey: .gkeNetworkPolicy)
     {
       try stepInfoCheckAndSet(.gkeNetworkPolicy(gkeNetworkPolicy))
     }
     if let gkeNetworkPolicySkipped = try container.decodeIfPresent(
-      GkeNetworkPolicySkippedInfo?.self, forKey: .gkeNetworkPolicySkipped)
+      GkeNetworkPolicySkippedInfo.self, forKey: .gkeNetworkPolicySkipped)
     {
       try stepInfoCheckAndSet(.gkeNetworkPolicySkipped(gkeNetworkPolicySkipped))
     }
     if let cloudSqlInstance = try container.decodeIfPresent(
-      CloudSQLInstanceInfo?.self, forKey: .cloudSqlInstance)
+      CloudSQLInstanceInfo.self, forKey: .cloudSqlInstance)
     {
       try stepInfoCheckAndSet(.cloudSqlInstance(cloudSqlInstance))
     }
     if let redisInstance = try container.decodeIfPresent(
-      RedisInstanceInfo?.self, forKey: .redisInstance)
+      RedisInstanceInfo.self, forKey: .redisInstance)
     {
       try stepInfoCheckAndSet(.redisInstance(redisInstance))
     }
     if let redisCluster = try container.decodeIfPresent(
-      RedisClusterInfo?.self, forKey: .redisCluster)
+      RedisClusterInfo.self, forKey: .redisCluster)
     {
       try stepInfoCheckAndSet(.redisCluster(redisCluster))
     }
     if let cloudFunction = try container.decodeIfPresent(
-      CloudFunctionInfo?.self, forKey: .cloudFunction)
+      CloudFunctionInfo.self, forKey: .cloudFunction)
     {
       try stepInfoCheckAndSet(.cloudFunction(cloudFunction))
     }
     if let appEngineVersion = try container.decodeIfPresent(
-      AppEngineVersionInfo?.self, forKey: .appEngineVersion)
+      AppEngineVersionInfo.self, forKey: .appEngineVersion)
     {
       try stepInfoCheckAndSet(.appEngineVersion(appEngineVersion))
     }
     if let cloudRunRevision = try container.decodeIfPresent(
-      CloudRunRevisionInfo?.self, forKey: .cloudRunRevision)
+      CloudRunRevisionInfo.self, forKey: .cloudRunRevision)
     {
       try stepInfoCheckAndSet(.cloudRunRevision(cloudRunRevision))
     }
-    if let cloudRunJob = try container.decodeIfPresent(CloudRunJobInfo?.self, forKey: .cloudRunJob)
-    {
+    if let cloudRunJob = try container.decodeIfPresent(CloudRunJobInfo.self, forKey: .cloudRunJob) {
       try stepInfoCheckAndSet(.cloudRunJob(cloudRunJob))
     }
-    if let nat = try container.decodeIfPresent(NatInfo?.self, forKey: .nat) {
+    if let nat = try container.decodeIfPresent(NatInfo.self, forKey: .nat) {
       try stepInfoCheckAndSet(.nat(nat))
     }
     if let proxyConnection = try container.decodeIfPresent(
-      ProxyConnectionInfo?.self, forKey: .proxyConnection)
+      ProxyConnectionInfo.self, forKey: .proxyConnection)
     {
       try stepInfoCheckAndSet(.proxyConnection(proxyConnection))
     }
     if let loadBalancerBackendInfo = try container.decodeIfPresent(
-      LoadBalancerBackendInfo?.self, forKey: .loadBalancerBackendInfo)
+      LoadBalancerBackendInfo.self, forKey: .loadBalancerBackendInfo)
     {
       try stepInfoCheckAndSet(.loadBalancerBackendInfo(loadBalancerBackendInfo))
     }
     if let storageBucket = try container.decodeIfPresent(
-      StorageBucketInfo?.self, forKey: .storageBucket)
+      StorageBucketInfo.self, forKey: .storageBucket)
     {
       try stepInfoCheckAndSet(.storageBucket(storageBucket))
     }
     if let serverlessNeg = try container.decodeIfPresent(
-      ServerlessNegInfo?.self, forKey: .serverlessNeg)
+      ServerlessNegInfo.self, forKey: .serverlessNeg)
     {
       try stepInfoCheckAndSet(.serverlessNeg(serverlessNeg))
     }
     if let ngfwPacketInspection = try container.decodeIfPresent(
-      NgfwPacketInspectionInfo?.self, forKey: .ngfwPacketInspection)
+      NgfwPacketInspectionInfo.self, forKey: .ngfwPacketInspection)
     {
       try stepInfoCheckAndSet(.ngfwPacketInspection(ngfwPacketInspection))
     }
     if let dmsPrivateConnection = try container.decodeIfPresent(
-      PrivateConnectionInfo?.self, forKey: .dmsPrivateConnection)
+      PrivateConnectionInfo.self, forKey: .dmsPrivateConnection)
     {
       try stepInfoCheckAndSet(.dmsPrivateConnection(dmsPrivateConnection))
     }
@@ -936,89 +935,89 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
   /// final state the configuration is cleared.
   public enum StepInfoOneOf: Codable, Equatable, Sendable {
     /// Display information of a Compute Engine instance.
-    indirect case instance(InstanceInfo?)
+    indirect case instance(InstanceInfo)
     /// Display information of a Compute Engine firewall rule.
-    indirect case firewall(FirewallInfo?)
+    indirect case firewall(FirewallInfo)
     /// Display information of a Compute Engine route.
-    indirect case route(RouteInfo?)
+    indirect case route(RouteInfo)
     /// Display information of the source and destination under analysis.
     /// The endpoint information in an intermediate state may differ with the
     /// initial input, as it might be modified by state like NAT,
     /// or Connection Proxy.
-    indirect case endpoint(EndpointInfo?)
+    indirect case endpoint(EndpointInfo)
     /// Display information of a Google service
-    indirect case googleService(GoogleServiceInfo?)
+    indirect case googleService(GoogleServiceInfo)
     /// Display information of a Compute Engine forwarding rule.
-    indirect case forwardingRule(ForwardingRuleInfo?)
+    indirect case forwardingRule(ForwardingRuleInfo)
     /// Display information of a hybrid subnet.
-    indirect case hybridSubnet(HybridSubnetInfo?)
+    indirect case hybridSubnet(HybridSubnetInfo)
     /// Display information of a Compute Engine VPN gateway.
-    indirect case vpnGateway(VpnGatewayInfo?)
+    indirect case vpnGateway(VpnGatewayInfo)
     /// Display information of a Compute Engine VPN tunnel.
-    indirect case vpnTunnel(VpnTunnelInfo?)
+    indirect case vpnTunnel(VpnTunnelInfo)
     /// Display information of an interconnect attachment.
-    indirect case interconnectAttachment(InterconnectAttachmentInfo?)
+    indirect case interconnectAttachment(InterconnectAttachmentInfo)
     /// Display information of a VPC connector.
-    indirect case vpcConnector(VpcConnectorInfo?)
+    indirect case vpcConnector(VpcConnectorInfo)
     /// Display information of a serverless direct VPC egress connection.
-    indirect case directVpcEgressConnection(DirectVpcEgressConnectionInfo?)
+    indirect case directVpcEgressConnection(DirectVpcEgressConnectionInfo)
     /// Display information of a serverless public (external) connection.
-    indirect case serverlessExternalConnection(ServerlessExternalConnectionInfo?)
+    indirect case serverlessExternalConnection(ServerlessExternalConnectionInfo)
     /// Display information of the final state "deliver" and reason.
-    indirect case deliver(DeliverInfo?)
+    indirect case deliver(DeliverInfo)
     /// Display information of the final state "forward" and reason.
-    indirect case forward(ForwardInfo?)
+    indirect case forward(ForwardInfo)
     /// Display information of the final state "abort" and reason.
-    indirect case abort(AbortInfo?)
+    indirect case abort(AbortInfo)
     /// Display information of the final state "drop" and reason.
-    indirect case drop(DropInfo?)
+    indirect case drop(DropInfo)
     /// Display information of the load balancers. Deprecated in favor of the
     /// `load_balancer_backend_info` field, not used in new tests.
     @available(*, deprecated)
-    indirect case loadBalancer(LoadBalancerInfo?)
+    indirect case loadBalancer(LoadBalancerInfo)
     /// Display information of a Google Cloud network.
-    indirect case network(NetworkInfo?)
+    indirect case network(NetworkInfo)
     /// Display information of a Google Kubernetes Engine cluster master.
-    indirect case gkeMaster(GKEMasterInfo?)
+    indirect case gkeMaster(GKEMasterInfo)
     /// Display information of a Google Kubernetes Engine Pod.
-    indirect case gkePod(GkePodInfo?)
+    indirect case gkePod(GkePodInfo)
     /// Display information of the reason why GKE Pod IP masquerading was
     /// skipped.
-    indirect case ipMasqueradingSkipped(IpMasqueradingSkippedInfo?)
+    indirect case ipMasqueradingSkipped(IpMasqueradingSkippedInfo)
     /// Display information of a GKE Network Policy.
-    indirect case gkeNetworkPolicy(GkeNetworkPolicyInfo?)
+    indirect case gkeNetworkPolicy(GkeNetworkPolicyInfo)
     /// Display information of the reason why GKE Network Policy evaluation was
     /// skipped.
-    indirect case gkeNetworkPolicySkipped(GkeNetworkPolicySkippedInfo?)
+    indirect case gkeNetworkPolicySkipped(GkeNetworkPolicySkippedInfo)
     /// Display information of a Cloud SQL instance.
-    indirect case cloudSqlInstance(CloudSQLInstanceInfo?)
+    indirect case cloudSqlInstance(CloudSQLInstanceInfo)
     /// Display information of a Redis Instance.
-    indirect case redisInstance(RedisInstanceInfo?)
+    indirect case redisInstance(RedisInstanceInfo)
     /// Display information of a Redis Cluster.
-    indirect case redisCluster(RedisClusterInfo?)
+    indirect case redisCluster(RedisClusterInfo)
     /// Display information of a Cloud Function.
-    indirect case cloudFunction(CloudFunctionInfo?)
+    indirect case cloudFunction(CloudFunctionInfo)
     /// Display information of an App Engine service version.
-    indirect case appEngineVersion(AppEngineVersionInfo?)
+    indirect case appEngineVersion(AppEngineVersionInfo)
     /// Display information of a Cloud Run revision.
-    indirect case cloudRunRevision(CloudRunRevisionInfo?)
+    indirect case cloudRunRevision(CloudRunRevisionInfo)
     /// Display information of a Cloud Run job.
-    indirect case cloudRunJob(CloudRunJobInfo?)
+    indirect case cloudRunJob(CloudRunJobInfo)
     /// Display information of a NAT.
-    indirect case nat(NatInfo?)
+    indirect case nat(NatInfo)
     /// Display information of a ProxyConnection.
-    indirect case proxyConnection(ProxyConnectionInfo?)
+    indirect case proxyConnection(ProxyConnectionInfo)
     /// Display information of a specific load balancer backend.
-    indirect case loadBalancerBackendInfo(LoadBalancerBackendInfo?)
+    indirect case loadBalancerBackendInfo(LoadBalancerBackendInfo)
     /// Display information of a Storage Bucket. Used only for return traces.
-    indirect case storageBucket(StorageBucketInfo?)
+    indirect case storageBucket(StorageBucketInfo)
     /// Display information of a Serverless network endpoint group backend. Used
     /// only for return traces.
-    indirect case serverlessNeg(ServerlessNegInfo?)
+    indirect case serverlessNeg(ServerlessNegInfo)
     /// Display information of a layer 7 packet inspection by the firewall.
-    indirect case ngfwPacketInspection(NgfwPacketInspectionInfo?)
+    indirect case ngfwPacketInspection(NgfwPacketInspectionInfo)
     /// Display information of a DMS Private Connection.
-    indirect case dmsPrivateConnection(PrivateConnectionInfo?)
+    indirect case dmsPrivateConnection(PrivateConnectionInfo)
   }
 
   public static var _anyTypeUrl: Swift.String {

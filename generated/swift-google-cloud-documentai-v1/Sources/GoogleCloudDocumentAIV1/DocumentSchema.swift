@@ -201,7 +201,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
         valueSource = $0
       }
       if let enumValues = try container.decodeIfPresent(
-        DocumentSchema.EntityType.EnumValues?.self, forKey: .enumValues)
+        DocumentSchema.EntityType.EnumValues.self, forKey: .enumValues)
       {
         try valueSourceCheckAndSet(.enumValues(enumValues))
       }
@@ -677,7 +677,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       /// is >10 or could change frequently use the `EntityType.value_ontology`
       /// field and specify a list of all possible values in a value ontology
       /// file.
-      indirect case enumValues(DocumentSchema.EntityType.EnumValues?)
+      indirect case enumValues(DocumentSchema.EntityType.EnumValues)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -102,7 +102,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
       target = $0
     }
     if let connectionProfile = try container.decodeIfPresent(
-      ConnectionProfile?.self, forKey: .connectionProfile)
+      ConnectionProfile.self, forKey: .connectionProfile)
     {
       try targetCheckAndSet(.connectionProfile(connectionProfile))
     }
@@ -142,29 +142,28 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
       }
       dataObject = $0
     }
-    if let oracleRdbms = try container.decodeIfPresent(OracleRdbms?.self, forKey: .oracleRdbms) {
+    if let oracleRdbms = try container.decodeIfPresent(OracleRdbms.self, forKey: .oracleRdbms) {
       try dataObjectCheckAndSet(.oracleRdbms(oracleRdbms))
     }
-    if let mysqlRdbms = try container.decodeIfPresent(MysqlRdbms?.self, forKey: .mysqlRdbms) {
+    if let mysqlRdbms = try container.decodeIfPresent(MysqlRdbms.self, forKey: .mysqlRdbms) {
       try dataObjectCheckAndSet(.mysqlRdbms(mysqlRdbms))
     }
     if let postgresqlRdbms = try container.decodeIfPresent(
-      PostgresqlRdbms?.self, forKey: .postgresqlRdbms)
+      PostgresqlRdbms.self, forKey: .postgresqlRdbms)
     {
       try dataObjectCheckAndSet(.postgresqlRdbms(postgresqlRdbms))
     }
     if let sqlServerRdbms = try container.decodeIfPresent(
-      SqlServerRdbms?.self, forKey: .sqlServerRdbms)
+      SqlServerRdbms.self, forKey: .sqlServerRdbms)
     {
       try dataObjectCheckAndSet(.sqlServerRdbms(sqlServerRdbms))
     }
-    if let salesforceOrg = try container.decodeIfPresent(
-      SalesforceOrg?.self, forKey: .salesforceOrg)
+    if let salesforceOrg = try container.decodeIfPresent(SalesforceOrg.self, forKey: .salesforceOrg)
     {
       try dataObjectCheckAndSet(.salesforceOrg(salesforceOrg))
     }
     if let mongodbCluster = try container.decodeIfPresent(
-      MongodbCluster?.self, forKey: .mongodbCluster)
+      MongodbCluster.self, forKey: .mongodbCluster)
     {
       try dataObjectCheckAndSet(.mongodbCluster(mongodbCluster))
     }
@@ -221,7 +220,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
   /// The connection profile on which to run discover.
   public enum TargetOneOf: Codable, Equatable, Sendable {
     /// An ad-hoc connection profile configuration.
-    indirect case connectionProfile(ConnectionProfile?)
+    indirect case connectionProfile(ConnectionProfile)
     /// A reference to an existing connection profile.
     case connectionProfileName(Swift.String)
   }
@@ -238,17 +237,17 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
   /// The data object to populate with child data objects and metadata.
   public enum DataObjectOneOf: Codable, Equatable, Sendable {
     /// Oracle RDBMS to enrich with child data objects and metadata.
-    indirect case oracleRdbms(OracleRdbms?)
+    indirect case oracleRdbms(OracleRdbms)
     /// MySQL RDBMS to enrich with child data objects and metadata.
-    indirect case mysqlRdbms(MysqlRdbms?)
+    indirect case mysqlRdbms(MysqlRdbms)
     /// PostgreSQL RDBMS to enrich with child data objects and metadata.
-    indirect case postgresqlRdbms(PostgresqlRdbms?)
+    indirect case postgresqlRdbms(PostgresqlRdbms)
     /// SQLServer RDBMS to enrich with child data objects and metadata.
-    indirect case sqlServerRdbms(SqlServerRdbms?)
+    indirect case sqlServerRdbms(SqlServerRdbms)
     /// Salesforce organization to enrich with child data objects and metadata.
-    indirect case salesforceOrg(SalesforceOrg?)
+    indirect case salesforceOrg(SalesforceOrg)
     /// MongoDB cluster to enrich with child data objects and metadata.
-    indirect case mongodbCluster(MongodbCluster?)
+    indirect case mongodbCluster(MongodbCluster)
   }
 
   public static var _anyTypeUrl: Swift.String {

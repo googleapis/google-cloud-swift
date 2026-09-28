@@ -169,7 +169,7 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       pipeline = $0
     }
     if let serialPipeline = try container.decodeIfPresent(
-      SerialPipeline?.self, forKey: .serialPipeline)
+      SerialPipeline.self, forKey: .serialPipeline)
     {
       try pipelineCheckAndSet(.serialPipeline(serialPipeline))
     }
@@ -208,7 +208,7 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum PipelineOneOf: Codable, Equatable, Sendable {
     /// Optional. SerialPipeline defines a sequential set of stages for a
     /// `DeliveryPipeline`.
-    indirect case serialPipeline(SerialPipeline?)
+    indirect case serialPipeline(SerialPipeline)
   }
 
   public static var _anyTypeUrl: Swift.String {

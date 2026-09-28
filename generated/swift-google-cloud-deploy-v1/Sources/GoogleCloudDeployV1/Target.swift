@@ -220,21 +220,20 @@ public struct Target: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       deploymentTarget = $0
     }
-    if let gke = try container.decodeIfPresent(GkeCluster?.self, forKey: .gke) {
+    if let gke = try container.decodeIfPresent(GkeCluster.self, forKey: .gke) {
       try deploymentTargetCheckAndSet(.gke(gke))
     }
-    if let anthosCluster = try container.decodeIfPresent(
-      AnthosCluster?.self, forKey: .anthosCluster)
+    if let anthosCluster = try container.decodeIfPresent(AnthosCluster.self, forKey: .anthosCluster)
     {
       try deploymentTargetCheckAndSet(.anthosCluster(anthosCluster))
     }
-    if let run = try container.decodeIfPresent(CloudRunLocation?.self, forKey: .run) {
+    if let run = try container.decodeIfPresent(CloudRunLocation.self, forKey: .run) {
       try deploymentTargetCheckAndSet(.run(run))
     }
-    if let multiTarget = try container.decodeIfPresent(MultiTarget?.self, forKey: .multiTarget) {
+    if let multiTarget = try container.decodeIfPresent(MultiTarget.self, forKey: .multiTarget) {
       try deploymentTargetCheckAndSet(.multiTarget(multiTarget))
     }
-    if let customTarget = try container.decodeIfPresent(CustomTarget?.self, forKey: .customTarget) {
+    if let customTarget = try container.decodeIfPresent(CustomTarget.self, forKey: .customTarget) {
       try deploymentTargetCheckAndSet(.customTarget(customTarget))
     }
     self.deploymentTarget = deploymentTarget
@@ -283,15 +282,15 @@ public struct Target: Codable, Equatable, GoogleWKT._AnyPackable,
   /// rollout.
   public enum DeploymentTargetOneOf: Codable, Equatable, Sendable {
     /// Optional. Information specifying a GKE Cluster.
-    indirect case gke(GkeCluster?)
+    indirect case gke(GkeCluster)
     /// Optional. Information specifying an Anthos Cluster.
-    indirect case anthosCluster(AnthosCluster?)
+    indirect case anthosCluster(AnthosCluster)
     /// Optional. Information specifying a Cloud Run deployment target.
-    indirect case run(CloudRunLocation?)
+    indirect case run(CloudRunLocation)
     /// Optional. Information specifying a multiTarget.
-    indirect case multiTarget(MultiTarget?)
+    indirect case multiTarget(MultiTarget)
     /// Optional. Information specifying a Custom Target.
-    indirect case customTarget(CustomTarget?)
+    indirect case customTarget(CustomTarget)
   }
 
   public static var _anyTypeUrl: Swift.String {

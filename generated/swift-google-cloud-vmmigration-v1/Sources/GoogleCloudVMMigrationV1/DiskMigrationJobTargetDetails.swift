@@ -95,8 +95,7 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
       }
       targetStorage = $0
     }
-    if let targetDisk = try container.decodeIfPresent(ComputeEngineDisk?.self, forKey: .targetDisk)
-    {
+    if let targetDisk = try container.decodeIfPresent(ComputeEngineDisk.self, forKey: .targetDisk) {
       try targetStorageCheckAndSet(.targetDisk(targetDisk))
     }
     self.targetStorage = targetStorage
@@ -126,7 +125,7 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
   /// The target storage.
   public enum TargetStorageOneOf: Codable, Equatable, Sendable {
     /// Required. The target disk.
-    indirect case targetDisk(ComputeEngineDisk?)
+    indirect case targetDisk(ComputeEngineDisk)
   }
 
   public static var _anyTypeUrl: Swift.String {

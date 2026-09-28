@@ -125,7 +125,7 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
       oneMessage = $0
     }
     if let messageValue = try container.decodeIfPresent(
-      MessageWithOneOf.Message?.self, forKey: .messageValue)
+      MessageWithOneOf.Message.self, forKey: .messageValue)
     {
       try oneMessageCheckAndSet(.messageValue(messageValue))
     }
@@ -142,15 +142,14 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
       mixed = $0
     }
     if let anotherMessage = try container.decodeIfPresent(
-      MessageWithOneOf.Message?.self, forKey: .anotherMessage)
+      MessageWithOneOf.Message.self, forKey: .anotherMessage)
     {
       try mixedCheckAndSet(.anotherMessage(anotherMessage))
     }
     if let string = try container.decodeIfPresent(Swift.String.self, forKey: .string) {
       try mixedCheckAndSet(.string(string))
     }
-    if let duration = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .duration)
-    {
+    if let duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration) {
       try mixedCheckAndSet(.duration(duration))
     }
     self.mixed = mixed
@@ -277,13 +276,13 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   public enum OneMessageOneOf: Codable, Equatable, Sendable {
-    indirect case messageValue(MessageWithOneOf.Message?)
+    indirect case messageValue(MessageWithOneOf.Message)
   }
 
   public enum MixedOneOf: Codable, Equatable, Sendable {
-    indirect case anotherMessage(MessageWithOneOf.Message?)
+    indirect case anotherMessage(MessageWithOneOf.Message)
     case string(Swift.String)
-    indirect case duration(GoogleWKT.WKTDuration?)
+    indirect case duration(GoogleWKT.WKTDuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -75,10 +75,10 @@
         }
         result = $0
       }
-      if let ragFile = try container.decodeIfPresent(RagFile?.self, forKey: .ragFile) {
+      if let ragFile = try container.decodeIfPresent(RagFile.self, forKey: .ragFile) {
         try resultCheckAndSet(.ragFile(ragFile))
       }
-      if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+      if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
         try resultCheckAndSet(.error(error))
       }
       self.result = result
@@ -107,9 +107,9 @@
     /// The result of the upload.
     public enum ResultOneOf: Codable, Equatable, Sendable {
       /// The RagFile that had been uploaded into the RagCorpus.
-      indirect case ragFile(RagFile?)
+      indirect case ragFile(RagFile)
       /// The error that occurred while processing the RagFile.
-      indirect case error(GoogleRpc.Status?)
+      indirect case error(GoogleRpc.Status)
     }
 
     public static var _anyTypeUrl: Swift.String {

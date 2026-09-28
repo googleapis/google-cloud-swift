@@ -149,7 +149,7 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleWKT._AnyPackable
       operation = $0
     }
     if let httpOperation = try container.decodeIfPresent(
-      HttpOperationDetails?.self, forKey: .httpOperation)
+      HttpOperationDetails.self, forKey: .httpOperation)
     {
       try operationCheckAndSet(.httpOperation(httpOperation))
     }
@@ -375,7 +375,7 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleWKT._AnyPackable
   /// ApiOperation protocol style
   public enum OperationOneOf: Codable, Equatable, Sendable {
     /// Optional. An HTTP Operation.
-    indirect case httpOperation(HttpOperationDetails?)
+    indirect case httpOperation(HttpOperationDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

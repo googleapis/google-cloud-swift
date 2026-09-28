@@ -70,11 +70,11 @@ public struct ReceiveEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       response = $0
     }
-    if let eventUpdate = try container.decodeIfPresent(EventUpdate?.self, forKey: .eventUpdate) {
+    if let eventUpdate = try container.decodeIfPresent(EventUpdate.self, forKey: .eventUpdate) {
       try responseCheckAndSet(.eventUpdate(eventUpdate))
     }
     if let control = try container.decodeIfPresent(
-      ReceiveEventsControlResponse?.self, forKey: .control)
+      ReceiveEventsControlResponse.self, forKey: .control)
     {
       try responseCheckAndSet(.control(control))
     }
@@ -104,9 +104,9 @@ public struct ReceiveEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Possible response types.
   public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// The event update message.
-    indirect case eventUpdate(EventUpdate?)
+    indirect case eventUpdate(EventUpdate)
     /// A control message from the server.
-    indirect case control(ReceiveEventsControlResponse?)
+    indirect case control(ReceiveEventsControlResponse)
   }
 
   public static var _anyTypeUrl: Swift.String {

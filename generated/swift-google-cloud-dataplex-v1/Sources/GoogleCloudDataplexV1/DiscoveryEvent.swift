@@ -133,27 +133,26 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let config = try container.decodeIfPresent(
-      DiscoveryEvent.ConfigDetails?.self, forKey: .config)
+      DiscoveryEvent.ConfigDetails.self, forKey: .config)
     {
       try detailsCheckAndSet(.config(config))
     }
     if let entity = try container.decodeIfPresent(
-      DiscoveryEvent.EntityDetails?.self, forKey: .entity)
+      DiscoveryEvent.EntityDetails.self, forKey: .entity)
     {
       try detailsCheckAndSet(.entity(entity))
     }
     if let partition = try container.decodeIfPresent(
-      DiscoveryEvent.PartitionDetails?.self, forKey: .partition)
+      DiscoveryEvent.PartitionDetails.self, forKey: .partition)
     {
       try detailsCheckAndSet(.partition(partition))
     }
     if let action = try container.decodeIfPresent(
-      DiscoveryEvent.ActionDetails?.self, forKey: .action)
+      DiscoveryEvent.ActionDetails.self, forKey: .action)
     {
       try detailsCheckAndSet(.action(action))
     }
-    if let table = try container.decodeIfPresent(DiscoveryEvent.TableDetails?.self, forKey: .table)
-    {
+    if let table = try container.decodeIfPresent(DiscoveryEvent.TableDetails.self, forKey: .table) {
       try detailsCheckAndSet(.table(table))
     }
     self.details = details
@@ -1022,15 +1021,15 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Additional details about the event.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Details about discovery configuration in effect.
-    indirect case config(DiscoveryEvent.ConfigDetails?)
+    indirect case config(DiscoveryEvent.ConfigDetails)
     /// Details about the entity associated with the event.
-    indirect case entity(DiscoveryEvent.EntityDetails?)
+    indirect case entity(DiscoveryEvent.EntityDetails)
     /// Details about the partition associated with the event.
-    indirect case partition(DiscoveryEvent.PartitionDetails?)
+    indirect case partition(DiscoveryEvent.PartitionDetails)
     /// Details about the action associated with the event.
-    indirect case action(DiscoveryEvent.ActionDetails?)
+    indirect case action(DiscoveryEvent.ActionDetails)
     /// Details about the BigQuery table publishing associated with the event.
-    indirect case table(DiscoveryEvent.TableDetails?)
+    indirect case table(DiscoveryEvent.TableDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

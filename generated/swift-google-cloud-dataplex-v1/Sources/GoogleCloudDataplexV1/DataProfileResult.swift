@@ -349,21 +349,19 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             fieldInfo = $0
           }
           if let stringProfile = try container.decodeIfPresent(
-            DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo?.self,
-            forKey: .stringProfile)
-          {
+            DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo.self, forKey: .stringProfile
+          ) {
             try fieldInfoCheckAndSet(.stringProfile(stringProfile))
           }
           if let integerProfile = try container.decodeIfPresent(
-            DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo?.self,
+            DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo.self,
             forKey: .integerProfile)
           {
             try fieldInfoCheckAndSet(.integerProfile(integerProfile))
           }
           if let doubleProfile = try container.decodeIfPresent(
-            DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo?.self,
-            forKey: .doubleProfile)
-          {
+            DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo.self, forKey: .doubleProfile
+          ) {
             try fieldInfoCheckAndSet(.doubleProfile(doubleProfile))
           }
           self.fieldInfo = fieldInfo
@@ -818,12 +816,11 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
         /// available, if mode is REPEATABLE.
         public enum FieldInfoOneOf: Codable, Equatable, Sendable {
           /// String type field information.
-          indirect case stringProfile(DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo?)
+          indirect case stringProfile(DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo)
           /// Integer type field information.
-          indirect case integerProfile(
-            DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo?)
+          indirect case integerProfile(DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo)
           /// Double type field information.
-          indirect case doubleProfile(DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo?)
+          indirect case doubleProfile(DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo)
         }
 
         public static var _anyTypeUrl: Swift.String {

@@ -1179,12 +1179,12 @@
           input = $0
         }
         if let searchParams = try container.decodeIfPresent(
-          AnswerQueryRequest.SearchSpec.SearchParams?.self, forKey: .searchParams)
+          AnswerQueryRequest.SearchSpec.SearchParams.self, forKey: .searchParams)
         {
           try inputCheckAndSet(.searchParams(searchParams))
         }
         if let searchResultList = try container.decodeIfPresent(
-          AnswerQueryRequest.SearchSpec.SearchResultList?.self, forKey: .searchResultList)
+          AnswerQueryRequest.SearchSpec.SearchResultList.self, forKey: .searchResultList)
         {
           try inputCheckAndSet(.searchResultList(searchResultList))
         }
@@ -1478,13 +1478,13 @@
               content = $0
             }
             if let unstructuredDocumentInfo = try container.decodeIfPresent(
-              AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo?
+              AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo
                 .self, forKey: .unstructuredDocumentInfo)
             {
               try contentCheckAndSet(.unstructuredDocumentInfo(unstructuredDocumentInfo))
             }
             if let chunkInfo = try container.decodeIfPresent(
-              AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.ChunkInfo?.self,
+              AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.ChunkInfo.self,
               forKey: .chunkInfo)
             {
               try contentCheckAndSet(.chunkInfo(chunkInfo))
@@ -2083,10 +2083,10 @@
           public enum ContentOneOf: Codable, Equatable, Sendable {
             /// Unstructured document information.
             indirect case unstructuredDocumentInfo(
-              AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo?)
+              AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo)
             /// Chunk information.
             indirect case chunkInfo(
-              AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.ChunkInfo?)
+              AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.ChunkInfo)
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -2117,9 +2117,9 @@
       /// Or provide search result list to generate answer.
       public enum InputOneOf: Codable, Equatable, Sendable {
         /// Search parameters.
-        indirect case searchParams(AnswerQueryRequest.SearchSpec.SearchParams?)
+        indirect case searchParams(AnswerQueryRequest.SearchSpec.SearchParams)
         /// Search result list.
-        indirect case searchResultList(AnswerQueryRequest.SearchSpec.SearchResultList?)
+        indirect case searchResultList(AnswerQueryRequest.SearchSpec.SearchResultList)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -2835,7 +2835,7 @@
             content = $0
           }
           if let chunkInfo = try container.decodeIfPresent(
-            AnswerQueryRequest.EndUserSpec.EndUserMetaData.ChunkInfo?.self, forKey: .chunkInfo)
+            AnswerQueryRequest.EndUserSpec.EndUserMetaData.ChunkInfo.self, forKey: .chunkInfo)
           {
             try contentCheckAndSet(.chunkInfo(chunkInfo))
           }
@@ -3012,7 +3012,7 @@
         /// Search result content.
         public enum ContentOneOf: Codable, Equatable, Sendable {
           /// Chunk information.
-          indirect case chunkInfo(AnswerQueryRequest.EndUserSpec.EndUserMetaData.ChunkInfo?)
+          indirect case chunkInfo(AnswerQueryRequest.EndUserSpec.EndUserMetaData.ChunkInfo)
         }
 
         public static var _anyTypeUrl: Swift.String {

@@ -70,7 +70,7 @@ public struct Orchestrator: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       option = $0
     }
-    if let slurm = try container.decodeIfPresent(SlurmOrchestrator?.self, forKey: .slurm) {
+    if let slurm = try container.decodeIfPresent(SlurmOrchestrator.self, forKey: .slurm) {
       try optionCheckAndSet(.slurm(slurm))
     }
     self.option = option
@@ -98,7 +98,7 @@ public struct Orchestrator: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum OptionOneOf: Codable, Equatable, Sendable {
     /// Optional. If set, indicates that the cluster should use Slurm as the
     /// orchestrator.
-    indirect case slurm(SlurmOrchestrator?)
+    indirect case slurm(SlurmOrchestrator)
   }
 
   public static var _anyTypeUrl: Swift.String {

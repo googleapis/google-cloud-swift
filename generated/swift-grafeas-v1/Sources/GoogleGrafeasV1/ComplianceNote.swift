@@ -120,7 +120,7 @@ public struct ComplianceNote: Codable, Equatable, GoogleWKT._AnyPackable,
       complianceType = $0
     }
     if let cisBenchmark = try container.decodeIfPresent(
-      ComplianceNote.CisBenchmark?.self, forKey: .cisBenchmark)
+      ComplianceNote.CisBenchmark.self, forKey: .cisBenchmark)
     {
       try complianceTypeCheckAndSet(.cisBenchmark(cisBenchmark))
     }
@@ -249,7 +249,7 @@ public struct ComplianceNote: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   public enum ComplianceTypeOneOf: Codable, Equatable, Sendable {
-    indirect case cisBenchmark(ComplianceNote.CisBenchmark?)
+    indirect case cisBenchmark(ComplianceNote.CisBenchmark)
   }
 
   /// Potential impact of the suggested remediation

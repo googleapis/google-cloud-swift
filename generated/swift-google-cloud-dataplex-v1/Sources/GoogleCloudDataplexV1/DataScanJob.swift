@@ -158,22 +158,22 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
       spec = $0
     }
     if let dataQualitySpec = try container.decodeIfPresent(
-      DataQualitySpec?.self, forKey: .dataQualitySpec)
+      DataQualitySpec.self, forKey: .dataQualitySpec)
     {
       try specCheckAndSet(.dataQualitySpec(dataQualitySpec))
     }
     if let dataProfileSpec = try container.decodeIfPresent(
-      DataProfileSpec?.self, forKey: .dataProfileSpec)
+      DataProfileSpec.self, forKey: .dataProfileSpec)
     {
       try specCheckAndSet(.dataProfileSpec(dataProfileSpec))
     }
     if let dataDiscoverySpec = try container.decodeIfPresent(
-      DataDiscoverySpec?.self, forKey: .dataDiscoverySpec)
+      DataDiscoverySpec.self, forKey: .dataDiscoverySpec)
     {
       try specCheckAndSet(.dataDiscoverySpec(dataDiscoverySpec))
     }
     if let dataDocumentationSpec = try container.decodeIfPresent(
-      DataDocumentationSpec?.self, forKey: .dataDocumentationSpec)
+      DataDocumentationSpec.self, forKey: .dataDocumentationSpec)
     {
       try specCheckAndSet(.dataDocumentationSpec(dataDocumentationSpec))
     }
@@ -190,22 +190,22 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
       result = $0
     }
     if let dataQualityResult = try container.decodeIfPresent(
-      DataQualityResult?.self, forKey: .dataQualityResult)
+      DataQualityResult.self, forKey: .dataQualityResult)
     {
       try resultCheckAndSet(.dataQualityResult(dataQualityResult))
     }
     if let dataProfileResult = try container.decodeIfPresent(
-      DataProfileResult?.self, forKey: .dataProfileResult)
+      DataProfileResult.self, forKey: .dataProfileResult)
     {
       try resultCheckAndSet(.dataProfileResult(dataProfileResult))
     }
     if let dataDiscoveryResult = try container.decodeIfPresent(
-      DataDiscoveryResult?.self, forKey: .dataDiscoveryResult)
+      DataDiscoveryResult.self, forKey: .dataDiscoveryResult)
     {
       try resultCheckAndSet(.dataDiscoveryResult(dataDiscoveryResult))
     }
     if let dataDocumentationResult = try container.decodeIfPresent(
-      DataDocumentationResult?.self, forKey: .dataDocumentationResult)
+      DataDocumentationResult.self, forKey: .dataDocumentationResult)
     {
       try resultCheckAndSet(.dataDocumentationResult(dataDocumentationResult))
     }
@@ -413,25 +413,25 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Data scan related setting.
   public enum SpecOneOf: Codable, Equatable, Sendable {
     /// Output only. Settings for a data quality scan.
-    indirect case dataQualitySpec(DataQualitySpec?)
+    indirect case dataQualitySpec(DataQualitySpec)
     /// Output only. Settings for a data profile scan.
-    indirect case dataProfileSpec(DataProfileSpec?)
+    indirect case dataProfileSpec(DataProfileSpec)
     /// Output only. Settings for a data discovery scan.
-    indirect case dataDiscoverySpec(DataDiscoverySpec?)
+    indirect case dataDiscoverySpec(DataDiscoverySpec)
     /// Output only. Settings for a data documentation scan.
-    indirect case dataDocumentationSpec(DataDocumentationSpec?)
+    indirect case dataDocumentationSpec(DataDocumentationSpec)
   }
 
   /// The result of the data scan.
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. The result of a data quality scan.
-    indirect case dataQualityResult(DataQualityResult?)
+    indirect case dataQualityResult(DataQualityResult)
     /// Output only. The result of a data profile scan.
-    indirect case dataProfileResult(DataProfileResult?)
+    indirect case dataProfileResult(DataProfileResult)
     /// Output only. The result of a data discovery scan.
-    indirect case dataDiscoveryResult(DataDiscoveryResult?)
+    indirect case dataDiscoveryResult(DataDiscoveryResult)
     /// Output only. The result of a data documentation scan.
-    indirect case dataDocumentationResult(DataDocumentationResult?)
+    indirect case dataDocumentationResult(DataDocumentationResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

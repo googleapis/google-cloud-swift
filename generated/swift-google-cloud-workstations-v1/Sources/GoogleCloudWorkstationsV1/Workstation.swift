@@ -375,7 +375,7 @@ public struct Workstation: Codable, Equatable, GoogleWKT._AnyPackable,
         hostType = $0
       }
       if let gceInstanceHost = try container.decodeIfPresent(
-        Workstation.RuntimeHost.GceInstanceHost?.self, forKey: .gceInstanceHost)
+        Workstation.RuntimeHost.GceInstanceHost.self, forKey: .gceInstanceHost)
       {
         try hostTypeCheckAndSet(.gceInstanceHost(gceInstanceHost))
       }
@@ -490,7 +490,7 @@ public struct Workstation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Type of host used by the workstation.
     public enum HostTypeOneOf: Codable, Equatable, Sendable {
       /// Specifies a Compute Engine instance as the host.
-      indirect case gceInstanceHost(Workstation.RuntimeHost.GceInstanceHost?)
+      indirect case gceInstanceHost(Workstation.RuntimeHost.GceInstanceHost)
     }
 
     public static var _anyTypeUrl: Swift.String {

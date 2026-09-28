@@ -83,7 +83,7 @@ public struct SourceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let baseUri = try container.decodeIfPresent(Swift.String.self, forKey: .baseUri) {
       try sourceCheckAndSet(.baseUri(baseUri))
     }
-    if let literal = try container.decodeIfPresent(Literal?.self, forKey: .literal) {
+    if let literal = try container.decodeIfPresent(Literal.self, forKey: .literal) {
       try sourceCheckAndSet(.literal(literal))
     }
     if let gcsFilePath = try container.decodeIfPresent(Swift.String.self, forKey: .gcsFilePath) {
@@ -120,7 +120,7 @@ public struct SourceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The base URI for all files to be read in as sources for translation.
     case baseUri(Swift.String)
     /// Source literal.
-    indirect case literal(Literal?)
+    indirect case literal(Literal)
     /// The path to a single source file in Cloud Storage.
     case gcsFilePath(Swift.String)
   }

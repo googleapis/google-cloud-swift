@@ -76,7 +76,7 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleWKT._AnyPackable
       featureState = $0
     }
     if let configmanagement = try container.decodeIfPresent(
-      GoogleCloudGKEHubConfigManagementV1.MembershipState?.self, forKey: .configmanagement)
+      GoogleCloudGKEHubConfigManagementV1.MembershipState.self, forKey: .configmanagement)
     {
       try featureStateCheckAndSet(.configmanagement(configmanagement))
     }
@@ -104,7 +104,7 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleWKT._AnyPackable
 
   public enum FeatureStateOneOf: Codable, Equatable, Sendable {
     /// Config Management-specific state.
-    indirect case configmanagement(GoogleCloudGKEHubConfigManagementV1.MembershipState?)
+    indirect case configmanagement(GoogleCloudGKEHubConfigManagementV1.MembershipState)
   }
 
   public static var _anyTypeUrl: Swift.String {

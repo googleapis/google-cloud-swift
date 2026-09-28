@@ -91,7 +91,7 @@ public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
       recordSpec = $0
     }
     if let textRecordSpec = try container.decodeIfPresent(
-      VertexRanker.TextRecordSpec?.self, forKey: .textRecordSpec)
+      VertexRanker.TextRecordSpec.self, forKey: .textRecordSpec)
     {
       try recordSpecCheckAndSet(.textRecordSpec(textRecordSpec))
     }
@@ -208,7 +208,7 @@ public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
   /// set.
   public enum RecordSpecOneOf: Codable, Equatable, Sendable {
     /// The record spec for text search.
-    indirect case textRecordSpec(VertexRanker.TextRecordSpec?)
+    indirect case textRecordSpec(VertexRanker.TextRecordSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

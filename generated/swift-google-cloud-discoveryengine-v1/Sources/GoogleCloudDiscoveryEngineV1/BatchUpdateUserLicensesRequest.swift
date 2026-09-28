@@ -96,7 +96,7 @@
         source = $0
       }
       if let inlineSource = try container.decodeIfPresent(
-        BatchUpdateUserLicensesRequest.InlineSource?.self, forKey: .inlineSource)
+        BatchUpdateUserLicensesRequest.InlineSource.self, forKey: .inlineSource)
       {
         try sourceCheckAndSet(.inlineSource(inlineSource))
       }
@@ -208,7 +208,7 @@
     /// Required. The source of the input.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The inline source for the input content for document embeddings.
-      indirect case inlineSource(BatchUpdateUserLicensesRequest.InlineSource?)
+      indirect case inlineSource(BatchUpdateUserLicensesRequest.InlineSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

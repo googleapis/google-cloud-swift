@@ -210,7 +210,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     if let templateId = try container.decodeIfPresent(Swift.String.self, forKey: .templateId) {
       try jobConfigCheckAndSet(.templateId(templateId))
     }
-    if let config = try container.decodeIfPresent(JobConfig?.self, forKey: .config) {
+    if let config = try container.decodeIfPresent(JobConfig.self, forKey: .config) {
       try jobConfigCheckAndSet(.config(config))
     }
     self.jobConfig = jobConfig
@@ -630,7 +630,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     /// User defined JobTemplate: `{job_template_id}`
     case templateId(Swift.String)
     /// The configuration for this job.
-    indirect case config(JobConfig?)
+    indirect case config(JobConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

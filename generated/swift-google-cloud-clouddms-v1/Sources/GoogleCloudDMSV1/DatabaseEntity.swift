@@ -153,45 +153,45 @@ public struct DatabaseEntity: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       entityBody = $0
     }
-    if let database = try container.decodeIfPresent(DatabaseInstanceEntity?.self, forKey: .database)
+    if let database = try container.decodeIfPresent(DatabaseInstanceEntity.self, forKey: .database)
     {
       try entityBodyCheckAndSet(.database(database))
     }
-    if let schema = try container.decodeIfPresent(SchemaEntity?.self, forKey: .schema) {
+    if let schema = try container.decodeIfPresent(SchemaEntity.self, forKey: .schema) {
       try entityBodyCheckAndSet(.schema(schema))
     }
-    if let table = try container.decodeIfPresent(TableEntity?.self, forKey: .table) {
+    if let table = try container.decodeIfPresent(TableEntity.self, forKey: .table) {
       try entityBodyCheckAndSet(.table(table))
     }
-    if let view = try container.decodeIfPresent(ViewEntity?.self, forKey: .view) {
+    if let view = try container.decodeIfPresent(ViewEntity.self, forKey: .view) {
       try entityBodyCheckAndSet(.view(view))
     }
-    if let sequence = try container.decodeIfPresent(SequenceEntity?.self, forKey: .sequence) {
+    if let sequence = try container.decodeIfPresent(SequenceEntity.self, forKey: .sequence) {
       try entityBodyCheckAndSet(.sequence(sequence))
     }
     if let storedProcedure = try container.decodeIfPresent(
-      StoredProcedureEntity?.self, forKey: .storedProcedure)
+      StoredProcedureEntity.self, forKey: .storedProcedure)
     {
       try entityBodyCheckAndSet(.storedProcedure(storedProcedure))
     }
     if let databaseFunction = try container.decodeIfPresent(
-      FunctionEntity?.self, forKey: .databaseFunction)
+      FunctionEntity.self, forKey: .databaseFunction)
     {
       try entityBodyCheckAndSet(.databaseFunction(databaseFunction))
     }
-    if let synonym = try container.decodeIfPresent(SynonymEntity?.self, forKey: .synonym) {
+    if let synonym = try container.decodeIfPresent(SynonymEntity.self, forKey: .synonym) {
       try entityBodyCheckAndSet(.synonym(synonym))
     }
     if let databasePackage = try container.decodeIfPresent(
-      PackageEntity?.self, forKey: .databasePackage)
+      PackageEntity.self, forKey: .databasePackage)
     {
       try entityBodyCheckAndSet(.databasePackage(databasePackage))
     }
-    if let udt = try container.decodeIfPresent(UDTEntity?.self, forKey: .udt) {
+    if let udt = try container.decodeIfPresent(UDTEntity.self, forKey: .udt) {
       try entityBodyCheckAndSet(.udt(udt))
     }
     if let materializedView = try container.decodeIfPresent(
-      MaterializedViewEntity?.self, forKey: .materializedView)
+      MaterializedViewEntity.self, forKey: .materializedView)
     {
       try entityBodyCheckAndSet(.materializedView(materializedView))
     }
@@ -370,27 +370,27 @@ public struct DatabaseEntity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The specific body for each entity type.
   public enum EntityBodyOneOf: Codable, Equatable, Sendable {
     /// Database.
-    indirect case database(DatabaseInstanceEntity?)
+    indirect case database(DatabaseInstanceEntity)
     /// Schema.
-    indirect case schema(SchemaEntity?)
+    indirect case schema(SchemaEntity)
     /// Table.
-    indirect case table(TableEntity?)
+    indirect case table(TableEntity)
     /// View.
-    indirect case view(ViewEntity?)
+    indirect case view(ViewEntity)
     /// Sequence.
-    indirect case sequence(SequenceEntity?)
+    indirect case sequence(SequenceEntity)
     /// Stored procedure.
-    indirect case storedProcedure(StoredProcedureEntity?)
+    indirect case storedProcedure(StoredProcedureEntity)
     /// Function.
-    indirect case databaseFunction(FunctionEntity?)
+    indirect case databaseFunction(FunctionEntity)
     /// Synonym.
-    indirect case synonym(SynonymEntity?)
+    indirect case synonym(SynonymEntity)
     /// Package.
-    indirect case databasePackage(PackageEntity?)
+    indirect case databasePackage(PackageEntity)
     /// UDT.
-    indirect case udt(UDTEntity?)
+    indirect case udt(UDTEntity)
     /// Materialized view.
-    indirect case materializedView(MaterializedViewEntity?)
+    indirect case materializedView(MaterializedViewEntity)
   }
 
   public static var _anyTypeUrl: Swift.String {

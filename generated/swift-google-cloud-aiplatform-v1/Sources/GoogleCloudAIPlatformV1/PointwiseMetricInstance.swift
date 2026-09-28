@@ -77,7 +77,7 @@
         try instanceCheckAndSet(.jsonInstance(jsonInstance))
       }
       if let contentMapInstance = try container.decodeIfPresent(
-        ContentMap?.self, forKey: .contentMapInstance)
+        ContentMap.self, forKey: .contentMapInstance)
       {
         try instanceCheckAndSet(.contentMapInstance(contentMapInstance))
       }
@@ -113,7 +113,7 @@
       /// Key-value contents for the mutlimodality input, including text, image,
       /// video, audio, and pdf, etc. The key is placeholder in metric prompt
       /// template, and the value is the multimodal content.
-      indirect case contentMapInstance(ContentMap?)
+      indirect case contentMapInstance(ContentMap)
     }
 
     public static var _anyTypeUrl: Swift.String {

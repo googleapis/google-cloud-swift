@@ -169,17 +169,17 @@
         context = $0
       }
       if let freeFormContext = try container.decodeIfPresent(
-        FreeFormContext?.self, forKey: .freeFormContext)
+        FreeFormContext.self, forKey: .freeFormContext)
       {
         try contextCheckAndSet(.freeFormContext(freeFormContext))
       }
       if let agentCoachingContext = try container.decodeIfPresent(
-        AgentCoachingContext?.self, forKey: .agentCoachingContext)
+        AgentCoachingContext.self, forKey: .agentCoachingContext)
       {
         try contextCheckAndSet(.agentCoachingContext(agentCoachingContext))
       }
       if let summarizationContext = try container.decodeIfPresent(
-        SummarizationContext?.self, forKey: .summarizationContext)
+        SummarizationContext.self, forKey: .summarizationContext)
       {
         try contextCheckAndSet(.summarizationContext(summarizationContext))
       }
@@ -247,11 +247,11 @@
     /// Required. Input context of the generator.
     public enum ContextOneOf: Codable, Equatable, Sendable {
       /// Input of free from generator to LLM.
-      indirect case freeFormContext(FreeFormContext?)
+      indirect case freeFormContext(FreeFormContext)
       /// Input of prebuilt Agent Coaching feature.
-      indirect case agentCoachingContext(AgentCoachingContext?)
+      indirect case agentCoachingContext(AgentCoachingContext)
       /// Input of prebuilt Summarization feature.
-      indirect case summarizationContext(SummarizationContext?)
+      indirect case summarizationContext(SummarizationContext)
     }
 
     /// The foundation model to use for generating suggestions. If a foundation

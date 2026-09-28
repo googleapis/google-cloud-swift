@@ -74,12 +74,12 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       encryptionSetting = $0
     }
     if let serverVerification = try container.decodeIfPresent(
-      PostgresqlSslConfig.ServerVerification?.self, forKey: .serverVerification)
+      PostgresqlSslConfig.ServerVerification.self, forKey: .serverVerification)
     {
       try encryptionSettingCheckAndSet(.serverVerification(serverVerification))
     }
     if let serverAndClientVerification = try container.decodeIfPresent(
-      PostgresqlSslConfig.ServerAndClientVerification?.self, forKey: .serverAndClientVerification)
+      PostgresqlSslConfig.ServerAndClientVerification.self, forKey: .serverAndClientVerification)
     {
       try encryptionSettingCheckAndSet(.serverAndClientVerification(serverAndClientVerification))
     }
@@ -307,11 +307,11 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum EncryptionSettingOneOf: Codable, Equatable, Sendable {
     ///  If this field is set, the communication will be encrypted with TLS
     ///  encryption and the server identity will be authenticated.
-    indirect case serverVerification(PostgresqlSslConfig.ServerVerification?)
+    indirect case serverVerification(PostgresqlSslConfig.ServerVerification)
     /// If this field is set, the communication will be encrypted with TLS
     /// encryption and both the server identity and the client identity will be
     /// authenticated.
-    indirect case serverAndClientVerification(PostgresqlSslConfig.ServerAndClientVerification?)
+    indirect case serverAndClientVerification(PostgresqlSslConfig.ServerAndClientVerification)
   }
 
   public static var _anyTypeUrl: Swift.String {

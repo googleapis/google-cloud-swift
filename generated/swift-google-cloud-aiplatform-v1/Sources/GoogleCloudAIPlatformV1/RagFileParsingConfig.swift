@@ -72,12 +72,12 @@
         parser = $0
       }
       if let layoutParser = try container.decodeIfPresent(
-        RagFileParsingConfig.LayoutParser?.self, forKey: .layoutParser)
+        RagFileParsingConfig.LayoutParser.self, forKey: .layoutParser)
       {
         try parserCheckAndSet(.layoutParser(layoutParser))
       }
       if let llmParser = try container.decodeIfPresent(
-        RagFileParsingConfig.LlmParser?.self, forKey: .llmParser)
+        RagFileParsingConfig.LlmParser.self, forKey: .llmParser)
       {
         try parserCheckAndSet(.llmParser(llmParser))
       }
@@ -292,9 +292,9 @@
     /// The parser to use for RagFiles.
     public enum ParserOneOf: Codable, Equatable, Sendable {
       /// The Layout Parser to use for RagFiles.
-      indirect case layoutParser(RagFileParsingConfig.LayoutParser?)
+      indirect case layoutParser(RagFileParsingConfig.LayoutParser)
       /// The LLM Parser to use for RagFiles.
-      indirect case llmParser(RagFileParsingConfig.LlmParser?)
+      indirect case llmParser(RagFileParsingConfig.LlmParser)
     }
 
     public static var _anyTypeUrl: Swift.String {

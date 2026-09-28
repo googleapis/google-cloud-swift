@@ -85,17 +85,17 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleWKT._AnyPackable,
       step = $0
     }
     if let creatingSourceDiskSnapshot = try container.decodeIfPresent(
-      CreatingSourceDiskSnapshotStep?.self, forKey: .creatingSourceDiskSnapshot)
+      CreatingSourceDiskSnapshotStep.self, forKey: .creatingSourceDiskSnapshot)
     {
       try stepCheckAndSet(.creatingSourceDiskSnapshot(creatingSourceDiskSnapshot))
     }
     if let copyingSourceDiskSnapshot = try container.decodeIfPresent(
-      CopyingSourceDiskSnapshotStep?.self, forKey: .copyingSourceDiskSnapshot)
+      CopyingSourceDiskSnapshotStep.self, forKey: .copyingSourceDiskSnapshot)
     {
       try stepCheckAndSet(.copyingSourceDiskSnapshot(copyingSourceDiskSnapshot))
     }
     if let provisioningTargetDisk = try container.decodeIfPresent(
-      ProvisioningTargetDiskStep?.self, forKey: .provisioningTargetDisk)
+      ProvisioningTargetDiskStep.self, forKey: .provisioningTargetDisk)
     {
       try stepCheckAndSet(.provisioningTargetDisk(provisioningTargetDisk))
     }
@@ -129,11 +129,11 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The step details.
   public enum StepOneOf: Codable, Equatable, Sendable {
     /// Creating source disk snapshot step.
-    indirect case creatingSourceDiskSnapshot(CreatingSourceDiskSnapshotStep?)
+    indirect case creatingSourceDiskSnapshot(CreatingSourceDiskSnapshotStep)
     /// Copying source disk snapshot step.
-    indirect case copyingSourceDiskSnapshot(CopyingSourceDiskSnapshotStep?)
+    indirect case copyingSourceDiskSnapshot(CopyingSourceDiskSnapshotStep)
     /// Creating target disk step.
-    indirect case provisioningTargetDisk(ProvisioningTargetDiskStep?)
+    indirect case provisioningTargetDisk(ProvisioningTargetDiskStep)
   }
 
   public static var _anyTypeUrl: Swift.String {

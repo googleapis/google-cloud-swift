@@ -70,7 +70,7 @@ public struct ModelSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       systemSpec = $0
     }
     if let vertexModelSpec = try container.decodeIfPresent(
-      VertexModelSpec?.self, forKey: .vertexModelSpec)
+      VertexModelSpec.self, forKey: .vertexModelSpec)
     {
       try systemSpecCheckAndSet(.vertexModelSpec(vertexModelSpec))
     }
@@ -98,7 +98,7 @@ public struct ModelSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// System spec
   public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Specification for vertex model resources.
-    indirect case vertexModelSpec(VertexModelSpec?)
+    indirect case vertexModelSpec(VertexModelSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

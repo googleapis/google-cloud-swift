@@ -76,7 +76,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       kind = $0
     }
-    if let denyRule = try container.decodeIfPresent(DenyRule?.self, forKey: .denyRule) {
+    if let denyRule = try container.decodeIfPresent(DenyRule.self, forKey: .denyRule) {
       try kindCheckAndSet(.denyRule(denyRule))
     }
     self.kind = kind
@@ -103,7 +103,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum KindOneOf: Codable, Equatable, Sendable {
     /// A rule for a deny policy.
-    indirect case denyRule(DenyRule?)
+    indirect case denyRule(DenyRule)
   }
 
   public static var _anyTypeUrl: Swift.String {

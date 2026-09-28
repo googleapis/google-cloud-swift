@@ -135,17 +135,17 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       resourceMetadata = $0
     }
     if let deploymentMetadata = try container.decodeIfPresent(
-      DeploymentOperationMetadata?.self, forKey: .deploymentMetadata)
+      DeploymentOperationMetadata.self, forKey: .deploymentMetadata)
     {
       try resourceMetadataCheckAndSet(.deploymentMetadata(deploymentMetadata))
     }
     if let previewMetadata = try container.decodeIfPresent(
-      PreviewOperationMetadata?.self, forKey: .previewMetadata)
+      PreviewOperationMetadata.self, forKey: .previewMetadata)
     {
       try resourceMetadataCheckAndSet(.previewMetadata(previewMetadata))
     }
     if let provisionDeploymentGroupMetadata = try container.decodeIfPresent(
-      ProvisionDeploymentGroupOperationMetadata?.self, forKey: .provisionDeploymentGroupMetadata)
+      ProvisionDeploymentGroupOperationMetadata.self, forKey: .provisionDeploymentGroupMetadata)
     {
       try resourceMetadataCheckAndSet(
         .provisionDeploymentGroupMetadata(provisionDeploymentGroupMetadata))
@@ -186,11 +186,11 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// resource.
   public enum ResourceMetadataOneOf: Codable, Equatable, Sendable {
     /// Output only. Metadata about the deployment operation state.
-    indirect case deploymentMetadata(DeploymentOperationMetadata?)
+    indirect case deploymentMetadata(DeploymentOperationMetadata)
     /// Output only. Metadata about the preview operation state.
-    indirect case previewMetadata(PreviewOperationMetadata?)
+    indirect case previewMetadata(PreviewOperationMetadata)
     /// Output only. Metadata about ProvisionDeploymentGroup operation state.
-    indirect case provisionDeploymentGroupMetadata(ProvisionDeploymentGroupOperationMetadata?)
+    indirect case provisionDeploymentGroupMetadata(ProvisionDeploymentGroupOperationMetadata)
   }
 
   public static var _anyTypeUrl: Swift.String {

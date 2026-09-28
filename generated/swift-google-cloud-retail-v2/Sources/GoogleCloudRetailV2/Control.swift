@@ -148,7 +148,7 @@ public struct Control: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       control = $0
     }
-    if let rule = try container.decodeIfPresent(Rule?.self, forKey: .rule) {
+    if let rule = try container.decodeIfPresent(Rule.self, forKey: .rule) {
       try controlCheckAndSet(.rule(rule))
     }
     self.control = control
@@ -186,7 +186,7 @@ public struct Control: Codable, Equatable, GoogleWKT._AnyPackable,
     /// A rule control - a condition-action pair.
     /// Enacts a set action when the condition is triggered.
     /// For example: Boost "gShoe" when query full matches "Running Shoes".
-    indirect case rule(Rule?)
+    indirect case rule(Rule)
   }
 
   public static var _anyTypeUrl: Swift.String {

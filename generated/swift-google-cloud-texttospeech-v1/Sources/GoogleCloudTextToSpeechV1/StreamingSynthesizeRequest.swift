@@ -76,11 +76,11 @@ public struct StreamingSynthesizeRequest: Codable, Equatable, GoogleWKT._AnyPack
       streamingRequest = $0
     }
     if let streamingConfig = try container.decodeIfPresent(
-      StreamingSynthesizeConfig?.self, forKey: .streamingConfig)
+      StreamingSynthesizeConfig.self, forKey: .streamingConfig)
     {
       try streamingRequestCheckAndSet(.streamingConfig(streamingConfig))
     }
-    if let input = try container.decodeIfPresent(StreamingSynthesisInput?.self, forKey: .input) {
+    if let input = try container.decodeIfPresent(StreamingSynthesisInput.self, forKey: .input) {
       try streamingRequestCheckAndSet(.input(input))
     }
     self.streamingRequest = streamingRequest
@@ -111,10 +111,10 @@ public struct StreamingSynthesizeRequest: Codable, Equatable, GoogleWKT._AnyPack
   public enum StreamingRequestOneOf: Codable, Equatable, Sendable {
     /// StreamingSynthesizeConfig to be used in this streaming attempt. Only
     /// specified in the first message sent in a `StreamingSynthesize` call.
-    indirect case streamingConfig(StreamingSynthesizeConfig?)
+    indirect case streamingConfig(StreamingSynthesizeConfig)
     /// Input to synthesize. Specified in all messages but the first in a
     /// `StreamingSynthesize` call.
-    indirect case input(StreamingSynthesisInput?)
+    indirect case input(StreamingSynthesisInput)
   }
 
   public static var _anyTypeUrl: Swift.String {

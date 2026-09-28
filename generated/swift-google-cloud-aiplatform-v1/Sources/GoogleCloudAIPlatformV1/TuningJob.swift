@@ -259,7 +259,7 @@
         try sourceModelCheckAndSet(.baseModel(baseModel))
       }
       if let preTunedModel = try container.decodeIfPresent(
-        PreTunedModel?.self, forKey: .preTunedModel)
+        PreTunedModel.self, forKey: .preTunedModel)
       {
         try sourceModelCheckAndSet(.preTunedModel(preTunedModel))
       }
@@ -276,7 +276,7 @@
         tuningSpec = $0
       }
       if let supervisedTuningSpec = try container.decodeIfPresent(
-        SupervisedTuningSpec?.self, forKey: .supervisedTuningSpec)
+        SupervisedTuningSpec.self, forKey: .supervisedTuningSpec)
       {
         try tuningSpecCheckAndSet(.supervisedTuningSpec(supervisedTuningSpec))
       }
@@ -331,12 +331,12 @@
       /// models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models).
       case baseModel(Swift.String)
       /// The pre-tuned model for continuous tuning.
-      indirect case preTunedModel(PreTunedModel?)
+      indirect case preTunedModel(PreTunedModel)
     }
 
     public enum TuningSpecOneOf: Codable, Equatable, Sendable {
       /// Tuning Spec for Supervised Fine Tuning.
-      indirect case supervisedTuningSpec(SupervisedTuningSpec?)
+      indirect case supervisedTuningSpec(SupervisedTuningSpec)
     }
 
     public static var _anyTypeUrl: Swift.String {

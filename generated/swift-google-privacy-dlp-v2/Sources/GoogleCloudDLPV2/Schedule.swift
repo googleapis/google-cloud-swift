@@ -69,7 +69,7 @@ public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,
       option = $0
     }
     if let recurrencePeriodDuration = try container.decodeIfPresent(
-      GoogleWKT.WKTDuration?.self, forKey: .recurrencePeriodDuration)
+      GoogleWKT.WKTDuration.self, forKey: .recurrencePeriodDuration)
     {
       try optionCheckAndSet(.recurrencePeriodDuration(recurrencePeriodDuration))
     }
@@ -104,7 +104,7 @@ public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// This value must be set to a time duration greater than or equal
     /// to 1 day and can be no longer than 60 days.
-    indirect case recurrencePeriodDuration(GoogleWKT.WKTDuration?)
+    indirect case recurrencePeriodDuration(GoogleWKT.WKTDuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

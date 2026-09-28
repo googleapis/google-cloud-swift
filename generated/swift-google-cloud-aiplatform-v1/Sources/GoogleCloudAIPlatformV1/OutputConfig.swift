@@ -70,7 +70,7 @@
         destination = $0
       }
       if let gcsDestination = try container.decodeIfPresent(
-        GcsDestination?.self, forKey: .gcsDestination)
+        GcsDestination.self, forKey: .gcsDestination)
       {
         try destinationCheckAndSet(.gcsDestination(gcsDestination))
       }
@@ -98,7 +98,7 @@
     /// The destination for evaluation output.
     public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Cloud storage destination for evaluation output.
-      indirect case gcsDestination(GcsDestination?)
+      indirect case gcsDestination(GcsDestination)
     }
 
     public static var _anyTypeUrl: Swift.String {

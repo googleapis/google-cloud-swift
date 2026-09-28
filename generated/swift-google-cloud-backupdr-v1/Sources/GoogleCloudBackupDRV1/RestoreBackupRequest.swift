@@ -129,18 +129,18 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       targetEnvironment = $0
     }
     if let computeInstanceTargetEnvironment = try container.decodeIfPresent(
-      ComputeInstanceTargetEnvironment?.self, forKey: .computeInstanceTargetEnvironment)
+      ComputeInstanceTargetEnvironment.self, forKey: .computeInstanceTargetEnvironment)
     {
       try targetEnvironmentCheckAndSet(
         .computeInstanceTargetEnvironment(computeInstanceTargetEnvironment))
     }
     if let diskTargetEnvironment = try container.decodeIfPresent(
-      DiskTargetEnvironment?.self, forKey: .diskTargetEnvironment)
+      DiskTargetEnvironment.self, forKey: .diskTargetEnvironment)
     {
       try targetEnvironmentCheckAndSet(.diskTargetEnvironment(diskTargetEnvironment))
     }
     if let regionDiskTargetEnvironment = try container.decodeIfPresent(
-      RegionDiskTargetEnvironment?.self, forKey: .regionDiskTargetEnvironment)
+      RegionDiskTargetEnvironment.self, forKey: .regionDiskTargetEnvironment)
     {
       try targetEnvironmentCheckAndSet(.regionDiskTargetEnvironment(regionDiskTargetEnvironment))
     }
@@ -157,13 +157,13 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       instanceProperties = $0
     }
     if let computeInstanceRestoreProperties = try container.decodeIfPresent(
-      ComputeInstanceRestoreProperties?.self, forKey: .computeInstanceRestoreProperties)
+      ComputeInstanceRestoreProperties.self, forKey: .computeInstanceRestoreProperties)
     {
       try instancePropertiesCheckAndSet(
         .computeInstanceRestoreProperties(computeInstanceRestoreProperties))
     }
     if let diskRestoreProperties = try container.decodeIfPresent(
-      DiskRestoreProperties?.self, forKey: .diskRestoreProperties)
+      DiskRestoreProperties.self, forKey: .diskRestoreProperties)
     {
       try instancePropertiesCheckAndSet(.diskRestoreProperties(diskRestoreProperties))
     }
@@ -207,19 +207,19 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The target environment for the restore operation.
   public enum TargetEnvironmentOneOf: Codable, Equatable, Sendable {
     /// Compute Engine target environment to be used during restore.
-    indirect case computeInstanceTargetEnvironment(ComputeInstanceTargetEnvironment?)
+    indirect case computeInstanceTargetEnvironment(ComputeInstanceTargetEnvironment)
     /// Disk target environment to be used during restore.
-    indirect case diskTargetEnvironment(DiskTargetEnvironment?)
+    indirect case diskTargetEnvironment(DiskTargetEnvironment)
     /// Region disk target environment to be used during restore.
-    indirect case regionDiskTargetEnvironment(RegionDiskTargetEnvironment?)
+    indirect case regionDiskTargetEnvironment(RegionDiskTargetEnvironment)
   }
 
   /// The property overrides for the instance being restored.
   public enum InstancePropertiesOneOf: Codable, Equatable, Sendable {
     /// Compute Engine instance properties to be overridden during restore.
-    indirect case computeInstanceRestoreProperties(ComputeInstanceRestoreProperties?)
+    indirect case computeInstanceRestoreProperties(ComputeInstanceRestoreProperties)
     /// Disk properties to be overridden during restore.
-    indirect case diskRestoreProperties(DiskRestoreProperties?)
+    indirect case diskRestoreProperties(DiskRestoreProperties)
   }
 
   public static var _anyTypeUrl: Swift.String {

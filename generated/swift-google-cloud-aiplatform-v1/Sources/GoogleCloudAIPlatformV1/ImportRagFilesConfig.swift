@@ -140,22 +140,22 @@
         }
         importSource = $0
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
         try importSourceCheckAndSet(.gcsSource(gcsSource))
       }
       if let googleDriveSource = try container.decodeIfPresent(
-        GoogleDriveSource?.self, forKey: .googleDriveSource)
+        GoogleDriveSource.self, forKey: .googleDriveSource)
       {
         try importSourceCheckAndSet(.googleDriveSource(googleDriveSource))
       }
-      if let slackSource = try container.decodeIfPresent(SlackSource?.self, forKey: .slackSource) {
+      if let slackSource = try container.decodeIfPresent(SlackSource.self, forKey: .slackSource) {
         try importSourceCheckAndSet(.slackSource(slackSource))
       }
-      if let jiraSource = try container.decodeIfPresent(JiraSource?.self, forKey: .jiraSource) {
+      if let jiraSource = try container.decodeIfPresent(JiraSource.self, forKey: .jiraSource) {
         try importSourceCheckAndSet(.jiraSource(jiraSource))
       }
       if let sharePointSources = try container.decodeIfPresent(
-        SharePointSources?.self, forKey: .sharePointSources)
+        SharePointSources.self, forKey: .sharePointSources)
       {
         try importSourceCheckAndSet(.sharePointSources(sharePointSources))
       }
@@ -172,12 +172,12 @@
         partialFailureSink = $0
       }
       if let partialFailureGcsSink = try container.decodeIfPresent(
-        GcsDestination?.self, forKey: .partialFailureGcsSink)
+        GcsDestination.self, forKey: .partialFailureGcsSink)
       {
         try partialFailureSinkCheckAndSet(.partialFailureGcsSink(partialFailureGcsSink))
       }
       if let partialFailureBigquerySink = try container.decodeIfPresent(
-        BigQueryDestination?.self, forKey: .partialFailureBigquerySink)
+        BigQueryDestination.self, forKey: .partialFailureBigquerySink)
       {
         try partialFailureSinkCheckAndSet(.partialFailureBigquerySink(partialFailureBigquerySink))
       }
@@ -194,12 +194,12 @@
         importResultSink = $0
       }
       if let importResultGcsSink = try container.decodeIfPresent(
-        GcsDestination?.self, forKey: .importResultGcsSink)
+        GcsDestination.self, forKey: .importResultGcsSink)
       {
         try importResultSinkCheckAndSet(.importResultGcsSink(importResultGcsSink))
       }
       if let importResultBigquerySink = try container.decodeIfPresent(
-        BigQueryDestination?.self, forKey: .importResultBigquerySink)
+        BigQueryDestination.self, forKey: .importResultBigquerySink)
       {
         try importResultSinkCheckAndSet(.importResultBigquerySink(importResultBigquerySink))
       }
@@ -264,16 +264,16 @@
       /// well as entire Google Cloud Storage directories. Sample formats:
       /// - `gs://bucket_name/my_directory/object_name/my_file.txt`
       /// - `gs://bucket_name/my_directory`
-      indirect case gcsSource(GcsSource?)
+      indirect case gcsSource(GcsSource)
       /// Google Drive location. Supports importing individual files as
       /// well as Google Drive folders.
-      indirect case googleDriveSource(GoogleDriveSource?)
+      indirect case googleDriveSource(GoogleDriveSource)
       /// Slack channels with their corresponding access tokens.
-      indirect case slackSource(SlackSource?)
+      indirect case slackSource(SlackSource)
       /// Jira queries with their corresponding authentication.
-      indirect case jiraSource(JiraSource?)
+      indirect case jiraSource(JiraSource)
       /// SharePoint sources.
-      indirect case sharePointSources(SharePointSources?)
+      indirect case sharePointSources(SharePointSources)
     }
 
     /// Optional. If provided, all partial failures are written to the sink.
@@ -282,7 +282,7 @@
       /// The Cloud Storage path to write partial failures to.
       /// Deprecated. Prefer to use `import_result_gcs_sink`.
       @available(*, deprecated)
-      indirect case partialFailureGcsSink(GcsDestination?)
+      indirect case partialFailureGcsSink(GcsDestination)
       /// The BigQuery destination to write partial failures to. It should be a
       /// bigquery table resource name (e.g.
       /// "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
@@ -291,21 +291,21 @@
       /// existing table.
       /// Deprecated. Prefer to use `import_result_bq_sink`.
       @available(*, deprecated)
-      indirect case partialFailureBigquerySink(BigQueryDestination?)
+      indirect case partialFailureBigquerySink(BigQueryDestination)
     }
 
     /// Optional. If provided, all successfully imported files and all partial
     /// failures are written to the sink.
     public enum ImportResultSinkOneOf: Codable, Equatable, Sendable {
       /// The Cloud Storage path to write import result to.
-      indirect case importResultGcsSink(GcsDestination?)
+      indirect case importResultGcsSink(GcsDestination)
       /// The BigQuery destination to write import result to. It should be a
       /// bigquery table resource name (e.g.
       /// "bq://projectId.bqDatasetId.bqTableId"). The dataset must exist. If the
       /// table does not exist, it will be created with the expected schema. If the
       /// table exists, the schema will be validated and data will be added to this
       /// existing table.
-      indirect case importResultBigquerySink(BigQueryDestination?)
+      indirect case importResultBigquerySink(BigQueryDestination)
     }
 
     public static var _anyTypeUrl: Swift.String {

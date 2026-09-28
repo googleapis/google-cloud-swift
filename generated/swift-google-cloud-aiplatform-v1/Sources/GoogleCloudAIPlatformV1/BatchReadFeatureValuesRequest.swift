@@ -127,12 +127,12 @@
         readOption = $0
       }
       if let csvReadInstances = try container.decodeIfPresent(
-        CsvSource?.self, forKey: .csvReadInstances)
+        CsvSource.self, forKey: .csvReadInstances)
       {
         try readOptionCheckAndSet(.csvReadInstances(csvReadInstances))
       }
       if let bigqueryReadInstances = try container.decodeIfPresent(
-        BigQuerySource?.self, forKey: .bigqueryReadInstances)
+        BigQuerySource.self, forKey: .bigqueryReadInstances)
       {
         try readOptionCheckAndSet(.bigqueryReadInstances(bigqueryReadInstances))
       }
@@ -357,9 +357,9 @@
       ///
       /// Values in the timestamp column must use the RFC 3339 format, e.g.
       /// `2012-07-30T10:43:17.123Z`.
-      indirect case csvReadInstances(CsvSource?)
+      indirect case csvReadInstances(CsvSource)
       /// Similar to csv_read_instances, but from BigQuery source.
-      indirect case bigqueryReadInstances(BigQuerySource?)
+      indirect case bigqueryReadInstances(BigQuerySource)
     }
 
     public static var _anyTypeUrl: Swift.String {

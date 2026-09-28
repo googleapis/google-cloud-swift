@@ -126,12 +126,12 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
       targetDefaults = $0
     }
     if let diskImageTargetDefaults = try container.decodeIfPresent(
-      DiskImageTargetDetails?.self, forKey: .diskImageTargetDefaults)
+      DiskImageTargetDetails.self, forKey: .diskImageTargetDefaults)
     {
       try targetDefaultsCheckAndSet(.diskImageTargetDefaults(diskImageTargetDefaults))
     }
     if let machineImageTargetDefaults = try container.decodeIfPresent(
-      MachineImageTargetDetails?.self, forKey: .machineImageTargetDefaults)
+      MachineImageTargetDetails.self, forKey: .machineImageTargetDefaults)
     {
       try targetDefaultsCheckAndSet(.machineImageTargetDefaults(machineImageTargetDefaults))
     }
@@ -180,10 +180,10 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TargetDefaultsOneOf: Codable, Equatable, Sendable {
     /// Immutable. Target details for importing a disk image, will be used by
     /// ImageImportJob.
-    indirect case diskImageTargetDefaults(DiskImageTargetDetails?)
+    indirect case diskImageTargetDefaults(DiskImageTargetDetails)
     /// Immutable. Target details for importing a machine image, will be used by
     /// ImageImportJob.
-    indirect case machineImageTargetDefaults(MachineImageTargetDetails?)
+    indirect case machineImageTargetDefaults(MachineImageTargetDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

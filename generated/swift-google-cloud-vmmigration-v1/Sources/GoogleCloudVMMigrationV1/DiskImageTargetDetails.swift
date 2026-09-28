@@ -140,12 +140,12 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPackable
       osAdaptationConfig = $0
     }
     if let osAdaptationParameters = try container.decodeIfPresent(
-      ImageImportOsAdaptationParameters?.self, forKey: .osAdaptationParameters)
+      ImageImportOsAdaptationParameters.self, forKey: .osAdaptationParameters)
     {
       try osAdaptationConfigCheckAndSet(.osAdaptationParameters(osAdaptationParameters))
     }
     if let dataDiskImageImport = try container.decodeIfPresent(
-      DataDiskImageImport?.self, forKey: .dataDiskImageImport)
+      DataDiskImageImport.self, forKey: .dataDiskImageImport)
     {
       try osAdaptationConfigCheckAndSet(.dataDiskImageImport(dataDiskImageImport))
     }
@@ -183,9 +183,9 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPackable
   public enum OsAdaptationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Use to set the parameters relevant for the OS adaptation
     /// process.
-    indirect case osAdaptationParameters(ImageImportOsAdaptationParameters?)
+    indirect case osAdaptationParameters(ImageImportOsAdaptationParameters)
     /// Optional. Use to skip OS adaptation process.
-    indirect case dataDiskImageImport(DataDiskImageImport?)
+    indirect case dataDiskImageImport(DataDiskImageImport)
   }
 
   public static var _anyTypeUrl: Swift.String {

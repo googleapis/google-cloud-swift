@@ -180,7 +180,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
         ingressConfig = $0
       }
       if let config = try container.decodeIfPresent(
-        ClientConnectorService.Ingress.Config?.self, forKey: .config)
+        ClientConnectorService.Ingress.Config.self, forKey: .config)
       {
         try ingressConfigCheckAndSet(.config(config))
       }
@@ -483,7 +483,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
 
     public enum IngressConfigOneOf: Codable, Equatable, Sendable {
       /// The basic ingress config for ClientGateways.
-      indirect case config(ClientConnectorService.Ingress.Config?)
+      indirect case config(ClientConnectorService.Ingress.Config)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -549,7 +549,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
         destinationType = $0
       }
       if let peeredVpc = try container.decodeIfPresent(
-        ClientConnectorService.Egress.PeeredVpc?.self, forKey: .peeredVpc)
+        ClientConnectorService.Egress.PeeredVpc.self, forKey: .peeredVpc)
       {
         try destinationTypeCheckAndSet(.peeredVpc(peeredVpc))
       }
@@ -645,7 +645,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
 
     public enum DestinationTypeOneOf: Codable, Equatable, Sendable {
       /// A VPC from the consumer project.
-      indirect case peeredVpc(ClientConnectorService.Egress.PeeredVpc?)
+      indirect case peeredVpc(ClientConnectorService.Egress.PeeredVpc)
     }
 
     public static var _anyTypeUrl: Swift.String {

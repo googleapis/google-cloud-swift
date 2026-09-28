@@ -90,7 +90,7 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       target = $0
     }
     if let productSetPurgeConfig = try container.decodeIfPresent(
-      ProductSetPurgeConfig?.self, forKey: .productSetPurgeConfig)
+      ProductSetPurgeConfig.self, forKey: .productSetPurgeConfig)
     {
       try targetCheckAndSet(.productSetPurgeConfig(productSetPurgeConfig))
     }
@@ -127,7 +127,7 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The Products to delete.
   public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Specify which ProductSet contains the Products to be deleted.
-    indirect case productSetPurgeConfig(ProductSetPurgeConfig?)
+    indirect case productSetPurgeConfig(ProductSetPurgeConfig)
     /// If delete_orphan_products is true, all Products that are not in any
     /// ProductSet will be deleted.
     case deleteOrphanProducts(Swift.Bool)

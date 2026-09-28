@@ -88,7 +88,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
       source = $0
     }
     if let gcsSource = try container.decodeIfPresent(
-      BulkUploadFeedbackLabelsRequest.GcsSource?.self, forKey: .gcsSource)
+      BulkUploadFeedbackLabelsRequest.GcsSource.self, forKey: .gcsSource)
     {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
@@ -318,7 +318,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
   /// be converted to FeedbackLabels.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// A cloud storage bucket source.
-    indirect case gcsSource(BulkUploadFeedbackLabelsRequest.GcsSource?)
+    indirect case gcsSource(BulkUploadFeedbackLabelsRequest.GcsSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

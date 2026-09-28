@@ -170,11 +170,11 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       time = $0
     }
-    if let readTimeWindow = try container.decodeIfPresent(TimeWindow?.self, forKey: .readTimeWindow)
+    if let readTimeWindow = try container.decodeIfPresent(TimeWindow.self, forKey: .readTimeWindow)
     {
       try timeCheckAndSet(.readTimeWindow(readTimeWindow))
     }
-    if let readTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp?.self, forKey: .readTime)
+    if let readTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .readTime)
     {
       try timeCheckAndSet(.readTime(readTime))
     }
@@ -235,10 +235,10 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. [start_time] is required. [start_time] must be less than
     /// [end_time] Defaults [end_time] to now if [start_time] is set and
     /// [end_time] isn't. Maximum permitted time range is 7 days.
-    indirect case readTimeWindow(TimeWindow?)
+    indirect case readTimeWindow(TimeWindow)
     /// Optional. Queries cloud assets as they appeared at the specified point in
     /// time.
-    indirect case readTime(GoogleWKT.WKTTimestamp?)
+    indirect case readTime(GoogleWKT.WKTTimestamp)
   }
 
   public static var _anyTypeUrl: Swift.String {

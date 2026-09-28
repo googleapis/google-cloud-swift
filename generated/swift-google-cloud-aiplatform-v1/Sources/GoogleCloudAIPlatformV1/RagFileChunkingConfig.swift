@@ -70,7 +70,7 @@
         chunkingConfig = $0
       }
       if let fixedLengthChunking = try container.decodeIfPresent(
-        RagFileChunkingConfig.FixedLengthChunking?.self, forKey: .fixedLengthChunking)
+        RagFileChunkingConfig.FixedLengthChunking.self, forKey: .fixedLengthChunking)
       {
         try chunkingConfigCheckAndSet(.fixedLengthChunking(fixedLengthChunking))
       }
@@ -176,7 +176,7 @@
     /// Specifies the chunking config for RagFiles.
     public enum ChunkingConfigOneOf: Codable, Equatable, Sendable {
       /// Specifies the fixed length chunking config.
-      indirect case fixedLengthChunking(RagFileChunkingConfig.FixedLengthChunking?)
+      indirect case fixedLengthChunking(RagFileChunkingConfig.FixedLengthChunking)
     }
 
     public static var _anyTypeUrl: Swift.String {

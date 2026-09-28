@@ -592,11 +592,11 @@
 
     public func batchUpdateIntentsPollingUntilDone(
       parent: Swift.String,
-      intentBatchInline: IntentBatch?,
+      intentBatchInline: IntentBatch,
     ) async throws -> BatchUpdateIntentsResponse {
       let request = BatchUpdateIntentsRequest().with {
         $0.parent = parent
-        $0.intentBatch = intentBatchInline.map { .intentBatchInline($0) }
+        $0.intentBatch = .intentBatchInline(intentBatchInline)
       }
       return try await self.batchUpdateIntentsPollingUntilDone(request: request)
     }

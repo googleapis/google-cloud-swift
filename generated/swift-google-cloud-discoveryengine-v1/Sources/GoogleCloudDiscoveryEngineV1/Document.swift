@@ -169,7 +169,7 @@
         data = $0
       }
       if let structData = try container.decodeIfPresent(
-        GoogleWKT.WKTStruct?.self, forKey: .structData)
+        GoogleWKT.WKTStruct.self, forKey: .structData)
       {
         try dataCheckAndSet(.structData(structData))
       }
@@ -657,7 +657,7 @@
       /// `INVALID_ARGUMENT` error is thrown.
       ///
       /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
-      indirect case structData(GoogleWKT.WKTStruct?)
+      indirect case structData(GoogleWKT.WKTStruct)
       /// The JSON string representation of the document. It should conform to the
       /// registered [Schema][google.cloud.discoveryengine.v1.Schema] or an
       /// `INVALID_ARGUMENT` error is thrown.

@@ -236,7 +236,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let pemCsr = try container.decodeIfPresent(Swift.String.self, forKey: .pemCsr) {
       try certificateConfigCheckAndSet(.pemCsr(pemCsr))
     }
-    if let config = try container.decodeIfPresent(CertificateConfig?.self, forKey: .config) {
+    if let config = try container.decodeIfPresent(CertificateConfig.self, forKey: .config) {
       try certificateConfigCheckAndSet(.config(config))
     }
     self.certificateConfig = certificateConfig
@@ -369,7 +369,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     case pemCsr(Swift.String)
     /// Immutable. A description of the certificate and key that does not require
     /// X.509 or ASN.1.
-    indirect case config(CertificateConfig?)
+    indirect case config(CertificateConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

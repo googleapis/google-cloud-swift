@@ -104,27 +104,27 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       activity = $0
     }
     if let messageReceived = try container.decodeIfPresent(
-      PipelineActivity.MessageReceived?.self, forKey: .messageReceived)
+      PipelineActivity.MessageReceived.self, forKey: .messageReceived)
     {
       try activityCheckAndSet(.messageReceived(messageReceived))
     }
     if let messageTransformed = try container.decodeIfPresent(
-      PipelineActivity.MessageTransformed?.self, forKey: .messageTransformed)
+      PipelineActivity.MessageTransformed.self, forKey: .messageTransformed)
     {
       try activityCheckAndSet(.messageTransformed(messageTransformed))
     }
     if let messageConverted = try container.decodeIfPresent(
-      PipelineActivity.MessageConverted?.self, forKey: .messageConverted)
+      PipelineActivity.MessageConverted.self, forKey: .messageConverted)
     {
       try activityCheckAndSet(.messageConverted(messageConverted))
     }
     if let messageRequestDispatched = try container.decodeIfPresent(
-      PipelineActivity.MessageRequestDispatched?.self, forKey: .messageRequestDispatched)
+      PipelineActivity.MessageRequestDispatched.self, forKey: .messageRequestDispatched)
     {
       try activityCheckAndSet(.messageRequestDispatched(messageRequestDispatched))
     }
     if let messageResponseReceived = try container.decodeIfPresent(
-      PipelineActivity.MessageResponseReceived?.self, forKey: .messageResponseReceived)
+      PipelineActivity.MessageResponseReceived.self, forKey: .messageResponseReceived)
     {
       try activityCheckAndSet(.messageResponseReceived(messageResponseReceived))
     }
@@ -867,19 +867,19 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ActivityOneOf: Codable, Equatable, Sendable {
     /// Logging when a message is received in this Pipeline (or an error
     /// encountered).
-    indirect case messageReceived(PipelineActivity.MessageReceived?)
+    indirect case messageReceived(PipelineActivity.MessageReceived)
     /// Logging when a message is transformed during mediation (or an error
     /// encountered).
-    indirect case messageTransformed(PipelineActivity.MessageTransformed?)
+    indirect case messageTransformed(PipelineActivity.MessageTransformed)
     /// Logging when a message is converted during mediation (or an error
     /// encountered).
-    indirect case messageConverted(PipelineActivity.MessageConverted?)
+    indirect case messageConverted(PipelineActivity.MessageConverted)
     /// Logging when a message request is dispatched to a destination (or an
     /// error encountered).
-    indirect case messageRequestDispatched(PipelineActivity.MessageRequestDispatched?)
+    indirect case messageRequestDispatched(PipelineActivity.MessageRequestDispatched)
     /// Logging when a message response (or error) is received from a
     /// destination.
-    indirect case messageResponseReceived(PipelineActivity.MessageResponseReceived?)
+    indirect case messageResponseReceived(PipelineActivity.MessageResponseReceived)
   }
 
   public static var _anyTypeUrl: Swift.String {

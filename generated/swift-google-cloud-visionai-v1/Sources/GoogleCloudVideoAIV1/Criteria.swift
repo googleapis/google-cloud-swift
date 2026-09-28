@@ -101,30 +101,29 @@ public struct Criteria: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       value = $0
     }
-    if let textArray = try container.decodeIfPresent(StringArray?.self, forKey: .textArray) {
+    if let textArray = try container.decodeIfPresent(StringArray.self, forKey: .textArray) {
       try valueCheckAndSet(.textArray(textArray))
     }
-    if let intRangeArray = try container.decodeIfPresent(
-      IntRangeArray?.self, forKey: .intRangeArray)
+    if let intRangeArray = try container.decodeIfPresent(IntRangeArray.self, forKey: .intRangeArray)
     {
       try valueCheckAndSet(.intRangeArray(intRangeArray))
     }
     if let floatRangeArray = try container.decodeIfPresent(
-      FloatRangeArray?.self, forKey: .floatRangeArray)
+      FloatRangeArray.self, forKey: .floatRangeArray)
     {
       try valueCheckAndSet(.floatRangeArray(floatRangeArray))
     }
     if let dateTimeRangeArray = try container.decodeIfPresent(
-      DateTimeRangeArray?.self, forKey: .dateTimeRangeArray)
+      DateTimeRangeArray.self, forKey: .dateTimeRangeArray)
     {
       try valueCheckAndSet(.dateTimeRangeArray(dateTimeRangeArray))
     }
     if let geoLocationArray = try container.decodeIfPresent(
-      GeoLocationArray?.self, forKey: .geoLocationArray)
+      GeoLocationArray.self, forKey: .geoLocationArray)
     {
       try valueCheckAndSet(.geoLocationArray(geoLocationArray))
     }
-    if let boolValue = try container.decodeIfPresent(BoolValue?.self, forKey: .boolValue) {
+    if let boolValue = try container.decodeIfPresent(BoolValue.self, forKey: .boolValue) {
       try valueCheckAndSet(.boolValue(boolValue))
     }
     self.value = value
@@ -162,17 +161,17 @@ public struct Criteria: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ValueOneOf: Codable, Equatable, Sendable {
     /// The text values associated with the field.
-    indirect case textArray(StringArray?)
+    indirect case textArray(StringArray)
     /// The integer ranges associated with the field.
-    indirect case intRangeArray(IntRangeArray?)
+    indirect case intRangeArray(IntRangeArray)
     /// The float ranges associated with the field.
-    indirect case floatRangeArray(FloatRangeArray?)
+    indirect case floatRangeArray(FloatRangeArray)
     /// The datetime ranges associated with the field.
-    indirect case dateTimeRangeArray(DateTimeRangeArray?)
+    indirect case dateTimeRangeArray(DateTimeRangeArray)
     /// Geo Location array.
-    indirect case geoLocationArray(GeoLocationArray?)
+    indirect case geoLocationArray(GeoLocationArray)
     /// A Boolean value.
-    indirect case boolValue(BoolValue?)
+    indirect case boolValue(BoolValue)
   }
 
   public static var _anyTypeUrl: Swift.String {

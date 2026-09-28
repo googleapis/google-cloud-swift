@@ -78,7 +78,7 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleWKT._AnyPackabl
       ruleTypeCondition = $0
     }
     if let timedPromoteReleaseCondition = try container.decodeIfPresent(
-      TimedPromoteReleaseCondition?.self, forKey: .timedPromoteReleaseCondition)
+      TimedPromoteReleaseCondition.self, forKey: .timedPromoteReleaseCondition)
     {
       try ruleTypeConditionCheckAndSet(.timedPromoteReleaseCondition(timedPromoteReleaseCondition))
     }
@@ -108,7 +108,7 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleWKT._AnyPackabl
   public enum RuleTypeConditionOneOf: Codable, Equatable, Sendable {
     /// Optional. TimedPromoteReleaseCondition contains rule conditions specific
     /// to a an Automation with a timed promote release rule defined.
-    indirect case timedPromoteReleaseCondition(TimedPromoteReleaseCondition?)
+    indirect case timedPromoteReleaseCondition(TimedPromoteReleaseCondition)
   }
 
   public static var _anyTypeUrl: Swift.String {

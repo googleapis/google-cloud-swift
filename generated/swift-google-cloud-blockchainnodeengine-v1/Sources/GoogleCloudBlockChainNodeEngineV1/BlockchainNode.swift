@@ -142,7 +142,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       blockchainTypeDetails = $0
     }
     if let ethereumDetails = try container.decodeIfPresent(
-      BlockchainNode.EthereumDetails?.self, forKey: .ethereumDetails)
+      BlockchainNode.EthereumDetails.self, forKey: .ethereumDetails)
     {
       try blockchainTypeDetailsCheckAndSet(.ethereumDetails(ethereumDetails))
     }
@@ -450,7 +450,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
         executionClientDetails = $0
       }
       if let gethDetails = try container.decodeIfPresent(
-        BlockchainNode.EthereumDetails.GethDetails?.self, forKey: .gethDetails)
+        BlockchainNode.EthereumDetails.GethDetails.self, forKey: .gethDetails)
       {
         try executionClientDetailsCheckAndSet(.gethDetails(gethDetails))
       }
@@ -1415,7 +1415,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Options for the execution client.
     public enum ExecutionClientDetailsOneOf: Codable, Equatable, Sendable {
       /// Details for the Geth execution client.
-      indirect case gethDetails(BlockchainNode.EthereumDetails.GethDetails?)
+      indirect case gethDetails(BlockchainNode.EthereumDetails.GethDetails)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1703,7 +1703,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Information that is specific to a particular blockchain type.
   public enum BlockchainTypeDetailsOneOf: Codable, Equatable, Sendable {
     /// Ethereum-specific blockchain node details.
-    indirect case ethereumDetails(BlockchainNode.EthereumDetails?)
+    indirect case ethereumDetails(BlockchainNode.EthereumDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

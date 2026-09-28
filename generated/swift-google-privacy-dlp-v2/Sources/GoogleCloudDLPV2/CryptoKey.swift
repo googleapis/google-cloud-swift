@@ -77,14 +77,13 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let transient = try container.decodeIfPresent(TransientCryptoKey?.self, forKey: .transient) {
+    if let transient = try container.decodeIfPresent(TransientCryptoKey.self, forKey: .transient) {
       try sourceCheckAndSet(.transient(transient))
     }
-    if let unwrapped = try container.decodeIfPresent(UnwrappedCryptoKey?.self, forKey: .unwrapped) {
+    if let unwrapped = try container.decodeIfPresent(UnwrappedCryptoKey.self, forKey: .unwrapped) {
       try sourceCheckAndSet(.unwrapped(unwrapped))
     }
-    if let kmsWrapped = try container.decodeIfPresent(
-      KmsWrappedCryptoKey?.self, forKey: .kmsWrapped)
+    if let kmsWrapped = try container.decodeIfPresent(KmsWrappedCryptoKey.self, forKey: .kmsWrapped)
     {
       try sourceCheckAndSet(.kmsWrapped(kmsWrapped))
     }
@@ -116,11 +115,11 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Sources of crypto keys.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Transient crypto key
-    indirect case transient(TransientCryptoKey?)
+    indirect case transient(TransientCryptoKey)
     /// Unwrapped crypto key
-    indirect case unwrapped(UnwrappedCryptoKey?)
+    indirect case unwrapped(UnwrappedCryptoKey)
     /// Key wrapped using Cloud KMS
-    indirect case kmsWrapped(KmsWrappedCryptoKey?)
+    indirect case kmsWrapped(KmsWrappedCryptoKey)
   }
 
   public static var _anyTypeUrl: Swift.String {

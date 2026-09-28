@@ -136,7 +136,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       credentialsType = $0
     }
     if let accessKeyCreds = try container.decodeIfPresent(
-      AwsSourceDetails.AccessKeyCredentials?.self, forKey: .accessKeyCreds)
+      AwsSourceDetails.AccessKeyCredentials.self, forKey: .accessKeyCreds)
     {
       try credentialsTypeCheckAndSet(.accessKeyCreds(accessKeyCreds))
     }
@@ -462,7 +462,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum CredentialsTypeOneOf: Codable, Equatable, Sendable {
     /// AWS Credentials using access key id and secret.
-    indirect case accessKeyCreds(AwsSourceDetails.AccessKeyCredentials?)
+    indirect case accessKeyCreds(AwsSourceDetails.AccessKeyCredentials)
   }
 
   public static var _anyTypeUrl: Swift.String {

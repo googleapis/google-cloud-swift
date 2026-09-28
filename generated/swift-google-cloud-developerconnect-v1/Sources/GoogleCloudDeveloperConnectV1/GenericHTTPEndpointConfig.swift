@@ -100,12 +100,12 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       authentication = $0
     }
     if let basicAuthentication = try container.decodeIfPresent(
-      GenericHTTPEndpointConfig.BasicAuthentication?.self, forKey: .basicAuthentication)
+      GenericHTTPEndpointConfig.BasicAuthentication.self, forKey: .basicAuthentication)
     {
       try authenticationCheckAndSet(.basicAuthentication(basicAuthentication))
     }
     if let bearerTokenAuthentication = try container.decodeIfPresent(
-      GenericHTTPEndpointConfig.BearerTokenAuthentication?.self, forKey: .bearerTokenAuthentication)
+      GenericHTTPEndpointConfig.BearerTokenAuthentication.self, forKey: .bearerTokenAuthentication)
     {
       try authenticationCheckAndSet(.bearerTokenAuthentication(bearerTokenAuthentication))
     }
@@ -338,9 +338,9 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// provider.
   public enum AuthenticationOneOf: Codable, Equatable, Sendable {
     /// Optional. Basic authentication with username and password.
-    indirect case basicAuthentication(GenericHTTPEndpointConfig.BasicAuthentication?)
+    indirect case basicAuthentication(GenericHTTPEndpointConfig.BasicAuthentication)
     /// Optional. Bearer token authentication with a token.
-    indirect case bearerTokenAuthentication(GenericHTTPEndpointConfig.BearerTokenAuthentication?)
+    indirect case bearerTokenAuthentication(GenericHTTPEndpointConfig.BearerTokenAuthentication)
   }
 
   public static var _anyTypeUrl: Swift.String {

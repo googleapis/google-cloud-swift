@@ -142,7 +142,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      BulkDownloadFeedbackLabelsRequest.GcsDestination?.self, forKey: .gcsDestination)
+      BulkDownloadFeedbackLabelsRequest.GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
@@ -533,7 +533,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
   /// will be written to.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// A cloud storage bucket destination.
-    indirect case gcsDestination(BulkDownloadFeedbackLabelsRequest.GcsDestination?)
+    indirect case gcsDestination(BulkDownloadFeedbackLabelsRequest.GcsDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

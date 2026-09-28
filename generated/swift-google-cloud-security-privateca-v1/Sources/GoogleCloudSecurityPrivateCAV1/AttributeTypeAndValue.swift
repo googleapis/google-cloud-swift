@@ -85,7 +85,7 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let type = try container.decodeIfPresent(AttributeType.self, forKey: .type) {
       try attributeTypeCheckAndSet(.type(type))
     }
-    if let objectId = try container.decodeIfPresent(ObjectId?.self, forKey: .objectId) {
+    if let objectId = try container.decodeIfPresent(ObjectId.self, forKey: .objectId) {
       try attributeTypeCheckAndSet(.objectId(objectId))
     }
     self.attributeType = attributeType
@@ -117,7 +117,7 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The attribute type of the attribute and value pair.
     case type(AttributeType)
     /// Object ID for an attribute type of an attribute and value pair.
-    indirect case objectId(ObjectId?)
+    indirect case objectId(ObjectId)
   }
 
   public static var _anyTypeUrl: Swift.String {

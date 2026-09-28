@@ -98,7 +98,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
       activity = $0
     }
     if let published = try container.decodeIfPresent(
-      GoogleApiSourceActivity.Published?.self, forKey: .published)
+      GoogleApiSourceActivity.Published.self, forKey: .published)
     {
       try activityCheckAndSet(.published(published))
     }
@@ -225,7 +225,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
   /// API event.
   public enum ActivityOneOf: Codable, Equatable, Sendable {
     /// Logged when an event is published to a message bus.
-    indirect case published(GoogleApiSourceActivity.Published?)
+    indirect case published(GoogleApiSourceActivity.Published)
   }
 
   public static var _anyTypeUrl: Swift.String {

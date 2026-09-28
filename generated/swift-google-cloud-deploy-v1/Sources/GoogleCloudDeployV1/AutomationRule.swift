@@ -75,22 +75,22 @@ public struct AutomationRule: Codable, Equatable, GoogleWKT._AnyPackable,
       rule = $0
     }
     if let promoteReleaseRule = try container.decodeIfPresent(
-      PromoteReleaseRule?.self, forKey: .promoteReleaseRule)
+      PromoteReleaseRule.self, forKey: .promoteReleaseRule)
     {
       try ruleCheckAndSet(.promoteReleaseRule(promoteReleaseRule))
     }
     if let advanceRolloutRule = try container.decodeIfPresent(
-      AdvanceRolloutRule?.self, forKey: .advanceRolloutRule)
+      AdvanceRolloutRule.self, forKey: .advanceRolloutRule)
     {
       try ruleCheckAndSet(.advanceRolloutRule(advanceRolloutRule))
     }
     if let repairRolloutRule = try container.decodeIfPresent(
-      RepairRolloutRule?.self, forKey: .repairRolloutRule)
+      RepairRolloutRule.self, forKey: .repairRolloutRule)
     {
       try ruleCheckAndSet(.repairRolloutRule(repairRolloutRule))
     }
     if let timedPromoteReleaseRule = try container.decodeIfPresent(
-      TimedPromoteReleaseRule?.self, forKey: .timedPromoteReleaseRule)
+      TimedPromoteReleaseRule.self, forKey: .timedPromoteReleaseRule)
     {
       try ruleCheckAndSet(.timedPromoteReleaseRule(timedPromoteReleaseRule))
     }
@@ -125,17 +125,17 @@ public struct AutomationRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum RuleOneOf: Codable, Equatable, Sendable {
     /// Optional. `PromoteReleaseRule` will automatically promote a release from
     /// the current target to a specified target.
-    indirect case promoteReleaseRule(PromoteReleaseRule?)
+    indirect case promoteReleaseRule(PromoteReleaseRule)
     /// Optional. The `AdvanceRolloutRule` will automatically advance a
     /// successful Rollout.
-    indirect case advanceRolloutRule(AdvanceRolloutRule?)
+    indirect case advanceRolloutRule(AdvanceRolloutRule)
     /// Optional. The `RepairRolloutRule` will automatically repair a failed
     /// rollout.
-    indirect case repairRolloutRule(RepairRolloutRule?)
+    indirect case repairRolloutRule(RepairRolloutRule)
     /// Optional. The `TimedPromoteReleaseRule` will automatically promote a
     /// release from the current target(s) to the specified target(s) on a
     /// configured schedule.
-    indirect case timedPromoteReleaseRule(TimedPromoteReleaseRule?)
+    indirect case timedPromoteReleaseRule(TimedPromoteReleaseRule)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -150,7 +150,7 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleWKT._AnyPackab
       outputNameMapping = $0
     }
     if let nameMappingList = try container.decodeIfPresent(
-      ObjectNameMappingList?.self, forKey: .nameMappingList)
+      ObjectNameMappingList.self, forKey: .nameMappingList)
     {
       try outputNameMappingCheckAndSet(.nameMappingList(nameMappingList))
     }
@@ -210,7 +210,7 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleWKT._AnyPackab
   /// desired output.
   public enum OutputNameMappingOneOf: Codable, Equatable, Sendable {
     /// The mapping of objects to their desired output names in list form.
-    indirect case nameMappingList(ObjectNameMappingList?)
+    indirect case nameMappingList(ObjectNameMappingList)
   }
 
   public static var _anyTypeUrl: Swift.String {

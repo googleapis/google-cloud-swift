@@ -84,12 +84,12 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable
       stepDetails = $0
     }
     if let prepareStepDetails = try container.decodeIfPresent(
-      MigrationProgressEvent.PrepareStepDetails?.self, forKey: .prepareStepDetails)
+      MigrationProgressEvent.PrepareStepDetails.self, forKey: .prepareStepDetails)
     {
       try stepDetailsCheckAndSet(.prepareStepDetails(prepareStepDetails))
     }
     if let redirectWritesStepDetails = try container.decodeIfPresent(
-      MigrationProgressEvent.RedirectWritesStepDetails?.self, forKey: .redirectWritesStepDetails)
+      MigrationProgressEvent.RedirectWritesStepDetails.self, forKey: .redirectWritesStepDetails)
     {
       try stepDetailsCheckAndSet(.redirectWritesStepDetails(redirectWritesStepDetails))
     }
@@ -389,9 +389,9 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable
   /// Details about this step.
   public enum StepDetailsOneOf: Codable, Equatable, Sendable {
     /// Details for the `PREPARE` step.
-    indirect case prepareStepDetails(MigrationProgressEvent.PrepareStepDetails?)
+    indirect case prepareStepDetails(MigrationProgressEvent.PrepareStepDetails)
     /// Details for the `REDIRECT_WRITES` step.
-    indirect case redirectWritesStepDetails(MigrationProgressEvent.RedirectWritesStepDetails?)
+    indirect case redirectWritesStepDetails(MigrationProgressEvent.RedirectWritesStepDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

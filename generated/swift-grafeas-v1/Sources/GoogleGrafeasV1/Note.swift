@@ -166,51 +166,50 @@ public struct Note: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let vulnerability = try container.decodeIfPresent(
-      VulnerabilityNote?.self, forKey: .vulnerability)
+      VulnerabilityNote.self, forKey: .vulnerability)
     {
       try typeCheckAndSet(.vulnerability(vulnerability))
     }
-    if let build = try container.decodeIfPresent(BuildNote?.self, forKey: .build) {
+    if let build = try container.decodeIfPresent(BuildNote.self, forKey: .build) {
       try typeCheckAndSet(.build(build))
     }
-    if let image = try container.decodeIfPresent(ImageNote?.self, forKey: .image) {
+    if let image = try container.decodeIfPresent(ImageNote.self, forKey: .image) {
       try typeCheckAndSet(.image(image))
     }
-    if let `package` = try container.decodeIfPresent(PackageNote?.self, forKey: .`package`) {
+    if let `package` = try container.decodeIfPresent(PackageNote.self, forKey: .`package`) {
       try typeCheckAndSet(.`package`(`package`))
     }
-    if let deployment = try container.decodeIfPresent(DeploymentNote?.self, forKey: .deployment) {
+    if let deployment = try container.decodeIfPresent(DeploymentNote.self, forKey: .deployment) {
       try typeCheckAndSet(.deployment(deployment))
     }
-    if let discovery = try container.decodeIfPresent(DiscoveryNote?.self, forKey: .discovery) {
+    if let discovery = try container.decodeIfPresent(DiscoveryNote.self, forKey: .discovery) {
       try typeCheckAndSet(.discovery(discovery))
     }
-    if let attestation = try container.decodeIfPresent(AttestationNote?.self, forKey: .attestation)
-    {
+    if let attestation = try container.decodeIfPresent(AttestationNote.self, forKey: .attestation) {
       try typeCheckAndSet(.attestation(attestation))
     }
-    if let upgrade = try container.decodeIfPresent(UpgradeNote?.self, forKey: .upgrade) {
+    if let upgrade = try container.decodeIfPresent(UpgradeNote.self, forKey: .upgrade) {
       try typeCheckAndSet(.upgrade(upgrade))
     }
-    if let compliance = try container.decodeIfPresent(ComplianceNote?.self, forKey: .compliance) {
+    if let compliance = try container.decodeIfPresent(ComplianceNote.self, forKey: .compliance) {
       try typeCheckAndSet(.compliance(compliance))
     }
     if let dsseAttestation = try container.decodeIfPresent(
-      DSSEAttestationNote?.self, forKey: .dsseAttestation)
+      DSSEAttestationNote.self, forKey: .dsseAttestation)
     {
       try typeCheckAndSet(.dsseAttestation(dsseAttestation))
     }
     if let vulnerabilityAssessment = try container.decodeIfPresent(
-      VulnerabilityAssessmentNote?.self, forKey: .vulnerabilityAssessment)
+      VulnerabilityAssessmentNote.self, forKey: .vulnerabilityAssessment)
     {
       try typeCheckAndSet(.vulnerabilityAssessment(vulnerabilityAssessment))
     }
     if let sbomReference = try container.decodeIfPresent(
-      SBOMReferenceNote?.self, forKey: .sbomReference)
+      SBOMReferenceNote.self, forKey: .sbomReference)
     {
       try typeCheckAndSet(.sbomReference(sbomReference))
     }
-    if let secret = try container.decodeIfPresent(SecretNote?.self, forKey: .secret) {
+    if let secret = try container.decodeIfPresent(SecretNote.self, forKey: .secret) {
       try typeCheckAndSet(.secret(secret))
     }
     self.type = type
@@ -270,31 +269,31 @@ public struct Note: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Immutable. The type of analysis this note represents.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// A note describing a package vulnerability.
-    indirect case vulnerability(VulnerabilityNote?)
+    indirect case vulnerability(VulnerabilityNote)
     /// A note describing build provenance for a verifiable build.
-    indirect case build(BuildNote?)
+    indirect case build(BuildNote)
     /// A note describing a base image.
-    indirect case image(ImageNote?)
+    indirect case image(ImageNote)
     /// A note describing a package hosted by various package managers.
-    indirect case `package`(PackageNote?)
+    indirect case `package`(PackageNote)
     /// A note describing something that can be deployed.
-    indirect case deployment(DeploymentNote?)
+    indirect case deployment(DeploymentNote)
     /// A note describing the initial analysis of a resource.
-    indirect case discovery(DiscoveryNote?)
+    indirect case discovery(DiscoveryNote)
     /// A note describing an attestation role.
-    indirect case attestation(AttestationNote?)
+    indirect case attestation(AttestationNote)
     /// A note describing available package upgrades.
-    indirect case upgrade(UpgradeNote?)
+    indirect case upgrade(UpgradeNote)
     /// A note describing a compliance check.
-    indirect case compliance(ComplianceNote?)
+    indirect case compliance(ComplianceNote)
     /// A note describing a dsse attestation note.
-    indirect case dsseAttestation(DSSEAttestationNote?)
+    indirect case dsseAttestation(DSSEAttestationNote)
     /// A note describing a vulnerability assessment.
-    indirect case vulnerabilityAssessment(VulnerabilityAssessmentNote?)
+    indirect case vulnerabilityAssessment(VulnerabilityAssessmentNote)
     /// A note describing an SBOM reference.
-    indirect case sbomReference(SBOMReferenceNote?)
+    indirect case sbomReference(SBOMReferenceNote)
     /// A note describing a secret.
-    indirect case secret(SecretNote?)
+    indirect case secret(SecretNote)
   }
 
   public static var _anyTypeUrl: Swift.String {

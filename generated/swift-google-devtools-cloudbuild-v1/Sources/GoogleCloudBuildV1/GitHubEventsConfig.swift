@@ -103,12 +103,11 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       event = $0
     }
-    if let pullRequest = try container.decodeIfPresent(
-      PullRequestFilter?.self, forKey: .pullRequest)
+    if let pullRequest = try container.decodeIfPresent(PullRequestFilter.self, forKey: .pullRequest)
     {
       try eventCheckAndSet(.pullRequest(pullRequest))
     }
-    if let push = try container.decodeIfPresent(PushFilter?.self, forKey: .push) {
+    if let push = try container.decodeIfPresent(PushFilter.self, forKey: .push) {
       try eventCheckAndSet(.push(push))
     }
     self.event = event
@@ -144,9 +143,9 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Currently supported event types: push, pull_request.
   public enum EventOneOf: Codable, Equatable, Sendable {
     /// filter to match changes in pull requests.
-    indirect case pullRequest(PullRequestFilter?)
+    indirect case pullRequest(PullRequestFilter)
     /// filter to match changes in refs like branches, tags.
-    indirect case push(PushFilter?)
+    indirect case push(PushFilter)
   }
 
   public static var _anyTypeUrl: Swift.String {

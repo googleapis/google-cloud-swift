@@ -140,10 +140,10 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       resource = $0
     }
-    if let video = try container.decodeIfPresent(Asset.VideoAsset?.self, forKey: .video) {
+    if let video = try container.decodeIfPresent(Asset.VideoAsset.self, forKey: .video) {
       try resourceCheckAndSet(.video(video))
     }
-    if let image = try container.decodeIfPresent(Asset.ImageAsset?.self, forKey: .image) {
+    if let image = try container.decodeIfPresent(Asset.ImageAsset.self, forKey: .image) {
       try resourceCheckAndSet(.image(image))
     }
     self.resource = resource
@@ -449,9 +449,9 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The maximum size of the resource is 250 MB.
   public enum ResourceOneOf: Codable, Equatable, Sendable {
     /// VideoAsset represents a video.
-    indirect case video(Asset.VideoAsset?)
+    indirect case video(Asset.VideoAsset)
     /// ImageAsset represents an image.
-    indirect case image(Asset.ImageAsset?)
+    indirect case image(Asset.ImageAsset)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -229,7 +229,7 @@
           ranking = $0
         }
         if let rrf = try container.decodeIfPresent(
-          FindNeighborsRequest.Query.RRF?.self, forKey: .rrf)
+          FindNeighborsRequest.Query.RRF.self, forKey: .rrf)
         {
           try rankingCheckAndSet(.rrf(rrf))
         }
@@ -333,7 +333,7 @@
 
       public enum RankingOneOf: Codable, Equatable, Sendable {
         /// Optional. Represents RRF algorithm that combines search results.
-        indirect case rrf(FindNeighborsRequest.Query.RRF?)
+        indirect case rrf(FindNeighborsRequest.Query.RRF)
       }
 
       public static var _anyTypeUrl: Swift.String {

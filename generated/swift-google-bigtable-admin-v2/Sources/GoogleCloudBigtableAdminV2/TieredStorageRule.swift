@@ -69,7 +69,7 @@ public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,
       rule = $0
     }
     if let includeIfOlderThan = try container.decodeIfPresent(
-      GoogleWKT.WKTDuration?.self, forKey: .includeIfOlderThan)
+      GoogleWKT.WKTDuration.self, forKey: .includeIfOlderThan)
     {
       try ruleCheckAndSet(.includeIfOlderThan(includeIfOlderThan))
     }
@@ -98,7 +98,7 @@ public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum RuleOneOf: Codable, Equatable, Sendable {
     /// Include cells older than the given age.
     /// For the infrequent access tier, this value must be at least 30 days.
-    indirect case includeIfOlderThan(GoogleWKT.WKTDuration?)
+    indirect case includeIfOlderThan(GoogleWKT.WKTDuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

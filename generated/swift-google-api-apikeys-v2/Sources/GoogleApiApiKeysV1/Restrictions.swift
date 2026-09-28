@@ -88,22 +88,22 @@ public struct Restrictions: Codable, Equatable, GoogleWKT._AnyPackable,
       clientRestrictions = $0
     }
     if let browserKeyRestrictions = try container.decodeIfPresent(
-      BrowserKeyRestrictions?.self, forKey: .browserKeyRestrictions)
+      BrowserKeyRestrictions.self, forKey: .browserKeyRestrictions)
     {
       try clientRestrictionsCheckAndSet(.browserKeyRestrictions(browserKeyRestrictions))
     }
     if let serverKeyRestrictions = try container.decodeIfPresent(
-      ServerKeyRestrictions?.self, forKey: .serverKeyRestrictions)
+      ServerKeyRestrictions.self, forKey: .serverKeyRestrictions)
     {
       try clientRestrictionsCheckAndSet(.serverKeyRestrictions(serverKeyRestrictions))
     }
     if let androidKeyRestrictions = try container.decodeIfPresent(
-      AndroidKeyRestrictions?.self, forKey: .androidKeyRestrictions)
+      AndroidKeyRestrictions.self, forKey: .androidKeyRestrictions)
     {
       try clientRestrictionsCheckAndSet(.androidKeyRestrictions(androidKeyRestrictions))
     }
     if let iosKeyRestrictions = try container.decodeIfPresent(
-      IosKeyRestrictions?.self, forKey: .iosKeyRestrictions)
+      IosKeyRestrictions.self, forKey: .iosKeyRestrictions)
     {
       try clientRestrictionsCheckAndSet(.iosKeyRestrictions(iosKeyRestrictions))
     }
@@ -140,13 +140,13 @@ public struct Restrictions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// restrictions per key.
   public enum ClientRestrictionsOneOf: Codable, Equatable, Sendable {
     /// The HTTP referrers (websites) that are allowed to use the key.
-    indirect case browserKeyRestrictions(BrowserKeyRestrictions?)
+    indirect case browserKeyRestrictions(BrowserKeyRestrictions)
     /// The IP addresses of callers that are allowed to use the key.
-    indirect case serverKeyRestrictions(ServerKeyRestrictions?)
+    indirect case serverKeyRestrictions(ServerKeyRestrictions)
     /// The Android apps that are allowed to use the key.
-    indirect case androidKeyRestrictions(AndroidKeyRestrictions?)
+    indirect case androidKeyRestrictions(AndroidKeyRestrictions)
     /// The iOS apps that are allowed to use the key.
-    indirect case iosKeyRestrictions(IosKeyRestrictions?)
+    indirect case iosKeyRestrictions(IosKeyRestrictions)
   }
 
   public static var _anyTypeUrl: Swift.String {

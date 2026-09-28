@@ -70,13 +70,12 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       replication = $0
     }
-    if let automatic = try container.decodeIfPresent(
-      Replication.Automatic?.self, forKey: .automatic)
+    if let automatic = try container.decodeIfPresent(Replication.Automatic.self, forKey: .automatic)
     {
       try replicationCheckAndSet(.automatic(automatic))
     }
     if let userManaged = try container.decodeIfPresent(
-      Replication.UserManaged?.self, forKey: .userManaged)
+      Replication.UserManaged.self, forKey: .userManaged)
     {
       try replicationCheckAndSet(.userManaged(userManaged))
     }
@@ -366,12 +365,12 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
     /// replicated without any restrictions.
     ///
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-    indirect case automatic(Replication.Automatic?)
+    indirect case automatic(Replication.Automatic)
     /// The [Secret][google.cloud.secretmanager.v1.Secret] will only be
     /// replicated into the locations specified.
     ///
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-    indirect case userManaged(Replication.UserManaged?)
+    indirect case userManaged(Replication.UserManaged)
   }
 
   public static var _anyTypeUrl: Swift.String {

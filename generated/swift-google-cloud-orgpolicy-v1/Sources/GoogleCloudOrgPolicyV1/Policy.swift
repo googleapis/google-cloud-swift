@@ -135,17 +135,16 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       policyType = $0
     }
-    if let listPolicy = try container.decodeIfPresent(Policy.ListPolicy?.self, forKey: .listPolicy)
-    {
+    if let listPolicy = try container.decodeIfPresent(Policy.ListPolicy.self, forKey: .listPolicy) {
       try policyTypeCheckAndSet(.listPolicy(listPolicy))
     }
     if let booleanPolicy = try container.decodeIfPresent(
-      Policy.BooleanPolicy?.self, forKey: .booleanPolicy)
+      Policy.BooleanPolicy.self, forKey: .booleanPolicy)
     {
       try policyTypeCheckAndSet(.booleanPolicy(booleanPolicy))
     }
     if let restoreDefault = try container.decodeIfPresent(
-      Policy.RestoreDefault?.self, forKey: .restoreDefault)
+      Policy.RestoreDefault.self, forKey: .restoreDefault)
     {
       try policyTypeCheckAndSet(.restoreDefault(restoreDefault))
     }
@@ -724,12 +723,12 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `invalid_argument` error.
   public enum PolicyTypeOneOf: Codable, Equatable, Sendable {
     /// List of values either allowed or disallowed.
-    indirect case listPolicy(Policy.ListPolicy?)
+    indirect case listPolicy(Policy.ListPolicy)
     /// For boolean `Constraints`, whether to enforce the `Constraint` or not.
-    indirect case booleanPolicy(Policy.BooleanPolicy?)
+    indirect case booleanPolicy(Policy.BooleanPolicy)
     /// Restores the default behavior of the constraint; independent of
     /// `Constraint` type.
-    indirect case restoreDefault(Policy.RestoreDefault?)
+    indirect case restoreDefault(Policy.RestoreDefault)
   }
 
   public static var _anyTypeUrl: Swift.String {

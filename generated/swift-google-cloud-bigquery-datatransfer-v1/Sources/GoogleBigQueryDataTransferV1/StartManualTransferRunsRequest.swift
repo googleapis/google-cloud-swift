@@ -82,12 +82,12 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
       time = $0
     }
     if let requestedTimeRange = try container.decodeIfPresent(
-      StartManualTransferRunsRequest.TimeRange?.self, forKey: .requestedTimeRange)
+      StartManualTransferRunsRequest.TimeRange.self, forKey: .requestedTimeRange)
     {
       try timeCheckAndSet(.requestedTimeRange(requestedTimeRange))
     }
     if let requestedRunTime = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .requestedRunTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .requestedRunTime)
     {
       try timeCheckAndSet(.requestedRunTime(requestedRunTime))
     }
@@ -204,12 +204,12 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
     /// that are scheduled to be transferred by the scheduled transfer run.
     /// requested_time_range must be a past time and cannot include future time
     /// values.
-    indirect case requestedTimeRange(StartManualTransferRunsRequest.TimeRange?)
+    indirect case requestedTimeRange(StartManualTransferRunsRequest.TimeRange)
     /// A run_time timestamp for historical data files or reports
     /// that are scheduled to be transferred by the scheduled transfer run.
     /// requested_run_time must be a past time and cannot include future time
     /// values.
-    indirect case requestedRunTime(GoogleWKT.WKTTimestamp?)
+    indirect case requestedRunTime(GoogleWKT.WKTTimestamp)
   }
 
   public static var _anyTypeUrl: Swift.String {

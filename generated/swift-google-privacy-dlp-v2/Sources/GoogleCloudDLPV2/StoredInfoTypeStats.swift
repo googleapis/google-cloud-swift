@@ -69,7 +69,7 @@ public struct StoredInfoTypeStats: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let largeCustomDictionary = try container.decodeIfPresent(
-      LargeCustomDictionaryStats?.self, forKey: .largeCustomDictionary)
+      LargeCustomDictionaryStats.self, forKey: .largeCustomDictionary)
     {
       try typeCheckAndSet(.largeCustomDictionary(largeCustomDictionary))
     }
@@ -97,7 +97,7 @@ public struct StoredInfoTypeStats: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Stat types
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// StoredInfoType where findings are defined by a dictionary of phrases.
-    indirect case largeCustomDictionary(LargeCustomDictionaryStats?)
+    indirect case largeCustomDictionary(LargeCustomDictionaryStats)
   }
 
   public static var _anyTypeUrl: Swift.String {

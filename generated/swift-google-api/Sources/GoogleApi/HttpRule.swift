@@ -409,7 +409,7 @@ public struct HttpRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let patch = try container.decodeIfPresent(Swift.String.self, forKey: .patch) {
       try patternCheckAndSet(.patch(patch))
     }
-    if let custom = try container.decodeIfPresent(CustomHttpPattern?.self, forKey: .custom) {
+    if let custom = try container.decodeIfPresent(CustomHttpPattern.self, forKey: .custom) {
       try patternCheckAndSet(.custom(custom))
     }
     self.pattern = pattern
@@ -466,7 +466,7 @@ public struct HttpRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// included in the `pattern` field, such as HEAD, or "*" to leave the
     /// HTTP method unspecified for this rule. The wild-card rule is useful
     /// for services that provide content to Web (HTML) clients.
-    indirect case custom(CustomHttpPattern?)
+    indirect case custom(CustomHttpPattern)
   }
 
   public static var _anyTypeUrl: Swift.String {

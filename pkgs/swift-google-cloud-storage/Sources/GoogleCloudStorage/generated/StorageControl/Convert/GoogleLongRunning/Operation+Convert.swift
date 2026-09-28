@@ -53,13 +53,9 @@ extension GoogleLongRunning.Operation {
     if let oneof = self.result {
       switch oneof {
       case .error(let value):
-        if let value = value {
-          proto.result = .error(try value.toProto())
-        }
+        proto.result = .error(try value.toProto())
       case .response(let value):
-        if let value = value {
-          proto.result = .response(try StorageControlLROAnyConverter.toProto(value))
-        }
+        proto.result = .response(try StorageControlLROAnyConverter.toProto(value))
       }
     }
     if !self._unknownFields.proto.isEmpty {

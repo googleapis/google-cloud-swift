@@ -110,7 +110,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       pageRange = $0
     }
     if let individualPageSelector = try container.decodeIfPresent(
-      ProcessOptions.IndividualPageSelector?.self, forKey: .individualPageSelector)
+      ProcessOptions.IndividualPageSelector.self, forKey: .individualPageSelector)
     {
       try pageRangeCheckAndSet(.individualPageSelector(individualPageSelector))
     }
@@ -415,7 +415,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
   public enum PageRangeOneOf: Codable, Equatable, Sendable {
     /// Which pages to process (1-indexed).
-    indirect case individualPageSelector(ProcessOptions.IndividualPageSelector?)
+    indirect case individualPageSelector(ProcessOptions.IndividualPageSelector)
     /// Only process certain pages from the start. Process all if the document
     /// has fewer pages.
     case fromStart(Swift.Int32)

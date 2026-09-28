@@ -89,12 +89,12 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleWKT._AnyPacka
       sourceFilter = $0
     }
     if let sourceTextFilter = try container.decodeIfPresent(
-      SourceTextFilter?.self, forKey: .sourceTextFilter)
+      SourceTextFilter.self, forKey: .sourceTextFilter)
     {
       try sourceFilterCheckAndSet(.sourceTextFilter(sourceTextFilter))
     }
     if let sourceNumericFilter = try container.decodeIfPresent(
-      SourceNumericFilter?.self, forKey: .sourceNumericFilter)
+      SourceNumericFilter.self, forKey: .sourceNumericFilter)
     {
       try sourceFilterCheckAndSet(.sourceNumericFilter(sourceNumericFilter))
     }
@@ -126,10 +126,10 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleWKT._AnyPacka
   public enum SourceFilterOneOf: Codable, Equatable, Sendable {
     /// Optional. Optional filter on source column length. Used for text based
     /// data types like varchar.
-    indirect case sourceTextFilter(SourceTextFilter?)
+    indirect case sourceTextFilter(SourceTextFilter)
     /// Optional. Optional filter on source column precision and scale. Used for
     /// fixed point numbers such as NUMERIC/NUMBER data types.
-    indirect case sourceNumericFilter(SourceNumericFilter?)
+    indirect case sourceNumericFilter(SourceNumericFilter)
   }
 
   public static var _anyTypeUrl: Swift.String {

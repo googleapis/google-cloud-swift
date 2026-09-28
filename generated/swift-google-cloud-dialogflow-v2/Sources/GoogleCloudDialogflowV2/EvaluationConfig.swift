@@ -80,12 +80,12 @@
         modelSpecificConfig = $0
       }
       if let smartReplyConfig = try container.decodeIfPresent(
-        EvaluationConfig.SmartReplyConfig?.self, forKey: .smartReplyConfig)
+        EvaluationConfig.SmartReplyConfig.self, forKey: .smartReplyConfig)
       {
         try modelSpecificConfigCheckAndSet(.smartReplyConfig(smartReplyConfig))
       }
       if let smartComposeConfig = try container.decodeIfPresent(
-        EvaluationConfig.SmartComposeConfig?.self, forKey: .smartComposeConfig)
+        EvaluationConfig.SmartComposeConfig.self, forKey: .smartComposeConfig)
       {
         try modelSpecificConfigCheckAndSet(.smartComposeConfig(smartComposeConfig))
       }
@@ -282,9 +282,9 @@
     /// Specific configurations for different models in order to do evaluation.
     public enum ModelSpecificConfigOneOf: Codable, Equatable, Sendable {
       /// Configuration for smart reply model evaluation.
-      indirect case smartReplyConfig(EvaluationConfig.SmartReplyConfig?)
+      indirect case smartReplyConfig(EvaluationConfig.SmartReplyConfig)
       /// Configuration for smart compose model evaluation.
-      indirect case smartComposeConfig(EvaluationConfig.SmartComposeConfig?)
+      indirect case smartComposeConfig(EvaluationConfig.SmartComposeConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

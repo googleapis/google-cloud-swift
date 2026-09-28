@@ -69,7 +69,7 @@ public struct ExternalValueSource: Codable, Equatable, GoogleWKT._AnyPackable,
       source = $0
     }
     if let deploymentSource = try container.decodeIfPresent(
-      DeploymentSource?.self, forKey: .deploymentSource)
+      DeploymentSource.self, forKey: .deploymentSource)
     {
       try sourceCheckAndSet(.deploymentSource(deploymentSource))
     }
@@ -97,7 +97,7 @@ public struct ExternalValueSource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The source of the external value.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// A source from a Deployment.
-    indirect case deploymentSource(DeploymentSource?)
+    indirect case deploymentSource(DeploymentSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

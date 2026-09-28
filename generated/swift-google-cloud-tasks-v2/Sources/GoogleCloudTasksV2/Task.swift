@@ -211,11 +211,11 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       messageType = $0
     }
     if let appEngineHttpRequest = try container.decodeIfPresent(
-      AppEngineHttpRequest?.self, forKey: .appEngineHttpRequest)
+      AppEngineHttpRequest.self, forKey: .appEngineHttpRequest)
     {
       try messageTypeCheckAndSet(.appEngineHttpRequest(appEngineHttpRequest))
     }
-    if let httpRequest = try container.decodeIfPresent(HttpRequest?.self, forKey: .httpRequest) {
+    if let httpRequest = try container.decodeIfPresent(HttpRequest.self, forKey: .httpRequest) {
       try messageTypeCheckAndSet(.httpRequest(httpRequest))
     }
     self.messageType = messageType
@@ -400,14 +400,14 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [AppEngineHttpRequest][google.cloud.tasks.v2.AppEngineHttpRequest] set.
     ///
     /// [google.cloud.tasks.v2.AppEngineHttpRequest]: <doc:AppEngineHttpRequest>
-    indirect case appEngineHttpRequest(AppEngineHttpRequest?)
+    indirect case appEngineHttpRequest(AppEngineHttpRequest)
     /// HTTP request that is sent to the worker.
     ///
     /// An HTTP task is a task that has
     /// [HttpRequest][google.cloud.tasks.v2.HttpRequest] set.
     ///
     /// [google.cloud.tasks.v2.HttpRequest]: <doc:HttpRequest>
-    indirect case httpRequest(HttpRequest?)
+    indirect case httpRequest(HttpRequest)
   }
 
   public static var _anyTypeUrl: Swift.String {

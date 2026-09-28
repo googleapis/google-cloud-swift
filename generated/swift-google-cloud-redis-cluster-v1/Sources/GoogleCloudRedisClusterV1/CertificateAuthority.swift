@@ -79,7 +79,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       serverCa = $0
     }
     if let managedServerCa = try container.decodeIfPresent(
-      CertificateAuthority.ManagedCertificateAuthority?.self, forKey: .managedServerCa)
+      CertificateAuthority.ManagedCertificateAuthority.self, forKey: .managedServerCa)
     {
       try serverCaCheckAndSet(.managedServerCa(managedServerCa))
     }
@@ -246,7 +246,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// server ca information
   public enum ServerCaOneOf: Codable, Equatable, Sendable {
-    indirect case managedServerCa(CertificateAuthority.ManagedCertificateAuthority?)
+    indirect case managedServerCa(CertificateAuthority.ManagedCertificateAuthority)
   }
 
   public static var _anyTypeUrl: Swift.String {

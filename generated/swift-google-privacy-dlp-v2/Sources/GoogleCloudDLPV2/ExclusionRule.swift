@@ -86,25 +86,25 @@ public struct ExclusionRule: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let dictionary = try container.decodeIfPresent(
-      CustomInfoType.Dictionary?.self, forKey: .dictionary)
+      CustomInfoType.Dictionary.self, forKey: .dictionary)
     {
       try typeCheckAndSet(.dictionary(dictionary))
     }
-    if let regex = try container.decodeIfPresent(CustomInfoType.Regex?.self, forKey: .regex) {
+    if let regex = try container.decodeIfPresent(CustomInfoType.Regex.self, forKey: .regex) {
       try typeCheckAndSet(.regex(regex))
     }
     if let excludeInfoTypes = try container.decodeIfPresent(
-      ExcludeInfoTypes?.self, forKey: .excludeInfoTypes)
+      ExcludeInfoTypes.self, forKey: .excludeInfoTypes)
     {
       try typeCheckAndSet(.excludeInfoTypes(excludeInfoTypes))
     }
     if let excludeByHotword = try container.decodeIfPresent(
-      ExcludeByHotword?.self, forKey: .excludeByHotword)
+      ExcludeByHotword.self, forKey: .excludeByHotword)
     {
       try typeCheckAndSet(.excludeByHotword(excludeByHotword))
     }
     if let excludeByImageFindings = try container.decodeIfPresent(
-      ExcludeByImageFindings?.self, forKey: .excludeByImageFindings)
+      ExcludeByImageFindings.self, forKey: .excludeByImageFindings)
     {
       try typeCheckAndSet(.excludeByImageFindings(excludeByImageFindings))
     }
@@ -141,17 +141,17 @@ public struct ExclusionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Exclusion rule types.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Dictionary which defines the rule.
-    indirect case dictionary(CustomInfoType.Dictionary?)
+    indirect case dictionary(CustomInfoType.Dictionary)
     /// Regular expression which defines the rule.
-    indirect case regex(CustomInfoType.Regex?)
+    indirect case regex(CustomInfoType.Regex)
     /// Set of infoTypes for which findings would affect this rule.
-    indirect case excludeInfoTypes(ExcludeInfoTypes?)
+    indirect case excludeInfoTypes(ExcludeInfoTypes)
     /// Drop if the hotword rule is contained in the proximate context. For
     /// tabular data, the context includes the column name.
-    indirect case excludeByHotword(ExcludeByHotword?)
+    indirect case excludeByHotword(ExcludeByHotword)
     /// Exclude findings based on image containment rules. For example, exclude
     /// an image finding if it overlaps with another image finding.
-    indirect case excludeByImageFindings(ExcludeByImageFindings?)
+    indirect case excludeByImageFindings(ExcludeByImageFindings)
   }
 
   public static var _anyTypeUrl: Swift.String {

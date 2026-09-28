@@ -90,7 +90,7 @@
         schema = $0
       }
       if let structSchema = try container.decodeIfPresent(
-        GoogleWKT.WKTStruct?.self, forKey: .structSchema)
+        GoogleWKT.WKTStruct.self, forKey: .structSchema)
       {
         try schemaCheckAndSet(.structSchema(structSchema))
       }
@@ -130,7 +130,7 @@
     /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/SchemaOneOf/structSchema(_:)>
     public enum SchemaOneOf: Codable, Equatable, Sendable {
       /// The structured representation of the schema.
-      indirect case structSchema(GoogleWKT.WKTStruct?)
+      indirect case structSchema(GoogleWKT.WKTStruct)
       /// The JSON representation of the schema.
       case jsonSchema(Swift.String)
     }

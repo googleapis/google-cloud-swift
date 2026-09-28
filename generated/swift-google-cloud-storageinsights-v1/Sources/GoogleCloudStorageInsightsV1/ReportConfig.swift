@@ -128,11 +128,11 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       reportFormat = $0
     }
-    if let csvOptions = try container.decodeIfPresent(CSVOptions?.self, forKey: .csvOptions) {
+    if let csvOptions = try container.decodeIfPresent(CSVOptions.self, forKey: .csvOptions) {
       try reportFormatCheckAndSet(.csvOptions(csvOptions))
     }
     if let parquetOptions = try container.decodeIfPresent(
-      ParquetOptions?.self, forKey: .parquetOptions)
+      ParquetOptions.self, forKey: .parquetOptions)
     {
       try reportFormatCheckAndSet(.parquetOptions(parquetOptions))
     }
@@ -149,7 +149,7 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       reportKind = $0
     }
     if let objectMetadataReportOptions = try container.decodeIfPresent(
-      ObjectMetadataReportOptions?.self, forKey: .objectMetadataReportOptions)
+      ObjectMetadataReportOptions.self, forKey: .objectMetadataReportOptions)
     {
       try reportKindCheckAndSet(.objectMetadataReportOptions(objectMetadataReportOptions))
     }
@@ -192,15 +192,15 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Format in which report will be published.
   public enum ReportFormatOneOf: Codable, Equatable, Sendable {
     /// Options for CSV formatted reports.
-    indirect case csvOptions(CSVOptions?)
+    indirect case csvOptions(CSVOptions)
     /// Options for Parquet formatted reports.
-    indirect case parquetOptions(ParquetOptions?)
+    indirect case parquetOptions(ParquetOptions)
   }
 
   /// Configuration options for report contents.
   public enum ReportKindOneOf: Codable, Equatable, Sendable {
     /// Report for exporting object metadata.
-    indirect case objectMetadataReportOptions(ObjectMetadataReportOptions?)
+    indirect case objectMetadataReportOptions(ObjectMetadataReportOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

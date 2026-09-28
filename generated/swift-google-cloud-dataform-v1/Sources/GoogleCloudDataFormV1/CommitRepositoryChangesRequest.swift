@@ -160,12 +160,12 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
         operation = $0
       }
       if let writeFile = try container.decodeIfPresent(
-        CommitRepositoryChangesRequest.FileOperation.WriteFile?.self, forKey: .writeFile)
+        CommitRepositoryChangesRequest.FileOperation.WriteFile.self, forKey: .writeFile)
       {
         try operationCheckAndSet(.writeFile(writeFile))
       }
       if let deleteFile = try container.decodeIfPresent(
-        CommitRepositoryChangesRequest.FileOperation.DeleteFile?.self, forKey: .deleteFile)
+        CommitRepositoryChangesRequest.FileOperation.DeleteFile.self, forKey: .deleteFile)
       {
         try operationCheckAndSet(.deleteFile(deleteFile))
       }
@@ -322,9 +322,9 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
     /// The operation to perform on the file.
     public enum OperationOneOf: Codable, Equatable, Sendable {
       /// Represents the write operation.
-      indirect case writeFile(CommitRepositoryChangesRequest.FileOperation.WriteFile?)
+      indirect case writeFile(CommitRepositoryChangesRequest.FileOperation.WriteFile)
       /// Represents the delete operation.
-      indirect case deleteFile(CommitRepositoryChangesRequest.FileOperation.DeleteFile?)
+      indirect case deleteFile(CommitRepositoryChangesRequest.FileOperation.DeleteFile)
     }
 
     public static var _anyTypeUrl: Swift.String {

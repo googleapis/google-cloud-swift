@@ -85,7 +85,7 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     if let doubleValue = try container.decodeIfPresent(Swift.Double.self, forKey: .doubleValue) {
       try kindCheckAndSet(.doubleValue(doubleValue))
     }
-    if let protoValue = try container.decodeIfPresent(GoogleWKT.WKTAny?.self, forKey: .protoValue) {
+    if let protoValue = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .protoValue) {
       try kindCheckAndSet(.protoValue(protoValue))
     }
     if let boolValue = try container.decodeIfPresent(Swift.Bool.self, forKey: .boolValue) {
@@ -129,7 +129,7 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Represents a double value.
     case doubleValue(Swift.Double)
     /// Represents an 'Any' proto value.
-    indirect case protoValue(GoogleWKT.WKTAny?)
+    indirect case protoValue(GoogleWKT.WKTAny)
     /// Represents a boolean value.
     case boolValue(Swift.Bool)
   }

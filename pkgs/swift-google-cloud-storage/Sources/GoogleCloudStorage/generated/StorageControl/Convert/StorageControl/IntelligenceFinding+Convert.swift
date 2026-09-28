@@ -72,22 +72,14 @@ extension IntelligenceFinding {
     if let oneof = self.intelligenceFindingDetails {
       switch oneof {
       case .coldlineAndArchivalStorageOperationsSpike(let value):
-        if let value = value {
-          proto.intelligenceFindingDetails = .coldlineAndArchivalStorageOperationsSpike(
-            try value.toProto())
-        }
+        proto.intelligenceFindingDetails = .coldlineAndArchivalStorageOperationsSpike(
+          try value.toProto())
       case .throttledRequestsSpike(let value):
-        if let value = value {
-          proto.intelligenceFindingDetails = .throttledRequestsSpike(try value.toProto())
-        }
+        proto.intelligenceFindingDetails = .throttledRequestsSpike(try value.toProto())
       case .crossRegionEgressSpike(let value):
-        if let value = value {
-          proto.intelligenceFindingDetails = .crossRegionEgressSpike(try value.toProto())
-        }
+        proto.intelligenceFindingDetails = .crossRegionEgressSpike(try value.toProto())
       case .storageGrowthAboveTrend(let value):
-        if let value = value {
-          proto.intelligenceFindingDetails = .storageGrowthAboveTrend(try value.toProto())
-        }
+        proto.intelligenceFindingDetails = .storageGrowthAboveTrend(try value.toProto())
       }
     }
     if !self._unknownFields.proto.isEmpty {
@@ -149,13 +141,9 @@ extension IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketCo
     if let oneof = self.details {
       switch oneof {
       case .contribution(let value):
-        if let value = value {
-          proto.details = .contribution(try value.toProto())
-        }
+        proto.details = .contribution(try value.toProto())
       case .error(let value):
-        if let value = value {
-          proto.details = .error(try value.toProto())
-        }
+        proto.details = .error(try value.toProto())
       }
     }
     if !self._unknownFields.proto.isEmpty {
@@ -265,13 +253,9 @@ extension IntelligenceFinding.CrossRegionEgressSpike.BucketContribution {
     if let oneof = self.details {
       switch oneof {
       case .contribution(let value):
-        if let value = value {
-          proto.details = .contribution(try value.toProto())
-        }
+        proto.details = .contribution(try value.toProto())
       case .error(let value):
-        if let value = value {
-          proto.details = .error(try value.toProto())
-        }
+        proto.details = .error(try value.toProto())
       }
     }
     if !self._unknownFields.proto.isEmpty {
@@ -379,13 +363,9 @@ extension IntelligenceFinding.ThrottledRequestSpike.BucketContribution {
     if let oneof = self.details {
       switch oneof {
       case .contribution(let value):
-        if let value = value {
-          proto.details = .contribution(try value.toProto())
-        }
+        proto.details = .contribution(try value.toProto())
       case .error(let value):
-        if let value = value {
-          proto.details = .error(try value.toProto())
-        }
+        proto.details = .error(try value.toProto())
       }
     }
     if !self._unknownFields.proto.isEmpty {
@@ -491,9 +471,7 @@ extension IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution {
     if let oneof = self.details {
       switch oneof {
       case .error(let value):
-        if let value = value {
-          proto.details = .error(try value.toProto())
-        }
+        proto.details = .error(try value.toProto())
       }
     }
     if !self._unknownFields.proto.isEmpty {

@@ -120,20 +120,18 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
     {
       try complexCheckAndSet(.`enum`(`enum`))
     }
-    if let inner = try container.decodeIfPresent(
-      MessageWithComplexOneOf.Inner?.self, forKey: .inner)
+    if let inner = try container.decodeIfPresent(MessageWithComplexOneOf.Inner.self, forKey: .inner)
     {
       try complexCheckAndSet(.inner(inner))
     }
-    if let duration = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .duration)
-    {
+    if let duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration) {
       try complexCheckAndSet(.duration(duration))
     }
-    if let value = try container.decodeIfPresent(GoogleWKT.WKTValue?.self, forKey: .value) {
+    if let value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value) {
       try complexCheckAndSet(.value(value))
     }
     if let optionalDouble = try container.decodeIfPresent(
-      GoogleWKT.WKTDoubleValue?.self, forKey: .optionalDouble)
+      GoogleWKT.WKTDoubleValue.self, forKey: .optionalDouble)
     {
       try complexCheckAndSet(.optionalDouble(optionalDouble))
     }
@@ -364,10 +362,10 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
     case int32(Swift.Int32)
     case int64(Swift.Int64)
     case `enum`(MessageWithComplexOneOf.TestEnum)
-    indirect case inner(MessageWithComplexOneOf.Inner?)
-    indirect case duration(GoogleWKT.WKTDuration?)
-    indirect case value(GoogleWKT.WKTValue?)
-    indirect case optionalDouble(GoogleWKT.WKTDoubleValue?)
+    indirect case inner(MessageWithComplexOneOf.Inner)
+    indirect case duration(GoogleWKT.WKTDuration)
+    indirect case value(GoogleWKT.WKTValue)
+    indirect case optionalDouble(GoogleWKT.WKTDoubleValue)
   }
 
   public static var _anyTypeUrl: Swift.String {

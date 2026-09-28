@@ -126,7 +126,7 @@
         metrics = $0
       }
       if let smartReplyMetrics = try container.decodeIfPresent(
-        SmartReplyMetrics?.self, forKey: .smartReplyMetrics)
+        SmartReplyMetrics.self, forKey: .smartReplyMetrics)
       {
         try metricsCheckAndSet(.smartReplyMetrics(smartReplyMetrics))
       }
@@ -159,7 +159,7 @@
     /// Metrics details.
     public enum MetricsOneOf: Codable, Equatable, Sendable {
       /// Output only. Only available when model is for smart reply.
-      indirect case smartReplyMetrics(SmartReplyMetrics?)
+      indirect case smartReplyMetrics(SmartReplyMetrics)
     }
 
     public static var _anyTypeUrl: Swift.String {

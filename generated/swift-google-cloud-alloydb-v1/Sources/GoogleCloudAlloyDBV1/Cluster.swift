@@ -358,16 +358,16 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let backupSource = try container.decodeIfPresent(BackupSource?.self, forKey: .backupSource) {
+    if let backupSource = try container.decodeIfPresent(BackupSource.self, forKey: .backupSource) {
       try sourceCheckAndSet(.backupSource(backupSource))
     }
     if let migrationSource = try container.decodeIfPresent(
-      MigrationSource?.self, forKey: .migrationSource)
+      MigrationSource.self, forKey: .migrationSource)
     {
       try sourceCheckAndSet(.migrationSource(migrationSource))
     }
     if let cloudsqlBackupRunSource = try container.decodeIfPresent(
-      CloudSQLBackupRunSource?.self, forKey: .cloudsqlBackupRunSource)
+      CloudSQLBackupRunSource.self, forKey: .cloudsqlBackupRunSource)
     {
       try sourceCheckAndSet(.cloudsqlBackupRunSource(cloudsqlBackupRunSource))
     }
@@ -1196,11 +1196,11 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// source this cluster was imported from.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Output only. Cluster created from backup.
-    indirect case backupSource(BackupSource?)
+    indirect case backupSource(BackupSource)
     /// Output only. Cluster created via DMS migration.
-    indirect case migrationSource(MigrationSource?)
+    indirect case migrationSource(MigrationSource)
     /// Output only. Cluster created from CloudSQL snapshot.
-    indirect case cloudsqlBackupRunSource(CloudSQLBackupRunSource?)
+    indirect case cloudsqlBackupRunSource(CloudSQLBackupRunSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

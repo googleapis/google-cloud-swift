@@ -280,7 +280,7 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
       blueprint = $0
     }
     if let terraformBlueprint = try container.decodeIfPresent(
-      TerraformBlueprint?.self, forKey: .terraformBlueprint)
+      TerraformBlueprint.self, forKey: .terraformBlueprint)
     {
       try blueprintCheckAndSet(.terraformBlueprint(terraformBlueprint))
     }
@@ -787,7 +787,7 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum BlueprintOneOf: Codable, Equatable, Sendable {
     /// A blueprint described using Terraform's HashiCorp Configuration Language
     /// as a root module.
-    indirect case terraformBlueprint(TerraformBlueprint?)
+    indirect case terraformBlueprint(TerraformBlueprint)
   }
 
   public static var _anyTypeUrl: Swift.String {

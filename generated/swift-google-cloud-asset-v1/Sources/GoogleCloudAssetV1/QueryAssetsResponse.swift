@@ -95,14 +95,14 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       response = $0
     }
-    if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+    if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
       try responseCheckAndSet(.error(error))
     }
-    if let queryResult = try container.decodeIfPresent(QueryResult?.self, forKey: .queryResult) {
+    if let queryResult = try container.decodeIfPresent(QueryResult.self, forKey: .queryResult) {
       try responseCheckAndSet(.queryResult(queryResult))
     }
     if let outputConfig = try container.decodeIfPresent(
-      QueryAssetsOutputConfig?.self, forKey: .outputConfig)
+      QueryAssetsOutputConfig.self, forKey: .outputConfig)
     {
       try responseCheckAndSet(.outputConfig(outputConfig))
     }
@@ -135,13 +135,13 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// Error status.
-    indirect case error(GoogleRpc.Status?)
+    indirect case error(GoogleRpc.Status)
     /// Result of the query.
-    indirect case queryResult(QueryResult?)
+    indirect case queryResult(QueryResult)
     /// Output configuration, which indicates that instead of being returned in
     /// an API response on the fly, the query result will be saved in a specific
     /// output.
-    indirect case outputConfig(QueryAssetsOutputConfig?)
+    indirect case outputConfig(QueryAssetsOutputConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

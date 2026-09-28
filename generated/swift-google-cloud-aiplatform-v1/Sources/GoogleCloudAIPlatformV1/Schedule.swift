@@ -258,12 +258,12 @@
         request = $0
       }
       if let createPipelineJobRequest = try container.decodeIfPresent(
-        CreatePipelineJobRequest?.self, forKey: .createPipelineJobRequest)
+        CreatePipelineJobRequest.self, forKey: .createPipelineJobRequest)
       {
         try requestCheckAndSet(.createPipelineJobRequest(createPipelineJobRequest))
       }
       if let createNotebookExecutionJobRequest = try container.decodeIfPresent(
-        CreateNotebookExecutionJobRequest?.self, forKey: .createNotebookExecutionJobRequest)
+        CreateNotebookExecutionJobRequest.self, forKey: .createNotebookExecutionJobRequest)
       {
         try requestCheckAndSet(
           .createNotebookExecutionJobRequest(createNotebookExecutionJobRequest))
@@ -542,12 +542,12 @@
       /// projects/{project}/locations/{location}).
       ///
       /// [google.cloud.aiplatform.v1.PipelineService.CreatePipelineJob]: <doc:PipelineServiceClient/createPipelineJob(request:options:)>
-      indirect case createPipelineJobRequest(CreatePipelineJobRequest?)
+      indirect case createPipelineJobRequest(CreatePipelineJobRequest)
       /// Request for
       /// [NotebookService.CreateNotebookExecutionJob][google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob].
       ///
       /// [google.cloud.aiplatform.v1.NotebookService.CreateNotebookExecutionJob]: <doc:NotebookServiceClient/createNotebookExecutionJob(request:options:)>
-      indirect case createNotebookExecutionJobRequest(CreateNotebookExecutionJobRequest?)
+      indirect case createNotebookExecutionJobRequest(CreateNotebookExecutionJobRequest)
     }
 
     public static var _anyTypeUrl: Swift.String {

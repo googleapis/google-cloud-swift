@@ -90,12 +90,12 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       data = $0
     }
     if let termsPair = try container.decodeIfPresent(
-      GlossaryEntry.GlossaryTermsPair?.self, forKey: .termsPair)
+      GlossaryEntry.GlossaryTermsPair.self, forKey: .termsPair)
     {
       try dataCheckAndSet(.termsPair(termsPair))
     }
     if let termsSet = try container.decodeIfPresent(
-      GlossaryEntry.GlossaryTermsSet?.self, forKey: .termsSet)
+      GlossaryEntry.GlossaryTermsSet.self, forKey: .termsSet)
     {
       try dataCheckAndSet(.termsSet(termsSet))
     }
@@ -272,9 +272,9 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// sets).
   public enum DataOneOf: Codable, Equatable, Sendable {
     /// Used for an unidirectional glossary.
-    indirect case termsPair(GlossaryEntry.GlossaryTermsPair?)
+    indirect case termsPair(GlossaryEntry.GlossaryTermsPair)
     /// Used for an equivalent term sets glossary.
-    indirect case termsSet(GlossaryEntry.GlossaryTermsSet?)
+    indirect case termsSet(GlossaryEntry.GlossaryTermsSet)
   }
 
   public static var _anyTypeUrl: Swift.String {

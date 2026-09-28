@@ -158,12 +158,12 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       outputFormat = $0
     }
     if let textConfig = try container.decodeIfPresent(
-      CloudStorageConfig.TextConfig?.self, forKey: .textConfig)
+      CloudStorageConfig.TextConfig.self, forKey: .textConfig)
     {
       try outputFormatCheckAndSet(.textConfig(textConfig))
     }
     if let avroConfig = try container.decodeIfPresent(
-      CloudStorageConfig.AvroConfig?.self, forKey: .avroConfig)
+      CloudStorageConfig.AvroConfig.self, forKey: .avroConfig)
     {
       try outputFormatCheckAndSet(.avroConfig(avroConfig))
     }
@@ -347,10 +347,10 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum OutputFormatOneOf: Codable, Equatable, Sendable {
     /// Optional. If set, message data will be written to Cloud Storage in text
     /// format.
-    indirect case textConfig(CloudStorageConfig.TextConfig?)
+    indirect case textConfig(CloudStorageConfig.TextConfig)
     /// Optional. If set, message data will be written to Cloud Storage in Avro
     /// format.
-    indirect case avroConfig(CloudStorageConfig.AvroConfig?)
+    indirect case avroConfig(CloudStorageConfig.AvroConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

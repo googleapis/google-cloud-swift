@@ -87,7 +87,7 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       entry = $0
     }
-    if let v1Entry = try container.decodeIfPresent(Entry?.self, forKey: .v1Entry) {
+    if let v1Entry = try container.decodeIfPresent(Entry.self, forKey: .v1Entry) {
       try entryCheckAndSet(.v1Entry(v1Entry))
     }
     self.entry = entry
@@ -116,7 +116,7 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Entry to be ingested.
   public enum EntryOneOf: Codable, Equatable, Sendable {
     /// Non-encrypted Data Catalog v1 Entry.
-    indirect case v1Entry(Entry?)
+    indirect case v1Entry(Entry)
   }
 
   public static var _anyTypeUrl: Swift.String {

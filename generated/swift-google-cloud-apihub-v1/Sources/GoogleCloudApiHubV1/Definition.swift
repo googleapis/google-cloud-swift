@@ -129,7 +129,7 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       value = $0
     }
-    if let schema = try container.decodeIfPresent(Schema?.self, forKey: .schema) {
+    if let schema = try container.decodeIfPresent(Schema.self, forKey: .schema) {
       try valueCheckAndSet(.schema(schema))
     }
     self.value = value
@@ -271,7 +271,7 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ValueOneOf: Codable, Equatable, Sendable {
     /// Output only. The value of a schema definition.
-    indirect case schema(Schema?)
+    indirect case schema(Schema)
   }
 
   public static var _anyTypeUrl: Swift.String {

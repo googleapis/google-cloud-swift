@@ -300,7 +300,7 @@
       {
         try queryCheckAndSet(.triggerEvent(triggerEvent))
       }
-      if let dtmf = try container.decodeIfPresent(DtmfInput?.self, forKey: .dtmf) {
+      if let dtmf = try container.decodeIfPresent(DtmfInput.self, forKey: .dtmf) {
         try queryCheckAndSet(.dtmf(dtmf))
       }
       self.query = query
@@ -381,7 +381,7 @@
       /// [DtmfInput][google.cloud.dialogflow.cx.v3.DtmfInput].
       ///
       /// [google.cloud.dialogflow.cx.v3.DtmfInput]: <doc:DtmfInput>
-      indirect case dtmf(DtmfInput?)
+      indirect case dtmf(DtmfInput)
     }
 
     public static var _anyTypeUrl: Swift.String {

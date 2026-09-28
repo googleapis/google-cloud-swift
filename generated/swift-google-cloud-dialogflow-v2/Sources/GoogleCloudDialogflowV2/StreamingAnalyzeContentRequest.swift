@@ -243,12 +243,11 @@
         config = $0
       }
       if let audioConfig = try container.decodeIfPresent(
-        InputAudioConfig?.self, forKey: .audioConfig)
+        InputAudioConfig.self, forKey: .audioConfig)
       {
         try configCheckAndSet(.audioConfig(audioConfig))
       }
-      if let textConfig = try container.decodeIfPresent(InputTextConfig?.self, forKey: .textConfig)
-      {
+      if let textConfig = try container.decodeIfPresent(InputTextConfig.self, forKey: .textConfig) {
         try configCheckAndSet(.textConfig(textConfig))
       }
       self.config = config
@@ -269,8 +268,7 @@
       if let inputText = try container.decodeIfPresent(Swift.String.self, forKey: .inputText) {
         try inputCheckAndSet(.inputText(inputText))
       }
-      if let inputDtmf = try container.decodeIfPresent(
-        TelephonyDtmfEvents?.self, forKey: .inputDtmf)
+      if let inputDtmf = try container.decodeIfPresent(TelephonyDtmfEvents.self, forKey: .inputDtmf)
       {
         try inputCheckAndSet(.inputDtmf(inputDtmf))
       }
@@ -321,9 +319,9 @@
     /// The input config.
     public enum ConfigOneOf: Codable, Equatable, Sendable {
       /// Instructs the speech recognizer how to process the speech audio.
-      indirect case audioConfig(InputAudioConfig?)
+      indirect case audioConfig(InputAudioConfig)
       /// The natural language text to be processed.
-      indirect case textConfig(InputTextConfig?)
+      indirect case textConfig(InputTextConfig)
     }
 
     /// The input.
@@ -341,7 +339,7 @@
       ///
       /// This input is ignored if the previous response indicated that DTMF input
       /// is not accepted.
-      indirect case inputDtmf(TelephonyDtmfEvents?)
+      indirect case inputDtmf(TelephonyDtmfEvents)
     }
 
     public static var _anyTypeUrl: Swift.String {

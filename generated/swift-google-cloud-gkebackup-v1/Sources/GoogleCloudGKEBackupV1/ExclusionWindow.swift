@@ -98,7 +98,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
       recurrence = $0
     }
     if let singleOccurrenceDate = try container.decodeIfPresent(
-      GoogleType.Date?.self, forKey: .singleOccurrenceDate)
+      GoogleType.Date.self, forKey: .singleOccurrenceDate)
     {
       try recurrenceCheckAndSet(.singleOccurrenceDate(singleOccurrenceDate))
     }
@@ -106,7 +106,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
       try recurrenceCheckAndSet(.daily(daily))
     }
     if let daysOfWeek = try container.decodeIfPresent(
-      ExclusionWindow.DayOfWeekList?.self, forKey: .daysOfWeek)
+      ExclusionWindow.DayOfWeekList.self, forKey: .daysOfWeek)
     {
       try recurrenceCheckAndSet(.daysOfWeek(daysOfWeek))
     }
@@ -211,12 +211,12 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum RecurrenceOneOf: Codable, Equatable, Sendable {
     /// No recurrence. The exclusion window occurs only once and on this
     /// date in UTC.
-    indirect case singleOccurrenceDate(GoogleType.Date?)
+    indirect case singleOccurrenceDate(GoogleType.Date)
     /// The exclusion window occurs every day if set to "True".
     /// Specifying this field to "False" is an error.
     case daily(Swift.Bool)
     /// The exclusion window occurs on these days of each week in UTC.
-    indirect case daysOfWeek(ExclusionWindow.DayOfWeekList?)
+    indirect case daysOfWeek(ExclusionWindow.DayOfWeekList)
   }
 
   public static var _anyTypeUrl: Swift.String {

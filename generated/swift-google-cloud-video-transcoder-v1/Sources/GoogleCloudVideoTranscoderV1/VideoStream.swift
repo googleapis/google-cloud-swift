@@ -72,15 +72,13 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       codecSettings = $0
     }
-    if let h264 = try container.decodeIfPresent(VideoStream.H264CodecSettings?.self, forKey: .h264)
-    {
+    if let h264 = try container.decodeIfPresent(VideoStream.H264CodecSettings.self, forKey: .h264) {
       try codecSettingsCheckAndSet(.h264(h264))
     }
-    if let h265 = try container.decodeIfPresent(VideoStream.H265CodecSettings?.self, forKey: .h265)
-    {
+    if let h265 = try container.decodeIfPresent(VideoStream.H265CodecSettings.self, forKey: .h265) {
       try codecSettingsCheckAndSet(.h265(h265))
     }
-    if let vp9 = try container.decodeIfPresent(VideoStream.Vp9CodecSettings?.self, forKey: .vp9) {
+    if let vp9 = try container.decodeIfPresent(VideoStream.Vp9CodecSettings.self, forKey: .vp9) {
       try codecSettingsCheckAndSet(.vp9(vp9))
     }
     self.codecSettings = codecSettings
@@ -524,7 +522,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         try gopModeCheckAndSet(.gopFrameCount(gopFrameCount))
       }
       if let gopDuration = try container.decodeIfPresent(
-        GoogleWKT.WKTDuration?.self, forKey: .gopDuration)
+        GoogleWKT.WKTDuration.self, forKey: .gopDuration)
       {
         try gopModeCheckAndSet(.gopDuration(gopDuration))
       }
@@ -540,11 +538,11 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         colorFormat = $0
       }
-      if let sdr = try container.decodeIfPresent(VideoStream.H264ColorFormatSDR?.self, forKey: .sdr)
+      if let sdr = try container.decodeIfPresent(VideoStream.H264ColorFormatSDR.self, forKey: .sdr)
       {
         try colorFormatCheckAndSet(.sdr(sdr))
       }
-      if let hlg = try container.decodeIfPresent(VideoStream.H264ColorFormatHLG?.self, forKey: .hlg)
+      if let hlg = try container.decodeIfPresent(VideoStream.H264ColorFormatHLG.self, forKey: .hlg)
       {
         try colorFormatCheckAndSet(.hlg(hlg))
       }
@@ -609,15 +607,15 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       /// [`segmentDuration`](#SegmentSettings), and
       /// [`segmentDuration`](#SegmentSettings) must be divisible by
       /// `gopDuration`.
-      indirect case gopDuration(GoogleWKT.WKTDuration?)
+      indirect case gopDuration(GoogleWKT.WKTDuration)
     }
 
     /// Color format can be sdr or hlg.
     public enum ColorFormatOneOf: Codable, Equatable, Sendable {
       /// Optional. SDR color format setting for H264.
-      indirect case sdr(VideoStream.H264ColorFormatSDR?)
+      indirect case sdr(VideoStream.H264ColorFormatSDR)
       /// Optional. HLG color format setting for H264.
-      indirect case hlg(VideoStream.H264ColorFormatHLG?)
+      indirect case hlg(VideoStream.H264ColorFormatHLG)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1105,7 +1103,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         try gopModeCheckAndSet(.gopFrameCount(gopFrameCount))
       }
       if let gopDuration = try container.decodeIfPresent(
-        GoogleWKT.WKTDuration?.self, forKey: .gopDuration)
+        GoogleWKT.WKTDuration.self, forKey: .gopDuration)
       {
         try gopModeCheckAndSet(.gopDuration(gopDuration))
       }
@@ -1121,16 +1119,16 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         colorFormat = $0
       }
-      if let sdr = try container.decodeIfPresent(VideoStream.H265ColorFormatSDR?.self, forKey: .sdr)
+      if let sdr = try container.decodeIfPresent(VideoStream.H265ColorFormatSDR.self, forKey: .sdr)
       {
         try colorFormatCheckAndSet(.sdr(sdr))
       }
-      if let hlg = try container.decodeIfPresent(VideoStream.H265ColorFormatHLG?.self, forKey: .hlg)
+      if let hlg = try container.decodeIfPresent(VideoStream.H265ColorFormatHLG.self, forKey: .hlg)
       {
         try colorFormatCheckAndSet(.hlg(hlg))
       }
       if let hdr10 = try container.decodeIfPresent(
-        VideoStream.H265ColorFormatHDR10?.self, forKey: .hdr10)
+        VideoStream.H265ColorFormatHDR10.self, forKey: .hdr10)
       {
         try colorFormatCheckAndSet(.hdr10(hdr10))
       }
@@ -1196,17 +1194,17 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       /// [`segmentDuration`](#SegmentSettings), and
       /// [`segmentDuration`](#SegmentSettings) must be divisible by
       /// `gopDuration`.
-      indirect case gopDuration(GoogleWKT.WKTDuration?)
+      indirect case gopDuration(GoogleWKT.WKTDuration)
     }
 
     /// Color format can be sdr, hlg, hdr10.
     public enum ColorFormatOneOf: Codable, Equatable, Sendable {
       /// Optional. SDR color format setting for H265.
-      indirect case sdr(VideoStream.H265ColorFormatSDR?)
+      indirect case sdr(VideoStream.H265ColorFormatSDR)
       /// Optional. HLG color format setting for H265.
-      indirect case hlg(VideoStream.H265ColorFormatHLG?)
+      indirect case hlg(VideoStream.H265ColorFormatHLG)
       /// Optional. HDR10 color format setting for H265.
-      indirect case hdr10(VideoStream.H265ColorFormatHDR10?)
+      indirect case hdr10(VideoStream.H265ColorFormatHDR10)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1523,7 +1521,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         try gopModeCheckAndSet(.gopFrameCount(gopFrameCount))
       }
       if let gopDuration = try container.decodeIfPresent(
-        GoogleWKT.WKTDuration?.self, forKey: .gopDuration)
+        GoogleWKT.WKTDuration.self, forKey: .gopDuration)
       {
         try gopModeCheckAndSet(.gopDuration(gopDuration))
       }
@@ -1539,12 +1537,10 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         colorFormat = $0
       }
-      if let sdr = try container.decodeIfPresent(VideoStream.Vp9ColorFormatSDR?.self, forKey: .sdr)
-      {
+      if let sdr = try container.decodeIfPresent(VideoStream.Vp9ColorFormatSDR.self, forKey: .sdr) {
         try colorFormatCheckAndSet(.sdr(sdr))
       }
-      if let hlg = try container.decodeIfPresent(VideoStream.Vp9ColorFormatHLG?.self, forKey: .hlg)
-      {
+      if let hlg = try container.decodeIfPresent(VideoStream.Vp9ColorFormatHLG.self, forKey: .hlg) {
         try colorFormatCheckAndSet(.hlg(hlg))
       }
       self.colorFormat = colorFormat
@@ -1598,15 +1594,15 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       /// [`segmentDuration`](#SegmentSettings), and
       /// [`segmentDuration`](#SegmentSettings) must be divisible by
       /// `gopDuration`.
-      indirect case gopDuration(GoogleWKT.WKTDuration?)
+      indirect case gopDuration(GoogleWKT.WKTDuration)
     }
 
     /// Color format can be sdr or hlg.
     public enum ColorFormatOneOf: Codable, Equatable, Sendable {
       /// Optional. SDR color format setting for VP9.
-      indirect case sdr(VideoStream.Vp9ColorFormatSDR?)
+      indirect case sdr(VideoStream.Vp9ColorFormatSDR)
       /// Optional. HLG color format setting for VP9.
-      indirect case hlg(VideoStream.Vp9ColorFormatHLG?)
+      indirect case hlg(VideoStream.Vp9ColorFormatHLG)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1747,11 +1743,11 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Codec settings can be h264, h265, or vp9.
   public enum CodecSettingsOneOf: Codable, Equatable, Sendable {
     /// H264 codec settings.
-    indirect case h264(VideoStream.H264CodecSettings?)
+    indirect case h264(VideoStream.H264CodecSettings)
     /// H265 codec settings.
-    indirect case h265(VideoStream.H265CodecSettings?)
+    indirect case h265(VideoStream.H265CodecSettings)
     /// VP9 codec settings.
-    indirect case vp9(VideoStream.Vp9CodecSettings?)
+    indirect case vp9(VideoStream.Vp9CodecSettings)
   }
 
   public static var _anyTypeUrl: Swift.String {

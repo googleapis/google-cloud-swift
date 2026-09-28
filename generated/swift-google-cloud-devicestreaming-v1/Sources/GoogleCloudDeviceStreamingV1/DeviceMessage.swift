@@ -71,13 +71,13 @@ public struct DeviceMessage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       contents = $0
     }
-    if let statusUpdate = try container.decodeIfPresent(StatusUpdate?.self, forKey: .statusUpdate) {
+    if let statusUpdate = try container.decodeIfPresent(StatusUpdate.self, forKey: .statusUpdate) {
       try contentsCheckAndSet(.statusUpdate(statusUpdate))
     }
-    if let streamStatus = try container.decodeIfPresent(StreamStatus?.self, forKey: .streamStatus) {
+    if let streamStatus = try container.decodeIfPresent(StreamStatus.self, forKey: .streamStatus) {
       try contentsCheckAndSet(.streamStatus(streamStatus))
     }
-    if let streamData = try container.decodeIfPresent(StreamData?.self, forKey: .streamData) {
+    if let streamData = try container.decodeIfPresent(StreamData.self, forKey: .streamData) {
       try contentsCheckAndSet(.streamData(streamData))
     }
     self.contents = contents
@@ -107,11 +107,11 @@ public struct DeviceMessage: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ContentsOneOf: Codable, Equatable, Sendable {
     /// Information about the device's state.
-    indirect case statusUpdate(StatusUpdate?)
+    indirect case statusUpdate(StatusUpdate)
     /// The result of a device stream from ADB.
-    indirect case streamStatus(StreamStatus?)
+    indirect case streamStatus(StreamStatus)
     /// Data from an open stream.
-    indirect case streamData(StreamData?)
+    indirect case streamData(StreamData)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -68,7 +68,7 @@ public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
       hashFunction = $0
     }
     if let uuidFromBytes = try container.decodeIfPresent(
-      GoogleWKT.WKTEmpty?.self, forKey: .uuidFromBytes)
+      GoogleWKT.WKTEmpty.self, forKey: .uuidFromBytes)
     {
       try hashFunctionCheckAndSet(.uuidFromBytes(uuidFromBytes))
     }
@@ -95,7 +95,7 @@ public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum HashFunctionOneOf: Codable, Equatable, Sendable {
     /// Optional. Generate UUID from the data's byte array
-    indirect case uuidFromBytes(GoogleWKT.WKTEmpty?)
+    indirect case uuidFromBytes(GoogleWKT.WKTEmpty)
   }
 
   public static var _anyTypeUrl: Swift.String {

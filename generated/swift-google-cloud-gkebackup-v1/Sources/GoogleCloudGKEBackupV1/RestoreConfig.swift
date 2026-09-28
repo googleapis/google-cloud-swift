@@ -193,12 +193,12 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       try namespacedResourceRestoreScopeCheckAndSet(.allNamespaces(allNamespaces))
     }
     if let selectedNamespaces = try container.decodeIfPresent(
-      Namespaces?.self, forKey: .selectedNamespaces)
+      Namespaces.self, forKey: .selectedNamespaces)
     {
       try namespacedResourceRestoreScopeCheckAndSet(.selectedNamespaces(selectedNamespaces))
     }
     if let selectedApplications = try container.decodeIfPresent(
-      NamespacedNames?.self, forKey: .selectedApplications)
+      NamespacedNames.self, forKey: .selectedApplications)
     {
       try namespacedResourceRestoreScopeCheckAndSet(.selectedApplications(selectedApplications))
     }
@@ -206,7 +206,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       try namespacedResourceRestoreScopeCheckAndSet(.noNamespaces(noNamespaces))
     }
     if let excludedNamespaces = try container.decodeIfPresent(
-      Namespaces?.self, forKey: .excludedNamespaces)
+      Namespaces.self, forKey: .excludedNamespaces)
     {
       try namespacedResourceRestoreScopeCheckAndSet(.excludedNamespaces(excludedNamespaces))
     }
@@ -1754,17 +1754,17 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case allNamespaces(Swift.Bool)
     /// A list of selected Namespaces to restore from the Backup. The listed
     /// Namespaces and all resources contained in them will be restored.
-    indirect case selectedNamespaces(Namespaces?)
+    indirect case selectedNamespaces(Namespaces)
     /// A list of selected ProtectedApplications to restore. The listed
     /// ProtectedApplications and all the resources to which they refer will be
     /// restored.
-    indirect case selectedApplications(NamespacedNames?)
+    indirect case selectedApplications(NamespacedNames)
     /// Do not restore any namespaced resources if set to "True".
     /// Specifying this field to "False" is not allowed.
     case noNamespaces(Swift.Bool)
     /// A list of selected namespaces excluded from restoration. All
     /// namespaces except those in this list will be restored.
-    indirect case excludedNamespaces(Namespaces?)
+    indirect case excludedNamespaces(Namespaces)
   }
 
   public static var _anyTypeUrl: Swift.String {

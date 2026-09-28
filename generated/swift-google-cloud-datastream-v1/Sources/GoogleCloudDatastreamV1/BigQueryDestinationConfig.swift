@@ -94,12 +94,12 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       datasetConfig = $0
     }
     if let singleTargetDataset = try container.decodeIfPresent(
-      BigQueryDestinationConfig.SingleTargetDataset?.self, forKey: .singleTargetDataset)
+      BigQueryDestinationConfig.SingleTargetDataset.self, forKey: .singleTargetDataset)
     {
       try datasetConfigCheckAndSet(.singleTargetDataset(singleTargetDataset))
     }
     if let sourceHierarchyDatasets = try container.decodeIfPresent(
-      BigQueryDestinationConfig.SourceHierarchyDatasets?.self, forKey: .sourceHierarchyDatasets)
+      BigQueryDestinationConfig.SourceHierarchyDatasets.self, forKey: .sourceHierarchyDatasets)
     {
       try datasetConfigCheckAndSet(.sourceHierarchyDatasets(sourceHierarchyDatasets))
     }
@@ -116,12 +116,12 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       writeMode = $0
     }
     if let merge = try container.decodeIfPresent(
-      BigQueryDestinationConfig.Merge?.self, forKey: .merge)
+      BigQueryDestinationConfig.Merge.self, forKey: .merge)
     {
       try writeModeCheckAndSet(.merge(merge))
     }
     if let appendOnly = try container.decodeIfPresent(
-      BigQueryDestinationConfig.AppendOnly?.self, forKey: .appendOnly)
+      BigQueryDestinationConfig.AppendOnly.self, forKey: .appendOnly)
     {
       try writeModeCheckAndSet(.appendOnly(appendOnly))
     }
@@ -856,16 +856,16 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// Target dataset(s) configuration.
   public enum DatasetConfigOneOf: Codable, Equatable, Sendable {
     /// Single destination dataset.
-    indirect case singleTargetDataset(BigQueryDestinationConfig.SingleTargetDataset?)
+    indirect case singleTargetDataset(BigQueryDestinationConfig.SingleTargetDataset)
     /// Source hierarchy datasets.
-    indirect case sourceHierarchyDatasets(BigQueryDestinationConfig.SourceHierarchyDatasets?)
+    indirect case sourceHierarchyDatasets(BigQueryDestinationConfig.SourceHierarchyDatasets)
   }
 
   public enum WriteModeOneOf: Codable, Equatable, Sendable {
     /// The standard mode
-    indirect case merge(BigQueryDestinationConfig.Merge?)
+    indirect case merge(BigQueryDestinationConfig.Merge)
     /// Append only mode
-    indirect case appendOnly(BigQueryDestinationConfig.AppendOnly?)
+    indirect case appendOnly(BigQueryDestinationConfig.AppendOnly)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -68,7 +68,7 @@ public struct FrameworkAuditDestination: Codable, Equatable, GoogleWKT._AnyPacka
       }
       destinationType = $0
     }
-    if let bucket = try container.decodeIfPresent(BucketDestination?.self, forKey: .bucket) {
+    if let bucket = try container.decodeIfPresent(BucketDestination.self, forKey: .bucket) {
       try destinationTypeCheckAndSet(.bucket(bucket))
     }
     self.destinationType = destinationType
@@ -95,7 +95,7 @@ public struct FrameworkAuditDestination: Codable, Equatable, GoogleWKT._AnyPacka
   /// The type of destination.
   public enum DestinationTypeOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage bucket destination.
-    indirect case bucket(BucketDestination?)
+    indirect case bucket(BucketDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

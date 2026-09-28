@@ -80,12 +80,12 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleWKT._AnyPac
       source = $0
     }
     if let fileInputSource = try container.decodeIfPresent(
-      FileInputSource?.self, forKey: .fileInputSource)
+      FileInputSource.self, forKey: .fileInputSource)
     {
       try sourceCheckAndSet(.fileInputSource(fileInputSource))
     }
     if let gcsInputSource = try container.decodeIfPresent(
-      GcsInputSource?.self, forKey: .gcsInputSource)
+      GcsInputSource.self, forKey: .gcsInputSource)
     {
       try sourceCheckAndSet(.gcsInputSource(gcsInputSource))
     }
@@ -116,9 +116,9 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// The source for the document.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Inline file source.
-    indirect case fileInputSource(FileInputSource?)
+    indirect case fileInputSource(FileInputSource)
     /// Google Cloud Storage file source.
-    indirect case gcsInputSource(GcsInputSource?)
+    indirect case gcsInputSource(GcsInputSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

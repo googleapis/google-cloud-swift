@@ -68,7 +68,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleWKT.
       }
       type = $0
     }
-    if let table = try container.decodeIfPresent(BigQueryTable?.self, forKey: .table) {
+    if let table = try container.decodeIfPresent(BigQueryTable.self, forKey: .table) {
       try typeCheckAndSet(.table(table))
     }
     self.type = type
@@ -100,7 +100,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleWKT.
     /// following format:
     /// dlp_googleapis_transformation_details_yyyy_mm_dd_[dlp_job_id]. Pacific
     /// time zone will be used for generating the date details.
-    indirect case table(BigQueryTable?)
+    indirect case table(BigQueryTable)
   }
 
   public static var _anyTypeUrl: Swift.String {

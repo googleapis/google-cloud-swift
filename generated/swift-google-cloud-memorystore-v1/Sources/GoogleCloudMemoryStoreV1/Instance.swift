@@ -433,12 +433,12 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       importSources = $0
     }
     if let gcsSource = try container.decodeIfPresent(
-      Instance.GcsBackupSource?.self, forKey: .gcsSource)
+      Instance.GcsBackupSource.self, forKey: .gcsSource)
     {
       try importSourcesCheckAndSet(.gcsSource(gcsSource))
     }
     if let managedBackupSource = try container.decodeIfPresent(
-      Instance.ManagedBackupSource?.self, forKey: .managedBackupSource)
+      Instance.ManagedBackupSource.self, forKey: .managedBackupSource)
     {
       try importSourcesCheckAndSet(.managedBackupSource(managedBackupSource))
     }
@@ -566,7 +566,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
         info = $0
       }
       if let updateInfo = try container.decodeIfPresent(
-        Instance.StateInfo.UpdateInfo?.self, forKey: .updateInfo)
+        Instance.StateInfo.UpdateInfo.self, forKey: .updateInfo)
       {
         try infoCheckAndSet(.updateInfo(updateInfo))
       }
@@ -684,7 +684,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public enum InfoOneOf: Codable, Equatable, Sendable {
       /// Output only. Describes ongoing update when instance state is UPDATING.
-      indirect case updateInfo(Instance.StateInfo.UpdateInfo?)
+      indirect case updateInfo(Instance.StateInfo.UpdateInfo)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -969,12 +969,12 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
         connection = $0
       }
       if let pscAutoConnection = try container.decodeIfPresent(
-        PscAutoConnection?.self, forKey: .pscAutoConnection)
+        PscAutoConnection.self, forKey: .pscAutoConnection)
       {
         try connectionCheckAndSet(.pscAutoConnection(pscAutoConnection))
       }
       if let pscConnection = try container.decodeIfPresent(
-        PscConnection?.self, forKey: .pscConnection)
+        PscConnection.self, forKey: .pscConnection)
       {
         try connectionCheckAndSet(.pscConnection(pscConnection))
       }
@@ -1007,9 +1007,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     public enum ConnectionOneOf: Codable, Equatable, Sendable {
       /// Immutable. Detailed information of a PSC connection that is created
       /// through service connectivity automation.
-      indirect case pscAutoConnection(PscAutoConnection?)
+      indirect case pscAutoConnection(PscAutoConnection)
       /// Detailed information of a PSC connection that is created by the user.
-      indirect case pscConnection(PscConnection?)
+      indirect case pscConnection(PscConnection)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1848,10 +1848,10 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The Cloud Storage buckets need to be the same region as the instances.
     /// Read permission is required to import from the provided Cloud Storage
     /// Objects.
-    indirect case gcsSource(Instance.GcsBackupSource?)
+    indirect case gcsSource(Instance.GcsBackupSource)
     /// Optional. Immutable. Backups that generated and managed by memorystore
     /// service.
-    indirect case managedBackupSource(Instance.ManagedBackupSource?)
+    indirect case managedBackupSource(Instance.ManagedBackupSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

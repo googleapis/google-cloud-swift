@@ -136,17 +136,17 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackabl
       connectivity = $0
     }
     if let staticServiceIpConnectivity = try container.decodeIfPresent(
-      StaticServiceIpConnectivity?.self, forKey: .staticServiceIpConnectivity)
+      StaticServiceIpConnectivity.self, forKey: .staticServiceIpConnectivity)
     {
       try connectivityCheckAndSet(.staticServiceIpConnectivity(staticServiceIpConnectivity))
     }
     if let forwardSshConnectivity = try container.decodeIfPresent(
-      ForwardSshTunnelConnectivity?.self, forKey: .forwardSshConnectivity)
+      ForwardSshTunnelConnectivity.self, forKey: .forwardSshConnectivity)
     {
       try connectivityCheckAndSet(.forwardSshConnectivity(forwardSshConnectivity))
     }
     if let privateConnectivity = try container.decodeIfPresent(
-      PrivateConnectivity?.self, forKey: .privateConnectivity)
+      PrivateConnectivity.self, forKey: .privateConnectivity)
     {
       try connectivityCheckAndSet(.privateConnectivity(privateConnectivity))
     }
@@ -185,11 +185,11 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Connectivity options used to establish a connection to the database server.
   public enum ConnectivityOneOf: Codable, Equatable, Sendable {
     /// Static Service IP connectivity.
-    indirect case staticServiceIpConnectivity(StaticServiceIpConnectivity?)
+    indirect case staticServiceIpConnectivity(StaticServiceIpConnectivity)
     /// Forward SSH tunnel connectivity.
-    indirect case forwardSshConnectivity(ForwardSshTunnelConnectivity?)
+    indirect case forwardSshConnectivity(ForwardSshTunnelConnectivity)
     /// Private connectivity.
-    indirect case privateConnectivity(PrivateConnectivity?)
+    indirect case privateConnectivity(PrivateConnectivity)
   }
 
   public static var _anyTypeUrl: Swift.String {

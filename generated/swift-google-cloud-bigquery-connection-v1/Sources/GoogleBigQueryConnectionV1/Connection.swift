@@ -130,30 +130,30 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       properties = $0
     }
-    if let cloudSql = try container.decodeIfPresent(CloudSqlProperties?.self, forKey: .cloudSql) {
+    if let cloudSql = try container.decodeIfPresent(CloudSqlProperties.self, forKey: .cloudSql) {
       try propertiesCheckAndSet(.cloudSql(cloudSql))
     }
-    if let aws = try container.decodeIfPresent(AwsProperties?.self, forKey: .aws) {
+    if let aws = try container.decodeIfPresent(AwsProperties.self, forKey: .aws) {
       try propertiesCheckAndSet(.aws(aws))
     }
-    if let azure = try container.decodeIfPresent(AzureProperties?.self, forKey: .azure) {
+    if let azure = try container.decodeIfPresent(AzureProperties.self, forKey: .azure) {
       try propertiesCheckAndSet(.azure(azure))
     }
     if let cloudSpanner = try container.decodeIfPresent(
-      CloudSpannerProperties?.self, forKey: .cloudSpanner)
+      CloudSpannerProperties.self, forKey: .cloudSpanner)
     {
       try propertiesCheckAndSet(.cloudSpanner(cloudSpanner))
     }
     if let cloudResource = try container.decodeIfPresent(
-      CloudResourceProperties?.self, forKey: .cloudResource)
+      CloudResourceProperties.self, forKey: .cloudResource)
     {
       try propertiesCheckAndSet(.cloudResource(cloudResource))
     }
-    if let spark = try container.decodeIfPresent(SparkProperties?.self, forKey: .spark) {
+    if let spark = try container.decodeIfPresent(SparkProperties.self, forKey: .spark) {
       try propertiesCheckAndSet(.spark(spark))
     }
     if let salesforceDataCloud = try container.decodeIfPresent(
-      SalesforceDataCloudProperties?.self, forKey: .salesforceDataCloud)
+      SalesforceDataCloudProperties.self, forKey: .salesforceDataCloud)
     {
       try propertiesCheckAndSet(.salesforceDataCloud(salesforceDataCloud))
     }
@@ -199,21 +199,21 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Properties specific to the underlying data source.
   public enum PropertiesOneOf: Codable, Equatable, Sendable {
     /// Cloud SQL properties.
-    indirect case cloudSql(CloudSqlProperties?)
+    indirect case cloudSql(CloudSqlProperties)
     /// Amazon Web Services (AWS) properties.
-    indirect case aws(AwsProperties?)
+    indirect case aws(AwsProperties)
     /// Azure properties.
-    indirect case azure(AzureProperties?)
+    indirect case azure(AzureProperties)
     /// Cloud Spanner properties.
-    indirect case cloudSpanner(CloudSpannerProperties?)
+    indirect case cloudSpanner(CloudSpannerProperties)
     /// Cloud Resource properties.
-    indirect case cloudResource(CloudResourceProperties?)
+    indirect case cloudResource(CloudResourceProperties)
     /// Spark properties.
-    indirect case spark(SparkProperties?)
+    indirect case spark(SparkProperties)
     /// Optional. Salesforce DataCloud properties. This field is intended for
     /// use only by Salesforce partner projects. This field contains properties
     /// for your Salesforce DataCloud connection.
-    indirect case salesforceDataCloud(SalesforceDataCloudProperties?)
+    indirect case salesforceDataCloud(SalesforceDataCloudProperties)
   }
 
   public static var _anyTypeUrl: Swift.String {

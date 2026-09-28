@@ -139,22 +139,22 @@ public struct SecurityProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       profile = $0
     }
     if let threatPreventionProfile = try container.decodeIfPresent(
-      ThreatPreventionProfile?.self, forKey: .threatPreventionProfile)
+      ThreatPreventionProfile.self, forKey: .threatPreventionProfile)
     {
       try profileCheckAndSet(.threatPreventionProfile(threatPreventionProfile))
     }
     if let customMirroringProfile = try container.decodeIfPresent(
-      CustomMirroringProfile?.self, forKey: .customMirroringProfile)
+      CustomMirroringProfile.self, forKey: .customMirroringProfile)
     {
       try profileCheckAndSet(.customMirroringProfile(customMirroringProfile))
     }
     if let customInterceptProfile = try container.decodeIfPresent(
-      CustomInterceptProfile?.self, forKey: .customInterceptProfile)
+      CustomInterceptProfile.self, forKey: .customInterceptProfile)
     {
       try profileCheckAndSet(.customInterceptProfile(customInterceptProfile))
     }
     if let urlFilteringProfile = try container.decodeIfPresent(
-      UrlFilteringProfile?.self, forKey: .urlFilteringProfile)
+      UrlFilteringProfile.self, forKey: .urlFilteringProfile)
     {
       try profileCheckAndSet(.urlFilteringProfile(urlFilteringProfile))
     }
@@ -328,13 +328,13 @@ public struct SecurityProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// SecurityProfile.
   public enum ProfileOneOf: Codable, Equatable, Sendable {
     /// The threat prevention configuration for the SecurityProfile.
-    indirect case threatPreventionProfile(ThreatPreventionProfile?)
+    indirect case threatPreventionProfile(ThreatPreventionProfile)
     /// The custom Packet Mirroring v2 configuration for the SecurityProfile.
-    indirect case customMirroringProfile(CustomMirroringProfile?)
+    indirect case customMirroringProfile(CustomMirroringProfile)
     /// The custom TPPI configuration for the SecurityProfile.
-    indirect case customInterceptProfile(CustomInterceptProfile?)
+    indirect case customInterceptProfile(CustomInterceptProfile)
     /// The URL filtering configuration for the SecurityProfile.
-    indirect case urlFilteringProfile(UrlFilteringProfile?)
+    indirect case urlFilteringProfile(UrlFilteringProfile)
   }
 
   public static var _anyTypeUrl: Swift.String {

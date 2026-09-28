@@ -104,11 +104,11 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       cdcMethod = $0
     }
     if let binaryLogPosition = try container.decodeIfPresent(
-      MysqlSourceConfig.BinaryLogPosition?.self, forKey: .binaryLogPosition)
+      MysqlSourceConfig.BinaryLogPosition.self, forKey: .binaryLogPosition)
     {
       try cdcMethodCheckAndSet(.binaryLogPosition(binaryLogPosition))
     }
-    if let gtid = try container.decodeIfPresent(MysqlSourceConfig.Gtid?.self, forKey: .gtid) {
+    if let gtid = try container.decodeIfPresent(MysqlSourceConfig.Gtid.self, forKey: .gtid) {
       try cdcMethodCheckAndSet(.gtid(gtid))
     }
     self.cdcMethod = cdcMethod
@@ -255,9 +255,9 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The CDC method to use for the stream.
   public enum CdcMethodOneOf: Codable, Equatable, Sendable {
     /// Use Binary log position based replication.
-    indirect case binaryLogPosition(MysqlSourceConfig.BinaryLogPosition?)
+    indirect case binaryLogPosition(MysqlSourceConfig.BinaryLogPosition)
     /// Use GTID based replication.
-    indirect case gtid(MysqlSourceConfig.Gtid?)
+    indirect case gtid(MysqlSourceConfig.Gtid)
   }
 
   public static var _anyTypeUrl: Swift.String {

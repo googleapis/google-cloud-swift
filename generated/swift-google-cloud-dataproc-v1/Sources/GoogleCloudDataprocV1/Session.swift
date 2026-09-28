@@ -195,12 +195,12 @@ public struct Session: Codable, Equatable, GoogleWKT._AnyPackable,
       sessionConfig = $0
     }
     if let jupyterSession = try container.decodeIfPresent(
-      JupyterConfig?.self, forKey: .jupyterSession)
+      JupyterConfig.self, forKey: .jupyterSession)
     {
       try sessionConfigCheckAndSet(.jupyterSession(jupyterSession))
     }
     if let sparkConnectSession = try container.decodeIfPresent(
-      SparkConnectConfig?.self, forKey: .sparkConnectSession)
+      SparkConnectConfig.self, forKey: .sparkConnectSession)
     {
       try sessionConfigCheckAndSet(.sparkConnectSession(sparkConnectSession))
     }
@@ -469,9 +469,9 @@ public struct Session: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The session configuration.
   public enum SessionConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Jupyter session config.
-    indirect case jupyterSession(JupyterConfig?)
+    indirect case jupyterSession(JupyterConfig)
     /// Optional. Spark connect session config.
-    indirect case sparkConnectSession(SparkConnectConfig?)
+    indirect case sparkConnectSession(SparkConnectConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

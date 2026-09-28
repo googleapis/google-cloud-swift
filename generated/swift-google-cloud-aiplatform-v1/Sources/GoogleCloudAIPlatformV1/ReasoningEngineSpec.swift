@@ -145,12 +145,12 @@
         deploymentSource = $0
       }
       if let sourceCodeSpec = try container.decodeIfPresent(
-        ReasoningEngineSpec.SourceCodeSpec?.self, forKey: .sourceCodeSpec)
+        ReasoningEngineSpec.SourceCodeSpec.self, forKey: .sourceCodeSpec)
       {
         try deploymentSourceCheckAndSet(.sourceCodeSpec(sourceCodeSpec))
       }
       if let containerSpec = try container.decodeIfPresent(
-        ReasoningEngineSpec.ContainerSpec?.self, forKey: .containerSpec)
+        ReasoningEngineSpec.ContainerSpec.self, forKey: .containerSpec)
       {
         try deploymentSourceCheckAndSet(.containerSpec(containerSpec))
       }
@@ -485,12 +485,12 @@
           source = $0
         }
         if let inlineSource = try container.decodeIfPresent(
-          ReasoningEngineSpec.SourceCodeSpec.InlineSource?.self, forKey: .inlineSource)
+          ReasoningEngineSpec.SourceCodeSpec.InlineSource.self, forKey: .inlineSource)
         {
           try sourceCheckAndSet(.inlineSource(inlineSource))
         }
         if let developerConnectSource = try container.decodeIfPresent(
-          ReasoningEngineSpec.SourceCodeSpec.DeveloperConnectSource?.self,
+          ReasoningEngineSpec.SourceCodeSpec.DeveloperConnectSource.self,
           forKey: .developerConnectSource)
         {
           try sourceCheckAndSet(.developerConnectSource(developerConnectSource))
@@ -508,12 +508,12 @@
           languageSpec = $0
         }
         if let pythonSpec = try container.decodeIfPresent(
-          ReasoningEngineSpec.SourceCodeSpec.PythonSpec?.self, forKey: .pythonSpec)
+          ReasoningEngineSpec.SourceCodeSpec.PythonSpec.self, forKey: .pythonSpec)
         {
           try languageSpecCheckAndSet(.pythonSpec(pythonSpec))
         }
         if let imageSpec = try container.decodeIfPresent(
-          ReasoningEngineSpec.SourceCodeSpec.ImageSpec?.self, forKey: .imageSpec)
+          ReasoningEngineSpec.SourceCodeSpec.ImageSpec.self, forKey: .imageSpec)
         {
           try languageSpecCheckAndSet(.imageSpec(imageSpec))
         }
@@ -970,19 +970,19 @@
       /// Specifies where the source code is located.
       public enum SourceOneOf: Codable, Equatable, Sendable {
         /// Source code is provided directly in the request.
-        indirect case inlineSource(ReasoningEngineSpec.SourceCodeSpec.InlineSource?)
+        indirect case inlineSource(ReasoningEngineSpec.SourceCodeSpec.InlineSource)
         /// Source code is in a Git repository managed by Developer Connect.
         indirect case developerConnectSource(
-          ReasoningEngineSpec.SourceCodeSpec.DeveloperConnectSource?)
+          ReasoningEngineSpec.SourceCodeSpec.DeveloperConnectSource)
       }
 
       /// Specifies the language-specific configuration for building and running
       /// the code.
       public enum LanguageSpecOneOf: Codable, Equatable, Sendable {
         /// Configuration for a Python application.
-        indirect case pythonSpec(ReasoningEngineSpec.SourceCodeSpec.PythonSpec?)
+        indirect case pythonSpec(ReasoningEngineSpec.SourceCodeSpec.PythonSpec)
         /// Optional. Configuration for building an image with custom config file.
-        indirect case imageSpec(ReasoningEngineSpec.SourceCodeSpec.ImageSpec?)
+        indirect case imageSpec(ReasoningEngineSpec.SourceCodeSpec.ImageSpec)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1279,9 +1279,9 @@
     /// specified.
     public enum DeploymentSourceOneOf: Codable, Equatable, Sendable {
       /// Deploy from source code files with a defined entrypoint.
-      indirect case sourceCodeSpec(ReasoningEngineSpec.SourceCodeSpec?)
+      indirect case sourceCodeSpec(ReasoningEngineSpec.SourceCodeSpec)
       /// Deploy from a container image with a defined entrypoint and commands.
-      indirect case containerSpec(ReasoningEngineSpec.ContainerSpec?)
+      indirect case containerSpec(ReasoningEngineSpec.ContainerSpec)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -74,12 +74,12 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
       method = $0
     }
     if let updateService = try container.decodeIfPresent(
-      UpdateServiceMethod?.self, forKey: .updateService)
+      UpdateServiceMethod.self, forKey: .updateService)
     {
       try methodCheckAndSet(.updateService(updateService))
     }
     if let createVersion = try container.decodeIfPresent(
-      CreateVersionMethod?.self, forKey: .createVersion)
+      CreateVersionMethod.self, forKey: .createVersion)
     {
       try methodCheckAndSet(.createVersion(createVersion))
     }
@@ -112,9 +112,9 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// included in parent audit log message.
   public enum MethodOneOf: Codable, Equatable, Sendable {
     /// Detailed information about UpdateService call.
-    indirect case updateService(UpdateServiceMethod?)
+    indirect case updateService(UpdateServiceMethod)
     /// Detailed information about CreateVersion call.
-    indirect case createVersion(CreateVersionMethod?)
+    indirect case createVersion(CreateVersionMethod)
   }
 
   public static var _anyTypeUrl: Swift.String {

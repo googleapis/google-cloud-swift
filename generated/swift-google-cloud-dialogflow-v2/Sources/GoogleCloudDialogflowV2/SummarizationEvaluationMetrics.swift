@@ -528,12 +528,12 @@
           decomposition = $0
         }
         if let accuracyDecomposition = try container.decodeIfPresent(
-          SummarizationEvaluationMetrics.AccuracyDecomposition?.self, forKey: .accuracyDecomposition
-        ) {
+          SummarizationEvaluationMetrics.AccuracyDecomposition.self, forKey: .accuracyDecomposition)
+        {
           try decompositionCheckAndSet(.accuracyDecomposition(accuracyDecomposition))
         }
         if let adherenceDecomposition = try container.decodeIfPresent(
-          SummarizationEvaluationMetrics.AdherenceDecomposition?.self,
+          SummarizationEvaluationMetrics.AdherenceDecomposition.self,
           forKey: .adherenceDecomposition)
         {
           try decompositionCheckAndSet(.adherenceDecomposition(adherenceDecomposition))
@@ -564,9 +564,9 @@
       /// One of decomposition details.
       public enum DecompositionOneOf: Codable, Equatable, Sendable {
         /// only available for accuracy metric.
-        indirect case accuracyDecomposition(SummarizationEvaluationMetrics.AccuracyDecomposition?)
+        indirect case accuracyDecomposition(SummarizationEvaluationMetrics.AccuracyDecomposition)
         /// only available for adherence metric.
-        indirect case adherenceDecomposition(SummarizationEvaluationMetrics.AdherenceDecomposition?)
+        indirect case adherenceDecomposition(SummarizationEvaluationMetrics.AdherenceDecomposition)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -638,17 +638,17 @@
           result = $0
         }
         if let accuracyDecomposition = try container.decodeIfPresent(
-          SummarizationEvaluationMetrics.AccuracyDecomposition?.self, forKey: .accuracyDecomposition
-        ) {
+          SummarizationEvaluationMetrics.AccuracyDecomposition.self, forKey: .accuracyDecomposition)
+        {
           try resultCheckAndSet(.accuracyDecomposition(accuracyDecomposition))
         }
         if let adherenceRubric = try container.decodeIfPresent(
-          SummarizationEvaluationMetrics.AdherenceRubric?.self, forKey: .adherenceRubric)
+          SummarizationEvaluationMetrics.AdherenceRubric.self, forKey: .adherenceRubric)
         {
           try resultCheckAndSet(.adherenceRubric(adherenceRubric))
         }
         if let completenessRubric = try container.decodeIfPresent(
-          SummarizationEvaluationMetrics.CompletenessRubric?.self, forKey: .completenessRubric)
+          SummarizationEvaluationMetrics.CompletenessRubric.self, forKey: .completenessRubric)
         {
           try resultCheckAndSet(.completenessRubric(completenessRubric))
         }
@@ -680,11 +680,11 @@
       /// One of evaluation result details.
       public enum ResultOneOf: Codable, Equatable, Sendable {
         /// Only available for accuracy metric.
-        indirect case accuracyDecomposition(SummarizationEvaluationMetrics.AccuracyDecomposition?)
+        indirect case accuracyDecomposition(SummarizationEvaluationMetrics.AccuracyDecomposition)
         /// Only available for adherence metric.
-        indirect case adherenceRubric(SummarizationEvaluationMetrics.AdherenceRubric?)
+        indirect case adherenceRubric(SummarizationEvaluationMetrics.AdherenceRubric)
         /// Only available for completeness metric.
-        indirect case completenessRubric(SummarizationEvaluationMetrics.CompletenessRubric?)
+        indirect case completenessRubric(SummarizationEvaluationMetrics.CompletenessRubric)
       }
 
       public static var _anyTypeUrl: Swift.String {

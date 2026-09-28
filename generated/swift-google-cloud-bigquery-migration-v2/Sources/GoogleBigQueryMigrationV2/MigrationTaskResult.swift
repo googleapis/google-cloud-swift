@@ -79,7 +79,7 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let translationTaskResult = try container.decodeIfPresent(
-      TranslationTaskResult?.self, forKey: .translationTaskResult)
+      TranslationTaskResult.self, forKey: .translationTaskResult)
     {
       try detailsCheckAndSet(.translationTaskResult(translationTaskResult))
     }
@@ -108,7 +108,7 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Details specific to the task type.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Details specific to translation task types.
-    indirect case translationTaskResult(TranslationTaskResult?)
+    indirect case translationTaskResult(TranslationTaskResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

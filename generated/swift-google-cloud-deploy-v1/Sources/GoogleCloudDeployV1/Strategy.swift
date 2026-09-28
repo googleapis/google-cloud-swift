@@ -70,10 +70,10 @@ public struct Strategy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       deploymentStrategy = $0
     }
-    if let standard = try container.decodeIfPresent(Standard?.self, forKey: .standard) {
+    if let standard = try container.decodeIfPresent(Standard.self, forKey: .standard) {
       try deploymentStrategyCheckAndSet(.standard(standard))
     }
-    if let canary = try container.decodeIfPresent(Canary?.self, forKey: .canary) {
+    if let canary = try container.decodeIfPresent(Canary.self, forKey: .canary) {
       try deploymentStrategyCheckAndSet(.canary(canary))
     }
     self.deploymentStrategy = deploymentStrategy
@@ -103,10 +103,10 @@ public struct Strategy: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum DeploymentStrategyOneOf: Codable, Equatable, Sendable {
     /// Optional. Standard deployment strategy executes a single deploy and
     /// allows verifying the deployment.
-    indirect case standard(Standard?)
+    indirect case standard(Standard)
     /// Optional. Canary deployment strategy provides progressive percentage
     /// based deployments to a Target.
-    indirect case canary(Canary?)
+    indirect case canary(Canary)
   }
 
   public static var _anyTypeUrl: Swift.String {

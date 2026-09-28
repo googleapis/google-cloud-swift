@@ -162,12 +162,12 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
       deploymentMode = $0
     }
     if let googleManaged = try container.decodeIfPresent(
-      AgentGateway.GoogleManaged?.self, forKey: .googleManaged)
+      AgentGateway.GoogleManaged.self, forKey: .googleManaged)
     {
       try deploymentModeCheckAndSet(.googleManaged(googleManaged))
     }
     if let selfManaged = try container.decodeIfPresent(
-      AgentGateway.SelfManaged?.self, forKey: .selfManaged)
+      AgentGateway.SelfManaged.self, forKey: .selfManaged)
     {
       try deploymentModeCheckAndSet(.selfManaged(selfManaged))
     }
@@ -1002,10 +1002,10 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum DeploymentModeOneOf: Codable, Equatable, Sendable {
     /// Optional. Proxy is orchestrated and managed by GoogleCloud in a tenant
     /// project.
-    indirect case googleManaged(AgentGateway.GoogleManaged?)
+    indirect case googleManaged(AgentGateway.GoogleManaged)
     /// Optional. Attach to existing Application Load Balancers or Secure Web
     /// Proxies.
-    indirect case selfManaged(AgentGateway.SelfManaged?)
+    indirect case selfManaged(AgentGateway.SelfManaged)
   }
 
   public static var _anyTypeUrl: Swift.String {

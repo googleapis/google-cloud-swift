@@ -81,32 +81,32 @@ public struct FilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
       filterResult = $0
     }
     if let raiFilterResult = try container.decodeIfPresent(
-      RaiFilterResult?.self, forKey: .raiFilterResult)
+      RaiFilterResult.self, forKey: .raiFilterResult)
     {
       try filterResultCheckAndSet(.raiFilterResult(raiFilterResult))
     }
     if let sdpFilterResult = try container.decodeIfPresent(
-      SdpFilterResult?.self, forKey: .sdpFilterResult)
+      SdpFilterResult.self, forKey: .sdpFilterResult)
     {
       try filterResultCheckAndSet(.sdpFilterResult(sdpFilterResult))
     }
     if let piAndJailbreakFilterResult = try container.decodeIfPresent(
-      PiAndJailbreakFilterResult?.self, forKey: .piAndJailbreakFilterResult)
+      PiAndJailbreakFilterResult.self, forKey: .piAndJailbreakFilterResult)
     {
       try filterResultCheckAndSet(.piAndJailbreakFilterResult(piAndJailbreakFilterResult))
     }
     if let maliciousUriFilterResult = try container.decodeIfPresent(
-      MaliciousUriFilterResult?.self, forKey: .maliciousUriFilterResult)
+      MaliciousUriFilterResult.self, forKey: .maliciousUriFilterResult)
     {
       try filterResultCheckAndSet(.maliciousUriFilterResult(maliciousUriFilterResult))
     }
     if let csamFilterFilterResult = try container.decodeIfPresent(
-      CsamFilterResult?.self, forKey: .csamFilterFilterResult)
+      CsamFilterResult.self, forKey: .csamFilterFilterResult)
     {
       try filterResultCheckAndSet(.csamFilterFilterResult(csamFilterFilterResult))
     }
     if let virusScanFilterResult = try container.decodeIfPresent(
-      VirusScanFilterResult?.self, forKey: .virusScanFilterResult)
+      VirusScanFilterResult.self, forKey: .virusScanFilterResult)
     {
       try filterResultCheckAndSet(.virusScanFilterResult(virusScanFilterResult))
     }
@@ -146,17 +146,17 @@ public struct FilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// results.
   public enum FilterResultOneOf: Codable, Equatable, Sendable {
     /// Responsible AI filter results.
-    indirect case raiFilterResult(RaiFilterResult?)
+    indirect case raiFilterResult(RaiFilterResult)
     /// Sensitive Data Protection results.
-    indirect case sdpFilterResult(SdpFilterResult?)
+    indirect case sdpFilterResult(SdpFilterResult)
     /// Prompt injection and Jailbreak filter results.
-    indirect case piAndJailbreakFilterResult(PiAndJailbreakFilterResult?)
+    indirect case piAndJailbreakFilterResult(PiAndJailbreakFilterResult)
     /// Malicious URI filter results.
-    indirect case maliciousUriFilterResult(MaliciousUriFilterResult?)
+    indirect case maliciousUriFilterResult(MaliciousUriFilterResult)
     /// CSAM filter results.
-    indirect case csamFilterFilterResult(CsamFilterResult?)
+    indirect case csamFilterFilterResult(CsamFilterResult)
     /// Virus scan results.
-    indirect case virusScanFilterResult(VirusScanFilterResult?)
+    indirect case virusScanFilterResult(VirusScanFilterResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

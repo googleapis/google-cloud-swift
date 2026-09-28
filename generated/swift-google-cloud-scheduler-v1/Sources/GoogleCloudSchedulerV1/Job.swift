@@ -252,15 +252,15 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       target = $0
     }
-    if let pubsubTarget = try container.decodeIfPresent(PubsubTarget?.self, forKey: .pubsubTarget) {
+    if let pubsubTarget = try container.decodeIfPresent(PubsubTarget.self, forKey: .pubsubTarget) {
       try targetCheckAndSet(.pubsubTarget(pubsubTarget))
     }
     if let appEngineHttpTarget = try container.decodeIfPresent(
-      AppEngineHttpTarget?.self, forKey: .appEngineHttpTarget)
+      AppEngineHttpTarget.self, forKey: .appEngineHttpTarget)
     {
       try targetCheckAndSet(.appEngineHttpTarget(appEngineHttpTarget))
     }
-    if let httpTarget = try container.decodeIfPresent(HttpTarget?.self, forKey: .httpTarget) {
+    if let httpTarget = try container.decodeIfPresent(HttpTarget.self, forKey: .httpTarget) {
       try targetCheckAndSet(.httpTarget(httpTarget))
     }
     self.target = target
@@ -446,11 +446,11 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Delivery settings containing destination and parameters.
   public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Pub/Sub target.
-    indirect case pubsubTarget(PubsubTarget?)
+    indirect case pubsubTarget(PubsubTarget)
     /// App Engine HTTP target.
-    indirect case appEngineHttpTarget(AppEngineHttpTarget?)
+    indirect case appEngineHttpTarget(AppEngineHttpTarget)
     /// HTTP target.
-    indirect case httpTarget(HttpTarget?)
+    indirect case httpTarget(HttpTarget)
   }
 
   public static var _anyTypeUrl: Swift.String {

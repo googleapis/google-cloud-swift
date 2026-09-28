@@ -123,11 +123,11 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
       }
       teeAttestation = $0
     }
-    if let tdCcel = try container.decodeIfPresent(TdxCcelAttestation?.self, forKey: .tdCcel) {
+    if let tdCcel = try container.decodeIfPresent(TdxCcelAttestation.self, forKey: .tdCcel) {
       try teeAttestationCheckAndSet(.tdCcel(tdCcel))
     }
     if let tpmAttestation = try container.decodeIfPresent(
-      TpmAttestation?.self, forKey: .tpmAttestation)
+      TpmAttestation.self, forKey: .tpmAttestation)
     {
       try teeAttestationCheckAndSet(.tpmAttestation(tpmAttestation))
     }
@@ -248,7 +248,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
         tokenProfileOptions = $0
       }
       if let awsPrincipalTagsOptions = try container.decodeIfPresent(
-        AwsPrincipalTagsOptions?.self, forKey: .awsPrincipalTagsOptions)
+        AwsPrincipalTagsOptions.self, forKey: .awsPrincipalTagsOptions)
       {
         try tokenProfileOptionsCheckAndSet(.awsPrincipalTagsOptions(awsPrincipalTagsOptions))
       }
@@ -280,7 +280,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
     /// An optional additional configuration per token type.
     public enum TokenProfileOptionsOneOf: Codable, Equatable, Sendable {
       /// Optional. Options for the AWS token type.
-      indirect case awsPrincipalTagsOptions(AwsPrincipalTagsOptions?)
+      indirect case awsPrincipalTagsOptions(AwsPrincipalTagsOptions)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -299,10 +299,10 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
   /// claims.
   public enum TeeAttestationOneOf: Codable, Equatable, Sendable {
     /// Input only. A TDX with CCEL and RTMR Attestation Quote.
-    indirect case tdCcel(TdxCcelAttestation?)
+    indirect case tdCcel(TdxCcelAttestation)
     /// Input only. The TPM-specific data provided by the attesting platform,
     /// used to populate any of the claims regarding platform state.
-    indirect case tpmAttestation(TpmAttestation?)
+    indirect case tpmAttestation(TpmAttestation)
   }
 
   public static var _anyTypeUrl: Swift.String {

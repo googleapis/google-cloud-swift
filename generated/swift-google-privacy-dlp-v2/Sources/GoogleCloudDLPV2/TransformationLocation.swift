@@ -85,7 +85,7 @@ public struct TransformationLocation: Codable, Equatable, GoogleWKT._AnyPackable
       try locationTypeCheckAndSet(.findingId(findingId))
     }
     if let recordTransformation = try container.decodeIfPresent(
-      RecordTransformation?.self, forKey: .recordTransformation)
+      RecordTransformation.self, forKey: .recordTransformation)
     {
       try locationTypeCheckAndSet(.recordTransformation(recordTransformation))
     }
@@ -122,7 +122,7 @@ public struct TransformationLocation: Codable, Equatable, GoogleWKT._AnyPackable
     /// action to the request).
     case findingId(Swift.String)
     /// For record transformations, provide a field and container information.
-    indirect case recordTransformation(RecordTransformation?)
+    indirect case recordTransformation(RecordTransformation)
   }
 
   public static var _anyTypeUrl: Swift.String {

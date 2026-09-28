@@ -128,7 +128,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
       period = $0
     }
     if let rollingPeriod = try container.decodeIfPresent(
-      GoogleWKT.WKTDuration?.self, forKey: .rollingPeriod)
+      GoogleWKT.WKTDuration.self, forKey: .rollingPeriod)
     {
       try periodCheckAndSet(.rollingPeriod(rollingPeriod))
     }
@@ -293,7 +293,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum PeriodOneOf: Codable, Equatable, Sendable {
     /// A rolling time period, semantically "in the past `<rolling_period>`".
     /// Must be an integer multiple of 1 day no larger than 30 days.
-    indirect case rollingPeriod(GoogleWKT.WKTDuration?)
+    indirect case rollingPeriod(GoogleWKT.WKTDuration)
     /// A calendar period, semantically "since the start of the current
     /// `<calendar_period>`". At this time, only `DAY`, `WEEK`, `FORTNIGHT`, and
     /// `MONTH` are supported.

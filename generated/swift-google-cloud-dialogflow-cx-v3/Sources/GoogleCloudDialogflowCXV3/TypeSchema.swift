@@ -72,12 +72,12 @@
         }
         schema = $0
       }
-      if let inlineSchema = try container.decodeIfPresent(InlineSchema?.self, forKey: .inlineSchema)
+      if let inlineSchema = try container.decodeIfPresent(InlineSchema.self, forKey: .inlineSchema)
       {
         try schemaCheckAndSet(.inlineSchema(inlineSchema))
       }
       if let schemaReference = try container.decodeIfPresent(
-        TypeSchema.SchemaReference?.self, forKey: .schemaReference)
+        TypeSchema.SchemaReference.self, forKey: .schemaReference)
       {
         try schemaCheckAndSet(.schemaReference(schemaReference))
       }
@@ -186,9 +186,9 @@
     /// The encapsulated schema.
     public enum SchemaOneOf: Codable, Equatable, Sendable {
       /// Set if this is an inline schema definition.
-      indirect case inlineSchema(InlineSchema?)
+      indirect case inlineSchema(InlineSchema)
       /// Set if this is a schema reference.
-      indirect case schemaReference(TypeSchema.SchemaReference?)
+      indirect case schemaReference(TypeSchema.SchemaReference)
     }
 
     public static var _anyTypeUrl: Swift.String {

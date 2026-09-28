@@ -107,7 +107,7 @@
         }
         source = $0
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSources?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSources.self, forKey: .gcsSource) {
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
@@ -149,7 +149,7 @@
       /// These URIs may have the forms
       /// `gs://<bucket-name>/<object-name>`.
       /// `gs://<bucket-name>/<object-path>/*.<extension>`.
-      indirect case gcsSource(GcsSources?)
+      indirect case gcsSource(GcsSources)
     }
 
     public static var _anyTypeUrl: Swift.String {

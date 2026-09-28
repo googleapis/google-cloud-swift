@@ -139,17 +139,17 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
         target = $0
       }
       if let selectedInfoTypes = try container.decodeIfPresent(
-        ImageTransformations.ImageTransformation.SelectedInfoTypes?.self, forKey: .selectedInfoTypes
-      ) {
+        ImageTransformations.ImageTransformation.SelectedInfoTypes.self, forKey: .selectedInfoTypes)
+      {
         try targetCheckAndSet(.selectedInfoTypes(selectedInfoTypes))
       }
       if let allInfoTypes = try container.decodeIfPresent(
-        ImageTransformations.ImageTransformation.AllInfoTypes?.self, forKey: .allInfoTypes)
+        ImageTransformations.ImageTransformation.AllInfoTypes.self, forKey: .allInfoTypes)
       {
         try targetCheckAndSet(.allInfoTypes(allInfoTypes))
       }
       if let allText = try container.decodeIfPresent(
-        ImageTransformations.ImageTransformation.AllText?.self, forKey: .allText)
+        ImageTransformations.ImageTransformation.AllText.self, forKey: .allText)
       {
         try targetCheckAndSet(.allText(allText))
       }
@@ -368,14 +368,14 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Part of the image to transform.
     public enum TargetOneOf: Codable, Equatable, Sendable {
       /// Apply transformation to the selected info_types.
-      indirect case selectedInfoTypes(ImageTransformations.ImageTransformation.SelectedInfoTypes?)
+      indirect case selectedInfoTypes(ImageTransformations.ImageTransformation.SelectedInfoTypes)
       /// Apply transformation to all findings not specified in other
       /// ImageTransformation's selected_info_types. Only one instance is allowed
       /// within the ImageTransformations message.
-      indirect case allInfoTypes(ImageTransformations.ImageTransformation.AllInfoTypes?)
+      indirect case allInfoTypes(ImageTransformations.ImageTransformation.AllInfoTypes)
       /// Apply transformation to all text that doesn't match an infoType. Only
       /// one instance is allowed within the ImageTransformations message.
-      indirect case allText(ImageTransformations.ImageTransformation.AllText?)
+      indirect case allText(ImageTransformations.ImageTransformation.AllText)
     }
 
     public static var _anyTypeUrl: Swift.String {

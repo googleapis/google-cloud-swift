@@ -70,12 +70,10 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       codecSettings = $0
     }
-    if let h264 = try container.decodeIfPresent(VideoStream.H264CodecSettings?.self, forKey: .h264)
-    {
+    if let h264 = try container.decodeIfPresent(VideoStream.H264CodecSettings.self, forKey: .h264) {
       try codecSettingsCheckAndSet(.h264(h264))
     }
-    if let h265 = try container.decodeIfPresent(VideoStream.H265CodecSettings?.self, forKey: .h265)
-    {
+    if let h265 = try container.decodeIfPresent(VideoStream.H265CodecSettings.self, forKey: .h265) {
       try codecSettingsCheckAndSet(.h265(h265))
     }
     self.codecSettings = codecSettings
@@ -319,7 +317,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         try gopModeCheckAndSet(.gopFrameCount(gopFrameCount))
       }
       if let gopDuration = try container.decodeIfPresent(
-        GoogleWKT.WKTDuration?.self, forKey: .gopDuration)
+        GoogleWKT.WKTDuration.self, forKey: .gopDuration)
       {
         try gopModeCheckAndSet(.gopDuration(gopDuration))
       }
@@ -377,7 +375,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       /// All video streams in the same channel must have the same GOP size.
       ///
       /// [google.cloud.video.livestream.v1.SegmentSettings.segment_duration]: <doc:SegmentSettings/segmentDuration>
-      indirect case gopDuration(GoogleWKT.WKTDuration?)
+      indirect case gopDuration(GoogleWKT.WKTDuration)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -554,7 +552,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         try gopModeCheckAndSet(.gopFrameCount(gopFrameCount))
       }
       if let gopDuration = try container.decodeIfPresent(
-        GoogleWKT.WKTDuration?.self, forKey: .gopDuration)
+        GoogleWKT.WKTDuration.self, forKey: .gopDuration)
       {
         try gopModeCheckAndSet(.gopDuration(gopDuration))
       }
@@ -608,7 +606,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       /// All video streams in the same channel must have the same GOP size.
       ///
       /// [google.cloud.video.livestream.v1.SegmentSettings.segment_duration]: <doc:SegmentSettings/segmentDuration>
-      indirect case gopDuration(GoogleWKT.WKTDuration?)
+      indirect case gopDuration(GoogleWKT.WKTDuration)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -625,9 +623,9 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Codec settings.
   public enum CodecSettingsOneOf: Codable, Equatable, Sendable {
     /// H264 codec settings.
-    indirect case h264(VideoStream.H264CodecSettings?)
+    indirect case h264(VideoStream.H264CodecSettings)
     /// H265 codec settings.
-    indirect case h265(VideoStream.H265CodecSettings?)
+    indirect case h265(VideoStream.H265CodecSettings)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -85,7 +85,7 @@ public struct ArtifactConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       artifactStorage = $0
     }
     if let googleArtifactRegistry = try container.decodeIfPresent(
-      GoogleArtifactRegistry?.self, forKey: .googleArtifactRegistry)
+      GoogleArtifactRegistry.self, forKey: .googleArtifactRegistry)
     {
       try artifactStorageCheckAndSet(.googleArtifactRegistry(googleArtifactRegistry))
     }
@@ -102,7 +102,7 @@ public struct ArtifactConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       artifactMetadataStorage = $0
     }
     if let googleArtifactAnalysis = try container.decodeIfPresent(
-      GoogleArtifactAnalysis?.self, forKey: .googleArtifactAnalysis)
+      GoogleArtifactAnalysis.self, forKey: .googleArtifactAnalysis)
     {
       try artifactMetadataStorageCheckAndSet(.googleArtifactAnalysis(googleArtifactAnalysis))
     }
@@ -138,13 +138,13 @@ public struct ArtifactConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The storage location of the artifact.
   public enum ArtifactStorageOneOf: Codable, Equatable, Sendable {
     /// Optional. Set if the artifact is stored in Artifact registry.
-    indirect case googleArtifactRegistry(GoogleArtifactRegistry?)
+    indirect case googleArtifactRegistry(GoogleArtifactRegistry)
   }
 
   /// The storage location of the artifact metadata.
   public enum ArtifactMetadataStorageOneOf: Codable, Equatable, Sendable {
     /// Optional. Set if the artifact metadata is stored in Artifact analysis.
-    indirect case googleArtifactAnalysis(GoogleArtifactAnalysis?)
+    indirect case googleArtifactAnalysis(GoogleArtifactAnalysis)
   }
 
   public static var _anyTypeUrl: Swift.String {

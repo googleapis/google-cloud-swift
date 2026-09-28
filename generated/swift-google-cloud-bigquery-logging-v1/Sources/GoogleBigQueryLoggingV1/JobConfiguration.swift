@@ -93,18 +93,18 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       configuration = $0
     }
-    if let query = try container.decodeIfPresent(JobConfiguration.Query?.self, forKey: .query) {
+    if let query = try container.decodeIfPresent(JobConfiguration.Query.self, forKey: .query) {
       try configurationCheckAndSet(.query(query))
     }
-    if let load = try container.decodeIfPresent(JobConfiguration.Load?.self, forKey: .load) {
+    if let load = try container.decodeIfPresent(JobConfiguration.Load.self, forKey: .load) {
       try configurationCheckAndSet(.load(load))
     }
-    if let extract = try container.decodeIfPresent(JobConfiguration.Extract?.self, forKey: .extract)
+    if let extract = try container.decodeIfPresent(JobConfiguration.Extract.self, forKey: .extract)
     {
       try configurationCheckAndSet(.extract(extract))
     }
     if let tableCopy = try container.decodeIfPresent(
-      JobConfiguration.TableCopy?.self, forKey: .tableCopy)
+      JobConfiguration.TableCopy.self, forKey: .tableCopy)
     {
       try configurationCheckAndSet(.tableCopy(tableCopy))
     }
@@ -583,13 +583,13 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Job configuration information.
   public enum ConfigurationOneOf: Codable, Equatable, Sendable {
     /// Query job information.
-    indirect case query(JobConfiguration.Query?)
+    indirect case query(JobConfiguration.Query)
     /// Load job information.
-    indirect case load(JobConfiguration.Load?)
+    indirect case load(JobConfiguration.Load)
     /// Extract job information.
-    indirect case extract(JobConfiguration.Extract?)
+    indirect case extract(JobConfiguration.Extract)
     /// TableCopy job information.
-    indirect case tableCopy(JobConfiguration.TableCopy?)
+    indirect case tableCopy(JobConfiguration.TableCopy)
   }
 
   public static var _anyTypeUrl: Swift.String {

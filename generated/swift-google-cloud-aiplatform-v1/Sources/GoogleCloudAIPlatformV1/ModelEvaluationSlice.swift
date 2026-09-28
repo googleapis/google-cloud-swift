@@ -384,17 +384,17 @@
               kind = $0
             }
             if let value = try container.decodeIfPresent(
-              ModelEvaluationSlice.Slice.SliceSpec.Value?.self, forKey: .value)
+              ModelEvaluationSlice.Slice.SliceSpec.Value.self, forKey: .value)
             {
               try kindCheckAndSet(.value(value))
             }
             if let range = try container.decodeIfPresent(
-              ModelEvaluationSlice.Slice.SliceSpec.Range?.self, forKey: .range)
+              ModelEvaluationSlice.Slice.SliceSpec.Range.self, forKey: .range)
             {
               try kindCheckAndSet(.range(range))
             }
             if let allValues = try container.decodeIfPresent(
-              GoogleWKT.WKTBoolValue?.self, forKey: .allValues)
+              GoogleWKT.WKTBoolValue.self, forKey: .allValues)
             {
               try kindCheckAndSet(.allValues(allValues))
             }
@@ -426,15 +426,15 @@
           public enum KindOneOf: Codable, Equatable, Sendable {
             /// A unique specific value for a given feature.
             /// Example: `{ "value": { "string_value": "12345" } }`
-            indirect case value(ModelEvaluationSlice.Slice.SliceSpec.Value?)
+            indirect case value(ModelEvaluationSlice.Slice.SliceSpec.Value)
             /// A range of values for a numerical feature.
             /// Example: `{"range":{"low":10000.0,"high":50000.0}}`
             /// will capture 12345 and 23334 in the slice.
-            indirect case range(ModelEvaluationSlice.Slice.SliceSpec.Range?)
+            indirect case range(ModelEvaluationSlice.Slice.SliceSpec.Range)
             /// If all_values is set to true, then all possible labels of the keyed
             /// feature will have another slice computed.
             /// Example: `{"all_values":{"value":true}}`
-            indirect case allValues(GoogleWKT.WKTBoolValue?)
+            indirect case allValues(GoogleWKT.WKTBoolValue)
           }
 
           public static var _anyTypeUrl: Swift.String {

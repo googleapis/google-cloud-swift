@@ -76,7 +76,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       resourceConfig = $0
     }
     if let storageConfig = try container.decodeIfPresent(
-      DataDiscoverySpec.StorageConfig?.self, forKey: .storageConfig)
+      DataDiscoverySpec.StorageConfig.self, forKey: .storageConfig)
     {
       try resourceConfigCheckAndSet(.storageConfig(storageConfig))
     }
@@ -729,7 +729,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The configurations of the data discovery scan resource.
   public enum ResourceConfigOneOf: Codable, Equatable, Sendable {
     /// Cloud Storage related configurations.
-    indirect case storageConfig(DataDiscoverySpec.StorageConfig?)
+    indirect case storageConfig(DataDiscoverySpec.StorageConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

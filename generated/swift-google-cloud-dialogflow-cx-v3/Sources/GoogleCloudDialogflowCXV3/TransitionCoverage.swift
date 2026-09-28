@@ -141,10 +141,10 @@
           }
           kind = $0
         }
-        if let page = try container.decodeIfPresent(Page?.self, forKey: .page) {
+        if let page = try container.decodeIfPresent(Page.self, forKey: .page) {
           try kindCheckAndSet(.page(page))
         }
-        if let flow = try container.decodeIfPresent(Flow?.self, forKey: .flow) {
+        if let flow = try container.decodeIfPresent(Flow.self, forKey: .flow) {
           try kindCheckAndSet(.flow(flow))
         }
         self.kind = kind
@@ -176,12 +176,12 @@
         /// Only some fields such as name and displayname will be set.
         ///
         /// [google.cloud.dialogflow.cx.v3.Page]: <doc:Page>
-        indirect case page(Page?)
+        indirect case page(Page)
         /// Indicates a transition to a [Flow][google.cloud.dialogflow.cx.v3.Flow].
         /// Only some fields such as name and displayname will be set.
         ///
         /// [google.cloud.dialogflow.cx.v3.Flow]: <doc:Flow>
-        indirect case flow(Flow?)
+        indirect case flow(Flow)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -280,12 +280,12 @@
           detail = $0
         }
         if let transitionRoute = try container.decodeIfPresent(
-          TransitionRoute?.self, forKey: .transitionRoute)
+          TransitionRoute.self, forKey: .transitionRoute)
         {
           try detailCheckAndSet(.transitionRoute(transitionRoute))
         }
         if let eventHandler = try container.decodeIfPresent(
-          EventHandler?.self, forKey: .eventHandler)
+          EventHandler.self, forKey: .eventHandler)
         {
           try detailCheckAndSet(.eventHandler(eventHandler))
         }
@@ -319,9 +319,9 @@
       /// The detailed transition.
       public enum DetailOneOf: Codable, Equatable, Sendable {
         /// Intent route or condition route.
-        indirect case transitionRoute(TransitionRoute?)
+        indirect case transitionRoute(TransitionRoute)
         /// Event handler.
-        indirect case eventHandler(EventHandler?)
+        indirect case eventHandler(EventHandler)
       }
 
       public static var _anyTypeUrl: Swift.String {

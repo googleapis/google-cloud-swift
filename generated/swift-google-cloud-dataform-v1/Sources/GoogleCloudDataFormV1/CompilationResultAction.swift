@@ -110,32 +110,32 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       compiledObject = $0
     }
     if let relation = try container.decodeIfPresent(
-      CompilationResultAction.Relation?.self, forKey: .relation)
+      CompilationResultAction.Relation.self, forKey: .relation)
     {
       try compiledObjectCheckAndSet(.relation(relation))
     }
     if let operations = try container.decodeIfPresent(
-      CompilationResultAction.Operations?.self, forKey: .operations)
+      CompilationResultAction.Operations.self, forKey: .operations)
     {
       try compiledObjectCheckAndSet(.operations(operations))
     }
     if let assertion = try container.decodeIfPresent(
-      CompilationResultAction.Assertion?.self, forKey: .assertion)
+      CompilationResultAction.Assertion.self, forKey: .assertion)
     {
       try compiledObjectCheckAndSet(.assertion(assertion))
     }
     if let declaration = try container.decodeIfPresent(
-      CompilationResultAction.Declaration?.self, forKey: .declaration)
+      CompilationResultAction.Declaration.self, forKey: .declaration)
     {
       try compiledObjectCheckAndSet(.declaration(declaration))
     }
     if let notebook = try container.decodeIfPresent(
-      CompilationResultAction.Notebook?.self, forKey: .notebook)
+      CompilationResultAction.Notebook.self, forKey: .notebook)
     {
       try compiledObjectCheckAndSet(.notebook(notebook))
     }
     if let dataPreparation = try container.decodeIfPresent(
-      CompilationResultAction.DataPreparation?.self, forKey: .dataPreparation)
+      CompilationResultAction.DataPreparation.self, forKey: .dataPreparation)
     {
       try compiledObjectCheckAndSet(.dataPreparation(dataPreparation))
     }
@@ -1377,7 +1377,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
         try definitionCheckAndSet(.contentsYaml(contentsYaml))
       }
       if let contentsSql = try container.decodeIfPresent(
-        CompilationResultAction.DataPreparation.SqlDefinition?.self, forKey: .contentsSql)
+        CompilationResultAction.DataPreparation.SqlDefinition.self, forKey: .contentsSql)
       {
         try definitionCheckAndSet(.contentsSql(contentsSql))
       }
@@ -1577,7 +1577,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
       case contentsYaml(Swift.String)
       /// SQL definition for a Data Preparation. Contains a SQL query and
       /// additional context information.
-      indirect case contentsSql(CompilationResultAction.DataPreparation.SqlDefinition?)
+      indirect case contentsSql(CompilationResultAction.DataPreparation.SqlDefinition)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1649,22 +1649,22 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
         mode = $0
       }
       if let replace = try container.decodeIfPresent(
-        CompilationResultAction.SimpleLoadMode?.self, forKey: .replace)
+        CompilationResultAction.SimpleLoadMode.self, forKey: .replace)
       {
         try modeCheckAndSet(.replace(replace))
       }
       if let append = try container.decodeIfPresent(
-        CompilationResultAction.SimpleLoadMode?.self, forKey: .append)
+        CompilationResultAction.SimpleLoadMode.self, forKey: .append)
       {
         try modeCheckAndSet(.append(append))
       }
       if let maximum = try container.decodeIfPresent(
-        CompilationResultAction.IncrementalLoadMode?.self, forKey: .maximum)
+        CompilationResultAction.IncrementalLoadMode.self, forKey: .maximum)
       {
         try modeCheckAndSet(.maximum(maximum))
       }
       if let unique = try container.decodeIfPresent(
-        CompilationResultAction.IncrementalLoadMode?.self, forKey: .unique)
+        CompilationResultAction.IncrementalLoadMode.self, forKey: .unique)
       {
         try modeCheckAndSet(.unique(unique))
       }
@@ -1698,15 +1698,15 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     /// Load mode
     public enum ModeOneOf: Codable, Equatable, Sendable {
       /// Replace destination table
-      indirect case replace(CompilationResultAction.SimpleLoadMode?)
+      indirect case replace(CompilationResultAction.SimpleLoadMode)
       /// Append into destination table
-      indirect case append(CompilationResultAction.SimpleLoadMode?)
+      indirect case append(CompilationResultAction.SimpleLoadMode)
       /// Insert records where the value exceeds the previous maximum value for a
       /// column in the destination table
-      indirect case maximum(CompilationResultAction.IncrementalLoadMode?)
+      indirect case maximum(CompilationResultAction.IncrementalLoadMode)
       /// Insert records where the value of a column is not already present in
       /// the destination table
-      indirect case unique(CompilationResultAction.IncrementalLoadMode?)
+      indirect case unique(CompilationResultAction.IncrementalLoadMode)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1849,17 +1849,17 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The compiled object.
   public enum CompiledObjectOneOf: Codable, Equatable, Sendable {
     /// The database relation created/updated by this action.
-    indirect case relation(CompilationResultAction.Relation?)
+    indirect case relation(CompilationResultAction.Relation)
     /// The database operations executed by this action.
-    indirect case operations(CompilationResultAction.Operations?)
+    indirect case operations(CompilationResultAction.Operations)
     /// The assertion executed by this action.
-    indirect case assertion(CompilationResultAction.Assertion?)
+    indirect case assertion(CompilationResultAction.Assertion)
     /// The declaration declared by this action.
-    indirect case declaration(CompilationResultAction.Declaration?)
+    indirect case declaration(CompilationResultAction.Declaration)
     /// The notebook executed by this action.
-    indirect case notebook(CompilationResultAction.Notebook?)
+    indirect case notebook(CompilationResultAction.Notebook)
     /// The data preparation executed by this action.
-    indirect case dataPreparation(CompilationResultAction.DataPreparation?)
+    indirect case dataPreparation(CompilationResultAction.DataPreparation)
   }
 
   public static var _anyTypeUrl: Swift.String {

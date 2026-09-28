@@ -73,12 +73,12 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       authConfig = $0
     }
     if let oauth2AuthCodeConfig = try container.decodeIfPresent(
-      EndUserAuthConfig.Oauth2AuthCodeConfig?.self, forKey: .oauth2AuthCodeConfig)
+      EndUserAuthConfig.Oauth2AuthCodeConfig.self, forKey: .oauth2AuthCodeConfig)
     {
       try authConfigCheckAndSet(.oauth2AuthCodeConfig(oauth2AuthCodeConfig))
     }
     if let oauth2JwtBearerConfig = try container.decodeIfPresent(
-      EndUserAuthConfig.Oauth2JwtBearerConfig?.self, forKey: .oauth2JwtBearerConfig)
+      EndUserAuthConfig.Oauth2JwtBearerConfig.self, forKey: .oauth2JwtBearerConfig)
     {
       try authConfigCheckAndSet(.oauth2JwtBearerConfig(oauth2JwtBearerConfig))
     }
@@ -266,9 +266,9 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The auth configuration.
   public enum AuthConfigOneOf: Codable, Equatable, Sendable {
     /// Oauth 2.0 Authorization Code authentication.
-    indirect case oauth2AuthCodeConfig(EndUserAuthConfig.Oauth2AuthCodeConfig?)
+    indirect case oauth2AuthCodeConfig(EndUserAuthConfig.Oauth2AuthCodeConfig)
     /// JWT Profile Oauth 2.0 Authorization Grant authentication.
-    indirect case oauth2JwtBearerConfig(EndUserAuthConfig.Oauth2JwtBearerConfig?)
+    indirect case oauth2JwtBearerConfig(EndUserAuthConfig.Oauth2JwtBearerConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

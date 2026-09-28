@@ -78,24 +78,24 @@
         request = $0
       }
       if let migrateMlEngineModelVersionConfig = try container.decodeIfPresent(
-        MigrateResourceRequest.MigrateMlEngineModelVersionConfig?.self,
+        MigrateResourceRequest.MigrateMlEngineModelVersionConfig.self,
         forKey: .migrateMlEngineModelVersionConfig)
       {
         try requestCheckAndSet(
           .migrateMlEngineModelVersionConfig(migrateMlEngineModelVersionConfig))
       }
       if let migrateAutomlModelConfig = try container.decodeIfPresent(
-        MigrateResourceRequest.MigrateAutomlModelConfig?.self, forKey: .migrateAutomlModelConfig)
+        MigrateResourceRequest.MigrateAutomlModelConfig.self, forKey: .migrateAutomlModelConfig)
       {
         try requestCheckAndSet(.migrateAutomlModelConfig(migrateAutomlModelConfig))
       }
       if let migrateAutomlDatasetConfig = try container.decodeIfPresent(
-        MigrateResourceRequest.MigrateAutomlDatasetConfig?.self, forKey: .migrateAutomlDatasetConfig
-      ) {
+        MigrateResourceRequest.MigrateAutomlDatasetConfig.self, forKey: .migrateAutomlDatasetConfig)
+      {
         try requestCheckAndSet(.migrateAutomlDatasetConfig(migrateAutomlDatasetConfig))
       }
       if let migrateDataLabelingDatasetConfig = try container.decodeIfPresent(
-        MigrateResourceRequest.MigrateDataLabelingDatasetConfig?.self,
+        MigrateResourceRequest.MigrateDataLabelingDatasetConfig.self,
         forKey: .migrateDataLabelingDatasetConfig)
       {
         try requestCheckAndSet(.migrateDataLabelingDatasetConfig(migrateDataLabelingDatasetConfig))
@@ -570,17 +570,17 @@
     public enum RequestOneOf: Codable, Equatable, Sendable {
       /// Config for migrating Version in ml.googleapis.com to Vertex AI's Model.
       indirect case migrateMlEngineModelVersionConfig(
-        MigrateResourceRequest.MigrateMlEngineModelVersionConfig?)
+        MigrateResourceRequest.MigrateMlEngineModelVersionConfig)
       /// Config for migrating Model in automl.googleapis.com to Vertex AI's
       /// Model.
-      indirect case migrateAutomlModelConfig(MigrateResourceRequest.MigrateAutomlModelConfig?)
+      indirect case migrateAutomlModelConfig(MigrateResourceRequest.MigrateAutomlModelConfig)
       /// Config for migrating Dataset in automl.googleapis.com to Vertex AI's
       /// Dataset.
-      indirect case migrateAutomlDatasetConfig(MigrateResourceRequest.MigrateAutomlDatasetConfig?)
+      indirect case migrateAutomlDatasetConfig(MigrateResourceRequest.MigrateAutomlDatasetConfig)
       /// Config for migrating Dataset in datalabeling.googleapis.com to
       /// Vertex AI's Dataset.
       indirect case migrateDataLabelingDatasetConfig(
-        MigrateResourceRequest.MigrateDataLabelingDatasetConfig?)
+        MigrateResourceRequest.MigrateDataLabelingDatasetConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -68,7 +68,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
       accessType = $0
     }
     if let gcpIamAccess = try container.decodeIfPresent(
-      PrivilegedAccess.GcpIamAccess?.self, forKey: .gcpIamAccess)
+      PrivilegedAccess.GcpIamAccess.self, forKey: .gcpIamAccess)
     {
       try accessTypeCheckAndSet(.gcpIamAccess(gcpIamAccess))
     }
@@ -274,7 +274,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum AccessTypeOneOf: Codable, Equatable, Sendable {
     /// Access to a Google Cloud resource through IAM.
-    indirect case gcpIamAccess(PrivilegedAccess.GcpIamAccess?)
+    indirect case gcpIamAccess(PrivilegedAccess.GcpIamAccess)
   }
 
   public static var _anyTypeUrl: Swift.String {

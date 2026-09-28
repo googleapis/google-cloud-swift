@@ -138,7 +138,7 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
         }
         entry = $0
       }
-      if let teamFolder = try container.decodeIfPresent(TeamFolder?.self, forKey: .teamFolder) {
+      if let teamFolder = try container.decodeIfPresent(TeamFolder.self, forKey: .teamFolder) {
         try entryCheckAndSet(.teamFolder(teamFolder))
       }
       self.entry = entry
@@ -165,7 +165,7 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
     /// The content entry.
     public enum EntryOneOf: Codable, Equatable, Sendable {
       /// A TeamFolder resource that is in the project / location.
-      indirect case teamFolder(TeamFolder?)
+      indirect case teamFolder(TeamFolder)
     }
 
     public static var _anyTypeUrl: Swift.String {

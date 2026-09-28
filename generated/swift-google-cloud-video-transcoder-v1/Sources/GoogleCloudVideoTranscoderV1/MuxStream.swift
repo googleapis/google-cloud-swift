@@ -145,7 +145,7 @@ public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       containerConfig = $0
     }
-    if let fmp4 = try container.decodeIfPresent(MuxStream.Fmp4Config?.self, forKey: .fmp4) {
+    if let fmp4 = try container.decodeIfPresent(MuxStream.Fmp4Config.self, forKey: .fmp4) {
       try containerConfigCheckAndSet(.fmp4(fmp4))
     }
     self.containerConfig = containerConfig
@@ -252,7 +252,7 @@ public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies the container configuration.
   public enum ContainerConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. `fmp4` container configuration.
-    indirect case fmp4(MuxStream.Fmp4Config?)
+    indirect case fmp4(MuxStream.Fmp4Config)
   }
 
   public static var _anyTypeUrl: Swift.String {

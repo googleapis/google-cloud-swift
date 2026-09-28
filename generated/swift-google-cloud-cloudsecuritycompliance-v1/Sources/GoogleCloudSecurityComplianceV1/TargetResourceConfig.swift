@@ -78,7 +78,7 @@ public struct TargetResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       try resourceConfigCheckAndSet(.existingTargetResource(existingTargetResource))
     }
     if let targetResourceCreationConfig = try container.decodeIfPresent(
-      TargetResourceCreationConfig?.self, forKey: .targetResourceCreationConfig)
+      TargetResourceCreationConfig.self, forKey: .targetResourceCreationConfig)
     {
       try resourceConfigCheckAndSet(.targetResourceCreationConfig(targetResourceCreationConfig))
     }
@@ -115,7 +115,7 @@ public struct TargetResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case existingTargetResource(Swift.String)
     /// Optional. The details that are required to create a resource and use
     /// that resource as the target resource for deployment.
-    indirect case targetResourceCreationConfig(TargetResourceCreationConfig?)
+    indirect case targetResourceCreationConfig(TargetResourceCreationConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

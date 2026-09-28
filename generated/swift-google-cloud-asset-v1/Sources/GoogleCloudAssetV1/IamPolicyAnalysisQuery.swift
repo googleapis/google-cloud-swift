@@ -620,7 +620,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
         timeContext = $0
       }
       if let accessTime = try container.decodeIfPresent(
-        GoogleWKT.WKTTimestamp?.self, forKey: .accessTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .accessTime)
       {
         try timeContextCheckAndSet(.accessTime(accessTime))
       }
@@ -650,7 +650,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       /// The hypothetical access timestamp to evaluate IAM conditions. Note that
       /// this value must not be earlier than the current time; otherwise, an
       /// INVALID_ARGUMENT error will be returned.
-      indirect case accessTime(GoogleWKT.WKTTimestamp?)
+      indirect case accessTime(GoogleWKT.WKTTimestamp)
     }
 
     public static var _anyTypeUrl: Swift.String {

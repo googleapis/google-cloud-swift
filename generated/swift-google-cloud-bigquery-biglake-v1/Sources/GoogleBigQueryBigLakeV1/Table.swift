@@ -127,7 +127,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       options = $0
     }
-    if let hiveOptions = try container.decodeIfPresent(HiveTableOptions?.self, forKey: .hiveOptions)
+    if let hiveOptions = try container.decodeIfPresent(HiveTableOptions.self, forKey: .hiveOptions)
     {
       try optionsCheckAndSet(.hiveOptions(hiveOptions))
     }
@@ -272,7 +272,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Options specified for the table type.
   public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// Options of a Hive table.
-    indirect case hiveOptions(HiveTableOptions?)
+    indirect case hiveOptions(HiveTableOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

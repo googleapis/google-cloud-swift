@@ -72,12 +72,12 @@ public struct ManagementConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       oneofConfig = $0
     }
     if let standardManagementConfig = try container.decodeIfPresent(
-      StandardManagementConfig?.self, forKey: .standardManagementConfig)
+      StandardManagementConfig.self, forKey: .standardManagementConfig)
     {
       try oneofConfigCheckAndSet(.standardManagementConfig(standardManagementConfig))
     }
     if let fullManagementConfig = try container.decodeIfPresent(
-      FullManagementConfig?.self, forKey: .fullManagementConfig)
+      FullManagementConfig.self, forKey: .fullManagementConfig)
     {
       try oneofConfigCheckAndSet(.fullManagementConfig(fullManagementConfig))
     }
@@ -108,10 +108,10 @@ public struct ManagementConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// and FullManagementConfig
   public enum OneofConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration of the standard (GKE) cluster management
-    indirect case standardManagementConfig(StandardManagementConfig?)
+    indirect case standardManagementConfig(StandardManagementConfig)
     /// Configuration of the full (Autopilot) cluster management. Full cluster
     /// management is a preview feature.
-    indirect case fullManagementConfig(FullManagementConfig?)
+    indirect case fullManagementConfig(FullManagementConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

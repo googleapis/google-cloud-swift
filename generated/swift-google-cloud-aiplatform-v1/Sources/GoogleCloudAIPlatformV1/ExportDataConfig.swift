@@ -170,7 +170,7 @@
         destination = $0
       }
       if let gcsDestination = try container.decodeIfPresent(
-        GcsDestination?.self, forKey: .gcsDestination)
+        GcsDestination.self, forKey: .gcsDestination)
       {
         try destinationCheckAndSet(.gcsDestination(gcsDestination))
       }
@@ -187,12 +187,12 @@
         split = $0
       }
       if let fractionSplit = try container.decodeIfPresent(
-        ExportFractionSplit?.self, forKey: .fractionSplit)
+        ExportFractionSplit.self, forKey: .fractionSplit)
       {
         try splitCheckAndSet(.fractionSplit(fractionSplit))
       }
       if let filterSplit = try container.decodeIfPresent(
-        ExportFilterSplit?.self, forKey: .filterSplit)
+        ExportFilterSplit.self, forKey: .filterSplit)
       {
         try splitCheckAndSet(.filterSplit(filterSplit))
       }
@@ -354,16 +354,16 @@
       /// which are named with the corresponding annotations' schema title. Inside
       /// these sub directories, a schema.yaml will be created to describe the
       /// output format.
-      indirect case gcsDestination(GcsDestination?)
+      indirect case gcsDestination(GcsDestination)
     }
 
     /// The instructions how the export data should be split between the
     /// training, validation and test sets.
     public enum SplitOneOf: Codable, Equatable, Sendable {
       /// Split based on fractions defining the size of each set.
-      indirect case fractionSplit(ExportFractionSplit?)
+      indirect case fractionSplit(ExportFractionSplit)
       /// Split based on the provided filters for each set.
-      indirect case filterSplit(ExportFilterSplit?)
+      indirect case filterSplit(ExportFilterSplit)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -29,14 +29,7 @@ extension Operation {
 
     switch self.result {
     case .response(let anyValue):
-      guard let anyValueUnwrapped = anyValue else {
-        return .init(
-          done: true,
-          result: .failure(
-            GoogleGax.RequestError.malformedResponse(
-              "Operation completed but response value was missing")))
-      }
-      let response = try Response(fromAny: anyValueUnwrapped)
+      let response = try Response(fromAny: anyValue)
       return .init(done: true, result: .success(response))
     case .error(let status):
       return Self._extractError(Response.self, status: status)
@@ -62,20 +55,13 @@ extension Operation {
     }
   }
 
-  static func _extractError<T: Sendable>(_ type: T.Type, status: GoogleRpc.Status?)
+  static func _extractError<T: Sendable>(_ type: T.Type, status: GoogleRpc.Status)
     -> GoogleGax._PollableOperationImpl<T>.State
   {
-    guard let statusUnwrapped = status else {
-      return .init(
-        done: true,
-        result: .failure(
-          GoogleGax.RequestError.malformedResponse(
-            "Operation completed but error value was missing")))
-    }
     let error = GoogleGax.RequestError.service(
       GoogleGax.ServiceError(
-        code: GoogleRpc.Code(intValue: Int(statusUnwrapped.code)),
-        message: statusUnwrapped.message))
+        code: GoogleRpc.Code(intValue: Int(status.code)),
+        message: status.message))
     return .init(done: true, result: .failure(error))
   }
 

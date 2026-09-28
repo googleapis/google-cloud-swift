@@ -69,7 +69,7 @@ public struct DatasetOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      GcsOutputDestination?.self, forKey: .gcsDestination)
+      GcsOutputDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
@@ -97,7 +97,7 @@ public struct DatasetOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Specify the output.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage destination to write the output.
-    indirect case gcsDestination(GcsOutputDestination?)
+    indirect case gcsDestination(GcsOutputDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

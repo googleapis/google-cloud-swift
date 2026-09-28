@@ -107,7 +107,7 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
       repositorySnapshotStorage = $0
     }
     if let gcsRepositorySnapshotDestination = try container.decodeIfPresent(
-      GcsRepositorySnapshotDestination?.self, forKey: .gcsRepositorySnapshotDestination)
+      GcsRepositorySnapshotDestination.self, forKey: .gcsRepositorySnapshotDestination)
     {
       try repositorySnapshotStorageCheckAndSet(
         .gcsRepositorySnapshotDestination(gcsRepositorySnapshotDestination))
@@ -155,7 +155,7 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
     /// Optional. The Google Cloud Storage destination to upload the snapshot to.
     /// For empty URI it defaults to the provided gcs_output_bucket.
     /// Format: `gs://bucket-name/path/`.
-    indirect case gcsRepositorySnapshotDestination(GcsRepositorySnapshotDestination?)
+    indirect case gcsRepositorySnapshotDestination(GcsRepositorySnapshotDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

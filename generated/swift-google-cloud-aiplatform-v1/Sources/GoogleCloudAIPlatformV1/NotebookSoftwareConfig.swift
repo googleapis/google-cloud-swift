@@ -86,7 +86,7 @@
         }
         runtimeImage = $0
       }
-      if let colabImage = try container.decodeIfPresent(ColabImage?.self, forKey: .colabImage) {
+      if let colabImage = try container.decodeIfPresent(ColabImage.self, forKey: .colabImage) {
         try runtimeImageCheckAndSet(.colabImage(colabImage))
       }
       self.runtimeImage = runtimeImage
@@ -115,7 +115,7 @@
     /// The image to be used by the notebook runtime.
     public enum RuntimeImageOneOf: Codable, Equatable, Sendable {
       /// Optional. Google-managed NotebookRuntime colab image.
-      indirect case colabImage(ColabImage?)
+      indirect case colabImage(ColabImage)
     }
 
     public static var _anyTypeUrl: Swift.String {

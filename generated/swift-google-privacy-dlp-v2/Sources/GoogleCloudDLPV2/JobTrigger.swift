@@ -147,7 +147,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       job = $0
     }
-    if let inspectJob = try container.decodeIfPresent(InspectJobConfig?.self, forKey: .inspectJob) {
+    if let inspectJob = try container.decodeIfPresent(InspectJobConfig.self, forKey: .inspectJob) {
       try jobCheckAndSet(.inspectJob(inspectJob))
     }
     self.job = job
@@ -233,10 +233,10 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         trigger = $0
       }
-      if let schedule = try container.decodeIfPresent(Schedule?.self, forKey: .schedule) {
+      if let schedule = try container.decodeIfPresent(Schedule.self, forKey: .schedule) {
         try triggerCheckAndSet(.schedule(schedule))
       }
-      if let manual = try container.decodeIfPresent(Manual?.self, forKey: .manual) {
+      if let manual = try container.decodeIfPresent(Manual.self, forKey: .manual) {
         try triggerCheckAndSet(.manual(manual))
       }
       self.trigger = trigger
@@ -265,9 +265,9 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     /// What event needs to occur for a new job to be started.
     public enum TriggerOneOf: Codable, Equatable, Sendable {
       /// Create a job on a repeating basis based on the elapse of time.
-      indirect case schedule(Schedule?)
+      indirect case schedule(Schedule)
       /// For use with hybrid jobs. Jobs must be manually created and finished.
-      indirect case manual(Manual?)
+      indirect case manual(Manual)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -411,7 +411,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The configuration details for the specific type of job to run.
   public enum JobOneOf: Codable, Equatable, Sendable {
     /// For inspect jobs, a snapshot of the configuration.
-    indirect case inspectJob(InspectJobConfig?)
+    indirect case inspectJob(InspectJobConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -144,12 +144,12 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let selfManaged = try container.decodeIfPresent(
-      Certificate.SelfManagedCertificate?.self, forKey: .selfManaged)
+      Certificate.SelfManagedCertificate.self, forKey: .selfManaged)
     {
       try typeCheckAndSet(.selfManaged(selfManaged))
     }
     if let managed = try container.decodeIfPresent(
-      Certificate.ManagedCertificate?.self, forKey: .managed)
+      Certificate.ManagedCertificate.self, forKey: .managed)
     {
       try typeCheckAndSet(.managed(managed))
     }
@@ -1219,9 +1219,9 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// If set, defines data of a self-managed certificate.
-    indirect case selfManaged(Certificate.SelfManagedCertificate?)
+    indirect case selfManaged(Certificate.SelfManagedCertificate)
     /// If set, contains configuration and state of a managed certificate.
-    indirect case managed(Certificate.ManagedCertificate?)
+    indirect case managed(Certificate.ManagedCertificate)
   }
 
   public static var _anyTypeUrl: Swift.String {

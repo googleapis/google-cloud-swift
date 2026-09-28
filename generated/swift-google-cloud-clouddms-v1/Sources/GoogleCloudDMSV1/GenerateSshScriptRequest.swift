@@ -95,12 +95,12 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleWKT._AnyPackab
       vmConfig = $0
     }
     if let vmCreationConfig = try container.decodeIfPresent(
-      VmCreationConfig?.self, forKey: .vmCreationConfig)
+      VmCreationConfig.self, forKey: .vmCreationConfig)
     {
       try vmConfigCheckAndSet(.vmCreationConfig(vmCreationConfig))
     }
     if let vmSelectionConfig = try container.decodeIfPresent(
-      VmSelectionConfig?.self, forKey: .vmSelectionConfig)
+      VmSelectionConfig.self, forKey: .vmSelectionConfig)
     {
       try vmConfigCheckAndSet(.vmSelectionConfig(vmSelectionConfig))
     }
@@ -133,9 +133,9 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// The VM configuration
   public enum VmConfigOneOf: Codable, Equatable, Sendable {
     /// The VM creation configuration
-    indirect case vmCreationConfig(VmCreationConfig?)
+    indirect case vmCreationConfig(VmCreationConfig)
     /// The VM selection configuration
-    indirect case vmSelectionConfig(VmSelectionConfig?)
+    indirect case vmSelectionConfig(VmSelectionConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

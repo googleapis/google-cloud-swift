@@ -108,12 +108,12 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
       purchaseOption = $0
     }
     if let createEntitlementPurchase = try container.decodeIfPresent(
-      ListPurchasableSkusRequest.CreateEntitlementPurchase?.self, forKey: .createEntitlementPurchase
-    ) {
+      ListPurchasableSkusRequest.CreateEntitlementPurchase.self, forKey: .createEntitlementPurchase)
+    {
       try purchaseOptionCheckAndSet(.createEntitlementPurchase(createEntitlementPurchase))
     }
     if let changeOfferPurchase = try container.decodeIfPresent(
-      ListPurchasableSkusRequest.ChangeOfferPurchase?.self, forKey: .changeOfferPurchase)
+      ListPurchasableSkusRequest.ChangeOfferPurchase.self, forKey: .changeOfferPurchase)
     {
       try purchaseOptionCheckAndSet(.changeOfferPurchase(changeOfferPurchase))
     }
@@ -425,9 +425,9 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// Defines the intended purchase.
   public enum PurchaseOptionOneOf: Codable, Equatable, Sendable {
     /// List SKUs for CreateEntitlement purchase.
-    indirect case createEntitlementPurchase(ListPurchasableSkusRequest.CreateEntitlementPurchase?)
+    indirect case createEntitlementPurchase(ListPurchasableSkusRequest.CreateEntitlementPurchase)
     /// List SKUs for ChangeOffer purchase with a new SKU.
-    indirect case changeOfferPurchase(ListPurchasableSkusRequest.ChangeOfferPurchase?)
+    indirect case changeOfferPurchase(ListPurchasableSkusRequest.ChangeOfferPurchase)
   }
 
   public static var _anyTypeUrl: Swift.String {

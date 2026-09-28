@@ -69,7 +69,7 @@ public struct VertexDatasetCollection: Codable, Equatable, GoogleWKT._AnyPackabl
       pattern = $0
     }
     if let vertexDatasetRegexes = try container.decodeIfPresent(
-      VertexDatasetRegexes?.self, forKey: .vertexDatasetRegexes)
+      VertexDatasetRegexes.self, forKey: .vertexDatasetRegexes)
     {
       try patternCheckAndSet(.vertexDatasetRegexes(vertexDatasetRegexes))
     }
@@ -97,7 +97,7 @@ public struct VertexDatasetCollection: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The pattern used to filter dataset resources.
   public enum PatternOneOf: Codable, Equatable, Sendable {
     /// The regex used to filter dataset resources.
-    indirect case vertexDatasetRegexes(VertexDatasetRegexes?)
+    indirect case vertexDatasetRegexes(VertexDatasetRegexes)
   }
 
   public static var _anyTypeUrl: Swift.String {

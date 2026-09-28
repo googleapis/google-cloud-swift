@@ -176,17 +176,17 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       bucketOption = $0
     }
     if let linearBuckets = try container.decodeIfPresent(
-      Distribution.LinearBuckets?.self, forKey: .linearBuckets)
+      Distribution.LinearBuckets.self, forKey: .linearBuckets)
     {
       try bucketOptionCheckAndSet(.linearBuckets(linearBuckets))
     }
     if let exponentialBuckets = try container.decodeIfPresent(
-      Distribution.ExponentialBuckets?.self, forKey: .exponentialBuckets)
+      Distribution.ExponentialBuckets.self, forKey: .exponentialBuckets)
     {
       try bucketOptionCheckAndSet(.exponentialBuckets(exponentialBuckets))
     }
     if let explicitBuckets = try container.decodeIfPresent(
-      Distribution.ExplicitBuckets?.self, forKey: .explicitBuckets)
+      Distribution.ExplicitBuckets.self, forKey: .explicitBuckets)
     {
       try bucketOptionCheckAndSet(.explicitBuckets(explicitBuckets))
     }
@@ -516,11 +516,11 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// bucket.
   public enum BucketOptionOneOf: Codable, Equatable, Sendable {
     /// Buckets with constant width.
-    indirect case linearBuckets(Distribution.LinearBuckets?)
+    indirect case linearBuckets(Distribution.LinearBuckets)
     /// Buckets with exponentially growing width.
-    indirect case exponentialBuckets(Distribution.ExponentialBuckets?)
+    indirect case exponentialBuckets(Distribution.ExponentialBuckets)
     /// Buckets with arbitrary user-provided width.
-    indirect case explicitBuckets(Distribution.ExplicitBuckets?)
+    indirect case explicitBuckets(Distribution.ExplicitBuckets)
   }
 
   public static var _anyTypeUrl: Swift.String {

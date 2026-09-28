@@ -158,22 +158,22 @@
         specification = $0
       }
       if let extensionSpec = try container.decodeIfPresent(
-        Tool.ExtensionTool?.self, forKey: .extensionSpec)
+        Tool.ExtensionTool.self, forKey: .extensionSpec)
       {
         try specificationCheckAndSet(.extensionSpec(extensionSpec))
       }
       if let functionSpec = try container.decodeIfPresent(
-        Tool.FunctionTool?.self, forKey: .functionSpec)
+        Tool.FunctionTool.self, forKey: .functionSpec)
       {
         try specificationCheckAndSet(.functionSpec(functionSpec))
       }
       if let connectorSpec = try container.decodeIfPresent(
-        Tool.ConnectorTool?.self, forKey: .connectorSpec)
+        Tool.ConnectorTool.self, forKey: .connectorSpec)
       {
         try specificationCheckAndSet(.connectorSpec(connectorSpec))
       }
       if let openApiSpec = try container.decodeIfPresent(
-        Tool.OpenApiTool?.self, forKey: .openApiSpec)
+        Tool.OpenApiTool.self, forKey: .openApiSpec)
       {
         try specificationCheckAndSet(.openApiSpec(openApiSpec))
       }
@@ -644,7 +644,7 @@
             try actionSpecCheckAndSet(.connectionActionId(connectionActionId))
           }
           if let entityOperation = try container.decodeIfPresent(
-            Tool.ConnectorTool.Action.EntityOperation?.self, forKey: .entityOperation)
+            Tool.ConnectorTool.Action.EntityOperation.self, forKey: .entityOperation)
           {
             try actionSpecCheckAndSet(.entityOperation(entityOperation))
           }
@@ -898,7 +898,7 @@
           /// ID of a Connection action for the tool to use.
           case connectionActionId(Swift.String)
           /// Entity operation configuration for the tool to use.
-          indirect case entityOperation(Tool.ConnectorTool.Action.EntityOperation?)
+          indirect case entityOperation(Tool.ConnectorTool.Action.EntityOperation)
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -981,22 +981,22 @@
           authConfig = $0
         }
         if let apiKeyConfig = try container.decodeIfPresent(
-          Tool.Authentication.ApiKeyConfig?.self, forKey: .apiKeyConfig)
+          Tool.Authentication.ApiKeyConfig.self, forKey: .apiKeyConfig)
         {
           try authConfigCheckAndSet(.apiKeyConfig(apiKeyConfig))
         }
         if let oauthConfig = try container.decodeIfPresent(
-          Tool.Authentication.OAuthConfig?.self, forKey: .oauthConfig)
+          Tool.Authentication.OAuthConfig.self, forKey: .oauthConfig)
         {
           try authConfigCheckAndSet(.oauthConfig(oauthConfig))
         }
         if let serviceAgentAuthConfig = try container.decodeIfPresent(
-          Tool.Authentication.ServiceAgentAuthConfig?.self, forKey: .serviceAgentAuthConfig)
+          Tool.Authentication.ServiceAgentAuthConfig.self, forKey: .serviceAgentAuthConfig)
         {
           try authConfigCheckAndSet(.serviceAgentAuthConfig(serviceAgentAuthConfig))
         }
         if let bearerTokenConfig = try container.decodeIfPresent(
-          Tool.Authentication.BearerTokenConfig?.self, forKey: .bearerTokenConfig)
+          Tool.Authentication.BearerTokenConfig.self, forKey: .bearerTokenConfig)
         {
           try authConfigCheckAndSet(.bearerTokenConfig(bearerTokenConfig))
         }
@@ -1782,15 +1782,15 @@
       /// The auth configuration.
       public enum AuthConfigOneOf: Codable, Equatable, Sendable {
         /// Config for API key auth.
-        indirect case apiKeyConfig(Tool.Authentication.ApiKeyConfig?)
+        indirect case apiKeyConfig(Tool.Authentication.ApiKeyConfig)
         /// Config for OAuth.
-        indirect case oauthConfig(Tool.Authentication.OAuthConfig?)
+        indirect case oauthConfig(Tool.Authentication.OAuthConfig)
         /// Config for [Diglogflow service
         /// agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent)
         /// auth.
-        indirect case serviceAgentAuthConfig(Tool.Authentication.ServiceAgentAuthConfig?)
+        indirect case serviceAgentAuthConfig(Tool.Authentication.ServiceAgentAuthConfig)
         /// Config for bearer token auth.
-        indirect case bearerTokenConfig(Tool.Authentication.BearerTokenConfig?)
+        indirect case bearerTokenConfig(Tool.Authentication.BearerTokenConfig)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -2296,13 +2296,13 @@
     public enum SpecificationOneOf: Codable, Equatable, Sendable {
       /// Vertex extension tool specification.
       @available(*, deprecated)
-      indirect case extensionSpec(Tool.ExtensionTool?)
+      indirect case extensionSpec(Tool.ExtensionTool)
       /// Client side executed function specification.
-      indirect case functionSpec(Tool.FunctionTool?)
+      indirect case functionSpec(Tool.FunctionTool)
       /// Integration connectors tool specification.
-      indirect case connectorSpec(Tool.ConnectorTool?)
+      indirect case connectorSpec(Tool.ConnectorTool)
       /// OpenAPI tool.
-      indirect case openApiSpec(Tool.OpenApiTool?)
+      indirect case openApiSpec(Tool.OpenApiTool)
     }
 
     public static var _anyTypeUrl: Swift.String {

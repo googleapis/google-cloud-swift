@@ -116,32 +116,31 @@ public struct ContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       location = $0
     }
     if let recordLocation = try container.decodeIfPresent(
-      RecordLocation?.self, forKey: .recordLocation)
+      RecordLocation.self, forKey: .recordLocation)
     {
       try locationCheckAndSet(.recordLocation(recordLocation))
     }
-    if let imageLocation = try container.decodeIfPresent(
-      ImageLocation?.self, forKey: .imageLocation)
+    if let imageLocation = try container.decodeIfPresent(ImageLocation.self, forKey: .imageLocation)
     {
       try locationCheckAndSet(.imageLocation(imageLocation))
     }
     if let documentLocation = try container.decodeIfPresent(
-      DocumentLocation?.self, forKey: .documentLocation)
+      DocumentLocation.self, forKey: .documentLocation)
     {
       try locationCheckAndSet(.documentLocation(documentLocation))
     }
     if let metadataLocation = try container.decodeIfPresent(
-      MetadataLocation?.self, forKey: .metadataLocation)
+      MetadataLocation.self, forKey: .metadataLocation)
     {
       try locationCheckAndSet(.metadataLocation(metadataLocation))
     }
     if let conversationLocation = try container.decodeIfPresent(
-      ConversationLocation?.self, forKey: .conversationLocation)
+      ConversationLocation.self, forKey: .conversationLocation)
     {
       try locationCheckAndSet(.conversationLocation(conversationLocation))
     }
     if let batchContentLocation = try container.decodeIfPresent(
-      BatchContentLocation?.self, forKey: .batchContentLocation)
+      BatchContentLocation.self, forKey: .batchContentLocation)
     {
       try locationCheckAndSet(.batchContentLocation(batchContentLocation))
     }
@@ -182,17 +181,17 @@ public struct ContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of the container within the file with location of the finding.
   public enum LocationOneOf: Codable, Equatable, Sendable {
     /// Location within a row or record of a database table.
-    indirect case recordLocation(RecordLocation?)
+    indirect case recordLocation(RecordLocation)
     /// Location within an image's pixels.
-    indirect case imageLocation(ImageLocation?)
+    indirect case imageLocation(ImageLocation)
     /// Location data for document files.
-    indirect case documentLocation(DocumentLocation?)
+    indirect case documentLocation(DocumentLocation)
     /// Location within the metadata for inspected content.
-    indirect case metadataLocation(MetadataLocation?)
+    indirect case metadataLocation(MetadataLocation)
     /// Location within a conversation.
-    indirect case conversationLocation(ConversationLocation?)
+    indirect case conversationLocation(ConversationLocation)
     /// Location within a batch of content.
-    indirect case batchContentLocation(BatchContentLocation?)
+    indirect case batchContentLocation(BatchContentLocation)
   }
 
   public static var _anyTypeUrl: Swift.String {

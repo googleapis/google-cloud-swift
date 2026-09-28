@@ -78,12 +78,12 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
       mode = $0
     }
     if let throwError = try container.decodeIfPresent(
-      TransformationErrorHandling.ThrowError?.self, forKey: .throwError)
+      TransformationErrorHandling.ThrowError.self, forKey: .throwError)
     {
       try modeCheckAndSet(.throwError(throwError))
     }
     if let leaveUntransformed = try container.decodeIfPresent(
-      TransformationErrorHandling.LeaveUntransformed?.self, forKey: .leaveUntransformed)
+      TransformationErrorHandling.LeaveUntransformed.self, forKey: .leaveUntransformed)
     {
       try modeCheckAndSet(.leaveUntransformed(leaveUntransformed))
     }
@@ -231,9 +231,9 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
   /// How transformation errors should be handled.
   public enum ModeOneOf: Codable, Equatable, Sendable {
     /// Throw an error
-    indirect case throwError(TransformationErrorHandling.ThrowError?)
+    indirect case throwError(TransformationErrorHandling.ThrowError)
     /// Ignore errors
-    indirect case leaveUntransformed(TransformationErrorHandling.LeaveUntransformed?)
+    indirect case leaveUntransformed(TransformationErrorHandling.LeaveUntransformed)
   }
 
   public static var _anyTypeUrl: Swift.String {

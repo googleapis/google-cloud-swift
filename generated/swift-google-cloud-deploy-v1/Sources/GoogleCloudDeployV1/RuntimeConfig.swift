@@ -71,10 +71,10 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       runtimeConfig = $0
     }
-    if let kubernetes = try container.decodeIfPresent(KubernetesConfig?.self, forKey: .kubernetes) {
+    if let kubernetes = try container.decodeIfPresent(KubernetesConfig.self, forKey: .kubernetes) {
       try runtimeConfigCheckAndSet(.kubernetes(kubernetes))
     }
-    if let cloudRun = try container.decodeIfPresent(CloudRunConfig?.self, forKey: .cloudRun) {
+    if let cloudRun = try container.decodeIfPresent(CloudRunConfig.self, forKey: .cloudRun) {
       try runtimeConfigCheckAndSet(.cloudRun(cloudRun))
     }
     self.runtimeConfig = runtimeConfig
@@ -103,9 +103,9 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The runtime configuration details.
   public enum RuntimeConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Kubernetes runtime configuration.
-    indirect case kubernetes(KubernetesConfig?)
+    indirect case kubernetes(KubernetesConfig)
     /// Optional. Cloud Run runtime configuration.
-    indirect case cloudRun(CloudRunConfig?)
+    indirect case cloudRun(CloudRunConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

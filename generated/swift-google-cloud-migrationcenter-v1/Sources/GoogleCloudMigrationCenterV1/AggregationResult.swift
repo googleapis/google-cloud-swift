@@ -80,19 +80,19 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       result = $0
     }
-    if let count = try container.decodeIfPresent(AggregationResult.Count?.self, forKey: .count) {
+    if let count = try container.decodeIfPresent(AggregationResult.Count.self, forKey: .count) {
       try resultCheckAndSet(.count(count))
     }
-    if let sum = try container.decodeIfPresent(AggregationResult.Sum?.self, forKey: .sum) {
+    if let sum = try container.decodeIfPresent(AggregationResult.Sum.self, forKey: .sum) {
       try resultCheckAndSet(.sum(sum))
     }
     if let histogram = try container.decodeIfPresent(
-      AggregationResult.Histogram?.self, forKey: .histogram)
+      AggregationResult.Histogram.self, forKey: .histogram)
     {
       try resultCheckAndSet(.histogram(histogram))
     }
     if let frequency = try container.decodeIfPresent(
-      AggregationResult.Frequency?.self, forKey: .frequency)
+      AggregationResult.Frequency.self, forKey: .frequency)
     {
       try resultCheckAndSet(.frequency(frequency))
     }
@@ -492,10 +492,10 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   public enum ResultOneOf: Codable, Equatable, Sendable {
-    indirect case count(AggregationResult.Count?)
-    indirect case sum(AggregationResult.Sum?)
-    indirect case histogram(AggregationResult.Histogram?)
-    indirect case frequency(AggregationResult.Frequency?)
+    indirect case count(AggregationResult.Count)
+    indirect case sum(AggregationResult.Sum)
+    indirect case histogram(AggregationResult.Histogram)
+    indirect case frequency(AggregationResult.Frequency)
   }
 
   public static var _anyTypeUrl: Swift.String {

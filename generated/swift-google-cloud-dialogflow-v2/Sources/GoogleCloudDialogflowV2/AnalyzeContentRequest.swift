@@ -134,17 +134,17 @@
         }
         input = $0
       }
-      if let textInput = try container.decodeIfPresent(TextInput?.self, forKey: .textInput) {
+      if let textInput = try container.decodeIfPresent(TextInput.self, forKey: .textInput) {
         try inputCheckAndSet(.textInput(textInput))
       }
-      if let audioInput = try container.decodeIfPresent(AudioInput?.self, forKey: .audioInput) {
+      if let audioInput = try container.decodeIfPresent(AudioInput.self, forKey: .audioInput) {
         try inputCheckAndSet(.audioInput(audioInput))
       }
-      if let eventInput = try container.decodeIfPresent(EventInput?.self, forKey: .eventInput) {
+      if let eventInput = try container.decodeIfPresent(EventInput.self, forKey: .eventInput) {
         try inputCheckAndSet(.eventInput(eventInput))
       }
       if let suggestionInput = try container.decodeIfPresent(
-        SuggestionInput?.self, forKey: .suggestionInput)
+        SuggestionInput.self, forKey: .suggestionInput)
       {
         try inputCheckAndSet(.suggestionInput(suggestionInput))
       }
@@ -184,13 +184,13 @@
     /// Required. The input content.
     public enum InputOneOf: Codable, Equatable, Sendable {
       /// The natural language text to be processed.
-      indirect case textInput(TextInput?)
+      indirect case textInput(TextInput)
       /// The natural language speech audio to be processed.
-      indirect case audioInput(AudioInput?)
+      indirect case audioInput(AudioInput)
       /// An input event to send to Dialogflow.
-      indirect case eventInput(EventInput?)
+      indirect case eventInput(EventInput)
       /// An input representing the selection of a suggestion.
-      indirect case suggestionInput(SuggestionInput?)
+      indirect case suggestionInput(SuggestionInput)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -308,17 +308,17 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
       systemSpec = $0
     }
     if let sqlDatabaseSystemSpec = try container.decodeIfPresent(
-      SqlDatabaseSystemSpec?.self, forKey: .sqlDatabaseSystemSpec)
+      SqlDatabaseSystemSpec.self, forKey: .sqlDatabaseSystemSpec)
     {
       try systemSpecCheckAndSet(.sqlDatabaseSystemSpec(sqlDatabaseSystemSpec))
     }
     if let lookerSystemSpec = try container.decodeIfPresent(
-      LookerSystemSpec?.self, forKey: .lookerSystemSpec)
+      LookerSystemSpec.self, forKey: .lookerSystemSpec)
     {
       try systemSpecCheckAndSet(.lookerSystemSpec(lookerSystemSpec))
     }
     if let cloudBigtableSystemSpec = try container.decodeIfPresent(
-      CloudBigtableSystemSpec?.self, forKey: .cloudBigtableSystemSpec)
+      CloudBigtableSystemSpec.self, forKey: .cloudBigtableSystemSpec)
     {
       try systemSpecCheckAndSet(.cloudBigtableSystemSpec(cloudBigtableSystemSpec))
     }
@@ -335,17 +335,17 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
       typeSpec = $0
     }
     if let gcsFilesetSpec = try container.decodeIfPresent(
-      GcsFilesetSpec?.self, forKey: .gcsFilesetSpec)
+      GcsFilesetSpec.self, forKey: .gcsFilesetSpec)
     {
       try typeSpecCheckAndSet(.gcsFilesetSpec(gcsFilesetSpec))
     }
     if let bigqueryTableSpec = try container.decodeIfPresent(
-      BigQueryTableSpec?.self, forKey: .bigqueryTableSpec)
+      BigQueryTableSpec.self, forKey: .bigqueryTableSpec)
     {
       try typeSpecCheckAndSet(.bigqueryTableSpec(bigqueryTableSpec))
     }
     if let bigqueryDateShardedSpec = try container.decodeIfPresent(
-      BigQueryDateShardedSpec?.self, forKey: .bigqueryDateShardedSpec)
+      BigQueryDateShardedSpec.self, forKey: .bigqueryDateShardedSpec)
     {
       try typeSpecCheckAndSet(.bigqueryDateShardedSpec(bigqueryDateShardedSpec))
     }
@@ -362,32 +362,32 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
       spec = $0
     }
     if let databaseTableSpec = try container.decodeIfPresent(
-      DatabaseTableSpec?.self, forKey: .databaseTableSpec)
+      DatabaseTableSpec.self, forKey: .databaseTableSpec)
     {
       try specCheckAndSet(.databaseTableSpec(databaseTableSpec))
     }
     if let dataSourceConnectionSpec = try container.decodeIfPresent(
-      DataSourceConnectionSpec?.self, forKey: .dataSourceConnectionSpec)
+      DataSourceConnectionSpec.self, forKey: .dataSourceConnectionSpec)
     {
       try specCheckAndSet(.dataSourceConnectionSpec(dataSourceConnectionSpec))
     }
-    if let routineSpec = try container.decodeIfPresent(RoutineSpec?.self, forKey: .routineSpec) {
+    if let routineSpec = try container.decodeIfPresent(RoutineSpec.self, forKey: .routineSpec) {
       try specCheckAndSet(.routineSpec(routineSpec))
     }
-    if let datasetSpec = try container.decodeIfPresent(DatasetSpec?.self, forKey: .datasetSpec) {
+    if let datasetSpec = try container.decodeIfPresent(DatasetSpec.self, forKey: .datasetSpec) {
       try specCheckAndSet(.datasetSpec(datasetSpec))
     }
-    if let filesetSpec = try container.decodeIfPresent(FilesetSpec?.self, forKey: .filesetSpec) {
+    if let filesetSpec = try container.decodeIfPresent(FilesetSpec.self, forKey: .filesetSpec) {
       try specCheckAndSet(.filesetSpec(filesetSpec))
     }
-    if let serviceSpec = try container.decodeIfPresent(ServiceSpec?.self, forKey: .serviceSpec) {
+    if let serviceSpec = try container.decodeIfPresent(ServiceSpec.self, forKey: .serviceSpec) {
       try specCheckAndSet(.serviceSpec(serviceSpec))
     }
-    if let modelSpec = try container.decodeIfPresent(ModelSpec?.self, forKey: .modelSpec) {
+    if let modelSpec = try container.decodeIfPresent(ModelSpec.self, forKey: .modelSpec) {
       try specCheckAndSet(.modelSpec(modelSpec))
     }
     if let featureOnlineStoreSpec = try container.decodeIfPresent(
-      FeatureOnlineStoreSpec?.self, forKey: .featureOnlineStoreSpec)
+      FeatureOnlineStoreSpec.self, forKey: .featureOnlineStoreSpec)
     {
       try specCheckAndSet(.featureOnlineStoreSpec(featureOnlineStoreSpec))
     }
@@ -523,29 +523,29 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Specification that applies to a relational database system. Only settable
     /// when `user_specified_system` is equal to `SQL_DATABASE`
-    indirect case sqlDatabaseSystemSpec(SqlDatabaseSystemSpec?)
+    indirect case sqlDatabaseSystemSpec(SqlDatabaseSystemSpec)
     /// Specification that applies to Looker sysstem. Only settable when
     /// `user_specified_system` is equal to `LOOKER`
-    indirect case lookerSystemSpec(LookerSystemSpec?)
+    indirect case lookerSystemSpec(LookerSystemSpec)
     /// Specification that applies to Cloud Bigtable system. Only settable when
     /// `integrated_system` is equal to `CLOUD_BIGTABLE`
-    indirect case cloudBigtableSystemSpec(CloudBigtableSystemSpec?)
+    indirect case cloudBigtableSystemSpec(CloudBigtableSystemSpec)
   }
 
   /// Type specification.
   public enum TypeSpecOneOf: Codable, Equatable, Sendable {
     /// Specification that applies to a Cloud Storage fileset. Valid only
     /// for entries with the `FILESET` type.
-    indirect case gcsFilesetSpec(GcsFilesetSpec?)
+    indirect case gcsFilesetSpec(GcsFilesetSpec)
     /// Output only. Specification that applies to a BigQuery table. Valid only
     /// for entries with the `TABLE` type.
-    indirect case bigqueryTableSpec(BigQueryTableSpec?)
+    indirect case bigqueryTableSpec(BigQueryTableSpec)
     /// Output only. Specification for a group of BigQuery tables with
     /// the `[prefix]YYYYMMDD` name pattern.
     ///
     /// For more information, see [Introduction to partitioned tables]
     /// (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
-    indirect case bigqueryDateShardedSpec(BigQueryDateShardedSpec?)
+    indirect case bigqueryDateShardedSpec(BigQueryDateShardedSpec)
   }
 
   /// Type- and system-specific information. Specifications for types contain
@@ -557,24 +557,24 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum SpecOneOf: Codable, Equatable, Sendable {
     /// Specification that applies to a table resource. Valid only
     /// for entries with the `TABLE` or `EXPLORE` type.
-    indirect case databaseTableSpec(DatabaseTableSpec?)
+    indirect case databaseTableSpec(DatabaseTableSpec)
     /// Specification that applies to a data source connection. Valid only
     /// for entries with the `DATA_SOURCE_CONNECTION` type.
-    indirect case dataSourceConnectionSpec(DataSourceConnectionSpec?)
+    indirect case dataSourceConnectionSpec(DataSourceConnectionSpec)
     /// Specification that applies to a user-defined function or procedure. Valid
     /// only for entries with the `ROUTINE` type.
-    indirect case routineSpec(RoutineSpec?)
+    indirect case routineSpec(RoutineSpec)
     /// Specification that applies to a dataset.
-    indirect case datasetSpec(DatasetSpec?)
+    indirect case datasetSpec(DatasetSpec)
     /// Specification that applies to a fileset resource. Valid only
     /// for entries with the `FILESET` type.
-    indirect case filesetSpec(FilesetSpec?)
+    indirect case filesetSpec(FilesetSpec)
     /// Specification that applies to a Service resource.
-    indirect case serviceSpec(ServiceSpec?)
+    indirect case serviceSpec(ServiceSpec)
     /// Model specification.
-    indirect case modelSpec(ModelSpec?)
+    indirect case modelSpec(ModelSpec)
     /// FeatureonlineStore spec for Vertex AI Feature Store.
-    indirect case featureOnlineStoreSpec(FeatureOnlineStoreSpec?)
+    indirect case featureOnlineStoreSpec(FeatureOnlineStoreSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -89,7 +89,7 @@
         nasAlgorithmSpec = $0
       }
       if let multiTrialAlgorithmSpec = try container.decodeIfPresent(
-        NasJobSpec.MultiTrialAlgorithmSpec?.self, forKey: .multiTrialAlgorithmSpec)
+        NasJobSpec.MultiTrialAlgorithmSpec.self, forKey: .multiTrialAlgorithmSpec)
       {
         try nasAlgorithmSpecCheckAndSet(.multiTrialAlgorithmSpec(multiTrialAlgorithmSpec))
       }
@@ -732,7 +732,7 @@
     /// The Neural Architecture Search (NAS) algorithm specification.
     public enum NasAlgorithmSpecOneOf: Codable, Equatable, Sendable {
       /// The spec of multi-trial algorithms.
-      indirect case multiTrialAlgorithmSpec(NasJobSpec.MultiTrialAlgorithmSpec?)
+      indirect case multiTrialAlgorithmSpec(NasJobSpec.MultiTrialAlgorithmSpec)
     }
 
     public static var _anyTypeUrl: Swift.String {

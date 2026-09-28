@@ -88,7 +88,7 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
       credentials = $0
     }
     if let cloudSqlSingleUserCredentials = try container.decodeIfPresent(
-      EnableManagedRotationRequest.CloudSQLSingleUserCredentials?.self,
+      EnableManagedRotationRequest.CloudSQLSingleUserCredentials.self,
       forKey: .cloudSqlSingleUserCredentials)
     {
       try credentialsCheckAndSet(.cloudSqlSingleUserCredentials(cloudSqlSingleUserCredentials))
@@ -209,7 +209,7 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
   public enum CredentialsOneOf: Codable, Equatable, Sendable {
     /// Credentials required for Cloud SQL DB for Single user Managed Rotation.
     indirect case cloudSqlSingleUserCredentials(
-      EnableManagedRotationRequest.CloudSQLSingleUserCredentials?)
+      EnableManagedRotationRequest.CloudSQLSingleUserCredentials)
   }
 
   public static var _anyTypeUrl: Swift.String {

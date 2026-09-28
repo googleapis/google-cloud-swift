@@ -313,17 +313,17 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
         options = $0
       }
       if let linearBuckets = try container.decodeIfPresent(
-        Distribution.BucketOptions.Linear?.self, forKey: .linearBuckets)
+        Distribution.BucketOptions.Linear.self, forKey: .linearBuckets)
       {
         try optionsCheckAndSet(.linearBuckets(linearBuckets))
       }
       if let exponentialBuckets = try container.decodeIfPresent(
-        Distribution.BucketOptions.Exponential?.self, forKey: .exponentialBuckets)
+        Distribution.BucketOptions.Exponential.self, forKey: .exponentialBuckets)
       {
         try optionsCheckAndSet(.exponentialBuckets(exponentialBuckets))
       }
       if let explicitBuckets = try container.decodeIfPresent(
-        Distribution.BucketOptions.Explicit?.self, forKey: .explicitBuckets)
+        Distribution.BucketOptions.Explicit.self, forKey: .explicitBuckets)
       {
         try optionsCheckAndSet(.explicitBuckets(explicitBuckets))
       }
@@ -623,11 +623,11 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Exactly one of these three fields must be set.
     public enum OptionsOneOf: Codable, Equatable, Sendable {
       /// The linear bucket.
-      indirect case linearBuckets(Distribution.BucketOptions.Linear?)
+      indirect case linearBuckets(Distribution.BucketOptions.Linear)
       /// The exponential buckets.
-      indirect case exponentialBuckets(Distribution.BucketOptions.Exponential?)
+      indirect case exponentialBuckets(Distribution.BucketOptions.Exponential)
       /// The explicit buckets.
-      indirect case explicitBuckets(Distribution.BucketOptions.Explicit?)
+      indirect case explicitBuckets(Distribution.BucketOptions.Explicit)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -69,7 +69,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
       location = $0
     }
     if let awsLocation = try container.decodeIfPresent(
-      OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation?.self, forKey: .awsLocation)
+      OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation.self, forKey: .awsLocation)
     {
       try locationCheckAndSet(.awsLocation(awsLocation))
     }
@@ -205,7 +205,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
   /// The other cloud starting location for discovery.
   public enum LocationOneOf: Codable, Equatable, Sendable {
     /// The AWS starting location for discovery.
-    indirect case awsLocation(OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation?)
+    indirect case awsLocation(OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation)
   }
 
   public static var _anyTypeUrl: Swift.String {

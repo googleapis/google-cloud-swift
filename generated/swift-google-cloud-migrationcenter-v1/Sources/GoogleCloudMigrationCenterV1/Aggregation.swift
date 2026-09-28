@@ -82,19 +82,17 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       aggregationFunction = $0
     }
-    if let count = try container.decodeIfPresent(Aggregation.Count?.self, forKey: .count) {
+    if let count = try container.decodeIfPresent(Aggregation.Count.self, forKey: .count) {
       try aggregationFunctionCheckAndSet(.count(count))
     }
-    if let sum = try container.decodeIfPresent(Aggregation.Sum?.self, forKey: .sum) {
+    if let sum = try container.decodeIfPresent(Aggregation.Sum.self, forKey: .sum) {
       try aggregationFunctionCheckAndSet(.sum(sum))
     }
-    if let histogram = try container.decodeIfPresent(
-      Aggregation.Histogram?.self, forKey: .histogram)
+    if let histogram = try container.decodeIfPresent(Aggregation.Histogram.self, forKey: .histogram)
     {
       try aggregationFunctionCheckAndSet(.histogram(histogram))
     }
-    if let frequency = try container.decodeIfPresent(
-      Aggregation.Frequency?.self, forKey: .frequency)
+    if let frequency = try container.decodeIfPresent(Aggregation.Frequency.self, forKey: .frequency)
     {
       try aggregationFunctionCheckAndSet(.frequency(frequency))
     }
@@ -375,13 +373,13 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum AggregationFunctionOneOf: Codable, Equatable, Sendable {
     /// Count the number of matching objects.
-    indirect case count(Aggregation.Count?)
+    indirect case count(Aggregation.Count)
     /// Sum over a numeric field.
-    indirect case sum(Aggregation.Sum?)
+    indirect case sum(Aggregation.Sum)
     /// Creates a bucketed histogram of field values.
-    indirect case histogram(Aggregation.Histogram?)
+    indirect case histogram(Aggregation.Histogram)
     /// Creates a frequency distribution of all field values.
-    indirect case frequency(Aggregation.Frequency?)
+    indirect case frequency(Aggregation.Frequency)
   }
 
   public static var _anyTypeUrl: Swift.String {

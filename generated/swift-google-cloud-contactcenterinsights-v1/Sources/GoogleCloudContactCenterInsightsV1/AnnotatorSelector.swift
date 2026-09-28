@@ -473,7 +473,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
         scorecardSource = $0
       }
       if let scorecardList = try container.decodeIfPresent(
-        AnnotatorSelector.QaConfig.ScorecardList?.self, forKey: .scorecardList)
+        AnnotatorSelector.QaConfig.ScorecardList.self, forKey: .scorecardList)
       {
         try scorecardSourceCheckAndSet(.scorecardList(scorecardList))
       }
@@ -572,7 +572,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Which scorecards should be scored.
     public enum ScorecardSourceOneOf: Codable, Equatable, Sendable {
       /// A manual list of scorecards to score.
-      indirect case scorecardList(AnnotatorSelector.QaConfig.ScorecardList?)
+      indirect case scorecardList(AnnotatorSelector.QaConfig.ScorecardList)
     }
 
     public static var _anyTypeUrl: Swift.String {

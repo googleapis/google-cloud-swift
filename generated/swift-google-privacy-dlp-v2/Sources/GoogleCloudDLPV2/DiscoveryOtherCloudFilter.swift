@@ -76,16 +76,16 @@ public struct DiscoveryOtherCloudFilter: Codable, Equatable, GoogleWKT._AnyPacka
       filter = $0
     }
     if let collection = try container.decodeIfPresent(
-      OtherCloudResourceCollection?.self, forKey: .collection)
+      OtherCloudResourceCollection.self, forKey: .collection)
     {
       try filterCheckAndSet(.collection(collection))
     }
     if let singleResource = try container.decodeIfPresent(
-      OtherCloudSingleResourceReference?.self, forKey: .singleResource)
+      OtherCloudSingleResourceReference.self, forKey: .singleResource)
     {
       try filterCheckAndSet(.singleResource(singleResource))
     }
-    if let others = try container.decodeIfPresent(AllOtherResources?.self, forKey: .others) {
+    if let others = try container.decodeIfPresent(AllOtherResources.self, forKey: .others) {
       try filterCheckAndSet(.others(others))
     }
     self.filter = filter
@@ -118,15 +118,15 @@ public struct DiscoveryOtherCloudFilter: Codable, Equatable, GoogleWKT._AnyPacka
   /// the condition. Defaults to `others` if none is set.
   public enum FilterOneOf: Codable, Equatable, Sendable {
     /// A collection of resources for this filter to apply to.
-    indirect case collection(OtherCloudResourceCollection?)
+    indirect case collection(OtherCloudResourceCollection)
     /// The resource to scan. Configs using this filter can only have one target
     /// (the target with this single resource reference).
-    indirect case singleResource(OtherCloudSingleResourceReference?)
+    indirect case singleResource(OtherCloudSingleResourceReference)
     /// Optional. Catch-all. This should always be the last target in the list
     /// because anything above it will apply first. Should only appear once in a
     /// configuration. If none is specified, a default one will be added
     /// automatically.
-    indirect case others(AllOtherResources?)
+    indirect case others(AllOtherResources)
   }
 
   public static var _anyTypeUrl: Swift.String {

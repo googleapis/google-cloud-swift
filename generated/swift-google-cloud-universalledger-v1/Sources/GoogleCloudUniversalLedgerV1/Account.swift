@@ -117,41 +117,41 @@ public struct Account: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       accountDetails = $0
     }
-    if let userDetails = try container.decodeIfPresent(UserDetails?.self, forKey: .userDetails) {
+    if let userDetails = try container.decodeIfPresent(UserDetails.self, forKey: .userDetails) {
       try accountDetailsCheckAndSet(.userDetails(userDetails))
     }
     if let accountManagerDetails = try container.decodeIfPresent(
-      AccountManagerDetails?.self, forKey: .accountManagerDetails)
+      AccountManagerDetails.self, forKey: .accountManagerDetails)
     {
       try accountDetailsCheckAndSet(.accountManagerDetails(accountManagerDetails))
     }
     if let tokenManagerDetails = try container.decodeIfPresent(
-      TokenManagerDetails?.self, forKey: .tokenManagerDetails)
+      TokenManagerDetails.self, forKey: .tokenManagerDetails)
     {
       try accountDetailsCheckAndSet(.tokenManagerDetails(tokenManagerDetails))
     }
     if let contractTokenManagerDetails = try container.decodeIfPresent(
-      ContractTokenManagerDetails?.self, forKey: .contractTokenManagerDetails)
+      ContractTokenManagerDetails.self, forKey: .contractTokenManagerDetails)
     {
       try accountDetailsCheckAndSet(.contractTokenManagerDetails(contractTokenManagerDetails))
     }
     if let contractDetails = try container.decodeIfPresent(
-      ContractDetails?.self, forKey: .contractDetails)
+      ContractDetails.self, forKey: .contractDetails)
     {
       try accountDetailsCheckAndSet(.contractDetails(contractDetails))
     }
     if let clearinghouseDetails = try container.decodeIfPresent(
-      ClearingHouseDetails?.self, forKey: .clearinghouseDetails)
+      ClearingHouseDetails.self, forKey: .clearinghouseDetails)
     {
       try accountDetailsCheckAndSet(.clearinghouseDetails(clearinghouseDetails))
     }
     if let currencyOperatorDetails = try container.decodeIfPresent(
-      CurrencyOperatorDetails?.self, forKey: .currencyOperatorDetails)
+      CurrencyOperatorDetails.self, forKey: .currencyOperatorDetails)
     {
       try accountDetailsCheckAndSet(.currencyOperatorDetails(currencyOperatorDetails))
     }
     if let platformOperatorDetails = try container.decodeIfPresent(
-      PlatformOperatorDetails?.self, forKey: .platformOperatorDetails)
+      PlatformOperatorDetails.self, forKey: .platformOperatorDetails)
     {
       try accountDetailsCheckAndSet(.platformOperatorDetails(platformOperatorDetails))
     }
@@ -197,21 +197,21 @@ public struct Account: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specific details based on the type of account.
   public enum AccountDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Details for a standard user account.
-    indirect case userDetails(UserDetails?)
+    indirect case userDetails(UserDetails)
     /// Output only. Details for an account manager account.
-    indirect case accountManagerDetails(AccountManagerDetails?)
+    indirect case accountManagerDetails(AccountManagerDetails)
     /// Output only. Details for a token manager account.
-    indirect case tokenManagerDetails(TokenManagerDetails?)
+    indirect case tokenManagerDetails(TokenManagerDetails)
     /// Output only. Details for a contract token manager account.
-    indirect case contractTokenManagerDetails(ContractTokenManagerDetails?)
+    indirect case contractTokenManagerDetails(ContractTokenManagerDetails)
     /// Output only. Details for a smart contract account.
-    indirect case contractDetails(ContractDetails?)
+    indirect case contractDetails(ContractDetails)
     /// Output only. Details for a clearinghouse account.
-    indirect case clearinghouseDetails(ClearingHouseDetails?)
+    indirect case clearinghouseDetails(ClearingHouseDetails)
     /// Output only. Details for a currency operator account.
-    indirect case currencyOperatorDetails(CurrencyOperatorDetails?)
+    indirect case currencyOperatorDetails(CurrencyOperatorDetails)
     /// Output only. Details for a platform operator account.
-    indirect case platformOperatorDetails(PlatformOperatorDetails?)
+    indirect case platformOperatorDetails(PlatformOperatorDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

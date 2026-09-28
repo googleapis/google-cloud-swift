@@ -86,20 +86,20 @@ public struct ImageImportStep: Codable, Equatable, GoogleWKT._AnyPackable,
       step = $0
     }
     if let initializing = try container.decodeIfPresent(
-      InitializingImageImportStep?.self, forKey: .initializing)
+      InitializingImageImportStep.self, forKey: .initializing)
     {
       try stepCheckAndSet(.initializing(initializing))
     }
     if let loadingSourceFiles = try container.decodeIfPresent(
-      LoadingImageSourceFilesStep?.self, forKey: .loadingSourceFiles)
+      LoadingImageSourceFilesStep.self, forKey: .loadingSourceFiles)
     {
       try stepCheckAndSet(.loadingSourceFiles(loadingSourceFiles))
     }
-    if let adaptingOs = try container.decodeIfPresent(AdaptingOSStep?.self, forKey: .adaptingOs) {
+    if let adaptingOs = try container.decodeIfPresent(AdaptingOSStep.self, forKey: .adaptingOs) {
       try stepCheckAndSet(.adaptingOs(adaptingOs))
     }
     if let creatingImage = try container.decodeIfPresent(
-      CreatingImageStep?.self, forKey: .creatingImage)
+      CreatingImageStep.self, forKey: .creatingImage)
     {
       try stepCheckAndSet(.creatingImage(creatingImage))
     }
@@ -134,13 +134,13 @@ public struct ImageImportStep: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum StepOneOf: Codable, Equatable, Sendable {
     /// Initializing step.
-    indirect case initializing(InitializingImageImportStep?)
+    indirect case initializing(InitializingImageImportStep)
     /// Loading source files step.
-    indirect case loadingSourceFiles(LoadingImageSourceFilesStep?)
+    indirect case loadingSourceFiles(LoadingImageSourceFilesStep)
     /// Adapting OS step.
-    indirect case adaptingOs(AdaptingOSStep?)
+    indirect case adaptingOs(AdaptingOSStep)
     /// Creating image step.
-    indirect case creatingImage(CreatingImageStep?)
+    indirect case creatingImage(CreatingImageStep)
   }
 
   public static var _anyTypeUrl: Swift.String {

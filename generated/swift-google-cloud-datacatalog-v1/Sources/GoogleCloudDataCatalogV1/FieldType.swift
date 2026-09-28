@@ -74,7 +74,7 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try typeDeclCheckAndSet(.primitiveType(primitiveType))
     }
-    if let enumType = try container.decodeIfPresent(FieldType.EnumType?.self, forKey: .enumType) {
+    if let enumType = try container.decodeIfPresent(FieldType.EnumType.self, forKey: .enumType) {
       try typeDeclCheckAndSet(.enumType(enumType))
     }
     self.typeDecl = typeDecl
@@ -390,7 +390,7 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Primitive types, such as string, boolean, etc.
     case primitiveType(FieldType.PrimitiveType)
     /// An enum type.
-    indirect case enumType(FieldType.EnumType?)
+    indirect case enumType(FieldType.EnumType)
   }
 
   public static var _anyTypeUrl: Swift.String {

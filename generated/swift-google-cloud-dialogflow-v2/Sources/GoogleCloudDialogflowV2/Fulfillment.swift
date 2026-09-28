@@ -121,7 +121,7 @@
         fulfillment = $0
       }
       if let genericWebService = try container.decodeIfPresent(
-        Fulfillment.GenericWebService?.self, forKey: .genericWebService)
+        Fulfillment.GenericWebService.self, forKey: .genericWebService)
       {
         try fulfillmentCheckAndSet(.genericWebService(genericWebService))
       }
@@ -458,7 +458,7 @@
     /// Required. The fulfillment configuration.
     public enum FulfillmentOneOf: Codable, Equatable, Sendable {
       /// Configuration for a generic web service.
-      indirect case genericWebService(Fulfillment.GenericWebService?)
+      indirect case genericWebService(Fulfillment.GenericWebService)
     }
 
     public static var _anyTypeUrl: Swift.String {

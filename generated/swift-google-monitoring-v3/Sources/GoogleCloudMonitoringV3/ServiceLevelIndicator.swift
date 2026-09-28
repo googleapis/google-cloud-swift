@@ -86,16 +86,14 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       type = $0
     }
-    if let basicSli = try container.decodeIfPresent(BasicSli?.self, forKey: .basicSli) {
+    if let basicSli = try container.decodeIfPresent(BasicSli.self, forKey: .basicSli) {
       try typeCheckAndSet(.basicSli(basicSli))
     }
-    if let requestBased = try container.decodeIfPresent(
-      RequestBasedSli?.self, forKey: .requestBased)
+    if let requestBased = try container.decodeIfPresent(RequestBasedSli.self, forKey: .requestBased)
     {
       try typeCheckAndSet(.requestBased(requestBased))
     }
-    if let windowsBased = try container.decodeIfPresent(
-      WindowsBasedSli?.self, forKey: .windowsBased)
+    if let windowsBased = try container.decodeIfPresent(WindowsBasedSli.self, forKey: .windowsBased)
     {
       try typeCheckAndSet(.windowsBased(windowsBased))
     }
@@ -129,11 +127,11 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleWKT._AnyPackable,
   /// time windows
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Basic SLI on a well-known service type.
-    indirect case basicSli(BasicSli?)
+    indirect case basicSli(BasicSli)
     /// Request-based SLIs
-    indirect case requestBased(RequestBasedSli?)
+    indirect case requestBased(RequestBasedSli)
     /// Windows-based SLIs
-    indirect case windowsBased(WindowsBasedSli?)
+    indirect case windowsBased(WindowsBasedSli)
   }
 
   public static var _anyTypeUrl: Swift.String {

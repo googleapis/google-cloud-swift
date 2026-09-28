@@ -85,12 +85,11 @@ public struct LargeCustomDictionaryConfig: Codable, Equatable, GoogleWKT._AnyPac
       source = $0
     }
     if let cloudStorageFileSet = try container.decodeIfPresent(
-      CloudStorageFileSet?.self, forKey: .cloudStorageFileSet)
+      CloudStorageFileSet.self, forKey: .cloudStorageFileSet)
     {
       try sourceCheckAndSet(.cloudStorageFileSet(cloudStorageFileSet))
     }
-    if let bigQueryField = try container.decodeIfPresent(
-      BigQueryField?.self, forKey: .bigQueryField)
+    if let bigQueryField = try container.decodeIfPresent(BigQueryField.self, forKey: .bigQueryField)
     {
       try sourceCheckAndSet(.bigQueryField(bigQueryField))
     }
@@ -121,9 +120,9 @@ public struct LargeCustomDictionaryConfig: Codable, Equatable, GoogleWKT._AnyPac
   /// Source of the dictionary.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Set of files containing newline-delimited lists of dictionary phrases.
-    indirect case cloudStorageFileSet(CloudStorageFileSet?)
+    indirect case cloudStorageFileSet(CloudStorageFileSet)
     /// Field in a BigQuery table where each cell represents a dictionary phrase.
-    indirect case bigQueryField(BigQueryField?)
+    indirect case bigQueryField(BigQueryField)
   }
 
   public static var _anyTypeUrl: Swift.String {

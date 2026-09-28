@@ -105,7 +105,7 @@
         try agentCheckAndSet(.agentContent(agentContent))
       }
       if let gitSource = try container.decodeIfPresent(
-        RestoreAgentRequest.GitSource?.self, forKey: .gitSource)
+        RestoreAgentRequest.GitSource.self, forKey: .gitSource)
       {
         try agentCheckAndSet(.gitSource(gitSource))
       }
@@ -339,7 +339,7 @@
       /// Uncompressed raw byte content for agent.
       case agentContent(Foundation.Data)
       /// Setting for restoring from a git branch
-      indirect case gitSource(RestoreAgentRequest.GitSource?)
+      indirect case gitSource(RestoreAgentRequest.GitSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

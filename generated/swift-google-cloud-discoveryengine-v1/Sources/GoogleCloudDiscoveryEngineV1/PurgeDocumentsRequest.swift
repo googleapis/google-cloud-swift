@@ -109,11 +109,11 @@
         }
         source = $0
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       if let inlineSource = try container.decodeIfPresent(
-        PurgeDocumentsRequest.InlineSource?.self, forKey: .inlineSource)
+        PurgeDocumentsRequest.InlineSource.self, forKey: .inlineSource)
       {
         try sourceCheckAndSet(.inlineSource(inlineSource))
       }
@@ -228,9 +228,9 @@
       /// [Document.id][google.cloud.discoveryengine.v1.Document.id] per line.
       ///
       /// [google.cloud.discoveryengine.v1.Document.id]: <doc:Document/id>
-      indirect case gcsSource(GcsSource?)
+      indirect case gcsSource(GcsSource)
       /// Inline source for the input content for purge.
-      indirect case inlineSource(PurgeDocumentsRequest.InlineSource?)
+      indirect case inlineSource(PurgeDocumentsRequest.InlineSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

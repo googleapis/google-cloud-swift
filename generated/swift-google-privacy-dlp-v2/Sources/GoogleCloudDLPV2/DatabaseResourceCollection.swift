@@ -71,7 +71,7 @@ public struct DatabaseResourceCollection: Codable, Equatable, GoogleWKT._AnyPack
       pattern = $0
     }
     if let includeRegexes = try container.decodeIfPresent(
-      DatabaseResourceRegexes?.self, forKey: .includeRegexes)
+      DatabaseResourceRegexes.self, forKey: .includeRegexes)
     {
       try patternCheckAndSet(.includeRegexes(includeRegexes))
     }
@@ -100,7 +100,7 @@ public struct DatabaseResourceCollection: Codable, Equatable, GoogleWKT._AnyPack
   /// be used.
   public enum PatternOneOf: Codable, Equatable, Sendable {
     /// A collection of regular expressions to match a database resource against.
-    indirect case includeRegexes(DatabaseResourceRegexes?)
+    indirect case includeRegexes(DatabaseResourceRegexes)
   }
 
   public static var _anyTypeUrl: Swift.String {

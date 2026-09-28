@@ -112,7 +112,7 @@
         try intentBatchCheckAndSet(.intentBatchUri(intentBatchUri))
       }
       if let intentBatchInline = try container.decodeIfPresent(
-        IntentBatch?.self, forKey: .intentBatchInline)
+        IntentBatch.self, forKey: .intentBatchInline)
       {
         try intentBatchCheckAndSet(.intentBatchInline(intentBatchInline))
       }
@@ -150,7 +150,7 @@
       /// type) or JSON object. Note: The URI must start with "gs://".
       case intentBatchUri(Swift.String)
       /// The collection of intents to update or create.
-      indirect case intentBatchInline(IntentBatch?)
+      indirect case intentBatchInline(IntentBatch)
     }
 
     public static var _anyTypeUrl: Swift.String {

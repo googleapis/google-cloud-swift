@@ -104,12 +104,12 @@
         response = $0
       }
       if let recognitionResult = try container.decodeIfPresent(
-        StreamingRecognitionResult?.self, forKey: .recognitionResult)
+        StreamingRecognitionResult.self, forKey: .recognitionResult)
       {
         try responseCheckAndSet(.recognitionResult(recognitionResult))
       }
       if let detectIntentResponse = try container.decodeIfPresent(
-        DetectIntentResponse?.self, forKey: .detectIntentResponse)
+        DetectIntentResponse.self, forKey: .detectIntentResponse)
       {
         try responseCheckAndSet(.detectIntentResponse(detectIntentResponse))
       }
@@ -140,9 +140,9 @@
     /// The output response.
     public enum ResponseOneOf: Codable, Equatable, Sendable {
       /// The result of speech recognition.
-      indirect case recognitionResult(StreamingRecognitionResult?)
+      indirect case recognitionResult(StreamingRecognitionResult)
       /// The response from detect intent.
-      indirect case detectIntentResponse(DetectIntentResponse?)
+      indirect case detectIntentResponse(DetectIntentResponse)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -195,17 +195,17 @@ public struct MigrationTask: Codable, Equatable, GoogleWKT._AnyPackable,
       taskDetails = $0
     }
     if let assessmentTaskDetails = try container.decodeIfPresent(
-      AssessmentTaskDetails?.self, forKey: .assessmentTaskDetails)
+      AssessmentTaskDetails.self, forKey: .assessmentTaskDetails)
     {
       try taskDetailsCheckAndSet(.assessmentTaskDetails(assessmentTaskDetails))
     }
     if let translationConfigDetails = try container.decodeIfPresent(
-      TranslationConfigDetails?.self, forKey: .translationConfigDetails)
+      TranslationConfigDetails.self, forKey: .translationConfigDetails)
     {
       try taskDetailsCheckAndSet(.translationConfigDetails(translationConfigDetails))
     }
     if let translationDetails = try container.decodeIfPresent(
-      TranslationDetails?.self, forKey: .translationDetails)
+      TranslationDetails.self, forKey: .translationDetails)
     {
       try taskDetailsCheckAndSet(.translationDetails(translationDetails))
     }
@@ -395,11 +395,11 @@ public struct MigrationTask: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The details of the task.
   public enum TaskDetailsOneOf: Codable, Equatable, Sendable {
     /// Task configuration for Assessment.
-    indirect case assessmentTaskDetails(AssessmentTaskDetails?)
+    indirect case assessmentTaskDetails(AssessmentTaskDetails)
     /// Task configuration for CW Batch/Offline SQL Translation.
-    indirect case translationConfigDetails(TranslationConfigDetails?)
+    indirect case translationConfigDetails(TranslationConfigDetails)
     /// Task details for unified SQL Translation.
-    indirect case translationDetails(TranslationDetails?)
+    indirect case translationDetails(TranslationDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

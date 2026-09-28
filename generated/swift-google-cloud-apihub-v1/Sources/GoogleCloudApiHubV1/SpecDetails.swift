@@ -77,7 +77,7 @@ public struct SpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let openApiSpecDetails = try container.decodeIfPresent(
-      OpenApiSpecDetails?.self, forKey: .openApiSpecDetails)
+      OpenApiSpecDetails.self, forKey: .openApiSpecDetails)
     {
       try detailsCheckAndSet(.openApiSpecDetails(openApiSpecDetails))
     }
@@ -111,7 +111,7 @@ public struct SpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// method.
     ///
     /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:options:)>
-    indirect case openApiSpecDetails(OpenApiSpecDetails?)
+    indirect case openApiSpecDetails(OpenApiSpecDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

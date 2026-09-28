@@ -84,7 +84,7 @@ public struct Waypoint: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       locationType = $0
     }
-    if let location = try container.decodeIfPresent(Location?.self, forKey: .location) {
+    if let location = try container.decodeIfPresent(Location.self, forKey: .location) {
       try locationTypeCheckAndSet(.location(location))
     }
     if let placeId = try container.decodeIfPresent(Swift.String.self, forKey: .placeId) {
@@ -118,7 +118,7 @@ public struct Waypoint: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum LocationTypeOneOf: Codable, Equatable, Sendable {
     /// A point specified using geographic coordinates, including an optional
     /// heading.
-    indirect case location(Location?)
+    indirect case location(Location)
     /// The POI Place ID associated with the waypoint.
     case placeId(Swift.String)
   }

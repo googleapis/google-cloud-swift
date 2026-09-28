@@ -68,7 +68,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       config = $0
     }
     if let pubsubNotification = try container.decodeIfPresent(
-      NotificationConfig.CloudPubSubNotificationConfig?.self, forKey: .pubsubNotification)
+      NotificationConfig.CloudPubSubNotificationConfig.self, forKey: .pubsubNotification)
     {
       try configCheckAndSet(.pubsubNotification(pubsubNotification))
     }
@@ -164,7 +164,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Cloud Pub/Sub Configuration to receive notifications.
-    indirect case pubsubNotification(NotificationConfig.CloudPubSubNotificationConfig?)
+    indirect case pubsubNotification(NotificationConfig.CloudPubSubNotificationConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

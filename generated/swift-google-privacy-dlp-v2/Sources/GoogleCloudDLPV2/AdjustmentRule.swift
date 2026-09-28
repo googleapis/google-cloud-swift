@@ -79,12 +79,12 @@ public struct AdjustmentRule: Codable, Equatable, GoogleWKT._AnyPackable,
       conditions = $0
     }
     if let adjustByMatchingInfoTypes = try container.decodeIfPresent(
-      AdjustByMatchingInfoTypes?.self, forKey: .adjustByMatchingInfoTypes)
+      AdjustByMatchingInfoTypes.self, forKey: .adjustByMatchingInfoTypes)
     {
       try conditionsCheckAndSet(.adjustByMatchingInfoTypes(adjustByMatchingInfoTypes))
     }
     if let adjustByImageFindings = try container.decodeIfPresent(
-      AdjustByImageFindings?.self, forKey: .adjustByImageFindings)
+      AdjustByImageFindings.self, forKey: .adjustByImageFindings)
     {
       try conditionsCheckAndSet(.adjustByImageFindings(adjustByImageFindings))
     }
@@ -115,9 +115,9 @@ public struct AdjustmentRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Condition under which the adjustment rule is applied.
   public enum ConditionsOneOf: Codable, Equatable, Sendable {
     /// Set of infoTypes for which findings would affect this rule.
-    indirect case adjustByMatchingInfoTypes(AdjustByMatchingInfoTypes?)
+    indirect case adjustByMatchingInfoTypes(AdjustByMatchingInfoTypes)
     /// AdjustmentRule condition for image findings.
-    indirect case adjustByImageFindings(AdjustByImageFindings?)
+    indirect case adjustByImageFindings(AdjustByImageFindings)
   }
 
   public static var _anyTypeUrl: Swift.String {

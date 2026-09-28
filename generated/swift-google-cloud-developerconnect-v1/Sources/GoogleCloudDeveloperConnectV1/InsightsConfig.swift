@@ -171,7 +171,7 @@ public struct InsightsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try insightsConfigContextCheckAndSet(.appHubApplication(appHubApplication))
     }
-    if let projects = try container.decodeIfPresent(Projects?.self, forKey: .projects) {
+    if let projects = try container.decodeIfPresent(Projects.self, forKey: .projects) {
       try insightsConfigContextCheckAndSet(.projects(projects))
     }
     self.insightsConfigContext = insightsConfigContext
@@ -338,7 +338,7 @@ public struct InsightsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// projects/{project}/locations/{location}/applications/{application}
     case appHubApplication(Swift.String)
     /// Optional. The projects to track with the InsightsConfig.
-    indirect case projects(Projects?)
+    indirect case projects(Projects)
   }
 
   public static var _anyTypeUrl: Swift.String {

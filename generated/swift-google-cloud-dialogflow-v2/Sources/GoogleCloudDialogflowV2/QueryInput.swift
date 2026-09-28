@@ -81,14 +81,14 @@
         input = $0
       }
       if let audioConfig = try container.decodeIfPresent(
-        InputAudioConfig?.self, forKey: .audioConfig)
+        InputAudioConfig.self, forKey: .audioConfig)
       {
         try inputCheckAndSet(.audioConfig(audioConfig))
       }
-      if let text = try container.decodeIfPresent(TextInput?.self, forKey: .text) {
+      if let text = try container.decodeIfPresent(TextInput.self, forKey: .text) {
         try inputCheckAndSet(.text(text))
       }
-      if let event = try container.decodeIfPresent(EventInput?.self, forKey: .event) {
+      if let event = try container.decodeIfPresent(EventInput.self, forKey: .event) {
         try inputCheckAndSet(.event(event))
       }
       self.input = input
@@ -119,12 +119,12 @@
     /// Required. The input specification.
     public enum InputOneOf: Codable, Equatable, Sendable {
       /// Instructs the speech recognizer how to process the speech audio.
-      indirect case audioConfig(InputAudioConfig?)
+      indirect case audioConfig(InputAudioConfig)
       /// The natural language text to be processed. Text length must not exceed
       /// 256 character for virtual agent interactions.
-      indirect case text(TextInput?)
+      indirect case text(TextInput)
       /// The event to be processed.
-      indirect case event(EventInput?)
+      indirect case event(EventInput)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -104,10 +104,10 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       result = $0
     }
-    if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+    if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
       try resultCheckAndSet(.error(error))
     }
-    if let response = try container.decodeIfPresent(GoogleWKT.WKTAny?.self, forKey: .response) {
+    if let response = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .response) {
       try resultCheckAndSet(.response(response))
     }
     self.result = result
@@ -142,7 +142,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Some services might not provide the result.
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// The error result of the operation in case of failure or cancellation.
-    indirect case error(GoogleRpc.Status?)
+    indirect case error(GoogleRpc.Status)
     /// The normal, successful response of the operation.  If the original
     /// method returns no data on success, such as `Delete`, the response is
     /// `google.protobuf.Empty`.  If the original method is standard
@@ -151,7 +151,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// is the original method name.  For example, if the original method name
     /// is `TakeSnapshot()`, the inferred response type is
     /// `TakeSnapshotResponse`.
-    indirect case response(GoogleWKT.WKTAny?)
+    indirect case response(GoogleWKT.WKTAny)
   }
 
   public static var _anyTypeUrl: Swift.String {

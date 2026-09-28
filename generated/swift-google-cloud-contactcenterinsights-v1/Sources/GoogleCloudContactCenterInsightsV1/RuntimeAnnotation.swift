@@ -124,28 +124,28 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       data = $0
     }
     if let articleSuggestion = try container.decodeIfPresent(
-      ArticleSuggestionData?.self, forKey: .articleSuggestion)
+      ArticleSuggestionData.self, forKey: .articleSuggestion)
     {
       try dataCheckAndSet(.articleSuggestion(articleSuggestion))
     }
-    if let faqAnswer = try container.decodeIfPresent(FaqAnswerData?.self, forKey: .faqAnswer) {
+    if let faqAnswer = try container.decodeIfPresent(FaqAnswerData.self, forKey: .faqAnswer) {
       try dataCheckAndSet(.faqAnswer(faqAnswer))
     }
-    if let smartReply = try container.decodeIfPresent(SmartReplyData?.self, forKey: .smartReply) {
+    if let smartReply = try container.decodeIfPresent(SmartReplyData.self, forKey: .smartReply) {
       try dataCheckAndSet(.smartReply(smartReply))
     }
     if let smartComposeSuggestion = try container.decodeIfPresent(
-      SmartComposeSuggestionData?.self, forKey: .smartComposeSuggestion)
+      SmartComposeSuggestionData.self, forKey: .smartComposeSuggestion)
     {
       try dataCheckAndSet(.smartComposeSuggestion(smartComposeSuggestion))
     }
     if let dialogflowInteraction = try container.decodeIfPresent(
-      DialogflowInteractionData?.self, forKey: .dialogflowInteraction)
+      DialogflowInteractionData.self, forKey: .dialogflowInteraction)
     {
       try dataCheckAndSet(.dialogflowInteraction(dialogflowInteraction))
     }
     if let conversationSummarizationSuggestion = try container.decodeIfPresent(
-      ConversationSummarizationSuggestionData?.self, forKey: .conversationSummarizationSuggestion)
+      ConversationSummarizationSuggestionData.self, forKey: .conversationSummarizationSuggestion)
     {
       try dataCheckAndSet(.conversationSummarizationSuggestion(conversationSummarizationSuggestion))
     }
@@ -398,17 +398,17 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The data in the annotation.
   public enum DataOneOf: Codable, Equatable, Sendable {
     /// Agent Assist Article Suggestion data.
-    indirect case articleSuggestion(ArticleSuggestionData?)
+    indirect case articleSuggestion(ArticleSuggestionData)
     /// Agent Assist FAQ answer data.
-    indirect case faqAnswer(FaqAnswerData?)
+    indirect case faqAnswer(FaqAnswerData)
     /// Agent Assist Smart Reply data.
-    indirect case smartReply(SmartReplyData?)
+    indirect case smartReply(SmartReplyData)
     /// Agent Assist Smart Compose suggestion data.
-    indirect case smartComposeSuggestion(SmartComposeSuggestionData?)
+    indirect case smartComposeSuggestion(SmartComposeSuggestionData)
     /// Dialogflow interaction data.
-    indirect case dialogflowInteraction(DialogflowInteractionData?)
+    indirect case dialogflowInteraction(DialogflowInteractionData)
     /// Conversation summarization suggestion data.
-    indirect case conversationSummarizationSuggestion(ConversationSummarizationSuggestionData?)
+    indirect case conversationSummarizationSuggestion(ConversationSummarizationSuggestionData)
   }
 
   public static var _anyTypeUrl: Swift.String {

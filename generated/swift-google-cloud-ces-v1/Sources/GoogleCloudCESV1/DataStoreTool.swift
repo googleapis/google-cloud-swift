@@ -121,12 +121,12 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
       searchSource = $0
     }
     if let dataStoreSource = try container.decodeIfPresent(
-      DataStoreTool.DataStoreSource?.self, forKey: .dataStoreSource)
+      DataStoreTool.DataStoreSource.self, forKey: .dataStoreSource)
     {
       try searchSourceCheckAndSet(.dataStoreSource(dataStoreSource))
     }
     if let engineSource = try container.decodeIfPresent(
-      DataStoreTool.EngineSource?.self, forKey: .engineSource)
+      DataStoreTool.EngineSource.self, forKey: .engineSource)
     {
       try searchSourceCheckAndSet(.engineSource(engineSource))
     }
@@ -1617,10 +1617,10 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Defines the search source, either a single DataStore or an Engine.
   public enum SearchSourceOneOf: Codable, Equatable, Sendable {
     /// Optional. Search within a single specific DataStore.
-    indirect case dataStoreSource(DataStoreTool.DataStoreSource?)
+    indirect case dataStoreSource(DataStoreTool.DataStoreSource)
     /// Optional. Search within an Engine (potentially across multiple
     /// DataStores).
-    indirect case engineSource(DataStoreTool.EngineSource?)
+    indirect case engineSource(DataStoreTool.EngineSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

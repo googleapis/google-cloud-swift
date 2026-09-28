@@ -119,17 +119,17 @@
         traceMetadata = $0
       }
       if let playbookTraceMetadata = try container.decodeIfPresent(
-        PlaybookTraceMetadata?.self, forKey: .playbookTraceMetadata)
+        PlaybookTraceMetadata.self, forKey: .playbookTraceMetadata)
       {
         try traceMetadataCheckAndSet(.playbookTraceMetadata(playbookTraceMetadata))
       }
       if let flowTraceMetadata = try container.decodeIfPresent(
-        FlowTraceMetadata?.self, forKey: .flowTraceMetadata)
+        FlowTraceMetadata.self, forKey: .flowTraceMetadata)
       {
         try traceMetadataCheckAndSet(.flowTraceMetadata(flowTraceMetadata))
       }
       if let speechProcessingMetadata = try container.decodeIfPresent(
-        SpeechProcessingMetadata?.self, forKey: .speechProcessingMetadata)
+        SpeechProcessingMetadata.self, forKey: .speechProcessingMetadata)
       {
         try traceMetadataCheckAndSet(.speechProcessingMetadata(speechProcessingMetadata))
       }
@@ -167,11 +167,11 @@
     /// Metadata of the trace.
     public enum TraceMetadataOneOf: Codable, Equatable, Sendable {
       /// Metadata of the playbook trace.
-      indirect case playbookTraceMetadata(PlaybookTraceMetadata?)
+      indirect case playbookTraceMetadata(PlaybookTraceMetadata)
       /// Metadata of the flow trace.
-      indirect case flowTraceMetadata(FlowTraceMetadata?)
+      indirect case flowTraceMetadata(FlowTraceMetadata)
       /// Metadata of the speech-to-text and speech-to-text processing.
-      indirect case speechProcessingMetadata(SpeechProcessingMetadata?)
+      indirect case speechProcessingMetadata(SpeechProcessingMetadata)
     }
 
     public static var _anyTypeUrl: Swift.String {

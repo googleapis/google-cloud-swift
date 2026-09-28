@@ -127,7 +127,7 @@
         }
         generatorResource = $0
       }
-      if let generator = try container.decodeIfPresent(Generator?.self, forKey: .generator) {
+      if let generator = try container.decodeIfPresent(Generator.self, forKey: .generator) {
         try generatorResourceCheckAndSet(.generator(generator))
       }
       if let generatorName = try container.decodeIfPresent(
@@ -167,7 +167,7 @@
     public enum GeneratorResourceOneOf: Codable, Equatable, Sendable {
       /// Uncreated generator. It should be a complete generator that includes all
       /// information about the generator.
-      indirect case generator(Generator?)
+      indirect case generator(Generator)
       /// The resource name of the existing created generator. Format:
       /// `projects/<Project ID>/locations/<Location ID>/generators/<Generator ID>`
       case generatorName(Swift.String)

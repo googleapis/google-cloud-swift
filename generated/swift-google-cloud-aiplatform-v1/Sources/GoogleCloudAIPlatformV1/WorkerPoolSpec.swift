@@ -108,12 +108,12 @@
         task = $0
       }
       if let containerSpec = try container.decodeIfPresent(
-        ContainerSpec?.self, forKey: .containerSpec)
+        ContainerSpec.self, forKey: .containerSpec)
       {
         try taskCheckAndSet(.containerSpec(containerSpec))
       }
       if let pythonPackageSpec = try container.decodeIfPresent(
-        PythonPackageSpec?.self, forKey: .pythonPackageSpec)
+        PythonPackageSpec.self, forKey: .pythonPackageSpec)
       {
         try taskCheckAndSet(.pythonPackageSpec(pythonPackageSpec))
       }
@@ -148,9 +148,9 @@
     /// The custom task to be executed in this worker pool.
     public enum TaskOneOf: Codable, Equatable, Sendable {
       /// The custom container task.
-      indirect case containerSpec(ContainerSpec?)
+      indirect case containerSpec(ContainerSpec)
       /// The Python packaged task.
-      indirect case pythonPackageSpec(PythonPackageSpec?)
+      indirect case pythonPackageSpec(PythonPackageSpec)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -97,16 +97,15 @@ public struct PullRequestComment: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       commentDetail = $0
     }
-    if let review = try container.decodeIfPresent(PullRequestComment.Review?.self, forKey: .review)
-    {
+    if let review = try container.decodeIfPresent(PullRequestComment.Review.self, forKey: .review) {
       try commentDetailCheckAndSet(.review(review))
     }
     if let comment = try container.decodeIfPresent(
-      PullRequestComment.Comment?.self, forKey: .comment)
+      PullRequestComment.Comment.self, forKey: .comment)
     {
       try commentDetailCheckAndSet(.comment(comment))
     }
-    if let code = try container.decodeIfPresent(PullRequestComment.Code?.self, forKey: .code) {
+    if let code = try container.decodeIfPresent(PullRequestComment.Code.self, forKey: .code) {
       try commentDetailCheckAndSet(.code(code))
     }
     self.commentDetail = commentDetail
@@ -615,11 +614,11 @@ public struct PullRequestComment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// code comment.
   public enum CommentDetailOneOf: Codable, Equatable, Sendable {
     /// Optional. The review summary comment.
-    indirect case review(PullRequestComment.Review?)
+    indirect case review(PullRequestComment.Review)
     /// Optional. The general pull request comment.
-    indirect case comment(PullRequestComment.Comment?)
+    indirect case comment(PullRequestComment.Comment)
     /// Optional. The comment on a code line.
-    indirect case code(PullRequestComment.Code?)
+    indirect case code(PullRequestComment.Code)
   }
 
   public static var _anyTypeUrl: Swift.String {

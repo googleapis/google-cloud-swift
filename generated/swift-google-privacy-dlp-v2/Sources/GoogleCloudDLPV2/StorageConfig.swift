@@ -82,22 +82,21 @@ public struct StorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let datastoreOptions = try container.decodeIfPresent(
-      DatastoreOptions?.self, forKey: .datastoreOptions)
+      DatastoreOptions.self, forKey: .datastoreOptions)
     {
       try typeCheckAndSet(.datastoreOptions(datastoreOptions))
     }
     if let cloudStorageOptions = try container.decodeIfPresent(
-      CloudStorageOptions?.self, forKey: .cloudStorageOptions)
+      CloudStorageOptions.self, forKey: .cloudStorageOptions)
     {
       try typeCheckAndSet(.cloudStorageOptions(cloudStorageOptions))
     }
     if let bigQueryOptions = try container.decodeIfPresent(
-      BigQueryOptions?.self, forKey: .bigQueryOptions)
+      BigQueryOptions.self, forKey: .bigQueryOptions)
     {
       try typeCheckAndSet(.bigQueryOptions(bigQueryOptions))
     }
-    if let hybridOptions = try container.decodeIfPresent(
-      HybridOptions?.self, forKey: .hybridOptions)
+    if let hybridOptions = try container.decodeIfPresent(HybridOptions.self, forKey: .hybridOptions)
     {
       try typeCheckAndSet(.hybridOptions(hybridOptions))
     }
@@ -276,13 +275,13 @@ public struct StorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of storage system to inspect.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Datastore options.
-    indirect case datastoreOptions(DatastoreOptions?)
+    indirect case datastoreOptions(DatastoreOptions)
     /// Cloud Storage options.
-    indirect case cloudStorageOptions(CloudStorageOptions?)
+    indirect case cloudStorageOptions(CloudStorageOptions)
     /// BigQuery options.
-    indirect case bigQueryOptions(BigQueryOptions?)
+    indirect case bigQueryOptions(BigQueryOptions)
     /// Hybrid inspection options.
-    indirect case hybridOptions(HybridOptions?)
+    indirect case hybridOptions(HybridOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -260,7 +260,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
       rotationSchedule = $0
     }
     if let rotationPeriod = try container.decodeIfPresent(
-      GoogleWKT.WKTDuration?.self, forKey: .rotationPeriod)
+      GoogleWKT.WKTDuration.self, forKey: .rotationPeriod)
     {
       try rotationScheduleCheckAndSet(.rotationPeriod(rotationPeriod))
     }
@@ -519,7 +519,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.kms.v1.CryptoKey.next_rotation_time]: <doc:CryptoKey/nextRotationTime>
     /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
     /// [google.cloud.kms.v1.CryptoKey.rotation_period]: <doc:CryptoKey/RotationScheduleOneOf/rotationPeriod(_:)>
-    indirect case rotationPeriod(GoogleWKT.WKTDuration?)
+    indirect case rotationPeriod(GoogleWKT.WKTDuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

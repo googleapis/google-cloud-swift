@@ -79,10 +79,10 @@ public struct MoveAnalysis: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       result = $0
     }
-    if let analysis = try container.decodeIfPresent(MoveAnalysisResult?.self, forKey: .analysis) {
+    if let analysis = try container.decodeIfPresent(MoveAnalysisResult.self, forKey: .analysis) {
       try resultCheckAndSet(.analysis(analysis))
     }
-    if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+    if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
       try resultCheckAndSet(.error(error))
     }
     self.result = result
@@ -111,9 +111,9 @@ public struct MoveAnalysis: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Analysis result of moving the target resource.
-    indirect case analysis(MoveAnalysisResult?)
+    indirect case analysis(MoveAnalysisResult)
     /// Description of error encountered when performing the analysis.
-    indirect case error(GoogleRpc.Status?)
+    indirect case error(GoogleRpc.Status)
   }
 
   public static var _anyTypeUrl: Swift.String {

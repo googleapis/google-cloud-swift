@@ -103,12 +103,12 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       cdcMethod = $0
     }
     if let transactionLogs = try container.decodeIfPresent(
-      SqlServerTransactionLogs?.self, forKey: .transactionLogs)
+      SqlServerTransactionLogs.self, forKey: .transactionLogs)
     {
       try cdcMethodCheckAndSet(.transactionLogs(transactionLogs))
     }
     if let changeTables = try container.decodeIfPresent(
-      SqlServerChangeTables?.self, forKey: .changeTables)
+      SqlServerChangeTables.self, forKey: .changeTables)
     {
       try cdcMethodCheckAndSet(.changeTables(changeTables))
     }
@@ -142,9 +142,9 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configuration to select the CDC read method for the stream.
   public enum CdcMethodOneOf: Codable, Equatable, Sendable {
     /// CDC reader reads from transaction logs.
-    indirect case transactionLogs(SqlServerTransactionLogs?)
+    indirect case transactionLogs(SqlServerTransactionLogs)
     /// CDC reader reads from change tables.
-    indirect case changeTables(SqlServerChangeTables?)
+    indirect case changeTables(SqlServerChangeTables)
   }
 
   public static var _anyTypeUrl: Swift.String {

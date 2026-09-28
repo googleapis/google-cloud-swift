@@ -126,7 +126,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       detail = $0
     }
-    if let query = try container.decodeIfPresent(SessionEvent.QueryDetail?.self, forKey: .query) {
+    if let query = try container.decodeIfPresent(SessionEvent.QueryDetail.self, forKey: .query) {
       try detailCheckAndSet(.query(query))
     }
     self.detail = detail
@@ -522,7 +522,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Additional information about the Query metadata.
   public enum DetailOneOf: Codable, Equatable, Sendable {
     /// The execution details of the query.
-    indirect case query(SessionEvent.QueryDetail?)
+    indirect case query(SessionEvent.QueryDetail)
   }
 
   public static var _anyTypeUrl: Swift.String {

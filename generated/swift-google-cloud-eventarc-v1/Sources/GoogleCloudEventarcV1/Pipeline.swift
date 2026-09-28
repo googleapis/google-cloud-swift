@@ -285,17 +285,17 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         kind = $0
       }
       if let protobuf = try container.decodeIfPresent(
-        Pipeline.MessagePayloadFormat.ProtobufFormat?.self, forKey: .protobuf)
+        Pipeline.MessagePayloadFormat.ProtobufFormat.self, forKey: .protobuf)
       {
         try kindCheckAndSet(.protobuf(protobuf))
       }
       if let avro = try container.decodeIfPresent(
-        Pipeline.MessagePayloadFormat.AvroFormat?.self, forKey: .avro)
+        Pipeline.MessagePayloadFormat.AvroFormat.self, forKey: .avro)
       {
         try kindCheckAndSet(.avro(avro))
       }
       if let json = try container.decodeIfPresent(
-        Pipeline.MessagePayloadFormat.JsonFormat?.self, forKey: .json)
+        Pipeline.MessagePayloadFormat.JsonFormat.self, forKey: .json)
       {
         try kindCheckAndSet(.json(json))
       }
@@ -526,11 +526,11 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     /// messages are sent and received.
     public enum KindOneOf: Codable, Equatable, Sendable {
       /// Optional. Protobuf format.
-      indirect case protobuf(Pipeline.MessagePayloadFormat.ProtobufFormat?)
+      indirect case protobuf(Pipeline.MessagePayloadFormat.ProtobufFormat)
       /// Optional. Avro format.
-      indirect case avro(Pipeline.MessagePayloadFormat.AvroFormat?)
+      indirect case avro(Pipeline.MessagePayloadFormat.AvroFormat)
       /// Optional. JSON format.
-      indirect case json(Pipeline.MessagePayloadFormat.JsonFormat?)
+      indirect case json(Pipeline.MessagePayloadFormat.JsonFormat)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -631,7 +631,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         destinationDescriptor = $0
       }
       if let httpEndpoint = try container.decodeIfPresent(
-        Pipeline.Destination.HttpEndpoint?.self, forKey: .httpEndpoint)
+        Pipeline.Destination.HttpEndpoint.self, forKey: .httpEndpoint)
       {
         try destinationDescriptorCheckAndSet(.httpEndpoint(httpEndpoint))
       }
@@ -1048,12 +1048,12 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
           authenticationMethodDescriptor = $0
         }
         if let googleOidc = try container.decodeIfPresent(
-          Pipeline.Destination.AuthenticationConfig.OidcToken?.self, forKey: .googleOidc)
+          Pipeline.Destination.AuthenticationConfig.OidcToken.self, forKey: .googleOidc)
         {
           try authenticationMethodDescriptorCheckAndSet(.googleOidc(googleOidc))
         }
         if let oauthToken = try container.decodeIfPresent(
-          Pipeline.Destination.AuthenticationConfig.OAuthToken?.self, forKey: .oauthToken)
+          Pipeline.Destination.AuthenticationConfig.OAuthToken.self, forKey: .oauthToken)
         {
           try authenticationMethodDescriptorCheckAndSet(.oauthToken(oauthToken))
         }
@@ -1263,7 +1263,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum AuthenticationMethodDescriptorOneOf: Codable, Equatable, Sendable {
         /// Optional. This authenticate method will apply Google OIDC tokens
         /// signed by a Google Cloud service account to the requests.
-        indirect case googleOidc(Pipeline.Destination.AuthenticationConfig.OidcToken?)
+        indirect case googleOidc(Pipeline.Destination.AuthenticationConfig.OidcToken)
         /// Optional. If specified, an [OAuth
         /// token](https://developers.google.com/identity/protocols/OAuth2) will
         /// be generated and attached as an `Authorization` header in the HTTP
@@ -1271,7 +1271,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         ///
         /// This type of authorization should generally only be used when calling
         /// Google APIs hosted on *.googleapis.com.
-        indirect case oauthToken(Pipeline.Destination.AuthenticationConfig.OAuthToken?)
+        indirect case oauthToken(Pipeline.Destination.AuthenticationConfig.OAuthToken)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1293,7 +1293,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       /// peering zone to the consumer VPC and forward DNS requests to the VPC
       /// specified by network config to resolve the service endpoint. See:
       /// https://cloud.google.com/dns/docs/zones/zones-overview#peering_zones
-      indirect case httpEndpoint(Pipeline.Destination.HttpEndpoint?)
+      indirect case httpEndpoint(Pipeline.Destination.HttpEndpoint)
       /// Optional. The resource name of the Workflow whose Executions are
       /// triggered by the events. The Workflow resource should be deployed in
       /// the same project as the Pipeline. Format:
@@ -1373,7 +1373,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         mediationDescriptor = $0
       }
       if let transformation = try container.decodeIfPresent(
-        Pipeline.Mediation.Transformation?.self, forKey: .transformation)
+        Pipeline.Mediation.Transformation.self, forKey: .transformation)
       {
         try mediationDescriptorCheckAndSet(.transformation(transformation))
       }
@@ -1546,7 +1546,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The config of mediation.
     public enum MediationDescriptorOneOf: Codable, Equatable, Sendable {
       /// Optional. How the Pipeline is to transform messages
-      indirect case transformation(Pipeline.Mediation.Transformation?)
+      indirect case transformation(Pipeline.Mediation.Transformation)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -135,122 +135,122 @@
         metricInputs = $0
       }
       if let exactMatchInput = try container.decodeIfPresent(
-        ExactMatchInput?.self, forKey: .exactMatchInput)
+        ExactMatchInput.self, forKey: .exactMatchInput)
       {
         try metricInputsCheckAndSet(.exactMatchInput(exactMatchInput))
       }
-      if let bleuInput = try container.decodeIfPresent(BleuInput?.self, forKey: .bleuInput) {
+      if let bleuInput = try container.decodeIfPresent(BleuInput.self, forKey: .bleuInput) {
         try metricInputsCheckAndSet(.bleuInput(bleuInput))
       }
-      if let rougeInput = try container.decodeIfPresent(RougeInput?.self, forKey: .rougeInput) {
+      if let rougeInput = try container.decodeIfPresent(RougeInput.self, forKey: .rougeInput) {
         try metricInputsCheckAndSet(.rougeInput(rougeInput))
       }
-      if let fluencyInput = try container.decodeIfPresent(FluencyInput?.self, forKey: .fluencyInput)
+      if let fluencyInput = try container.decodeIfPresent(FluencyInput.self, forKey: .fluencyInput)
       {
         try metricInputsCheckAndSet(.fluencyInput(fluencyInput))
       }
       if let coherenceInput = try container.decodeIfPresent(
-        CoherenceInput?.self, forKey: .coherenceInput)
+        CoherenceInput.self, forKey: .coherenceInput)
       {
         try metricInputsCheckAndSet(.coherenceInput(coherenceInput))
       }
-      if let safetyInput = try container.decodeIfPresent(SafetyInput?.self, forKey: .safetyInput) {
+      if let safetyInput = try container.decodeIfPresent(SafetyInput.self, forKey: .safetyInput) {
         try metricInputsCheckAndSet(.safetyInput(safetyInput))
       }
       if let groundednessInput = try container.decodeIfPresent(
-        GroundednessInput?.self, forKey: .groundednessInput)
+        GroundednessInput.self, forKey: .groundednessInput)
       {
         try metricInputsCheckAndSet(.groundednessInput(groundednessInput))
       }
       if let fulfillmentInput = try container.decodeIfPresent(
-        FulfillmentInput?.self, forKey: .fulfillmentInput)
+        FulfillmentInput.self, forKey: .fulfillmentInput)
       {
         try metricInputsCheckAndSet(.fulfillmentInput(fulfillmentInput))
       }
       if let summarizationQualityInput = try container.decodeIfPresent(
-        SummarizationQualityInput?.self, forKey: .summarizationQualityInput)
+        SummarizationQualityInput.self, forKey: .summarizationQualityInput)
       {
         try metricInputsCheckAndSet(.summarizationQualityInput(summarizationQualityInput))
       }
       if let pairwiseSummarizationQualityInput = try container.decodeIfPresent(
-        PairwiseSummarizationQualityInput?.self, forKey: .pairwiseSummarizationQualityInput)
+        PairwiseSummarizationQualityInput.self, forKey: .pairwiseSummarizationQualityInput)
       {
         try metricInputsCheckAndSet(
           .pairwiseSummarizationQualityInput(pairwiseSummarizationQualityInput))
       }
       if let summarizationHelpfulnessInput = try container.decodeIfPresent(
-        SummarizationHelpfulnessInput?.self, forKey: .summarizationHelpfulnessInput)
+        SummarizationHelpfulnessInput.self, forKey: .summarizationHelpfulnessInput)
       {
         try metricInputsCheckAndSet(.summarizationHelpfulnessInput(summarizationHelpfulnessInput))
       }
       if let summarizationVerbosityInput = try container.decodeIfPresent(
-        SummarizationVerbosityInput?.self, forKey: .summarizationVerbosityInput)
+        SummarizationVerbosityInput.self, forKey: .summarizationVerbosityInput)
       {
         try metricInputsCheckAndSet(.summarizationVerbosityInput(summarizationVerbosityInput))
       }
       if let questionAnsweringQualityInput = try container.decodeIfPresent(
-        QuestionAnsweringQualityInput?.self, forKey: .questionAnsweringQualityInput)
+        QuestionAnsweringQualityInput.self, forKey: .questionAnsweringQualityInput)
       {
         try metricInputsCheckAndSet(.questionAnsweringQualityInput(questionAnsweringQualityInput))
       }
       if let pairwiseQuestionAnsweringQualityInput = try container.decodeIfPresent(
-        PairwiseQuestionAnsweringQualityInput?.self, forKey: .pairwiseQuestionAnsweringQualityInput)
+        PairwiseQuestionAnsweringQualityInput.self, forKey: .pairwiseQuestionAnsweringQualityInput)
       {
         try metricInputsCheckAndSet(
           .pairwiseQuestionAnsweringQualityInput(pairwiseQuestionAnsweringQualityInput))
       }
       if let questionAnsweringRelevanceInput = try container.decodeIfPresent(
-        QuestionAnsweringRelevanceInput?.self, forKey: .questionAnsweringRelevanceInput)
+        QuestionAnsweringRelevanceInput.self, forKey: .questionAnsweringRelevanceInput)
       {
         try metricInputsCheckAndSet(
           .questionAnsweringRelevanceInput(questionAnsweringRelevanceInput))
       }
       if let questionAnsweringHelpfulnessInput = try container.decodeIfPresent(
-        QuestionAnsweringHelpfulnessInput?.self, forKey: .questionAnsweringHelpfulnessInput)
+        QuestionAnsweringHelpfulnessInput.self, forKey: .questionAnsweringHelpfulnessInput)
       {
         try metricInputsCheckAndSet(
           .questionAnsweringHelpfulnessInput(questionAnsweringHelpfulnessInput))
       }
       if let questionAnsweringCorrectnessInput = try container.decodeIfPresent(
-        QuestionAnsweringCorrectnessInput?.self, forKey: .questionAnsweringCorrectnessInput)
+        QuestionAnsweringCorrectnessInput.self, forKey: .questionAnsweringCorrectnessInput)
       {
         try metricInputsCheckAndSet(
           .questionAnsweringCorrectnessInput(questionAnsweringCorrectnessInput))
       }
       if let pointwiseMetricInput = try container.decodeIfPresent(
-        PointwiseMetricInput?.self, forKey: .pointwiseMetricInput)
+        PointwiseMetricInput.self, forKey: .pointwiseMetricInput)
       {
         try metricInputsCheckAndSet(.pointwiseMetricInput(pointwiseMetricInput))
       }
       if let pairwiseMetricInput = try container.decodeIfPresent(
-        PairwiseMetricInput?.self, forKey: .pairwiseMetricInput)
+        PairwiseMetricInput.self, forKey: .pairwiseMetricInput)
       {
         try metricInputsCheckAndSet(.pairwiseMetricInput(pairwiseMetricInput))
       }
       if let toolCallValidInput = try container.decodeIfPresent(
-        ToolCallValidInput?.self, forKey: .toolCallValidInput)
+        ToolCallValidInput.self, forKey: .toolCallValidInput)
       {
         try metricInputsCheckAndSet(.toolCallValidInput(toolCallValidInput))
       }
       if let toolNameMatchInput = try container.decodeIfPresent(
-        ToolNameMatchInput?.self, forKey: .toolNameMatchInput)
+        ToolNameMatchInput.self, forKey: .toolNameMatchInput)
       {
         try metricInputsCheckAndSet(.toolNameMatchInput(toolNameMatchInput))
       }
       if let toolParameterKeyMatchInput = try container.decodeIfPresent(
-        ToolParameterKeyMatchInput?.self, forKey: .toolParameterKeyMatchInput)
+        ToolParameterKeyMatchInput.self, forKey: .toolParameterKeyMatchInput)
       {
         try metricInputsCheckAndSet(.toolParameterKeyMatchInput(toolParameterKeyMatchInput))
       }
       if let toolParameterKvMatchInput = try container.decodeIfPresent(
-        ToolParameterKVMatchInput?.self, forKey: .toolParameterKvMatchInput)
+        ToolParameterKVMatchInput.self, forKey: .toolParameterKvMatchInput)
       {
         try metricInputsCheckAndSet(.toolParameterKvMatchInput(toolParameterKvMatchInput))
       }
-      if let cometInput = try container.decodeIfPresent(CometInput?.self, forKey: .cometInput) {
+      if let cometInput = try container.decodeIfPresent(CometInput.self, forKey: .cometInput) {
         try metricInputsCheckAndSet(.cometInput(cometInput))
       }
-      if let metricxInput = try container.decodeIfPresent(MetricxInput?.self, forKey: .metricxInput)
+      if let metricxInput = try container.decodeIfPresent(MetricxInput.self, forKey: .metricxInput)
       {
         try metricInputsCheckAndSet(.metricxInput(metricxInput))
       }
@@ -328,61 +328,61 @@
     public enum MetricInputsOneOf: Codable, Equatable, Sendable {
       /// Auto metric instances.
       /// Instances and metric spec for exact match metric.
-      indirect case exactMatchInput(ExactMatchInput?)
+      indirect case exactMatchInput(ExactMatchInput)
       /// Instances and metric spec for bleu metric.
-      indirect case bleuInput(BleuInput?)
+      indirect case bleuInput(BleuInput)
       /// Instances and metric spec for rouge metric.
-      indirect case rougeInput(RougeInput?)
+      indirect case rougeInput(RougeInput)
       /// LLM-based metric instance.
       /// General text generation metrics, applicable to other categories.
       /// Input for fluency metric.
-      indirect case fluencyInput(FluencyInput?)
+      indirect case fluencyInput(FluencyInput)
       /// Input for coherence metric.
-      indirect case coherenceInput(CoherenceInput?)
+      indirect case coherenceInput(CoherenceInput)
       /// Input for safety metric.
-      indirect case safetyInput(SafetyInput?)
+      indirect case safetyInput(SafetyInput)
       /// Input for groundedness metric.
-      indirect case groundednessInput(GroundednessInput?)
+      indirect case groundednessInput(GroundednessInput)
       /// Input for fulfillment metric.
-      indirect case fulfillmentInput(FulfillmentInput?)
+      indirect case fulfillmentInput(FulfillmentInput)
       /// Input for summarization quality metric.
-      indirect case summarizationQualityInput(SummarizationQualityInput?)
+      indirect case summarizationQualityInput(SummarizationQualityInput)
       /// Input for pairwise summarization quality metric.
-      indirect case pairwiseSummarizationQualityInput(PairwiseSummarizationQualityInput?)
+      indirect case pairwiseSummarizationQualityInput(PairwiseSummarizationQualityInput)
       /// Input for summarization helpfulness metric.
-      indirect case summarizationHelpfulnessInput(SummarizationHelpfulnessInput?)
+      indirect case summarizationHelpfulnessInput(SummarizationHelpfulnessInput)
       /// Input for summarization verbosity metric.
-      indirect case summarizationVerbosityInput(SummarizationVerbosityInput?)
+      indirect case summarizationVerbosityInput(SummarizationVerbosityInput)
       /// Input for question answering quality metric.
-      indirect case questionAnsweringQualityInput(QuestionAnsweringQualityInput?)
+      indirect case questionAnsweringQualityInput(QuestionAnsweringQualityInput)
       /// Input for pairwise question answering quality metric.
-      indirect case pairwiseQuestionAnsweringQualityInput(PairwiseQuestionAnsweringQualityInput?)
+      indirect case pairwiseQuestionAnsweringQualityInput(PairwiseQuestionAnsweringQualityInput)
       /// Input for question answering relevance metric.
-      indirect case questionAnsweringRelevanceInput(QuestionAnsweringRelevanceInput?)
+      indirect case questionAnsweringRelevanceInput(QuestionAnsweringRelevanceInput)
       /// Input for question answering helpfulness
       /// metric.
-      indirect case questionAnsweringHelpfulnessInput(QuestionAnsweringHelpfulnessInput?)
+      indirect case questionAnsweringHelpfulnessInput(QuestionAnsweringHelpfulnessInput)
       /// Input for question answering correctness
       /// metric.
-      indirect case questionAnsweringCorrectnessInput(QuestionAnsweringCorrectnessInput?)
+      indirect case questionAnsweringCorrectnessInput(QuestionAnsweringCorrectnessInput)
       /// Input for pointwise metric.
-      indirect case pointwiseMetricInput(PointwiseMetricInput?)
+      indirect case pointwiseMetricInput(PointwiseMetricInput)
       /// Input for pairwise metric.
-      indirect case pairwiseMetricInput(PairwiseMetricInput?)
+      indirect case pairwiseMetricInput(PairwiseMetricInput)
       /// Tool call metric instances.
       /// Input for tool call valid metric.
-      indirect case toolCallValidInput(ToolCallValidInput?)
+      indirect case toolCallValidInput(ToolCallValidInput)
       /// Input for tool name match metric.
-      indirect case toolNameMatchInput(ToolNameMatchInput?)
+      indirect case toolNameMatchInput(ToolNameMatchInput)
       /// Input for tool parameter key match metric.
-      indirect case toolParameterKeyMatchInput(ToolParameterKeyMatchInput?)
+      indirect case toolParameterKeyMatchInput(ToolParameterKeyMatchInput)
       /// Input for tool parameter key value match metric.
-      indirect case toolParameterKvMatchInput(ToolParameterKVMatchInput?)
+      indirect case toolParameterKvMatchInput(ToolParameterKVMatchInput)
       /// Translation metrics.
       /// Input for Comet metric.
-      indirect case cometInput(CometInput?)
+      indirect case cometInput(CometInput)
       /// Input for Metricx metric.
-      indirect case metricxInput(MetricxInput?)
+      indirect case metricxInput(MetricxInput)
     }
 
     public static var _anyTypeUrl: Swift.String {

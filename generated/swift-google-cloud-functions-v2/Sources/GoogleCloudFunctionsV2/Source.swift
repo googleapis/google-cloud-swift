@@ -73,12 +73,11 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let storageSource = try container.decodeIfPresent(
-      StorageSource?.self, forKey: .storageSource)
+    if let storageSource = try container.decodeIfPresent(StorageSource.self, forKey: .storageSource)
     {
       try sourceCheckAndSet(.storageSource(storageSource))
     }
-    if let repoSource = try container.decodeIfPresent(RepoSource?.self, forKey: .repoSource) {
+    if let repoSource = try container.decodeIfPresent(RepoSource.self, forKey: .repoSource) {
       try sourceCheckAndSet(.repoSource(repoSource))
     }
     if let gitUri = try container.decodeIfPresent(Swift.String.self, forKey: .gitUri) {
@@ -113,10 +112,10 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
   /// At least one source needs to be provided for the deployment to succeed.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// If provided, get the source from this location in Google Cloud Storage.
-    indirect case storageSource(StorageSource?)
+    indirect case storageSource(StorageSource)
     /// If provided, get the source from this location in a Cloud Source
     /// Repository.
-    indirect case repoSource(RepoSource?)
+    indirect case repoSource(RepoSource)
     /// If provided, get the source from GitHub repository. This option is valid
     /// only for GCF 1st Gen function.
     /// Example: https://github.com/<user>/<repo>/blob/<commit>/<path-to-code>

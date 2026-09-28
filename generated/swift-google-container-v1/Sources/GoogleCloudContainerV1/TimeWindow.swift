@@ -81,7 +81,7 @@ public struct TimeWindow: Codable, Equatable, GoogleWKT._AnyPackable,
       options = $0
     }
     if let maintenanceExclusionOptions = try container.decodeIfPresent(
-      MaintenanceExclusionOptions?.self, forKey: .maintenanceExclusionOptions)
+      MaintenanceExclusionOptions.self, forKey: .maintenanceExclusionOptions)
     {
       try optionsCheckAndSet(.maintenanceExclusionOptions(maintenanceExclusionOptions))
     }
@@ -111,7 +111,7 @@ public struct TimeWindow: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// MaintenanceExclusionOptions provides maintenance exclusion related
     /// options.
-    indirect case maintenanceExclusionOptions(MaintenanceExclusionOptions?)
+    indirect case maintenanceExclusionOptions(MaintenanceExclusionOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

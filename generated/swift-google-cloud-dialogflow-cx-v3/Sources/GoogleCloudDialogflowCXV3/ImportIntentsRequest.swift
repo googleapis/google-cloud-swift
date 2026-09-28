@@ -97,7 +97,7 @@
         try intentsCheckAndSet(.intentsUri(intentsUri))
       }
       if let intentsContent = try container.decodeIfPresent(
-        InlineSource?.self, forKey: .intentsContent)
+        InlineSource.self, forKey: .intentsContent)
       {
         try intentsCheckAndSet(.intentsContent(intentsContent))
       }
@@ -299,7 +299,7 @@
       /// control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
       case intentsUri(Swift.String)
       /// Uncompressed byte content of intents.
-      indirect case intentsContent(InlineSource?)
+      indirect case intentsContent(InlineSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

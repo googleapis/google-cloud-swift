@@ -133,15 +133,15 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
         }
         result = $0
       }
-      if let finding = try container.decodeIfPresent(SimulatedFinding?.self, forKey: .finding) {
+      if let finding = try container.decodeIfPresent(SimulatedFinding.self, forKey: .finding) {
         try resultCheckAndSet(.finding(finding))
       }
       if let noViolation = try container.decodeIfPresent(
-        GoogleWKT.WKTEmpty?.self, forKey: .noViolation)
+        GoogleWKT.WKTEmpty.self, forKey: .noViolation)
       {
         try resultCheckAndSet(.noViolation(noViolation))
       }
-      if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+      if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
         try resultCheckAndSet(.error(error))
       }
       self.result = result
@@ -173,11 +173,11 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
     public enum ResultOneOf: Codable, Equatable, Sendable {
       /// Finding that would be published for the test case if a violation is
       /// detected.
-      indirect case finding(SimulatedFinding?)
+      indirect case finding(SimulatedFinding)
       /// Indicates that the test case does not trigger any violation.
-      indirect case noViolation(GoogleWKT.WKTEmpty?)
+      indirect case noViolation(GoogleWKT.WKTEmpty)
       /// Error encountered during the test.
-      indirect case error(GoogleRpc.Status?)
+      indirect case error(GoogleRpc.Status)
     }
 
     public static var _anyTypeUrl: Swift.String {

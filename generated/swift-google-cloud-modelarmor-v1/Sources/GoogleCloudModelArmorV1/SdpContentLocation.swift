@@ -84,7 +84,7 @@ public struct SdpContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       location = $0
     }
     if let imageFindingLocation = try container.decodeIfPresent(
-      SdpImageFindingLocation?.self, forKey: .imageFindingLocation)
+      SdpImageFindingLocation.self, forKey: .imageFindingLocation)
     {
       try locationCheckAndSet(.imageFindingLocation(imageFindingLocation))
     }
@@ -115,7 +115,7 @@ public struct SdpContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// future.
   public enum LocationOneOf: Codable, Equatable, Sendable {
     /// Location within an image's pixels.
-    indirect case imageFindingLocation(SdpImageFindingLocation?)
+    indirect case imageFindingLocation(SdpImageFindingLocation)
   }
 
   public static var _anyTypeUrl: Swift.String {

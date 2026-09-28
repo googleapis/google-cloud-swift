@@ -70,7 +70,7 @@ public struct TimestampValue: Codable, Equatable, GoogleWKT._AnyPackable,
       value = $0
     }
     if let timestampValue = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .timestampValue)
+      GoogleWKT.WKTTimestamp.self, forKey: .timestampValue)
     {
       try valueCheckAndSet(.timestampValue(timestampValue))
     }
@@ -102,7 +102,7 @@ public struct TimestampValue: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ValueOneOf: Codable, Equatable, Sendable {
     /// Timestamp value
-    indirect case timestampValue(GoogleWKT.WKTTimestamp?)
+    indirect case timestampValue(GoogleWKT.WKTTimestamp)
     /// The string must represent a valid instant in UTC and is parsed using
     /// java.time.format.DateTimeFormatter.ISO_INSTANT.
     /// e.g. "2013-09-29T18:46:19Z"

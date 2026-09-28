@@ -70,7 +70,7 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       featureSpec = $0
     }
     if let configmanagement = try container.decodeIfPresent(
-      GoogleCloudGKEHubConfigManagementV1.MembershipSpec?.self, forKey: .configmanagement)
+      GoogleCloudGKEHubConfigManagementV1.MembershipSpec.self, forKey: .configmanagement)
     {
       try featureSpecCheckAndSet(.configmanagement(configmanagement))
     }
@@ -97,7 +97,7 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum FeatureSpecOneOf: Codable, Equatable, Sendable {
     /// Config Management-specific spec.
-    indirect case configmanagement(GoogleCloudGKEHubConfigManagementV1.MembershipSpec?)
+    indirect case configmanagement(GoogleCloudGKEHubConfigManagementV1.MembershipSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

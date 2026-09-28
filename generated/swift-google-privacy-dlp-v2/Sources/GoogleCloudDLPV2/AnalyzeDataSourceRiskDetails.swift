@@ -101,32 +101,32 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       result = $0
     }
     if let numericalStatsResult = try container.decodeIfPresent(
-      AnalyzeDataSourceRiskDetails.NumericalStatsResult?.self, forKey: .numericalStatsResult)
+      AnalyzeDataSourceRiskDetails.NumericalStatsResult.self, forKey: .numericalStatsResult)
     {
       try resultCheckAndSet(.numericalStatsResult(numericalStatsResult))
     }
     if let categoricalStatsResult = try container.decodeIfPresent(
-      AnalyzeDataSourceRiskDetails.CategoricalStatsResult?.self, forKey: .categoricalStatsResult)
+      AnalyzeDataSourceRiskDetails.CategoricalStatsResult.self, forKey: .categoricalStatsResult)
     {
       try resultCheckAndSet(.categoricalStatsResult(categoricalStatsResult))
     }
     if let kAnonymityResult = try container.decodeIfPresent(
-      AnalyzeDataSourceRiskDetails.KAnonymityResult?.self, forKey: .kAnonymityResult)
+      AnalyzeDataSourceRiskDetails.KAnonymityResult.self, forKey: .kAnonymityResult)
     {
       try resultCheckAndSet(.kAnonymityResult(kAnonymityResult))
     }
     if let lDiversityResult = try container.decodeIfPresent(
-      AnalyzeDataSourceRiskDetails.LDiversityResult?.self, forKey: .lDiversityResult)
+      AnalyzeDataSourceRiskDetails.LDiversityResult.self, forKey: .lDiversityResult)
     {
       try resultCheckAndSet(.lDiversityResult(lDiversityResult))
     }
     if let kMapEstimationResult = try container.decodeIfPresent(
-      AnalyzeDataSourceRiskDetails.KMapEstimationResult?.self, forKey: .kMapEstimationResult)
+      AnalyzeDataSourceRiskDetails.KMapEstimationResult.self, forKey: .kMapEstimationResult)
     {
       try resultCheckAndSet(.kMapEstimationResult(kMapEstimationResult))
     }
     if let deltaPresenceEstimationResult = try container.decodeIfPresent(
-      AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult?.self,
+      AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult.self,
       forKey: .deltaPresenceEstimationResult)
     {
       try resultCheckAndSet(.deltaPresenceEstimationResult(deltaPresenceEstimationResult))
@@ -1652,18 +1652,18 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
   /// Values associated with this metric.
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. Numerical stats result
-    indirect case numericalStatsResult(AnalyzeDataSourceRiskDetails.NumericalStatsResult?)
+    indirect case numericalStatsResult(AnalyzeDataSourceRiskDetails.NumericalStatsResult)
     /// Output only. Categorical stats result
-    indirect case categoricalStatsResult(AnalyzeDataSourceRiskDetails.CategoricalStatsResult?)
+    indirect case categoricalStatsResult(AnalyzeDataSourceRiskDetails.CategoricalStatsResult)
     /// Output only. K-anonymity result
-    indirect case kAnonymityResult(AnalyzeDataSourceRiskDetails.KAnonymityResult?)
+    indirect case kAnonymityResult(AnalyzeDataSourceRiskDetails.KAnonymityResult)
     /// Output only. L-divesity result
-    indirect case lDiversityResult(AnalyzeDataSourceRiskDetails.LDiversityResult?)
+    indirect case lDiversityResult(AnalyzeDataSourceRiskDetails.LDiversityResult)
     /// Output only. K-map result
-    indirect case kMapEstimationResult(AnalyzeDataSourceRiskDetails.KMapEstimationResult?)
+    indirect case kMapEstimationResult(AnalyzeDataSourceRiskDetails.KMapEstimationResult)
     /// Output only. Delta-presence result
     indirect case deltaPresenceEstimationResult(
-      AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult?)
+      AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

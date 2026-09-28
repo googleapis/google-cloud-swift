@@ -69,7 +69,7 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleWKT._AnyPackabl
       type = $0
     }
     if let wordList = try container.decodeIfPresent(
-      CustomInfoType.Dictionary.WordList?.self, forKey: .wordList)
+      CustomInfoType.Dictionary.WordList.self, forKey: .wordList)
     {
       try typeCheckAndSet(.wordList(wordList))
     }
@@ -99,7 +99,7 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     /// A list of words to select from for random replacement. The
     /// [limits](https://docs.cloud.google.com/sensitive-data-protection/limits)
     /// page contains details about the size limits of dictionaries.
-    indirect case wordList(CustomInfoType.Dictionary.WordList?)
+    indirect case wordList(CustomInfoType.Dictionary.WordList)
   }
 
   public static var _anyTypeUrl: Swift.String {

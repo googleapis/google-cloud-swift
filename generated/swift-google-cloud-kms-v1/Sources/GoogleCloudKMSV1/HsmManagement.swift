@@ -629,11 +629,11 @@ extension Clients.HsmManagementProtocol {
 
   public func approveSingleTenantHsmInstanceProposal(
     name: Swift.String,
-    quorumReply: ApproveSingleTenantHsmInstanceProposalRequest.QuorumReply?,
+    quorumReply: ApproveSingleTenantHsmInstanceProposalRequest.QuorumReply,
   ) async throws -> GoogleCloudKMSV1.ApproveSingleTenantHsmInstanceProposalResponse {
     let request = ApproveSingleTenantHsmInstanceProposalRequest().with {
       $0.name = name
-      $0.approvalPayload = quorumReply.map { .quorumReply($0) }
+      $0.approvalPayload = .quorumReply(quorumReply)
     }
     return try await self.approveSingleTenantHsmInstanceProposal(request: request)
   }

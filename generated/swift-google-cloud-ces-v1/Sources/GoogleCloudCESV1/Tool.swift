@@ -174,52 +174,50 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
       toolType = $0
     }
     if let clientFunction = try container.decodeIfPresent(
-      ClientFunction?.self, forKey: .clientFunction)
+      ClientFunction.self, forKey: .clientFunction)
     {
       try toolTypeCheckAndSet(.clientFunction(clientFunction))
     }
-    if let openApiTool = try container.decodeIfPresent(OpenApiTool?.self, forKey: .openApiTool) {
+    if let openApiTool = try container.decodeIfPresent(OpenApiTool.self, forKey: .openApiTool) {
       try toolTypeCheckAndSet(.openApiTool(openApiTool))
     }
     if let googleSearchTool = try container.decodeIfPresent(
-      GoogleSearchTool?.self, forKey: .googleSearchTool)
+      GoogleSearchTool.self, forKey: .googleSearchTool)
     {
       try toolTypeCheckAndSet(.googleSearchTool(googleSearchTool))
     }
-    if let connectorTool = try container.decodeIfPresent(
-      ConnectorTool?.self, forKey: .connectorTool)
+    if let connectorTool = try container.decodeIfPresent(ConnectorTool.self, forKey: .connectorTool)
     {
       try toolTypeCheckAndSet(.connectorTool(connectorTool))
     }
-    if let dataStoreTool = try container.decodeIfPresent(
-      DataStoreTool?.self, forKey: .dataStoreTool)
+    if let dataStoreTool = try container.decodeIfPresent(DataStoreTool.self, forKey: .dataStoreTool)
     {
       try toolTypeCheckAndSet(.dataStoreTool(dataStoreTool))
     }
     if let pythonFunction = try container.decodeIfPresent(
-      PythonFunction?.self, forKey: .pythonFunction)
+      PythonFunction.self, forKey: .pythonFunction)
     {
       try toolTypeCheckAndSet(.pythonFunction(pythonFunction))
     }
-    if let mcpTool = try container.decodeIfPresent(McpTool?.self, forKey: .mcpTool) {
+    if let mcpTool = try container.decodeIfPresent(McpTool.self, forKey: .mcpTool) {
       try toolTypeCheckAndSet(.mcpTool(mcpTool))
     }
     if let fileSearchTool = try container.decodeIfPresent(
-      FileSearchTool?.self, forKey: .fileSearchTool)
+      FileSearchTool.self, forKey: .fileSearchTool)
     {
       try toolTypeCheckAndSet(.fileSearchTool(fileSearchTool))
     }
-    if let systemTool = try container.decodeIfPresent(SystemTool?.self, forKey: .systemTool) {
+    if let systemTool = try container.decodeIfPresent(SystemTool.self, forKey: .systemTool) {
       try toolTypeCheckAndSet(.systemTool(systemTool))
     }
-    if let agentTool = try container.decodeIfPresent(AgentTool?.self, forKey: .agentTool) {
+    if let agentTool = try container.decodeIfPresent(AgentTool.self, forKey: .agentTool) {
       try toolTypeCheckAndSet(.agentTool(agentTool))
     }
-    if let widgetTool = try container.decodeIfPresent(WidgetTool?.self, forKey: .widgetTool) {
+    if let widgetTool = try container.decodeIfPresent(WidgetTool.self, forKey: .widgetTool) {
       try toolTypeCheckAndSet(.widgetTool(widgetTool))
     }
     if let remoteAgentTool = try container.decodeIfPresent(
-      RemoteAgentTool?.self, forKey: .remoteAgentTool)
+      RemoteAgentTool.self, forKey: .remoteAgentTool)
     {
       try toolTypeCheckAndSet(.remoteAgentTool(remoteAgentTool))
     }
@@ -278,30 +276,30 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of the tool.
   public enum ToolTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. The client function.
-    indirect case clientFunction(ClientFunction?)
+    indirect case clientFunction(ClientFunction)
     /// Optional. The open API tool.
-    indirect case openApiTool(OpenApiTool?)
+    indirect case openApiTool(OpenApiTool)
     /// Optional. The google search tool.
-    indirect case googleSearchTool(GoogleSearchTool?)
+    indirect case googleSearchTool(GoogleSearchTool)
     /// Optional. The Integration Connector tool.
-    indirect case connectorTool(ConnectorTool?)
+    indirect case connectorTool(ConnectorTool)
     /// Optional. The data store tool.
-    indirect case dataStoreTool(DataStoreTool?)
+    indirect case dataStoreTool(DataStoreTool)
     /// Optional. The python function tool.
-    indirect case pythonFunction(PythonFunction?)
+    indirect case pythonFunction(PythonFunction)
     /// Optional. The MCP tool. An MCP tool cannot be created or updated directly
     /// and is managed by the MCP toolset.
-    indirect case mcpTool(McpTool?)
+    indirect case mcpTool(McpTool)
     /// Optional. The file search tool.
-    indirect case fileSearchTool(FileSearchTool?)
+    indirect case fileSearchTool(FileSearchTool)
     /// Optional. The system tool.
-    indirect case systemTool(SystemTool?)
+    indirect case systemTool(SystemTool)
     /// Optional. The agent tool.
-    indirect case agentTool(AgentTool?)
+    indirect case agentTool(AgentTool)
     /// Optional. The widget tool.
-    indirect case widgetTool(WidgetTool?)
+    indirect case widgetTool(WidgetTool)
     /// Optional. The remote agent tool.
-    indirect case remoteAgentTool(RemoteAgentTool?)
+    indirect case remoteAgentTool(RemoteAgentTool)
   }
 
   public static var _anyTypeUrl: Swift.String {

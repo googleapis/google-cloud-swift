@@ -229,7 +229,7 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
         resources = $0
       }
       if let compute = try container.decodeIfPresent(
-        Environment.InfrastructureSpec.ComputeResources?.self, forKey: .compute)
+        Environment.InfrastructureSpec.ComputeResources.self, forKey: .compute)
       {
         try resourcesCheckAndSet(.compute(compute))
       }
@@ -246,7 +246,7 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
         runtime = $0
       }
       if let osImage = try container.decodeIfPresent(
-        Environment.InfrastructureSpec.OsImageRuntime?.self, forKey: .osImage)
+        Environment.InfrastructureSpec.OsImageRuntime.self, forKey: .osImage)
       {
         try runtimeCheckAndSet(.osImage(osImage))
       }
@@ -475,14 +475,14 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Hardware config
     public enum ResourcesOneOf: Codable, Equatable, Sendable {
       /// Optional. Compute resources needed for analyze interactive workloads.
-      indirect case compute(Environment.InfrastructureSpec.ComputeResources?)
+      indirect case compute(Environment.InfrastructureSpec.ComputeResources)
     }
 
     /// Software config
     public enum RuntimeOneOf: Codable, Equatable, Sendable {
       /// Required. Software Runtime Configuration for analyze interactive
       /// workloads.
-      indirect case osImage(Environment.InfrastructureSpec.OsImageRuntime?)
+      indirect case osImage(Environment.InfrastructureSpec.OsImageRuntime)
     }
 
     public static var _anyTypeUrl: Swift.String {

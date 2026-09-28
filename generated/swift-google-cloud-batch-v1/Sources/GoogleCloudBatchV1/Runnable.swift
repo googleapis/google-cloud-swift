@@ -151,13 +151,13 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       executable = $0
     }
-    if let container = try container.decodeIfPresent(Runnable.Container?.self, forKey: .container) {
+    if let container = try container.decodeIfPresent(Runnable.Container.self, forKey: .container) {
       try executableCheckAndSet(.container(container))
     }
-    if let script = try container.decodeIfPresent(Runnable.Script?.self, forKey: .script) {
+    if let script = try container.decodeIfPresent(Runnable.Script.self, forKey: .script) {
       try executableCheckAndSet(.script(script))
     }
-    if let barrier = try container.decodeIfPresent(Runnable.Barrier?.self, forKey: .barrier) {
+    if let barrier = try container.decodeIfPresent(Runnable.Barrier.self, forKey: .barrier) {
       try executableCheckAndSet(.barrier(barrier))
     }
     self.executable = executable
@@ -587,11 +587,11 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The script, container, or barrier for this runnable to execute.
   public enum ExecutableOneOf: Codable, Equatable, Sendable {
     /// Container runnable.
-    indirect case container(Runnable.Container?)
+    indirect case container(Runnable.Container)
     /// Script runnable.
-    indirect case script(Runnable.Script?)
+    indirect case script(Runnable.Script)
     /// Barrier runnable.
-    indirect case barrier(Runnable.Barrier?)
+    indirect case barrier(Runnable.Barrier)
   }
 
   public static var _anyTypeUrl: Swift.String {

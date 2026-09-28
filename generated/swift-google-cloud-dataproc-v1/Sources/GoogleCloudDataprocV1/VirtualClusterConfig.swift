@@ -95,7 +95,7 @@ public struct VirtualClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       infrastructureConfig = $0
     }
     if let kubernetesClusterConfig = try container.decodeIfPresent(
-      KubernetesClusterConfig?.self, forKey: .kubernetesClusterConfig)
+      KubernetesClusterConfig.self, forKey: .kubernetesClusterConfig)
     {
       try infrastructureConfigCheckAndSet(.kubernetesClusterConfig(kubernetesClusterConfig))
     }
@@ -125,7 +125,7 @@ public struct VirtualClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum InfrastructureConfigOneOf: Codable, Equatable, Sendable {
     /// Required. The configuration for running the Dataproc cluster on
     /// Kubernetes.
-    indirect case kubernetesClusterConfig(KubernetesClusterConfig?)
+    indirect case kubernetesClusterConfig(KubernetesClusterConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

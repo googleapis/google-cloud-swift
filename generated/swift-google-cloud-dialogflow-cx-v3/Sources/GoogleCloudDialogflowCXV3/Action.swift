@@ -82,35 +82,35 @@
         action = $0
       }
       if let userUtterance = try container.decodeIfPresent(
-        UserUtterance?.self, forKey: .userUtterance)
+        UserUtterance.self, forKey: .userUtterance)
       {
         try actionCheckAndSet(.userUtterance(userUtterance))
       }
       if let agentUtterance = try container.decodeIfPresent(
-        AgentUtterance?.self, forKey: .agentUtterance)
+        AgentUtterance.self, forKey: .agentUtterance)
       {
         try actionCheckAndSet(.agentUtterance(agentUtterance))
       }
-      if let toolUse = try container.decodeIfPresent(ToolUse?.self, forKey: .toolUse) {
+      if let toolUse = try container.decodeIfPresent(ToolUse.self, forKey: .toolUse) {
         try actionCheckAndSet(.toolUse(toolUse))
       }
       if let playbookInvocation = try container.decodeIfPresent(
-        PlaybookInvocation?.self, forKey: .playbookInvocation)
+        PlaybookInvocation.self, forKey: .playbookInvocation)
       {
         try actionCheckAndSet(.playbookInvocation(playbookInvocation))
       }
       if let flowInvocation = try container.decodeIfPresent(
-        FlowInvocation?.self, forKey: .flowInvocation)
+        FlowInvocation.self, forKey: .flowInvocation)
       {
         try actionCheckAndSet(.flowInvocation(flowInvocation))
       }
       if let playbookTransition = try container.decodeIfPresent(
-        PlaybookTransition?.self, forKey: .playbookTransition)
+        PlaybookTransition.self, forKey: .playbookTransition)
       {
         try actionCheckAndSet(.playbookTransition(playbookTransition))
       }
       if let flowTransition = try container.decodeIfPresent(
-        FlowTransition?.self, forKey: .flowTransition)
+        FlowTransition.self, forKey: .flowTransition)
       {
         try actionCheckAndSet(.flowTransition(flowTransition))
       }
@@ -150,23 +150,23 @@
     /// Action details.
     public enum ActionOneOf: Codable, Equatable, Sendable {
       /// Optional. Agent obtained a message from the customer.
-      indirect case userUtterance(UserUtterance?)
+      indirect case userUtterance(UserUtterance)
       /// Optional. Action performed by the agent as a message.
-      indirect case agentUtterance(AgentUtterance?)
+      indirect case agentUtterance(AgentUtterance)
       /// Optional. Action performed on behalf of the agent by calling a plugin
       /// tool.
-      indirect case toolUse(ToolUse?)
+      indirect case toolUse(ToolUse)
       /// Optional. Action performed on behalf of the agent by invoking a child
       /// playbook.
-      indirect case playbookInvocation(PlaybookInvocation?)
+      indirect case playbookInvocation(PlaybookInvocation)
       /// Optional. Action performed on behalf of the agent by invoking a CX flow.
-      indirect case flowInvocation(FlowInvocation?)
+      indirect case flowInvocation(FlowInvocation)
       /// Optional. Action performed on behalf of the agent by transitioning to a
       /// target playbook.
-      indirect case playbookTransition(PlaybookTransition?)
+      indirect case playbookTransition(PlaybookTransition)
       /// Optional. Action performed on behalf of the agent by transitioning to a
       /// target CX flow.
-      indirect case flowTransition(FlowTransition?)
+      indirect case flowTransition(FlowTransition)
     }
 
     public static var _anyTypeUrl: Swift.String {

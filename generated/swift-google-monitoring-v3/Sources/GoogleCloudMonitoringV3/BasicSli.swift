@@ -112,11 +112,11 @@ public struct BasicSli: Codable, Equatable, GoogleWKT._AnyPackable,
       sliCriteria = $0
     }
     if let availability = try container.decodeIfPresent(
-      BasicSli.AvailabilityCriteria?.self, forKey: .availability)
+      BasicSli.AvailabilityCriteria.self, forKey: .availability)
     {
       try sliCriteriaCheckAndSet(.availability(availability))
     }
-    if let latency = try container.decodeIfPresent(BasicSli.LatencyCriteria?.self, forKey: .latency)
+    if let latency = try container.decodeIfPresent(BasicSli.LatencyCriteria.self, forKey: .latency)
     {
       try sliCriteriaCheckAndSet(.latency(latency))
     }
@@ -274,10 +274,10 @@ public struct BasicSli: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum SliCriteriaOneOf: Codable, Equatable, Sendable {
     /// Good service is defined to be the count of requests made to this service
     /// that return successfully.
-    indirect case availability(BasicSli.AvailabilityCriteria?)
+    indirect case availability(BasicSli.AvailabilityCriteria)
     /// Good service is defined to be the count of requests made to this service
     /// that are fast enough with respect to `latency.threshold`.
-    indirect case latency(BasicSli.LatencyCriteria?)
+    indirect case latency(BasicSli.LatencyCriteria)
   }
 
   public static var _anyTypeUrl: Swift.String {

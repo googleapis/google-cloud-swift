@@ -87,17 +87,17 @@
         vectorDb = $0
       }
       if let ragManagedDb = try container.decodeIfPresent(
-        RagVectorDbConfig.RagManagedDb?.self, forKey: .ragManagedDb)
+        RagVectorDbConfig.RagManagedDb.self, forKey: .ragManagedDb)
       {
         try vectorDbCheckAndSet(.ragManagedDb(ragManagedDb))
       }
       if let pinecone = try container.decodeIfPresent(
-        RagVectorDbConfig.Pinecone?.self, forKey: .pinecone)
+        RagVectorDbConfig.Pinecone.self, forKey: .pinecone)
       {
         try vectorDbCheckAndSet(.pinecone(pinecone))
       }
       if let vertexVectorSearch = try container.decodeIfPresent(
-        RagVectorDbConfig.VertexVectorSearch?.self, forKey: .vertexVectorSearch)
+        RagVectorDbConfig.VertexVectorSearch.self, forKey: .vertexVectorSearch)
       {
         try vectorDbCheckAndSet(.vertexVectorSearch(vertexVectorSearch))
       }
@@ -182,12 +182,12 @@
           retrievalStrategy = $0
         }
         if let knn = try container.decodeIfPresent(
-          RagVectorDbConfig.RagManagedDb.KNN?.self, forKey: .knn)
+          RagVectorDbConfig.RagManagedDb.KNN.self, forKey: .knn)
         {
           try retrievalStrategyCheckAndSet(.knn(knn))
         }
         if let ann = try container.decodeIfPresent(
-          RagVectorDbConfig.RagManagedDb.ANN?.self, forKey: .ann)
+          RagVectorDbConfig.RagManagedDb.ANN.self, forKey: .ann)
         {
           try retrievalStrategyCheckAndSet(.ann(ann))
         }
@@ -369,10 +369,10 @@
       public enum RetrievalStrategyOneOf: Codable, Equatable, Sendable {
         /// Performs a KNN search on RagCorpus.
         /// Default choice if not specified.
-        indirect case knn(RagVectorDbConfig.RagManagedDb.KNN?)
+        indirect case knn(RagVectorDbConfig.RagManagedDb.KNN)
         /// Performs an ANN search on RagCorpus. Use this if you have a lot of
         /// files (> 10K) in your RagCorpus and want to reduce the search latency.
-        indirect case ann(RagVectorDbConfig.RagManagedDb.ANN?)
+        indirect case ann(RagVectorDbConfig.RagManagedDb.ANN)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -539,11 +539,11 @@
     /// The config for the Vector DB.
     public enum VectorDbOneOf: Codable, Equatable, Sendable {
       /// The config for the RAG-managed Vector DB.
-      indirect case ragManagedDb(RagVectorDbConfig.RagManagedDb?)
+      indirect case ragManagedDb(RagVectorDbConfig.RagManagedDb)
       /// The config for the Pinecone.
-      indirect case pinecone(RagVectorDbConfig.Pinecone?)
+      indirect case pinecone(RagVectorDbConfig.Pinecone)
       /// The config for the Vertex Vector Search.
-      indirect case vertexVectorSearch(RagVectorDbConfig.VertexVectorSearch?)
+      indirect case vertexVectorSearch(RagVectorDbConfig.VertexVectorSearch)
     }
 
     public static var _anyTypeUrl: Swift.String {

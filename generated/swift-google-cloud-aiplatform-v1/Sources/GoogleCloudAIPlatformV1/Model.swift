@@ -1097,12 +1097,11 @@
           source = $0
         }
         if let modelGardenSource = try container.decodeIfPresent(
-          ModelGardenSource?.self, forKey: .modelGardenSource)
+          ModelGardenSource.self, forKey: .modelGardenSource)
         {
           try sourceCheckAndSet(.modelGardenSource(modelGardenSource))
         }
-        if let genieSource = try container.decodeIfPresent(GenieSource?.self, forKey: .genieSource)
-        {
+        if let genieSource = try container.decodeIfPresent(GenieSource.self, forKey: .genieSource) {
           try sourceCheckAndSet(.genieSource(genieSource))
         }
         self.source = source
@@ -1130,9 +1129,9 @@
 
       public enum SourceOneOf: Codable, Equatable, Sendable {
         /// Source information of Model Garden models.
-        indirect case modelGardenSource(ModelGardenSource?)
+        indirect case modelGardenSource(ModelGardenSource)
         /// Information about the base model of Genie models.
-        indirect case genieSource(GenieSource?)
+        indirect case genieSource(GenieSource)
       }
 
       public static var _anyTypeUrl: Swift.String {

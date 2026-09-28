@@ -104,7 +104,7 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleWKT._AnyPackab
       }
       trackInfo = $0
     }
-    if let segment = try container.decodeIfPresent(VideoSegment?.self, forKey: .segment) {
+    if let segment = try container.decodeIfPresent(VideoSegment.self, forKey: .segment) {
       try trackInfoCheckAndSet(.segment(segment))
     }
     if let trackId = try container.decodeIfPresent(Swift.Int64.self, forKey: .trackId) {
@@ -142,7 +142,7 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleWKT._AnyPackab
   public enum TrackInfoOneOf: Codable, Equatable, Sendable {
     /// Non-streaming batch mode ONLY.
     /// Each object track corresponds to one video segment where it appears.
-    indirect case segment(VideoSegment?)
+    indirect case segment(VideoSegment)
     /// Streaming mode ONLY.
     /// In streaming mode, we do not know the end time of a tracked object
     /// before it is completed. Hence, there is no VideoSegment info returned.

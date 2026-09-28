@@ -73,16 +73,16 @@ public struct TrellixStarXAuthentication: Codable, Equatable, GoogleWKT._AnyPack
       }
       authType = $0
     }
-    if let msso = try container.decodeIfPresent(MssoAuthentication?.self, forKey: .msso) {
+    if let msso = try container.decodeIfPresent(MssoAuthentication.self, forKey: .msso) {
       try authTypeCheckAndSet(.msso(msso))
     }
     if let trellixIam = try container.decodeIfPresent(
-      TrellixIAMAuthentication?.self, forKey: .trellixIam)
+      TrellixIAMAuthentication.self, forKey: .trellixIam)
     {
       try authTypeCheckAndSet(.trellixIam(trellixIam))
     }
     if let trellixLocal = try container.decodeIfPresent(
-      TrellixLocalAuthentication?.self, forKey: .trellixLocal)
+      TrellixLocalAuthentication.self, forKey: .trellixLocal)
     {
       try authTypeCheckAndSet(.trellixLocal(trellixLocal))
     }
@@ -114,11 +114,11 @@ public struct TrellixStarXAuthentication: Codable, Equatable, GoogleWKT._AnyPack
   /// One of multiple potential auth types.
   public enum AuthTypeOneOf: Codable, Equatable, Sendable {
     /// Input only. MssoAuthentication auth type.
-    indirect case msso(MssoAuthentication?)
+    indirect case msso(MssoAuthentication)
     /// Input only. TrellixIAMAuthentication auth type.
-    indirect case trellixIam(TrellixIAMAuthentication?)
+    indirect case trellixIam(TrellixIAMAuthentication)
     /// Input only. TrellixLocalAuthentication auth type.
-    indirect case trellixLocal(TrellixLocalAuthentication?)
+    indirect case trellixLocal(TrellixLocalAuthentication)
   }
 
   public static var _anyTypeUrl: Swift.String {

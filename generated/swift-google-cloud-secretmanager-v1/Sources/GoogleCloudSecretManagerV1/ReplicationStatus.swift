@@ -77,12 +77,12 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       replicationStatus = $0
     }
     if let automatic = try container.decodeIfPresent(
-      ReplicationStatus.AutomaticStatus?.self, forKey: .automatic)
+      ReplicationStatus.AutomaticStatus.self, forKey: .automatic)
     {
       try replicationStatusCheckAndSet(.automatic(automatic))
     }
     if let userManaged = try container.decodeIfPresent(
-      ReplicationStatus.UserManagedStatus?.self, forKey: .userManaged)
+      ReplicationStatus.UserManagedStatus.self, forKey: .userManaged)
     {
       try replicationStatusCheckAndSet(.userManaged(userManaged))
     }
@@ -371,7 +371,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
     /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-    indirect case automatic(ReplicationStatus.AutomaticStatus?)
+    indirect case automatic(ReplicationStatus.AutomaticStatus)
     /// Describes the replication status of a
     /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] with
     /// user-managed replication.
@@ -382,7 +382,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
     /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-    indirect case userManaged(ReplicationStatus.UserManagedStatus?)
+    indirect case userManaged(ReplicationStatus.UserManagedStatus)
   }
 
   public static var _anyTypeUrl: Swift.String {

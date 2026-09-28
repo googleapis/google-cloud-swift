@@ -73,17 +73,16 @@ public struct SdpFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
       result = $0
     }
     if let inspectResult = try container.decodeIfPresent(
-      SdpInspectResult?.self, forKey: .inspectResult)
+      SdpInspectResult.self, forKey: .inspectResult)
     {
       try resultCheckAndSet(.inspectResult(inspectResult))
     }
     if let deidentifyResult = try container.decodeIfPresent(
-      SdpDeidentifyResult?.self, forKey: .deidentifyResult)
+      SdpDeidentifyResult.self, forKey: .deidentifyResult)
     {
       try resultCheckAndSet(.deidentifyResult(deidentifyResult))
     }
-    if let redactResult = try container.decodeIfPresent(
-      SdpRedactResult?.self, forKey: .redactResult)
+    if let redactResult = try container.decodeIfPresent(SdpRedactResult.self, forKey: .redactResult)
     {
       try resultCheckAndSet(.redactResult(redactResult))
     }
@@ -115,13 +114,13 @@ public struct SdpFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Either of Sensitive Data Protection Inspect result or Deidentify result.
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Sensitive Data Protection Inspection result if inspection is performed.
-    indirect case inspectResult(SdpInspectResult?)
+    indirect case inspectResult(SdpInspectResult)
     /// Sensitive Data Protection Deidentification result if deidentification is
     /// performed.
-    indirect case deidentifyResult(SdpDeidentifyResult?)
+    indirect case deidentifyResult(SdpDeidentifyResult)
     /// Sensitive Data Protection Redaction result if redaction is performed.
     /// This is primarily used for image redaction.
-    indirect case redactResult(SdpRedactResult?)
+    indirect case redactResult(SdpRedactResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

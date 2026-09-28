@@ -103,56 +103,56 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       action = $0
     }
-    if let boostAction = try container.decodeIfPresent(Rule.BoostAction?.self, forKey: .boostAction)
+    if let boostAction = try container.decodeIfPresent(Rule.BoostAction.self, forKey: .boostAction)
     {
       try actionCheckAndSet(.boostAction(boostAction))
     }
     if let redirectAction = try container.decodeIfPresent(
-      Rule.RedirectAction?.self, forKey: .redirectAction)
+      Rule.RedirectAction.self, forKey: .redirectAction)
     {
       try actionCheckAndSet(.redirectAction(redirectAction))
     }
     if let onewaySynonymsAction = try container.decodeIfPresent(
-      Rule.OnewaySynonymsAction?.self, forKey: .onewaySynonymsAction)
+      Rule.OnewaySynonymsAction.self, forKey: .onewaySynonymsAction)
     {
       try actionCheckAndSet(.onewaySynonymsAction(onewaySynonymsAction))
     }
     if let doNotAssociateAction = try container.decodeIfPresent(
-      Rule.DoNotAssociateAction?.self, forKey: .doNotAssociateAction)
+      Rule.DoNotAssociateAction.self, forKey: .doNotAssociateAction)
     {
       try actionCheckAndSet(.doNotAssociateAction(doNotAssociateAction))
     }
     if let replacementAction = try container.decodeIfPresent(
-      Rule.ReplacementAction?.self, forKey: .replacementAction)
+      Rule.ReplacementAction.self, forKey: .replacementAction)
     {
       try actionCheckAndSet(.replacementAction(replacementAction))
     }
     if let ignoreAction = try container.decodeIfPresent(
-      Rule.IgnoreAction?.self, forKey: .ignoreAction)
+      Rule.IgnoreAction.self, forKey: .ignoreAction)
     {
       try actionCheckAndSet(.ignoreAction(ignoreAction))
     }
     if let filterAction = try container.decodeIfPresent(
-      Rule.FilterAction?.self, forKey: .filterAction)
+      Rule.FilterAction.self, forKey: .filterAction)
     {
       try actionCheckAndSet(.filterAction(filterAction))
     }
     if let twowaySynonymsAction = try container.decodeIfPresent(
-      Rule.TwowaySynonymsAction?.self, forKey: .twowaySynonymsAction)
+      Rule.TwowaySynonymsAction.self, forKey: .twowaySynonymsAction)
     {
       try actionCheckAndSet(.twowaySynonymsAction(twowaySynonymsAction))
     }
     if let forceReturnFacetAction = try container.decodeIfPresent(
-      Rule.ForceReturnFacetAction?.self, forKey: .forceReturnFacetAction)
+      Rule.ForceReturnFacetAction.self, forKey: .forceReturnFacetAction)
     {
       try actionCheckAndSet(.forceReturnFacetAction(forceReturnFacetAction))
     }
     if let removeFacetAction = try container.decodeIfPresent(
-      Rule.RemoveFacetAction?.self, forKey: .removeFacetAction)
+      Rule.RemoveFacetAction.self, forKey: .removeFacetAction)
     {
       try actionCheckAndSet(.removeFacetAction(removeFacetAction))
     }
-    if let pinAction = try container.decodeIfPresent(Rule.PinAction?.self, forKey: .pinAction) {
+    if let pinAction = try container.decodeIfPresent(Rule.PinAction.self, forKey: .pinAction) {
       try actionCheckAndSet(.pinAction(pinAction))
     }
     self.action = action
@@ -1306,29 +1306,29 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// An action must be provided.
   public enum ActionOneOf: Codable, Equatable, Sendable {
     /// A boost action.
-    indirect case boostAction(Rule.BoostAction?)
+    indirect case boostAction(Rule.BoostAction)
     /// Redirects a shopper to a specific page.
-    indirect case redirectAction(Rule.RedirectAction?)
+    indirect case redirectAction(Rule.RedirectAction)
     /// Treats specific term as a synonym with a group of terms.
     /// Group of terms will not be treated as synonyms with the specific term.
-    indirect case onewaySynonymsAction(Rule.OnewaySynonymsAction?)
+    indirect case onewaySynonymsAction(Rule.OnewaySynonymsAction)
     /// Prevents term from being associated with other terms.
-    indirect case doNotAssociateAction(Rule.DoNotAssociateAction?)
+    indirect case doNotAssociateAction(Rule.DoNotAssociateAction)
     /// Replaces specific terms in the query.
-    indirect case replacementAction(Rule.ReplacementAction?)
+    indirect case replacementAction(Rule.ReplacementAction)
     /// Ignores specific terms from query during search.
-    indirect case ignoreAction(Rule.IgnoreAction?)
+    indirect case ignoreAction(Rule.IgnoreAction)
     /// Filters results.
-    indirect case filterAction(Rule.FilterAction?)
+    indirect case filterAction(Rule.FilterAction)
     /// Treats a set of terms as synonyms of one another.
-    indirect case twowaySynonymsAction(Rule.TwowaySynonymsAction?)
+    indirect case twowaySynonymsAction(Rule.TwowaySynonymsAction)
     /// Force returns an attribute as a facet in the request.
-    indirect case forceReturnFacetAction(Rule.ForceReturnFacetAction?)
+    indirect case forceReturnFacetAction(Rule.ForceReturnFacetAction)
     /// Remove an attribute as a facet in the request (if present).
-    indirect case removeFacetAction(Rule.RemoveFacetAction?)
+    indirect case removeFacetAction(Rule.RemoveFacetAction)
     /// Pins one or more specified products to a specific position in the
     /// results.
-    indirect case pinAction(Rule.PinAction?)
+    indirect case pinAction(Rule.PinAction)
   }
 
   public static var _anyTypeUrl: Swift.String {

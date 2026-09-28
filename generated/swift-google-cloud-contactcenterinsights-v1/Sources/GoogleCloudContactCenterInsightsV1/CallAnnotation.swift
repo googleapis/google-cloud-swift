@@ -106,38 +106,37 @@ public struct CallAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       data = $0
     }
     if let interruptionData = try container.decodeIfPresent(
-      InterruptionData?.self, forKey: .interruptionData)
+      InterruptionData.self, forKey: .interruptionData)
     {
       try dataCheckAndSet(.interruptionData(interruptionData))
     }
-    if let sentimentData = try container.decodeIfPresent(
-      SentimentData?.self, forKey: .sentimentData)
+    if let sentimentData = try container.decodeIfPresent(SentimentData.self, forKey: .sentimentData)
     {
       try dataCheckAndSet(.sentimentData(sentimentData))
     }
-    if let silenceData = try container.decodeIfPresent(SilenceData?.self, forKey: .silenceData) {
+    if let silenceData = try container.decodeIfPresent(SilenceData.self, forKey: .silenceData) {
       try dataCheckAndSet(.silenceData(silenceData))
     }
-    if let holdData = try container.decodeIfPresent(HoldData?.self, forKey: .holdData) {
+    if let holdData = try container.decodeIfPresent(HoldData.self, forKey: .holdData) {
       try dataCheckAndSet(.holdData(holdData))
     }
     if let entityMentionData = try container.decodeIfPresent(
-      EntityMentionData?.self, forKey: .entityMentionData)
+      EntityMentionData.self, forKey: .entityMentionData)
     {
       try dataCheckAndSet(.entityMentionData(entityMentionData))
     }
     if let intentMatchData = try container.decodeIfPresent(
-      IntentMatchData?.self, forKey: .intentMatchData)
+      IntentMatchData.self, forKey: .intentMatchData)
     {
       try dataCheckAndSet(.intentMatchData(intentMatchData))
     }
     if let phraseMatchData = try container.decodeIfPresent(
-      PhraseMatchData?.self, forKey: .phraseMatchData)
+      PhraseMatchData.self, forKey: .phraseMatchData)
     {
       try dataCheckAndSet(.phraseMatchData(phraseMatchData))
     }
     if let issueMatchData = try container.decodeIfPresent(
-      IssueMatchData?.self, forKey: .issueMatchData)
+      IssueMatchData.self, forKey: .issueMatchData)
     {
       try dataCheckAndSet(.issueMatchData(issueMatchData))
     }
@@ -182,21 +181,21 @@ public struct CallAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The data in the annotation.
   public enum DataOneOf: Codable, Equatable, Sendable {
     /// Data specifying an interruption.
-    indirect case interruptionData(InterruptionData?)
+    indirect case interruptionData(InterruptionData)
     /// Data specifying sentiment.
-    indirect case sentimentData(SentimentData?)
+    indirect case sentimentData(SentimentData)
     /// Data specifying silence.
-    indirect case silenceData(SilenceData?)
+    indirect case silenceData(SilenceData)
     /// Data specifying a hold.
-    indirect case holdData(HoldData?)
+    indirect case holdData(HoldData)
     /// Data specifying an entity mention.
-    indirect case entityMentionData(EntityMentionData?)
+    indirect case entityMentionData(EntityMentionData)
     /// Data specifying an intent match.
-    indirect case intentMatchData(IntentMatchData?)
+    indirect case intentMatchData(IntentMatchData)
     /// Data specifying a phrase match.
-    indirect case phraseMatchData(PhraseMatchData?)
+    indirect case phraseMatchData(PhraseMatchData)
     /// Data specifying an issue match.
-    indirect case issueMatchData(IssueMatchData?)
+    indirect case issueMatchData(IssueMatchData)
   }
 
   public static var _anyTypeUrl: Swift.String {

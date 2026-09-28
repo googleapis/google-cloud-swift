@@ -85,11 +85,11 @@
         source = $0
       }
       if let inlineSource = try container.decodeIfPresent(
-        ImportSuggestionDenyListEntriesRequest.InlineSource?.self, forKey: .inlineSource)
+        ImportSuggestionDenyListEntriesRequest.InlineSource.self, forKey: .inlineSource)
       {
         try sourceCheckAndSet(.inlineSource(inlineSource))
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
@@ -190,7 +190,7 @@
     /// The source of the updated SuggestionDenyList.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The Inline source for the input content for suggestion deny list entries.
-      indirect case inlineSource(ImportSuggestionDenyListEntriesRequest.InlineSource?)
+      indirect case inlineSource(ImportSuggestionDenyListEntriesRequest.InlineSource)
       /// Cloud Storage location for the input content.
       ///
       /// Only 1 file can be specified that contains all entries to import.
@@ -199,7 +199,7 @@
       ///
       /// * `suggestion_deny_list` (default): One JSON [SuggestionDenyListEntry]
       /// per line.
-      indirect case gcsSource(GcsSource?)
+      indirect case gcsSource(GcsSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

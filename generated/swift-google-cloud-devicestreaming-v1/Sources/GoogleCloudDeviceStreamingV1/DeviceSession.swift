@@ -140,11 +140,11 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       expiration = $0
     }
-    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .expireTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
@@ -435,11 +435,11 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. The amount of time that a device will be initially allocated
     /// for. This can eventually be extended with the UpdateDeviceSession RPC.
     /// Default: 15 minutes.
-    indirect case ttl(GoogleWKT.WKTDuration?)
+    indirect case ttl(GoogleWKT.WKTDuration)
     /// Optional. If the device is still in use at this time, any connections
     /// will be ended and the SessionState will transition from ACTIVE to
     /// FINISHED.
-    indirect case expireTime(GoogleWKT.WKTTimestamp?)
+    indirect case expireTime(GoogleWKT.WKTTimestamp)
   }
 
   public static var _anyTypeUrl: Swift.String {

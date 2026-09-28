@@ -149,15 +149,15 @@
         }
         source = $0
       }
-      if let avroSource = try container.decodeIfPresent(AvroSource?.self, forKey: .avroSource) {
+      if let avroSource = try container.decodeIfPresent(AvroSource.self, forKey: .avroSource) {
         try sourceCheckAndSet(.avroSource(avroSource))
       }
       if let bigquerySource = try container.decodeIfPresent(
-        BigQuerySource?.self, forKey: .bigquerySource)
+        BigQuerySource.self, forKey: .bigquerySource)
       {
         try sourceCheckAndSet(.bigquerySource(bigquerySource))
       }
-      if let csvSource = try container.decodeIfPresent(CsvSource?.self, forKey: .csvSource) {
+      if let csvSource = try container.decodeIfPresent(CsvSource.self, forKey: .csvSource) {
         try sourceCheckAndSet(.csvSource(csvSource))
       }
       self.source = source
@@ -178,7 +178,7 @@
         try featureTimeSourceCheckAndSet(.featureTimeField(featureTimeField))
       }
       if let featureTime = try container.decodeIfPresent(
-        GoogleWKT.WKTTimestamp?.self, forKey: .featureTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .featureTime)
       {
         try featureTimeSourceCheckAndSet(.featureTime(featureTime))
       }
@@ -305,9 +305,9 @@
     /// Details about the source data, including the location of the storage and
     /// the format.
     public enum SourceOneOf: Codable, Equatable, Sendable {
-      indirect case avroSource(AvroSource?)
-      indirect case bigquerySource(BigQuerySource?)
-      indirect case csvSource(CsvSource?)
+      indirect case avroSource(AvroSource)
+      indirect case bigquerySource(BigQuerySource)
+      indirect case csvSource(CsvSource)
     }
 
     /// Source of Feature timestamp for all Feature values of each entity.
@@ -318,7 +318,7 @@
       case featureTimeField(Swift.String)
       /// Single Feature timestamp for all entities being imported. The
       /// timestamp must not have higher than millisecond precision.
-      indirect case featureTime(GoogleWKT.WKTTimestamp?)
+      indirect case featureTime(GoogleWKT.WKTTimestamp)
     }
 
     public static var _anyTypeUrl: Swift.String {

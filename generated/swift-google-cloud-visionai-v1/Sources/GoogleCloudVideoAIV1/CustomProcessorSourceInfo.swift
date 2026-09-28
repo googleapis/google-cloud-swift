@@ -107,7 +107,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
       try artifactPathCheckAndSet(.vertexModel(vertexModel))
     }
     if let productRecognizerArtifact = try container.decodeIfPresent(
-      CustomProcessorSourceInfo.ProductRecognizerArtifact?.self, forKey: .productRecognizerArtifact)
+      CustomProcessorSourceInfo.ProductRecognizerArtifact.self, forKey: .productRecognizerArtifact)
     {
       try artifactPathCheckAndSet(.productRecognizerArtifact(productRecognizerArtifact))
     }
@@ -437,7 +437,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
     /// The resource name original model hosted in the vertex AI platform.
     case vertexModel(Swift.String)
     /// Artifact for product recognizer.
-    indirect case productRecognizerArtifact(CustomProcessorSourceInfo.ProductRecognizerArtifact?)
+    indirect case productRecognizerArtifact(CustomProcessorSourceInfo.ProductRecognizerArtifact)
   }
 
   public static var _anyTypeUrl: Swift.String {

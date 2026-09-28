@@ -82,7 +82,7 @@ public struct StreamData: Codable, Equatable, GoogleWKT._AnyPackable,
     if let data = try container.decodeIfPresent(Foundation.Data.self, forKey: .data) {
       try contentsCheckAndSet(.data(data))
     }
-    if let close = try container.decodeIfPresent(Close?.self, forKey: .close) {
+    if let close = try container.decodeIfPresent(Close.self, forKey: .close) {
       try contentsCheckAndSet(.close(close))
     }
     self.contents = contents
@@ -115,7 +115,7 @@ public struct StreamData: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Data in the stream.
     case data(Foundation.Data)
     /// The stream is closing. EOF.
-    indirect case close(Close?)
+    indirect case close(Close)
   }
 
   public static var _anyTypeUrl: Swift.String {

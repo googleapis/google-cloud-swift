@@ -69,7 +69,7 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleWKT._Any
       destination = $0
     }
     if let inlineDestination = try container.decodeIfPresent(
-      InlineDestination?.self, forKey: .inlineDestination)
+      InlineDestination.self, forKey: .inlineDestination)
     {
       try destinationCheckAndSet(.inlineDestination(inlineDestination))
     }
@@ -97,7 +97,7 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleWKT._Any
   /// Destination for the exported data.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// The data for the exported dashboards included directly in the response.
-    indirect case inlineDestination(InlineDestination?)
+    indirect case inlineDestination(InlineDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

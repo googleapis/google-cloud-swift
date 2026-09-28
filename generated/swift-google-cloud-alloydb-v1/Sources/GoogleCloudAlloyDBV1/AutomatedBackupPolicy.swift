@@ -142,7 +142,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       schedule = $0
     }
     if let weeklySchedule = try container.decodeIfPresent(
-      AutomatedBackupPolicy.WeeklySchedule?.self, forKey: .weeklySchedule)
+      AutomatedBackupPolicy.WeeklySchedule.self, forKey: .weeklySchedule)
     {
       try scheduleCheckAndSet(.weeklySchedule(weeklySchedule))
     }
@@ -159,12 +159,12 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       retention = $0
     }
     if let timeBasedRetention = try container.decodeIfPresent(
-      AutomatedBackupPolicy.TimeBasedRetention?.self, forKey: .timeBasedRetention)
+      AutomatedBackupPolicy.TimeBasedRetention.self, forKey: .timeBasedRetention)
     {
       try retentionCheckAndSet(.timeBasedRetention(timeBasedRetention))
     }
     if let quantityBasedRetention = try container.decodeIfPresent(
-      AutomatedBackupPolicy.QuantityBasedRetention?.self, forKey: .quantityBasedRetention)
+      AutomatedBackupPolicy.QuantityBasedRetention.self, forKey: .quantityBasedRetention)
     {
       try retentionCheckAndSet(.quantityBasedRetention(quantityBasedRetention))
     }
@@ -444,7 +444,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// per day and a start time chosen arbitrarily.
   public enum ScheduleOneOf: Codable, Equatable, Sendable {
     /// Weekly schedule for the Backup.
-    indirect case weeklySchedule(AutomatedBackupPolicy.WeeklySchedule?)
+    indirect case weeklySchedule(AutomatedBackupPolicy.WeeklySchedule)
   }
 
   /// The retention policy for automated backups.
@@ -456,9 +456,9 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If no retention policy is set, a default of 14 days is used.
   public enum RetentionOneOf: Codable, Equatable, Sendable {
     /// Time-based Backup retention policy.
-    indirect case timeBasedRetention(AutomatedBackupPolicy.TimeBasedRetention?)
+    indirect case timeBasedRetention(AutomatedBackupPolicy.TimeBasedRetention)
     /// Quantity-based Backup retention policy to retain recent backups.
-    indirect case quantityBasedRetention(AutomatedBackupPolicy.QuantityBasedRetention?)
+    indirect case quantityBasedRetention(AutomatedBackupPolicy.QuantityBasedRetention)
   }
 
   public static var _anyTypeUrl: Swift.String {

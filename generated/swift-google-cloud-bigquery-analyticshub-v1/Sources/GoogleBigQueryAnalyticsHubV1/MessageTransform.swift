@@ -90,8 +90,7 @@ public struct MessageTransform: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       transform = $0
     }
-    if let javascriptUdf = try container.decodeIfPresent(
-      JavaScriptUDF?.self, forKey: .javascriptUdf)
+    if let javascriptUdf = try container.decodeIfPresent(JavaScriptUDF.self, forKey: .javascriptUdf)
     {
       try transformCheckAndSet(.javascriptUdf(javascriptUdf))
     }
@@ -125,7 +124,7 @@ public struct MessageTransform: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TransformOneOf: Codable, Equatable, Sendable {
     /// Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's
     /// are specified on a resource, each must have a unique `function_name`.
-    indirect case javascriptUdf(JavaScriptUDF?)
+    indirect case javascriptUdf(JavaScriptUDF)
   }
 
   public static var _anyTypeUrl: Swift.String {

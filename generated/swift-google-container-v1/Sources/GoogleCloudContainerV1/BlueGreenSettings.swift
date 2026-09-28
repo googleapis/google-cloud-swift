@@ -79,12 +79,12 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       rolloutPolicy = $0
     }
     if let standardRolloutPolicy = try container.decodeIfPresent(
-      BlueGreenSettings.StandardRolloutPolicy?.self, forKey: .standardRolloutPolicy)
+      BlueGreenSettings.StandardRolloutPolicy.self, forKey: .standardRolloutPolicy)
     {
       try rolloutPolicyCheckAndSet(.standardRolloutPolicy(standardRolloutPolicy))
     }
     if let autoscaledRolloutPolicy = try container.decodeIfPresent(
-      BlueGreenSettings.AutoscaledRolloutPolicy?.self, forKey: .autoscaledRolloutPolicy)
+      BlueGreenSettings.AutoscaledRolloutPolicy.self, forKey: .autoscaledRolloutPolicy)
     {
       try rolloutPolicyCheckAndSet(.autoscaledRolloutPolicy(autoscaledRolloutPolicy))
     }
@@ -299,9 +299,9 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The rollout policy controls the general rollout progress of blue-green.
   public enum RolloutPolicyOneOf: Codable, Equatable, Sendable {
     /// Standard policy for the blue-green upgrade.
-    indirect case standardRolloutPolicy(BlueGreenSettings.StandardRolloutPolicy?)
+    indirect case standardRolloutPolicy(BlueGreenSettings.StandardRolloutPolicy)
     /// Autoscaled policy for cluster autoscaler enabled blue-green upgrade.
-    indirect case autoscaledRolloutPolicy(BlueGreenSettings.AutoscaledRolloutPolicy?)
+    indirect case autoscaledRolloutPolicy(BlueGreenSettings.AutoscaledRolloutPolicy)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -74,7 +74,7 @@ public struct ConversationLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       try locationCheckAndSet(.messageIndex(messageIndex))
     }
     if let allMessages = try container.decodeIfPresent(
-      ConversationLocation.AllMessages?.self, forKey: .allMessages)
+      ConversationLocation.AllMessages.self, forKey: .allMessages)
     {
       try locationCheckAndSet(.allMessages(allMessages))
     }
@@ -166,7 +166,7 @@ public struct ConversationLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     case messageIndex(Swift.Int32)
     /// If set, indicates that the finding applies to all messages in the
     /// conversation.
-    indirect case allMessages(ConversationLocation.AllMessages?)
+    indirect case allMessages(ConversationLocation.AllMessages)
   }
 
   public static var _anyTypeUrl: Swift.String {

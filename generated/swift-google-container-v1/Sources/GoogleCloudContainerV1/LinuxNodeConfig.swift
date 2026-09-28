@@ -569,18 +569,18 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         performanceProfile = $0
       }
       if let bootDiskProfile = try container.decodeIfPresent(
-        LinuxNodeConfig.SwapConfig.BootDiskProfile?.self, forKey: .bootDiskProfile)
+        LinuxNodeConfig.SwapConfig.BootDiskProfile.self, forKey: .bootDiskProfile)
       {
         try performanceProfileCheckAndSet(.bootDiskProfile(bootDiskProfile))
       }
       if let ephemeralLocalSsdProfile = try container.decodeIfPresent(
-        LinuxNodeConfig.SwapConfig.EphemeralLocalSsdProfile?.self, forKey: .ephemeralLocalSsdProfile
-      ) {
+        LinuxNodeConfig.SwapConfig.EphemeralLocalSsdProfile.self, forKey: .ephemeralLocalSsdProfile)
+      {
         try performanceProfileCheckAndSet(.ephemeralLocalSsdProfile(ephemeralLocalSsdProfile))
       }
       if let dedicatedLocalSsdProfile = try container.decodeIfPresent(
-        LinuxNodeConfig.SwapConfig.DedicatedLocalSsdProfile?.self, forKey: .dedicatedLocalSsdProfile
-      ) {
+        LinuxNodeConfig.SwapConfig.DedicatedLocalSsdProfile.self, forKey: .dedicatedLocalSsdProfile)
+      {
         try performanceProfileCheckAndSet(.dedicatedLocalSsdProfile(dedicatedLocalSsdProfile))
       }
       self.performanceProfile = performanceProfile
@@ -961,11 +961,11 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// If omitted, defaults to the 'boot_disk_profile'.
     public enum PerformanceProfileOneOf: Codable, Equatable, Sendable {
       /// Swap on the node's boot disk.
-      indirect case bootDiskProfile(LinuxNodeConfig.SwapConfig.BootDiskProfile?)
+      indirect case bootDiskProfile(LinuxNodeConfig.SwapConfig.BootDiskProfile)
       /// Swap on the local SSD shared with pod ephemeral storage.
-      indirect case ephemeralLocalSsdProfile(LinuxNodeConfig.SwapConfig.EphemeralLocalSsdProfile?)
+      indirect case ephemeralLocalSsdProfile(LinuxNodeConfig.SwapConfig.EphemeralLocalSsdProfile)
       /// Provisions a new, separate local NVMe SSD exclusively for swap.
-      indirect case dedicatedLocalSsdProfile(LinuxNodeConfig.SwapConfig.DedicatedLocalSsdProfile?)
+      indirect case dedicatedLocalSsdProfile(LinuxNodeConfig.SwapConfig.DedicatedLocalSsdProfile)
     }
 
     public static var _anyTypeUrl: Swift.String {

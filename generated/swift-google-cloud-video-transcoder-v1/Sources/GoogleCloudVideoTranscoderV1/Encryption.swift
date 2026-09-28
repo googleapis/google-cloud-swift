@@ -92,18 +92,17 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       encryptionMode = $0
     }
-    if let aes128 = try container.decodeIfPresent(
-      Encryption.Aes128Encryption?.self, forKey: .aes128)
+    if let aes128 = try container.decodeIfPresent(Encryption.Aes128Encryption.self, forKey: .aes128)
     {
       try encryptionModeCheckAndSet(.aes128(aes128))
     }
     if let sampleAes = try container.decodeIfPresent(
-      Encryption.SampleAesEncryption?.self, forKey: .sampleAes)
+      Encryption.SampleAesEncryption.self, forKey: .sampleAes)
     {
       try encryptionModeCheckAndSet(.sampleAes(sampleAes))
     }
     if let mpegCenc = try container.decodeIfPresent(
-      Encryption.MpegCommonEncryption?.self, forKey: .mpegCenc)
+      Encryption.MpegCommonEncryption.self, forKey: .mpegCenc)
     {
       try encryptionModeCheckAndSet(.mpegCenc(mpegCenc))
     }
@@ -120,7 +119,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
       secretSource = $0
     }
     if let secretManagerKeySource = try container.decodeIfPresent(
-      Encryption.SecretManagerSource?.self, forKey: .secretManagerKeySource)
+      Encryption.SecretManagerSource.self, forKey: .secretManagerKeySource)
     {
       try secretSourceCheckAndSet(.secretManagerKeySource(secretManagerKeySource))
     }
@@ -736,17 +735,17 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Encryption mode can be either `aes` or `cenc`.
   public enum EncryptionModeOneOf: Codable, Equatable, Sendable {
     /// Configuration for AES-128 encryption.
-    indirect case aes128(Encryption.Aes128Encryption?)
+    indirect case aes128(Encryption.Aes128Encryption)
     /// Configuration for SAMPLE-AES encryption.
-    indirect case sampleAes(Encryption.SampleAesEncryption?)
+    indirect case sampleAes(Encryption.SampleAesEncryption)
     /// Configuration for MPEG Common Encryption (MPEG-CENC).
-    indirect case mpegCenc(Encryption.MpegCommonEncryption?)
+    indirect case mpegCenc(Encryption.MpegCommonEncryption)
   }
 
   /// Defines where content keys are stored.
   public enum SecretSourceOneOf: Codable, Equatable, Sendable {
     /// Keys are stored in Google Secret Manager.
-    indirect case secretManagerKeySource(Encryption.SecretManagerSource?)
+    indirect case secretManagerKeySource(Encryption.SecretManagerSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

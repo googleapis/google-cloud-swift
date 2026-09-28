@@ -156,55 +156,55 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let singleEntityRename = try container.decodeIfPresent(
-      SingleEntityRename?.self, forKey: .singleEntityRename)
+      SingleEntityRename.self, forKey: .singleEntityRename)
     {
       try detailsCheckAndSet(.singleEntityRename(singleEntityRename))
     }
     if let multiEntityRename = try container.decodeIfPresent(
-      MultiEntityRename?.self, forKey: .multiEntityRename)
+      MultiEntityRename.self, forKey: .multiEntityRename)
     {
       try detailsCheckAndSet(.multiEntityRename(multiEntityRename))
     }
-    if let entityMove = try container.decodeIfPresent(EntityMove?.self, forKey: .entityMove) {
+    if let entityMove = try container.decodeIfPresent(EntityMove.self, forKey: .entityMove) {
       try detailsCheckAndSet(.entityMove(entityMove))
     }
     if let singleColumnChange = try container.decodeIfPresent(
-      SingleColumnChange?.self, forKey: .singleColumnChange)
+      SingleColumnChange.self, forKey: .singleColumnChange)
     {
       try detailsCheckAndSet(.singleColumnChange(singleColumnChange))
     }
     if let multiColumnDataTypeChange = try container.decodeIfPresent(
-      MultiColumnDatatypeChange?.self, forKey: .multiColumnDataTypeChange)
+      MultiColumnDatatypeChange.self, forKey: .multiColumnDataTypeChange)
     {
       try detailsCheckAndSet(.multiColumnDataTypeChange(multiColumnDataTypeChange))
     }
     if let conditionalColumnSetValue = try container.decodeIfPresent(
-      ConditionalColumnSetValue?.self, forKey: .conditionalColumnSetValue)
+      ConditionalColumnSetValue.self, forKey: .conditionalColumnSetValue)
     {
       try detailsCheckAndSet(.conditionalColumnSetValue(conditionalColumnSetValue))
     }
     if let convertRowidColumn = try container.decodeIfPresent(
-      ConvertRowIdToColumn?.self, forKey: .convertRowidColumn)
+      ConvertRowIdToColumn.self, forKey: .convertRowidColumn)
     {
       try detailsCheckAndSet(.convertRowidColumn(convertRowidColumn))
     }
     if let setTablePrimaryKey = try container.decodeIfPresent(
-      SetTablePrimaryKey?.self, forKey: .setTablePrimaryKey)
+      SetTablePrimaryKey.self, forKey: .setTablePrimaryKey)
     {
       try detailsCheckAndSet(.setTablePrimaryKey(setTablePrimaryKey))
     }
     if let singlePackageChange = try container.decodeIfPresent(
-      SinglePackageChange?.self, forKey: .singlePackageChange)
+      SinglePackageChange.self, forKey: .singlePackageChange)
     {
       try detailsCheckAndSet(.singlePackageChange(singlePackageChange))
     }
     if let sourceSqlChange = try container.decodeIfPresent(
-      SourceSqlChange?.self, forKey: .sourceSqlChange)
+      SourceSqlChange.self, forKey: .sourceSqlChange)
     {
       try detailsCheckAndSet(.sourceSqlChange(sourceSqlChange))
     }
     if let filterTableColumns = try container.decodeIfPresent(
-      FilterTableColumns?.self, forKey: .filterTableColumns)
+      FilterTableColumns.self, forKey: .filterTableColumns)
     {
       try detailsCheckAndSet(.filterTableColumns(filterTableColumns))
     }
@@ -384,34 +384,34 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The rule specific details.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Optional. Rule to specify how a single entity should be renamed.
-    indirect case singleEntityRename(SingleEntityRename?)
+    indirect case singleEntityRename(SingleEntityRename)
     /// Optional. Rule to specify how multiple entities should be renamed.
-    indirect case multiEntityRename(MultiEntityRename?)
+    indirect case multiEntityRename(MultiEntityRename)
     /// Optional. Rule to specify how multiple entities should be relocated into
     /// a different schema.
-    indirect case entityMove(EntityMove?)
+    indirect case entityMove(EntityMove)
     /// Optional. Rule to specify how a single column is converted.
-    indirect case singleColumnChange(SingleColumnChange?)
+    indirect case singleColumnChange(SingleColumnChange)
     /// Optional. Rule to specify how multiple columns should be converted to a
     /// different data type.
-    indirect case multiColumnDataTypeChange(MultiColumnDatatypeChange?)
+    indirect case multiColumnDataTypeChange(MultiColumnDatatypeChange)
     /// Optional. Rule to specify how the data contained in a column should be
     /// transformed (such as trimmed, rounded, etc) provided that the data meets
     /// certain criteria.
-    indirect case conditionalColumnSetValue(ConditionalColumnSetValue?)
+    indirect case conditionalColumnSetValue(ConditionalColumnSetValue)
     /// Optional. Rule to specify how multiple tables should be converted with an
     /// additional rowid column.
-    indirect case convertRowidColumn(ConvertRowIdToColumn?)
+    indirect case convertRowidColumn(ConvertRowIdToColumn)
     /// Optional. Rule to specify the primary key for a table
-    indirect case setTablePrimaryKey(SetTablePrimaryKey?)
+    indirect case setTablePrimaryKey(SetTablePrimaryKey)
     /// Optional. Rule to specify how a single package is converted.
-    indirect case singlePackageChange(SinglePackageChange?)
+    indirect case singlePackageChange(SinglePackageChange)
     /// Optional. Rule to change the sql code for an entity, for example,
     /// function, procedure.
-    indirect case sourceSqlChange(SourceSqlChange?)
+    indirect case sourceSqlChange(SourceSqlChange)
     /// Optional. Rule to specify the list of columns to include or exclude from
     /// a table.
-    indirect case filterTableColumns(FilterTableColumns?)
+    indirect case filterTableColumns(FilterTableColumns)
   }
 
   public static var _anyTypeUrl: Swift.String {

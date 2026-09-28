@@ -71,11 +71,11 @@
         }
         source = $0
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       if let bigquerySource = try container.decodeIfPresent(
-        BigQuerySource?.self, forKey: .bigquerySource)
+        BigQuerySource.self, forKey: .bigquerySource)
       {
         try sourceCheckAndSet(.bigquerySource(bigquerySource))
       }
@@ -106,9 +106,9 @@
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Cloud storage source holds the dataset. Currently only one Cloud Storage
       /// file path is supported.
-      indirect case gcsSource(GcsSource?)
+      indirect case gcsSource(GcsSource)
       /// BigQuery source holds the dataset.
-      indirect case bigquerySource(BigQuerySource?)
+      indirect case bigquerySource(BigQuerySource)
     }
 
     public static var _anyTypeUrl: Swift.String {

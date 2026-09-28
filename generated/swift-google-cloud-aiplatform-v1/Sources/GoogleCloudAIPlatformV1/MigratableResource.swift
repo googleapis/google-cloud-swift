@@ -92,22 +92,22 @@
         resource = $0
       }
       if let mlEngineModelVersion = try container.decodeIfPresent(
-        MigratableResource.MlEngineModelVersion?.self, forKey: .mlEngineModelVersion)
+        MigratableResource.MlEngineModelVersion.self, forKey: .mlEngineModelVersion)
       {
         try resourceCheckAndSet(.mlEngineModelVersion(mlEngineModelVersion))
       }
       if let automlModel = try container.decodeIfPresent(
-        MigratableResource.AutomlModel?.self, forKey: .automlModel)
+        MigratableResource.AutomlModel.self, forKey: .automlModel)
       {
         try resourceCheckAndSet(.automlModel(automlModel))
       }
       if let automlDataset = try container.decodeIfPresent(
-        MigratableResource.AutomlDataset?.self, forKey: .automlDataset)
+        MigratableResource.AutomlDataset.self, forKey: .automlDataset)
       {
         try resourceCheckAndSet(.automlDataset(automlDataset))
       }
       if let dataLabelingDataset = try container.decodeIfPresent(
-        MigratableResource.DataLabelingDataset?.self, forKey: .dataLabelingDataset)
+        MigratableResource.DataLabelingDataset.self, forKey: .dataLabelingDataset)
       {
         try resourceCheckAndSet(.dataLabelingDataset(dataLabelingDataset))
       }
@@ -569,13 +569,13 @@
 
     public enum ResourceOneOf: Codable, Equatable, Sendable {
       /// Output only. Represents one Version in ml.googleapis.com.
-      indirect case mlEngineModelVersion(MigratableResource.MlEngineModelVersion?)
+      indirect case mlEngineModelVersion(MigratableResource.MlEngineModelVersion)
       /// Output only. Represents one Model in automl.googleapis.com.
-      indirect case automlModel(MigratableResource.AutomlModel?)
+      indirect case automlModel(MigratableResource.AutomlModel)
       /// Output only. Represents one Dataset in automl.googleapis.com.
-      indirect case automlDataset(MigratableResource.AutomlDataset?)
+      indirect case automlDataset(MigratableResource.AutomlDataset)
       /// Output only. Represents one Dataset in datalabeling.googleapis.com.
-      indirect case dataLabelingDataset(MigratableResource.DataLabelingDataset?)
+      indirect case dataLabelingDataset(MigratableResource.DataLabelingDataset)
     }
 
     public static var _anyTypeUrl: Swift.String {

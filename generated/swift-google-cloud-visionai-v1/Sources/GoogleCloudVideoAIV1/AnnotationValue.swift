@@ -98,13 +98,12 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try valueCheckAndSet(.datetimeValue(datetimeValue))
     }
-    if let geoCoordinate = try container.decodeIfPresent(
-      GeoCoordinate?.self, forKey: .geoCoordinate)
+    if let geoCoordinate = try container.decodeIfPresent(GeoCoordinate.self, forKey: .geoCoordinate)
     {
       try valueCheckAndSet(.geoCoordinate(geoCoordinate))
     }
     if let protoAnyValue = try container.decodeIfPresent(
-      GoogleWKT.WKTAny?.self, forKey: .protoAnyValue)
+      GoogleWKT.WKTAny.self, forKey: .protoAnyValue)
     {
       try valueCheckAndSet(.protoAnyValue(protoAnyValue))
     }
@@ -112,15 +111,15 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
       try valueCheckAndSet(.boolValue(boolValue))
     }
     if let customizedStructDataValue = try container.decodeIfPresent(
-      GoogleWKT.WKTStruct?.self, forKey: .customizedStructDataValue)
+      GoogleWKT.WKTStruct.self, forKey: .customizedStructDataValue)
     {
       try valueCheckAndSet(.customizedStructDataValue(customizedStructDataValue))
     }
-    if let listValue = try container.decodeIfPresent(AnnotationList?.self, forKey: .listValue) {
+    if let listValue = try container.decodeIfPresent(AnnotationList.self, forKey: .listValue) {
       try valueCheckAndSet(.listValue(listValue))
     }
     if let customizedStructValue = try container.decodeIfPresent(
-      AnnotationCustomizedStruct?.self, forKey: .customizedStructValue)
+      AnnotationCustomizedStruct.self, forKey: .customizedStructValue)
     {
       try valueCheckAndSet(.customizedStructValue(customizedStructValue))
     }
@@ -173,18 +172,18 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Value of date time type annotation.
     case datetimeValue(Swift.String)
     /// Value of geo coordinate type annotation.
-    indirect case geoCoordinate(GeoCoordinate?)
+    indirect case geoCoordinate(GeoCoordinate)
     /// Value of any proto value.
-    indirect case protoAnyValue(GoogleWKT.WKTAny?)
+    indirect case protoAnyValue(GoogleWKT.WKTAny)
     /// Value of boolean type annotation.
     case boolValue(Swift.Bool)
     /// Value of customized struct annotation. This field does not have effects.
     /// Use customized_struct_value instead for customized struct annotation.
-    indirect case customizedStructDataValue(GoogleWKT.WKTStruct?)
+    indirect case customizedStructDataValue(GoogleWKT.WKTStruct)
     /// Value of list type annotation.
-    indirect case listValue(AnnotationList?)
+    indirect case listValue(AnnotationList)
     /// Value of custom struct type annotation.
-    indirect case customizedStructValue(AnnotationCustomizedStruct?)
+    indirect case customizedStructValue(AnnotationCustomizedStruct)
   }
 
   public static var _anyTypeUrl: Swift.String {

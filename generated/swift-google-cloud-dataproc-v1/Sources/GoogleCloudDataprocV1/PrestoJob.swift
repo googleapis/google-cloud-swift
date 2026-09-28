@@ -123,7 +123,7 @@ public struct PrestoJob: Codable, Equatable, GoogleWKT._AnyPackable,
     if let queryFileUri = try container.decodeIfPresent(Swift.String.self, forKey: .queryFileUri) {
       try queriesCheckAndSet(.queryFileUri(queryFileUri))
     }
-    if let queryList = try container.decodeIfPresent(QueryList?.self, forKey: .queryList) {
+    if let queryList = try container.decodeIfPresent(QueryList.self, forKey: .queryList) {
       try queriesCheckAndSet(.queryList(queryList))
     }
     self.queries = queries
@@ -160,7 +160,7 @@ public struct PrestoJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The HCFS URI of the script that contains SQL queries.
     case queryFileUri(Swift.String)
     /// A list of queries.
-    indirect case queryList(QueryList?)
+    indirect case queryList(QueryList)
   }
 
   public static var _anyTypeUrl: Swift.String {

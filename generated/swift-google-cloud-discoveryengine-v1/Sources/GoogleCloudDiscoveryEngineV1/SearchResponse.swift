@@ -939,7 +939,7 @@
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
             try facetValueCheckAndSet(.value(value))
           }
-          if let interval = try container.decodeIfPresent(Interval?.self, forKey: .interval) {
+          if let interval = try container.decodeIfPresent(Interval.self, forKey: .interval) {
             try facetValueCheckAndSet(.interval(interval))
           }
           self.facetValue = facetValue
@@ -975,7 +975,7 @@
           /// [SearchRequest.FacetSpec.FacetKey.intervals][google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.intervals].
           ///
           /// [google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.intervals]: <doc:SearchRequest/FacetSpec/FacetKey/intervals>
-          indirect case interval(Interval?)
+          indirect case interval(Interval)
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -2785,31 +2785,31 @@
             }
             if let stringConstraint = try container.decodeIfPresent(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .StringConstraint?.self, forKey: .stringConstraint)
+                .StringConstraint.self, forKey: .stringConstraint)
             {
               try exprCheckAndSet(.stringConstraint(stringConstraint))
             }
             if let numberConstraint = try container.decodeIfPresent(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .NumberConstraint?.self, forKey: .numberConstraint)
+                .NumberConstraint.self, forKey: .numberConstraint)
             {
               try exprCheckAndSet(.numberConstraint(numberConstraint))
             }
             if let geolocationConstraint = try container.decodeIfPresent(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .GeolocationConstraint?.self, forKey: .geolocationConstraint)
+                .GeolocationConstraint.self, forKey: .geolocationConstraint)
             {
               try exprCheckAndSet(.geolocationConstraint(geolocationConstraint))
             }
             if let andExpr = try container.decodeIfPresent(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .AndExpression?.self, forKey: .andExpr)
+                .AndExpression.self, forKey: .andExpr)
             {
               try exprCheckAndSet(.andExpr(andExpr))
             }
             if let orExpr = try container.decodeIfPresent(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .OrExpression?.self, forKey: .orExpr)
+                .OrExpression.self, forKey: .orExpr)
             {
               try exprCheckAndSet(.orExpr(orExpr))
             }
@@ -2847,23 +2847,23 @@
             /// String constraint expression.
             indirect case stringConstraint(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .StringConstraint?)
+                .StringConstraint)
             /// Numerical constraint expression.
             indirect case numberConstraint(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .NumberConstraint?)
+                .NumberConstraint)
             /// Geolocation constraint expression.
             indirect case geolocationConstraint(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .GeolocationConstraint?)
+                .GeolocationConstraint)
             /// Logical "And" compound operator connecting multiple expressions.
             indirect case andExpr(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .AndExpression?)
+                .AndExpression)
             /// Logical "Or" compound operator connecting multiple expressions.
             indirect case orExpr(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
-                .OrExpression?)
+                .OrExpression)
           }
 
           public static var _anyTypeUrl: Swift.String {

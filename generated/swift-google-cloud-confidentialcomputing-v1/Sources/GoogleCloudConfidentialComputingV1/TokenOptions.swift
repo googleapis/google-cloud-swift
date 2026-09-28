@@ -96,7 +96,7 @@ public struct TokenOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       tokenTypeOptions = $0
     }
     if let awsPrincipalTagsOptions = try container.decodeIfPresent(
-      AwsPrincipalTagsOptions?.self, forKey: .awsPrincipalTagsOptions)
+      AwsPrincipalTagsOptions.self, forKey: .awsPrincipalTagsOptions)
     {
       try tokenTypeOptionsCheckAndSet(.awsPrincipalTagsOptions(awsPrincipalTagsOptions))
     }
@@ -127,7 +127,7 @@ public struct TokenOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// An optional additional configuration per token type.
   public enum TokenTypeOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Options for AWS token type.
-    indirect case awsPrincipalTagsOptions(AwsPrincipalTagsOptions?)
+    indirect case awsPrincipalTagsOptions(AwsPrincipalTagsOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

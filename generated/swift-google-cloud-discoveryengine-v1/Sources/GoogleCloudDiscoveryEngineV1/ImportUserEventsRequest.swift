@@ -90,15 +90,15 @@
         source = $0
       }
       if let inlineSource = try container.decodeIfPresent(
-        ImportUserEventsRequest.InlineSource?.self, forKey: .inlineSource)
+        ImportUserEventsRequest.InlineSource.self, forKey: .inlineSource)
       {
         try sourceCheckAndSet(.inlineSource(inlineSource))
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       if let bigquerySource = try container.decodeIfPresent(
-        BigQuerySource?.self, forKey: .bigquerySource)
+        BigQuerySource.self, forKey: .bigquerySource)
       {
         try sourceCheckAndSet(.bigquerySource(bigquerySource))
       }
@@ -201,11 +201,11 @@
     /// Required - The desired input source of the user event data.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The Inline source for the input content for UserEvents.
-      indirect case inlineSource(ImportUserEventsRequest.InlineSource?)
+      indirect case inlineSource(ImportUserEventsRequest.InlineSource)
       /// Cloud Storage location for the input content.
-      indirect case gcsSource(GcsSource?)
+      indirect case gcsSource(GcsSource)
       /// BigQuery input source.
-      indirect case bigquerySource(BigQuerySource?)
+      indirect case bigquerySource(BigQuerySource)
     }
 
     public static var _anyTypeUrl: Swift.String {

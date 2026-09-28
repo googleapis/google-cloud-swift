@@ -564,36 +564,36 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         condition = $0
       }
       if let conditionThreshold = try container.decodeIfPresent(
-        AlertPolicy.Condition.MetricThreshold?.self, forKey: .conditionThreshold)
+        AlertPolicy.Condition.MetricThreshold.self, forKey: .conditionThreshold)
       {
         try conditionCheckAndSet(.conditionThreshold(conditionThreshold))
       }
       if let conditionAbsent = try container.decodeIfPresent(
-        AlertPolicy.Condition.MetricAbsence?.self, forKey: .conditionAbsent)
+        AlertPolicy.Condition.MetricAbsence.self, forKey: .conditionAbsent)
       {
         try conditionCheckAndSet(.conditionAbsent(conditionAbsent))
       }
       if let conditionMatchedLog = try container.decodeIfPresent(
-        AlertPolicy.Condition.LogMatch?.self, forKey: .conditionMatchedLog)
+        AlertPolicy.Condition.LogMatch.self, forKey: .conditionMatchedLog)
       {
         try conditionCheckAndSet(.conditionMatchedLog(conditionMatchedLog))
       }
       if let conditionMonitoringQueryLanguage = try container.decodeIfPresent(
-        AlertPolicy.Condition.MonitoringQueryLanguageCondition?.self,
+        AlertPolicy.Condition.MonitoringQueryLanguageCondition.self,
         forKey: .conditionMonitoringQueryLanguage)
       {
         try conditionCheckAndSet(
           .conditionMonitoringQueryLanguage(conditionMonitoringQueryLanguage))
       }
       if let conditionPrometheusQueryLanguage = try container.decodeIfPresent(
-        AlertPolicy.Condition.PrometheusQueryLanguageCondition?.self,
+        AlertPolicy.Condition.PrometheusQueryLanguageCondition.self,
         forKey: .conditionPrometheusQueryLanguage)
       {
         try conditionCheckAndSet(
           .conditionPrometheusQueryLanguage(conditionPrometheusQueryLanguage))
       }
       if let conditionSql = try container.decodeIfPresent(
-        AlertPolicy.Condition.SqlCondition?.self, forKey: .conditionSql)
+        AlertPolicy.Condition.SqlCondition.self, forKey: .conditionSql)
       {
         try conditionCheckAndSet(.conditionSql(conditionSql))
       }
@@ -1644,17 +1644,17 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           schedule = $0
         }
         if let minutes = try container.decodeIfPresent(
-          AlertPolicy.Condition.SqlCondition.Minutes?.self, forKey: .minutes)
+          AlertPolicy.Condition.SqlCondition.Minutes.self, forKey: .minutes)
         {
           try scheduleCheckAndSet(.minutes(minutes))
         }
         if let hourly = try container.decodeIfPresent(
-          AlertPolicy.Condition.SqlCondition.Hourly?.self, forKey: .hourly)
+          AlertPolicy.Condition.SqlCondition.Hourly.self, forKey: .hourly)
         {
           try scheduleCheckAndSet(.hourly(hourly))
         }
         if let daily = try container.decodeIfPresent(
-          AlertPolicy.Condition.SqlCondition.Daily?.self, forKey: .daily)
+          AlertPolicy.Condition.SqlCondition.Daily.self, forKey: .daily)
         {
           try scheduleCheckAndSet(.daily(daily))
         }
@@ -1671,12 +1671,12 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           evaluate = $0
         }
         if let rowCountTest = try container.decodeIfPresent(
-          AlertPolicy.Condition.SqlCondition.RowCountTest?.self, forKey: .rowCountTest)
+          AlertPolicy.Condition.SqlCondition.RowCountTest.self, forKey: .rowCountTest)
         {
           try evaluateCheckAndSet(.rowCountTest(rowCountTest))
         }
         if let booleanTest = try container.decodeIfPresent(
-          AlertPolicy.Condition.SqlCondition.BooleanTest?.self, forKey: .booleanTest)
+          AlertPolicy.Condition.SqlCondition.BooleanTest.self, forKey: .booleanTest)
         {
           try evaluateCheckAndSet(.booleanTest(booleanTest))
         }
@@ -2099,19 +2099,19 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// The schedule indicates how often the query should be run.
       public enum ScheduleOneOf: Codable, Equatable, Sendable {
         /// Schedule the query to execute every so many minutes.
-        indirect case minutes(AlertPolicy.Condition.SqlCondition.Minutes?)
+        indirect case minutes(AlertPolicy.Condition.SqlCondition.Minutes)
         /// Schedule the query to execute every so many hours.
-        indirect case hourly(AlertPolicy.Condition.SqlCondition.Hourly?)
+        indirect case hourly(AlertPolicy.Condition.SqlCondition.Hourly)
         /// Schedule the query to execute every so many days.
-        indirect case daily(AlertPolicy.Condition.SqlCondition.Daily?)
+        indirect case daily(AlertPolicy.Condition.SqlCondition.Daily)
       }
 
       /// The test to be run against the SQL result set.
       public enum EvaluateOneOf: Codable, Equatable, Sendable {
         /// Test the row count against a threshold.
-        indirect case rowCountTest(AlertPolicy.Condition.SqlCondition.RowCountTest?)
+        indirect case rowCountTest(AlertPolicy.Condition.SqlCondition.RowCountTest)
         /// Test the boolean value in the indicated column.
-        indirect case booleanTest(AlertPolicy.Condition.SqlCondition.BooleanTest?)
+        indirect case booleanTest(AlertPolicy.Condition.SqlCondition.BooleanTest)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -2257,22 +2257,22 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Only one of the following condition types will be specified.
     public enum ConditionOneOf: Codable, Equatable, Sendable {
       /// A condition that compares a time series against a threshold.
-      indirect case conditionThreshold(AlertPolicy.Condition.MetricThreshold?)
+      indirect case conditionThreshold(AlertPolicy.Condition.MetricThreshold)
       /// A condition that checks that a time series continues to
       /// receive new data points.
-      indirect case conditionAbsent(AlertPolicy.Condition.MetricAbsence?)
+      indirect case conditionAbsent(AlertPolicy.Condition.MetricAbsence)
       /// A condition that checks for log messages matching given constraints. If
       /// set, no other conditions can be present.
-      indirect case conditionMatchedLog(AlertPolicy.Condition.LogMatch?)
+      indirect case conditionMatchedLog(AlertPolicy.Condition.LogMatch)
       /// A condition that uses the Monitoring Query Language to define
       /// alerts.
       indirect case conditionMonitoringQueryLanguage(
-        AlertPolicy.Condition.MonitoringQueryLanguageCondition?)
+        AlertPolicy.Condition.MonitoringQueryLanguageCondition)
       /// A condition that uses the Prometheus query language to define alerts.
       indirect case conditionPrometheusQueryLanguage(
-        AlertPolicy.Condition.PrometheusQueryLanguageCondition?)
+        AlertPolicy.Condition.PrometheusQueryLanguageCondition)
       /// A condition that periodically evaluates a SQL query result.
-      indirect case conditionSql(AlertPolicy.Condition.SqlCondition?)
+      indirect case conditionSql(AlertPolicy.Condition.SqlCondition)
     }
 
     public static var _anyTypeUrl: Swift.String {

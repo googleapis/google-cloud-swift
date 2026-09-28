@@ -123,10 +123,10 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       scheduleConfig = $0
     }
-    if let weekly = try container.decodeIfPresent(WeeklySchedule?.self, forKey: .weekly) {
+    if let weekly = try container.decodeIfPresent(WeeklySchedule.self, forKey: .weekly) {
       try scheduleConfigCheckAndSet(.weekly(weekly))
     }
-    if let monthly = try container.decodeIfPresent(MonthlySchedule?.self, forKey: .monthly) {
+    if let monthly = try container.decodeIfPresent(MonthlySchedule.self, forKey: .monthly) {
       try scheduleConfigCheckAndSet(.monthly(monthly))
     }
     self.scheduleConfig = scheduleConfig
@@ -290,9 +290,9 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configurations must match frequency.
   public enum ScheduleConfigOneOf: Codable, Equatable, Sendable {
     /// Required. Schedule with weekly executions.
-    indirect case weekly(WeeklySchedule?)
+    indirect case weekly(WeeklySchedule)
     /// Required. Schedule with monthly executions.
-    indirect case monthly(MonthlySchedule?)
+    indirect case monthly(MonthlySchedule)
   }
 
   public static var _anyTypeUrl: Swift.String {

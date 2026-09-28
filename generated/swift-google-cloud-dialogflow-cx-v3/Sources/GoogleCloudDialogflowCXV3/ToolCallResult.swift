@@ -91,11 +91,11 @@
         }
         result = $0
       }
-      if let error = try container.decodeIfPresent(ToolCallResult.Error?.self, forKey: .error) {
+      if let error = try container.decodeIfPresent(ToolCallResult.Error.self, forKey: .error) {
         try resultCheckAndSet(.error(error))
       }
       if let outputParameters = try container.decodeIfPresent(
-        GoogleWKT.WKTStruct?.self, forKey: .outputParameters)
+        GoogleWKT.WKTStruct.self, forKey: .outputParameters)
       {
         try resultCheckAndSet(.outputParameters(outputParameters))
       }
@@ -195,9 +195,9 @@
     /// The tool call's result.
     public enum ResultOneOf: Codable, Equatable, Sendable {
       /// The tool call's error.
-      indirect case error(ToolCallResult.Error?)
+      indirect case error(ToolCallResult.Error)
       /// The tool call's output parameters.
-      indirect case outputParameters(GoogleWKT.WKTStruct?)
+      indirect case outputParameters(GoogleWKT.WKTStruct)
     }
 
     public static var _anyTypeUrl: Swift.String {

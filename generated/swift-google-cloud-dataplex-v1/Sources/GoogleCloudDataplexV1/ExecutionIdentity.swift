@@ -73,17 +73,17 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
       identity = $0
     }
     if let dataplexServiceAgent = try container.decodeIfPresent(
-      ExecutionIdentity.DataplexServiceAgent?.self, forKey: .dataplexServiceAgent)
+      ExecutionIdentity.DataplexServiceAgent.self, forKey: .dataplexServiceAgent)
     {
       try identityCheckAndSet(.dataplexServiceAgent(dataplexServiceAgent))
     }
     if let userCredential = try container.decodeIfPresent(
-      ExecutionIdentity.UserCredential?.self, forKey: .userCredential)
+      ExecutionIdentity.UserCredential.self, forKey: .userCredential)
     {
       try identityCheckAndSet(.userCredential(userCredential))
     }
     if let serviceAccount = try container.decodeIfPresent(
-      ExecutionIdentity.ServiceAccount?.self, forKey: .serviceAccount)
+      ExecutionIdentity.ServiceAccount.self, forKey: .serviceAccount)
     {
       try identityCheckAndSet(.serviceAccount(serviceAccount))
     }
@@ -301,12 +301,12 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The identity to run the datascan.
   public enum IdentityOneOf: Codable, Equatable, Sendable {
     /// Optional. The Dataplex service agent associated with the user's project.
-    indirect case dataplexServiceAgent(ExecutionIdentity.DataplexServiceAgent?)
+    indirect case dataplexServiceAgent(ExecutionIdentity.DataplexServiceAgent)
     /// Optional. The credential of the calling user. Supports only ONE_TIME
     /// trigger type.
-    indirect case userCredential(ExecutionIdentity.UserCredential?)
+    indirect case userCredential(ExecutionIdentity.UserCredential)
     /// Optional. The provided service account.
-    indirect case serviceAccount(ExecutionIdentity.ServiceAccount?)
+    indirect case serviceAccount(ExecutionIdentity.ServiceAccount)
   }
 
   public static var _anyTypeUrl: Swift.String {

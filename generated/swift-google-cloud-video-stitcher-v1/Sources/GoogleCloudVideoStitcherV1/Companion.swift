@@ -147,17 +147,17 @@ public struct Companion: Codable, Equatable, GoogleWKT._AnyPackable,
       adResource = $0
     }
     if let iframeAdResource = try container.decodeIfPresent(
-      IframeAdResource?.self, forKey: .iframeAdResource)
+      IframeAdResource.self, forKey: .iframeAdResource)
     {
       try adResourceCheckAndSet(.iframeAdResource(iframeAdResource))
     }
     if let staticAdResource = try container.decodeIfPresent(
-      StaticAdResource?.self, forKey: .staticAdResource)
+      StaticAdResource.self, forKey: .staticAdResource)
     {
       try adResourceCheckAndSet(.staticAdResource(staticAdResource))
     }
     if let htmlAdResource = try container.decodeIfPresent(
-      HtmlAdResource?.self, forKey: .htmlAdResource)
+      HtmlAdResource.self, forKey: .htmlAdResource)
     {
       try adResourceCheckAndSet(.htmlAdResource(htmlAdResource))
     }
@@ -198,11 +198,11 @@ public struct Companion: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Ad resource associated with the companion ad.
   public enum AdResourceOneOf: Codable, Equatable, Sendable {
     /// The IFrame ad resource associated with the companion ad.
-    indirect case iframeAdResource(IframeAdResource?)
+    indirect case iframeAdResource(IframeAdResource)
     /// The static ad resource associated with the companion ad.
-    indirect case staticAdResource(StaticAdResource?)
+    indirect case staticAdResource(StaticAdResource)
     /// The HTML ad resource associated with the companion ad.
-    indirect case htmlAdResource(HtmlAdResource?)
+    indirect case htmlAdResource(HtmlAdResource)
   }
 
   public static var _anyTypeUrl: Swift.String {

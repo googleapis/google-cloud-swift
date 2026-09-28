@@ -78,29 +78,29 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       firewallActionOneof = $0
     }
-    if let allow = try container.decodeIfPresent(FirewallAction.AllowAction?.self, forKey: .allow) {
+    if let allow = try container.decodeIfPresent(FirewallAction.AllowAction.self, forKey: .allow) {
       try firewallActionOneofCheckAndSet(.allow(allow))
     }
-    if let block = try container.decodeIfPresent(FirewallAction.BlockAction?.self, forKey: .block) {
+    if let block = try container.decodeIfPresent(FirewallAction.BlockAction.self, forKey: .block) {
       try firewallActionOneofCheckAndSet(.block(block))
     }
     if let includeRecaptchaScript = try container.decodeIfPresent(
-      FirewallAction.IncludeRecaptchaScriptAction?.self, forKey: .includeRecaptchaScript)
+      FirewallAction.IncludeRecaptchaScriptAction.self, forKey: .includeRecaptchaScript)
     {
       try firewallActionOneofCheckAndSet(.includeRecaptchaScript(includeRecaptchaScript))
     }
     if let redirect = try container.decodeIfPresent(
-      FirewallAction.RedirectAction?.self, forKey: .redirect)
+      FirewallAction.RedirectAction.self, forKey: .redirect)
     {
       try firewallActionOneofCheckAndSet(.redirect(redirect))
     }
     if let substitute = try container.decodeIfPresent(
-      FirewallAction.SubstituteAction?.self, forKey: .substitute)
+      FirewallAction.SubstituteAction.self, forKey: .substitute)
     {
       try firewallActionOneofCheckAndSet(.substitute(substitute))
     }
     if let setHeader = try container.decodeIfPresent(
-      FirewallAction.SetHeaderAction?.self, forKey: .setHeader)
+      FirewallAction.SetHeaderAction.self, forKey: .setHeader)
     {
       try firewallActionOneofCheckAndSet(.setHeader(setHeader))
     }
@@ -524,22 +524,22 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum FirewallActionOneofOneOf: Codable, Equatable, Sendable {
     /// The user request did not match any policy and should be allowed
     /// access to the requested resource.
-    indirect case allow(FirewallAction.AllowAction?)
+    indirect case allow(FirewallAction.AllowAction)
     /// This action denies access to a given page. The user gets an HTTP
     /// error code.
-    indirect case block(FirewallAction.BlockAction?)
+    indirect case block(FirewallAction.BlockAction)
     /// This action injects reCAPTCHA JavaScript code into the HTML page
     /// returned by the site backend.
-    indirect case includeRecaptchaScript(FirewallAction.IncludeRecaptchaScriptAction?)
+    indirect case includeRecaptchaScript(FirewallAction.IncludeRecaptchaScriptAction)
     /// This action redirects the request to a reCAPTCHA interstitial to
     /// attach a token.
-    indirect case redirect(FirewallAction.RedirectAction?)
+    indirect case redirect(FirewallAction.RedirectAction)
     /// This action transparently serves a different page to an offending
     /// user.
-    indirect case substitute(FirewallAction.SubstituteAction?)
+    indirect case substitute(FirewallAction.SubstituteAction)
     /// This action sets a custom header but allow the request to continue
     /// to the customer backend.
-    indirect case setHeader(FirewallAction.SetHeaderAction?)
+    indirect case setHeader(FirewallAction.SetHeaderAction)
   }
 
   public static var _anyTypeUrl: Swift.String {

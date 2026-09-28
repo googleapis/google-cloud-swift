@@ -70,12 +70,12 @@ public struct VectorField: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       vectorTypeConfig = $0
     }
-    if let denseVector = try container.decodeIfPresent(DenseVectorField?.self, forKey: .denseVector)
+    if let denseVector = try container.decodeIfPresent(DenseVectorField.self, forKey: .denseVector)
     {
       try vectorTypeConfigCheckAndSet(.denseVector(denseVector))
     }
     if let sparseVector = try container.decodeIfPresent(
-      SparseVectorField?.self, forKey: .sparseVector)
+      SparseVectorField.self, forKey: .sparseVector)
     {
       try vectorTypeConfigCheckAndSet(.sparseVector(sparseVector))
     }
@@ -105,9 +105,9 @@ public struct VectorField: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Vector type configuration.
   public enum VectorTypeConfigOneOf: Codable, Equatable, Sendable {
     /// Dense vector field.
-    indirect case denseVector(DenseVectorField?)
+    indirect case denseVector(DenseVectorField)
     /// Sparse vector field.
-    indirect case sparseVector(SparseVectorField?)
+    indirect case sparseVector(SparseVectorField)
   }
 
   public static var _anyTypeUrl: Swift.String {

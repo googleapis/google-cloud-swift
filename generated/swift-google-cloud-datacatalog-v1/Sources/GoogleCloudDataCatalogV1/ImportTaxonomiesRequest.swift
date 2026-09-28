@@ -82,11 +82,11 @@ public struct ImportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       }
       source = $0
     }
-    if let inlineSource = try container.decodeIfPresent(InlineSource?.self, forKey: .inlineSource) {
+    if let inlineSource = try container.decodeIfPresent(InlineSource.self, forKey: .inlineSource) {
       try sourceCheckAndSet(.inlineSource(inlineSource))
     }
     if let crossRegionalSource = try container.decodeIfPresent(
-      CrossRegionalSource?.self, forKey: .crossRegionalSource)
+      CrossRegionalSource.self, forKey: .crossRegionalSource)
     {
       try sourceCheckAndSet(.crossRegionalSource(crossRegionalSource))
     }
@@ -117,9 +117,9 @@ public struct ImportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Source taxonomies to import.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Inline source taxonomy to import.
-    indirect case inlineSource(InlineSource?)
+    indirect case inlineSource(InlineSource)
     /// Cross-regional source taxonomy to import.
-    indirect case crossRegionalSource(CrossRegionalSource?)
+    indirect case crossRegionalSource(CrossRegionalSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

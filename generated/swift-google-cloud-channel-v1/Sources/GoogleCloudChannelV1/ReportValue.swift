@@ -87,18 +87,18 @@ public struct ReportValue: Codable, Equatable, GoogleWKT._AnyPackable,
       try valueCheckAndSet(.intValue(intValue))
     }
     if let decimalValue = try container.decodeIfPresent(
-      GoogleType.Decimal?.self, forKey: .decimalValue)
+      GoogleType.Decimal.self, forKey: .decimalValue)
     {
       try valueCheckAndSet(.decimalValue(decimalValue))
     }
-    if let moneyValue = try container.decodeIfPresent(GoogleType.Money?.self, forKey: .moneyValue) {
+    if let moneyValue = try container.decodeIfPresent(GoogleType.Money.self, forKey: .moneyValue) {
       try valueCheckAndSet(.moneyValue(moneyValue))
     }
-    if let dateValue = try container.decodeIfPresent(GoogleType.Date?.self, forKey: .dateValue) {
+    if let dateValue = try container.decodeIfPresent(GoogleType.Date.self, forKey: .dateValue) {
       try valueCheckAndSet(.dateValue(dateValue))
     }
     if let dateTimeValue = try container.decodeIfPresent(
-      GoogleType.DateTime?.self, forKey: .dateTimeValue)
+      GoogleType.DateTime.self, forKey: .dateTimeValue)
     {
       try valueCheckAndSet(.dateTimeValue(dateTimeValue))
     }
@@ -141,15 +141,15 @@ public struct ReportValue: Codable, Equatable, GoogleWKT._AnyPackable,
     case intValue(Swift.Int64)
     /// A value of type `google.type.Decimal`, representing non-integer numeric
     /// values.
-    indirect case decimalValue(GoogleType.Decimal?)
+    indirect case decimalValue(GoogleType.Decimal)
     /// A value of type `google.type.Money` (currency code, whole units, decimal
     /// units).
-    indirect case moneyValue(GoogleType.Money?)
+    indirect case moneyValue(GoogleType.Money)
     /// A value of type `google.type.Date` (year, month, day).
-    indirect case dateValue(GoogleType.Date?)
+    indirect case dateValue(GoogleType.Date)
     /// A value of type `google.type.DateTime` (year, month, day, hour, minute,
     /// second, and UTC offset or timezone.)
-    indirect case dateTimeValue(GoogleType.DateTime?)
+    indirect case dateTimeValue(GoogleType.DateTime)
   }
 
   public static var _anyTypeUrl: Swift.String {

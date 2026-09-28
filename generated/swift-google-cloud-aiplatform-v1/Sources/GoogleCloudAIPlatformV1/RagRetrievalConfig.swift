@@ -262,12 +262,12 @@
           rankingConfig = $0
         }
         if let rankService = try container.decodeIfPresent(
-          RagRetrievalConfig.Ranking.RankService?.self, forKey: .rankService)
+          RagRetrievalConfig.Ranking.RankService.self, forKey: .rankService)
         {
           try rankingConfigCheckAndSet(.rankService(rankService))
         }
         if let llmRanker = try container.decodeIfPresent(
-          RagRetrievalConfig.Ranking.LlmRanker?.self, forKey: .llmRanker)
+          RagRetrievalConfig.Ranking.LlmRanker.self, forKey: .llmRanker)
         {
           try rankingConfigCheckAndSet(.llmRanker(llmRanker))
         }
@@ -433,9 +433,9 @@
       /// Config options for ranking. Currently only Rank Service is supported.
       public enum RankingConfigOneOf: Codable, Equatable, Sendable {
         /// Optional. Config for Rank Service.
-        indirect case rankService(RagRetrievalConfig.Ranking.RankService?)
+        indirect case rankService(RagRetrievalConfig.Ranking.RankService)
         /// Optional. Config for LlmRanker.
-        indirect case llmRanker(RagRetrievalConfig.Ranking.LlmRanker?)
+        indirect case llmRanker(RagRetrievalConfig.Ranking.LlmRanker)
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -156,7 +156,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
       infraType = $0
     }
     if let dedicatedInfrastructure = try container.decodeIfPresent(
-      DedicatedInfrastructure?.self, forKey: .dedicatedInfrastructure)
+      DedicatedInfrastructure.self, forKey: .dedicatedInfrastructure)
     {
       try infraTypeCheckAndSet(.dedicatedInfrastructure(dedicatedInfrastructure))
     }
@@ -172,7 +172,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       indexType = $0
     }
-    if let denseScann = try container.decodeIfPresent(DenseScannIndex?.self, forKey: .denseScann) {
+    if let denseScann = try container.decodeIfPresent(DenseScannIndex.self, forKey: .denseScann) {
       try indexTypeCheckAndSet(.denseScann(denseScann))
     }
     self.indexType = indexType
@@ -216,13 +216,13 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The infrastructure type of the index.
   public enum InfraTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Dedicated infrastructure for the index.
-    indirect case dedicatedInfrastructure(DedicatedInfrastructure?)
+    indirect case dedicatedInfrastructure(DedicatedInfrastructure)
   }
 
   /// The type of the index.
   public enum IndexTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Dense ScaNN index.
-    indirect case denseScann(DenseScannIndex?)
+    indirect case denseScann(DenseScannIndex)
   }
 
   public static var _anyTypeUrl: Swift.String {

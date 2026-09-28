@@ -141,7 +141,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       policy = $0
     }
     if let dataMaskingPolicy = try container.decodeIfPresent(
-      DataMaskingPolicy?.self, forKey: .dataMaskingPolicy)
+      DataMaskingPolicy.self, forKey: .dataMaskingPolicy)
     {
       try policyCheckAndSet(.dataMaskingPolicy(dataMaskingPolicy))
     }
@@ -421,7 +421,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum PolicyOneOf: Codable, Equatable, Sendable {
     /// Optional. The data masking policy that specifies the data masking rule to
     /// use. It must be set if the data policy type is DATA_MASKING_POLICY.
-    indirect case dataMaskingPolicy(DataMaskingPolicy?)
+    indirect case dataMaskingPolicy(DataMaskingPolicy)
   }
 
   public static var _anyTypeUrl: Swift.String {

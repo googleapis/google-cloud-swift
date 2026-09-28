@@ -219,12 +219,12 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       sourceOptions = $0
     }
     if let sourceProjects = try container.decodeIfPresent(
-      DatasetConfig.SourceProjects?.self, forKey: .sourceProjects)
+      DatasetConfig.SourceProjects.self, forKey: .sourceProjects)
     {
       try sourceOptionsCheckAndSet(.sourceProjects(sourceProjects))
     }
     if let sourceFolders = try container.decodeIfPresent(
-      DatasetConfig.SourceFolders?.self, forKey: .sourceFolders)
+      DatasetConfig.SourceFolders.self, forKey: .sourceFolders)
     {
       try sourceOptionsCheckAndSet(.sourceFolders(sourceFolders))
     }
@@ -251,13 +251,13 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       cloudStorageLocations = $0
     }
     if let includeCloudStorageLocations = try container.decodeIfPresent(
-      DatasetConfig.CloudStorageLocations?.self, forKey: .includeCloudStorageLocations)
+      DatasetConfig.CloudStorageLocations.self, forKey: .includeCloudStorageLocations)
     {
       try cloudStorageLocationsCheckAndSet(
         .includeCloudStorageLocations(includeCloudStorageLocations))
     }
     if let excludeCloudStorageLocations = try container.decodeIfPresent(
-      DatasetConfig.CloudStorageLocations?.self, forKey: .excludeCloudStorageLocations)
+      DatasetConfig.CloudStorageLocations.self, forKey: .excludeCloudStorageLocations)
     {
       try cloudStorageLocationsCheckAndSet(
         .excludeCloudStorageLocations(excludeCloudStorageLocations))
@@ -275,12 +275,12 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       cloudStorageBuckets = $0
     }
     if let includeCloudStorageBuckets = try container.decodeIfPresent(
-      DatasetConfig.CloudStorageBuckets?.self, forKey: .includeCloudStorageBuckets)
+      DatasetConfig.CloudStorageBuckets.self, forKey: .includeCloudStorageBuckets)
     {
       try cloudStorageBucketsCheckAndSet(.includeCloudStorageBuckets(includeCloudStorageBuckets))
     }
     if let excludeCloudStorageBuckets = try container.decodeIfPresent(
-      DatasetConfig.CloudStorageBuckets?.self, forKey: .excludeCloudStorageBuckets)
+      DatasetConfig.CloudStorageBuckets.self, forKey: .excludeCloudStorageBuckets)
     {
       try cloudStorageBucketsCheckAndSet(.excludeCloudStorageBuckets(excludeCloudStorageBuckets))
     }
@@ -1373,9 +1373,9 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Defines the options for providing source identifiers for the dataset.
   public enum SourceOptionsOneOf: Codable, Equatable, Sendable {
     /// Defines the options for providing source projects for the dataset.
-    indirect case sourceProjects(DatasetConfig.SourceProjects?)
+    indirect case sourceProjects(DatasetConfig.SourceProjects)
     /// Defines the options for providing source folders for the dataset.
-    indirect case sourceFolders(DatasetConfig.SourceFolders?)
+    indirect case sourceFolders(DatasetConfig.SourceFolders)
     /// Defines the options for providing a source organization for the dataset.
     case organizationScope(Swift.Bool)
     /// Input only. Cloud Storage object path containing a list of
@@ -1395,14 +1395,14 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Cloud Storage locations to include or exclude.
   public enum CloudStorageLocationsOneOf: Codable, Equatable, Sendable {
-    indirect case includeCloudStorageLocations(DatasetConfig.CloudStorageLocations?)
-    indirect case excludeCloudStorageLocations(DatasetConfig.CloudStorageLocations?)
+    indirect case includeCloudStorageLocations(DatasetConfig.CloudStorageLocations)
+    indirect case excludeCloudStorageLocations(DatasetConfig.CloudStorageLocations)
   }
 
   /// Cloud Storage buckets to include or exclude.
   public enum CloudStorageBucketsOneOf: Codable, Equatable, Sendable {
-    indirect case includeCloudStorageBuckets(DatasetConfig.CloudStorageBuckets?)
-    indirect case excludeCloudStorageBuckets(DatasetConfig.CloudStorageBuckets?)
+    indirect case includeCloudStorageBuckets(DatasetConfig.CloudStorageBuckets)
+    indirect case excludeCloudStorageBuckets(DatasetConfig.CloudStorageBuckets)
   }
 
   public static var _anyTypeUrl: Swift.String {

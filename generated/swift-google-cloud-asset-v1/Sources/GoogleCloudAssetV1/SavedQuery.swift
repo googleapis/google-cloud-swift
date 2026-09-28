@@ -193,7 +193,7 @@ public struct SavedQuery: Codable, Equatable, GoogleWKT._AnyPackable,
         queryContent = $0
       }
       if let iamPolicyAnalysisQuery = try container.decodeIfPresent(
-        IamPolicyAnalysisQuery?.self, forKey: .iamPolicyAnalysisQuery)
+        IamPolicyAnalysisQuery.self, forKey: .iamPolicyAnalysisQuery)
       {
         try queryContentCheckAndSet(.iamPolicyAnalysisQuery(iamPolicyAnalysisQuery))
       }
@@ -228,7 +228,7 @@ public struct SavedQuery: Codable, Equatable, GoogleWKT._AnyPackable,
       ///
       /// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]: <doc:AssetServiceClient/analyzeIamPolicy(request:options:)>
       /// [google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]: <doc:AssetServiceClient/analyzeIamPolicyLongrunning(request:options:)>
-      indirect case iamPolicyAnalysisQuery(IamPolicyAnalysisQuery?)
+      indirect case iamPolicyAnalysisQuery(IamPolicyAnalysisQuery)
     }
 
     public static var _anyTypeUrl: Swift.String {

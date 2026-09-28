@@ -360,7 +360,7 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleWKT._AnyPackab
           output = $0
         }
         if let execResourceOutput = try container.decodeIfPresent(
-          OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.ExecResourceOutput?
+          OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.ExecResourceOutput
             .self, forKey: .execResourceOutput)
         {
           try outputCheckAndSet(.execResourceOutput(execResourceOutput))
@@ -811,8 +811,7 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleWKT._AnyPackab
       public enum OutputOneOf: Codable, Equatable, Sendable {
         /// ExecResource specific output.
         indirect case execResourceOutput(
-          OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.ExecResourceOutput?
-        )
+          OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.ExecResourceOutput)
       }
 
       public static var _anyTypeUrl: Swift.String {

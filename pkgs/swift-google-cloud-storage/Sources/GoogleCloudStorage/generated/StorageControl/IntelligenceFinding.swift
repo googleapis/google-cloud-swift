@@ -167,24 +167,24 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       intelligenceFindingDetails = $0
     }
     if let coldlineAndArchivalStorageOperationsSpike = try container.decodeIfPresent(
-      IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike?.self,
+      IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.self,
       forKey: .coldlineAndArchivalStorageOperationsSpike)
     {
       try intelligenceFindingDetailsCheckAndSet(
         .coldlineAndArchivalStorageOperationsSpike(coldlineAndArchivalStorageOperationsSpike))
     }
     if let throttledRequestsSpike = try container.decodeIfPresent(
-      IntelligenceFinding.ThrottledRequestSpike?.self, forKey: .throttledRequestsSpike)
+      IntelligenceFinding.ThrottledRequestSpike.self, forKey: .throttledRequestsSpike)
     {
       try intelligenceFindingDetailsCheckAndSet(.throttledRequestsSpike(throttledRequestsSpike))
     }
     if let crossRegionEgressSpike = try container.decodeIfPresent(
-      IntelligenceFinding.CrossRegionEgressSpike?.self, forKey: .crossRegionEgressSpike)
+      IntelligenceFinding.CrossRegionEgressSpike.self, forKey: .crossRegionEgressSpike)
     {
       try intelligenceFindingDetailsCheckAndSet(.crossRegionEgressSpike(crossRegionEgressSpike))
     }
     if let storageGrowthAboveTrend = try container.decodeIfPresent(
-      IntelligenceFinding.StorageGrowthAboveTrend?.self, forKey: .storageGrowthAboveTrend)
+      IntelligenceFinding.StorageGrowthAboveTrend.self, forKey: .storageGrowthAboveTrend)
     {
       try intelligenceFindingDetailsCheckAndSet(.storageGrowthAboveTrend(storageGrowthAboveTrend))
     }
@@ -393,11 +393,11 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         if let contribution = try container.decodeIfPresent(
           IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution
-            .Contribution?.self, forKey: .contribution)
+            .Contribution.self, forKey: .contribution)
         {
           try detailsCheckAndSet(.contribution(contribution))
         }
-        if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+        if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
           try detailsCheckAndSet(.error(error))
         }
         self.details = details
@@ -603,10 +603,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         /// Output only. The details about the contribution of the bucket.
         indirect case contribution(
           IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution
-            .Contribution?)
+            .Contribution)
         /// Output only. The error related to accessing the details about the
         /// contribution of the bucket.
-        indirect case error(GoogleRpc.Status?)
+        indirect case error(GoogleRpc.Status)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -797,12 +797,12 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           details = $0
         }
         if let contribution = try container.decodeIfPresent(
-          IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution?.self,
+          IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution.self,
           forKey: .contribution)
         {
           try detailsCheckAndSet(.contribution(contribution))
         }
-        if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+        if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
           try detailsCheckAndSet(.error(error))
         }
         self.details = details
@@ -1009,10 +1009,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum DetailsOneOf: Codable, Equatable, Sendable {
         /// Output only. The details about the contribution of the bucket.
         indirect case contribution(
-          IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution?)
+          IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution)
         /// Output only. The error related to accessing the details about the
         /// contribution of the bucket.
-        indirect case error(GoogleRpc.Status?)
+        indirect case error(GoogleRpc.Status)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1201,12 +1201,12 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           details = $0
         }
         if let contribution = try container.decodeIfPresent(
-          IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution?.self,
+          IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution.self,
           forKey: .contribution)
         {
           try detailsCheckAndSet(.contribution(contribution))
         }
-        if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+        if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
           try detailsCheckAndSet(.error(error))
         }
         self.details = details
@@ -1411,10 +1411,10 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum DetailsOneOf: Codable, Equatable, Sendable {
         /// Output only. The details about the contribution of the bucket.
         indirect case contribution(
-          IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution?)
+          IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution)
         /// Output only. The error related to accessing the details about the
         /// contribution of the bucket.
-        indirect case error(GoogleRpc.Status?)
+        indirect case error(GoogleRpc.Status)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1601,7 +1601,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           details = $0
         }
-        if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+        if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
           try detailsCheckAndSet(.error(error))
         }
         self.details = details
@@ -1633,7 +1633,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum DetailsOneOf: Codable, Equatable, Sendable {
         /// Output only. The error related to accessing the details about the
         /// contribution of the bucket.
-        indirect case error(GoogleRpc.Status?)
+        indirect case error(GoogleRpc.Status)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1665,15 +1665,15 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Output only. `IntelligenceFinding` about a spike in Class A/B operations
     /// on Coldline or Archive Cloud Storage objects.
     indirect case coldlineAndArchivalStorageOperationsSpike(
-      IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike?)
+      IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike)
     /// Output only. `IntelligenceFinding` about a spike in throttled requests
     /// (429 errors) within a project.
-    indirect case throttledRequestsSpike(IntelligenceFinding.ThrottledRequestSpike?)
+    indirect case throttledRequestsSpike(IntelligenceFinding.ThrottledRequestSpike)
     /// Output only. `IntelligenceFinding` about a spike in cross-region egress.
-    indirect case crossRegionEgressSpike(IntelligenceFinding.CrossRegionEgressSpike?)
+    indirect case crossRegionEgressSpike(IntelligenceFinding.CrossRegionEgressSpike)
     /// Output only. `IntelligenceFinding` about growth in storage above the
     /// expected trend.
-    indirect case storageGrowthAboveTrend(IntelligenceFinding.StorageGrowthAboveTrend?)
+    indirect case storageGrowthAboveTrend(IntelligenceFinding.StorageGrowthAboveTrend)
   }
 
   public static var _anyTypeUrl: Swift.String {

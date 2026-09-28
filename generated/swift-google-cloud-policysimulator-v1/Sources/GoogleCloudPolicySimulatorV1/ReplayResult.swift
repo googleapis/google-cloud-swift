@@ -114,10 +114,10 @@ public struct ReplayResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       result = $0
     }
-    if let diff = try container.decodeIfPresent(ReplayDiff?.self, forKey: .diff) {
+    if let diff = try container.decodeIfPresent(ReplayDiff.self, forKey: .diff) {
       try resultCheckAndSet(.diff(diff))
     }
-    if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+    if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
       try resultCheckAndSet(.error(error))
     }
     self.result = result
@@ -156,12 +156,12 @@ public struct ReplayResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// This field is only included for access tuples that were successfully
     /// replayed and had different results under the current policies and the
     /// proposed policies.
-    indirect case diff(ReplayDiff?)
+    indirect case diff(ReplayDiff)
     /// The error that caused the access tuple replay to fail.
     ///
     /// This field is only included for access tuples that were not replayed
     /// successfully.
-    indirect case error(GoogleRpc.Status?)
+    indirect case error(GoogleRpc.Status)
   }
 
   public static var _anyTypeUrl: Swift.String {

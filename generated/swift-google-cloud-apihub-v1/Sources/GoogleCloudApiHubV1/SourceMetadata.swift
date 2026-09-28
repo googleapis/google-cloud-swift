@@ -101,7 +101,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       source = $0
     }
     if let pluginInstanceActionSource = try container.decodeIfPresent(
-      SourceMetadata.PluginInstanceActionSource?.self, forKey: .pluginInstanceActionSource)
+      SourceMetadata.PluginInstanceActionSource.self, forKey: .pluginInstanceActionSource)
     {
       try sourceCheckAndSet(.pluginInstanceActionSource(pluginInstanceActionSource))
     }
@@ -324,7 +324,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The source of the resource.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Output only. The source of the resource is a plugin instance action.
-    indirect case pluginInstanceActionSource(SourceMetadata.PluginInstanceActionSource?)
+    indirect case pluginInstanceActionSource(SourceMetadata.PluginInstanceActionSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

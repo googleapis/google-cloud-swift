@@ -253,7 +253,7 @@
         try expirationCheckAndSet(.ttlDays(ttlDays))
       }
       if let expiryTime = try container.decodeIfPresent(
-        GoogleWKT.WKTTimestamp?.self, forKey: .expiryTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .expiryTime)
       {
         try expirationCheckAndSet(.expiryTime(expiryTime))
       }
@@ -578,7 +578,7 @@
       case ttlDays(Swift.Int64)
       /// Backup expiration time.
       /// A UTC timestamp of when this backup expired.
-      indirect case expiryTime(GoogleWKT.WKTTimestamp?)
+      indirect case expiryTime(GoogleWKT.WKTTimestamp)
     }
 
     public static var _anyTypeUrl: Swift.String {

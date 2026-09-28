@@ -147,7 +147,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       sortSpec = $0
     }
     if let schemaKeySortingStrategy = try container.decodeIfPresent(
-      SchemaKeySortingStrategy?.self, forKey: .schemaKeySortingStrategy)
+      SchemaKeySortingStrategy.self, forKey: .schemaKeySortingStrategy)
     {
       try sortSpecCheckAndSet(.schemaKeySortingStrategy(schemaKeySortingStrategy))
     }
@@ -184,7 +184,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// - STREAM_VIDEO: search results are sorted by the start time.
   public enum SortSpecOneOf: Codable, Equatable, Sendable {
     /// Sort by the value under the data schema key.
-    indirect case schemaKeySortingStrategy(SchemaKeySortingStrategy?)
+    indirect case schemaKeySortingStrategy(SchemaKeySortingStrategy)
   }
 
   public static var _anyTypeUrl: Swift.String {

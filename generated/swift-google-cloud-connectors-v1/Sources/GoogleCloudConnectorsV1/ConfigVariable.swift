@@ -92,7 +92,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
     if let stringValue = try container.decodeIfPresent(Swift.String.self, forKey: .stringValue) {
       try valueCheckAndSet(.stringValue(stringValue))
     }
-    if let secretValue = try container.decodeIfPresent(Secret?.self, forKey: .secretValue) {
+    if let secretValue = try container.decodeIfPresent(Secret.self, forKey: .secretValue) {
       try valueCheckAndSet(.secretValue(secretValue))
     }
     self.value = value
@@ -132,7 +132,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Value is a string.
     case stringValue(Swift.String)
     /// Value is a secret.
-    indirect case secretValue(Secret?)
+    indirect case secretValue(Secret)
   }
 
   public static var _anyTypeUrl: Swift.String {

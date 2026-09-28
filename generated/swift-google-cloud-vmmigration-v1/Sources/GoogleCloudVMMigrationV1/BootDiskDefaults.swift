@@ -103,7 +103,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
       source = $0
     }
     if let image = try container.decodeIfPresent(
-      BootDiskDefaults.DiskImageDefaults?.self, forKey: .image)
+      BootDiskDefaults.DiskImageDefaults.self, forKey: .image)
     {
       try sourceCheckAndSet(.image(image))
     }
@@ -202,7 +202,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The image to use when creating the disk.
-    indirect case image(BootDiskDefaults.DiskImageDefaults?)
+    indirect case image(BootDiskDefaults.DiskImageDefaults)
   }
 
   public static var _anyTypeUrl: Swift.String {

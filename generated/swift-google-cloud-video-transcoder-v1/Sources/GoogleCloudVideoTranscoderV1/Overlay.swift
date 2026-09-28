@@ -548,17 +548,17 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
         animationType = $0
       }
       if let animationStatic = try container.decodeIfPresent(
-        Overlay.AnimationStatic?.self, forKey: .animationStatic)
+        Overlay.AnimationStatic.self, forKey: .animationStatic)
       {
         try animationTypeCheckAndSet(.animationStatic(animationStatic))
       }
       if let animationFade = try container.decodeIfPresent(
-        Overlay.AnimationFade?.self, forKey: .animationFade)
+        Overlay.AnimationFade.self, forKey: .animationFade)
       {
         try animationTypeCheckAndSet(.animationFade(animationFade))
       }
       if let animationEnd = try container.decodeIfPresent(
-        Overlay.AnimationEnd?.self, forKey: .animationEnd)
+        Overlay.AnimationEnd.self, forKey: .animationEnd)
       {
         try animationTypeCheckAndSet(.animationEnd(animationEnd))
       }
@@ -590,11 +590,11 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Animations can be static or fade, or they can end the previous animation.
     public enum AnimationTypeOneOf: Codable, Equatable, Sendable {
       /// Display static overlay object.
-      indirect case animationStatic(Overlay.AnimationStatic?)
+      indirect case animationStatic(Overlay.AnimationStatic)
       /// Display overlay object with fade animation.
-      indirect case animationFade(Overlay.AnimationFade?)
+      indirect case animationFade(Overlay.AnimationFade)
       /// End previous animation.
-      indirect case animationEnd(Overlay.AnimationEnd?)
+      indirect case animationEnd(Overlay.AnimationEnd)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -72,10 +72,10 @@ public struct BidiSessionClientMessage: Codable, Equatable, GoogleWKT._AnyPackab
       }
       messageType = $0
     }
-    if let config = try container.decodeIfPresent(SessionConfig?.self, forKey: .config) {
+    if let config = try container.decodeIfPresent(SessionConfig.self, forKey: .config) {
       try messageTypeCheckAndSet(.config(config))
     }
-    if let realtimeInput = try container.decodeIfPresent(SessionInput?.self, forKey: .realtimeInput)
+    if let realtimeInput = try container.decodeIfPresent(SessionInput.self, forKey: .realtimeInput)
     {
       try messageTypeCheckAndSet(.realtimeInput(realtimeInput))
     }
@@ -105,9 +105,9 @@ public struct BidiSessionClientMessage: Codable, Equatable, GoogleWKT._AnyPackab
   /// The type of the message.
   public enum MessageTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. The initial config message for the session.
-    indirect case config(SessionConfig?)
+    indirect case config(SessionConfig)
     /// Optional. Realtime input for the session.
-    indirect case realtimeInput(SessionInput?)
+    indirect case realtimeInput(SessionInput)
   }
 
   public static var _anyTypeUrl: Swift.String {

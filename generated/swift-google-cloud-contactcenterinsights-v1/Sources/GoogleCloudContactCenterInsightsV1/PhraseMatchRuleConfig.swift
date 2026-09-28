@@ -69,7 +69,7 @@ public struct PhraseMatchRuleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       config = $0
     }
     if let exactMatchConfig = try container.decodeIfPresent(
-      ExactMatchConfig?.self, forKey: .exactMatchConfig)
+      ExactMatchConfig.self, forKey: .exactMatchConfig)
     {
       try configCheckAndSet(.exactMatchConfig(exactMatchConfig))
     }
@@ -97,7 +97,7 @@ public struct PhraseMatchRuleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The configuration of the phrase match rule.
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// The configuration for the exact match rule.
-    indirect case exactMatchConfig(ExactMatchConfig?)
+    indirect case exactMatchConfig(ExactMatchConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

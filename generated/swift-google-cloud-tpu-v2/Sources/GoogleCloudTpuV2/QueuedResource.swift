@@ -115,7 +115,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       resource = $0
     }
-    if let tpu = try container.decodeIfPresent(QueuedResource.Tpu?.self, forKey: .tpu) {
+    if let tpu = try container.decodeIfPresent(QueuedResource.Tpu.self, forKey: .tpu) {
       try resourceCheckAndSet(.tpu(tpu))
     }
     self.resource = resource
@@ -130,11 +130,11 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       tier = $0
     }
-    if let spot = try container.decodeIfPresent(QueuedResource.Spot?.self, forKey: .spot) {
+    if let spot = try container.decodeIfPresent(QueuedResource.Spot.self, forKey: .spot) {
       try tierCheckAndSet(.spot(spot))
     }
     if let guaranteed = try container.decodeIfPresent(
-      QueuedResource.Guaranteed?.self, forKey: .guaranteed)
+      QueuedResource.Guaranteed.self, forKey: .guaranteed)
     {
       try tierCheckAndSet(.guaranteed(guaranteed))
     }
@@ -305,7 +305,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
           try nameStrategyCheckAndSet(.nodeId(nodeId))
         }
         if let multisliceParams = try container.decodeIfPresent(
-          QueuedResource.Tpu.NodeSpec.MultisliceParams?.self, forKey: .multisliceParams)
+          QueuedResource.Tpu.NodeSpec.MultisliceParams.self, forKey: .multisliceParams)
         {
           try nameStrategyCheckAndSet(.multisliceParams(multisliceParams))
         }
@@ -428,7 +428,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
         /// multislice_params must be populated instead.
         case nodeId(Swift.String)
         /// Optional. Fields to specify in case of multislice request.
-        indirect case multisliceParams(QueuedResource.Tpu.NodeSpec.MultisliceParams?)
+        indirect case multisliceParams(QueuedResource.Tpu.NodeSpec.MultisliceParams)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -639,27 +639,27 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
         startTimingConstraints = $0
       }
       if let validUntilDuration = try container.decodeIfPresent(
-        GoogleWKT.WKTDuration?.self, forKey: .validUntilDuration)
+        GoogleWKT.WKTDuration.self, forKey: .validUntilDuration)
       {
         try startTimingConstraintsCheckAndSet(.validUntilDuration(validUntilDuration))
       }
       if let validUntilTime = try container.decodeIfPresent(
-        GoogleWKT.WKTTimestamp?.self, forKey: .validUntilTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .validUntilTime)
       {
         try startTimingConstraintsCheckAndSet(.validUntilTime(validUntilTime))
       }
       if let validAfterDuration = try container.decodeIfPresent(
-        GoogleWKT.WKTDuration?.self, forKey: .validAfterDuration)
+        GoogleWKT.WKTDuration.self, forKey: .validAfterDuration)
       {
         try startTimingConstraintsCheckAndSet(.validAfterDuration(validAfterDuration))
       }
       if let validAfterTime = try container.decodeIfPresent(
-        GoogleWKT.WKTTimestamp?.self, forKey: .validAfterTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .validAfterTime)
       {
         try startTimingConstraintsCheckAndSet(.validAfterTime(validAfterTime))
       }
       if let validInterval = try container.decodeIfPresent(
-        GoogleType.Interval?.self, forKey: .validInterval)
+        GoogleType.Interval.self, forKey: .validInterval)
       {
         try startTimingConstraintsCheckAndSet(.validInterval(validInterval))
       }
@@ -697,18 +697,18 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Optional. A relative time after which resources should not be created.
       /// If the request cannot be fulfilled by this time the request will be
       /// failed.
-      indirect case validUntilDuration(GoogleWKT.WKTDuration?)
+      indirect case validUntilDuration(GoogleWKT.WKTDuration)
       /// Optional. An absolute time after which resources should not be created.
       /// If the request cannot be fulfilled by this time the request will be
       /// failed.
-      indirect case validUntilTime(GoogleWKT.WKTTimestamp?)
+      indirect case validUntilTime(GoogleWKT.WKTTimestamp)
       /// Optional. A relative time after which resources may be created.
-      indirect case validAfterDuration(GoogleWKT.WKTDuration?)
+      indirect case validAfterDuration(GoogleWKT.WKTDuration)
       /// Optional. An absolute time after which resources may be created.
-      indirect case validAfterTime(GoogleWKT.WKTTimestamp?)
+      indirect case validAfterTime(GoogleWKT.WKTTimestamp)
       /// Optional. An absolute time interval within which resources may be
       /// created.
-      indirect case validInterval(GoogleType.Interval?)
+      indirect case validInterval(GoogleType.Interval)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -725,15 +725,15 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Resource specification.
   public enum ResourceOneOf: Codable, Equatable, Sendable {
     /// Optional. Defines a TPU resource.
-    indirect case tpu(QueuedResource.Tpu?)
+    indirect case tpu(QueuedResource.Tpu)
   }
 
   /// Tier specifies the required tier.
   public enum TierOneOf: Codable, Equatable, Sendable {
     /// Optional. The Spot tier.
-    indirect case spot(QueuedResource.Spot?)
+    indirect case spot(QueuedResource.Spot)
     /// Optional. The Guaranteed tier
-    indirect case guaranteed(QueuedResource.Guaranteed?)
+    indirect case guaranteed(QueuedResource.Guaranteed)
   }
 
   public static var _anyTypeUrl: Swift.String {

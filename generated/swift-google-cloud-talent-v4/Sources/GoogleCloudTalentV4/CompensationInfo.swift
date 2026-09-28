@@ -258,11 +258,11 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         compensationAmount = $0
       }
-      if let amount = try container.decodeIfPresent(GoogleType.Money?.self, forKey: .amount) {
+      if let amount = try container.decodeIfPresent(GoogleType.Money.self, forKey: .amount) {
         try compensationAmountCheckAndSet(.amount(amount))
       }
       if let range = try container.decodeIfPresent(
-        CompensationInfo.CompensationRange?.self, forKey: .range)
+        CompensationInfo.CompensationRange.self, forKey: .range)
       {
         try compensationAmountCheckAndSet(.range(range))
       }
@@ -296,9 +296,9 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Compensation amount. It could be a fixed amount or a floating range.
     public enum CompensationAmountOneOf: Codable, Equatable, Sendable {
       /// Compensation amount.
-      indirect case amount(GoogleType.Money?)
+      indirect case amount(GoogleType.Money)
       /// Compensation range.
-      indirect case range(CompensationInfo.CompensationRange?)
+      indirect case range(CompensationInfo.CompensationRange)
     }
 
     public static var _anyTypeUrl: Swift.String {

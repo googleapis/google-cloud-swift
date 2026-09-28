@@ -74,12 +74,12 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleWKT._AnyPacka
       placement = $0
     }
     if let managedCluster = try container.decodeIfPresent(
-      ManagedCluster?.self, forKey: .managedCluster)
+      ManagedCluster.self, forKey: .managedCluster)
     {
       try placementCheckAndSet(.managedCluster(managedCluster))
     }
     if let clusterSelector = try container.decodeIfPresent(
-      ClusterSelector?.self, forKey: .clusterSelector)
+      ClusterSelector.self, forKey: .clusterSelector)
     {
       try placementCheckAndSet(.clusterSelector(clusterSelector))
     }
@@ -110,12 +110,12 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleWKT._AnyPacka
   /// cluster or an existing cluster chosen by labels.
   public enum PlacementOneOf: Codable, Equatable, Sendable {
     /// A cluster that is managed by the workflow.
-    indirect case managedCluster(ManagedCluster?)
+    indirect case managedCluster(ManagedCluster)
     /// Optional. A selector that chooses target cluster for jobs based
     /// on metadata.
     ///
     /// The selector is evaluated at the time each job is submitted.
-    indirect case clusterSelector(ClusterSelector?)
+    indirect case clusterSelector(ClusterSelector)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -281,7 +281,7 @@ public struct DvrSession: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         kind = $0
       }
-      if let timeInterval = try container.decodeIfPresent(TimeInterval?.self, forKey: .timeInterval)
+      if let timeInterval = try container.decodeIfPresent(TimeInterval.self, forKey: .timeInterval)
       {
         try kindCheckAndSet(.timeInterval(timeInterval))
       }
@@ -309,7 +309,7 @@ public struct DvrSession: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The allowlist forms of a DVR window.
     public enum KindOneOf: Codable, Equatable, Sendable {
       /// A time interval in the form of a tuple of Unix epoch time.
-      indirect case timeInterval(TimeInterval?)
+      indirect case timeInterval(TimeInterval)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -147,16 +147,16 @@ public struct Toolset: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       toolsetType = $0
     }
-    if let mcpToolset = try container.decodeIfPresent(McpToolset?.self, forKey: .mcpToolset) {
+    if let mcpToolset = try container.decodeIfPresent(McpToolset.self, forKey: .mcpToolset) {
       try toolsetTypeCheckAndSet(.mcpToolset(mcpToolset))
     }
     if let openApiToolset = try container.decodeIfPresent(
-      OpenApiToolset?.self, forKey: .openApiToolset)
+      OpenApiToolset.self, forKey: .openApiToolset)
     {
       try toolsetTypeCheckAndSet(.openApiToolset(openApiToolset))
     }
     if let connectorToolset = try container.decodeIfPresent(
-      ConnectorToolset?.self, forKey: .connectorToolset)
+      ConnectorToolset.self, forKey: .connectorToolset)
     {
       try toolsetTypeCheckAndSet(.connectorToolset(connectorToolset))
     }
@@ -198,13 +198,13 @@ public struct Toolset: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ToolsetTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. A toolset that contains a list of tools that are offered by the
     /// MCP server.
-    indirect case mcpToolset(McpToolset?)
+    indirect case mcpToolset(McpToolset)
     /// Optional. A toolset that contains a list of tools that are defined by an
     /// OpenAPI schema.
-    indirect case openApiToolset(OpenApiToolset?)
+    indirect case openApiToolset(OpenApiToolset)
     /// Optional. A toolset that generates tools from an Integration Connectors
     /// Connection.
-    indirect case connectorToolset(ConnectorToolset?)
+    indirect case connectorToolset(ConnectorToolset)
   }
 
   public static var _anyTypeUrl: Swift.String {

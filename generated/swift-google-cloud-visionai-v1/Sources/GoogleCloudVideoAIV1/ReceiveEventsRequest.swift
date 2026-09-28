@@ -70,12 +70,11 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       request = $0
     }
     if let setupRequest = try container.decodeIfPresent(
-      ReceiveEventsRequest.SetupRequest?.self, forKey: .setupRequest)
+      ReceiveEventsRequest.SetupRequest.self, forKey: .setupRequest)
     {
       try requestCheckAndSet(.setupRequest(setupRequest))
     }
-    if let commitRequest = try container.decodeIfPresent(
-      CommitRequest?.self, forKey: .commitRequest)
+    if let commitRequest = try container.decodeIfPresent(CommitRequest.self, forKey: .commitRequest)
     {
       try requestCheckAndSet(.commitRequest(commitRequest))
     }
@@ -227,9 +226,9 @@ public struct ReceiveEventsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum RequestOneOf: Codable, Equatable, Sendable {
     /// The setup request to setup the RPC connection.
-    indirect case setupRequest(ReceiveEventsRequest.SetupRequest?)
+    indirect case setupRequest(ReceiveEventsRequest.SetupRequest)
     /// This request checkpoints the consumer's read progress.
-    indirect case commitRequest(CommitRequest?)
+    indirect case commitRequest(CommitRequest)
   }
 
   public static var _anyTypeUrl: Swift.String {

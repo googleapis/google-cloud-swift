@@ -117,7 +117,7 @@ public struct WidgetTool: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       input = $0
     }
-    if let parameters = try container.decodeIfPresent(Schema?.self, forKey: .parameters) {
+    if let parameters = try container.decodeIfPresent(Schema.self, forKey: .parameters) {
       try inputCheckAndSet(.parameters(parameters))
     }
     self.input = input
@@ -790,7 +790,7 @@ public struct WidgetTool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The input of the widget tool.
   public enum InputOneOf: Codable, Equatable, Sendable {
     /// Optional. The input parameters of the widget tool.
-    indirect case parameters(Schema?)
+    indirect case parameters(Schema)
   }
 
   public static var _anyTypeUrl: Swift.String {

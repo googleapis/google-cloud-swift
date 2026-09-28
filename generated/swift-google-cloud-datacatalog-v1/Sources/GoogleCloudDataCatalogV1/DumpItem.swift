@@ -67,7 +67,7 @@ public struct DumpItem: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       item = $0
     }
-    if let taggedEntry = try container.decodeIfPresent(TaggedEntry?.self, forKey: .taggedEntry) {
+    if let taggedEntry = try container.decodeIfPresent(TaggedEntry.self, forKey: .taggedEntry) {
       try itemCheckAndSet(.taggedEntry(taggedEntry))
     }
     self.item = item
@@ -93,7 +93,7 @@ public struct DumpItem: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ItemOneOf: Codable, Equatable, Sendable {
     /// Entry and its tags.
-    indirect case taggedEntry(TaggedEntry?)
+    indirect case taggedEntry(TaggedEntry)
   }
 
   public static var _anyTypeUrl: Swift.String {

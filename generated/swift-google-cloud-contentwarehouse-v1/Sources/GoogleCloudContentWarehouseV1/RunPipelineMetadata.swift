@@ -107,17 +107,17 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       pipelineMetadata = $0
     }
     if let gcsIngestPipelineMetadata = try container.decodeIfPresent(
-      RunPipelineMetadata.GcsIngestPipelineMetadata?.self, forKey: .gcsIngestPipelineMetadata)
+      RunPipelineMetadata.GcsIngestPipelineMetadata.self, forKey: .gcsIngestPipelineMetadata)
     {
       try pipelineMetadataCheckAndSet(.gcsIngestPipelineMetadata(gcsIngestPipelineMetadata))
     }
     if let exportToCdwPipelineMetadata = try container.decodeIfPresent(
-      RunPipelineMetadata.ExportToCdwPipelineMetadata?.self, forKey: .exportToCdwPipelineMetadata)
+      RunPipelineMetadata.ExportToCdwPipelineMetadata.self, forKey: .exportToCdwPipelineMetadata)
     {
       try pipelineMetadataCheckAndSet(.exportToCdwPipelineMetadata(exportToCdwPipelineMetadata))
     }
     if let processWithDocAiPipelineMetadata = try container.decodeIfPresent(
-      RunPipelineMetadata.ProcessWithDocAiPipelineMetadata?.self,
+      RunPipelineMetadata.ProcessWithDocAiPipelineMetadata.self,
       forKey: .processWithDocAiPipelineMetadata)
     {
       try pipelineMetadataCheckAndSet(
@@ -465,12 +465,12 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The pipeline metadata.
   public enum PipelineMetadataOneOf: Codable, Equatable, Sendable {
     /// The pipeline metadata for GcsIngest pipeline.
-    indirect case gcsIngestPipelineMetadata(RunPipelineMetadata.GcsIngestPipelineMetadata?)
+    indirect case gcsIngestPipelineMetadata(RunPipelineMetadata.GcsIngestPipelineMetadata)
     /// The pipeline metadata for Export-to-CDW pipeline.
-    indirect case exportToCdwPipelineMetadata(RunPipelineMetadata.ExportToCdwPipelineMetadata?)
+    indirect case exportToCdwPipelineMetadata(RunPipelineMetadata.ExportToCdwPipelineMetadata)
     /// The pipeline metadata for Process-with-DocAi pipeline.
     indirect case processWithDocAiPipelineMetadata(
-      RunPipelineMetadata.ProcessWithDocAiPipelineMetadata?)
+      RunPipelineMetadata.ProcessWithDocAiPipelineMetadata)
   }
 
   public static var _anyTypeUrl: Swift.String {

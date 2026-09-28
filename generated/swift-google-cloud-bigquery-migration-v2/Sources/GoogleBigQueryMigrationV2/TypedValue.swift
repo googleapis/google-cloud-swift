@@ -90,7 +90,7 @@ public struct TypedValue: Codable, Equatable, GoogleWKT._AnyPackable,
       try valueCheckAndSet(.stringValue(stringValue))
     }
     if let distributionValue = try container.decodeIfPresent(
-      GoogleApi.Distribution?.self, forKey: .distributionValue)
+      GoogleApi.Distribution.self, forKey: .distributionValue)
     {
       try valueCheckAndSet(.distributionValue(distributionValue))
     }
@@ -136,7 +136,7 @@ public struct TypedValue: Codable, Equatable, GoogleWKT._AnyPackable,
     /// A variable-length string value.
     case stringValue(Swift.String)
     /// A distribution value.
-    indirect case distributionValue(GoogleApi.Distribution?)
+    indirect case distributionValue(GoogleApi.Distribution)
   }
 
   public static var _anyTypeUrl: Swift.String {

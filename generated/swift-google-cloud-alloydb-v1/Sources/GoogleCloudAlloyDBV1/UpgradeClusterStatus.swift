@@ -192,7 +192,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
         stageSpecificStatus = $0
       }
       if let readPoolInstancesUpgrade = try container.decodeIfPresent(
-        UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus?.self,
+        UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus.self,
         forKey: .readPoolInstancesUpgrade)
       {
         try stageSpecificStatusCheckAndSet(.readPoolInstancesUpgrade(readPoolInstancesUpgrade))
@@ -319,7 +319,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     public enum StageSpecificStatusOneOf: Codable, Equatable, Sendable {
       /// Read pool instances upgrade metadata.
       indirect case readPoolInstancesUpgrade(
-        UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus?)
+        UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus)
     }
 
     public static var _anyTypeUrl: Swift.String {

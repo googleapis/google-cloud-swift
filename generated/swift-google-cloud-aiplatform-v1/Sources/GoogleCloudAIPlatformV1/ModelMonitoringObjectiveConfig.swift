@@ -201,11 +201,11 @@
         if let dataset = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
           try dataSourceCheckAndSet(.dataset(dataset))
         }
-        if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+        if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
           try dataSourceCheckAndSet(.gcsSource(gcsSource))
         }
         if let bigquerySource = try container.decodeIfPresent(
-          BigQuerySource?.self, forKey: .bigquerySource)
+          BigQuerySource.self, forKey: .bigquerySource)
         {
           try dataSourceCheckAndSet(.bigquerySource(bigquerySource))
         }
@@ -243,10 +243,10 @@
         case dataset(Swift.String)
         /// The Google Cloud Storage uri of the unmanaged Dataset used to train
         /// this Model.
-        indirect case gcsSource(GcsSource?)
+        indirect case gcsSource(GcsSource)
         /// The BigQuery table of the unmanaged Dataset used to train this
         /// Model.
-        indirect case bigquerySource(BigQuerySource?)
+        indirect case bigquerySource(BigQuerySource)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -603,11 +603,11 @@
             }
             destination = $0
           }
-          if let gcs = try container.decodeIfPresent(GcsDestination?.self, forKey: .gcs) {
+          if let gcs = try container.decodeIfPresent(GcsDestination.self, forKey: .gcs) {
             try destinationCheckAndSet(.gcs(gcs))
           }
           if let bigquery = try container.decodeIfPresent(
-            BigQueryDestination?.self, forKey: .bigquery)
+            BigQueryDestination.self, forKey: .bigquery)
           {
             try destinationCheckAndSet(.bigquery(bigquery))
           }
@@ -756,9 +756,9 @@
         /// used to generate the baseline of feature attribution scores.
         public enum DestinationOneOf: Codable, Equatable, Sendable {
           /// Cloud Storage location for BatchExplain output.
-          indirect case gcs(GcsDestination?)
+          indirect case gcs(GcsDestination)
           /// BigQuery location for BatchExplain output.
-          indirect case bigquery(BigQueryDestination?)
+          indirect case bigquery(BigQueryDestination)
         }
 
         public static var _anyTypeUrl: Swift.String {

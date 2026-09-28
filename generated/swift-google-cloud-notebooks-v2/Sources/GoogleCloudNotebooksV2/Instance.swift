@@ -193,7 +193,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       infrastructure = $0
     }
-    if let gceSetup = try container.decodeIfPresent(GceSetup?.self, forKey: .gceSetup) {
+    if let gceSetup = try container.decodeIfPresent(GceSetup.self, forKey: .gceSetup) {
       try infrastructureCheckAndSet(.gceSetup(gceSetup))
     }
     self.infrastructure = infrastructure
@@ -234,7 +234,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum InfrastructureOneOf: Codable, Equatable, Sendable {
     /// Optional. Compute Engine setup for the notebook. Uses notebook-defined
     /// fields.
-    indirect case gceSetup(GceSetup?)
+    indirect case gceSetup(GceSetup)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -209,77 +209,77 @@ public struct ChangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       changePayload = $0
     }
     if let createEntry = try container.decodeIfPresent(
-      CreateEntryRequest?.self, forKey: .createEntry)
+      CreateEntryRequest.self, forKey: .createEntry)
     {
       try changePayloadCheckAndSet(.createEntry(createEntry))
     }
     if let updateEntry = try container.decodeIfPresent(
-      UpdateEntryRequest?.self, forKey: .updateEntry)
+      UpdateEntryRequest.self, forKey: .updateEntry)
     {
       try changePayloadCheckAndSet(.updateEntry(updateEntry))
     }
     if let deleteEntry = try container.decodeIfPresent(
-      DeleteEntryRequest?.self, forKey: .deleteEntry)
+      DeleteEntryRequest.self, forKey: .deleteEntry)
     {
       try changePayloadCheckAndSet(.deleteEntry(deleteEntry))
     }
     if let createEntryLink = try container.decodeIfPresent(
-      CreateEntryLinkRequest?.self, forKey: .createEntryLink)
+      CreateEntryLinkRequest.self, forKey: .createEntryLink)
     {
       try changePayloadCheckAndSet(.createEntryLink(createEntryLink))
     }
     if let deleteEntryLink = try container.decodeIfPresent(
-      DeleteEntryLinkRequest?.self, forKey: .deleteEntryLink)
+      DeleteEntryLinkRequest.self, forKey: .deleteEntryLink)
     {
       try changePayloadCheckAndSet(.deleteEntryLink(deleteEntryLink))
     }
     if let createGlossary = try container.decodeIfPresent(
-      CreateGlossaryRequest?.self, forKey: .createGlossary)
+      CreateGlossaryRequest.self, forKey: .createGlossary)
     {
       try changePayloadCheckAndSet(.createGlossary(createGlossary))
     }
     if let updateGlossary = try container.decodeIfPresent(
-      UpdateGlossaryRequest?.self, forKey: .updateGlossary)
+      UpdateGlossaryRequest.self, forKey: .updateGlossary)
     {
       try changePayloadCheckAndSet(.updateGlossary(updateGlossary))
     }
     if let deleteGlossary = try container.decodeIfPresent(
-      DeleteGlossaryRequest?.self, forKey: .deleteGlossary)
+      DeleteGlossaryRequest.self, forKey: .deleteGlossary)
     {
       try changePayloadCheckAndSet(.deleteGlossary(deleteGlossary))
     }
     if let createGlossaryCategory = try container.decodeIfPresent(
-      CreateGlossaryCategoryRequest?.self, forKey: .createGlossaryCategory)
+      CreateGlossaryCategoryRequest.self, forKey: .createGlossaryCategory)
     {
       try changePayloadCheckAndSet(.createGlossaryCategory(createGlossaryCategory))
     }
     if let updateGlossaryCategory = try container.decodeIfPresent(
-      UpdateGlossaryCategoryRequest?.self, forKey: .updateGlossaryCategory)
+      UpdateGlossaryCategoryRequest.self, forKey: .updateGlossaryCategory)
     {
       try changePayloadCheckAndSet(.updateGlossaryCategory(updateGlossaryCategory))
     }
     if let deleteGlossaryCategory = try container.decodeIfPresent(
-      DeleteGlossaryCategoryRequest?.self, forKey: .deleteGlossaryCategory)
+      DeleteGlossaryCategoryRequest.self, forKey: .deleteGlossaryCategory)
     {
       try changePayloadCheckAndSet(.deleteGlossaryCategory(deleteGlossaryCategory))
     }
     if let createGlossaryTerm = try container.decodeIfPresent(
-      CreateGlossaryTermRequest?.self, forKey: .createGlossaryTerm)
+      CreateGlossaryTermRequest.self, forKey: .createGlossaryTerm)
     {
       try changePayloadCheckAndSet(.createGlossaryTerm(createGlossaryTerm))
     }
     if let updateGlossaryTerm = try container.decodeIfPresent(
-      UpdateGlossaryTermRequest?.self, forKey: .updateGlossaryTerm)
+      UpdateGlossaryTermRequest.self, forKey: .updateGlossaryTerm)
     {
       try changePayloadCheckAndSet(.updateGlossaryTerm(updateGlossaryTerm))
     }
     if let deleteGlossaryTerm = try container.decodeIfPresent(
-      DeleteGlossaryTermRequest?.self, forKey: .deleteGlossaryTerm)
+      DeleteGlossaryTermRequest.self, forKey: .deleteGlossaryTerm)
     {
       try changePayloadCheckAndSet(.deleteGlossaryTerm(deleteGlossaryTerm))
     }
     if let dataProductAccessRequest = try container.decodeIfPresent(
-      DataProductAccessRequest?.self, forKey: .dataProductAccessRequest)
+      DataProductAccessRequest.self, forKey: .dataProductAccessRequest)
     {
       try changePayloadCheckAndSet(.dataProductAccessRequest(dataProductAccessRequest))
     }
@@ -694,35 +694,35 @@ public struct ChangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Detailed specification of the change, embedding the original request.
   public enum ChangePayloadOneOf: Codable, Equatable, Sendable {
     /// Payload for creating an Entry.
-    indirect case createEntry(CreateEntryRequest?)
+    indirect case createEntry(CreateEntryRequest)
     /// Payload for updating an Entry.
-    indirect case updateEntry(UpdateEntryRequest?)
+    indirect case updateEntry(UpdateEntryRequest)
     /// Payload for deleting an Entry.
-    indirect case deleteEntry(DeleteEntryRequest?)
+    indirect case deleteEntry(DeleteEntryRequest)
     /// Payload for creating an EntryLink.
-    indirect case createEntryLink(CreateEntryLinkRequest?)
+    indirect case createEntryLink(CreateEntryLinkRequest)
     /// Payload for deleting an EntryLink.
-    indirect case deleteEntryLink(DeleteEntryLinkRequest?)
+    indirect case deleteEntryLink(DeleteEntryLinkRequest)
     /// Payload for creating a Glossary.
-    indirect case createGlossary(CreateGlossaryRequest?)
+    indirect case createGlossary(CreateGlossaryRequest)
     /// Payload for updating a Glossary.
-    indirect case updateGlossary(UpdateGlossaryRequest?)
+    indirect case updateGlossary(UpdateGlossaryRequest)
     /// Payload for deleting a Glossary.
-    indirect case deleteGlossary(DeleteGlossaryRequest?)
+    indirect case deleteGlossary(DeleteGlossaryRequest)
     /// Payload for creating a GlossaryCategory.
-    indirect case createGlossaryCategory(CreateGlossaryCategoryRequest?)
+    indirect case createGlossaryCategory(CreateGlossaryCategoryRequest)
     /// Payload for updating a GlossaryCategory.
-    indirect case updateGlossaryCategory(UpdateGlossaryCategoryRequest?)
+    indirect case updateGlossaryCategory(UpdateGlossaryCategoryRequest)
     /// Payload for deleting a GlossaryCategory.
-    indirect case deleteGlossaryCategory(DeleteGlossaryCategoryRequest?)
+    indirect case deleteGlossaryCategory(DeleteGlossaryCategoryRequest)
     /// Payload for creating a GlossaryTerm.
-    indirect case createGlossaryTerm(CreateGlossaryTermRequest?)
+    indirect case createGlossaryTerm(CreateGlossaryTermRequest)
     /// Payload for updating a GlossaryTerm.
-    indirect case updateGlossaryTerm(UpdateGlossaryTermRequest?)
+    indirect case updateGlossaryTerm(UpdateGlossaryTermRequest)
     /// Payload for deleting a GlossaryTerm.
-    indirect case deleteGlossaryTerm(DeleteGlossaryTermRequest?)
+    indirect case deleteGlossaryTerm(DeleteGlossaryTermRequest)
     /// Payload for Data Product access request.
-    indirect case dataProductAccessRequest(DataProductAccessRequest?)
+    indirect case dataProductAccessRequest(DataProductAccessRequest)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -139,7 +139,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
         findingType = $0
       }
       if let iamAccessDenied = try container.decodeIfPresent(
-        CheckOnboardingStatusResponse.Finding.IAMAccessDenied?.self, forKey: .iamAccessDenied)
+        CheckOnboardingStatusResponse.Finding.IAMAccessDenied.self, forKey: .iamAccessDenied)
       {
         try findingTypeCheckAndSet(.iamAccessDenied(iamAccessDenied))
       }
@@ -240,7 +240,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
 
     public enum FindingTypeOneOf: Codable, Equatable, Sendable {
       /// PAM's service account is being denied access by Cloud IAM.
-      indirect case iamAccessDenied(CheckOnboardingStatusResponse.Finding.IAMAccessDenied?)
+      indirect case iamAccessDenied(CheckOnboardingStatusResponse.Finding.IAMAccessDenied)
     }
 
     public static var _anyTypeUrl: Swift.String {

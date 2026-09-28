@@ -80,12 +80,12 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       params = $0
     }
     if let oauthParams = try container.decodeIfPresent(
-      FinishOAuthRequest.OAuthParams?.self, forKey: .oauthParams)
+      FinishOAuthRequest.OAuthParams.self, forKey: .oauthParams)
     {
       try paramsCheckAndSet(.oauthParams(oauthParams))
     }
     if let googleOauthParams = try container.decodeIfPresent(
-      FinishOAuthRequest.GoogleOAuthParams?.self, forKey: .googleOauthParams)
+      FinishOAuthRequest.GoogleOAuthParams.self, forKey: .googleOauthParams)
     {
       try paramsCheckAndSet(.googleOauthParams(googleOauthParams))
     }
@@ -282,9 +282,9 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The params returned by OAuth flow redirect.
   public enum ParamsOneOf: Codable, Equatable, Sendable {
     /// The params returned by non-Google OAuth 2.0 flow redirect.
-    indirect case oauthParams(FinishOAuthRequest.OAuthParams?)
+    indirect case oauthParams(FinishOAuthRequest.OAuthParams)
     /// The params returned by Google OAuth flow redirects.
-    indirect case googleOauthParams(FinishOAuthRequest.GoogleOAuthParams?)
+    indirect case googleOauthParams(FinishOAuthRequest.GoogleOAuthParams)
   }
 
   public static var _anyTypeUrl: Swift.String {

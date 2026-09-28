@@ -100,10 +100,10 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let nfs = try container.decodeIfPresent(NFS?.self, forKey: .nfs) {
+    if let nfs = try container.decodeIfPresent(NFS.self, forKey: .nfs) {
       try sourceCheckAndSet(.nfs(nfs))
     }
-    if let gcs = try container.decodeIfPresent(GCS?.self, forKey: .gcs) {
+    if let gcs = try container.decodeIfPresent(GCS.self, forKey: .gcs) {
       try sourceCheckAndSet(.gcs(gcs))
     }
     if let deviceName = try container.decodeIfPresent(Swift.String.self, forKey: .deviceName) {
@@ -140,9 +140,9 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// A Network File System (NFS) volume. For example, a
     /// Filestore file share.
-    indirect case nfs(NFS?)
+    indirect case nfs(NFS)
     /// A Google Cloud Storage (GCS) volume.
-    indirect case gcs(GCS?)
+    indirect case gcs(GCS)
     /// Device name of an attached disk volume, which should align with a
     /// device_name specified by
     /// job.allocation_policy.instances[0].policy.disks[i].device_name or

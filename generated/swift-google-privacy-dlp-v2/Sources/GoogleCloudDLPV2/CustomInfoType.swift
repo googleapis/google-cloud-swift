@@ -136,28 +136,28 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let dictionary = try container.decodeIfPresent(
-      CustomInfoType.Dictionary?.self, forKey: .dictionary)
+      CustomInfoType.Dictionary.self, forKey: .dictionary)
     {
       try typeCheckAndSet(.dictionary(dictionary))
     }
-    if let regex = try container.decodeIfPresent(CustomInfoType.Regex?.self, forKey: .regex) {
+    if let regex = try container.decodeIfPresent(CustomInfoType.Regex.self, forKey: .regex) {
       try typeCheckAndSet(.regex(regex))
     }
     if let surrogateType = try container.decodeIfPresent(
-      CustomInfoType.SurrogateType?.self, forKey: .surrogateType)
+      CustomInfoType.SurrogateType.self, forKey: .surrogateType)
     {
       try typeCheckAndSet(.surrogateType(surrogateType))
     }
-    if let storedType = try container.decodeIfPresent(StoredType?.self, forKey: .storedType) {
+    if let storedType = try container.decodeIfPresent(StoredType.self, forKey: .storedType) {
       try typeCheckAndSet(.storedType(storedType))
     }
     if let metadataKeyValueExpression = try container.decodeIfPresent(
-      CustomInfoType.MetadataKeyValueExpression?.self, forKey: .metadataKeyValueExpression)
+      CustomInfoType.MetadataKeyValueExpression.self, forKey: .metadataKeyValueExpression)
     {
       try typeCheckAndSet(.metadataKeyValueExpression(metadataKeyValueExpression))
     }
     if let fileLabelInfoType = try container.decodeIfPresent(
-      CustomInfoType.FileLabelInfoType?.self, forKey: .fileLabelInfoType)
+      CustomInfoType.FileLabelInfoType.self, forKey: .fileLabelInfoType)
     {
       try typeCheckAndSet(.fileLabelInfoType(fileLabelInfoType))
     }
@@ -273,12 +273,12 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         source = $0
       }
       if let wordList = try container.decodeIfPresent(
-        CustomInfoType.Dictionary.WordList?.self, forKey: .wordList)
+        CustomInfoType.Dictionary.WordList.self, forKey: .wordList)
       {
         try sourceCheckAndSet(.wordList(wordList))
       }
       if let cloudStoragePath = try container.decodeIfPresent(
-        CloudStoragePath?.self, forKey: .cloudStoragePath)
+        CloudStoragePath.self, forKey: .cloudStoragePath)
       {
         try sourceCheckAndSet(.cloudStoragePath(cloudStoragePath))
       }
@@ -378,10 +378,10 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The potential places the data can be read from.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// List of words or phrases to search for.
-      indirect case wordList(CustomInfoType.Dictionary.WordList?)
+      indirect case wordList(CustomInfoType.Dictionary.WordList)
       /// Newline-delimited file of words in Cloud Storage. Only a single file
       /// is accepted.
-      indirect case cloudStoragePath(CloudStoragePath?)
+      indirect case cloudStoragePath(CloudStoragePath)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -672,12 +672,12 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         type = $0
       }
       if let sensitivityLabel = try container.decodeIfPresent(
-        CustomInfoType.FileLabelInfoType.SensitivityLabel?.self, forKey: .sensitivityLabel)
+        CustomInfoType.FileLabelInfoType.SensitivityLabel.self, forKey: .sensitivityLabel)
       {
         try typeCheckAndSet(.sensitivityLabel(sensitivityLabel))
       }
       if let googleDriveLabel = try container.decodeIfPresent(
-        CustomInfoType.FileLabelInfoType.GoogleDriveLabel?.self, forKey: .googleDriveLabel)
+        CustomInfoType.FileLabelInfoType.GoogleDriveLabel.self, forKey: .googleDriveLabel)
       {
         try typeCheckAndSet(.googleDriveLabel(googleDriveLabel))
       }
@@ -938,9 +938,9 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The type of file label to detect.
     public enum TypeOneOf: Codable, Equatable, Sendable {
       /// Sensitivity labels published by Microsoft.
-      indirect case sensitivityLabel(CustomInfoType.FileLabelInfoType.SensitivityLabel?)
+      indirect case sensitivityLabel(CustomInfoType.FileLabelInfoType.SensitivityLabel)
       /// Google Drive labels published by Google.
-      indirect case googleDriveLabel(CustomInfoType.FileLabelInfoType.GoogleDriveLabel?)
+      indirect case googleDriveLabel(CustomInfoType.FileLabelInfoType.GoogleDriveLabel)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1009,7 +1009,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         type = $0
       }
       if let hotwordRule = try container.decodeIfPresent(
-        CustomInfoType.DetectionRule.HotwordRule?.self, forKey: .hotwordRule)
+        CustomInfoType.DetectionRule.HotwordRule.self, forKey: .hotwordRule)
       {
         try typeCheckAndSet(.hotwordRule(hotwordRule))
       }
@@ -1329,7 +1329,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Type of hotword rule.
     public enum TypeOneOf: Codable, Equatable, Sendable {
       /// Hotword-based detection rule.
-      indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule?)
+      indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1457,18 +1457,18 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of custom detector.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// A list of phrases to detect as a CustomInfoType.
-    indirect case dictionary(CustomInfoType.Dictionary?)
+    indirect case dictionary(CustomInfoType.Dictionary)
     /// Regular expression based CustomInfoType.
-    indirect case regex(CustomInfoType.Regex?)
+    indirect case regex(CustomInfoType.Regex)
     /// Message for detecting output from deidentification transformations that
     /// support reversing.
-    indirect case surrogateType(CustomInfoType.SurrogateType?)
+    indirect case surrogateType(CustomInfoType.SurrogateType)
     /// Loads an existing `StoredInfoType` resource.
-    indirect case storedType(StoredType?)
+    indirect case storedType(StoredType)
     /// Key-value pair to detect in the metadata.
-    indirect case metadataKeyValueExpression(CustomInfoType.MetadataKeyValueExpression?)
+    indirect case metadataKeyValueExpression(CustomInfoType.MetadataKeyValueExpression)
     /// File label to detect.
-    indirect case fileLabelInfoType(CustomInfoType.FileLabelInfoType?)
+    indirect case fileLabelInfoType(CustomInfoType.FileLabelInfoType)
   }
 
   public static var _anyTypeUrl: Swift.String {

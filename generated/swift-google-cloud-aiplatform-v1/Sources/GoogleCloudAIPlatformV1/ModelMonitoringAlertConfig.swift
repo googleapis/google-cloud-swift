@@ -95,7 +95,7 @@
         alert = $0
       }
       if let emailAlertConfig = try container.decodeIfPresent(
-        ModelMonitoringAlertConfig.EmailAlertConfig?.self, forKey: .emailAlertConfig)
+        ModelMonitoringAlertConfig.EmailAlertConfig.self, forKey: .emailAlertConfig)
       {
         try alertCheckAndSet(.emailAlertConfig(emailAlertConfig))
       }
@@ -193,7 +193,7 @@
 
     public enum AlertOneOf: Codable, Equatable, Sendable {
       /// Email alert config.
-      indirect case emailAlertConfig(ModelMonitoringAlertConfig.EmailAlertConfig?)
+      indirect case emailAlertConfig(ModelMonitoringAlertConfig.EmailAlertConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

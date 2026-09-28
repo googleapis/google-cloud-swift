@@ -82,13 +82,13 @@ public struct ElementaryStream: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       elementaryStream = $0
     }
-    if let videoStream = try container.decodeIfPresent(VideoStream?.self, forKey: .videoStream) {
+    if let videoStream = try container.decodeIfPresent(VideoStream.self, forKey: .videoStream) {
       try elementaryStreamCheckAndSet(.videoStream(videoStream))
     }
-    if let audioStream = try container.decodeIfPresent(AudioStream?.self, forKey: .audioStream) {
+    if let audioStream = try container.decodeIfPresent(AudioStream.self, forKey: .audioStream) {
       try elementaryStreamCheckAndSet(.audioStream(audioStream))
     }
-    if let textStream = try container.decodeIfPresent(TextStream?.self, forKey: .textStream) {
+    if let textStream = try container.decodeIfPresent(TextStream.self, forKey: .textStream) {
       try elementaryStreamCheckAndSet(.textStream(textStream))
     }
     self.elementaryStream = elementaryStream
@@ -120,11 +120,11 @@ public struct ElementaryStream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Encoding of an audio, video, or text track.
   public enum ElementaryStreamOneOf: Codable, Equatable, Sendable {
     /// Encoding of a video stream.
-    indirect case videoStream(VideoStream?)
+    indirect case videoStream(VideoStream)
     /// Encoding of an audio stream.
-    indirect case audioStream(AudioStream?)
+    indirect case audioStream(AudioStream)
     /// Encoding of a text stream. For example, closed captions or subtitles.
-    indirect case textStream(TextStream?)
+    indirect case textStream(TextStream)
   }
 
   public static var _anyTypeUrl: Swift.String {

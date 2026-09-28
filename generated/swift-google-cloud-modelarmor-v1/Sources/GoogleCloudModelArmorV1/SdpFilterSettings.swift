@@ -70,11 +70,11 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       sdpConfiguration = $0
     }
-    if let basicConfig = try container.decodeIfPresent(SdpBasicConfig?.self, forKey: .basicConfig) {
+    if let basicConfig = try container.decodeIfPresent(SdpBasicConfig.self, forKey: .basicConfig) {
       try sdpConfigurationCheckAndSet(.basicConfig(basicConfig))
     }
     if let advancedConfig = try container.decodeIfPresent(
-      SdpAdvancedConfig?.self, forKey: .advancedConfig)
+      SdpAdvancedConfig.self, forKey: .advancedConfig)
     {
       try sdpConfigurationCheckAndSet(.advancedConfig(advancedConfig))
     }
@@ -108,11 +108,11 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Data Protection templates cannot be used with basic configuration. Only
     /// Sensitive Data Protection inspection operation is supported with basic
     /// configuration.
-    indirect case basicConfig(SdpBasicConfig?)
+    indirect case basicConfig(SdpBasicConfig)
     /// Optional. Advanced Sensitive Data Protection configuration which enables
     /// use of Sensitive Data Protection templates. Supports both Sensitive Data
     /// Protection inspection and de-identification operations.
-    indirect case advancedConfig(SdpAdvancedConfig?)
+    indirect case advancedConfig(SdpAdvancedConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

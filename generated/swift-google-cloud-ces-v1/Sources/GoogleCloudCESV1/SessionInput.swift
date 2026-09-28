@@ -107,22 +107,20 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
     if let audio = try container.decodeIfPresent(Foundation.Data.self, forKey: .audio) {
       try inputTypeCheckAndSet(.audio(audio))
     }
-    if let toolResponses = try container.decodeIfPresent(
-      ToolResponses?.self, forKey: .toolResponses)
+    if let toolResponses = try container.decodeIfPresent(ToolResponses.self, forKey: .toolResponses)
     {
       try inputTypeCheckAndSet(.toolResponses(toolResponses))
     }
-    if let image = try container.decodeIfPresent(Image?.self, forKey: .image) {
+    if let image = try container.decodeIfPresent(Image.self, forKey: .image) {
       try inputTypeCheckAndSet(.image(image))
     }
-    if let blob = try container.decodeIfPresent(Blob?.self, forKey: .blob) {
+    if let blob = try container.decodeIfPresent(Blob.self, forKey: .blob) {
       try inputTypeCheckAndSet(.blob(blob))
     }
-    if let variables = try container.decodeIfPresent(GoogleWKT.WKTStruct?.self, forKey: .variables)
-    {
+    if let variables = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .variables) {
       try inputTypeCheckAndSet(.variables(variables))
     }
-    if let event = try container.decodeIfPresent(Event?.self, forKey: .event) {
+    if let event = try container.decodeIfPresent(Event.self, forKey: .event) {
       try inputTypeCheckAndSet(.event(event))
     }
     self.inputType = inputType
@@ -170,11 +168,11 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. Audio data from the end user.
     case audio(Foundation.Data)
     /// Optional. Execution results for the tool calls from the client.
-    indirect case toolResponses(ToolResponses?)
+    indirect case toolResponses(ToolResponses)
     /// Optional. Image data from the end user.
-    indirect case image(Image?)
+    indirect case image(Image)
     /// Optional. Blob data from the end user.
-    indirect case blob(Blob?)
+    indirect case blob(Blob)
     /// Optional. Contextual variables for the session, keyed by name. Only
     /// variables declared in the app will be used by the CES agent.
     ///
@@ -182,9 +180,9 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
     /// agent][Agent.RemoteDialogflowAgent] as additional session parameters.
     ///
     /// [Agent.RemoteDialogflowAgent]: <doc:Agent/RemoteDialogflowAgent>
-    indirect case variables(GoogleWKT.WKTStruct?)
+    indirect case variables(GoogleWKT.WKTStruct)
     /// Optional. Event input.
-    indirect case event(Event?)
+    indirect case event(Event)
   }
 
   public static var _anyTypeUrl: Swift.String {

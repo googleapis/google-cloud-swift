@@ -105,30 +105,29 @@
       if let stringValue = try container.decodeIfPresent(Swift.String.self, forKey: .stringValue) {
         try valueCheckAndSet(.stringValue(stringValue))
       }
-      if let boolArrayValue = try container.decodeIfPresent(
-        BoolArray?.self, forKey: .boolArrayValue)
+      if let boolArrayValue = try container.decodeIfPresent(BoolArray.self, forKey: .boolArrayValue)
       {
         try valueCheckAndSet(.boolArrayValue(boolArrayValue))
       }
       if let doubleArrayValue = try container.decodeIfPresent(
-        DoubleArray?.self, forKey: .doubleArrayValue)
+        DoubleArray.self, forKey: .doubleArrayValue)
       {
         try valueCheckAndSet(.doubleArrayValue(doubleArrayValue))
       }
       if let int64ArrayValue = try container.decodeIfPresent(
-        Int64Array?.self, forKey: .int64ArrayValue)
+        Int64Array.self, forKey: .int64ArrayValue)
       {
         try valueCheckAndSet(.int64ArrayValue(int64ArrayValue))
       }
       if let stringArrayValue = try container.decodeIfPresent(
-        StringArray?.self, forKey: .stringArrayValue)
+        StringArray.self, forKey: .stringArrayValue)
       {
         try valueCheckAndSet(.stringArrayValue(stringArrayValue))
       }
       if let bytesValue = try container.decodeIfPresent(Foundation.Data.self, forKey: .bytesValue) {
         try valueCheckAndSet(.bytesValue(bytesValue))
       }
-      if let structValue = try container.decodeIfPresent(StructValue?.self, forKey: .structValue) {
+      if let structValue = try container.decodeIfPresent(StructValue.self, forKey: .structValue) {
         try valueCheckAndSet(.structValue(structValue))
       }
       self.value = value
@@ -256,17 +255,17 @@
       /// String feature value.
       case stringValue(Swift.String)
       /// A list of bool type feature value.
-      indirect case boolArrayValue(BoolArray?)
+      indirect case boolArrayValue(BoolArray)
       /// A list of double type feature value.
-      indirect case doubleArrayValue(DoubleArray?)
+      indirect case doubleArrayValue(DoubleArray)
       /// A list of int64 type feature value.
-      indirect case int64ArrayValue(Int64Array?)
+      indirect case int64ArrayValue(Int64Array)
       /// A list of string type feature value.
-      indirect case stringArrayValue(StringArray?)
+      indirect case stringArrayValue(StringArray)
       /// Bytes feature value.
       case bytesValue(Foundation.Data)
       /// A struct type feature value.
-      indirect case structValue(StructValue?)
+      indirect case structValue(StructValue)
     }
 
     public static var _anyTypeUrl: Swift.String {

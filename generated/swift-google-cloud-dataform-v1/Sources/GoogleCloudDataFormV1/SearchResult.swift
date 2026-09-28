@@ -70,11 +70,10 @@ public struct SearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       entry = $0
     }
-    if let file = try container.decodeIfPresent(FileSearchResult?.self, forKey: .file) {
+    if let file = try container.decodeIfPresent(FileSearchResult.self, forKey: .file) {
       try entryCheckAndSet(.file(file))
     }
-    if let directory = try container.decodeIfPresent(
-      DirectorySearchResult?.self, forKey: .directory)
+    if let directory = try container.decodeIfPresent(DirectorySearchResult.self, forKey: .directory)
     {
       try entryCheckAndSet(.directory(directory))
     }
@@ -104,9 +103,9 @@ public struct SearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The entry's contents.
   public enum EntryOneOf: Codable, Equatable, Sendable {
     /// Details when search result is a file.
-    indirect case file(FileSearchResult?)
+    indirect case file(FileSearchResult)
     /// Details when search result is a directory.
-    indirect case directory(DirectorySearchResult?)
+    indirect case directory(DirectorySearchResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

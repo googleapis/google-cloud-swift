@@ -118,7 +118,7 @@ public struct RoutineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       systemSpec = $0
     }
     if let bigqueryRoutineSpec = try container.decodeIfPresent(
-      BigQueryRoutineSpec?.self, forKey: .bigqueryRoutineSpec)
+      BigQueryRoutineSpec.self, forKey: .bigqueryRoutineSpec)
     {
       try systemSpecCheckAndSet(.bigqueryRoutineSpec(bigqueryRoutineSpec))
     }
@@ -480,7 +480,7 @@ public struct RoutineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Contains fields specific to the source system.
   public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Fields specific for BigQuery routines.
-    indirect case bigqueryRoutineSpec(BigQueryRoutineSpec?)
+    indirect case bigqueryRoutineSpec(BigQueryRoutineSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

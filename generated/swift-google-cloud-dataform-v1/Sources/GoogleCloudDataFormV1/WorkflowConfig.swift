@@ -233,7 +233,7 @@ public struct WorkflowConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         try resultCheckAndSet(.workflowInvocation(workflowInvocation))
       }
       if let errorStatus = try container.decodeIfPresent(
-        GoogleRpc.Status?.self, forKey: .errorStatus)
+        GoogleRpc.Status.self, forKey: .errorStatus)
       {
         try resultCheckAndSet(.errorStatus(errorStatus))
       }
@@ -269,7 +269,7 @@ public struct WorkflowConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       case workflowInvocation(Swift.String)
       /// The error status encountered upon this attempt to create the
       /// workflow invocation, if the attempt was unsuccessful.
-      indirect case errorStatus(GoogleRpc.Status?)
+      indirect case errorStatus(GoogleRpc.Status)
     }
 
     public static var _anyTypeUrl: Swift.String {

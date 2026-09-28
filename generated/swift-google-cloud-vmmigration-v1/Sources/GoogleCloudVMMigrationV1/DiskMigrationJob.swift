@@ -125,7 +125,7 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
       sourceDiskDetails = $0
     }
     if let awsSourceDiskDetails = try container.decodeIfPresent(
-      AwsSourceDiskDetails?.self, forKey: .awsSourceDiskDetails)
+      AwsSourceDiskDetails.self, forKey: .awsSourceDiskDetails)
     {
       try sourceDiskDetailsCheckAndSet(.awsSourceDiskDetails(awsSourceDiskDetails))
     }
@@ -306,7 +306,7 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Unattached source disk details.
   public enum SourceDiskDetailsOneOf: Codable, Equatable, Sendable {
     /// Details of the unattached AWS source disk.
-    indirect case awsSourceDiskDetails(AwsSourceDiskDetails?)
+    indirect case awsSourceDiskDetails(AwsSourceDiskDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

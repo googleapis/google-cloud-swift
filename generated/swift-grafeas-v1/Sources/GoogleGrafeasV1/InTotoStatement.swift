@@ -97,16 +97,16 @@ public struct InTotoStatement: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       predicate = $0
     }
-    if let provenance = try container.decodeIfPresent(InTotoProvenance?.self, forKey: .provenance) {
+    if let provenance = try container.decodeIfPresent(InTotoProvenance.self, forKey: .provenance) {
       try predicateCheckAndSet(.provenance(provenance))
     }
     if let slsaProvenance = try container.decodeIfPresent(
-      SlsaProvenance?.self, forKey: .slsaProvenance)
+      SlsaProvenance.self, forKey: .slsaProvenance)
     {
       try predicateCheckAndSet(.slsaProvenance(slsaProvenance))
     }
     if let slsaProvenanceZeroTwo = try container.decodeIfPresent(
-      SlsaProvenanceZeroTwo?.self, forKey: .slsaProvenanceZeroTwo)
+      SlsaProvenanceZeroTwo.self, forKey: .slsaProvenanceZeroTwo)
     {
       try predicateCheckAndSet(.slsaProvenanceZeroTwo(slsaProvenanceZeroTwo))
     }
@@ -139,9 +139,9 @@ public struct InTotoStatement: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   public enum PredicateOneOf: Codable, Equatable, Sendable {
-    indirect case provenance(InTotoProvenance?)
-    indirect case slsaProvenance(SlsaProvenance?)
-    indirect case slsaProvenanceZeroTwo(SlsaProvenanceZeroTwo?)
+    indirect case provenance(InTotoProvenance)
+    indirect case slsaProvenance(SlsaProvenance)
+    indirect case slsaProvenanceZeroTwo(SlsaProvenanceZeroTwo)
   }
 
   public static var _anyTypeUrl: Swift.String {

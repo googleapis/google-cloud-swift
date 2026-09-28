@@ -152,8 +152,7 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let storageSource = try container.decodeIfPresent(
-      StorageSource?.self, forKey: .storageSource)
+    if let storageSource = try container.decodeIfPresent(StorageSource.self, forKey: .storageSource)
     {
       try sourceCheckAndSet(.storageSource(storageSource))
     }
@@ -170,12 +169,12 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       buildType = $0
     }
     if let buildpackBuild = try container.decodeIfPresent(
-      SubmitBuildRequest.BuildpacksBuild?.self, forKey: .buildpackBuild)
+      SubmitBuildRequest.BuildpacksBuild.self, forKey: .buildpackBuild)
     {
       try buildTypeCheckAndSet(.buildpackBuild(buildpackBuild))
     }
     if let dockerBuild = try container.decodeIfPresent(
-      SubmitBuildRequest.DockerBuild?.self, forKey: .dockerBuild)
+      SubmitBuildRequest.DockerBuild.self, forKey: .dockerBuild)
     {
       try buildTypeCheckAndSet(.dockerBuild(dockerBuild))
     }
@@ -418,15 +417,15 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Location of source.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Required. Source for the build.
-    indirect case storageSource(StorageSource?)
+    indirect case storageSource(StorageSource)
   }
 
   /// Build type must be one of the following.
   public enum BuildTypeOneOf: Codable, Equatable, Sendable {
     /// Build the source using Buildpacks.
-    indirect case buildpackBuild(SubmitBuildRequest.BuildpacksBuild?)
+    indirect case buildpackBuild(SubmitBuildRequest.BuildpacksBuild)
     /// Build the source using Docker. This means the source has a Dockerfile.
-    indirect case dockerBuild(SubmitBuildRequest.DockerBuild?)
+    indirect case dockerBuild(SubmitBuildRequest.DockerBuild)
   }
 
   public static var _anyTypeUrl: Swift.String {

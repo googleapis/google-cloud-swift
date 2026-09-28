@@ -109,84 +109,84 @@ public struct ProcessorConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       processorConfig = $0
     }
     if let videoStreamInputConfig = try container.decodeIfPresent(
-      VideoStreamInputConfig?.self, forKey: .videoStreamInputConfig)
+      VideoStreamInputConfig.self, forKey: .videoStreamInputConfig)
     {
       try processorConfigCheckAndSet(.videoStreamInputConfig(videoStreamInputConfig))
     }
     if let aiEnabledDevicesInputConfig = try container.decodeIfPresent(
-      AIEnabledDevicesInputConfig?.self, forKey: .aiEnabledDevicesInputConfig)
+      AIEnabledDevicesInputConfig.self, forKey: .aiEnabledDevicesInputConfig)
     {
       try processorConfigCheckAndSet(.aiEnabledDevicesInputConfig(aiEnabledDevicesInputConfig))
     }
     if let mediaWarehouseConfig = try container.decodeIfPresent(
-      MediaWarehouseConfig?.self, forKey: .mediaWarehouseConfig)
+      MediaWarehouseConfig.self, forKey: .mediaWarehouseConfig)
     {
       try processorConfigCheckAndSet(.mediaWarehouseConfig(mediaWarehouseConfig))
     }
     if let personBlurConfig = try container.decodeIfPresent(
-      PersonBlurConfig?.self, forKey: .personBlurConfig)
+      PersonBlurConfig.self, forKey: .personBlurConfig)
     {
       try processorConfigCheckAndSet(.personBlurConfig(personBlurConfig))
     }
     if let occupancyCountConfig = try container.decodeIfPresent(
-      OccupancyCountConfig?.self, forKey: .occupancyCountConfig)
+      OccupancyCountConfig.self, forKey: .occupancyCountConfig)
     {
       try processorConfigCheckAndSet(.occupancyCountConfig(occupancyCountConfig))
     }
     if let personVehicleDetectionConfig = try container.decodeIfPresent(
-      PersonVehicleDetectionConfig?.self, forKey: .personVehicleDetectionConfig)
+      PersonVehicleDetectionConfig.self, forKey: .personVehicleDetectionConfig)
     {
       try processorConfigCheckAndSet(.personVehicleDetectionConfig(personVehicleDetectionConfig))
     }
     if let vertexAutomlVisionConfig = try container.decodeIfPresent(
-      VertexAutoMLVisionConfig?.self, forKey: .vertexAutomlVisionConfig)
+      VertexAutoMLVisionConfig.self, forKey: .vertexAutomlVisionConfig)
     {
       try processorConfigCheckAndSet(.vertexAutomlVisionConfig(vertexAutomlVisionConfig))
     }
     if let vertexAutomlVideoConfig = try container.decodeIfPresent(
-      VertexAutoMLVideoConfig?.self, forKey: .vertexAutomlVideoConfig)
+      VertexAutoMLVideoConfig.self, forKey: .vertexAutomlVideoConfig)
     {
       try processorConfigCheckAndSet(.vertexAutomlVideoConfig(vertexAutomlVideoConfig))
     }
     if let vertexCustomConfig = try container.decodeIfPresent(
-      VertexCustomConfig?.self, forKey: .vertexCustomConfig)
+      VertexCustomConfig.self, forKey: .vertexCustomConfig)
     {
       try processorConfigCheckAndSet(.vertexCustomConfig(vertexCustomConfig))
     }
     if let generalObjectDetectionConfig = try container.decodeIfPresent(
-      GeneralObjectDetectionConfig?.self, forKey: .generalObjectDetectionConfig)
+      GeneralObjectDetectionConfig.self, forKey: .generalObjectDetectionConfig)
     {
       try processorConfigCheckAndSet(.generalObjectDetectionConfig(generalObjectDetectionConfig))
     }
     if let bigQueryConfig = try container.decodeIfPresent(
-      BigQueryConfig?.self, forKey: .bigQueryConfig)
+      BigQueryConfig.self, forKey: .bigQueryConfig)
     {
       try processorConfigCheckAndSet(.bigQueryConfig(bigQueryConfig))
     }
     if let gcsOutputConfig = try container.decodeIfPresent(
-      GcsOutputConfig?.self, forKey: .gcsOutputConfig)
+      GcsOutputConfig.self, forKey: .gcsOutputConfig)
     {
       try processorConfigCheckAndSet(.gcsOutputConfig(gcsOutputConfig))
     }
     if let productRecognizerConfig = try container.decodeIfPresent(
-      ProductRecognizerConfig?.self, forKey: .productRecognizerConfig)
+      ProductRecognizerConfig.self, forKey: .productRecognizerConfig)
     {
       try processorConfigCheckAndSet(.productRecognizerConfig(productRecognizerConfig))
     }
     if let personalProtectiveEquipmentDetectionConfig = try container.decodeIfPresent(
-      PersonalProtectiveEquipmentDetectionConfig?.self,
+      PersonalProtectiveEquipmentDetectionConfig.self,
       forKey: .personalProtectiveEquipmentDetectionConfig)
     {
       try processorConfigCheckAndSet(
         .personalProtectiveEquipmentDetectionConfig(personalProtectiveEquipmentDetectionConfig))
     }
     if let tagRecognizerConfig = try container.decodeIfPresent(
-      TagRecognizerConfig?.self, forKey: .tagRecognizerConfig)
+      TagRecognizerConfig.self, forKey: .tagRecognizerConfig)
     {
       try processorConfigCheckAndSet(.tagRecognizerConfig(tagRecognizerConfig))
     }
     if let universalInputConfig = try container.decodeIfPresent(
-      UniversalInputConfig?.self, forKey: .universalInputConfig)
+      UniversalInputConfig.self, forKey: .universalInputConfig)
     {
       try processorConfigCheckAndSet(.universalInputConfig(universalInputConfig))
     }
@@ -244,38 +244,38 @@ public struct ProcessorConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ProcessorConfigOneOf: Codable, Equatable, Sendable {
     /// Configs of stream input processor.
-    indirect case videoStreamInputConfig(VideoStreamInputConfig?)
+    indirect case videoStreamInputConfig(VideoStreamInputConfig)
     /// Config of AI-enabled input devices.
-    indirect case aiEnabledDevicesInputConfig(AIEnabledDevicesInputConfig?)
+    indirect case aiEnabledDevicesInputConfig(AIEnabledDevicesInputConfig)
     /// Configs of media warehouse processor.
-    indirect case mediaWarehouseConfig(MediaWarehouseConfig?)
+    indirect case mediaWarehouseConfig(MediaWarehouseConfig)
     /// Configs of person blur processor.
-    indirect case personBlurConfig(PersonBlurConfig?)
+    indirect case personBlurConfig(PersonBlurConfig)
     /// Configs of occupancy count processor.
-    indirect case occupancyCountConfig(OccupancyCountConfig?)
+    indirect case occupancyCountConfig(OccupancyCountConfig)
     /// Configs of Person Vehicle Detection processor.
-    indirect case personVehicleDetectionConfig(PersonVehicleDetectionConfig?)
+    indirect case personVehicleDetectionConfig(PersonVehicleDetectionConfig)
     /// Configs of Vertex AutoML vision processor.
-    indirect case vertexAutomlVisionConfig(VertexAutoMLVisionConfig?)
+    indirect case vertexAutomlVisionConfig(VertexAutoMLVisionConfig)
     /// Configs of Vertex AutoML video processor.
-    indirect case vertexAutomlVideoConfig(VertexAutoMLVideoConfig?)
+    indirect case vertexAutomlVideoConfig(VertexAutoMLVideoConfig)
     /// Configs of Vertex Custom processor.
-    indirect case vertexCustomConfig(VertexCustomConfig?)
+    indirect case vertexCustomConfig(VertexCustomConfig)
     /// Configs of General Object Detection processor.
-    indirect case generalObjectDetectionConfig(GeneralObjectDetectionConfig?)
+    indirect case generalObjectDetectionConfig(GeneralObjectDetectionConfig)
     /// Configs of BigQuery processor.
-    indirect case bigQueryConfig(BigQueryConfig?)
+    indirect case bigQueryConfig(BigQueryConfig)
     /// Configs of Cloud Storage output processor.
-    indirect case gcsOutputConfig(GcsOutputConfig?)
+    indirect case gcsOutputConfig(GcsOutputConfig)
     /// Runtime configs of Product Recognizer processor.
-    indirect case productRecognizerConfig(ProductRecognizerConfig?)
+    indirect case productRecognizerConfig(ProductRecognizerConfig)
     /// Configs of personal_protective_equipment_detection_config
     indirect case personalProtectiveEquipmentDetectionConfig(
-      PersonalProtectiveEquipmentDetectionConfig?)
+      PersonalProtectiveEquipmentDetectionConfig)
     /// Runtime configs of Tag Recognizer processor.
-    indirect case tagRecognizerConfig(TagRecognizerConfig?)
+    indirect case tagRecognizerConfig(TagRecognizerConfig)
     /// Runtime configs of UniversalInput processor.
-    indirect case universalInputConfig(UniversalInputConfig?)
+    indirect case universalInputConfig(UniversalInputConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

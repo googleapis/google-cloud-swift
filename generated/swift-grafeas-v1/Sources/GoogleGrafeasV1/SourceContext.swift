@@ -83,14 +83,14 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
       context = $0
     }
     if let cloudRepo = try container.decodeIfPresent(
-      CloudRepoSourceContext?.self, forKey: .cloudRepo)
+      CloudRepoSourceContext.self, forKey: .cloudRepo)
     {
       try contextCheckAndSet(.cloudRepo(cloudRepo))
     }
-    if let gerrit = try container.decodeIfPresent(GerritSourceContext?.self, forKey: .gerrit) {
+    if let gerrit = try container.decodeIfPresent(GerritSourceContext.self, forKey: .gerrit) {
       try contextCheckAndSet(.gerrit(gerrit))
     }
-    if let git = try container.decodeIfPresent(GitSourceContext?.self, forKey: .git) {
+    if let git = try container.decodeIfPresent(GitSourceContext.self, forKey: .git) {
       try contextCheckAndSet(.git(git))
     }
     self.context = context
@@ -122,11 +122,11 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A SourceContext can refer any one of the following types of repositories.
   public enum ContextOneOf: Codable, Equatable, Sendable {
     /// A SourceContext referring to a revision in a Google Cloud Source Repo.
-    indirect case cloudRepo(CloudRepoSourceContext?)
+    indirect case cloudRepo(CloudRepoSourceContext)
     /// A SourceContext referring to a Gerrit project.
-    indirect case gerrit(GerritSourceContext?)
+    indirect case gerrit(GerritSourceContext)
     /// A SourceContext referring to any third party Git repo (e.g., GitHub).
-    indirect case git(GitSourceContext?)
+    indirect case git(GitSourceContext)
   }
 
   public static var _anyTypeUrl: Swift.String {

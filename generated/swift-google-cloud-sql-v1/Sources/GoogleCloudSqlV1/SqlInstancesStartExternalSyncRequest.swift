@@ -141,7 +141,7 @@
         syncConfig = $0
       }
       if let mysqlSyncConfig = try container.decodeIfPresent(
-        MySqlSyncConfig?.self, forKey: .mysqlSyncConfig)
+        MySqlSyncConfig.self, forKey: .mysqlSyncConfig)
       {
         try syncConfigCheckAndSet(.mysqlSyncConfig(mysqlSyncConfig))
       }
@@ -175,7 +175,7 @@
 
     public enum SyncConfigOneOf: Codable, Equatable, Sendable {
       /// MySQL-specific settings for start external sync.
-      indirect case mysqlSyncConfig(MySqlSyncConfig?)
+      indirect case mysqlSyncConfig(MySqlSyncConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

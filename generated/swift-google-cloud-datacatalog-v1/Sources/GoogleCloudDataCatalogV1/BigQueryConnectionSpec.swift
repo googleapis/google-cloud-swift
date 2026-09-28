@@ -88,7 +88,7 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleWKT._AnyPackable
       connectionSpec = $0
     }
     if let cloudSql = try container.decodeIfPresent(
-      CloudSqlBigQueryConnectionSpec?.self, forKey: .cloudSql)
+      CloudSqlBigQueryConnectionSpec.self, forKey: .cloudSql)
     {
       try connectionSpecCheckAndSet(.cloudSql(cloudSql))
     }
@@ -227,7 +227,7 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleWKT._AnyPackable
 
   public enum ConnectionSpecOneOf: Codable, Equatable, Sendable {
     /// Specification for the BigQuery connection to a Cloud SQL instance.
-    indirect case cloudSql(CloudSqlBigQueryConnectionSpec?)
+    indirect case cloudSql(CloudSqlBigQueryConnectionSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

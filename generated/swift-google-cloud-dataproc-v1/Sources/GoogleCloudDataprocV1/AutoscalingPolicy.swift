@@ -139,7 +139,7 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       algorithm = $0
     }
     if let basicAlgorithm = try container.decodeIfPresent(
-      BasicAutoscalingAlgorithm?.self, forKey: .basicAlgorithm)
+      BasicAutoscalingAlgorithm.self, forKey: .basicAlgorithm)
     {
       try algorithmCheckAndSet(.basicAlgorithm(basicAlgorithm))
     }
@@ -291,7 +291,7 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Autoscaling algorithm for policy.
   public enum AlgorithmOneOf: Codable, Equatable, Sendable {
-    indirect case basicAlgorithm(BasicAutoscalingAlgorithm?)
+    indirect case basicAlgorithm(BasicAutoscalingAlgorithm)
   }
 
   public static var _anyTypeUrl: Swift.String {

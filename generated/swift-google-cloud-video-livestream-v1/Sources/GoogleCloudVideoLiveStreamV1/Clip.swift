@@ -305,7 +305,7 @@ public struct Clip: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         kind = $0
       }
-      if let timeSlice = try container.decodeIfPresent(Clip.TimeSlice?.self, forKey: .timeSlice) {
+      if let timeSlice = try container.decodeIfPresent(Clip.TimeSlice.self, forKey: .timeSlice) {
         try kindCheckAndSet(.timeSlice(timeSlice))
       }
       self.kind = kind
@@ -332,7 +332,7 @@ public struct Clip: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The allowlist forms of a slice.
     public enum KindOneOf: Codable, Equatable, Sendable {
       /// A slice in form of a tuple of Unix epoch time.
-      indirect case timeSlice(Clip.TimeSlice?)
+      indirect case timeSlice(Clip.TimeSlice)
     }
 
     public static var _anyTypeUrl: Swift.String {

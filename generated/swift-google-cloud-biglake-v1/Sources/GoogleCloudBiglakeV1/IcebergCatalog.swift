@@ -597,17 +597,17 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         remoteCatalogInfo = $0
       }
       if let unityCatalogInfo = try container.decodeIfPresent(
-        IcebergCatalog.FederatedCatalogOptions.UnityCatalogInfo?.self, forKey: .unityCatalogInfo)
+        IcebergCatalog.FederatedCatalogOptions.UnityCatalogInfo.self, forKey: .unityCatalogInfo)
       {
         try remoteCatalogInfoCheckAndSet(.unityCatalogInfo(unityCatalogInfo))
       }
       if let glueCatalogInfo = try container.decodeIfPresent(
-        IcebergCatalog.FederatedCatalogOptions.GlueCatalogInfo?.self, forKey: .glueCatalogInfo)
+        IcebergCatalog.FederatedCatalogOptions.GlueCatalogInfo.self, forKey: .glueCatalogInfo)
       {
         try remoteCatalogInfoCheckAndSet(.glueCatalogInfo(glueCatalogInfo))
       }
       if let snowflakeCatalogInfo = try container.decodeIfPresent(
-        IcebergCatalog.FederatedCatalogOptions.SnowflakeCatalogInfo?.self,
+        IcebergCatalog.FederatedCatalogOptions.SnowflakeCatalogInfo.self,
         forKey: .snowflakeCatalogInfo)
       {
         try remoteCatalogInfoCheckAndSet(.snowflakeCatalogInfo(snowflakeCatalogInfo))
@@ -1234,12 +1234,12 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Info specific to a remote Iceberg REST catalog.
     public enum RemoteCatalogInfoOneOf: Codable, Equatable, Sendable {
       /// Optional. Info specific to a Unity Catalog by Databricks.
-      indirect case unityCatalogInfo(IcebergCatalog.FederatedCatalogOptions.UnityCatalogInfo?)
+      indirect case unityCatalogInfo(IcebergCatalog.FederatedCatalogOptions.UnityCatalogInfo)
       /// Optional. Info specific to an AWS Glue Catalog.
-      indirect case glueCatalogInfo(IcebergCatalog.FederatedCatalogOptions.GlueCatalogInfo?)
+      indirect case glueCatalogInfo(IcebergCatalog.FederatedCatalogOptions.GlueCatalogInfo)
       /// Optional. Info specific to a Snowflake Catalog.
       indirect case snowflakeCatalogInfo(
-        IcebergCatalog.FederatedCatalogOptions.SnowflakeCatalogInfo?)
+        IcebergCatalog.FederatedCatalogOptions.SnowflakeCatalogInfo)
     }
 
     public static var _anyTypeUrl: Swift.String {

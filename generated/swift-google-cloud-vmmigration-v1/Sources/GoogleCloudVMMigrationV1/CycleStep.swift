@@ -84,16 +84,15 @@ public struct CycleStep: Codable, Equatable, GoogleWKT._AnyPackable,
       step = $0
     }
     if let initializingReplication = try container.decodeIfPresent(
-      InitializingReplicationStep?.self, forKey: .initializingReplication)
+      InitializingReplicationStep.self, forKey: .initializingReplication)
     {
       try stepCheckAndSet(.initializingReplication(initializingReplication))
     }
-    if let replicating = try container.decodeIfPresent(ReplicatingStep?.self, forKey: .replicating)
-    {
+    if let replicating = try container.decodeIfPresent(ReplicatingStep.self, forKey: .replicating) {
       try stepCheckAndSet(.replicating(replicating))
     }
     if let postProcessing = try container.decodeIfPresent(
-      PostProcessingStep?.self, forKey: .postProcessing)
+      PostProcessingStep.self, forKey: .postProcessing)
     {
       try stepCheckAndSet(.postProcessing(postProcessing))
     }
@@ -126,11 +125,11 @@ public struct CycleStep: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum StepOneOf: Codable, Equatable, Sendable {
     /// Initializing replication step.
-    indirect case initializingReplication(InitializingReplicationStep?)
+    indirect case initializingReplication(InitializingReplicationStep)
     /// Replicating step.
-    indirect case replicating(ReplicatingStep?)
+    indirect case replicating(ReplicatingStep)
     /// Post processing step.
-    indirect case postProcessing(PostProcessingStep?)
+    indirect case postProcessing(PostProcessingStep)
   }
 
   public static var _anyTypeUrl: Swift.String {

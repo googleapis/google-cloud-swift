@@ -160,12 +160,11 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       timeOffset = $0
     }
-    if let utcOffset = try container.decodeIfPresent(
-      GoogleWKT.WKTDuration?.self, forKey: .utcOffset)
+    if let utcOffset = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .utcOffset)
     {
       try timeOffsetCheckAndSet(.utcOffset(utcOffset))
     }
-    if let timeZone = try container.decodeIfPresent(TimeZone?.self, forKey: .timeZone) {
+    if let timeZone = try container.decodeIfPresent(TimeZone.self, forKey: .timeZone) {
       try timeOffsetCheckAndSet(.timeZone(timeZone))
     }
     self.timeOffset = timeOffset
@@ -207,9 +206,9 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
     /// UTC offset. Must be whole seconds, between -18 hours and +18 hours.
     /// For example, a UTC offset of -4:00 would be represented as
     /// { seconds: -14400 }.
-    indirect case utcOffset(GoogleWKT.WKTDuration?)
+    indirect case utcOffset(GoogleWKT.WKTDuration)
     /// Time zone.
-    indirect case timeZone(TimeZone?)
+    indirect case timeZone(TimeZone)
   }
 
   public static var _anyTypeUrl: Swift.String {

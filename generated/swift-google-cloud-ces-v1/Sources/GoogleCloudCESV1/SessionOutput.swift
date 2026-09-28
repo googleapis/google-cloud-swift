@@ -121,21 +121,21 @@ public struct SessionOutput: Codable, Equatable, GoogleWKT._AnyPackable,
     if let audio = try container.decodeIfPresent(Foundation.Data.self, forKey: .audio) {
       try outputTypeCheckAndSet(.audio(audio))
     }
-    if let toolCalls = try container.decodeIfPresent(ToolCalls?.self, forKey: .toolCalls) {
+    if let toolCalls = try container.decodeIfPresent(ToolCalls.self, forKey: .toolCalls) {
       try outputTypeCheckAndSet(.toolCalls(toolCalls))
     }
-    if let citations = try container.decodeIfPresent(Citations?.self, forKey: .citations) {
+    if let citations = try container.decodeIfPresent(Citations.self, forKey: .citations) {
       try outputTypeCheckAndSet(.citations(citations))
     }
     if let googleSearchSuggestions = try container.decodeIfPresent(
-      GoogleSearchSuggestions?.self, forKey: .googleSearchSuggestions)
+      GoogleSearchSuggestions.self, forKey: .googleSearchSuggestions)
     {
       try outputTypeCheckAndSet(.googleSearchSuggestions(googleSearchSuggestions))
     }
-    if let endSession = try container.decodeIfPresent(EndSession?.self, forKey: .endSession) {
+    if let endSession = try container.decodeIfPresent(EndSession.self, forKey: .endSession) {
       try outputTypeCheckAndSet(.endSession(endSession))
     }
-    if let payload = try container.decodeIfPresent(GoogleWKT.WKTStruct?.self, forKey: .payload) {
+    if let payload = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .payload) {
       try outputTypeCheckAndSet(.payload(payload))
     }
     self.outputType = outputType
@@ -258,19 +258,19 @@ public struct SessionOutput: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Output audio from the CES agent.
     case audio(Foundation.Data)
     /// Request for the client to execute the tools.
-    indirect case toolCalls(ToolCalls?)
+    indirect case toolCalls(ToolCalls)
     /// Citations that provide the source information for the agent's generated
     /// text.
-    indirect case citations(Citations?)
+    indirect case citations(Citations)
     /// The suggestions returned from Google Search as a result of invoking the
     /// [GoogleSearchTool][google.cloud.ces.v1.GoogleSearchTool].
     ///
     /// [google.cloud.ces.v1.GoogleSearchTool]: <doc:GoogleSearchTool>
-    indirect case googleSearchSuggestions(GoogleSearchSuggestions?)
+    indirect case googleSearchSuggestions(GoogleSearchSuggestions)
     /// Indicates the session has ended.
-    indirect case endSession(EndSession?)
+    indirect case endSession(EndSession)
     /// Custom payload with structured output from the CES agent.
-    indirect case payload(GoogleWKT.WKTStruct?)
+    indirect case payload(GoogleWKT.WKTStruct)
   }
 
   public static var _anyTypeUrl: Swift.String {

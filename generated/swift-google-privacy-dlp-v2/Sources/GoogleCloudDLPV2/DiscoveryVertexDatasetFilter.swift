@@ -79,16 +79,16 @@ public struct DiscoveryVertexDatasetFilter: Codable, Equatable, GoogleWKT._AnyPa
       filter = $0
     }
     if let collection = try container.decodeIfPresent(
-      VertexDatasetCollection?.self, forKey: .collection)
+      VertexDatasetCollection.self, forKey: .collection)
     {
       try filterCheckAndSet(.collection(collection))
     }
     if let vertexDatasetResourceReference = try container.decodeIfPresent(
-      VertexDatasetResourceReference?.self, forKey: .vertexDatasetResourceReference)
+      VertexDatasetResourceReference.self, forKey: .vertexDatasetResourceReference)
     {
       try filterCheckAndSet(.vertexDatasetResourceReference(vertexDatasetResourceReference))
     }
-    if let others = try container.decodeIfPresent(AllOtherResources?.self, forKey: .others) {
+    if let others = try container.decodeIfPresent(AllOtherResources.self, forKey: .others) {
       try filterCheckAndSet(.others(others))
     }
     self.filter = filter
@@ -122,15 +122,15 @@ public struct DiscoveryVertexDatasetFilter: Codable, Equatable, GoogleWKT._AnyPa
   /// set, this field defaults to `others`.
   public enum FilterOneOf: Codable, Equatable, Sendable {
     /// A specific set of Vertex AI datasets for this filter to apply to.
-    indirect case collection(VertexDatasetCollection?)
+    indirect case collection(VertexDatasetCollection)
     /// The dataset resource to scan. Targets including this can only include
     /// one target (the target with this dataset resource reference).
-    indirect case vertexDatasetResourceReference(VertexDatasetResourceReference?)
+    indirect case vertexDatasetResourceReference(VertexDatasetResourceReference)
     /// Catch-all. This should always be the last target in the list because
     /// anything above it will apply first. Should only appear once in a
     /// configuration. If none is specified, a default one will be added
     /// automatically.
-    indirect case others(AllOtherResources?)
+    indirect case others(AllOtherResources)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -122,7 +122,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       notifyConfig = $0
     }
     if let streamingConfig = try container.decodeIfPresent(
-      NotificationConfig.StreamingConfig?.self, forKey: .streamingConfig)
+      NotificationConfig.StreamingConfig.self, forKey: .streamingConfig)
     {
       try notifyConfigCheckAndSet(.streamingConfig(streamingConfig))
     }
@@ -244,7 +244,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The config for triggering notifications.
   public enum NotifyConfigOneOf: Codable, Equatable, Sendable {
     /// The config for triggering streaming-based notifications.
-    indirect case streamingConfig(NotificationConfig.StreamingConfig?)
+    indirect case streamingConfig(NotificationConfig.StreamingConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

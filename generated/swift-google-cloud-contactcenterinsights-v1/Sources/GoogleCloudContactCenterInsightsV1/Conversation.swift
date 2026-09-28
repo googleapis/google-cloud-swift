@@ -234,7 +234,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
       metadata = $0
     }
     if let callMetadata = try container.decodeIfPresent(
-      Conversation.CallMetadata?.self, forKey: .callMetadata)
+      Conversation.CallMetadata.self, forKey: .callMetadata)
     {
       try metadataCheckAndSet(.callMetadata(callMetadata))
     }
@@ -251,11 +251,11 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .expireTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
@@ -1098,7 +1098,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Metadata that applies to the conversation.
   public enum MetadataOneOf: Codable, Equatable, Sendable {
     /// Call-specific metadata.
-    indirect case callMetadata(Conversation.CallMetadata?)
+    indirect case callMetadata(Conversation.CallMetadata)
   }
 
   /// A time to live expiration setting, can be either a specified timestamp or a
@@ -1108,10 +1108,10 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ExpirationOneOf: Codable, Equatable, Sendable {
     /// The time at which this conversation should expire. After this time, the
     /// conversation data and any associated analyses will be deleted.
-    indirect case expireTime(GoogleWKT.WKTTimestamp?)
+    indirect case expireTime(GoogleWKT.WKTTimestamp)
     /// Input only. The TTL for this resource. If specified, then this TTL will
     /// be used to calculate the expire time.
-    indirect case ttl(GoogleWKT.WKTDuration?)
+    indirect case ttl(GoogleWKT.WKTDuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

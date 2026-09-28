@@ -127,17 +127,17 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       action = $0
     }
     if let bigqueryAction = try container.decodeIfPresent(
-      WorkflowInvocationAction.BigQueryAction?.self, forKey: .bigqueryAction)
+      WorkflowInvocationAction.BigQueryAction.self, forKey: .bigqueryAction)
     {
       try actionCheckAndSet(.bigqueryAction(bigqueryAction))
     }
     if let notebookAction = try container.decodeIfPresent(
-      WorkflowInvocationAction.NotebookAction?.self, forKey: .notebookAction)
+      WorkflowInvocationAction.NotebookAction.self, forKey: .notebookAction)
     {
       try actionCheckAndSet(.notebookAction(notebookAction))
     }
     if let dataPreparationAction = try container.decodeIfPresent(
-      WorkflowInvocationAction.DataPreparationAction?.self, forKey: .dataPreparationAction)
+      WorkflowInvocationAction.DataPreparationAction.self, forKey: .dataPreparationAction)
     {
       try actionCheckAndSet(.dataPreparationAction(dataPreparationAction))
     }
@@ -415,7 +415,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
         try definitionCheckAndSet(.contentsYaml(contentsYaml))
       }
       if let contentsSql = try container.decodeIfPresent(
-        WorkflowInvocationAction.DataPreparationAction.ActionSqlDefinition?.self,
+        WorkflowInvocationAction.DataPreparationAction.ActionSqlDefinition.self,
         forKey: .contentsSql)
       {
         try definitionCheckAndSet(.contentsSql(contentsSql))
@@ -667,24 +667,23 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
           mode = $0
         }
         if let replace = try container.decodeIfPresent(
-          WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode?.self,
-          forKey: .replace)
-        {
+          WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode.self, forKey: .replace
+        ) {
           try modeCheckAndSet(.replace(replace))
         }
         if let append = try container.decodeIfPresent(
-          WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode?.self, forKey: .append
-        ) {
+          WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode.self, forKey: .append)
+        {
           try modeCheckAndSet(.append(append))
         }
         if let maximum = try container.decodeIfPresent(
-          WorkflowInvocationAction.DataPreparationAction.ActionIncrementalLoadMode?.self,
+          WorkflowInvocationAction.DataPreparationAction.ActionIncrementalLoadMode.self,
           forKey: .maximum)
         {
           try modeCheckAndSet(.maximum(maximum))
         }
         if let unique = try container.decodeIfPresent(
-          WorkflowInvocationAction.DataPreparationAction.ActionIncrementalLoadMode?.self,
+          WorkflowInvocationAction.DataPreparationAction.ActionIncrementalLoadMode.self,
           forKey: .unique)
         {
           try modeCheckAndSet(.unique(unique))
@@ -719,17 +718,17 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       /// Load mode
       public enum ModeOneOf: Codable, Equatable, Sendable {
         /// Replace destination table
-        indirect case replace(WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode?)
+        indirect case replace(WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode)
         /// Append into destination table
-        indirect case append(WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode?)
+        indirect case append(WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode)
         /// Insert records where the value exceeds the previous maximum value for
         /// a column in the destination table
         indirect case maximum(
-          WorkflowInvocationAction.DataPreparationAction.ActionIncrementalLoadMode?)
+          WorkflowInvocationAction.DataPreparationAction.ActionIncrementalLoadMode)
         /// Insert records where the value of a column is not already present in
         /// the destination table
         indirect case unique(
-          WorkflowInvocationAction.DataPreparationAction.ActionIncrementalLoadMode?)
+          WorkflowInvocationAction.DataPreparationAction.ActionIncrementalLoadMode)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -878,7 +877,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       case contentsYaml(Swift.String)
       /// SQL definition for a Data Preparation. Contains a SQL query and
       /// additional context information.
-      indirect case contentsSql(WorkflowInvocationAction.DataPreparationAction.ActionSqlDefinition?)
+      indirect case contentsSql(WorkflowInvocationAction.DataPreparationAction.ActionSqlDefinition)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1043,11 +1042,11 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
   /// The action's details.
   public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Output only. The workflow action's bigquery action details.
-    indirect case bigqueryAction(WorkflowInvocationAction.BigQueryAction?)
+    indirect case bigqueryAction(WorkflowInvocationAction.BigQueryAction)
     /// Output only. The workflow action's notebook action details.
-    indirect case notebookAction(WorkflowInvocationAction.NotebookAction?)
+    indirect case notebookAction(WorkflowInvocationAction.NotebookAction)
     /// Output only. The workflow action's data preparation action details.
-    indirect case dataPreparationAction(WorkflowInvocationAction.DataPreparationAction?)
+    indirect case dataPreparationAction(WorkflowInvocationAction.DataPreparationAction)
   }
 
   public static var _anyTypeUrl: Swift.String {

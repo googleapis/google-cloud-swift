@@ -77,27 +77,27 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       paginationStrategy = $0
     }
     if let `none` = try container.decodeIfPresent(
-      CustomAPIPagination.NonePagination?.self, forKey: .`none`)
+      CustomAPIPagination.NonePagination.self, forKey: .`none`)
     {
       try paginationStrategyCheckAndSet(.`none`(`none`))
     }
     if let token = try container.decodeIfPresent(
-      CustomAPIPagination.TokenPagination?.self, forKey: .token)
+      CustomAPIPagination.TokenPagination.self, forKey: .token)
     {
       try paginationStrategyCheckAndSet(.token(token))
     }
     if let link = try container.decodeIfPresent(
-      CustomAPIPagination.LinkPagination?.self, forKey: .link)
+      CustomAPIPagination.LinkPagination.self, forKey: .link)
     {
       try paginationStrategyCheckAndSet(.link(link))
     }
     if let offset = try container.decodeIfPresent(
-      CustomAPIPagination.OffsetPagination?.self, forKey: .offset)
+      CustomAPIPagination.OffsetPagination.self, forKey: .offset)
     {
       try paginationStrategyCheckAndSet(.offset(offset))
     }
     if let pageNumber = try container.decodeIfPresent(
-      CustomAPIPagination.PageNumberPagination?.self, forKey: .pageNumber)
+      CustomAPIPagination.PageNumberPagination.self, forKey: .pageNumber)
     {
       try paginationStrategyCheckAndSet(.pageNumber(pageNumber))
     }
@@ -480,15 +480,15 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Select the specific paging mechanism the third-party API requires.
   public enum PaginationStrategyOneOf: Codable, Equatable, Sendable {
     /// Fetch data in a single request without paging.
-    indirect case `none`(CustomAPIPagination.NonePagination?)
+    indirect case `none`(CustomAPIPagination.NonePagination)
     /// Use tokens (custom keys) to get the next page of data.
-    indirect case token(CustomAPIPagination.TokenPagination?)
+    indirect case token(CustomAPIPagination.TokenPagination)
     /// Follow links provided in the response to get more data.
-    indirect case link(CustomAPIPagination.LinkPagination?)
+    indirect case link(CustomAPIPagination.LinkPagination)
     /// Skip a set number of records to get the next set.
-    indirect case offset(CustomAPIPagination.OffsetPagination?)
+    indirect case offset(CustomAPIPagination.OffsetPagination)
     /// Go to the next page number (e.g., page 2).
-    indirect case pageNumber(CustomAPIPagination.PageNumberPagination?)
+    indirect case pageNumber(CustomAPIPagination.PageNumberPagination)
   }
 
   public static var _anyTypeUrl: Swift.String {

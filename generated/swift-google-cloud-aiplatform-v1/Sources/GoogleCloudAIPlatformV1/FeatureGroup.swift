@@ -128,8 +128,7 @@
         }
         source = $0
       }
-      if let bigQuery = try container.decodeIfPresent(
-        FeatureGroup.BigQuery?.self, forKey: .bigQuery)
+      if let bigQuery = try container.decodeIfPresent(FeatureGroup.BigQuery.self, forKey: .bigQuery)
       {
         try sourceCheckAndSet(.bigQuery(bigQuery))
       }
@@ -357,7 +356,7 @@
       /// By default treats the source as a sparse time series source. The BigQuery
       /// source table or view must have at least one entity ID column and a column
       /// named `feature_timestamp`.
-      indirect case bigQuery(FeatureGroup.BigQuery?)
+      indirect case bigQuery(FeatureGroup.BigQuery)
     }
 
     public static var _anyTypeUrl: Swift.String {

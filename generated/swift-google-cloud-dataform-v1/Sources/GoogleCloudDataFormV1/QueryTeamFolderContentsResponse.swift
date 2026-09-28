@@ -140,10 +140,10 @@ public struct QueryTeamFolderContentsResponse: Codable, Equatable, GoogleWKT._An
         }
         entry = $0
       }
-      if let folder = try container.decodeIfPresent(Folder?.self, forKey: .folder) {
+      if let folder = try container.decodeIfPresent(Folder.self, forKey: .folder) {
         try entryCheckAndSet(.folder(folder))
       }
-      if let repository = try container.decodeIfPresent(Repository?.self, forKey: .repository) {
+      if let repository = try container.decodeIfPresent(Repository.self, forKey: .repository) {
         try entryCheckAndSet(.repository(repository))
       }
       self.entry = entry
@@ -172,9 +172,9 @@ public struct QueryTeamFolderContentsResponse: Codable, Equatable, GoogleWKT._An
     /// The content entry.
     public enum EntryOneOf: Codable, Equatable, Sendable {
       /// A subfolder.
-      indirect case folder(Folder?)
+      indirect case folder(Folder)
       /// A repository.
-      indirect case repository(Repository?)
+      indirect case repository(Repository)
     }
 
     public static var _anyTypeUrl: Swift.String {

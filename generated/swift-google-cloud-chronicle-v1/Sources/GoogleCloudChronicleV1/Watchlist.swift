@@ -202,7 +202,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
         mechanism = $0
       }
       if let manual = try container.decodeIfPresent(
-        Watchlist.EntityPopulationMechanism.Manual?.self, forKey: .manual)
+        Watchlist.EntityPopulationMechanism.Manual.self, forKey: .manual)
       {
         try mechanismCheckAndSet(.manual(manual))
       }
@@ -289,7 +289,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Currently, only manual is supported.
     public enum MechanismOneOf: Codable, Equatable, Sendable {
       /// Optional. Entities are added manually.
-      indirect case manual(Watchlist.EntityPopulationMechanism.Manual?)
+      indirect case manual(Watchlist.EntityPopulationMechanism.Manual)
     }
 
     public static var _anyTypeUrl: Swift.String {

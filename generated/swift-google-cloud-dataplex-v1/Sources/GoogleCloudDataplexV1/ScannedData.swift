@@ -69,7 +69,7 @@ public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,
       dataRange = $0
     }
     if let incrementalField = try container.decodeIfPresent(
-      ScannedData.IncrementalField?.self, forKey: .incrementalField)
+      ScannedData.IncrementalField.self, forKey: .incrementalField)
     {
       try dataRangeCheckAndSet(.incrementalField(incrementalField))
     }
@@ -184,7 +184,7 @@ public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The range of scanned data
   public enum DataRangeOneOf: Codable, Equatable, Sendable {
     /// The range denoted by values of an incremental field
-    indirect case incrementalField(ScannedData.IncrementalField?)
+    indirect case incrementalField(ScannedData.IncrementalField)
   }
 
   public static var _anyTypeUrl: Swift.String {

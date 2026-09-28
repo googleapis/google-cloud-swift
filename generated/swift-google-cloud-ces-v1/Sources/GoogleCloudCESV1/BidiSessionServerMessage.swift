@@ -78,25 +78,24 @@ public struct BidiSessionServerMessage: Codable, Equatable, GoogleWKT._AnyPackab
       }
       messageType = $0
     }
-    if let sessionOutput = try container.decodeIfPresent(
-      SessionOutput?.self, forKey: .sessionOutput)
+    if let sessionOutput = try container.decodeIfPresent(SessionOutput.self, forKey: .sessionOutput)
     {
       try messageTypeCheckAndSet(.sessionOutput(sessionOutput))
     }
     if let recognitionResult = try container.decodeIfPresent(
-      RecognitionResult?.self, forKey: .recognitionResult)
+      RecognitionResult.self, forKey: .recognitionResult)
     {
       try messageTypeCheckAndSet(.recognitionResult(recognitionResult))
     }
     if let interruptionSignal = try container.decodeIfPresent(
-      InterruptionSignal?.self, forKey: .interruptionSignal)
+      InterruptionSignal.self, forKey: .interruptionSignal)
     {
       try messageTypeCheckAndSet(.interruptionSignal(interruptionSignal))
     }
-    if let endSession = try container.decodeIfPresent(EndSession?.self, forKey: .endSession) {
+    if let endSession = try container.decodeIfPresent(EndSession.self, forKey: .endSession) {
       try messageTypeCheckAndSet(.endSession(endSession))
     }
-    if let goAway = try container.decodeIfPresent(GoAway?.self, forKey: .goAway) {
+    if let goAway = try container.decodeIfPresent(GoAway.self, forKey: .goAway) {
       try messageTypeCheckAndSet(.goAway(goAway))
     }
     self.messageType = messageType
@@ -131,16 +130,16 @@ public struct BidiSessionServerMessage: Codable, Equatable, GoogleWKT._AnyPackab
   /// The type of the message.
   public enum MessageTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Processing result from the CES agent.
-    indirect case sessionOutput(SessionOutput?)
+    indirect case sessionOutput(SessionOutput)
     /// Optional. Realtime speech recognition result for the audio input.
-    indirect case recognitionResult(RecognitionResult?)
+    indirect case recognitionResult(RecognitionResult)
     /// Optional. Indicates the agent's audio response has been interrupted.
-    indirect case interruptionSignal(InterruptionSignal?)
+    indirect case interruptionSignal(InterruptionSignal)
     /// Optional. Indicates that the session has ended.
-    indirect case endSession(EndSession?)
+    indirect case endSession(EndSession)
     /// Optional. Indicates that the server will disconnect soon and the client
     /// should half-close and restart the connection.
-    indirect case goAway(GoAway?)
+    indirect case goAway(GoAway)
   }
 
   public static var _anyTypeUrl: Swift.String {

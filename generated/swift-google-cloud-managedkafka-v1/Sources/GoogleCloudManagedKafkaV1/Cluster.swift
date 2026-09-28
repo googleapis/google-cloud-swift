@@ -140,7 +140,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       platformConfig = $0
     }
-    if let gcpConfig = try container.decodeIfPresent(GcpConfig?.self, forKey: .gcpConfig) {
+    if let gcpConfig = try container.decodeIfPresent(GcpConfig.self, forKey: .gcpConfig) {
       try platformConfigCheckAndSet(.gcpConfig(gcpConfig))
     }
     self.platformConfig = platformConfig
@@ -302,7 +302,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum PlatformConfigOneOf: Codable, Equatable, Sendable {
     /// Required. Configuration properties for a Kafka cluster deployed to Google
     /// Cloud Platform.
-    indirect case gcpConfig(GcpConfig?)
+    indirect case gcpConfig(GcpConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -70,10 +70,10 @@ public struct Vector: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       vectorType = $0
     }
-    if let dense = try container.decodeIfPresent(DenseVector?.self, forKey: .dense) {
+    if let dense = try container.decodeIfPresent(DenseVector.self, forKey: .dense) {
       try vectorTypeCheckAndSet(.dense(dense))
     }
-    if let sparse = try container.decodeIfPresent(SparseVector?.self, forKey: .sparse) {
+    if let sparse = try container.decodeIfPresent(SparseVector.self, forKey: .sparse) {
       try vectorTypeCheckAndSet(.sparse(sparse))
     }
     self.vectorType = vectorType
@@ -102,9 +102,9 @@ public struct Vector: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of the vector.
   public enum VectorTypeOneOf: Codable, Equatable, Sendable {
     /// A dense vector.
-    indirect case dense(DenseVector?)
+    indirect case dense(DenseVector)
     /// A sparse vector.
-    indirect case sparse(SparseVector?)
+    indirect case sparse(SparseVector)
   }
 
   public static var _anyTypeUrl: Swift.String {

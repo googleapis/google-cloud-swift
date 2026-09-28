@@ -69,7 +69,7 @@ public struct ApprovalWorkflow: Codable, Equatable, GoogleWKT._AnyPackable,
       approvalWorkflow = $0
     }
     if let manualApprovals = try container.decodeIfPresent(
-      ManualApprovals?.self, forKey: .manualApprovals)
+      ManualApprovals.self, forKey: .manualApprovals)
     {
       try approvalWorkflowCheckAndSet(.manualApprovals(manualApprovals))
     }
@@ -97,7 +97,7 @@ public struct ApprovalWorkflow: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ApprovalWorkflowOneOf: Codable, Equatable, Sendable {
     /// An approval workflow where users designated as approvers review and act
     /// on the grants.
-    indirect case manualApprovals(ManualApprovals?)
+    indirect case manualApprovals(ManualApprovals)
   }
 
   public static var _anyTypeUrl: Swift.String {

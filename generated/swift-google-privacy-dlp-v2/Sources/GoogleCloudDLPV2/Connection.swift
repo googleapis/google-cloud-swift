@@ -95,7 +95,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       properties = $0
     }
-    if let cloudSql = try container.decodeIfPresent(CloudSqlProperties?.self, forKey: .cloudSql) {
+    if let cloudSql = try container.decodeIfPresent(CloudSqlProperties.self, forKey: .cloudSql) {
       try propertiesCheckAndSet(.cloudSql(cloudSql))
     }
     self.properties = properties
@@ -125,7 +125,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of connection.
   public enum PropertiesOneOf: Codable, Equatable, Sendable {
     /// Connect to a Cloud SQL instance.
-    indirect case cloudSql(CloudSqlProperties?)
+    indirect case cloudSql(CloudSqlProperties)
   }
 
   public static var _anyTypeUrl: Swift.String {

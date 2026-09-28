@@ -169,42 +169,42 @@ public struct PropertyDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
       valueTypeOptions = $0
     }
     if let integerTypeOptions = try container.decodeIfPresent(
-      IntegerTypeOptions?.self, forKey: .integerTypeOptions)
+      IntegerTypeOptions.self, forKey: .integerTypeOptions)
     {
       try valueTypeOptionsCheckAndSet(.integerTypeOptions(integerTypeOptions))
     }
     if let floatTypeOptions = try container.decodeIfPresent(
-      FloatTypeOptions?.self, forKey: .floatTypeOptions)
+      FloatTypeOptions.self, forKey: .floatTypeOptions)
     {
       try valueTypeOptionsCheckAndSet(.floatTypeOptions(floatTypeOptions))
     }
     if let textTypeOptions = try container.decodeIfPresent(
-      TextTypeOptions?.self, forKey: .textTypeOptions)
+      TextTypeOptions.self, forKey: .textTypeOptions)
     {
       try valueTypeOptionsCheckAndSet(.textTypeOptions(textTypeOptions))
     }
     if let propertyTypeOptions = try container.decodeIfPresent(
-      PropertyTypeOptions?.self, forKey: .propertyTypeOptions)
+      PropertyTypeOptions.self, forKey: .propertyTypeOptions)
     {
       try valueTypeOptionsCheckAndSet(.propertyTypeOptions(propertyTypeOptions))
     }
     if let enumTypeOptions = try container.decodeIfPresent(
-      EnumTypeOptions?.self, forKey: .enumTypeOptions)
+      EnumTypeOptions.self, forKey: .enumTypeOptions)
     {
       try valueTypeOptionsCheckAndSet(.enumTypeOptions(enumTypeOptions))
     }
     if let dateTimeTypeOptions = try container.decodeIfPresent(
-      DateTimeTypeOptions?.self, forKey: .dateTimeTypeOptions)
+      DateTimeTypeOptions.self, forKey: .dateTimeTypeOptions)
     {
       try valueTypeOptionsCheckAndSet(.dateTimeTypeOptions(dateTimeTypeOptions))
     }
     if let mapTypeOptions = try container.decodeIfPresent(
-      MapTypeOptions?.self, forKey: .mapTypeOptions)
+      MapTypeOptions.self, forKey: .mapTypeOptions)
     {
       try valueTypeOptionsCheckAndSet(.mapTypeOptions(mapTypeOptions))
     }
     if let timestampTypeOptions = try container.decodeIfPresent(
-      TimestampTypeOptions?.self, forKey: .timestampTypeOptions)
+      TimestampTypeOptions.self, forKey: .timestampTypeOptions)
     {
       try valueTypeOptionsCheckAndSet(.timestampTypeOptions(timestampTypeOptions))
     }
@@ -477,23 +477,23 @@ public struct PropertyDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of the property.
   public enum ValueTypeOptionsOneOf: Codable, Equatable, Sendable {
     /// Integer property.
-    indirect case integerTypeOptions(IntegerTypeOptions?)
+    indirect case integerTypeOptions(IntegerTypeOptions)
     /// Float property.
-    indirect case floatTypeOptions(FloatTypeOptions?)
+    indirect case floatTypeOptions(FloatTypeOptions)
     /// Text/string property.
-    indirect case textTypeOptions(TextTypeOptions?)
+    indirect case textTypeOptions(TextTypeOptions)
     /// Nested structured data property.
-    indirect case propertyTypeOptions(PropertyTypeOptions?)
+    indirect case propertyTypeOptions(PropertyTypeOptions)
     /// Enum/categorical property.
-    indirect case enumTypeOptions(EnumTypeOptions?)
+    indirect case enumTypeOptions(EnumTypeOptions)
     /// Date time property.
     /// It is not supported by CMEK compliant deployment.
-    indirect case dateTimeTypeOptions(DateTimeTypeOptions?)
+    indirect case dateTimeTypeOptions(DateTimeTypeOptions)
     /// Map property.
-    indirect case mapTypeOptions(MapTypeOptions?)
+    indirect case mapTypeOptions(MapTypeOptions)
     /// Timestamp property.
     /// It is not supported by CMEK compliant deployment.
-    indirect case timestampTypeOptions(TimestampTypeOptions?)
+    indirect case timestampTypeOptions(TimestampTypeOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

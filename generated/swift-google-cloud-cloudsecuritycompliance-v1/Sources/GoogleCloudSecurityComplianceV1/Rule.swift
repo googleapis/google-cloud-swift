@@ -84,8 +84,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       implementation = $0
     }
-    if let celExpression = try container.decodeIfPresent(
-      CELExpression?.self, forKey: .celExpression)
+    if let celExpression = try container.decodeIfPresent(CELExpression.self, forKey: .celExpression)
     {
       try implementationCheckAndSet(.celExpression(celExpression))
     }
@@ -115,7 +114,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The rule implementation.
   public enum ImplementationOneOf: Codable, Equatable, Sendable {
     /// The rule's logic expression in Common Expression Language (CEL).
-    indirect case celExpression(CELExpression?)
+    indirect case celExpression(CELExpression)
   }
 
   public static var _anyTypeUrl: Swift.String {

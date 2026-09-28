@@ -154,12 +154,12 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
       schedule = $0
     }
     if let oneTimeSchedule = try container.decodeIfPresent(
-      OneTimeSchedule?.self, forKey: .oneTimeSchedule)
+      OneTimeSchedule.self, forKey: .oneTimeSchedule)
     {
       try scheduleCheckAndSet(.oneTimeSchedule(oneTimeSchedule))
     }
     if let recurringSchedule = try container.decodeIfPresent(
-      RecurringSchedule?.self, forKey: .recurringSchedule)
+      RecurringSchedule.self, forKey: .recurringSchedule)
     {
       try scheduleCheckAndSet(.recurringSchedule(recurringSchedule))
     }
@@ -317,9 +317,9 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Schedule for the patch.
   public enum ScheduleOneOf: Codable, Equatable, Sendable {
     /// Required. Schedule a one-time execution.
-    indirect case oneTimeSchedule(OneTimeSchedule?)
+    indirect case oneTimeSchedule(OneTimeSchedule)
     /// Required. Schedule recurring executions.
-    indirect case recurringSchedule(RecurringSchedule?)
+    indirect case recurringSchedule(RecurringSchedule)
   }
 
   public static var _anyTypeUrl: Swift.String {

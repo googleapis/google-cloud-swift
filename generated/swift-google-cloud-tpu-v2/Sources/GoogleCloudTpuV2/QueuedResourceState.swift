@@ -105,42 +105,42 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       stateData = $0
     }
     if let creatingData = try container.decodeIfPresent(
-      QueuedResourceState.CreatingData?.self, forKey: .creatingData)
+      QueuedResourceState.CreatingData.self, forKey: .creatingData)
     {
       try stateDataCheckAndSet(.creatingData(creatingData))
     }
     if let acceptedData = try container.decodeIfPresent(
-      QueuedResourceState.AcceptedData?.self, forKey: .acceptedData)
+      QueuedResourceState.AcceptedData.self, forKey: .acceptedData)
     {
       try stateDataCheckAndSet(.acceptedData(acceptedData))
     }
     if let provisioningData = try container.decodeIfPresent(
-      QueuedResourceState.ProvisioningData?.self, forKey: .provisioningData)
+      QueuedResourceState.ProvisioningData.self, forKey: .provisioningData)
     {
       try stateDataCheckAndSet(.provisioningData(provisioningData))
     }
     if let failedData = try container.decodeIfPresent(
-      QueuedResourceState.FailedData?.self, forKey: .failedData)
+      QueuedResourceState.FailedData.self, forKey: .failedData)
     {
       try stateDataCheckAndSet(.failedData(failedData))
     }
     if let deletingData = try container.decodeIfPresent(
-      QueuedResourceState.DeletingData?.self, forKey: .deletingData)
+      QueuedResourceState.DeletingData.self, forKey: .deletingData)
     {
       try stateDataCheckAndSet(.deletingData(deletingData))
     }
     if let activeData = try container.decodeIfPresent(
-      QueuedResourceState.ActiveData?.self, forKey: .activeData)
+      QueuedResourceState.ActiveData.self, forKey: .activeData)
     {
       try stateDataCheckAndSet(.activeData(activeData))
     }
     if let suspendingData = try container.decodeIfPresent(
-      QueuedResourceState.SuspendingData?.self, forKey: .suspendingData)
+      QueuedResourceState.SuspendingData.self, forKey: .suspendingData)
     {
       try stateDataCheckAndSet(.suspendingData(suspendingData))
     }
     if let suspendedData = try container.decodeIfPresent(
-      QueuedResourceState.SuspendedData?.self, forKey: .suspendedData)
+      QueuedResourceState.SuspendedData.self, forKey: .suspendedData)
     {
       try stateDataCheckAndSet(.suspendedData(suspendedData))
     }
@@ -952,21 +952,21 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Further data for the state.
   public enum StateDataOneOf: Codable, Equatable, Sendable {
     /// Output only. Further data for the creating state.
-    indirect case creatingData(QueuedResourceState.CreatingData?)
+    indirect case creatingData(QueuedResourceState.CreatingData)
     /// Output only. Further data for the accepted state.
-    indirect case acceptedData(QueuedResourceState.AcceptedData?)
+    indirect case acceptedData(QueuedResourceState.AcceptedData)
     /// Output only. Further data for the provisioning state.
-    indirect case provisioningData(QueuedResourceState.ProvisioningData?)
+    indirect case provisioningData(QueuedResourceState.ProvisioningData)
     /// Output only. Further data for the failed state.
-    indirect case failedData(QueuedResourceState.FailedData?)
+    indirect case failedData(QueuedResourceState.FailedData)
     /// Output only. Further data for the deleting state.
-    indirect case deletingData(QueuedResourceState.DeletingData?)
+    indirect case deletingData(QueuedResourceState.DeletingData)
     /// Output only. Further data for the active state.
-    indirect case activeData(QueuedResourceState.ActiveData?)
+    indirect case activeData(QueuedResourceState.ActiveData)
     /// Output only. Further data for the suspending state.
-    indirect case suspendingData(QueuedResourceState.SuspendingData?)
+    indirect case suspendingData(QueuedResourceState.SuspendingData)
     /// Output only. Further data for the suspended state.
-    indirect case suspendedData(QueuedResourceState.SuspendedData?)
+    indirect case suspendedData(QueuedResourceState.SuspendedData)
   }
 
   public static var _anyTypeUrl: Swift.String {

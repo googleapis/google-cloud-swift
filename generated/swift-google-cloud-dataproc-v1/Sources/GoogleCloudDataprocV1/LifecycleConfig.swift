@@ -112,12 +112,12 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ttl = $0
     }
     if let autoDeleteTime = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .autoDeleteTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .autoDeleteTime)
     {
       try ttlCheckAndSet(.autoDeleteTime(autoDeleteTime))
     }
     if let autoDeleteTtl = try container.decodeIfPresent(
-      GoogleWKT.WKTDuration?.self, forKey: .autoDeleteTtl)
+      GoogleWKT.WKTDuration.self, forKey: .autoDeleteTtl)
     {
       try ttlCheckAndSet(.autoDeleteTtl(autoDeleteTtl))
     }
@@ -134,12 +134,12 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       stopTtl = $0
     }
     if let autoStopTime = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .autoStopTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .autoStopTime)
     {
       try stopTtlCheckAndSet(.autoStopTime(autoStopTime))
     }
     if let autoStopTtl = try container.decodeIfPresent(
-      GoogleWKT.WKTDuration?.self, forKey: .autoStopTtl)
+      GoogleWKT.WKTDuration.self, forKey: .autoStopTtl)
     {
       try stopTtlCheckAndSet(.autoStopTtl(autoStopTtl))
     }
@@ -184,12 +184,12 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. The time when cluster will be auto-deleted (see JSON
     /// representation of
     /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-    indirect case autoDeleteTime(GoogleWKT.WKTTimestamp?)
+    indirect case autoDeleteTime(GoogleWKT.WKTTimestamp)
     /// Optional. The lifetime duration of cluster. The cluster will be
     /// auto-deleted at the end of this period. Minimum value is 10 minutes;
     /// maximum value is 14 days (see JSON representation of
     /// [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-    indirect case autoDeleteTtl(GoogleWKT.WKTDuration?)
+    indirect case autoDeleteTtl(GoogleWKT.WKTDuration)
   }
 
   /// Either the exact time the cluster should be stopped at or
@@ -198,13 +198,13 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. The time when cluster will be auto-stopped (see JSON
     /// representation of
     /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-    indirect case autoStopTime(GoogleWKT.WKTTimestamp?)
+    indirect case autoStopTime(GoogleWKT.WKTTimestamp)
     /// Optional. The lifetime duration of the cluster. The cluster will be
     /// auto-stopped at the end of this period, calculated from the time of
     /// submission of the create or update cluster request. Minimum value is 10
     /// minutes; maximum value is 14 days (see JSON representation of
     /// [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-    indirect case autoStopTtl(GoogleWKT.WKTDuration?)
+    indirect case autoStopTtl(GoogleWKT.WKTDuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

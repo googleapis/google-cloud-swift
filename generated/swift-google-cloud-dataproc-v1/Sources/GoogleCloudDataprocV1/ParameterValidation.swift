@@ -70,10 +70,10 @@ public struct ParameterValidation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       validationType = $0
     }
-    if let regex = try container.decodeIfPresent(RegexValidation?.self, forKey: .regex) {
+    if let regex = try container.decodeIfPresent(RegexValidation.self, forKey: .regex) {
       try validationTypeCheckAndSet(.regex(regex))
     }
-    if let values = try container.decodeIfPresent(ValueValidation?.self, forKey: .values) {
+    if let values = try container.decodeIfPresent(ValueValidation.self, forKey: .values) {
       try validationTypeCheckAndSet(.values(values))
     }
     self.validationType = validationType
@@ -102,9 +102,9 @@ public struct ParameterValidation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The type of validation to be performed.
   public enum ValidationTypeOneOf: Codable, Equatable, Sendable {
     /// Validation based on regular expressions.
-    indirect case regex(RegexValidation?)
+    indirect case regex(RegexValidation)
     /// Validation based on a list of allowed values.
-    indirect case values(ValueValidation?)
+    indirect case values(ValueValidation)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -70,7 +70,7 @@
         modelConfig = $0
       }
       if let vertexPredictionEndpoint = try container.decodeIfPresent(
-        RagEmbeddingModelConfig.VertexPredictionEndpoint?.self, forKey: .vertexPredictionEndpoint)
+        RagEmbeddingModelConfig.VertexPredictionEndpoint.self, forKey: .vertexPredictionEndpoint)
       {
         try modelConfigCheckAndSet(.vertexPredictionEndpoint(vertexPredictionEndpoint))
       }
@@ -197,7 +197,7 @@
       /// Endpoints hosting non-1P fine-tuned text embedding models are
       /// currently not supported.
       /// This is used for dense vector search.
-      indirect case vertexPredictionEndpoint(RagEmbeddingModelConfig.VertexPredictionEndpoint?)
+      indirect case vertexPredictionEndpoint(RagEmbeddingModelConfig.VertexPredictionEndpoint)
     }
 
     public static var _anyTypeUrl: Swift.String {

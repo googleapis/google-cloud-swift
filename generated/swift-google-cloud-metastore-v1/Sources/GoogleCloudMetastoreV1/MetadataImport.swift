@@ -115,7 +115,7 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
       metadata = $0
     }
     if let databaseDump = try container.decodeIfPresent(
-      MetadataImport.DatabaseDump?.self, forKey: .databaseDump)
+      MetadataImport.DatabaseDump.self, forKey: .databaseDump)
     {
       try metadataCheckAndSet(.databaseDump(databaseDump))
     }
@@ -500,7 +500,7 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The metadata to be imported.
   public enum MetadataOneOf: Codable, Equatable, Sendable {
     /// Immutable. A database dump from a pre-existing metastore's database.
-    indirect case databaseDump(MetadataImport.DatabaseDump?)
+    indirect case databaseDump(MetadataImport.DatabaseDump)
   }
 
   public static var _anyTypeUrl: Swift.String {

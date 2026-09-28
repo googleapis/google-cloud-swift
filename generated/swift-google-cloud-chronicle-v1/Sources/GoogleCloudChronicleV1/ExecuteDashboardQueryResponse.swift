@@ -222,14 +222,14 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
         try valueCheckAndSet(.stringVal(stringVal))
       }
       if let timestampVal = try container.decodeIfPresent(
-        GoogleWKT.WKTTimestamp?.self, forKey: .timestampVal)
+        GoogleWKT.WKTTimestamp.self, forKey: .timestampVal)
       {
         try valueCheckAndSet(.timestampVal(timestampVal))
       }
-      if let dateVal = try container.decodeIfPresent(GoogleType.Date?.self, forKey: .dateVal) {
+      if let dateVal = try container.decodeIfPresent(GoogleType.Date.self, forKey: .dateVal) {
         try valueCheckAndSet(.dateVal(dateVal))
       }
-      if let protoVal = try container.decodeIfPresent(GoogleWKT.WKTAny?.self, forKey: .protoVal) {
+      if let protoVal = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .protoVal) {
         try valueCheckAndSet(.protoVal(protoVal))
       }
       self.value = value
@@ -373,11 +373,11 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       /// String value. Enum values are returned as strings.
       case stringVal(Swift.String)
       /// Timestamp values. Does not handle `interval`.
-      indirect case timestampVal(GoogleWKT.WKTTimestamp?)
+      indirect case timestampVal(GoogleWKT.WKTTimestamp)
       /// Date values.
-      indirect case dateVal(GoogleType.Date?)
+      indirect case dateVal(GoogleType.Date)
       /// For any proto values that are not any of the above.
-      indirect case protoVal(GoogleWKT.WKTAny?)
+      indirect case protoVal(GoogleWKT.WKTAny)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -445,12 +445,12 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
         type = $0
       }
       if let value = try container.decodeIfPresent(
-        ExecuteDashboardQueryResponse.ColumnValue?.self, forKey: .value)
+        ExecuteDashboardQueryResponse.ColumnValue.self, forKey: .value)
       {
         try typeCheckAndSet(.value(value))
       }
       if let list = try container.decodeIfPresent(
-        ExecuteDashboardQueryResponse.ColumnType.List?.self, forKey: .list)
+        ExecuteDashboardQueryResponse.ColumnType.List.self, forKey: .list)
       {
         try typeCheckAndSet(.list(list))
       }
@@ -549,9 +549,9 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
 
     public enum TypeOneOf: Codable, Equatable, Sendable {
       /// Single value in a column.
-      indirect case value(ExecuteDashboardQueryResponse.ColumnValue?)
+      indirect case value(ExecuteDashboardQueryResponse.ColumnValue)
       /// List of values in a column e.g. IPs
-      indirect case list(ExecuteDashboardQueryResponse.ColumnType.List?)
+      indirect case list(ExecuteDashboardQueryResponse.ColumnType.List)
     }
 
     public static var _anyTypeUrl: Swift.String {

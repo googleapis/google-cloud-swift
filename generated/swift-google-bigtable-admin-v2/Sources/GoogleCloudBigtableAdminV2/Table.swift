@@ -222,7 +222,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       automatedBackupConfig = $0
     }
     if let automatedBackupPolicy = try container.decodeIfPresent(
-      Table.AutomatedBackupPolicy?.self, forKey: .automatedBackupPolicy)
+      Table.AutomatedBackupPolicy.self, forKey: .automatedBackupPolicy)
     {
       try automatedBackupConfigCheckAndSet(.automatedBackupPolicy(automatedBackupPolicy))
     }
@@ -836,7 +836,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum AutomatedBackupConfigOneOf: Codable, Equatable, Sendable {
     /// If specified, automated backups are enabled for this table.
     /// Otherwise, automated backups are disabled.
-    indirect case automatedBackupPolicy(Table.AutomatedBackupPolicy?)
+    indirect case automatedBackupPolicy(Table.AutomatedBackupPolicy)
   }
 
   public static var _anyTypeUrl: Swift.String {

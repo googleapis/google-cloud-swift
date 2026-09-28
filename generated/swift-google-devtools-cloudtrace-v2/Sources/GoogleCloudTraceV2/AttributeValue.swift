@@ -72,8 +72,7 @@ public struct AttributeValue: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       value = $0
     }
-    if let stringValue = try container.decodeIfPresent(
-      TruncatableString?.self, forKey: .stringValue)
+    if let stringValue = try container.decodeIfPresent(TruncatableString.self, forKey: .stringValue)
     {
       try valueCheckAndSet(.stringValue(stringValue))
     }
@@ -111,7 +110,7 @@ public struct AttributeValue: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of the value.
   public enum ValueOneOf: Codable, Equatable, Sendable {
     /// A string up to 256 bytes long.
-    indirect case stringValue(TruncatableString?)
+    indirect case stringValue(TruncatableString)
     /// A 64-bit signed integer.
     case intValue(Swift.Int64)
     /// A Boolean value represented by `true` or `false`.

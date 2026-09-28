@@ -107,37 +107,37 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       remoteSource = $0
     }
     if let dockerRepository = try container.decodeIfPresent(
-      RemoteRepositoryConfig.DockerRepository?.self, forKey: .dockerRepository)
+      RemoteRepositoryConfig.DockerRepository.self, forKey: .dockerRepository)
     {
       try remoteSourceCheckAndSet(.dockerRepository(dockerRepository))
     }
     if let mavenRepository = try container.decodeIfPresent(
-      RemoteRepositoryConfig.MavenRepository?.self, forKey: .mavenRepository)
+      RemoteRepositoryConfig.MavenRepository.self, forKey: .mavenRepository)
     {
       try remoteSourceCheckAndSet(.mavenRepository(mavenRepository))
     }
     if let npmRepository = try container.decodeIfPresent(
-      RemoteRepositoryConfig.NpmRepository?.self, forKey: .npmRepository)
+      RemoteRepositoryConfig.NpmRepository.self, forKey: .npmRepository)
     {
       try remoteSourceCheckAndSet(.npmRepository(npmRepository))
     }
     if let pythonRepository = try container.decodeIfPresent(
-      RemoteRepositoryConfig.PythonRepository?.self, forKey: .pythonRepository)
+      RemoteRepositoryConfig.PythonRepository.self, forKey: .pythonRepository)
     {
       try remoteSourceCheckAndSet(.pythonRepository(pythonRepository))
     }
     if let aptRepository = try container.decodeIfPresent(
-      RemoteRepositoryConfig.AptRepository?.self, forKey: .aptRepository)
+      RemoteRepositoryConfig.AptRepository.self, forKey: .aptRepository)
     {
       try remoteSourceCheckAndSet(.aptRepository(aptRepository))
     }
     if let yumRepository = try container.decodeIfPresent(
-      RemoteRepositoryConfig.YumRepository?.self, forKey: .yumRepository)
+      RemoteRepositoryConfig.YumRepository.self, forKey: .yumRepository)
     {
       try remoteSourceCheckAndSet(.yumRepository(yumRepository))
     }
     if let commonRepository = try container.decodeIfPresent(
-      RemoteRepositoryConfig.CommonRemoteRepository?.self, forKey: .commonRepository)
+      RemoteRepositoryConfig.CommonRemoteRepository.self, forKey: .commonRepository)
     {
       try remoteSourceCheckAndSet(.commonRepository(commonRepository))
     }
@@ -229,7 +229,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         credentials = $0
       }
       if let usernamePasswordCredentials = try container.decodeIfPresent(
-        RemoteRepositoryConfig.UpstreamCredentials.UsernamePasswordCredentials?.self,
+        RemoteRepositoryConfig.UpstreamCredentials.UsernamePasswordCredentials.self,
         forKey: .usernamePasswordCredentials)
       {
         try credentialsCheckAndSet(.usernamePasswordCredentials(usernamePasswordCredentials))
@@ -340,7 +340,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public enum CredentialsOneOf: Codable, Equatable, Sendable {
       /// Use username and password to access the remote repository.
       indirect case usernamePasswordCredentials(
-        RemoteRepositoryConfig.UpstreamCredentials.UsernamePasswordCredentials?)
+        RemoteRepositoryConfig.UpstreamCredentials.UsernamePasswordCredentials)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -414,7 +414,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         try upstreamCheckAndSet(.publicRepository(publicRepository))
       }
       if let customRepository = try container.decodeIfPresent(
-        RemoteRepositoryConfig.DockerRepository.CustomRepository?.self, forKey: .customRepository)
+        RemoteRepositoryConfig.DockerRepository.CustomRepository.self, forKey: .customRepository)
       {
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
@@ -628,7 +628,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.DockerRepository.PublicRepository)
       /// Customer-specified remote repository.
-      indirect case customRepository(RemoteRepositoryConfig.DockerRepository.CustomRepository?)
+      indirect case customRepository(RemoteRepositoryConfig.DockerRepository.CustomRepository)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -702,7 +702,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         try upstreamCheckAndSet(.publicRepository(publicRepository))
       }
       if let customRepository = try container.decodeIfPresent(
-        RemoteRepositoryConfig.MavenRepository.CustomRepository?.self, forKey: .customRepository)
+        RemoteRepositoryConfig.MavenRepository.CustomRepository.self, forKey: .customRepository)
       {
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
@@ -916,7 +916,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.MavenRepository.PublicRepository)
       /// Customer-specified remote repository.
-      indirect case customRepository(RemoteRepositoryConfig.MavenRepository.CustomRepository?)
+      indirect case customRepository(RemoteRepositoryConfig.MavenRepository.CustomRepository)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -990,7 +990,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         try upstreamCheckAndSet(.publicRepository(publicRepository))
       }
       if let customRepository = try container.decodeIfPresent(
-        RemoteRepositoryConfig.NpmRepository.CustomRepository?.self, forKey: .customRepository)
+        RemoteRepositoryConfig.NpmRepository.CustomRepository.self, forKey: .customRepository)
       {
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
@@ -1203,7 +1203,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.NpmRepository.PublicRepository)
       /// Customer-specified remote repository.
-      indirect case customRepository(RemoteRepositoryConfig.NpmRepository.CustomRepository?)
+      indirect case customRepository(RemoteRepositoryConfig.NpmRepository.CustomRepository)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1277,7 +1277,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         try upstreamCheckAndSet(.publicRepository(publicRepository))
       }
       if let customRepository = try container.decodeIfPresent(
-        RemoteRepositoryConfig.PythonRepository.CustomRepository?.self, forKey: .customRepository)
+        RemoteRepositoryConfig.PythonRepository.CustomRepository.self, forKey: .customRepository)
       {
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
@@ -1490,7 +1490,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.PythonRepository.PublicRepository)
       /// Customer-specified remote repository.
-      indirect case customRepository(RemoteRepositoryConfig.PythonRepository.CustomRepository?)
+      indirect case customRepository(RemoteRepositoryConfig.PythonRepository.CustomRepository)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1559,12 +1559,12 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         upstream = $0
       }
       if let publicRepository = try container.decodeIfPresent(
-        RemoteRepositoryConfig.AptRepository.PublicRepository?.self, forKey: .publicRepository)
+        RemoteRepositoryConfig.AptRepository.PublicRepository.self, forKey: .publicRepository)
       {
         try upstreamCheckAndSet(.publicRepository(publicRepository))
       }
       if let customRepository = try container.decodeIfPresent(
-        RemoteRepositoryConfig.AptRepository.CustomRepository?.self, forKey: .customRepository)
+        RemoteRepositoryConfig.AptRepository.CustomRepository.self, forKey: .customRepository)
       {
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
@@ -1873,9 +1873,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public enum UpstreamOneOf: Codable, Equatable, Sendable {
       /// One of the publicly available Apt repositories supported by Artifact
       /// Registry.
-      indirect case publicRepository(RemoteRepositoryConfig.AptRepository.PublicRepository?)
+      indirect case publicRepository(RemoteRepositoryConfig.AptRepository.PublicRepository)
       /// Customer-specified remote repository.
-      indirect case customRepository(RemoteRepositoryConfig.AptRepository.CustomRepository?)
+      indirect case customRepository(RemoteRepositoryConfig.AptRepository.CustomRepository)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1944,12 +1944,12 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         upstream = $0
       }
       if let publicRepository = try container.decodeIfPresent(
-        RemoteRepositoryConfig.YumRepository.PublicRepository?.self, forKey: .publicRepository)
+        RemoteRepositoryConfig.YumRepository.PublicRepository.self, forKey: .publicRepository)
       {
         try upstreamCheckAndSet(.publicRepository(publicRepository))
       }
       if let customRepository = try container.decodeIfPresent(
-        RemoteRepositoryConfig.YumRepository.CustomRepository?.self, forKey: .customRepository)
+        RemoteRepositoryConfig.YumRepository.CustomRepository.self, forKey: .customRepository)
       {
         try upstreamCheckAndSet(.customRepository(customRepository))
       }
@@ -2279,9 +2279,9 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public enum UpstreamOneOf: Codable, Equatable, Sendable {
       /// One of the publicly available Yum repositories supported by Artifact
       /// Registry.
-      indirect case publicRepository(RemoteRepositoryConfig.YumRepository.PublicRepository?)
+      indirect case publicRepository(RemoteRepositoryConfig.YumRepository.PublicRepository)
       /// Customer-specified remote repository.
-      indirect case customRepository(RemoteRepositoryConfig.YumRepository.CustomRepository?)
+      indirect case customRepository(RemoteRepositoryConfig.YumRepository.CustomRepository)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -2368,20 +2368,20 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
   /// Settings specific to the remote repository.
   public enum RemoteSourceOneOf: Codable, Equatable, Sendable {
     /// Specific settings for a Docker remote repository.
-    indirect case dockerRepository(RemoteRepositoryConfig.DockerRepository?)
+    indirect case dockerRepository(RemoteRepositoryConfig.DockerRepository)
     /// Specific settings for a Maven remote repository.
-    indirect case mavenRepository(RemoteRepositoryConfig.MavenRepository?)
+    indirect case mavenRepository(RemoteRepositoryConfig.MavenRepository)
     /// Specific settings for an Npm remote repository.
-    indirect case npmRepository(RemoteRepositoryConfig.NpmRepository?)
+    indirect case npmRepository(RemoteRepositoryConfig.NpmRepository)
     /// Specific settings for a Python remote repository.
-    indirect case pythonRepository(RemoteRepositoryConfig.PythonRepository?)
+    indirect case pythonRepository(RemoteRepositoryConfig.PythonRepository)
     /// Specific settings for an Apt remote repository.
-    indirect case aptRepository(RemoteRepositoryConfig.AptRepository?)
+    indirect case aptRepository(RemoteRepositoryConfig.AptRepository)
     /// Specific settings for a Yum remote repository.
-    indirect case yumRepository(RemoteRepositoryConfig.YumRepository?)
+    indirect case yumRepository(RemoteRepositoryConfig.YumRepository)
     /// Common remote repository settings.
     /// Used as the remote repository upstream URL.
-    indirect case commonRepository(RemoteRepositoryConfig.CommonRemoteRepository?)
+    indirect case commonRepository(RemoteRepositoryConfig.CommonRemoteRepository)
   }
 
   public static var _anyTypeUrl: Swift.String {

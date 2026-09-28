@@ -90,10 +90,10 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       type = $0
     }
-    if let table = try container.decodeIfPresent(BigQueryTable?.self, forKey: .table) {
+    if let table = try container.decodeIfPresent(BigQueryTable.self, forKey: .table) {
       try typeCheckAndSet(.table(table))
     }
-    if let storagePath = try container.decodeIfPresent(CloudStoragePath?.self, forKey: .storagePath)
+    if let storagePath = try container.decodeIfPresent(CloudStoragePath.self, forKey: .storagePath)
     {
       try typeCheckAndSet(.storagePath(storagePath))
     }
@@ -278,7 +278,7 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// metric and quasi-identifiers. Risk jobs that analyze the same table but
     /// compute a different privacy metric, or use different sets of
     /// quasi-identifiers, cannot store their results in the same table.
-    indirect case table(BigQueryTable?)
+    indirect case table(BigQueryTable)
     /// Store findings in an existing Cloud Storage bucket. Files will be
     /// generated with the job ID and file part number as the filename and will
     /// contain findings in textproto format as
@@ -293,7 +293,7 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// [google.privacy.dlp.v2.InspectJobConfig]: <doc:InspectJobConfig>
     /// [google.privacy.dlp.v2.SaveToGcsFindingsOutput]: <doc:SaveToGcsFindingsOutput>
-    indirect case storagePath(CloudStoragePath?)
+    indirect case storagePath(CloudStoragePath)
   }
 
   public static var _anyTypeUrl: Swift.String {

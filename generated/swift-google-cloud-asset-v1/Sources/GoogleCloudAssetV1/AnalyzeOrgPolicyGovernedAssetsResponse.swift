@@ -470,12 +470,12 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
         governedAsset = $0
       }
       if let governedResource = try container.decodeIfPresent(
-        AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource?.self, forKey: .governedResource)
+        AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource.self, forKey: .governedResource)
       {
         try governedAssetCheckAndSet(.governedResource(governedResource))
       }
       if let governedIamPolicy = try container.decodeIfPresent(
-        AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy?.self, forKey: .governedIamPolicy)
+        AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.self, forKey: .governedIamPolicy)
       {
         try governedAssetCheckAndSet(.governedIamPolicy(governedIamPolicy))
       }
@@ -510,13 +510,13 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
       /// [AnalyzeOrgPolicyGovernedAssetsRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint].
       ///
       /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint]: <doc:AnalyzeOrgPolicyGovernedAssetsRequest/constraint>
-      indirect case governedResource(AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource?)
+      indirect case governedResource(AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource)
       /// An IAM policy governed by the organization
       /// policies of the
       /// [AnalyzeOrgPolicyGovernedAssetsRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint].
       ///
       /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint]: <doc:AnalyzeOrgPolicyGovernedAssetsRequest/constraint>
-      indirect case governedIamPolicy(AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy?)
+      indirect case governedIamPolicy(AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy)
     }
 
     public static var _anyTypeUrl: Swift.String {

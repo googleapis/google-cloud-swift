@@ -143,12 +143,12 @@ public struct CutoverJob: Codable, Equatable, GoogleWKT._AnyPackable,
       targetVmDetails = $0
     }
     if let computeEngineTargetDetails = try container.decodeIfPresent(
-      ComputeEngineTargetDetails?.self, forKey: .computeEngineTargetDetails)
+      ComputeEngineTargetDetails.self, forKey: .computeEngineTargetDetails)
     {
       try targetVmDetailsCheckAndSet(.computeEngineTargetDetails(computeEngineTargetDetails))
     }
     if let computeEngineDisksTargetDetails = try container.decodeIfPresent(
-      ComputeEngineDisksTargetDetails?.self, forKey: .computeEngineDisksTargetDetails)
+      ComputeEngineDisksTargetDetails.self, forKey: .computeEngineDisksTargetDetails)
     {
       try targetVmDetailsCheckAndSet(
         .computeEngineDisksTargetDetails(computeEngineDisksTargetDetails))
@@ -341,9 +341,9 @@ public struct CutoverJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Details of the VM to create as the target of this cutover job.
   public enum TargetVmDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Details of the target VM in Compute Engine.
-    indirect case computeEngineTargetDetails(ComputeEngineTargetDetails?)
+    indirect case computeEngineTargetDetails(ComputeEngineTargetDetails)
     /// Output only. Details of the target Persistent Disks in Compute Engine.
-    indirect case computeEngineDisksTargetDetails(ComputeEngineDisksTargetDetails?)
+    indirect case computeEngineDisksTargetDetails(ComputeEngineDisksTargetDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

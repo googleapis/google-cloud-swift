@@ -76,10 +76,10 @@ public struct WaitRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       end = $0
     }
-    if let endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp?.self, forKey: .endTime) {
+    if let endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime) {
       try endCheckAndSet(.endTime(endTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl) {
       try endCheckAndSet(.ttl(ttl))
     }
     self.end = end
@@ -94,10 +94,10 @@ public struct WaitRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       response = $0
     }
-    if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+    if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
       try responseCheckAndSet(.error(error))
     }
-    if let success = try container.decodeIfPresent(WaitResponse?.self, forKey: .success) {
+    if let success = try container.decodeIfPresent(WaitResponse.self, forKey: .success) {
       try responseCheckAndSet(.success(success))
     }
     self.response = response
@@ -134,17 +134,17 @@ public struct WaitRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum EndOneOf: Codable, Equatable, Sendable {
     /// The time that this operation will complete.
-    indirect case endTime(GoogleWKT.WKTTimestamp?)
+    indirect case endTime(GoogleWKT.WKTTimestamp)
     /// The duration of this operation.
-    indirect case ttl(GoogleWKT.WKTDuration?)
+    indirect case ttl(GoogleWKT.WKTDuration)
   }
 
   public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// The error that will be returned by the server. If this code is specified
     /// to be the OK rpc code, an empty response will be returned.
-    indirect case error(GoogleRpc.Status?)
+    indirect case error(GoogleRpc.Status)
     /// The response to be returned on operation completion.
-    indirect case success(WaitResponse?)
+    indirect case success(WaitResponse)
   }
 
   public static var _anyTypeUrl: Swift.String {

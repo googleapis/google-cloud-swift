@@ -92,13 +92,13 @@ public struct CdnKey: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       cdnKeyConfig = $0
     }
-    if let googleCdnKey = try container.decodeIfPresent(GoogleCdnKey?.self, forKey: .googleCdnKey) {
+    if let googleCdnKey = try container.decodeIfPresent(GoogleCdnKey.self, forKey: .googleCdnKey) {
       try cdnKeyConfigCheckAndSet(.googleCdnKey(googleCdnKey))
     }
-    if let akamaiCdnKey = try container.decodeIfPresent(AkamaiCdnKey?.self, forKey: .akamaiCdnKey) {
+    if let akamaiCdnKey = try container.decodeIfPresent(AkamaiCdnKey.self, forKey: .akamaiCdnKey) {
       try cdnKeyConfigCheckAndSet(.akamaiCdnKey(akamaiCdnKey))
     }
-    if let mediaCdnKey = try container.decodeIfPresent(MediaCdnKey?.self, forKey: .mediaCdnKey) {
+    if let mediaCdnKey = try container.decodeIfPresent(MediaCdnKey.self, forKey: .mediaCdnKey) {
       try cdnKeyConfigCheckAndSet(.mediaCdnKey(mediaCdnKey))
     }
     self.cdnKeyConfig = cdnKeyConfig
@@ -131,11 +131,11 @@ public struct CdnKey: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configuration associated with the CDN key.
   public enum CdnKeyConfigOneOf: Codable, Equatable, Sendable {
     /// The configuration for a Google Cloud CDN key.
-    indirect case googleCdnKey(GoogleCdnKey?)
+    indirect case googleCdnKey(GoogleCdnKey)
     /// The configuration for an Akamai CDN key.
-    indirect case akamaiCdnKey(AkamaiCdnKey?)
+    indirect case akamaiCdnKey(AkamaiCdnKey)
     /// The configuration for a Media CDN key.
-    indirect case mediaCdnKey(MediaCdnKey?)
+    indirect case mediaCdnKey(MediaCdnKey)
   }
 
   public static var _anyTypeUrl: Swift.String {

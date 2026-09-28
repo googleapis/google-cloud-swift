@@ -109,7 +109,7 @@
         trainingInput = $0
       }
       if let gcsTrainingInput = try container.decodeIfPresent(
-        TrainCustomModelRequest.GcsTrainingInput?.self, forKey: .gcsTrainingInput)
+        TrainCustomModelRequest.GcsTrainingInput.self, forKey: .gcsTrainingInput)
       {
         try trainingInputCheckAndSet(.gcsTrainingInput(gcsTrainingInput))
       }
@@ -258,7 +258,7 @@
     /// Model training input.
     public enum TrainingInputOneOf: Codable, Equatable, Sendable {
       /// Cloud Storage training input.
-      indirect case gcsTrainingInput(TrainCustomModelRequest.GcsTrainingInput?)
+      indirect case gcsTrainingInput(TrainCustomModelRequest.GcsTrainingInput)
     }
 
     public static var _anyTypeUrl: Swift.String {

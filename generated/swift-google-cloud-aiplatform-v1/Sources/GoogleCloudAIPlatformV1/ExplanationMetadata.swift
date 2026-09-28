@@ -1453,7 +1453,7 @@
           displayNameMapping = $0
         }
         if let indexDisplayNameMapping = try container.decodeIfPresent(
-          GoogleWKT.WKTValue?.self, forKey: .indexDisplayNameMapping)
+          GoogleWKT.WKTValue.self, forKey: .indexDisplayNameMapping)
         {
           try displayNameMappingCheckAndSet(.indexDisplayNameMapping(indexDisplayNameMapping))
         }
@@ -1515,7 +1515,7 @@
         ///
         /// [google.cloud.aiplatform.v1.Attribution.output_display_name]: <doc:Attribution/outputDisplayName>
         /// [google.cloud.aiplatform.v1.Attribution.output_index]: <doc:Attribution/outputIndex>
-        indirect case indexDisplayNameMapping(GoogleWKT.WKTValue?)
+        indirect case indexDisplayNameMapping(GoogleWKT.WKTValue)
         /// Specify a field name in the prediction to look for the display name.
         ///
         /// Use this if the prediction contains the display names for the outputs.

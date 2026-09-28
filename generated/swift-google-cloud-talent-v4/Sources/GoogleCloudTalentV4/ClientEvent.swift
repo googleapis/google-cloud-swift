@@ -111,7 +111,7 @@ public struct ClientEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       event = $0
     }
-    if let jobEvent = try container.decodeIfPresent(JobEvent?.self, forKey: .jobEvent) {
+    if let jobEvent = try container.decodeIfPresent(JobEvent.self, forKey: .jobEvent) {
       try eventCheckAndSet(.jobEvent(jobEvent))
     }
     self.event = event
@@ -145,7 +145,7 @@ public struct ClientEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum EventOneOf: Codable, Equatable, Sendable {
     /// An event issued when a job seeker interacts with the application that
     /// implements Cloud Talent Solution.
-    indirect case jobEvent(JobEvent?)
+    indirect case jobEvent(JobEvent)
   }
 
   public static var _anyTypeUrl: Swift.String {

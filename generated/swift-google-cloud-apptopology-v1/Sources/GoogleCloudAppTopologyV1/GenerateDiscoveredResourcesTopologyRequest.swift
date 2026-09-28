@@ -91,7 +91,7 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
       }
       query = $0
     }
-    if let filter = try container.decodeIfPresent(GraphPattern?.self, forKey: .filter) {
+    if let filter = try container.decodeIfPresent(GraphPattern.self, forKey: .filter) {
       try queryCheckAndSet(.filter(filter))
     }
     self.query = query
@@ -123,7 +123,7 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
     /// Filters for the topology nodes and edges; Detail format see GraphPattern
     /// proto. A separate 'LookupSchema' method will be added that will return
     /// the necessary information to be able to construct these filters.
-    indirect case filter(GraphPattern?)
+    indirect case filter(GraphPattern)
   }
 
   public static var _anyTypeUrl: Swift.String {

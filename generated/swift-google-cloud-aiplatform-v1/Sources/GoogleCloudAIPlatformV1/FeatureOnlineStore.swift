@@ -165,12 +165,12 @@
         storageType = $0
       }
       if let bigtable = try container.decodeIfPresent(
-        FeatureOnlineStore.Bigtable?.self, forKey: .bigtable)
+        FeatureOnlineStore.Bigtable.self, forKey: .bigtable)
       {
         try storageTypeCheckAndSet(.bigtable(bigtable))
       }
       if let optimized = try container.decodeIfPresent(
-        FeatureOnlineStore.Optimized?.self, forKey: .optimized)
+        FeatureOnlineStore.Optimized.self, forKey: .optimized)
       {
         try storageTypeCheckAndSet(.optimized(optimized))
       }
@@ -775,7 +775,7 @@
       /// Contains settings for the Cloud Bigtable instance that will be created
       /// to serve featureValues for all FeatureViews under this
       /// FeatureOnlineStore.
-      indirect case bigtable(FeatureOnlineStore.Bigtable?)
+      indirect case bigtable(FeatureOnlineStore.Bigtable)
       /// Contains settings for the Optimized store that will be created
       /// to serve featureValues for all FeatureViews under this
       /// FeatureOnlineStore. When choose Optimized storage type, need to set
@@ -783,7 +783,7 @@
       /// to use private endpoint. Otherwise will use public endpoint by default.
       ///
       /// [google.cloud.aiplatform.v1.PrivateServiceConnectConfig.enable_private_service_connect]: <doc:PrivateServiceConnectConfig/enablePrivateServiceConnect>
-      indirect case optimized(FeatureOnlineStore.Optimized?)
+      indirect case optimized(FeatureOnlineStore.Optimized)
     }
 
     public static var _anyTypeUrl: Swift.String {

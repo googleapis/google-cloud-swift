@@ -75,7 +75,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
       metadata = $0
     }
     if let callAnalysisMetadata = try container.decodeIfPresent(
-      AnalysisResult.CallAnalysisMetadata?.self, forKey: .callAnalysisMetadata)
+      AnalysisResult.CallAnalysisMetadata.self, forKey: .callAnalysisMetadata)
     {
       try metadataCheckAndSet(.callAnalysisMetadata(callAnalysisMetadata))
     }
@@ -239,7 +239,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Metadata discovered during analysis.
   public enum MetadataOneOf: Codable, Equatable, Sendable {
     /// Call-specific metadata created by the analysis.
-    indirect case callAnalysisMetadata(AnalysisResult.CallAnalysisMetadata?)
+    indirect case callAnalysisMetadata(AnalysisResult.CallAnalysisMetadata)
   }
 
   public static var _anyTypeUrl: Swift.String {

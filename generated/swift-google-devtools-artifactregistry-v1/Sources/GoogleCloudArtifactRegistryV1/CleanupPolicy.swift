@@ -86,12 +86,12 @@ public struct CleanupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       conditionType = $0
     }
     if let condition = try container.decodeIfPresent(
-      CleanupPolicyCondition?.self, forKey: .condition)
+      CleanupPolicyCondition.self, forKey: .condition)
     {
       try conditionTypeCheckAndSet(.condition(condition))
     }
     if let mostRecentVersions = try container.decodeIfPresent(
-      CleanupPolicyMostRecentVersions?.self, forKey: .mostRecentVersions)
+      CleanupPolicyMostRecentVersions.self, forKey: .mostRecentVersions)
     {
       try conditionTypeCheckAndSet(.mostRecentVersions(mostRecentVersions))
     }
@@ -239,10 +239,10 @@ public struct CleanupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ConditionTypeOneOf: Codable, Equatable, Sendable {
     /// Policy condition for matching versions.
-    indirect case condition(CleanupPolicyCondition?)
+    indirect case condition(CleanupPolicyCondition)
     /// Policy condition for retaining a minimum number of versions. May only be
     /// specified with a Keep action.
-    indirect case mostRecentVersions(CleanupPolicyMostRecentVersions?)
+    indirect case mostRecentVersions(CleanupPolicyMostRecentVersions)
   }
 
   public static var _anyTypeUrl: Swift.String {

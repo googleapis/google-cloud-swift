@@ -163,7 +163,7 @@ public struct WorkerPool: Codable, Equatable, GoogleWKT._AnyPackable,
       config = $0
     }
     if let privatePoolV1Config = try container.decodeIfPresent(
-      PrivatePoolV1Config?.self, forKey: .privatePoolV1Config)
+      PrivatePoolV1Config.self, forKey: .privatePoolV1Config)
     {
       try configCheckAndSet(.privatePoolV1Config(privatePoolV1Config))
     }
@@ -338,7 +338,7 @@ public struct WorkerPool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configuration for the `WorkerPool`.
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Private Pool configuration.
-    indirect case privatePoolV1Config(PrivatePoolV1Config?)
+    indirect case privatePoolV1Config(PrivatePoolV1Config)
   }
 
   public static var _anyTypeUrl: Swift.String {

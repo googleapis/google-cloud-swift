@@ -100,12 +100,12 @@
         payload = $0
       }
       if let newMessagePayload = try container.decodeIfPresent(
-        Message?.self, forKey: .newMessagePayload)
+        Message.self, forKey: .newMessagePayload)
       {
         try payloadCheckAndSet(.newMessagePayload(newMessagePayload))
       }
       if let newRecognitionResultPayload = try container.decodeIfPresent(
-        StreamingRecognitionResult?.self, forKey: .newRecognitionResultPayload)
+        StreamingRecognitionResult.self, forKey: .newRecognitionResultPayload)
       {
         try payloadCheckAndSet(.newRecognitionResultPayload(newRecognitionResultPayload))
       }
@@ -304,9 +304,9 @@
     /// Payload of conversation event.
     public enum PayloadOneOf: Codable, Equatable, Sendable {
       /// Payload of NEW_MESSAGE event.
-      indirect case newMessagePayload(Message?)
+      indirect case newMessagePayload(Message)
       /// Payload of NEW_RECOGNITION_RESULT event.
-      indirect case newRecognitionResultPayload(StreamingRecognitionResult?)
+      indirect case newRecognitionResultPayload(StreamingRecognitionResult)
     }
 
     public static var _anyTypeUrl: Swift.String {

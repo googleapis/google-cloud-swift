@@ -77,10 +77,10 @@
         }
         message = $0
       }
-      if let userInput = try container.decodeIfPresent(TextInput?.self, forKey: .userInput) {
+      if let userInput = try container.decodeIfPresent(TextInput.self, forKey: .userInput) {
         try messageCheckAndSet(.userInput(userInput))
       }
-      if let reply = try container.decodeIfPresent(Reply?.self, forKey: .reply) {
+      if let reply = try container.decodeIfPresent(Reply.self, forKey: .reply) {
         try messageCheckAndSet(.reply(reply))
       }
       self.message = message
@@ -109,9 +109,9 @@
 
     public enum MessageOneOf: Codable, Equatable, Sendable {
       /// User text input.
-      indirect case userInput(TextInput?)
+      indirect case userInput(TextInput)
       /// Search reply.
-      indirect case reply(Reply?)
+      indirect case reply(Reply)
     }
 
     public static var _anyTypeUrl: Swift.String {

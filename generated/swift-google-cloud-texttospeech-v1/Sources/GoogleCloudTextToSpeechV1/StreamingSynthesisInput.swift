@@ -84,7 +84,7 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleWKT._AnyPackabl
       try inputSourceCheckAndSet(.markup(markup))
     }
     if let multiSpeakerMarkup = try container.decodeIfPresent(
-      MultiSpeakerMarkup?.self, forKey: .multiSpeakerMarkup)
+      MultiSpeakerMarkup.self, forKey: .multiSpeakerMarkup)
     {
       try inputSourceCheckAndSet(.multiSpeakerMarkup(multiSpeakerMarkup))
     }
@@ -124,7 +124,7 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleWKT._AnyPackabl
     case markup(Swift.String)
     /// Multi-speaker markup for Gemini TTS. This field may not
     /// be used with any other voices.
-    indirect case multiSpeakerMarkup(MultiSpeakerMarkup?)
+    indirect case multiSpeakerMarkup(MultiSpeakerMarkup)
   }
 
   public static var _anyTypeUrl: Swift.String {

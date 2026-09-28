@@ -87,7 +87,7 @@ public struct MigrationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       source = $0
     }
     if let selfManagedSource = try container.decodeIfPresent(
-      SelfManagedSource?.self, forKey: .selfManagedSource)
+      SelfManagedSource.self, forKey: .selfManagedSource)
     {
       try sourceCheckAndSet(.selfManagedSource(selfManagedSource))
     }
@@ -257,7 +257,7 @@ public struct MigrationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Output only. Configuration for migrating from a self-managed Valkey/Redis
     /// instance
-    indirect case selfManagedSource(SelfManagedSource?)
+    indirect case selfManagedSource(SelfManagedSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

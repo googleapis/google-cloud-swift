@@ -70,7 +70,7 @@ public struct ServiceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       systemSpec = $0
     }
     if let cloudBigtableInstanceSpec = try container.decodeIfPresent(
-      CloudBigtableInstanceSpec?.self, forKey: .cloudBigtableInstanceSpec)
+      CloudBigtableInstanceSpec.self, forKey: .cloudBigtableInstanceSpec)
     {
       try systemSpecCheckAndSet(.cloudBigtableInstanceSpec(cloudBigtableInstanceSpec))
     }
@@ -99,7 +99,7 @@ public struct ServiceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Specification that applies to Instance entries of `CLOUD_BIGTABLE`
     /// system.
-    indirect case cloudBigtableInstanceSpec(CloudBigtableInstanceSpec?)
+    indirect case cloudBigtableInstanceSpec(CloudBigtableInstanceSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

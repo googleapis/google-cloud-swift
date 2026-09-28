@@ -76,12 +76,12 @@
         agentService = $0
       }
       if let livePersonConfig = try container.decodeIfPresent(
-        HumanAgentHandoffConfig.LivePersonConfig?.self, forKey: .livePersonConfig)
+        HumanAgentHandoffConfig.LivePersonConfig.self, forKey: .livePersonConfig)
       {
         try agentServiceCheckAndSet(.livePersonConfig(livePersonConfig))
       }
       if let salesforceLiveAgentConfig = try container.decodeIfPresent(
-        HumanAgentHandoffConfig.SalesforceLiveAgentConfig?.self, forKey: .salesforceLiveAgentConfig)
+        HumanAgentHandoffConfig.SalesforceLiveAgentConfig.self, forKey: .salesforceLiveAgentConfig)
       {
         try agentServiceCheckAndSet(.salesforceLiveAgentConfig(salesforceLiveAgentConfig))
       }
@@ -280,9 +280,9 @@
     /// Required. Specifies which agent service to connect for human agent handoff.
     public enum AgentServiceOneOf: Codable, Equatable, Sendable {
       /// Uses [LivePerson](https://www.liveperson.com).
-      indirect case livePersonConfig(HumanAgentHandoffConfig.LivePersonConfig?)
+      indirect case livePersonConfig(HumanAgentHandoffConfig.LivePersonConfig)
       /// Uses Salesforce Live Agent.
-      indirect case salesforceLiveAgentConfig(HumanAgentHandoffConfig.SalesforceLiveAgentConfig?)
+      indirect case salesforceLiveAgentConfig(HumanAgentHandoffConfig.SalesforceLiveAgentConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

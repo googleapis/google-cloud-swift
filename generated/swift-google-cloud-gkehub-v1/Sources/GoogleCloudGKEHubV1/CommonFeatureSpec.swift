@@ -69,7 +69,7 @@ public struct CommonFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       featureSpec = $0
     }
     if let multiclusteringress = try container.decodeIfPresent(
-      GoogleCloudGKEHubMultiClusterIngressV1.FeatureSpec?.self, forKey: .multiclusteringress)
+      GoogleCloudGKEHubMultiClusterIngressV1.FeatureSpec.self, forKey: .multiclusteringress)
     {
       try featureSpecCheckAndSet(.multiclusteringress(multiclusteringress))
     }
@@ -96,7 +96,7 @@ public struct CommonFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum FeatureSpecOneOf: Codable, Equatable, Sendable {
     /// Multicluster Ingress-specific spec.
-    indirect case multiclusteringress(GoogleCloudGKEHubMultiClusterIngressV1.FeatureSpec?)
+    indirect case multiclusteringress(GoogleCloudGKEHubMultiClusterIngressV1.FeatureSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

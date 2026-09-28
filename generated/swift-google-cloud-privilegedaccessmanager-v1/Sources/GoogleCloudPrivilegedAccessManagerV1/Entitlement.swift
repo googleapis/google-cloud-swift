@@ -234,12 +234,12 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
         justificationType = $0
       }
       if let notMandatory = try container.decodeIfPresent(
-        Entitlement.RequesterJustificationConfig.NotMandatory?.self, forKey: .notMandatory)
+        Entitlement.RequesterJustificationConfig.NotMandatory.self, forKey: .notMandatory)
       {
         try justificationTypeCheckAndSet(.notMandatory(notMandatory))
       }
       if let unstructured = try container.decodeIfPresent(
-        Entitlement.RequesterJustificationConfig.Unstructured?.self, forKey: .unstructured)
+        Entitlement.RequesterJustificationConfig.Unstructured.self, forKey: .unstructured)
       {
         try justificationTypeCheckAndSet(.unstructured(unstructured))
       }
@@ -388,11 +388,11 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
     public enum JustificationTypeOneOf: Codable, Equatable, Sendable {
       /// This option means the requester isn't required to provide a
       /// justification.
-      indirect case notMandatory(Entitlement.RequesterJustificationConfig.NotMandatory?)
+      indirect case notMandatory(Entitlement.RequesterJustificationConfig.NotMandatory)
       /// This option means the requester must provide a string as
       /// justification. If this is selected, the server allows the requester
       /// to provide a justification but doesn't validate it.
-      indirect case unstructured(Entitlement.RequesterJustificationConfig.Unstructured?)
+      indirect case unstructured(Entitlement.RequesterJustificationConfig.Unstructured)
     }
 
     public static var _anyTypeUrl: Swift.String {

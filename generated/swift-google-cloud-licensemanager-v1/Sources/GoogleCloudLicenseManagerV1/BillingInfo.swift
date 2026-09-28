@@ -80,7 +80,7 @@ public struct BillingInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       currentBillingInfo = $0
     }
     if let userCountBilling = try container.decodeIfPresent(
-      UserCountBillingInfo?.self, forKey: .userCountBilling)
+      UserCountBillingInfo.self, forKey: .userCountBilling)
     {
       try currentBillingInfoCheckAndSet(.userCountBilling(userCountBilling))
     }
@@ -110,7 +110,7 @@ public struct BillingInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum CurrentBillingInfoOneOf: Codable, Equatable, Sendable {
     /// Required. This type of billing uses user count for computing total
     /// charge.
-    indirect case userCountBilling(UserCountBillingInfo?)
+    indirect case userCountBilling(UserCountBillingInfo)
   }
 
   public static var _anyTypeUrl: Swift.String {

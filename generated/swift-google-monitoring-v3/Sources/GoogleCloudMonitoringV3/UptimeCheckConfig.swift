@@ -207,17 +207,17 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       resource = $0
     }
     if let monitoredResource = try container.decodeIfPresent(
-      GoogleApi.MonitoredResource?.self, forKey: .monitoredResource)
+      GoogleApi.MonitoredResource.self, forKey: .monitoredResource)
     {
       try resourceCheckAndSet(.monitoredResource(monitoredResource))
     }
     if let resourceGroup = try container.decodeIfPresent(
-      UptimeCheckConfig.ResourceGroup?.self, forKey: .resourceGroup)
+      UptimeCheckConfig.ResourceGroup.self, forKey: .resourceGroup)
     {
       try resourceCheckAndSet(.resourceGroup(resourceGroup))
     }
     if let syntheticMonitor = try container.decodeIfPresent(
-      SyntheticMonitorTarget?.self, forKey: .syntheticMonitor)
+      SyntheticMonitorTarget.self, forKey: .syntheticMonitor)
     {
       try resourceCheckAndSet(.syntheticMonitor(syntheticMonitor))
     }
@@ -234,12 +234,12 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       checkRequestType = $0
     }
     if let httpCheck = try container.decodeIfPresent(
-      UptimeCheckConfig.HttpCheck?.self, forKey: .httpCheck)
+      UptimeCheckConfig.HttpCheck.self, forKey: .httpCheck)
     {
       try checkRequestTypeCheckAndSet(.httpCheck(httpCheck))
     }
     if let tcpCheck = try container.decodeIfPresent(
-      UptimeCheckConfig.TcpCheck?.self, forKey: .tcpCheck)
+      UptimeCheckConfig.TcpCheck.self, forKey: .tcpCheck)
     {
       try checkRequestTypeCheckAndSet(.tcpCheck(tcpCheck))
     }
@@ -654,7 +654,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         authMethod = $0
       }
       if let serviceAgentAuthentication = try container.decodeIfPresent(
-        UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication?.self,
+        UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication.self,
         forKey: .serviceAgentAuthentication)
       {
         try authMethodCheckAndSet(.serviceAgentAuthentication(serviceAgentAuthentication))
@@ -1459,7 +1459,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Monitoring service agent service account as an `Authorization` header
       /// in the HTTP request when probing.
       indirect case serviceAgentAuthentication(
-        UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication?)
+        UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1630,7 +1630,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         additionalMatcherInfo = $0
       }
       if let jsonPathMatcher = try container.decodeIfPresent(
-        UptimeCheckConfig.ContentMatcher.JsonPathMatcher?.self, forKey: .jsonPathMatcher)
+        UptimeCheckConfig.ContentMatcher.JsonPathMatcher.self, forKey: .jsonPathMatcher)
       {
         try additionalMatcherInfoCheckAndSet(.jsonPathMatcher(jsonPathMatcher))
       }
@@ -2030,7 +2030,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// `JsonPathMatcher`; not used for other options.
     public enum AdditionalMatcherInfoOneOf: Codable, Equatable, Sendable {
       /// Matcher information for `MATCHES_JSON_PATH` and `NOT_MATCHES_JSON_PATH`
-      indirect case jsonPathMatcher(UptimeCheckConfig.ContentMatcher.JsonPathMatcher?)
+      indirect case jsonPathMatcher(UptimeCheckConfig.ContentMatcher.JsonPathMatcher)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -2180,19 +2180,19 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   `k8s_service`
     ///   `servicedirectory_service`
     ///   `cloud_run_revision`
-    indirect case monitoredResource(GoogleApi.MonitoredResource?)
+    indirect case monitoredResource(GoogleApi.MonitoredResource)
     /// The group resource associated with the configuration.
-    indirect case resourceGroup(UptimeCheckConfig.ResourceGroup?)
+    indirect case resourceGroup(UptimeCheckConfig.ResourceGroup)
     /// Specifies a Synthetic Monitor to invoke.
-    indirect case syntheticMonitor(SyntheticMonitorTarget?)
+    indirect case syntheticMonitor(SyntheticMonitorTarget)
   }
 
   /// The type of Uptime check request.
   public enum CheckRequestTypeOneOf: Codable, Equatable, Sendable {
     /// Contains information needed to make an HTTP or HTTPS check.
-    indirect case httpCheck(UptimeCheckConfig.HttpCheck?)
+    indirect case httpCheck(UptimeCheckConfig.HttpCheck)
     /// Contains information needed to make a TCP check.
-    indirect case tcpCheck(UptimeCheckConfig.TcpCheck?)
+    indirect case tcpCheck(UptimeCheckConfig.TcpCheck)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -84,17 +84,17 @@
         suggestion = $0
       }
       if let freeFormSuggestion = try container.decodeIfPresent(
-        FreeFormSuggestion?.self, forKey: .freeFormSuggestion)
+        FreeFormSuggestion.self, forKey: .freeFormSuggestion)
       {
         try suggestionCheckAndSet(.freeFormSuggestion(freeFormSuggestion))
       }
       if let summarySuggestion = try container.decodeIfPresent(
-        SummarySuggestion?.self, forKey: .summarySuggestion)
+        SummarySuggestion.self, forKey: .summarySuggestion)
       {
         try suggestionCheckAndSet(.summarySuggestion(summarySuggestion))
       }
       if let agentCoachingSuggestion = try container.decodeIfPresent(
-        AgentCoachingSuggestion?.self, forKey: .agentCoachingSuggestion)
+        AgentCoachingSuggestion.self, forKey: .agentCoachingSuggestion)
       {
         try suggestionCheckAndSet(.agentCoachingSuggestion(agentCoachingSuggestion))
       }
@@ -201,11 +201,11 @@
     /// The suggestion could be one of the many types
     public enum SuggestionOneOf: Codable, Equatable, Sendable {
       /// Optional. Free form suggestion.
-      indirect case freeFormSuggestion(FreeFormSuggestion?)
+      indirect case freeFormSuggestion(FreeFormSuggestion)
       /// Optional. Suggested summary.
-      indirect case summarySuggestion(SummarySuggestion?)
+      indirect case summarySuggestion(SummarySuggestion)
       /// Optional. Suggestion to coach the agent.
-      indirect case agentCoachingSuggestion(AgentCoachingSuggestion?)
+      indirect case agentCoachingSuggestion(AgentCoachingSuggestion)
     }
 
     public static var _anyTypeUrl: Swift.String {

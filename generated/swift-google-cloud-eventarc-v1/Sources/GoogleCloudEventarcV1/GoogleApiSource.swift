@@ -173,12 +173,12 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
       wideScopeSubscription = $0
     }
     if let organizationSubscription = try container.decodeIfPresent(
-      GoogleApiSource.OrganizationSubscription?.self, forKey: .organizationSubscription)
+      GoogleApiSource.OrganizationSubscription.self, forKey: .organizationSubscription)
     {
       try wideScopeSubscriptionCheckAndSet(.organizationSubscription(organizationSubscription))
     }
     if let projectSubscriptions = try container.decodeIfPresent(
-      GoogleApiSource.ProjectSubscriptions?.self, forKey: .projectSubscriptions)
+      GoogleApiSource.ProjectSubscriptions.self, forKey: .projectSubscriptions)
     {
       try wideScopeSubscriptionCheckAndSet(.projectSubscriptions(projectSubscriptions))
     }
@@ -364,12 +364,12 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum WideScopeSubscriptionOneOf: Codable, Equatable, Sendable {
     /// Optional. Config to enable subscribing to events from all projects in the
     /// GoogleApiSource's org.
-    indirect case organizationSubscription(GoogleApiSource.OrganizationSubscription?)
+    indirect case organizationSubscription(GoogleApiSource.OrganizationSubscription)
     /// Optional. Config to enable subscribing to all events from a list of
     /// projects.
     ///
     /// All the projects must be in the same org as the GoogleApiSource.
-    indirect case projectSubscriptions(GoogleApiSource.ProjectSubscriptions?)
+    indirect case projectSubscriptions(GoogleApiSource.ProjectSubscriptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

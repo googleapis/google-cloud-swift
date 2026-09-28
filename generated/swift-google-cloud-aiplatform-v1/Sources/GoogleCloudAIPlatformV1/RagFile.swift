@@ -126,27 +126,27 @@
         }
         ragFileSource = $0
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
         try ragFileSourceCheckAndSet(.gcsSource(gcsSource))
       }
       if let googleDriveSource = try container.decodeIfPresent(
-        GoogleDriveSource?.self, forKey: .googleDriveSource)
+        GoogleDriveSource.self, forKey: .googleDriveSource)
       {
         try ragFileSourceCheckAndSet(.googleDriveSource(googleDriveSource))
       }
       if let directUploadSource = try container.decodeIfPresent(
-        DirectUploadSource?.self, forKey: .directUploadSource)
+        DirectUploadSource.self, forKey: .directUploadSource)
       {
         try ragFileSourceCheckAndSet(.directUploadSource(directUploadSource))
       }
-      if let slackSource = try container.decodeIfPresent(SlackSource?.self, forKey: .slackSource) {
+      if let slackSource = try container.decodeIfPresent(SlackSource.self, forKey: .slackSource) {
         try ragFileSourceCheckAndSet(.slackSource(slackSource))
       }
-      if let jiraSource = try container.decodeIfPresent(JiraSource?.self, forKey: .jiraSource) {
+      if let jiraSource = try container.decodeIfPresent(JiraSource.self, forKey: .jiraSource) {
         try ragFileSourceCheckAndSet(.jiraSource(jiraSource))
       }
       if let sharePointSources = try container.decodeIfPresent(
-        SharePointSources?.self, forKey: .sharePointSources)
+        SharePointSources.self, forKey: .sharePointSources)
       {
         try ragFileSourceCheckAndSet(.sharePointSources(sharePointSources))
       }
@@ -192,19 +192,19 @@
     public enum RagFileSourceOneOf: Codable, Equatable, Sendable {
       /// Output only. Google Cloud Storage location of the RagFile.
       /// It does not support wildcards in the Cloud Storage uri for now.
-      indirect case gcsSource(GcsSource?)
+      indirect case gcsSource(GcsSource)
       /// Output only. Google Drive location. Supports importing individual files
       /// as well as Google Drive folders.
-      indirect case googleDriveSource(GoogleDriveSource?)
+      indirect case googleDriveSource(GoogleDriveSource)
       /// Output only. The RagFile is encapsulated and uploaded in the
       /// UploadRagFile request.
-      indirect case directUploadSource(DirectUploadSource?)
+      indirect case directUploadSource(DirectUploadSource)
       /// The RagFile is imported from a Slack channel.
-      indirect case slackSource(SlackSource?)
+      indirect case slackSource(SlackSource)
       /// The RagFile is imported from a Jira query.
-      indirect case jiraSource(JiraSource?)
+      indirect case jiraSource(JiraSource)
       /// The RagFile is imported from a SharePoint source.
-      indirect case sharePointSources(SharePointSources?)
+      indirect case sharePointSources(SharePointSources)
     }
 
     public static var _anyTypeUrl: Swift.String {

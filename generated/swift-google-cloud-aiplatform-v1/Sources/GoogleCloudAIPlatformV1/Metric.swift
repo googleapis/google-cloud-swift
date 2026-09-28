@@ -95,39 +95,39 @@
         metricSpec = $0
       }
       if let predefinedMetricSpec = try container.decodeIfPresent(
-        PredefinedMetricSpec?.self, forKey: .predefinedMetricSpec)
+        PredefinedMetricSpec.self, forKey: .predefinedMetricSpec)
       {
         try metricSpecCheckAndSet(.predefinedMetricSpec(predefinedMetricSpec))
       }
       if let computationBasedMetricSpec = try container.decodeIfPresent(
-        ComputationBasedMetricSpec?.self, forKey: .computationBasedMetricSpec)
+        ComputationBasedMetricSpec.self, forKey: .computationBasedMetricSpec)
       {
         try metricSpecCheckAndSet(.computationBasedMetricSpec(computationBasedMetricSpec))
       }
       if let llmBasedMetricSpec = try container.decodeIfPresent(
-        LLMBasedMetricSpec?.self, forKey: .llmBasedMetricSpec)
+        LLMBasedMetricSpec.self, forKey: .llmBasedMetricSpec)
       {
         try metricSpecCheckAndSet(.llmBasedMetricSpec(llmBasedMetricSpec))
       }
       if let pointwiseMetricSpec = try container.decodeIfPresent(
-        PointwiseMetricSpec?.self, forKey: .pointwiseMetricSpec)
+        PointwiseMetricSpec.self, forKey: .pointwiseMetricSpec)
       {
         try metricSpecCheckAndSet(.pointwiseMetricSpec(pointwiseMetricSpec))
       }
       if let pairwiseMetricSpec = try container.decodeIfPresent(
-        PairwiseMetricSpec?.self, forKey: .pairwiseMetricSpec)
+        PairwiseMetricSpec.self, forKey: .pairwiseMetricSpec)
       {
         try metricSpecCheckAndSet(.pairwiseMetricSpec(pairwiseMetricSpec))
       }
       if let exactMatchSpec = try container.decodeIfPresent(
-        ExactMatchSpec?.self, forKey: .exactMatchSpec)
+        ExactMatchSpec.self, forKey: .exactMatchSpec)
       {
         try metricSpecCheckAndSet(.exactMatchSpec(exactMatchSpec))
       }
-      if let bleuSpec = try container.decodeIfPresent(BleuSpec?.self, forKey: .bleuSpec) {
+      if let bleuSpec = try container.decodeIfPresent(BleuSpec.self, forKey: .bleuSpec) {
         try metricSpecCheckAndSet(.bleuSpec(bleuSpec))
       }
-      if let rougeSpec = try container.decodeIfPresent(RougeSpec?.self, forKey: .rougeSpec) {
+      if let rougeSpec = try container.decodeIfPresent(RougeSpec.self, forKey: .rougeSpec) {
         try metricSpecCheckAndSet(.rougeSpec(rougeSpec))
       }
       self.metricSpec = metricSpec
@@ -344,21 +344,21 @@
     /// It would be either a pre-defined metric, or a inline metric spec.
     public enum MetricSpecOneOf: Codable, Equatable, Sendable {
       /// The spec for a pre-defined metric.
-      indirect case predefinedMetricSpec(PredefinedMetricSpec?)
+      indirect case predefinedMetricSpec(PredefinedMetricSpec)
       /// Spec for a computation based metric.
-      indirect case computationBasedMetricSpec(ComputationBasedMetricSpec?)
+      indirect case computationBasedMetricSpec(ComputationBasedMetricSpec)
       /// Spec for an LLM based metric.
-      indirect case llmBasedMetricSpec(LLMBasedMetricSpec?)
+      indirect case llmBasedMetricSpec(LLMBasedMetricSpec)
       /// Spec for pointwise metric.
-      indirect case pointwiseMetricSpec(PointwiseMetricSpec?)
+      indirect case pointwiseMetricSpec(PointwiseMetricSpec)
       /// Spec for pairwise metric.
-      indirect case pairwiseMetricSpec(PairwiseMetricSpec?)
+      indirect case pairwiseMetricSpec(PairwiseMetricSpec)
       /// Spec for exact match metric.
-      indirect case exactMatchSpec(ExactMatchSpec?)
+      indirect case exactMatchSpec(ExactMatchSpec)
       /// Spec for bleu metric.
-      indirect case bleuSpec(BleuSpec?)
+      indirect case bleuSpec(BleuSpec)
       /// Spec for rouge metric.
-      indirect case rougeSpec(RougeSpec?)
+      indirect case rougeSpec(RougeSpec)
     }
 
     public static var _anyTypeUrl: Swift.String {

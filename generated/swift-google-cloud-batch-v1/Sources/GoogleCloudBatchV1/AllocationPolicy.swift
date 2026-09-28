@@ -485,8 +485,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         attached = $0
       }
-      if let newDisk = try container.decodeIfPresent(AllocationPolicy.Disk?.self, forKey: .newDisk)
-      {
+      if let newDisk = try container.decodeIfPresent(AllocationPolicy.Disk.self, forKey: .newDisk) {
         try attachedCheckAndSet(.newDisk(newDisk))
       }
       if let existingDisk = try container.decodeIfPresent(Swift.String.self, forKey: .existingDisk)
@@ -518,7 +517,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     public enum AttachedOneOf: Codable, Equatable, Sendable {
-      indirect case newDisk(AllocationPolicy.Disk?)
+      indirect case newDisk(AllocationPolicy.Disk)
       /// Name of an existing PD.
       case existingDisk(Swift.String)
     }
@@ -888,7 +887,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         policyTemplate = $0
       }
       if let policy = try container.decodeIfPresent(
-        AllocationPolicy.InstancePolicy?.self, forKey: .policy)
+        AllocationPolicy.InstancePolicy.self, forKey: .policy)
       {
         try policyTemplateCheckAndSet(.policy(policy))
       }
@@ -925,7 +924,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public enum PolicyTemplateOneOf: Codable, Equatable, Sendable {
       /// InstancePolicy.
-      indirect case policy(AllocationPolicy.InstancePolicy?)
+      indirect case policy(AllocationPolicy.InstancePolicy)
       /// Name of an instance template used to create VMs.
       /// Named the field as 'instance_template' instead of 'template' to avoid
       /// C++ keyword conflict.

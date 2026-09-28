@@ -106,7 +106,7 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPacka
       streamingRequest = $0
     }
     if let streamingConfig = try container.decodeIfPresent(
-      StreamingRecognitionConfig?.self, forKey: .streamingConfig)
+      StreamingRecognitionConfig.self, forKey: .streamingConfig)
     {
       try streamingRequestCheckAndSet(.streamingConfig(streamingConfig))
     }
@@ -141,7 +141,7 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPacka
     /// StreamingRecognitionConfig to be used in this recognition attempt.
     /// If provided, it will override the default RecognitionConfig stored in the
     /// Recognizer.
-    indirect case streamingConfig(StreamingRecognitionConfig?)
+    indirect case streamingConfig(StreamingRecognitionConfig)
     /// Inline audio bytes to be Recognized.
     /// Maximum size for this field is 15 KB per request.
     case audio(Foundation.Data)

@@ -109,7 +109,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
       findingsRefinementApplication = $0
     }
     if let detectionExclusionApplication = try container.decodeIfPresent(
-      DetectionExclusionApplication?.self, forKey: .detectionExclusionApplication)
+      DetectionExclusionApplication.self, forKey: .detectionExclusionApplication)
     {
       try findingsRefinementApplicationCheckAndSet(
         .detectionExclusionApplication(detectionExclusionApplication))
@@ -143,7 +143,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
   /// the type of the findings refinement.
   public enum FindingsRefinementApplicationOneOf: Codable, Equatable, Sendable {
     /// The resources which the detection exclusion is applied to.
-    indirect case detectionExclusionApplication(DetectionExclusionApplication?)
+    indirect case detectionExclusionApplication(DetectionExclusionApplication)
   }
 
   public static var _anyTypeUrl: Swift.String {

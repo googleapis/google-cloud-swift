@@ -79,12 +79,12 @@ public struct SalesforceSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       authentication = $0
     }
     if let oauthPasswordGrantAuth = try container.decodeIfPresent(
-      OAuthPasswordGrantCredentials?.self, forKey: .oauthPasswordGrantAuth)
+      OAuthPasswordGrantCredentials.self, forKey: .oauthPasswordGrantAuth)
     {
       try authenticationCheckAndSet(.oauthPasswordGrantAuth(oauthPasswordGrantAuth))
     }
     if let oauthJwtCredentials = try container.decodeIfPresent(
-      OAuthJWTCredentials?.self, forKey: .oauthJwtCredentials)
+      OAuthJWTCredentials.self, forKey: .oauthJwtCredentials)
     {
       try authenticationCheckAndSet(.oauthJwtCredentials(oauthJwtCredentials))
     }
@@ -115,9 +115,9 @@ public struct SalesforceSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Possible types of authentication.
   public enum AuthenticationOneOf: Codable, Equatable, Sendable {
     /// Input only. OAuthPasswordGrantCredentials auth.
-    indirect case oauthPasswordGrantAuth(OAuthPasswordGrantCredentials?)
+    indirect case oauthPasswordGrantAuth(OAuthPasswordGrantCredentials)
     /// Input only. OAuthJWTCredentials auth.
-    indirect case oauthJwtCredentials(OAuthJWTCredentials?)
+    indirect case oauthJwtCredentials(OAuthJWTCredentials)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -173,12 +173,12 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
         signature = $0
       }
       if let memoryHashSignature = try container.decodeIfPresent(
-        Indicator.ProcessSignature.MemoryHashSignature?.self, forKey: .memoryHashSignature)
+        Indicator.ProcessSignature.MemoryHashSignature.self, forKey: .memoryHashSignature)
       {
         try signatureCheckAndSet(.memoryHashSignature(memoryHashSignature))
       }
       if let yaraRuleSignature = try container.decodeIfPresent(
-        Indicator.ProcessSignature.YaraRuleSignature?.self, forKey: .yaraRuleSignature)
+        Indicator.ProcessSignature.YaraRuleSignature.self, forKey: .yaraRuleSignature)
       {
         try signatureCheckAndSet(.yaraRuleSignature(yaraRuleSignature))
       }
@@ -558,9 +558,9 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The signature.
     public enum SignatureOneOf: Codable, Equatable, Sendable {
       /// Signature indicating that a binary family was matched.
-      indirect case memoryHashSignature(Indicator.ProcessSignature.MemoryHashSignature?)
+      indirect case memoryHashSignature(Indicator.ProcessSignature.MemoryHashSignature)
       /// Signature indicating that a YARA rule was matched.
-      indirect case yaraRuleSignature(Indicator.ProcessSignature.YaraRuleSignature?)
+      indirect case yaraRuleSignature(Indicator.ProcessSignature.YaraRuleSignature)
     }
 
     public static var _anyTypeUrl: Swift.String {

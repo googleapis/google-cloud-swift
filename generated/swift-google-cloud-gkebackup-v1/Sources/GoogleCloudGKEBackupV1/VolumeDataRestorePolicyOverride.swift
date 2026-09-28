@@ -78,8 +78,7 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleWKT._An
       }
       scope = $0
     }
-    if let selectedPvcs = try container.decodeIfPresent(
-      NamespacedNames?.self, forKey: .selectedPvcs)
+    if let selectedPvcs = try container.decodeIfPresent(NamespacedNames.self, forKey: .selectedPvcs)
     {
       try scopeCheckAndSet(.selectedPvcs(selectedPvcs))
     }
@@ -107,7 +106,7 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleWKT._An
 
   public enum ScopeOneOf: Codable, Equatable, Sendable {
     /// A list of PVCs to apply the policy override to.
-    indirect case selectedPvcs(NamespacedNames?)
+    indirect case selectedPvcs(NamespacedNames)
   }
 
   public static var _anyTypeUrl: Swift.String {

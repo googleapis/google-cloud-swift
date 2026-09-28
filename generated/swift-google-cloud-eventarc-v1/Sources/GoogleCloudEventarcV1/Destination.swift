@@ -83,20 +83,20 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       descriptor = $0
     }
-    if let cloudRun = try container.decodeIfPresent(CloudRun?.self, forKey: .cloudRun) {
+    if let cloudRun = try container.decodeIfPresent(CloudRun.self, forKey: .cloudRun) {
       try descriptorCheckAndSet(.cloudRun(cloudRun))
     }
     if let cloudFunction = try container.decodeIfPresent(Swift.String.self, forKey: .cloudFunction)
     {
       try descriptorCheckAndSet(.cloudFunction(cloudFunction))
     }
-    if let gke = try container.decodeIfPresent(GKE?.self, forKey: .gke) {
+    if let gke = try container.decodeIfPresent(GKE.self, forKey: .gke) {
       try descriptorCheckAndSet(.gke(gke))
     }
     if let workflow = try container.decodeIfPresent(Swift.String.self, forKey: .workflow) {
       try descriptorCheckAndSet(.workflow(workflow))
     }
-    if let httpEndpoint = try container.decodeIfPresent(HttpEndpoint?.self, forKey: .httpEndpoint) {
+    if let httpEndpoint = try container.decodeIfPresent(HttpEndpoint.self, forKey: .httpEndpoint) {
       try descriptorCheckAndSet(.httpEndpoint(httpEndpoint))
     }
     self.descriptor = descriptor
@@ -132,7 +132,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum DescriptorOneOf: Codable, Equatable, Sendable {
     /// Cloud Run fully-managed resource that receives the events. The resource
     /// should be in the same project as the trigger.
-    indirect case cloudRun(CloudRun?)
+    indirect case cloudRun(CloudRun)
     /// The Cloud Function resource name. Cloud Functions V1 and V2 are
     /// supported.
     /// Format: `projects/{project}/locations/{location}/functions/{function}`
@@ -143,14 +143,14 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     case cloudFunction(Swift.String)
     /// A GKE service capable of receiving events. The service should be running
     /// in the same project as the trigger.
-    indirect case gke(GKE?)
+    indirect case gke(GKE)
     /// The resource name of the Workflow whose Executions are triggered by
     /// the events. The Workflow resource should be deployed in the same project
     /// as the trigger.
     /// Format: `projects/{project}/locations/{location}/workflows/{workflow}`
     case workflow(Swift.String)
     /// An HTTP endpoint destination described by an URI.
-    indirect case httpEndpoint(HttpEndpoint?)
+    indirect case httpEndpoint(HttpEndpoint)
   }
 
   public static var _anyTypeUrl: Swift.String {

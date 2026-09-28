@@ -132,18 +132,18 @@
         automatedStoppingSpec = $0
       }
       if let decayCurveStoppingSpec = try container.decodeIfPresent(
-        StudySpec.DecayCurveAutomatedStoppingSpec?.self, forKey: .decayCurveStoppingSpec)
+        StudySpec.DecayCurveAutomatedStoppingSpec.self, forKey: .decayCurveStoppingSpec)
       {
         try automatedStoppingSpecCheckAndSet(.decayCurveStoppingSpec(decayCurveStoppingSpec))
       }
       if let medianAutomatedStoppingSpec = try container.decodeIfPresent(
-        StudySpec.MedianAutomatedStoppingSpec?.self, forKey: .medianAutomatedStoppingSpec)
+        StudySpec.MedianAutomatedStoppingSpec.self, forKey: .medianAutomatedStoppingSpec)
       {
         try automatedStoppingSpecCheckAndSet(
           .medianAutomatedStoppingSpec(medianAutomatedStoppingSpec))
       }
       if let convexAutomatedStoppingSpec = try container.decodeIfPresent(
-        StudySpec.ConvexAutomatedStoppingSpec?.self, forKey: .convexAutomatedStoppingSpec)
+        StudySpec.ConvexAutomatedStoppingSpec.self, forKey: .convexAutomatedStoppingSpec)
       {
         try automatedStoppingSpecCheckAndSet(
           .convexAutomatedStoppingSpec(convexAutomatedStoppingSpec))
@@ -563,22 +563,22 @@
           parameterValueSpec = $0
         }
         if let doubleValueSpec = try container.decodeIfPresent(
-          StudySpec.ParameterSpec.DoubleValueSpec?.self, forKey: .doubleValueSpec)
+          StudySpec.ParameterSpec.DoubleValueSpec.self, forKey: .doubleValueSpec)
         {
           try parameterValueSpecCheckAndSet(.doubleValueSpec(doubleValueSpec))
         }
         if let integerValueSpec = try container.decodeIfPresent(
-          StudySpec.ParameterSpec.IntegerValueSpec?.self, forKey: .integerValueSpec)
+          StudySpec.ParameterSpec.IntegerValueSpec.self, forKey: .integerValueSpec)
         {
           try parameterValueSpecCheckAndSet(.integerValueSpec(integerValueSpec))
         }
         if let categoricalValueSpec = try container.decodeIfPresent(
-          StudySpec.ParameterSpec.CategoricalValueSpec?.self, forKey: .categoricalValueSpec)
+          StudySpec.ParameterSpec.CategoricalValueSpec.self, forKey: .categoricalValueSpec)
         {
           try parameterValueSpecCheckAndSet(.categoricalValueSpec(categoricalValueSpec))
         }
         if let discreteValueSpec = try container.decodeIfPresent(
-          StudySpec.ParameterSpec.DiscreteValueSpec?.self, forKey: .discreteValueSpec)
+          StudySpec.ParameterSpec.DiscreteValueSpec.self, forKey: .discreteValueSpec)
         {
           try parameterValueSpecCheckAndSet(.discreteValueSpec(discreteValueSpec))
         }
@@ -1025,19 +1025,19 @@
             parentValueCondition = $0
           }
           if let parentDiscreteValues = try container.decodeIfPresent(
-            StudySpec.ParameterSpec.ConditionalParameterSpec.DiscreteValueCondition?.self,
+            StudySpec.ParameterSpec.ConditionalParameterSpec.DiscreteValueCondition.self,
             forKey: .parentDiscreteValues)
           {
             try parentValueConditionCheckAndSet(.parentDiscreteValues(parentDiscreteValues))
           }
           if let parentIntValues = try container.decodeIfPresent(
-            StudySpec.ParameterSpec.ConditionalParameterSpec.IntValueCondition?.self,
+            StudySpec.ParameterSpec.ConditionalParameterSpec.IntValueCondition.self,
             forKey: .parentIntValues)
           {
             try parentValueConditionCheckAndSet(.parentIntValues(parentIntValues))
           }
           if let parentCategoricalValues = try container.decodeIfPresent(
-            StudySpec.ParameterSpec.ConditionalParameterSpec.CategoricalValueCondition?.self,
+            StudySpec.ParameterSpec.ConditionalParameterSpec.CategoricalValueCondition.self,
             forKey: .parentCategoricalValues)
           {
             try parentValueConditionCheckAndSet(.parentCategoricalValues(parentCategoricalValues))
@@ -1287,15 +1287,15 @@
           /// The spec for matching values from a parent parameter of
           /// `DISCRETE` type.
           indirect case parentDiscreteValues(
-            StudySpec.ParameterSpec.ConditionalParameterSpec.DiscreteValueCondition?)
+            StudySpec.ParameterSpec.ConditionalParameterSpec.DiscreteValueCondition)
           /// The spec for matching values from a parent parameter of `INTEGER`
           /// type.
           indirect case parentIntValues(
-            StudySpec.ParameterSpec.ConditionalParameterSpec.IntValueCondition?)
+            StudySpec.ParameterSpec.ConditionalParameterSpec.IntValueCondition)
           /// The spec for matching values from a parent parameter of
           /// `CATEGORICAL` type.
           indirect case parentCategoricalValues(
-            StudySpec.ParameterSpec.ConditionalParameterSpec.CategoricalValueCondition?)
+            StudySpec.ParameterSpec.ConditionalParameterSpec.CategoricalValueCondition)
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1440,13 +1440,13 @@
 
       public enum ParameterValueSpecOneOf: Codable, Equatable, Sendable {
         /// The value spec for a 'DOUBLE' parameter.
-        indirect case doubleValueSpec(StudySpec.ParameterSpec.DoubleValueSpec?)
+        indirect case doubleValueSpec(StudySpec.ParameterSpec.DoubleValueSpec)
         /// The value spec for an 'INTEGER' parameter.
-        indirect case integerValueSpec(StudySpec.ParameterSpec.IntegerValueSpec?)
+        indirect case integerValueSpec(StudySpec.ParameterSpec.IntegerValueSpec)
         /// The value spec for a 'CATEGORICAL' parameter.
-        indirect case categoricalValueSpec(StudySpec.ParameterSpec.CategoricalValueSpec?)
+        indirect case categoricalValueSpec(StudySpec.ParameterSpec.CategoricalValueSpec)
         /// The value spec for a 'DISCRETE' parameter.
-        indirect case discreteValueSpec(StudySpec.ParameterSpec.DiscreteValueSpec?)
+        indirect case discreteValueSpec(StudySpec.ParameterSpec.DiscreteValueSpec)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -2294,11 +2294,11 @@
 
     public enum AutomatedStoppingSpecOneOf: Codable, Equatable, Sendable {
       /// The automated early stopping spec using decay curve rule.
-      indirect case decayCurveStoppingSpec(StudySpec.DecayCurveAutomatedStoppingSpec?)
+      indirect case decayCurveStoppingSpec(StudySpec.DecayCurveAutomatedStoppingSpec)
       /// The automated early stopping spec using median rule.
-      indirect case medianAutomatedStoppingSpec(StudySpec.MedianAutomatedStoppingSpec?)
+      indirect case medianAutomatedStoppingSpec(StudySpec.MedianAutomatedStoppingSpec)
       /// The automated early stopping spec using convex stopping rule.
-      indirect case convexAutomatedStoppingSpec(StudySpec.ConvexAutomatedStoppingSpec?)
+      indirect case convexAutomatedStoppingSpec(StudySpec.ConvexAutomatedStoppingSpec)
     }
 
     public static var _anyTypeUrl: Swift.String {

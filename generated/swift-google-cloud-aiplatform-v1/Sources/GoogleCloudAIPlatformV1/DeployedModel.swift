@@ -270,12 +270,12 @@
         predictionResources = $0
       }
       if let dedicatedResources = try container.decodeIfPresent(
-        DedicatedResources?.self, forKey: .dedicatedResources)
+        DedicatedResources.self, forKey: .dedicatedResources)
       {
         try predictionResourcesCheckAndSet(.dedicatedResources(dedicatedResources))
       }
       if let automaticResources = try container.decodeIfPresent(
-        AutomaticResources?.self, forKey: .automaticResources)
+        AutomaticResources.self, forKey: .automaticResources)
       {
         try predictionResourcesCheckAndSet(.automaticResources(automaticResources))
       }
@@ -423,10 +423,10 @@
     public enum PredictionResourcesOneOf: Codable, Equatable, Sendable {
       /// A description of resources that are dedicated to the DeployedModel, and
       /// that need a higher degree of manual configuration.
-      indirect case dedicatedResources(DedicatedResources?)
+      indirect case dedicatedResources(DedicatedResources)
       /// A description of resources that to large degree are decided by Vertex
       /// AI, and require only a modest additional configuration.
-      indirect case automaticResources(AutomaticResources?)
+      indirect case automaticResources(AutomaticResources)
       /// The resource name of the shared DeploymentResourcePool to deploy on.
       /// Format:
       /// `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`

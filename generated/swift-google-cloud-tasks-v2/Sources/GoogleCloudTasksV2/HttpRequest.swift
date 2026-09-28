@@ -189,10 +189,10 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       authorizationHeader = $0
     }
-    if let oauthToken = try container.decodeIfPresent(OAuthToken?.self, forKey: .oauthToken) {
+    if let oauthToken = try container.decodeIfPresent(OAuthToken.self, forKey: .oauthToken) {
       try authorizationHeaderCheckAndSet(.oauthToken(oauthToken))
     }
-    if let oidcToken = try container.decodeIfPresent(OidcToken?.self, forKey: .oidcToken) {
+    if let oidcToken = try container.decodeIfPresent(OidcToken.self, forKey: .oidcToken) {
       try authorizationHeaderCheckAndSet(.oidcToken(oidcToken))
     }
     self.authorizationHeader = authorizationHeader
@@ -237,7 +237,7 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// This type of authorization should generally only be used when calling
     /// Google APIs hosted on *.googleapis.com.
-    indirect case oauthToken(OAuthToken?)
+    indirect case oauthToken(OAuthToken)
     /// If specified, an
     /// [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect)
     /// token will be generated and attached as an `Authorization` header in the
@@ -246,7 +246,7 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// This type of authorization can be used for many scenarios, including
     /// calling Cloud Run, or endpoints where you intend to validate the token
     /// yourself.
-    indirect case oidcToken(OidcToken?)
+    indirect case oidcToken(OidcToken)
   }
 
   public static var _anyTypeUrl: Swift.String {

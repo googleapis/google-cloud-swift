@@ -69,7 +69,7 @@ public struct EventDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       eventDetails = $0
     }
     if let executionDetails = try container.decodeIfPresent(
-      ExecutionDetails?.self, forKey: .executionDetails)
+      ExecutionDetails.self, forKey: .executionDetails)
     {
       try eventDetailsCheckAndSet(.executionDetails(executionDetails))
     }
@@ -97,7 +97,7 @@ public struct EventDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The details of the event.
   public enum EventDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Additional details for an execution event.
-    indirect case executionDetails(ExecutionDetails?)
+    indirect case executionDetails(ExecutionDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

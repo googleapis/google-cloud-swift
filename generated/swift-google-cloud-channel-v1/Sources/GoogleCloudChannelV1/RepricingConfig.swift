@@ -113,12 +113,12 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       granularity = $0
     }
     if let entitlementGranularity = try container.decodeIfPresent(
-      RepricingConfig.EntitlementGranularity?.self, forKey: .entitlementGranularity)
+      RepricingConfig.EntitlementGranularity.self, forKey: .entitlementGranularity)
     {
       try granularityCheckAndSet(.entitlementGranularity(entitlementGranularity))
     }
     if let channelPartnerGranularity = try container.decodeIfPresent(
-      RepricingConfig.ChannelPartnerGranularity?.self, forKey: .channelPartnerGranularity)
+      RepricingConfig.ChannelPartnerGranularity.self, forKey: .channelPartnerGranularity)
     {
       try granularityCheckAndSet(.channelPartnerGranularity(channelPartnerGranularity))
     }
@@ -309,7 +309,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity]: <doc:RepricingConfig/ChannelPartnerGranularity>
     /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity]: <doc:RepricingConfig/EntitlementGranularity>
     /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]: <doc:RepricingConfig/EntitlementGranularity/entitlement>
-    indirect case entitlementGranularity(RepricingConfig.EntitlementGranularity?)
+    indirect case entitlementGranularity(RepricingConfig.EntitlementGranularity)
     /// Applies the repricing configuration at the channel partner level.
     /// Only
     /// [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
@@ -320,7 +320,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
     /// [google.cloud.channel.v1.RepricingConfig.entitlement_granularity]: <doc:RepricingConfig/GranularityOneOf/entitlementGranularity(_:)>
     @available(*, deprecated)
-    indirect case channelPartnerGranularity(RepricingConfig.ChannelPartnerGranularity?)
+    indirect case channelPartnerGranularity(RepricingConfig.ChannelPartnerGranularity)
   }
 
   public static var _anyTypeUrl: Swift.String {

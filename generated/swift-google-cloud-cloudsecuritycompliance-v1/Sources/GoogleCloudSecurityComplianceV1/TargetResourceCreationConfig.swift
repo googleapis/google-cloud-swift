@@ -71,12 +71,12 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleWKT._AnyPa
       resourceCreationConfig = $0
     }
     if let folderCreationConfig = try container.decodeIfPresent(
-      FolderCreationConfig?.self, forKey: .folderCreationConfig)
+      FolderCreationConfig.self, forKey: .folderCreationConfig)
     {
       try resourceCreationConfigCheckAndSet(.folderCreationConfig(folderCreationConfig))
     }
     if let projectCreationConfig = try container.decodeIfPresent(
-      ProjectCreationConfig?.self, forKey: .projectCreationConfig)
+      ProjectCreationConfig.self, forKey: .projectCreationConfig)
     {
       try resourceCreationConfigCheckAndSet(.projectCreationConfig(projectCreationConfig))
     }
@@ -106,9 +106,9 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleWKT._AnyPa
   /// The configuration that's required to create the target resource.
   public enum ResourceCreationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. The configuration that's required to create a folder.
-    indirect case folderCreationConfig(FolderCreationConfig?)
+    indirect case folderCreationConfig(FolderCreationConfig)
     /// Optional. The configuration that's required to create a project.
-    indirect case projectCreationConfig(ProjectCreationConfig?)
+    indirect case projectCreationConfig(ProjectCreationConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

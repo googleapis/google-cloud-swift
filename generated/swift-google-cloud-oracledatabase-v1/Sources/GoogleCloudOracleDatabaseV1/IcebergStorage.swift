@@ -85,18 +85,18 @@ public struct IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable,
       storageDetails = $0
     }
     if let amazonS3IcebergStorage = try container.decodeIfPresent(
-      AmazonS3IcebergStorage?.self, forKey: .amazonS3IcebergStorage)
+      AmazonS3IcebergStorage.self, forKey: .amazonS3IcebergStorage)
     {
       try storageDetailsCheckAndSet(.amazonS3IcebergStorage(amazonS3IcebergStorage))
     }
     if let googleCloudStorageIcebergStorage = try container.decodeIfPresent(
-      GoogleCloudStorageIcebergStorage?.self, forKey: .googleCloudStorageIcebergStorage)
+      GoogleCloudStorageIcebergStorage.self, forKey: .googleCloudStorageIcebergStorage)
     {
       try storageDetailsCheckAndSet(
         .googleCloudStorageIcebergStorage(googleCloudStorageIcebergStorage))
     }
     if let azureDataLakeStorageIcebergStorage = try container.decodeIfPresent(
-      AzureDataLakeStorageIcebergStorage?.self, forKey: .azureDataLakeStorageIcebergStorage)
+      AzureDataLakeStorageIcebergStorage.self, forKey: .azureDataLakeStorageIcebergStorage)
     {
       try storageDetailsCheckAndSet(
         .azureDataLakeStorageIcebergStorage(azureDataLakeStorageIcebergStorage))
@@ -254,11 +254,11 @@ public struct IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of Iceberg storage.
   public enum StorageDetailsOneOf: Codable, Equatable, Sendable {
     /// The Amazon S3 Iceberg storage.
-    indirect case amazonS3IcebergStorage(AmazonS3IcebergStorage?)
+    indirect case amazonS3IcebergStorage(AmazonS3IcebergStorage)
     /// The Google Cloud Storage Iceberg storage.
-    indirect case googleCloudStorageIcebergStorage(GoogleCloudStorageIcebergStorage?)
+    indirect case googleCloudStorageIcebergStorage(GoogleCloudStorageIcebergStorage)
     /// The Azure Data Lake Storage Iceberg storage.
-    indirect case azureDataLakeStorageIcebergStorage(AzureDataLakeStorageIcebergStorage?)
+    indirect case azureDataLakeStorageIcebergStorage(AzureDataLakeStorageIcebergStorage)
   }
 
   public static var _anyTypeUrl: Swift.String {

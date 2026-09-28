@@ -68,7 +68,7 @@ public struct InputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+    if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     self.source = source
@@ -95,7 +95,7 @@ public struct InputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Specify source location of input data
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage location where input content is located.
-    indirect case gcsSource(GcsSource?)
+    indirect case gcsSource(GcsSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

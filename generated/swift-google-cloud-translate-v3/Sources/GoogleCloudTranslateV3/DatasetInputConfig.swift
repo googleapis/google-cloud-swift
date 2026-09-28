@@ -138,7 +138,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         source = $0
       }
-      if let gcsSource = try container.decodeIfPresent(GcsInputSource?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsInputSource.self, forKey: .gcsSource) {
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
@@ -168,7 +168,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// eXchange (.tmx) .
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Google Cloud Storage file source.
-      indirect case gcsSource(GcsInputSource?)
+      indirect case gcsSource(GcsInputSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

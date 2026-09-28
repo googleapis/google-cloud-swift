@@ -78,7 +78,7 @@
         try intentsCheckAndSet(.intentsUri(intentsUri))
       }
       if let intentsContent = try container.decodeIfPresent(
-        InlineDestination?.self, forKey: .intentsContent)
+        InlineDestination.self, forKey: .intentsContent)
       {
         try intentsCheckAndSet(.intentsContent(intentsContent))
       }
@@ -118,7 +118,7 @@
       /// [ExportIntentsRequest][google.cloud.dialogflow.cx.v3.ExportIntentsRequest].
       ///
       /// [google.cloud.dialogflow.cx.v3.ExportIntentsRequest]: <doc:ExportIntentsRequest>
-      indirect case intentsContent(InlineDestination?)
+      indirect case intentsContent(InlineDestination)
     }
 
     public static var _anyTypeUrl: Swift.String {

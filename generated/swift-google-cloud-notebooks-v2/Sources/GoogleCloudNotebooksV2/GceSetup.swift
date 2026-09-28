@@ -181,11 +181,11 @@ public struct GceSetup: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       image = $0
     }
-    if let vmImage = try container.decodeIfPresent(VmImage?.self, forKey: .vmImage) {
+    if let vmImage = try container.decodeIfPresent(VmImage.self, forKey: .vmImage) {
       try imageCheckAndSet(.vmImage(vmImage))
     }
     if let containerImage = try container.decodeIfPresent(
-      ContainerImage?.self, forKey: .containerImage)
+      ContainerImage.self, forKey: .containerImage)
     {
       try imageCheckAndSet(.containerImage(containerImage))
     }
@@ -227,9 +227,9 @@ public struct GceSetup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of the image; can be one of VM image, or container image.
   public enum ImageOneOf: Codable, Equatable, Sendable {
     /// Optional. Use a Compute Engine VM image to start the notebook instance.
-    indirect case vmImage(VmImage?)
+    indirect case vmImage(VmImage)
     /// Optional. Use a container image to start the notebook instance.
-    indirect case containerImage(ContainerImage?)
+    indirect case containerImage(ContainerImage)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -97,7 +97,7 @@ public struct EnrollmentActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       activity = $0
     }
     if let matched = try container.decodeIfPresent(
-      EnrollmentActivity.Matched?.self, forKey: .matched)
+      EnrollmentActivity.Matched.self, forKey: .matched)
     {
       try activityCheckAndSet(.matched(matched))
     }
@@ -214,7 +214,7 @@ public struct EnrollmentActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// enrollment.
   public enum ActivityOneOf: Codable, Equatable, Sendable {
     /// Logged when an event matches an enrollment.
-    indirect case matched(EnrollmentActivity.Matched?)
+    indirect case matched(EnrollmentActivity.Matched)
   }
 
   public static var _anyTypeUrl: Swift.String {

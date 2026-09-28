@@ -146,13 +146,13 @@ public struct ProcessRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let inlineDocument = try container.decodeIfPresent(Document?.self, forKey: .inlineDocument) {
+    if let inlineDocument = try container.decodeIfPresent(Document.self, forKey: .inlineDocument) {
       try sourceCheckAndSet(.inlineDocument(inlineDocument))
     }
-    if let rawDocument = try container.decodeIfPresent(RawDocument?.self, forKey: .rawDocument) {
+    if let rawDocument = try container.decodeIfPresent(RawDocument.self, forKey: .rawDocument) {
       try sourceCheckAndSet(.rawDocument(rawDocument))
     }
-    if let gcsDocument = try container.decodeIfPresent(GcsDocument?.self, forKey: .gcsDocument) {
+    if let gcsDocument = try container.decodeIfPresent(GcsDocument.self, forKey: .gcsDocument) {
       try sourceCheckAndSet(.gcsDocument(gcsDocument))
     }
     self.source = source
@@ -189,11 +189,11 @@ public struct ProcessRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The document payload.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// An inline document proto.
-    indirect case inlineDocument(Document?)
+    indirect case inlineDocument(Document)
     /// A raw document content (bytes).
-    indirect case rawDocument(RawDocument?)
+    indirect case rawDocument(RawDocument)
     /// A raw document on Google Cloud Storage.
-    indirect case gcsDocument(GcsDocument?)
+    indirect case gcsDocument(GcsDocument)
   }
 
   public static var _anyTypeUrl: Swift.String {

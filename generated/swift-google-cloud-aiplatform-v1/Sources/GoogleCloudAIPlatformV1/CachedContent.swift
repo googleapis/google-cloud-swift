@@ -164,11 +164,11 @@
         expiration = $0
       }
       if let expireTime = try container.decodeIfPresent(
-        GoogleWKT.WKTTimestamp?.self, forKey: .expireTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
       {
         try expirationCheckAndSet(.expireTime(expireTime))
       }
-      if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
+      if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl) {
         try expirationCheckAndSet(.ttl(ttl))
       }
       self.expiration = expiration
@@ -318,10 +318,10 @@
       /// Timestamp of when this resource is considered expired.
       /// This is *always* provided on output, regardless of what was sent
       /// on input.
-      indirect case expireTime(GoogleWKT.WKTTimestamp?)
+      indirect case expireTime(GoogleWKT.WKTTimestamp)
       /// Input only. The TTL for this resource. The expiration time is computed:
       /// now + TTL.
-      indirect case ttl(GoogleWKT.WKTDuration?)
+      indirect case ttl(GoogleWKT.WKTDuration)
     }
 
     public static var _anyTypeUrl: Swift.String {

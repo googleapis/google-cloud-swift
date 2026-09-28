@@ -94,7 +94,7 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      GcsDestination?.self, forKey: .gcsDestination)
+      GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
@@ -111,12 +111,12 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       exportOptions = $0
     }
     if let csvExportOptions = try container.decodeIfPresent(
-      ExportClusterRequest.CsvExportOptions?.self, forKey: .csvExportOptions)
+      ExportClusterRequest.CsvExportOptions.self, forKey: .csvExportOptions)
     {
       try exportOptionsCheckAndSet(.csvExportOptions(csvExportOptions))
     }
     if let sqlExportOptions = try container.decodeIfPresent(
-      ExportClusterRequest.SqlExportOptions?.self, forKey: .sqlExportOptions)
+      ExportClusterRequest.SqlExportOptions.self, forKey: .sqlExportOptions)
     {
       try exportOptionsCheckAndSet(.sqlExportOptions(sqlExportOptions))
     }
@@ -350,17 +350,17 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Oneof field to support other destinations in future.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Required. Option to export data to cloud storage.
-    indirect case gcsDestination(GcsDestination?)
+    indirect case gcsDestination(GcsDestination)
   }
 
   /// Required field to specify export file type and options.
   public enum ExportOptionsOneOf: Codable, Equatable, Sendable {
     /// Options for exporting data in CSV format. Required field to be set for
     /// CSV file type.
-    indirect case csvExportOptions(ExportClusterRequest.CsvExportOptions?)
+    indirect case csvExportOptions(ExportClusterRequest.CsvExportOptions)
     /// Options for exporting data in SQL format. Required field to be set for
     /// SQL file type.
-    indirect case sqlExportOptions(ExportClusterRequest.SqlExportOptions?)
+    indirect case sqlExportOptions(ExportClusterRequest.SqlExportOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

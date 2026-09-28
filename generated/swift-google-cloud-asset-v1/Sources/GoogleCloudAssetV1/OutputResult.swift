@@ -68,7 +68,7 @@ public struct OutputResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       result = $0
     }
-    if let gcsResult = try container.decodeIfPresent(GcsOutputResult?.self, forKey: .gcsResult) {
+    if let gcsResult = try container.decodeIfPresent(GcsOutputResult.self, forKey: .gcsResult) {
       try resultCheckAndSet(.gcsResult(gcsResult))
     }
     self.result = result
@@ -95,7 +95,7 @@ public struct OutputResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Asset export result.
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Export result on Cloud Storage.
-    indirect case gcsResult(GcsOutputResult?)
+    indirect case gcsResult(GcsOutputResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

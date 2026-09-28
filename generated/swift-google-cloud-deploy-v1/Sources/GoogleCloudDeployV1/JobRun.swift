@@ -150,29 +150,29 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       jobRun = $0
     }
-    if let deployJobRun = try container.decodeIfPresent(DeployJobRun?.self, forKey: .deployJobRun) {
+    if let deployJobRun = try container.decodeIfPresent(DeployJobRun.self, forKey: .deployJobRun) {
       try jobRunCheckAndSet(.deployJobRun(deployJobRun))
     }
-    if let verifyJobRun = try container.decodeIfPresent(VerifyJobRun?.self, forKey: .verifyJobRun) {
+    if let verifyJobRun = try container.decodeIfPresent(VerifyJobRun.self, forKey: .verifyJobRun) {
       try jobRunCheckAndSet(.verifyJobRun(verifyJobRun))
     }
     if let predeployJobRun = try container.decodeIfPresent(
-      PredeployJobRun?.self, forKey: .predeployJobRun)
+      PredeployJobRun.self, forKey: .predeployJobRun)
     {
       try jobRunCheckAndSet(.predeployJobRun(predeployJobRun))
     }
     if let postdeployJobRun = try container.decodeIfPresent(
-      PostdeployJobRun?.self, forKey: .postdeployJobRun)
+      PostdeployJobRun.self, forKey: .postdeployJobRun)
     {
       try jobRunCheckAndSet(.postdeployJobRun(postdeployJobRun))
     }
     if let createChildRolloutJobRun = try container.decodeIfPresent(
-      CreateChildRolloutJobRun?.self, forKey: .createChildRolloutJobRun)
+      CreateChildRolloutJobRun.self, forKey: .createChildRolloutJobRun)
     {
       try jobRunCheckAndSet(.createChildRolloutJobRun(createChildRolloutJobRun))
     }
     if let advanceChildRolloutJobRun = try container.decodeIfPresent(
-      AdvanceChildRolloutJobRun?.self, forKey: .advanceChildRolloutJobRun)
+      AdvanceChildRolloutJobRun.self, forKey: .advanceChildRolloutJobRun)
     {
       try jobRunCheckAndSet(.advanceChildRolloutJobRun(advanceChildRolloutJobRun))
     }
@@ -357,17 +357,17 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The `JobRun` type and the information for that type.
   public enum JobRunOneOf: Codable, Equatable, Sendable {
     /// Output only. Information specific to a deploy `JobRun`.
-    indirect case deployJobRun(DeployJobRun?)
+    indirect case deployJobRun(DeployJobRun)
     /// Output only. Information specific to a verify `JobRun`.
-    indirect case verifyJobRun(VerifyJobRun?)
+    indirect case verifyJobRun(VerifyJobRun)
     /// Output only. Information specific to a predeploy `JobRun`.
-    indirect case predeployJobRun(PredeployJobRun?)
+    indirect case predeployJobRun(PredeployJobRun)
     /// Output only. Information specific to a postdeploy `JobRun`.
-    indirect case postdeployJobRun(PostdeployJobRun?)
+    indirect case postdeployJobRun(PostdeployJobRun)
     /// Output only. Information specific to a createChildRollout `JobRun`.
-    indirect case createChildRolloutJobRun(CreateChildRolloutJobRun?)
+    indirect case createChildRolloutJobRun(CreateChildRolloutJobRun)
     /// Output only. Information specific to an advanceChildRollout `JobRun`
-    indirect case advanceChildRolloutJobRun(AdvanceChildRolloutJobRun?)
+    indirect case advanceChildRolloutJobRun(AdvanceChildRolloutJobRun)
   }
 
   public static var _anyTypeUrl: Swift.String {

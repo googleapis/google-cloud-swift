@@ -93,23 +93,23 @@ public struct RunPipelineRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       pipeline = $0
     }
     if let gcsIngestPipeline = try container.decodeIfPresent(
-      GcsIngestPipeline?.self, forKey: .gcsIngestPipeline)
+      GcsIngestPipeline.self, forKey: .gcsIngestPipeline)
     {
       try pipelineCheckAndSet(.gcsIngestPipeline(gcsIngestPipeline))
     }
     if let gcsIngestWithDocAiProcessorsPipeline = try container.decodeIfPresent(
-      GcsIngestWithDocAiProcessorsPipeline?.self, forKey: .gcsIngestWithDocAiProcessorsPipeline)
+      GcsIngestWithDocAiProcessorsPipeline.self, forKey: .gcsIngestWithDocAiProcessorsPipeline)
     {
       try pipelineCheckAndSet(
         .gcsIngestWithDocAiProcessorsPipeline(gcsIngestWithDocAiProcessorsPipeline))
     }
     if let exportCdwPipeline = try container.decodeIfPresent(
-      ExportToCdwPipeline?.self, forKey: .exportCdwPipeline)
+      ExportToCdwPipeline.self, forKey: .exportCdwPipeline)
     {
       try pipelineCheckAndSet(.exportCdwPipeline(exportCdwPipeline))
     }
     if let processWithDocAiPipeline = try container.decodeIfPresent(
-      ProcessWithDocAiPipeline?.self, forKey: .processWithDocAiPipeline)
+      ProcessWithDocAiPipeline.self, forKey: .processWithDocAiPipeline)
     {
       try pipelineCheckAndSet(.processWithDocAiPipeline(processWithDocAiPipeline))
     }
@@ -145,15 +145,15 @@ public struct RunPipelineRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The predefined pipelines.
   public enum PipelineOneOf: Codable, Equatable, Sendable {
     /// Cloud Storage ingestion pipeline.
-    indirect case gcsIngestPipeline(GcsIngestPipeline?)
+    indirect case gcsIngestPipeline(GcsIngestPipeline)
     /// Use DocAI processors to process documents in Cloud Storage and ingest
     /// them to Document Warehouse.
-    indirect case gcsIngestWithDocAiProcessorsPipeline(GcsIngestWithDocAiProcessorsPipeline?)
+    indirect case gcsIngestWithDocAiProcessorsPipeline(GcsIngestWithDocAiProcessorsPipeline)
     /// Export docuemnts from Document Warehouse to CDW for training purpose.
-    indirect case exportCdwPipeline(ExportToCdwPipeline?)
+    indirect case exportCdwPipeline(ExportToCdwPipeline)
     /// Use a DocAI processor to process documents in Document Warehouse, and
     /// re-ingest the updated results into Document Warehouse.
-    indirect case processWithDocAiPipeline(ProcessWithDocAiPipeline?)
+    indirect case processWithDocAiPipeline(ProcessWithDocAiPipeline)
   }
 
   public static var _anyTypeUrl: Swift.String {

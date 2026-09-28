@@ -72,10 +72,10 @@ public struct Payload: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       kind = $0
     }
-    if let httpRequest = try container.decodeIfPresent(HttpRequest?.self, forKey: .httpRequest) {
+    if let httpRequest = try container.decodeIfPresent(HttpRequest.self, forKey: .httpRequest) {
       try kindCheckAndSet(.httpRequest(httpRequest))
     }
-    if let streamInfo = try container.decodeIfPresent(StreamInfo?.self, forKey: .streamInfo) {
+    if let streamInfo = try container.decodeIfPresent(StreamInfo.self, forKey: .streamInfo) {
       try kindCheckAndSet(.streamInfo(streamInfo))
     }
     if let action = try container.decodeIfPresent(Action.self, forKey: .action) {
@@ -109,9 +109,9 @@ public struct Payload: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The kind of payload.
   public enum KindOneOf: Codable, Equatable, Sendable {
     /// The HttpRequest proto.
-    indirect case httpRequest(HttpRequest?)
+    indirect case httpRequest(HttpRequest)
     /// The information of stream.
-    indirect case streamInfo(StreamInfo?)
+    indirect case streamInfo(StreamInfo)
     /// The action taken by agent.
     case action(Action)
   }

@@ -78,16 +78,15 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleWKT._AnyPackabl
       filter = $0
     }
     if let collection = try container.decodeIfPresent(
-      DatabaseResourceCollection?.self, forKey: .collection)
+      DatabaseResourceCollection.self, forKey: .collection)
     {
       try filterCheckAndSet(.collection(collection))
     }
-    if let others = try container.decodeIfPresent(AllOtherDatabaseResources?.self, forKey: .others)
-    {
+    if let others = try container.decodeIfPresent(AllOtherDatabaseResources.self, forKey: .others) {
       try filterCheckAndSet(.others(others))
     }
     if let databaseResourceReference = try container.decodeIfPresent(
-      DatabaseResourceReference?.self, forKey: .databaseResourceReference)
+      DatabaseResourceReference.self, forKey: .databaseResourceReference)
     {
       try filterCheckAndSet(.databaseResourceReference(databaseResourceReference))
     }
@@ -122,15 +121,15 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleWKT._AnyPackabl
   /// set, will default to `others`.
   public enum FilterOneOf: Codable, Equatable, Sendable {
     /// A specific set of database resources for this filter to apply to.
-    indirect case collection(DatabaseResourceCollection?)
+    indirect case collection(DatabaseResourceCollection)
     /// Catch-all. This should always be the last target in the list because
     /// anything above it will apply first. Should only appear once in a
     /// configuration. If none is specified, a default one will be added
     /// automatically.
-    indirect case others(AllOtherDatabaseResources?)
+    indirect case others(AllOtherDatabaseResources)
     /// The database resource to scan. Targets including this can only include
     /// one target (the target with this database resource reference).
-    indirect case databaseResourceReference(DatabaseResourceReference?)
+    indirect case databaseResourceReference(DatabaseResourceReference)
   }
 
   public static var _anyTypeUrl: Swift.String {

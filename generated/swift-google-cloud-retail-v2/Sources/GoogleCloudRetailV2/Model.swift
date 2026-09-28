@@ -482,7 +482,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
         typeDedicatedConfig = $0
       }
       if let frequentlyBoughtTogetherConfig = try container.decodeIfPresent(
-        Model.FrequentlyBoughtTogetherFeaturesConfig?.self, forKey: .frequentlyBoughtTogetherConfig)
+        Model.FrequentlyBoughtTogetherFeaturesConfig.self, forKey: .frequentlyBoughtTogetherConfig)
       {
         try typeDedicatedConfigCheckAndSet(
           .frequentlyBoughtTogetherConfig(frequentlyBoughtTogetherConfig))
@@ -510,7 +510,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
       /// Additional configs for frequently-bought-together models.
-      indirect case frequentlyBoughtTogetherConfig(Model.FrequentlyBoughtTogetherFeaturesConfig?)
+      indirect case frequentlyBoughtTogetherConfig(Model.FrequentlyBoughtTogetherFeaturesConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

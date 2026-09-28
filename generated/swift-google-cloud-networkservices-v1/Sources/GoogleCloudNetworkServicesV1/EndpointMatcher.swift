@@ -70,7 +70,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
       matcherType = $0
     }
     if let metadataLabelMatcher = try container.decodeIfPresent(
-      EndpointMatcher.MetadataLabelMatcher?.self, forKey: .metadataLabelMatcher)
+      EndpointMatcher.MetadataLabelMatcher.self, forKey: .metadataLabelMatcher)
     {
       try matcherTypeCheckAndSet(.metadataLabelMatcher(metadataLabelMatcher))
     }
@@ -410,7 +410,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies type of the matcher used for this endpoint matcher.
   public enum MatcherTypeOneOf: Codable, Equatable, Sendable {
     /// The matcher is based on node metadata presented by xDS clients.
-    indirect case metadataLabelMatcher(EndpointMatcher.MetadataLabelMatcher?)
+    indirect case metadataLabelMatcher(EndpointMatcher.MetadataLabelMatcher)
   }
 
   public static var _anyTypeUrl: Swift.String {

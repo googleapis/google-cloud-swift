@@ -132,7 +132,7 @@ public struct AccountConnector: Codable, Equatable, GoogleWKT._AnyPackable,
       accountConnectorConfig = $0
     }
     if let providerOauthConfig = try container.decodeIfPresent(
-      ProviderOAuthConfig?.self, forKey: .providerOauthConfig)
+      ProviderOAuthConfig.self, forKey: .providerOauthConfig)
     {
       try accountConnectorConfigCheckAndSet(.providerOauthConfig(providerOauthConfig))
     }
@@ -167,7 +167,7 @@ public struct AccountConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The AccountConnector config.
   public enum AccountConnectorConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Provider OAuth config.
-    indirect case providerOauthConfig(ProviderOAuthConfig?)
+    indirect case providerOauthConfig(ProviderOAuthConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

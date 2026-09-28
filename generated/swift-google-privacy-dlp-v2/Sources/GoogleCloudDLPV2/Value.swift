@@ -101,15 +101,15 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
       try typeCheckAndSet(.booleanValue(booleanValue))
     }
     if let timestampValue = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .timestampValue)
+      GoogleWKT.WKTTimestamp.self, forKey: .timestampValue)
     {
       try typeCheckAndSet(.timestampValue(timestampValue))
     }
-    if let timeValue = try container.decodeIfPresent(GoogleType.TimeOfDay?.self, forKey: .timeValue)
+    if let timeValue = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .timeValue)
     {
       try typeCheckAndSet(.timeValue(timeValue))
     }
-    if let dateValue = try container.decodeIfPresent(GoogleType.Date?.self, forKey: .dateValue) {
+    if let dateValue = try container.decodeIfPresent(GoogleType.Date.self, forKey: .dateValue) {
       try typeCheckAndSet(.dateValue(dateValue))
     }
     if let dayOfWeekValue = try container.decodeIfPresent(
@@ -163,11 +163,11 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     /// boolean
     case booleanValue(Swift.Bool)
     /// timestamp
-    indirect case timestampValue(GoogleWKT.WKTTimestamp?)
+    indirect case timestampValue(GoogleWKT.WKTTimestamp)
     /// time of day
-    indirect case timeValue(GoogleType.TimeOfDay?)
+    indirect case timeValue(GoogleType.TimeOfDay)
     /// date
-    indirect case dateValue(GoogleType.Date?)
+    indirect case dateValue(GoogleType.Date)
     /// day of week
     case dayOfWeekValue(GoogleType.DayOfWeek)
   }

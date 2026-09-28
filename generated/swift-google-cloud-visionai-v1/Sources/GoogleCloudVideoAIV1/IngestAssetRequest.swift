@@ -69,12 +69,11 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       streamingRequest = $0
     }
-    if let config = try container.decodeIfPresent(IngestAssetRequest.Config?.self, forKey: .config)
-    {
+    if let config = try container.decodeIfPresent(IngestAssetRequest.Config.self, forKey: .config) {
       try streamingRequestCheckAndSet(.config(config))
     }
     if let timeIndexedData = try container.decodeIfPresent(
-      IngestAssetRequest.TimeIndexedData?.self, forKey: .timeIndexedData)
+      IngestAssetRequest.TimeIndexedData.self, forKey: .timeIndexedData)
     {
       try streamingRequestCheckAndSet(.timeIndexedData(timeIndexedData))
     }
@@ -161,7 +160,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         dataType = $0
       }
       if let videoType = try container.decodeIfPresent(
-        IngestAssetRequest.Config.VideoType?.self, forKey: .videoType)
+        IngestAssetRequest.Config.VideoType.self, forKey: .videoType)
       {
         try dataTypeCheckAndSet(.videoType(videoType))
       }
@@ -370,7 +369,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public enum DataTypeOneOf: Codable, Equatable, Sendable {
       /// Type information for video data.
-      indirect case videoType(IngestAssetRequest.Config.VideoType?)
+      indirect case videoType(IngestAssetRequest.Config.VideoType)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -464,9 +463,9 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Provides information for the data and the asset resource name that the
     /// data belongs to. The first `IngestAssetRequest` message must only contain
     /// a `Config` message.
-    indirect case config(IngestAssetRequest.Config?)
+    indirect case config(IngestAssetRequest.Config)
     /// Data to be ingested.
-    indirect case timeIndexedData(IngestAssetRequest.TimeIndexedData?)
+    indirect case timeIndexedData(IngestAssetRequest.TimeIndexedData)
   }
 
   public static var _anyTypeUrl: Swift.String {

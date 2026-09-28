@@ -112,13 +112,13 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       probeType = $0
     }
-    if let httpGet = try container.decodeIfPresent(HTTPGetAction?.self, forKey: .httpGet) {
+    if let httpGet = try container.decodeIfPresent(HTTPGetAction.self, forKey: .httpGet) {
       try probeTypeCheckAndSet(.httpGet(httpGet))
     }
-    if let tcpSocket = try container.decodeIfPresent(TCPSocketAction?.self, forKey: .tcpSocket) {
+    if let tcpSocket = try container.decodeIfPresent(TCPSocketAction.self, forKey: .tcpSocket) {
       try probeTypeCheckAndSet(.tcpSocket(tcpSocket))
     }
-    if let grpc = try container.decodeIfPresent(GRPCAction?.self, forKey: .grpc) {
+    if let grpc = try container.decodeIfPresent(GRPCAction.self, forKey: .grpc) {
       try probeTypeCheckAndSet(.grpc(grpc))
     }
     self.probeType = probeType
@@ -153,13 +153,13 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ProbeTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. HTTPGet specifies the http request to perform.
     /// Exactly one of httpGet, tcpSocket, or grpc must be specified.
-    indirect case httpGet(HTTPGetAction?)
+    indirect case httpGet(HTTPGetAction)
     /// Optional. TCPSocket specifies an action involving a TCP port.
     /// Exactly one of httpGet, tcpSocket, or grpc must be specified.
-    indirect case tcpSocket(TCPSocketAction?)
+    indirect case tcpSocket(TCPSocketAction)
     /// Optional. GRPC specifies an action involving a gRPC port.
     /// Exactly one of httpGet, tcpSocket, or grpc must be specified.
-    indirect case grpc(GRPCAction?)
+    indirect case grpc(GRPCAction)
   }
 
   public static var _anyTypeUrl: Swift.String {

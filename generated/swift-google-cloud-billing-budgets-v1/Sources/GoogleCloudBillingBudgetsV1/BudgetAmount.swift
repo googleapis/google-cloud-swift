@@ -72,12 +72,12 @@ public struct BudgetAmount: Codable, Equatable, GoogleWKT._AnyPackable,
       budgetAmount = $0
     }
     if let specifiedAmount = try container.decodeIfPresent(
-      GoogleType.Money?.self, forKey: .specifiedAmount)
+      GoogleType.Money.self, forKey: .specifiedAmount)
     {
       try budgetAmountCheckAndSet(.specifiedAmount(specifiedAmount))
     }
     if let lastPeriodAmount = try container.decodeIfPresent(
-      LastPeriodAmount?.self, forKey: .lastPeriodAmount)
+      LastPeriodAmount.self, forKey: .lastPeriodAmount)
     {
       try budgetAmountCheckAndSet(.lastPeriodAmount(lastPeriodAmount))
     }
@@ -111,7 +111,7 @@ public struct BudgetAmount: Codable, Equatable, GoogleWKT._AnyPackable,
     /// match the currency of the billing account. If specified when updating a
     /// budget, it must match the currency_code of the existing budget.
     /// The `currency_code` is provided on output.
-    indirect case specifiedAmount(GoogleType.Money?)
+    indirect case specifiedAmount(GoogleType.Money)
     /// Use the last period's actual spend as the budget for the present period.
     /// LastPeriodAmount can only be set when the budget's time period is a
     /// [Filter.calendar_period][google.cloud.billing.budgets.v1.Filter.calendar_period].
@@ -120,7 +120,7 @@ public struct BudgetAmount: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// [google.cloud.billing.budgets.v1.Filter.calendar_period]: <doc:Filter/UsagePeriodOneOf/calendarPeriod(_:)>
     /// [google.cloud.billing.budgets.v1.Filter.custom_period]: <doc:Filter/UsagePeriodOneOf/customPeriod(_:)>
-    indirect case lastPeriodAmount(LastPeriodAmount?)
+    indirect case lastPeriodAmount(LastPeriodAmount)
   }
 
   public static var _anyTypeUrl: Swift.String {

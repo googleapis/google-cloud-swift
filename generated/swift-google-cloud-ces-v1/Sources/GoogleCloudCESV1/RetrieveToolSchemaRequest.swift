@@ -86,7 +86,7 @@ public struct RetrieveToolSchemaRequest: Codable, Equatable, GoogleWKT._AnyPacka
     if let tool = try container.decodeIfPresent(Swift.String.self, forKey: .tool) {
       try toolIdentifierCheckAndSet(.tool(tool))
     }
-    if let toolsetTool = try container.decodeIfPresent(ToolsetTool?.self, forKey: .toolsetTool) {
+    if let toolsetTool = try container.decodeIfPresent(ToolsetTool.self, forKey: .toolsetTool) {
       try toolIdentifierCheckAndSet(.toolsetTool(toolsetTool))
     }
     self.toolIdentifier = toolIdentifier
@@ -123,7 +123,7 @@ public struct RetrieveToolSchemaRequest: Codable, Equatable, GoogleWKT._AnyPacka
     /// Optional. The toolset tool to retrieve the schema for. Only one tool
     /// should match the predicate from the toolset. Otherwise, an error will be
     /// returned.
-    indirect case toolsetTool(ToolsetTool?)
+    indirect case toolsetTool(ToolsetTool)
   }
 
   public static var _anyTypeUrl: Swift.String {

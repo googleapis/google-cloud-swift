@@ -89,7 +89,7 @@
         evaluationFeatureConfig = $0
       }
       if let summarizationConfig = try container.decodeIfPresent(
-        GeneratorEvaluationConfig.SummarizationConfig?.self, forKey: .summarizationConfig)
+        GeneratorEvaluationConfig.SummarizationConfig.self, forKey: .summarizationConfig)
       {
         try evaluationFeatureConfigCheckAndSet(.summarizationConfig(summarizationConfig))
       }
@@ -385,14 +385,14 @@
           sourceSpecificConfig = $0
         }
         if let agentAssistInputDataConfig = try container.decodeIfPresent(
-          GeneratorEvaluationConfig.AgentAssistInputDataConfig?.self,
+          GeneratorEvaluationConfig.AgentAssistInputDataConfig.self,
           forKey: .agentAssistInputDataConfig)
         {
           try sourceSpecificConfigCheckAndSet(
             .agentAssistInputDataConfig(agentAssistInputDataConfig))
         }
         if let datasetInputDataConfig = try container.decodeIfPresent(
-          GeneratorEvaluationConfig.DatasetInputDataConfig?.self, forKey: .datasetInputDataConfig)
+          GeneratorEvaluationConfig.DatasetInputDataConfig.self, forKey: .datasetInputDataConfig)
         {
           try sourceSpecificConfigCheckAndSet(.datasetInputDataConfig(datasetInputDataConfig))
         }
@@ -557,9 +557,9 @@
         /// The distinctive configs for Agent Assist conversations as the
         /// conversation source.
         indirect case agentAssistInputDataConfig(
-          GeneratorEvaluationConfig.AgentAssistInputDataConfig?)
+          GeneratorEvaluationConfig.AgentAssistInputDataConfig)
         /// The distinctive configs for dataset as the conversation source.
-        indirect case datasetInputDataConfig(GeneratorEvaluationConfig.DatasetInputDataConfig?)
+        indirect case datasetInputDataConfig(GeneratorEvaluationConfig.DatasetInputDataConfig)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -826,7 +826,7 @@
     /// Feature used for evaluation.
     public enum EvaluationFeatureConfigOneOf: Codable, Equatable, Sendable {
       /// Evaluation configs for summarization generator.
-      indirect case summarizationConfig(GeneratorEvaluationConfig.SummarizationConfig?)
+      indirect case summarizationConfig(GeneratorEvaluationConfig.SummarizationConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

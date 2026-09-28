@@ -233,45 +233,45 @@
         source = $0
       }
       if let inlineSource = try container.decodeIfPresent(
-        ImportDocumentsRequest.InlineSource?.self, forKey: .inlineSource)
+        ImportDocumentsRequest.InlineSource.self, forKey: .inlineSource)
       {
         try sourceCheckAndSet(.inlineSource(inlineSource))
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       if let bigquerySource = try container.decodeIfPresent(
-        BigQuerySource?.self, forKey: .bigquerySource)
+        BigQuerySource.self, forKey: .bigquerySource)
       {
         try sourceCheckAndSet(.bigquerySource(bigquerySource))
       }
       if let fhirStoreSource = try container.decodeIfPresent(
-        FhirStoreSource?.self, forKey: .fhirStoreSource)
+        FhirStoreSource.self, forKey: .fhirStoreSource)
       {
         try sourceCheckAndSet(.fhirStoreSource(fhirStoreSource))
       }
       if let spannerSource = try container.decodeIfPresent(
-        SpannerSource?.self, forKey: .spannerSource)
+        SpannerSource.self, forKey: .spannerSource)
       {
         try sourceCheckAndSet(.spannerSource(spannerSource))
       }
       if let cloudSqlSource = try container.decodeIfPresent(
-        CloudSqlSource?.self, forKey: .cloudSqlSource)
+        CloudSqlSource.self, forKey: .cloudSqlSource)
       {
         try sourceCheckAndSet(.cloudSqlSource(cloudSqlSource))
       }
       if let firestoreSource = try container.decodeIfPresent(
-        FirestoreSource?.self, forKey: .firestoreSource)
+        FirestoreSource.self, forKey: .firestoreSource)
       {
         try sourceCheckAndSet(.firestoreSource(firestoreSource))
       }
       if let alloyDbSource = try container.decodeIfPresent(
-        AlloyDbSource?.self, forKey: .alloyDbSource)
+        AlloyDbSource.self, forKey: .alloyDbSource)
       {
         try sourceCheckAndSet(.alloyDbSource(alloyDbSource))
       }
       if let bigtableSource = try container.decodeIfPresent(
-        BigtableSource?.self, forKey: .bigtableSource)
+        BigtableSource.self, forKey: .bigtableSource)
       {
         try sourceCheckAndSet(.bigtableSource(bigtableSource))
       }
@@ -514,23 +514,23 @@
     /// Required. The source of the input.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The Inline source for the input content for documents.
-      indirect case inlineSource(ImportDocumentsRequest.InlineSource?)
+      indirect case inlineSource(ImportDocumentsRequest.InlineSource)
       /// Cloud Storage location for the input content.
-      indirect case gcsSource(GcsSource?)
+      indirect case gcsSource(GcsSource)
       /// BigQuery input source.
-      indirect case bigquerySource(BigQuerySource?)
+      indirect case bigquerySource(BigQuerySource)
       /// FhirStore input source.
-      indirect case fhirStoreSource(FhirStoreSource?)
+      indirect case fhirStoreSource(FhirStoreSource)
       /// Spanner input source.
-      indirect case spannerSource(SpannerSource?)
+      indirect case spannerSource(SpannerSource)
       /// Cloud SQL input source.
-      indirect case cloudSqlSource(CloudSqlSource?)
+      indirect case cloudSqlSource(CloudSqlSource)
       /// Firestore input source.
-      indirect case firestoreSource(FirestoreSource?)
+      indirect case firestoreSource(FirestoreSource)
       /// AlloyDB input source.
-      indirect case alloyDbSource(AlloyDbSource?)
+      indirect case alloyDbSource(AlloyDbSource)
       /// Cloud Bigtable input source.
-      indirect case bigtableSource(BigtableSource?)
+      indirect case bigtableSource(BigtableSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -118,7 +118,7 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleWKT._AnyPack
       }
       query = $0
     }
-    if let imageQuery = try container.decodeIfPresent(ImageQuery?.self, forKey: .imageQuery) {
+    if let imageQuery = try container.decodeIfPresent(ImageQuery.self, forKey: .imageQuery) {
       try queryCheckAndSet(.imageQuery(imageQuery))
     }
     if let textQuery = try container.decodeIfPresent(Swift.String.self, forKey: .textQuery) {
@@ -155,7 +155,7 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// The oneof global search query.
   public enum QueryOneOf: Codable, Equatable, Sendable {
     /// An image-only query.
-    indirect case imageQuery(ImageQuery?)
+    indirect case imageQuery(ImageQuery)
     /// A text-only query.
     case textQuery(Swift.String)
   }

@@ -629,7 +629,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
           try facetValueCheckAndSet(.value(value))
         }
-        if let interval = try container.decodeIfPresent(Interval?.self, forKey: .interval) {
+        if let interval = try container.decodeIfPresent(Interval.self, forKey: .interval) {
           try facetValueCheckAndSet(.interval(interval))
         }
         self.facetValue = facetValue
@@ -663,7 +663,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         /// Text value of a facet, such as "Black" for facet "colorFamilies".
         case value(Swift.String)
         /// Interval value for a facet, such as [10, 20) for facet "price".
-        indirect case interval(Interval?)
+        indirect case interval(Interval)
       }
 
       public static var _anyTypeUrl: Swift.String {

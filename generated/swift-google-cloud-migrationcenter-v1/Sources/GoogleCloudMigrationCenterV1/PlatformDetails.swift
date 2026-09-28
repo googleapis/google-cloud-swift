@@ -76,27 +76,27 @@ public struct PlatformDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       vendorDetails = $0
     }
     if let vmwareDetails = try container.decodeIfPresent(
-      VmwarePlatformDetails?.self, forKey: .vmwareDetails)
+      VmwarePlatformDetails.self, forKey: .vmwareDetails)
     {
       try vendorDetailsCheckAndSet(.vmwareDetails(vmwareDetails))
     }
     if let awsEc2Details = try container.decodeIfPresent(
-      AwsEc2PlatformDetails?.self, forKey: .awsEc2Details)
+      AwsEc2PlatformDetails.self, forKey: .awsEc2Details)
     {
       try vendorDetailsCheckAndSet(.awsEc2Details(awsEc2Details))
     }
     if let azureVmDetails = try container.decodeIfPresent(
-      AzureVmPlatformDetails?.self, forKey: .azureVmDetails)
+      AzureVmPlatformDetails.self, forKey: .azureVmDetails)
     {
       try vendorDetailsCheckAndSet(.azureVmDetails(azureVmDetails))
     }
     if let genericDetails = try container.decodeIfPresent(
-      GenericPlatformDetails?.self, forKey: .genericDetails)
+      GenericPlatformDetails.self, forKey: .genericDetails)
     {
       try vendorDetailsCheckAndSet(.genericDetails(genericDetails))
     }
     if let physicalDetails = try container.decodeIfPresent(
-      PhysicalPlatformDetails?.self, forKey: .physicalDetails)
+      PhysicalPlatformDetails.self, forKey: .physicalDetails)
     {
       try vendorDetailsCheckAndSet(.physicalDetails(physicalDetails))
     }
@@ -131,15 +131,15 @@ public struct PlatformDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum VendorDetailsOneOf: Codable, Equatable, Sendable {
     /// VMware specific details.
-    indirect case vmwareDetails(VmwarePlatformDetails?)
+    indirect case vmwareDetails(VmwarePlatformDetails)
     /// AWS EC2 specific details.
-    indirect case awsEc2Details(AwsEc2PlatformDetails?)
+    indirect case awsEc2Details(AwsEc2PlatformDetails)
     /// Azure VM specific details.
-    indirect case azureVmDetails(AzureVmPlatformDetails?)
+    indirect case azureVmDetails(AzureVmPlatformDetails)
     /// Generic platform details.
-    indirect case genericDetails(GenericPlatformDetails?)
+    indirect case genericDetails(GenericPlatformDetails)
     /// Physical machines platform details.
-    indirect case physicalDetails(PhysicalPlatformDetails?)
+    indirect case physicalDetails(PhysicalPlatformDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

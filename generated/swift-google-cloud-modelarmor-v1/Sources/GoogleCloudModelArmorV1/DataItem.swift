@@ -73,7 +73,7 @@ public struct DataItem: Codable, Equatable, GoogleWKT._AnyPackable,
     if let text = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
       try dataItemCheckAndSet(.text(text))
     }
-    if let byteItem = try container.decodeIfPresent(ByteDataItem?.self, forKey: .byteItem) {
+    if let byteItem = try container.decodeIfPresent(ByteDataItem.self, forKey: .byteItem) {
       try dataItemCheckAndSet(.byteItem(byteItem))
     }
     self.dataItem = dataItem
@@ -104,7 +104,7 @@ public struct DataItem: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Plaintext string data for sanitization.
     case text(Swift.String)
     /// Data provided in the form of bytes.
-    indirect case byteItem(ByteDataItem?)
+    indirect case byteItem(ByteDataItem)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -1544,17 +1544,17 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func exportClusterPollingUntilDone(
     name: Swift.String,
-    gcsDestination: GcsDestination?,
+    gcsDestination: GcsDestination,
     database: Swift.String,
-    csvExportOptions: ExportClusterRequest.CsvExportOptions?,
-    sqlExportOptions: ExportClusterRequest.SqlExportOptions?,
+    csvExportOptions: ExportClusterRequest.CsvExportOptions,
+    sqlExportOptions: ExportClusterRequest.SqlExportOptions,
   ) async throws -> ExportClusterResponse {
     let request = ExportClusterRequest().with {
       $0.name = name
-      $0.destination = gcsDestination.map { .gcsDestination($0) }
+      $0.destination = .gcsDestination(gcsDestination)
       $0.database = database
-      $0.exportOptions = csvExportOptions.map { .csvExportOptions($0) }
-      $0.exportOptions = sqlExportOptions.map { .sqlExportOptions($0) }
+      $0.exportOptions = .csvExportOptions(csvExportOptions)
+      $0.exportOptions = .sqlExportOptions(sqlExportOptions)
     }
     return try await self.exportClusterPollingUntilDone(request: request)
   }

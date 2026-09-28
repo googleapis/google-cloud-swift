@@ -92,7 +92,7 @@ public struct NewBucketConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       option = $0
     }
-    if let autoclass = try container.decodeIfPresent(GcsAutoclassConfig?.self, forKey: .autoclass) {
+    if let autoclass = try container.decodeIfPresent(GcsAutoclassConfig.self, forKey: .autoclass) {
       try optionCheckAndSet(.autoclass(autoclass))
     }
     if let storageClass = try container.decodeIfPresent(
@@ -262,7 +262,7 @@ public struct NewBucketConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum OptionOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that the bucket should use
     /// [Autoclass](https://cloud.google.com/storage/docs/autoclass).
-    indirect case autoclass(GcsAutoclassConfig?)
+    indirect case autoclass(GcsAutoclassConfig)
     /// Optional. Immutable. If set, uses the provided storage class as the
     /// bucket's default storage class.
     case storageClass(NewBucketConfig.StorageClass)

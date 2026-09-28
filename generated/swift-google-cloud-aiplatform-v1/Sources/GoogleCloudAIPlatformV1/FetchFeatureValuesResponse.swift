@@ -82,12 +82,12 @@
         format = $0
       }
       if let keyValues = try container.decodeIfPresent(
-        FetchFeatureValuesResponse.FeatureNameValuePairList?.self, forKey: .keyValues)
+        FetchFeatureValuesResponse.FeatureNameValuePairList.self, forKey: .keyValues)
       {
         try formatCheckAndSet(.keyValues(keyValues))
       }
       if let protoStruct = try container.decodeIfPresent(
-        GoogleWKT.WKTStruct?.self, forKey: .protoStruct)
+        GoogleWKT.WKTStruct.self, forKey: .protoStruct)
       {
         try formatCheckAndSet(.protoStruct(protoStruct))
       }
@@ -235,7 +235,7 @@
             }
             data = $0
           }
-          if let value = try container.decodeIfPresent(FeatureValue?.self, forKey: .value) {
+          if let value = try container.decodeIfPresent(FeatureValue.self, forKey: .value) {
             try dataCheckAndSet(.value(value))
           }
           self.data = data
@@ -262,7 +262,7 @@
 
         public enum DataOneOf: Codable, Equatable, Sendable {
           /// Feature value.
-          indirect case value(FeatureValue?)
+          indirect case value(FeatureValue)
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -291,9 +291,9 @@
 
     public enum FormatOneOf: Codable, Equatable, Sendable {
       /// Feature values in KeyValue format.
-      indirect case keyValues(FetchFeatureValuesResponse.FeatureNameValuePairList?)
+      indirect case keyValues(FetchFeatureValuesResponse.FeatureNameValuePairList)
       /// Feature values in proto Struct format.
-      indirect case protoStruct(GoogleWKT.WKTStruct?)
+      indirect case protoStruct(GoogleWKT.WKTStruct)
     }
 
     public static var _anyTypeUrl: Swift.String {

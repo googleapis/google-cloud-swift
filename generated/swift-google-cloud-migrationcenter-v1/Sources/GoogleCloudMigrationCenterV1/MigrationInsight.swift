@@ -76,7 +76,7 @@ public struct MigrationInsight: Codable, Equatable, GoogleWKT._AnyPackable,
       migrationTarget = $0
     }
     if let computeEngineTarget = try container.decodeIfPresent(
-      ComputeEngineMigrationTarget?.self, forKey: .computeEngineTarget)
+      ComputeEngineMigrationTarget.self, forKey: .computeEngineTarget)
     {
       try migrationTargetCheckAndSet(.computeEngineTarget(computeEngineTarget))
     }
@@ -105,7 +105,7 @@ public struct MigrationInsight: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A target for the migration.
   public enum MigrationTargetOneOf: Codable, Equatable, Sendable {
     /// Output only. A Google Compute Engine target.
-    indirect case computeEngineTarget(ComputeEngineMigrationTarget?)
+    indirect case computeEngineTarget(ComputeEngineMigrationTarget)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -70,8 +70,7 @@ public struct RepoId: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       id = $0
     }
-    if let projectRepoId = try container.decodeIfPresent(
-      ProjectRepoId?.self, forKey: .projectRepoId)
+    if let projectRepoId = try container.decodeIfPresent(ProjectRepoId.self, forKey: .projectRepoId)
     {
       try idCheckAndSet(.projectRepoId(projectRepoId))
     }
@@ -105,7 +104,7 @@ public struct RepoId: Codable, Equatable, GoogleWKT._AnyPackable,
   /// repository name combination, or its globally unique identifier.
   public enum IdOneOf: Codable, Equatable, Sendable {
     /// A combination of a project ID and a repo name.
-    indirect case projectRepoId(ProjectRepoId?)
+    indirect case projectRepoId(ProjectRepoId)
     /// A server-assigned, globally unique identifier.
     case uid(Swift.String)
   }

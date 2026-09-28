@@ -129,7 +129,7 @@
         }
         source = $0
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
@@ -159,7 +159,7 @@
     /// The source of the input.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The Google Cloud Storage location for the input content.
-      indirect case gcsSource(GcsSource?)
+      indirect case gcsSource(GcsSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

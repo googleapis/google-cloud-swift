@@ -73,17 +73,17 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
       action = $0
     }
     if let respondImmediately = try container.decodeIfPresent(
-      TriggerAction.RespondImmediately?.self, forKey: .respondImmediately)
+      TriggerAction.RespondImmediately.self, forKey: .respondImmediately)
     {
       try actionCheckAndSet(.respondImmediately(respondImmediately))
     }
     if let transferAgent = try container.decodeIfPresent(
-      TriggerAction.TransferAgent?.self, forKey: .transferAgent)
+      TriggerAction.TransferAgent.self, forKey: .transferAgent)
     {
       try actionCheckAndSet(.transferAgent(transferAgent))
     }
     if let generativeAnswer = try container.decodeIfPresent(
-      TriggerAction.GenerativeAnswer?.self, forKey: .generativeAnswer)
+      TriggerAction.GenerativeAnswer.self, forKey: .generativeAnswer)
     {
       try actionCheckAndSet(.generativeAnswer(generativeAnswer))
     }
@@ -402,11 +402,11 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The action to take.
   public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Optional. Immediately respond with a preconfigured response.
-    indirect case respondImmediately(TriggerAction.RespondImmediately?)
+    indirect case respondImmediately(TriggerAction.RespondImmediately)
     /// Optional. Transfer the conversation to a different agent.
-    indirect case transferAgent(TriggerAction.TransferAgent?)
+    indirect case transferAgent(TriggerAction.TransferAgent)
     /// Optional. Respond with a generative answer.
-    indirect case generativeAnswer(TriggerAction.GenerativeAnswer?)
+    indirect case generativeAnswer(TriggerAction.GenerativeAnswer)
   }
 
   public static var _anyTypeUrl: Swift.String {

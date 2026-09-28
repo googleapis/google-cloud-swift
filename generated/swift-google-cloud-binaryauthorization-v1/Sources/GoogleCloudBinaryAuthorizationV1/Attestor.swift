@@ -107,7 +107,7 @@ public struct Attestor: Codable, Equatable, GoogleWKT._AnyPackable,
       attestorType = $0
     }
     if let userOwnedGrafeasNote = try container.decodeIfPresent(
-      UserOwnedGrafeasNote?.self, forKey: .userOwnedGrafeasNote)
+      UserOwnedGrafeasNote.self, forKey: .userOwnedGrafeasNote)
     {
       try attestorTypeCheckAndSet(.userOwnedGrafeasNote(userOwnedGrafeasNote))
     }
@@ -139,7 +139,7 @@ public struct Attestor: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum AttestorTypeOneOf: Codable, Equatable, Sendable {
     /// This specifies how an attestation will be read, and how it will be used
     /// during policy enforcement.
-    indirect case userOwnedGrafeasNote(UserOwnedGrafeasNote?)
+    indirect case userOwnedGrafeasNote(UserOwnedGrafeasNote)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -107,7 +107,7 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let inlineDocument = try container.decodeIfPresent(Document?.self, forKey: .inlineDocument) {
+    if let inlineDocument = try container.decodeIfPresent(Document.self, forKey: .inlineDocument) {
       try sourceCheckAndSet(.inlineDocument(inlineDocument))
     }
     self.source = source
@@ -249,7 +249,7 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The document payload.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// An inline document proto.
-    indirect case inlineDocument(Document?)
+    indirect case inlineDocument(Document)
   }
 
   public static var _anyTypeUrl: Swift.String {

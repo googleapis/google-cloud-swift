@@ -74,12 +74,11 @@ public struct ConnectionDetail: Codable, Equatable, GoogleWKT._AnyPackable,
       connection = $0
     }
     if let pscAutoConnection = try container.decodeIfPresent(
-      PscAutoConnection?.self, forKey: .pscAutoConnection)
+      PscAutoConnection.self, forKey: .pscAutoConnection)
     {
       try connectionCheckAndSet(.pscAutoConnection(pscAutoConnection))
     }
-    if let pscConnection = try container.decodeIfPresent(
-      PscConnection?.self, forKey: .pscConnection)
+    if let pscConnection = try container.decodeIfPresent(PscConnection.self, forKey: .pscConnection)
     {
       try connectionCheckAndSet(.pscConnection(pscConnection))
     }
@@ -113,10 +112,10 @@ public struct ConnectionDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ConnectionOneOf: Codable, Equatable, Sendable {
     /// Detailed information of a PSC connection that is created through
     /// service connectivity automation.
-    indirect case pscAutoConnection(PscAutoConnection?)
+    indirect case pscAutoConnection(PscAutoConnection)
     /// Detailed information of a PSC connection that is created by the customer
     /// who owns the cluster.
-    indirect case pscConnection(PscConnection?)
+    indirect case pscConnection(PscConnection)
   }
 
   public static var _anyTypeUrl: Swift.String {

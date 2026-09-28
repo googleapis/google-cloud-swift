@@ -123,16 +123,16 @@ public struct Dashboard: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       layout = $0
     }
-    if let gridLayout = try container.decodeIfPresent(GridLayout?.self, forKey: .gridLayout) {
+    if let gridLayout = try container.decodeIfPresent(GridLayout.self, forKey: .gridLayout) {
       try layoutCheckAndSet(.gridLayout(gridLayout))
     }
-    if let mosaicLayout = try container.decodeIfPresent(MosaicLayout?.self, forKey: .mosaicLayout) {
+    if let mosaicLayout = try container.decodeIfPresent(MosaicLayout.self, forKey: .mosaicLayout) {
       try layoutCheckAndSet(.mosaicLayout(mosaicLayout))
     }
-    if let rowLayout = try container.decodeIfPresent(RowLayout?.self, forKey: .rowLayout) {
+    if let rowLayout = try container.decodeIfPresent(RowLayout.self, forKey: .rowLayout) {
       try layoutCheckAndSet(.rowLayout(rowLayout))
     }
-    if let columnLayout = try container.decodeIfPresent(ColumnLayout?.self, forKey: .columnLayout) {
+    if let columnLayout = try container.decodeIfPresent(ColumnLayout.self, forKey: .columnLayout) {
       try layoutCheckAndSet(.columnLayout(columnLayout))
     }
     self.layout = layout
@@ -171,16 +171,16 @@ public struct Dashboard: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum LayoutOneOf: Codable, Equatable, Sendable {
     /// Content is arranged with a basic layout that re-flows a simple list of
     /// informational elements like widgets or tiles.
-    indirect case gridLayout(GridLayout?)
+    indirect case gridLayout(GridLayout)
     /// The content is arranged as a grid of tiles, with each content widget
     /// occupying one or more grid blocks.
-    indirect case mosaicLayout(MosaicLayout?)
+    indirect case mosaicLayout(MosaicLayout)
     /// The content is divided into equally spaced rows and the widgets are
     /// arranged horizontally.
-    indirect case rowLayout(RowLayout?)
+    indirect case rowLayout(RowLayout)
     /// The content is divided into equally spaced columns and the widgets are
     /// arranged vertically.
-    indirect case columnLayout(ColumnLayout?)
+    indirect case columnLayout(ColumnLayout)
   }
 
   public static var _anyTypeUrl: Swift.String {

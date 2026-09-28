@@ -115,11 +115,11 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
       try kindCheckAndSet(.boolValue(boolValue))
     }
     if let timestampValue = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .timestampValue)
+      GoogleWKT.WKTTimestamp.self, forKey: .timestampValue)
     {
       try kindCheckAndSet(.timestampValue(timestampValue))
     }
-    if let enumValue = try container.decodeIfPresent(TagField.EnumValue?.self, forKey: .enumValue) {
+    if let enumValue = try container.decodeIfPresent(TagField.EnumValue.self, forKey: .enumValue) {
       try kindCheckAndSet(.enumValue(enumValue))
     }
     if let richtextValue = try container.decodeIfPresent(Swift.String.self, forKey: .richtextValue)
@@ -238,11 +238,11 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The value of a tag field with a boolean type.
     case boolValue(Swift.Bool)
     /// The value of a tag field with a timestamp type.
-    indirect case timestampValue(GoogleWKT.WKTTimestamp?)
+    indirect case timestampValue(GoogleWKT.WKTTimestamp)
     /// The value of a tag field with an enum type.
     ///
     /// This value must be one of the allowed values listed in this enum.
-    indirect case enumValue(TagField.EnumValue?)
+    indirect case enumValue(TagField.EnumValue)
     /// The value of a tag field with a rich text type.
     ///
     /// The maximum length is 10 MiB as this value holds HTML descriptions

@@ -84,22 +84,22 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       config = $0
     }
     if let googleServiceAccountConfig = try container.decodeIfPresent(
-      GoogleServiceAccountConfig?.self, forKey: .googleServiceAccountConfig)
+      GoogleServiceAccountConfig.self, forKey: .googleServiceAccountConfig)
     {
       try configCheckAndSet(.googleServiceAccountConfig(googleServiceAccountConfig))
     }
     if let userPasswordConfig = try container.decodeIfPresent(
-      AuthConfig.UserPasswordConfig?.self, forKey: .userPasswordConfig)
+      AuthConfig.UserPasswordConfig.self, forKey: .userPasswordConfig)
     {
       try configCheckAndSet(.userPasswordConfig(userPasswordConfig))
     }
     if let apiKeyConfig = try container.decodeIfPresent(
-      AuthConfig.ApiKeyConfig?.self, forKey: .apiKeyConfig)
+      AuthConfig.ApiKeyConfig.self, forKey: .apiKeyConfig)
     {
       try configCheckAndSet(.apiKeyConfig(apiKeyConfig))
     }
     if let oauth2ClientCredentialsConfig = try container.decodeIfPresent(
-      AuthConfig.Oauth2ClientCredentialsConfig?.self, forKey: .oauth2ClientCredentialsConfig)
+      AuthConfig.Oauth2ClientCredentialsConfig.self, forKey: .oauth2ClientCredentialsConfig)
     {
       try configCheckAndSet(.oauth2ClientCredentialsConfig(oauth2ClientCredentialsConfig))
     }
@@ -521,13 +521,13 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Supported auth types.
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Google Service Account.
-    indirect case googleServiceAccountConfig(GoogleServiceAccountConfig?)
+    indirect case googleServiceAccountConfig(GoogleServiceAccountConfig)
     /// User Password.
-    indirect case userPasswordConfig(AuthConfig.UserPasswordConfig?)
+    indirect case userPasswordConfig(AuthConfig.UserPasswordConfig)
     /// Api Key Config.
-    indirect case apiKeyConfig(AuthConfig.ApiKeyConfig?)
+    indirect case apiKeyConfig(AuthConfig.ApiKeyConfig)
     /// Oauth2.0 Client Credentials.
-    indirect case oauth2ClientCredentialsConfig(AuthConfig.Oauth2ClientCredentialsConfig?)
+    indirect case oauth2ClientCredentialsConfig(AuthConfig.Oauth2ClientCredentialsConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

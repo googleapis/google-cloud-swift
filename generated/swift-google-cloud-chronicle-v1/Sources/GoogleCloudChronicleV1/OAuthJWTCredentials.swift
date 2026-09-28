@@ -82,8 +82,7 @@ public struct OAuthJWTCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       credentials = $0
     }
-    if let rsCredentials = try container.decodeIfPresent(
-      RSCredentials?.self, forKey: .rsCredentials)
+    if let rsCredentials = try container.decodeIfPresent(RSCredentials.self, forKey: .rsCredentials)
     {
       try credentialsCheckAndSet(.rsCredentials(rsCredentials))
     }
@@ -113,7 +112,7 @@ public struct OAuthJWTCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Credentials.
   public enum CredentialsOneOf: Codable, Equatable, Sendable {
     /// RS credentials.
-    indirect case rsCredentials(RSCredentials?)
+    indirect case rsCredentials(RSCredentials)
   }
 
   public static var _anyTypeUrl: Swift.String {

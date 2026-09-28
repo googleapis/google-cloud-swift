@@ -76,12 +76,12 @@
         response = $0
       }
       if let selectEntity = try container.decodeIfPresent(
-        DeleteFeatureValuesResponse.SelectEntity?.self, forKey: .selectEntity)
+        DeleteFeatureValuesResponse.SelectEntity.self, forKey: .selectEntity)
       {
         try responseCheckAndSet(.selectEntity(selectEntity))
       }
       if let selectTimeRangeAndFeature = try container.decodeIfPresent(
-        DeleteFeatureValuesResponse.SelectTimeRangeAndFeature?.self,
+        DeleteFeatureValuesResponse.SelectTimeRangeAndFeature.self,
         forKey: .selectTimeRangeAndFeature)
       {
         try responseCheckAndSet(.selectTimeRangeAndFeature(selectTimeRangeAndFeature))
@@ -307,10 +307,9 @@
     /// request
     public enum ResponseOneOf: Codable, Equatable, Sendable {
       /// Response for request specifying the entities to delete
-      indirect case selectEntity(DeleteFeatureValuesResponse.SelectEntity?)
+      indirect case selectEntity(DeleteFeatureValuesResponse.SelectEntity)
       /// Response for request specifying time range and feature
-      indirect case selectTimeRangeAndFeature(
-        DeleteFeatureValuesResponse.SelectTimeRangeAndFeature?)
+      indirect case selectTimeRangeAndFeature(DeleteFeatureValuesResponse.SelectTimeRangeAndFeature)
     }
 
     public static var _anyTypeUrl: Swift.String {

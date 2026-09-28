@@ -103,12 +103,11 @@ public struct StreamAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       annotationPayload = $0
     }
-    if let activeZone = try container.decodeIfPresent(NormalizedPolygon?.self, forKey: .activeZone)
-    {
+    if let activeZone = try container.decodeIfPresent(NormalizedPolygon.self, forKey: .activeZone) {
       try annotationPayloadCheckAndSet(.activeZone(activeZone))
     }
     if let crossingLine = try container.decodeIfPresent(
-      NormalizedPolyline?.self, forKey: .crossingLine)
+      NormalizedPolyline.self, forKey: .crossingLine)
     {
       try annotationPayloadCheckAndSet(.crossingLine(crossingLine))
     }
@@ -141,9 +140,9 @@ public struct StreamAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum AnnotationPayloadOneOf: Codable, Equatable, Sendable {
     /// Annotation for type ACTIVE_ZONE
-    indirect case activeZone(NormalizedPolygon?)
+    indirect case activeZone(NormalizedPolygon)
     /// Annotation for type CROSSING_LINE
-    indirect case crossingLine(NormalizedPolyline?)
+    indirect case crossingLine(NormalizedPolyline)
   }
 
   public static var _anyTypeUrl: Swift.String {

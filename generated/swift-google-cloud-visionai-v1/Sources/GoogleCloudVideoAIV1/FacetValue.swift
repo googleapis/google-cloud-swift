@@ -79,7 +79,7 @@ public struct FacetValue: Codable, Equatable, GoogleWKT._AnyPackable,
       try valueCheckAndSet(.integerValue(integerValue))
     }
     if let datetimeValue = try container.decodeIfPresent(
-      GoogleType.DateTime?.self, forKey: .datetimeValue)
+      GoogleType.DateTime.self, forKey: .datetimeValue)
     {
       try valueCheckAndSet(.datetimeValue(datetimeValue))
     }
@@ -114,7 +114,7 @@ public struct FacetValue: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Integer type value.
     case integerValue(Swift.Int64)
     /// Datetime type value.
-    indirect case datetimeValue(GoogleType.DateTime?)
+    indirect case datetimeValue(GoogleType.DateTime)
   }
 
   public static var _anyTypeUrl: Swift.String {

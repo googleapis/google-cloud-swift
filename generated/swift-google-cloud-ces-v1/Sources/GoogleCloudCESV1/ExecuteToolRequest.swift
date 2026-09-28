@@ -108,7 +108,7 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let tool = try container.decodeIfPresent(Swift.String.self, forKey: .tool) {
       try toolIdentifierCheckAndSet(.tool(tool))
     }
-    if let toolsetTool = try container.decodeIfPresent(ToolsetTool?.self, forKey: .toolsetTool) {
+    if let toolsetTool = try container.decodeIfPresent(ToolsetTool.self, forKey: .toolsetTool) {
       try toolIdentifierCheckAndSet(.toolsetTool(toolsetTool))
     }
     self.toolIdentifier = toolIdentifier
@@ -123,11 +123,10 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       toolExecutionContext = $0
     }
-    if let variables = try container.decodeIfPresent(GoogleWKT.WKTStruct?.self, forKey: .variables)
-    {
+    if let variables = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .variables) {
       try toolExecutionContextCheckAndSet(.variables(variables))
     }
-    if let context = try container.decodeIfPresent(GoogleWKT.WKTStruct?.self, forKey: .context) {
+    if let context = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .context) {
       try toolExecutionContextCheckAndSet(.context(context))
     }
     self.toolExecutionContext = toolExecutionContext
@@ -174,17 +173,17 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     case tool(Swift.String)
     /// Optional. The toolset tool to execute. Only one tool should match the
     /// predicate from the toolset. Otherwise, an error will be returned.
-    indirect case toolsetTool(ToolsetTool?)
+    indirect case toolsetTool(ToolsetTool)
   }
 
   /// Additional context to be provided for the tool execution
   public enum ToolExecutionContextOneOf: Codable, Equatable, Sendable {
     /// Optional. The variables that are available for the tool execution.
-    indirect case variables(GoogleWKT.WKTStruct?)
+    indirect case variables(GoogleWKT.WKTStruct)
     /// Optional. The
     /// [ToolCallContext](https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/python#environment
     /// for details) to be passed to the Python tool.
-    indirect case context(GoogleWKT.WKTStruct?)
+    indirect case context(GoogleWKT.WKTStruct)
   }
 
   public static var _anyTypeUrl: Swift.String {

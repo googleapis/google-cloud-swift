@@ -136,7 +136,7 @@ public struct ConnectCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       platformConfig = $0
     }
-    if let gcpConfig = try container.decodeIfPresent(ConnectGcpConfig?.self, forKey: .gcpConfig) {
+    if let gcpConfig = try container.decodeIfPresent(ConnectGcpConfig.self, forKey: .gcpConfig) {
       try platformConfigCheckAndSet(.gcpConfig(gcpConfig))
     }
     self.platformConfig = platformConfig
@@ -296,7 +296,7 @@ public struct ConnectCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum PlatformConfigOneOf: Codable, Equatable, Sendable {
     /// Required. Configuration properties for a Kafka Connect cluster deployed
     /// to Google Cloud Platform.
-    indirect case gcpConfig(ConnectGcpConfig?)
+    indirect case gcpConfig(ConnectGcpConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

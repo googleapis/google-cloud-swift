@@ -534,16 +534,16 @@
           }
           source = $0
         }
-        if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+        if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
           try sourceCheckAndSet(.gcsSource(gcsSource))
         }
         if let bigquerySource = try container.decodeIfPresent(
-          BigQuerySource?.self, forKey: .bigquerySource)
+          BigQuerySource.self, forKey: .bigquerySource)
         {
           try sourceCheckAndSet(.bigquerySource(bigquerySource))
         }
         if let vertexMultimodalDatasetSource = try container.decodeIfPresent(
-          VertexMultimodalDatasetSource?.self, forKey: .vertexMultimodalDatasetSource)
+          VertexMultimodalDatasetSource.self, forKey: .vertexMultimodalDatasetSource)
         {
           try sourceCheckAndSet(.vertexMultimodalDatasetSource(vertexMultimodalDatasetSource))
         }
@@ -576,16 +576,16 @@
       /// Required. The source of the input.
       public enum SourceOneOf: Codable, Equatable, Sendable {
         /// The Cloud Storage location for the input instances.
-        indirect case gcsSource(GcsSource?)
+        indirect case gcsSource(GcsSource)
         /// The BigQuery location of the input table.
         /// The schema of the table should be in the format described by the given
         /// context OpenAPI Schema, if one is provided. The table may contain
         /// additional columns that are not described by the schema, and they will
         /// be ignored.
-        indirect case bigquerySource(BigQuerySource?)
+        indirect case bigquerySource(BigQuerySource)
         /// A Vertex Managed Dataset. Currently, only datasets of type Multimodal
         /// are supported.
-        indirect case vertexMultimodalDatasetSource(VertexMultimodalDatasetSource?)
+        indirect case vertexMultimodalDatasetSource(VertexMultimodalDatasetSource)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -866,17 +866,17 @@
           destination = $0
         }
         if let gcsDestination = try container.decodeIfPresent(
-          GcsDestination?.self, forKey: .gcsDestination)
+          GcsDestination.self, forKey: .gcsDestination)
         {
           try destinationCheckAndSet(.gcsDestination(gcsDestination))
         }
         if let bigqueryDestination = try container.decodeIfPresent(
-          BigQueryDestination?.self, forKey: .bigqueryDestination)
+          BigQueryDestination.self, forKey: .bigqueryDestination)
         {
           try destinationCheckAndSet(.bigqueryDestination(bigqueryDestination))
         }
         if let vertexMultimodalDatasetDestination = try container.decodeIfPresent(
-          VertexMultimodalDatasetDestination?.self, forKey: .vertexMultimodalDatasetDestination)
+          VertexMultimodalDatasetDestination.self, forKey: .vertexMultimodalDatasetDestination)
         {
           try destinationCheckAndSet(
             .vertexMultimodalDatasetDestination(vertexMultimodalDatasetDestination))
@@ -936,7 +936,7 @@
         /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
         /// [google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]: <doc:PredictSchemata/parametersSchemaUri>
         /// [google.rpc.Status]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status
-        indirect case gcsDestination(GcsDestination?)
+        indirect case gcsDestination(GcsDestination)
         /// The BigQuery project or dataset location where the output is to be
         /// written to. If project is provided, a new dataset is created with name
         /// `prediction_<model-display-name>_<job-create-time>`
@@ -961,10 +961,10 @@
         /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
         /// [google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]: <doc:PredictSchemata/parametersSchemaUri>
         /// [google.rpc.Status]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status
-        indirect case bigqueryDestination(BigQueryDestination?)
+        indirect case bigqueryDestination(BigQueryDestination)
         /// The details for a Vertex Multimodal Dataset that will be created for
         /// the output.
-        indirect case vertexMultimodalDatasetDestination(VertexMultimodalDatasetDestination?)
+        indirect case vertexMultimodalDatasetDestination(VertexMultimodalDatasetDestination)
       }
 
       public static var _anyTypeUrl: Swift.String {

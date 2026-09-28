@@ -106,25 +106,25 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleWKT._AnyPackable,
       gcpResourceProperties = $0
     }
     if let computeInstanceDatasourceProperties = try container.decodeIfPresent(
-      ComputeInstanceDataSourceProperties?.self, forKey: .computeInstanceDatasourceProperties)
+      ComputeInstanceDataSourceProperties.self, forKey: .computeInstanceDatasourceProperties)
     {
       try gcpResourcePropertiesCheckAndSet(
         .computeInstanceDatasourceProperties(computeInstanceDatasourceProperties))
     }
     if let cloudSqlInstanceDatasourceProperties = try container.decodeIfPresent(
-      CloudSqlInstanceDataSourceProperties?.self, forKey: .cloudSqlInstanceDatasourceProperties)
+      CloudSqlInstanceDataSourceProperties.self, forKey: .cloudSqlInstanceDatasourceProperties)
     {
       try gcpResourcePropertiesCheckAndSet(
         .cloudSqlInstanceDatasourceProperties(cloudSqlInstanceDatasourceProperties))
     }
     if let alloyDbClusterDatasourceProperties = try container.decodeIfPresent(
-      AlloyDBClusterDataSourceProperties?.self, forKey: .alloyDbClusterDatasourceProperties)
+      AlloyDBClusterDataSourceProperties.self, forKey: .alloyDbClusterDatasourceProperties)
     {
       try gcpResourcePropertiesCheckAndSet(
         .alloyDbClusterDatasourceProperties(alloyDbClusterDatasourceProperties))
     }
     if let diskDatasourceProperties = try container.decodeIfPresent(
-      DiskDataSourceProperties?.self, forKey: .diskDatasourceProperties)
+      DiskDataSourceProperties.self, forKey: .diskDatasourceProperties)
     {
       try gcpResourcePropertiesCheckAndSet(.diskDatasourceProperties(diskDatasourceProperties))
     }
@@ -162,16 +162,16 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum GcpResourcePropertiesOneOf: Codable, Equatable, Sendable {
     /// ComputeInstanceDataSourceProperties has a subset of Compute Instance
     /// properties that are useful at the Datasource level.
-    indirect case computeInstanceDatasourceProperties(ComputeInstanceDataSourceProperties?)
+    indirect case computeInstanceDatasourceProperties(ComputeInstanceDataSourceProperties)
     /// Output only. CloudSqlInstanceDataSourceProperties has a subset of Cloud
     /// SQL Instance properties that are useful at the Datasource level.
-    indirect case cloudSqlInstanceDatasourceProperties(CloudSqlInstanceDataSourceProperties?)
+    indirect case cloudSqlInstanceDatasourceProperties(CloudSqlInstanceDataSourceProperties)
     /// Output only. AlloyDBClusterDataSourceProperties has a subset of AlloyDB
     /// cluster properties that are useful at the Datasource level.
-    indirect case alloyDbClusterDatasourceProperties(AlloyDBClusterDataSourceProperties?)
+    indirect case alloyDbClusterDatasourceProperties(AlloyDBClusterDataSourceProperties)
     /// DiskDataSourceProperties has a subset of Disk properties that are useful
     /// at the Datasource level.
-    indirect case diskDatasourceProperties(DiskDataSourceProperties?)
+    indirect case diskDatasourceProperties(DiskDataSourceProperties)
   }
 
   public static var _anyTypeUrl: Swift.String {

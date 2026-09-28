@@ -90,7 +90,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      GcsDestination?.self, forKey: .gcsDestination)
+      GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
@@ -166,7 +166,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Callers should expect no partial outputs. If there is any error during
     /// document translation, no output will be stored in the Cloud Storage
     /// bucket.
-    indirect case gcsDestination(GcsDestination?)
+    indirect case gcsDestination(GcsDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

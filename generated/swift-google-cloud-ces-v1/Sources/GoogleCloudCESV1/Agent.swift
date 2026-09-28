@@ -267,11 +267,11 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       agentType = $0
     }
-    if let llmAgent = try container.decodeIfPresent(Agent.LlmAgent?.self, forKey: .llmAgent) {
+    if let llmAgent = try container.decodeIfPresent(Agent.LlmAgent.self, forKey: .llmAgent) {
       try agentTypeCheckAndSet(.llmAgent(llmAgent))
     }
     if let remoteDialogflowAgent = try container.decodeIfPresent(
-      Agent.RemoteDialogflowAgent?.self, forKey: .remoteDialogflowAgent)
+      Agent.RemoteDialogflowAgent.self, forKey: .remoteDialogflowAgent)
     {
       try agentTypeCheckAndSet(.remoteDialogflowAgent(remoteDialogflowAgent))
     }
@@ -612,7 +612,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of agent.
   public enum AgentTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. The default agent type.
-    indirect case llmAgent(Agent.LlmAgent?)
+    indirect case llmAgent(Agent.LlmAgent)
     /// Optional. The remote
     /// [Dialogflow](https://cloud.google.com/dialogflow/cx/docs/concept/console-conversational-agents)
     /// agent to be used for the agent execution. If this field is set, all other
@@ -621,7 +621,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Note: If the Dialogflow agent is in a different project from the app, you
     /// should grant `roles/dialogflow.client` to the CES service agent
     /// `service-<PROJECT-NUMBER>@gcp-sa-ces.iam.gserviceaccount.com`.
-    indirect case remoteDialogflowAgent(Agent.RemoteDialogflowAgent?)
+    indirect case remoteDialogflowAgent(Agent.RemoteDialogflowAgent)
   }
 
   public static var _anyTypeUrl: Swift.String {

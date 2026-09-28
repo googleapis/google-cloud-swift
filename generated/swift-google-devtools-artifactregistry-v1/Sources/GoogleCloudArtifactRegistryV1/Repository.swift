@@ -226,12 +226,12 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       formatConfig = $0
     }
     if let mavenConfig = try container.decodeIfPresent(
-      Repository.MavenRepositoryConfig?.self, forKey: .mavenConfig)
+      Repository.MavenRepositoryConfig.self, forKey: .mavenConfig)
     {
       try formatConfigCheckAndSet(.mavenConfig(mavenConfig))
     }
     if let dockerConfig = try container.decodeIfPresent(
-      Repository.DockerRepositoryConfig?.self, forKey: .dockerConfig)
+      Repository.DockerRepositoryConfig.self, forKey: .dockerConfig)
     {
       try formatConfigCheckAndSet(.dockerConfig(dockerConfig))
     }
@@ -248,12 +248,12 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       modeConfig = $0
     }
     if let virtualRepositoryConfig = try container.decodeIfPresent(
-      VirtualRepositoryConfig?.self, forKey: .virtualRepositoryConfig)
+      VirtualRepositoryConfig.self, forKey: .virtualRepositoryConfig)
     {
       try modeConfigCheckAndSet(.virtualRepositoryConfig(virtualRepositoryConfig))
     }
     if let remoteRepositoryConfig = try container.decodeIfPresent(
-      RemoteRepositoryConfig?.self, forKey: .remoteRepositoryConfig)
+      RemoteRepositoryConfig.self, forKey: .remoteRepositoryConfig)
     {
       try modeConfigCheckAndSet(.remoteRepositoryConfig(remoteRepositoryConfig))
     }
@@ -1236,19 +1236,19 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum FormatConfigOneOf: Codable, Equatable, Sendable {
     /// Maven repository config contains repository level configuration
     /// for the repositories of maven type.
-    indirect case mavenConfig(Repository.MavenRepositoryConfig?)
+    indirect case mavenConfig(Repository.MavenRepositoryConfig)
     /// Docker repository config contains repository level configuration
     /// for the repositories of docker type.
-    indirect case dockerConfig(Repository.DockerRepositoryConfig?)
+    indirect case dockerConfig(Repository.DockerRepositoryConfig)
   }
 
   /// Repository configuration specific to the Mode value being selected (Remote
   /// or Virtual)
   public enum ModeConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration specific for a Virtual Repository.
-    indirect case virtualRepositoryConfig(VirtualRepositoryConfig?)
+    indirect case virtualRepositoryConfig(VirtualRepositoryConfig)
     /// Configuration specific for a Remote Repository.
-    indirect case remoteRepositoryConfig(RemoteRepositoryConfig?)
+    indirect case remoteRepositoryConfig(RemoteRepositoryConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

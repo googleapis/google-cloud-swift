@@ -111,10 +111,10 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       endpoint = $0
     }
-    if let srtPush = try container.decodeIfPresent(SrtPushOutputEndpoint?.self, forKey: .srtPush) {
+    if let srtPush = try container.decodeIfPresent(SrtPushOutputEndpoint.self, forKey: .srtPush) {
       try endpointCheckAndSet(.srtPush(srtPush))
     }
-    if let rtmpPush = try container.decodeIfPresent(RtmpPushOutputEndpoint?.self, forKey: .rtmpPush)
+    if let rtmpPush = try container.decodeIfPresent(RtmpPushOutputEndpoint.self, forKey: .rtmpPush)
     {
       try endpointCheckAndSet(.rtmpPush(rtmpPush))
     }
@@ -286,9 +286,9 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configurations for the output endpoint by streaming protocols.
   public enum EndpointOneOf: Codable, Equatable, Sendable {
     /// Output endpoint using SRT_PUSH.
-    indirect case srtPush(SrtPushOutputEndpoint?)
+    indirect case srtPush(SrtPushOutputEndpoint)
     /// Output endpoint using RTMP_PUSH.
-    indirect case rtmpPush(RtmpPushOutputEndpoint?)
+    indirect case rtmpPush(RtmpPushOutputEndpoint)
   }
 
   public static var _anyTypeUrl: Swift.String {

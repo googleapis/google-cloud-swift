@@ -196,16 +196,14 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         cloudStorageLocations = $0
       }
       if let includedCloudStorageLocations = try container.decodeIfPresent(
-        IntelligenceConfig.Filter.CloudStorageLocations?.self,
-        forKey: .includedCloudStorageLocations)
-      {
+        IntelligenceConfig.Filter.CloudStorageLocations.self, forKey: .includedCloudStorageLocations
+      ) {
         try cloudStorageLocationsCheckAndSet(
           .includedCloudStorageLocations(includedCloudStorageLocations))
       }
       if let excludedCloudStorageLocations = try container.decodeIfPresent(
-        IntelligenceConfig.Filter.CloudStorageLocations?.self,
-        forKey: .excludedCloudStorageLocations)
-      {
+        IntelligenceConfig.Filter.CloudStorageLocations.self, forKey: .excludedCloudStorageLocations
+      ) {
         try cloudStorageLocationsCheckAndSet(
           .excludedCloudStorageLocations(excludedCloudStorageLocations))
       }
@@ -222,13 +220,13 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         cloudStorageBuckets = $0
       }
       if let includedCloudStorageBuckets = try container.decodeIfPresent(
-        IntelligenceConfig.Filter.CloudStorageBuckets?.self, forKey: .includedCloudStorageBuckets)
+        IntelligenceConfig.Filter.CloudStorageBuckets.self, forKey: .includedCloudStorageBuckets)
       {
         try cloudStorageBucketsCheckAndSet(
           .includedCloudStorageBuckets(includedCloudStorageBuckets))
       }
       if let excludedCloudStorageBuckets = try container.decodeIfPresent(
-        IntelligenceConfig.Filter.CloudStorageBuckets?.self, forKey: .excludedCloudStorageBuckets)
+        IntelligenceConfig.Filter.CloudStorageBuckets.self, forKey: .excludedCloudStorageBuckets)
       {
         try cloudStorageBucketsCheckAndSet(
           .excludedCloudStorageBuckets(excludedCloudStorageBuckets))
@@ -416,17 +414,17 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Bucket locations to include or exclude.
     public enum CloudStorageLocationsOneOf: Codable, Equatable, Sendable {
       /// Bucket locations to include.
-      indirect case includedCloudStorageLocations(IntelligenceConfig.Filter.CloudStorageLocations?)
+      indirect case includedCloudStorageLocations(IntelligenceConfig.Filter.CloudStorageLocations)
       /// Bucket locations to exclude.
-      indirect case excludedCloudStorageLocations(IntelligenceConfig.Filter.CloudStorageLocations?)
+      indirect case excludedCloudStorageLocations(IntelligenceConfig.Filter.CloudStorageLocations)
     }
 
     /// Buckets to include or exclude.
     public enum CloudStorageBucketsOneOf: Codable, Equatable, Sendable {
       /// Buckets to include.
-      indirect case includedCloudStorageBuckets(IntelligenceConfig.Filter.CloudStorageBuckets?)
+      indirect case includedCloudStorageBuckets(IntelligenceConfig.Filter.CloudStorageBuckets)
       /// Buckets to exclude.
-      indirect case excludedCloudStorageBuckets(IntelligenceConfig.Filter.CloudStorageBuckets?)
+      indirect case excludedCloudStorageBuckets(IntelligenceConfig.Filter.CloudStorageBuckets)
     }
 
     public static var _anyTypeUrl: Swift.String {

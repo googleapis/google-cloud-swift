@@ -78,10 +78,10 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       typeSpec = $0
     }
-    if let viewSpec = try container.decodeIfPresent(ViewSpec?.self, forKey: .viewSpec) {
+    if let viewSpec = try container.decodeIfPresent(ViewSpec.self, forKey: .viewSpec) {
       try typeSpecCheckAndSet(.viewSpec(viewSpec))
     }
-    if let tableSpec = try container.decodeIfPresent(TableSpec?.self, forKey: .tableSpec) {
+    if let tableSpec = try container.decodeIfPresent(TableSpec.self, forKey: .tableSpec) {
       try typeSpecCheckAndSet(.tableSpec(tableSpec))
     }
     self.typeSpec = typeSpec
@@ -112,10 +112,10 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TypeSpecOneOf: Codable, Equatable, Sendable {
     /// Table view specification. Populated only if
     /// the `table_source_type` is `BIGQUERY_VIEW`.
-    indirect case viewSpec(ViewSpec?)
+    indirect case viewSpec(ViewSpec)
     /// Specification of a BigQuery table. Populated only if
     /// the `table_source_type` is `BIGQUERY_TABLE`.
-    indirect case tableSpec(TableSpec?)
+    indirect case tableSpec(TableSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -124,7 +124,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       credentialsType = $0
     }
     if let clientSecretCreds = try container.decodeIfPresent(
-      AzureSourceDetails.ClientSecretCredentials?.self, forKey: .clientSecretCreds)
+      AzureSourceDetails.ClientSecretCredentials.self, forKey: .clientSecretCreds)
     {
       try credentialsTypeCheckAndSet(.clientSecretCreds(clientSecretCreds))
     }
@@ -371,7 +371,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum CredentialsTypeOneOf: Codable, Equatable, Sendable {
     /// Azure Credentials using tenant ID, client ID and secret.
-    indirect case clientSecretCreds(AzureSourceDetails.ClientSecretCredentials?)
+    indirect case clientSecretCreds(AzureSourceDetails.ClientSecretCredentials)
   }
 
   public static var _anyTypeUrl: Swift.String {

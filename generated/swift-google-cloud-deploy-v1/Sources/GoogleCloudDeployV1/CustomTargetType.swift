@@ -165,7 +165,7 @@ public struct CustomTargetType: Codable, Equatable, GoogleWKT._AnyPackable,
       definition = $0
     }
     if let customActions = try container.decodeIfPresent(
-      CustomTargetSkaffoldActions?.self, forKey: .customActions)
+      CustomTargetSkaffoldActions.self, forKey: .customActions)
     {
       try definitionCheckAndSet(.customActions(customActions))
     }
@@ -203,7 +203,7 @@ public struct CustomTargetType: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum DefinitionOneOf: Codable, Equatable, Sendable {
     /// Optional. Configures render and deploy for the `CustomTargetType` using
     /// Skaffold custom actions.
-    indirect case customActions(CustomTargetSkaffoldActions?)
+    indirect case customActions(CustomTargetSkaffoldActions)
   }
 
   public static var _anyTypeUrl: Swift.String {

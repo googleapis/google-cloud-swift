@@ -85,7 +85,7 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       lintObject = $0
     }
-    if let condition = try container.decodeIfPresent(GoogleType.Expr?.self, forKey: .condition) {
+    if let condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition) {
       try lintObjectCheckAndSet(.condition(condition))
     }
     self.lintObject = lintObject
@@ -113,7 +113,7 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The Cloud IAM object to be linted.
   public enum LintObjectOneOf: Codable, Equatable, Sendable {
     /// [google.iam.v1.Binding.condition] [google.iam.v1.Binding.condition] object to be linted.
-    indirect case condition(GoogleType.Expr?)
+    indirect case condition(GoogleType.Expr)
   }
 
   public static var _anyTypeUrl: Swift.String {

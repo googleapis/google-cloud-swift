@@ -118,7 +118,7 @@
         try entityTypesCheckAndSet(.entityTypesUri(entityTypesUri))
       }
       if let entityTypesContent = try container.decodeIfPresent(
-        InlineSource?.self, forKey: .entityTypesContent)
+        InlineSource.self, forKey: .entityTypesContent)
       {
         try entityTypesCheckAndSet(.entityTypesContent(entityTypesContent))
       }
@@ -304,7 +304,7 @@
       /// control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
       case entityTypesUri(Swift.String)
       /// Uncompressed byte content of entity types.
-      indirect case entityTypesContent(InlineSource?)
+      indirect case entityTypesContent(InlineSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

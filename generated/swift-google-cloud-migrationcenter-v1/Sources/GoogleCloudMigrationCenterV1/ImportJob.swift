@@ -133,12 +133,12 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
       report = $0
     }
     if let validationReport = try container.decodeIfPresent(
-      ValidationReport?.self, forKey: .validationReport)
+      ValidationReport.self, forKey: .validationReport)
     {
       try reportCheckAndSet(.validationReport(validationReport))
     }
     if let executionReport = try container.decodeIfPresent(
-      ExecutionReport?.self, forKey: .executionReport)
+      ExecutionReport.self, forKey: .executionReport)
     {
       try reportCheckAndSet(.executionReport(executionReport))
     }
@@ -328,9 +328,9 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Holds the various report types of an import job.
   public enum ReportOneOf: Codable, Equatable, Sendable {
     /// Output only. The report with the validation results of the import job.
-    indirect case validationReport(ValidationReport?)
+    indirect case validationReport(ValidationReport)
     /// Output only. The report with the results of running the import job.
-    indirect case executionReport(ExecutionReport?)
+    indirect case executionReport(ExecutionReport)
   }
 
   public static var _anyTypeUrl: Swift.String {

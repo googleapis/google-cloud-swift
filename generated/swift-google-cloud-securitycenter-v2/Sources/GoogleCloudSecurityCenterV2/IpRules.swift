@@ -110,10 +110,10 @@ public struct IpRules: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       rules = $0
     }
-    if let allowed = try container.decodeIfPresent(Allowed?.self, forKey: .allowed) {
+    if let allowed = try container.decodeIfPresent(Allowed.self, forKey: .allowed) {
       try rulesCheckAndSet(.allowed(allowed))
     }
-    if let denied = try container.decodeIfPresent(Denied?.self, forKey: .denied) {
+    if let denied = try container.decodeIfPresent(Denied.self, forKey: .denied) {
       try rulesCheckAndSet(.denied(denied))
     }
     self.rules = rules
@@ -265,9 +265,9 @@ public struct IpRules: Codable, Equatable, GoogleWKT._AnyPackable,
   /// protocol and port-range tuple that describes a permitted connection.
   public enum RulesOneOf: Codable, Equatable, Sendable {
     /// Tuple with allowed rules.
-    indirect case allowed(Allowed?)
+    indirect case allowed(Allowed)
     /// Tuple with denied rules.
-    indirect case denied(Denied?)
+    indirect case denied(Denied)
   }
 
   public static var _anyTypeUrl: Swift.String {

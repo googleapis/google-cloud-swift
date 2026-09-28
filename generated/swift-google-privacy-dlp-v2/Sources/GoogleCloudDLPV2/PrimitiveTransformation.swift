@@ -91,60 +91,60 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleWKT._AnyPackabl
       transformation = $0
     }
     if let replaceConfig = try container.decodeIfPresent(
-      ReplaceValueConfig?.self, forKey: .replaceConfig)
+      ReplaceValueConfig.self, forKey: .replaceConfig)
     {
       try transformationCheckAndSet(.replaceConfig(replaceConfig))
     }
-    if let redactConfig = try container.decodeIfPresent(RedactConfig?.self, forKey: .redactConfig) {
+    if let redactConfig = try container.decodeIfPresent(RedactConfig.self, forKey: .redactConfig) {
       try transformationCheckAndSet(.redactConfig(redactConfig))
     }
     if let characterMaskConfig = try container.decodeIfPresent(
-      CharacterMaskConfig?.self, forKey: .characterMaskConfig)
+      CharacterMaskConfig.self, forKey: .characterMaskConfig)
     {
       try transformationCheckAndSet(.characterMaskConfig(characterMaskConfig))
     }
     if let cryptoReplaceFfxFpeConfig = try container.decodeIfPresent(
-      CryptoReplaceFfxFpeConfig?.self, forKey: .cryptoReplaceFfxFpeConfig)
+      CryptoReplaceFfxFpeConfig.self, forKey: .cryptoReplaceFfxFpeConfig)
     {
       try transformationCheckAndSet(.cryptoReplaceFfxFpeConfig(cryptoReplaceFfxFpeConfig))
     }
     if let fixedSizeBucketingConfig = try container.decodeIfPresent(
-      FixedSizeBucketingConfig?.self, forKey: .fixedSizeBucketingConfig)
+      FixedSizeBucketingConfig.self, forKey: .fixedSizeBucketingConfig)
     {
       try transformationCheckAndSet(.fixedSizeBucketingConfig(fixedSizeBucketingConfig))
     }
     if let bucketingConfig = try container.decodeIfPresent(
-      BucketingConfig?.self, forKey: .bucketingConfig)
+      BucketingConfig.self, forKey: .bucketingConfig)
     {
       try transformationCheckAndSet(.bucketingConfig(bucketingConfig))
     }
     if let replaceWithInfoTypeConfig = try container.decodeIfPresent(
-      ReplaceWithInfoTypeConfig?.self, forKey: .replaceWithInfoTypeConfig)
+      ReplaceWithInfoTypeConfig.self, forKey: .replaceWithInfoTypeConfig)
     {
       try transformationCheckAndSet(.replaceWithInfoTypeConfig(replaceWithInfoTypeConfig))
     }
     if let timePartConfig = try container.decodeIfPresent(
-      TimePartConfig?.self, forKey: .timePartConfig)
+      TimePartConfig.self, forKey: .timePartConfig)
     {
       try transformationCheckAndSet(.timePartConfig(timePartConfig))
     }
     if let cryptoHashConfig = try container.decodeIfPresent(
-      CryptoHashConfig?.self, forKey: .cryptoHashConfig)
+      CryptoHashConfig.self, forKey: .cryptoHashConfig)
     {
       try transformationCheckAndSet(.cryptoHashConfig(cryptoHashConfig))
     }
     if let dateShiftConfig = try container.decodeIfPresent(
-      DateShiftConfig?.self, forKey: .dateShiftConfig)
+      DateShiftConfig.self, forKey: .dateShiftConfig)
     {
       try transformationCheckAndSet(.dateShiftConfig(dateShiftConfig))
     }
     if let cryptoDeterministicConfig = try container.decodeIfPresent(
-      CryptoDeterministicConfig?.self, forKey: .cryptoDeterministicConfig)
+      CryptoDeterministicConfig.self, forKey: .cryptoDeterministicConfig)
     {
       try transformationCheckAndSet(.cryptoDeterministicConfig(cryptoDeterministicConfig))
     }
     if let replaceDictionaryConfig = try container.decodeIfPresent(
-      ReplaceDictionaryConfig?.self, forKey: .replaceDictionaryConfig)
+      ReplaceDictionaryConfig.self, forKey: .replaceDictionaryConfig)
     {
       try transformationCheckAndSet(.replaceDictionaryConfig(replaceDictionaryConfig))
     }
@@ -194,30 +194,30 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Type of transformation.
   public enum TransformationOneOf: Codable, Equatable, Sendable {
     /// Replace with a specified value.
-    indirect case replaceConfig(ReplaceValueConfig?)
+    indirect case replaceConfig(ReplaceValueConfig)
     /// Redact
-    indirect case redactConfig(RedactConfig?)
+    indirect case redactConfig(RedactConfig)
     /// Mask
-    indirect case characterMaskConfig(CharacterMaskConfig?)
+    indirect case characterMaskConfig(CharacterMaskConfig)
     /// Ffx-Fpe. Strongly discouraged, consider using CryptoDeterministicConfig
     /// instead. Fpe is computationally expensive incurring latency costs.
-    indirect case cryptoReplaceFfxFpeConfig(CryptoReplaceFfxFpeConfig?)
+    indirect case cryptoReplaceFfxFpeConfig(CryptoReplaceFfxFpeConfig)
     /// Fixed size bucketing
-    indirect case fixedSizeBucketingConfig(FixedSizeBucketingConfig?)
+    indirect case fixedSizeBucketingConfig(FixedSizeBucketingConfig)
     /// Bucketing
-    indirect case bucketingConfig(BucketingConfig?)
+    indirect case bucketingConfig(BucketingConfig)
     /// Replace with infotype
-    indirect case replaceWithInfoTypeConfig(ReplaceWithInfoTypeConfig?)
+    indirect case replaceWithInfoTypeConfig(ReplaceWithInfoTypeConfig)
     /// Time extraction
-    indirect case timePartConfig(TimePartConfig?)
+    indirect case timePartConfig(TimePartConfig)
     /// Crypto
-    indirect case cryptoHashConfig(CryptoHashConfig?)
+    indirect case cryptoHashConfig(CryptoHashConfig)
     /// Date Shift
-    indirect case dateShiftConfig(DateShiftConfig?)
+    indirect case dateShiftConfig(DateShiftConfig)
     /// Deterministic Crypto
-    indirect case cryptoDeterministicConfig(CryptoDeterministicConfig?)
+    indirect case cryptoDeterministicConfig(CryptoDeterministicConfig)
     /// Replace with a value randomly drawn (with replacement) from a dictionary.
-    indirect case replaceDictionaryConfig(ReplaceDictionaryConfig?)
+    indirect case replaceDictionaryConfig(ReplaceDictionaryConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

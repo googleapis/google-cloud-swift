@@ -97,7 +97,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       try actionSpecCheckAndSet(.connectionActionId(connectionActionId))
     }
     if let entityOperation = try container.decodeIfPresent(
-      Action.EntityOperation?.self, forKey: .entityOperation)
+      Action.EntityOperation.self, forKey: .entityOperation)
     {
       try actionSpecCheckAndSet(.entityOperation(entityOperation))
     }
@@ -350,7 +350,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ID of a Connection action for the tool to use.
     case connectionActionId(Swift.String)
     /// Entity operation configuration for the tool to use.
-    indirect case entityOperation(Action.EntityOperation?)
+    indirect case entityOperation(Action.EntityOperation)
   }
 
   public static var _anyTypeUrl: Swift.String {

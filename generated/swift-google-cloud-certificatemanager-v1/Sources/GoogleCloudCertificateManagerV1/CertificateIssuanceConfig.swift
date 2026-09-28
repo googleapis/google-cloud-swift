@@ -207,8 +207,8 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
         kind = $0
       }
       if let certificateAuthorityServiceConfig = try container.decodeIfPresent(
-        CertificateIssuanceConfig.CertificateAuthorityConfig.CertificateAuthorityServiceConfig?
-          .self, forKey: .certificateAuthorityServiceConfig)
+        CertificateIssuanceConfig.CertificateAuthorityConfig.CertificateAuthorityServiceConfig.self,
+        forKey: .certificateAuthorityServiceConfig)
       {
         try kindCheckAndSet(.certificateAuthorityServiceConfig(certificateAuthorityServiceConfig))
       }
@@ -307,7 +307,7 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleWKT._AnyPacka
     public enum KindOneOf: Codable, Equatable, Sendable {
       /// Defines a CertificateAuthorityServiceConfig.
       indirect case certificateAuthorityServiceConfig(
-        CertificateIssuanceConfig.CertificateAuthorityConfig.CertificateAuthorityServiceConfig?)
+        CertificateIssuanceConfig.CertificateAuthorityConfig.CertificateAuthorityServiceConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -142,13 +142,13 @@
         modelMetadata = $0
       }
       if let articleSuggestionModelMetadata = try container.decodeIfPresent(
-        ArticleSuggestionModelMetadata?.self, forKey: .articleSuggestionModelMetadata)
+        ArticleSuggestionModelMetadata.self, forKey: .articleSuggestionModelMetadata)
       {
         try modelMetadataCheckAndSet(
           .articleSuggestionModelMetadata(articleSuggestionModelMetadata))
       }
       if let smartReplyModelMetadata = try container.decodeIfPresent(
-        SmartReplyModelMetadata?.self, forKey: .smartReplyModelMetadata)
+        SmartReplyModelMetadata.self, forKey: .smartReplyModelMetadata)
       {
         try modelMetadataCheckAndSet(.smartReplyModelMetadata(smartReplyModelMetadata))
       }
@@ -467,9 +467,9 @@
     /// Must match the metadata type of the dataset used to train the model.
     public enum ModelMetadataOneOf: Codable, Equatable, Sendable {
       /// Metadata for article suggestion models.
-      indirect case articleSuggestionModelMetadata(ArticleSuggestionModelMetadata?)
+      indirect case articleSuggestionModelMetadata(ArticleSuggestionModelMetadata)
       /// Metadata for smart reply models.
-      indirect case smartReplyModelMetadata(SmartReplyModelMetadata?)
+      indirect case smartReplyModelMetadata(SmartReplyModelMetadata)
     }
 
     public static var _anyTypeUrl: Swift.String {

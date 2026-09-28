@@ -74,7 +74,7 @@ public struct Ranker: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       ranker = $0
     }
-    if let rrf = try container.decodeIfPresent(ReciprocalRankFusion?.self, forKey: .rrf) {
+    if let rrf = try container.decodeIfPresent(ReciprocalRankFusion.self, forKey: .rrf) {
       try rankerCheckAndSet(.rrf(rrf))
     }
     self.ranker = ranker
@@ -89,7 +89,7 @@ public struct Ranker: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       reranker = $0
     }
-    if let vertexRanker = try container.decodeIfPresent(VertexRanker?.self, forKey: .vertexRanker) {
+    if let vertexRanker = try container.decodeIfPresent(VertexRanker.self, forKey: .vertexRanker) {
       try rerankerCheckAndSet(.vertexRanker(vertexRanker))
     }
     self.reranker = reranker
@@ -123,14 +123,14 @@ public struct Ranker: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The ranking method to use.
   public enum RankerOneOf: Codable, Equatable, Sendable {
     /// Reciprocal Rank Fusion ranking.
-    indirect case rrf(ReciprocalRankFusion?)
+    indirect case rrf(ReciprocalRankFusion)
   }
 
   /// The reranker to use for final ranking of the results combined by the
   /// ranker.
   public enum RerankerOneOf: Codable, Equatable, Sendable {
     /// Optional. Vertex AI ranking.
-    indirect case vertexRanker(VertexRanker?)
+    indirect case vertexRanker(VertexRanker)
   }
 
   public static var _anyTypeUrl: Swift.String {

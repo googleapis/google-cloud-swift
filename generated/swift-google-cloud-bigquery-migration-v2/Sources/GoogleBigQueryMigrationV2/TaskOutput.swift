@@ -85,8 +85,7 @@ public struct TaskOutput: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       output = $0
     }
-    if let lineageOutput = try container.decodeIfPresent(
-      LineageOutput?.self, forKey: .lineageOutput)
+    if let lineageOutput = try container.decodeIfPresent(LineageOutput.self, forKey: .lineageOutput)
     {
       try outputCheckAndSet(.lineageOutput(lineageOutput))
     }
@@ -242,7 +241,7 @@ public struct TaskOutput: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The detailed output of the task.
   public enum OutputOneOf: Codable, Equatable, Sendable {
     /// The output of the task with output type "LINEAGE".
-    indirect case lineageOutput(LineageOutput?)
+    indirect case lineageOutput(LineageOutput)
   }
 
   public static var _anyTypeUrl: Swift.String {

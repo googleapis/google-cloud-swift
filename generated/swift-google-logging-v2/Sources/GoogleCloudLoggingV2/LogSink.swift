@@ -234,7 +234,7 @@ public struct LogSink: Codable, Equatable, GoogleWKT._AnyPackable,
       options = $0
     }
     if let bigqueryOptions = try container.decodeIfPresent(
-      BigQueryOptions?.self, forKey: .bigqueryOptions)
+      BigQueryOptions.self, forKey: .bigqueryOptions)
     {
       try optionsCheckAndSet(.bigqueryOptions(bigqueryOptions))
     }
@@ -393,7 +393,7 @@ public struct LogSink: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Destination dependent options.
   public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Options that affect sinks exporting data to BigQuery.
-    indirect case bigqueryOptions(BigQueryOptions?)
+    indirect case bigqueryOptions(BigQueryOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

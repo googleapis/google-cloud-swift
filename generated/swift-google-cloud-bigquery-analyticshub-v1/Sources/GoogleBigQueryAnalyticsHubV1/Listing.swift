@@ -228,12 +228,12 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       source = $0
     }
     if let bigqueryDataset = try container.decodeIfPresent(
-      Listing.BigQueryDatasetSource?.self, forKey: .bigqueryDataset)
+      Listing.BigQueryDatasetSource.self, forKey: .bigqueryDataset)
     {
       try sourceCheckAndSet(.bigqueryDataset(bigqueryDataset))
     }
     if let pubsubTopic = try container.decodeIfPresent(
-      Listing.PubSubTopicSource?.self, forKey: .pubsubTopic)
+      Listing.PubSubTopicSource.self, forKey: .pubsubTopic)
     {
       try sourceCheckAndSet(.pubsubTopic(pubsubTopic))
     }
@@ -1694,9 +1694,9 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Listing source.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Shared dataset i.e. BigQuery dataset source.
-    indirect case bigqueryDataset(Listing.BigQueryDatasetSource?)
+    indirect case bigqueryDataset(Listing.BigQueryDatasetSource)
     /// Pub/Sub topic source.
-    indirect case pubsubTopic(Listing.PubSubTopicSource?)
+    indirect case pubsubTopic(Listing.PubSubTopicSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

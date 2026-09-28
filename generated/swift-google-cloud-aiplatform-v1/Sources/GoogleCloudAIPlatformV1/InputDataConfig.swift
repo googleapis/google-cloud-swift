@@ -215,25 +215,25 @@
         split = $0
       }
       if let fractionSplit = try container.decodeIfPresent(
-        FractionSplit?.self, forKey: .fractionSplit)
+        FractionSplit.self, forKey: .fractionSplit)
       {
         try splitCheckAndSet(.fractionSplit(fractionSplit))
       }
-      if let filterSplit = try container.decodeIfPresent(FilterSplit?.self, forKey: .filterSplit) {
+      if let filterSplit = try container.decodeIfPresent(FilterSplit.self, forKey: .filterSplit) {
         try splitCheckAndSet(.filterSplit(filterSplit))
       }
       if let predefinedSplit = try container.decodeIfPresent(
-        PredefinedSplit?.self, forKey: .predefinedSplit)
+        PredefinedSplit.self, forKey: .predefinedSplit)
       {
         try splitCheckAndSet(.predefinedSplit(predefinedSplit))
       }
       if let timestampSplit = try container.decodeIfPresent(
-        TimestampSplit?.self, forKey: .timestampSplit)
+        TimestampSplit.self, forKey: .timestampSplit)
       {
         try splitCheckAndSet(.timestampSplit(timestampSplit))
       }
       if let stratifiedSplit = try container.decodeIfPresent(
-        StratifiedSplit?.self, forKey: .stratifiedSplit)
+        StratifiedSplit.self, forKey: .stratifiedSplit)
       {
         try splitCheckAndSet(.stratifiedSplit(stratifiedSplit))
       }
@@ -250,12 +250,12 @@
         destination = $0
       }
       if let gcsDestination = try container.decodeIfPresent(
-        GcsDestination?.self, forKey: .gcsDestination)
+        GcsDestination.self, forKey: .gcsDestination)
       {
         try destinationCheckAndSet(.gcsDestination(gcsDestination))
       }
       if let bigqueryDestination = try container.decodeIfPresent(
-        BigQueryDestination?.self, forKey: .bigqueryDestination)
+        BigQueryDestination.self, forKey: .bigqueryDestination)
       {
         try destinationCheckAndSet(.bigqueryDestination(bigqueryDestination))
       }
@@ -311,21 +311,21 @@
     /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/SplitOneOf/fractionSplit(_:)>
     public enum SplitOneOf: Codable, Equatable, Sendable {
       /// Split based on fractions defining the size of each set.
-      indirect case fractionSplit(FractionSplit?)
+      indirect case fractionSplit(FractionSplit)
       /// Split based on the provided filters for each set.
-      indirect case filterSplit(FilterSplit?)
+      indirect case filterSplit(FilterSplit)
       /// Supported only for tabular Datasets.
       ///
       /// Split based on a predefined key.
-      indirect case predefinedSplit(PredefinedSplit?)
+      indirect case predefinedSplit(PredefinedSplit)
       /// Supported only for tabular Datasets.
       ///
       /// Split based on the timestamp of the input data pieces.
-      indirect case timestampSplit(TimestampSplit?)
+      indirect case timestampSplit(TimestampSplit)
       /// Supported only for tabular Datasets.
       ///
       /// Split based on the distribution of the specified column.
-      indirect case stratifiedSplit(StratifiedSplit?)
+      indirect case stratifiedSplit(StratifiedSplit)
     }
 
     /// Only applicable to Custom and Hyperparameter Tuning TrainingPipelines.
@@ -364,7 +364,7 @@
       ///
       /// * AIP_TEST_DATA_URI =
       /// "gcs_destination/dataset-<dataset-id>-<annotation-type>-<time>/test-*.${AIP_DATA_FORMAT}"
-      indirect case gcsDestination(GcsDestination?)
+      indirect case gcsDestination(GcsDestination)
       /// Only applicable to custom training with tabular Dataset with BigQuery
       /// source.
       ///
@@ -384,7 +384,7 @@
       ///
       /// * AIP_TEST_DATA_URI =
       /// "bigquery_destination.dataset_<dataset-id>_<annotation-type>_<time>.test"
-      indirect case bigqueryDestination(BigQueryDestination?)
+      indirect case bigqueryDestination(BigQueryDestination)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -104,7 +104,7 @@
         destination = $0
       }
       if let gcsDestination = try container.decodeIfPresent(
-        GcsDestination?.self, forKey: .gcsDestination)
+        GcsDestination.self, forKey: .gcsDestination)
       {
         try destinationCheckAndSet(.gcsDestination(gcsDestination))
       }
@@ -135,7 +135,7 @@
     /// Required. The destination for the export.
     public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Cloud Storage file path to export the document.
-      indirect case gcsDestination(GcsDestination?)
+      indirect case gcsDestination(GcsDestination)
     }
 
     public static var _anyTypeUrl: Swift.String {

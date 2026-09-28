@@ -76,23 +76,23 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
       implementation = $0
     }
     if let securityHealthAnalyticsModule = try container.decodeIfPresent(
-      SecurityHealthAnalyticsModule?.self, forKey: .securityHealthAnalyticsModule)
+      SecurityHealthAnalyticsModule.self, forKey: .securityHealthAnalyticsModule)
     {
       try implementationCheckAndSet(.securityHealthAnalyticsModule(securityHealthAnalyticsModule))
     }
     if let securityHealthAnalyticsCustomModule = try container.decodeIfPresent(
-      SecurityHealthAnalyticsCustomModule?.self, forKey: .securityHealthAnalyticsCustomModule)
+      SecurityHealthAnalyticsCustomModule.self, forKey: .securityHealthAnalyticsCustomModule)
     {
       try implementationCheckAndSet(
         .securityHealthAnalyticsCustomModule(securityHealthAnalyticsCustomModule))
     }
     if let orgPolicyConstraint = try container.decodeIfPresent(
-      OrgPolicyConstraint?.self, forKey: .orgPolicyConstraint)
+      OrgPolicyConstraint.self, forKey: .orgPolicyConstraint)
     {
       try implementationCheckAndSet(.orgPolicyConstraint(orgPolicyConstraint))
     }
     if let orgPolicyConstraintCustom = try container.decodeIfPresent(
-      OrgPolicyConstraintCustom?.self, forKey: .orgPolicyConstraintCustom)
+      OrgPolicyConstraintCustom.self, forKey: .orgPolicyConstraintCustom)
     {
       try implementationCheckAndSet(.orgPolicyConstraintCustom(orgPolicyConstraintCustom))
     }
@@ -125,13 +125,13 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ImplementationOneOf: Codable, Equatable, Sendable {
     /// Optional. SHA built-in detector.
-    indirect case securityHealthAnalyticsModule(SecurityHealthAnalyticsModule?)
+    indirect case securityHealthAnalyticsModule(SecurityHealthAnalyticsModule)
     /// Optional. SHA custom detector.
-    indirect case securityHealthAnalyticsCustomModule(SecurityHealthAnalyticsCustomModule?)
+    indirect case securityHealthAnalyticsCustomModule(SecurityHealthAnalyticsCustomModule)
     /// Optional. Org Policy builtin constraint.
-    indirect case orgPolicyConstraint(OrgPolicyConstraint?)
+    indirect case orgPolicyConstraint(OrgPolicyConstraint)
     /// Optional. Org Policy custom constraint.
-    indirect case orgPolicyConstraintCustom(OrgPolicyConstraintCustom?)
+    indirect case orgPolicyConstraintCustom(OrgPolicyConstraintCustom)
   }
 
   public static var _anyTypeUrl: Swift.String {

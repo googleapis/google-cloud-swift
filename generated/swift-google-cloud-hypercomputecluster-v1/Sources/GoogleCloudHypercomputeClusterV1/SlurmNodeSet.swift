@@ -133,7 +133,7 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let computeInstance = try container.decodeIfPresent(
-      ComputeInstanceSlurmNodeSet?.self, forKey: .computeInstance)
+      ComputeInstanceSlurmNodeSet.self, forKey: .computeInstance)
     {
       try typeCheckAndSet(.computeInstance(computeInstance))
     }
@@ -172,7 +172,7 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Optional. If set, indicates that the nodeset should be backed by Compute
     /// Engine instances.
-    indirect case computeInstance(ComputeInstanceSlurmNodeSet?)
+    indirect case computeInstance(ComputeInstanceSlurmNodeSet)
   }
 
   public static var _anyTypeUrl: Swift.String {

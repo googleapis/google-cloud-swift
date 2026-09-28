@@ -73,15 +73,15 @@
         }
         chunkType = $0
       }
-      if let web = try container.decodeIfPresent(GroundingChunk.Web?.self, forKey: .web) {
+      if let web = try container.decodeIfPresent(GroundingChunk.Web.self, forKey: .web) {
         try chunkTypeCheckAndSet(.web(web))
       }
       if let retrievedContext = try container.decodeIfPresent(
-        GroundingChunk.RetrievedContext?.self, forKey: .retrievedContext)
+        GroundingChunk.RetrievedContext.self, forKey: .retrievedContext)
       {
         try chunkTypeCheckAndSet(.retrievedContext(retrievedContext))
       }
-      if let maps = try container.decodeIfPresent(GroundingChunk.Maps?.self, forKey: .maps) {
+      if let maps = try container.decodeIfPresent(GroundingChunk.Maps.self, forKey: .maps) {
         try chunkTypeCheckAndSet(.maps(maps))
       }
       self.chunkType = chunkType
@@ -258,7 +258,7 @@
           }
           contextDetails = $0
         }
-        if let ragChunk = try container.decodeIfPresent(RagChunk?.self, forKey: .ragChunk) {
+        if let ragChunk = try container.decodeIfPresent(RagChunk.self, forKey: .ragChunk) {
           try contextDetailsCheckAndSet(.ragChunk(ragChunk))
         }
         self.contextDetails = contextDetails
@@ -290,7 +290,7 @@
       public enum ContextDetailsOneOf: Codable, Equatable, Sendable {
         /// Additional context for the RAG retrieval result. This is only populated
         /// when using the RAG retrieval tool.
-        indirect case ragChunk(RagChunk?)
+        indirect case ragChunk(RagChunk)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -659,11 +659,11 @@
     /// Chunk type.
     public enum ChunkTypeOneOf: Codable, Equatable, Sendable {
       /// Grounding chunk from the web.
-      indirect case web(GroundingChunk.Web?)
+      indirect case web(GroundingChunk.Web)
       /// Grounding chunk from context retrieved by the retrieval tools.
-      indirect case retrievedContext(GroundingChunk.RetrievedContext?)
+      indirect case retrievedContext(GroundingChunk.RetrievedContext)
       /// Grounding chunk from Google Maps.
-      indirect case maps(GroundingChunk.Maps?)
+      indirect case maps(GroundingChunk.Maps)
     }
 
     public static var _anyTypeUrl: Swift.String {

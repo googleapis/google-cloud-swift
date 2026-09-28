@@ -70,7 +70,7 @@ public struct BatchDocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPacka
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      GcsDestination?.self, forKey: .gcsDestination)
+      GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
@@ -143,7 +143,7 @@ public struct BatchDocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// `glossary_error_output`:
     /// `gs://translation_test/a_b_c_[trg]_glossary_translation.txt`. The error
     /// output is a txt file containing error details.
-    indirect case gcsDestination(GcsDestination?)
+    indirect case gcsDestination(GcsDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

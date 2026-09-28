@@ -147,23 +147,23 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       connectionProfile = $0
     }
-    if let mysql = try container.decodeIfPresent(MySqlConnectionProfile?.self, forKey: .mysql) {
+    if let mysql = try container.decodeIfPresent(MySqlConnectionProfile.self, forKey: .mysql) {
       try connectionProfileCheckAndSet(.mysql(mysql))
     }
     if let postgresql = try container.decodeIfPresent(
-      PostgreSqlConnectionProfile?.self, forKey: .postgresql)
+      PostgreSqlConnectionProfile.self, forKey: .postgresql)
     {
       try connectionProfileCheckAndSet(.postgresql(postgresql))
     }
-    if let oracle = try container.decodeIfPresent(OracleConnectionProfile?.self, forKey: .oracle) {
+    if let oracle = try container.decodeIfPresent(OracleConnectionProfile.self, forKey: .oracle) {
       try connectionProfileCheckAndSet(.oracle(oracle))
     }
     if let cloudsql = try container.decodeIfPresent(
-      CloudSqlConnectionProfile?.self, forKey: .cloudsql)
+      CloudSqlConnectionProfile.self, forKey: .cloudsql)
     {
       try connectionProfileCheckAndSet(.cloudsql(cloudsql))
     }
-    if let alloydb = try container.decodeIfPresent(AlloyDbConnectionProfile?.self, forKey: .alloydb)
+    if let alloydb = try container.decodeIfPresent(AlloyDbConnectionProfile.self, forKey: .alloydb)
     {
       try connectionProfileCheckAndSet(.alloydb(alloydb))
     }
@@ -359,15 +359,15 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The connection profile definition.
   public enum ConnectionProfileOneOf: Codable, Equatable, Sendable {
     /// A MySQL database connection profile.
-    indirect case mysql(MySqlConnectionProfile?)
+    indirect case mysql(MySqlConnectionProfile)
     /// A PostgreSQL database connection profile.
-    indirect case postgresql(PostgreSqlConnectionProfile?)
+    indirect case postgresql(PostgreSqlConnectionProfile)
     /// An Oracle database connection profile.
-    indirect case oracle(OracleConnectionProfile?)
+    indirect case oracle(OracleConnectionProfile)
     /// A CloudSQL database connection profile.
-    indirect case cloudsql(CloudSqlConnectionProfile?)
+    indirect case cloudsql(CloudSqlConnectionProfile)
     /// An AlloyDB cluster connection profile.
-    indirect case alloydb(AlloyDbConnectionProfile?)
+    indirect case alloydb(AlloyDbConnectionProfile)
   }
 
   public static var _anyTypeUrl: Swift.String {

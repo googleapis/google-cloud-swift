@@ -79,32 +79,32 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackable,
       target = $0
     }
     if let bigQueryTarget = try container.decodeIfPresent(
-      BigQueryDiscoveryTarget?.self, forKey: .bigQueryTarget)
+      BigQueryDiscoveryTarget.self, forKey: .bigQueryTarget)
     {
       try targetCheckAndSet(.bigQueryTarget(bigQueryTarget))
     }
     if let cloudSqlTarget = try container.decodeIfPresent(
-      CloudSqlDiscoveryTarget?.self, forKey: .cloudSqlTarget)
+      CloudSqlDiscoveryTarget.self, forKey: .cloudSqlTarget)
     {
       try targetCheckAndSet(.cloudSqlTarget(cloudSqlTarget))
     }
     if let secretsTarget = try container.decodeIfPresent(
-      SecretsDiscoveryTarget?.self, forKey: .secretsTarget)
+      SecretsDiscoveryTarget.self, forKey: .secretsTarget)
     {
       try targetCheckAndSet(.secretsTarget(secretsTarget))
     }
     if let cloudStorageTarget = try container.decodeIfPresent(
-      CloudStorageDiscoveryTarget?.self, forKey: .cloudStorageTarget)
+      CloudStorageDiscoveryTarget.self, forKey: .cloudStorageTarget)
     {
       try targetCheckAndSet(.cloudStorageTarget(cloudStorageTarget))
     }
     if let otherCloudTarget = try container.decodeIfPresent(
-      OtherCloudDiscoveryTarget?.self, forKey: .otherCloudTarget)
+      OtherCloudDiscoveryTarget.self, forKey: .otherCloudTarget)
     {
       try targetCheckAndSet(.otherCloudTarget(otherCloudTarget))
     }
     if let vertexDatasetTarget = try container.decodeIfPresent(
-      VertexDatasetDiscoveryTarget?.self, forKey: .vertexDatasetTarget)
+      VertexDatasetDiscoveryTarget.self, forKey: .vertexDatasetTarget)
     {
       try targetCheckAndSet(.vertexDatasetTarget(vertexDatasetTarget))
     }
@@ -143,20 +143,20 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TargetOneOf: Codable, Equatable, Sendable {
     /// BigQuery target for Discovery. The first target to match a table will be
     /// the one applied.
-    indirect case bigQueryTarget(BigQueryDiscoveryTarget?)
+    indirect case bigQueryTarget(BigQueryDiscoveryTarget)
     /// Cloud SQL target for Discovery. The first target to match a table will be
     /// the one applied.
-    indirect case cloudSqlTarget(CloudSqlDiscoveryTarget?)
+    indirect case cloudSqlTarget(CloudSqlDiscoveryTarget)
     /// Discovery target that looks for credentials and secrets stored in cloud
     /// resource metadata and reports them as vulnerabilities to Security Command
     /// Center. Only one target of this type is allowed.
-    indirect case secretsTarget(SecretsDiscoveryTarget?)
+    indirect case secretsTarget(SecretsDiscoveryTarget)
     /// Cloud Storage target for Discovery. The first target to match a table
     /// will be the one applied.
-    indirect case cloudStorageTarget(CloudStorageDiscoveryTarget?)
+    indirect case cloudStorageTarget(CloudStorageDiscoveryTarget)
     /// Other clouds target for discovery. The first target to match a resource
     /// will be the one applied.
-    indirect case otherCloudTarget(OtherCloudDiscoveryTarget?)
+    indirect case otherCloudTarget(OtherCloudDiscoveryTarget)
     /// Vertex AI dataset target for Discovery. The first target to match a
     /// dataset will be the one applied. Note that discovery for Vertex AI can
     /// incur Cloud Storage Class B operation charges for storage.objects.get
@@ -165,7 +165,7 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Note that discovery for Vertex AI dataset will not be able to scan images
     /// unless DiscoveryConfig.processing_location.image_fallback_location has
     /// multi_region_processing or global_processing configured.
-    indirect case vertexDatasetTarget(VertexDatasetDiscoveryTarget?)
+    indirect case vertexDatasetTarget(VertexDatasetDiscoveryTarget)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -76,17 +76,17 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleWKT._AnyPackable,
       schedule = $0
     }
     if let timeBasedSchedule = try container.decodeIfPresent(
-      TimeBasedSchedule?.self, forKey: .timeBasedSchedule)
+      TimeBasedSchedule.self, forKey: .timeBasedSchedule)
     {
       try scheduleCheckAndSet(.timeBasedSchedule(timeBasedSchedule))
     }
     if let manualSchedule = try container.decodeIfPresent(
-      ManualSchedule?.self, forKey: .manualSchedule)
+      ManualSchedule.self, forKey: .manualSchedule)
     {
       try scheduleCheckAndSet(.manualSchedule(manualSchedule))
     }
     if let eventDrivenSchedule = try container.decodeIfPresent(
-      EventDrivenSchedule?.self, forKey: .eventDrivenSchedule)
+      EventDrivenSchedule.self, forKey: .eventDrivenSchedule)
     {
       try scheduleCheckAndSet(.eventDrivenSchedule(eventDrivenSchedule))
     }
@@ -119,15 +119,15 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ScheduleOneOf: Codable, Equatable, Sendable {
     /// Time based transfer schedule options. This is the default schedule
     /// option.
-    indirect case timeBasedSchedule(TimeBasedSchedule?)
+    indirect case timeBasedSchedule(TimeBasedSchedule)
     /// Manual transfer schedule. If set, the transfer run will not be
     /// auto-scheduled by the system, unless the client invokes
     /// StartManualTransferRuns.  This is equivalent to
     /// disable_auto_scheduling = true.
-    indirect case manualSchedule(ManualSchedule?)
+    indirect case manualSchedule(ManualSchedule)
     /// Event driven transfer schedule options. If set, the transfer will be
     /// scheduled upon events arrial.
-    indirect case eventDrivenSchedule(EventDrivenSchedule?)
+    indirect case eventDrivenSchedule(EventDrivenSchedule)
   }
 
   public static var _anyTypeUrl: Swift.String {

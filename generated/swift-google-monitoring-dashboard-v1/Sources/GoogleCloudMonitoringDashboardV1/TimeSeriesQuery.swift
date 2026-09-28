@@ -102,12 +102,12 @@ public struct TimeSeriesQuery: Codable, Equatable, GoogleWKT._AnyPackable,
       source = $0
     }
     if let timeSeriesFilter = try container.decodeIfPresent(
-      TimeSeriesFilter?.self, forKey: .timeSeriesFilter)
+      TimeSeriesFilter.self, forKey: .timeSeriesFilter)
     {
       try sourceCheckAndSet(.timeSeriesFilter(timeSeriesFilter))
     }
     if let timeSeriesFilterRatio = try container.decodeIfPresent(
-      TimeSeriesFilterRatio?.self, forKey: .timeSeriesFilterRatio)
+      TimeSeriesFilterRatio.self, forKey: .timeSeriesFilterRatio)
     {
       try sourceCheckAndSet(.timeSeriesFilterRatio(timeSeriesFilterRatio))
     }
@@ -153,9 +153,9 @@ public struct TimeSeriesQuery: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Parameters needed to obtain data for the chart.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Filter parameters to fetch time series.
-    indirect case timeSeriesFilter(TimeSeriesFilter?)
+    indirect case timeSeriesFilter(TimeSeriesFilter)
     /// Parameters to fetch a ratio between two time series filters.
-    indirect case timeSeriesFilterRatio(TimeSeriesFilterRatio?)
+    indirect case timeSeriesFilterRatio(TimeSeriesFilterRatio)
     /// A query used to fetch time series with MQL.
     case timeSeriesQueryLanguage(Swift.String)
     /// A query used to fetch time series with PromQL.

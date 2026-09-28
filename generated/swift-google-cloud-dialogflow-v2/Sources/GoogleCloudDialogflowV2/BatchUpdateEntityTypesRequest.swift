@@ -113,7 +113,7 @@
         try entityTypeBatchCheckAndSet(.entityTypeBatchUri(entityTypeBatchUri))
       }
       if let entityTypeBatchInline = try container.decodeIfPresent(
-        EntityTypeBatch?.self, forKey: .entityTypeBatchInline)
+        EntityTypeBatch.self, forKey: .entityTypeBatchInline)
       {
         try entityTypeBatchCheckAndSet(.entityTypeBatchInline(entityTypeBatchInline))
       }
@@ -156,7 +156,7 @@
       /// "gs://".
       case entityTypeBatchUri(Swift.String)
       /// The collection of entity types to update or create.
-      indirect case entityTypeBatchInline(EntityTypeBatch?)
+      indirect case entityTypeBatchInline(EntityTypeBatch)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -141,7 +141,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       assetDetails = $0
     }
     if let machineDetails = try container.decodeIfPresent(
-      MachineDetails?.self, forKey: .machineDetails)
+      MachineDetails.self, forKey: .machineDetails)
     {
       try assetDetailsCheckAndSet(.machineDetails(machineDetails))
     }
@@ -180,7 +180,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum AssetDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Asset information specific for virtual and physical
     /// machines.
-    indirect case machineDetails(MachineDetails?)
+    indirect case machineDetails(MachineDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

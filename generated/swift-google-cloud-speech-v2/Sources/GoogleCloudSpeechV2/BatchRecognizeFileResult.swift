@@ -102,11 +102,11 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleWKT._AnyPackab
       result = $0
     }
     if let cloudStorageResult = try container.decodeIfPresent(
-      CloudStorageResult?.self, forKey: .cloudStorageResult)
+      CloudStorageResult.self, forKey: .cloudStorageResult)
     {
       try resultCheckAndSet(.cloudStorageResult(cloudStorageResult))
     }
-    if let inlineResult = try container.decodeIfPresent(InlineResult?.self, forKey: .inlineResult) {
+    if let inlineResult = try container.decodeIfPresent(InlineResult.self, forKey: .inlineResult) {
       try resultCheckAndSet(.inlineResult(inlineResult))
     }
     self.result = result
@@ -147,14 +147,14 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleWKT._AnyPackab
     /// [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
     ///
     /// [google.cloud.speech.v2.GcsOutputConfig]: <doc:GcsOutputConfig>
-    indirect case cloudStorageResult(CloudStorageResult?)
+    indirect case cloudStorageResult(CloudStorageResult)
     /// Recognition results. This is populated only when
     /// [InlineOutputConfig][google.cloud.speech.v2.InlineOutputConfig] is set in
     /// the
     /// [RecognitionOutputConfig][[google.cloud.speech.v2.RecognitionOutputConfig].
     ///
     /// [google.cloud.speech.v2.InlineOutputConfig]: <doc:InlineOutputConfig>
-    indirect case inlineResult(InlineResult?)
+    indirect case inlineResult(InlineResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

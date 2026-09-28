@@ -143,10 +143,10 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       objectConfiguration = $0
     }
-    if let prefixList = try container.decodeIfPresent(PrefixList?.self, forKey: .prefixList) {
+    if let prefixList = try container.decodeIfPresent(PrefixList.self, forKey: .prefixList) {
       try objectConfigurationCheckAndSet(.prefixList(prefixList))
     }
-    if let manifest = try container.decodeIfPresent(Manifest?.self, forKey: .manifest) {
+    if let manifest = try container.decodeIfPresent(Manifest.self, forKey: .manifest) {
       try objectConfigurationCheckAndSet(.manifest(manifest))
     }
     self.objectConfiguration = objectConfiguration
@@ -161,24 +161,22 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       transformation = $0
     }
-    if let putObjectHold = try container.decodeIfPresent(
-      PutObjectHold?.self, forKey: .putObjectHold)
+    if let putObjectHold = try container.decodeIfPresent(PutObjectHold.self, forKey: .putObjectHold)
     {
       try transformationCheckAndSet(.putObjectHold(putObjectHold))
     }
-    if let deleteObject = try container.decodeIfPresent(DeleteObject?.self, forKey: .deleteObject) {
+    if let deleteObject = try container.decodeIfPresent(DeleteObject.self, forKey: .deleteObject) {
       try transformationCheckAndSet(.deleteObject(deleteObject))
     }
-    if let putMetadata = try container.decodeIfPresent(PutMetadata?.self, forKey: .putMetadata) {
+    if let putMetadata = try container.decodeIfPresent(PutMetadata.self, forKey: .putMetadata) {
       try transformationCheckAndSet(.putMetadata(putMetadata))
     }
-    if let rewriteObject = try container.decodeIfPresent(
-      RewriteObject?.self, forKey: .rewriteObject)
+    if let rewriteObject = try container.decodeIfPresent(RewriteObject.self, forKey: .rewriteObject)
     {
       try transformationCheckAndSet(.rewriteObject(rewriteObject))
     }
     if let updateObjectCustomContext = try container.decodeIfPresent(
-      UpdateObjectCustomContext?.self, forKey: .updateObjectCustomContext)
+      UpdateObjectCustomContext.self, forKey: .updateObjectCustomContext)
     {
       try transformationCheckAndSet(.updateObjectCustomContext(updateObjectCustomContext))
     }
@@ -369,25 +367,25 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies objects to be transformed in the BucketOperation.
   public enum ObjectConfigurationOneOf: Codable, Equatable, Sendable {
     /// Specifies objects matching a prefix set.
-    indirect case prefixList(PrefixList?)
+    indirect case prefixList(PrefixList)
     /// Specifies objects in a manifest file.
-    indirect case manifest(Manifest?)
+    indirect case manifest(Manifest)
   }
 
   /// Action to be performed on the objects.
   public enum TransformationOneOf: Codable, Equatable, Sendable {
     /// Changes object hold status.
-    indirect case putObjectHold(PutObjectHold?)
+    indirect case putObjectHold(PutObjectHold)
     /// Delete objects.
-    indirect case deleteObject(DeleteObject?)
+    indirect case deleteObject(DeleteObject)
     /// Updates object metadata. Allows updating fixed-key and custom metadata
     /// and fixed-key metadata i.e. Cache-Control, Content-Disposition,
     /// Content-Encoding, Content-Language, Content-Type, Custom-Time.
-    indirect case putMetadata(PutMetadata?)
+    indirect case putMetadata(PutMetadata)
     /// Rewrite the object and updates metadata like KMS key.
-    indirect case rewriteObject(RewriteObject?)
+    indirect case rewriteObject(RewriteObject)
     /// Update object custom context.
-    indirect case updateObjectCustomContext(UpdateObjectCustomContext?)
+    indirect case updateObjectCustomContext(UpdateObjectCustomContext)
   }
 
   public static var _anyTypeUrl: Swift.String {

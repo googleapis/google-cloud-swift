@@ -146,24 +146,24 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       connectionConfig = $0
     }
-    if let githubConfig = try container.decodeIfPresent(GitHubConfig?.self, forKey: .githubConfig) {
+    if let githubConfig = try container.decodeIfPresent(GitHubConfig.self, forKey: .githubConfig) {
       try connectionConfigCheckAndSet(.githubConfig(githubConfig))
     }
     if let githubEnterpriseConfig = try container.decodeIfPresent(
-      GitHubEnterpriseConfig?.self, forKey: .githubEnterpriseConfig)
+      GitHubEnterpriseConfig.self, forKey: .githubEnterpriseConfig)
     {
       try connectionConfigCheckAndSet(.githubEnterpriseConfig(githubEnterpriseConfig))
     }
-    if let gitlabConfig = try container.decodeIfPresent(GitLabConfig?.self, forKey: .gitlabConfig) {
+    if let gitlabConfig = try container.decodeIfPresent(GitLabConfig.self, forKey: .gitlabConfig) {
       try connectionConfigCheckAndSet(.gitlabConfig(gitlabConfig))
     }
     if let bitbucketDataCenterConfig = try container.decodeIfPresent(
-      BitbucketDataCenterConfig?.self, forKey: .bitbucketDataCenterConfig)
+      BitbucketDataCenterConfig.self, forKey: .bitbucketDataCenterConfig)
     {
       try connectionConfigCheckAndSet(.bitbucketDataCenterConfig(bitbucketDataCenterConfig))
     }
     if let bitbucketCloudConfig = try container.decodeIfPresent(
-      BitbucketCloudConfig?.self, forKey: .bitbucketCloudConfig)
+      BitbucketCloudConfig.self, forKey: .bitbucketCloudConfig)
     {
       try connectionConfigCheckAndSet(.bitbucketCloudConfig(bitbucketCloudConfig))
     }
@@ -207,16 +207,16 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configuration for the connection depending on the type of provider.
   public enum ConnectionConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for connections to github.com.
-    indirect case githubConfig(GitHubConfig?)
+    indirect case githubConfig(GitHubConfig)
     /// Configuration for connections to an instance of GitHub Enterprise.
-    indirect case githubEnterpriseConfig(GitHubEnterpriseConfig?)
+    indirect case githubEnterpriseConfig(GitHubEnterpriseConfig)
     /// Configuration for connections to gitlab.com or an instance of GitLab
     /// Enterprise.
-    indirect case gitlabConfig(GitLabConfig?)
+    indirect case gitlabConfig(GitLabConfig)
     /// Configuration for connections to Bitbucket Data Center.
-    indirect case bitbucketDataCenterConfig(BitbucketDataCenterConfig?)
+    indirect case bitbucketDataCenterConfig(BitbucketDataCenterConfig)
     /// Configuration for connections to Bitbucket Cloud.
-    indirect case bitbucketCloudConfig(BitbucketCloudConfig?)
+    indirect case bitbucketCloudConfig(BitbucketCloudConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

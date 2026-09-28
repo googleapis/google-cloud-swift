@@ -77,10 +77,10 @@ public struct BlockRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       response = $0
     }
-    if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+    if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
       try responseCheckAndSet(.error(error))
     }
-    if let success = try container.decodeIfPresent(BlockResponse?.self, forKey: .success) {
+    if let success = try container.decodeIfPresent(BlockResponse.self, forKey: .success) {
       try responseCheckAndSet(.success(success))
     }
     self.response = response
@@ -110,9 +110,9 @@ public struct BlockRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// The error that will be returned by the server. If this code is specified
     /// to be the OK rpc code, an empty response will be returned.
-    indirect case error(GoogleRpc.Status?)
+    indirect case error(GoogleRpc.Status)
     /// The response to be returned that will signify successful method call.
-    indirect case success(BlockResponse?)
+    indirect case success(BlockResponse)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -130,7 +130,7 @@ public struct MetricValue: Codable, Equatable, GoogleWKT._AnyPackable,
       try valueCheckAndSet(.stringValue(stringValue))
     }
     if let distributionValue = try container.decodeIfPresent(
-      Distribution?.self, forKey: .distributionValue)
+      Distribution.self, forKey: .distributionValue)
     {
       try valueCheckAndSet(.distributionValue(distributionValue))
     }
@@ -179,7 +179,7 @@ public struct MetricValue: Codable, Equatable, GoogleWKT._AnyPackable,
     /// A text string value.
     case stringValue(Swift.String)
     /// A distribution value.
-    indirect case distributionValue(Distribution?)
+    indirect case distributionValue(Distribution)
   }
 
   public static var _anyTypeUrl: Swift.String {

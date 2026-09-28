@@ -79,7 +79,7 @@ public struct CompletionDataInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
       source = $0
     }
     if let bigQuerySource = try container.decodeIfPresent(
-      BigQuerySource?.self, forKey: .bigQuerySource)
+      BigQuerySource.self, forKey: .bigQuerySource)
     {
       try sourceCheckAndSet(.bigQuerySource(bigQuerySource))
     }
@@ -121,7 +121,7 @@ public struct CompletionDataInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// Add the IAM permission "BigQuery Data Viewer" for
     /// cloud-retail-customer-data-access@system.gserviceaccount.com before
     /// using this feature otherwise an error is thrown.
-    indirect case bigQuerySource(BigQuerySource?)
+    indirect case bigQuerySource(BigQuerySource)
   }
 
   public static var _anyTypeUrl: Swift.String {

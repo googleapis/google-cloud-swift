@@ -95,7 +95,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      ExportDataObjectsRequest.GcsExportDestination?.self, forKey: .gcsDestination)
+      ExportDataObjectsRequest.GcsExportDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
@@ -368,12 +368,12 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
         selector = $0
       }
       if let includedFields = try container.decodeIfPresent(
-        ExportDataObjectsRequest.FieldFilter.FieldList?.self, forKey: .includedFields)
+        ExportDataObjectsRequest.FieldFilter.FieldList.self, forKey: .includedFields)
       {
         try selectorCheckAndSet(.includedFields(includedFields))
       }
       if let excludedFields = try container.decodeIfPresent(
-        ExportDataObjectsRequest.FieldFilter.FieldList?.self, forKey: .excludedFields)
+        ExportDataObjectsRequest.FieldFilter.FieldList.self, forKey: .excludedFields)
       {
         try selectorCheckAndSet(.excludedFields(excludedFields))
       }
@@ -476,10 +476,10 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     public enum SelectorOneOf: Codable, Equatable, Sendable {
       /// Optional. Only these top-level fields will appear in each exported
       /// record.
-      indirect case includedFields(ExportDataObjectsRequest.FieldFilter.FieldList?)
+      indirect case includedFields(ExportDataObjectsRequest.FieldFilter.FieldList)
       /// Optional. Every top-level field except these will appear in each
       /// exported record.
-      indirect case excludedFields(ExportDataObjectsRequest.FieldFilter.FieldList?)
+      indirect case excludedFields(ExportDataObjectsRequest.FieldFilter.FieldList)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -496,7 +496,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// The configuration for the export data.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage location where user wants to export Data Objects.
-    indirect case gcsDestination(ExportDataObjectsRequest.GcsExportDestination?)
+    indirect case gcsDestination(ExportDataObjectsRequest.GcsExportDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

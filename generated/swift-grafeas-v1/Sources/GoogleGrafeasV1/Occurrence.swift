@@ -158,52 +158,51 @@ public struct Occurrence: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let vulnerability = try container.decodeIfPresent(
-      VulnerabilityOccurrence?.self, forKey: .vulnerability)
+      VulnerabilityOccurrence.self, forKey: .vulnerability)
     {
       try detailsCheckAndSet(.vulnerability(vulnerability))
     }
-    if let build = try container.decodeIfPresent(BuildOccurrence?.self, forKey: .build) {
+    if let build = try container.decodeIfPresent(BuildOccurrence.self, forKey: .build) {
       try detailsCheckAndSet(.build(build))
     }
-    if let image = try container.decodeIfPresent(ImageOccurrence?.self, forKey: .image) {
+    if let image = try container.decodeIfPresent(ImageOccurrence.self, forKey: .image) {
       try detailsCheckAndSet(.image(image))
     }
-    if let `package` = try container.decodeIfPresent(PackageOccurrence?.self, forKey: .`package`) {
+    if let `package` = try container.decodeIfPresent(PackageOccurrence.self, forKey: .`package`) {
       try detailsCheckAndSet(.`package`(`package`))
     }
     if let deployment = try container.decodeIfPresent(
-      DeploymentOccurrence?.self, forKey: .deployment)
+      DeploymentOccurrence.self, forKey: .deployment)
     {
       try detailsCheckAndSet(.deployment(deployment))
     }
-    if let discovery = try container.decodeIfPresent(DiscoveryOccurrence?.self, forKey: .discovery)
-    {
+    if let discovery = try container.decodeIfPresent(DiscoveryOccurrence.self, forKey: .discovery) {
       try detailsCheckAndSet(.discovery(discovery))
     }
     if let attestation = try container.decodeIfPresent(
-      AttestationOccurrence?.self, forKey: .attestation)
+      AttestationOccurrence.self, forKey: .attestation)
     {
       try detailsCheckAndSet(.attestation(attestation))
     }
-    if let upgrade = try container.decodeIfPresent(UpgradeOccurrence?.self, forKey: .upgrade) {
+    if let upgrade = try container.decodeIfPresent(UpgradeOccurrence.self, forKey: .upgrade) {
       try detailsCheckAndSet(.upgrade(upgrade))
     }
     if let compliance = try container.decodeIfPresent(
-      ComplianceOccurrence?.self, forKey: .compliance)
+      ComplianceOccurrence.self, forKey: .compliance)
     {
       try detailsCheckAndSet(.compliance(compliance))
     }
     if let dsseAttestation = try container.decodeIfPresent(
-      DSSEAttestationOccurrence?.self, forKey: .dsseAttestation)
+      DSSEAttestationOccurrence.self, forKey: .dsseAttestation)
     {
       try detailsCheckAndSet(.dsseAttestation(dsseAttestation))
     }
     if let sbomReference = try container.decodeIfPresent(
-      SBOMReferenceOccurrence?.self, forKey: .sbomReference)
+      SBOMReferenceOccurrence.self, forKey: .sbomReference)
     {
       try detailsCheckAndSet(.sbomReference(sbomReference))
     }
-    if let secret = try container.decodeIfPresent(SecretOccurrence?.self, forKey: .secret) {
+    if let secret = try container.decodeIfPresent(SecretOccurrence.self, forKey: .secret) {
       try detailsCheckAndSet(.secret(secret))
     }
     self.details = details
@@ -261,30 +260,30 @@ public struct Occurrence: Codable, Equatable, GoogleWKT._AnyPackable,
   /// resource.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Describes a security vulnerability.
-    indirect case vulnerability(VulnerabilityOccurrence?)
+    indirect case vulnerability(VulnerabilityOccurrence)
     /// Describes a verifiable build.
-    indirect case build(BuildOccurrence?)
+    indirect case build(BuildOccurrence)
     /// Describes how this resource derives from the basis in the associated
     /// note.
-    indirect case image(ImageOccurrence?)
+    indirect case image(ImageOccurrence)
     /// Describes the installation of a package on the linked resource.
-    indirect case `package`(PackageOccurrence?)
+    indirect case `package`(PackageOccurrence)
     /// Describes the deployment of an artifact on a runtime.
-    indirect case deployment(DeploymentOccurrence?)
+    indirect case deployment(DeploymentOccurrence)
     /// Describes when a resource was discovered.
-    indirect case discovery(DiscoveryOccurrence?)
+    indirect case discovery(DiscoveryOccurrence)
     /// Describes an attestation of an artifact.
-    indirect case attestation(AttestationOccurrence?)
+    indirect case attestation(AttestationOccurrence)
     /// Describes an available package upgrade on the linked resource.
-    indirect case upgrade(UpgradeOccurrence?)
+    indirect case upgrade(UpgradeOccurrence)
     /// Describes a compliance violation on a linked resource.
-    indirect case compliance(ComplianceOccurrence?)
+    indirect case compliance(ComplianceOccurrence)
     /// Describes an attestation of an artifact using dsse.
-    indirect case dsseAttestation(DSSEAttestationOccurrence?)
+    indirect case dsseAttestation(DSSEAttestationOccurrence)
     /// Describes a specific SBOM reference occurrences.
-    indirect case sbomReference(SBOMReferenceOccurrence?)
+    indirect case sbomReference(SBOMReferenceOccurrence)
     /// Describes a secret.
-    indirect case secret(SecretOccurrence?)
+    indirect case secret(SecretOccurrence)
   }
 
   public static var _anyTypeUrl: Swift.String {

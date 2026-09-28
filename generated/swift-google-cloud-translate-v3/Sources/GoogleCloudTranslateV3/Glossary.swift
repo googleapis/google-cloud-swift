@@ -116,12 +116,12 @@ public struct Glossary: Codable, Equatable, GoogleWKT._AnyPackable,
       languages = $0
     }
     if let languagePair = try container.decodeIfPresent(
-      Glossary.LanguageCodePair?.self, forKey: .languagePair)
+      Glossary.LanguageCodePair.self, forKey: .languagePair)
     {
       try languagesCheckAndSet(.languagePair(languagePair))
     }
     if let languageCodesSet = try container.decodeIfPresent(
-      Glossary.LanguageCodesSet?.self, forKey: .languageCodesSet)
+      Glossary.LanguageCodesSet.self, forKey: .languageCodesSet)
     {
       try languagesCheckAndSet(.languageCodesSet(languageCodesSet))
     }
@@ -306,9 +306,9 @@ public struct Glossary: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Languages supported by the glossary.
   public enum LanguagesOneOf: Codable, Equatable, Sendable {
     /// Used with unidirectional glossaries.
-    indirect case languagePair(Glossary.LanguageCodePair?)
+    indirect case languagePair(Glossary.LanguageCodePair)
     /// Used with equivalent term set glossaries.
-    indirect case languageCodesSet(Glossary.LanguageCodesSet?)
+    indirect case languageCodesSet(Glossary.LanguageCodesSet)
   }
 
   public static var _anyTypeUrl: Swift.String {

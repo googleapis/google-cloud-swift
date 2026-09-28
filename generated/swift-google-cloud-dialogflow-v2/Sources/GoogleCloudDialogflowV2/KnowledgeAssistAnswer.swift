@@ -413,22 +413,22 @@
           source = $0
         }
         if let faqSource = try container.decodeIfPresent(
-          KnowledgeAssistAnswer.KnowledgeAnswer.FaqSource?.self, forKey: .faqSource)
+          KnowledgeAssistAnswer.KnowledgeAnswer.FaqSource.self, forKey: .faqSource)
         {
           try sourceCheckAndSet(.faqSource(faqSource))
         }
         if let generativeSource = try container.decodeIfPresent(
-          KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource?.self, forKey: .generativeSource)
+          KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource.self, forKey: .generativeSource)
         {
           try sourceCheckAndSet(.generativeSource(generativeSource))
         }
         if let playbookSource = try container.decodeIfPresent(
-          KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource?.self, forKey: .playbookSource)
+          KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource.self, forKey: .playbookSource)
         {
           try sourceCheckAndSet(.playbookSource(playbookSource))
         }
         if let eventSource = try container.decodeIfPresent(
-          KnowledgeAssistAnswer.KnowledgeAnswer.EventSource?.self, forKey: .eventSource)
+          KnowledgeAssistAnswer.KnowledgeAnswer.EventSource.self, forKey: .eventSource)
         {
           try sourceCheckAndSet(.eventSource(eventSource))
         }
@@ -776,13 +776,13 @@
       /// Source of result.
       public enum SourceOneOf: Codable, Equatable, Sendable {
         /// Populated if the prediction came from FAQ.
-        indirect case faqSource(KnowledgeAssistAnswer.KnowledgeAnswer.FaqSource?)
+        indirect case faqSource(KnowledgeAssistAnswer.KnowledgeAnswer.FaqSource)
         /// Populated if the prediction was Generative.
-        indirect case generativeSource(KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource?)
+        indirect case generativeSource(KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource)
         /// Populated if the prediction was from Playbook.
-        indirect case playbookSource(KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource?)
+        indirect case playbookSource(KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource)
         /// Populated if the prediction was from an event.
-        indirect case eventSource(KnowledgeAssistAnswer.KnowledgeAnswer.EventSource?)
+        indirect case eventSource(KnowledgeAssistAnswer.KnowledgeAnswer.EventSource)
       }
 
       public static var _anyTypeUrl: Swift.String {

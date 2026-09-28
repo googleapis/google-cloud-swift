@@ -69,7 +69,7 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleWKT._AnyPackable,
       adjustment = $0
     }
     if let percentageAdjustment = try container.decodeIfPresent(
-      PercentageAdjustment?.self, forKey: .percentageAdjustment)
+      PercentageAdjustment.self, forKey: .percentageAdjustment)
     {
       try adjustmentCheckAndSet(.percentageAdjustment(percentageAdjustment))
     }
@@ -97,7 +97,7 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A oneof that represents the different types for this adjustment.
   public enum AdjustmentOneOf: Codable, Equatable, Sendable {
     /// Flat markup or markdown on an entire bill.
-    indirect case percentageAdjustment(PercentageAdjustment?)
+    indirect case percentageAdjustment(PercentageAdjustment)
   }
 
   public static var _anyTypeUrl: Swift.String {

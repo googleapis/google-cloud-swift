@@ -359,7 +359,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
         criteria = $0
       }
       if let entities = try container.decodeIfPresent(
-        MultipleEntityReference?.self, forKey: .entities)
+        MultipleEntityReference.self, forKey: .entities)
       {
         try criteriaCheckAndSet(.entities(entities))
       }
@@ -389,7 +389,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       /// Optional. The entities to initiate the search from. Entities can be
       /// specified by FQN only, or by FQN and field. To search by FQN and all
       /// available fields for that FQN, use the wildcard `*` as the field value.
-      indirect case entities(MultipleEntityReference?)
+      indirect case entities(MultipleEntityReference)
     }
 
     public static var _anyTypeUrl: Swift.String {

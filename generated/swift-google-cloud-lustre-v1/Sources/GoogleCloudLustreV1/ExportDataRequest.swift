@@ -99,7 +99,7 @@ public struct ExportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let lustrePath = try container.decodeIfPresent(LustrePath?.self, forKey: .lustrePath) {
+    if let lustrePath = try container.decodeIfPresent(LustrePath.self, forKey: .lustrePath) {
       try sourceCheckAndSet(.lustrePath(lustrePath))
     }
     self.source = source
@@ -114,7 +114,7 @@ public struct ExportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       destination = $0
     }
-    if let gcsPath = try container.decodeIfPresent(GcsPath?.self, forKey: .gcsPath) {
+    if let gcsPath = try container.decodeIfPresent(GcsPath.self, forKey: .gcsPath) {
       try destinationCheckAndSet(.gcsPath(gcsPath))
     }
     self.destination = destination
@@ -152,7 +152,7 @@ public struct ExportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The root directory path to the Managed Lustre file system. Must start
     /// with `/`. Default is `/`.
-    indirect case lustrePath(LustrePath?)
+    indirect case lustrePath(LustrePath)
   }
 
   /// The destination of the data transfer.
@@ -161,7 +161,7 @@ public struct ExportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// the format `gs://<bucket_name>/<optional_path_inside_bucket>/`. If a
     /// path inside the bucket is specified, it must end with a forward slash
     /// (`/`).
-    indirect case gcsPath(GcsPath?)
+    indirect case gcsPath(GcsPath)
   }
 
   public static var _anyTypeUrl: Swift.String {

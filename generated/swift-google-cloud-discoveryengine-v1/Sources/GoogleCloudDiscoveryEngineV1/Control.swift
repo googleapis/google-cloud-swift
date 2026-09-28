@@ -158,27 +158,27 @@
         action = $0
       }
       if let boostAction = try container.decodeIfPresent(
-        Control.BoostAction?.self, forKey: .boostAction)
+        Control.BoostAction.self, forKey: .boostAction)
       {
         try actionCheckAndSet(.boostAction(boostAction))
       }
       if let filterAction = try container.decodeIfPresent(
-        Control.FilterAction?.self, forKey: .filterAction)
+        Control.FilterAction.self, forKey: .filterAction)
       {
         try actionCheckAndSet(.filterAction(filterAction))
       }
       if let redirectAction = try container.decodeIfPresent(
-        Control.RedirectAction?.self, forKey: .redirectAction)
+        Control.RedirectAction.self, forKey: .redirectAction)
       {
         try actionCheckAndSet(.redirectAction(redirectAction))
       }
       if let synonymsAction = try container.decodeIfPresent(
-        Control.SynonymsAction?.self, forKey: .synonymsAction)
+        Control.SynonymsAction.self, forKey: .synonymsAction)
       {
         try actionCheckAndSet(.synonymsAction(synonymsAction))
       }
       if let promoteAction = try container.decodeIfPresent(
-        Control.PromoteAction?.self, forKey: .promoteAction)
+        Control.PromoteAction.self, forKey: .promoteAction)
       {
         try actionCheckAndSet(.promoteAction(promoteAction))
       }
@@ -311,7 +311,7 @@
           try boostSpecCheckAndSet(.fixedBoost(fixedBoost))
         }
         if let interpolationBoostSpec = try container.decodeIfPresent(
-          Control.BoostAction.InterpolationBoostSpec?.self, forKey: .interpolationBoostSpec)
+          Control.BoostAction.InterpolationBoostSpec.self, forKey: .interpolationBoostSpec)
         {
           try boostSpecCheckAndSet(.interpolationBoostSpec(interpolationBoostSpec))
         }
@@ -791,7 +791,7 @@
         case fixedBoost(Swift.Float)
         /// Optional. Complex specification for custom ranking based on customer
         /// defined attribute value.
-        indirect case interpolationBoostSpec(Control.BoostAction.InterpolationBoostSpec?)
+        indirect case interpolationBoostSpec(Control.BoostAction.InterpolationBoostSpec)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1121,16 +1121,16 @@
     /// Required.
     public enum ActionOneOf: Codable, Equatable, Sendable {
       /// Defines a boost-type control
-      indirect case boostAction(Control.BoostAction?)
+      indirect case boostAction(Control.BoostAction)
       /// Defines a filter-type control
       /// Currently not supported by Recommendation
-      indirect case filterAction(Control.FilterAction?)
+      indirect case filterAction(Control.FilterAction)
       /// Defines a redirect-type control.
-      indirect case redirectAction(Control.RedirectAction?)
+      indirect case redirectAction(Control.RedirectAction)
       /// Treats a group of terms as synonyms of one another.
-      indirect case synonymsAction(Control.SynonymsAction?)
+      indirect case synonymsAction(Control.SynonymsAction)
       /// Promote certain links based on predefined trigger queries.
-      indirect case promoteAction(Control.PromoteAction?)
+      indirect case promoteAction(Control.PromoteAction)
     }
 
     public static var _anyTypeUrl: Swift.String {

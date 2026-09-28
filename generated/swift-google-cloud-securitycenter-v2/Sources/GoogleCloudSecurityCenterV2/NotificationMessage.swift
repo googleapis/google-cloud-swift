@@ -83,7 +83,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       event = $0
     }
-    if let finding = try container.decodeIfPresent(Finding?.self, forKey: .finding) {
+    if let finding = try container.decodeIfPresent(Finding.self, forKey: .finding) {
       try eventCheckAndSet(.finding(finding))
     }
     self.event = event
@@ -113,7 +113,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum EventOneOf: Codable, Equatable, Sendable {
     /// If it's a Finding based notification config, this field will be
     /// populated.
-    indirect case finding(Finding?)
+    indirect case finding(Finding)
   }
 
   public static var _anyTypeUrl: Swift.String {

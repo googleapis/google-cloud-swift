@@ -98,12 +98,12 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
       outputFilter = $0
     }
     if let pickTimeSeriesFilter = try container.decodeIfPresent(
-      PickTimeSeriesFilter?.self, forKey: .pickTimeSeriesFilter)
+      PickTimeSeriesFilter.self, forKey: .pickTimeSeriesFilter)
     {
       try outputFilterCheckAndSet(.pickTimeSeriesFilter(pickTimeSeriesFilter))
     }
     if let statisticalTimeSeriesFilter = try container.decodeIfPresent(
-      StatisticalTimeSeriesFilter?.self, forKey: .statisticalTimeSeriesFilter)
+      StatisticalTimeSeriesFilter.self, forKey: .statisticalTimeSeriesFilter)
     {
       try outputFilterCheckAndSet(.statisticalTimeSeriesFilter(statisticalTimeSeriesFilter))
     }
@@ -220,11 +220,11 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
   /// computing the ratio.
   public enum OutputFilterOneOf: Codable, Equatable, Sendable {
     /// Ranking based time series filter.
-    indirect case pickTimeSeriesFilter(PickTimeSeriesFilter?)
+    indirect case pickTimeSeriesFilter(PickTimeSeriesFilter)
     /// Statistics based time series filter.
     /// Note: This field is deprecated and completely ignored by the API.
     @available(*, deprecated)
-    indirect case statisticalTimeSeriesFilter(StatisticalTimeSeriesFilter?)
+    indirect case statisticalTimeSeriesFilter(StatisticalTimeSeriesFilter)
   }
 
   public static var _anyTypeUrl: Swift.String {

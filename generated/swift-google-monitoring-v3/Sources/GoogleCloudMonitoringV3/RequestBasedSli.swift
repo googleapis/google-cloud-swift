@@ -72,12 +72,12 @@ public struct RequestBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
       method = $0
     }
     if let goodTotalRatio = try container.decodeIfPresent(
-      TimeSeriesRatio?.self, forKey: .goodTotalRatio)
+      TimeSeriesRatio.self, forKey: .goodTotalRatio)
     {
       try methodCheckAndSet(.goodTotalRatio(goodTotalRatio))
     }
     if let distributionCut = try container.decodeIfPresent(
-      DistributionCut?.self, forKey: .distributionCut)
+      DistributionCut.self, forKey: .distributionCut)
     {
       try methodCheckAndSet(.distributionCut(distributionCut))
     }
@@ -108,12 +108,12 @@ public struct RequestBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum MethodOneOf: Codable, Equatable, Sendable {
     /// `good_total_ratio` is used when the ratio of `good_service` to
     /// `total_service` is computed from two `TimeSeries`.
-    indirect case goodTotalRatio(TimeSeriesRatio?)
+    indirect case goodTotalRatio(TimeSeriesRatio)
     /// `distribution_cut` is used when `good_service` is a count of values
     /// aggregated in a `Distribution` that fall into a good range. The
     /// `total_service` is the total count of all values aggregated in the
     /// `Distribution`.
-    indirect case distributionCut(DistributionCut?)
+    indirect case distributionCut(DistributionCut)
   }
 
   public static var _anyTypeUrl: Swift.String {

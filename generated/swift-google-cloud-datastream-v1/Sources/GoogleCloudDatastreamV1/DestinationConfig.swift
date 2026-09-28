@@ -83,12 +83,12 @@ public struct DestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       destinationStreamConfig = $0
     }
     if let gcsDestinationConfig = try container.decodeIfPresent(
-      GcsDestinationConfig?.self, forKey: .gcsDestinationConfig)
+      GcsDestinationConfig.self, forKey: .gcsDestinationConfig)
     {
       try destinationStreamConfigCheckAndSet(.gcsDestinationConfig(gcsDestinationConfig))
     }
     if let bigqueryDestinationConfig = try container.decodeIfPresent(
-      BigQueryDestinationConfig?.self, forKey: .bigqueryDestinationConfig)
+      BigQueryDestinationConfig.self, forKey: .bigqueryDestinationConfig)
     {
       try destinationStreamConfigCheckAndSet(.bigqueryDestinationConfig(bigqueryDestinationConfig))
     }
@@ -119,9 +119,9 @@ public struct DestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Stream configuration that is specific to the data destination type.
   public enum DestinationStreamConfigOneOf: Codable, Equatable, Sendable {
     /// A configuration for how data should be loaded to Cloud Storage.
-    indirect case gcsDestinationConfig(GcsDestinationConfig?)
+    indirect case gcsDestinationConfig(GcsDestinationConfig)
     /// BigQuery destination configuration.
-    indirect case bigqueryDestinationConfig(BigQueryDestinationConfig?)
+    indirect case bigqueryDestinationConfig(BigQueryDestinationConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

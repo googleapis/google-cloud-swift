@@ -283,11 +283,11 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .expireTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
@@ -489,12 +489,12 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
     /// This is always provided on output, regardless of what was sent on input.
     ///
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-    indirect case expireTime(GoogleWKT.WKTTimestamp?)
+    indirect case expireTime(GoogleWKT.WKTTimestamp)
     /// Input only. The TTL for the
     /// [Secret][google.cloud.secretmanager.v1.Secret].
     ///
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-    indirect case ttl(GoogleWKT.WKTDuration?)
+    indirect case ttl(GoogleWKT.WKTDuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

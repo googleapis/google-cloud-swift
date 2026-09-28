@@ -148,12 +148,12 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
       restrictions = $0
     }
     if let stringRestrictions = try container.decodeIfPresent(
-      SupportedDatabaseFlag.StringRestrictions?.self, forKey: .stringRestrictions)
+      SupportedDatabaseFlag.StringRestrictions.self, forKey: .stringRestrictions)
     {
       try restrictionsCheckAndSet(.stringRestrictions(stringRestrictions))
     }
     if let integerRestrictions = try container.decodeIfPresent(
-      SupportedDatabaseFlag.IntegerRestrictions?.self, forKey: .integerRestrictions)
+      SupportedDatabaseFlag.IntegerRestrictions.self, forKey: .integerRestrictions)
     {
       try restrictionsCheckAndSet(.integerRestrictions(integerRestrictions))
     }
@@ -175,7 +175,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
       try recommendedValueCheckAndSet(.recommendedStringValue(recommendedStringValue))
     }
     if let recommendedIntegerValue = try container.decodeIfPresent(
-      GoogleWKT.WKTInt64Value?.self, forKey: .recommendedIntegerValue)
+      GoogleWKT.WKTInt64Value.self, forKey: .recommendedIntegerValue)
     {
       try recommendedValueCheckAndSet(.recommendedIntegerValue(recommendedIntegerValue))
     }
@@ -613,9 +613,9 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The restrictions on the flag value per type.
   public enum RestrictionsOneOf: Codable, Equatable, Sendable {
     /// Restriction on STRING type value.
-    indirect case stringRestrictions(SupportedDatabaseFlag.StringRestrictions?)
+    indirect case stringRestrictions(SupportedDatabaseFlag.StringRestrictions)
     /// Restriction on INTEGER type value.
-    indirect case integerRestrictions(SupportedDatabaseFlag.IntegerRestrictions?)
+    indirect case integerRestrictions(SupportedDatabaseFlag.IntegerRestrictions)
   }
 
   /// The recommended value for the flag by type, if applicable.
@@ -623,7 +623,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The recommended value for a STRING flag.
     case recommendedStringValue(Swift.String)
     /// The recommended value for an INTEGER flag.
-    indirect case recommendedIntegerValue(GoogleWKT.WKTInt64Value?)
+    indirect case recommendedIntegerValue(GoogleWKT.WKTInt64Value)
   }
 
   public static var _anyTypeUrl: Swift.String {

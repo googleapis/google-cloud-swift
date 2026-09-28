@@ -69,10 +69,10 @@ public struct SendPacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       request = $0
     }
-    if let packet = try container.decodeIfPresent(Packet?.self, forKey: .packet) {
+    if let packet = try container.decodeIfPresent(Packet.self, forKey: .packet) {
       try requestCheckAndSet(.packet(packet))
     }
-    if let metadata = try container.decodeIfPresent(RequestMetadata?.self, forKey: .metadata) {
+    if let metadata = try container.decodeIfPresent(RequestMetadata.self, forKey: .metadata) {
       try requestCheckAndSet(.metadata(metadata))
     }
     self.request = request
@@ -100,9 +100,9 @@ public struct SendPacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum RequestOneOf: Codable, Equatable, Sendable {
     /// Packets sent over the streaming rpc.
-    indirect case packet(Packet?)
+    indirect case packet(Packet)
     /// The first message of the streaming rpc including the request metadata.
-    indirect case metadata(RequestMetadata?)
+    indirect case metadata(RequestMetadata)
   }
 
   public static var _anyTypeUrl: Swift.String {

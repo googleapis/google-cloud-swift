@@ -239,7 +239,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         if let gcpSecretManagerCertificateConfig = try container.decodeIfPresent(
           ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig
-            .GCPSecretManagerCertificateConfig?.self, forKey: .gcpSecretManagerCertificateConfig)
+            .GCPSecretManagerCertificateConfig.self, forKey: .gcpSecretManagerCertificateConfig)
         {
           try certificateConfigCheckAndSet(
             .gcpSecretManagerCertificateConfig(gcpSecretManagerCertificateConfig))
@@ -344,7 +344,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         /// Secret Manager certificate configuration.
         indirect case gcpSecretManagerCertificateConfig(
           ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig
-            .GCPSecretManagerCertificateConfig?)
+            .GCPSecretManagerCertificateConfig)
       }
 
       public static var _anyTypeUrl: Swift.String {

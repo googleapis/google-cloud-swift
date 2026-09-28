@@ -107,7 +107,7 @@ public struct ImportDataFile: Codable, Equatable, GoogleWKT._AnyPackable,
       fileInfo = $0
     }
     if let uploadFileInfo = try container.decodeIfPresent(
-      UploadFileInfo?.self, forKey: .uploadFileInfo)
+      UploadFileInfo.self, forKey: .uploadFileInfo)
     {
       try fileInfoCheckAndSet(.uploadFileInfo(uploadFileInfo))
     }
@@ -256,7 +256,7 @@ public struct ImportDataFile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum FileInfoOneOf: Codable, Equatable, Sendable {
     /// Information about a file that is uploaded to a storage service.
-    indirect case uploadFileInfo(UploadFileInfo?)
+    indirect case uploadFileInfo(UploadFileInfo)
   }
 
   public static var _anyTypeUrl: Swift.String {

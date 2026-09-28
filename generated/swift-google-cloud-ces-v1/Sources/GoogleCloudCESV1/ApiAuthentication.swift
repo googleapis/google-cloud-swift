@@ -77,24 +77,24 @@ public struct ApiAuthentication: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       authConfig = $0
     }
-    if let apiKeyConfig = try container.decodeIfPresent(ApiKeyConfig?.self, forKey: .apiKeyConfig) {
+    if let apiKeyConfig = try container.decodeIfPresent(ApiKeyConfig.self, forKey: .apiKeyConfig) {
       try authConfigCheckAndSet(.apiKeyConfig(apiKeyConfig))
     }
-    if let oauthConfig = try container.decodeIfPresent(OAuthConfig?.self, forKey: .oauthConfig) {
+    if let oauthConfig = try container.decodeIfPresent(OAuthConfig.self, forKey: .oauthConfig) {
       try authConfigCheckAndSet(.oauthConfig(oauthConfig))
     }
     if let serviceAgentIdTokenAuthConfig = try container.decodeIfPresent(
-      ServiceAgentIdTokenAuthConfig?.self, forKey: .serviceAgentIdTokenAuthConfig)
+      ServiceAgentIdTokenAuthConfig.self, forKey: .serviceAgentIdTokenAuthConfig)
     {
       try authConfigCheckAndSet(.serviceAgentIdTokenAuthConfig(serviceAgentIdTokenAuthConfig))
     }
     if let serviceAccountAuthConfig = try container.decodeIfPresent(
-      ServiceAccountAuthConfig?.self, forKey: .serviceAccountAuthConfig)
+      ServiceAccountAuthConfig.self, forKey: .serviceAccountAuthConfig)
     {
       try authConfigCheckAndSet(.serviceAccountAuthConfig(serviceAccountAuthConfig))
     }
     if let bearerTokenConfig = try container.decodeIfPresent(
-      BearerTokenConfig?.self, forKey: .bearerTokenConfig)
+      BearerTokenConfig.self, forKey: .bearerTokenConfig)
     {
       try authConfigCheckAndSet(.bearerTokenConfig(bearerTokenConfig))
     }
@@ -130,15 +130,15 @@ public struct ApiAuthentication: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The auth configuration.
   public enum AuthConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Config for API key auth.
-    indirect case apiKeyConfig(ApiKeyConfig?)
+    indirect case apiKeyConfig(ApiKeyConfig)
     /// Optional. Config for OAuth.
-    indirect case oauthConfig(OAuthConfig?)
+    indirect case oauthConfig(OAuthConfig)
     /// Optional. Config for ID token auth generated from CES service agent.
-    indirect case serviceAgentIdTokenAuthConfig(ServiceAgentIdTokenAuthConfig?)
+    indirect case serviceAgentIdTokenAuthConfig(ServiceAgentIdTokenAuthConfig)
     /// Optional. Config for service account authentication.
-    indirect case serviceAccountAuthConfig(ServiceAccountAuthConfig?)
+    indirect case serviceAccountAuthConfig(ServiceAccountAuthConfig)
     /// Optional. Config for bearer token auth.
-    indirect case bearerTokenConfig(BearerTokenConfig?)
+    indirect case bearerTokenConfig(BearerTokenConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

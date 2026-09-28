@@ -84,25 +84,17 @@ extension IntelligenceConfig.Filter {
     if let oneof = self.cloudStorageLocations {
       switch oneof {
       case .includedCloudStorageLocations(let value):
-        if let value = value {
-          proto.cloudStorageLocations = .includedCloudStorageLocations(try value.toProto())
-        }
+        proto.cloudStorageLocations = .includedCloudStorageLocations(try value.toProto())
       case .excludedCloudStorageLocations(let value):
-        if let value = value {
-          proto.cloudStorageLocations = .excludedCloudStorageLocations(try value.toProto())
-        }
+        proto.cloudStorageLocations = .excludedCloudStorageLocations(try value.toProto())
       }
     }
     if let oneof = self.cloudStorageBuckets {
       switch oneof {
       case .includedCloudStorageBuckets(let value):
-        if let value = value {
-          proto.cloudStorageBuckets = .includedCloudStorageBuckets(try value.toProto())
-        }
+        proto.cloudStorageBuckets = .includedCloudStorageBuckets(try value.toProto())
       case .excludedCloudStorageBuckets(let value):
-        if let value = value {
-          proto.cloudStorageBuckets = .excludedCloudStorageBuckets(try value.toProto())
-        }
+        proto.cloudStorageBuckets = .excludedCloudStorageBuckets(try value.toProto())
       }
     }
     if !self._unknownFields.proto.isEmpty {

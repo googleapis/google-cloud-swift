@@ -107,7 +107,7 @@
         strategy = $0
       }
       if let taskDescription = try container.decodeIfPresent(
-        TaskDescriptionStrategy?.self, forKey: .taskDescription)
+        TaskDescriptionStrategy.self, forKey: .taskDescription)
       {
         try strategyCheckAndSet(.taskDescription(taskDescription))
       }
@@ -139,7 +139,7 @@
     /// The generation strategy to use.
     public enum StrategyOneOf: Codable, Equatable, Sendable {
       /// Generate data from a high-level task description.
-      indirect case taskDescription(TaskDescriptionStrategy?)
+      indirect case taskDescription(TaskDescriptionStrategy)
     }
 
     public static var _anyTypeUrl: Swift.String {

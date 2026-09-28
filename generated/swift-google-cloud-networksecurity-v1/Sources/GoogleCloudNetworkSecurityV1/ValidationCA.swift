@@ -71,11 +71,11 @@ public struct ValidationCA: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       type = $0
     }
-    if let grpcEndpoint = try container.decodeIfPresent(GrpcEndpoint?.self, forKey: .grpcEndpoint) {
+    if let grpcEndpoint = try container.decodeIfPresent(GrpcEndpoint.self, forKey: .grpcEndpoint) {
       try typeCheckAndSet(.grpcEndpoint(grpcEndpoint))
     }
     if let certificateProviderInstance = try container.decodeIfPresent(
-      CertificateProviderInstance?.self, forKey: .certificateProviderInstance)
+      CertificateProviderInstance.self, forKey: .certificateProviderInstance)
     {
       try typeCheckAndSet(.certificateProviderInstance(certificateProviderInstance))
     }
@@ -106,11 +106,11 @@ public struct ValidationCA: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// gRPC specific configuration to access the gRPC server to
     /// obtain the CA certificate.
-    indirect case grpcEndpoint(GrpcEndpoint?)
+    indirect case grpcEndpoint(GrpcEndpoint)
     /// The certificate provider instance specification that will be passed to
     /// the data plane, which will be used to load necessary credential
     /// information.
-    indirect case certificateProviderInstance(CertificateProviderInstance?)
+    indirect case certificateProviderInstance(CertificateProviderInstance)
   }
 
   public static var _anyTypeUrl: Swift.String {

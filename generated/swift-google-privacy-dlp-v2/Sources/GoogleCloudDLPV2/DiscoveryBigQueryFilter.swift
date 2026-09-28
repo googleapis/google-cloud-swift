@@ -77,16 +77,16 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleWKT._AnyPackabl
       }
       filter = $0
     }
-    if let tables = try container.decodeIfPresent(BigQueryTableCollection?.self, forKey: .tables) {
+    if let tables = try container.decodeIfPresent(BigQueryTableCollection.self, forKey: .tables) {
       try filterCheckAndSet(.tables(tables))
     }
     if let otherTables = try container.decodeIfPresent(
-      DiscoveryBigQueryFilter.AllOtherBigQueryTables?.self, forKey: .otherTables)
+      DiscoveryBigQueryFilter.AllOtherBigQueryTables.self, forKey: .otherTables)
     {
       try filterCheckAndSet(.otherTables(otherTables))
     }
     if let tableReference = try container.decodeIfPresent(
-      TableReference?.self, forKey: .tableReference)
+      TableReference.self, forKey: .tableReference)
     {
       try filterCheckAndSet(.tableReference(tableReference))
     }
@@ -184,16 +184,16 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleWKT._AnyPackabl
     /// must be specified in only one filter per config.
     /// If a table id or dataset is empty, Cloud DLP assumes all tables in that
     /// collection must be profiled. Must specify a project ID.
-    indirect case tables(BigQueryTableCollection?)
+    indirect case tables(BigQueryTableCollection)
     /// Catch-all. This should always be the last filter in the list because
     /// anything above it will apply first. Should only appear once in a
     /// configuration. If none is specified, a default one will be added
     /// automatically.
-    indirect case otherTables(DiscoveryBigQueryFilter.AllOtherBigQueryTables?)
+    indirect case otherTables(DiscoveryBigQueryFilter.AllOtherBigQueryTables)
     /// The table to scan. Discovery configurations including this can only
     /// include one DiscoveryTarget (the DiscoveryTarget with this
     /// TableReference).
-    indirect case tableReference(TableReference?)
+    indirect case tableReference(TableReference)
   }
 
   public static var _anyTypeUrl: Swift.String {

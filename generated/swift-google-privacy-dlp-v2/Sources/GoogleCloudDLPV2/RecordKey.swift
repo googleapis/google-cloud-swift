@@ -79,10 +79,10 @@ public struct RecordKey: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       type = $0
     }
-    if let datastoreKey = try container.decodeIfPresent(DatastoreKey?.self, forKey: .datastoreKey) {
+    if let datastoreKey = try container.decodeIfPresent(DatastoreKey.self, forKey: .datastoreKey) {
       try typeCheckAndSet(.datastoreKey(datastoreKey))
     }
-    if let bigQueryKey = try container.decodeIfPresent(BigQueryKey?.self, forKey: .bigQueryKey) {
+    if let bigQueryKey = try container.decodeIfPresent(BigQueryKey.self, forKey: .bigQueryKey) {
       try typeCheckAndSet(.bigQueryKey(bigQueryKey))
     }
     self.type = type
@@ -112,9 +112,9 @@ public struct RecordKey: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of key
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// BigQuery key
-    indirect case datastoreKey(DatastoreKey?)
+    indirect case datastoreKey(DatastoreKey)
     /// Datastore key
-    indirect case bigQueryKey(BigQueryKey?)
+    indirect case bigQueryKey(BigQueryKey)
   }
 
   public static var _anyTypeUrl: Swift.String {

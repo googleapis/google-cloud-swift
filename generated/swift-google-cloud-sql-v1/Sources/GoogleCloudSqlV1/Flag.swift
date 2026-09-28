@@ -174,7 +174,7 @@
         try recommendedValueCheckAndSet(.recommendedStringValue(recommendedStringValue))
       }
       if let recommendedIntValue = try container.decodeIfPresent(
-        GoogleWKT.WKTInt64Value?.self, forKey: .recommendedIntValue)
+        GoogleWKT.WKTInt64Value.self, forKey: .recommendedIntValue)
       {
         try recommendedValueCheckAndSet(.recommendedIntValue(recommendedIntValue))
       }
@@ -217,7 +217,7 @@
       /// Recommended string value in string format for UI display.
       case recommendedStringValue(Swift.String)
       /// Recommended int value in integer format for UI display.
-      indirect case recommendedIntValue(GoogleWKT.WKTInt64Value?)
+      indirect case recommendedIntValue(GoogleWKT.WKTInt64Value)
     }
 
     public static var _anyTypeUrl: Swift.String {

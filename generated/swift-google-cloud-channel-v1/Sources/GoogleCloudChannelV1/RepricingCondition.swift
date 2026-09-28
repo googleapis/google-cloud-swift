@@ -70,7 +70,7 @@ public struct RepricingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
       condition = $0
     }
     if let skuGroupCondition = try container.decodeIfPresent(
-      SkuGroupCondition?.self, forKey: .skuGroupCondition)
+      SkuGroupCondition.self, forKey: .skuGroupCondition)
     {
       try conditionCheckAndSet(.skuGroupCondition(skuGroupCondition))
     }
@@ -98,7 +98,7 @@ public struct RepricingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Represents the types of existing conditional statements.
   public enum ConditionOneOf: Codable, Equatable, Sendable {
     /// SKU Group condition for override.
-    indirect case skuGroupCondition(SkuGroupCondition?)
+    indirect case skuGroupCondition(SkuGroupCondition)
   }
 
   public static var _anyTypeUrl: Swift.String {

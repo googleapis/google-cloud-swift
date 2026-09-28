@@ -71,12 +71,12 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      OutputConfig.GcsDestination?.self, forKey: .gcsDestination)
+      OutputConfig.GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
     if let bigqueryDestination = try container.decodeIfPresent(
-      OutputConfig.BigQueryDestination?.self, forKey: .bigqueryDestination)
+      OutputConfig.BigQueryDestination.self, forKey: .bigqueryDestination)
     {
       try destinationCheckAndSet(.bigqueryDestination(bigqueryDestination))
     }
@@ -269,9 +269,9 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The configuration of destination for holding output data.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// The Google Cloud Storage location where the output is to be written to.
-    indirect case gcsDestination(OutputConfig.GcsDestination?)
+    indirect case gcsDestination(OutputConfig.GcsDestination)
     /// The BigQuery location where the output is to be written to.
-    indirect case bigqueryDestination(OutputConfig.BigQueryDestination?)
+    indirect case bigqueryDestination(OutputConfig.BigQueryDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

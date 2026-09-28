@@ -76,7 +76,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
       destination = $0
     }
     if let bigQueryDestination = try container.decodeIfPresent(
-      BigQueryDestination?.self, forKey: .bigQueryDestination)
+      BigQueryDestination.self, forKey: .bigQueryDestination)
     {
       try destinationCheckAndSet(.bigQueryDestination(bigQueryDestination))
     }
@@ -105,7 +105,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   /// The destination to export findings to.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Required. The destination big query dataset to export findings to.
-    indirect case bigQueryDestination(BigQueryDestination?)
+    indirect case bigQueryDestination(BigQueryDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

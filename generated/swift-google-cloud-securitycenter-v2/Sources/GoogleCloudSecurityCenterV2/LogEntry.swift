@@ -69,7 +69,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       logEntry = $0
     }
     if let cloudLoggingEntry = try container.decodeIfPresent(
-      CloudLoggingEntry?.self, forKey: .cloudLoggingEntry)
+      CloudLoggingEntry.self, forKey: .cloudLoggingEntry)
     {
       try logEntryCheckAndSet(.cloudLoggingEntry(cloudLoggingEntry))
     }
@@ -97,7 +97,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The log entry.
   public enum LogEntryOneOf: Codable, Equatable, Sendable {
     /// An individual entry in a log stored in Cloud Logging.
-    indirect case cloudLoggingEntry(CloudLoggingEntry?)
+    indirect case cloudLoggingEntry(CloudLoggingEntry)
   }
 
   public static var _anyTypeUrl: Swift.String {

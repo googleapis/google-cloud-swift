@@ -75,7 +75,7 @@ public struct CommonFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
       featureState = $0
     }
     if let rbacrolebindingactuation = try container.decodeIfPresent(
-      GoogleCloudGKEHubRBACRoleBindingActuationV1.FeatureState?.self,
+      GoogleCloudGKEHubRBACRoleBindingActuationV1.FeatureState.self,
       forKey: .rbacrolebindingactuation)
     {
       try featureStateCheckAndSet(.rbacrolebindingactuation(rbacrolebindingactuation))
@@ -104,8 +104,7 @@ public struct CommonFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum FeatureStateOneOf: Codable, Equatable, Sendable {
     /// RBAC Role Binding Actuation feature state
-    indirect case rbacrolebindingactuation(
-      GoogleCloudGKEHubRBACRoleBindingActuationV1.FeatureState?)
+    indirect case rbacrolebindingactuation(GoogleCloudGKEHubRBACRoleBindingActuationV1.FeatureState)
   }
 
   public static var _anyTypeUrl: Swift.String {

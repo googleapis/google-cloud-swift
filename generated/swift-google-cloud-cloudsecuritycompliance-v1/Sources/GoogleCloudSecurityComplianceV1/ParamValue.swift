@@ -83,14 +83,14 @@ public struct ParamValue: Codable, Equatable, GoogleWKT._AnyPackable,
       try kindCheckAndSet(.boolValue(boolValue))
     }
     if let stringListValue = try container.decodeIfPresent(
-      StringList?.self, forKey: .stringListValue)
+      StringList.self, forKey: .stringListValue)
     {
       try kindCheckAndSet(.stringListValue(stringListValue))
     }
     if let numberValue = try container.decodeIfPresent(Swift.Double.self, forKey: .numberValue) {
       try kindCheckAndSet(.numberValue(numberValue))
     }
-    if let oneofValue = try container.decodeIfPresent(Parameter?.self, forKey: .oneofValue) {
+    if let oneofValue = try container.decodeIfPresent(Parameter.self, forKey: .oneofValue) {
       try kindCheckAndSet(.oneofValue(oneofValue))
     }
     self.kind = kind
@@ -129,11 +129,11 @@ public struct ParamValue: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. A boolean value.
     case boolValue(Swift.Bool)
     /// Optional. A repeated string.
-    indirect case stringListValue(StringList?)
+    indirect case stringListValue(StringList)
     /// Optional. A double value.
     case numberValue(Swift.Double)
     /// Optional. Sub-parameter values.
-    indirect case oneofValue(Parameter?)
+    indirect case oneofValue(Parameter)
   }
 
   public static var _anyTypeUrl: Swift.String {

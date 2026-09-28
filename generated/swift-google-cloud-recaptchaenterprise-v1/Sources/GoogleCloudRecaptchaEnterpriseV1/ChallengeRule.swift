@@ -94,12 +94,12 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
       outcome = $0
     }
     if let noChallenge = try container.decodeIfPresent(
-      ChallengeRule.NoChallengeOutcome?.self, forKey: .noChallenge)
+      ChallengeRule.NoChallengeOutcome.self, forKey: .noChallenge)
     {
       try outcomeCheckAndSet(.noChallenge(noChallenge))
     }
     if let challenge = try container.decodeIfPresent(
-      ChallengeRule.ChallengeOutcome?.self, forKey: .challenge)
+      ChallengeRule.ChallengeOutcome.self, forKey: .challenge)
     {
       try outcomeCheckAndSet(.challenge(challenge))
     }
@@ -263,9 +263,9 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The outcome to apply when this challenge rule matches.
   public enum OutcomeOneOf: Codable, Equatable, Sendable {
     /// Do not present a challenge to the user.
-    indirect case noChallenge(ChallengeRule.NoChallengeOutcome?)
+    indirect case noChallenge(ChallengeRule.NoChallengeOutcome)
     /// Present a challenge to the user.
-    indirect case challenge(ChallengeRule.ChallengeOutcome?)
+    indirect case challenge(ChallengeRule.ChallengeOutcome)
   }
 
   public static var _anyTypeUrl: Swift.String {

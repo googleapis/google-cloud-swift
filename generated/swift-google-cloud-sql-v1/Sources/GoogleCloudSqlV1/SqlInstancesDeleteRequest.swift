@@ -109,7 +109,7 @@
         try expirationCheckAndSet(.finalBackupTtlDays(finalBackupTtlDays))
       }
       if let finalBackupExpiryTime = try container.decodeIfPresent(
-        GoogleWKT.WKTTimestamp?.self, forKey: .finalBackupExpiryTime)
+        GoogleWKT.WKTTimestamp.self, forKey: .finalBackupExpiryTime)
       {
         try expirationCheckAndSet(.finalBackupExpiryTime(finalBackupExpiryTime))
       }
@@ -145,7 +145,7 @@
       case finalBackupTtlDays(Swift.Int64)
       /// Optional. Final Backup expiration time.
       /// Timestamp in UTC of when this resource is considered expired.
-      indirect case finalBackupExpiryTime(GoogleWKT.WKTTimestamp?)
+      indirect case finalBackupExpiryTime(GoogleWKT.WKTTimestamp)
     }
 
     public static var _anyTypeUrl: Swift.String {

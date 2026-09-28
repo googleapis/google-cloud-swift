@@ -97,12 +97,12 @@ public struct Phase: Codable, Equatable, GoogleWKT._AnyPackable,
       jobs = $0
     }
     if let deploymentJobs = try container.decodeIfPresent(
-      DeploymentJobs?.self, forKey: .deploymentJobs)
+      DeploymentJobs.self, forKey: .deploymentJobs)
     {
       try jobsCheckAndSet(.deploymentJobs(deploymentJobs))
     }
     if let childRolloutJobs = try container.decodeIfPresent(
-      ChildRolloutJobs?.self, forKey: .childRolloutJobs)
+      ChildRolloutJobs.self, forKey: .childRolloutJobs)
     {
       try jobsCheckAndSet(.childRolloutJobs(childRolloutJobs))
     }
@@ -280,9 +280,9 @@ public struct Phase: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The job composition of this Phase.
   public enum JobsOneOf: Codable, Equatable, Sendable {
     /// Output only. Deployment job composition.
-    indirect case deploymentJobs(DeploymentJobs?)
+    indirect case deploymentJobs(DeploymentJobs)
     /// Output only. ChildRollout job composition.
-    indirect case childRolloutJobs(ChildRolloutJobs?)
+    indirect case childRolloutJobs(ChildRolloutJobs)
   }
 
   public static var _anyTypeUrl: Swift.String {

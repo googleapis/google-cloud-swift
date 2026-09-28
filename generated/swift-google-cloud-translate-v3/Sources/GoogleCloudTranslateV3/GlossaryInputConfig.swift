@@ -68,7 +68,7 @@ public struct GlossaryInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+    if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     self.source = source
@@ -115,7 +115,7 @@ public struct GlossaryInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// - CSV (`.csv`): Multi-column CSV file defining equivalent glossary terms
     ///   in multiple languages. See documentation for more information -
     ///   [glossaries](https://cloud.google.com/translate/docs/advanced/glossary).
-    indirect case gcsSource(GcsSource?)
+    indirect case gcsSource(GcsSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

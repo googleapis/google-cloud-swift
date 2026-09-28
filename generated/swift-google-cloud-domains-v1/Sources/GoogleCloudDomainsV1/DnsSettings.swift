@@ -81,13 +81,12 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       dnsProvider = $0
     }
-    if let customDns = try container.decodeIfPresent(
-      DnsSettings.CustomDns?.self, forKey: .customDns)
+    if let customDns = try container.decodeIfPresent(DnsSettings.CustomDns.self, forKey: .customDns)
     {
       try dnsProviderCheckAndSet(.customDns(customDns))
     }
     if let googleDomainsDns = try container.decodeIfPresent(
-      DnsSettings.GoogleDomainsDns?.self, forKey: .googleDomainsDns)
+      DnsSettings.GoogleDomainsDns.self, forKey: .googleDomainsDns)
     {
       try dnsProviderCheckAndSet(.googleDomainsDns(googleDomainsDns))
     }
@@ -968,10 +967,10 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The DNS provider of the registration.
   public enum DnsProviderOneOf: Codable, Equatable, Sendable {
     /// An arbitrary DNS provider identified by its name servers.
-    indirect case customDns(DnsSettings.CustomDns?)
+    indirect case customDns(DnsSettings.CustomDns)
     /// The free DNS zone provided by
     /// [Google Domains](https://domains.google/).
-    indirect case googleDomainsDns(DnsSettings.GoogleDomainsDns?)
+    indirect case googleDomainsDns(DnsSettings.GoogleDomainsDns)
   }
 
   public static var _anyTypeUrl: Swift.String {

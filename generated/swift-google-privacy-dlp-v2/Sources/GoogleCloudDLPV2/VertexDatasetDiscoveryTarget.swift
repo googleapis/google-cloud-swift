@@ -86,11 +86,11 @@ public struct VertexDatasetDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPa
       cadence = $0
     }
     if let generationCadence = try container.decodeIfPresent(
-      DiscoveryVertexDatasetGenerationCadence?.self, forKey: .generationCadence)
+      DiscoveryVertexDatasetGenerationCadence.self, forKey: .generationCadence)
     {
       try cadenceCheckAndSet(.generationCadence(generationCadence))
     }
-    if let disabled = try container.decodeIfPresent(Disabled?.self, forKey: .disabled) {
+    if let disabled = try container.decodeIfPresent(Disabled.self, forKey: .disabled) {
       try cadenceCheckAndSet(.disabled(disabled))
     }
     self.cadence = cadence
@@ -123,9 +123,9 @@ public struct VertexDatasetDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPa
     /// How often and when to update profiles. New datasets that match both the
     /// filter and conditions are scanned as quickly as possible depending on
     /// system capacity.
-    indirect case generationCadence(DiscoveryVertexDatasetGenerationCadence?)
+    indirect case generationCadence(DiscoveryVertexDatasetGenerationCadence)
     /// Disable profiling for datasets that match this filter.
-    indirect case disabled(Disabled?)
+    indirect case disabled(Disabled)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -138,10 +138,10 @@ public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         objectConfiguration = $0
       }
-      if let prefixList = try container.decodeIfPresent(PrefixList?.self, forKey: .prefixList) {
+      if let prefixList = try container.decodeIfPresent(PrefixList.self, forKey: .prefixList) {
         try objectConfigurationCheckAndSet(.prefixList(prefixList))
       }
-      if let manifest = try container.decodeIfPresent(Manifest?.self, forKey: .manifest) {
+      if let manifest = try container.decodeIfPresent(Manifest.self, forKey: .manifest) {
         try objectConfigurationCheckAndSet(.manifest(manifest))
       }
       self.objectConfiguration = objectConfiguration
@@ -171,9 +171,9 @@ public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Specifies objects to be transformed.
     public enum ObjectConfigurationOneOf: Codable, Equatable, Sendable {
       /// Specifies objects matching a prefix set.
-      indirect case prefixList(PrefixList?)
+      indirect case prefixList(PrefixList)
       /// Specifies objects in a manifest file.
-      indirect case manifest(Manifest?)
+      indirect case manifest(Manifest)
     }
 
     public static var _anyTypeUrl: Swift.String {

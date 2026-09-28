@@ -283,382 +283,382 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let anomaliSettings = try container.decodeIfPresent(
-      AnomaliIocSettings?.self, forKey: .anomaliSettings)
+      AnomaliIocSettings.self, forKey: .anomaliSettings)
     {
       try detailsCheckAndSet(.anomaliSettings(anomaliSettings))
     }
     if let azureAdContextSettings = try container.decodeIfPresent(
-      AzureADContextSettings?.self, forKey: .azureAdContextSettings)
+      AzureADContextSettings.self, forKey: .azureAdContextSettings)
     {
       try detailsCheckAndSet(.azureAdContextSettings(azureAdContextSettings))
     }
     if let cloudPassageSettings = try container.decodeIfPresent(
-      CloudPassageSettings?.self, forKey: .cloudPassageSettings)
+      CloudPassageSettings.self, forKey: .cloudPassageSettings)
     {
       try detailsCheckAndSet(.cloudPassageSettings(cloudPassageSettings))
     }
     if let cortexXdrSettings = try container.decodeIfPresent(
-      CortexXDRSettings?.self, forKey: .cortexXdrSettings)
+      CortexXDRSettings.self, forKey: .cortexXdrSettings)
     {
       try detailsCheckAndSet(.cortexXdrSettings(cortexXdrSettings))
     }
     if let duoAuthSettings = try container.decodeIfPresent(
-      DuoAuthSettings?.self, forKey: .duoAuthSettings)
+      DuoAuthSettings.self, forKey: .duoAuthSettings)
     {
       try detailsCheckAndSet(.duoAuthSettings(duoAuthSettings))
     }
     if let duoUserContextSettings = try container.decodeIfPresent(
-      DuoUserContextSettings?.self, forKey: .duoUserContextSettings)
+      DuoUserContextSettings.self, forKey: .duoUserContextSettings)
     {
       try detailsCheckAndSet(.duoUserContextSettings(duoUserContextSettings))
     }
     if let microsoftGraphAlertSettings = try container.decodeIfPresent(
-      MicrosoftGraphAlertSettings?.self, forKey: .microsoftGraphAlertSettings)
+      MicrosoftGraphAlertSettings.self, forKey: .microsoftGraphAlertSettings)
     {
       try detailsCheckAndSet(.microsoftGraphAlertSettings(microsoftGraphAlertSettings))
     }
     if let microsoftSecurityCenterAlertSettings = try container.decodeIfPresent(
-      MicrosoftSecurityCenterAlertSettings?.self, forKey: .microsoftSecurityCenterAlertSettings)
+      MicrosoftSecurityCenterAlertSettings.self, forKey: .microsoftSecurityCenterAlertSettings)
     {
       try detailsCheckAndSet(
         .microsoftSecurityCenterAlertSettings(microsoftSecurityCenterAlertSettings))
     }
     if let mimecastMailSettings = try container.decodeIfPresent(
-      MimecastMailSettings?.self, forKey: .mimecastMailSettings)
+      MimecastMailSettings.self, forKey: .mimecastMailSettings)
     {
       try detailsCheckAndSet(.mimecastMailSettings(mimecastMailSettings))
     }
     if let office365Settings = try container.decodeIfPresent(
-      Office365Settings?.self, forKey: .office365Settings)
+      Office365Settings.self, forKey: .office365Settings)
     {
       try detailsCheckAndSet(.office365Settings(office365Settings))
     }
     if let proofpointMailSettings = try container.decodeIfPresent(
-      ProofpointMailSettings?.self, forKey: .proofpointMailSettings)
+      ProofpointMailSettings.self, forKey: .proofpointMailSettings)
     {
       try detailsCheckAndSet(.proofpointMailSettings(proofpointMailSettings))
     }
     if let recordedFutureIocSettings = try container.decodeIfPresent(
-      RecordedFutureIocSettings?.self, forKey: .recordedFutureIocSettings)
+      RecordedFutureIocSettings.self, forKey: .recordedFutureIocSettings)
     {
       try detailsCheckAndSet(.recordedFutureIocSettings(recordedFutureIocSettings))
     }
     if let workdaySettings = try container.decodeIfPresent(
-      WorkdaySettings?.self, forKey: .workdaySettings)
+      WorkdaySettings.self, forKey: .workdaySettings)
     {
       try detailsCheckAndSet(.workdaySettings(workdaySettings))
     }
     if let panIocSettings = try container.decodeIfPresent(
-      PanIocSettings?.self, forKey: .panIocSettings)
+      PanIocSettings.self, forKey: .panIocSettings)
     {
       try detailsCheckAndSet(.panIocSettings(panIocSettings))
     }
-    if let oktaSettings = try container.decodeIfPresent(OktaSettings?.self, forKey: .oktaSettings) {
+    if let oktaSettings = try container.decodeIfPresent(OktaSettings.self, forKey: .oktaSettings) {
       try detailsCheckAndSet(.oktaSettings(oktaSettings))
     }
     if let oktaUserContextSettings = try container.decodeIfPresent(
-      OktaUserContextSettings?.self, forKey: .oktaUserContextSettings)
+      OktaUserContextSettings.self, forKey: .oktaUserContextSettings)
     {
       try detailsCheckAndSet(.oktaUserContextSettings(oktaUserContextSettings))
     }
     if let foxItStixSettings = try container.decodeIfPresent(
-      FoxITStixSettings?.self, forKey: .foxItStixSettings)
+      FoxITStixSettings.self, forKey: .foxItStixSettings)
     {
       try detailsCheckAndSet(.foxItStixSettings(foxItStixSettings))
     }
     if let threatConnectIocSettings = try container.decodeIfPresent(
-      ThreatConnectIoCSettings?.self, forKey: .threatConnectIocSettings)
+      ThreatConnectIoCSettings.self, forKey: .threatConnectIocSettings)
     {
       try detailsCheckAndSet(.threatConnectIocSettings(threatConnectIocSettings))
     }
     if let serviceNowCmdbSettings = try container.decodeIfPresent(
-      ServiceNowCMDBSettings?.self, forKey: .serviceNowCmdbSettings)
+      ServiceNowCMDBSettings.self, forKey: .serviceNowCmdbSettings)
     {
       try detailsCheckAndSet(.serviceNowCmdbSettings(serviceNowCmdbSettings))
     }
     if let impervaWafSettings = try container.decodeIfPresent(
-      ImpervaWAFSettings?.self, forKey: .impervaWafSettings)
+      ImpervaWAFSettings.self, forKey: .impervaWafSettings)
     {
       try detailsCheckAndSet(.impervaWafSettings(impervaWafSettings))
     }
     if let thinkstCanarySettings = try container.decodeIfPresent(
-      ThinkstCanarySettings?.self, forKey: .thinkstCanarySettings)
+      ThinkstCanarySettings.self, forKey: .thinkstCanarySettings)
     {
       try detailsCheckAndSet(.thinkstCanarySettings(thinkstCanarySettings))
     }
     if let rhIsacIocSettings = try container.decodeIfPresent(
-      RHIsacIocSettings?.self, forKey: .rhIsacIocSettings)
+      RHIsacIocSettings.self, forKey: .rhIsacIocSettings)
     {
       try detailsCheckAndSet(.rhIsacIocSettings(rhIsacIocSettings))
     }
     if let rapid7InsightSettings = try container.decodeIfPresent(
-      Rapid7InsightSettings?.self, forKey: .rapid7InsightSettings)
+      Rapid7InsightSettings.self, forKey: .rapid7InsightSettings)
     {
       try detailsCheckAndSet(.rapid7InsightSettings(rapid7InsightSettings))
     }
     if let salesforceSettings = try container.decodeIfPresent(
-      SalesforceSettings?.self, forKey: .salesforceSettings)
+      SalesforceSettings.self, forKey: .salesforceSettings)
     {
       try detailsCheckAndSet(.salesforceSettings(salesforceSettings))
     }
     if let netskopeAlertSettings = try container.decodeIfPresent(
-      NetskopeAlertSettings?.self, forKey: .netskopeAlertSettings)
+      NetskopeAlertSettings.self, forKey: .netskopeAlertSettings)
     {
       try detailsCheckAndSet(.netskopeAlertSettings(netskopeAlertSettings))
     }
     if let azureMdmIntuneSettings = try container.decodeIfPresent(
-      AzureMDMIntuneSettings?.self, forKey: .azureMdmIntuneSettings)
+      AzureMDMIntuneSettings.self, forKey: .azureMdmIntuneSettings)
     {
       try detailsCheckAndSet(.azureMdmIntuneSettings(azureMdmIntuneSettings))
     }
     if let azureAdSettings = try container.decodeIfPresent(
-      AzureADSettings?.self, forKey: .azureAdSettings)
+      AzureADSettings.self, forKey: .azureAdSettings)
     {
       try detailsCheckAndSet(.azureAdSettings(azureAdSettings))
     }
     if let proofpointOnDemandSettings = try container.decodeIfPresent(
-      ProofpointOnDemandSettings?.self, forKey: .proofpointOnDemandSettings)
+      ProofpointOnDemandSettings.self, forKey: .proofpointOnDemandSettings)
     {
       try detailsCheckAndSet(.proofpointOnDemandSettings(proofpointOnDemandSettings))
     }
     if let workspaceUsersSettings = try container.decodeIfPresent(
-      WorkspaceUsersSettings?.self, forKey: .workspaceUsersSettings)
+      WorkspaceUsersSettings.self, forKey: .workspaceUsersSettings)
     {
       try detailsCheckAndSet(.workspaceUsersSettings(workspaceUsersSettings))
     }
     if let workspaceActivitySettings = try container.decodeIfPresent(
-      WorkspaceActivitySettings?.self, forKey: .workspaceActivitySettings)
+      WorkspaceActivitySettings.self, forKey: .workspaceActivitySettings)
     {
       try detailsCheckAndSet(.workspaceActivitySettings(workspaceActivitySettings))
     }
     if let workspaceAlertsSettings = try container.decodeIfPresent(
-      WorkspaceAlertsSettings?.self, forKey: .workspaceAlertsSettings)
+      WorkspaceAlertsSettings.self, forKey: .workspaceAlertsSettings)
     {
       try detailsCheckAndSet(.workspaceAlertsSettings(workspaceAlertsSettings))
     }
     if let workspacePrivilegesSettings = try container.decodeIfPresent(
-      WorkspacePrivilegesSettings?.self, forKey: .workspacePrivilegesSettings)
+      WorkspacePrivilegesSettings.self, forKey: .workspacePrivilegesSettings)
     {
       try detailsCheckAndSet(.workspacePrivilegesSettings(workspacePrivilegesSettings))
     }
     if let workspaceMobileSettings = try container.decodeIfPresent(
-      WorkspaceMobileSettings?.self, forKey: .workspaceMobileSettings)
+      WorkspaceMobileSettings.self, forKey: .workspaceMobileSettings)
     {
       try detailsCheckAndSet(.workspaceMobileSettings(workspaceMobileSettings))
     }
     if let workspaceChromeOsSettings = try container.decodeIfPresent(
-      WorkspaceChromeOSSettings?.self, forKey: .workspaceChromeOsSettings)
+      WorkspaceChromeOSSettings.self, forKey: .workspaceChromeOsSettings)
     {
       try detailsCheckAndSet(.workspaceChromeOsSettings(workspaceChromeOsSettings))
     }
     if let workspaceGroupsSettings = try container.decodeIfPresent(
-      WorkspaceGroupsSettings?.self, forKey: .workspaceGroupsSettings)
+      WorkspaceGroupsSettings.self, forKey: .workspaceGroupsSettings)
     {
       try detailsCheckAndSet(.workspaceGroupsSettings(workspaceGroupsSettings))
     }
     if let azureAdAuditSettings = try container.decodeIfPresent(
-      AzureADAuditSettings?.self, forKey: .azureAdAuditSettings)
+      AzureADAuditSettings.self, forKey: .azureAdAuditSettings)
     {
       try detailsCheckAndSet(.azureAdAuditSettings(azureAdAuditSettings))
     }
     if let symantecEventExportSettings = try container.decodeIfPresent(
-      SymantecEventExportSettings?.self, forKey: .symantecEventExportSettings)
+      SymantecEventExportSettings.self, forKey: .symantecEventExportSettings)
     {
       try detailsCheckAndSet(.symantecEventExportSettings(symantecEventExportSettings))
     }
     if let qualysVmSettings = try container.decodeIfPresent(
-      QualysVMSettings?.self, forKey: .qualysVmSettings)
+      QualysVMSettings.self, forKey: .qualysVmSettings)
     {
       try detailsCheckAndSet(.qualysVmSettings(qualysVmSettings))
     }
     if let panPrismaCloudSettings = try container.decodeIfPresent(
-      PanPrismaCloudSettings?.self, forKey: .panPrismaCloudSettings)
+      PanPrismaCloudSettings.self, forKey: .panPrismaCloudSettings)
     {
       try detailsCheckAndSet(.panPrismaCloudSettings(panPrismaCloudSettings))
     }
     if let gcsSettings = try container.decodeIfPresent(
-      GoogleCloudStorageSettings?.self, forKey: .gcsSettings)
+      GoogleCloudStorageSettings.self, forKey: .gcsSettings)
     {
       try detailsCheckAndSet(.gcsSettings(gcsSettings))
     }
-    if let httpSettings = try container.decodeIfPresent(HttpSettings?.self, forKey: .httpSettings) {
+    if let httpSettings = try container.decodeIfPresent(HttpSettings.self, forKey: .httpSettings) {
       try detailsCheckAndSet(.httpSettings(httpSettings))
     }
-    if let sftpSettings = try container.decodeIfPresent(SftpSettings?.self, forKey: .sftpSettings) {
+    if let sftpSettings = try container.decodeIfPresent(SftpSettings.self, forKey: .sftpSettings) {
       try detailsCheckAndSet(.sftpSettings(sftpSettings))
     }
     if let amazonS3Settings = try container.decodeIfPresent(
-      AmazonS3Settings?.self, forKey: .amazonS3Settings)
+      AmazonS3Settings.self, forKey: .amazonS3Settings)
     {
       try detailsCheckAndSet(.amazonS3Settings(amazonS3Settings))
     }
     if let azureBlobStoreSettings = try container.decodeIfPresent(
-      AzureBlobStoreSettings?.self, forKey: .azureBlobStoreSettings)
+      AzureBlobStoreSettings.self, forKey: .azureBlobStoreSettings)
     {
       try detailsCheckAndSet(.azureBlobStoreSettings(azureBlobStoreSettings))
     }
     if let amazonSqsSettings = try container.decodeIfPresent(
-      AmazonSQSSettings?.self, forKey: .amazonSqsSettings)
+      AmazonSQSSettings.self, forKey: .amazonSqsSettings)
     {
       try detailsCheckAndSet(.amazonSqsSettings(amazonSqsSettings))
     }
     if let googleCloudIdentityDevicesSettings = try container.decodeIfPresent(
-      GoogleCloudIdentityDevicesSettings?.self, forKey: .googleCloudIdentityDevicesSettings)
+      GoogleCloudIdentityDevicesSettings.self, forKey: .googleCloudIdentityDevicesSettings)
     {
       try detailsCheckAndSet(
         .googleCloudIdentityDevicesSettings(googleCloudIdentityDevicesSettings))
     }
     if let googleCloudIdentityDeviceUsersSettings = try container.decodeIfPresent(
-      GoogleCloudIdentityDeviceUsersSettings?.self, forKey: .googleCloudIdentityDeviceUsersSettings)
+      GoogleCloudIdentityDeviceUsersSettings.self, forKey: .googleCloudIdentityDeviceUsersSettings)
     {
       try detailsCheckAndSet(
         .googleCloudIdentityDeviceUsersSettings(googleCloudIdentityDeviceUsersSettings))
     }
     if let crowdstrikeDetectsSettings = try container.decodeIfPresent(
-      CrowdStrikeDetectsSettings?.self, forKey: .crowdstrikeDetectsSettings)
+      CrowdStrikeDetectsSettings.self, forKey: .crowdstrikeDetectsSettings)
     {
       try detailsCheckAndSet(.crowdstrikeDetectsSettings(crowdstrikeDetectsSettings))
     }
     if let mandiantIocSettings = try container.decodeIfPresent(
-      MandiantIoCSettings?.self, forKey: .mandiantIocSettings)
+      MandiantIoCSettings.self, forKey: .mandiantIocSettings)
     {
       try detailsCheckAndSet(.mandiantIocSettings(mandiantIocSettings))
     }
     if let sentineloneAlertSettings = try container.decodeIfPresent(
-      SentineloneAlertSettings?.self, forKey: .sentineloneAlertSettings)
+      SentineloneAlertSettings.self, forKey: .sentineloneAlertSettings)
     {
       try detailsCheckAndSet(.sentineloneAlertSettings(sentineloneAlertSettings))
     }
     if let qualysScanSettings = try container.decodeIfPresent(
-      QualysScanSettings?.self, forKey: .qualysScanSettings)
+      QualysScanSettings.self, forKey: .qualysScanSettings)
     {
       try detailsCheckAndSet(.qualysScanSettings(qualysScanSettings))
     }
     if let pubsubSettings = try container.decodeIfPresent(
-      PubsubSettings?.self, forKey: .pubsubSettings)
+      PubsubSettings.self, forKey: .pubsubSettings)
     {
       try detailsCheckAndSet(.pubsubSettings(pubsubSettings))
     }
     if let amazonKinesisFirehoseSettings = try container.decodeIfPresent(
-      AmazonKinesisFirehoseSettings?.self, forKey: .amazonKinesisFirehoseSettings)
+      AmazonKinesisFirehoseSettings.self, forKey: .amazonKinesisFirehoseSettings)
     {
       try detailsCheckAndSet(.amazonKinesisFirehoseSettings(amazonKinesisFirehoseSettings))
     }
     if let webhookSettings = try container.decodeIfPresent(
-      WebhookSettings?.self, forKey: .webhookSettings)
+      WebhookSettings.self, forKey: .webhookSettings)
     {
       try detailsCheckAndSet(.webhookSettings(webhookSettings))
     }
     if let dummyLogTypeSettings = try container.decodeIfPresent(
-      DummyLogTypeSettings?.self, forKey: .dummyLogTypeSettings)
+      DummyLogTypeSettings.self, forKey: .dummyLogTypeSettings)
     {
       try detailsCheckAndSet(.dummyLogTypeSettings(dummyLogTypeSettings))
     }
     if let httpsPushGoogleCloudPubsubSettings = try container.decodeIfPresent(
-      HttpsPushGoogleCloudPubSubSettings?.self, forKey: .httpsPushGoogleCloudPubsubSettings)
+      HttpsPushGoogleCloudPubSubSettings.self, forKey: .httpsPushGoogleCloudPubsubSettings)
     {
       try detailsCheckAndSet(
         .httpsPushGoogleCloudPubsubSettings(httpsPushGoogleCloudPubsubSettings))
     }
     if let httpsPushAmazonKinesisFirehoseSettings = try container.decodeIfPresent(
-      HttpsPushAmazonKinesisFirehoseSettings?.self, forKey: .httpsPushAmazonKinesisFirehoseSettings)
+      HttpsPushAmazonKinesisFirehoseSettings.self, forKey: .httpsPushAmazonKinesisFirehoseSettings)
     {
       try detailsCheckAndSet(
         .httpsPushAmazonKinesisFirehoseSettings(httpsPushAmazonKinesisFirehoseSettings))
     }
     if let httpsPushWebhookSettings = try container.decodeIfPresent(
-      HttpsPushWebhookSettings?.self, forKey: .httpsPushWebhookSettings)
+      HttpsPushWebhookSettings.self, forKey: .httpsPushWebhookSettings)
     {
       try detailsCheckAndSet(.httpsPushWebhookSettings(httpsPushWebhookSettings))
     }
     if let awsEc2HostsSettings = try container.decodeIfPresent(
-      AWSEC2HostsSettings?.self, forKey: .awsEc2HostsSettings)
+      AWSEC2HostsSettings.self, forKey: .awsEc2HostsSettings)
     {
       try detailsCheckAndSet(.awsEc2HostsSettings(awsEc2HostsSettings))
     }
     if let awsEc2InstancesSettings = try container.decodeIfPresent(
-      AWSEC2InstancesSettings?.self, forKey: .awsEc2InstancesSettings)
+      AWSEC2InstancesSettings.self, forKey: .awsEc2InstancesSettings)
     {
       try detailsCheckAndSet(.awsEc2InstancesSettings(awsEc2InstancesSettings))
     }
     if let awsEc2VpcsSettings = try container.decodeIfPresent(
-      AWSEC2VpcsSettings?.self, forKey: .awsEc2VpcsSettings)
+      AWSEC2VpcsSettings.self, forKey: .awsEc2VpcsSettings)
     {
       try detailsCheckAndSet(.awsEc2VpcsSettings(awsEc2VpcsSettings))
     }
     if let awsIamSettings = try container.decodeIfPresent(
-      AWSIAMSettings?.self, forKey: .awsIamSettings)
+      AWSIAMSettings.self, forKey: .awsIamSettings)
     {
       try detailsCheckAndSet(.awsIamSettings(awsIamSettings))
     }
     if let netskopeAlertV2Settings = try container.decodeIfPresent(
-      NetskopeAlertV2Settings?.self, forKey: .netskopeAlertV2Settings)
+      NetskopeAlertV2Settings.self, forKey: .netskopeAlertV2Settings)
     {
       try detailsCheckAndSet(.netskopeAlertV2Settings(netskopeAlertV2Settings))
     }
     if let gcsV2Settings = try container.decodeIfPresent(
-      GoogleCloudStorageV2Settings?.self, forKey: .gcsV2Settings)
+      GoogleCloudStorageV2Settings.self, forKey: .gcsV2Settings)
     {
       try detailsCheckAndSet(.gcsV2Settings(gcsV2Settings))
     }
     if let amazonS3V2Settings = try container.decodeIfPresent(
-      AmazonS3V2Settings?.self, forKey: .amazonS3V2Settings)
+      AmazonS3V2Settings.self, forKey: .amazonS3V2Settings)
     {
       try detailsCheckAndSet(.amazonS3V2Settings(amazonS3V2Settings))
     }
     if let amazonSqsV2Settings = try container.decodeIfPresent(
-      AmazonSQSV2Settings?.self, forKey: .amazonSqsV2Settings)
+      AmazonSQSV2Settings.self, forKey: .amazonSqsV2Settings)
     {
       try detailsCheckAndSet(.amazonSqsV2Settings(amazonSqsV2Settings))
     }
     if let azureEventHubSettings = try container.decodeIfPresent(
-      AzureEventHubSettings?.self, forKey: .azureEventHubSettings)
+      AzureEventHubSettings.self, forKey: .azureEventHubSettings)
     {
       try detailsCheckAndSet(.azureEventHubSettings(azureEventHubSettings))
     }
     if let trellixHxHostsSettings = try container.decodeIfPresent(
-      TrellixHxHostsSettings?.self, forKey: .trellixHxHostsSettings)
+      TrellixHxHostsSettings.self, forKey: .trellixHxHostsSettings)
     {
       try detailsCheckAndSet(.trellixHxHostsSettings(trellixHxHostsSettings))
     }
     if let azureBlobStoreV2Settings = try container.decodeIfPresent(
-      AzureBlobStoreV2Settings?.self, forKey: .azureBlobStoreV2Settings)
+      AzureBlobStoreV2Settings.self, forKey: .azureBlobStoreV2Settings)
     {
       try detailsCheckAndSet(.azureBlobStoreV2Settings(azureBlobStoreV2Settings))
     }
     if let trellixHxAlertsSettings = try container.decodeIfPresent(
-      TrellixHxAlertsSettings?.self, forKey: .trellixHxAlertsSettings)
+      TrellixHxAlertsSettings.self, forKey: .trellixHxAlertsSettings)
     {
       try detailsCheckAndSet(.trellixHxAlertsSettings(trellixHxAlertsSettings))
     }
     if let googleCloudStorageEventDrivenSettings = try container.decodeIfPresent(
-      GoogleCloudStorageEventDrivenSettings?.self, forKey: .googleCloudStorageEventDrivenSettings)
+      GoogleCloudStorageEventDrivenSettings.self, forKey: .googleCloudStorageEventDrivenSettings)
     {
       try detailsCheckAndSet(
         .googleCloudStorageEventDrivenSettings(googleCloudStorageEventDrivenSettings))
     }
     if let crowdstrikeAlertsSettings = try container.decodeIfPresent(
-      CrowdStrikeAlertsSettings?.self, forKey: .crowdstrikeAlertsSettings)
+      CrowdStrikeAlertsSettings.self, forKey: .crowdstrikeAlertsSettings)
     {
       try detailsCheckAndSet(.crowdstrikeAlertsSettings(crowdstrikeAlertsSettings))
     }
     if let trellixHxBulkAcqsSettings = try container.decodeIfPresent(
-      TrellixHxBulkAcqsSettings?.self, forKey: .trellixHxBulkAcqsSettings)
+      TrellixHxBulkAcqsSettings.self, forKey: .trellixHxBulkAcqsSettings)
     {
       try detailsCheckAndSet(.trellixHxBulkAcqsSettings(trellixHxBulkAcqsSettings))
     }
     if let mimecastMailV2Settings = try container.decodeIfPresent(
-      MimecastMailV2Settings?.self, forKey: .mimecastMailV2Settings)
+      MimecastMailV2Settings.self, forKey: .mimecastMailV2Settings)
     {
       try detailsCheckAndSet(.mimecastMailV2Settings(mimecastMailV2Settings))
     }
     if let threatConnectIocV3Settings = try container.decodeIfPresent(
-      ThreatConnectIoCV3Settings?.self, forKey: .threatConnectIocV3Settings)
+      ThreatConnectIoCV3Settings.self, forKey: .threatConnectIocV3Settings)
     {
       try detailsCheckAndSet(.threatConnectIocV3Settings(threatConnectIocV3Settings))
     }
     if let customApiSettings = try container.decodeIfPresent(
-      CustomAPISettings?.self, forKey: .customApiSettings)
+      CustomAPISettings.self, forKey: .customApiSettings)
     {
       try detailsCheckAndSet(.customApiSettings(customApiSettings))
     }
@@ -1214,157 +1214,157 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Additional details of the feed. Depends on the feed type.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Anomali IOC settings.
-    indirect case anomaliSettings(AnomaliIocSettings?)
+    indirect case anomaliSettings(AnomaliIocSettings)
     /// Azure AD Context settings.
-    indirect case azureAdContextSettings(AzureADContextSettings?)
+    indirect case azureAdContextSettings(AzureADContextSettings)
     /// Cloud Passage settings.
-    indirect case cloudPassageSettings(CloudPassageSettings?)
+    indirect case cloudPassageSettings(CloudPassageSettings)
     /// Cortex XDR settings.
-    indirect case cortexXdrSettings(CortexXDRSettings?)
+    indirect case cortexXdrSettings(CortexXDRSettings)
     /// Duo Auth settings.
-    indirect case duoAuthSettings(DuoAuthSettings?)
+    indirect case duoAuthSettings(DuoAuthSettings)
     /// Duo User Context settings.
-    indirect case duoUserContextSettings(DuoUserContextSettings?)
+    indirect case duoUserContextSettings(DuoUserContextSettings)
     /// Microsoft Graph Alert settings.
-    indirect case microsoftGraphAlertSettings(MicrosoftGraphAlertSettings?)
+    indirect case microsoftGraphAlertSettings(MicrosoftGraphAlertSettings)
     /// Microsoft Security center alert settings.
-    indirect case microsoftSecurityCenterAlertSettings(MicrosoftSecurityCenterAlertSettings?)
+    indirect case microsoftSecurityCenterAlertSettings(MicrosoftSecurityCenterAlertSettings)
     /// Mimecast mail settings.
-    indirect case mimecastMailSettings(MimecastMailSettings?)
+    indirect case mimecastMailSettings(MimecastMailSettings)
     /// Office 365 settings.
-    indirect case office365Settings(Office365Settings?)
+    indirect case office365Settings(Office365Settings)
     /// Proofpoint mail settings.
-    indirect case proofpointMailSettings(ProofpointMailSettings?)
+    indirect case proofpointMailSettings(ProofpointMailSettings)
     /// Recorded Future IOC settings.
-    indirect case recordedFutureIocSettings(RecordedFutureIocSettings?)
+    indirect case recordedFutureIocSettings(RecordedFutureIocSettings)
     /// Workday settings.
-    indirect case workdaySettings(WorkdaySettings?)
+    indirect case workdaySettings(WorkdaySettings)
     /// PAN IOC settings.
-    indirect case panIocSettings(PanIocSettings?)
+    indirect case panIocSettings(PanIocSettings)
     /// Okta settings.
-    indirect case oktaSettings(OktaSettings?)
+    indirect case oktaSettings(OktaSettings)
     /// Okta user context settings.
-    indirect case oktaUserContextSettings(OktaUserContextSettings?)
+    indirect case oktaUserContextSettings(OktaUserContextSettings)
     /// Fox-IT STIX settings.
-    indirect case foxItStixSettings(FoxITStixSettings?)
+    indirect case foxItStixSettings(FoxITStixSettings)
     /// ThreatConnect IOC settings.
-    indirect case threatConnectIocSettings(ThreatConnectIoCSettings?)
+    indirect case threatConnectIocSettings(ThreatConnectIoCSettings)
     /// ServiceNow CMDB settings.
-    indirect case serviceNowCmdbSettings(ServiceNowCMDBSettings?)
+    indirect case serviceNowCmdbSettings(ServiceNowCMDBSettings)
     /// Imperva WAF settings.
-    indirect case impervaWafSettings(ImpervaWAFSettings?)
+    indirect case impervaWafSettings(ImpervaWAFSettings)
     /// Thinkst Canary settings.
-    indirect case thinkstCanarySettings(ThinkstCanarySettings?)
+    indirect case thinkstCanarySettings(ThinkstCanarySettings)
     /// RH-ISAC IOC settings.
-    indirect case rhIsacIocSettings(RHIsacIocSettings?)
+    indirect case rhIsacIocSettings(RHIsacIocSettings)
     /// Rapid7 Insight settings.
-    indirect case rapid7InsightSettings(Rapid7InsightSettings?)
+    indirect case rapid7InsightSettings(Rapid7InsightSettings)
     /// Salesforce settings.
-    indirect case salesforceSettings(SalesforceSettings?)
+    indirect case salesforceSettings(SalesforceSettings)
     /// Netskope alert settings.
-    indirect case netskopeAlertSettings(NetskopeAlertSettings?)
+    indirect case netskopeAlertSettings(NetskopeAlertSettings)
     /// Azure MDM Intune settings.
-    indirect case azureMdmIntuneSettings(AzureMDMIntuneSettings?)
+    indirect case azureMdmIntuneSettings(AzureMDMIntuneSettings)
     /// Azure AD settings.
-    indirect case azureAdSettings(AzureADSettings?)
+    indirect case azureAdSettings(AzureADSettings)
     /// Proofpoint On-Demand settings.
-    indirect case proofpointOnDemandSettings(ProofpointOnDemandSettings?)
+    indirect case proofpointOnDemandSettings(ProofpointOnDemandSettings)
     /// Workspace users settings.
-    indirect case workspaceUsersSettings(WorkspaceUsersSettings?)
+    indirect case workspaceUsersSettings(WorkspaceUsersSettings)
     /// Workspace activity settings.
-    indirect case workspaceActivitySettings(WorkspaceActivitySettings?)
+    indirect case workspaceActivitySettings(WorkspaceActivitySettings)
     /// Workspace alerts settings.
-    indirect case workspaceAlertsSettings(WorkspaceAlertsSettings?)
+    indirect case workspaceAlertsSettings(WorkspaceAlertsSettings)
     /// Workspace privileges settings.
-    indirect case workspacePrivilegesSettings(WorkspacePrivilegesSettings?)
+    indirect case workspacePrivilegesSettings(WorkspacePrivilegesSettings)
     /// Workspace mobile settings.
-    indirect case workspaceMobileSettings(WorkspaceMobileSettings?)
+    indirect case workspaceMobileSettings(WorkspaceMobileSettings)
     /// Workspace ChromeOS settings.
-    indirect case workspaceChromeOsSettings(WorkspaceChromeOSSettings?)
+    indirect case workspaceChromeOsSettings(WorkspaceChromeOSSettings)
     /// Workspace Groups settings.
-    indirect case workspaceGroupsSettings(WorkspaceGroupsSettings?)
+    indirect case workspaceGroupsSettings(WorkspaceGroupsSettings)
     /// Azure AD Audit settings.
-    indirect case azureAdAuditSettings(AzureADAuditSettings?)
+    indirect case azureAdAuditSettings(AzureADAuditSettings)
     /// Symantec Event Export settings.
-    indirect case symantecEventExportSettings(SymantecEventExportSettings?)
+    indirect case symantecEventExportSettings(SymantecEventExportSettings)
     /// Qualys VM settings
-    indirect case qualysVmSettings(QualysVMSettings?)
+    indirect case qualysVmSettings(QualysVMSettings)
     /// PAN Prisma Cloud settings.
-    indirect case panPrismaCloudSettings(PanPrismaCloudSettings?)
+    indirect case panPrismaCloudSettings(PanPrismaCloudSettings)
     /// Google Cloud Storage settings.
-    indirect case gcsSettings(GoogleCloudStorageSettings?)
+    indirect case gcsSettings(GoogleCloudStorageSettings)
     /// HTTP settings.
-    indirect case httpSettings(HttpSettings?)
+    indirect case httpSettings(HttpSettings)
     /// SFTP settings.
-    indirect case sftpSettings(SftpSettings?)
+    indirect case sftpSettings(SftpSettings)
     /// Amazon S3 settings.
-    indirect case amazonS3Settings(AmazonS3Settings?)
+    indirect case amazonS3Settings(AmazonS3Settings)
     /// Azure Blob Storage settings.
-    indirect case azureBlobStoreSettings(AzureBlobStoreSettings?)
+    indirect case azureBlobStoreSettings(AzureBlobStoreSettings)
     /// Amazon SQS settings.
-    indirect case amazonSqsSettings(AmazonSQSSettings?)
+    indirect case amazonSqsSettings(AmazonSQSSettings)
     /// Google Cloud Identity Devices settings.
-    indirect case googleCloudIdentityDevicesSettings(GoogleCloudIdentityDevicesSettings?)
+    indirect case googleCloudIdentityDevicesSettings(GoogleCloudIdentityDevicesSettings)
     /// Google Cloud Identity Device Users settings.
-    indirect case googleCloudIdentityDeviceUsersSettings(GoogleCloudIdentityDeviceUsersSettings?)
+    indirect case googleCloudIdentityDeviceUsersSettings(GoogleCloudIdentityDeviceUsersSettings)
     /// CrowdStrike Detects API settings.
-    indirect case crowdstrikeDetectsSettings(CrowdStrikeDetectsSettings?)
+    indirect case crowdstrikeDetectsSettings(CrowdStrikeDetectsSettings)
     /// Mandiant IOC settings.
-    indirect case mandiantIocSettings(MandiantIoCSettings?)
+    indirect case mandiantIocSettings(MandiantIoCSettings)
     /// SentinelOne Alert settings.
-    indirect case sentineloneAlertSettings(SentineloneAlertSettings?)
+    indirect case sentineloneAlertSettings(SentineloneAlertSettings)
     /// Qualys Scan Settings
-    indirect case qualysScanSettings(QualysScanSettings?)
+    indirect case qualysScanSettings(QualysScanSettings)
     /// Pub/Sub settings.
-    indirect case pubsubSettings(PubsubSettings?)
+    indirect case pubsubSettings(PubsubSettings)
     /// Amazon Kinesis Firehose settings.
-    indirect case amazonKinesisFirehoseSettings(AmazonKinesisFirehoseSettings?)
+    indirect case amazonKinesisFirehoseSettings(AmazonKinesisFirehoseSettings)
     /// Webhook settings.
-    indirect case webhookSettings(WebhookSettings?)
+    indirect case webhookSettings(WebhookSettings)
     /// DummyLogType Settings.
-    indirect case dummyLogTypeSettings(DummyLogTypeSettings?)
+    indirect case dummyLogTypeSettings(DummyLogTypeSettings)
     /// Https push Google Pub/Sub settings.
-    indirect case httpsPushGoogleCloudPubsubSettings(HttpsPushGoogleCloudPubSubSettings?)
+    indirect case httpsPushGoogleCloudPubsubSettings(HttpsPushGoogleCloudPubSubSettings)
     /// Https push Amazon Kinesis Firehose settings.
-    indirect case httpsPushAmazonKinesisFirehoseSettings(HttpsPushAmazonKinesisFirehoseSettings?)
+    indirect case httpsPushAmazonKinesisFirehoseSettings(HttpsPushAmazonKinesisFirehoseSettings)
     /// Https push Webhook settings.
-    indirect case httpsPushWebhookSettings(HttpsPushWebhookSettings?)
+    indirect case httpsPushWebhookSettings(HttpsPushWebhookSettings)
     /// AWS EC2 Hosts settings.
-    indirect case awsEc2HostsSettings(AWSEC2HostsSettings?)
+    indirect case awsEc2HostsSettings(AWSEC2HostsSettings)
     /// AWS EC2 Instances settings.
-    indirect case awsEc2InstancesSettings(AWSEC2InstancesSettings?)
+    indirect case awsEc2InstancesSettings(AWSEC2InstancesSettings)
     /// AWS EC2 Vpcs settings.
-    indirect case awsEc2VpcsSettings(AWSEC2VpcsSettings?)
+    indirect case awsEc2VpcsSettings(AWSEC2VpcsSettings)
     /// AWS IAM settings.
-    indirect case awsIamSettings(AWSIAMSettings?)
+    indirect case awsIamSettings(AWSIAMSettings)
     /// Netskope alert V2 settings.
-    indirect case netskopeAlertV2Settings(NetskopeAlertV2Settings?)
+    indirect case netskopeAlertV2Settings(NetskopeAlertV2Settings)
     /// Settings for Google Cloud Storage Omniflow feeds.
-    indirect case gcsV2Settings(GoogleCloudStorageV2Settings?)
+    indirect case gcsV2Settings(GoogleCloudStorageV2Settings)
     /// Settings for S3 Omniflow feeds.
-    indirect case amazonS3V2Settings(AmazonS3V2Settings?)
+    indirect case amazonS3V2Settings(AmazonS3V2Settings)
     /// Settings for SQS Omniflow feeds.
-    indirect case amazonSqsV2Settings(AmazonSQSV2Settings?)
+    indirect case amazonSqsV2Settings(AmazonSQSV2Settings)
     /// Settings for Omniflow based native ingestion from azure event hub.
-    indirect case azureEventHubSettings(AzureEventHubSettings?)
+    indirect case azureEventHubSettings(AzureEventHubSettings)
     /// Settings for Trellix HX Host Metadata.
-    indirect case trellixHxHostsSettings(TrellixHxHostsSettings?)
+    indirect case trellixHxHostsSettings(TrellixHxHostsSettings)
     /// Settings for Azure Blobstore Omniflow feeds.
-    indirect case azureBlobStoreV2Settings(AzureBlobStoreV2Settings?)
+    indirect case azureBlobStoreV2Settings(AzureBlobStoreV2Settings)
     /// Settings for Trellix HX Alerts Metadata.
-    indirect case trellixHxAlertsSettings(TrellixHxAlertsSettings?)
+    indirect case trellixHxAlertsSettings(TrellixHxAlertsSettings)
     /// Settings for Omniflow based Google Cloud Storage event driven feeds.
-    indirect case googleCloudStorageEventDrivenSettings(GoogleCloudStorageEventDrivenSettings?)
+    indirect case googleCloudStorageEventDrivenSettings(GoogleCloudStorageEventDrivenSettings)
     /// CrowdStrike Alerts API settings.
-    indirect case crowdstrikeAlertsSettings(CrowdStrikeAlertsSettings?)
+    indirect case crowdstrikeAlertsSettings(CrowdStrikeAlertsSettings)
     /// Settings for Trellix HX Bulk Acquisitions Metadata.
-    indirect case trellixHxBulkAcqsSettings(TrellixHxBulkAcqsSettings?)
+    indirect case trellixHxBulkAcqsSettings(TrellixHxBulkAcqsSettings)
     /// Required. Mimecast mail v2 settings.
-    indirect case mimecastMailV2Settings(MimecastMailV2Settings?)
+    indirect case mimecastMailV2Settings(MimecastMailV2Settings)
     /// Threat Connect IOC V3 settings.
-    indirect case threatConnectIocV3Settings(ThreatConnectIoCV3Settings?)
+    indirect case threatConnectIocV3Settings(ThreatConnectIoCV3Settings)
     /// Settings for Custom API (Codeless) Feeds.
-    indirect case customApiSettings(CustomAPISettings?)
+    indirect case customApiSettings(CustomAPISettings)
   }
 
   public static var _anyTypeUrl: Swift.String {

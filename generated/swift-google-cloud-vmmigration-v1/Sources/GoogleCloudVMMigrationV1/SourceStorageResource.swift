@@ -69,7 +69,7 @@ public struct SourceStorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
       storageResource = $0
     }
     if let awsDiskDetails = try container.decodeIfPresent(
-      AwsSourceDiskDetails?.self, forKey: .awsDiskDetails)
+      AwsSourceDiskDetails.self, forKey: .awsDiskDetails)
     {
       try storageResourceCheckAndSet(.awsDiskDetails(awsDiskDetails))
     }
@@ -97,7 +97,7 @@ public struct SourceStorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Source storage resource details.
   public enum StorageResourceOneOf: Codable, Equatable, Sendable {
     /// Source AWS volume details.
-    indirect case awsDiskDetails(AwsSourceDiskDetails?)
+    indirect case awsDiskDetails(AwsSourceDiskDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

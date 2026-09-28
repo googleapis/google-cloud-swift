@@ -88,25 +88,25 @@ public struct CutoverStep: Codable, Equatable, GoogleWKT._AnyPackable,
       step = $0
     }
     if let previousReplicationCycle = try container.decodeIfPresent(
-      ReplicationCycle?.self, forKey: .previousReplicationCycle)
+      ReplicationCycle.self, forKey: .previousReplicationCycle)
     {
       try stepCheckAndSet(.previousReplicationCycle(previousReplicationCycle))
     }
     if let shuttingDownSourceVm = try container.decodeIfPresent(
-      ShuttingDownSourceVMStep?.self, forKey: .shuttingDownSourceVm)
+      ShuttingDownSourceVMStep.self, forKey: .shuttingDownSourceVm)
     {
       try stepCheckAndSet(.shuttingDownSourceVm(shuttingDownSourceVm))
     }
-    if let finalSync = try container.decodeIfPresent(ReplicationCycle?.self, forKey: .finalSync) {
+    if let finalSync = try container.decodeIfPresent(ReplicationCycle.self, forKey: .finalSync) {
       try stepCheckAndSet(.finalSync(finalSync))
     }
     if let preparingVmDisks = try container.decodeIfPresent(
-      PreparingVMDisksStep?.self, forKey: .preparingVmDisks)
+      PreparingVMDisksStep.self, forKey: .preparingVmDisks)
     {
       try stepCheckAndSet(.preparingVmDisks(preparingVmDisks))
     }
     if let instantiatingMigratedVm = try container.decodeIfPresent(
-      InstantiatingMigratedVMStep?.self, forKey: .instantiatingMigratedVm)
+      InstantiatingMigratedVMStep.self, forKey: .instantiatingMigratedVm)
     {
       try stepCheckAndSet(.instantiatingMigratedVm(instantiatingMigratedVm))
     }
@@ -143,15 +143,15 @@ public struct CutoverStep: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum StepOneOf: Codable, Equatable, Sendable {
     /// A replication cycle prior cutover step.
-    indirect case previousReplicationCycle(ReplicationCycle?)
+    indirect case previousReplicationCycle(ReplicationCycle)
     /// Shutting down VM step.
-    indirect case shuttingDownSourceVm(ShuttingDownSourceVMStep?)
+    indirect case shuttingDownSourceVm(ShuttingDownSourceVMStep)
     /// Final sync step.
-    indirect case finalSync(ReplicationCycle?)
+    indirect case finalSync(ReplicationCycle)
     /// Preparing VM disks step.
-    indirect case preparingVmDisks(PreparingVMDisksStep?)
+    indirect case preparingVmDisks(PreparingVMDisksStep)
     /// Instantiating migrated VM step.
-    indirect case instantiatingMigratedVm(InstantiatingMigratedVMStep?)
+    indirect case instantiatingMigratedVm(InstantiatingMigratedVMStep)
   }
 
   public static var _anyTypeUrl: Swift.String {

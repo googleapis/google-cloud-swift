@@ -130,12 +130,12 @@
         backendConfig = $0
       }
       if let vectorDbConfig = try container.decodeIfPresent(
-        RagVectorDbConfig?.self, forKey: .vectorDbConfig)
+        RagVectorDbConfig.self, forKey: .vectorDbConfig)
       {
         try backendConfigCheckAndSet(.vectorDbConfig(vectorDbConfig))
       }
       if let vertexAiSearchConfig = try container.decodeIfPresent(
-        VertexAiSearchConfig?.self, forKey: .vertexAiSearchConfig)
+        VertexAiSearchConfig.self, forKey: .vertexAiSearchConfig)
       {
         try backendConfigCheckAndSet(.vertexAiSearchConfig(vertexAiSearchConfig))
       }
@@ -173,9 +173,9 @@
     /// It can be data store and/or retrieval engine.
     public enum BackendConfigOneOf: Codable, Equatable, Sendable {
       /// Optional. Immutable. The config for the Vector DBs.
-      indirect case vectorDbConfig(RagVectorDbConfig?)
+      indirect case vectorDbConfig(RagVectorDbConfig)
       /// Optional. Immutable. The config for the Vertex AI Search.
-      indirect case vertexAiSearchConfig(VertexAiSearchConfig?)
+      indirect case vertexAiSearchConfig(VertexAiSearchConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

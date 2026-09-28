@@ -197,22 +197,22 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
       operation = $0
     }
     if let promoteReleaseOperation = try container.decodeIfPresent(
-      PromoteReleaseOperation?.self, forKey: .promoteReleaseOperation)
+      PromoteReleaseOperation.self, forKey: .promoteReleaseOperation)
     {
       try operationCheckAndSet(.promoteReleaseOperation(promoteReleaseOperation))
     }
     if let advanceRolloutOperation = try container.decodeIfPresent(
-      AdvanceRolloutOperation?.self, forKey: .advanceRolloutOperation)
+      AdvanceRolloutOperation.self, forKey: .advanceRolloutOperation)
     {
       try operationCheckAndSet(.advanceRolloutOperation(advanceRolloutOperation))
     }
     if let repairRolloutOperation = try container.decodeIfPresent(
-      RepairRolloutOperation?.self, forKey: .repairRolloutOperation)
+      RepairRolloutOperation.self, forKey: .repairRolloutOperation)
     {
       try operationCheckAndSet(.repairRolloutOperation(repairRolloutOperation))
     }
     if let timedPromoteReleaseOperation = try container.decodeIfPresent(
-      TimedPromoteReleaseOperation?.self, forKey: .timedPromoteReleaseOperation)
+      TimedPromoteReleaseOperation.self, forKey: .timedPromoteReleaseOperation)
     {
       try operationCheckAndSet(.timedPromoteReleaseOperation(timedPromoteReleaseOperation))
     }
@@ -405,14 +405,14 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The operation that the `AutomationRun` will perform.
   public enum OperationOneOf: Codable, Equatable, Sendable {
     /// Output only. Promotes a release to a specified 'Target'.
-    indirect case promoteReleaseOperation(PromoteReleaseOperation?)
+    indirect case promoteReleaseOperation(PromoteReleaseOperation)
     /// Output only. Advances a rollout to the next phase.
-    indirect case advanceRolloutOperation(AdvanceRolloutOperation?)
+    indirect case advanceRolloutOperation(AdvanceRolloutOperation)
     /// Output only. Repairs a failed 'Rollout'.
-    indirect case repairRolloutOperation(RepairRolloutOperation?)
+    indirect case repairRolloutOperation(RepairRolloutOperation)
     /// Output only. Promotes a release to a specified 'Target' as defined in a
     /// Timed Promote Release rule.
-    indirect case timedPromoteReleaseOperation(TimedPromoteReleaseOperation?)
+    indirect case timedPromoteReleaseOperation(TimedPromoteReleaseOperation)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -79,7 +79,7 @@ public struct ExperimentInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       experimentMetadata = $0
     }
     if let servingConfigExperiment = try container.decodeIfPresent(
-      ExperimentInfo.ServingConfigExperiment?.self, forKey: .servingConfigExperiment)
+      ExperimentInfo.ServingConfigExperiment.self, forKey: .servingConfigExperiment)
     {
       try experimentMetadataCheckAndSet(.servingConfigExperiment(servingConfigExperiment))
     }
@@ -200,7 +200,7 @@ public struct ExperimentInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [ServingConfig][google.cloud.retail.v2.ServingConfig]s.
     ///
     /// [google.cloud.retail.v2.ServingConfig]: <doc:ServingConfig>
-    indirect case servingConfigExperiment(ExperimentInfo.ServingConfigExperiment?)
+    indirect case servingConfigExperiment(ExperimentInfo.ServingConfigExperiment)
   }
 
   public static var _anyTypeUrl: Swift.String {

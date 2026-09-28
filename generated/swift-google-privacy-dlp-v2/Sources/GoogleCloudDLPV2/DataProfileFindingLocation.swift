@@ -85,7 +85,7 @@ public struct DataProfileFindingLocation: Codable, Equatable, GoogleWKT._AnyPack
       locationExtraDetails = $0
     }
     if let dataProfileFindingRecordLocation = try container.decodeIfPresent(
-      DataProfileFindingRecordLocation?.self, forKey: .dataProfileFindingRecordLocation)
+      DataProfileFindingRecordLocation.self, forKey: .dataProfileFindingRecordLocation)
     {
       try locationExtraDetailsCheckAndSet(
         .dataProfileFindingRecordLocation(dataProfileFindingRecordLocation))
@@ -118,7 +118,7 @@ public struct DataProfileFindingLocation: Codable, Equatable, GoogleWKT._AnyPack
   public enum LocationExtraDetailsOneOf: Codable, Equatable, Sendable {
     /// Location of a finding within a resource that produces a table data
     /// profile.
-    indirect case dataProfileFindingRecordLocation(DataProfileFindingRecordLocation?)
+    indirect case dataProfileFindingRecordLocation(DataProfileFindingRecordLocation)
   }
 
   public static var _anyTypeUrl: Swift.String {

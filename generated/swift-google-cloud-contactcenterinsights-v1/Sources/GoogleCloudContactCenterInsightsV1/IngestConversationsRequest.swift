@@ -114,7 +114,7 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
       source = $0
     }
     if let gcsSource = try container.decodeIfPresent(
-      IngestConversationsRequest.GcsSource?.self, forKey: .gcsSource)
+      IngestConversationsRequest.GcsSource.self, forKey: .gcsSource)
     {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
@@ -131,7 +131,7 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
       objectConfig = $0
     }
     if let transcriptObjectConfig = try container.decodeIfPresent(
-      IngestConversationsRequest.TranscriptObjectConfig?.self, forKey: .transcriptObjectConfig)
+      IngestConversationsRequest.TranscriptObjectConfig.self, forKey: .transcriptObjectConfig)
     {
       try objectConfigCheckAndSet(.transcriptObjectConfig(transcriptObjectConfig))
     }
@@ -559,13 +559,13 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// A cloud storage bucket source. Note that any previously ingested objects
     /// from the source will be skipped to avoid duplication.
-    indirect case gcsSource(IngestConversationsRequest.GcsSource?)
+    indirect case gcsSource(IngestConversationsRequest.GcsSource)
   }
 
   /// Configuration for converting individual `source` objects to conversations.
   public enum ObjectConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for when `source` contains conversation transcripts.
-    indirect case transcriptObjectConfig(IngestConversationsRequest.TranscriptObjectConfig?)
+    indirect case transcriptObjectConfig(IngestConversationsRequest.TranscriptObjectConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

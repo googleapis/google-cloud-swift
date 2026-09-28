@@ -131,7 +131,7 @@
         }
         result = $0
       }
-      if let error = try container.decodeIfPresent(ToolCallResult.Error?.self, forKey: .error) {
+      if let error = try container.decodeIfPresent(ToolCallResult.Error.self, forKey: .error) {
         try resultCheckAndSet(.error(error))
       }
       if let rawContent = try container.decodeIfPresent(Foundation.Data.self, forKey: .rawContent) {
@@ -274,7 +274,7 @@
     /// The tool call's result.
     public enum ResultOneOf: Codable, Equatable, Sendable {
       /// Optional. The tool call's error.
-      indirect case error(ToolCallResult.Error?)
+      indirect case error(ToolCallResult.Error)
       /// Optional. Only populated if the response content is not utf-8 encoded.
       /// (by definition byte fields are base64 encoded).
       case rawContent(Foundation.Data)

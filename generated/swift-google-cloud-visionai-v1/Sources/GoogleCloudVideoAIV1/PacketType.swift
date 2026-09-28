@@ -157,12 +157,12 @@ public struct PacketType: Codable, Equatable, GoogleWKT._AnyPackable,
         typeDetails = $0
       }
       if let gstreamerBufferDescriptor = try container.decodeIfPresent(
-        GstreamerBufferDescriptor?.self, forKey: .gstreamerBufferDescriptor)
+        GstreamerBufferDescriptor.self, forKey: .gstreamerBufferDescriptor)
       {
         try typeDetailsCheckAndSet(.gstreamerBufferDescriptor(gstreamerBufferDescriptor))
       }
       if let rawImageDescriptor = try container.decodeIfPresent(
-        RawImageDescriptor?.self, forKey: .rawImageDescriptor)
+        RawImageDescriptor.self, forKey: .rawImageDescriptor)
       {
         try typeDetailsCheckAndSet(.rawImageDescriptor(rawImageDescriptor))
       }
@@ -196,9 +196,9 @@ public struct PacketType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// type string alone is not enough to disambiguate the specific type.
     public enum TypeDetailsOneOf: Codable, Equatable, Sendable {
       /// GstreamerBufferDescriptor is the descriptor for gstreamer buffer type.
-      indirect case gstreamerBufferDescriptor(GstreamerBufferDescriptor?)
+      indirect case gstreamerBufferDescriptor(GstreamerBufferDescriptor)
       /// RawImageDescriptor is the descriptor for the raw image type.
-      indirect case rawImageDescriptor(RawImageDescriptor?)
+      indirect case rawImageDescriptor(RawImageDescriptor)
     }
 
     public static var _anyTypeUrl: Swift.String {

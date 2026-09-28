@@ -91,22 +91,22 @@ public struct Impact: Codable, Equatable, GoogleWKT._AnyPackable,
       projection = $0
     }
     if let costProjection = try container.decodeIfPresent(
-      CostProjection?.self, forKey: .costProjection)
+      CostProjection.self, forKey: .costProjection)
     {
       try projectionCheckAndSet(.costProjection(costProjection))
     }
     if let securityProjection = try container.decodeIfPresent(
-      SecurityProjection?.self, forKey: .securityProjection)
+      SecurityProjection.self, forKey: .securityProjection)
     {
       try projectionCheckAndSet(.securityProjection(securityProjection))
     }
     if let sustainabilityProjection = try container.decodeIfPresent(
-      SustainabilityProjection?.self, forKey: .sustainabilityProjection)
+      SustainabilityProjection.self, forKey: .sustainabilityProjection)
     {
       try projectionCheckAndSet(.sustainabilityProjection(sustainabilityProjection))
     }
     if let reliabilityProjection = try container.decodeIfPresent(
-      ReliabilityProjection?.self, forKey: .reliabilityProjection)
+      ReliabilityProjection.self, forKey: .reliabilityProjection)
     {
       try projectionCheckAndSet(.reliabilityProjection(reliabilityProjection))
     }
@@ -287,13 +287,13 @@ public struct Impact: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Contains projections (if any) for this category.
   public enum ProjectionOneOf: Codable, Equatable, Sendable {
     /// Use with CategoryType.COST
-    indirect case costProjection(CostProjection?)
+    indirect case costProjection(CostProjection)
     /// Use with CategoryType.SECURITY
-    indirect case securityProjection(SecurityProjection?)
+    indirect case securityProjection(SecurityProjection)
     /// Use with CategoryType.SUSTAINABILITY
-    indirect case sustainabilityProjection(SustainabilityProjection?)
+    indirect case sustainabilityProjection(SustainabilityProjection)
     /// Use with CategoryType.RELIABILITY
-    indirect case reliabilityProjection(ReliabilityProjection?)
+    indirect case reliabilityProjection(ReliabilityProjection)
   }
 
   public static var _anyTypeUrl: Swift.String {

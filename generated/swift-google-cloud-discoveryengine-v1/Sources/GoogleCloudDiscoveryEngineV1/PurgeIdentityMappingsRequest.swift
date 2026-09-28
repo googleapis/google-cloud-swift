@@ -118,7 +118,7 @@
         source = $0
       }
       if let inlineSource = try container.decodeIfPresent(
-        PurgeIdentityMappingsRequest.InlineSource?.self, forKey: .inlineSource)
+        PurgeIdentityMappingsRequest.InlineSource.self, forKey: .inlineSource)
       {
         try sourceCheckAndSet(.inlineSource(inlineSource))
       }
@@ -220,7 +220,7 @@
     /// The source of the input.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The inline source to purge identity mapping entries from.
-      indirect case inlineSource(PurgeIdentityMappingsRequest.InlineSource?)
+      indirect case inlineSource(PurgeIdentityMappingsRequest.InlineSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

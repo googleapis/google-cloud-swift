@@ -74,13 +74,13 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       mode = $0
     }
-    if let onDemand = try container.decodeIfPresent(Trigger.OnDemand?.self, forKey: .onDemand) {
+    if let onDemand = try container.decodeIfPresent(Trigger.OnDemand.self, forKey: .onDemand) {
       try modeCheckAndSet(.onDemand(onDemand))
     }
-    if let schedule = try container.decodeIfPresent(Trigger.Schedule?.self, forKey: .schedule) {
+    if let schedule = try container.decodeIfPresent(Trigger.Schedule.self, forKey: .schedule) {
       try modeCheckAndSet(.schedule(schedule))
     }
-    if let oneTime = try container.decodeIfPresent(Trigger.OneTime?.self, forKey: .oneTime) {
+    if let oneTime = try container.decodeIfPresent(Trigger.OneTime.self, forKey: .oneTime) {
       try modeCheckAndSet(.oneTime(oneTime))
     }
     self.mode = mode
@@ -320,12 +320,12 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If not specified, the default is `onDemand`.
   public enum ModeOneOf: Codable, Equatable, Sendable {
     /// The scan runs once via `RunDataScan` API.
-    indirect case onDemand(Trigger.OnDemand?)
+    indirect case onDemand(Trigger.OnDemand)
     /// The scan is scheduled to run periodically.
-    indirect case schedule(Trigger.Schedule?)
+    indirect case schedule(Trigger.Schedule)
     /// The scan runs once, and does not create an associated ScanJob child
     /// resource.
-    indirect case oneTime(Trigger.OneTime?)
+    indirect case oneTime(Trigger.OneTime)
   }
 
   public static var _anyTypeUrl: Swift.String {

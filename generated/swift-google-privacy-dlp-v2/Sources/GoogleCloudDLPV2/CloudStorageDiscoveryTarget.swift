@@ -86,11 +86,11 @@ public struct CloudStorageDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPac
       cadence = $0
     }
     if let generationCadence = try container.decodeIfPresent(
-      DiscoveryCloudStorageGenerationCadence?.self, forKey: .generationCadence)
+      DiscoveryCloudStorageGenerationCadence.self, forKey: .generationCadence)
     {
       try cadenceCheckAndSet(.generationCadence(generationCadence))
     }
-    if let disabled = try container.decodeIfPresent(Disabled?.self, forKey: .disabled) {
+    if let disabled = try container.decodeIfPresent(Disabled.self, forKey: .disabled) {
       try cadenceCheckAndSet(.disabled(disabled))
     }
     self.cadence = cadence
@@ -123,9 +123,9 @@ public struct CloudStorageDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPac
     /// Optional. How often and when to update profiles. New buckets that match
     /// both the filter and conditions are scanned as quickly as possible
     /// depending on system capacity.
-    indirect case generationCadence(DiscoveryCloudStorageGenerationCadence?)
+    indirect case generationCadence(DiscoveryCloudStorageGenerationCadence)
     /// Optional. Disable profiling for buckets that match this filter.
-    indirect case disabled(Disabled?)
+    indirect case disabled(Disabled)
   }
 
   public static var _anyTypeUrl: Swift.String {

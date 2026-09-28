@@ -101,83 +101,79 @@ public struct Dialect: Codable, Equatable, GoogleWKT._AnyPackable,
       dialectValue = $0
     }
     if let bigqueryDialect = try container.decodeIfPresent(
-      BigQueryDialect?.self, forKey: .bigqueryDialect)
+      BigQueryDialect.self, forKey: .bigqueryDialect)
     {
       try dialectValueCheckAndSet(.bigqueryDialect(bigqueryDialect))
     }
-    if let hiveqlDialect = try container.decodeIfPresent(
-      HiveQLDialect?.self, forKey: .hiveqlDialect)
+    if let hiveqlDialect = try container.decodeIfPresent(HiveQLDialect.self, forKey: .hiveqlDialect)
     {
       try dialectValueCheckAndSet(.hiveqlDialect(hiveqlDialect))
     }
     if let redshiftDialect = try container.decodeIfPresent(
-      RedshiftDialect?.self, forKey: .redshiftDialect)
+      RedshiftDialect.self, forKey: .redshiftDialect)
     {
       try dialectValueCheckAndSet(.redshiftDialect(redshiftDialect))
     }
     if let teradataDialect = try container.decodeIfPresent(
-      TeradataDialect?.self, forKey: .teradataDialect)
+      TeradataDialect.self, forKey: .teradataDialect)
     {
       try dialectValueCheckAndSet(.teradataDialect(teradataDialect))
     }
-    if let oracleDialect = try container.decodeIfPresent(
-      OracleDialect?.self, forKey: .oracleDialect)
+    if let oracleDialect = try container.decodeIfPresent(OracleDialect.self, forKey: .oracleDialect)
     {
       try dialectValueCheckAndSet(.oracleDialect(oracleDialect))
     }
     if let sparksqlDialect = try container.decodeIfPresent(
-      SparkSQLDialect?.self, forKey: .sparksqlDialect)
+      SparkSQLDialect.self, forKey: .sparksqlDialect)
     {
       try dialectValueCheckAndSet(.sparksqlDialect(sparksqlDialect))
     }
     if let snowflakeDialect = try container.decodeIfPresent(
-      SnowflakeDialect?.self, forKey: .snowflakeDialect)
+      SnowflakeDialect.self, forKey: .snowflakeDialect)
     {
       try dialectValueCheckAndSet(.snowflakeDialect(snowflakeDialect))
     }
     if let netezzaDialect = try container.decodeIfPresent(
-      NetezzaDialect?.self, forKey: .netezzaDialect)
+      NetezzaDialect.self, forKey: .netezzaDialect)
     {
       try dialectValueCheckAndSet(.netezzaDialect(netezzaDialect))
     }
     if let azureSynapseDialect = try container.decodeIfPresent(
-      AzureSynapseDialect?.self, forKey: .azureSynapseDialect)
+      AzureSynapseDialect.self, forKey: .azureSynapseDialect)
     {
       try dialectValueCheckAndSet(.azureSynapseDialect(azureSynapseDialect))
     }
     if let verticaDialect = try container.decodeIfPresent(
-      VerticaDialect?.self, forKey: .verticaDialect)
+      VerticaDialect.self, forKey: .verticaDialect)
     {
       try dialectValueCheckAndSet(.verticaDialect(verticaDialect))
     }
     if let sqlServerDialect = try container.decodeIfPresent(
-      SQLServerDialect?.self, forKey: .sqlServerDialect)
+      SQLServerDialect.self, forKey: .sqlServerDialect)
     {
       try dialectValueCheckAndSet(.sqlServerDialect(sqlServerDialect))
     }
     if let postgresqlDialect = try container.decodeIfPresent(
-      PostgresqlDialect?.self, forKey: .postgresqlDialect)
+      PostgresqlDialect.self, forKey: .postgresqlDialect)
     {
       try dialectValueCheckAndSet(.postgresqlDialect(postgresqlDialect))
     }
-    if let prestoDialect = try container.decodeIfPresent(
-      PrestoDialect?.self, forKey: .prestoDialect)
+    if let prestoDialect = try container.decodeIfPresent(PrestoDialect.self, forKey: .prestoDialect)
     {
       try dialectValueCheckAndSet(.prestoDialect(prestoDialect))
     }
-    if let mysqlDialect = try container.decodeIfPresent(MySQLDialect?.self, forKey: .mysqlDialect) {
+    if let mysqlDialect = try container.decodeIfPresent(MySQLDialect.self, forKey: .mysqlDialect) {
       try dialectValueCheckAndSet(.mysqlDialect(mysqlDialect))
     }
-    if let db2Dialect = try container.decodeIfPresent(DB2Dialect?.self, forKey: .db2Dialect) {
+    if let db2Dialect = try container.decodeIfPresent(DB2Dialect.self, forKey: .db2Dialect) {
       try dialectValueCheckAndSet(.db2Dialect(db2Dialect))
     }
-    if let sqliteDialect = try container.decodeIfPresent(
-      SQLiteDialect?.self, forKey: .sqliteDialect)
+    if let sqliteDialect = try container.decodeIfPresent(SQLiteDialect.self, forKey: .sqliteDialect)
     {
       try dialectValueCheckAndSet(.sqliteDialect(sqliteDialect))
     }
     if let greenplumDialect = try container.decodeIfPresent(
-      GreenplumDialect?.self, forKey: .greenplumDialect)
+      GreenplumDialect.self, forKey: .greenplumDialect)
     {
       try dialectValueCheckAndSet(.greenplumDialect(greenplumDialect))
     }
@@ -237,39 +233,39 @@ public struct Dialect: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The possible dialect options that this message represents.
   public enum DialectValueOneOf: Codable, Equatable, Sendable {
     /// The BigQuery dialect
-    indirect case bigqueryDialect(BigQueryDialect?)
+    indirect case bigqueryDialect(BigQueryDialect)
     /// The HiveQL dialect
-    indirect case hiveqlDialect(HiveQLDialect?)
+    indirect case hiveqlDialect(HiveQLDialect)
     /// The Redshift dialect
-    indirect case redshiftDialect(RedshiftDialect?)
+    indirect case redshiftDialect(RedshiftDialect)
     /// The Teradata dialect
-    indirect case teradataDialect(TeradataDialect?)
+    indirect case teradataDialect(TeradataDialect)
     /// The Oracle dialect
-    indirect case oracleDialect(OracleDialect?)
+    indirect case oracleDialect(OracleDialect)
     /// The SparkSQL dialect
-    indirect case sparksqlDialect(SparkSQLDialect?)
+    indirect case sparksqlDialect(SparkSQLDialect)
     /// The Snowflake dialect
-    indirect case snowflakeDialect(SnowflakeDialect?)
+    indirect case snowflakeDialect(SnowflakeDialect)
     /// The Netezza dialect
-    indirect case netezzaDialect(NetezzaDialect?)
+    indirect case netezzaDialect(NetezzaDialect)
     /// The Azure Synapse dialect
-    indirect case azureSynapseDialect(AzureSynapseDialect?)
+    indirect case azureSynapseDialect(AzureSynapseDialect)
     /// The Vertica dialect
-    indirect case verticaDialect(VerticaDialect?)
+    indirect case verticaDialect(VerticaDialect)
     /// The SQL Server dialect
-    indirect case sqlServerDialect(SQLServerDialect?)
+    indirect case sqlServerDialect(SQLServerDialect)
     /// The Postgresql dialect
-    indirect case postgresqlDialect(PostgresqlDialect?)
+    indirect case postgresqlDialect(PostgresqlDialect)
     /// The Presto dialect
-    indirect case prestoDialect(PrestoDialect?)
+    indirect case prestoDialect(PrestoDialect)
     /// The MySQL dialect
-    indirect case mysqlDialect(MySQLDialect?)
+    indirect case mysqlDialect(MySQLDialect)
     /// DB2 dialect
-    indirect case db2Dialect(DB2Dialect?)
+    indirect case db2Dialect(DB2Dialect)
     /// SQLite dialect
-    indirect case sqliteDialect(SQLiteDialect?)
+    indirect case sqliteDialect(SQLiteDialect)
     /// Greenplum dialect
-    indirect case greenplumDialect(GreenplumDialect?)
+    indirect case greenplumDialect(GreenplumDialect)
   }
 
   public static var _anyTypeUrl: Swift.String {

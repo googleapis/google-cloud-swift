@@ -96,12 +96,12 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       fileFormat = $0
     }
     if let avroFileFormat = try container.decodeIfPresent(
-      AvroFileFormat?.self, forKey: .avroFileFormat)
+      AvroFileFormat.self, forKey: .avroFileFormat)
     {
       try fileFormatCheckAndSet(.avroFileFormat(avroFileFormat))
     }
     if let jsonFileFormat = try container.decodeIfPresent(
-      JsonFileFormat?.self, forKey: .jsonFileFormat)
+      JsonFileFormat.self, forKey: .jsonFileFormat)
     {
       try fileFormatCheckAndSet(.jsonFileFormat(jsonFileFormat))
     }
@@ -134,9 +134,9 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// File Format that the data should be written in.
   public enum FileFormatOneOf: Codable, Equatable, Sendable {
     /// AVRO file format configuration.
-    indirect case avroFileFormat(AvroFileFormat?)
+    indirect case avroFileFormat(AvroFileFormat)
     /// JSON file format configuration.
-    indirect case jsonFileFormat(JsonFileFormat?)
+    indirect case jsonFileFormat(JsonFileFormat)
   }
 
   public static var _anyTypeUrl: Swift.String {

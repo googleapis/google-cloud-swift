@@ -85,7 +85,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
       eventPayload = $0
     }
     if let streamStateChange = try container.decodeIfPresent(
-      StreamActivityLogEntry.StreamStateChange?.self, forKey: .streamStateChange)
+      StreamActivityLogEntry.StreamStateChange.self, forKey: .streamStateChange)
     {
       try eventPayloadCheckAndSet(.streamStateChange(streamStateChange))
     }
@@ -186,7 +186,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
 
   public enum EventPayloadOneOf: Codable, Equatable, Sendable {
     /// A payload for a change in the state of a stream.
-    indirect case streamStateChange(StreamActivityLogEntry.StreamStateChange?)
+    indirect case streamStateChange(StreamActivityLogEntry.StreamStateChange)
   }
 
   public static var _anyTypeUrl: Swift.String {

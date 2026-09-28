@@ -144,12 +144,12 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleWKT._AnyPac
       connectivity = $0
     }
     if let staticIpConnectivity = try container.decodeIfPresent(
-      StaticIpConnectivity?.self, forKey: .staticIpConnectivity)
+      StaticIpConnectivity.self, forKey: .staticIpConnectivity)
     {
       try connectivityCheckAndSet(.staticIpConnectivity(staticIpConnectivity))
     }
     if let privateServiceConnectConnectivity = try container.decodeIfPresent(
-      PrivateServiceConnectConnectivity?.self, forKey: .privateServiceConnectConnectivity)
+      PrivateServiceConnectConnectivity.self, forKey: .privateServiceConnectConnectivity)
     {
       try connectivityCheckAndSet(
         .privateServiceConnectConnectivity(privateServiceConnectConnectivity))
@@ -188,9 +188,9 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleWKT._AnyPac
   /// Connectivity options used to establish a connection to the database server.
   public enum ConnectivityOneOf: Codable, Equatable, Sendable {
     /// Static ip connectivity data (default, no additional details needed).
-    indirect case staticIpConnectivity(StaticIpConnectivity?)
+    indirect case staticIpConnectivity(StaticIpConnectivity)
     /// Private service connect connectivity.
-    indirect case privateServiceConnectConnectivity(PrivateServiceConnectConnectivity?)
+    indirect case privateServiceConnectConnectivity(PrivateServiceConnectConnectivity)
   }
 
   public static var _anyTypeUrl: Swift.String {

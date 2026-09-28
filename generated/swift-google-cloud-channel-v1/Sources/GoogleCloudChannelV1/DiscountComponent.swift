@@ -86,7 +86,7 @@ public struct DiscountComponent: Codable, Equatable, GoogleWKT._AnyPackable,
       try discountValueCheckAndSet(.discountPercentage(discountPercentage))
     }
     if let discountAbsolute = try container.decodeIfPresent(
-      GoogleType.Money?.self, forKey: .discountAbsolute)
+      GoogleType.Money.self, forKey: .discountAbsolute)
     {
       try discountValueCheckAndSet(.discountAbsolute(discountAbsolute))
     }
@@ -121,7 +121,7 @@ public struct DiscountComponent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// For example, a 20% discount will be represented as 0.2.
     case discountPercentage(Swift.Double)
     /// Fixed value discount.
-    indirect case discountAbsolute(GoogleType.Money?)
+    indirect case discountAbsolute(GoogleType.Money)
   }
 
   public static var _anyTypeUrl: Swift.String {

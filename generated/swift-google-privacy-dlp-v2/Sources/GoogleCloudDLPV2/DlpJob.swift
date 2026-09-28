@@ -146,12 +146,12 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let riskDetails = try container.decodeIfPresent(
-      AnalyzeDataSourceRiskDetails?.self, forKey: .riskDetails)
+      AnalyzeDataSourceRiskDetails.self, forKey: .riskDetails)
     {
       try detailsCheckAndSet(.riskDetails(riskDetails))
     }
     if let inspectDetails = try container.decodeIfPresent(
-      InspectDataSourceDetails?.self, forKey: .inspectDetails)
+      InspectDataSourceDetails.self, forKey: .inspectDetails)
     {
       try detailsCheckAndSet(.inspectDetails(inspectDetails))
     }
@@ -340,9 +340,9 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Job details.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Results from analyzing risk of a data source.
-    indirect case riskDetails(AnalyzeDataSourceRiskDetails?)
+    indirect case riskDetails(AnalyzeDataSourceRiskDetails)
     /// Results from inspecting a data source.
-    indirect case inspectDetails(InspectDataSourceDetails?)
+    indirect case inspectDetails(InspectDataSourceDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

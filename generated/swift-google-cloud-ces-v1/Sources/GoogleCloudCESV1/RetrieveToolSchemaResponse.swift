@@ -88,7 +88,7 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleWKT._AnyPack
     if let tool = try container.decodeIfPresent(Swift.String.self, forKey: .tool) {
       try toolIdentifierCheckAndSet(.tool(tool))
     }
-    if let toolsetTool = try container.decodeIfPresent(ToolsetTool?.self, forKey: .toolsetTool) {
+    if let toolsetTool = try container.decodeIfPresent(ToolsetTool.self, forKey: .toolsetTool) {
       try toolIdentifierCheckAndSet(.toolsetTool(toolsetTool))
     }
     self.toolIdentifier = toolIdentifier
@@ -122,7 +122,7 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleWKT._AnyPack
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case tool(Swift.String)
     /// The toolset tool that the schema is for.
-    indirect case toolsetTool(ToolsetTool?)
+    indirect case toolsetTool(ToolsetTool)
   }
 
   public static var _anyTypeUrl: Swift.String {

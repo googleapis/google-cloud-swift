@@ -152,7 +152,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
       content = $0
     }
     if let ipUtilizationInfo = try container.decodeIfPresent(
-      IpUtilizationInfo?.self, forKey: .ipUtilizationInfo)
+      IpUtilizationInfo.self, forKey: .ipUtilizationInfo)
     {
       try contentCheckAndSet(.ipUtilizationInfo(ipUtilizationInfo))
     }
@@ -686,7 +686,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   public enum ContentOneOf: Codable, Equatable, Sendable {
-    indirect case ipUtilizationInfo(IpUtilizationInfo?)
+    indirect case ipUtilizationInfo(IpUtilizationInfo)
   }
 
   public static var _anyTypeUrl: Swift.String {

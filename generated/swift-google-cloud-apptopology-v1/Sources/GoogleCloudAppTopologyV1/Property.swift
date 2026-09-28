@@ -93,16 +93,16 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       value = $0
     }
-    if let stringValue = try container.decodeIfPresent(StringValue?.self, forKey: .stringValue) {
+    if let stringValue = try container.decodeIfPresent(StringValue.self, forKey: .stringValue) {
       try valueCheckAndSet(.stringValue(stringValue))
     }
-    if let intValue = try container.decodeIfPresent(IntValue?.self, forKey: .intValue) {
+    if let intValue = try container.decodeIfPresent(IntValue.self, forKey: .intValue) {
       try valueCheckAndSet(.intValue(intValue))
     }
-    if let boolValue = try container.decodeIfPresent(BoolValue?.self, forKey: .boolValue) {
+    if let boolValue = try container.decodeIfPresent(BoolValue.self, forKey: .boolValue) {
       try valueCheckAndSet(.boolValue(boolValue))
     }
-    if let doubleValue = try container.decodeIfPresent(DoubleValue?.self, forKey: .doubleValue) {
+    if let doubleValue = try container.decodeIfPresent(DoubleValue.self, forKey: .doubleValue) {
       try valueCheckAndSet(.doubleValue(doubleValue))
     }
     self.value = value
@@ -138,13 +138,13 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Value type of the property.
   public enum ValueOneOf: Codable, Equatable, Sendable {
     /// StringValue represents a property that has a string value type.
-    indirect case stringValue(StringValue?)
+    indirect case stringValue(StringValue)
     /// IntValue represents a property that has an integer value type.
-    indirect case intValue(IntValue?)
+    indirect case intValue(IntValue)
     /// BoolValue represents a property that has a boolean value type.
-    indirect case boolValue(BoolValue?)
+    indirect case boolValue(BoolValue)
     /// DoubleValue represents a property that has a double value type.
-    indirect case doubleValue(DoubleValue?)
+    indirect case doubleValue(DoubleValue)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -116,8 +116,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
     if let e164Number = try container.decodeIfPresent(Swift.String.self, forKey: .e164Number) {
       try kindCheckAndSet(.e164Number(e164Number))
     }
-    if let shortCode = try container.decodeIfPresent(
-      PhoneNumber.ShortCode?.self, forKey: .shortCode)
+    if let shortCode = try container.decodeIfPresent(PhoneNumber.ShortCode.self, forKey: .shortCode)
     {
       try kindCheckAndSet(.shortCode(shortCode))
     }
@@ -265,7 +264,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// Reference(s):
     ///  - https://wikipedia.org/wiki/Short_code
-    indirect case shortCode(PhoneNumber.ShortCode?)
+    indirect case shortCode(PhoneNumber.ShortCode)
   }
 
   public static var _anyTypeUrl: Swift.String {

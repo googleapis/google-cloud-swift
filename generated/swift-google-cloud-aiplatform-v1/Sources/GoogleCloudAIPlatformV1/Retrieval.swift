@@ -84,12 +84,12 @@
         source = $0
       }
       if let vertexAiSearch = try container.decodeIfPresent(
-        VertexAISearch?.self, forKey: .vertexAiSearch)
+        VertexAISearch.self, forKey: .vertexAiSearch)
       {
         try sourceCheckAndSet(.vertexAiSearch(vertexAiSearch))
       }
       if let vertexRagStore = try container.decodeIfPresent(
-        VertexRagStore?.self, forKey: .vertexRagStore)
+        VertexRagStore.self, forKey: .vertexRagStore)
       {
         try sourceCheckAndSet(.vertexRagStore(vertexRagStore))
       }
@@ -123,10 +123,10 @@
     /// The source of the retrieval.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Set to use data source powered by Vertex AI Search.
-      indirect case vertexAiSearch(VertexAISearch?)
+      indirect case vertexAiSearch(VertexAISearch)
       /// Set to use data source powered by Vertex RAG store.
       /// User data is uploaded via the VertexRagDataService.
-      indirect case vertexRagStore(VertexRagStore?)
+      indirect case vertexRagStore(VertexRagStore)
     }
 
     public static var _anyTypeUrl: Swift.String {

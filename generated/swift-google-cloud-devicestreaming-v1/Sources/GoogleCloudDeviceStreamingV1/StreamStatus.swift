@@ -78,10 +78,10 @@ public struct StreamStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       status = $0
     }
-    if let okay = try container.decodeIfPresent(Okay?.self, forKey: .okay) {
+    if let okay = try container.decodeIfPresent(Okay.self, forKey: .okay) {
       try statusCheckAndSet(.okay(okay))
     }
-    if let fail = try container.decodeIfPresent(Fail?.self, forKey: .fail) {
+    if let fail = try container.decodeIfPresent(Fail.self, forKey: .fail) {
       try statusCheckAndSet(.fail(fail))
     }
     self.status = status
@@ -111,9 +111,9 @@ public struct StreamStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The result of the stream. Either "Okay" for success or "Fail" for failure.
   public enum StatusOneOf: Codable, Equatable, Sendable {
     /// Okay for success.
-    indirect case okay(Okay?)
+    indirect case okay(Okay)
     /// Fail for failure.
-    indirect case fail(Fail?)
+    indirect case fail(Fail)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -73,12 +73,12 @@
         handler = $0
       }
       if let eventHandler = try container.decodeIfPresent(
-        Handler.EventHandler?.self, forKey: .eventHandler)
+        Handler.EventHandler.self, forKey: .eventHandler)
       {
         try handlerCheckAndSet(.eventHandler(eventHandler))
       }
       if let lifecycleHandler = try container.decodeIfPresent(
-        Handler.LifecycleHandler?.self, forKey: .lifecycleHandler)
+        Handler.LifecycleHandler.self, forKey: .lifecycleHandler)
       {
         try handlerCheckAndSet(.lifecycleHandler(lifecycleHandler))
       }
@@ -287,9 +287,9 @@
     /// Specifies the type of handler to invoke.
     public enum HandlerOneOf: Codable, Equatable, Sendable {
       /// A handler triggered by event.
-      indirect case eventHandler(Handler.EventHandler?)
+      indirect case eventHandler(Handler.EventHandler)
       /// A handler triggered during specific lifecycle of the playbook execution.
-      indirect case lifecycleHandler(Handler.LifecycleHandler?)
+      indirect case lifecycleHandler(Handler.LifecycleHandler)
     }
 
     public static var _anyTypeUrl: Swift.String {

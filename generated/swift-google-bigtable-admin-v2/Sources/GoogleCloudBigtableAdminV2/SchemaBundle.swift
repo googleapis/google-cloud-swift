@@ -92,10 +92,10 @@ public struct SchemaBundle: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       type = $0
     }
-    if let protoSchema = try container.decodeIfPresent(ProtoSchema?.self, forKey: .protoSchema) {
+    if let protoSchema = try container.decodeIfPresent(ProtoSchema.self, forKey: .protoSchema) {
       try typeCheckAndSet(.protoSchema(protoSchema))
     }
-    if let avroSchema = try container.decodeIfPresent(AvroSchema?.self, forKey: .avroSchema) {
+    if let avroSchema = try container.decodeIfPresent(AvroSchema.self, forKey: .avroSchema) {
       try typeCheckAndSet(.avroSchema(avroSchema))
     }
     self.type = type
@@ -127,9 +127,9 @@ public struct SchemaBundle: Codable, Equatable, GoogleWKT._AnyPackable,
   /// creation.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Schema for Protobufs.
-    indirect case protoSchema(ProtoSchema?)
+    indirect case protoSchema(ProtoSchema)
     /// Optional. Schema for Avros.
-    indirect case avroSchema(AvroSchema?)
+    indirect case avroSchema(AvroSchema)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -93,16 +93,16 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     if let stringValue = try container.decodeIfPresent(Swift.String.self, forKey: .stringValue) {
       try kindCheckAndSet(.stringValue(stringValue))
     }
-    if let enumValue = try container.decodeIfPresent(EnumValue?.self, forKey: .enumValue) {
+    if let enumValue = try container.decodeIfPresent(EnumValue.self, forKey: .enumValue) {
       try kindCheckAndSet(.enumValue(enumValue))
     }
     if let datetimeValue = try container.decodeIfPresent(
-      GoogleType.DateTime?.self, forKey: .datetimeValue)
+      GoogleType.DateTime.self, forKey: .datetimeValue)
     {
       try kindCheckAndSet(.datetimeValue(datetimeValue))
     }
     if let timestampValue = try container.decodeIfPresent(
-      TimestampValue?.self, forKey: .timestampValue)
+      TimestampValue.self, forKey: .timestampValue)
     {
       try kindCheckAndSet(.timestampValue(timestampValue))
     }
@@ -151,11 +151,11 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Represents a string value.
     case stringValue(Swift.String)
     /// Represents an enum value.
-    indirect case enumValue(EnumValue?)
+    indirect case enumValue(EnumValue)
     /// Represents a datetime value.
-    indirect case datetimeValue(GoogleType.DateTime?)
+    indirect case datetimeValue(GoogleType.DateTime)
     /// Represents a timestamp value.
-    indirect case timestampValue(TimestampValue?)
+    indirect case timestampValue(TimestampValue)
     /// Represents a boolean value.
     case booleanValue(Swift.Bool)
   }

@@ -80,12 +80,12 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleWKT._An
       vmTarget = $0
     }
     if let disksTargetDetails = try container.decodeIfPresent(
-      DisksMigrationDisksTargetDetails?.self, forKey: .disksTargetDetails)
+      DisksMigrationDisksTargetDetails.self, forKey: .disksTargetDetails)
     {
       try vmTargetCheckAndSet(.disksTargetDetails(disksTargetDetails))
     }
     if let vmTargetDetails = try container.decodeIfPresent(
-      DisksMigrationVmTargetDetails?.self, forKey: .vmTargetDetails)
+      DisksMigrationVmTargetDetails.self, forKey: .vmTargetDetails)
     {
       try vmTargetCheckAndSet(.vmTargetDetails(vmTargetDetails))
     }
@@ -116,9 +116,9 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleWKT._An
   /// Details of the VM the disks are attached to.
   public enum VmTargetOneOf: Codable, Equatable, Sendable {
     /// Details of the disks-only migration target.
-    indirect case disksTargetDetails(DisksMigrationDisksTargetDetails?)
+    indirect case disksTargetDetails(DisksMigrationDisksTargetDetails)
     /// Details for the VM the migrated data disks are attached to.
-    indirect case vmTargetDetails(DisksMigrationVmTargetDetails?)
+    indirect case vmTargetDetails(DisksMigrationVmTargetDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -69,7 +69,7 @@ public struct FeedOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       destination = $0
     }
     if let pubsubDestination = try container.decodeIfPresent(
-      PubsubDestination?.self, forKey: .pubsubDestination)
+      PubsubDestination.self, forKey: .pubsubDestination)
     {
       try destinationCheckAndSet(.pubsubDestination(pubsubDestination))
     }
@@ -97,7 +97,7 @@ public struct FeedOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Asset feed destination.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Destination on Pub/Sub.
-    indirect case pubsubDestination(PubsubDestination?)
+    indirect case pubsubDestination(PubsubDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

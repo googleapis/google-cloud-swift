@@ -71,11 +71,11 @@ public struct ConnectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       request = $0
     }
     if let config = try container.decodeIfPresent(
-      ConnectRequest.ConnectConfig?.self, forKey: .config)
+      ConnectRequest.ConnectConfig.self, forKey: .config)
     {
       try requestCheckAndSet(.config(config))
     }
-    if let blurb = try container.decodeIfPresent(Blurb?.self, forKey: .blurb) {
+    if let blurb = try container.decodeIfPresent(Blurb.self, forKey: .blurb) {
       try requestCheckAndSet(.blurb(blurb))
     }
     self.request = request
@@ -171,9 +171,9 @@ public struct ConnectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum RequestOneOf: Codable, Equatable, Sendable {
     /// Provides information that specifies how to process subsequent requests.
     /// The first `ConnectRequest` message must contain a `config`  message.
-    indirect case config(ConnectRequest.ConnectConfig?)
+    indirect case config(ConnectRequest.ConnectConfig)
     /// The blurb to be created.
-    indirect case blurb(Blurb?)
+    indirect case blurb(Blurb)
   }
 
   public static var _anyTypeUrl: Swift.String {

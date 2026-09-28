@@ -112,7 +112,7 @@ public struct SynthesisInput: Codable, Equatable, GoogleWKT._AnyPackable,
       try inputSourceCheckAndSet(.ssml(ssml))
     }
     if let multiSpeakerMarkup = try container.decodeIfPresent(
-      MultiSpeakerMarkup?.self, forKey: .multiSpeakerMarkup)
+      MultiSpeakerMarkup.self, forKey: .multiSpeakerMarkup)
     {
       try inputSourceCheckAndSet(.multiSpeakerMarkup(multiSpeakerMarkup))
     }
@@ -160,7 +160,7 @@ public struct SynthesisInput: Codable, Equatable, GoogleWKT._AnyPackable,
     case ssml(Swift.String)
     /// The multi-speaker input to be synthesized. Only applicable for
     /// multi-speaker synthesis.
-    indirect case multiSpeakerMarkup(MultiSpeakerMarkup?)
+    indirect case multiSpeakerMarkup(MultiSpeakerMarkup)
   }
 
   public static var _anyTypeUrl: Swift.String {

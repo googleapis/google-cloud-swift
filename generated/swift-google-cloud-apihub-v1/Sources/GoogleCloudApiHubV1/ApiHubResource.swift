@@ -78,22 +78,22 @@ public struct ApiHubResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       resource = $0
     }
-    if let api = try container.decodeIfPresent(Api?.self, forKey: .api) {
+    if let api = try container.decodeIfPresent(Api.self, forKey: .api) {
       try resourceCheckAndSet(.api(api))
     }
-    if let operation = try container.decodeIfPresent(ApiOperation?.self, forKey: .operation) {
+    if let operation = try container.decodeIfPresent(ApiOperation.self, forKey: .operation) {
       try resourceCheckAndSet(.operation(operation))
     }
-    if let deployment = try container.decodeIfPresent(Deployment?.self, forKey: .deployment) {
+    if let deployment = try container.decodeIfPresent(Deployment.self, forKey: .deployment) {
       try resourceCheckAndSet(.deployment(deployment))
     }
-    if let spec = try container.decodeIfPresent(Spec?.self, forKey: .spec) {
+    if let spec = try container.decodeIfPresent(Spec.self, forKey: .spec) {
       try resourceCheckAndSet(.spec(spec))
     }
-    if let definition = try container.decodeIfPresent(Definition?.self, forKey: .definition) {
+    if let definition = try container.decodeIfPresent(Definition.self, forKey: .definition) {
       try resourceCheckAndSet(.definition(definition))
     }
-    if let version = try container.decodeIfPresent(Version?.self, forKey: .version) {
+    if let version = try container.decodeIfPresent(Version.self, forKey: .version) {
       try resourceCheckAndSet(.version(version))
     }
     self.resource = resource
@@ -130,25 +130,25 @@ public struct ApiHubResource: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ResourceOneOf: Codable, Equatable, Sendable {
     /// This represents Api resource in search results. Only name, display_name,
     /// description and owner fields are populated in search results.
-    indirect case api(Api?)
+    indirect case api(Api)
     /// This represents ApiOperation resource in search results. Only name,
     /// description, spec and details fields are populated in search results.
-    indirect case operation(ApiOperation?)
+    indirect case operation(ApiOperation)
     /// This represents Deployment resource in search results. Only name,
     /// display_name, description, deployment_type and api_versions fields are
     /// populated in search results.
-    indirect case deployment(Deployment?)
+    indirect case deployment(Deployment)
     /// This represents Spec resource in search results. Only name,
     /// display_name, description, spec_type and documentation fields are
     /// populated in search results.
-    indirect case spec(Spec?)
+    indirect case spec(Spec)
     /// This represents Definition resource in search results.
     /// Only name field is populated in search results.
-    indirect case definition(Definition?)
+    indirect case definition(Definition)
     /// This represents Version resource in search results. Only name,
     /// display_name, description, lifecycle, compliance and accreditation fields
     /// are populated in search results.
-    indirect case version(Version?)
+    indirect case version(Version)
   }
 
   public static var _anyTypeUrl: Swift.String {

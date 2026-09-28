@@ -86,12 +86,12 @@
         deleteOption = $0
       }
       if let selectEntity = try container.decodeIfPresent(
-        DeleteFeatureValuesRequest.SelectEntity?.self, forKey: .selectEntity)
+        DeleteFeatureValuesRequest.SelectEntity.self, forKey: .selectEntity)
       {
         try deleteOptionCheckAndSet(.selectEntity(selectEntity))
       }
       if let selectTimeRangeAndFeature = try container.decodeIfPresent(
-        DeleteFeatureValuesRequest.SelectTimeRangeAndFeature?.self,
+        DeleteFeatureValuesRequest.SelectTimeRangeAndFeature.self,
         forKey: .selectTimeRangeAndFeature)
       {
         try deleteOptionCheckAndSet(.selectTimeRangeAndFeature(selectTimeRangeAndFeature))
@@ -289,10 +289,10 @@
     /// Defines options to select feature values to be deleted.
     public enum DeleteOptionOneOf: Codable, Equatable, Sendable {
       /// Select feature values to be deleted by specifying entities.
-      indirect case selectEntity(DeleteFeatureValuesRequest.SelectEntity?)
+      indirect case selectEntity(DeleteFeatureValuesRequest.SelectEntity)
       /// Select feature values to be deleted by specifying time range and
       /// features.
-      indirect case selectTimeRangeAndFeature(DeleteFeatureValuesRequest.SelectTimeRangeAndFeature?)
+      indirect case selectTimeRangeAndFeature(DeleteFeatureValuesRequest.SelectTimeRangeAndFeature)
     }
 
     public static var _anyTypeUrl: Swift.String {

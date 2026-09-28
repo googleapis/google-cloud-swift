@@ -254,7 +254,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
           measure = $0
         }
         if let conversationMeasure = try container.decodeIfPresent(
-          QueryMetricsResponse.Slice.DataPoint.ConversationMeasure?.self,
+          QueryMetricsResponse.Slice.DataPoint.ConversationMeasure.self,
           forKey: .conversationMeasure)
         {
           try measureCheckAndSet(.conversationMeasure(conversationMeasure))
@@ -524,7 +524,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       /// The measure included in this data point.
       public enum MeasureOneOf: Codable, Equatable, Sendable {
         /// The measure related to conversations.
-        indirect case conversationMeasure(QueryMetricsResponse.Slice.DataPoint.ConversationMeasure?)
+        indirect case conversationMeasure(QueryMetricsResponse.Slice.DataPoint.ConversationMeasure)
       }
 
       public static var _anyTypeUrl: Swift.String {

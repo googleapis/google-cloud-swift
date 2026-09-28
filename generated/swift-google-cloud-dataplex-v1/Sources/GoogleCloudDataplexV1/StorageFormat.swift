@@ -116,14 +116,14 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       options = $0
     }
-    if let csv = try container.decodeIfPresent(StorageFormat.CsvOptions?.self, forKey: .csv) {
+    if let csv = try container.decodeIfPresent(StorageFormat.CsvOptions.self, forKey: .csv) {
       try optionsCheckAndSet(.csv(csv))
     }
-    if let json = try container.decodeIfPresent(StorageFormat.JsonOptions?.self, forKey: .json) {
+    if let json = try container.decodeIfPresent(StorageFormat.JsonOptions.self, forKey: .json) {
       try optionsCheckAndSet(.json(json))
     }
     if let iceberg = try container.decodeIfPresent(
-      StorageFormat.IcebergOptions?.self, forKey: .iceberg)
+      StorageFormat.IcebergOptions.self, forKey: .iceberg)
     {
       try optionsCheckAndSet(.iceberg(iceberg))
     }
@@ -699,11 +699,11 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Additional format-specific options.
   public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Additional information about CSV formatted data.
-    indirect case csv(StorageFormat.CsvOptions?)
+    indirect case csv(StorageFormat.CsvOptions)
     /// Optional. Additional information about CSV formatted data.
-    indirect case json(StorageFormat.JsonOptions?)
+    indirect case json(StorageFormat.JsonOptions)
     /// Optional. Additional information about iceberg tables.
-    indirect case iceberg(StorageFormat.IcebergOptions?)
+    indirect case iceberg(StorageFormat.IcebergOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -740,11 +740,11 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .expireTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
@@ -1132,7 +1132,7 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.retail.v2.Product.available_time]: <doc:Product/availableTime>
     /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/ExpirationOneOf/expireTime(_:)>
     /// [google.cloud.retail.v2.Product.publish_time]: <doc:Product/publishTime>
-    indirect case expireTime(GoogleWKT.WKTTimestamp?)
+    indirect case expireTime(GoogleWKT.WKTTimestamp)
     /// Input only. The TTL (time to live) of the product. Note that this is only
     /// applicable to [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
     /// and [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION],
@@ -1165,7 +1165,7 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
     /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
     /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
-    indirect case ttl(GoogleWKT.WKTDuration?)
+    indirect case ttl(GoogleWKT.WKTDuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

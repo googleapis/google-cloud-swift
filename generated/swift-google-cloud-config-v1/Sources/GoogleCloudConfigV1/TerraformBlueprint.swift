@@ -96,7 +96,7 @@ public struct TerraformBlueprint: Codable, Equatable, GoogleWKT._AnyPackable,
     if let gcsSource = try container.decodeIfPresent(Swift.String.self, forKey: .gcsSource) {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
-    if let gitSource = try container.decodeIfPresent(GitSource?.self, forKey: .gitSource) {
+    if let gitSource = try container.decodeIfPresent(GitSource.self, forKey: .gitSource) {
       try sourceCheckAndSet(.gitSource(gitSource))
     }
     self.source = source
@@ -134,7 +134,7 @@ public struct TerraformBlueprint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Format: `gs://{bucket}/{object}#{version}`
     case gcsSource(Swift.String)
     /// URI of a public Git repo.
-    indirect case gitSource(GitSource?)
+    indirect case gitSource(GitSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -75,17 +75,17 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       ccFeature = $0
     }
     if let spt = try container.decodeIfPresent(
-      NvidiaAttestation.SinglePassthroughAttestation?.self, forKey: .spt)
+      NvidiaAttestation.SinglePassthroughAttestation.self, forKey: .spt)
     {
       try ccFeatureCheckAndSet(.spt(spt))
     }
     if let ppcie = try container.decodeIfPresent(
-      NvidiaAttestation.ProtectedPcieAttestation?.self, forKey: .ppcie)
+      NvidiaAttestation.ProtectedPcieAttestation.self, forKey: .ppcie)
     {
       try ccFeatureCheckAndSet(.ppcie(ppcie))
     }
     if let mpt = try container.decodeIfPresent(
-      NvidiaAttestation.MultiGpuSecurePassthroughAttestation?.self, forKey: .mpt)
+      NvidiaAttestation.MultiGpuSecurePassthroughAttestation.self, forKey: .mpt)
     {
       try ccFeatureCheckAndSet(.mpt(mpt))
     }
@@ -672,11 +672,11 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The Confidential Computing feature that the attestation is for.
   public enum CcFeatureOneOf: Codable, Equatable, Sendable {
     /// Single GPU Passthrough (SPT) attestation.
-    indirect case spt(NvidiaAttestation.SinglePassthroughAttestation?)
+    indirect case spt(NvidiaAttestation.SinglePassthroughAttestation)
     /// Protected PCIe (PPCIE) attestation.
-    indirect case ppcie(NvidiaAttestation.ProtectedPcieAttestation?)
+    indirect case ppcie(NvidiaAttestation.ProtectedPcieAttestation)
     /// Multi-GPU Secure Passthrough (MPT) attestation.
-    indirect case mpt(NvidiaAttestation.MultiGpuSecurePassthroughAttestation?)
+    indirect case mpt(NvidiaAttestation.MultiGpuSecurePassthroughAttestation)
   }
 
   public static var _anyTypeUrl: Swift.String {

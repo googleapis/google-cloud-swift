@@ -100,7 +100,7 @@ public struct GerritSourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
     if let aliasName = try container.decodeIfPresent(Swift.String.self, forKey: .aliasName) {
       try revisionCheckAndSet(.aliasName(aliasName))
     }
-    if let aliasContext = try container.decodeIfPresent(AliasContext?.self, forKey: .aliasContext) {
+    if let aliasContext = try container.decodeIfPresent(AliasContext.self, forKey: .aliasContext) {
       try revisionCheckAndSet(.aliasContext(aliasContext))
     }
     self.revision = revision
@@ -142,7 +142,7 @@ public struct GerritSourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
     @available(*, deprecated)
     case aliasName(Swift.String)
     /// An alias, which may be a branch or tag.
-    indirect case aliasContext(AliasContext?)
+    indirect case aliasContext(AliasContext)
   }
 
   public static var _anyTypeUrl: Swift.String {

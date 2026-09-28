@@ -342,12 +342,12 @@
           routingConfig = $0
         }
         if let autoMode = try container.decodeIfPresent(
-          GenerationConfig.RoutingConfig.AutoRoutingMode?.self, forKey: .autoMode)
+          GenerationConfig.RoutingConfig.AutoRoutingMode.self, forKey: .autoMode)
         {
           try routingConfigCheckAndSet(.autoMode(autoMode))
         }
         if let manualMode = try container.decodeIfPresent(
-          GenerationConfig.RoutingConfig.ManualRoutingMode?.self, forKey: .manualMode)
+          GenerationConfig.RoutingConfig.ManualRoutingMode.self, forKey: .manualMode)
         {
           try routingConfigCheckAndSet(.manualMode(manualMode))
         }
@@ -642,9 +642,9 @@
       /// Routing mode.
       public enum RoutingConfigOneOf: Codable, Equatable, Sendable {
         /// Automated routing.
-        indirect case autoMode(GenerationConfig.RoutingConfig.AutoRoutingMode?)
+        indirect case autoMode(GenerationConfig.RoutingConfig.AutoRoutingMode)
         /// Manual routing.
-        indirect case manualMode(GenerationConfig.RoutingConfig.ManualRoutingMode?)
+        indirect case manualMode(GenerationConfig.RoutingConfig.ManualRoutingMode)
       }
 
       public static var _anyTypeUrl: Swift.String {

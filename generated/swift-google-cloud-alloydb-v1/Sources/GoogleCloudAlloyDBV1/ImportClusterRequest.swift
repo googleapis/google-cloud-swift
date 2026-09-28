@@ -111,12 +111,12 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       importOptions = $0
     }
     if let sqlImportOptions = try container.decodeIfPresent(
-      ImportClusterRequest.SqlImportOptions?.self, forKey: .sqlImportOptions)
+      ImportClusterRequest.SqlImportOptions.self, forKey: .sqlImportOptions)
     {
       try importOptionsCheckAndSet(.sqlImportOptions(sqlImportOptions))
     }
     if let csvImportOptions = try container.decodeIfPresent(
-      ImportClusterRequest.CsvImportOptions?.self, forKey: .csvImportOptions)
+      ImportClusterRequest.CsvImportOptions.self, forKey: .csvImportOptions)
     {
       try importOptionsCheckAndSet(.csvImportOptions(csvImportOptions))
     }
@@ -319,9 +319,9 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// oneof field to support various import formats like SQL and CSV.
   public enum ImportOptionsOneOf: Codable, Equatable, Sendable {
     /// Options for importing data in SQL format.
-    indirect case sqlImportOptions(ImportClusterRequest.SqlImportOptions?)
+    indirect case sqlImportOptions(ImportClusterRequest.SqlImportOptions)
     /// Options for importing data in CSV format.
-    indirect case csvImportOptions(ImportClusterRequest.CsvImportOptions?)
+    indirect case csvImportOptions(ImportClusterRequest.CsvImportOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

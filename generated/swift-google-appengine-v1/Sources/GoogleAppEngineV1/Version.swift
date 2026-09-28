@@ -439,15 +439,14 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
       scaling = $0
     }
     if let automaticScaling = try container.decodeIfPresent(
-      AutomaticScaling?.self, forKey: .automaticScaling)
+      AutomaticScaling.self, forKey: .automaticScaling)
     {
       try scalingCheckAndSet(.automaticScaling(automaticScaling))
     }
-    if let basicScaling = try container.decodeIfPresent(BasicScaling?.self, forKey: .basicScaling) {
+    if let basicScaling = try container.decodeIfPresent(BasicScaling.self, forKey: .basicScaling) {
       try scalingCheckAndSet(.basicScaling(basicScaling))
     }
-    if let manualScaling = try container.decodeIfPresent(
-      ManualScaling?.self, forKey: .manualScaling)
+    if let manualScaling = try container.decodeIfPresent(ManualScaling.self, forKey: .manualScaling)
     {
       try scalingCheckAndSet(.manualScaling(manualScaling))
     }
@@ -520,16 +519,16 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Automatic scaling is based on request rate, response latencies, and other
     /// application metrics. Instances are dynamically created and destroyed as
     /// needed in order to handle traffic.
-    indirect case automaticScaling(AutomaticScaling?)
+    indirect case automaticScaling(AutomaticScaling)
     /// A service with basic scaling will create an instance when the application
     /// receives a request. The instance will be turned down when the app becomes
     /// idle. Basic scaling is ideal for work that is intermittent or driven by
     /// user activity.
-    indirect case basicScaling(BasicScaling?)
+    indirect case basicScaling(BasicScaling)
     /// A service with manual scaling runs continuously, allowing you to perform
     /// complex initialization and rely on the state of its memory over time.
     /// Manually scaled versions are sometimes referred to as "backends".
-    indirect case manualScaling(ManualScaling?)
+    indirect case manualScaling(ManualScaling)
   }
 
   public static var _anyTypeUrl: Swift.String {

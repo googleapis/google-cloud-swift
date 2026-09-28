@@ -124,7 +124,7 @@
         try instanceCheckAndSet(.entityId(entityId))
       }
       if let embedding = try container.decodeIfPresent(
-        NearestNeighborQuery.Embedding?.self, forKey: .embedding)
+        NearestNeighborQuery.Embedding.self, forKey: .embedding)
       {
         try instanceCheckAndSet(.embedding(embedding))
       }
@@ -697,7 +697,7 @@
       /// entity_id.
       case entityId(Swift.String)
       /// Optional. The embedding vector that be used for similar search.
-      indirect case embedding(NearestNeighborQuery.Embedding?)
+      indirect case embedding(NearestNeighborQuery.Embedding)
     }
 
     public static var _anyTypeUrl: Swift.String {

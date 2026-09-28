@@ -80,7 +80,7 @@
         try exportedEntityTypesCheckAndSet(.entityTypesUri(entityTypesUri))
       }
       if let entityTypesContent = try container.decodeIfPresent(
-        InlineDestination?.self, forKey: .entityTypesContent)
+        InlineDestination.self, forKey: .entityTypesContent)
       {
         try exportedEntityTypesCheckAndSet(.entityTypesContent(entityTypesContent))
       }
@@ -120,7 +120,7 @@
       /// [ExportEntityTypesRequest][google.cloud.dialogflow.cx.v3.ExportEntityTypesRequest].
       ///
       /// [google.cloud.dialogflow.cx.v3.ExportEntityTypesRequest]: <doc:ExportEntityTypesRequest>
-      indirect case entityTypesContent(InlineDestination?)
+      indirect case entityTypesContent(InlineDestination)
     }
 
     public static var _anyTypeUrl: Swift.String {

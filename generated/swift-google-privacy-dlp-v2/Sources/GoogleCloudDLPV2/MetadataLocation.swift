@@ -80,12 +80,12 @@ public struct MetadataLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       label = $0
     }
     if let storageLabel = try container.decodeIfPresent(
-      StorageMetadataLabel?.self, forKey: .storageLabel)
+      StorageMetadataLabel.self, forKey: .storageLabel)
     {
       try labelCheckAndSet(.storageLabel(storageLabel))
     }
     if let keyValueMetadataLabel = try container.decodeIfPresent(
-      KeyValueMetadataLabel?.self, forKey: .keyValueMetadataLabel)
+      KeyValueMetadataLabel.self, forKey: .keyValueMetadataLabel)
     {
       try labelCheckAndSet(.keyValueMetadataLabel(keyValueMetadataLabel))
     }
@@ -117,9 +117,9 @@ public struct MetadataLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// latitude, author, caption.
   public enum LabelOneOf: Codable, Equatable, Sendable {
     /// Storage metadata.
-    indirect case storageLabel(StorageMetadataLabel?)
+    indirect case storageLabel(StorageMetadataLabel)
     /// Metadata key that contains the finding.
-    indirect case keyValueMetadataLabel(KeyValueMetadataLabel?)
+    indirect case keyValueMetadataLabel(KeyValueMetadataLabel)
   }
 
   public static var _anyTypeUrl: Swift.String {

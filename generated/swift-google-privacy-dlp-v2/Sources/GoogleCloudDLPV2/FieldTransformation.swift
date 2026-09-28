@@ -96,12 +96,12 @@ public struct FieldTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
       transformation = $0
     }
     if let primitiveTransformation = try container.decodeIfPresent(
-      PrimitiveTransformation?.self, forKey: .primitiveTransformation)
+      PrimitiveTransformation.self, forKey: .primitiveTransformation)
     {
       try transformationCheckAndSet(.primitiveTransformation(primitiveTransformation))
     }
     if let infoTypeTransformations = try container.decodeIfPresent(
-      InfoTypeTransformations?.self, forKey: .infoTypeTransformations)
+      InfoTypeTransformations.self, forKey: .infoTypeTransformations)
     {
       try transformationCheckAndSet(.infoTypeTransformations(infoTypeTransformations))
     }
@@ -133,10 +133,10 @@ public struct FieldTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Transformation to apply. [required]
   public enum TransformationOneOf: Codable, Equatable, Sendable {
     /// Apply the transformation to the entire field.
-    indirect case primitiveTransformation(PrimitiveTransformation?)
+    indirect case primitiveTransformation(PrimitiveTransformation)
     /// Treat the contents of the field as free text, and selectively
     /// transform content that matches an `InfoType`.
-    indirect case infoTypeTransformations(InfoTypeTransformations?)
+    indirect case infoTypeTransformations(InfoTypeTransformations)
   }
 
   public static var _anyTypeUrl: Swift.String {

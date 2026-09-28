@@ -75,17 +75,17 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
       startPosition = $0
     }
     if let mostRecentStartPosition = try container.decodeIfPresent(
-      CdcStrategy.MostRecentStartPosition?.self, forKey: .mostRecentStartPosition)
+      CdcStrategy.MostRecentStartPosition.self, forKey: .mostRecentStartPosition)
     {
       try startPositionCheckAndSet(.mostRecentStartPosition(mostRecentStartPosition))
     }
     if let nextAvailableStartPosition = try container.decodeIfPresent(
-      CdcStrategy.NextAvailableStartPosition?.self, forKey: .nextAvailableStartPosition)
+      CdcStrategy.NextAvailableStartPosition.self, forKey: .nextAvailableStartPosition)
     {
       try startPositionCheckAndSet(.nextAvailableStartPosition(nextAvailableStartPosition))
     }
     if let specificStartPosition = try container.decodeIfPresent(
-      CdcStrategy.SpecificStartPosition?.self, forKey: .specificStartPosition)
+      CdcStrategy.SpecificStartPosition.self, forKey: .specificStartPosition)
     {
       try startPositionCheckAndSet(.specificStartPosition(specificStartPosition))
     }
@@ -287,22 +287,22 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
         position = $0
       }
       if let mysqlLogPosition = try container.decodeIfPresent(
-        MysqlLogPosition?.self, forKey: .mysqlLogPosition)
+        MysqlLogPosition.self, forKey: .mysqlLogPosition)
       {
         try positionCheckAndSet(.mysqlLogPosition(mysqlLogPosition))
       }
       if let oracleScnPosition = try container.decodeIfPresent(
-        OracleScnPosition?.self, forKey: .oracleScnPosition)
+        OracleScnPosition.self, forKey: .oracleScnPosition)
       {
         try positionCheckAndSet(.oracleScnPosition(oracleScnPosition))
       }
       if let sqlServerLsnPosition = try container.decodeIfPresent(
-        SqlServerLsnPosition?.self, forKey: .sqlServerLsnPosition)
+        SqlServerLsnPosition.self, forKey: .sqlServerLsnPosition)
       {
         try positionCheckAndSet(.sqlServerLsnPosition(sqlServerLsnPosition))
       }
       if let mysqlGtidPosition = try container.decodeIfPresent(
-        MysqlGtidPosition?.self, forKey: .mysqlGtidPosition)
+        MysqlGtidPosition.self, forKey: .mysqlGtidPosition)
       {
         try positionCheckAndSet(.mysqlGtidPosition(mysqlGtidPosition))
       }
@@ -335,13 +335,13 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public enum PositionOneOf: Codable, Equatable, Sendable {
       /// MySQL specific log position to start replicating from.
-      indirect case mysqlLogPosition(MysqlLogPosition?)
+      indirect case mysqlLogPosition(MysqlLogPosition)
       /// Oracle SCN to start replicating from.
-      indirect case oracleScnPosition(OracleScnPosition?)
+      indirect case oracleScnPosition(OracleScnPosition)
       /// SqlServer LSN to start replicating from.
-      indirect case sqlServerLsnPosition(SqlServerLsnPosition?)
+      indirect case sqlServerLsnPosition(SqlServerLsnPosition)
       /// MySQL GTID set to start replicating from.
-      indirect case mysqlGtidPosition(MysqlGtidPosition?)
+      indirect case mysqlGtidPosition(MysqlGtidPosition)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -360,12 +360,12 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If not set, the system's default value will be used.
   public enum StartPositionOneOf: Codable, Equatable, Sendable {
     /// Optional. Start replicating from the most recent position in the source.
-    indirect case mostRecentStartPosition(CdcStrategy.MostRecentStartPosition?)
+    indirect case mostRecentStartPosition(CdcStrategy.MostRecentStartPosition)
     /// Optional. Resume replication from the next available position in the
     /// source.
-    indirect case nextAvailableStartPosition(CdcStrategy.NextAvailableStartPosition?)
+    indirect case nextAvailableStartPosition(CdcStrategy.NextAvailableStartPosition)
     /// Optional. Start replicating from a specific position in the source.
-    indirect case specificStartPosition(CdcStrategy.SpecificStartPosition?)
+    indirect case specificStartPosition(CdcStrategy.SpecificStartPosition)
   }
 
   public static var _anyTypeUrl: Swift.String {

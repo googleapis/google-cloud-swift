@@ -3353,21 +3353,20 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           structuredValue = $0
         }
         if let moneyValue = try container.decodeIfPresent(
-          GoogleType.Money?.self, forKey: .moneyValue)
+          GoogleType.Money.self, forKey: .moneyValue)
         {
           try structuredValueCheckAndSet(.moneyValue(moneyValue))
         }
-        if let dateValue = try container.decodeIfPresent(GoogleType.Date?.self, forKey: .dateValue)
-        {
+        if let dateValue = try container.decodeIfPresent(GoogleType.Date.self, forKey: .dateValue) {
           try structuredValueCheckAndSet(.dateValue(dateValue))
         }
         if let datetimeValue = try container.decodeIfPresent(
-          GoogleType.DateTime?.self, forKey: .datetimeValue)
+          GoogleType.DateTime.self, forKey: .datetimeValue)
         {
           try structuredValueCheckAndSet(.datetimeValue(datetimeValue))
         }
         if let addressValue = try container.decodeIfPresent(
-          GoogleType.PostalAddress?.self, forKey: .addressValue)
+          GoogleType.PostalAddress.self, forKey: .addressValue)
         {
           try structuredValueCheckAndSet(.addressValue(addressValue))
         }
@@ -3430,16 +3429,16 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum StructuredValueOneOf: Codable, Equatable, Sendable {
         /// Money value. See also:
         /// https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
-        indirect case moneyValue(GoogleType.Money?)
+        indirect case moneyValue(GoogleType.Money)
         /// Date value. Includes year, month, day. See also:
         /// https://github.com/googleapis/googleapis/blob/master/google/type/date.proto
-        indirect case dateValue(GoogleType.Date?)
+        indirect case dateValue(GoogleType.Date)
         /// DateTime value. Includes date, time, and timezone. See also:
         /// https://github.com/googleapis/googleapis/blob/master/google/type/datetime.proto
-        indirect case datetimeValue(GoogleType.DateTime?)
+        indirect case datetimeValue(GoogleType.DateTime)
         /// Postal address. See also:
         /// https://github.com/googleapis/googleapis/blob/master/google/type/postal_address.proto
-        indirect case addressValue(GoogleType.PostalAddress?)
+        indirect case addressValue(GoogleType.PostalAddress)
         /// Boolean value. Can be used for entities with binary values, or for
         /// checkboxes.
         case booleanValue(Swift.Bool)
@@ -5158,22 +5157,22 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           block = $0
         }
         if let textBlock = try container.decodeIfPresent(
-          Document.DocumentLayout.DocumentLayoutBlock.LayoutTextBlock?.self, forKey: .textBlock)
+          Document.DocumentLayout.DocumentLayoutBlock.LayoutTextBlock.self, forKey: .textBlock)
         {
           try blockCheckAndSet(.textBlock(textBlock))
         }
         if let tableBlock = try container.decodeIfPresent(
-          Document.DocumentLayout.DocumentLayoutBlock.LayoutTableBlock?.self, forKey: .tableBlock)
+          Document.DocumentLayout.DocumentLayoutBlock.LayoutTableBlock.self, forKey: .tableBlock)
         {
           try blockCheckAndSet(.tableBlock(tableBlock))
         }
         if let listBlock = try container.decodeIfPresent(
-          Document.DocumentLayout.DocumentLayoutBlock.LayoutListBlock?.self, forKey: .listBlock)
+          Document.DocumentLayout.DocumentLayoutBlock.LayoutListBlock.self, forKey: .listBlock)
         {
           try blockCheckAndSet(.listBlock(listBlock))
         }
         if let imageBlock = try container.decodeIfPresent(
-          Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock?.self, forKey: .imageBlock)
+          Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock.self, forKey: .imageBlock)
         {
           try blockCheckAndSet(.imageBlock(imageBlock))
         }
@@ -5946,13 +5945,13 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public enum BlockOneOf: Codable, Equatable, Sendable {
         /// Block consisting of text content.
-        indirect case textBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutTextBlock?)
+        indirect case textBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutTextBlock)
         /// Block consisting of table content/structure.
-        indirect case tableBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutTableBlock?)
+        indirect case tableBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutTableBlock)
         /// Block consisting of list content/structure.
-        indirect case listBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutListBlock?)
+        indirect case listBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutListBlock)
         /// Block consisting of image content.
-        indirect case imageBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock?)
+        indirect case imageBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -6634,12 +6633,12 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
             fieldType = $0
           }
           if let imageChunkField = try container.decodeIfPresent(
-            Document.ChunkedDocument.Chunk.ImageChunkField?.self, forKey: .imageChunkField)
+            Document.ChunkedDocument.Chunk.ImageChunkField.self, forKey: .imageChunkField)
           {
             try fieldTypeCheckAndSet(.imageChunkField(imageChunkField))
           }
           if let tableChunkField = try container.decodeIfPresent(
-            Document.ChunkedDocument.Chunk.TableChunkField?.self, forKey: .tableChunkField)
+            Document.ChunkedDocument.Chunk.TableChunkField.self, forKey: .tableChunkField)
           {
             try fieldTypeCheckAndSet(.tableChunkField(tableChunkField))
           }
@@ -6669,9 +6668,9 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// The type of the chunk field.
         public enum FieldTypeOneOf: Codable, Equatable, Sendable {
           /// The image chunk field in the chunk.
-          indirect case imageChunkField(Document.ChunkedDocument.Chunk.ImageChunkField?)
+          indirect case imageChunkField(Document.ChunkedDocument.Chunk.ImageChunkField)
           /// The table chunk field in the chunk.
-          indirect case tableChunkField(Document.ChunkedDocument.Chunk.TableChunkField?)
+          indirect case tableChunkField(Document.ChunkedDocument.Chunk.TableChunkField)
         }
 
         public static var _anyTypeUrl: Swift.String {

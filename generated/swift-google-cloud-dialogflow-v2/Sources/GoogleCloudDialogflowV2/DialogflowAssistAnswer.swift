@@ -81,11 +81,11 @@
         }
         result = $0
       }
-      if let queryResult = try container.decodeIfPresent(QueryResult?.self, forKey: .queryResult) {
+      if let queryResult = try container.decodeIfPresent(QueryResult.self, forKey: .queryResult) {
         try resultCheckAndSet(.queryResult(queryResult))
       }
       if let intentSuggestion = try container.decodeIfPresent(
-        IntentSuggestion?.self, forKey: .intentSuggestion)
+        IntentSuggestion.self, forKey: .intentSuggestion)
       {
         try resultCheckAndSet(.intentSuggestion(intentSuggestion))
       }
@@ -116,9 +116,9 @@
     /// Result from DetectIntent for one matched intent.
     public enum ResultOneOf: Codable, Equatable, Sendable {
       /// Result from v2 agent.
-      indirect case queryResult(QueryResult?)
+      indirect case queryResult(QueryResult)
       /// An intent suggestion generated from conversation.
-      indirect case intentSuggestion(IntentSuggestion?)
+      indirect case intentSuggestion(IntentSuggestion)
     }
 
     public static var _anyTypeUrl: Swift.String {

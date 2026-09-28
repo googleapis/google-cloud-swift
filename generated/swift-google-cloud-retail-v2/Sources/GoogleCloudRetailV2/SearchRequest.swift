@@ -2168,7 +2168,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
           try typeCheckAndSet(.textAnswer(textAnswer))
         }
         if let selectedAnswer = try container.decodeIfPresent(
-          SearchRequest.ConversationalSearchSpec.UserAnswer.SelectedAnswer?.self,
+          SearchRequest.ConversationalSearchSpec.UserAnswer.SelectedAnswer.self,
           forKey: .selectedAnswer)
         {
           try typeCheckAndSet(.selectedAnswer(selectedAnswer))
@@ -2293,7 +2293,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         /// conversational search. This should be a subset of
         /// [ConversationalSearchResult.suggested_answers][].
         indirect case selectedAnswer(
-          SearchRequest.ConversationalSearchSpec.UserAnswer.SelectedAnswer?)
+          SearchRequest.ConversationalSearchSpec.UserAnswer.SelectedAnswer)
       }
 
       public static var _anyTypeUrl: Swift.String {

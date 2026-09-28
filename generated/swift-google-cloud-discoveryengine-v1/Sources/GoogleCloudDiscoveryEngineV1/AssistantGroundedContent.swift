@@ -79,7 +79,7 @@
         metadata = $0
       }
       if let textGroundingMetadata = try container.decodeIfPresent(
-        AssistantGroundedContent.TextGroundingMetadata?.self, forKey: .textGroundingMetadata)
+        AssistantGroundedContent.TextGroundingMetadata.self, forKey: .textGroundingMetadata)
       {
         try metadataCheckAndSet(.textGroundingMetadata(textGroundingMetadata))
       }
@@ -477,7 +477,7 @@
     /// Grounding metadata for various modals. It only supports text for now.
     public enum MetadataOneOf: Codable, Equatable, Sendable {
       /// Metadata for grounding based on text sources.
-      indirect case textGroundingMetadata(AssistantGroundedContent.TextGroundingMetadata?)
+      indirect case textGroundingMetadata(AssistantGroundedContent.TextGroundingMetadata)
     }
 
     public static var _anyTypeUrl: Swift.String {

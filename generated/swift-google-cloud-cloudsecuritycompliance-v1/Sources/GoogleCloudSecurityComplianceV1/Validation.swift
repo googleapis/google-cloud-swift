@@ -72,16 +72,14 @@ public struct Validation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       constraint = $0
     }
-    if let allowedValues = try container.decodeIfPresent(
-      AllowedValues?.self, forKey: .allowedValues)
+    if let allowedValues = try container.decodeIfPresent(AllowedValues.self, forKey: .allowedValues)
     {
       try constraintCheckAndSet(.allowedValues(allowedValues))
     }
-    if let intRange = try container.decodeIfPresent(IntRange?.self, forKey: .intRange) {
+    if let intRange = try container.decodeIfPresent(IntRange.self, forKey: .intRange) {
       try constraintCheckAndSet(.intRange(intRange))
     }
-    if let regexpPattern = try container.decodeIfPresent(
-      RegexpPattern?.self, forKey: .regexpPattern)
+    if let regexpPattern = try container.decodeIfPresent(RegexpPattern.self, forKey: .regexpPattern)
     {
       try constraintCheckAndSet(.regexpPattern(regexpPattern))
     }
@@ -113,11 +111,11 @@ public struct Validation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Defines validators for parameter values.
   public enum ConstraintOneOf: Codable, Equatable, Sendable {
     /// The permitted set of values for the parameter.
-    indirect case allowedValues(AllowedValues?)
+    indirect case allowedValues(AllowedValues)
     /// The permitted range for numeric parameters.
-    indirect case intRange(IntRange?)
+    indirect case intRange(IntRange)
     /// The regular expression for string parameters.
-    indirect case regexpPattern(RegexpPattern?)
+    indirect case regexpPattern(RegexpPattern)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -85,7 +85,7 @@ public struct FileStoreCollection: Codable, Equatable, GoogleWKT._AnyPackable,
       pattern = $0
     }
     if let includeRegexes = try container.decodeIfPresent(
-      FileStoreRegexes?.self, forKey: .includeRegexes)
+      FileStoreRegexes.self, forKey: .includeRegexes)
     {
       try patternCheckAndSet(.includeRegexes(includeRegexes))
     }
@@ -116,7 +116,7 @@ public struct FileStoreCollection: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum PatternOneOf: Codable, Equatable, Sendable {
     /// Optional. A collection of regular expressions to match a file store
     /// against.
-    indirect case includeRegexes(FileStoreRegexes?)
+    indirect case includeRegexes(FileStoreRegexes)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -116,12 +116,12 @@
         webhook = $0
       }
       if let genericWebService = try container.decodeIfPresent(
-        Webhook.GenericWebService?.self, forKey: .genericWebService)
+        Webhook.GenericWebService.self, forKey: .genericWebService)
       {
         try webhookCheckAndSet(.genericWebService(genericWebService))
       }
       if let serviceDirectory = try container.decodeIfPresent(
-        Webhook.ServiceDirectoryConfig?.self, forKey: .serviceDirectory)
+        Webhook.ServiceDirectoryConfig.self, forKey: .serviceDirectory)
       {
         try webhookCheckAndSet(.serviceDirectory(serviceDirectory))
       }
@@ -1148,10 +1148,10 @@
     /// Required. The webhook configuration.
     public enum WebhookOneOf: Codable, Equatable, Sendable {
       /// Configuration for a generic web service.
-      indirect case genericWebService(Webhook.GenericWebService?)
+      indirect case genericWebService(Webhook.GenericWebService)
       /// Configuration for a [Service
       /// Directory](https://cloud.google.com/service-directory) service.
-      indirect case serviceDirectory(Webhook.ServiceDirectoryConfig?)
+      indirect case serviceDirectory(Webhook.ServiceDirectoryConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

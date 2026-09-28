@@ -76,7 +76,7 @@ public struct RestoreInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       sourceInfo = $0
     }
-    if let backupInfo = try container.decodeIfPresent(BackupInfo?.self, forKey: .backupInfo) {
+    if let backupInfo = try container.decodeIfPresent(BackupInfo.self, forKey: .backupInfo) {
       try sourceInfoCheckAndSet(.backupInfo(backupInfo))
     }
     self.sourceInfo = sourceInfo
@@ -105,7 +105,7 @@ public struct RestoreInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum SourceInfoOneOf: Codable, Equatable, Sendable {
     /// Information about the backup used to restore the table. The backup
     /// may no longer exist.
-    indirect case backupInfo(BackupInfo?)
+    indirect case backupInfo(BackupInfo)
   }
 
   public static var _anyTypeUrl: Swift.String {

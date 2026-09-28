@@ -100,7 +100,7 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let gcsPath = try container.decodeIfPresent(GcsPath?.self, forKey: .gcsPath) {
+    if let gcsPath = try container.decodeIfPresent(GcsPath.self, forKey: .gcsPath) {
       try sourceCheckAndSet(.gcsPath(gcsPath))
     }
     self.source = source
@@ -115,7 +115,7 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       destination = $0
     }
-    if let lustrePath = try container.decodeIfPresent(LustrePath?.self, forKey: .lustrePath) {
+    if let lustrePath = try container.decodeIfPresent(LustrePath.self, forKey: .lustrePath) {
       try destinationCheckAndSet(.lustrePath(lustrePath))
     }
     self.destination = destination
@@ -155,13 +155,13 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The Cloud Storage source bucket and, optionally, path inside the bucket.
     /// If a path inside the bucket is specified, it must end with a forward
     /// slash (`/`).
-    indirect case gcsPath(GcsPath?)
+    indirect case gcsPath(GcsPath)
   }
 
   /// The destination of the data transfer.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Lustre path destination.
-    indirect case lustrePath(LustrePath?)
+    indirect case lustrePath(LustrePath)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -102,23 +102,23 @@
         }
         input = $0
       }
-      if let text = try container.decodeIfPresent(TextInput?.self, forKey: .text) {
+      if let text = try container.decodeIfPresent(TextInput.self, forKey: .text) {
         try inputCheckAndSet(.text(text))
       }
-      if let intent = try container.decodeIfPresent(IntentInput?.self, forKey: .intent) {
+      if let intent = try container.decodeIfPresent(IntentInput.self, forKey: .intent) {
         try inputCheckAndSet(.intent(intent))
       }
-      if let audio = try container.decodeIfPresent(AudioInput?.self, forKey: .audio) {
+      if let audio = try container.decodeIfPresent(AudioInput.self, forKey: .audio) {
         try inputCheckAndSet(.audio(audio))
       }
-      if let event = try container.decodeIfPresent(EventInput?.self, forKey: .event) {
+      if let event = try container.decodeIfPresent(EventInput.self, forKey: .event) {
         try inputCheckAndSet(.event(event))
       }
-      if let dtmf = try container.decodeIfPresent(DtmfInput?.self, forKey: .dtmf) {
+      if let dtmf = try container.decodeIfPresent(DtmfInput.self, forKey: .dtmf) {
         try inputCheckAndSet(.dtmf(dtmf))
       }
       if let toolCallResult = try container.decodeIfPresent(
-        ToolCallResult?.self, forKey: .toolCallResult)
+        ToolCallResult.self, forKey: .toolCallResult)
       {
         try inputCheckAndSet(.toolCallResult(toolCallResult))
       }
@@ -157,17 +157,17 @@
     /// Required. The input specification.
     public enum InputOneOf: Codable, Equatable, Sendable {
       /// The natural language text to be processed.
-      indirect case text(TextInput?)
+      indirect case text(TextInput)
       /// The intent to be triggered.
-      indirect case intent(IntentInput?)
+      indirect case intent(IntentInput)
       /// The natural language speech audio to be processed.
-      indirect case audio(AudioInput?)
+      indirect case audio(AudioInput)
       /// The event to be triggered.
-      indirect case event(EventInput?)
+      indirect case event(EventInput)
       /// The DTMF event to be handled.
-      indirect case dtmf(DtmfInput?)
+      indirect case dtmf(DtmfInput)
       /// The results of a tool executed by the client.
-      indirect case toolCallResult(ToolCallResult?)
+      indirect case toolCallResult(ToolCallResult)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -95,7 +95,7 @@ public struct ExecStepConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let localPath = try container.decodeIfPresent(Swift.String.self, forKey: .localPath) {
       try executableCheckAndSet(.localPath(localPath))
     }
-    if let gcsObject = try container.decodeIfPresent(GcsObject?.self, forKey: .gcsObject) {
+    if let gcsObject = try container.decodeIfPresent(GcsObject.self, forKey: .gcsObject) {
       try executableCheckAndSet(.gcsObject(gcsObject))
     }
     self.executable = executable
@@ -249,7 +249,7 @@ public struct ExecStepConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// An absolute path to the executable on the VM.
     case localPath(Swift.String)
     /// A Cloud Storage object containing the executable.
-    indirect case gcsObject(GcsObject?)
+    indirect case gcsObject(GcsObject)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -92,32 +92,32 @@
         }
         suggestionResponse = $0
       }
-      if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+      if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
         try suggestionResponseCheckAndSet(.error(error))
       }
       if let suggestArticlesResponse = try container.decodeIfPresent(
-        SuggestArticlesResponse?.self, forKey: .suggestArticlesResponse)
+        SuggestArticlesResponse.self, forKey: .suggestArticlesResponse)
       {
         try suggestionResponseCheckAndSet(.suggestArticlesResponse(suggestArticlesResponse))
       }
       if let suggestKnowledgeAssistResponse = try container.decodeIfPresent(
-        SuggestKnowledgeAssistResponse?.self, forKey: .suggestKnowledgeAssistResponse)
+        SuggestKnowledgeAssistResponse.self, forKey: .suggestKnowledgeAssistResponse)
       {
         try suggestionResponseCheckAndSet(
           .suggestKnowledgeAssistResponse(suggestKnowledgeAssistResponse))
       }
       if let suggestFaqAnswersResponse = try container.decodeIfPresent(
-        SuggestFaqAnswersResponse?.self, forKey: .suggestFaqAnswersResponse)
+        SuggestFaqAnswersResponse.self, forKey: .suggestFaqAnswersResponse)
       {
         try suggestionResponseCheckAndSet(.suggestFaqAnswersResponse(suggestFaqAnswersResponse))
       }
       if let suggestSmartRepliesResponse = try container.decodeIfPresent(
-        SuggestSmartRepliesResponse?.self, forKey: .suggestSmartRepliesResponse)
+        SuggestSmartRepliesResponse.self, forKey: .suggestSmartRepliesResponse)
       {
         try suggestionResponseCheckAndSet(.suggestSmartRepliesResponse(suggestSmartRepliesResponse))
       }
       if let generateSuggestionsResponse = try container.decodeIfPresent(
-        GenerateSuggestionsResponse?.self, forKey: .generateSuggestionsResponse)
+        GenerateSuggestionsResponse.self, forKey: .generateSuggestionsResponse)
       {
         try suggestionResponseCheckAndSet(.generateSuggestionsResponse(generateSuggestionsResponse))
       }
@@ -155,18 +155,18 @@
     /// Different type of suggestion response.
     public enum SuggestionResponseOneOf: Codable, Equatable, Sendable {
       /// Error status if the request failed.
-      indirect case error(GoogleRpc.Status?)
+      indirect case error(GoogleRpc.Status)
       /// SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
-      indirect case suggestArticlesResponse(SuggestArticlesResponse?)
+      indirect case suggestArticlesResponse(SuggestArticlesResponse)
       /// SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
-      indirect case suggestKnowledgeAssistResponse(SuggestKnowledgeAssistResponse?)
+      indirect case suggestKnowledgeAssistResponse(SuggestKnowledgeAssistResponse)
       /// SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
-      indirect case suggestFaqAnswersResponse(SuggestFaqAnswersResponse?)
+      indirect case suggestFaqAnswersResponse(SuggestFaqAnswersResponse)
       /// SuggestSmartRepliesResponse if request is for SMART_REPLY.
-      indirect case suggestSmartRepliesResponse(SuggestSmartRepliesResponse?)
+      indirect case suggestSmartRepliesResponse(SuggestSmartRepliesResponse)
       /// Suggestions generated using generators triggered by customer or agent
       /// messages.
-      indirect case generateSuggestionsResponse(GenerateSuggestionsResponse?)
+      indirect case generateSuggestionsResponse(GenerateSuggestionsResponse)
     }
 
     public static var _anyTypeUrl: Swift.String {

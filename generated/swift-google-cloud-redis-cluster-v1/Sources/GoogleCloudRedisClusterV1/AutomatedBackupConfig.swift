@@ -90,7 +90,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       schedule = $0
     }
     if let fixedFrequencySchedule = try container.decodeIfPresent(
-      AutomatedBackupConfig.FixedFrequencySchedule?.self, forKey: .fixedFrequencySchedule)
+      AutomatedBackupConfig.FixedFrequencySchedule.self, forKey: .fixedFrequencySchedule)
     {
       try scheduleCheckAndSet(.fixedFrequencySchedule(fixedFrequencySchedule))
     }
@@ -306,7 +306,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The schedule of automated backups.
   public enum ScheduleOneOf: Codable, Equatable, Sendable {
     /// Optional. Trigger automated backups at a fixed frequency.
-    indirect case fixedFrequencySchedule(AutomatedBackupConfig.FixedFrequencySchedule?)
+    indirect case fixedFrequencySchedule(AutomatedBackupConfig.FixedFrequencySchedule)
   }
 
   public static var _anyTypeUrl: Swift.String {

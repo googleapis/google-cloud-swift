@@ -108,13 +108,13 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       purchaseOption = $0
     }
     if let createEntitlementPurchase = try container.decodeIfPresent(
-      ListPurchasableOffersRequest.CreateEntitlementPurchase?.self,
+      ListPurchasableOffersRequest.CreateEntitlementPurchase.self,
       forKey: .createEntitlementPurchase)
     {
       try purchaseOptionCheckAndSet(.createEntitlementPurchase(createEntitlementPurchase))
     }
     if let changeOfferPurchase = try container.decodeIfPresent(
-      ListPurchasableOffersRequest.ChangeOfferPurchase?.self, forKey: .changeOfferPurchase)
+      ListPurchasableOffersRequest.ChangeOfferPurchase.self, forKey: .changeOfferPurchase)
     {
       try purchaseOptionCheckAndSet(.changeOfferPurchase(changeOfferPurchase))
     }
@@ -324,9 +324,9 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// Defines the intended purchase.
   public enum PurchaseOptionOneOf: Codable, Equatable, Sendable {
     /// List Offers for CreateEntitlement purchase.
-    indirect case createEntitlementPurchase(ListPurchasableOffersRequest.CreateEntitlementPurchase?)
+    indirect case createEntitlementPurchase(ListPurchasableOffersRequest.CreateEntitlementPurchase)
     /// List Offers for ChangeOffer purchase.
-    indirect case changeOfferPurchase(ListPurchasableOffersRequest.ChangeOfferPurchase?)
+    indirect case changeOfferPurchase(ListPurchasableOffersRequest.ChangeOfferPurchase)
   }
 
   public static var _anyTypeUrl: Swift.String {

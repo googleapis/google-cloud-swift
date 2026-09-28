@@ -139,131 +139,130 @@
         evaluationResults = $0
       }
       if let exactMatchResults = try container.decodeIfPresent(
-        ExactMatchResults?.self, forKey: .exactMatchResults)
+        ExactMatchResults.self, forKey: .exactMatchResults)
       {
         try evaluationResultsCheckAndSet(.exactMatchResults(exactMatchResults))
       }
-      if let bleuResults = try container.decodeIfPresent(BleuResults?.self, forKey: .bleuResults) {
+      if let bleuResults = try container.decodeIfPresent(BleuResults.self, forKey: .bleuResults) {
         try evaluationResultsCheckAndSet(.bleuResults(bleuResults))
       }
-      if let rougeResults = try container.decodeIfPresent(RougeResults?.self, forKey: .rougeResults)
+      if let rougeResults = try container.decodeIfPresent(RougeResults.self, forKey: .rougeResults)
       {
         try evaluationResultsCheckAndSet(.rougeResults(rougeResults))
       }
       if let fluencyResult = try container.decodeIfPresent(
-        FluencyResult?.self, forKey: .fluencyResult)
+        FluencyResult.self, forKey: .fluencyResult)
       {
         try evaluationResultsCheckAndSet(.fluencyResult(fluencyResult))
       }
       if let coherenceResult = try container.decodeIfPresent(
-        CoherenceResult?.self, forKey: .coherenceResult)
+        CoherenceResult.self, forKey: .coherenceResult)
       {
         try evaluationResultsCheckAndSet(.coherenceResult(coherenceResult))
       }
-      if let safetyResult = try container.decodeIfPresent(SafetyResult?.self, forKey: .safetyResult)
+      if let safetyResult = try container.decodeIfPresent(SafetyResult.self, forKey: .safetyResult)
       {
         try evaluationResultsCheckAndSet(.safetyResult(safetyResult))
       }
       if let groundednessResult = try container.decodeIfPresent(
-        GroundednessResult?.self, forKey: .groundednessResult)
+        GroundednessResult.self, forKey: .groundednessResult)
       {
         try evaluationResultsCheckAndSet(.groundednessResult(groundednessResult))
       }
       if let fulfillmentResult = try container.decodeIfPresent(
-        FulfillmentResult?.self, forKey: .fulfillmentResult)
+        FulfillmentResult.self, forKey: .fulfillmentResult)
       {
         try evaluationResultsCheckAndSet(.fulfillmentResult(fulfillmentResult))
       }
       if let summarizationQualityResult = try container.decodeIfPresent(
-        SummarizationQualityResult?.self, forKey: .summarizationQualityResult)
+        SummarizationQualityResult.self, forKey: .summarizationQualityResult)
       {
         try evaluationResultsCheckAndSet(.summarizationQualityResult(summarizationQualityResult))
       }
       if let pairwiseSummarizationQualityResult = try container.decodeIfPresent(
-        PairwiseSummarizationQualityResult?.self, forKey: .pairwiseSummarizationQualityResult)
+        PairwiseSummarizationQualityResult.self, forKey: .pairwiseSummarizationQualityResult)
       {
         try evaluationResultsCheckAndSet(
           .pairwiseSummarizationQualityResult(pairwiseSummarizationQualityResult))
       }
       if let summarizationHelpfulnessResult = try container.decodeIfPresent(
-        SummarizationHelpfulnessResult?.self, forKey: .summarizationHelpfulnessResult)
+        SummarizationHelpfulnessResult.self, forKey: .summarizationHelpfulnessResult)
       {
         try evaluationResultsCheckAndSet(
           .summarizationHelpfulnessResult(summarizationHelpfulnessResult))
       }
       if let summarizationVerbosityResult = try container.decodeIfPresent(
-        SummarizationVerbosityResult?.self, forKey: .summarizationVerbosityResult)
+        SummarizationVerbosityResult.self, forKey: .summarizationVerbosityResult)
       {
         try evaluationResultsCheckAndSet(
           .summarizationVerbosityResult(summarizationVerbosityResult))
       }
       if let questionAnsweringQualityResult = try container.decodeIfPresent(
-        QuestionAnsweringQualityResult?.self, forKey: .questionAnsweringQualityResult)
+        QuestionAnsweringQualityResult.self, forKey: .questionAnsweringQualityResult)
       {
         try evaluationResultsCheckAndSet(
           .questionAnsweringQualityResult(questionAnsweringQualityResult))
       }
       if let pairwiseQuestionAnsweringQualityResult = try container.decodeIfPresent(
-        PairwiseQuestionAnsweringQualityResult?.self,
-        forKey: .pairwiseQuestionAnsweringQualityResult)
-      {
+        PairwiseQuestionAnsweringQualityResult.self, forKey: .pairwiseQuestionAnsweringQualityResult
+      ) {
         try evaluationResultsCheckAndSet(
           .pairwiseQuestionAnsweringQualityResult(pairwiseQuestionAnsweringQualityResult))
       }
       if let questionAnsweringRelevanceResult = try container.decodeIfPresent(
-        QuestionAnsweringRelevanceResult?.self, forKey: .questionAnsweringRelevanceResult)
+        QuestionAnsweringRelevanceResult.self, forKey: .questionAnsweringRelevanceResult)
       {
         try evaluationResultsCheckAndSet(
           .questionAnsweringRelevanceResult(questionAnsweringRelevanceResult))
       }
       if let questionAnsweringHelpfulnessResult = try container.decodeIfPresent(
-        QuestionAnsweringHelpfulnessResult?.self, forKey: .questionAnsweringHelpfulnessResult)
+        QuestionAnsweringHelpfulnessResult.self, forKey: .questionAnsweringHelpfulnessResult)
       {
         try evaluationResultsCheckAndSet(
           .questionAnsweringHelpfulnessResult(questionAnsweringHelpfulnessResult))
       }
       if let questionAnsweringCorrectnessResult = try container.decodeIfPresent(
-        QuestionAnsweringCorrectnessResult?.self, forKey: .questionAnsweringCorrectnessResult)
+        QuestionAnsweringCorrectnessResult.self, forKey: .questionAnsweringCorrectnessResult)
       {
         try evaluationResultsCheckAndSet(
           .questionAnsweringCorrectnessResult(questionAnsweringCorrectnessResult))
       }
       if let pointwiseMetricResult = try container.decodeIfPresent(
-        PointwiseMetricResult?.self, forKey: .pointwiseMetricResult)
+        PointwiseMetricResult.self, forKey: .pointwiseMetricResult)
       {
         try evaluationResultsCheckAndSet(.pointwiseMetricResult(pointwiseMetricResult))
       }
       if let pairwiseMetricResult = try container.decodeIfPresent(
-        PairwiseMetricResult?.self, forKey: .pairwiseMetricResult)
+        PairwiseMetricResult.self, forKey: .pairwiseMetricResult)
       {
         try evaluationResultsCheckAndSet(.pairwiseMetricResult(pairwiseMetricResult))
       }
       if let toolCallValidResults = try container.decodeIfPresent(
-        ToolCallValidResults?.self, forKey: .toolCallValidResults)
+        ToolCallValidResults.self, forKey: .toolCallValidResults)
       {
         try evaluationResultsCheckAndSet(.toolCallValidResults(toolCallValidResults))
       }
       if let toolNameMatchResults = try container.decodeIfPresent(
-        ToolNameMatchResults?.self, forKey: .toolNameMatchResults)
+        ToolNameMatchResults.self, forKey: .toolNameMatchResults)
       {
         try evaluationResultsCheckAndSet(.toolNameMatchResults(toolNameMatchResults))
       }
       if let toolParameterKeyMatchResults = try container.decodeIfPresent(
-        ToolParameterKeyMatchResults?.self, forKey: .toolParameterKeyMatchResults)
+        ToolParameterKeyMatchResults.self, forKey: .toolParameterKeyMatchResults)
       {
         try evaluationResultsCheckAndSet(
           .toolParameterKeyMatchResults(toolParameterKeyMatchResults))
       }
       if let toolParameterKvMatchResults = try container.decodeIfPresent(
-        ToolParameterKVMatchResults?.self, forKey: .toolParameterKvMatchResults)
+        ToolParameterKVMatchResults.self, forKey: .toolParameterKvMatchResults)
       {
         try evaluationResultsCheckAndSet(.toolParameterKvMatchResults(toolParameterKvMatchResults))
       }
-      if let cometResult = try container.decodeIfPresent(CometResult?.self, forKey: .cometResult) {
+      if let cometResult = try container.decodeIfPresent(CometResult.self, forKey: .cometResult) {
         try evaluationResultsCheckAndSet(.cometResult(cometResult))
       }
       if let metricxResult = try container.decodeIfPresent(
-        MetricxResult?.self, forKey: .metricxResult)
+        MetricxResult.self, forKey: .metricxResult)
       {
         try evaluationResultsCheckAndSet(.metricxResult(metricxResult))
       }
@@ -342,62 +341,62 @@
     public enum EvaluationResultsOneOf: Codable, Equatable, Sendable {
       /// Auto metric evaluation results.
       /// Results for exact match metric.
-      indirect case exactMatchResults(ExactMatchResults?)
+      indirect case exactMatchResults(ExactMatchResults)
       /// Results for bleu metric.
-      indirect case bleuResults(BleuResults?)
+      indirect case bleuResults(BleuResults)
       /// Results for rouge metric.
-      indirect case rougeResults(RougeResults?)
+      indirect case rougeResults(RougeResults)
       /// LLM-based metric evaluation result.
       /// General text generation metrics, applicable to other categories.
       /// Result for fluency metric.
-      indirect case fluencyResult(FluencyResult?)
+      indirect case fluencyResult(FluencyResult)
       /// Result for coherence metric.
-      indirect case coherenceResult(CoherenceResult?)
+      indirect case coherenceResult(CoherenceResult)
       /// Result for safety metric.
-      indirect case safetyResult(SafetyResult?)
+      indirect case safetyResult(SafetyResult)
       /// Result for groundedness metric.
-      indirect case groundednessResult(GroundednessResult?)
+      indirect case groundednessResult(GroundednessResult)
       /// Result for fulfillment metric.
-      indirect case fulfillmentResult(FulfillmentResult?)
+      indirect case fulfillmentResult(FulfillmentResult)
       /// Summarization only metrics.
       /// Result for summarization quality metric.
-      indirect case summarizationQualityResult(SummarizationQualityResult?)
+      indirect case summarizationQualityResult(SummarizationQualityResult)
       /// Result for pairwise summarization quality metric.
-      indirect case pairwiseSummarizationQualityResult(PairwiseSummarizationQualityResult?)
+      indirect case pairwiseSummarizationQualityResult(PairwiseSummarizationQualityResult)
       /// Result for summarization helpfulness metric.
-      indirect case summarizationHelpfulnessResult(SummarizationHelpfulnessResult?)
+      indirect case summarizationHelpfulnessResult(SummarizationHelpfulnessResult)
       /// Result for summarization verbosity metric.
-      indirect case summarizationVerbosityResult(SummarizationVerbosityResult?)
+      indirect case summarizationVerbosityResult(SummarizationVerbosityResult)
       /// Question answering only metrics.
       /// Result for question answering quality metric.
-      indirect case questionAnsweringQualityResult(QuestionAnsweringQualityResult?)
+      indirect case questionAnsweringQualityResult(QuestionAnsweringQualityResult)
       /// Result for pairwise question answering quality metric.
-      indirect case pairwiseQuestionAnsweringQualityResult(PairwiseQuestionAnsweringQualityResult?)
+      indirect case pairwiseQuestionAnsweringQualityResult(PairwiseQuestionAnsweringQualityResult)
       /// Result for question answering relevance metric.
-      indirect case questionAnsweringRelevanceResult(QuestionAnsweringRelevanceResult?)
+      indirect case questionAnsweringRelevanceResult(QuestionAnsweringRelevanceResult)
       /// Result for question answering helpfulness metric.
-      indirect case questionAnsweringHelpfulnessResult(QuestionAnsweringHelpfulnessResult?)
+      indirect case questionAnsweringHelpfulnessResult(QuestionAnsweringHelpfulnessResult)
       /// Result for question answering correctness metric.
-      indirect case questionAnsweringCorrectnessResult(QuestionAnsweringCorrectnessResult?)
+      indirect case questionAnsweringCorrectnessResult(QuestionAnsweringCorrectnessResult)
       /// Generic metrics.
       /// Result for pointwise metric.
-      indirect case pointwiseMetricResult(PointwiseMetricResult?)
+      indirect case pointwiseMetricResult(PointwiseMetricResult)
       /// Result for pairwise metric.
-      indirect case pairwiseMetricResult(PairwiseMetricResult?)
+      indirect case pairwiseMetricResult(PairwiseMetricResult)
       /// Tool call metrics.
       ///  Results for tool call valid metric.
-      indirect case toolCallValidResults(ToolCallValidResults?)
+      indirect case toolCallValidResults(ToolCallValidResults)
       /// Results for tool name match metric.
-      indirect case toolNameMatchResults(ToolNameMatchResults?)
+      indirect case toolNameMatchResults(ToolNameMatchResults)
       /// Results for tool parameter key match  metric.
-      indirect case toolParameterKeyMatchResults(ToolParameterKeyMatchResults?)
+      indirect case toolParameterKeyMatchResults(ToolParameterKeyMatchResults)
       /// Results for tool parameter key value match metric.
-      indirect case toolParameterKvMatchResults(ToolParameterKVMatchResults?)
+      indirect case toolParameterKvMatchResults(ToolParameterKVMatchResults)
       /// Translation metrics.
       /// Result for Comet metric.
-      indirect case cometResult(CometResult?)
+      indirect case cometResult(CometResult)
       /// Result for Metricx metric.
-      indirect case metricxResult(MetricxResult?)
+      indirect case metricxResult(MetricxResult)
     }
 
     public static var _anyTypeUrl: Swift.String {

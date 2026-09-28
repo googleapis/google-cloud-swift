@@ -133,22 +133,22 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       jobDetails = $0
     }
     if let seedJobDetails = try container.decodeIfPresent(
-      BackgroundJobLogEntry.SeedJobDetails?.self, forKey: .seedJobDetails)
+      BackgroundJobLogEntry.SeedJobDetails.self, forKey: .seedJobDetails)
     {
       try jobDetailsCheckAndSet(.seedJobDetails(seedJobDetails))
     }
     if let importRulesJobDetails = try container.decodeIfPresent(
-      BackgroundJobLogEntry.ImportRulesJobDetails?.self, forKey: .importRulesJobDetails)
+      BackgroundJobLogEntry.ImportRulesJobDetails.self, forKey: .importRulesJobDetails)
     {
       try jobDetailsCheckAndSet(.importRulesJobDetails(importRulesJobDetails))
     }
     if let convertJobDetails = try container.decodeIfPresent(
-      BackgroundJobLogEntry.ConvertJobDetails?.self, forKey: .convertJobDetails)
+      BackgroundJobLogEntry.ConvertJobDetails.self, forKey: .convertJobDetails)
     {
       try jobDetailsCheckAndSet(.convertJobDetails(convertJobDetails))
     }
     if let applyJobDetails = try container.decodeIfPresent(
-      BackgroundJobLogEntry.ApplyJobDetails?.self, forKey: .applyJobDetails)
+      BackgroundJobLogEntry.ApplyJobDetails.self, forKey: .applyJobDetails)
     {
       try jobDetailsCheckAndSet(.applyJobDetails(applyJobDetails))
     }
@@ -598,13 +598,13 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum JobDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Seed job details.
-    indirect case seedJobDetails(BackgroundJobLogEntry.SeedJobDetails?)
+    indirect case seedJobDetails(BackgroundJobLogEntry.SeedJobDetails)
     /// Output only. Import rules job details.
-    indirect case importRulesJobDetails(BackgroundJobLogEntry.ImportRulesJobDetails?)
+    indirect case importRulesJobDetails(BackgroundJobLogEntry.ImportRulesJobDetails)
     /// Output only. Convert job details.
-    indirect case convertJobDetails(BackgroundJobLogEntry.ConvertJobDetails?)
+    indirect case convertJobDetails(BackgroundJobLogEntry.ConvertJobDetails)
     /// Output only. Apply job details.
-    indirect case applyJobDetails(BackgroundJobLogEntry.ApplyJobDetails?)
+    indirect case applyJobDetails(BackgroundJobLogEntry.ApplyJobDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

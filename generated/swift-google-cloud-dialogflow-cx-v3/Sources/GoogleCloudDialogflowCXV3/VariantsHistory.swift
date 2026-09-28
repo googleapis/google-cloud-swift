@@ -78,7 +78,7 @@
         variants = $0
       }
       if let versionVariants = try container.decodeIfPresent(
-        VersionVariants?.self, forKey: .versionVariants)
+        VersionVariants.self, forKey: .versionVariants)
       {
         try variantsCheckAndSet(.versionVariants(versionVariants))
       }
@@ -108,7 +108,7 @@
     /// experiment.
     public enum VariantsOneOf: Codable, Equatable, Sendable {
       /// The flow versions as the variants.
-      indirect case versionVariants(VersionVariants?)
+      indirect case versionVariants(VersionVariants)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -88,11 +88,11 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
       frequency = $0
     }
     if let cadence = try container.decodeIfPresent(
-      DiscoveryGenerationCadence?.self, forKey: .cadence)
+      DiscoveryGenerationCadence.self, forKey: .cadence)
     {
       try frequencyCheckAndSet(.cadence(cadence))
     }
-    if let disabled = try container.decodeIfPresent(Disabled?.self, forKey: .disabled) {
+    if let disabled = try container.decodeIfPresent(Disabled.self, forKey: .disabled) {
       try frequencyCheckAndSet(.disabled(disabled))
     }
     self.frequency = frequency
@@ -127,9 +127,9 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
     /// How often and when to update profiles. New tables that match both the
     /// filter and conditions are scanned as quickly as possible depending on
     /// system capacity.
-    indirect case cadence(DiscoveryGenerationCadence?)
+    indirect case cadence(DiscoveryGenerationCadence)
     /// Tables that match this filter will not have profiles created.
-    indirect case disabled(Disabled?)
+    indirect case disabled(Disabled)
   }
 
   public static var _anyTypeUrl: Swift.String {

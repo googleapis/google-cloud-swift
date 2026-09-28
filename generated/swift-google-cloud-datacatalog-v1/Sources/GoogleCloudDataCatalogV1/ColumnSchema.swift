@@ -170,7 +170,7 @@ public struct ColumnSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       systemSpec = $0
     }
     if let lookerColumnSpec = try container.decodeIfPresent(
-      ColumnSchema.LookerColumnSpec?.self, forKey: .lookerColumnSpec)
+      ColumnSchema.LookerColumnSpec.self, forKey: .lookerColumnSpec)
     {
       try systemSpecCheckAndSet(.lookerColumnSpec(lookerColumnSpec))
     }
@@ -619,7 +619,7 @@ public struct ColumnSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Information only applying for columns in Entries from a specific system.
   public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Looker specific column info of this column.
-    indirect case lookerColumnSpec(ColumnSchema.LookerColumnSpec?)
+    indirect case lookerColumnSpec(ColumnSchema.LookerColumnSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

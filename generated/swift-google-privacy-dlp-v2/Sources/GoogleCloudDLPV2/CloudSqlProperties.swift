@@ -108,12 +108,12 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleWKT._AnyPackable,
       credential = $0
     }
     if let usernamePassword = try container.decodeIfPresent(
-      SecretManagerCredential?.self, forKey: .usernamePassword)
+      SecretManagerCredential.self, forKey: .usernamePassword)
     {
       try credentialCheckAndSet(.usernamePassword(usernamePassword))
     }
     if let cloudSqlIam = try container.decodeIfPresent(
-      CloudSqlIamCredential?.self, forKey: .cloudSqlIam)
+      CloudSqlIamCredential.self, forKey: .cloudSqlIam)
     {
       try credentialCheckAndSet(.cloudSqlIam(cloudSqlIam))
     }
@@ -264,9 +264,9 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   /// How to authenticate to the instance.
   public enum CredentialOneOf: Codable, Equatable, Sendable {
     /// A username and password stored in Secret Manager.
-    indirect case usernamePassword(SecretManagerCredential?)
+    indirect case usernamePassword(SecretManagerCredential)
     /// Built-in IAM authentication (must be configured in Cloud SQL).
-    indirect case cloudSqlIam(CloudSqlIamCredential?)
+    indirect case cloudSqlIam(CloudSqlIamCredential)
   }
 
   public static var _anyTypeUrl: Swift.String {

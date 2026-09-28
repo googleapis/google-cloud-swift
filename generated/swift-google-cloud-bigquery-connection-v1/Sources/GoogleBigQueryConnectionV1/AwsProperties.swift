@@ -74,11 +74,11 @@ public struct AwsProperties: Codable, Equatable, GoogleWKT._AnyPackable,
       authenticationMethod = $0
     }
     if let crossAccountRole = try container.decodeIfPresent(
-      AwsCrossAccountRole?.self, forKey: .crossAccountRole)
+      AwsCrossAccountRole.self, forKey: .crossAccountRole)
     {
       try authenticationMethodCheckAndSet(.crossAccountRole(crossAccountRole))
     }
-    if let accessRole = try container.decodeIfPresent(AwsAccessRole?.self, forKey: .accessRole) {
+    if let accessRole = try container.decodeIfPresent(AwsAccessRole.self, forKey: .accessRole) {
       try authenticationMethodCheckAndSet(.accessRole(accessRole))
     }
     self.authenticationMethod = authenticationMethod
@@ -113,10 +113,10 @@ public struct AwsProperties: Codable, Equatable, GoogleWKT._AnyPackable,
     /// into customer's AWS IAM Role.
     /// Deprecated, do not use.
     @available(*, deprecated)
-    indirect case crossAccountRole(AwsCrossAccountRole?)
+    indirect case crossAccountRole(AwsCrossAccountRole)
     /// Authentication using Google owned service account to assume into
     /// customer's AWS IAM Role.
-    indirect case accessRole(AwsAccessRole?)
+    indirect case accessRole(AwsAccessRole)
   }
 
   public static var _anyTypeUrl: Swift.String {

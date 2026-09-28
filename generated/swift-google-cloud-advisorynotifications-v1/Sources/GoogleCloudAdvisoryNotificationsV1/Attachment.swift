@@ -76,7 +76,7 @@ public struct Attachment: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       data = $0
     }
-    if let csv = try container.decodeIfPresent(Csv?.self, forKey: .csv) {
+    if let csv = try container.decodeIfPresent(Csv.self, forKey: .csv) {
       try dataCheckAndSet(.csv(csv))
     }
     self.data = data
@@ -104,7 +104,7 @@ public struct Attachment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Data type of the attachment.
   public enum DataOneOf: Codable, Equatable, Sendable {
     /// A CSV file attachment. Max size is 10 MB.
-    indirect case csv(Csv?)
+    indirect case csv(Csv)
   }
 
   public static var _anyTypeUrl: Swift.String {

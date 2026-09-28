@@ -78,29 +78,28 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
       }
       dataObject = $0
     }
-    if let oracleRdbms = try container.decodeIfPresent(OracleRdbms?.self, forKey: .oracleRdbms) {
+    if let oracleRdbms = try container.decodeIfPresent(OracleRdbms.self, forKey: .oracleRdbms) {
       try dataObjectCheckAndSet(.oracleRdbms(oracleRdbms))
     }
-    if let mysqlRdbms = try container.decodeIfPresent(MysqlRdbms?.self, forKey: .mysqlRdbms) {
+    if let mysqlRdbms = try container.decodeIfPresent(MysqlRdbms.self, forKey: .mysqlRdbms) {
       try dataObjectCheckAndSet(.mysqlRdbms(mysqlRdbms))
     }
     if let postgresqlRdbms = try container.decodeIfPresent(
-      PostgresqlRdbms?.self, forKey: .postgresqlRdbms)
+      PostgresqlRdbms.self, forKey: .postgresqlRdbms)
     {
       try dataObjectCheckAndSet(.postgresqlRdbms(postgresqlRdbms))
     }
     if let sqlServerRdbms = try container.decodeIfPresent(
-      SqlServerRdbms?.self, forKey: .sqlServerRdbms)
+      SqlServerRdbms.self, forKey: .sqlServerRdbms)
     {
       try dataObjectCheckAndSet(.sqlServerRdbms(sqlServerRdbms))
     }
-    if let salesforceOrg = try container.decodeIfPresent(
-      SalesforceOrg?.self, forKey: .salesforceOrg)
+    if let salesforceOrg = try container.decodeIfPresent(SalesforceOrg.self, forKey: .salesforceOrg)
     {
       try dataObjectCheckAndSet(.salesforceOrg(salesforceOrg))
     }
     if let mongodbCluster = try container.decodeIfPresent(
-      MongodbCluster?.self, forKey: .mongodbCluster)
+      MongodbCluster.self, forKey: .mongodbCluster)
     {
       try dataObjectCheckAndSet(.mongodbCluster(mongodbCluster))
     }
@@ -138,17 +137,17 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
   /// The data object that has been enriched by the discover API call.
   public enum DataObjectOneOf: Codable, Equatable, Sendable {
     /// Enriched Oracle RDBMS object.
-    indirect case oracleRdbms(OracleRdbms?)
+    indirect case oracleRdbms(OracleRdbms)
     /// Enriched MySQL RDBMS object.
-    indirect case mysqlRdbms(MysqlRdbms?)
+    indirect case mysqlRdbms(MysqlRdbms)
     /// Enriched PostgreSQL RDBMS object.
-    indirect case postgresqlRdbms(PostgresqlRdbms?)
+    indirect case postgresqlRdbms(PostgresqlRdbms)
     /// Enriched SQLServer RDBMS object.
-    indirect case sqlServerRdbms(SqlServerRdbms?)
+    indirect case sqlServerRdbms(SqlServerRdbms)
     /// Enriched Salesforce organization.
-    indirect case salesforceOrg(SalesforceOrg?)
+    indirect case salesforceOrg(SalesforceOrg)
     /// Enriched MongoDB cluster.
-    indirect case mongodbCluster(MongodbCluster?)
+    indirect case mongodbCluster(MongodbCluster)
   }
 
   public static var _anyTypeUrl: Swift.String {

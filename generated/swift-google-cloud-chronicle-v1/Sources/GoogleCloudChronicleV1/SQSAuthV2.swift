@@ -71,12 +71,12 @@ public struct SQSAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
       authType = $0
     }
     if let sqsV2AccessKeySecretAuth = try container.decodeIfPresent(
-      SQSV2AccessKeySecretAuth?.self, forKey: .sqsV2AccessKeySecretAuth)
+      SQSV2AccessKeySecretAuth.self, forKey: .sqsV2AccessKeySecretAuth)
     {
       try authTypeCheckAndSet(.sqsV2AccessKeySecretAuth(sqsV2AccessKeySecretAuth))
     }
     if let awsIamRoleAuth = try container.decodeIfPresent(
-      SQSV2AwsIamRoleAuth?.self, forKey: .awsIamRoleAuth)
+      SQSV2AwsIamRoleAuth.self, forKey: .awsIamRoleAuth)
     {
       try authTypeCheckAndSet(.awsIamRoleAuth(awsIamRoleAuth))
     }
@@ -106,9 +106,9 @@ public struct SQSAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   /// auth tyoe for the SQS queue.
   public enum AuthTypeOneOf: Codable, Equatable, Sendable {
     /// Required. Auth key and secret for the SQS queue.
-    indirect case sqsV2AccessKeySecretAuth(SQSV2AccessKeySecretAuth?)
+    indirect case sqsV2AccessKeySecretAuth(SQSV2AccessKeySecretAuth)
     /// Required. AWS IAM Role for Identity Federation.
-    indirect case awsIamRoleAuth(SQSV2AwsIamRoleAuth?)
+    indirect case awsIamRoleAuth(SQSV2AwsIamRoleAuth)
   }
 
   public static var _anyTypeUrl: Swift.String {

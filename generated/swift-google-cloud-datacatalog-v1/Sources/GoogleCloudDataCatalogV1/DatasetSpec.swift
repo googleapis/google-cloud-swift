@@ -70,7 +70,7 @@ public struct DatasetSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       systemSpec = $0
     }
     if let vertexDatasetSpec = try container.decodeIfPresent(
-      VertexDatasetSpec?.self, forKey: .vertexDatasetSpec)
+      VertexDatasetSpec.self, forKey: .vertexDatasetSpec)
     {
       try systemSpecCheckAndSet(.vertexDatasetSpec(vertexDatasetSpec))
     }
@@ -98,7 +98,7 @@ public struct DatasetSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Fields specific to the source system.
   public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Vertex AI Dataset specific fields
-    indirect case vertexDatasetSpec(VertexDatasetSpec?)
+    indirect case vertexDatasetSpec(VertexDatasetSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

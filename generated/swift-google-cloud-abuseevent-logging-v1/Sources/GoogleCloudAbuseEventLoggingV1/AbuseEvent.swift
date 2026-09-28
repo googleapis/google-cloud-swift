@@ -113,32 +113,32 @@ public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       eventType = $0
     }
     if let cryptoMiningEvent = try container.decodeIfPresent(
-      CryptoMiningEvent?.self, forKey: .cryptoMiningEvent)
+      CryptoMiningEvent.self, forKey: .cryptoMiningEvent)
     {
       try eventTypeCheckAndSet(.cryptoMiningEvent(cryptoMiningEvent))
     }
     if let leakedCredentialEvent = try container.decodeIfPresent(
-      LeakedCredentialEvent?.self, forKey: .leakedCredentialEvent)
+      LeakedCredentialEvent.self, forKey: .leakedCredentialEvent)
     {
       try eventTypeCheckAndSet(.leakedCredentialEvent(leakedCredentialEvent))
     }
     if let harmfulContentEvent = try container.decodeIfPresent(
-      HarmfulContentEvent?.self, forKey: .harmfulContentEvent)
+      HarmfulContentEvent.self, forKey: .harmfulContentEvent)
     {
       try eventTypeCheckAndSet(.harmfulContentEvent(harmfulContentEvent))
     }
     if let reinstatementEvent = try container.decodeIfPresent(
-      ReinstatementEvent?.self, forKey: .reinstatementEvent)
+      ReinstatementEvent.self, forKey: .reinstatementEvent)
     {
       try eventTypeCheckAndSet(.reinstatementEvent(reinstatementEvent))
     }
     if let decisionEscalationEvent = try container.decodeIfPresent(
-      DecisionEscalationEvent?.self, forKey: .decisionEscalationEvent)
+      DecisionEscalationEvent.self, forKey: .decisionEscalationEvent)
     {
       try eventTypeCheckAndSet(.decisionEscalationEvent(decisionEscalationEvent))
     }
     if let intrusionAttemptEvent = try container.decodeIfPresent(
-      IntrusionAttemptEvent?.self, forKey: .intrusionAttemptEvent)
+      IntrusionAttemptEvent.self, forKey: .intrusionAttemptEvent)
     {
       try eventTypeCheckAndSet(.intrusionAttemptEvent(intrusionAttemptEvent))
     }
@@ -471,20 +471,20 @@ public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum EventTypeOneOf: Codable, Equatable, Sendable {
     /// Information about a cryptocurrency mining event observed on the monitored
     /// resource.
-    indirect case cryptoMiningEvent(CryptoMiningEvent?)
+    indirect case cryptoMiningEvent(CryptoMiningEvent)
     /// Information about the leaked client credentials observed on the monitored
     /// resource.
-    indirect case leakedCredentialEvent(LeakedCredentialEvent?)
+    indirect case leakedCredentialEvent(LeakedCredentialEvent)
     /// Information about the phishing/malware URI(s) associated with the
     /// monitored resource.
-    indirect case harmfulContentEvent(HarmfulContentEvent?)
+    indirect case harmfulContentEvent(HarmfulContentEvent)
     /// Information about the reinstatement issued on the monitored resource.
-    indirect case reinstatementEvent(ReinstatementEvent?)
+    indirect case reinstatementEvent(ReinstatementEvent)
     /// Information about the escalation of enforcement action on the monitored
     /// resource.
-    indirect case decisionEscalationEvent(DecisionEscalationEvent?)
+    indirect case decisionEscalationEvent(DecisionEscalationEvent)
     /// Information about an intrusion attempt event.
-    indirect case intrusionAttemptEvent(IntrusionAttemptEvent?)
+    indirect case intrusionAttemptEvent(IntrusionAttemptEvent)
   }
 
   public static var _anyTypeUrl: Swift.String {

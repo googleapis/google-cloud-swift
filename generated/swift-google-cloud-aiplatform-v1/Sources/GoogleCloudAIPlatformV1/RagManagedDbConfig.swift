@@ -73,16 +73,15 @@
         }
         tier = $0
       }
-      if let scaled = try container.decodeIfPresent(
-        RagManagedDbConfig.Scaled?.self, forKey: .scaled)
+      if let scaled = try container.decodeIfPresent(RagManagedDbConfig.Scaled.self, forKey: .scaled)
       {
         try tierCheckAndSet(.scaled(scaled))
       }
-      if let basic = try container.decodeIfPresent(RagManagedDbConfig.Basic?.self, forKey: .basic) {
+      if let basic = try container.decodeIfPresent(RagManagedDbConfig.Basic.self, forKey: .basic) {
         try tierCheckAndSet(.basic(basic))
       }
       if let unprovisioned = try container.decodeIfPresent(
-        RagManagedDbConfig.Unprovisioned?.self, forKey: .unprovisioned)
+        RagManagedDbConfig.Unprovisioned.self, forKey: .unprovisioned)
       {
         try tierCheckAndSet(.unprovisioned(unprovisioned))
       }
@@ -299,11 +298,11 @@
     /// The tier of the RagManagedDb.
     public enum TierOneOf: Codable, Equatable, Sendable {
       /// Sets the RagManagedDb to the Scaled tier.
-      indirect case scaled(RagManagedDbConfig.Scaled?)
+      indirect case scaled(RagManagedDbConfig.Scaled)
       /// Sets the RagManagedDb to the Basic tier.
-      indirect case basic(RagManagedDbConfig.Basic?)
+      indirect case basic(RagManagedDbConfig.Basic)
       /// Sets the RagManagedDb to the Unprovisioned tier.
-      indirect case unprovisioned(RagManagedDbConfig.Unprovisioned?)
+      indirect case unprovisioned(RagManagedDbConfig.Unprovisioned)
     }
 
     public static var _anyTypeUrl: Swift.String {

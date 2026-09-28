@@ -81,7 +81,7 @@ public struct ContextualTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
       trigger = $0
     }
     if let unconditional = try container.decodeIfPresent(
-      UnconditionalTrigger?.self, forKey: .unconditional)
+      UnconditionalTrigger.self, forKey: .unconditional)
     {
       try triggerCheckAndSet(.unconditional(unconditional))
     }
@@ -111,7 +111,7 @@ public struct ContextualTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   /// add-on.
   public enum TriggerOneOf: Codable, Equatable, Sendable {
     /// UnconditionalTriggers are executed when any mail message is opened.
-    indirect case unconditional(UnconditionalTrigger?)
+    indirect case unconditional(UnconditionalTrigger)
   }
 
   public static var _anyTypeUrl: Swift.String {

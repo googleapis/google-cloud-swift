@@ -71,11 +71,11 @@
         constraint = $0
       }
       if let maxDuration = try container.decodeIfPresent(
-        GoogleWKT.WKTDuration?.self, forKey: .maxDuration)
+        GoogleWKT.WKTDuration.self, forKey: .maxDuration)
       {
         try constraintCheckAndSet(.maxDuration(maxDuration))
       }
-      if let endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp?.self, forKey: .endTime)
+      if let endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
       {
         try constraintCheckAndSet(.endTime(endTime))
       }
@@ -104,9 +104,9 @@
 
     public enum ConstraintOneOf: Codable, Equatable, Sendable {
       /// Counts the wallclock time passed since the creation of this Study.
-      indirect case maxDuration(GoogleWKT.WKTDuration?)
+      indirect case maxDuration(GoogleWKT.WKTDuration)
       /// Compares the wallclock time to this time. Must use UTC timezone.
-      indirect case endTime(GoogleWKT.WKTTimestamp?)
+      indirect case endTime(GoogleWKT.WKTTimestamp)
     }
 
     public static var _anyTypeUrl: Swift.String {

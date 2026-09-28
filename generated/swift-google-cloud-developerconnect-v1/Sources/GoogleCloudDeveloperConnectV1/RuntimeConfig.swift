@@ -96,11 +96,11 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       runtime = $0
     }
-    if let gkeWorkload = try container.decodeIfPresent(GKEWorkload?.self, forKey: .gkeWorkload) {
+    if let gkeWorkload = try container.decodeIfPresent(GKEWorkload.self, forKey: .gkeWorkload) {
       try runtimeCheckAndSet(.gkeWorkload(gkeWorkload))
     }
     if let googleCloudRun = try container.decodeIfPresent(
-      GoogleCloudRun?.self, forKey: .googleCloudRun)
+      GoogleCloudRun.self, forKey: .googleCloudRun)
     {
       try runtimeCheckAndSet(.googleCloudRun(googleCloudRun))
     }
@@ -117,12 +117,11 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       derivedFrom = $0
     }
     if let appHubWorkload = try container.decodeIfPresent(
-      AppHubWorkload?.self, forKey: .appHubWorkload)
+      AppHubWorkload.self, forKey: .appHubWorkload)
     {
       try derivedFromCheckAndSet(.appHubWorkload(appHubWorkload))
     }
-    if let appHubService = try container.decodeIfPresent(
-      AppHubService?.self, forKey: .appHubService)
+    if let appHubService = try container.decodeIfPresent(AppHubService.self, forKey: .appHubService)
     {
       try derivedFromCheckAndSet(.appHubService(appHubService))
     }
@@ -281,17 +280,17 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of the runtime.
   public enum RuntimeOneOf: Codable, Equatable, Sendable {
     /// Output only. Google Kubernetes Engine runtime.
-    indirect case gkeWorkload(GKEWorkload?)
+    indirect case gkeWorkload(GKEWorkload)
     /// Output only. Cloud Run runtime.
-    indirect case googleCloudRun(GoogleCloudRun?)
+    indirect case googleCloudRun(GoogleCloudRun)
   }
 
   /// Where the runtime is derived from.
   public enum DerivedFromOneOf: Codable, Equatable, Sendable {
     /// Output only. App Hub Workload.
-    indirect case appHubWorkload(AppHubWorkload?)
+    indirect case appHubWorkload(AppHubWorkload)
     /// Output only. App Hub Service.
-    indirect case appHubService(AppHubService?)
+    indirect case appHubService(AppHubService)
   }
 
   public static var _anyTypeUrl: Swift.String {

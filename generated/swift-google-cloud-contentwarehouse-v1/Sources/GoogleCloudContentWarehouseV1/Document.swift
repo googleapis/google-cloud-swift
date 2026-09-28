@@ -252,7 +252,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       try structuredContentCheckAndSet(.plainText(plainText))
     }
     if let cloudAiDocument = try container.decodeIfPresent(
-      GoogleCloudDocumentAIV1.Document?.self, forKey: .cloudAiDocument)
+      GoogleCloudDocumentAIV1.Document.self, forKey: .cloudAiDocument)
     {
       try structuredContentCheckAndSet(.cloudAiDocument(cloudAiDocument))
     }
@@ -336,7 +336,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Other document format, such as PPTX, XLXS
     case plainText(Swift.String)
     /// Document AI format to save the structured content, including OCR.
-    indirect case cloudAiDocument(GoogleCloudDocumentAIV1.Document?)
+    indirect case cloudAiDocument(GoogleCloudDocumentAIV1.Document)
   }
 
   /// Raw document file.

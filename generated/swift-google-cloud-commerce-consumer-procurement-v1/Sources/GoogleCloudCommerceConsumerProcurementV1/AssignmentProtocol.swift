@@ -71,12 +71,12 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
       assignmentType = $0
     }
     if let manualAssignmentType = try container.decodeIfPresent(
-      AssignmentProtocol.ManualAssignmentType?.self, forKey: .manualAssignmentType)
+      AssignmentProtocol.ManualAssignmentType.self, forKey: .manualAssignmentType)
     {
       try assignmentTypeCheckAndSet(.manualAssignmentType(manualAssignmentType))
     }
     if let autoAssignmentType = try container.decodeIfPresent(
-      AssignmentProtocol.AutoAssignmentType?.self, forKey: .autoAssignmentType)
+      AssignmentProtocol.AutoAssignmentType.self, forKey: .autoAssignmentType)
     {
       try assignmentTypeCheckAndSet(.autoAssignmentType(autoAssignmentType))
     }
@@ -234,9 +234,9 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of assignment protocol.
   public enum AssignmentTypeOneOf: Codable, Equatable, Sendable {
     /// Allow manual assignments triggered by administrative operations only.
-    indirect case manualAssignmentType(AssignmentProtocol.ManualAssignmentType?)
+    indirect case manualAssignmentType(AssignmentProtocol.ManualAssignmentType)
     /// Allow automatic assignments triggered by data plane operations.
-    indirect case autoAssignmentType(AssignmentProtocol.AutoAssignmentType?)
+    indirect case autoAssignmentType(AssignmentProtocol.AutoAssignmentType)
   }
 
   public static var _anyTypeUrl: Swift.String {

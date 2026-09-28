@@ -184,7 +184,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       type = $0
     }
-    if let endpoint = try container.decodeIfPresent(MembershipEndpoint?.self, forKey: .endpoint) {
+    if let endpoint = try container.decodeIfPresent(MembershipEndpoint.self, forKey: .endpoint) {
       try typeCheckAndSet(.endpoint(endpoint))
     }
     self.type = type
@@ -223,7 +223,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of resource represented by this Membership
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Endpoint information to reach this member.
-    indirect case endpoint(MembershipEndpoint?)
+    indirect case endpoint(MembershipEndpoint)
   }
 
   public static var _anyTypeUrl: Swift.String {

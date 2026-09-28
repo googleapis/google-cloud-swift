@@ -74,7 +74,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
       endpointDetails = $0
     }
     if let applicationIntegrationEndpointDetails = try container.decodeIfPresent(
-      ApplicationIntegrationEndpointDetails?.self, forKey: .applicationIntegrationEndpointDetails)
+      ApplicationIntegrationEndpointDetails.self, forKey: .applicationIntegrationEndpointDetails)
     {
       try endpointDetailsCheckAndSet(
         .applicationIntegrationEndpointDetails(applicationIntegrationEndpointDetails))
@@ -104,7 +104,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum EndpointDetailsOneOf: Codable, Equatable, Sendable {
     /// Required. The details of the Application Integration endpoint to be
     /// triggered for curation.
-    indirect case applicationIntegrationEndpointDetails(ApplicationIntegrationEndpointDetails?)
+    indirect case applicationIntegrationEndpointDetails(ApplicationIntegrationEndpointDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

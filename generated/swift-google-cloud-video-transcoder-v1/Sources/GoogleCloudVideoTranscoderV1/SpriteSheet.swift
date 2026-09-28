@@ -187,8 +187,7 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
     if let totalCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalCount) {
       try extractionStrategyCheckAndSet(.totalCount(totalCount))
     }
-    if let interval = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .interval)
-    {
+    if let interval = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .interval) {
       try extractionStrategyCheckAndSet(.interval(interval))
     }
     self.extractionStrategy = extractionStrategy
@@ -231,7 +230,7 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
     case totalCount(Swift.Int32)
     /// Starting from `0s`, create sprites at regular intervals. Specify the
     /// interval value in seconds.
-    indirect case interval(GoogleWKT.WKTDuration?)
+    indirect case interval(GoogleWKT.WKTDuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

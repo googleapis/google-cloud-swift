@@ -75,7 +75,7 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleWKT._AnyPacka
       }
       decodedPayload = $0
     }
-    if let statement = try container.decodeIfPresent(InTotoStatement?.self, forKey: .statement) {
+    if let statement = try container.decodeIfPresent(InTotoStatement.self, forKey: .statement) {
       try decodedPayloadCheckAndSet(.statement(statement))
     }
     self.decodedPayload = decodedPayload
@@ -101,7 +101,7 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   public enum DecodedPayloadOneOf: Codable, Equatable, Sendable {
-    indirect case statement(InTotoStatement?)
+    indirect case statement(InTotoStatement)
   }
 
   public static var _anyTypeUrl: Swift.String {

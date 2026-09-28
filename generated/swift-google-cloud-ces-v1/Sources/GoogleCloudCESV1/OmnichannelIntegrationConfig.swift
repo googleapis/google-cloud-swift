@@ -151,7 +151,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
         channelConfig = $0
       }
       if let whatsappConfig = try container.decodeIfPresent(
-        OmnichannelIntegrationConfig.WhatsappConfig?.self, forKey: .whatsappConfig)
+        OmnichannelIntegrationConfig.WhatsappConfig.self, forKey: .whatsappConfig)
       {
         try channelConfigCheckAndSet(.whatsappConfig(whatsappConfig))
       }
@@ -179,7 +179,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     /// The config for the app.
     public enum ChannelConfigOneOf: Codable, Equatable, Sendable {
       /// WhatsApp config.
-      indirect case whatsappConfig(OmnichannelIntegrationConfig.WhatsappConfig?)
+      indirect case whatsappConfig(OmnichannelIntegrationConfig.WhatsappConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -367,7 +367,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
         subscriberConfig = $0
       }
       if let cesAppConfig = try container.decodeIfPresent(
-        OmnichannelIntegrationConfig.CesAppConfig?.self, forKey: .cesAppConfig)
+        OmnichannelIntegrationConfig.CesAppConfig.self, forKey: .cesAppConfig)
       {
         try subscriberConfigCheckAndSet(.cesAppConfig(cesAppConfig))
       }
@@ -395,7 +395,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     /// The config for the subscriber.
     public enum SubscriberConfigOneOf: Codable, Equatable, Sendable {
       /// Ces app config.
-      indirect case cesAppConfig(OmnichannelIntegrationConfig.CesAppConfig?)
+      indirect case cesAppConfig(OmnichannelIntegrationConfig.CesAppConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

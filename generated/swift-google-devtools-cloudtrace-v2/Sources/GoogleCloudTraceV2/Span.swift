@@ -361,12 +361,12 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
         value = $0
       }
       if let annotation = try container.decodeIfPresent(
-        Span.TimeEvent.Annotation?.self, forKey: .annotation)
+        Span.TimeEvent.Annotation.self, forKey: .annotation)
       {
         try valueCheckAndSet(.annotation(annotation))
       }
       if let messageEvent = try container.decodeIfPresent(
-        Span.TimeEvent.MessageEvent?.self, forKey: .messageEvent)
+        Span.TimeEvent.MessageEvent.self, forKey: .messageEvent)
       {
         try valueCheckAndSet(.messageEvent(messageEvent))
       }
@@ -695,9 +695,9 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
     /// `MessageEvent` object, but not both.
     public enum ValueOneOf: Codable, Equatable, Sendable {
       /// Text annotation with a set of attributes.
-      indirect case annotation(Span.TimeEvent.Annotation?)
+      indirect case annotation(Span.TimeEvent.Annotation)
       /// An event describing a message sent/received between Spans.
-      indirect case messageEvent(Span.TimeEvent.MessageEvent?)
+      indirect case messageEvent(Span.TimeEvent.MessageEvent)
     }
 
     public static var _anyTypeUrl: Swift.String {

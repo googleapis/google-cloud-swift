@@ -122,7 +122,7 @@
         record = $0
       }
       if let agentAssistantRecord = try container.decodeIfPresent(
-        AgentAssistantRecord?.self, forKey: .agentAssistantRecord)
+        AgentAssistantRecord.self, forKey: .agentAssistantRecord)
       {
         try recordCheckAndSet(.agentAssistantRecord(agentAssistantRecord))
       }
@@ -152,7 +152,7 @@
     /// The record for this answer.
     public enum RecordOneOf: Codable, Equatable, Sendable {
       /// Output only. The record for human agent assistant.
-      indirect case agentAssistantRecord(AgentAssistantRecord?)
+      indirect case agentAssistantRecord(AgentAssistantRecord)
     }
 
     public static var _anyTypeUrl: Swift.String {

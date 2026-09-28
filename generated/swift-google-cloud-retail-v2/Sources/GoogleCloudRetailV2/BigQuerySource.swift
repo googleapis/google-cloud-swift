@@ -146,7 +146,7 @@ public struct BigQuerySource: Codable, Equatable, GoogleWKT._AnyPackable,
       partition = $0
     }
     if let partitionDate = try container.decodeIfPresent(
-      GoogleType.Date?.self, forKey: .partitionDate)
+      GoogleType.Date.self, forKey: .partitionDate)
     {
       try partitionCheckAndSet(.partitionDate(partitionDate))
     }
@@ -180,7 +180,7 @@ public struct BigQuerySource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// is not partitioned.
   public enum PartitionOneOf: Codable, Equatable, Sendable {
     /// BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
-    indirect case partitionDate(GoogleType.Date?)
+    indirect case partitionDate(GoogleType.Date)
   }
 
   public static var _anyTypeUrl: Swift.String {

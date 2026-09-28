@@ -75,22 +75,22 @@ public struct ComputeResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       config = $0
     }
     if let newOnDemandInstances = try container.decodeIfPresent(
-      NewOnDemandInstancesConfig?.self, forKey: .newOnDemandInstances)
+      NewOnDemandInstancesConfig.self, forKey: .newOnDemandInstances)
     {
       try configCheckAndSet(.newOnDemandInstances(newOnDemandInstances))
     }
     if let newSpotInstances = try container.decodeIfPresent(
-      NewSpotInstancesConfig?.self, forKey: .newSpotInstances)
+      NewSpotInstancesConfig.self, forKey: .newSpotInstances)
     {
       try configCheckAndSet(.newSpotInstances(newSpotInstances))
     }
     if let newReservedInstances = try container.decodeIfPresent(
-      NewReservedInstancesConfig?.self, forKey: .newReservedInstances)
+      NewReservedInstancesConfig.self, forKey: .newReservedInstances)
     {
       try configCheckAndSet(.newReservedInstances(newReservedInstances))
     }
     if let newFlexStartInstances = try container.decodeIfPresent(
-      NewFlexStartInstancesConfig?.self, forKey: .newFlexStartInstances)
+      NewFlexStartInstancesConfig.self, forKey: .newFlexStartInstances)
     {
       try configCheckAndSet(.newFlexStartInstances(newFlexStartInstances))
     }
@@ -125,16 +125,16 @@ public struct ComputeResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that this resource should use
     /// on-demand VMs.
-    indirect case newOnDemandInstances(NewOnDemandInstancesConfig?)
+    indirect case newOnDemandInstances(NewOnDemandInstancesConfig)
     /// Optional. Immutable. If set, indicates that this resource should use spot
     /// VMs.
-    indirect case newSpotInstances(NewSpotInstancesConfig?)
+    indirect case newSpotInstances(NewSpotInstancesConfig)
     /// Optional. Immutable. If set, indicates that this resource should use
     /// reserved VMs.
-    indirect case newReservedInstances(NewReservedInstancesConfig?)
+    indirect case newReservedInstances(NewReservedInstancesConfig)
     /// Optional. Immutable. If set, indicates that this resource should use
     /// flex-start VMs.
-    indirect case newFlexStartInstances(NewFlexStartInstancesConfig?)
+    indirect case newFlexStartInstances(NewFlexStartInstancesConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

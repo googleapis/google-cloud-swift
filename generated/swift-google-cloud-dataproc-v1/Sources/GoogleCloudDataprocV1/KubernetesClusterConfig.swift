@@ -87,7 +87,7 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleWKT._AnyPackabl
       config = $0
     }
     if let gkeClusterConfig = try container.decodeIfPresent(
-      GkeClusterConfig?.self, forKey: .gkeClusterConfig)
+      GkeClusterConfig.self, forKey: .gkeClusterConfig)
     {
       try configCheckAndSet(.gkeClusterConfig(gkeClusterConfig))
     }
@@ -116,7 +116,7 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Required. The configuration for running the Dataproc cluster on GKE.
-    indirect case gkeClusterConfig(GkeClusterConfig?)
+    indirect case gkeClusterConfig(GkeClusterConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

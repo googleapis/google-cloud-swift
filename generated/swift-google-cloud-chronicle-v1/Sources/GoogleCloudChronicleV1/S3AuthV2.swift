@@ -71,12 +71,12 @@ public struct S3AuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
       authType = $0
     }
     if let accessKeySecretAuth = try container.decodeIfPresent(
-      S3V2AccessKeySecretAuth?.self, forKey: .accessKeySecretAuth)
+      S3V2AccessKeySecretAuth.self, forKey: .accessKeySecretAuth)
     {
       try authTypeCheckAndSet(.accessKeySecretAuth(accessKeySecretAuth))
     }
     if let awsIamRoleAuth = try container.decodeIfPresent(
-      S3V2AwsIamRoleAuth?.self, forKey: .awsIamRoleAuth)
+      S3V2AwsIamRoleAuth.self, forKey: .awsIamRoleAuth)
     {
       try authTypeCheckAndSet(.awsIamRoleAuth(awsIamRoleAuth))
     }
@@ -106,9 +106,9 @@ public struct S3AuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   /// auth type for S3.
   public enum AuthTypeOneOf: Codable, Equatable, Sendable {
     /// Access Key ID and Secret Access Key for an AWS account.
-    indirect case accessKeySecretAuth(S3V2AccessKeySecretAuth?)
+    indirect case accessKeySecretAuth(S3V2AccessKeySecretAuth)
     /// AWS IAM Role Auth for Identity Federation.
-    indirect case awsIamRoleAuth(S3V2AwsIamRoleAuth?)
+    indirect case awsIamRoleAuth(S3V2AwsIamRoleAuth)
   }
 
   public static var _anyTypeUrl: Swift.String {

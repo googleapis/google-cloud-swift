@@ -78,12 +78,12 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
       output = $0
     }
     if let gcsOutputConfig = try container.decodeIfPresent(
-      GcsOutputConfig?.self, forKey: .gcsOutputConfig)
+      GcsOutputConfig.self, forKey: .gcsOutputConfig)
     {
       try outputCheckAndSet(.gcsOutputConfig(gcsOutputConfig))
     }
     if let inlineResponseConfig = try container.decodeIfPresent(
-      InlineOutputConfig?.self, forKey: .inlineResponseConfig)
+      InlineOutputConfig.self, forKey: .inlineResponseConfig)
     {
       try outputCheckAndSet(.inlineResponseConfig(inlineResponseConfig))
     }
@@ -114,7 +114,7 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   public enum OutputOneOf: Codable, Equatable, Sendable {
     /// If this message is populated, recognition results are written to the
     /// provided Google Cloud Storage URI.
-    indirect case gcsOutputConfig(GcsOutputConfig?)
+    indirect case gcsOutputConfig(GcsOutputConfig)
     /// If this message is populated, recognition results are provided in the
     /// [BatchRecognizeResponse][google.cloud.speech.v2.BatchRecognizeResponse]
     /// message of the Operation when completed. This is only supported when
@@ -123,7 +123,7 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     ///
     /// [google.cloud.speech.v2.BatchRecognizeResponse]: <doc:BatchRecognizeResponse>
     /// [google.cloud.speech.v2.Speech.BatchRecognize]: <doc:SpeechClient/batchRecognize(request:options:)>
-    indirect case inlineResponseConfig(InlineOutputConfig?)
+    indirect case inlineResponseConfig(InlineOutputConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

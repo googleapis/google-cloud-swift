@@ -109,12 +109,12 @@
         mode = $0
       }
       if let snapshotExport = try container.decodeIfPresent(
-        ExportFeatureValuesRequest.SnapshotExport?.self, forKey: .snapshotExport)
+        ExportFeatureValuesRequest.SnapshotExport.self, forKey: .snapshotExport)
       {
         try modeCheckAndSet(.snapshotExport(snapshotExport))
       }
       if let fullExport = try container.decodeIfPresent(
-        ExportFeatureValuesRequest.FullExport?.self, forKey: .fullExport)
+        ExportFeatureValuesRequest.FullExport.self, forKey: .fullExport)
       {
         try modeCheckAndSet(.fullExport(fullExport))
       }
@@ -310,10 +310,10 @@
     public enum ModeOneOf: Codable, Equatable, Sendable {
       /// Exports the latest Feature values of all entities of the EntityType
       /// within a time range.
-      indirect case snapshotExport(ExportFeatureValuesRequest.SnapshotExport?)
+      indirect case snapshotExport(ExportFeatureValuesRequest.SnapshotExport)
       /// Exports all historical values of all entities of the EntityType within a
       /// time range
-      indirect case fullExport(ExportFeatureValuesRequest.FullExport?)
+      indirect case fullExport(ExportFeatureValuesRequest.FullExport)
     }
 
     public static var _anyTypeUrl: Swift.String {

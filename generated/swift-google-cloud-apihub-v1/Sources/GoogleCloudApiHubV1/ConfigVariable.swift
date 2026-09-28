@@ -104,24 +104,24 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
     if let boolValue = try container.decodeIfPresent(Swift.Bool.self, forKey: .boolValue) {
       try valueCheckAndSet(.boolValue(boolValue))
     }
-    if let secretValue = try container.decodeIfPresent(Secret?.self, forKey: .secretValue) {
+    if let secretValue = try container.decodeIfPresent(Secret.self, forKey: .secretValue) {
       try valueCheckAndSet(.secretValue(secretValue))
     }
-    if let enumValue = try container.decodeIfPresent(ConfigValueOption?.self, forKey: .enumValue) {
+    if let enumValue = try container.decodeIfPresent(ConfigValueOption.self, forKey: .enumValue) {
       try valueCheckAndSet(.enumValue(enumValue))
     }
     if let multiSelectValues = try container.decodeIfPresent(
-      ConfigVariable.MultiSelectValues?.self, forKey: .multiSelectValues)
+      ConfigVariable.MultiSelectValues.self, forKey: .multiSelectValues)
     {
       try valueCheckAndSet(.multiSelectValues(multiSelectValues))
     }
     if let multiStringValues = try container.decodeIfPresent(
-      ConfigVariable.MultiStringValues?.self, forKey: .multiStringValues)
+      ConfigVariable.MultiStringValues.self, forKey: .multiStringValues)
     {
       try valueCheckAndSet(.multiStringValues(multiStringValues))
     }
     if let multiIntValues = try container.decodeIfPresent(
-      ConfigVariable.MultiIntValues?.self, forKey: .multiIntValues)
+      ConfigVariable.MultiIntValues.self, forKey: .multiIntValues)
     {
       try valueCheckAndSet(.multiIntValues(multiIntValues))
     }
@@ -378,19 +378,19 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
     case boolValue(Swift.Bool)
     /// Optional. The config variable value in case of config variable of type
     /// secret.
-    indirect case secretValue(Secret?)
+    indirect case secretValue(Secret)
     /// Optional. The config variable value in case of config variable of type
     /// enum.
-    indirect case enumValue(ConfigValueOption?)
+    indirect case enumValue(ConfigValueOption)
     /// Optional. The config variable value in case of config variable of type
     /// multi select.
-    indirect case multiSelectValues(ConfigVariable.MultiSelectValues?)
+    indirect case multiSelectValues(ConfigVariable.MultiSelectValues)
     /// Optional. The config variable value in case of config variable of type
     /// multi string.
-    indirect case multiStringValues(ConfigVariable.MultiStringValues?)
+    indirect case multiStringValues(ConfigVariable.MultiStringValues)
     /// Optional. The config variable value in case of config variable of type
     /// multi integer.
-    indirect case multiIntValues(ConfigVariable.MultiIntValues?)
+    indirect case multiIntValues(ConfigVariable.MultiIntValues)
   }
 
   public static var _anyTypeUrl: Swift.String {

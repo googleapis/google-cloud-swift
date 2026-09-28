@@ -70,7 +70,7 @@
         }
         source = $0
       }
-      if let gcsSource = try container.decodeIfPresent(GcsSources?.self, forKey: .gcsSource) {
+      if let gcsSource = try container.decodeIfPresent(GcsSources.self, forKey: .gcsSource) {
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       self.source = source
@@ -99,7 +99,7 @@
       /// The Cloud Storage URI has the form gs://<Google Cloud Storage bucket
       /// name>//agent*.json. Wildcards are allowed and will be expanded into all
       /// matched JSON files, which will be read as one conversation per file.
-      indirect case gcsSource(GcsSources?)
+      indirect case gcsSource(GcsSources)
     }
 
     public static var _anyTypeUrl: Swift.String {

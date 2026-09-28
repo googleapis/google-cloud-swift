@@ -202,17 +202,17 @@
         source = $0
       }
       if let bigQuerySource = try container.decodeIfPresent(
-        FeatureView.BigQuerySource?.self, forKey: .bigQuerySource)
+        FeatureView.BigQuerySource.self, forKey: .bigQuerySource)
       {
         try sourceCheckAndSet(.bigQuerySource(bigQuerySource))
       }
       if let featureRegistrySource = try container.decodeIfPresent(
-        FeatureView.FeatureRegistrySource?.self, forKey: .featureRegistrySource)
+        FeatureView.FeatureRegistrySource.self, forKey: .featureRegistrySource)
       {
         try sourceCheckAndSet(.featureRegistrySource(featureRegistrySource))
       }
       if let vertexRagSource = try container.decodeIfPresent(
-        FeatureView.VertexRagSource?.self, forKey: .vertexRagSource)
+        FeatureView.VertexRagSource.self, forKey: .vertexRagSource)
       {
         try sourceCheckAndSet(.vertexRagSource(vertexRagSource))
       }
@@ -527,12 +527,12 @@
           algorithmConfig = $0
         }
         if let treeAhConfig = try container.decodeIfPresent(
-          FeatureView.IndexConfig.TreeAHConfig?.self, forKey: .treeAhConfig)
+          FeatureView.IndexConfig.TreeAHConfig.self, forKey: .treeAhConfig)
         {
           try algorithmConfigCheckAndSet(.treeAhConfig(treeAhConfig))
         }
         if let bruteForceConfig = try container.decodeIfPresent(
-          FeatureView.IndexConfig.BruteForceConfig?.self, forKey: .bruteForceConfig)
+          FeatureView.IndexConfig.BruteForceConfig.self, forKey: .bruteForceConfig)
         {
           try algorithmConfigCheckAndSet(.bruteForceConfig(bruteForceConfig))
         }
@@ -828,12 +828,12 @@
         /// Optional. Configuration options for the tree-AH algorithm (Shallow tree
         /// + Asymmetric Hashing). Please refer to this paper for more details:
         /// https://arxiv.org/abs/1908.10396
-        indirect case treeAhConfig(FeatureView.IndexConfig.TreeAHConfig?)
+        indirect case treeAhConfig(FeatureView.IndexConfig.TreeAHConfig)
         /// Optional. Configuration options for using brute force search, which
         /// simply implements the standard linear search in the database for each
         /// query. It is primarily meant for benchmarking and to generate the
         /// ground truth for approximate search.
-        indirect case bruteForceConfig(FeatureView.IndexConfig.BruteForceConfig?)
+        indirect case bruteForceConfig(FeatureView.IndexConfig.BruteForceConfig)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1355,12 +1355,12 @@
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Optional. Configures how data is supposed to be extracted from a BigQuery
       /// source to be loaded onto the FeatureOnlineStore.
-      indirect case bigQuerySource(FeatureView.BigQuerySource?)
+      indirect case bigQuerySource(FeatureView.BigQuerySource)
       /// Optional. Configures the features from a Feature Registry source that
       /// need to be loaded onto the FeatureOnlineStore.
-      indirect case featureRegistrySource(FeatureView.FeatureRegistrySource?)
+      indirect case featureRegistrySource(FeatureView.FeatureRegistrySource)
       /// Optional. The Vertex RAG Source that the FeatureView is linked to.
-      indirect case vertexRagSource(FeatureView.VertexRagSource?)
+      indirect case vertexRagSource(FeatureView.VertexRagSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

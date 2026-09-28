@@ -190,10 +190,10 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       pathValue = $0
     }
-    if let value = try container.decodeIfPresent(GoogleWKT.WKTValue?.self, forKey: .value) {
+    if let value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value) {
       try pathValueCheckAndSet(.value(value))
     }
-    if let valueMatcher = try container.decodeIfPresent(ValueMatcher?.self, forKey: .valueMatcher) {
+    if let valueMatcher = try container.decodeIfPresent(ValueMatcher.self, forKey: .valueMatcher) {
       try pathValueCheckAndSet(.valueMatcher(valueMatcher))
     }
     self.pathValue = pathValue
@@ -233,10 +233,10 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Value for the `path` field. Will be set for actions:'add'/'replace'.
     /// Maybe set for action: 'test'. Either this or `value_matcher` will be set
     /// for 'test' operation. An exact match must be performed.
-    indirect case value(GoogleWKT.WKTValue?)
+    indirect case value(GoogleWKT.WKTValue)
     /// Can be set for action 'test' for advanced matching for the value of
     /// 'path' field. Either this or `value` will be set for 'test' operation.
-    indirect case valueMatcher(ValueMatcher?)
+    indirect case valueMatcher(ValueMatcher)
   }
 
   public static var _anyTypeUrl: Swift.String {

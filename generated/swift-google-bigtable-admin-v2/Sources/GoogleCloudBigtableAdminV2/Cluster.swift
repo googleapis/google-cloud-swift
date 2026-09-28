@@ -137,7 +137,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       config = $0
     }
     if let clusterConfig = try container.decodeIfPresent(
-      Cluster.ClusterConfig?.self, forKey: .clusterConfig)
+      Cluster.ClusterConfig.self, forKey: .clusterConfig)
     {
       try configCheckAndSet(.clusterConfig(clusterConfig))
     }
@@ -649,7 +649,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for this cluster.
-    indirect case clusterConfig(Cluster.ClusterConfig?)
+    indirect case clusterConfig(Cluster.ClusterConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

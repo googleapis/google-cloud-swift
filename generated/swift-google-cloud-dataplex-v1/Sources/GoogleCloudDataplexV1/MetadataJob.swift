@@ -133,12 +133,12 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
       spec = $0
     }
     if let importSpec = try container.decodeIfPresent(
-      MetadataJob.ImportJobSpec?.self, forKey: .importSpec)
+      MetadataJob.ImportJobSpec.self, forKey: .importSpec)
     {
       try specCheckAndSet(.importSpec(importSpec))
     }
     if let exportSpec = try container.decodeIfPresent(
-      MetadataJob.ExportJobSpec?.self, forKey: .exportSpec)
+      MetadataJob.ExportJobSpec.self, forKey: .exportSpec)
     {
       try specCheckAndSet(.exportSpec(exportSpec))
     }
@@ -155,12 +155,12 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
       result = $0
     }
     if let importResult = try container.decodeIfPresent(
-      MetadataJob.ImportJobResult?.self, forKey: .importResult)
+      MetadataJob.ImportJobResult.self, forKey: .importResult)
     {
       try resultCheckAndSet(.importResult(importResult))
     }
     if let exportResult = try container.decodeIfPresent(
-      MetadataJob.ExportJobResult?.self, forKey: .exportResult)
+      MetadataJob.ExportJobResult.self, forKey: .exportResult)
     {
       try resultCheckAndSet(.exportResult(exportResult))
     }
@@ -1607,16 +1607,16 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum SpecOneOf: Codable, Equatable, Sendable {
     /// Import job specification.
-    indirect case importSpec(MetadataJob.ImportJobSpec?)
+    indirect case importSpec(MetadataJob.ImportJobSpec)
     /// Export job specification.
-    indirect case exportSpec(MetadataJob.ExportJobSpec?)
+    indirect case exportSpec(MetadataJob.ExportJobSpec)
   }
 
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. Import job result.
-    indirect case importResult(MetadataJob.ImportJobResult?)
+    indirect case importResult(MetadataJob.ImportJobResult)
     /// Output only. Export job result.
-    indirect case exportResult(MetadataJob.ExportJobResult?)
+    indirect case exportResult(MetadataJob.ExportJobResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

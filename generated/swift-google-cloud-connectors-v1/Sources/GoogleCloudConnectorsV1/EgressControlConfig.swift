@@ -77,7 +77,7 @@ public struct EgressControlConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       try oneofBackendsCheckAndSet(.backends(backends))
     }
     if let extractionRules = try container.decodeIfPresent(
-      ExtractionRules?.self, forKey: .extractionRules)
+      ExtractionRules.self, forKey: .extractionRules)
     {
       try oneofBackendsCheckAndSet(.extractionRules(extractionRules))
     }
@@ -111,7 +111,7 @@ public struct EgressControlConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case backends(Swift.String)
     /// Extractions Rules to extract the backends from customer provided
     /// configuration.
-    indirect case extractionRules(ExtractionRules?)
+    indirect case extractionRules(ExtractionRules)
   }
 
   public static var _anyTypeUrl: Swift.String {

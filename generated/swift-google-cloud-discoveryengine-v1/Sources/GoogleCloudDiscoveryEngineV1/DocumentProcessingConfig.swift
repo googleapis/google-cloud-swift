@@ -181,7 +181,7 @@
           chunkMode = $0
         }
         if let layoutBasedChunkingConfig = try container.decodeIfPresent(
-          DocumentProcessingConfig.ChunkingConfig.LayoutBasedChunkingConfig?.self,
+          DocumentProcessingConfig.ChunkingConfig.LayoutBasedChunkingConfig.self,
           forKey: .layoutBasedChunkingConfig)
         {
           try chunkModeCheckAndSet(.layoutBasedChunkingConfig(layoutBasedChunkingConfig))
@@ -297,7 +297,7 @@
       public enum ChunkModeOneOf: Codable, Equatable, Sendable {
         /// Configuration for the layout based chunking.
         indirect case layoutBasedChunkingConfig(
-          DocumentProcessingConfig.ChunkingConfig.LayoutBasedChunkingConfig?)
+          DocumentProcessingConfig.ChunkingConfig.LayoutBasedChunkingConfig)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -368,18 +368,18 @@
           typeDedicatedConfig = $0
         }
         if let digitalParsingConfig = try container.decodeIfPresent(
-          DocumentProcessingConfig.ParsingConfig.DigitalParsingConfig?.self,
+          DocumentProcessingConfig.ParsingConfig.DigitalParsingConfig.self,
           forKey: .digitalParsingConfig)
         {
           try typeDedicatedConfigCheckAndSet(.digitalParsingConfig(digitalParsingConfig))
         }
         if let ocrParsingConfig = try container.decodeIfPresent(
-          DocumentProcessingConfig.ParsingConfig.OcrParsingConfig?.self, forKey: .ocrParsingConfig)
+          DocumentProcessingConfig.ParsingConfig.OcrParsingConfig.self, forKey: .ocrParsingConfig)
         {
           try typeDedicatedConfigCheckAndSet(.ocrParsingConfig(ocrParsingConfig))
         }
         if let layoutParsingConfig = try container.decodeIfPresent(
-          DocumentProcessingConfig.ParsingConfig.LayoutParsingConfig?.self,
+          DocumentProcessingConfig.ParsingConfig.LayoutParsingConfig.self,
           forKey: .layoutParsingConfig)
         {
           try typeDedicatedConfigCheckAndSet(.layoutParsingConfig(layoutParsingConfig))
@@ -690,13 +690,13 @@
       public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
         /// Configurations applied to digital parser.
         indirect case digitalParsingConfig(
-          DocumentProcessingConfig.ParsingConfig.DigitalParsingConfig?)
+          DocumentProcessingConfig.ParsingConfig.DigitalParsingConfig)
         /// Configurations applied to OCR parser. Currently it only applies to
         /// PDFs.
-        indirect case ocrParsingConfig(DocumentProcessingConfig.ParsingConfig.OcrParsingConfig?)
+        indirect case ocrParsingConfig(DocumentProcessingConfig.ParsingConfig.OcrParsingConfig)
         /// Configurations applied to layout parser.
         indirect case layoutParsingConfig(
-          DocumentProcessingConfig.ParsingConfig.LayoutParsingConfig?)
+          DocumentProcessingConfig.ParsingConfig.LayoutParsingConfig)
       }
 
       public static var _anyTypeUrl: Swift.String {

@@ -69,7 +69,7 @@ public struct ApiData: Codable, Equatable, GoogleWKT._AnyPackable,
       data = $0
     }
     if let apiMetadataList = try container.decodeIfPresent(
-      ApiMetadataList?.self, forKey: .apiMetadataList)
+      ApiMetadataList.self, forKey: .apiMetadataList)
     {
       try dataCheckAndSet(.apiMetadataList(apiMetadataList))
     }
@@ -97,7 +97,7 @@ public struct ApiData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The data to be collected.
   public enum DataOneOf: Codable, Equatable, Sendable {
     /// Optional. The list of API metadata.
-    indirect case apiMetadataList(ApiMetadataList?)
+    indirect case apiMetadataList(ApiMetadataList)
   }
 
   public static var _anyTypeUrl: Swift.String {

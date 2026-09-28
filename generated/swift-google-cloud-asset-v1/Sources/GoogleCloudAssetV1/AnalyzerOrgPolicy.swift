@@ -226,7 +226,7 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         kind = $0
       }
       if let values = try container.decodeIfPresent(
-        AnalyzerOrgPolicy.Rule.StringValues?.self, forKey: .values)
+        AnalyzerOrgPolicy.Rule.StringValues.self, forKey: .values)
       {
         try kindCheckAndSet(.values(values))
       }
@@ -348,7 +348,7 @@ public struct AnalyzerOrgPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     public enum KindOneOf: Codable, Equatable, Sendable {
       /// List of values to be used for this policy rule. This field can be set
       /// only in policies for list constraints.
-      indirect case values(AnalyzerOrgPolicy.Rule.StringValues?)
+      indirect case values(AnalyzerOrgPolicy.Rule.StringValues)
       /// Setting this to true means that all values are allowed. This field can
       /// be set only in Policies for list constraints.
       case allowAll(Swift.Bool)

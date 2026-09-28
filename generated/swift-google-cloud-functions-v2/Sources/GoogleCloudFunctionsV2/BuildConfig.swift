@@ -197,12 +197,12 @@ public struct BuildConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       runtimeUpdatePolicy = $0
     }
     if let automaticUpdatePolicy = try container.decodeIfPresent(
-      AutomaticUpdatePolicy?.self, forKey: .automaticUpdatePolicy)
+      AutomaticUpdatePolicy.self, forKey: .automaticUpdatePolicy)
     {
       try runtimeUpdatePolicyCheckAndSet(.automaticUpdatePolicy(automaticUpdatePolicy))
     }
     if let onDeployUpdatePolicy = try container.decodeIfPresent(
-      OnDeployUpdatePolicy?.self, forKey: .onDeployUpdatePolicy)
+      OnDeployUpdatePolicy.self, forKey: .onDeployUpdatePolicy)
     {
       try runtimeUpdatePolicyCheckAndSet(.onDeployUpdatePolicy(onDeployUpdatePolicy))
     }
@@ -366,8 +366,8 @@ public struct BuildConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// This controls when security patches are applied to the runtime environment.
   public enum RuntimeUpdatePolicyOneOf: Codable, Equatable, Sendable {
-    indirect case automaticUpdatePolicy(AutomaticUpdatePolicy?)
-    indirect case onDeployUpdatePolicy(OnDeployUpdatePolicy?)
+    indirect case automaticUpdatePolicy(AutomaticUpdatePolicy)
+    indirect case onDeployUpdatePolicy(OnDeployUpdatePolicy)
   }
 
   public static var _anyTypeUrl: Swift.String {

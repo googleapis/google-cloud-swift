@@ -79,7 +79,7 @@
         }
         entityIdsSource = $0
       }
-      if let csvSource = try container.decodeIfPresent(CsvSource?.self, forKey: .csvSource) {
+      if let csvSource = try container.decodeIfPresent(CsvSource.self, forKey: .csvSource) {
         try entityIdsSourceCheckAndSet(.csvSource(csvSource))
       }
       self.entityIdsSource = entityIdsSource
@@ -108,7 +108,7 @@
     /// the format.
     public enum EntityIdsSourceOneOf: Codable, Equatable, Sendable {
       /// Source of Csv
-      indirect case csvSource(CsvSource?)
+      indirect case csvSource(CsvSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

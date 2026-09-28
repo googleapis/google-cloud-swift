@@ -80,12 +80,12 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       credentialType = $0
     }
     if let serviceAccountCredential = try container.decodeIfPresent(
-      ServiceAccountCredential?.self, forKey: .serviceAccountCredential)
+      ServiceAccountCredential.self, forKey: .serviceAccountCredential)
     {
       try credentialTypeCheckAndSet(.serviceAccountCredential(serviceAccountCredential))
     }
     if let apiKeyCredential = try container.decodeIfPresent(
-      ApiKeyCredential?.self, forKey: .apiKeyCredential)
+      ApiKeyCredential.self, forKey: .apiKeyCredential)
     {
       try credentialTypeCheckAndSet(.apiKeyCredential(apiKeyCredential))
     }
@@ -116,9 +116,9 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Indicates the type of credential leaked.
   public enum CredentialTypeOneOf: Codable, Equatable, Sendable {
     /// Information about leaked service accounts.
-    indirect case serviceAccountCredential(ServiceAccountCredential?)
+    indirect case serviceAccountCredential(ServiceAccountCredential)
     /// Information about leaked API keys.
-    indirect case apiKeyCredential(ApiKeyCredential?)
+    indirect case apiKeyCredential(ApiKeyCredential)
   }
 
   public static var _anyTypeUrl: Swift.String {

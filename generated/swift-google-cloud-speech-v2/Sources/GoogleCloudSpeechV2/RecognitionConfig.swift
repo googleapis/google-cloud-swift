@@ -145,12 +145,12 @@ public struct RecognitionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       decodingConfig = $0
     }
     if let autoDecodingConfig = try container.decodeIfPresent(
-      AutoDetectDecodingConfig?.self, forKey: .autoDecodingConfig)
+      AutoDetectDecodingConfig.self, forKey: .autoDecodingConfig)
     {
       try decodingConfigCheckAndSet(.autoDecodingConfig(autoDecodingConfig))
     }
     if let explicitDecodingConfig = try container.decodeIfPresent(
-      ExplicitDecodingConfig?.self, forKey: .explicitDecodingConfig)
+      ExplicitDecodingConfig.self, forKey: .explicitDecodingConfig)
     {
       try decodingConfigCheckAndSet(.explicitDecodingConfig(explicitDecodingConfig))
     }
@@ -188,10 +188,10 @@ public struct RecognitionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum DecodingConfigOneOf: Codable, Equatable, Sendable {
     /// Automatically detect decoding parameters.
     /// Preferred for supported formats.
-    indirect case autoDecodingConfig(AutoDetectDecodingConfig?)
+    indirect case autoDecodingConfig(AutoDetectDecodingConfig)
     /// Explicitly specified decoding parameters.
     /// Required if using headerless PCM audio (linear16, mulaw, alaw).
-    indirect case explicitDecodingConfig(ExplicitDecodingConfig?)
+    indirect case explicitDecodingConfig(ExplicitDecodingConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

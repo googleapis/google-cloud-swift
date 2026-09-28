@@ -156,11 +156,10 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       config = $0
     }
-    if let spark = try container.decodeIfPresent(Task.SparkTaskConfig?.self, forKey: .spark) {
+    if let spark = try container.decodeIfPresent(Task.SparkTaskConfig.self, forKey: .spark) {
       try configCheckAndSet(.spark(spark))
     }
-    if let notebook = try container.decodeIfPresent(
-      Task.NotebookTaskConfig?.self, forKey: .notebook)
+    if let notebook = try container.decodeIfPresent(Task.NotebookTaskConfig.self, forKey: .notebook)
     {
       try configCheckAndSet(.notebook(notebook))
     }
@@ -260,7 +259,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
         resources = $0
       }
       if let batch = try container.decodeIfPresent(
-        Task.InfrastructureSpec.BatchComputeResources?.self, forKey: .batch)
+        Task.InfrastructureSpec.BatchComputeResources.self, forKey: .batch)
       {
         try resourcesCheckAndSet(.batch(batch))
       }
@@ -277,7 +276,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
         runtime = $0
       }
       if let containerImage = try container.decodeIfPresent(
-        Task.InfrastructureSpec.ContainerImageRuntime?.self, forKey: .containerImage)
+        Task.InfrastructureSpec.ContainerImageRuntime.self, forKey: .containerImage)
       {
         try runtimeCheckAndSet(.containerImage(containerImage))
       }
@@ -294,7 +293,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
         network = $0
       }
       if let vpcNetwork = try container.decodeIfPresent(
-        Task.InfrastructureSpec.VpcNetwork?.self, forKey: .vpcNetwork)
+        Task.InfrastructureSpec.VpcNetwork.self, forKey: .vpcNetwork)
       {
         try networkCheckAndSet(.vpcNetwork(vpcNetwork))
       }
@@ -634,19 +633,19 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Hardware config.
     public enum ResourcesOneOf: Codable, Equatable, Sendable {
       /// Compute resources needed for a Task when using Dataproc Serverless.
-      indirect case batch(Task.InfrastructureSpec.BatchComputeResources?)
+      indirect case batch(Task.InfrastructureSpec.BatchComputeResources)
     }
 
     /// Software config.
     public enum RuntimeOneOf: Codable, Equatable, Sendable {
       /// Container Image Runtime Configuration.
-      indirect case containerImage(Task.InfrastructureSpec.ContainerImageRuntime?)
+      indirect case containerImage(Task.InfrastructureSpec.ContainerImageRuntime)
     }
 
     /// Networking config.
     public enum NetworkOneOf: Codable, Equatable, Sendable {
       /// Vpc network.
-      indirect case vpcNetwork(Task.InfrastructureSpec.VpcNetwork?)
+      indirect case vpcNetwork(Task.InfrastructureSpec.VpcNetwork)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1394,9 +1393,9 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Task template specific user-specified config.
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Config related to running custom Spark tasks.
-    indirect case spark(Task.SparkTaskConfig?)
+    indirect case spark(Task.SparkTaskConfig)
     /// Config related to running scheduled Notebooks.
-    indirect case notebook(Task.NotebookTaskConfig?)
+    indirect case notebook(Task.NotebookTaskConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

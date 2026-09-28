@@ -479,11 +479,11 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         mode = $0
       }
-      if let iopsPerTb = try container.decodeIfPresent(Instance.IOPSPerTB?.self, forKey: .iopsPerTb)
+      if let iopsPerTb = try container.decodeIfPresent(Instance.IOPSPerTB.self, forKey: .iopsPerTb)
       {
         try modeCheckAndSet(.iopsPerTb(iopsPerTb))
       }
-      if let fixedIops = try container.decodeIfPresent(Instance.FixedIOPS?.self, forKey: .fixedIops)
+      if let fixedIops = try container.decodeIfPresent(Instance.FixedIOPS.self, forKey: .fixedIops)
       {
         try modeCheckAndSet(.fixedIops(fixedIops))
       }
@@ -522,7 +522,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       /// fail with an `InvalidArgument` error. Similarly, if an instance
       /// capacity update would result in a value outside the supported range,
       /// the update will fail with an `InvalidArgument` error.
-      indirect case iopsPerTb(Instance.IOPSPerTB?)
+      indirect case iopsPerTb(Instance.IOPSPerTB)
       /// Choose a fixed provisioned IOPS value for the instance, which will
       /// remain constant regardless of instance capacity. Value must be a
       /// multiple of 1000.
@@ -532,7 +532,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       /// `InvalidArgument` error. Similarly, if an instance capacity update
       /// would result in a value outside the supported range, the update will
       /// fail with an `InvalidArgument` error.
-      indirect case fixedIops(Instance.FixedIOPS?)
+      indirect case fixedIops(Instance.FixedIOPS)
     }
 
     public static var _anyTypeUrl: Swift.String {

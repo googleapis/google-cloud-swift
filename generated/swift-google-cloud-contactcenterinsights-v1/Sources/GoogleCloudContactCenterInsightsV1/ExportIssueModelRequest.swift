@@ -76,7 +76,7 @@ public struct ExportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      ExportIssueModelRequest.GcsDestination?.self, forKey: .gcsDestination)
+      ExportIssueModelRequest.GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
@@ -173,7 +173,7 @@ public struct ExportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage URI to export the issue model to.
-    indirect case gcsDestination(ExportIssueModelRequest.GcsDestination?)
+    indirect case gcsDestination(ExportIssueModelRequest.GcsDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

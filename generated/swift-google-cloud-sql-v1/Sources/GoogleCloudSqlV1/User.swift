@@ -190,7 +190,7 @@
         userDetails = $0
       }
       if let sqlserverUserDetails = try container.decodeIfPresent(
-        SqlServerUserDetails?.self, forKey: .sqlserverUserDetails)
+        SqlServerUserDetails.self, forKey: .sqlserverUserDetails)
       {
         try userDetailsCheckAndSet(.sqlserverUserDetails(sqlserverUserDetails))
       }
@@ -632,7 +632,7 @@
 
     /// User details for specific database type
     public enum UserDetailsOneOf: Codable, Equatable, Sendable {
-      indirect case sqlserverUserDetails(SqlServerUserDetails?)
+      indirect case sqlserverUserDetails(SqlServerUserDetails)
     }
 
     public static var _anyTypeUrl: Swift.String {

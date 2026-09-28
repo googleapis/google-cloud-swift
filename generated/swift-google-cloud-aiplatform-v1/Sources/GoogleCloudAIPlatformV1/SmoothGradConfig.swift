@@ -93,7 +93,7 @@
         try gradientNoiseSigmaCheckAndSet(.noiseSigma(noiseSigma))
       }
       if let featureNoiseSigma = try container.decodeIfPresent(
-        FeatureNoiseSigma?.self, forKey: .featureNoiseSigma)
+        FeatureNoiseSigma.self, forKey: .featureNoiseSigma)
       {
         try gradientNoiseSigmaCheckAndSet(.featureNoiseSigma(featureNoiseSigma))
       }
@@ -151,7 +151,7 @@
       /// will be used for all features.
       ///
       /// [google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]: <doc:SmoothGradConfig/GradientNoiseSigmaOneOf/noiseSigma(_:)>
-      indirect case featureNoiseSigma(FeatureNoiseSigma?)
+      indirect case featureNoiseSigma(FeatureNoiseSigma)
     }
 
     public static var _anyTypeUrl: Swift.String {

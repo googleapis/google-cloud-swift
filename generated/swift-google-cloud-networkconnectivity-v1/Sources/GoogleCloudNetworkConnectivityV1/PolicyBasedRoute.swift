@@ -178,12 +178,12 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       target = $0
     }
     if let virtualMachine = try container.decodeIfPresent(
-      PolicyBasedRoute.VirtualMachine?.self, forKey: .virtualMachine)
+      PolicyBasedRoute.VirtualMachine.self, forKey: .virtualMachine)
     {
       try targetCheckAndSet(.virtualMachine(virtualMachine))
     }
     if let interconnectAttachment = try container.decodeIfPresent(
-      PolicyBasedRoute.InterconnectAttachment?.self, forKey: .interconnectAttachment)
+      PolicyBasedRoute.InterconnectAttachment.self, forKey: .interconnectAttachment)
     {
       try targetCheckAndSet(.interconnectAttachment(interconnectAttachment))
     }
@@ -936,10 +936,10 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   /// endpoints (e.g. VMs, VPNs, and Interconnects) in the VPC.
   public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Optional. VM instances that this policy-based route applies to.
-    indirect case virtualMachine(PolicyBasedRoute.VirtualMachine?)
+    indirect case virtualMachine(PolicyBasedRoute.VirtualMachine)
     /// Optional. The interconnect attachments that this policy-based route
     /// applies to.
-    indirect case interconnectAttachment(PolicyBasedRoute.InterconnectAttachment?)
+    indirect case interconnectAttachment(PolicyBasedRoute.InterconnectAttachment)
   }
 
   public enum NextHopOneOf: Codable, Equatable, Sendable {

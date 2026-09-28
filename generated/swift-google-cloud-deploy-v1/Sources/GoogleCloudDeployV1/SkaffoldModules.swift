@@ -80,18 +80,17 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let git = try container.decodeIfPresent(
-      SkaffoldModules.SkaffoldGitSource?.self, forKey: .git)
+    if let git = try container.decodeIfPresent(SkaffoldModules.SkaffoldGitSource.self, forKey: .git)
     {
       try sourceCheckAndSet(.git(git))
     }
     if let googleCloudStorage = try container.decodeIfPresent(
-      SkaffoldModules.SkaffoldGCSSource?.self, forKey: .googleCloudStorage)
+      SkaffoldModules.SkaffoldGCSSource.self, forKey: .googleCloudStorage)
     {
       try sourceCheckAndSet(.googleCloudStorage(googleCloudStorage))
     }
     if let googleCloudBuildRepo = try container.decodeIfPresent(
-      SkaffoldModules.SkaffoldGCBRepoSource?.self, forKey: .googleCloudBuildRepo)
+      SkaffoldModules.SkaffoldGCBRepoSource.self, forKey: .googleCloudBuildRepo)
     {
       try sourceCheckAndSet(.googleCloudBuildRepo(googleCloudBuildRepo))
     }
@@ -378,12 +377,12 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The source that contains the Skaffold Config modules.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Optional. Remote git repository containing the Skaffold Config modules.
-    indirect case git(SkaffoldModules.SkaffoldGitSource?)
+    indirect case git(SkaffoldModules.SkaffoldGitSource)
     /// Optional. Cloud Storage bucket containing the Skaffold Config modules.
-    indirect case googleCloudStorage(SkaffoldModules.SkaffoldGCSSource?)
+    indirect case googleCloudStorage(SkaffoldModules.SkaffoldGCSSource)
     /// Optional. Cloud Build V2 repository containing the Skaffold Config
     /// modules.
-    indirect case googleCloudBuildRepo(SkaffoldModules.SkaffoldGCBRepoSource?)
+    indirect case googleCloudBuildRepo(SkaffoldModules.SkaffoldGCBRepoSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

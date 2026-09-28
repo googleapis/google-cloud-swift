@@ -286,7 +286,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         try matchTypeCheckAndSet(.suffixMatch(suffixMatch))
       }
       if let rangeMatch = try container.decodeIfPresent(
-        HttpRoute.HeaderMatch.IntegerRange?.self, forKey: .rangeMatch)
+        HttpRoute.HeaderMatch.IntegerRange.self, forKey: .rangeMatch)
       {
         try matchTypeCheckAndSet(.rangeMatch(rangeMatch))
       }
@@ -418,7 +418,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       case suffixMatch(Swift.String)
       /// If specified, the rule will match if the request header value is within
       /// the range.
-      indirect case rangeMatch(HttpRoute.HeaderMatch.IntegerRange?)
+      indirect case rangeMatch(HttpRoute.HeaderMatch.IntegerRange)
     }
 
     public static var _anyTypeUrl: Swift.String {

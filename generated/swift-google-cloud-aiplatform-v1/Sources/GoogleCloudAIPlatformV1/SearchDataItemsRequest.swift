@@ -214,7 +214,7 @@
         try orderCheckAndSet(.orderByDataItem(orderByDataItem))
       }
       if let orderByAnnotation = try container.decodeIfPresent(
-        SearchDataItemsRequest.OrderByAnnotation?.self, forKey: .orderByAnnotation)
+        SearchDataItemsRequest.OrderByAnnotation.self, forKey: .orderByAnnotation)
       {
         try orderCheckAndSet(.orderByAnnotation(orderByAnnotation))
       }
@@ -341,7 +341,7 @@
       /// ascending order. Use "desc" after a field name for descending.
       case orderByDataItem(Swift.String)
       /// Expression that allows ranking results based on annotation's property.
-      indirect case orderByAnnotation(SearchDataItemsRequest.OrderByAnnotation?)
+      indirect case orderByAnnotation(SearchDataItemsRequest.OrderByAnnotation)
     }
 
     public static var _anyTypeUrl: Swift.String {

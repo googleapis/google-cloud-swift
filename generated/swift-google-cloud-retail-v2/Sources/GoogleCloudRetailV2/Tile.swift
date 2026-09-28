@@ -83,12 +83,12 @@ public struct Tile: Codable, Equatable, GoogleWKT._AnyPackable,
       productAttribute = $0
     }
     if let productAttributeValue = try container.decodeIfPresent(
-      ProductAttributeValue?.self, forKey: .productAttributeValue)
+      ProductAttributeValue.self, forKey: .productAttributeValue)
     {
       try productAttributeCheckAndSet(.productAttributeValue(productAttributeValue))
     }
     if let productAttributeInterval = try container.decodeIfPresent(
-      ProductAttributeInterval?.self, forKey: .productAttributeInterval)
+      ProductAttributeInterval.self, forKey: .productAttributeInterval)
     {
       try productAttributeCheckAndSet(.productAttributeInterval(productAttributeInterval))
     }
@@ -119,9 +119,9 @@ public struct Tile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The attribute key and value for the tile.
   public enum ProductAttributeOneOf: Codable, Equatable, Sendable {
     /// The product attribute key-value.
-    indirect case productAttributeValue(ProductAttributeValue?)
+    indirect case productAttributeValue(ProductAttributeValue)
     /// The product attribute key-numeric interval.
-    indirect case productAttributeInterval(ProductAttributeInterval?)
+    indirect case productAttributeInterval(ProductAttributeInterval)
   }
 
   public static var _anyTypeUrl: Swift.String {

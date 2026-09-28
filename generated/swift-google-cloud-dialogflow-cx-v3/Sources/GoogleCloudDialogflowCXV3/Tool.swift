@@ -113,17 +113,17 @@
         specification = $0
       }
       if let openApiSpec = try container.decodeIfPresent(
-        Tool.OpenApiTool?.self, forKey: .openApiSpec)
+        Tool.OpenApiTool.self, forKey: .openApiSpec)
       {
         try specificationCheckAndSet(.openApiSpec(openApiSpec))
       }
       if let dataStoreSpec = try container.decodeIfPresent(
-        Tool.DataStoreTool?.self, forKey: .dataStoreSpec)
+        Tool.DataStoreTool.self, forKey: .dataStoreSpec)
       {
         try specificationCheckAndSet(.dataStoreSpec(dataStoreSpec))
       }
       if let functionSpec = try container.decodeIfPresent(
-        Tool.FunctionTool?.self, forKey: .functionSpec)
+        Tool.FunctionTool.self, forKey: .functionSpec)
       {
         try specificationCheckAndSet(.functionSpec(functionSpec))
       }
@@ -555,27 +555,27 @@
           authConfig = $0
         }
         if let apiKeyConfig = try container.decodeIfPresent(
-          Tool.Authentication.ApiKeyConfig?.self, forKey: .apiKeyConfig)
+          Tool.Authentication.ApiKeyConfig.self, forKey: .apiKeyConfig)
         {
           try authConfigCheckAndSet(.apiKeyConfig(apiKeyConfig))
         }
         if let oauthConfig = try container.decodeIfPresent(
-          Tool.Authentication.OAuthConfig?.self, forKey: .oauthConfig)
+          Tool.Authentication.OAuthConfig.self, forKey: .oauthConfig)
         {
           try authConfigCheckAndSet(.oauthConfig(oauthConfig))
         }
         if let serviceAgentAuthConfig = try container.decodeIfPresent(
-          Tool.Authentication.ServiceAgentAuthConfig?.self, forKey: .serviceAgentAuthConfig)
+          Tool.Authentication.ServiceAgentAuthConfig.self, forKey: .serviceAgentAuthConfig)
         {
           try authConfigCheckAndSet(.serviceAgentAuthConfig(serviceAgentAuthConfig))
         }
         if let bearerTokenConfig = try container.decodeIfPresent(
-          Tool.Authentication.BearerTokenConfig?.self, forKey: .bearerTokenConfig)
+          Tool.Authentication.BearerTokenConfig.self, forKey: .bearerTokenConfig)
         {
           try authConfigCheckAndSet(.bearerTokenConfig(bearerTokenConfig))
         }
         if let serviceAccountAuthConfig = try container.decodeIfPresent(
-          Tool.Authentication.ServiceAccountAuthConfig?.self, forKey: .serviceAccountAuthConfig)
+          Tool.Authentication.ServiceAccountAuthConfig.self, forKey: .serviceAccountAuthConfig)
         {
           try authConfigCheckAndSet(.serviceAccountAuthConfig(serviceAccountAuthConfig))
         }
@@ -1441,17 +1441,17 @@
       /// The auth configuration.
       public enum AuthConfigOneOf: Codable, Equatable, Sendable {
         /// Config for API key auth.
-        indirect case apiKeyConfig(Tool.Authentication.ApiKeyConfig?)
+        indirect case apiKeyConfig(Tool.Authentication.ApiKeyConfig)
         /// Config for OAuth.
-        indirect case oauthConfig(Tool.Authentication.OAuthConfig?)
+        indirect case oauthConfig(Tool.Authentication.OAuthConfig)
         /// Config for [Diglogflow service
         /// agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent)
         /// auth.
-        indirect case serviceAgentAuthConfig(Tool.Authentication.ServiceAgentAuthConfig?)
+        indirect case serviceAgentAuthConfig(Tool.Authentication.ServiceAgentAuthConfig)
         /// Config for bearer token auth.
-        indirect case bearerTokenConfig(Tool.Authentication.BearerTokenConfig?)
+        indirect case bearerTokenConfig(Tool.Authentication.BearerTokenConfig)
         /// Configuration for service account authentication.
-        indirect case serviceAccountAuthConfig(Tool.Authentication.ServiceAccountAuthConfig?)
+        indirect case serviceAccountAuthConfig(Tool.Authentication.ServiceAccountAuthConfig)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1818,11 +1818,11 @@
     /// Specification of the Tool.
     public enum SpecificationOneOf: Codable, Equatable, Sendable {
       /// OpenAPI specification of the Tool.
-      indirect case openApiSpec(Tool.OpenApiTool?)
+      indirect case openApiSpec(Tool.OpenApiTool)
       /// Data store search tool specification.
-      indirect case dataStoreSpec(Tool.DataStoreTool?)
+      indirect case dataStoreSpec(Tool.DataStoreTool)
       /// Client side executed function specification.
-      indirect case functionSpec(Tool.FunctionTool?)
+      indirect case functionSpec(Tool.FunctionTool)
     }
 
     public static var _anyTypeUrl: Swift.String {

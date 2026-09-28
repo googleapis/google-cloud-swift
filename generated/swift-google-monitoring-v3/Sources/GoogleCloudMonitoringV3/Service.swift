@@ -139,44 +139,44 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       identifier = $0
     }
-    if let custom = try container.decodeIfPresent(Service.Custom?.self, forKey: .custom) {
+    if let custom = try container.decodeIfPresent(Service.Custom.self, forKey: .custom) {
       try identifierCheckAndSet(.custom(custom))
     }
-    if let appEngine = try container.decodeIfPresent(Service.AppEngine?.self, forKey: .appEngine) {
+    if let appEngine = try container.decodeIfPresent(Service.AppEngine.self, forKey: .appEngine) {
       try identifierCheckAndSet(.appEngine(appEngine))
     }
     if let cloudEndpoints = try container.decodeIfPresent(
-      Service.CloudEndpoints?.self, forKey: .cloudEndpoints)
+      Service.CloudEndpoints.self, forKey: .cloudEndpoints)
     {
       try identifierCheckAndSet(.cloudEndpoints(cloudEndpoints))
     }
     if let clusterIstio = try container.decodeIfPresent(
-      Service.ClusterIstio?.self, forKey: .clusterIstio)
+      Service.ClusterIstio.self, forKey: .clusterIstio)
     {
       try identifierCheckAndSet(.clusterIstio(clusterIstio))
     }
-    if let meshIstio = try container.decodeIfPresent(Service.MeshIstio?.self, forKey: .meshIstio) {
+    if let meshIstio = try container.decodeIfPresent(Service.MeshIstio.self, forKey: .meshIstio) {
       try identifierCheckAndSet(.meshIstio(meshIstio))
     }
     if let istioCanonicalService = try container.decodeIfPresent(
-      Service.IstioCanonicalService?.self, forKey: .istioCanonicalService)
+      Service.IstioCanonicalService.self, forKey: .istioCanonicalService)
     {
       try identifierCheckAndSet(.istioCanonicalService(istioCanonicalService))
     }
-    if let cloudRun = try container.decodeIfPresent(Service.CloudRun?.self, forKey: .cloudRun) {
+    if let cloudRun = try container.decodeIfPresent(Service.CloudRun.self, forKey: .cloudRun) {
       try identifierCheckAndSet(.cloudRun(cloudRun))
     }
     if let gkeNamespace = try container.decodeIfPresent(
-      Service.GkeNamespace?.self, forKey: .gkeNamespace)
+      Service.GkeNamespace.self, forKey: .gkeNamespace)
     {
       try identifierCheckAndSet(.gkeNamespace(gkeNamespace))
     }
     if let gkeWorkload = try container.decodeIfPresent(
-      Service.GkeWorkload?.self, forKey: .gkeWorkload)
+      Service.GkeWorkload.self, forKey: .gkeWorkload)
     {
       try identifierCheckAndSet(.gkeWorkload(gkeWorkload))
     }
-    if let gkeService = try container.decodeIfPresent(Service.GkeService?.self, forKey: .gkeService)
+    if let gkeService = try container.decodeIfPresent(Service.GkeService.self, forKey: .gkeService)
     {
       try identifierCheckAndSet(.gkeService(gkeService))
     }
@@ -1284,27 +1284,27 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   /// REQUIRED. Service-identifying atoms specifying the underlying service.
   public enum IdentifierOneOf: Codable, Equatable, Sendable {
     /// Custom service type.
-    indirect case custom(Service.Custom?)
+    indirect case custom(Service.Custom)
     /// Type used for App Engine services.
-    indirect case appEngine(Service.AppEngine?)
+    indirect case appEngine(Service.AppEngine)
     /// Type used for Cloud Endpoints services.
-    indirect case cloudEndpoints(Service.CloudEndpoints?)
+    indirect case cloudEndpoints(Service.CloudEndpoints)
     /// Type used for Istio services that live in a Kubernetes cluster.
-    indirect case clusterIstio(Service.ClusterIstio?)
+    indirect case clusterIstio(Service.ClusterIstio)
     /// Type used for Istio services scoped to an Istio mesh.
-    indirect case meshIstio(Service.MeshIstio?)
+    indirect case meshIstio(Service.MeshIstio)
     /// Type used for canonical services scoped to an Istio mesh.
     /// Metrics for Istio are
     /// [documented here](https://istio.io/latest/docs/reference/config/metrics/)
-    indirect case istioCanonicalService(Service.IstioCanonicalService?)
+    indirect case istioCanonicalService(Service.IstioCanonicalService)
     /// Type used for Cloud Run services.
-    indirect case cloudRun(Service.CloudRun?)
+    indirect case cloudRun(Service.CloudRun)
     /// Type used for GKE Namespaces.
-    indirect case gkeNamespace(Service.GkeNamespace?)
+    indirect case gkeNamespace(Service.GkeNamespace)
     /// Type used for GKE Workloads.
-    indirect case gkeWorkload(Service.GkeWorkload?)
+    indirect case gkeWorkload(Service.GkeWorkload)
     /// Type used for GKE Services (the Kubernetes concept of a service).
-    indirect case gkeService(Service.GkeService?)
+    indirect case gkeService(Service.GkeService)
   }
 
   public static var _anyTypeUrl: Swift.String {

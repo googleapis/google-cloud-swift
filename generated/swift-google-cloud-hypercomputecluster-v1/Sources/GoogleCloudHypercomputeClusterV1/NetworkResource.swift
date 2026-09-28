@@ -80,7 +80,7 @@ public struct NetworkResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       reference = $0
     }
-    if let network = try container.decodeIfPresent(NetworkReference?.self, forKey: .network) {
+    if let network = try container.decodeIfPresent(NetworkReference.self, forKey: .network) {
       try referenceCheckAndSet(.network(network))
     }
     self.reference = reference
@@ -109,7 +109,7 @@ public struct NetworkResource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// fields will be populated based on the configured type of network resource.
   public enum ReferenceOneOf: Codable, Equatable, Sendable {
     /// Reference to a network in Google Compute Engine.
-    indirect case network(NetworkReference?)
+    indirect case network(NetworkReference)
   }
 
   public static var _anyTypeUrl: Swift.String {

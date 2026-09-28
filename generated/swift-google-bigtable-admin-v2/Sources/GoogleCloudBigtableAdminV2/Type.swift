@@ -115,50 +115,50 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       kind = $0
     }
-    if let bytesType = try container.decodeIfPresent(Type_.Bytes?.self, forKey: .bytesType) {
+    if let bytesType = try container.decodeIfPresent(Type_.Bytes.self, forKey: .bytesType) {
       try kindCheckAndSet(.bytesType(bytesType))
     }
-    if let stringType = try container.decodeIfPresent(Type_.String?.self, forKey: .stringType) {
+    if let stringType = try container.decodeIfPresent(Type_.String.self, forKey: .stringType) {
       try kindCheckAndSet(.stringType(stringType))
     }
-    if let int64Type = try container.decodeIfPresent(Type_.Int64?.self, forKey: .int64Type) {
+    if let int64Type = try container.decodeIfPresent(Type_.Int64.self, forKey: .int64Type) {
       try kindCheckAndSet(.int64Type(int64Type))
     }
-    if let float32Type = try container.decodeIfPresent(Type_.Float32?.self, forKey: .float32Type) {
+    if let float32Type = try container.decodeIfPresent(Type_.Float32.self, forKey: .float32Type) {
       try kindCheckAndSet(.float32Type(float32Type))
     }
-    if let float64Type = try container.decodeIfPresent(Type_.Float64?.self, forKey: .float64Type) {
+    if let float64Type = try container.decodeIfPresent(Type_.Float64.self, forKey: .float64Type) {
       try kindCheckAndSet(.float64Type(float64Type))
     }
-    if let boolType = try container.decodeIfPresent(Type_.Bool?.self, forKey: .boolType) {
+    if let boolType = try container.decodeIfPresent(Type_.Bool.self, forKey: .boolType) {
       try kindCheckAndSet(.boolType(boolType))
     }
     if let timestampType = try container.decodeIfPresent(
-      Type_.Timestamp?.self, forKey: .timestampType)
+      Type_.Timestamp.self, forKey: .timestampType)
     {
       try kindCheckAndSet(.timestampType(timestampType))
     }
-    if let dateType = try container.decodeIfPresent(Type_.Date?.self, forKey: .dateType) {
+    if let dateType = try container.decodeIfPresent(Type_.Date.self, forKey: .dateType) {
       try kindCheckAndSet(.dateType(dateType))
     }
     if let aggregateType = try container.decodeIfPresent(
-      Type_.Aggregate?.self, forKey: .aggregateType)
+      Type_.Aggregate.self, forKey: .aggregateType)
     {
       try kindCheckAndSet(.aggregateType(aggregateType))
     }
-    if let structType = try container.decodeIfPresent(Type_.Struct?.self, forKey: .structType) {
+    if let structType = try container.decodeIfPresent(Type_.Struct.self, forKey: .structType) {
       try kindCheckAndSet(.structType(structType))
     }
-    if let arrayType = try container.decodeIfPresent(Type_.Array?.self, forKey: .arrayType) {
+    if let arrayType = try container.decodeIfPresent(Type_.Array.self, forKey: .arrayType) {
       try kindCheckAndSet(.arrayType(arrayType))
     }
-    if let mapType = try container.decodeIfPresent(Type_.Map?.self, forKey: .mapType) {
+    if let mapType = try container.decodeIfPresent(Type_.Map.self, forKey: .mapType) {
       try kindCheckAndSet(.mapType(mapType))
     }
-    if let protoType = try container.decodeIfPresent(Type_.Proto?.self, forKey: .protoType) {
+    if let protoType = try container.decodeIfPresent(Type_.Proto.self, forKey: .protoType) {
       try kindCheckAndSet(.protoType(protoType))
     }
-    if let enumType = try container.decodeIfPresent(Type_.Enum?.self, forKey: .enumType) {
+    if let enumType = try container.decodeIfPresent(Type_.Enum.self, forKey: .enumType) {
       try kindCheckAndSet(.enumType(enumType))
     }
     self.kind = kind
@@ -315,7 +315,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           encoding = $0
         }
-        if let raw = try container.decodeIfPresent(Type_.Bytes.Encoding.Raw?.self, forKey: .raw) {
+        if let raw = try container.decodeIfPresent(Type_.Bytes.Encoding.Raw.self, forKey: .raw) {
           try encodingCheckAndSet(.raw(raw))
         }
         self.encoding = encoding
@@ -403,7 +403,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Which encoding to use.
       public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Use `Raw` encoding.
-        indirect case raw(Type_.Bytes.Encoding.Raw?)
+        indirect case raw(Type_.Bytes.Encoding.Raw)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -541,12 +541,12 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           encoding = $0
         }
         if let utf8Raw = try container.decodeIfPresent(
-          Type_.String.Encoding.Utf8Raw?.self, forKey: .utf8Raw)
+          Type_.String.Encoding.Utf8Raw.self, forKey: .utf8Raw)
         {
           try encodingCheckAndSet(.utf8Raw(utf8Raw))
         }
         if let utf8Bytes = try container.decodeIfPresent(
-          Type_.String.Encoding.Utf8Bytes?.self, forKey: .utf8Bytes)
+          Type_.String.Encoding.Utf8Bytes.self, forKey: .utf8Bytes)
         {
           try encodingCheckAndSet(.utf8Bytes(utf8Bytes))
         }
@@ -707,9 +707,9 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Deprecated: if set, converts to an empty `utf8_bytes`.
         @available(*, deprecated)
-        indirect case utf8Raw(Type_.String.Encoding.Utf8Raw?)
+        indirect case utf8Raw(Type_.String.Encoding.Utf8Raw)
         /// Use `Utf8Bytes` encoding.
-        indirect case utf8Bytes(Type_.String.Encoding.Utf8Bytes?)
+        indirect case utf8Bytes(Type_.String.Encoding.Utf8Bytes)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -844,12 +844,12 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           encoding = $0
         }
         if let bigEndianBytes = try container.decodeIfPresent(
-          Type_.Int64.Encoding.BigEndianBytes?.self, forKey: .bigEndianBytes)
+          Type_.Int64.Encoding.BigEndianBytes.self, forKey: .bigEndianBytes)
         {
           try encodingCheckAndSet(.bigEndianBytes(bigEndianBytes))
         }
         if let orderedCodeBytes = try container.decodeIfPresent(
-          Type_.Int64.Encoding.OrderedCodeBytes?.self, forKey: .orderedCodeBytes)
+          Type_.Int64.Encoding.OrderedCodeBytes.self, forKey: .orderedCodeBytes)
         {
           try encodingCheckAndSet(.orderedCodeBytes(orderedCodeBytes))
         }
@@ -1024,9 +1024,9 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Which encoding to use.
       public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Use `BigEndianBytes` encoding.
-        indirect case bigEndianBytes(Type_.Int64.Encoding.BigEndianBytes?)
+        indirect case bigEndianBytes(Type_.Int64.Encoding.BigEndianBytes)
         /// Use `OrderedCodeBytes` encoding.
-        indirect case orderedCodeBytes(Type_.Int64.Encoding.OrderedCodeBytes?)
+        indirect case orderedCodeBytes(Type_.Int64.Encoding.OrderedCodeBytes)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1334,7 +1334,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           encoding = $0
         }
         if let unixMicrosInt64 = try container.decodeIfPresent(
-          Type_.Int64.Encoding?.self, forKey: .unixMicrosInt64)
+          Type_.Int64.Encoding.self, forKey: .unixMicrosInt64)
         {
           try encodingCheckAndSet(.unixMicrosInt64(unixMicrosInt64))
         }
@@ -1367,7 +1367,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// Compatible with:
         ///
         ///  - Java `Instant.truncatedTo()` with `ChronoUnit.MICROS`
-        indirect case unixMicrosInt64(Type_.Int64.Encoding?)
+        indirect case unixMicrosInt64(Type_.Int64.Encoding)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1649,17 +1649,17 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           encoding = $0
         }
         if let singleton = try container.decodeIfPresent(
-          Type_.Struct.Encoding.Singleton?.self, forKey: .singleton)
+          Type_.Struct.Encoding.Singleton.self, forKey: .singleton)
         {
           try encodingCheckAndSet(.singleton(singleton))
         }
         if let delimitedBytes = try container.decodeIfPresent(
-          Type_.Struct.Encoding.DelimitedBytes?.self, forKey: .delimitedBytes)
+          Type_.Struct.Encoding.DelimitedBytes.self, forKey: .delimitedBytes)
         {
           try encodingCheckAndSet(.delimitedBytes(delimitedBytes))
         }
         if let orderedCodeBytes = try container.decodeIfPresent(
-          Type_.Struct.Encoding.OrderedCodeBytes?.self, forKey: .orderedCodeBytes)
+          Type_.Struct.Encoding.OrderedCodeBytes.self, forKey: .orderedCodeBytes)
         {
           try encodingCheckAndSet(.orderedCodeBytes(orderedCodeBytes))
         }
@@ -1931,11 +1931,11 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Which encoding to use.
       public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Use `Singleton` encoding.
-        indirect case singleton(Type_.Struct.Encoding.Singleton?)
+        indirect case singleton(Type_.Struct.Encoding.Singleton)
         /// Use `DelimitedBytes` encoding.
-        indirect case delimitedBytes(Type_.Struct.Encoding.DelimitedBytes?)
+        indirect case delimitedBytes(Type_.Struct.Encoding.DelimitedBytes)
         /// User `OrderedCodeBytes` encoding.
-        indirect case orderedCodeBytes(Type_.Struct.Encoding.OrderedCodeBytes?)
+        indirect case orderedCodeBytes(Type_.Struct.Encoding.OrderedCodeBytes)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -2347,18 +2347,18 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         aggregator = $0
       }
-      if let sum = try container.decodeIfPresent(Type_.Aggregate.Sum?.self, forKey: .sum) {
+      if let sum = try container.decodeIfPresent(Type_.Aggregate.Sum.self, forKey: .sum) {
         try aggregatorCheckAndSet(.sum(sum))
       }
       if let hllppUniqueCount = try container.decodeIfPresent(
-        Type_.Aggregate.HyperLogLogPlusPlusUniqueCount?.self, forKey: .hllppUniqueCount)
+        Type_.Aggregate.HyperLogLogPlusPlusUniqueCount.self, forKey: .hllppUniqueCount)
       {
         try aggregatorCheckAndSet(.hllppUniqueCount(hllppUniqueCount))
       }
-      if let max = try container.decodeIfPresent(Type_.Aggregate.Max?.self, forKey: .max) {
+      if let max = try container.decodeIfPresent(Type_.Aggregate.Max.self, forKey: .max) {
         try aggregatorCheckAndSet(.max(max))
       }
-      if let min = try container.decodeIfPresent(Type_.Aggregate.Min?.self, forKey: .min) {
+      if let min = try container.decodeIfPresent(Type_.Aggregate.Min.self, forKey: .min) {
         try aggregatorCheckAndSet(.min(min))
       }
       self.aggregator = aggregator
@@ -2634,13 +2634,13 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Which aggregator function to use. The configured types must match.
     public enum AggregatorOneOf: Codable, Equatable, Sendable {
       /// Sum aggregator.
-      indirect case sum(Type_.Aggregate.Sum?)
+      indirect case sum(Type_.Aggregate.Sum)
       /// HyperLogLogPlusPlusUniqueCount aggregator.
-      indirect case hllppUniqueCount(Type_.Aggregate.HyperLogLogPlusPlusUniqueCount?)
+      indirect case hllppUniqueCount(Type_.Aggregate.HyperLogLogPlusPlusUniqueCount)
       /// Max aggregator.
-      indirect case max(Type_.Aggregate.Max?)
+      indirect case max(Type_.Aggregate.Max)
       /// Min aggregator.
-      indirect case min(Type_.Aggregate.Min?)
+      indirect case min(Type_.Aggregate.Min)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -2657,33 +2657,33 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The kind of type that this represents.
   public enum KindOneOf: Codable, Equatable, Sendable {
     /// Bytes
-    indirect case bytesType(Type_.Bytes?)
+    indirect case bytesType(Type_.Bytes)
     /// String
-    indirect case stringType(Type_.String?)
+    indirect case stringType(Type_.String)
     /// Int64
-    indirect case int64Type(Type_.Int64?)
+    indirect case int64Type(Type_.Int64)
     /// Float32
-    indirect case float32Type(Type_.Float32?)
+    indirect case float32Type(Type_.Float32)
     /// Float64
-    indirect case float64Type(Type_.Float64?)
+    indirect case float64Type(Type_.Float64)
     /// Bool
-    indirect case boolType(Type_.Bool?)
+    indirect case boolType(Type_.Bool)
     /// Timestamp
-    indirect case timestampType(Type_.Timestamp?)
+    indirect case timestampType(Type_.Timestamp)
     /// Date
-    indirect case dateType(Type_.Date?)
+    indirect case dateType(Type_.Date)
     /// Aggregate
-    indirect case aggregateType(Type_.Aggregate?)
+    indirect case aggregateType(Type_.Aggregate)
     /// Struct
-    indirect case structType(Type_.Struct?)
+    indirect case structType(Type_.Struct)
     /// Array
-    indirect case arrayType(Type_.Array?)
+    indirect case arrayType(Type_.Array)
     /// Map
-    indirect case mapType(Type_.Map?)
+    indirect case mapType(Type_.Map)
     /// Proto
-    indirect case protoType(Type_.Proto?)
+    indirect case protoType(Type_.Proto)
     /// Enum
-    indirect case enumType(Type_.Enum?)
+    indirect case enumType(Type_.Enum)
   }
 
   public static var _anyTypeUrl: Swift.String {

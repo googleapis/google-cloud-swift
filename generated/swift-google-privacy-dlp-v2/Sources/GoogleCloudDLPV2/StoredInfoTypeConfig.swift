@@ -91,16 +91,16 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let largeCustomDictionary = try container.decodeIfPresent(
-      LargeCustomDictionaryConfig?.self, forKey: .largeCustomDictionary)
+      LargeCustomDictionaryConfig.self, forKey: .largeCustomDictionary)
     {
       try typeCheckAndSet(.largeCustomDictionary(largeCustomDictionary))
     }
     if let dictionary = try container.decodeIfPresent(
-      CustomInfoType.Dictionary?.self, forKey: .dictionary)
+      CustomInfoType.Dictionary.self, forKey: .dictionary)
     {
       try typeCheckAndSet(.dictionary(dictionary))
     }
-    if let regex = try container.decodeIfPresent(CustomInfoType.Regex?.self, forKey: .regex) {
+    if let regex = try container.decodeIfPresent(CustomInfoType.Regex.self, forKey: .regex) {
       try typeCheckAndSet(.regex(regex))
     }
     self.type = type
@@ -133,11 +133,11 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Stored infotype types.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// StoredInfoType where findings are defined by a dictionary of phrases.
-    indirect case largeCustomDictionary(LargeCustomDictionaryConfig?)
+    indirect case largeCustomDictionary(LargeCustomDictionaryConfig)
     /// Store dictionary-based CustomInfoType.
-    indirect case dictionary(CustomInfoType.Dictionary?)
+    indirect case dictionary(CustomInfoType.Dictionary)
     /// Store regular expression-based StoredInfoType.
-    indirect case regex(CustomInfoType.Regex?)
+    indirect case regex(CustomInfoType.Regex)
   }
 
   public static var _anyTypeUrl: Swift.String {

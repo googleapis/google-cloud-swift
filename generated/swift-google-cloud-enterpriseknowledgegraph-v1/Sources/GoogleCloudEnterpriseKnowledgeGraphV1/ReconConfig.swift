@@ -84,12 +84,12 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       clusteringConfig = $0
     }
     if let connectedComponentsConfig = try container.decodeIfPresent(
-      ConnectedComponentsConfig?.self, forKey: .connectedComponentsConfig)
+      ConnectedComponentsConfig.self, forKey: .connectedComponentsConfig)
     {
       try clusteringConfigCheckAndSet(.connectedComponentsConfig(connectedComponentsConfig))
     }
     if let affinityClusteringConfig = try container.decodeIfPresent(
-      AffinityClusteringConfig?.self, forKey: .affinityClusteringConfig)
+      AffinityClusteringConfig.self, forKey: .affinityClusteringConfig)
     {
       try clusteringConfigCheckAndSet(.affinityClusteringConfig(affinityClusteringConfig))
     }
@@ -276,9 +276,9 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Choice of clustering algorithm. Default is ConnectedComponentsConfig.
   public enum ClusteringConfigOneOf: Codable, Equatable, Sendable {
     /// Configs for connected components.
-    indirect case connectedComponentsConfig(ConnectedComponentsConfig?)
+    indirect case connectedComponentsConfig(ConnectedComponentsConfig)
     /// Configs for affinity clustering.
-    indirect case affinityClusteringConfig(AffinityClusteringConfig?)
+    indirect case affinityClusteringConfig(AffinityClusteringConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

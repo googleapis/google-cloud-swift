@@ -482,7 +482,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         config = $0
       }
       if let gceInstance = try container.decodeIfPresent(
-        WorkstationConfig.Host.GceInstance?.self, forKey: .gceInstance)
+        WorkstationConfig.Host.GceInstance.self, forKey: .gceInstance)
       {
         try configCheckAndSet(.gceInstance(gceInstance))
       }
@@ -1229,7 +1229,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Type of host to be used for the workstation's runtime.
     public enum ConfigOneOf: Codable, Equatable, Sendable {
       /// Specifies a Compute Engine instance as the host.
-      indirect case gceInstance(WorkstationConfig.Host.GceInstance?)
+      indirect case gceInstance(WorkstationConfig.Host.GceInstance)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1307,12 +1307,12 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         directoryType = $0
       }
       if let gcePd = try container.decodeIfPresent(
-        WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk?.self, forKey: .gcePd)
+        WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk.self, forKey: .gcePd)
       {
         try directoryTypeCheckAndSet(.gcePd(gcePd))
       }
       if let gceHd = try container.decodeIfPresent(
-        WorkstationConfig.PersistentDirectory.GceHyperdiskBalancedHighAvailability?.self,
+        WorkstationConfig.PersistentDirectory.GceHyperdiskBalancedHighAvailability.self,
         forKey: .gceHd)
       {
         try directoryTypeCheckAndSet(.gceHd(gceHd))
@@ -1894,11 +1894,11 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// How a persistent directory should be implemented.
     public enum DirectoryTypeOneOf: Codable, Equatable, Sendable {
       /// A PersistentDirectory backed by a Compute Engine persistent disk.
-      indirect case gcePd(WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk?)
+      indirect case gcePd(WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk)
       /// A PersistentDirectory backed by a Compute Engine hyperdisk high
       /// availability disk.
       indirect case gceHd(
-        WorkstationConfig.PersistentDirectory.GceHyperdiskBalancedHighAvailability?)
+        WorkstationConfig.PersistentDirectory.GceHyperdiskBalancedHighAvailability)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1974,7 +1974,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         directoryType = $0
       }
       if let gcePd = try container.decodeIfPresent(
-        WorkstationConfig.EphemeralDirectory.GcePersistentDisk?.self, forKey: .gcePd)
+        WorkstationConfig.EphemeralDirectory.GcePersistentDisk.self, forKey: .gcePd)
       {
         try directoryTypeCheckAndSet(.gcePd(gcePd))
       }
@@ -2139,7 +2139,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// How an ephemeral directory should be implemented.
     public enum DirectoryTypeOneOf: Codable, Equatable, Sendable {
       /// An EphemeralDirectory backed by a Compute Engine persistent disk.
-      indirect case gcePd(WorkstationConfig.EphemeralDirectory.GcePersistentDisk?)
+      indirect case gcePd(WorkstationConfig.EphemeralDirectory.GcePersistentDisk)
     }
 
     public static var _anyTypeUrl: Swift.String {

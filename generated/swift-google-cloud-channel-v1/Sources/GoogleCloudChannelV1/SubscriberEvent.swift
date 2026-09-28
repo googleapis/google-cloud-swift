@@ -72,13 +72,12 @@ public struct SubscriberEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       event = $0
     }
-    if let customerEvent = try container.decodeIfPresent(
-      CustomerEvent?.self, forKey: .customerEvent)
+    if let customerEvent = try container.decodeIfPresent(CustomerEvent.self, forKey: .customerEvent)
     {
       try eventCheckAndSet(.customerEvent(customerEvent))
     }
     if let entitlementEvent = try container.decodeIfPresent(
-      EntitlementEvent?.self, forKey: .entitlementEvent)
+      EntitlementEvent.self, forKey: .entitlementEvent)
     {
       try eventCheckAndSet(.entitlementEvent(entitlementEvent))
     }
@@ -109,9 +108,9 @@ public struct SubscriberEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// This is a required field.
   public enum EventOneOf: Codable, Equatable, Sendable {
     /// Customer event sent as part of Pub/Sub event to partners.
-    indirect case customerEvent(CustomerEvent?)
+    indirect case customerEvent(CustomerEvent)
     /// Entitlement event sent as part of Pub/Sub event to partners.
-    indirect case entitlementEvent(EntitlementEvent?)
+    indirect case entitlementEvent(EntitlementEvent)
   }
 
   public static var _anyTypeUrl: Swift.String {

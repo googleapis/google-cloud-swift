@@ -119,8 +119,7 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       quota = $0
     }
-    if let instanceQuota = try container.decodeIfPresent(
-      InstanceQuota?.self, forKey: .instanceQuota)
+    if let instanceQuota = try container.decodeIfPresent(InstanceQuota.self, forKey: .instanceQuota)
     {
       try quotaCheckAndSet(.instanceQuota(instanceQuota))
     }
@@ -311,7 +310,7 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The quota of one asset type.
   public enum QuotaOneOf: Codable, Equatable, Sendable {
     /// Instance quota.
-    indirect case instanceQuota(InstanceQuota?)
+    indirect case instanceQuota(InstanceQuota)
   }
 
   /// Available quantity based on asset type.

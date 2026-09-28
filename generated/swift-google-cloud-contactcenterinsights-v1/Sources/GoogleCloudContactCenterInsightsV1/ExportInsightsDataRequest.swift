@@ -107,7 +107,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
       destination = $0
     }
     if let bigQueryDestination = try container.decodeIfPresent(
-      ExportInsightsDataRequest.BigQueryDestination?.self, forKey: .bigQueryDestination)
+      ExportInsightsDataRequest.BigQueryDestination.self, forKey: .bigQueryDestination)
     {
       try destinationCheckAndSet(.bigQueryDestination(bigQueryDestination))
     }
@@ -350,7 +350,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// Exporter destination.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Specified if sink is a BigQuery table.
-    indirect case bigQueryDestination(ExportInsightsDataRequest.BigQueryDestination?)
+    indirect case bigQueryDestination(ExportInsightsDataRequest.BigQueryDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

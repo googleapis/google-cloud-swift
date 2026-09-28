@@ -80,7 +80,7 @@ public struct AzureAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
       try authTypeCheckAndSet(.sasToken(sasToken))
     }
     if let azureV2WorkloadIdentityFederation = try container.decodeIfPresent(
-      AzureV2WorkloadIdentityFederation?.self, forKey: .azureV2WorkloadIdentityFederation)
+      AzureV2WorkloadIdentityFederation.self, forKey: .azureV2WorkloadIdentityFederation)
     {
       try authTypeCheckAndSet(.azureV2WorkloadIdentityFederation(azureV2WorkloadIdentityFederation))
     }
@@ -116,7 +116,7 @@ public struct AzureAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Required. SAS Token.
     case sasToken(Swift.String)
     /// Required. Azure V2 Workload Identity Federation.
-    indirect case azureV2WorkloadIdentityFederation(AzureV2WorkloadIdentityFederation?)
+    indirect case azureV2WorkloadIdentityFederation(AzureV2WorkloadIdentityFederation)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -94,7 +94,7 @@
         operationMetadata = $0
       }
       if let exportOperationMetadata = try container.decodeIfPresent(
-        ExportOperationMetadata?.self, forKey: .exportOperationMetadata)
+        ExportOperationMetadata.self, forKey: .exportOperationMetadata)
       {
         try operationMetadataCheckAndSet(.exportOperationMetadata(exportOperationMetadata))
       }
@@ -249,7 +249,7 @@
     /// Additional metadata for the Knowledge operation.
     public enum OperationMetadataOneOf: Codable, Equatable, Sendable {
       /// Metadata for the Export Data Operation such as the destination of export.
-      indirect case exportOperationMetadata(ExportOperationMetadata?)
+      indirect case exportOperationMetadata(ExportOperationMetadata)
     }
 
     public static var _anyTypeUrl: Swift.String {

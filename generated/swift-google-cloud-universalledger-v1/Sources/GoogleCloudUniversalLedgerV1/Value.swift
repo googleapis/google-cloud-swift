@@ -97,15 +97,15 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     if let accountId = try container.decodeIfPresent(Swift.String.self, forKey: .accountId) {
       try valueCheckAndSet(.accountId(accountId))
     }
-    if let dictValue = try container.decodeIfPresent(DictValue?.self, forKey: .dictValue) {
+    if let dictValue = try container.decodeIfPresent(DictValue.self, forKey: .dictValue) {
       try valueCheckAndSet(.dictValue(dictValue))
     }
     if let qualifiedCurrencyValue = try container.decodeIfPresent(
-      QualifiedCurrencyValue?.self, forKey: .qualifiedCurrencyValue)
+      QualifiedCurrencyValue.self, forKey: .qualifiedCurrencyValue)
     {
       try valueCheckAndSet(.qualifiedCurrencyValue(qualifiedCurrencyValue))
     }
-    if let amountValue = try container.decodeIfPresent(AmountValue?.self, forKey: .amountValue) {
+    if let amountValue = try container.decodeIfPresent(AmountValue.self, forKey: .amountValue) {
       try valueCheckAndSet(.amountValue(amountValue))
     }
     self.value = value
@@ -156,11 +156,11 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. An account ID.
     case accountId(Swift.String)
     /// Optional. A dictionary value.
-    indirect case dictValue(DictValue?)
+    indirect case dictValue(DictValue)
     /// Optional. A qualified currency value.
-    indirect case qualifiedCurrencyValue(QualifiedCurrencyValue?)
+    indirect case qualifiedCurrencyValue(QualifiedCurrencyValue)
     /// Optional. An amount value.
-    indirect case amountValue(AmountValue?)
+    indirect case amountValue(AmountValue)
   }
 
   public static var _anyTypeUrl: Swift.String {

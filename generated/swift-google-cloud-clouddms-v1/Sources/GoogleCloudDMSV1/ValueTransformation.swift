@@ -88,19 +88,19 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       filter = $0
     }
-    if let isNull = try container.decodeIfPresent(GoogleWKT.WKTEmpty?.self, forKey: .isNull) {
+    if let isNull = try container.decodeIfPresent(GoogleWKT.WKTEmpty.self, forKey: .isNull) {
       try filterCheckAndSet(.isNull(isNull))
     }
-    if let valueList = try container.decodeIfPresent(ValueListFilter?.self, forKey: .valueList) {
+    if let valueList = try container.decodeIfPresent(ValueListFilter.self, forKey: .valueList) {
       try filterCheckAndSet(.valueList(valueList))
     }
     if let intComparison = try container.decodeIfPresent(
-      IntComparisonFilter?.self, forKey: .intComparison)
+      IntComparisonFilter.self, forKey: .intComparison)
     {
       try filterCheckAndSet(.intComparison(intComparison))
     }
     if let doubleComparison = try container.decodeIfPresent(
-      DoubleComparisonFilter?.self, forKey: .doubleComparison)
+      DoubleComparisonFilter.self, forKey: .doubleComparison)
     {
       try filterCheckAndSet(.doubleComparison(doubleComparison))
     }
@@ -116,29 +116,29 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       action = $0
     }
-    if let assignNull = try container.decodeIfPresent(GoogleWKT.WKTEmpty?.self, forKey: .assignNull)
+    if let assignNull = try container.decodeIfPresent(GoogleWKT.WKTEmpty.self, forKey: .assignNull)
     {
       try actionCheckAndSet(.assignNull(assignNull))
     }
     if let assignSpecificValue = try container.decodeIfPresent(
-      AssignSpecificValue?.self, forKey: .assignSpecificValue)
+      AssignSpecificValue.self, forKey: .assignSpecificValue)
     {
       try actionCheckAndSet(.assignSpecificValue(assignSpecificValue))
     }
     if let assignMinValue = try container.decodeIfPresent(
-      GoogleWKT.WKTEmpty?.self, forKey: .assignMinValue)
+      GoogleWKT.WKTEmpty.self, forKey: .assignMinValue)
     {
       try actionCheckAndSet(.assignMinValue(assignMinValue))
     }
     if let assignMaxValue = try container.decodeIfPresent(
-      GoogleWKT.WKTEmpty?.self, forKey: .assignMaxValue)
+      GoogleWKT.WKTEmpty.self, forKey: .assignMaxValue)
     {
       try actionCheckAndSet(.assignMaxValue(assignMaxValue))
     }
-    if let roundScale = try container.decodeIfPresent(RoundToScale?.self, forKey: .roundScale) {
+    if let roundScale = try container.decodeIfPresent(RoundToScale.self, forKey: .roundScale) {
       try actionCheckAndSet(.roundScale(roundScale))
     }
-    if let applyHash = try container.decodeIfPresent(ApplyHash?.self, forKey: .applyHash) {
+    if let applyHash = try container.decodeIfPresent(ApplyHash.self, forKey: .applyHash) {
       try actionCheckAndSet(.applyHash(applyHash))
     }
     self.action = action
@@ -187,33 +187,33 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum FilterOneOf: Codable, Equatable, Sendable {
     /// Optional. Value is null
-    indirect case isNull(GoogleWKT.WKTEmpty?)
+    indirect case isNull(GoogleWKT.WKTEmpty)
     /// Optional. Value is found in the specified list.
-    indirect case valueList(ValueListFilter?)
+    indirect case valueList(ValueListFilter)
     /// Optional. Filter on relation between source value and compare value of
     /// type integer.
-    indirect case intComparison(IntComparisonFilter?)
+    indirect case intComparison(IntComparisonFilter)
     /// Optional. Filter on relation between source value and compare value of
     /// type double.
-    indirect case doubleComparison(DoubleComparisonFilter?)
+    indirect case doubleComparison(DoubleComparisonFilter)
   }
 
   public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Optional. Set to null
-    indirect case assignNull(GoogleWKT.WKTEmpty?)
+    indirect case assignNull(GoogleWKT.WKTEmpty)
     /// Optional. Set to a specific value (value is converted to fit the target
     /// data type)
-    indirect case assignSpecificValue(AssignSpecificValue?)
+    indirect case assignSpecificValue(AssignSpecificValue)
     /// Optional. Set to min_value - if integer or numeric, will use
     /// int.minvalue, etc
-    indirect case assignMinValue(GoogleWKT.WKTEmpty?)
+    indirect case assignMinValue(GoogleWKT.WKTEmpty)
     /// Optional. Set to max_value - if integer or numeric, will use
     /// int.maxvalue, etc
-    indirect case assignMaxValue(GoogleWKT.WKTEmpty?)
+    indirect case assignMaxValue(GoogleWKT.WKTEmpty)
     /// Optional. Allows the data to change scale
-    indirect case roundScale(RoundToScale?)
+    indirect case roundScale(RoundToScale)
     /// Optional. Applies a hash function on the data
-    indirect case applyHash(ApplyHash?)
+    indirect case applyHash(ApplyHash)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -71,12 +71,11 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       request = $0
     }
     if let setupRequest = try container.decodeIfPresent(
-      ReceivePacketsRequest.SetupRequest?.self, forKey: .setupRequest)
+      ReceivePacketsRequest.SetupRequest.self, forKey: .setupRequest)
     {
       try requestCheckAndSet(.setupRequest(setupRequest))
     }
-    if let commitRequest = try container.decodeIfPresent(
-      CommitRequest?.self, forKey: .commitRequest)
+    if let commitRequest = try container.decodeIfPresent(CommitRequest.self, forKey: .commitRequest)
     {
       try requestCheckAndSet(.commitRequest(commitRequest))
     }
@@ -197,12 +196,12 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         consumerMode = $0
       }
       if let eagerReceiveMode = try container.decodeIfPresent(
-        EagerMode?.self, forKey: .eagerReceiveMode)
+        EagerMode.self, forKey: .eagerReceiveMode)
       {
         try consumerModeCheckAndSet(.eagerReceiveMode(eagerReceiveMode))
       }
       if let controlledReceiveMode = try container.decodeIfPresent(
-        ControlledMode?.self, forKey: .controlledReceiveMode)
+        ControlledMode.self, forKey: .controlledReceiveMode)
       {
         try consumerModeCheckAndSet(.controlledReceiveMode(controlledReceiveMode))
       }
@@ -236,9 +235,9 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The mode in which the consumer reads messages.
     public enum ConsumerModeOneOf: Codable, Equatable, Sendable {
       /// Options for configuring eager mode.
-      indirect case eagerReceiveMode(EagerMode?)
+      indirect case eagerReceiveMode(EagerMode)
       /// Options for configuring controlled mode.
-      indirect case controlledReceiveMode(ControlledMode?)
+      indirect case controlledReceiveMode(ControlledMode)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -257,9 +256,9 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The request to setup the initial state of session.
     ///
     /// The client must send and only send this as the first message.
-    indirect case setupRequest(ReceivePacketsRequest.SetupRequest?)
+    indirect case setupRequest(ReceivePacketsRequest.SetupRequest)
     /// This request checkpoints the consumer's read progress.
-    indirect case commitRequest(CommitRequest?)
+    indirect case commitRequest(CommitRequest)
   }
 
   public static var _anyTypeUrl: Swift.String {

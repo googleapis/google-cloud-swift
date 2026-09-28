@@ -367,12 +367,12 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       try backupScopeCheckAndSet(.allNamespaces(allNamespaces))
     }
     if let selectedNamespaces = try container.decodeIfPresent(
-      Namespaces?.self, forKey: .selectedNamespaces)
+      Namespaces.self, forKey: .selectedNamespaces)
     {
       try backupScopeCheckAndSet(.selectedNamespaces(selectedNamespaces))
     }
     if let selectedApplications = try container.decodeIfPresent(
-      NamespacedNames?.self, forKey: .selectedApplications)
+      NamespacedNames.self, forKey: .selectedApplications)
     {
       try backupScopeCheckAndSet(.selectedApplications(selectedApplications))
     }
@@ -723,10 +723,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     case allNamespaces(Swift.Bool)
     /// Output only. If set, the list of namespaces that were included in the
     /// Backup.
-    indirect case selectedNamespaces(Namespaces?)
+    indirect case selectedNamespaces(Namespaces)
     /// Output only. If set, the list of ProtectedApplications whose resources
     /// were included in the Backup.
-    indirect case selectedApplications(NamespacedNames?)
+    indirect case selectedApplications(NamespacedNames)
   }
 
   public static var _anyTypeUrl: Swift.String {

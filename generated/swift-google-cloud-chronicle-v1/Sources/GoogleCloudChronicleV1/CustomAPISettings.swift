@@ -105,23 +105,22 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       authentication = $0
     }
-    if let noAuth = try container.decodeIfPresent(CustomAPINoAuth?.self, forKey: .noAuth) {
+    if let noAuth = try container.decodeIfPresent(CustomAPINoAuth.self, forKey: .noAuth) {
       try authenticationCheckAndSet(.noAuth(noAuth))
     }
-    if let basicAuth = try container.decodeIfPresent(UsernameSecretAuth?.self, forKey: .basicAuth) {
+    if let basicAuth = try container.decodeIfPresent(UsernameSecretAuth.self, forKey: .basicAuth) {
       try authenticationCheckAndSet(.basicAuth(basicAuth))
     }
     if let oauthClientCredentials = try container.decodeIfPresent(
-      OAuthClientCredentials?.self, forKey: .oauthClientCredentials)
+      OAuthClientCredentials.self, forKey: .oauthClientCredentials)
     {
       try authenticationCheckAndSet(.oauthClientCredentials(oauthClientCredentials))
     }
-    if let headerAuth = try container.decodeIfPresent(
-      CustomAPIHeaderAuth?.self, forKey: .headerAuth)
+    if let headerAuth = try container.decodeIfPresent(CustomAPIHeaderAuth.self, forKey: .headerAuth)
     {
       try authenticationCheckAndSet(.headerAuth(headerAuth))
     }
-    if let queryAuth = try container.decodeIfPresent(CustomAPIQueryAuth?.self, forKey: .queryAuth) {
+    if let queryAuth = try container.decodeIfPresent(CustomAPIQueryAuth.self, forKey: .queryAuth) {
       try authenticationCheckAndSet(.queryAuth(queryAuth))
     }
     self.authentication = authentication
@@ -160,15 +159,15 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// API.
   public enum AuthenticationOneOf: Codable, Equatable, Sendable {
     /// Authenticate without credentials or secrets.
-    indirect case noAuth(CustomAPINoAuth?)
+    indirect case noAuth(CustomAPINoAuth)
     /// Authenticate using Username/Password credentials.
-    indirect case basicAuth(UsernameSecretAuth?)
+    indirect case basicAuth(UsernameSecretAuth)
     /// Authenticate using OAuth 2.0 Client Credentials Grant flow.
-    indirect case oauthClientCredentials(OAuthClientCredentials?)
+    indirect case oauthClientCredentials(OAuthClientCredentials)
     /// Authenticate using custom API Keys injected into request headers.
-    indirect case headerAuth(CustomAPIHeaderAuth?)
+    indirect case headerAuth(CustomAPIHeaderAuth)
     /// Authenticate using custom API Keys injected into URL query parameters.
-    indirect case queryAuth(CustomAPIQueryAuth?)
+    indirect case queryAuth(CustomAPIQueryAuth)
   }
 
   public static var _anyTypeUrl: Swift.String {

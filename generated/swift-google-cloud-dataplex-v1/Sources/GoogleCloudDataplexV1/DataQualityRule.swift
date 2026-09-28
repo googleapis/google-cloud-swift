@@ -200,52 +200,52 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
       ruleType = $0
     }
     if let rangeExpectation = try container.decodeIfPresent(
-      DataQualityRule.RangeExpectation?.self, forKey: .rangeExpectation)
+      DataQualityRule.RangeExpectation.self, forKey: .rangeExpectation)
     {
       try ruleTypeCheckAndSet(.rangeExpectation(rangeExpectation))
     }
     if let nonNullExpectation = try container.decodeIfPresent(
-      DataQualityRule.NonNullExpectation?.self, forKey: .nonNullExpectation)
+      DataQualityRule.NonNullExpectation.self, forKey: .nonNullExpectation)
     {
       try ruleTypeCheckAndSet(.nonNullExpectation(nonNullExpectation))
     }
     if let setExpectation = try container.decodeIfPresent(
-      DataQualityRule.SetExpectation?.self, forKey: .setExpectation)
+      DataQualityRule.SetExpectation.self, forKey: .setExpectation)
     {
       try ruleTypeCheckAndSet(.setExpectation(setExpectation))
     }
     if let regexExpectation = try container.decodeIfPresent(
-      DataQualityRule.RegexExpectation?.self, forKey: .regexExpectation)
+      DataQualityRule.RegexExpectation.self, forKey: .regexExpectation)
     {
       try ruleTypeCheckAndSet(.regexExpectation(regexExpectation))
     }
     if let uniquenessExpectation = try container.decodeIfPresent(
-      DataQualityRule.UniquenessExpectation?.self, forKey: .uniquenessExpectation)
+      DataQualityRule.UniquenessExpectation.self, forKey: .uniquenessExpectation)
     {
       try ruleTypeCheckAndSet(.uniquenessExpectation(uniquenessExpectation))
     }
     if let statisticRangeExpectation = try container.decodeIfPresent(
-      DataQualityRule.StatisticRangeExpectation?.self, forKey: .statisticRangeExpectation)
+      DataQualityRule.StatisticRangeExpectation.self, forKey: .statisticRangeExpectation)
     {
       try ruleTypeCheckAndSet(.statisticRangeExpectation(statisticRangeExpectation))
     }
     if let rowConditionExpectation = try container.decodeIfPresent(
-      DataQualityRule.RowConditionExpectation?.self, forKey: .rowConditionExpectation)
+      DataQualityRule.RowConditionExpectation.self, forKey: .rowConditionExpectation)
     {
       try ruleTypeCheckAndSet(.rowConditionExpectation(rowConditionExpectation))
     }
     if let tableConditionExpectation = try container.decodeIfPresent(
-      DataQualityRule.TableConditionExpectation?.self, forKey: .tableConditionExpectation)
+      DataQualityRule.TableConditionExpectation.self, forKey: .tableConditionExpectation)
     {
       try ruleTypeCheckAndSet(.tableConditionExpectation(tableConditionExpectation))
     }
     if let sqlAssertion = try container.decodeIfPresent(
-      DataQualityRule.SqlAssertion?.self, forKey: .sqlAssertion)
+      DataQualityRule.SqlAssertion.self, forKey: .sqlAssertion)
     {
       try ruleTypeCheckAndSet(.sqlAssertion(sqlAssertion))
     }
     if let templateReference = try container.decodeIfPresent(
-      DataQualityRule.TemplateReference?.self, forKey: .templateReference)
+      DataQualityRule.TemplateReference.self, forKey: .templateReference)
     {
       try ruleTypeCheckAndSet(.templateReference(templateReference))
     }
@@ -1422,13 +1422,13 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
           sourceType = $0
         }
         if let entrySource = try container.decodeIfPresent(
-          DataQualityRule.RuleSource.RulePathElement.EntrySource?.self, forKey: .entrySource)
+          DataQualityRule.RuleSource.RulePathElement.EntrySource.self, forKey: .entrySource)
         {
           try sourceTypeCheckAndSet(.entrySource(entrySource))
         }
         if let entryLinkSource = try container.decodeIfPresent(
-          DataQualityRule.RuleSource.RulePathElement.EntryLinkSource?.self, forKey: .entryLinkSource
-        ) {
+          DataQualityRule.RuleSource.RulePathElement.EntryLinkSource.self, forKey: .entryLinkSource)
+        {
           try sourceTypeCheckAndSet(.entryLinkSource(entryLinkSource))
         }
         self.sourceType = sourceType
@@ -1630,10 +1630,10 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum SourceTypeOneOf: Codable, Equatable, Sendable {
         /// Output only. Entry source represents information about the related
         /// source entry.
-        indirect case entrySource(DataQualityRule.RuleSource.RulePathElement.EntrySource?)
+        indirect case entrySource(DataQualityRule.RuleSource.RulePathElement.EntrySource)
         /// Output only. Entry link source represents information about the entry
         /// link.
-        indirect case entryLinkSource(DataQualityRule.RuleSource.RulePathElement.EntryLinkSource?)
+        indirect case entryLinkSource(DataQualityRule.RuleSource.RulePathElement.EntryLinkSource)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1761,33 +1761,33 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum RuleTypeOneOf: Codable, Equatable, Sendable {
     /// Row-level rule which evaluates whether each column value lies between a
     /// specified range.
-    indirect case rangeExpectation(DataQualityRule.RangeExpectation?)
+    indirect case rangeExpectation(DataQualityRule.RangeExpectation)
     /// Row-level rule which evaluates whether each column value is null.
-    indirect case nonNullExpectation(DataQualityRule.NonNullExpectation?)
+    indirect case nonNullExpectation(DataQualityRule.NonNullExpectation)
     /// Row-level rule which evaluates whether each column value is contained by
     /// a specified set.
-    indirect case setExpectation(DataQualityRule.SetExpectation?)
+    indirect case setExpectation(DataQualityRule.SetExpectation)
     /// Row-level rule which evaluates whether each column value matches a
     /// specified regex.
-    indirect case regexExpectation(DataQualityRule.RegexExpectation?)
+    indirect case regexExpectation(DataQualityRule.RegexExpectation)
     /// Row-level rule which evaluates whether each column value is unique.
-    indirect case uniquenessExpectation(DataQualityRule.UniquenessExpectation?)
+    indirect case uniquenessExpectation(DataQualityRule.UniquenessExpectation)
     /// Aggregate rule which evaluates whether the column aggregate
     /// statistic lies between a specified range.
-    indirect case statisticRangeExpectation(DataQualityRule.StatisticRangeExpectation?)
+    indirect case statisticRangeExpectation(DataQualityRule.StatisticRangeExpectation)
     /// Row-level rule which evaluates whether each row in a table passes the
     /// specified condition.
-    indirect case rowConditionExpectation(DataQualityRule.RowConditionExpectation?)
+    indirect case rowConditionExpectation(DataQualityRule.RowConditionExpectation)
     /// Aggregate rule which evaluates whether the provided expression is true
     /// for a table.
-    indirect case tableConditionExpectation(DataQualityRule.TableConditionExpectation?)
+    indirect case tableConditionExpectation(DataQualityRule.TableConditionExpectation)
     /// Aggregate rule which evaluates the number of rows returned for the
     /// provided statement. If any rows are returned, this rule fails.
-    indirect case sqlAssertion(DataQualityRule.SqlAssertion?)
+    indirect case sqlAssertion(DataQualityRule.SqlAssertion)
     /// Aggregate rule which references a rule template and provides the
     /// parameters to be substituted in the template. If any rows are returned,
     /// this rule fails.
-    indirect case templateReference(DataQualityRule.TemplateReference?)
+    indirect case templateReference(DataQualityRule.TemplateReference)
   }
 
   public static var _anyTypeUrl: Swift.String {

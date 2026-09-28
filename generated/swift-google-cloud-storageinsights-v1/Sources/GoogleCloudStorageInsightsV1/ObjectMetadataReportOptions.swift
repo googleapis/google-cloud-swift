@@ -83,7 +83,7 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleWKT._AnyPac
       filter = $0
     }
     if let storageFilters = try container.decodeIfPresent(
-      CloudStorageFilters?.self, forKey: .storageFilters)
+      CloudStorageFilters.self, forKey: .storageFilters)
     {
       try filterCheckAndSet(.storageFilters(storageFilters))
     }
@@ -100,7 +100,7 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleWKT._AnyPac
       destinationOptions = $0
     }
     if let storageDestinationOptions = try container.decodeIfPresent(
-      CloudStorageDestinationOptions?.self, forKey: .storageDestinationOptions)
+      CloudStorageDestinationOptions.self, forKey: .storageDestinationOptions)
     {
       try destinationOptionsCheckAndSet(.storageDestinationOptions(storageDestinationOptions))
     }
@@ -136,13 +136,13 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleWKT._AnyPac
   /// Filter options for storage systems.
   public enum FilterOneOf: Codable, Equatable, Sendable {
     /// Cloud Storage as the storage system.
-    indirect case storageFilters(CloudStorageFilters?)
+    indirect case storageFilters(CloudStorageFilters)
   }
 
   /// Options on destination for storage systems.
   public enum DestinationOptionsOneOf: Codable, Equatable, Sendable {
     /// Cloud Storage as the storage system.
-    indirect case storageDestinationOptions(CloudStorageDestinationOptions?)
+    indirect case storageDestinationOptions(CloudStorageDestinationOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

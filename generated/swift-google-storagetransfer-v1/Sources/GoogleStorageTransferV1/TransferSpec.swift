@@ -141,11 +141,11 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       dataSink = $0
     }
-    if let gcsDataSink = try container.decodeIfPresent(GcsData?.self, forKey: .gcsDataSink) {
+    if let gcsDataSink = try container.decodeIfPresent(GcsData.self, forKey: .gcsDataSink) {
       try dataSinkCheckAndSet(.gcsDataSink(gcsDataSink))
     }
     if let posixDataSink = try container.decodeIfPresent(
-      PosixFilesystem?.self, forKey: .posixDataSink)
+      PosixFilesystem.self, forKey: .posixDataSink)
     {
       try dataSinkCheckAndSet(.posixDataSink(posixDataSink))
     }
@@ -161,33 +161,32 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       dataSource = $0
     }
-    if let gcsDataSource = try container.decodeIfPresent(GcsData?.self, forKey: .gcsDataSource) {
+    if let gcsDataSource = try container.decodeIfPresent(GcsData.self, forKey: .gcsDataSource) {
       try dataSourceCheckAndSet(.gcsDataSource(gcsDataSource))
     }
-    if let awsS3DataSource = try container.decodeIfPresent(
-      AwsS3Data?.self, forKey: .awsS3DataSource)
+    if let awsS3DataSource = try container.decodeIfPresent(AwsS3Data.self, forKey: .awsS3DataSource)
     {
       try dataSourceCheckAndSet(.awsS3DataSource(awsS3DataSource))
     }
-    if let httpDataSource = try container.decodeIfPresent(HttpData?.self, forKey: .httpDataSource) {
+    if let httpDataSource = try container.decodeIfPresent(HttpData.self, forKey: .httpDataSource) {
       try dataSourceCheckAndSet(.httpDataSource(httpDataSource))
     }
     if let posixDataSource = try container.decodeIfPresent(
-      PosixFilesystem?.self, forKey: .posixDataSource)
+      PosixFilesystem.self, forKey: .posixDataSource)
     {
       try dataSourceCheckAndSet(.posixDataSource(posixDataSource))
     }
     if let azureBlobStorageDataSource = try container.decodeIfPresent(
-      AzureBlobStorageData?.self, forKey: .azureBlobStorageDataSource)
+      AzureBlobStorageData.self, forKey: .azureBlobStorageDataSource)
     {
       try dataSourceCheckAndSet(.azureBlobStorageDataSource(azureBlobStorageDataSource))
     }
     if let awsS3CompatibleDataSource = try container.decodeIfPresent(
-      AwsS3CompatibleData?.self, forKey: .awsS3CompatibleDataSource)
+      AwsS3CompatibleData.self, forKey: .awsS3CompatibleDataSource)
     {
       try dataSourceCheckAndSet(.awsS3CompatibleDataSource(awsS3CompatibleDataSource))
     }
-    if let hdfsDataSource = try container.decodeIfPresent(HdfsData?.self, forKey: .hdfsDataSource) {
+    if let hdfsDataSource = try container.decodeIfPresent(HdfsData.self, forKey: .hdfsDataSource) {
       try dataSourceCheckAndSet(.hdfsDataSource(hdfsDataSource))
     }
     self.dataSource = dataSource
@@ -203,7 +202,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       intermediateDataLocation = $0
     }
     if let gcsIntermediateDataLocation = try container.decodeIfPresent(
-      GcsData?.self, forKey: .gcsIntermediateDataLocation)
+      GcsData.self, forKey: .gcsIntermediateDataLocation)
     {
       try intermediateDataLocationCheckAndSet(
         .gcsIntermediateDataLocation(gcsIntermediateDataLocation))
@@ -265,27 +264,27 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The write sink for the data.
   public enum DataSinkOneOf: Codable, Equatable, Sendable {
     /// A Cloud Storage data sink.
-    indirect case gcsDataSink(GcsData?)
+    indirect case gcsDataSink(GcsData)
     /// A POSIX Filesystem data sink.
-    indirect case posixDataSink(PosixFilesystem?)
+    indirect case posixDataSink(PosixFilesystem)
   }
 
   /// The read source of the data.
   public enum DataSourceOneOf: Codable, Equatable, Sendable {
     /// A Cloud Storage data source.
-    indirect case gcsDataSource(GcsData?)
+    indirect case gcsDataSource(GcsData)
     /// An AWS S3 data source.
-    indirect case awsS3DataSource(AwsS3Data?)
+    indirect case awsS3DataSource(AwsS3Data)
     /// An HTTP URL data source.
-    indirect case httpDataSource(HttpData?)
+    indirect case httpDataSource(HttpData)
     /// A POSIX Filesystem data source.
-    indirect case posixDataSource(PosixFilesystem?)
+    indirect case posixDataSource(PosixFilesystem)
     /// An Azure Blob Storage data source.
-    indirect case azureBlobStorageDataSource(AzureBlobStorageData?)
+    indirect case azureBlobStorageDataSource(AzureBlobStorageData)
     /// An AWS S3 compatible data source.
-    indirect case awsS3CompatibleDataSource(AwsS3CompatibleData?)
+    indirect case awsS3CompatibleDataSource(AwsS3CompatibleData)
     /// An HDFS cluster data source.
-    indirect case hdfsDataSource(HdfsData?)
+    indirect case hdfsDataSource(HdfsData)
   }
 
   public enum IntermediateDataLocationOneOf: Codable, Equatable, Sendable {
@@ -295,7 +294,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// See [Transfer data between file
     /// systems](https://cloud.google.com/storage-transfer/docs/file-to-file) for
     /// more information.
-    indirect case gcsIntermediateDataLocation(GcsData?)
+    indirect case gcsIntermediateDataLocation(GcsData)
   }
 
   public static var _anyTypeUrl: Swift.String {

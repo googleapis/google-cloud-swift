@@ -231,30 +231,30 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       backupProperties = $0
     }
     if let computeInstanceBackupProperties = try container.decodeIfPresent(
-      ComputeInstanceBackupProperties?.self, forKey: .computeInstanceBackupProperties)
+      ComputeInstanceBackupProperties.self, forKey: .computeInstanceBackupProperties)
     {
       try backupPropertiesCheckAndSet(
         .computeInstanceBackupProperties(computeInstanceBackupProperties))
     }
     if let cloudSqlInstanceBackupProperties = try container.decodeIfPresent(
-      CloudSqlInstanceBackupProperties?.self, forKey: .cloudSqlInstanceBackupProperties)
+      CloudSqlInstanceBackupProperties.self, forKey: .cloudSqlInstanceBackupProperties)
     {
       try backupPropertiesCheckAndSet(
         .cloudSqlInstanceBackupProperties(cloudSqlInstanceBackupProperties))
     }
     if let backupApplianceBackupProperties = try container.decodeIfPresent(
-      BackupApplianceBackupProperties?.self, forKey: .backupApplianceBackupProperties)
+      BackupApplianceBackupProperties.self, forKey: .backupApplianceBackupProperties)
     {
       try backupPropertiesCheckAndSet(
         .backupApplianceBackupProperties(backupApplianceBackupProperties))
     }
     if let alloyDbBackupProperties = try container.decodeIfPresent(
-      AlloyDbClusterBackupProperties?.self, forKey: .alloyDbBackupProperties)
+      AlloyDbClusterBackupProperties.self, forKey: .alloyDbBackupProperties)
     {
       try backupPropertiesCheckAndSet(.alloyDbBackupProperties(alloyDbBackupProperties))
     }
     if let diskBackupProperties = try container.decodeIfPresent(
-      DiskBackupProperties?.self, forKey: .diskBackupProperties)
+      DiskBackupProperties.self, forKey: .diskBackupProperties)
     {
       try backupPropertiesCheckAndSet(.diskBackupProperties(diskBackupProperties))
     }
@@ -271,7 +271,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       planInfo = $0
     }
     if let gcpBackupPlanInfo = try container.decodeIfPresent(
-      Backup.GCPBackupPlanInfo?.self, forKey: .gcpBackupPlanInfo)
+      Backup.GCPBackupPlanInfo.self, forKey: .gcpBackupPlanInfo)
     {
       try planInfoCheckAndSet(.gcpBackupPlanInfo(gcpBackupPlanInfo))
     }
@@ -287,8 +287,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       sourceResource = $0
     }
-    if let gcpResource = try container.decodeIfPresent(
-      BackupGcpResource?.self, forKey: .gcpResource)
+    if let gcpResource = try container.decodeIfPresent(BackupGcpResource.self, forKey: .gcpResource)
     {
       try sourceResourceCheckAndSet(.gcpResource(gcpResource))
     }
@@ -726,28 +725,28 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Workload specific backup properties.
   public enum BackupPropertiesOneOf: Codable, Equatable, Sendable {
     /// Output only. Compute Engine specific backup properties.
-    indirect case computeInstanceBackupProperties(ComputeInstanceBackupProperties?)
+    indirect case computeInstanceBackupProperties(ComputeInstanceBackupProperties)
     /// Output only. Cloud SQL specific backup properties.
-    indirect case cloudSqlInstanceBackupProperties(CloudSqlInstanceBackupProperties?)
+    indirect case cloudSqlInstanceBackupProperties(CloudSqlInstanceBackupProperties)
     /// Output only. Backup Appliance specific backup properties.
-    indirect case backupApplianceBackupProperties(BackupApplianceBackupProperties?)
+    indirect case backupApplianceBackupProperties(BackupApplianceBackupProperties)
     /// Output only. AlloyDB specific backup properties.
-    indirect case alloyDbBackupProperties(AlloyDbClusterBackupProperties?)
+    indirect case alloyDbBackupProperties(AlloyDbClusterBackupProperties)
     /// Output only. Disk specific backup properties.
-    indirect case diskBackupProperties(DiskBackupProperties?)
+    indirect case diskBackupProperties(DiskBackupProperties)
   }
 
   /// Configuration Info has the resource format-specific configuration.
   public enum PlanInfoOneOf: Codable, Equatable, Sendable {
     /// Output only. Configuration for a Google Cloud resource.
-    indirect case gcpBackupPlanInfo(Backup.GCPBackupPlanInfo?)
+    indirect case gcpBackupPlanInfo(Backup.GCPBackupPlanInfo)
   }
 
   /// Resource that is being backed up.
   public enum SourceResourceOneOf: Codable, Equatable, Sendable {
     /// Output only. Unique identifier of the GCP resource that is being backed
     /// up.
-    indirect case gcpResource(BackupGcpResource?)
+    indirect case gcpResource(BackupGcpResource)
   }
 
   public static var _anyTypeUrl: Swift.String {

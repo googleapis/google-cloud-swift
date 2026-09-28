@@ -179,7 +179,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
       resourceProperties = $0
     }
     if let cloudSqlInstanceBackupPlanAssociationProperties = try container.decodeIfPresent(
-      CloudSqlInstanceBackupPlanAssociationProperties?.self,
+      CloudSqlInstanceBackupPlanAssociationProperties.self,
       forKey: .cloudSqlInstanceBackupPlanAssociationProperties)
     {
       try resourcePropertiesCheckAndSet(
@@ -187,7 +187,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
           cloudSqlInstanceBackupPlanAssociationProperties))
     }
     if let alloydbClusterBackupPlanAssociationProperties = try container.decodeIfPresent(
-      AlloyDBClusterBackupPlanAssociationProperties?.self,
+      AlloyDBClusterBackupPlanAssociationProperties.self,
       forKey: .alloydbClusterBackupPlanAssociationProperties)
     {
       try resourcePropertiesCheckAndSet(
@@ -370,10 +370,10 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ResourcePropertiesOneOf: Codable, Equatable, Sendable {
     /// Output only. Cloud SQL instance's backup plan association properties.
     indirect case cloudSqlInstanceBackupPlanAssociationProperties(
-      CloudSqlInstanceBackupPlanAssociationProperties?)
+      CloudSqlInstanceBackupPlanAssociationProperties)
     /// Output only. AlloyDB cluster's backup plan association properties.
     indirect case alloydbClusterBackupPlanAssociationProperties(
-      AlloyDBClusterBackupPlanAssociationProperties?)
+      AlloyDBClusterBackupPlanAssociationProperties)
   }
 
   public static var _anyTypeUrl: Swift.String {

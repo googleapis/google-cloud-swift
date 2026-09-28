@@ -119,7 +119,7 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       sourceInfo = $0
     }
-    if let backupInfo = try container.decodeIfPresent(BackupInfo?.self, forKey: .backupInfo) {
+    if let backupInfo = try container.decodeIfPresent(BackupInfo.self, forKey: .backupInfo) {
       try sourceInfoCheckAndSet(.backupInfo(backupInfo))
     }
     self.sourceInfo = sourceInfo
@@ -153,7 +153,7 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.bigtable.admin.v2.RestoreTableRequest]: <doc:RestoreTableRequest>
   public enum SourceInfoOneOf: Codable, Equatable, Sendable {
-    indirect case backupInfo(BackupInfo?)
+    indirect case backupInfo(BackupInfo)
   }
 
   public static var _anyTypeUrl: Swift.String {

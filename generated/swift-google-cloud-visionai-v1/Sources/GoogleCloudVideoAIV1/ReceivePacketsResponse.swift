@@ -70,11 +70,11 @@ public struct ReceivePacketsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       }
       response = $0
     }
-    if let packet = try container.decodeIfPresent(Packet?.self, forKey: .packet) {
+    if let packet = try container.decodeIfPresent(Packet.self, forKey: .packet) {
       try responseCheckAndSet(.packet(packet))
     }
     if let control = try container.decodeIfPresent(
-      ReceivePacketsControlResponse?.self, forKey: .control)
+      ReceivePacketsControlResponse.self, forKey: .control)
     {
       try responseCheckAndSet(.control(control))
     }
@@ -104,9 +104,9 @@ public struct ReceivePacketsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// Possible response types.
   public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// A genuine data payload originating from the sender.
-    indirect case packet(Packet?)
+    indirect case packet(Packet)
     /// A control message from the server.
-    indirect case control(ReceivePacketsControlResponse?)
+    indirect case control(ReceivePacketsControlResponse)
   }
 
   public static var _anyTypeUrl: Swift.String {

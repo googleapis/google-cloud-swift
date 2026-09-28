@@ -96,7 +96,7 @@ public struct DocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let content = try container.decodeIfPresent(Foundation.Data.self, forKey: .content) {
       try sourceCheckAndSet(.content(content))
     }
-    if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+    if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     self.source = source
@@ -135,7 +135,7 @@ public struct DocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case content(Foundation.Data)
     /// Google Cloud Storage location. This must be a single file.
     /// For example: gs://example_bucket/example_file.pdf
-    indirect case gcsSource(GcsSource?)
+    indirect case gcsSource(GcsSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

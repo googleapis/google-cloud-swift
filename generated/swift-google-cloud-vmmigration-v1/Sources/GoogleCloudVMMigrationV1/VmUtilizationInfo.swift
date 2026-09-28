@@ -83,7 +83,7 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       vmDetails = $0
     }
     if let vmwareVmDetails = try container.decodeIfPresent(
-      VmwareVmDetails?.self, forKey: .vmwareVmDetails)
+      VmwareVmDetails.self, forKey: .vmwareVmDetails)
     {
       try vmDetailsCheckAndSet(.vmwareVmDetails(vmwareVmDetails))
     }
@@ -112,7 +112,7 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum VmDetailsOneOf: Codable, Equatable, Sendable {
     /// The description of the VM in a Source of type Vmware.
-    indirect case vmwareVmDetails(VmwareVmDetails?)
+    indirect case vmwareVmDetails(VmwareVmDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

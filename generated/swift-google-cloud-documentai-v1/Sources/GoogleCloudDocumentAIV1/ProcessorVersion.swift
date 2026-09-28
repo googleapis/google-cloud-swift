@@ -330,13 +330,13 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         modelInfo = $0
       }
       if let foundationGenAiModelInfo = try container.decodeIfPresent(
-        ProcessorVersion.GenAiModelInfo.FoundationGenAiModelInfo?.self,
+        ProcessorVersion.GenAiModelInfo.FoundationGenAiModelInfo.self,
         forKey: .foundationGenAiModelInfo)
       {
         try modelInfoCheckAndSet(.foundationGenAiModelInfo(foundationGenAiModelInfo))
       }
       if let customGenAiModelInfo = try container.decodeIfPresent(
-        ProcessorVersion.GenAiModelInfo.CustomGenAiModelInfo?.self, forKey: .customGenAiModelInfo)
+        ProcessorVersion.GenAiModelInfo.CustomGenAiModelInfo.self, forKey: .customGenAiModelInfo)
       {
         try modelInfoCheckAndSet(.customGenAiModelInfo(customGenAiModelInfo))
       }
@@ -653,9 +653,9 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     public enum ModelInfoOneOf: Codable, Equatable, Sendable {
       /// Information for a pretrained Google-managed foundation model.
       indirect case foundationGenAiModelInfo(
-        ProcessorVersion.GenAiModelInfo.FoundationGenAiModelInfo?)
+        ProcessorVersion.GenAiModelInfo.FoundationGenAiModelInfo)
       /// Information for a custom Generative AI model created by the user.
-      indirect case customGenAiModelInfo(ProcessorVersion.GenAiModelInfo.CustomGenAiModelInfo?)
+      indirect case customGenAiModelInfo(ProcessorVersion.GenAiModelInfo.CustomGenAiModelInfo)
     }
 
     public static var _anyTypeUrl: Swift.String {

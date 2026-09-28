@@ -78,17 +78,16 @@ public struct DiscoveryCloudStorageFilter: Codable, Equatable, GoogleWKT._AnyPac
       }
       filter = $0
     }
-    if let collection = try container.decodeIfPresent(
-      FileStoreCollection?.self, forKey: .collection)
+    if let collection = try container.decodeIfPresent(FileStoreCollection.self, forKey: .collection)
     {
       try filterCheckAndSet(.collection(collection))
     }
     if let cloudStorageResourceReference = try container.decodeIfPresent(
-      CloudStorageResourceReference?.self, forKey: .cloudStorageResourceReference)
+      CloudStorageResourceReference.self, forKey: .cloudStorageResourceReference)
     {
       try filterCheckAndSet(.cloudStorageResourceReference(cloudStorageResourceReference))
     }
-    if let others = try container.decodeIfPresent(AllOtherResources?.self, forKey: .others) {
+    if let others = try container.decodeIfPresent(AllOtherResources.self, forKey: .others) {
       try filterCheckAndSet(.others(others))
     }
     self.filter = filter
@@ -122,17 +121,17 @@ public struct DiscoveryCloudStorageFilter: Codable, Equatable, GoogleWKT._AnyPac
   /// set, will default to `others`.
   public enum FilterOneOf: Codable, Equatable, Sendable {
     /// Optional. A specific set of buckets for this filter to apply to.
-    indirect case collection(FileStoreCollection?)
+    indirect case collection(FileStoreCollection)
     /// Optional. The bucket to scan. Targets including this can only include one
     /// target (the target with this bucket). This enables profiling the contents
     /// of a single bucket, while the other options allow for easy profiling of
     /// many bucets within a project or an organization.
-    indirect case cloudStorageResourceReference(CloudStorageResourceReference?)
+    indirect case cloudStorageResourceReference(CloudStorageResourceReference)
     /// Optional. Catch-all. This should always be the last target in the list
     /// because anything above it will apply first. Should only appear once in a
     /// configuration. If none is specified, a default one will be added
     /// automatically.
-    indirect case others(AllOtherResources?)
+    indirect case others(AllOtherResources)
   }
 
   public static var _anyTypeUrl: Swift.String {

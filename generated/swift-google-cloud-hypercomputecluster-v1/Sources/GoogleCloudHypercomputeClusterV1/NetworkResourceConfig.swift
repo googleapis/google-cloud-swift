@@ -72,11 +72,11 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       config = $0
     }
-    if let newNetwork = try container.decodeIfPresent(NewNetworkConfig?.self, forKey: .newNetwork) {
+    if let newNetwork = try container.decodeIfPresent(NewNetworkConfig.self, forKey: .newNetwork) {
       try configCheckAndSet(.newNetwork(newNetwork))
     }
     if let existingNetwork = try container.decodeIfPresent(
-      ExistingNetworkConfig?.self, forKey: .existingNetwork)
+      ExistingNetworkConfig.self, forKey: .existingNetwork)
     {
       try configCheckAndSet(.existingNetwork(existingNetwork))
     }
@@ -107,10 +107,10 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that a new network should be
     /// created.
-    indirect case newNetwork(NewNetworkConfig?)
+    indirect case newNetwork(NewNetworkConfig)
     /// Optional. Immutable. If set, indicates that an existing network should be
     /// imported.
-    indirect case existingNetwork(ExistingNetworkConfig?)
+    indirect case existingNetwork(ExistingNetworkConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

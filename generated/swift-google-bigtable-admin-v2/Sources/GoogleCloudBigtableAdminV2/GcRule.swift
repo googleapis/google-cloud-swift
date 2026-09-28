@@ -78,15 +78,15 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try ruleCheckAndSet(.maxNumVersions(maxNumVersions))
     }
-    if let maxAge = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .maxAge) {
+    if let maxAge = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .maxAge) {
       try ruleCheckAndSet(.maxAge(maxAge))
     }
     if let intersection = try container.decodeIfPresent(
-      GcRule.Intersection?.self, forKey: .intersection)
+      GcRule.Intersection.self, forKey: .intersection)
     {
       try ruleCheckAndSet(.intersection(intersection))
     }
-    if let union = try container.decodeIfPresent(GcRule.Union?.self, forKey: .union) {
+    if let union = try container.decodeIfPresent(GcRule.Union.self, forKey: .union) {
       try ruleCheckAndSet(.union(union))
     }
     self.rule = rule
@@ -259,11 +259,11 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Delete cells in a column older than the given age.
     /// Values must be at least one millisecond, and will be truncated to
     /// microsecond granularity.
-    indirect case maxAge(GoogleWKT.WKTDuration?)
+    indirect case maxAge(GoogleWKT.WKTDuration)
     /// Delete cells that would be deleted by every nested rule.
-    indirect case intersection(GcRule.Intersection?)
+    indirect case intersection(GcRule.Intersection)
     /// Delete cells that would be deleted by any nested rule.
-    indirect case union(GcRule.Union?)
+    indirect case union(GcRule.Union)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -90,7 +90,7 @@
         dataSource = $0
       }
       if let vertexRagStore = try container.decodeIfPresent(
-        RetrieveContextsRequest.VertexRagStore?.self, forKey: .vertexRagStore)
+        RetrieveContextsRequest.VertexRagStore.self, forKey: .vertexRagStore)
       {
         try dataSourceCheckAndSet(.vertexRagStore(vertexRagStore))
       }
@@ -292,7 +292,7 @@
     /// Data Source to retrieve contexts.
     public enum DataSourceOneOf: Codable, Equatable, Sendable {
       /// The data source for Vertex RagStore.
-      indirect case vertexRagStore(RetrieveContextsRequest.VertexRagStore?)
+      indirect case vertexRagStore(RetrieveContextsRequest.VertexRagStore)
     }
 
     public static var _anyTypeUrl: Swift.String {

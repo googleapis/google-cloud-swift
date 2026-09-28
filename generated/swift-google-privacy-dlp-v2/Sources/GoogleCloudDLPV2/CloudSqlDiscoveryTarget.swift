@@ -86,11 +86,11 @@ public struct CloudSqlDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
       cadence = $0
     }
     if let generationCadence = try container.decodeIfPresent(
-      DiscoveryCloudSqlGenerationCadence?.self, forKey: .generationCadence)
+      DiscoveryCloudSqlGenerationCadence.self, forKey: .generationCadence)
     {
       try cadenceCheckAndSet(.generationCadence(generationCadence))
     }
-    if let disabled = try container.decodeIfPresent(Disabled?.self, forKey: .disabled) {
+    if let disabled = try container.decodeIfPresent(Disabled.self, forKey: .disabled) {
       try cadenceCheckAndSet(.disabled(disabled))
     }
     self.cadence = cadence
@@ -123,9 +123,9 @@ public struct CloudSqlDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
     /// How often and when to update profiles. New tables that match both the
     /// filter and conditions are scanned as quickly as possible depending on
     /// system capacity.
-    indirect case generationCadence(DiscoveryCloudSqlGenerationCadence?)
+    indirect case generationCadence(DiscoveryCloudSqlGenerationCadence)
     /// Disable profiling for database resources that match this filter.
-    indirect case disabled(Disabled?)
+    indirect case disabled(Disabled)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -69,7 +69,7 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
       sourceType = $0
     }
     if let cloudStorageSource = try container.decodeIfPresent(
-      SourceCode.CloudStorageSource?.self, forKey: .cloudStorageSource)
+      SourceCode.CloudStorageSource.self, forKey: .cloudStorageSource)
     {
       try sourceTypeCheckAndSet(.cloudStorageSource(cloudStorageSource))
     }
@@ -183,7 +183,7 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The source type.
   public enum SourceTypeOneOf: Codable, Equatable, Sendable {
     /// The source is a Cloud Storage bucket.
-    indirect case cloudStorageSource(SourceCode.CloudStorageSource?)
+    indirect case cloudStorageSource(SourceCode.CloudStorageSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

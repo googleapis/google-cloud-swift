@@ -86,17 +86,17 @@
         coverageType = $0
       }
       if let intentCoverage = try container.decodeIfPresent(
-        IntentCoverage?.self, forKey: .intentCoverage)
+        IntentCoverage.self, forKey: .intentCoverage)
       {
         try coverageTypeCheckAndSet(.intentCoverage(intentCoverage))
       }
       if let transitionCoverage = try container.decodeIfPresent(
-        TransitionCoverage?.self, forKey: .transitionCoverage)
+        TransitionCoverage.self, forKey: .transitionCoverage)
       {
         try coverageTypeCheckAndSet(.transitionCoverage(transitionCoverage))
       }
       if let routeGroupCoverage = try container.decodeIfPresent(
-        TransitionRouteGroupCoverage?.self, forKey: .routeGroupCoverage)
+        TransitionRouteGroupCoverage.self, forKey: .routeGroupCoverage)
       {
         try coverageTypeCheckAndSet(.routeGroupCoverage(routeGroupCoverage))
       }
@@ -129,11 +129,11 @@
     /// The type of coverage requested.
     public enum CoverageTypeOneOf: Codable, Equatable, Sendable {
       /// Intent coverage.
-      indirect case intentCoverage(IntentCoverage?)
+      indirect case intentCoverage(IntentCoverage)
       /// Transition (excluding transition route groups) coverage.
-      indirect case transitionCoverage(TransitionCoverage?)
+      indirect case transitionCoverage(TransitionCoverage)
       /// Transition route group coverage.
-      indirect case routeGroupCoverage(TransitionRouteGroupCoverage?)
+      indirect case routeGroupCoverage(TransitionRouteGroupCoverage)
     }
 
     public static var _anyTypeUrl: Swift.String {

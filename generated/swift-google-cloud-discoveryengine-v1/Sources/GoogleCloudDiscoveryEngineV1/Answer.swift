@@ -521,17 +521,17 @@
           content = $0
         }
         if let unstructuredDocumentInfo = try container.decodeIfPresent(
-          Answer.Reference.UnstructuredDocumentInfo?.self, forKey: .unstructuredDocumentInfo)
+          Answer.Reference.UnstructuredDocumentInfo.self, forKey: .unstructuredDocumentInfo)
         {
           try contentCheckAndSet(.unstructuredDocumentInfo(unstructuredDocumentInfo))
         }
         if let chunkInfo = try container.decodeIfPresent(
-          Answer.Reference.ChunkInfo?.self, forKey: .chunkInfo)
+          Answer.Reference.ChunkInfo.self, forKey: .chunkInfo)
         {
           try contentCheckAndSet(.chunkInfo(chunkInfo))
         }
         if let structuredDocumentInfo = try container.decodeIfPresent(
-          Answer.Reference.StructuredDocumentInfo?.self, forKey: .structuredDocumentInfo)
+          Answer.Reference.StructuredDocumentInfo.self, forKey: .structuredDocumentInfo)
         {
           try contentCheckAndSet(.structuredDocumentInfo(structuredDocumentInfo))
         }
@@ -1059,11 +1059,11 @@
       /// Search result content.
       public enum ContentOneOf: Codable, Equatable, Sendable {
         /// Unstructured document information.
-        indirect case unstructuredDocumentInfo(Answer.Reference.UnstructuredDocumentInfo?)
+        indirect case unstructuredDocumentInfo(Answer.Reference.UnstructuredDocumentInfo)
         /// Chunk information.
-        indirect case chunkInfo(Answer.Reference.ChunkInfo?)
+        indirect case chunkInfo(Answer.Reference.ChunkInfo)
         /// Structured document information.
-        indirect case structuredDocumentInfo(Answer.Reference.StructuredDocumentInfo?)
+        indirect case structuredDocumentInfo(Answer.Reference.StructuredDocumentInfo)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1220,7 +1220,7 @@
             action = $0
           }
           if let searchAction = try container.decodeIfPresent(
-            Answer.Step.Action.SearchAction?.self, forKey: .searchAction)
+            Answer.Step.Action.SearchAction.self, forKey: .searchAction)
           {
             try actionCheckAndSet(.searchAction(searchAction))
           }
@@ -1685,7 +1685,7 @@
         /// The action.
         public enum ActionOneOf: Codable, Equatable, Sendable {
           /// Search action.
-          indirect case searchAction(Answer.Step.Action.SearchAction?)
+          indirect case searchAction(Answer.Step.Action.SearchAction)
         }
 
         public static var _anyTypeUrl: Swift.String {

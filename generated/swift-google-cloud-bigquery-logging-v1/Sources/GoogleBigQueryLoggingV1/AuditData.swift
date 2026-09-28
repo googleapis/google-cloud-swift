@@ -129,52 +129,52 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
       request = $0
     }
     if let tableInsertRequest = try container.decodeIfPresent(
-      TableInsertRequest?.self, forKey: .tableInsertRequest)
+      TableInsertRequest.self, forKey: .tableInsertRequest)
     {
       try requestCheckAndSet(.tableInsertRequest(tableInsertRequest))
     }
     if let tableUpdateRequest = try container.decodeIfPresent(
-      TableUpdateRequest?.self, forKey: .tableUpdateRequest)
+      TableUpdateRequest.self, forKey: .tableUpdateRequest)
     {
       try requestCheckAndSet(.tableUpdateRequest(tableUpdateRequest))
     }
     if let datasetListRequest = try container.decodeIfPresent(
-      DatasetListRequest?.self, forKey: .datasetListRequest)
+      DatasetListRequest.self, forKey: .datasetListRequest)
     {
       try requestCheckAndSet(.datasetListRequest(datasetListRequest))
     }
     if let datasetInsertRequest = try container.decodeIfPresent(
-      DatasetInsertRequest?.self, forKey: .datasetInsertRequest)
+      DatasetInsertRequest.self, forKey: .datasetInsertRequest)
     {
       try requestCheckAndSet(.datasetInsertRequest(datasetInsertRequest))
     }
     if let datasetUpdateRequest = try container.decodeIfPresent(
-      DatasetUpdateRequest?.self, forKey: .datasetUpdateRequest)
+      DatasetUpdateRequest.self, forKey: .datasetUpdateRequest)
     {
       try requestCheckAndSet(.datasetUpdateRequest(datasetUpdateRequest))
     }
     if let jobInsertRequest = try container.decodeIfPresent(
-      JobInsertRequest?.self, forKey: .jobInsertRequest)
+      JobInsertRequest.self, forKey: .jobInsertRequest)
     {
       try requestCheckAndSet(.jobInsertRequest(jobInsertRequest))
     }
     if let jobQueryRequest = try container.decodeIfPresent(
-      JobQueryRequest?.self, forKey: .jobQueryRequest)
+      JobQueryRequest.self, forKey: .jobQueryRequest)
     {
       try requestCheckAndSet(.jobQueryRequest(jobQueryRequest))
     }
     if let jobGetQueryResultsRequest = try container.decodeIfPresent(
-      JobGetQueryResultsRequest?.self, forKey: .jobGetQueryResultsRequest)
+      JobGetQueryResultsRequest.self, forKey: .jobGetQueryResultsRequest)
     {
       try requestCheckAndSet(.jobGetQueryResultsRequest(jobGetQueryResultsRequest))
     }
     if let tableDataListRequest = try container.decodeIfPresent(
-      TableDataListRequest?.self, forKey: .tableDataListRequest)
+      TableDataListRequest.self, forKey: .tableDataListRequest)
     {
       try requestCheckAndSet(.tableDataListRequest(tableDataListRequest))
     }
     if let setIamPolicyRequest = try container.decodeIfPresent(
-      GoogleIAMV1.SetIamPolicyRequest?.self, forKey: .setIamPolicyRequest)
+      GoogleIAMV1.SetIamPolicyRequest.self, forKey: .setIamPolicyRequest)
     {
       try requestCheckAndSet(.setIamPolicyRequest(setIamPolicyRequest))
     }
@@ -191,47 +191,47 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
       response = $0
     }
     if let tableInsertResponse = try container.decodeIfPresent(
-      TableInsertResponse?.self, forKey: .tableInsertResponse)
+      TableInsertResponse.self, forKey: .tableInsertResponse)
     {
       try responseCheckAndSet(.tableInsertResponse(tableInsertResponse))
     }
     if let tableUpdateResponse = try container.decodeIfPresent(
-      TableUpdateResponse?.self, forKey: .tableUpdateResponse)
+      TableUpdateResponse.self, forKey: .tableUpdateResponse)
     {
       try responseCheckAndSet(.tableUpdateResponse(tableUpdateResponse))
     }
     if let datasetInsertResponse = try container.decodeIfPresent(
-      DatasetInsertResponse?.self, forKey: .datasetInsertResponse)
+      DatasetInsertResponse.self, forKey: .datasetInsertResponse)
     {
       try responseCheckAndSet(.datasetInsertResponse(datasetInsertResponse))
     }
     if let datasetUpdateResponse = try container.decodeIfPresent(
-      DatasetUpdateResponse?.self, forKey: .datasetUpdateResponse)
+      DatasetUpdateResponse.self, forKey: .datasetUpdateResponse)
     {
       try responseCheckAndSet(.datasetUpdateResponse(datasetUpdateResponse))
     }
     if let jobInsertResponse = try container.decodeIfPresent(
-      JobInsertResponse?.self, forKey: .jobInsertResponse)
+      JobInsertResponse.self, forKey: .jobInsertResponse)
     {
       try responseCheckAndSet(.jobInsertResponse(jobInsertResponse))
     }
     if let jobQueryResponse = try container.decodeIfPresent(
-      JobQueryResponse?.self, forKey: .jobQueryResponse)
+      JobQueryResponse.self, forKey: .jobQueryResponse)
     {
       try responseCheckAndSet(.jobQueryResponse(jobQueryResponse))
     }
     if let jobGetQueryResultsResponse = try container.decodeIfPresent(
-      JobGetQueryResultsResponse?.self, forKey: .jobGetQueryResultsResponse)
+      JobGetQueryResultsResponse.self, forKey: .jobGetQueryResultsResponse)
     {
       try responseCheckAndSet(.jobGetQueryResultsResponse(jobGetQueryResultsResponse))
     }
     if let jobQueryDoneResponse = try container.decodeIfPresent(
-      JobQueryDoneResponse?.self, forKey: .jobQueryDoneResponse)
+      JobQueryDoneResponse.self, forKey: .jobQueryDoneResponse)
     {
       try responseCheckAndSet(.jobQueryDoneResponse(jobQueryDoneResponse))
     }
     if let policyResponse = try container.decodeIfPresent(
-      GoogleIAMV1.Policy?.self, forKey: .policyResponse)
+      GoogleIAMV1.Policy.self, forKey: .policyResponse)
     {
       try responseCheckAndSet(.policyResponse(policyResponse))
     }
@@ -302,48 +302,48 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Request data for each BigQuery method.
   public enum RequestOneOf: Codable, Equatable, Sendable {
     /// Table insert request.
-    indirect case tableInsertRequest(TableInsertRequest?)
+    indirect case tableInsertRequest(TableInsertRequest)
     /// Table update request.
-    indirect case tableUpdateRequest(TableUpdateRequest?)
+    indirect case tableUpdateRequest(TableUpdateRequest)
     /// Dataset list request.
-    indirect case datasetListRequest(DatasetListRequest?)
+    indirect case datasetListRequest(DatasetListRequest)
     /// Dataset insert request.
-    indirect case datasetInsertRequest(DatasetInsertRequest?)
+    indirect case datasetInsertRequest(DatasetInsertRequest)
     /// Dataset update request.
-    indirect case datasetUpdateRequest(DatasetUpdateRequest?)
+    indirect case datasetUpdateRequest(DatasetUpdateRequest)
     /// Job insert request.
-    indirect case jobInsertRequest(JobInsertRequest?)
+    indirect case jobInsertRequest(JobInsertRequest)
     /// Job query request.
-    indirect case jobQueryRequest(JobQueryRequest?)
+    indirect case jobQueryRequest(JobQueryRequest)
     /// Job get query results request.
-    indirect case jobGetQueryResultsRequest(JobGetQueryResultsRequest?)
+    indirect case jobGetQueryResultsRequest(JobGetQueryResultsRequest)
     /// Table data-list request.
-    indirect case tableDataListRequest(TableDataListRequest?)
+    indirect case tableDataListRequest(TableDataListRequest)
     /// Iam policy request.
-    indirect case setIamPolicyRequest(GoogleIAMV1.SetIamPolicyRequest?)
+    indirect case setIamPolicyRequest(GoogleIAMV1.SetIamPolicyRequest)
   }
 
   /// Response data for each BigQuery method.
   public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// Table insert response.
-    indirect case tableInsertResponse(TableInsertResponse?)
+    indirect case tableInsertResponse(TableInsertResponse)
     /// Table update response.
-    indirect case tableUpdateResponse(TableUpdateResponse?)
+    indirect case tableUpdateResponse(TableUpdateResponse)
     /// Dataset insert response.
-    indirect case datasetInsertResponse(DatasetInsertResponse?)
+    indirect case datasetInsertResponse(DatasetInsertResponse)
     /// Dataset update response.
-    indirect case datasetUpdateResponse(DatasetUpdateResponse?)
+    indirect case datasetUpdateResponse(DatasetUpdateResponse)
     /// Job insert response.
-    indirect case jobInsertResponse(JobInsertResponse?)
+    indirect case jobInsertResponse(JobInsertResponse)
     /// Job query response.
-    indirect case jobQueryResponse(JobQueryResponse?)
+    indirect case jobQueryResponse(JobQueryResponse)
     /// Job get query results response.
-    indirect case jobGetQueryResultsResponse(JobGetQueryResultsResponse?)
+    indirect case jobGetQueryResultsResponse(JobGetQueryResultsResponse)
     /// Deprecated: Job query-done response. Use this information for usage
     /// analysis.
-    indirect case jobQueryDoneResponse(JobQueryDoneResponse?)
+    indirect case jobQueryDoneResponse(JobQueryDoneResponse)
     /// Iam Policy.
-    indirect case policyResponse(GoogleIAMV1.Policy?)
+    indirect case policyResponse(GoogleIAMV1.Policy)
   }
 
   public static var _anyTypeUrl: Swift.String {

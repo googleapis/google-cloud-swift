@@ -86,7 +86,7 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleWKT._AnyPa
       conditions = $0
     }
     if let cloudStorageConditions = try container.decodeIfPresent(
-      DiscoveryCloudStorageConditions?.self, forKey: .cloudStorageConditions)
+      DiscoveryCloudStorageConditions.self, forKey: .cloudStorageConditions)
     {
       try conditionsCheckAndSet(.cloudStorageConditions(cloudStorageConditions))
     }
@@ -116,7 +116,7 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleWKT._AnyPa
   /// File store specific conditions.
   public enum ConditionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Cloud Storage conditions.
-    indirect case cloudStorageConditions(DiscoveryCloudStorageConditions?)
+    indirect case cloudStorageConditions(DiscoveryCloudStorageConditions)
   }
 
   public static var _anyTypeUrl: Swift.String {

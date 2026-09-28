@@ -258,17 +258,17 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
       connectivity = $0
     }
     if let reverseSshConnectivity = try container.decodeIfPresent(
-      ReverseSshConnectivity?.self, forKey: .reverseSshConnectivity)
+      ReverseSshConnectivity.self, forKey: .reverseSshConnectivity)
     {
       try connectivityCheckAndSet(.reverseSshConnectivity(reverseSshConnectivity))
     }
     if let vpcPeeringConnectivity = try container.decodeIfPresent(
-      VpcPeeringConnectivity?.self, forKey: .vpcPeeringConnectivity)
+      VpcPeeringConnectivity.self, forKey: .vpcPeeringConnectivity)
     {
       try connectivityCheckAndSet(.vpcPeeringConnectivity(vpcPeeringConnectivity))
     }
     if let staticIpConnectivity = try container.decodeIfPresent(
-      StaticIpConnectivity?.self, forKey: .staticIpConnectivity)
+      StaticIpConnectivity.self, forKey: .staticIpConnectivity)
     {
       try connectivityCheckAndSet(.staticIpConnectivity(staticIpConnectivity))
     }
@@ -1127,11 +1127,11 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ConnectivityOneOf: Codable, Equatable, Sendable {
     /// The details needed to communicate to the source over Reverse SSH
     /// tunnel connectivity.
-    indirect case reverseSshConnectivity(ReverseSshConnectivity?)
+    indirect case reverseSshConnectivity(ReverseSshConnectivity)
     /// The details of the VPC network that the source database is located in.
-    indirect case vpcPeeringConnectivity(VpcPeeringConnectivity?)
+    indirect case vpcPeeringConnectivity(VpcPeeringConnectivity)
     /// static ip connectivity data (default, no additional details needed).
-    indirect case staticIpConnectivity(StaticIpConnectivity?)
+    indirect case staticIpConnectivity(StaticIpConnectivity)
   }
 
   public static var _anyTypeUrl: Swift.String {

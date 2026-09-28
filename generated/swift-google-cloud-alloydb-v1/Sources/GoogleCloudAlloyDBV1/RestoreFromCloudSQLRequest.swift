@@ -92,7 +92,7 @@ public struct RestoreFromCloudSQLRequest: Codable, Equatable, GoogleWKT._AnyPack
       source = $0
     }
     if let cloudsqlBackupRunSource = try container.decodeIfPresent(
-      CloudSQLBackupRunSource?.self, forKey: .cloudsqlBackupRunSource)
+      CloudSQLBackupRunSource.self, forKey: .cloudsqlBackupRunSource)
     {
       try sourceCheckAndSet(.cloudsqlBackupRunSource(cloudsqlBackupRunSource))
     }
@@ -123,7 +123,7 @@ public struct RestoreFromCloudSQLRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// The source CloudSQL resource to restore from.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Cluster created from CloudSQL backup run.
-    indirect case cloudsqlBackupRunSource(CloudSQLBackupRunSource?)
+    indirect case cloudsqlBackupRunSource(CloudSQLBackupRunSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

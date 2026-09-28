@@ -174,10 +174,10 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleWKT._AnyPac
         }
         mod = $0
       }
-      if let create = try container.decodeIfPresent(ColumnFamily?.self, forKey: .create) {
+      if let create = try container.decodeIfPresent(ColumnFamily.self, forKey: .create) {
         try modCheckAndSet(.create(create))
       }
-      if let update = try container.decodeIfPresent(ColumnFamily?.self, forKey: .update) {
+      if let update = try container.decodeIfPresent(ColumnFamily.self, forKey: .update) {
         try modCheckAndSet(.update(update))
       }
       if let drop = try container.decodeIfPresent(Swift.Bool.self, forKey: .drop) {
@@ -214,10 +214,10 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleWKT._AnyPac
     public enum ModOneOf: Codable, Equatable, Sendable {
       /// Create a new column family with the specified schema, or fail if
       /// one already exists with the given ID.
-      indirect case create(ColumnFamily?)
+      indirect case create(ColumnFamily)
       /// Update an existing column family to the specified schema, or fail
       /// if no column family exists with the given ID.
-      indirect case update(ColumnFamily?)
+      indirect case update(ColumnFamily)
       /// Drop (delete) the column family with the given ID, or fail if no such
       /// family exists.
       case drop(Swift.Bool)

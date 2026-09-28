@@ -68,7 +68,7 @@ public struct SecretLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       location = $0
     }
-    if let fileLocation = try container.decodeIfPresent(FileLocation?.self, forKey: .fileLocation) {
+    if let fileLocation = try container.decodeIfPresent(FileLocation.self, forKey: .fileLocation) {
       try locationCheckAndSet(.fileLocation(fileLocation))
     }
     self.location = location
@@ -95,7 +95,7 @@ public struct SecretLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The detailed location of the secret.
   public enum LocationOneOf: Codable, Equatable, Sendable {
     /// The secret is found from a file.
-    indirect case fileLocation(FileLocation?)
+    indirect case fileLocation(FileLocation)
   }
 
   public static var _anyTypeUrl: Swift.String {

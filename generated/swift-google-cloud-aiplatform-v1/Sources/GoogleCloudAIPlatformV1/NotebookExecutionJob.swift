@@ -206,17 +206,17 @@
         notebookSource = $0
       }
       if let dataformRepositorySource = try container.decodeIfPresent(
-        NotebookExecutionJob.DataformRepositorySource?.self, forKey: .dataformRepositorySource)
+        NotebookExecutionJob.DataformRepositorySource.self, forKey: .dataformRepositorySource)
       {
         try notebookSourceCheckAndSet(.dataformRepositorySource(dataformRepositorySource))
       }
       if let gcsNotebookSource = try container.decodeIfPresent(
-        NotebookExecutionJob.GcsNotebookSource?.self, forKey: .gcsNotebookSource)
+        NotebookExecutionJob.GcsNotebookSource.self, forKey: .gcsNotebookSource)
       {
         try notebookSourceCheckAndSet(.gcsNotebookSource(gcsNotebookSource))
       }
       if let directNotebookSource = try container.decodeIfPresent(
-        NotebookExecutionJob.DirectNotebookSource?.self, forKey: .directNotebookSource)
+        NotebookExecutionJob.DirectNotebookSource.self, forKey: .directNotebookSource)
       {
         try notebookSourceCheckAndSet(.directNotebookSource(directNotebookSource))
       }
@@ -239,7 +239,7 @@
           .notebookRuntimeTemplateResourceName(notebookRuntimeTemplateResourceName))
       }
       if let customEnvironmentSpec = try container.decodeIfPresent(
-        NotebookExecutionJob.CustomEnvironmentSpec?.self, forKey: .customEnvironmentSpec)
+        NotebookExecutionJob.CustomEnvironmentSpec.self, forKey: .customEnvironmentSpec)
       {
         try environmentSpecCheckAndSet(.customEnvironmentSpec(customEnvironmentSpec))
       }
@@ -294,7 +294,7 @@
         runtimeEnvironment = $0
       }
       if let workbenchRuntime = try container.decodeIfPresent(
-        NotebookExecutionJob.WorkbenchRuntime?.self, forKey: .workbenchRuntime)
+        NotebookExecutionJob.WorkbenchRuntime.self, forKey: .workbenchRuntime)
       {
         try runtimeEnvironmentCheckAndSet(.workbenchRuntime(workbenchRuntime))
       }
@@ -743,12 +743,12 @@
     /// The input notebook.
     public enum NotebookSourceOneOf: Codable, Equatable, Sendable {
       /// The Dataform Repository pointing to a single file notebook repository.
-      indirect case dataformRepositorySource(NotebookExecutionJob.DataformRepositorySource?)
+      indirect case dataformRepositorySource(NotebookExecutionJob.DataformRepositorySource)
       /// The Cloud Storage url pointing to the ipynb file. Format:
       /// `gs://bucket/notebook_file.ipynb`
-      indirect case gcsNotebookSource(NotebookExecutionJob.GcsNotebookSource?)
+      indirect case gcsNotebookSource(NotebookExecutionJob.GcsNotebookSource)
       /// The contents of an input notebook file.
-      indirect case directNotebookSource(NotebookExecutionJob.DirectNotebookSource?)
+      indirect case directNotebookSource(NotebookExecutionJob.DirectNotebookSource)
     }
 
     /// The compute config to use for an execution job.
@@ -756,7 +756,7 @@
       /// The NotebookRuntimeTemplate to source compute configuration from.
       case notebookRuntimeTemplateResourceName(Swift.String)
       /// The custom compute configuration for an execution job.
-      indirect case customEnvironmentSpec(NotebookExecutionJob.CustomEnvironmentSpec?)
+      indirect case customEnvironmentSpec(NotebookExecutionJob.CustomEnvironmentSpec)
     }
 
     /// The location to store the notebook execution result.
@@ -778,7 +778,7 @@
     /// default runtime of Colab is used.
     public enum RuntimeEnvironmentOneOf: Codable, Equatable, Sendable {
       /// The Workbench runtime configuration to use for the notebook execution.
-      indirect case workbenchRuntime(NotebookExecutionJob.WorkbenchRuntime?)
+      indirect case workbenchRuntime(NotebookExecutionJob.WorkbenchRuntime)
     }
 
     public static var _anyTypeUrl: Swift.String {

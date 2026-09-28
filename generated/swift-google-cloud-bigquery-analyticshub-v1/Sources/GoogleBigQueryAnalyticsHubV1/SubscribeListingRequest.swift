@@ -81,12 +81,12 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       destination = $0
     }
     if let destinationDataset = try container.decodeIfPresent(
-      DestinationDataset?.self, forKey: .destinationDataset)
+      DestinationDataset.self, forKey: .destinationDataset)
     {
       try destinationCheckAndSet(.destinationDataset(destinationDataset))
     }
     if let destinationPubsubSubscription = try container.decodeIfPresent(
-      DestinationPubSubSubscription?.self, forKey: .destinationPubsubSubscription)
+      DestinationPubSubSubscription.self, forKey: .destinationPubsubSubscription)
     {
       try destinationCheckAndSet(.destinationPubsubSubscription(destinationPubsubSubscription))
     }
@@ -117,10 +117,10 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Resulting destination of the listing that you subscribed to.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Input only. BigQuery destination dataset to create for the subscriber.
-    indirect case destinationDataset(DestinationDataset?)
+    indirect case destinationDataset(DestinationDataset)
     /// Input only. Destination Pub/Sub subscription to create for the
     /// subscriber.
-    indirect case destinationPubsubSubscription(DestinationPubSubSubscription?)
+    indirect case destinationPubsubSubscription(DestinationPubSubSubscription)
   }
 
   public static var _anyTypeUrl: Swift.String {

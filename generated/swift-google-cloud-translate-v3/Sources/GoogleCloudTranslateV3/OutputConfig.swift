@@ -69,7 +69,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      GcsDestination?.self, forKey: .gcsDestination)
+      GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
@@ -167,7 +167,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// If the input file extension is txt or html, glossary_error_file will be
     /// generated that contains error details. glossary_error_file has format of
     /// `gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]`
-    indirect case gcsDestination(GcsDestination?)
+    indirect case gcsDestination(GcsDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

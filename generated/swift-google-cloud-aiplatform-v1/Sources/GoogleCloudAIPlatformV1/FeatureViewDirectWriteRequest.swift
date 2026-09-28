@@ -214,7 +214,7 @@
             }
             dataOneof = $0
           }
-          if let value = try container.decodeIfPresent(FeatureValue?.self, forKey: .value) {
+          if let value = try container.decodeIfPresent(FeatureValue.self, forKey: .value) {
             try dataOneofCheckAndSet(.value(value))
           }
           self.dataOneof = dataOneof
@@ -243,7 +243,7 @@
         public enum DataOneofOneOf: Codable, Equatable, Sendable {
           /// Feature value. A user provided timestamp may be set in the
           /// `FeatureValue.metadata.generate_time` field.
-          indirect case value(FeatureValue?)
+          indirect case value(FeatureValue)
         }
 
         public static var _anyTypeUrl: Swift.String {

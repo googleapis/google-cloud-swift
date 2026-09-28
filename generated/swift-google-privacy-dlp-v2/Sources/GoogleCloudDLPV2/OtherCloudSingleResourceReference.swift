@@ -69,7 +69,7 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleWKT._
       resource = $0
     }
     if let amazonS3Bucket = try container.decodeIfPresent(
-      AmazonS3Bucket?.self, forKey: .amazonS3Bucket)
+      AmazonS3Bucket.self, forKey: .amazonS3Bucket)
     {
       try resourceCheckAndSet(.amazonS3Bucket(amazonS3Bucket))
     }
@@ -97,7 +97,7 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleWKT._
   /// The resource to scan.
   public enum ResourceOneOf: Codable, Equatable, Sendable {
     /// Amazon S3 bucket.
-    indirect case amazonS3Bucket(AmazonS3Bucket?)
+    indirect case amazonS3Bucket(AmazonS3Bucket)
   }
 
   public static var _anyTypeUrl: Swift.String {

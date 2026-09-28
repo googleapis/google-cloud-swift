@@ -119,7 +119,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       authenticationMethod = $0
     }
-    if let oidcToken = try container.decodeIfPresent(PushConfig.OidcToken?.self, forKey: .oidcToken)
+    if let oidcToken = try container.decodeIfPresent(PushConfig.OidcToken.self, forKey: .oidcToken)
     {
       try authenticationMethodCheckAndSet(.oidcToken(oidcToken))
     }
@@ -136,11 +136,11 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       wrapper = $0
     }
     if let pubsubWrapper = try container.decodeIfPresent(
-      PushConfig.PubsubWrapper?.self, forKey: .pubsubWrapper)
+      PushConfig.PubsubWrapper.self, forKey: .pubsubWrapper)
     {
       try wrapperCheckAndSet(.pubsubWrapper(pubsubWrapper))
     }
-    if let noWrapper = try container.decodeIfPresent(PushConfig.NoWrapper?.self, forKey: .noWrapper)
+    if let noWrapper = try container.decodeIfPresent(PushConfig.NoWrapper.self, forKey: .noWrapper)
     {
       try wrapperCheckAndSet(.noWrapper(noWrapper))
     }
@@ -404,7 +404,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. If specified, Pub/Sub will generate and attach an OIDC JWT
     /// token as an `Authorization` header in the HTTP request for every pushed
     /// message.
-    indirect case oidcToken(PushConfig.OidcToken?)
+    indirect case oidcToken(PushConfig.OidcToken)
   }
 
   /// The format of the delivered message to the push endpoint is defined by
@@ -413,9 +413,9 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Optional. When set, the payload to the push endpoint is in the form of
     /// the JSON representation of a PubsubMessage
     /// (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
-    indirect case pubsubWrapper(PushConfig.PubsubWrapper?)
+    indirect case pubsubWrapper(PushConfig.PubsubWrapper)
     /// Optional. When set, the payload to the push endpoint is not wrapped.
-    indirect case noWrapper(PushConfig.NoWrapper?)
+    indirect case noWrapper(PushConfig.NoWrapper)
   }
 
   public static var _anyTypeUrl: Swift.String {

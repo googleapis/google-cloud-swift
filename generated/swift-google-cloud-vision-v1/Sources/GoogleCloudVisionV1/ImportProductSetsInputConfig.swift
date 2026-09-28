@@ -69,7 +69,7 @@ public struct ImportProductSetsInputConfig: Codable, Equatable, GoogleWKT._AnyPa
       source = $0
     }
     if let gcsSource = try container.decodeIfPresent(
-      ImportProductSetsGcsSource?.self, forKey: .gcsSource)
+      ImportProductSetsGcsSource.self, forKey: .gcsSource)
     {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
@@ -98,7 +98,7 @@ public struct ImportProductSetsInputConfig: Codable, Equatable, GoogleWKT._AnyPa
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The Google Cloud Storage location for a csv file which preserves a list
     /// of ImportProductSetRequests in each line.
-    indirect case gcsSource(ImportProductSetsGcsSource?)
+    indirect case gcsSource(ImportProductSetsGcsSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

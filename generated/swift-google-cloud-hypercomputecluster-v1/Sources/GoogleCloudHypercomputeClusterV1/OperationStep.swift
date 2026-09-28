@@ -121,118 +121,113 @@ public struct OperationStep: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       type = $0
     }
-    if let createNetwork = try container.decodeIfPresent(
-      CreateNetwork?.self, forKey: .createNetwork)
+    if let createNetwork = try container.decodeIfPresent(CreateNetwork.self, forKey: .createNetwork)
     {
       try typeCheckAndSet(.createNetwork(createNetwork))
     }
     if let createPrivateServiceAccess = try container.decodeIfPresent(
-      CreatePrivateServiceAccess?.self, forKey: .createPrivateServiceAccess)
+      CreatePrivateServiceAccess.self, forKey: .createPrivateServiceAccess)
     {
       try typeCheckAndSet(.createPrivateServiceAccess(createPrivateServiceAccess))
     }
     if let createFilestoreInstance = try container.decodeIfPresent(
-      CreateFilestoreInstance?.self, forKey: .createFilestoreInstance)
+      CreateFilestoreInstance.self, forKey: .createFilestoreInstance)
     {
       try typeCheckAndSet(.createFilestoreInstance(createFilestoreInstance))
     }
     if let createStorageBucket = try container.decodeIfPresent(
-      CreateStorageBucket?.self, forKey: .createStorageBucket)
+      CreateStorageBucket.self, forKey: .createStorageBucket)
     {
       try typeCheckAndSet(.createStorageBucket(createStorageBucket))
     }
     if let createLustreInstance = try container.decodeIfPresent(
-      CreateLustreInstance?.self, forKey: .createLustreInstance)
+      CreateLustreInstance.self, forKey: .createLustreInstance)
     {
       try typeCheckAndSet(.createLustreInstance(createLustreInstance))
     }
     if let createOrchestrator = try container.decodeIfPresent(
-      CreateOrchestrator?.self, forKey: .createOrchestrator)
+      CreateOrchestrator.self, forKey: .createOrchestrator)
     {
       try typeCheckAndSet(.createOrchestrator(createOrchestrator))
     }
-    if let createNodeset = try container.decodeIfPresent(
-      CreateNodeset?.self, forKey: .createNodeset)
+    if let createNodeset = try container.decodeIfPresent(CreateNodeset.self, forKey: .createNodeset)
     {
       try typeCheckAndSet(.createNodeset(createNodeset))
     }
     if let createPartition = try container.decodeIfPresent(
-      CreatePartition?.self, forKey: .createPartition)
+      CreatePartition.self, forKey: .createPartition)
     {
       try typeCheckAndSet(.createPartition(createPartition))
     }
     if let createLoginNode = try container.decodeIfPresent(
-      CreateLoginNode?.self, forKey: .createLoginNode)
+      CreateLoginNode.self, forKey: .createLoginNode)
     {
       try typeCheckAndSet(.createLoginNode(createLoginNode))
     }
     if let checkClusterHealth = try container.decodeIfPresent(
-      CheckClusterHealth?.self, forKey: .checkClusterHealth)
+      CheckClusterHealth.self, forKey: .checkClusterHealth)
     {
       try typeCheckAndSet(.checkClusterHealth(checkClusterHealth))
     }
     if let updateOrchestrator = try container.decodeIfPresent(
-      UpdateOrchestrator?.self, forKey: .updateOrchestrator)
+      UpdateOrchestrator.self, forKey: .updateOrchestrator)
     {
       try typeCheckAndSet(.updateOrchestrator(updateOrchestrator))
     }
-    if let updateNodeset = try container.decodeIfPresent(
-      UpdateNodeset?.self, forKey: .updateNodeset)
+    if let updateNodeset = try container.decodeIfPresent(UpdateNodeset.self, forKey: .updateNodeset)
     {
       try typeCheckAndSet(.updateNodeset(updateNodeset))
     }
     if let updatePartition = try container.decodeIfPresent(
-      UpdatePartition?.self, forKey: .updatePartition)
+      UpdatePartition.self, forKey: .updatePartition)
     {
       try typeCheckAndSet(.updatePartition(updatePartition))
     }
     if let updateLoginNode = try container.decodeIfPresent(
-      UpdateLoginNode?.self, forKey: .updateLoginNode)
+      UpdateLoginNode.self, forKey: .updateLoginNode)
     {
       try typeCheckAndSet(.updateLoginNode(updateLoginNode))
     }
     if let deleteOrchestrator = try container.decodeIfPresent(
-      DeleteOrchestrator?.self, forKey: .deleteOrchestrator)
+      DeleteOrchestrator.self, forKey: .deleteOrchestrator)
     {
       try typeCheckAndSet(.deleteOrchestrator(deleteOrchestrator))
     }
-    if let deleteNodeset = try container.decodeIfPresent(
-      DeleteNodeset?.self, forKey: .deleteNodeset)
+    if let deleteNodeset = try container.decodeIfPresent(DeleteNodeset.self, forKey: .deleteNodeset)
     {
       try typeCheckAndSet(.deleteNodeset(deleteNodeset))
     }
     if let deletePartition = try container.decodeIfPresent(
-      DeletePartition?.self, forKey: .deletePartition)
+      DeletePartition.self, forKey: .deletePartition)
     {
       try typeCheckAndSet(.deletePartition(deletePartition))
     }
     if let deleteLoginNode = try container.decodeIfPresent(
-      DeleteLoginNode?.self, forKey: .deleteLoginNode)
+      DeleteLoginNode.self, forKey: .deleteLoginNode)
     {
       try typeCheckAndSet(.deleteLoginNode(deleteLoginNode))
     }
     if let deleteFilestoreInstance = try container.decodeIfPresent(
-      DeleteFilestoreInstance?.self, forKey: .deleteFilestoreInstance)
+      DeleteFilestoreInstance.self, forKey: .deleteFilestoreInstance)
     {
       try typeCheckAndSet(.deleteFilestoreInstance(deleteFilestoreInstance))
     }
     if let deleteStorageBucket = try container.decodeIfPresent(
-      DeleteStorageBucket?.self, forKey: .deleteStorageBucket)
+      DeleteStorageBucket.self, forKey: .deleteStorageBucket)
     {
       try typeCheckAndSet(.deleteStorageBucket(deleteStorageBucket))
     }
     if let deleteLustreInstance = try container.decodeIfPresent(
-      DeleteLustreInstance?.self, forKey: .deleteLustreInstance)
+      DeleteLustreInstance.self, forKey: .deleteLustreInstance)
     {
       try typeCheckAndSet(.deleteLustreInstance(deleteLustreInstance))
     }
     if let deletePrivateServiceAccess = try container.decodeIfPresent(
-      DeletePrivateServiceAccess?.self, forKey: .deletePrivateServiceAccess)
+      DeletePrivateServiceAccess.self, forKey: .deletePrivateServiceAccess)
     {
       try typeCheckAndSet(.deletePrivateServiceAccess(deletePrivateServiceAccess))
     }
-    if let deleteNetwork = try container.decodeIfPresent(
-      DeleteNetwork?.self, forKey: .deleteNetwork)
+    if let deleteNetwork = try container.decodeIfPresent(DeleteNetwork.self, forKey: .deleteNetwork)
     {
       try typeCheckAndSet(.deleteNetwork(deleteNetwork))
     }
@@ -430,73 +425,73 @@ public struct OperationStep: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Output only. If set, indicates that new network creation is part of the
     /// operation.
-    indirect case createNetwork(CreateNetwork?)
+    indirect case createNetwork(CreateNetwork)
     /// Output only. If set, indicates that new private service access creation
     /// is part of the operation.
-    indirect case createPrivateServiceAccess(CreatePrivateServiceAccess?)
+    indirect case createPrivateServiceAccess(CreatePrivateServiceAccess)
     /// Output only. If set, indicates that new Filestore instance creation is
     /// part of the operation.
-    indirect case createFilestoreInstance(CreateFilestoreInstance?)
+    indirect case createFilestoreInstance(CreateFilestoreInstance)
     /// Output only. If set, indicates that new Cloud Storage bucket creation is
     /// part of the operation.
-    indirect case createStorageBucket(CreateStorageBucket?)
+    indirect case createStorageBucket(CreateStorageBucket)
     /// Output only. If set, indicates that new Lustre instance creation is part
     /// of the operation.
-    indirect case createLustreInstance(CreateLustreInstance?)
+    indirect case createLustreInstance(CreateLustreInstance)
     /// Output only. If set, indicates that orchestrator creation is part of the
     /// operation.
-    indirect case createOrchestrator(CreateOrchestrator?)
+    indirect case createOrchestrator(CreateOrchestrator)
     /// Output only. If set, indicates that new nodeset creation is part of the
     /// operation.
-    indirect case createNodeset(CreateNodeset?)
+    indirect case createNodeset(CreateNodeset)
     /// Output only. If set, indicates that new partition creation is part of the
     /// operation.
-    indirect case createPartition(CreatePartition?)
+    indirect case createPartition(CreatePartition)
     /// Output only. If set, indicates that new login node creation is part of
     /// the operation.
-    indirect case createLoginNode(CreateLoginNode?)
+    indirect case createLoginNode(CreateLoginNode)
     /// Output only. If set, indicates that cluster health check is part of the
     /// operation.
-    indirect case checkClusterHealth(CheckClusterHealth?)
+    indirect case checkClusterHealth(CheckClusterHealth)
     /// Output only. If set, indicates that an orchestrator update is part of the
     /// operation.
-    indirect case updateOrchestrator(UpdateOrchestrator?)
+    indirect case updateOrchestrator(UpdateOrchestrator)
     /// Output only. If set, indicates that nodeset update is part of the
     /// operation.
-    indirect case updateNodeset(UpdateNodeset?)
+    indirect case updateNodeset(UpdateNodeset)
     /// Output only. If set, indicates that partition update is part of the
     /// operation.
-    indirect case updatePartition(UpdatePartition?)
+    indirect case updatePartition(UpdatePartition)
     /// Output only. If set, indicates that login node update is part of the
     /// operation.
-    indirect case updateLoginNode(UpdateLoginNode?)
+    indirect case updateLoginNode(UpdateLoginNode)
     /// Output only. If set, indicates that orchestrator deletion is part of the
     /// operation.
-    indirect case deleteOrchestrator(DeleteOrchestrator?)
+    indirect case deleteOrchestrator(DeleteOrchestrator)
     /// Output only. If set, indicates that nodeset deletion is part of the
     /// operation.
-    indirect case deleteNodeset(DeleteNodeset?)
+    indirect case deleteNodeset(DeleteNodeset)
     /// Output only. If set, indicates that partition deletion is part of the
     /// operation.
-    indirect case deletePartition(DeletePartition?)
+    indirect case deletePartition(DeletePartition)
     /// Output only. If set, indicates that login node deletion is part of the
     /// operation.
-    indirect case deleteLoginNode(DeleteLoginNode?)
+    indirect case deleteLoginNode(DeleteLoginNode)
     /// Output only. If set, indicates that Filestore instance deletion is part
     /// of the operation.
-    indirect case deleteFilestoreInstance(DeleteFilestoreInstance?)
+    indirect case deleteFilestoreInstance(DeleteFilestoreInstance)
     /// Output only. If set, indicates that Cloud Storage bucket deletion is part
     /// of the operation.
-    indirect case deleteStorageBucket(DeleteStorageBucket?)
+    indirect case deleteStorageBucket(DeleteStorageBucket)
     /// Output only. If set, indicates that Lustre instance deletion is part of
     /// the operation.
-    indirect case deleteLustreInstance(DeleteLustreInstance?)
+    indirect case deleteLustreInstance(DeleteLustreInstance)
     /// Output only. If set, indicates that private service access deletion is
     /// part of the operation.
-    indirect case deletePrivateServiceAccess(DeletePrivateServiceAccess?)
+    indirect case deletePrivateServiceAccess(DeletePrivateServiceAccess)
     /// Output only. If set, indicates that network deletion is part of the
     /// operation.
-    indirect case deleteNetwork(DeleteNetwork?)
+    indirect case deleteNetwork(DeleteNetwork)
   }
 
   public static var _anyTypeUrl: Swift.String {

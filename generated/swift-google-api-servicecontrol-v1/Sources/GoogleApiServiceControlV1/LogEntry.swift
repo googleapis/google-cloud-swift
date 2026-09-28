@@ -153,7 +153,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       payload = $0
     }
     if let protoPayload = try container.decodeIfPresent(
-      GoogleWKT.WKTAny?.self, forKey: .protoPayload)
+      GoogleWKT.WKTAny.self, forKey: .protoPayload)
     {
       try payloadCheckAndSet(.protoPayload(protoPayload))
     }
@@ -161,7 +161,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       try payloadCheckAndSet(.textPayload(textPayload))
     }
     if let structPayload = try container.decodeIfPresent(
-      GoogleWKT.WKTStruct?.self, forKey: .structPayload)
+      GoogleWKT.WKTStruct.self, forKey: .structPayload)
     {
       try payloadCheckAndSet(.structPayload(structPayload))
     }
@@ -204,12 +204,12 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The log entry payload, represented as a protocol buffer that is
     /// expressed as a JSON object. The only accepted type currently is
     /// [AuditLog][google.cloud.audit.AuditLog].
-    indirect case protoPayload(GoogleWKT.WKTAny?)
+    indirect case protoPayload(GoogleWKT.WKTAny)
     /// The log entry payload, represented as a Unicode string (UTF-8).
     case textPayload(Swift.String)
     /// The log entry payload, represented as a structure that
     /// is expressed as a JSON object.
-    indirect case structPayload(GoogleWKT.WKTStruct?)
+    indirect case structPayload(GoogleWKT.WKTStruct)
   }
 
   public static var _anyTypeUrl: Swift.String {

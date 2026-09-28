@@ -88,27 +88,27 @@
         aggregationResult = $0
       }
       if let pointwiseMetricResult = try container.decodeIfPresent(
-        PointwiseMetricResult?.self, forKey: .pointwiseMetricResult)
+        PointwiseMetricResult.self, forKey: .pointwiseMetricResult)
       {
         try aggregationResultCheckAndSet(.pointwiseMetricResult(pointwiseMetricResult))
       }
       if let pairwiseMetricResult = try container.decodeIfPresent(
-        PairwiseMetricResult?.self, forKey: .pairwiseMetricResult)
+        PairwiseMetricResult.self, forKey: .pairwiseMetricResult)
       {
         try aggregationResultCheckAndSet(.pairwiseMetricResult(pairwiseMetricResult))
       }
       if let exactMatchMetricValue = try container.decodeIfPresent(
-        ExactMatchMetricValue?.self, forKey: .exactMatchMetricValue)
+        ExactMatchMetricValue.self, forKey: .exactMatchMetricValue)
       {
         try aggregationResultCheckAndSet(.exactMatchMetricValue(exactMatchMetricValue))
       }
       if let bleuMetricValue = try container.decodeIfPresent(
-        BleuMetricValue?.self, forKey: .bleuMetricValue)
+        BleuMetricValue.self, forKey: .bleuMetricValue)
       {
         try aggregationResultCheckAndSet(.bleuMetricValue(bleuMetricValue))
       }
       if let rougeMetricValue = try container.decodeIfPresent(
-        RougeMetricValue?.self, forKey: .rougeMetricValue)
+        RougeMetricValue.self, forKey: .rougeMetricValue)
       {
         try aggregationResultCheckAndSet(.rougeMetricValue(rougeMetricValue))
       }
@@ -145,15 +145,15 @@
     /// The aggregation result.
     public enum AggregationResultOneOf: Codable, Equatable, Sendable {
       /// Result for pointwise metric.
-      indirect case pointwiseMetricResult(PointwiseMetricResult?)
+      indirect case pointwiseMetricResult(PointwiseMetricResult)
       /// Result for pairwise metric.
-      indirect case pairwiseMetricResult(PairwiseMetricResult?)
+      indirect case pairwiseMetricResult(PairwiseMetricResult)
       /// Results for exact match metric.
-      indirect case exactMatchMetricValue(ExactMatchMetricValue?)
+      indirect case exactMatchMetricValue(ExactMatchMetricValue)
       /// Results for bleu metric.
-      indirect case bleuMetricValue(BleuMetricValue?)
+      indirect case bleuMetricValue(BleuMetricValue)
       /// Results for rouge metric.
-      indirect case rougeMetricValue(RougeMetricValue?)
+      indirect case rougeMetricValue(RougeMetricValue)
     }
 
     public static var _anyTypeUrl: Swift.String {

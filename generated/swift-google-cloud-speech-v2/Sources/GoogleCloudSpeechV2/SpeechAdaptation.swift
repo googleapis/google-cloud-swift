@@ -145,7 +145,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
         try valueCheckAndSet(.phraseSet(phraseSet))
       }
       if let inlinePhraseSet = try container.decodeIfPresent(
-        PhraseSet?.self, forKey: .inlinePhraseSet)
+        PhraseSet.self, forKey: .inlinePhraseSet)
       {
         try valueCheckAndSet(.inlinePhraseSet(inlinePhraseSet))
       }
@@ -177,7 +177,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
       /// access to the resource and it must not be deleted.
       case phraseSet(Swift.String)
       /// An inline defined PhraseSet.
-      indirect case inlinePhraseSet(PhraseSet?)
+      indirect case inlinePhraseSet(PhraseSet)
     }
 
     public static var _anyTypeUrl: Swift.String {

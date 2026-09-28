@@ -68,7 +68,7 @@ public struct Transport: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       intermediary = $0
     }
-    if let pubsub = try container.decodeIfPresent(Pubsub?.self, forKey: .pubsub) {
+    if let pubsub = try container.decodeIfPresent(Pubsub.self, forKey: .pubsub) {
       try intermediaryCheckAndSet(.pubsub(pubsub))
     }
     self.intermediary = intermediary
@@ -95,7 +95,7 @@ public struct Transport: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum IntermediaryOneOf: Codable, Equatable, Sendable {
     /// The Pub/Sub topic and subscription used by Eventarc as a transport
     /// intermediary.
-    indirect case pubsub(Pubsub?)
+    indirect case pubsub(Pubsub)
   }
 
   public static var _anyTypeUrl: Swift.String {

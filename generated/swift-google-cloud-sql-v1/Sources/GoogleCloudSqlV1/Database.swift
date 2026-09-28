@@ -136,7 +136,7 @@
         databaseDetails = $0
       }
       if let sqlserverDatabaseDetails = try container.decodeIfPresent(
-        SqlServerDatabaseDetails?.self, forKey: .sqlserverDatabaseDetails)
+        SqlServerDatabaseDetails.self, forKey: .sqlserverDatabaseDetails)
       {
         try databaseDetailsCheckAndSet(.sqlserverDatabaseDetails(sqlserverDatabaseDetails))
       }
@@ -170,7 +170,7 @@
     }
 
     public enum DatabaseDetailsOneOf: Codable, Equatable, Sendable {
-      indirect case sqlserverDatabaseDetails(SqlServerDatabaseDetails?)
+      indirect case sqlserverDatabaseDetails(SqlServerDatabaseDetails)
     }
 
     public static var _anyTypeUrl: Swift.String {

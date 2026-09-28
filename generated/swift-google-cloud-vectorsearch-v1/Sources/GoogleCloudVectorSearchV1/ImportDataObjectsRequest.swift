@@ -81,7 +81,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       config = $0
     }
     if let gcsImport = try container.decodeIfPresent(
-      ImportDataObjectsRequest.GcsImportConfig?.self, forKey: .gcsImport)
+      ImportDataObjectsRequest.GcsImportConfig.self, forKey: .gcsImport)
     {
       try configCheckAndSet(.gcsImport(gcsImport))
     }
@@ -201,7 +201,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// The configuration for the import data and error results.
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage location of the input content.
-    indirect case gcsImport(ImportDataObjectsRequest.GcsImportConfig?)
+    indirect case gcsImport(ImportDataObjectsRequest.GcsImportConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

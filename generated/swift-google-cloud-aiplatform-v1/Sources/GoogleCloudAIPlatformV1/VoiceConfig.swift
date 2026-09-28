@@ -72,12 +72,12 @@
         voiceConfig = $0
       }
       if let prebuiltVoiceConfig = try container.decodeIfPresent(
-        PrebuiltVoiceConfig?.self, forKey: .prebuiltVoiceConfig)
+        PrebuiltVoiceConfig.self, forKey: .prebuiltVoiceConfig)
       {
         try voiceConfigCheckAndSet(.prebuiltVoiceConfig(prebuiltVoiceConfig))
       }
       if let replicatedVoiceConfig = try container.decodeIfPresent(
-        ReplicatedVoiceConfig?.self, forKey: .replicatedVoiceConfig)
+        ReplicatedVoiceConfig.self, forKey: .replicatedVoiceConfig)
       {
         try voiceConfigCheckAndSet(.replicatedVoiceConfig(replicatedVoiceConfig))
       }
@@ -107,10 +107,10 @@
     /// The configuration for the speaker to use.
     public enum VoiceConfigOneOf: Codable, Equatable, Sendable {
       /// The configuration for a prebuilt voice.
-      indirect case prebuiltVoiceConfig(PrebuiltVoiceConfig?)
+      indirect case prebuiltVoiceConfig(PrebuiltVoiceConfig)
       /// Optional. The configuration for a replicated voice. This enables users to
       /// replicate a voice from an audio sample.
-      indirect case replicatedVoiceConfig(ReplicatedVoiceConfig?)
+      indirect case replicatedVoiceConfig(ReplicatedVoiceConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

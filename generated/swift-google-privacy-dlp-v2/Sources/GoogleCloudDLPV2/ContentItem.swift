@@ -86,17 +86,17 @@ public struct ContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
       try dataItemCheckAndSet(.value(value))
     }
-    if let table = try container.decodeIfPresent(Table?.self, forKey: .table) {
+    if let table = try container.decodeIfPresent(Table.self, forKey: .table) {
       try dataItemCheckAndSet(.table(table))
     }
-    if let byteItem = try container.decodeIfPresent(ByteContentItem?.self, forKey: .byteItem) {
+    if let byteItem = try container.decodeIfPresent(ByteContentItem.self, forKey: .byteItem) {
       try dataItemCheckAndSet(.byteItem(byteItem))
     }
-    if let conversation = try container.decodeIfPresent(Conversation?.self, forKey: .conversation) {
+    if let conversation = try container.decodeIfPresent(Conversation.self, forKey: .conversation) {
       try dataItemCheckAndSet(.conversation(conversation))
     }
     if let batchContentItem = try container.decodeIfPresent(
-      BatchContentItem?.self, forKey: .batchContentItem)
+      BatchContentItem.self, forKey: .batchContentItem)
     {
       try dataItemCheckAndSet(.batchContentItem(batchContentItem))
     }
@@ -137,15 +137,15 @@ public struct ContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Structured content for inspection. See
     /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table
     /// to learn more.
-    indirect case table(Table?)
+    indirect case table(Table)
     /// Content data to inspect or redact. Replaces `type` and `data`.
-    indirect case byteItem(ByteContentItem?)
+    indirect case byteItem(ByteContentItem)
     /// Represents a conversation (either complete or a slice).
     /// It is assumed that all included messages are contiguous and ordered in
     /// chronological order.
-    indirect case conversation(Conversation?)
+    indirect case conversation(Conversation)
     /// Represents a batch of items to inspect.
-    indirect case batchContentItem(BatchContentItem?)
+    indirect case batchContentItem(BatchContentItem)
   }
 
   public static var _anyTypeUrl: Swift.String {

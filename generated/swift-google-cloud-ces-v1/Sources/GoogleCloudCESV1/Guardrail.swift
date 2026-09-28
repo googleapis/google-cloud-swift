@@ -142,26 +142,25 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
       guardrailType = $0
     }
     if let contentFilter = try container.decodeIfPresent(
-      Guardrail.ContentFilter?.self, forKey: .contentFilter)
+      Guardrail.ContentFilter.self, forKey: .contentFilter)
     {
       try guardrailTypeCheckAndSet(.contentFilter(contentFilter))
     }
     if let llmPromptSecurity = try container.decodeIfPresent(
-      Guardrail.LlmPromptSecurity?.self, forKey: .llmPromptSecurity)
+      Guardrail.LlmPromptSecurity.self, forKey: .llmPromptSecurity)
     {
       try guardrailTypeCheckAndSet(.llmPromptSecurity(llmPromptSecurity))
     }
-    if let llmPolicy = try container.decodeIfPresent(Guardrail.LlmPolicy?.self, forKey: .llmPolicy)
-    {
+    if let llmPolicy = try container.decodeIfPresent(Guardrail.LlmPolicy.self, forKey: .llmPolicy) {
       try guardrailTypeCheckAndSet(.llmPolicy(llmPolicy))
     }
     if let modelSafety = try container.decodeIfPresent(
-      Guardrail.ModelSafety?.self, forKey: .modelSafety)
+      Guardrail.ModelSafety.self, forKey: .modelSafety)
     {
       try guardrailTypeCheckAndSet(.modelSafety(modelSafety))
     }
     if let codeCallback = try container.decodeIfPresent(
-      Guardrail.CodeCallback?.self, forKey: .codeCallback)
+      Guardrail.CodeCallback.self, forKey: .codeCallback)
     {
       try guardrailTypeCheckAndSet(.codeCallback(codeCallback))
     }
@@ -511,12 +510,12 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
         securityConfig = $0
       }
       if let defaultSettings = try container.decodeIfPresent(
-        Guardrail.LlmPromptSecurity.DefaultSecuritySettings?.self, forKey: .defaultSettings)
+        Guardrail.LlmPromptSecurity.DefaultSecuritySettings.self, forKey: .defaultSettings)
       {
         try securityConfigCheckAndSet(.defaultSettings(defaultSettings))
       }
       if let customPolicy = try container.decodeIfPresent(
-        Guardrail.LlmPolicy?.self, forKey: .customPolicy)
+        Guardrail.LlmPolicy.self, forKey: .customPolicy)
       {
         try securityConfigCheckAndSet(.customPolicy(customPolicy))
       }
@@ -624,10 +623,10 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
       /// To select this mode, include an empty 'default_settings' message
       /// in the request. The 'default_prompt_template' field within
       /// will be populated by the server in the response.
-      indirect case defaultSettings(Guardrail.LlmPromptSecurity.DefaultSecuritySettings?)
+      indirect case defaultSettings(Guardrail.LlmPromptSecurity.DefaultSecuritySettings)
       /// Optional. Use a user-defined LlmPolicy to configure the security
       /// guardrail.
-      indirect case customPolicy(Guardrail.LlmPolicy?)
+      indirect case customPolicy(Guardrail.LlmPolicy)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1433,19 +1432,19 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum GuardrailTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Guardrail that bans certain content from being used in the
     /// conversation.
-    indirect case contentFilter(Guardrail.ContentFilter?)
+    indirect case contentFilter(Guardrail.ContentFilter)
     /// Optional. Guardrail that blocks the conversation if the prompt is
     /// considered unsafe based on the LLM classification.
-    indirect case llmPromptSecurity(Guardrail.LlmPromptSecurity?)
+    indirect case llmPromptSecurity(Guardrail.LlmPromptSecurity)
     /// Optional. Guardrail that blocks the conversation if the LLM response is
     /// considered violating the policy based on the LLM classification.
-    indirect case llmPolicy(Guardrail.LlmPolicy?)
+    indirect case llmPolicy(Guardrail.LlmPolicy)
     /// Optional. Guardrail that blocks the conversation if the LLM response is
     /// considered unsafe based on the model safety settings.
-    indirect case modelSafety(Guardrail.ModelSafety?)
+    indirect case modelSafety(Guardrail.ModelSafety)
     /// Optional. Guardrail that potentially blocks the conversation based on the
     /// result of the callback execution.
-    indirect case codeCallback(Guardrail.CodeCallback?)
+    indirect case codeCallback(Guardrail.CodeCallback)
   }
 
   public static var _anyTypeUrl: Swift.String {

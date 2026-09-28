@@ -127,7 +127,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       connectivity = $0
     }
     if let vpcPeeringConfig = try container.decodeIfPresent(
-      VpcPeeringConfig?.self, forKey: .vpcPeeringConfig)
+      VpcPeeringConfig.self, forKey: .vpcPeeringConfig)
     {
       try connectivityCheckAndSet(.vpcPeeringConfig(vpcPeeringConfig))
     }
@@ -305,7 +305,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ConnectivityOneOf: Codable, Equatable, Sendable {
     /// VPC peering configuration.
-    indirect case vpcPeeringConfig(VpcPeeringConfig?)
+    indirect case vpcPeeringConfig(VpcPeeringConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

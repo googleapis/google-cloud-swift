@@ -114,10 +114,10 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       job = $0
     }
-    if let inspectJob = try container.decodeIfPresent(InspectJobConfig?.self, forKey: .inspectJob) {
+    if let inspectJob = try container.decodeIfPresent(InspectJobConfig.self, forKey: .inspectJob) {
       try jobCheckAndSet(.inspectJob(inspectJob))
     }
-    if let riskJob = try container.decodeIfPresent(RiskAnalysisJobConfig?.self, forKey: .riskJob) {
+    if let riskJob = try container.decodeIfPresent(RiskAnalysisJobConfig.self, forKey: .riskJob) {
       try jobCheckAndSet(.riskJob(riskJob))
     }
     self.job = job
@@ -149,10 +149,10 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The configuration details for the specific type of job to run.
   public enum JobOneOf: Codable, Equatable, Sendable {
     /// An inspection job scans a storage repository for InfoTypes.
-    indirect case inspectJob(InspectJobConfig?)
+    indirect case inspectJob(InspectJobConfig)
     /// A risk analysis job calculates re-identification risk metrics for a
     /// BigQuery table.
-    indirect case riskJob(RiskAnalysisJobConfig?)
+    indirect case riskJob(RiskAnalysisJobConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -400,33 +400,33 @@
 
     public func analyzeContent(
       participant: Swift.String,
-      textInput: TextInput?,
+      textInput: TextInput,
     ) async throws -> GoogleCloudDialogflowV2.AnalyzeContentResponse {
       let request = AnalyzeContentRequest().with {
         $0.participant = participant
-        $0.input = textInput.map { .textInput($0) }
+        $0.input = .textInput(textInput)
       }
       return try await self.analyzeContent(request: request)
     }
 
     public func analyzeContent(
       participant: Swift.String,
-      eventInput: EventInput?,
+      eventInput: EventInput,
     ) async throws -> GoogleCloudDialogflowV2.AnalyzeContentResponse {
       let request = AnalyzeContentRequest().with {
         $0.participant = participant
-        $0.input = eventInput.map { .eventInput($0) }
+        $0.input = .eventInput(eventInput)
       }
       return try await self.analyzeContent(request: request)
     }
 
     public func analyzeContent(
       participant: Swift.String,
-      audioInput: AudioInput?,
+      audioInput: AudioInput,
     ) async throws -> GoogleCloudDialogflowV2.AnalyzeContentResponse {
       let request = AnalyzeContentRequest().with {
         $0.participant = participant
-        $0.input = audioInput.map { .audioInput($0) }
+        $0.input = .audioInput(audioInput)
       }
       return try await self.analyzeContent(request: request)
     }

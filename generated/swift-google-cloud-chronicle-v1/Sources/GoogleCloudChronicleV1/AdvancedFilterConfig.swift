@@ -196,12 +196,12 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         source = $0
       }
       if let manualOptions = try container.decodeIfPresent(
-        AdvancedFilterConfig.ManualOptions?.self, forKey: .manualOptions)
+        AdvancedFilterConfig.ManualOptions.self, forKey: .manualOptions)
       {
         try sourceCheckAndSet(.manualOptions(manualOptions))
       }
       if let queryOptions = try container.decodeIfPresent(
-        AdvancedFilterConfig.QueryOptions?.self, forKey: .queryOptions)
+        AdvancedFilterConfig.QueryOptions.self, forKey: .queryOptions)
       {
         try sourceCheckAndSet(.queryOptions(queryOptions))
       }
@@ -231,10 +231,10 @@ public struct AdvancedFilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Source of the values for the filter.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Optional. Manual options provided by the user.
-      indirect case manualOptions(AdvancedFilterConfig.ManualOptions?)
+      indirect case manualOptions(AdvancedFilterConfig.ManualOptions)
       /// Optional. Query options to fetch the values from the query engine.
       /// This is used for the filter's population query.
-      indirect case queryOptions(AdvancedFilterConfig.QueryOptions?)
+      indirect case queryOptions(AdvancedFilterConfig.QueryOptions)
     }
 
     public static var _anyTypeUrl: Swift.String {

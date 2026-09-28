@@ -71,10 +71,10 @@ public struct BatchDocumentsInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
       source = $0
     }
-    if let gcsPrefix = try container.decodeIfPresent(GcsPrefix?.self, forKey: .gcsPrefix) {
+    if let gcsPrefix = try container.decodeIfPresent(GcsPrefix.self, forKey: .gcsPrefix) {
       try sourceCheckAndSet(.gcsPrefix(gcsPrefix))
     }
-    if let gcsDocuments = try container.decodeIfPresent(GcsDocuments?.self, forKey: .gcsDocuments) {
+    if let gcsDocuments = try container.decodeIfPresent(GcsDocuments.self, forKey: .gcsDocuments) {
       try sourceCheckAndSet(.gcsDocuments(gcsDocuments))
     }
     self.source = source
@@ -104,9 +104,9 @@ public struct BatchDocumentsInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// access to the buckets.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The set of documents that match the specified Cloud Storage `gcs_prefix`.
-    indirect case gcsPrefix(GcsPrefix?)
+    indirect case gcsPrefix(GcsPrefix)
     /// The set of documents individually specified on Cloud Storage.
-    indirect case gcsDocuments(GcsDocuments?)
+    indirect case gcsDocuments(GcsDocuments)
   }
 
   public static var _anyTypeUrl: Swift.String {

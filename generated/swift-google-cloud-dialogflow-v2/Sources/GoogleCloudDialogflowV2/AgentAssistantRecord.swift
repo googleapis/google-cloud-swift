@@ -76,20 +76,20 @@
         answer = $0
       }
       if let articleSuggestionAnswer = try container.decodeIfPresent(
-        ArticleAnswer?.self, forKey: .articleSuggestionAnswer)
+        ArticleAnswer.self, forKey: .articleSuggestionAnswer)
       {
         try answerCheckAndSet(.articleSuggestionAnswer(articleSuggestionAnswer))
       }
-      if let faqAnswer = try container.decodeIfPresent(FaqAnswer?.self, forKey: .faqAnswer) {
+      if let faqAnswer = try container.decodeIfPresent(FaqAnswer.self, forKey: .faqAnswer) {
         try answerCheckAndSet(.faqAnswer(faqAnswer))
       }
       if let dialogflowAssistAnswer = try container.decodeIfPresent(
-        DialogflowAssistAnswer?.self, forKey: .dialogflowAssistAnswer)
+        DialogflowAssistAnswer.self, forKey: .dialogflowAssistAnswer)
       {
         try answerCheckAndSet(.dialogflowAssistAnswer(dialogflowAssistAnswer))
       }
       if let generatorSuggestion = try container.decodeIfPresent(
-        GeneratorSuggestion?.self, forKey: .generatorSuggestion)
+        GeneratorSuggestion.self, forKey: .generatorSuggestion)
       {
         try answerCheckAndSet(.generatorSuggestion(generatorSuggestion))
       }
@@ -123,13 +123,13 @@
     /// Output only. The agent assist answer.
     public enum AnswerOneOf: Codable, Equatable, Sendable {
       /// Output only. The article suggestion answer.
-      indirect case articleSuggestionAnswer(ArticleAnswer?)
+      indirect case articleSuggestionAnswer(ArticleAnswer)
       /// Output only. The FAQ answer.
-      indirect case faqAnswer(FaqAnswer?)
+      indirect case faqAnswer(FaqAnswer)
       /// Output only. Dialogflow assist answer.
-      indirect case dialogflowAssistAnswer(DialogflowAssistAnswer?)
+      indirect case dialogflowAssistAnswer(DialogflowAssistAnswer)
       /// Output only. The generator suggestion.
-      indirect case generatorSuggestion(GeneratorSuggestion?)
+      indirect case generatorSuggestion(GeneratorSuggestion)
     }
 
     public static var _anyTypeUrl: Swift.String {

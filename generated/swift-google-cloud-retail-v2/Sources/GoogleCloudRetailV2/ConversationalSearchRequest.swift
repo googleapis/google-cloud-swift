@@ -398,7 +398,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
         try typeCheckAndSet(.textAnswer(textAnswer))
       }
       if let selectedAnswer = try container.decodeIfPresent(
-        ConversationalSearchRequest.UserAnswer.SelectedAnswer?.self, forKey: .selectedAnswer)
+        ConversationalSearchRequest.UserAnswer.SelectedAnswer.self, forKey: .selectedAnswer)
       {
         try typeCheckAndSet(.selectedAnswer(selectedAnswer))
       }
@@ -503,7 +503,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       /// Optional. This field specifies the selected answer during the
       /// conversational search. This should be a subset of
       /// [ConversationalSearchResponse.followup_question.suggested_answers][].
-      indirect case selectedAnswer(ConversationalSearchRequest.UserAnswer.SelectedAnswer?)
+      indirect case selectedAnswer(ConversationalSearchRequest.UserAnswer.SelectedAnswer)
     }
 
     public static var _anyTypeUrl: Swift.String {

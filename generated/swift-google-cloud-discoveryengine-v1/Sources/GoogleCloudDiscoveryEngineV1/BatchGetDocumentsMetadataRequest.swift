@@ -296,12 +296,12 @@
           matcher = $0
         }
         if let urisMatcher = try container.decodeIfPresent(
-          BatchGetDocumentsMetadataRequest.UrisMatcher?.self, forKey: .urisMatcher)
+          BatchGetDocumentsMetadataRequest.UrisMatcher.self, forKey: .urisMatcher)
         {
           try matcherCheckAndSet(.urisMatcher(urisMatcher))
         }
         if let fhirMatcher = try container.decodeIfPresent(
-          BatchGetDocumentsMetadataRequest.FhirMatcher?.self, forKey: .fhirMatcher)
+          BatchGetDocumentsMetadataRequest.FhirMatcher.self, forKey: .fhirMatcher)
         {
           try matcherCheckAndSet(.fhirMatcher(fhirMatcher))
         }
@@ -333,9 +333,9 @@
       /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
       public enum MatcherOneOf: Codable, Equatable, Sendable {
         /// Matcher by exact URIs.
-        indirect case urisMatcher(BatchGetDocumentsMetadataRequest.UrisMatcher?)
+        indirect case urisMatcher(BatchGetDocumentsMetadataRequest.UrisMatcher)
         /// Matcher by FHIR resource names.
-        indirect case fhirMatcher(BatchGetDocumentsMetadataRequest.FhirMatcher?)
+        indirect case fhirMatcher(BatchGetDocumentsMetadataRequest.FhirMatcher)
       }
 
       public static var _anyTypeUrl: Swift.String {

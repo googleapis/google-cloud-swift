@@ -97,7 +97,7 @@ public struct ReplicationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       dataSource = $0
     }
-    if let gcsDataSource = try container.decodeIfPresent(GcsData?.self, forKey: .gcsDataSource) {
+    if let gcsDataSource = try container.decodeIfPresent(GcsData.self, forKey: .gcsDataSource) {
       try dataSourceCheckAndSet(.gcsDataSource(gcsDataSource))
     }
     self.dataSource = dataSource
@@ -112,7 +112,7 @@ public struct ReplicationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       dataSink = $0
     }
-    if let gcsDataSink = try container.decodeIfPresent(GcsData?.self, forKey: .gcsDataSink) {
+    if let gcsDataSink = try container.decodeIfPresent(GcsData.self, forKey: .gcsDataSink) {
       try dataSinkCheckAndSet(.gcsDataSink(gcsDataSink))
     }
     self.dataSink = dataSink
@@ -148,13 +148,13 @@ public struct ReplicationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The data source to be replicated.
   public enum DataSourceOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage bucket from which to replicate objects.
-    indirect case gcsDataSource(GcsData?)
+    indirect case gcsDataSource(GcsData)
   }
 
   /// The destination for replicated objects.
   public enum DataSinkOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage bucket to which to replicate objects.
-    indirect case gcsDataSink(GcsData?)
+    indirect case gcsDataSink(GcsData)
   }
 
   public static var _anyTypeUrl: Swift.String {

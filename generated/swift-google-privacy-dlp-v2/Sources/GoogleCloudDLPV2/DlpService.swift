@@ -1680,22 +1680,22 @@ extension Clients.DlpServiceProtocol {
 
   public func createDlpJob(
     parent: Swift.String,
-    inspectJob: InspectJobConfig?,
+    inspectJob: InspectJobConfig,
   ) async throws -> GoogleCloudDLPV2.DlpJob {
     let request = CreateDlpJobRequest().with {
       $0.parent = parent
-      $0.job = inspectJob.map { .inspectJob($0) }
+      $0.job = .inspectJob(inspectJob)
     }
     return try await self.createDlpJob(request: request)
   }
 
   public func createDlpJob(
     parent: Swift.String,
-    riskJob: RiskAnalysisJobConfig?,
+    riskJob: RiskAnalysisJobConfig,
   ) async throws -> GoogleCloudDLPV2.DlpJob {
     let request = CreateDlpJobRequest().with {
       $0.parent = parent
-      $0.job = riskJob.map { .riskJob($0) }
+      $0.job = .riskJob(riskJob)
     }
     return try await self.createDlpJob(request: request)
   }

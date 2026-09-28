@@ -146,12 +146,12 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
       sourceFilter = $0
     }
     if let sourceTextFilter = try container.decodeIfPresent(
-      SourceTextFilter?.self, forKey: .sourceTextFilter)
+      SourceTextFilter.self, forKey: .sourceTextFilter)
     {
       try sourceFilterCheckAndSet(.sourceTextFilter(sourceTextFilter))
     }
     if let sourceNumericFilter = try container.decodeIfPresent(
-      SourceNumericFilter?.self, forKey: .sourceNumericFilter)
+      SourceNumericFilter.self, forKey: .sourceNumericFilter)
     {
       try sourceFilterCheckAndSet(.sourceNumericFilter(sourceNumericFilter))
     }
@@ -189,10 +189,10 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
   /// Filter on source column parameters.
   public enum SourceFilterOneOf: Codable, Equatable, Sendable {
     /// Optional. Filter for text-based data types like varchar.
-    indirect case sourceTextFilter(SourceTextFilter?)
+    indirect case sourceTextFilter(SourceTextFilter)
     /// Optional. Filter for fixed point number data types such as
     /// NUMERIC/NUMBER.
-    indirect case sourceNumericFilter(SourceNumericFilter?)
+    indirect case sourceNumericFilter(SourceNumericFilter)
   }
 
   public static var _anyTypeUrl: Swift.String {

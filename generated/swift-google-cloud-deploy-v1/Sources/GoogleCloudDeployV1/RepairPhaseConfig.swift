@@ -70,10 +70,10 @@ public struct RepairPhaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       repairPhase = $0
     }
-    if let retry = try container.decodeIfPresent(Retry?.self, forKey: .retry) {
+    if let retry = try container.decodeIfPresent(Retry.self, forKey: .retry) {
       try repairPhaseCheckAndSet(.retry(retry))
     }
-    if let rollback = try container.decodeIfPresent(Rollback?.self, forKey: .rollback) {
+    if let rollback = try container.decodeIfPresent(Rollback.self, forKey: .rollback) {
       try repairPhaseCheckAndSet(.rollback(rollback))
     }
     self.repairPhase = repairPhase
@@ -102,9 +102,9 @@ public struct RepairPhaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The repair phase to perform.
   public enum RepairPhaseOneOf: Codable, Equatable, Sendable {
     /// Optional. Retries a failed job.
-    indirect case retry(Retry?)
+    indirect case retry(Retry)
     /// Optional. Rolls back a `Rollout`.
-    indirect case rollback(Rollback?)
+    indirect case rollback(Rollback)
   }
 
   public static var _anyTypeUrl: Swift.String {

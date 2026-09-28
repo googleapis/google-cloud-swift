@@ -90,12 +90,12 @@ public struct LinkMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       request = $0
     }
     if let createLinkRequest = try container.decodeIfPresent(
-      CreateLinkRequest?.self, forKey: .createLinkRequest)
+      CreateLinkRequest.self, forKey: .createLinkRequest)
     {
       try requestCheckAndSet(.createLinkRequest(createLinkRequest))
     }
     if let deleteLinkRequest = try container.decodeIfPresent(
-      DeleteLinkRequest?.self, forKey: .deleteLinkRequest)
+      DeleteLinkRequest.self, forKey: .deleteLinkRequest)
     {
       try requestCheckAndSet(.deleteLinkRequest(deleteLinkRequest))
     }
@@ -127,9 +127,9 @@ public struct LinkMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum RequestOneOf: Codable, Equatable, Sendable {
     /// CreateLink RPC request.
-    indirect case createLinkRequest(CreateLinkRequest?)
+    indirect case createLinkRequest(CreateLinkRequest)
     /// DeleteLink RPC request.
-    indirect case deleteLinkRequest(DeleteLinkRequest?)
+    indirect case deleteLinkRequest(DeleteLinkRequest)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -143,39 +143,38 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       profile = $0
     }
-    if let oracleProfile = try container.decodeIfPresent(
-      OracleProfile?.self, forKey: .oracleProfile)
+    if let oracleProfile = try container.decodeIfPresent(OracleProfile.self, forKey: .oracleProfile)
     {
       try profileCheckAndSet(.oracleProfile(oracleProfile))
     }
-    if let gcsProfile = try container.decodeIfPresent(GcsProfile?.self, forKey: .gcsProfile) {
+    if let gcsProfile = try container.decodeIfPresent(GcsProfile.self, forKey: .gcsProfile) {
       try profileCheckAndSet(.gcsProfile(gcsProfile))
     }
-    if let mysqlProfile = try container.decodeIfPresent(MysqlProfile?.self, forKey: .mysqlProfile) {
+    if let mysqlProfile = try container.decodeIfPresent(MysqlProfile.self, forKey: .mysqlProfile) {
       try profileCheckAndSet(.mysqlProfile(mysqlProfile))
     }
     if let bigqueryProfile = try container.decodeIfPresent(
-      BigQueryProfile?.self, forKey: .bigqueryProfile)
+      BigQueryProfile.self, forKey: .bigqueryProfile)
     {
       try profileCheckAndSet(.bigqueryProfile(bigqueryProfile))
     }
     if let postgresqlProfile = try container.decodeIfPresent(
-      PostgresqlProfile?.self, forKey: .postgresqlProfile)
+      PostgresqlProfile.self, forKey: .postgresqlProfile)
     {
       try profileCheckAndSet(.postgresqlProfile(postgresqlProfile))
     }
     if let sqlServerProfile = try container.decodeIfPresent(
-      SqlServerProfile?.self, forKey: .sqlServerProfile)
+      SqlServerProfile.self, forKey: .sqlServerProfile)
     {
       try profileCheckAndSet(.sqlServerProfile(sqlServerProfile))
     }
     if let salesforceProfile = try container.decodeIfPresent(
-      SalesforceProfile?.self, forKey: .salesforceProfile)
+      SalesforceProfile.self, forKey: .salesforceProfile)
     {
       try profileCheckAndSet(.salesforceProfile(salesforceProfile))
     }
     if let mongodbProfile = try container.decodeIfPresent(
-      MongodbProfile?.self, forKey: .mongodbProfile)
+      MongodbProfile.self, forKey: .mongodbProfile)
     {
       try profileCheckAndSet(.mongodbProfile(mongodbProfile))
     }
@@ -192,17 +191,17 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       connectivity = $0
     }
     if let staticServiceIpConnectivity = try container.decodeIfPresent(
-      StaticServiceIpConnectivity?.self, forKey: .staticServiceIpConnectivity)
+      StaticServiceIpConnectivity.self, forKey: .staticServiceIpConnectivity)
     {
       try connectivityCheckAndSet(.staticServiceIpConnectivity(staticServiceIpConnectivity))
     }
     if let forwardSshConnectivity = try container.decodeIfPresent(
-      ForwardSshTunnelConnectivity?.self, forKey: .forwardSshConnectivity)
+      ForwardSshTunnelConnectivity.self, forKey: .forwardSshConnectivity)
     {
       try connectivityCheckAndSet(.forwardSshConnectivity(forwardSshConnectivity))
     }
     if let privateConnectivity = try container.decodeIfPresent(
-      PrivateConnectivity?.self, forKey: .privateConnectivity)
+      PrivateConnectivity.self, forKey: .privateConnectivity)
     {
       try connectivityCheckAndSet(.privateConnectivity(privateConnectivity))
     }
@@ -262,31 +261,31 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Connection configuration for the ConnectionProfile.
   public enum ProfileOneOf: Codable, Equatable, Sendable {
     /// Oracle ConnectionProfile configuration.
-    indirect case oracleProfile(OracleProfile?)
+    indirect case oracleProfile(OracleProfile)
     /// Cloud Storage ConnectionProfile configuration.
-    indirect case gcsProfile(GcsProfile?)
+    indirect case gcsProfile(GcsProfile)
     /// MySQL ConnectionProfile configuration.
-    indirect case mysqlProfile(MysqlProfile?)
+    indirect case mysqlProfile(MysqlProfile)
     /// BigQuery Connection Profile configuration.
-    indirect case bigqueryProfile(BigQueryProfile?)
+    indirect case bigqueryProfile(BigQueryProfile)
     /// PostgreSQL Connection Profile configuration.
-    indirect case postgresqlProfile(PostgresqlProfile?)
+    indirect case postgresqlProfile(PostgresqlProfile)
     /// SQLServer Connection Profile configuration.
-    indirect case sqlServerProfile(SqlServerProfile?)
+    indirect case sqlServerProfile(SqlServerProfile)
     /// Salesforce Connection Profile configuration.
-    indirect case salesforceProfile(SalesforceProfile?)
+    indirect case salesforceProfile(SalesforceProfile)
     /// MongoDB Connection Profile configuration.
-    indirect case mongodbProfile(MongodbProfile?)
+    indirect case mongodbProfile(MongodbProfile)
   }
 
   /// Connectivity options used to establish a connection to the profile.
   public enum ConnectivityOneOf: Codable, Equatable, Sendable {
     /// Static Service IP connectivity.
-    indirect case staticServiceIpConnectivity(StaticServiceIpConnectivity?)
+    indirect case staticServiceIpConnectivity(StaticServiceIpConnectivity)
     /// Forward SSH tunnel connectivity.
-    indirect case forwardSshConnectivity(ForwardSshTunnelConnectivity?)
+    indirect case forwardSshConnectivity(ForwardSshTunnelConnectivity)
     /// Private connectivity.
-    indirect case privateConnectivity(PrivateConnectivity?)
+    indirect case privateConnectivity(PrivateConnectivity)
   }
 
   public static var _anyTypeUrl: Swift.String {

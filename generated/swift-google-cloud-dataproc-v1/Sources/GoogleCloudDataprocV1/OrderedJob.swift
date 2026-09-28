@@ -140,34 +140,34 @@ public struct OrderedJob: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       jobType = $0
     }
-    if let hadoopJob = try container.decodeIfPresent(HadoopJob?.self, forKey: .hadoopJob) {
+    if let hadoopJob = try container.decodeIfPresent(HadoopJob.self, forKey: .hadoopJob) {
       try jobTypeCheckAndSet(.hadoopJob(hadoopJob))
     }
-    if let sparkJob = try container.decodeIfPresent(SparkJob?.self, forKey: .sparkJob) {
+    if let sparkJob = try container.decodeIfPresent(SparkJob.self, forKey: .sparkJob) {
       try jobTypeCheckAndSet(.sparkJob(sparkJob))
     }
-    if let pysparkJob = try container.decodeIfPresent(PySparkJob?.self, forKey: .pysparkJob) {
+    if let pysparkJob = try container.decodeIfPresent(PySparkJob.self, forKey: .pysparkJob) {
       try jobTypeCheckAndSet(.pysparkJob(pysparkJob))
     }
-    if let hiveJob = try container.decodeIfPresent(HiveJob?.self, forKey: .hiveJob) {
+    if let hiveJob = try container.decodeIfPresent(HiveJob.self, forKey: .hiveJob) {
       try jobTypeCheckAndSet(.hiveJob(hiveJob))
     }
-    if let pigJob = try container.decodeIfPresent(PigJob?.self, forKey: .pigJob) {
+    if let pigJob = try container.decodeIfPresent(PigJob.self, forKey: .pigJob) {
       try jobTypeCheckAndSet(.pigJob(pigJob))
     }
-    if let sparkRJob = try container.decodeIfPresent(SparkRJob?.self, forKey: .sparkRJob) {
+    if let sparkRJob = try container.decodeIfPresent(SparkRJob.self, forKey: .sparkRJob) {
       try jobTypeCheckAndSet(.sparkRJob(sparkRJob))
     }
-    if let sparkSqlJob = try container.decodeIfPresent(SparkSqlJob?.self, forKey: .sparkSqlJob) {
+    if let sparkSqlJob = try container.decodeIfPresent(SparkSqlJob.self, forKey: .sparkSqlJob) {
       try jobTypeCheckAndSet(.sparkSqlJob(sparkSqlJob))
     }
-    if let prestoJob = try container.decodeIfPresent(PrestoJob?.self, forKey: .prestoJob) {
+    if let prestoJob = try container.decodeIfPresent(PrestoJob.self, forKey: .prestoJob) {
       try jobTypeCheckAndSet(.prestoJob(prestoJob))
     }
-    if let trinoJob = try container.decodeIfPresent(TrinoJob?.self, forKey: .trinoJob) {
+    if let trinoJob = try container.decodeIfPresent(TrinoJob.self, forKey: .trinoJob) {
       try jobTypeCheckAndSet(.trinoJob(trinoJob))
     }
-    if let flinkJob = try container.decodeIfPresent(FlinkJob?.self, forKey: .flinkJob) {
+    if let flinkJob = try container.decodeIfPresent(FlinkJob.self, forKey: .flinkJob) {
       try jobTypeCheckAndSet(.flinkJob(flinkJob))
     }
     self.jobType = jobType
@@ -216,25 +216,25 @@ public struct OrderedJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The job definition.
   public enum JobTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Job is a Hadoop job.
-    indirect case hadoopJob(HadoopJob?)
+    indirect case hadoopJob(HadoopJob)
     /// Optional. Job is a Spark job.
-    indirect case sparkJob(SparkJob?)
+    indirect case sparkJob(SparkJob)
     /// Optional. Job is a PySpark job.
-    indirect case pysparkJob(PySparkJob?)
+    indirect case pysparkJob(PySparkJob)
     /// Optional. Job is a Hive job.
-    indirect case hiveJob(HiveJob?)
+    indirect case hiveJob(HiveJob)
     /// Optional. Job is a Pig job.
-    indirect case pigJob(PigJob?)
+    indirect case pigJob(PigJob)
     /// Optional. Job is a SparkR job.
-    indirect case sparkRJob(SparkRJob?)
+    indirect case sparkRJob(SparkRJob)
     /// Optional. Job is a SparkSql job.
-    indirect case sparkSqlJob(SparkSqlJob?)
+    indirect case sparkSqlJob(SparkSqlJob)
     /// Optional. Job is a Presto job.
-    indirect case prestoJob(PrestoJob?)
+    indirect case prestoJob(PrestoJob)
     /// Optional. Job is a Trino job.
-    indirect case trinoJob(TrinoJob?)
+    indirect case trinoJob(TrinoJob)
     /// Optional. Job is a Flink job.
-    indirect case flinkJob(FlinkJob?)
+    indirect case flinkJob(FlinkJob)
   }
 
   public static var _anyTypeUrl: Swift.String {

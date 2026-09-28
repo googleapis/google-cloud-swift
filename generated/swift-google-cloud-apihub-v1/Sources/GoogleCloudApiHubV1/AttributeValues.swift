@@ -84,22 +84,22 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
       value = $0
     }
     if let enumValues = try container.decodeIfPresent(
-      AttributeValues.EnumAttributeValues?.self, forKey: .enumValues)
+      AttributeValues.EnumAttributeValues.self, forKey: .enumValues)
     {
       try valueCheckAndSet(.enumValues(enumValues))
     }
     if let stringValues = try container.decodeIfPresent(
-      AttributeValues.StringAttributeValues?.self, forKey: .stringValues)
+      AttributeValues.StringAttributeValues.self, forKey: .stringValues)
     {
       try valueCheckAndSet(.stringValues(stringValues))
     }
     if let jsonValues = try container.decodeIfPresent(
-      AttributeValues.StringAttributeValues?.self, forKey: .jsonValues)
+      AttributeValues.StringAttributeValues.self, forKey: .jsonValues)
     {
       try valueCheckAndSet(.jsonValues(jsonValues))
     }
     if let uriValues = try container.decodeIfPresent(
-      AttributeValues.StringAttributeValues?.self, forKey: .uriValues)
+      AttributeValues.StringAttributeValues.self, forKey: .uriValues)
     {
       try valueCheckAndSet(.uriValues(uriValues))
     }
@@ -272,16 +272,16 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ValueOneOf: Codable, Equatable, Sendable {
     /// The attribute values associated with a resource in case attribute data
     /// type is enum.
-    indirect case enumValues(AttributeValues.EnumAttributeValues?)
+    indirect case enumValues(AttributeValues.EnumAttributeValues)
     /// The attribute values associated with a resource in case attribute data
     /// type is string.
-    indirect case stringValues(AttributeValues.StringAttributeValues?)
+    indirect case stringValues(AttributeValues.StringAttributeValues)
     /// The attribute values associated with a resource in case attribute data
     /// type is JSON.
-    indirect case jsonValues(AttributeValues.StringAttributeValues?)
+    indirect case jsonValues(AttributeValues.StringAttributeValues)
     /// The attribute values associated with a resource in case attribute data
     /// type is URL, URI or IP, like gs://bucket-name/object-name.
-    indirect case uriValues(AttributeValues.StringAttributeValues?)
+    indirect case uriValues(AttributeValues.StringAttributeValues)
   }
 
   public static var _anyTypeUrl: Swift.String {

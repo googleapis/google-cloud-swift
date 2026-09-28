@@ -71,12 +71,12 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       result = $0
     }
     if let datasetResult = try container.decodeIfPresent(
-      DataDocumentationResult.DatasetResult?.self, forKey: .datasetResult)
+      DataDocumentationResult.DatasetResult.self, forKey: .datasetResult)
     {
       try resultCheckAndSet(.datasetResult(datasetResult))
     }
     if let tableResult = try container.decodeIfPresent(
-      DataDocumentationResult.TableResult?.self, forKey: .tableResult)
+      DataDocumentationResult.TableResult.self, forKey: .tableResult)
     {
       try resultCheckAndSet(.tableResult(tableResult))
     }
@@ -955,9 +955,9 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The result of the data documentation scan.
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. Insights for a Dataset resource.
-    indirect case datasetResult(DataDocumentationResult.DatasetResult?)
+    indirect case datasetResult(DataDocumentationResult.DatasetResult)
     /// Output only. Insights for a Table resource.
-    indirect case tableResult(DataDocumentationResult.TableResult?)
+    indirect case tableResult(DataDocumentationResult.TableResult)
   }
 
   public static var _anyTypeUrl: Swift.String {

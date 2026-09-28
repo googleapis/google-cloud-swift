@@ -91,39 +91,38 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       action = $0
     }
     if let saveFindings = try container.decodeIfPresent(
-      Action.SaveFindings?.self, forKey: .saveFindings)
+      Action.SaveFindings.self, forKey: .saveFindings)
     {
       try actionCheckAndSet(.saveFindings(saveFindings))
     }
-    if let pubSub = try container.decodeIfPresent(Action.PublishToPubSub?.self, forKey: .pubSub) {
+    if let pubSub = try container.decodeIfPresent(Action.PublishToPubSub.self, forKey: .pubSub) {
       try actionCheckAndSet(.pubSub(pubSub))
     }
     if let publishSummaryToCscc = try container.decodeIfPresent(
-      Action.PublishSummaryToCscc?.self, forKey: .publishSummaryToCscc)
+      Action.PublishSummaryToCscc.self, forKey: .publishSummaryToCscc)
     {
       try actionCheckAndSet(.publishSummaryToCscc(publishSummaryToCscc))
     }
     if let publishFindingsToCloudDataCatalog = try container.decodeIfPresent(
-      Action.PublishFindingsToCloudDataCatalog?.self, forKey: .publishFindingsToCloudDataCatalog)
+      Action.PublishFindingsToCloudDataCatalog.self, forKey: .publishFindingsToCloudDataCatalog)
     {
       try actionCheckAndSet(.publishFindingsToCloudDataCatalog(publishFindingsToCloudDataCatalog))
     }
     if let publishFindingsToDataplexCatalog = try container.decodeIfPresent(
-      Action.PublishFindingsToDataplexCatalog?.self, forKey: .publishFindingsToDataplexCatalog)
+      Action.PublishFindingsToDataplexCatalog.self, forKey: .publishFindingsToDataplexCatalog)
     {
       try actionCheckAndSet(.publishFindingsToDataplexCatalog(publishFindingsToDataplexCatalog))
     }
-    if let deidentify = try container.decodeIfPresent(Action.Deidentify?.self, forKey: .deidentify)
-    {
+    if let deidentify = try container.decodeIfPresent(Action.Deidentify.self, forKey: .deidentify) {
       try actionCheckAndSet(.deidentify(deidentify))
     }
     if let jobNotificationEmails = try container.decodeIfPresent(
-      Action.JobNotificationEmails?.self, forKey: .jobNotificationEmails)
+      Action.JobNotificationEmails.self, forKey: .jobNotificationEmails)
     {
       try actionCheckAndSet(.jobNotificationEmails(jobNotificationEmails))
     }
     if let publishToStackdriver = try container.decodeIfPresent(
-      Action.PublishToStackdriver?.self, forKey: .publishToStackdriver)
+      Action.PublishToStackdriver.self, forKey: .publishToStackdriver)
     {
       try actionCheckAndSet(.publishToStackdriver(publishToStackdriver))
     }
@@ -842,26 +841,26 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Extra events to execute after the job has finished.
   public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Save resulting findings in a provided location.
-    indirect case saveFindings(Action.SaveFindings?)
+    indirect case saveFindings(Action.SaveFindings)
     /// Publish a notification to a Pub/Sub topic.
-    indirect case pubSub(Action.PublishToPubSub?)
+    indirect case pubSub(Action.PublishToPubSub)
     /// Publish summary to Cloud Security Command Center (Alpha).
-    indirect case publishSummaryToCscc(Action.PublishSummaryToCscc?)
+    indirect case publishSummaryToCscc(Action.PublishSummaryToCscc)
     /// Deprecated because Data Catalog is being turned down. Use
     /// publish_findings_to_dataplex_catalog to publish findings to Dataplex
     /// Universal Catalog.
     @available(*, deprecated)
-    indirect case publishFindingsToCloudDataCatalog(Action.PublishFindingsToCloudDataCatalog?)
+    indirect case publishFindingsToCloudDataCatalog(Action.PublishFindingsToCloudDataCatalog)
     /// Publish findings as an aspect to Dataplex Universal Catalog.
-    indirect case publishFindingsToDataplexCatalog(Action.PublishFindingsToDataplexCatalog?)
+    indirect case publishFindingsToDataplexCatalog(Action.PublishFindingsToDataplexCatalog)
     /// Create a de-identified copy of the input data.
-    indirect case deidentify(Action.Deidentify?)
+    indirect case deidentify(Action.Deidentify)
     /// Sends an email when the job completes. The email goes to IAM project
     /// owners and technical [Essential
     /// Contacts](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts).
-    indirect case jobNotificationEmails(Action.JobNotificationEmails?)
+    indirect case jobNotificationEmails(Action.JobNotificationEmails)
     /// Enable Stackdriver metric dlp.googleapis.com/finding_count.
-    indirect case publishToStackdriver(Action.PublishToStackdriver?)
+    indirect case publishToStackdriver(Action.PublishToStackdriver)
   }
 
   public static var _anyTypeUrl: Swift.String {

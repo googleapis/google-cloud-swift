@@ -81,10 +81,10 @@ public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       bucketValue = $0
     }
-    if let value = try container.decodeIfPresent(FacetValue?.self, forKey: .value) {
+    if let value = try container.decodeIfPresent(FacetValue.self, forKey: .value) {
       try bucketValueCheckAndSet(.value(value))
     }
-    if let range = try container.decodeIfPresent(FacetBucket.Range?.self, forKey: .range) {
+    if let range = try container.decodeIfPresent(FacetBucket.Range.self, forKey: .range) {
       try bucketValueCheckAndSet(.range(range))
     }
     self.bucketValue = bucketValue
@@ -189,9 +189,9 @@ public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,
   /// brady", "drew brees", etc.
   public enum BucketValueOneOf: Codable, Equatable, Sendable {
     /// Singular value.
-    indirect case value(FacetValue?)
+    indirect case value(FacetValue)
     /// Range value.
-    indirect case range(FacetBucket.Range?)
+    indirect case range(FacetBucket.Range)
   }
 
   public static var _anyTypeUrl: Swift.String {

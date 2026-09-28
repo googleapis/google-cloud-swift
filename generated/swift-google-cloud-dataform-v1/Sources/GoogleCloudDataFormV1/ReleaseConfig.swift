@@ -236,7 +236,7 @@ public struct ReleaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         try resultCheckAndSet(.compilationResult(compilationResult))
       }
       if let errorStatus = try container.decodeIfPresent(
-        GoogleRpc.Status?.self, forKey: .errorStatus)
+        GoogleRpc.Status.self, forKey: .errorStatus)
       {
         try resultCheckAndSet(.errorStatus(errorStatus))
       }
@@ -272,7 +272,7 @@ public struct ReleaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       case compilationResult(Swift.String)
       /// The error status encountered upon this attempt to create the
       /// compilation result, if the attempt was unsuccessful.
-      indirect case errorStatus(GoogleRpc.Status?)
+      indirect case errorStatus(GoogleRpc.Status)
     }
 
     public static var _anyTypeUrl: Swift.String {

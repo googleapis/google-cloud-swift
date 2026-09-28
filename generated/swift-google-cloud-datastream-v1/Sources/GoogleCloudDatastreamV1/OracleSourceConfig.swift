@@ -110,12 +110,12 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       largeObjectsHandling = $0
     }
     if let dropLargeObjects = try container.decodeIfPresent(
-      OracleSourceConfig.DropLargeObjects?.self, forKey: .dropLargeObjects)
+      OracleSourceConfig.DropLargeObjects.self, forKey: .dropLargeObjects)
     {
       try largeObjectsHandlingCheckAndSet(.dropLargeObjects(dropLargeObjects))
     }
     if let streamLargeObjects = try container.decodeIfPresent(
-      OracleSourceConfig.StreamLargeObjects?.self, forKey: .streamLargeObjects)
+      OracleSourceConfig.StreamLargeObjects.self, forKey: .streamLargeObjects)
     {
       try largeObjectsHandlingCheckAndSet(.streamLargeObjects(streamLargeObjects))
     }
@@ -132,12 +132,12 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       cdcMethod = $0
     }
     if let logMiner = try container.decodeIfPresent(
-      OracleSourceConfig.LogMiner?.self, forKey: .logMiner)
+      OracleSourceConfig.LogMiner.self, forKey: .logMiner)
     {
       try cdcMethodCheckAndSet(.logMiner(logMiner))
     }
     if let binaryLogParser = try container.decodeIfPresent(
-      OracleSourceConfig.BinaryLogParser?.self, forKey: .binaryLogParser)
+      OracleSourceConfig.BinaryLogParser.self, forKey: .binaryLogParser)
     {
       try cdcMethodCheckAndSet(.binaryLogParser(binaryLogParser))
     }
@@ -402,13 +402,13 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         logFileAccess = $0
       }
       if let oracleAsmLogFileAccess = try container.decodeIfPresent(
-        OracleSourceConfig.BinaryLogParser.OracleAsmLogFileAccess?.self,
+        OracleSourceConfig.BinaryLogParser.OracleAsmLogFileAccess.self,
         forKey: .oracleAsmLogFileAccess)
       {
         try logFileAccessCheckAndSet(.oracleAsmLogFileAccess(oracleAsmLogFileAccess))
       }
       if let logFileDirectories = try container.decodeIfPresent(
-        OracleSourceConfig.BinaryLogParser.LogFileDirectories?.self, forKey: .logFileDirectories)
+        OracleSourceConfig.BinaryLogParser.LogFileDirectories.self, forKey: .logFileDirectories)
       {
         try logFileAccessCheckAndSet(.logFileDirectories(logFileDirectories))
       }
@@ -578,9 +578,9 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public enum LogFileAccessOneOf: Codable, Equatable, Sendable {
       /// Use Oracle ASM.
       indirect case oracleAsmLogFileAccess(
-        OracleSourceConfig.BinaryLogParser.OracleAsmLogFileAccess?)
+        OracleSourceConfig.BinaryLogParser.OracleAsmLogFileAccess)
       /// Use Oracle directories.
-      indirect case logFileDirectories(OracleSourceConfig.BinaryLogParser.LogFileDirectories?)
+      indirect case logFileDirectories(OracleSourceConfig.BinaryLogParser.LogFileDirectories)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -597,17 +597,17 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The configuration for handle Oracle large objects.
   public enum LargeObjectsHandlingOneOf: Codable, Equatable, Sendable {
     /// Drop large object values.
-    indirect case dropLargeObjects(OracleSourceConfig.DropLargeObjects?)
+    indirect case dropLargeObjects(OracleSourceConfig.DropLargeObjects)
     /// Stream large object values.
-    indirect case streamLargeObjects(OracleSourceConfig.StreamLargeObjects?)
+    indirect case streamLargeObjects(OracleSourceConfig.StreamLargeObjects)
   }
 
   /// Configuration to select the CDC method.
   public enum CdcMethodOneOf: Codable, Equatable, Sendable {
     /// Use LogMiner.
-    indirect case logMiner(OracleSourceConfig.LogMiner?)
+    indirect case logMiner(OracleSourceConfig.LogMiner)
     /// Use Binary Log Parser.
-    indirect case binaryLogParser(OracleSourceConfig.BinaryLogParser?)
+    indirect case binaryLogParser(OracleSourceConfig.BinaryLogParser)
   }
 
   public static var _anyTypeUrl: Swift.String {

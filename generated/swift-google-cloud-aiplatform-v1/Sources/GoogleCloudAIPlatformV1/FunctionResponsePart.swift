@@ -80,12 +80,12 @@
         data = $0
       }
       if let inlineData = try container.decodeIfPresent(
-        FunctionResponseBlob?.self, forKey: .inlineData)
+        FunctionResponseBlob.self, forKey: .inlineData)
       {
         try dataCheckAndSet(.inlineData(inlineData))
       }
       if let fileData = try container.decodeIfPresent(
-        FunctionResponseFileData?.self, forKey: .fileData)
+        FunctionResponseFileData.self, forKey: .fileData)
       {
         try dataCheckAndSet(.fileData(fileData))
       }
@@ -115,9 +115,9 @@
     /// The data of the function response part.
     public enum DataOneOf: Codable, Equatable, Sendable {
       /// Inline media bytes.
-      indirect case inlineData(FunctionResponseBlob?)
+      indirect case inlineData(FunctionResponseBlob)
       /// URI based data.
-      indirect case fileData(FunctionResponseFileData?)
+      indirect case fileData(FunctionResponseFileData)
     }
 
     public static var _anyTypeUrl: Swift.String {

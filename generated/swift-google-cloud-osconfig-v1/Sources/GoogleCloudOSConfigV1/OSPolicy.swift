@@ -291,22 +291,22 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         resourceType = $0
       }
       if let pkg = try container.decodeIfPresent(
-        OSPolicy.Resource.PackageResource?.self, forKey: .pkg)
+        OSPolicy.Resource.PackageResource.self, forKey: .pkg)
       {
         try resourceTypeCheckAndSet(.pkg(pkg))
       }
       if let repository = try container.decodeIfPresent(
-        OSPolicy.Resource.RepositoryResource?.self, forKey: .repository)
+        OSPolicy.Resource.RepositoryResource.self, forKey: .repository)
       {
         try resourceTypeCheckAndSet(.repository(repository))
       }
       if let exec = try container.decodeIfPresent(
-        OSPolicy.Resource.ExecResource?.self, forKey: .exec)
+        OSPolicy.Resource.ExecResource.self, forKey: .exec)
       {
         try resourceTypeCheckAndSet(.exec(exec))
       }
       if let file = try container.decodeIfPresent(
-        OSPolicy.Resource.FileResource?.self, forKey: .file)
+        OSPolicy.Resource.FileResource.self, forKey: .file)
       {
         try resourceTypeCheckAndSet(.file(file))
       }
@@ -406,11 +406,11 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           type = $0
         }
         if let remote = try container.decodeIfPresent(
-          OSPolicy.Resource.File.Remote?.self, forKey: .remote)
+          OSPolicy.Resource.File.Remote.self, forKey: .remote)
         {
           try typeCheckAndSet(.remote(remote))
         }
-        if let gcs = try container.decodeIfPresent(OSPolicy.Resource.File.Gcs?.self, forKey: .gcs) {
+        if let gcs = try container.decodeIfPresent(OSPolicy.Resource.File.Gcs.self, forKey: .gcs) {
           try typeCheckAndSet(.gcs(gcs))
         }
         if let localPath = try container.decodeIfPresent(Swift.String.self, forKey: .localPath) {
@@ -609,9 +609,9 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// A specific type of file.
       public enum TypeOneOf: Codable, Equatable, Sendable {
         /// A generic remote file.
-        indirect case remote(OSPolicy.Resource.File.Remote?)
+        indirect case remote(OSPolicy.Resource.File.Remote)
         /// A Cloud Storage object.
-        indirect case gcs(OSPolicy.Resource.File.Gcs?)
+        indirect case gcs(OSPolicy.Resource.File.Gcs)
         /// A local path within the VM to use.
         case localPath(Swift.String)
       }
@@ -702,37 +702,37 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           systemPackage = $0
         }
         if let apt = try container.decodeIfPresent(
-          OSPolicy.Resource.PackageResource.APT?.self, forKey: .apt)
+          OSPolicy.Resource.PackageResource.APT.self, forKey: .apt)
         {
           try systemPackageCheckAndSet(.apt(apt))
         }
         if let deb = try container.decodeIfPresent(
-          OSPolicy.Resource.PackageResource.Deb?.self, forKey: .deb)
+          OSPolicy.Resource.PackageResource.Deb.self, forKey: .deb)
         {
           try systemPackageCheckAndSet(.deb(deb))
         }
         if let yum = try container.decodeIfPresent(
-          OSPolicy.Resource.PackageResource.YUM?.self, forKey: .yum)
+          OSPolicy.Resource.PackageResource.YUM.self, forKey: .yum)
         {
           try systemPackageCheckAndSet(.yum(yum))
         }
         if let zypper = try container.decodeIfPresent(
-          OSPolicy.Resource.PackageResource.Zypper?.self, forKey: .zypper)
+          OSPolicy.Resource.PackageResource.Zypper.self, forKey: .zypper)
         {
           try systemPackageCheckAndSet(.zypper(zypper))
         }
         if let rpm = try container.decodeIfPresent(
-          OSPolicy.Resource.PackageResource.RPM?.self, forKey: .rpm)
+          OSPolicy.Resource.PackageResource.RPM.self, forKey: .rpm)
         {
           try systemPackageCheckAndSet(.rpm(rpm))
         }
         if let googet = try container.decodeIfPresent(
-          OSPolicy.Resource.PackageResource.GooGet?.self, forKey: .googet)
+          OSPolicy.Resource.PackageResource.GooGet.self, forKey: .googet)
         {
           try systemPackageCheckAndSet(.googet(googet))
         }
         if let msi = try container.decodeIfPresent(
-          OSPolicy.Resource.PackageResource.MSI?.self, forKey: .msi)
+          OSPolicy.Resource.PackageResource.MSI.self, forKey: .msi)
         {
           try systemPackageCheckAndSet(.msi(msi))
         }
@@ -1412,19 +1412,19 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// A system package.
       public enum SystemPackageOneOf: Codable, Equatable, Sendable {
         /// A package managed by Apt.
-        indirect case apt(OSPolicy.Resource.PackageResource.APT?)
+        indirect case apt(OSPolicy.Resource.PackageResource.APT)
         /// A deb package file.
-        indirect case deb(OSPolicy.Resource.PackageResource.Deb?)
+        indirect case deb(OSPolicy.Resource.PackageResource.Deb)
         /// A package managed by YUM.
-        indirect case yum(OSPolicy.Resource.PackageResource.YUM?)
+        indirect case yum(OSPolicy.Resource.PackageResource.YUM)
         /// A package managed by Zypper.
-        indirect case zypper(OSPolicy.Resource.PackageResource.Zypper?)
+        indirect case zypper(OSPolicy.Resource.PackageResource.Zypper)
         /// An rpm package file.
-        indirect case rpm(OSPolicy.Resource.PackageResource.RPM?)
+        indirect case rpm(OSPolicy.Resource.PackageResource.RPM)
         /// A package managed by GooGet.
-        indirect case googet(OSPolicy.Resource.PackageResource.GooGet?)
+        indirect case googet(OSPolicy.Resource.PackageResource.GooGet)
         /// An MSI package.
-        indirect case msi(OSPolicy.Resource.PackageResource.MSI?)
+        indirect case msi(OSPolicy.Resource.PackageResource.MSI)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1496,22 +1496,22 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           repository = $0
         }
         if let apt = try container.decodeIfPresent(
-          OSPolicy.Resource.RepositoryResource.AptRepository?.self, forKey: .apt)
+          OSPolicy.Resource.RepositoryResource.AptRepository.self, forKey: .apt)
         {
           try repositoryCheckAndSet(.apt(apt))
         }
         if let yum = try container.decodeIfPresent(
-          OSPolicy.Resource.RepositoryResource.YumRepository?.self, forKey: .yum)
+          OSPolicy.Resource.RepositoryResource.YumRepository.self, forKey: .yum)
         {
           try repositoryCheckAndSet(.yum(yum))
         }
         if let zypper = try container.decodeIfPresent(
-          OSPolicy.Resource.RepositoryResource.ZypperRepository?.self, forKey: .zypper)
+          OSPolicy.Resource.RepositoryResource.ZypperRepository.self, forKey: .zypper)
         {
           try repositoryCheckAndSet(.zypper(zypper))
         }
         if let goo = try container.decodeIfPresent(
-          OSPolicy.Resource.RepositoryResource.GooRepository?.self, forKey: .goo)
+          OSPolicy.Resource.RepositoryResource.GooRepository.self, forKey: .goo)
         {
           try repositoryCheckAndSet(.goo(goo))
         }
@@ -2057,13 +2057,13 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// A specific type of repository.
       public enum RepositoryOneOf: Codable, Equatable, Sendable {
         /// An Apt Repository.
-        indirect case apt(OSPolicy.Resource.RepositoryResource.AptRepository?)
+        indirect case apt(OSPolicy.Resource.RepositoryResource.AptRepository)
         /// A Yum Repository.
-        indirect case yum(OSPolicy.Resource.RepositoryResource.YumRepository?)
+        indirect case yum(OSPolicy.Resource.RepositoryResource.YumRepository)
         /// A Zypper Repository.
-        indirect case zypper(OSPolicy.Resource.RepositoryResource.ZypperRepository?)
+        indirect case zypper(OSPolicy.Resource.RepositoryResource.ZypperRepository)
         /// A Goo Repository.
-        indirect case goo(OSPolicy.Resource.RepositoryResource.GooRepository?)
+        indirect case goo(OSPolicy.Resource.RepositoryResource.GooRepository)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -2256,7 +2256,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
             }
             source = $0
           }
-          if let file = try container.decodeIfPresent(OSPolicy.Resource.File?.self, forKey: .file) {
+          if let file = try container.decodeIfPresent(OSPolicy.Resource.File.self, forKey: .file) {
             try sourceCheckAndSet(.file(file))
           }
           if let script = try container.decodeIfPresent(Swift.String.self, forKey: .script) {
@@ -2420,7 +2420,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// What to execute.
         public enum SourceOneOf: Codable, Equatable, Sendable {
           /// A remote or local file.
-          indirect case file(OSPolicy.Resource.File?)
+          indirect case file(OSPolicy.Resource.File)
           /// An inline script.
           /// The size of the script is limited to 1024 characters.
           case script(Swift.String)
@@ -2540,7 +2540,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           source = $0
         }
-        if let file = try container.decodeIfPresent(OSPolicy.Resource.File?.self, forKey: .file) {
+        if let file = try container.decodeIfPresent(OSPolicy.Resource.File.self, forKey: .file) {
           try sourceCheckAndSet(.file(file))
         }
         if let content = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
@@ -2700,7 +2700,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// The source for the contents of the file.
       public enum SourceOneOf: Codable, Equatable, Sendable {
         /// A remote or local source.
-        indirect case file(OSPolicy.Resource.File?)
+        indirect case file(OSPolicy.Resource.File)
         /// A a file with this content.
         /// The size of the content is limited to 1024 characters.
         case content(Swift.String)
@@ -2720,13 +2720,13 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Resource type.
     public enum ResourceTypeOneOf: Codable, Equatable, Sendable {
       /// Package resource
-      indirect case pkg(OSPolicy.Resource.PackageResource?)
+      indirect case pkg(OSPolicy.Resource.PackageResource)
       /// Package repository resource
-      indirect case repository(OSPolicy.Resource.RepositoryResource?)
+      indirect case repository(OSPolicy.Resource.RepositoryResource)
       /// Exec resource
-      indirect case exec(OSPolicy.Resource.ExecResource?)
+      indirect case exec(OSPolicy.Resource.ExecResource)
       /// File resource
-      indirect case file(OSPolicy.Resource.FileResource?)
+      indirect case file(OSPolicy.Resource.FileResource)
     }
 
     public static var _anyTypeUrl: Swift.String {

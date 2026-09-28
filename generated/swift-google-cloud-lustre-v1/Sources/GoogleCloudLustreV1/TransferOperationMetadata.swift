@@ -100,11 +100,11 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
       source = $0
     }
     if let sourceLustrePath = try container.decodeIfPresent(
-      LustrePath?.self, forKey: .sourceLustrePath)
+      LustrePath.self, forKey: .sourceLustrePath)
     {
       try sourceCheckAndSet(.sourceLustrePath(sourceLustrePath))
     }
-    if let sourceGcsPath = try container.decodeIfPresent(GcsPath?.self, forKey: .sourceGcsPath) {
+    if let sourceGcsPath = try container.decodeIfPresent(GcsPath.self, forKey: .sourceGcsPath) {
       try sourceCheckAndSet(.sourceGcsPath(sourceGcsPath))
     }
     self.source = source
@@ -120,12 +120,12 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
       destination = $0
     }
     if let destinationGcsPath = try container.decodeIfPresent(
-      GcsPath?.self, forKey: .destinationGcsPath)
+      GcsPath.self, forKey: .destinationGcsPath)
     {
       try destinationCheckAndSet(.destinationGcsPath(destinationGcsPath))
     }
     if let destinationLustrePath = try container.decodeIfPresent(
-      LustrePath?.self, forKey: .destinationLustrePath)
+      LustrePath.self, forKey: .destinationLustrePath)
     {
       try destinationCheckAndSet(.destinationLustrePath(destinationLustrePath))
     }
@@ -167,17 +167,17 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   /// The source of transfer operation.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Output only. Lustre source.
-    indirect case sourceLustrePath(LustrePath?)
+    indirect case sourceLustrePath(LustrePath)
     /// Output only. Cloud Storage source.
-    indirect case sourceGcsPath(GcsPath?)
+    indirect case sourceGcsPath(GcsPath)
   }
 
   /// The destination of transfer operation.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Output only. Cloud Storage destination.
-    indirect case destinationGcsPath(GcsPath?)
+    indirect case destinationGcsPath(GcsPath)
     /// Output only. Lustre destination.
-    indirect case destinationLustrePath(LustrePath?)
+    indirect case destinationLustrePath(LustrePath)
   }
 
   public static var _anyTypeUrl: Swift.String {

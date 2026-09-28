@@ -128,7 +128,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let textData = try container.decodeIfPresent(Swift.String.self, forKey: .textData) {
       try dataCheckAndSet(.textData(textData))
     }
-    if let protoData = try container.decodeIfPresent(GoogleWKT.WKTAny?.self, forKey: .protoData) {
+    if let protoData = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .protoData) {
       try dataCheckAndSet(.protoData(protoData))
     }
     self.data = data
@@ -243,7 +243,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
         try attrCheckAndSet(.ceUriRef(ceUriRef))
       }
       if let ceTimestamp = try container.decodeIfPresent(
-        GoogleWKT.WKTTimestamp?.self, forKey: .ceTimestamp)
+        GoogleWKT.WKTTimestamp.self, forKey: .ceTimestamp)
       {
         try attrCheckAndSet(.ceTimestamp(ceTimestamp))
       }
@@ -295,7 +295,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       /// URI-reference value.
       case ceUriRef(Swift.String)
       /// Timestamp value.
-      indirect case ceTimestamp(GoogleWKT.WKTTimestamp?)
+      indirect case ceTimestamp(GoogleWKT.WKTTimestamp)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -326,7 +326,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// arbitrary protocol buffer messages. For any other protocol buffer type,
     /// you must serialize your proto message into bytes, and use the
     /// `binaryData` field instead.
-    indirect case protoData(GoogleWKT.WKTAny?)
+    indirect case protoData(GoogleWKT.WKTAny)
   }
 
   public static var _anyTypeUrl: Swift.String {

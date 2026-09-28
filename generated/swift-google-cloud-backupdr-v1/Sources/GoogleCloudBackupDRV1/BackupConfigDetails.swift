@@ -165,12 +165,12 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       planSpecificConfig = $0
     }
     if let backupDrPlanConfig = try container.decodeIfPresent(
-      BackupDrPlanConfig?.self, forKey: .backupDrPlanConfig)
+      BackupDrPlanConfig.self, forKey: .backupDrPlanConfig)
     {
       try planSpecificConfigCheckAndSet(.backupDrPlanConfig(backupDrPlanConfig))
     }
     if let backupDrTemplateConfig = try container.decodeIfPresent(
-      BackupDrTemplateConfig?.self, forKey: .backupDrTemplateConfig)
+      BackupDrTemplateConfig.self, forKey: .backupDrTemplateConfig)
     {
       try planSpecificConfigCheckAndSet(.backupDrTemplateConfig(backupDrTemplateConfig))
     }
@@ -480,9 +480,9 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.backupdr.v1.BackupConfigDetails.type]: <doc:BackupConfigDetails/type>
   public enum PlanSpecificConfigOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Backup and DR's Backup Plan specific data.
-    indirect case backupDrPlanConfig(BackupDrPlanConfig?)
+    indirect case backupDrPlanConfig(BackupDrPlanConfig)
     /// Google Cloud Backup and DR's Template specific data.
-    indirect case backupDrTemplateConfig(BackupDrTemplateConfig?)
+    indirect case backupDrTemplateConfig(BackupDrTemplateConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

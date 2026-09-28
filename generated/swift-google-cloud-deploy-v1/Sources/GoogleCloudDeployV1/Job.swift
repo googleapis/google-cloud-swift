@@ -112,27 +112,26 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       jobType = $0
     }
-    if let deployJob = try container.decodeIfPresent(DeployJob?.self, forKey: .deployJob) {
+    if let deployJob = try container.decodeIfPresent(DeployJob.self, forKey: .deployJob) {
       try jobTypeCheckAndSet(.deployJob(deployJob))
     }
-    if let verifyJob = try container.decodeIfPresent(VerifyJob?.self, forKey: .verifyJob) {
+    if let verifyJob = try container.decodeIfPresent(VerifyJob.self, forKey: .verifyJob) {
       try jobTypeCheckAndSet(.verifyJob(verifyJob))
     }
-    if let predeployJob = try container.decodeIfPresent(PredeployJob?.self, forKey: .predeployJob) {
+    if let predeployJob = try container.decodeIfPresent(PredeployJob.self, forKey: .predeployJob) {
       try jobTypeCheckAndSet(.predeployJob(predeployJob))
     }
-    if let postdeployJob = try container.decodeIfPresent(
-      PostdeployJob?.self, forKey: .postdeployJob)
+    if let postdeployJob = try container.decodeIfPresent(PostdeployJob.self, forKey: .postdeployJob)
     {
       try jobTypeCheckAndSet(.postdeployJob(postdeployJob))
     }
     if let createChildRolloutJob = try container.decodeIfPresent(
-      CreateChildRolloutJob?.self, forKey: .createChildRolloutJob)
+      CreateChildRolloutJob.self, forKey: .createChildRolloutJob)
     {
       try jobTypeCheckAndSet(.createChildRolloutJob(createChildRolloutJob))
     }
     if let advanceChildRolloutJob = try container.decodeIfPresent(
-      AdvanceChildRolloutJob?.self, forKey: .advanceChildRolloutJob)
+      AdvanceChildRolloutJob.self, forKey: .advanceChildRolloutJob)
     {
       try jobTypeCheckAndSet(.advanceChildRolloutJob(advanceChildRolloutJob))
     }
@@ -333,17 +332,17 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of Job.
   public enum JobTypeOneOf: Codable, Equatable, Sendable {
     /// Output only. A deploy Job.
-    indirect case deployJob(DeployJob?)
+    indirect case deployJob(DeployJob)
     /// Output only. A verify Job.
-    indirect case verifyJob(VerifyJob?)
+    indirect case verifyJob(VerifyJob)
     /// Output only. A predeploy Job.
-    indirect case predeployJob(PredeployJob?)
+    indirect case predeployJob(PredeployJob)
     /// Output only. A postdeploy Job.
-    indirect case postdeployJob(PostdeployJob?)
+    indirect case postdeployJob(PostdeployJob)
     /// Output only. A createChildRollout Job.
-    indirect case createChildRolloutJob(CreateChildRolloutJob?)
+    indirect case createChildRolloutJob(CreateChildRolloutJob)
     /// Output only. An advanceChildRollout Job.
-    indirect case advanceChildRolloutJob(AdvanceChildRolloutJob?)
+    indirect case advanceChildRolloutJob(AdvanceChildRolloutJob)
   }
 
   public static var _anyTypeUrl: Swift.String {

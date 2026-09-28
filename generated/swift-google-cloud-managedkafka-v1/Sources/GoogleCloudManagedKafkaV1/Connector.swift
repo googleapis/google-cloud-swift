@@ -101,7 +101,7 @@ public struct Connector: Codable, Equatable, GoogleWKT._AnyPackable,
       restartPolicy = $0
     }
     if let taskRestartPolicy = try container.decodeIfPresent(
-      TaskRetryPolicy?.self, forKey: .taskRestartPolicy)
+      TaskRetryPolicy.self, forKey: .taskRestartPolicy)
     {
       try restartPolicyCheckAndSet(.taskRestartPolicy(taskRestartPolicy))
     }
@@ -279,7 +279,7 @@ public struct Connector: Codable, Equatable, GoogleWKT._AnyPackable,
   /// restarted.
   public enum RestartPolicyOneOf: Codable, Equatable, Sendable {
     /// Optional. Restarts the individual tasks of a Connector.
-    indirect case taskRestartPolicy(TaskRetryPolicy?)
+    indirect case taskRestartPolicy(TaskRetryPolicy)
   }
 
   public static var _anyTypeUrl: Swift.String {

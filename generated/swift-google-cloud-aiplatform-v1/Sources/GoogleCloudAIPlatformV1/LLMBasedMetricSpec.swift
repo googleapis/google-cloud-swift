@@ -106,7 +106,7 @@
         try rubricsSourceCheckAndSet(.rubricGroupKey(rubricGroupKey))
       }
       if let predefinedRubricGenerationSpec = try container.decodeIfPresent(
-        PredefinedMetricSpec?.self, forKey: .predefinedRubricGenerationSpec)
+        PredefinedMetricSpec.self, forKey: .predefinedRubricGenerationSpec)
       {
         try rubricsSourceCheckAndSet(
           .predefinedRubricGenerationSpec(predefinedRubricGenerationSpec))
@@ -144,7 +144,7 @@
       /// Refers to a key in the rubric_groups map of EvaluationInstance.
       case rubricGroupKey(Swift.String)
       /// Dynamically generate rubrics using a predefined spec.
-      indirect case predefinedRubricGenerationSpec(PredefinedMetricSpec?)
+      indirect case predefinedRubricGenerationSpec(PredefinedMetricSpec)
     }
 
     public static var _anyTypeUrl: Swift.String {

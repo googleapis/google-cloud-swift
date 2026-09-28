@@ -235,12 +235,12 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
         source = $0
       }
       if let resourceBundle = try container.decodeIfPresent(
-        FleetPackage.ResourceBundleTag?.self, forKey: .resourceBundle)
+        FleetPackage.ResourceBundleTag.self, forKey: .resourceBundle)
       {
         try sourceCheckAndSet(.resourceBundle(resourceBundle))
       }
       if let cloudBuildRepository = try container.decodeIfPresent(
-        FleetPackage.CloudBuildRepository?.self, forKey: .cloudBuildRepository)
+        FleetPackage.CloudBuildRepository.self, forKey: .cloudBuildRepository)
       {
         try sourceCheckAndSet(.cloudBuildRepository(cloudBuildRepository))
       }
@@ -271,9 +271,9 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     /// `CloudBuildRepository` containing the kubernetes configuration.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Information specifying `ResourceBundle`.
-      indirect case resourceBundle(FleetPackage.ResourceBundleTag?)
+      indirect case resourceBundle(FleetPackage.ResourceBundleTag)
       /// Information specifying `CloudBuildRepository`.
-      indirect case cloudBuildRepository(FleetPackage.CloudBuildRepository?)
+      indirect case cloudBuildRepository(FleetPackage.CloudBuildRepository)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -558,7 +558,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         target = $0
       }
-      if let fleet = try container.decodeIfPresent(Fleet?.self, forKey: .fleet) {
+      if let fleet = try container.decodeIfPresent(Fleet.self, forKey: .fleet) {
         try targetCheckAndSet(.fleet(fleet))
       }
       self.target = target
@@ -585,7 +585,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     /// target for the fleet package.
     public enum TargetOneOf: Codable, Equatable, Sendable {
       /// The GKE fleet information.
-      indirect case fleet(Fleet?)
+      indirect case fleet(Fleet)
     }
 
     public static var _anyTypeUrl: Swift.String {

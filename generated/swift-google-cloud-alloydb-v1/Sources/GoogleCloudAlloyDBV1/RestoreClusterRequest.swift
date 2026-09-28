@@ -126,11 +126,11 @@ public struct RestoreClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       source = $0
     }
-    if let backupSource = try container.decodeIfPresent(BackupSource?.self, forKey: .backupSource) {
+    if let backupSource = try container.decodeIfPresent(BackupSource.self, forKey: .backupSource) {
       try sourceCheckAndSet(.backupSource(backupSource))
     }
     if let continuousBackupSource = try container.decodeIfPresent(
-      ContinuousBackupSource?.self, forKey: .continuousBackupSource)
+      ContinuousBackupSource.self, forKey: .continuousBackupSource)
     {
       try sourceCheckAndSet(.continuousBackupSource(continuousBackupSource))
     }
@@ -166,10 +166,10 @@ public struct RestoreClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The source to import from.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Backup source.
-    indirect case backupSource(BackupSource?)
+    indirect case backupSource(BackupSource)
     /// ContinuousBackup source. Continuous backup needs to be enabled in the
     /// source cluster for this operation to succeed.
-    indirect case continuousBackupSource(ContinuousBackupSource?)
+    indirect case continuousBackupSource(ContinuousBackupSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

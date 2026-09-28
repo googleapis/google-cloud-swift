@@ -84,13 +84,13 @@ public struct StorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       reference = $0
     }
-    if let filestore = try container.decodeIfPresent(FilestoreReference?.self, forKey: .filestore) {
+    if let filestore = try container.decodeIfPresent(FilestoreReference.self, forKey: .filestore) {
       try referenceCheckAndSet(.filestore(filestore))
     }
-    if let bucket = try container.decodeIfPresent(BucketReference?.self, forKey: .bucket) {
+    if let bucket = try container.decodeIfPresent(BucketReference.self, forKey: .bucket) {
       try referenceCheckAndSet(.bucket(bucket))
     }
-    if let lustre = try container.decodeIfPresent(LustreReference?.self, forKey: .lustre) {
+    if let lustre = try container.decodeIfPresent(LustreReference.self, forKey: .lustre) {
       try referenceCheckAndSet(.lustre(lustre))
     }
     self.reference = reference
@@ -124,13 +124,13 @@ public struct StorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ReferenceOneOf: Codable, Equatable, Sendable {
     /// Reference to a Filestore instance. Populated if and only if the storage
     /// resource was configured to use Filestore.
-    indirect case filestore(FilestoreReference?)
+    indirect case filestore(FilestoreReference)
     /// Reference to a Google Cloud Storage bucket. Populated if and only if the
     /// storage resource was configured to use Google Cloud Storage.
-    indirect case bucket(BucketReference?)
+    indirect case bucket(BucketReference)
     /// Reference to a Managed Lustre instance. Populated if and only if the
     /// storage resource was configured to use Managed Lustre.
-    indirect case lustre(LustreReference?)
+    indirect case lustre(LustreReference)
   }
 
   public static var _anyTypeUrl: Swift.String {

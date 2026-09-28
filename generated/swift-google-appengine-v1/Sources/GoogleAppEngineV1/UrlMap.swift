@@ -124,15 +124,15 @@ public struct UrlMap: Codable, Equatable, GoogleWKT._AnyPackable,
       handlerType = $0
     }
     if let staticFiles = try container.decodeIfPresent(
-      StaticFilesHandler?.self, forKey: .staticFiles)
+      StaticFilesHandler.self, forKey: .staticFiles)
     {
       try handlerTypeCheckAndSet(.staticFiles(staticFiles))
     }
-    if let script = try container.decodeIfPresent(ScriptHandler?.self, forKey: .script) {
+    if let script = try container.decodeIfPresent(ScriptHandler.self, forKey: .script) {
       try handlerTypeCheckAndSet(.script(script))
     }
     if let apiEndpoint = try container.decodeIfPresent(
-      ApiEndpointHandler?.self, forKey: .apiEndpoint)
+      ApiEndpointHandler.self, forKey: .apiEndpoint)
     {
       try handlerTypeCheckAndSet(.apiEndpoint(apiEndpoint))
     }
@@ -304,13 +304,13 @@ public struct UrlMap: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of handler for this URL pattern.
   public enum HandlerTypeOneOf: Codable, Equatable, Sendable {
     /// Returns the contents of a file, such as an image, as the response.
-    indirect case staticFiles(StaticFilesHandler?)
+    indirect case staticFiles(StaticFilesHandler)
     /// Executes a script to handle the requests that match this URL
     /// pattern. Only the `auto` value is supported for Node.js in the
     /// App Engine standard environment, for example `"script": "auto"`.
-    indirect case script(ScriptHandler?)
+    indirect case script(ScriptHandler)
     /// Uses API Endpoints to handle requests.
-    indirect case apiEndpoint(ApiEndpointHandler?)
+    indirect case apiEndpoint(ApiEndpointHandler)
   }
 
   public static var _anyTypeUrl: Swift.String {

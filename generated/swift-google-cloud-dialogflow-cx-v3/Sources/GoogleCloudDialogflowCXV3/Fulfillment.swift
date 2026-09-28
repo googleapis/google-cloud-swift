@@ -466,12 +466,11 @@
               }
               casesOrMessage = $0
             }
-            if let message = try container.decodeIfPresent(ResponseMessage?.self, forKey: .message)
-            {
+            if let message = try container.decodeIfPresent(ResponseMessage.self, forKey: .message) {
               try casesOrMessageCheckAndSet(.message(message))
             }
             if let additionalCases = try container.decodeIfPresent(
-              Fulfillment.ConditionalCases?.self, forKey: .additionalCases)
+              Fulfillment.ConditionalCases.self, forKey: .additionalCases)
             {
               try casesOrMessageCheckAndSet(.additionalCases(additionalCases))
             }
@@ -501,9 +500,9 @@
           /// Either a message is returned or additional cases to be evaluated.
           public enum CasesOrMessageOneOf: Codable, Equatable, Sendable {
             /// Returned message.
-            indirect case message(ResponseMessage?)
+            indirect case message(ResponseMessage)
             /// Additional cases to be evaluated.
-            indirect case additionalCases(Fulfillment.ConditionalCases?)
+            indirect case additionalCases(Fulfillment.ConditionalCases)
           }
 
           public static var _anyTypeUrl: Swift.String {

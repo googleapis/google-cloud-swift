@@ -684,12 +684,12 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
           keyType = $0
         }
         if let rsa = try container.decodeIfPresent(
-          CaPool.IssuancePolicy.AllowedKeyType.RsaKeyType?.self, forKey: .rsa)
+          CaPool.IssuancePolicy.AllowedKeyType.RsaKeyType.self, forKey: .rsa)
         {
           try keyTypeCheckAndSet(.rsa(rsa))
         }
         if let ellipticCurve = try container.decodeIfPresent(
-          CaPool.IssuancePolicy.AllowedKeyType.EcKeyType?.self, forKey: .ellipticCurve)
+          CaPool.IssuancePolicy.AllowedKeyType.EcKeyType.self, forKey: .ellipticCurve)
         {
           try keyTypeCheckAndSet(.ellipticCurve(ellipticCurve))
         }
@@ -1018,9 +1018,9 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public enum KeyTypeOneOf: Codable, Equatable, Sendable {
         /// Represents an allowed RSA key type.
-        indirect case rsa(CaPool.IssuancePolicy.AllowedKeyType.RsaKeyType?)
+        indirect case rsa(CaPool.IssuancePolicy.AllowedKeyType.RsaKeyType)
         /// Represents an allowed Elliptic Curve key type.
-        indirect case ellipticCurve(CaPool.IssuancePolicy.AllowedKeyType.EcKeyType?)
+        indirect case ellipticCurve(CaPool.IssuancePolicy.AllowedKeyType.EcKeyType)
       }
 
       public static var _anyTypeUrl: Swift.String {

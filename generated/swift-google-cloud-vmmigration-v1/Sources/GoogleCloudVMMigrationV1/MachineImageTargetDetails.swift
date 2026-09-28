@@ -179,12 +179,12 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPacka
       osAdaptationConfig = $0
     }
     if let osAdaptationParameters = try container.decodeIfPresent(
-      ImageImportOsAdaptationParameters?.self, forKey: .osAdaptationParameters)
+      ImageImportOsAdaptationParameters.self, forKey: .osAdaptationParameters)
     {
       try osAdaptationConfigCheckAndSet(.osAdaptationParameters(osAdaptationParameters))
     }
     if let skipOsAdaptation = try container.decodeIfPresent(
-      SkipOsAdaptation?.self, forKey: .skipOsAdaptation)
+      SkipOsAdaptation.self, forKey: .skipOsAdaptation)
     {
       try osAdaptationConfigCheckAndSet(.skipOsAdaptation(skipOsAdaptation))
     }
@@ -227,9 +227,9 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPacka
   public enum OsAdaptationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Use to set the parameters relevant for the OS adaptation
     /// process.
-    indirect case osAdaptationParameters(ImageImportOsAdaptationParameters?)
+    indirect case osAdaptationParameters(ImageImportOsAdaptationParameters)
     /// Optional. Use to skip OS adaptation process.
-    indirect case skipOsAdaptation(SkipOsAdaptation?)
+    indirect case skipOsAdaptation(SkipOsAdaptation)
   }
 
   public static var _anyTypeUrl: Swift.String {

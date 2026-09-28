@@ -130,17 +130,17 @@
         }
         probeType = $0
       }
-      if let exec = try container.decodeIfPresent(Probe.ExecAction?.self, forKey: .exec) {
+      if let exec = try container.decodeIfPresent(Probe.ExecAction.self, forKey: .exec) {
         try probeTypeCheckAndSet(.exec(exec))
       }
-      if let httpGet = try container.decodeIfPresent(Probe.HttpGetAction?.self, forKey: .httpGet) {
+      if let httpGet = try container.decodeIfPresent(Probe.HttpGetAction.self, forKey: .httpGet) {
         try probeTypeCheckAndSet(.httpGet(httpGet))
       }
-      if let grpc = try container.decodeIfPresent(Probe.GrpcAction?.self, forKey: .grpc) {
+      if let grpc = try container.decodeIfPresent(Probe.GrpcAction.self, forKey: .grpc) {
         try probeTypeCheckAndSet(.grpc(grpc))
       }
       if let tcpSocket = try container.decodeIfPresent(
-        Probe.TcpSocketAction?.self, forKey: .tcpSocket)
+        Probe.TcpSocketAction.self, forKey: .tcpSocket)
       {
         try probeTypeCheckAndSet(.tcpSocket(tcpSocket))
       }
@@ -599,15 +599,15 @@
 
     public enum ProbeTypeOneOf: Codable, Equatable, Sendable {
       /// ExecAction probes the health of a container by executing a command.
-      indirect case exec(Probe.ExecAction?)
+      indirect case exec(Probe.ExecAction)
       /// HttpGetAction probes the health of a container by sending an HTTP GET
       /// request.
-      indirect case httpGet(Probe.HttpGetAction?)
+      indirect case httpGet(Probe.HttpGetAction)
       /// GrpcAction probes the health of a container by sending a gRPC request.
-      indirect case grpc(Probe.GrpcAction?)
+      indirect case grpc(Probe.GrpcAction)
       /// TcpSocketAction probes the health of a container by opening a TCP socket
       /// connection.
-      indirect case tcpSocket(Probe.TcpSocketAction?)
+      indirect case tcpSocket(Probe.TcpSocketAction)
     }
 
     public static var _anyTypeUrl: Swift.String {

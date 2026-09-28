@@ -68,7 +68,7 @@ public struct AssetEnrichment: Codable, Equatable, GoogleWKT._AnyPackable,
       enrichmentData = $0
     }
     if let resourceOwners = try container.decodeIfPresent(
-      ResourceOwners?.self, forKey: .resourceOwners)
+      ResourceOwners.self, forKey: .resourceOwners)
     {
       try enrichmentDataCheckAndSet(.resourceOwners(resourceOwners))
     }
@@ -98,7 +98,7 @@ public struct AssetEnrichment: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// Note that this field only contains the members that have "roles/owner"
     /// role in the resource's IAM Policy.
-    indirect case resourceOwners(ResourceOwners?)
+    indirect case resourceOwners(ResourceOwners)
   }
 
   public static var _anyTypeUrl: Swift.String {

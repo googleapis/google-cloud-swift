@@ -114,7 +114,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
       try trafficOptionCheckAndSet(.roadTraffic(roadTraffic))
     }
     if let departureTime = try container.decodeIfPresent(
-      GoogleType.TimeOfDay?.self, forKey: .departureTime)
+      GoogleType.TimeOfDay.self, forKey: .departureTime)
     {
       try trafficOptionCheckAndSet(.departureTime(departureTime))
     }
@@ -272,7 +272,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Currently traffic model is restricted to hour level resolution.
     ///
     /// [google.type.TimeOfDay]: https://www.google.com/search?q=Swift+google.type+GoogleType.TimeOfDay
-    indirect case departureTime(GoogleType.TimeOfDay?)
+    indirect case departureTime(GoogleType.TimeOfDay)
   }
 
   public static var _anyTypeUrl: Swift.String {

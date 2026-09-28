@@ -98,7 +98,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let srcNodeType = try container.decodeIfPresent(Swift.String.self, forKey: .srcNodeType) {
       try sourceNodeCheckAndSet(.srcNodeType(srcNodeType))
     }
-    if let srcNodeGroup = try container.decodeIfPresent(NodeGroup?.self, forKey: .srcNodeGroup) {
+    if let srcNodeGroup = try container.decodeIfPresent(NodeGroup.self, forKey: .srcNodeGroup) {
       try sourceNodeCheckAndSet(.srcNodeGroup(srcNodeGroup))
     }
     self.sourceNode = sourceNode
@@ -116,7 +116,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let destNodeType = try container.decodeIfPresent(Swift.String.self, forKey: .destNodeType) {
       try destinationNodeCheckAndSet(.destNodeType(destNodeType))
     }
-    if let destNodeGroup = try container.decodeIfPresent(NodeGroup?.self, forKey: .destNodeGroup) {
+    if let destNodeGroup = try container.decodeIfPresent(NodeGroup.self, forKey: .destNodeGroup) {
       try destinationNodeCheckAndSet(.destNodeGroup(destNodeGroup))
     }
     self.destinationNode = destinationNode
@@ -164,7 +164,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     case srcNodeType(Swift.String)
     /// Optional. A dynamic group of nodes, defined by label constraints, that
     /// can act as the source for this edge.
-    indirect case srcNodeGroup(NodeGroup?)
+    indirect case srcNodeGroup(NodeGroup)
   }
 
   /// Specifies the destination criteria for this edge rule.
@@ -179,7 +179,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     case destNodeType(Swift.String)
     /// Optional. A dynamic group of nodes, defined by label constraints, that
     /// can act as the destination for this edge.
-    indirect case destNodeGroup(NodeGroup?)
+    indirect case destNodeGroup(NodeGroup)
   }
 
   public static var _anyTypeUrl: Swift.String {

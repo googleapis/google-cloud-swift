@@ -84,7 +84,7 @@
         source = $0
       }
       if let inlineSource = try container.decodeIfPresent(
-        ImportIdentityMappingsRequest.InlineSource?.self, forKey: .inlineSource)
+        ImportIdentityMappingsRequest.InlineSource.self, forKey: .inlineSource)
       {
         try sourceCheckAndSet(.inlineSource(inlineSource))
       }
@@ -184,7 +184,7 @@
     /// The source of the input.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The inline source to import identity mapping entries from.
-      indirect case inlineSource(ImportIdentityMappingsRequest.InlineSource?)
+      indirect case inlineSource(ImportIdentityMappingsRequest.InlineSource)
     }
 
     public static var _anyTypeUrl: Swift.String {

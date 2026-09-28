@@ -70,12 +70,12 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
       constraintDefinition = $0
     }
     if let googleDefinedConstraint = try container.decodeIfPresent(
-      AnalyzerOrgPolicyConstraint.Constraint?.self, forKey: .googleDefinedConstraint)
+      AnalyzerOrgPolicyConstraint.Constraint.self, forKey: .googleDefinedConstraint)
     {
       try constraintDefinitionCheckAndSet(.googleDefinedConstraint(googleDefinedConstraint))
     }
     if let customConstraint = try container.decodeIfPresent(
-      AnalyzerOrgPolicyConstraint.CustomConstraint?.self, forKey: .customConstraint)
+      AnalyzerOrgPolicyConstraint.CustomConstraint.self, forKey: .customConstraint)
     {
       try constraintDefinitionCheckAndSet(.customConstraint(customConstraint))
     }
@@ -197,12 +197,12 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         constraintType = $0
       }
       if let listConstraint = try container.decodeIfPresent(
-        AnalyzerOrgPolicyConstraint.Constraint.ListConstraint?.self, forKey: .listConstraint)
+        AnalyzerOrgPolicyConstraint.Constraint.ListConstraint.self, forKey: .listConstraint)
       {
         try constraintTypeCheckAndSet(.listConstraint(listConstraint))
       }
       if let booleanConstraint = try container.decodeIfPresent(
-        AnalyzerOrgPolicyConstraint.Constraint.BooleanConstraint?.self, forKey: .booleanConstraint)
+        AnalyzerOrgPolicyConstraint.Constraint.BooleanConstraint.self, forKey: .booleanConstraint)
       {
         try constraintTypeCheckAndSet(.booleanConstraint(booleanConstraint))
       }
@@ -505,9 +505,9 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     /// Immutable after creation.
     public enum ConstraintTypeOneOf: Codable, Equatable, Sendable {
       /// Defines this constraint as being a ListConstraint.
-      indirect case listConstraint(AnalyzerOrgPolicyConstraint.Constraint.ListConstraint?)
+      indirect case listConstraint(AnalyzerOrgPolicyConstraint.Constraint.ListConstraint)
       /// Defines this constraint as being a BooleanConstraint.
-      indirect case booleanConstraint(AnalyzerOrgPolicyConstraint.Constraint.BooleanConstraint?)
+      indirect case booleanConstraint(AnalyzerOrgPolicyConstraint.Constraint.BooleanConstraint)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -918,9 +918,9 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
 
   public enum ConstraintDefinitionOneOf: Codable, Equatable, Sendable {
     /// The definition of the canned constraint defined by Google.
-    indirect case googleDefinedConstraint(AnalyzerOrgPolicyConstraint.Constraint?)
+    indirect case googleDefinedConstraint(AnalyzerOrgPolicyConstraint.Constraint)
     /// The definition of the custom constraint.
-    indirect case customConstraint(AnalyzerOrgPolicyConstraint.CustomConstraint?)
+    indirect case customConstraint(AnalyzerOrgPolicyConstraint.CustomConstraint)
   }
 
   public static var _anyTypeUrl: Swift.String {

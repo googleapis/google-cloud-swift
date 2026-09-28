@@ -80,7 +80,7 @@ public struct SubordinateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       try subordinateConfigCheckAndSet(.certificateAuthority(certificateAuthority))
     }
     if let pemIssuerChain = try container.decodeIfPresent(
-      SubordinateConfig.SubordinateConfigChain?.self, forKey: .pemIssuerChain)
+      SubordinateConfig.SubordinateConfigChain.self, forKey: .pemIssuerChain)
     {
       try subordinateConfigCheckAndSet(.pemIssuerChain(pemIssuerChain))
     }
@@ -193,7 +193,7 @@ public struct SubordinateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// but not pem certificate for this CA itself.
     ///
     /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-    indirect case pemIssuerChain(SubordinateConfig.SubordinateConfigChain?)
+    indirect case pemIssuerChain(SubordinateConfig.SubordinateConfigChain)
   }
 
   public static var _anyTypeUrl: Swift.String {

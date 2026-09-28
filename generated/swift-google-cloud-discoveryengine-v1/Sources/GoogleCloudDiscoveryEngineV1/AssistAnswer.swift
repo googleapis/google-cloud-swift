@@ -162,7 +162,7 @@
           reply = $0
         }
         if let groundedContent = try container.decodeIfPresent(
-          AssistantGroundedContent?.self, forKey: .groundedContent)
+          AssistantGroundedContent.self, forKey: .groundedContent)
         {
           try replyCheckAndSet(.groundedContent(groundedContent))
         }
@@ -190,7 +190,7 @@
       /// Alternatives for the assistant reply.
       public enum ReplyOneOf: Codable, Equatable, Sendable {
         /// Possibly grounded response text or media from the assistant.
-        indirect case groundedContent(AssistantGroundedContent?)
+        indirect case groundedContent(AssistantGroundedContent)
       }
 
       public static var _anyTypeUrl: Swift.String {

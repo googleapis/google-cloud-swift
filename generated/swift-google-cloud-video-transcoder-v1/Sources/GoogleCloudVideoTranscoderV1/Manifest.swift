@@ -106,7 +106,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       manifestConfig = $0
     }
-    if let dash = try container.decodeIfPresent(Manifest.DashConfig?.self, forKey: .dash) {
+    if let dash = try container.decodeIfPresent(Manifest.DashConfig.self, forKey: .dash) {
       try manifestConfigCheckAndSet(.dash(dash))
     }
     self.manifestConfig = manifestConfig
@@ -467,7 +467,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies the manifest configuration.
   public enum ManifestConfigOneOf: Codable, Equatable, Sendable {
     /// `DASH` manifest configuration.
-    indirect case dash(Manifest.DashConfig?)
+    indirect case dash(Manifest.DashConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

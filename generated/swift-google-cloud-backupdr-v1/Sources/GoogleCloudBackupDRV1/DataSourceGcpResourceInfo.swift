@@ -96,7 +96,7 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
       resourceProperties = $0
     }
     if let cloudSqlInstanceProperties = try container.decodeIfPresent(
-      CloudSqlInstanceDataSourceReferenceProperties?.self, forKey: .cloudSqlInstanceProperties)
+      CloudSqlInstanceDataSourceReferenceProperties.self, forKey: .cloudSqlInstanceProperties)
     {
       try resourcePropertiesCheckAndSet(.cloudSqlInstanceProperties(cloudSqlInstanceProperties))
     }
@@ -127,7 +127,7 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
   /// The properties of the GCP resource.
   public enum ResourcePropertiesOneOf: Codable, Equatable, Sendable {
     /// Output only. The properties of the Cloud SQL instance.
-    indirect case cloudSqlInstanceProperties(CloudSqlInstanceDataSourceReferenceProperties?)
+    indirect case cloudSqlInstanceProperties(CloudSqlInstanceDataSourceReferenceProperties)
   }
 
   public static var _anyTypeUrl: Swift.String {

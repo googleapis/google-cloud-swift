@@ -77,7 +77,7 @@ public struct ImportAptArtifactsRequest: Codable, Equatable, GoogleWKT._AnyPacka
       source = $0
     }
     if let gcsSource = try container.decodeIfPresent(
-      ImportAptArtifactsGcsSource?.self, forKey: .gcsSource)
+      ImportAptArtifactsGcsSource.self, forKey: .gcsSource)
     {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
@@ -106,7 +106,7 @@ public struct ImportAptArtifactsRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// The source location of the package binaries.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage location where input content is located.
-    indirect case gcsSource(ImportAptArtifactsGcsSource?)
+    indirect case gcsSource(ImportAptArtifactsGcsSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

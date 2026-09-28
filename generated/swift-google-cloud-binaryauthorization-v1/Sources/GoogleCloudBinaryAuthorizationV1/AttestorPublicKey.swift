@@ -99,8 +99,7 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try publicKeyCheckAndSet(.asciiArmoredPgpPublicKey(asciiArmoredPgpPublicKey))
     }
-    if let pkixPublicKey = try container.decodeIfPresent(
-      PkixPublicKey?.self, forKey: .pkixPublicKey)
+    if let pkixPublicKey = try container.decodeIfPresent(PkixPublicKey.self, forKey: .pkixPublicKey)
     {
       try publicKeyCheckAndSet(.pkixPublicKey(pkixPublicKey))
     }
@@ -145,7 +144,7 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
     /// type of public key, but it MUST be a valid RFC3986 URI. If `id` is left
     /// blank, a default one will be computed based on the digest of the DER
     /// encoding of the public key.
-    indirect case pkixPublicKey(PkixPublicKey?)
+    indirect case pkixPublicKey(PkixPublicKey)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -913,66 +913,65 @@
           }
           message = $0
         }
-        if let text = try container.decodeIfPresent(Intent.Message.Text?.self, forKey: .text) {
+        if let text = try container.decodeIfPresent(Intent.Message.Text.self, forKey: .text) {
           try messageCheckAndSet(.text(text))
         }
-        if let image = try container.decodeIfPresent(Intent.Message.Image?.self, forKey: .image) {
+        if let image = try container.decodeIfPresent(Intent.Message.Image.self, forKey: .image) {
           try messageCheckAndSet(.image(image))
         }
         if let quickReplies = try container.decodeIfPresent(
-          Intent.Message.QuickReplies?.self, forKey: .quickReplies)
+          Intent.Message.QuickReplies.self, forKey: .quickReplies)
         {
           try messageCheckAndSet(.quickReplies(quickReplies))
         }
-        if let card = try container.decodeIfPresent(Intent.Message.Card?.self, forKey: .card) {
+        if let card = try container.decodeIfPresent(Intent.Message.Card.self, forKey: .card) {
           try messageCheckAndSet(.card(card))
         }
-        if let payload = try container.decodeIfPresent(GoogleWKT.WKTStruct?.self, forKey: .payload)
-        {
+        if let payload = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .payload) {
           try messageCheckAndSet(.payload(payload))
         }
         if let simpleResponses = try container.decodeIfPresent(
-          Intent.Message.SimpleResponses?.self, forKey: .simpleResponses)
+          Intent.Message.SimpleResponses.self, forKey: .simpleResponses)
         {
           try messageCheckAndSet(.simpleResponses(simpleResponses))
         }
         if let basicCard = try container.decodeIfPresent(
-          Intent.Message.BasicCard?.self, forKey: .basicCard)
+          Intent.Message.BasicCard.self, forKey: .basicCard)
         {
           try messageCheckAndSet(.basicCard(basicCard))
         }
         if let suggestions = try container.decodeIfPresent(
-          Intent.Message.Suggestions?.self, forKey: .suggestions)
+          Intent.Message.Suggestions.self, forKey: .suggestions)
         {
           try messageCheckAndSet(.suggestions(suggestions))
         }
         if let linkOutSuggestion = try container.decodeIfPresent(
-          Intent.Message.LinkOutSuggestion?.self, forKey: .linkOutSuggestion)
+          Intent.Message.LinkOutSuggestion.self, forKey: .linkOutSuggestion)
         {
           try messageCheckAndSet(.linkOutSuggestion(linkOutSuggestion))
         }
         if let listSelect = try container.decodeIfPresent(
-          Intent.Message.ListSelect?.self, forKey: .listSelect)
+          Intent.Message.ListSelect.self, forKey: .listSelect)
         {
           try messageCheckAndSet(.listSelect(listSelect))
         }
         if let carouselSelect = try container.decodeIfPresent(
-          Intent.Message.CarouselSelect?.self, forKey: .carouselSelect)
+          Intent.Message.CarouselSelect.self, forKey: .carouselSelect)
         {
           try messageCheckAndSet(.carouselSelect(carouselSelect))
         }
         if let browseCarouselCard = try container.decodeIfPresent(
-          Intent.Message.BrowseCarouselCard?.self, forKey: .browseCarouselCard)
+          Intent.Message.BrowseCarouselCard.self, forKey: .browseCarouselCard)
         {
           try messageCheckAndSet(.browseCarouselCard(browseCarouselCard))
         }
         if let tableCard = try container.decodeIfPresent(
-          Intent.Message.TableCard?.self, forKey: .tableCard)
+          Intent.Message.TableCard.self, forKey: .tableCard)
         {
           try messageCheckAndSet(.tableCard(tableCard))
         }
         if let mediaContent = try container.decodeIfPresent(
-          Intent.Message.MediaContent?.self, forKey: .mediaContent)
+          Intent.Message.MediaContent.self, forKey: .mediaContent)
         {
           try messageCheckAndSet(.mediaContent(mediaContent))
         }
@@ -2626,11 +2625,11 @@
               image = $0
             }
             if let largeImage = try container.decodeIfPresent(
-              Intent.Message.Image?.self, forKey: .largeImage)
+              Intent.Message.Image.self, forKey: .largeImage)
             {
               try imageCheckAndSet(.largeImage(largeImage))
             }
-            if let icon = try container.decodeIfPresent(Intent.Message.Image?.self, forKey: .icon) {
+            if let icon = try container.decodeIfPresent(Intent.Message.Image.self, forKey: .icon) {
               try imageCheckAndSet(.icon(icon))
             }
             self.image = image
@@ -2662,9 +2661,9 @@
           /// Image to show with the media card.
           public enum ImageOneOf: Codable, Equatable, Sendable {
             /// Optional. Image to display above media content.
-            indirect case largeImage(Intent.Message.Image?)
+            indirect case largeImage(Intent.Message.Image)
             /// Optional. Icon to display above media content.
-            indirect case icon(Intent.Message.Image?)
+            indirect case icon(Intent.Message.Image)
           }
 
           public static var _anyTypeUrl: Swift.String {
@@ -3986,33 +3985,33 @@
       /// Required. The rich response message.
       public enum MessageOneOf: Codable, Equatable, Sendable {
         /// The text response.
-        indirect case text(Intent.Message.Text?)
+        indirect case text(Intent.Message.Text)
         /// The image response.
-        indirect case image(Intent.Message.Image?)
+        indirect case image(Intent.Message.Image)
         /// The quick replies response.
-        indirect case quickReplies(Intent.Message.QuickReplies?)
+        indirect case quickReplies(Intent.Message.QuickReplies)
         /// The card response.
-        indirect case card(Intent.Message.Card?)
+        indirect case card(Intent.Message.Card)
         /// A custom platform-specific response.
-        indirect case payload(GoogleWKT.WKTStruct?)
+        indirect case payload(GoogleWKT.WKTStruct)
         /// The voice and text-only responses for Actions on Google.
-        indirect case simpleResponses(Intent.Message.SimpleResponses?)
+        indirect case simpleResponses(Intent.Message.SimpleResponses)
         /// The basic card response for Actions on Google.
-        indirect case basicCard(Intent.Message.BasicCard?)
+        indirect case basicCard(Intent.Message.BasicCard)
         /// The suggestion chips for Actions on Google.
-        indirect case suggestions(Intent.Message.Suggestions?)
+        indirect case suggestions(Intent.Message.Suggestions)
         /// The link out suggestion chip for Actions on Google.
-        indirect case linkOutSuggestion(Intent.Message.LinkOutSuggestion?)
+        indirect case linkOutSuggestion(Intent.Message.LinkOutSuggestion)
         /// The list card response for Actions on Google.
-        indirect case listSelect(Intent.Message.ListSelect?)
+        indirect case listSelect(Intent.Message.ListSelect)
         /// The carousel card response for Actions on Google.
-        indirect case carouselSelect(Intent.Message.CarouselSelect?)
+        indirect case carouselSelect(Intent.Message.CarouselSelect)
         /// Browse carousel card for Actions on Google.
-        indirect case browseCarouselCard(Intent.Message.BrowseCarouselCard?)
+        indirect case browseCarouselCard(Intent.Message.BrowseCarouselCard)
         /// Table card for Actions on Google.
-        indirect case tableCard(Intent.Message.TableCard?)
+        indirect case tableCard(Intent.Message.TableCard)
         /// The media content card for Actions on Google.
-        indirect case mediaContent(Intent.Message.MediaContent?)
+        indirect case mediaContent(Intent.Message.MediaContent)
       }
 
       public static var _anyTypeUrl: Swift.String {

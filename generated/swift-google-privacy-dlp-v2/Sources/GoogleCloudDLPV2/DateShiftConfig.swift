@@ -101,7 +101,7 @@ public struct DateShiftConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       method = $0
     }
-    if let cryptoKey = try container.decodeIfPresent(CryptoKey?.self, forKey: .cryptoKey) {
+    if let cryptoKey = try container.decodeIfPresent(CryptoKey.self, forKey: .cryptoKey) {
       try methodCheckAndSet(.cryptoKey(cryptoKey))
     }
     self.method = method
@@ -134,7 +134,7 @@ public struct DateShiftConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Causes the shift to be computed based on this key and the context. This
     /// results in the same shift for the same context and crypto_key. If
     /// set, must also set context. Can only be applied to table items.
-    indirect case cryptoKey(CryptoKey?)
+    indirect case cryptoKey(CryptoKey)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -90,17 +90,17 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
       try windowCriterionCheckAndSet(.goodBadMetricFilter(goodBadMetricFilter))
     }
     if let goodTotalRatioThreshold = try container.decodeIfPresent(
-      WindowsBasedSli.PerformanceThreshold?.self, forKey: .goodTotalRatioThreshold)
+      WindowsBasedSli.PerformanceThreshold.self, forKey: .goodTotalRatioThreshold)
     {
       try windowCriterionCheckAndSet(.goodTotalRatioThreshold(goodTotalRatioThreshold))
     }
     if let metricMeanInRange = try container.decodeIfPresent(
-      WindowsBasedSli.MetricRange?.self, forKey: .metricMeanInRange)
+      WindowsBasedSli.MetricRange.self, forKey: .metricMeanInRange)
     {
       try windowCriterionCheckAndSet(.metricMeanInRange(metricMeanInRange))
     }
     if let metricSumInRange = try container.decodeIfPresent(
-      WindowsBasedSli.MetricRange?.self, forKey: .metricSumInRange)
+      WindowsBasedSli.MetricRange.self, forKey: .metricSumInRange)
     {
       try windowCriterionCheckAndSet(.metricSumInRange(metricSumInRange))
     }
@@ -195,13 +195,12 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         type = $0
       }
-      if let performance = try container.decodeIfPresent(
-        RequestBasedSli?.self, forKey: .performance)
+      if let performance = try container.decodeIfPresent(RequestBasedSli.self, forKey: .performance)
       {
         try typeCheckAndSet(.performance(performance))
       }
       if let basicSliPerformance = try container.decodeIfPresent(
-        BasicSli?.self, forKey: .basicSliPerformance)
+        BasicSli.self, forKey: .basicSliPerformance)
       {
         try typeCheckAndSet(.basicSliPerformance(basicSliPerformance))
       }
@@ -233,9 +232,9 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     /// performance over a window.
     public enum TypeOneOf: Codable, Equatable, Sendable {
       /// `RequestBasedSli` to evaluate to judge window quality.
-      indirect case performance(RequestBasedSli?)
+      indirect case performance(RequestBasedSli)
       /// `BasicSli` to evaluate to judge window quality.
-      indirect case basicSliPerformance(BasicSli?)
+      indirect case basicSliPerformance(BasicSli)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -336,13 +335,13 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     /// any `true` values appear in the window.
     case goodBadMetricFilter(Swift.String)
     /// A window is good if its `performance` is high enough.
-    indirect case goodTotalRatioThreshold(WindowsBasedSli.PerformanceThreshold?)
+    indirect case goodTotalRatioThreshold(WindowsBasedSli.PerformanceThreshold)
     /// A window is good if the metric's value is in a good range, averaged
     /// across returned streams.
-    indirect case metricMeanInRange(WindowsBasedSli.MetricRange?)
+    indirect case metricMeanInRange(WindowsBasedSli.MetricRange)
     /// A window is good if the metric's value is in a good range, summed across
     /// returned streams.
-    indirect case metricSumInRange(WindowsBasedSli.MetricRange?)
+    indirect case metricSumInRange(WindowsBasedSli.MetricRange)
   }
 
   public static var _anyTypeUrl: Swift.String {

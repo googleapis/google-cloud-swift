@@ -71,7 +71,7 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleWKT._AnyPackable
       }
       result = $0
     }
-    if let acl = try container.decodeIfPresent(Acl?.self, forKey: .acl) {
+    if let acl = try container.decodeIfPresent(Acl.self, forKey: .acl) {
       try resultCheckAndSet(.acl(acl))
     }
     if let aclDeleted = try container.decodeIfPresent(Swift.Bool.self, forKey: .aclDeleted) {
@@ -105,7 +105,7 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// The updated acl. Returned if the removed acl entry was not the last entry
     /// in the acl.
-    indirect case acl(Acl?)
+    indirect case acl(Acl)
     /// Returned with value true if the removed acl entry was the last entry in
     /// the acl, resulting in acl deletion.
     case aclDeleted(Swift.Bool)

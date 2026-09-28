@@ -101,7 +101,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
       teeAttestation = $0
     }
     if let tpmAttestation = try container.decodeIfPresent(
-      TpmAttestation?.self, forKey: .tpmAttestation)
+      TpmAttestation.self, forKey: .tpmAttestation)
     {
       try teeAttestationCheckAndSet(.tpmAttestation(tpmAttestation))
     }
@@ -343,7 +343,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
   public enum TeeAttestationOneOf: Codable, Equatable, Sendable {
     /// The TPM-specific data provided by the attesting platform, used to
     /// populate any of the claims regarding platform state.
-    indirect case tpmAttestation(TpmAttestation?)
+    indirect case tpmAttestation(TpmAttestation)
   }
 
   public static var _anyTypeUrl: Swift.String {

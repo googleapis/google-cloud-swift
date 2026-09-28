@@ -2816,13 +2816,13 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           settings = $0
         }
         if let defaultSettings = try container.decodeIfPresent(
-          DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings?.self,
+          DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings.self,
           forKey: .defaultSettings)
         {
           try settingsCheckAndSet(.defaultSettings(defaultSettings))
         }
         if let customSettings = try container.decodeIfPresent(
-          DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings?.self,
+          DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.self,
           forKey: .customSettings)
         {
           try settingsCheckAndSet(.customSettings(customSettings))
@@ -2995,19 +2995,19 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             action = $0
           }
           if let query = try container.decodeIfPresent(
-            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery?.self,
+            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery.self,
             forKey: .query)
           {
             try actionCheckAndSet(.query(query))
           }
           if let filter = try container.decodeIfPresent(
-            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter?.self,
+            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter.self,
             forKey: .filter)
           {
             try actionCheckAndSet(.filter(filter))
           }
           if let externalLink = try container.decodeIfPresent(
-            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownExternalLink?
+            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownExternalLink
               .self, forKey: .externalLink)
           {
             try actionCheckAndSet(.externalLink(externalLink))
@@ -3350,13 +3350,13 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         public enum ActionOneOf: Codable, Equatable, Sendable {
           /// Drill down query action config.
           indirect case query(
-            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery?)
+            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery)
           /// Drill down filter action config.
           indirect case filter(
-            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter?)
+            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter)
           /// Drill down external link action config.
           indirect case externalLink(
-            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownExternalLink?)
+            DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownExternalLink)
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -3375,10 +3375,10 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum SettingsOneOf: Codable, Equatable, Sendable {
         /// Default drill down settings.
         indirect case defaultSettings(
-          DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings?)
+          DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings)
         /// Custom drill down settings.
         indirect case customSettings(
-          DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings?)
+          DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings)
       }
 
       public static var _anyTypeUrl: Swift.String {

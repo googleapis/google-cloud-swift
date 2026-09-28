@@ -89,12 +89,12 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       ruleType = $0
     }
     if let deterministicTransfer = try container.decodeIfPresent(
-      TransferRule.DeterministicTransfer?.self, forKey: .deterministicTransfer)
+      TransferRule.DeterministicTransfer.self, forKey: .deterministicTransfer)
     {
       try ruleTypeCheckAndSet(.deterministicTransfer(deterministicTransfer))
     }
     if let disablePlannerTransfer = try container.decodeIfPresent(
-      TransferRule.DisablePlannerTransfer?.self, forKey: .disablePlannerTransfer)
+      TransferRule.DisablePlannerTransfer.self, forKey: .disablePlannerTransfer)
     {
       try ruleTypeCheckAndSet(.disablePlannerTransfer(disablePlannerTransfer))
     }
@@ -178,12 +178,12 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
         conditionType = $0
       }
       if let expressionCondition = try container.decodeIfPresent(
-        ExpressionCondition?.self, forKey: .expressionCondition)
+        ExpressionCondition.self, forKey: .expressionCondition)
       {
         try conditionTypeCheckAndSet(.expressionCondition(expressionCondition))
       }
       if let pythonCodeCondition = try container.decodeIfPresent(
-        PythonCodeCondition?.self, forKey: .pythonCodeCondition)
+        PythonCodeCondition.self, forKey: .pythonCodeCondition)
       {
         try conditionTypeCheckAndSet(.pythonCodeCondition(pythonCodeCondition))
       }
@@ -214,10 +214,10 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     public enum ConditionTypeOneOf: Codable, Equatable, Sendable {
       /// Optional. A rule that evaluates a session state condition.
       /// If the condition evaluates to true, the transfer occurs.
-      indirect case expressionCondition(ExpressionCondition?)
+      indirect case expressionCondition(ExpressionCondition)
       /// Optional. A rule that uses Python code block to evaluate the
       /// conditions. If the condition evaluates to true, the transfer occurs.
-      indirect case pythonCodeCondition(PythonCodeCondition?)
+      indirect case pythonCodeCondition(PythonCodeCondition)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -420,10 +420,10 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum RuleTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. A rule that immediately transfers to the target agent when the
     /// condition is met.
-    indirect case deterministicTransfer(TransferRule.DeterministicTransfer?)
+    indirect case deterministicTransfer(TransferRule.DeterministicTransfer)
     /// Optional. Rule that prevents the planner from transferring to the target
     /// agent.
-    indirect case disablePlannerTransfer(TransferRule.DisablePlannerTransfer?)
+    indirect case disablePlannerTransfer(TransferRule.DisablePlannerTransfer)
   }
 
   public static var _anyTypeUrl: Swift.String {

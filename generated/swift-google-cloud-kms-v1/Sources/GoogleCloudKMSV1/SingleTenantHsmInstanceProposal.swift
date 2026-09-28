@@ -193,12 +193,12 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       approvalParameters = $0
     }
     if let quorumParameters = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.QuorumParameters?.self, forKey: .quorumParameters)
+      SingleTenantHsmInstanceProposal.QuorumParameters.self, forKey: .quorumParameters)
     {
       try approvalParametersCheckAndSet(.quorumParameters(quorumParameters))
     }
     if let requiredActionQuorumParameters = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.RequiredActionQuorumParameters?.self,
+      SingleTenantHsmInstanceProposal.RequiredActionQuorumParameters.self,
       forKey: .requiredActionQuorumParameters)
     {
       try approvalParametersCheckAndSet(
@@ -217,11 +217,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleWKT.WKTTimestamp?.self, forKey: .expireTime)
+      GoogleWKT.WKTTimestamp.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
@@ -237,47 +237,47 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       operation = $0
     }
     if let registerTwoFactorAuthKeys = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.RegisterTwoFactorAuthKeys?.self,
+      SingleTenantHsmInstanceProposal.RegisterTwoFactorAuthKeys.self,
       forKey: .registerTwoFactorAuthKeys)
     {
       try operationCheckAndSet(.registerTwoFactorAuthKeys(registerTwoFactorAuthKeys))
     }
     if let disableSingleTenantHsmInstance = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.DisableSingleTenantHsmInstance?.self,
+      SingleTenantHsmInstanceProposal.DisableSingleTenantHsmInstance.self,
       forKey: .disableSingleTenantHsmInstance)
     {
       try operationCheckAndSet(.disableSingleTenantHsmInstance(disableSingleTenantHsmInstance))
     }
     if let enableSingleTenantHsmInstance = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.EnableSingleTenantHsmInstance?.self,
+      SingleTenantHsmInstanceProposal.EnableSingleTenantHsmInstance.self,
       forKey: .enableSingleTenantHsmInstance)
     {
       try operationCheckAndSet(.enableSingleTenantHsmInstance(enableSingleTenantHsmInstance))
     }
     if let deleteSingleTenantHsmInstance = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.DeleteSingleTenantHsmInstance?.self,
+      SingleTenantHsmInstanceProposal.DeleteSingleTenantHsmInstance.self,
       forKey: .deleteSingleTenantHsmInstance)
     {
       try operationCheckAndSet(.deleteSingleTenantHsmInstance(deleteSingleTenantHsmInstance))
     }
     if let addQuorumMember = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.AddQuorumMember?.self, forKey: .addQuorumMember)
+      SingleTenantHsmInstanceProposal.AddQuorumMember.self, forKey: .addQuorumMember)
     {
       try operationCheckAndSet(.addQuorumMember(addQuorumMember))
     }
     if let removeQuorumMember = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.RemoveQuorumMember?.self, forKey: .removeQuorumMember)
+      SingleTenantHsmInstanceProposal.RemoveQuorumMember.self, forKey: .removeQuorumMember)
     {
       try operationCheckAndSet(.removeQuorumMember(removeQuorumMember))
     }
     if let refreshSingleTenantHsmInstance = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.RefreshSingleTenantHsmInstance?.self,
+      SingleTenantHsmInstanceProposal.RefreshSingleTenantHsmInstance.self,
       forKey: .refreshSingleTenantHsmInstance)
     {
       try operationCheckAndSet(.refreshSingleTenantHsmInstance(refreshSingleTenantHsmInstance))
     }
     if let upgradeKeyTrust = try container.decodeIfPresent(
-      SingleTenantHsmInstanceProposal.UpgradeKeyTrust?.self, forKey: .upgradeKeyTrust)
+      SingleTenantHsmInstanceProposal.UpgradeKeyTrust.self, forKey: .upgradeKeyTrust)
     {
       try operationCheckAndSet(.upgradeKeyTrust(upgradeKeyTrust))
     }
@@ -1380,14 +1380,14 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
     ///
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-    indirect case quorumParameters(SingleTenantHsmInstanceProposal.QuorumParameters?)
+    indirect case quorumParameters(SingleTenantHsmInstanceProposal.QuorumParameters)
     /// Output only. Parameters for an approval of a
     /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
     /// that has both required challenges and a quorum.
     ///
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
     indirect case requiredActionQuorumParameters(
-      SingleTenantHsmInstanceProposal.RequiredActionQuorumParameters?)
+      SingleTenantHsmInstanceProposal.RequiredActionQuorumParameters)
   }
 
   /// The expiration of the
@@ -1404,13 +1404,13 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// will expire if not approved and executed.
     ///
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-    indirect case expireTime(GoogleWKT.WKTTimestamp?)
+    indirect case expireTime(GoogleWKT.WKTTimestamp)
     /// Input only. The TTL for the
     /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
     /// Proposals will expire after this duration.
     ///
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-    indirect case ttl(GoogleWKT.WKTDuration?)
+    indirect case ttl(GoogleWKT.WKTDuration)
   }
 
   /// The operation to perform on the
@@ -1429,7 +1429,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.PENDING_TWO_FACTOR_AUTH_REGISTRATION]: <doc:SingleTenantHsmInstance/State/pendingTwoFactorAuthRegistration>
     indirect case registerTwoFactorAuthKeys(
-      SingleTenantHsmInstanceProposal.RegisterTwoFactorAuthKeys?)
+      SingleTenantHsmInstanceProposal.RegisterTwoFactorAuthKeys)
     /// Disable the
     /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
     /// The
@@ -1441,7 +1441,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.ACTIVE]: <doc:SingleTenantHsmInstance/State/active>
     indirect case disableSingleTenantHsmInstance(
-      SingleTenantHsmInstanceProposal.DisableSingleTenantHsmInstance?)
+      SingleTenantHsmInstanceProposal.DisableSingleTenantHsmInstance)
     /// Enable the
     /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
     /// The
@@ -1453,7 +1453,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.DISABLED]: <doc:SingleTenantHsmInstance/State/disabled>
     indirect case enableSingleTenantHsmInstance(
-      SingleTenantHsmInstanceProposal.EnableSingleTenantHsmInstance?)
+      SingleTenantHsmInstanceProposal.EnableSingleTenantHsmInstance)
     /// Delete the
     /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
     /// Deleting a
@@ -1472,7 +1472,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.DISABLED]: <doc:SingleTenantHsmInstance/State/disabled>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.PENDING_TWO_FACTOR_AUTH_REGISTRATION]: <doc:SingleTenantHsmInstance/State/pendingTwoFactorAuthRegistration>
     indirect case deleteSingleTenantHsmInstance(
-      SingleTenantHsmInstanceProposal.DeleteSingleTenantHsmInstance?)
+      SingleTenantHsmInstanceProposal.DeleteSingleTenantHsmInstance)
     /// Add a quorum member to the
     /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
     /// This will increase the
@@ -1486,7 +1486,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.QuorumAuth.total_approver_count]: <doc:SingleTenantHsmInstance/QuorumAuth/totalApproverCount>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.ACTIVE]: <doc:SingleTenantHsmInstance/State/active>
-    indirect case addQuorumMember(SingleTenantHsmInstanceProposal.AddQuorumMember?)
+    indirect case addQuorumMember(SingleTenantHsmInstanceProposal.AddQuorumMember)
     /// Remove a quorum member from the
     /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
     /// This will reduce
@@ -1500,7 +1500,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.QuorumAuth.total_approver_count]: <doc:SingleTenantHsmInstance/QuorumAuth/totalApproverCount>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.ACTIVE]: <doc:SingleTenantHsmInstance/State/active>
-    indirect case removeQuorumMember(SingleTenantHsmInstanceProposal.RemoveQuorumMember?)
+    indirect case removeQuorumMember(SingleTenantHsmInstanceProposal.RemoveQuorumMember)
     /// Refreshes the
     /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
     /// This operation must be performed periodically to keep the
@@ -1517,12 +1517,12 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.ACTIVE]: <doc:SingleTenantHsmInstance/State/active>
     /// [google.cloud.kms.v1.SingleTenantHsmInstance.unrefreshed_duration_until_disable]: <doc:SingleTenantHsmInstance/unrefreshedDurationUntilDisable>
     indirect case refreshSingleTenantHsmInstance(
-      SingleTenantHsmInstanceProposal.RefreshSingleTenantHsmInstance?)
+      SingleTenantHsmInstanceProposal.RefreshSingleTenantHsmInstance)
     /// Promotes a key with the AES_WRAPPING purpose to a trusted wrapping key.
     /// The key must be in the
     /// [ACTIVE][CryptoKeyVersion.CryptoKeyVersionState.ACTIVE] state to perform
     /// this operation.
-    indirect case upgradeKeyTrust(SingleTenantHsmInstanceProposal.UpgradeKeyTrust?)
+    indirect case upgradeKeyTrust(SingleTenantHsmInstanceProposal.UpgradeKeyTrust)
   }
 
   public static var _anyTypeUrl: Swift.String {

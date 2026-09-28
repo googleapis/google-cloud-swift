@@ -69,7 +69,7 @@ public struct OtherCloudResourceCollection: Codable, Equatable, GoogleWKT._AnyPa
       pattern = $0
     }
     if let includeRegexes = try container.decodeIfPresent(
-      OtherCloudResourceRegexes?.self, forKey: .includeRegexes)
+      OtherCloudResourceRegexes.self, forKey: .includeRegexes)
     {
       try patternCheckAndSet(.includeRegexes(includeRegexes))
     }
@@ -97,7 +97,7 @@ public struct OtherCloudResourceCollection: Codable, Equatable, GoogleWKT._AnyPa
   /// The first filter containing a pattern that matches a resource will be used.
   public enum PatternOneOf: Codable, Equatable, Sendable {
     /// A collection of regular expressions to match a resource against.
-    indirect case includeRegexes(OtherCloudResourceRegexes?)
+    indirect case includeRegexes(OtherCloudResourceRegexes)
   }
 
   public static var _anyTypeUrl: Swift.String {

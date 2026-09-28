@@ -164,72 +164,72 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       request = $0
     }
     if let batchRecognizeRequest = try container.decodeIfPresent(
-      BatchRecognizeRequest?.self, forKey: .batchRecognizeRequest)
+      BatchRecognizeRequest.self, forKey: .batchRecognizeRequest)
     {
       try requestCheckAndSet(.batchRecognizeRequest(batchRecognizeRequest))
     }
     if let createRecognizerRequest = try container.decodeIfPresent(
-      CreateRecognizerRequest?.self, forKey: .createRecognizerRequest)
+      CreateRecognizerRequest.self, forKey: .createRecognizerRequest)
     {
       try requestCheckAndSet(.createRecognizerRequest(createRecognizerRequest))
     }
     if let updateRecognizerRequest = try container.decodeIfPresent(
-      UpdateRecognizerRequest?.self, forKey: .updateRecognizerRequest)
+      UpdateRecognizerRequest.self, forKey: .updateRecognizerRequest)
     {
       try requestCheckAndSet(.updateRecognizerRequest(updateRecognizerRequest))
     }
     if let deleteRecognizerRequest = try container.decodeIfPresent(
-      DeleteRecognizerRequest?.self, forKey: .deleteRecognizerRequest)
+      DeleteRecognizerRequest.self, forKey: .deleteRecognizerRequest)
     {
       try requestCheckAndSet(.deleteRecognizerRequest(deleteRecognizerRequest))
     }
     if let undeleteRecognizerRequest = try container.decodeIfPresent(
-      UndeleteRecognizerRequest?.self, forKey: .undeleteRecognizerRequest)
+      UndeleteRecognizerRequest.self, forKey: .undeleteRecognizerRequest)
     {
       try requestCheckAndSet(.undeleteRecognizerRequest(undeleteRecognizerRequest))
     }
     if let createCustomClassRequest = try container.decodeIfPresent(
-      CreateCustomClassRequest?.self, forKey: .createCustomClassRequest)
+      CreateCustomClassRequest.self, forKey: .createCustomClassRequest)
     {
       try requestCheckAndSet(.createCustomClassRequest(createCustomClassRequest))
     }
     if let updateCustomClassRequest = try container.decodeIfPresent(
-      UpdateCustomClassRequest?.self, forKey: .updateCustomClassRequest)
+      UpdateCustomClassRequest.self, forKey: .updateCustomClassRequest)
     {
       try requestCheckAndSet(.updateCustomClassRequest(updateCustomClassRequest))
     }
     if let deleteCustomClassRequest = try container.decodeIfPresent(
-      DeleteCustomClassRequest?.self, forKey: .deleteCustomClassRequest)
+      DeleteCustomClassRequest.self, forKey: .deleteCustomClassRequest)
     {
       try requestCheckAndSet(.deleteCustomClassRequest(deleteCustomClassRequest))
     }
     if let undeleteCustomClassRequest = try container.decodeIfPresent(
-      UndeleteCustomClassRequest?.self, forKey: .undeleteCustomClassRequest)
+      UndeleteCustomClassRequest.self, forKey: .undeleteCustomClassRequest)
     {
       try requestCheckAndSet(.undeleteCustomClassRequest(undeleteCustomClassRequest))
     }
     if let createPhraseSetRequest = try container.decodeIfPresent(
-      CreatePhraseSetRequest?.self, forKey: .createPhraseSetRequest)
+      CreatePhraseSetRequest.self, forKey: .createPhraseSetRequest)
     {
       try requestCheckAndSet(.createPhraseSetRequest(createPhraseSetRequest))
     }
     if let updatePhraseSetRequest = try container.decodeIfPresent(
-      UpdatePhraseSetRequest?.self, forKey: .updatePhraseSetRequest)
+      UpdatePhraseSetRequest.self, forKey: .updatePhraseSetRequest)
     {
       try requestCheckAndSet(.updatePhraseSetRequest(updatePhraseSetRequest))
     }
     if let deletePhraseSetRequest = try container.decodeIfPresent(
-      DeletePhraseSetRequest?.self, forKey: .deletePhraseSetRequest)
+      DeletePhraseSetRequest.self, forKey: .deletePhraseSetRequest)
     {
       try requestCheckAndSet(.deletePhraseSetRequest(deletePhraseSetRequest))
     }
     if let undeletePhraseSetRequest = try container.decodeIfPresent(
-      UndeletePhraseSetRequest?.self, forKey: .undeletePhraseSetRequest)
+      UndeletePhraseSetRequest.self, forKey: .undeletePhraseSetRequest)
     {
       try requestCheckAndSet(.undeletePhraseSetRequest(undeletePhraseSetRequest))
     }
     if let updateConfigRequest = try container.decodeIfPresent(
-      UpdateConfigRequest?.self, forKey: .updateConfigRequest)
+      UpdateConfigRequest.self, forKey: .updateConfigRequest)
     {
       try requestCheckAndSet(.updateConfigRequest(updateConfigRequest))
     }
@@ -246,7 +246,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       metadata = $0
     }
     if let batchRecognizeMetadata = try container.decodeIfPresent(
-      BatchRecognizeMetadata?.self, forKey: .batchRecognizeMetadata)
+      BatchRecognizeMetadata.self, forKey: .batchRecognizeMetadata)
     {
       try metadataCheckAndSet(.batchRecognizeMetadata(batchRecognizeMetadata))
     }
@@ -317,40 +317,40 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The request that spawned the Operation.
   public enum RequestOneOf: Codable, Equatable, Sendable {
     /// The BatchRecognizeRequest that spawned the Operation.
-    indirect case batchRecognizeRequest(BatchRecognizeRequest?)
+    indirect case batchRecognizeRequest(BatchRecognizeRequest)
     /// The CreateRecognizerRequest that spawned the Operation.
-    indirect case createRecognizerRequest(CreateRecognizerRequest?)
+    indirect case createRecognizerRequest(CreateRecognizerRequest)
     /// The UpdateRecognizerRequest that spawned the Operation.
-    indirect case updateRecognizerRequest(UpdateRecognizerRequest?)
+    indirect case updateRecognizerRequest(UpdateRecognizerRequest)
     /// The DeleteRecognizerRequest that spawned the Operation.
-    indirect case deleteRecognizerRequest(DeleteRecognizerRequest?)
+    indirect case deleteRecognizerRequest(DeleteRecognizerRequest)
     /// The UndeleteRecognizerRequest that spawned the Operation.
-    indirect case undeleteRecognizerRequest(UndeleteRecognizerRequest?)
+    indirect case undeleteRecognizerRequest(UndeleteRecognizerRequest)
     /// The CreateCustomClassRequest that spawned the Operation.
-    indirect case createCustomClassRequest(CreateCustomClassRequest?)
+    indirect case createCustomClassRequest(CreateCustomClassRequest)
     /// The UpdateCustomClassRequest that spawned the Operation.
-    indirect case updateCustomClassRequest(UpdateCustomClassRequest?)
+    indirect case updateCustomClassRequest(UpdateCustomClassRequest)
     /// The DeleteCustomClassRequest that spawned the Operation.
-    indirect case deleteCustomClassRequest(DeleteCustomClassRequest?)
+    indirect case deleteCustomClassRequest(DeleteCustomClassRequest)
     /// The UndeleteCustomClassRequest that spawned the Operation.
-    indirect case undeleteCustomClassRequest(UndeleteCustomClassRequest?)
+    indirect case undeleteCustomClassRequest(UndeleteCustomClassRequest)
     /// The CreatePhraseSetRequest that spawned the Operation.
-    indirect case createPhraseSetRequest(CreatePhraseSetRequest?)
+    indirect case createPhraseSetRequest(CreatePhraseSetRequest)
     /// The UpdatePhraseSetRequest that spawned the Operation.
-    indirect case updatePhraseSetRequest(UpdatePhraseSetRequest?)
+    indirect case updatePhraseSetRequest(UpdatePhraseSetRequest)
     /// The DeletePhraseSetRequest that spawned the Operation.
-    indirect case deletePhraseSetRequest(DeletePhraseSetRequest?)
+    indirect case deletePhraseSetRequest(DeletePhraseSetRequest)
     /// The UndeletePhraseSetRequest that spawned the Operation.
-    indirect case undeletePhraseSetRequest(UndeletePhraseSetRequest?)
+    indirect case undeletePhraseSetRequest(UndeletePhraseSetRequest)
     /// The UpdateConfigRequest that spawned the Operation.
     @available(*, deprecated)
-    indirect case updateConfigRequest(UpdateConfigRequest?)
+    indirect case updateConfigRequest(UpdateConfigRequest)
   }
 
   /// Specific metadata per RPC.
   public enum MetadataOneOf: Codable, Equatable, Sendable {
     /// Metadata specific to the BatchRecognize method.
-    indirect case batchRecognizeMetadata(BatchRecognizeMetadata?)
+    indirect case batchRecognizeMetadata(BatchRecognizeMetadata)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -113,10 +113,10 @@ public struct AccessLevel: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       level = $0
     }
-    if let basic = try container.decodeIfPresent(BasicLevel?.self, forKey: .basic) {
+    if let basic = try container.decodeIfPresent(BasicLevel.self, forKey: .basic) {
       try levelCheckAndSet(.basic(basic))
     }
-    if let custom = try container.decodeIfPresent(CustomLevel?.self, forKey: .custom) {
+    if let custom = try container.decodeIfPresent(CustomLevel.self, forKey: .custom) {
       try levelCheckAndSet(.custom(custom))
     }
     self.level = level
@@ -150,9 +150,9 @@ public struct AccessLevel: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Describes the necessary conditions for the level to apply.
   public enum LevelOneOf: Codable, Equatable, Sendable {
     /// A `BasicLevel` composed of `Conditions`.
-    indirect case basic(BasicLevel?)
+    indirect case basic(BasicLevel)
     /// A `CustomLevel` written in the Common Expression Language.
-    indirect case custom(CustomLevel?)
+    indirect case custom(CustomLevel)
   }
 
   public static var _anyTypeUrl: Swift.String {

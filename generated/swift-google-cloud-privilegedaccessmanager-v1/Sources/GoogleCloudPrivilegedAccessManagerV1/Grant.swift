@@ -320,57 +320,57 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
           event = $0
         }
         if let requested = try container.decodeIfPresent(
-          Grant.Timeline.Event.Requested?.self, forKey: .requested)
+          Grant.Timeline.Event.Requested.self, forKey: .requested)
         {
           try eventCheckAndSet(.requested(requested))
         }
         if let approved = try container.decodeIfPresent(
-          Grant.Timeline.Event.Approved?.self, forKey: .approved)
+          Grant.Timeline.Event.Approved.self, forKey: .approved)
         {
           try eventCheckAndSet(.approved(approved))
         }
         if let denied = try container.decodeIfPresent(
-          Grant.Timeline.Event.Denied?.self, forKey: .denied)
+          Grant.Timeline.Event.Denied.self, forKey: .denied)
         {
           try eventCheckAndSet(.denied(denied))
         }
         if let revoked = try container.decodeIfPresent(
-          Grant.Timeline.Event.Revoked?.self, forKey: .revoked)
+          Grant.Timeline.Event.Revoked.self, forKey: .revoked)
         {
           try eventCheckAndSet(.revoked(revoked))
         }
         if let scheduled = try container.decodeIfPresent(
-          Grant.Timeline.Event.Scheduled?.self, forKey: .scheduled)
+          Grant.Timeline.Event.Scheduled.self, forKey: .scheduled)
         {
           try eventCheckAndSet(.scheduled(scheduled))
         }
         if let activated = try container.decodeIfPresent(
-          Grant.Timeline.Event.Activated?.self, forKey: .activated)
+          Grant.Timeline.Event.Activated.self, forKey: .activated)
         {
           try eventCheckAndSet(.activated(activated))
         }
         if let activationFailed = try container.decodeIfPresent(
-          Grant.Timeline.Event.ActivationFailed?.self, forKey: .activationFailed)
+          Grant.Timeline.Event.ActivationFailed.self, forKey: .activationFailed)
         {
           try eventCheckAndSet(.activationFailed(activationFailed))
         }
         if let expired = try container.decodeIfPresent(
-          Grant.Timeline.Event.Expired?.self, forKey: .expired)
+          Grant.Timeline.Event.Expired.self, forKey: .expired)
         {
           try eventCheckAndSet(.expired(expired))
         }
         if let ended = try container.decodeIfPresent(
-          Grant.Timeline.Event.Ended?.self, forKey: .ended)
+          Grant.Timeline.Event.Ended.self, forKey: .ended)
         {
           try eventCheckAndSet(.ended(ended))
         }
         if let externallyModified = try container.decodeIfPresent(
-          Grant.Timeline.Event.ExternallyModified?.self, forKey: .externallyModified)
+          Grant.Timeline.Event.ExternallyModified.self, forKey: .externallyModified)
         {
           try eventCheckAndSet(.externallyModified(externallyModified))
         }
         if let withdrawn = try container.decodeIfPresent(
-          Grant.Timeline.Event.Withdrawn?.self, forKey: .withdrawn)
+          Grant.Timeline.Event.Withdrawn.self, forKey: .withdrawn)
         {
           try eventCheckAndSet(.withdrawn(withdrawn))
         }
@@ -1152,29 +1152,29 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public enum EventOneOf: Codable, Equatable, Sendable {
         /// The grant was requested.
-        indirect case requested(Grant.Timeline.Event.Requested?)
+        indirect case requested(Grant.Timeline.Event.Requested)
         /// The grant was approved.
-        indirect case approved(Grant.Timeline.Event.Approved?)
+        indirect case approved(Grant.Timeline.Event.Approved)
         /// The grant was denied.
-        indirect case denied(Grant.Timeline.Event.Denied?)
+        indirect case denied(Grant.Timeline.Event.Denied)
         /// The grant was revoked.
-        indirect case revoked(Grant.Timeline.Event.Revoked?)
+        indirect case revoked(Grant.Timeline.Event.Revoked)
         /// The grant has been scheduled to give access.
-        indirect case scheduled(Grant.Timeline.Event.Scheduled?)
+        indirect case scheduled(Grant.Timeline.Event.Scheduled)
         /// The grant was successfully activated to give access.
-        indirect case activated(Grant.Timeline.Event.Activated?)
+        indirect case activated(Grant.Timeline.Event.Activated)
         /// There was a non-retriable error while trying to give access.
-        indirect case activationFailed(Grant.Timeline.Event.ActivationFailed?)
+        indirect case activationFailed(Grant.Timeline.Event.ActivationFailed)
         /// The approval workflow did not complete in the necessary duration,
         /// and so the grant is expired.
-        indirect case expired(Grant.Timeline.Event.Expired?)
+        indirect case expired(Grant.Timeline.Event.Expired)
         /// Access given by the grant ended automatically as the approved
         /// duration was over.
-        indirect case ended(Grant.Timeline.Event.Ended?)
+        indirect case ended(Grant.Timeline.Event.Ended)
         /// The policy bindings made by grant have been modified outside of PAM.
-        indirect case externallyModified(Grant.Timeline.Event.ExternallyModified?)
+        indirect case externallyModified(Grant.Timeline.Event.ExternallyModified)
         /// The grant was withdrawn.
-        indirect case withdrawn(Grant.Timeline.Event.Withdrawn?)
+        indirect case withdrawn(Grant.Timeline.Event.Withdrawn)
       }
 
       public static var _anyTypeUrl: Swift.String {

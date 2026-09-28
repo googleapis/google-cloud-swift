@@ -87,13 +87,13 @@
         }
         value = $0
       }
-      if let scalar = try container.decodeIfPresent(Scalar?.self, forKey: .scalar) {
+      if let scalar = try container.decodeIfPresent(Scalar.self, forKey: .scalar) {
         try valueCheckAndSet(.scalar(scalar))
       }
-      if let tensor = try container.decodeIfPresent(TensorboardTensor?.self, forKey: .tensor) {
+      if let tensor = try container.decodeIfPresent(TensorboardTensor.self, forKey: .tensor) {
         try valueCheckAndSet(.tensor(tensor))
       }
-      if let blobs = try container.decodeIfPresent(TensorboardBlobSequence?.self, forKey: .blobs) {
+      if let blobs = try container.decodeIfPresent(TensorboardBlobSequence.self, forKey: .blobs) {
         try valueCheckAndSet(.blobs(blobs))
       }
       self.value = value
@@ -126,11 +126,11 @@
     /// Value of this time series data point.
     public enum ValueOneOf: Codable, Equatable, Sendable {
       /// A scalar value.
-      indirect case scalar(Scalar?)
+      indirect case scalar(Scalar)
       /// A tensor value.
-      indirect case tensor(TensorboardTensor?)
+      indirect case tensor(TensorboardTensor)
       /// A blob sequence value.
-      indirect case blobs(TensorboardBlobSequence?)
+      indirect case blobs(TensorboardBlobSequence)
     }
 
     public static var _anyTypeUrl: Swift.String {

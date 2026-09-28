@@ -144,14 +144,13 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       cloudProviderMetadata = $0
     }
-    if let gcpMetadata = try container.decodeIfPresent(GcpMetadata?.self, forKey: .gcpMetadata) {
+    if let gcpMetadata = try container.decodeIfPresent(GcpMetadata.self, forKey: .gcpMetadata) {
       try cloudProviderMetadataCheckAndSet(.gcpMetadata(gcpMetadata))
     }
-    if let awsMetadata = try container.decodeIfPresent(AwsMetadata?.self, forKey: .awsMetadata) {
+    if let awsMetadata = try container.decodeIfPresent(AwsMetadata.self, forKey: .awsMetadata) {
       try cloudProviderMetadataCheckAndSet(.awsMetadata(awsMetadata))
     }
-    if let azureMetadata = try container.decodeIfPresent(
-      AzureMetadata?.self, forKey: .azureMetadata)
+    if let azureMetadata = try container.decodeIfPresent(AzureMetadata.self, forKey: .azureMetadata)
     {
       try cloudProviderMetadataCheckAndSet(.azureMetadata(azureMetadata))
     }
@@ -191,11 +190,11 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The metadata associated with the cloud provider.
   public enum CloudProviderMetadataOneOf: Codable, Equatable, Sendable {
     /// The GCP metadata associated with the finding.
-    indirect case gcpMetadata(GcpMetadata?)
+    indirect case gcpMetadata(GcpMetadata)
     /// The AWS metadata associated with the finding.
-    indirect case awsMetadata(AwsMetadata?)
+    indirect case awsMetadata(AwsMetadata)
     /// The Azure metadata associated with the finding.
-    indirect case azureMetadata(AzureMetadata?)
+    indirect case azureMetadata(AzureMetadata)
   }
 
   public static var _anyTypeUrl: Swift.String {

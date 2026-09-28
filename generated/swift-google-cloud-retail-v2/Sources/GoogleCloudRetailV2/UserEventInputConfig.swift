@@ -73,15 +73,15 @@ public struct UserEventInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       source = $0
     }
     if let userEventInlineSource = try container.decodeIfPresent(
-      UserEventInlineSource?.self, forKey: .userEventInlineSource)
+      UserEventInlineSource.self, forKey: .userEventInlineSource)
     {
       try sourceCheckAndSet(.userEventInlineSource(userEventInlineSource))
     }
-    if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+    if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     if let bigQuerySource = try container.decodeIfPresent(
-      BigQuerySource?.self, forKey: .bigQuerySource)
+      BigQuerySource.self, forKey: .bigQuerySource)
     {
       try sourceCheckAndSet(.bigQuerySource(bigQuerySource))
     }
@@ -113,11 +113,11 @@ public struct UserEventInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The source of the input.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Required. The Inline source for the input content for UserEvents.
-    indirect case userEventInlineSource(UserEventInlineSource?)
+    indirect case userEventInlineSource(UserEventInlineSource)
     /// Required. Google Cloud Storage location for the input content.
-    indirect case gcsSource(GcsSource?)
+    indirect case gcsSource(GcsSource)
     /// Required. BigQuery input source.
-    indirect case bigQuerySource(BigQuerySource?)
+    indirect case bigQuerySource(BigQuerySource)
   }
 
   public static var _anyTypeUrl: Swift.String {

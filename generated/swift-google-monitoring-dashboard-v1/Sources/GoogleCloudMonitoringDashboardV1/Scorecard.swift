@@ -127,16 +127,15 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       dataView = $0
     }
-    if let gaugeView = try container.decodeIfPresent(Scorecard.GaugeView?.self, forKey: .gaugeView)
-    {
+    if let gaugeView = try container.decodeIfPresent(Scorecard.GaugeView.self, forKey: .gaugeView) {
       try dataViewCheckAndSet(.gaugeView(gaugeView))
     }
     if let sparkChartView = try container.decodeIfPresent(
-      Scorecard.SparkChartView?.self, forKey: .sparkChartView)
+      Scorecard.SparkChartView.self, forKey: .sparkChartView)
     {
       try dataViewCheckAndSet(.sparkChartView(sparkChartView))
     }
-    if let blankView = try container.decodeIfPresent(GoogleWKT.WKTEmpty?.self, forKey: .blankView) {
+    if let blankView = try container.decodeIfPresent(GoogleWKT.WKTEmpty.self, forKey: .blankView) {
       try dataViewCheckAndSet(.blankView(blankView))
     }
     self.dataView = dataView
@@ -334,12 +333,12 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
   /// neither is included - then a default scorecard is shown.
   public enum DataViewOneOf: Codable, Equatable, Sendable {
     /// Will cause the scorecard to show a gauge chart.
-    indirect case gaugeView(Scorecard.GaugeView?)
+    indirect case gaugeView(Scorecard.GaugeView)
     /// Will cause the scorecard to show a spark chart.
-    indirect case sparkChartView(Scorecard.SparkChartView?)
+    indirect case sparkChartView(Scorecard.SparkChartView)
     /// Will cause the `Scorecard` to show only the value, with no indicator to
     /// its value relative to its thresholds.
-    indirect case blankView(GoogleWKT.WKTEmpty?)
+    indirect case blankView(GoogleWKT.WKTEmpty)
   }
 
   public static var _anyTypeUrl: Swift.String {

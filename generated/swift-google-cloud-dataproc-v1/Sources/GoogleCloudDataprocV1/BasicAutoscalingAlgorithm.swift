@@ -78,7 +78,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
       config = $0
     }
     if let yarnConfig = try container.decodeIfPresent(
-      BasicYarnAutoscalingConfig?.self, forKey: .yarnConfig)
+      BasicYarnAutoscalingConfig.self, forKey: .yarnConfig)
     {
       try configCheckAndSet(.yarnConfig(yarnConfig))
     }
@@ -106,7 +106,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
 
   public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Required. YARN autoscaling configuration.
-    indirect case yarnConfig(BasicYarnAutoscalingConfig?)
+    indirect case yarnConfig(BasicYarnAutoscalingConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

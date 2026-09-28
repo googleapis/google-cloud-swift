@@ -70,12 +70,12 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
       insight = $0
     }
     if let migrationInsight = try container.decodeIfPresent(
-      MigrationInsight?.self, forKey: .migrationInsight)
+      MigrationInsight.self, forKey: .migrationInsight)
     {
       try insightCheckAndSet(.migrationInsight(migrationInsight))
     }
     if let genericInsight = try container.decodeIfPresent(
-      GenericInsight?.self, forKey: .genericInsight)
+      GenericInsight.self, forKey: .genericInsight)
     {
       try insightCheckAndSet(.genericInsight(genericInsight))
     }
@@ -104,9 +104,9 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum InsightOneOf: Codable, Equatable, Sendable {
     /// Output only. An insight about potential migrations for an asset.
-    indirect case migrationInsight(MigrationInsight?)
+    indirect case migrationInsight(MigrationInsight)
     /// Output only. A generic insight about an asset
-    indirect case genericInsight(GenericInsight?)
+    indirect case genericInsight(GenericInsight)
   }
 
   public static var _anyTypeUrl: Swift.String {

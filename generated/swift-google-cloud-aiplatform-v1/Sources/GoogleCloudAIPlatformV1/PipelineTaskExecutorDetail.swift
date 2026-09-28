@@ -71,12 +71,12 @@
         details = $0
       }
       if let containerDetail = try container.decodeIfPresent(
-        PipelineTaskExecutorDetail.ContainerDetail?.self, forKey: .containerDetail)
+        PipelineTaskExecutorDetail.ContainerDetail.self, forKey: .containerDetail)
       {
         try detailsCheckAndSet(.containerDetail(containerDetail))
       }
       if let customJobDetail = try container.decodeIfPresent(
-        PipelineTaskExecutorDetail.CustomJobDetail?.self, forKey: .customJobDetail)
+        PipelineTaskExecutorDetail.CustomJobDetail.self, forKey: .customJobDetail)
       {
         try detailsCheckAndSet(.customJobDetail(customJobDetail))
       }
@@ -313,9 +313,9 @@
 
     public enum DetailsOneOf: Codable, Equatable, Sendable {
       /// Output only. The detailed info for a container executor.
-      indirect case containerDetail(PipelineTaskExecutorDetail.ContainerDetail?)
+      indirect case containerDetail(PipelineTaskExecutorDetail.ContainerDetail)
       /// Output only. The detailed info for a custom job executor.
-      indirect case customJobDetail(PipelineTaskExecutorDetail.CustomJobDetail?)
+      indirect case customJobDetail(PipelineTaskExecutorDetail.CustomJobDetail)
     }
 
     public static var _anyTypeUrl: Swift.String {

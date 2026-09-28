@@ -703,19 +703,19 @@
           querySource = $0
         }
         if let knowledgeBaseQuerySource = try container.decodeIfPresent(
-          HumanAgentAssistantConfig.SuggestionQueryConfig.KnowledgeBaseQuerySource?.self,
+          HumanAgentAssistantConfig.SuggestionQueryConfig.KnowledgeBaseQuerySource.self,
           forKey: .knowledgeBaseQuerySource)
         {
           try querySourceCheckAndSet(.knowledgeBaseQuerySource(knowledgeBaseQuerySource))
         }
         if let documentQuerySource = try container.decodeIfPresent(
-          HumanAgentAssistantConfig.SuggestionQueryConfig.DocumentQuerySource?.self,
+          HumanAgentAssistantConfig.SuggestionQueryConfig.DocumentQuerySource.self,
           forKey: .documentQuerySource)
         {
           try querySourceCheckAndSet(.documentQuerySource(documentQuerySource))
         }
         if let dialogflowQuerySource = try container.decodeIfPresent(
-          HumanAgentAssistantConfig.SuggestionQueryConfig.DialogflowQuerySource?.self,
+          HumanAgentAssistantConfig.SuggestionQueryConfig.DialogflowQuerySource.self,
           forKey: .dialogflowQuerySource)
         {
           try querySourceCheckAndSet(.dialogflowQuerySource(dialogflowQuerySource))
@@ -1390,14 +1390,14 @@
         /// Query from knowledgebase. It is used by:
         /// ARTICLE_SUGGESTION, FAQ.
         indirect case knowledgeBaseQuerySource(
-          HumanAgentAssistantConfig.SuggestionQueryConfig.KnowledgeBaseQuerySource?)
+          HumanAgentAssistantConfig.SuggestionQueryConfig.KnowledgeBaseQuerySource)
         /// Query from knowledge base document. It is used by:
         /// SMART_REPLY, SMART_COMPOSE.
         indirect case documentQuerySource(
-          HumanAgentAssistantConfig.SuggestionQueryConfig.DocumentQuerySource?)
+          HumanAgentAssistantConfig.SuggestionQueryConfig.DocumentQuerySource)
         /// Query from Dialogflow agent. It is used by DIALOGFLOW_ASSIST.
         indirect case dialogflowQuerySource(
-          HumanAgentAssistantConfig.SuggestionQueryConfig.DialogflowQuerySource?)
+          HumanAgentAssistantConfig.SuggestionQueryConfig.DialogflowQuerySource)
       }
 
       public static var _anyTypeUrl: Swift.String {

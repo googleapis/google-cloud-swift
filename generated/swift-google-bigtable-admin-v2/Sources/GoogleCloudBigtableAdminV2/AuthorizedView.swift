@@ -101,7 +101,7 @@ public struct AuthorizedView: Codable, Equatable, GoogleWKT._AnyPackable,
       authorizedView = $0
     }
     if let subsetView = try container.decodeIfPresent(
-      AuthorizedView.SubsetView?.self, forKey: .subsetView)
+      AuthorizedView.SubsetView.self, forKey: .subsetView)
     {
       try authorizedViewCheckAndSet(.subsetView(subsetView))
     }
@@ -421,7 +421,7 @@ public struct AuthorizedView: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of this AuthorizedView.
   public enum AuthorizedViewOneOf: Codable, Equatable, Sendable {
     /// An AuthorizedView permitting access to an explicit subset of a Table.
-    indirect case subsetView(AuthorizedView.SubsetView?)
+    indirect case subsetView(AuthorizedView.SubsetView)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -146,7 +146,7 @@
         metrics = $0
       }
       if let summarizationMetrics = try container.decodeIfPresent(
-        SummarizationEvaluationMetrics?.self, forKey: .summarizationMetrics)
+        SummarizationEvaluationMetrics.self, forKey: .summarizationMetrics)
       {
         try metricsCheckAndSet(.summarizationMetrics(summarizationMetrics))
       }
@@ -184,7 +184,7 @@
     /// Metrics details.
     public enum MetricsOneOf: Codable, Equatable, Sendable {
       /// Output only. Only available when the summarization generator is provided.
-      indirect case summarizationMetrics(SummarizationEvaluationMetrics?)
+      indirect case summarizationMetrics(SummarizationEvaluationMetrics)
     }
 
     public static var _anyTypeUrl: Swift.String {

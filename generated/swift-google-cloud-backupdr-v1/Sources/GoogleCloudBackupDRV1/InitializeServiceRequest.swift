@@ -110,7 +110,7 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleWKT._AnyPackab
       initializationConfig = $0
     }
     if let cloudSqlInstanceInitializationConfig = try container.decodeIfPresent(
-      CloudSqlInstanceInitializationConfig?.self, forKey: .cloudSqlInstanceInitializationConfig)
+      CloudSqlInstanceInitializationConfig.self, forKey: .cloudSqlInstanceInitializationConfig)
     {
       try initializationConfigCheckAndSet(
         .cloudSqlInstanceInitializationConfig(cloudSqlInstanceInitializationConfig))
@@ -142,7 +142,7 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// The configuration for initializing the resource.
   public enum InitializationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. The configuration for initializing a Cloud SQL instance.
-    indirect case cloudSqlInstanceInitializationConfig(CloudSqlInstanceInitializationConfig?)
+    indirect case cloudSqlInstanceInitializationConfig(CloudSqlInstanceInitializationConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

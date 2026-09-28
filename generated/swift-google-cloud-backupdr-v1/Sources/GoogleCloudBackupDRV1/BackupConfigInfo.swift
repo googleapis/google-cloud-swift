@@ -99,12 +99,12 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       backupConfig = $0
     }
     if let gcpBackupConfig = try container.decodeIfPresent(
-      GcpBackupConfig?.self, forKey: .gcpBackupConfig)
+      GcpBackupConfig.self, forKey: .gcpBackupConfig)
     {
       try backupConfigCheckAndSet(.gcpBackupConfig(gcpBackupConfig))
     }
     if let backupApplianceBackupConfig = try container.decodeIfPresent(
-      BackupApplianceBackupConfig?.self, forKey: .backupApplianceBackupConfig)
+      BackupApplianceBackupConfig.self, forKey: .backupApplianceBackupConfig)
     {
       try backupConfigCheckAndSet(.backupApplianceBackupConfig(backupApplianceBackupConfig))
     }
@@ -271,9 +271,9 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configuration Info has the resource format-specific configuration.
   public enum BackupConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for a Google Cloud resource.
-    indirect case gcpBackupConfig(GcpBackupConfig?)
+    indirect case gcpBackupConfig(GcpBackupConfig)
     /// Configuration for an application backed up by a Backup Appliance.
-    indirect case backupApplianceBackupConfig(BackupApplianceBackupConfig?)
+    indirect case backupApplianceBackupConfig(BackupApplianceBackupConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

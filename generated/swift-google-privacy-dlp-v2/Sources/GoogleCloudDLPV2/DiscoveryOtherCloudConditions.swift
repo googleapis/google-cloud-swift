@@ -77,7 +77,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
       conditions = $0
     }
     if let amazonS3BucketConditions = try container.decodeIfPresent(
-      AmazonS3BucketConditions?.self, forKey: .amazonS3BucketConditions)
+      AmazonS3BucketConditions.self, forKey: .amazonS3BucketConditions)
     {
       try conditionsCheckAndSet(.amazonS3BucketConditions(amazonS3BucketConditions))
     }
@@ -106,7 +106,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
   /// The conditions to apply.
   public enum ConditionsOneOf: Codable, Equatable, Sendable {
     /// Amazon S3 bucket conditions.
-    indirect case amazonS3BucketConditions(AmazonS3BucketConditions?)
+    indirect case amazonS3BucketConditions(AmazonS3BucketConditions)
   }
 
   public static var _anyTypeUrl: Swift.String {

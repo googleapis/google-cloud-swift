@@ -73,15 +73,15 @@ public struct ProductInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       source = $0
     }
     if let productInlineSource = try container.decodeIfPresent(
-      ProductInlineSource?.self, forKey: .productInlineSource)
+      ProductInlineSource.self, forKey: .productInlineSource)
     {
       try sourceCheckAndSet(.productInlineSource(productInlineSource))
     }
-    if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+    if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     if let bigQuerySource = try container.decodeIfPresent(
-      BigQuerySource?.self, forKey: .bigQuerySource)
+      BigQuerySource.self, forKey: .bigQuerySource)
     {
       try sourceCheckAndSet(.bigQuerySource(bigQuerySource))
     }
@@ -113,11 +113,11 @@ public struct ProductInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The source of the input.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The Inline source for the input content for products.
-    indirect case productInlineSource(ProductInlineSource?)
+    indirect case productInlineSource(ProductInlineSource)
     /// Google Cloud Storage location for the input content.
-    indirect case gcsSource(GcsSource?)
+    indirect case gcsSource(GcsSource)
     /// BigQuery input source.
-    indirect case bigQuerySource(BigQuerySource?)
+    indirect case bigQuerySource(BigQuerySource)
   }
 
   public static var _anyTypeUrl: Swift.String {

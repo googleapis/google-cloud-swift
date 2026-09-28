@@ -69,7 +69,7 @@ public struct BatchContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
       batch = $0
     }
     if let stringValueBatch = try container.decodeIfPresent(
-      StringValueBatch?.self, forKey: .stringValueBatch)
+      StringValueBatch.self, forKey: .stringValueBatch)
     {
       try batchCheckAndSet(.stringValueBatch(stringValueBatch))
     }
@@ -97,7 +97,7 @@ public struct BatchContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Represents the batch to inspect or redact.
   public enum BatchOneOf: Codable, Equatable, Sendable {
     /// Optional. Represents a batch of string values to inspect or redact.
-    indirect case stringValueBatch(StringValueBatch?)
+    indirect case stringValueBatch(StringValueBatch)
   }
 
   public static var _anyTypeUrl: Swift.String {

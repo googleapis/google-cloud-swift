@@ -79,7 +79,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
       serverCa = $0
     }
     if let managedServerCa = try container.decodeIfPresent(
-      SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority?.self,
+      SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority.self,
       forKey: .managedServerCa)
     {
       try serverCaCheckAndSet(.managedServerCa(managedServerCa))
@@ -254,7 +254,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
   public enum ServerCaOneOf: Codable, Equatable, Sendable {
     /// CA certificate chains for redis managed server authentication.
     indirect case managedServerCa(
-      SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority?)
+      SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority)
   }
 
   public static var _anyTypeUrl: Swift.String {

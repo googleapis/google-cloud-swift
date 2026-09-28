@@ -196,17 +196,17 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       accessContextPolicy = $0
     }
     if let accessPolicy = try container.decodeIfPresent(
-      GoogleIdentityAccessContextManagerV1.AccessPolicy?.self, forKey: .accessPolicy)
+      GoogleIdentityAccessContextManagerV1.AccessPolicy.self, forKey: .accessPolicy)
     {
       try accessContextPolicyCheckAndSet(.accessPolicy(accessPolicy))
     }
     if let accessLevel = try container.decodeIfPresent(
-      GoogleIdentityAccessContextManagerV1.AccessLevel?.self, forKey: .accessLevel)
+      GoogleIdentityAccessContextManagerV1.AccessLevel.self, forKey: .accessLevel)
     {
       try accessContextPolicyCheckAndSet(.accessLevel(accessLevel))
     }
     if let servicePerimeter = try container.decodeIfPresent(
-      GoogleIdentityAccessContextManagerV1.ServicePerimeter?.self, forKey: .servicePerimeter)
+      GoogleIdentityAccessContextManagerV1.ServicePerimeter.self, forKey: .servicePerimeter)
     {
       try accessContextPolicyCheckAndSet(.servicePerimeter(servicePerimeter))
     }
@@ -253,13 +253,13 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum AccessContextPolicyOneOf: Codable, Equatable, Sendable {
     /// Also refer to the [access policy user
     /// guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
-    indirect case accessPolicy(GoogleIdentityAccessContextManagerV1.AccessPolicy?)
+    indirect case accessPolicy(GoogleIdentityAccessContextManagerV1.AccessPolicy)
     /// Also refer to the [access level user
     /// guide](https://cloud.google.com/access-context-manager/docs/overview#access-levels).
-    indirect case accessLevel(GoogleIdentityAccessContextManagerV1.AccessLevel?)
+    indirect case accessLevel(GoogleIdentityAccessContextManagerV1.AccessLevel)
     /// Also refer to the [service perimeter user
     /// guide](https://cloud.google.com/vpc-service-controls/docs/overview).
-    indirect case servicePerimeter(GoogleIdentityAccessContextManagerV1.ServicePerimeter?)
+    indirect case servicePerimeter(GoogleIdentityAccessContextManagerV1.ServicePerimeter)
   }
 
   public static var _anyTypeUrl: Swift.String {

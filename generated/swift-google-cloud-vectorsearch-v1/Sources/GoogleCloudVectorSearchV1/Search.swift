@@ -72,15 +72,15 @@ public struct Search: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       searchType = $0
     }
-    if let vectorSearch = try container.decodeIfPresent(VectorSearch?.self, forKey: .vectorSearch) {
+    if let vectorSearch = try container.decodeIfPresent(VectorSearch.self, forKey: .vectorSearch) {
       try searchTypeCheckAndSet(.vectorSearch(vectorSearch))
     }
     if let semanticSearch = try container.decodeIfPresent(
-      SemanticSearch?.self, forKey: .semanticSearch)
+      SemanticSearch.self, forKey: .semanticSearch)
     {
       try searchTypeCheckAndSet(.semanticSearch(semanticSearch))
     }
-    if let textSearch = try container.decodeIfPresent(TextSearch?.self, forKey: .textSearch) {
+    if let textSearch = try container.decodeIfPresent(TextSearch.self, forKey: .textSearch) {
       try searchTypeCheckAndSet(.textSearch(textSearch))
     }
     self.searchType = searchType
@@ -111,11 +111,11 @@ public struct Search: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of search to perform.
   public enum SearchTypeOneOf: Codable, Equatable, Sendable {
     /// A vector-based search.
-    indirect case vectorSearch(VectorSearch?)
+    indirect case vectorSearch(VectorSearch)
     /// A semantic search.
-    indirect case semanticSearch(SemanticSearch?)
+    indirect case semanticSearch(SemanticSearch)
     /// A text search operation.
-    indirect case textSearch(TextSearch?)
+    indirect case textSearch(TextSearch)
   }
 
   public static var _anyTypeUrl: Swift.String {

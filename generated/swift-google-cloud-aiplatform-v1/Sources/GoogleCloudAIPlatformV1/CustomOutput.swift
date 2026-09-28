@@ -69,7 +69,7 @@
         }
         customOutput = $0
       }
-      if let rawOutputs = try container.decodeIfPresent(RawOutput?.self, forKey: .rawOutputs) {
+      if let rawOutputs = try container.decodeIfPresent(RawOutput.self, forKey: .rawOutputs) {
         try customOutputCheckAndSet(.rawOutputs(rawOutputs))
       }
       self.customOutput = customOutput
@@ -96,7 +96,7 @@
     /// Custom output.
     public enum CustomOutputOneOf: Codable, Equatable, Sendable {
       /// Output only. List of raw output strings.
-      indirect case rawOutputs(RawOutput?)
+      indirect case rawOutputs(RawOutput)
     }
 
     public static var _anyTypeUrl: Swift.String {

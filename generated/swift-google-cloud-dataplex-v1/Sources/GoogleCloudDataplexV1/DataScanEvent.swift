@@ -177,12 +177,12 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       result = $0
     }
     if let dataProfile = try container.decodeIfPresent(
-      DataScanEvent.DataProfileResult?.self, forKey: .dataProfile)
+      DataScanEvent.DataProfileResult.self, forKey: .dataProfile)
     {
       try resultCheckAndSet(.dataProfile(dataProfile))
     }
     if let dataQuality = try container.decodeIfPresent(
-      DataScanEvent.DataQualityResult?.self, forKey: .dataQuality)
+      DataScanEvent.DataQualityResult.self, forKey: .dataQuality)
     {
       try resultCheckAndSet(.dataQuality(dataQuality))
     }
@@ -199,12 +199,12 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       appliedConfigs = $0
     }
     if let dataProfileConfigs = try container.decodeIfPresent(
-      DataScanEvent.DataProfileAppliedConfigs?.self, forKey: .dataProfileConfigs)
+      DataScanEvent.DataProfileAppliedConfigs.self, forKey: .dataProfileConfigs)
     {
       try appliedConfigsCheckAndSet(.dataProfileConfigs(dataProfileConfigs))
     }
     if let dataQualityConfigs = try container.decodeIfPresent(
-      DataScanEvent.DataQualityAppliedConfigs?.self, forKey: .dataQualityConfigs)
+      DataScanEvent.DataQualityAppliedConfigs.self, forKey: .dataQualityConfigs)
     {
       try appliedConfigsCheckAndSet(.dataQualityConfigs(dataQualityConfigs))
     }
@@ -1406,17 +1406,17 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The result of the data scan job.
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Data profile result for data profile type data scan.
-    indirect case dataProfile(DataScanEvent.DataProfileResult?)
+    indirect case dataProfile(DataScanEvent.DataProfileResult)
     /// Data quality result for data quality type data scan.
-    indirect case dataQuality(DataScanEvent.DataQualityResult?)
+    indirect case dataQuality(DataScanEvent.DataQualityResult)
   }
 
   /// The applied configs in the data scan job.
   public enum AppliedConfigsOneOf: Codable, Equatable, Sendable {
     /// Applied configs for data profile type data scan.
-    indirect case dataProfileConfigs(DataScanEvent.DataProfileAppliedConfigs?)
+    indirect case dataProfileConfigs(DataScanEvent.DataProfileAppliedConfigs)
     /// Applied configs for data quality type data scan.
-    indirect case dataQualityConfigs(DataScanEvent.DataQualityAppliedConfigs?)
+    indirect case dataQualityConfigs(DataScanEvent.DataQualityAppliedConfigs)
   }
 
   public static var _anyTypeUrl: Swift.String {

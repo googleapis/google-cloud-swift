@@ -78,28 +78,27 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       schema = $0
     }
-    if let avro = try container.decodeIfPresent(PhysicalSchema.AvroSchema?.self, forKey: .avro) {
+    if let avro = try container.decodeIfPresent(PhysicalSchema.AvroSchema.self, forKey: .avro) {
       try schemaCheckAndSet(.avro(avro))
     }
-    if let thrift = try container.decodeIfPresent(
-      PhysicalSchema.ThriftSchema?.self, forKey: .thrift)
+    if let thrift = try container.decodeIfPresent(PhysicalSchema.ThriftSchema.self, forKey: .thrift)
     {
       try schemaCheckAndSet(.thrift(thrift))
     }
     if let protobuf = try container.decodeIfPresent(
-      PhysicalSchema.ProtobufSchema?.self, forKey: .protobuf)
+      PhysicalSchema.ProtobufSchema.self, forKey: .protobuf)
     {
       try schemaCheckAndSet(.protobuf(protobuf))
     }
     if let parquet = try container.decodeIfPresent(
-      PhysicalSchema.ParquetSchema?.self, forKey: .parquet)
+      PhysicalSchema.ParquetSchema.self, forKey: .parquet)
     {
       try schemaCheckAndSet(.parquet(parquet))
     }
-    if let orc = try container.decodeIfPresent(PhysicalSchema.OrcSchema?.self, forKey: .orc) {
+    if let orc = try container.decodeIfPresent(PhysicalSchema.OrcSchema.self, forKey: .orc) {
       try schemaCheckAndSet(.orc(orc))
     }
-    if let csv = try container.decodeIfPresent(PhysicalSchema.CsvSchema?.self, forKey: .csv) {
+    if let csv = try container.decodeIfPresent(PhysicalSchema.CsvSchema.self, forKey: .csv) {
       try schemaCheckAndSet(.csv(csv))
     }
     self.schema = schema
@@ -510,17 +509,17 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum SchemaOneOf: Codable, Equatable, Sendable {
     /// Schema in Avro JSON format.
-    indirect case avro(PhysicalSchema.AvroSchema?)
+    indirect case avro(PhysicalSchema.AvroSchema)
     /// Schema in Thrift format.
-    indirect case thrift(PhysicalSchema.ThriftSchema?)
+    indirect case thrift(PhysicalSchema.ThriftSchema)
     /// Schema in protocol buffer format.
-    indirect case protobuf(PhysicalSchema.ProtobufSchema?)
+    indirect case protobuf(PhysicalSchema.ProtobufSchema)
     /// Marks a Parquet-encoded data source.
-    indirect case parquet(PhysicalSchema.ParquetSchema?)
+    indirect case parquet(PhysicalSchema.ParquetSchema)
     /// Marks an ORC-encoded data source.
-    indirect case orc(PhysicalSchema.OrcSchema?)
+    indirect case orc(PhysicalSchema.OrcSchema)
     /// Marks a CSV-encoded data source.
-    indirect case csv(PhysicalSchema.CsvSchema?)
+    indirect case csv(PhysicalSchema.CsvSchema)
   }
 
   public static var _anyTypeUrl: Swift.String {

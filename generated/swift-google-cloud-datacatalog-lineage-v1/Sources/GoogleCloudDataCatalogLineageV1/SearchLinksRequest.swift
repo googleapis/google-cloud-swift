@@ -110,18 +110,16 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       criteria = $0
     }
-    if let source = try container.decodeIfPresent(EntityReference?.self, forKey: .source) {
+    if let source = try container.decodeIfPresent(EntityReference.self, forKey: .source) {
       try criteriaCheckAndSet(.source(source))
     }
-    if let target = try container.decodeIfPresent(EntityReference?.self, forKey: .target) {
+    if let target = try container.decodeIfPresent(EntityReference.self, forKey: .target) {
       try criteriaCheckAndSet(.target(target))
     }
-    if let sources = try container.decodeIfPresent(MultipleEntityReference?.self, forKey: .sources)
-    {
+    if let sources = try container.decodeIfPresent(MultipleEntityReference.self, forKey: .sources) {
       try criteriaCheckAndSet(.sources(sources))
     }
-    if let targets = try container.decodeIfPresent(MultipleEntityReference?.self, forKey: .targets)
-    {
+    if let targets = try container.decodeIfPresent(MultipleEntityReference.self, forKey: .targets) {
       try criteriaCheckAndSet(.targets(targets))
     }
     self.criteria = criteria
@@ -158,10 +156,10 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum CriteriaOneOf: Codable, Equatable, Sendable {
     /// Optional. Send asset information in the **source** field to retrieve all
     /// links that lead from the specified asset to downstream assets.
-    indirect case source(EntityReference?)
+    indirect case source(EntityReference)
     /// Optional. Send asset information in the **target** field to retrieve all
     /// links that lead from upstream assets to the specified asset.
-    indirect case target(EntityReference?)
+    indirect case target(EntityReference)
     /// Optional. Send a list of asset information in the **sources** field to
     /// retrieve all links that lead from the specified assets to downstream
     /// assets. This field is similar to the `source`
@@ -171,7 +169,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// `fully_qualified_name`.
     ///
     /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.source]: <doc:SearchLinksRequest/CriteriaOneOf/source(_:)>
-    indirect case sources(MultipleEntityReference?)
+    indirect case sources(MultipleEntityReference)
     /// Optional. Send a list of asset information in the **targets** field to
     /// retrieve all links that lead from upstream assets to the specified
     /// assets. This field is similar to the `target`
@@ -181,7 +179,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// `fully_qualified_name`.
     ///
     /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.target]: <doc:SearchLinksRequest/CriteriaOneOf/target(_:)>
-    indirect case targets(MultipleEntityReference?)
+    indirect case targets(MultipleEntityReference)
   }
 
   public static var _anyTypeUrl: Swift.String {

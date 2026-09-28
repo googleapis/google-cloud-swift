@@ -77,7 +77,7 @@ public struct EncryptionUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       secretSource = $0
     }
     if let secretManagerKeySource = try container.decodeIfPresent(
-      Encryption.SecretManagerSource?.self, forKey: .secretManagerKeySource)
+      Encryption.SecretManagerSource.self, forKey: .secretManagerKeySource)
     {
       try secretSourceCheckAndSet(.secretManagerKeySource(secretManagerKeySource))
     }
@@ -106,7 +106,7 @@ public struct EncryptionUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Defines where new content keys are stored.
   public enum SecretSourceOneOf: Codable, Equatable, Sendable {
     /// For keys stored in Google Secret Manager.
-    indirect case secretManagerKeySource(Encryption.SecretManagerSource?)
+    indirect case secretManagerKeySource(Encryption.SecretManagerSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

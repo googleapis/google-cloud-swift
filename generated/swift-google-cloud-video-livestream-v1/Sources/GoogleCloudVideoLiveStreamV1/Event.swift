@@ -159,29 +159,29 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
       task = $0
     }
     if let inputSwitch = try container.decodeIfPresent(
-      Event.InputSwitchTask?.self, forKey: .inputSwitch)
+      Event.InputSwitchTask.self, forKey: .inputSwitch)
     {
       try taskCheckAndSet(.inputSwitch(inputSwitch))
     }
-    if let adBreak = try container.decodeIfPresent(Event.AdBreakTask?.self, forKey: .adBreak) {
+    if let adBreak = try container.decodeIfPresent(Event.AdBreakTask.self, forKey: .adBreak) {
       try taskCheckAndSet(.adBreak(adBreak))
     }
     if let returnToProgram = try container.decodeIfPresent(
-      Event.ReturnToProgramTask?.self, forKey: .returnToProgram)
+      Event.ReturnToProgramTask.self, forKey: .returnToProgram)
     {
       try taskCheckAndSet(.returnToProgram(returnToProgram))
     }
-    if let slate = try container.decodeIfPresent(Event.SlateTask?.self, forKey: .slate) {
+    if let slate = try container.decodeIfPresent(Event.SlateTask.self, forKey: .slate) {
       try taskCheckAndSet(.slate(slate))
     }
-    if let mute = try container.decodeIfPresent(Event.MuteTask?.self, forKey: .mute) {
+    if let mute = try container.decodeIfPresent(Event.MuteTask.self, forKey: .mute) {
       try taskCheckAndSet(.mute(mute))
     }
-    if let unmute = try container.decodeIfPresent(Event.UnmuteTask?.self, forKey: .unmute) {
+    if let unmute = try container.decodeIfPresent(Event.UnmuteTask.self, forKey: .unmute) {
       try taskCheckAndSet(.unmute(unmute))
     }
     if let updateEncryptions = try container.decodeIfPresent(
-      Event.UpdateEncryptionsTask?.self, forKey: .updateEncryptions)
+      Event.UpdateEncryptionsTask.self, forKey: .updateEncryptions)
     {
       try taskCheckAndSet(.updateEncryptions(updateEncryptions))
     }
@@ -845,19 +845,19 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Operation to be executed by this event.
   public enum TaskOneOf: Codable, Equatable, Sendable {
     /// Switches to another input stream.
-    indirect case inputSwitch(Event.InputSwitchTask?)
+    indirect case inputSwitch(Event.InputSwitchTask)
     /// Inserts a new ad opportunity.
-    indirect case adBreak(Event.AdBreakTask?)
+    indirect case adBreak(Event.AdBreakTask)
     /// Stops any running ad break.
-    indirect case returnToProgram(Event.ReturnToProgramTask?)
+    indirect case returnToProgram(Event.ReturnToProgramTask)
     /// Inserts a slate.
-    indirect case slate(Event.SlateTask?)
+    indirect case slate(Event.SlateTask)
     /// Mutes the stream.
-    indirect case mute(Event.MuteTask?)
+    indirect case mute(Event.MuteTask)
     /// Unmutes the stream.
-    indirect case unmute(Event.UnmuteTask?)
+    indirect case unmute(Event.UnmuteTask)
     /// Updates encryption settings.
-    indirect case updateEncryptions(Event.UpdateEncryptionsTask?)
+    indirect case updateEncryptions(Event.UpdateEncryptionsTask)
   }
 
   public static var _anyTypeUrl: Swift.String {

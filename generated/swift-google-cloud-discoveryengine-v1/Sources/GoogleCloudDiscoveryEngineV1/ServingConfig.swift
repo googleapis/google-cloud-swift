@@ -339,12 +339,12 @@
         verticalConfig = $0
       }
       if let mediaConfig = try container.decodeIfPresent(
-        ServingConfig.MediaConfig?.self, forKey: .mediaConfig)
+        ServingConfig.MediaConfig.self, forKey: .mediaConfig)
       {
         try verticalConfigCheckAndSet(.mediaConfig(mediaConfig))
       }
       if let genericConfig = try container.decodeIfPresent(
-        ServingConfig.GenericConfig?.self, forKey: .genericConfig)
+        ServingConfig.GenericConfig.self, forKey: .genericConfig)
       {
         try verticalConfigCheckAndSet(.genericConfig(genericConfig))
       }
@@ -640,9 +640,9 @@
     /// Industry vertical specific config.
     public enum VerticalConfigOneOf: Codable, Equatable, Sendable {
       /// The MediaConfig of the serving configuration.
-      indirect case mediaConfig(ServingConfig.MediaConfig?)
+      indirect case mediaConfig(ServingConfig.MediaConfig)
       /// The GenericConfig of the serving configuration.
-      indirect case genericConfig(ServingConfig.GenericConfig?)
+      indirect case genericConfig(ServingConfig.GenericConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

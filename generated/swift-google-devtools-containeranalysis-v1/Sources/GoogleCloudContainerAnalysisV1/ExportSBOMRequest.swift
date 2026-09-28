@@ -79,7 +79,7 @@ public struct ExportSBOMRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       target = $0
     }
     if let cloudStorageLocation = try container.decodeIfPresent(
-      ExportSBOMRequest.CloudStorageLocation?.self, forKey: .cloudStorageLocation)
+      ExportSBOMRequest.CloudStorageLocation.self, forKey: .cloudStorageLocation)
     {
       try targetCheckAndSet(.cloudStorageLocation(cloudStorageLocation))
     }
@@ -168,7 +168,7 @@ public struct ExportSBOMRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Optional. Empty placeholder to denote that this is a Google Cloud Storage
     /// export request.
-    indirect case cloudStorageLocation(ExportSBOMRequest.CloudStorageLocation?)
+    indirect case cloudStorageLocation(ExportSBOMRequest.CloudStorageLocation)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -106,7 +106,7 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
     if let toolId = try container.decodeIfPresent(Swift.String.self, forKey: .toolId) {
       try toolIdentifierCheckAndSet(.toolId(toolId))
     }
-    if let toolset = try container.decodeIfPresent(ToolsetTool?.self, forKey: .toolset) {
+    if let toolset = try container.decodeIfPresent(ToolsetTool.self, forKey: .toolset) {
       try toolIdentifierCheckAndSet(.toolset(toolset))
     }
     self.toolIdentifier = toolIdentifier
@@ -144,7 +144,7 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case toolId(Swift.String)
     /// Optional. The toolset to mock.
-    indirect case toolset(ToolsetTool?)
+    indirect case toolset(ToolsetTool)
   }
 
   public static var _anyTypeUrl: Swift.String {

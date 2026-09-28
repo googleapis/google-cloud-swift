@@ -69,10 +69,10 @@ public struct AdbMessage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       contents = $0
     }
-    if let `open` = try container.decodeIfPresent(Open?.self, forKey: .`open`) {
+    if let `open` = try container.decodeIfPresent(Open.self, forKey: .`open`) {
       try contentsCheckAndSet(.`open`(`open`))
     }
-    if let streamData = try container.decodeIfPresent(StreamData?.self, forKey: .streamData) {
+    if let streamData = try container.decodeIfPresent(StreamData.self, forKey: .streamData) {
       try contentsCheckAndSet(.streamData(streamData))
     }
     self.contents = contents
@@ -100,9 +100,9 @@ public struct AdbMessage: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum ContentsOneOf: Codable, Equatable, Sendable {
     /// Open a new stream.
-    indirect case `open`(Open?)
+    indirect case `open`(Open)
     /// Send data to a stream.
-    indirect case streamData(StreamData?)
+    indirect case streamData(StreamData)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -90,32 +90,32 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       sourceStreamConfig = $0
     }
     if let oracleSourceConfig = try container.decodeIfPresent(
-      OracleSourceConfig?.self, forKey: .oracleSourceConfig)
+      OracleSourceConfig.self, forKey: .oracleSourceConfig)
     {
       try sourceStreamConfigCheckAndSet(.oracleSourceConfig(oracleSourceConfig))
     }
     if let mysqlSourceConfig = try container.decodeIfPresent(
-      MysqlSourceConfig?.self, forKey: .mysqlSourceConfig)
+      MysqlSourceConfig.self, forKey: .mysqlSourceConfig)
     {
       try sourceStreamConfigCheckAndSet(.mysqlSourceConfig(mysqlSourceConfig))
     }
     if let postgresqlSourceConfig = try container.decodeIfPresent(
-      PostgresqlSourceConfig?.self, forKey: .postgresqlSourceConfig)
+      PostgresqlSourceConfig.self, forKey: .postgresqlSourceConfig)
     {
       try sourceStreamConfigCheckAndSet(.postgresqlSourceConfig(postgresqlSourceConfig))
     }
     if let sqlServerSourceConfig = try container.decodeIfPresent(
-      SqlServerSourceConfig?.self, forKey: .sqlServerSourceConfig)
+      SqlServerSourceConfig.self, forKey: .sqlServerSourceConfig)
     {
       try sourceStreamConfigCheckAndSet(.sqlServerSourceConfig(sqlServerSourceConfig))
     }
     if let salesforceSourceConfig = try container.decodeIfPresent(
-      SalesforceSourceConfig?.self, forKey: .salesforceSourceConfig)
+      SalesforceSourceConfig.self, forKey: .salesforceSourceConfig)
     {
       try sourceStreamConfigCheckAndSet(.salesforceSourceConfig(salesforceSourceConfig))
     }
     if let mongodbSourceConfig = try container.decodeIfPresent(
-      MongodbSourceConfig?.self, forKey: .mongodbSourceConfig)
+      MongodbSourceConfig.self, forKey: .mongodbSourceConfig)
     {
       try sourceStreamConfigCheckAndSet(.mongodbSourceConfig(mongodbSourceConfig))
     }
@@ -154,17 +154,17 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Stream configuration that is specific to the data source type.
   public enum SourceStreamConfigOneOf: Codable, Equatable, Sendable {
     /// Oracle data source configuration.
-    indirect case oracleSourceConfig(OracleSourceConfig?)
+    indirect case oracleSourceConfig(OracleSourceConfig)
     /// MySQL data source configuration.
-    indirect case mysqlSourceConfig(MysqlSourceConfig?)
+    indirect case mysqlSourceConfig(MysqlSourceConfig)
     /// PostgreSQL data source configuration.
-    indirect case postgresqlSourceConfig(PostgresqlSourceConfig?)
+    indirect case postgresqlSourceConfig(PostgresqlSourceConfig)
     /// SQLServer data source configuration.
-    indirect case sqlServerSourceConfig(SqlServerSourceConfig?)
+    indirect case sqlServerSourceConfig(SqlServerSourceConfig)
     /// Salesforce data source configuration.
-    indirect case salesforceSourceConfig(SalesforceSourceConfig?)
+    indirect case salesforceSourceConfig(SalesforceSourceConfig)
     /// MongoDB data source configuration.
-    indirect case mongodbSourceConfig(MongodbSourceConfig?)
+    indirect case mongodbSourceConfig(MongodbSourceConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

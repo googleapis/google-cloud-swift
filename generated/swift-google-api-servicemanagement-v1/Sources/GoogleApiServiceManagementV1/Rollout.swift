@@ -124,12 +124,12 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
       strategy = $0
     }
     if let trafficPercentStrategy = try container.decodeIfPresent(
-      Rollout.TrafficPercentStrategy?.self, forKey: .trafficPercentStrategy)
+      Rollout.TrafficPercentStrategy.self, forKey: .trafficPercentStrategy)
     {
       try strategyCheckAndSet(.trafficPercentStrategy(trafficPercentStrategy))
     }
     if let deleteServiceStrategy = try container.decodeIfPresent(
-      Rollout.DeleteServiceStrategy?.self, forKey: .deleteServiceStrategy)
+      Rollout.DeleteServiceStrategy.self, forKey: .deleteServiceStrategy)
     {
       try strategyCheckAndSet(.deleteServiceStrategy(deleteServiceStrategy))
     }
@@ -473,10 +473,10 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum StrategyOneOf: Codable, Equatable, Sendable {
     /// Google Service Control selects service configurations based on
     /// traffic percentage.
-    indirect case trafficPercentStrategy(Rollout.TrafficPercentStrategy?)
+    indirect case trafficPercentStrategy(Rollout.TrafficPercentStrategy)
     /// The strategy associated with a rollout to delete a `ManagedService`.
     /// Readonly.
-    indirect case deleteServiceStrategy(Rollout.DeleteServiceStrategy?)
+    indirect case deleteServiceStrategy(Rollout.DeleteServiceStrategy)
   }
 
   public static var _anyTypeUrl: Swift.String {

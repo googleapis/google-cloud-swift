@@ -71,7 +71,7 @@ public struct ActionDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let deidentifyDetails = try container.decodeIfPresent(
-      DeidentifyDataSourceDetails?.self, forKey: .deidentifyDetails)
+      DeidentifyDataSourceDetails.self, forKey: .deidentifyDetails)
     {
       try detailsCheckAndSet(.deidentifyDetails(deidentifyDetails))
     }
@@ -99,7 +99,7 @@ public struct ActionDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Summary of what occurred in the actions.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Outcome of a de-identification action.
-    indirect case deidentifyDetails(DeidentifyDataSourceDetails?)
+    indirect case deidentifyDetails(DeidentifyDataSourceDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

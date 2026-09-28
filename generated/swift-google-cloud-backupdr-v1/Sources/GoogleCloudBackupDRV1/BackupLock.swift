@@ -80,12 +80,12 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
       clientLockInfo = $0
     }
     if let backupApplianceLockInfo = try container.decodeIfPresent(
-      BackupApplianceLockInfo?.self, forKey: .backupApplianceLockInfo)
+      BackupApplianceLockInfo.self, forKey: .backupApplianceLockInfo)
     {
       try clientLockInfoCheckAndSet(.backupApplianceLockInfo(backupApplianceLockInfo))
     }
     if let serviceLockInfo = try container.decodeIfPresent(
-      ServiceLockInfo?.self, forKey: .serviceLockInfo)
+      ServiceLockInfo.self, forKey: .serviceLockInfo)
     {
       try clientLockInfoCheckAndSet(.serviceLockInfo(serviceLockInfo))
     }
@@ -117,10 +117,10 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ClientLockInfoOneOf: Codable, Equatable, Sendable {
     /// If the client is a backup and recovery appliance, this
     /// contains metadata about why the lock exists.
-    indirect case backupApplianceLockInfo(BackupApplianceLockInfo?)
+    indirect case backupApplianceLockInfo(BackupApplianceLockInfo)
     /// Output only. Contains metadata about the lock exist for Google Cloud
     /// native backups.
-    indirect case serviceLockInfo(ServiceLockInfo?)
+    indirect case serviceLockInfo(ServiceLockInfo)
   }
 
   public static var _anyTypeUrl: Swift.String {

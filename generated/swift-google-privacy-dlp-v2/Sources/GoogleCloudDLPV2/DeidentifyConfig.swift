@@ -81,17 +81,17 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       transformation = $0
     }
     if let infoTypeTransformations = try container.decodeIfPresent(
-      InfoTypeTransformations?.self, forKey: .infoTypeTransformations)
+      InfoTypeTransformations.self, forKey: .infoTypeTransformations)
     {
       try transformationCheckAndSet(.infoTypeTransformations(infoTypeTransformations))
     }
     if let recordTransformations = try container.decodeIfPresent(
-      RecordTransformations?.self, forKey: .recordTransformations)
+      RecordTransformations.self, forKey: .recordTransformations)
     {
       try transformationCheckAndSet(.recordTransformations(recordTransformations))
     }
     if let imageTransformations = try container.decodeIfPresent(
-      ImageTransformations?.self, forKey: .imageTransformations)
+      ImageTransformations.self, forKey: .imageTransformations)
     {
       try transformationCheckAndSet(.imageTransformations(imageTransformations))
     }
@@ -126,13 +126,13 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum TransformationOneOf: Codable, Equatable, Sendable {
     /// Treat the dataset as free-form text and apply the same free text
     /// transformation everywhere.
-    indirect case infoTypeTransformations(InfoTypeTransformations?)
+    indirect case infoTypeTransformations(InfoTypeTransformations)
     /// Treat the dataset as structured. Transformations can be applied to
     /// specific locations within structured datasets, such as transforming
     /// a column within a table.
-    indirect case recordTransformations(RecordTransformations?)
+    indirect case recordTransformations(RecordTransformations)
     /// Treat the dataset as an image and redact.
-    indirect case imageTransformations(ImageTransformations?)
+    indirect case imageTransformations(ImageTransformations)
   }
 
   public static var _anyTypeUrl: Swift.String {

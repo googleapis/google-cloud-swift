@@ -192,17 +192,17 @@
         engineConfig = $0
       }
       if let chatEngineConfig = try container.decodeIfPresent(
-        Engine.ChatEngineConfig?.self, forKey: .chatEngineConfig)
+        Engine.ChatEngineConfig.self, forKey: .chatEngineConfig)
       {
         try engineConfigCheckAndSet(.chatEngineConfig(chatEngineConfig))
       }
       if let searchEngineConfig = try container.decodeIfPresent(
-        Engine.SearchEngineConfig?.self, forKey: .searchEngineConfig)
+        Engine.SearchEngineConfig.self, forKey: .searchEngineConfig)
       {
         try engineConfigCheckAndSet(.searchEngineConfig(searchEngineConfig))
       }
       if let mediaRecommendationEngineConfig = try container.decodeIfPresent(
-        Engine.MediaRecommendationEngineConfig?.self, forKey: .mediaRecommendationEngineConfig)
+        Engine.MediaRecommendationEngineConfig.self, forKey: .mediaRecommendationEngineConfig)
       {
         try engineConfigCheckAndSet(
           .mediaRecommendationEngineConfig(mediaRecommendationEngineConfig))
@@ -220,7 +220,7 @@
         engineMetadata = $0
       }
       if let chatEngineMetadata = try container.decodeIfPresent(
-        Engine.ChatEngineMetadata?.self, forKey: .chatEngineMetadata)
+        Engine.ChatEngineMetadata.self, forKey: .chatEngineMetadata)
       {
         try engineMetadataCheckAndSet(.chatEngineMetadata(chatEngineMetadata))
       }
@@ -627,13 +627,13 @@
             typeDedicatedConfig = $0
           }
           if let recommendedForYouConfig = try container.decodeIfPresent(
-            Engine.MediaRecommendationEngineConfig.RecommendedForYouFeatureConfig?.self,
+            Engine.MediaRecommendationEngineConfig.RecommendedForYouFeatureConfig.self,
             forKey: .recommendedForYouConfig)
           {
             try typeDedicatedConfigCheckAndSet(.recommendedForYouConfig(recommendedForYouConfig))
           }
           if let mostPopularConfig = try container.decodeIfPresent(
-            Engine.MediaRecommendationEngineConfig.MostPopularFeatureConfig?.self,
+            Engine.MediaRecommendationEngineConfig.MostPopularFeatureConfig.self,
             forKey: .mostPopularConfig)
           {
             try typeDedicatedConfigCheckAndSet(.mostPopularConfig(mostPopularConfig))
@@ -666,10 +666,10 @@
         public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
           /// Recommended for you engine feature config.
           indirect case recommendedForYouConfig(
-            Engine.MediaRecommendationEngineConfig.RecommendedForYouFeatureConfig?)
+            Engine.MediaRecommendationEngineConfig.RecommendedForYouFeatureConfig)
           /// Most popular engine feature config.
           indirect case mostPopularConfig(
-            Engine.MediaRecommendationEngineConfig.MostPopularFeatureConfig?)
+            Engine.MediaRecommendationEngineConfig.MostPopularFeatureConfig)
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -1361,14 +1361,14 @@
       ///
       /// [google.cloud.discoveryengine.v1.Engine.solution_type]: <doc:Engine/solutionType>
       /// [google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_CHAT]: <doc:SolutionType/chat>
-      indirect case chatEngineConfig(Engine.ChatEngineConfig?)
+      indirect case chatEngineConfig(Engine.ChatEngineConfig)
       /// Configurations for the Search Engine. Only applicable if
       /// [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type] is
       /// [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
       ///
       /// [google.cloud.discoveryengine.v1.Engine.solution_type]: <doc:Engine/solutionType>
       /// [google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH]: <doc:SolutionType/search>
-      indirect case searchEngineConfig(Engine.SearchEngineConfig?)
+      indirect case searchEngineConfig(Engine.SearchEngineConfig)
       /// Configurations for the Media Engine. Only applicable on the data
       /// stores with
       /// [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type]
@@ -1380,7 +1380,7 @@
       /// [google.cloud.discoveryengine.v1.Engine.solution_type]: <doc:Engine/solutionType>
       /// [google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]: <doc:IndustryVertical/media>
       /// [google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_RECOMMENDATION]: <doc:SolutionType/recommendation>
-      indirect case mediaRecommendationEngineConfig(Engine.MediaRecommendationEngineConfig?)
+      indirect case mediaRecommendationEngineConfig(Engine.MediaRecommendationEngineConfig)
     }
 
     /// Engine metadata to monitor the status of the engine.
@@ -1392,7 +1392,7 @@
       ///
       /// [google.cloud.discoveryengine.v1.Engine.solution_type]: <doc:Engine/solutionType>
       /// [google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_CHAT]: <doc:SolutionType/chat>
-      indirect case chatEngineMetadata(Engine.ChatEngineMetadata?)
+      indirect case chatEngineMetadata(Engine.ChatEngineMetadata)
     }
 
     public static var _anyTypeUrl: Swift.String {

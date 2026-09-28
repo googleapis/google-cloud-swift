@@ -193,40 +193,40 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       connectionConfig = $0
     }
-    if let githubConfig = try container.decodeIfPresent(GitHubConfig?.self, forKey: .githubConfig) {
+    if let githubConfig = try container.decodeIfPresent(GitHubConfig.self, forKey: .githubConfig) {
       try connectionConfigCheckAndSet(.githubConfig(githubConfig))
     }
     if let githubEnterpriseConfig = try container.decodeIfPresent(
-      GitHubEnterpriseConfig?.self, forKey: .githubEnterpriseConfig)
+      GitHubEnterpriseConfig.self, forKey: .githubEnterpriseConfig)
     {
       try connectionConfigCheckAndSet(.githubEnterpriseConfig(githubEnterpriseConfig))
     }
-    if let gitlabConfig = try container.decodeIfPresent(GitLabConfig?.self, forKey: .gitlabConfig) {
+    if let gitlabConfig = try container.decodeIfPresent(GitLabConfig.self, forKey: .gitlabConfig) {
       try connectionConfigCheckAndSet(.gitlabConfig(gitlabConfig))
     }
     if let gitlabEnterpriseConfig = try container.decodeIfPresent(
-      GitLabEnterpriseConfig?.self, forKey: .gitlabEnterpriseConfig)
+      GitLabEnterpriseConfig.self, forKey: .gitlabEnterpriseConfig)
     {
       try connectionConfigCheckAndSet(.gitlabEnterpriseConfig(gitlabEnterpriseConfig))
     }
     if let bitbucketDataCenterConfig = try container.decodeIfPresent(
-      BitbucketDataCenterConfig?.self, forKey: .bitbucketDataCenterConfig)
+      BitbucketDataCenterConfig.self, forKey: .bitbucketDataCenterConfig)
     {
       try connectionConfigCheckAndSet(.bitbucketDataCenterConfig(bitbucketDataCenterConfig))
     }
     if let bitbucketCloudConfig = try container.decodeIfPresent(
-      BitbucketCloudConfig?.self, forKey: .bitbucketCloudConfig)
+      BitbucketCloudConfig.self, forKey: .bitbucketCloudConfig)
     {
       try connectionConfigCheckAndSet(.bitbucketCloudConfig(bitbucketCloudConfig))
     }
     if let secureSourceManagerInstanceConfig = try container.decodeIfPresent(
-      SecureSourceManagerInstanceConfig?.self, forKey: .secureSourceManagerInstanceConfig)
+      SecureSourceManagerInstanceConfig.self, forKey: .secureSourceManagerInstanceConfig)
     {
       try connectionConfigCheckAndSet(
         .secureSourceManagerInstanceConfig(secureSourceManagerInstanceConfig))
     }
     if let httpConfig = try container.decodeIfPresent(
-      GenericHTTPEndpointConfig?.self, forKey: .httpConfig)
+      GenericHTTPEndpointConfig.self, forKey: .httpConfig)
     {
       try connectionConfigCheckAndSet(.httpConfig(httpConfig))
     }
@@ -281,21 +281,21 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Configuration for the connection depending on the type of provider.
   public enum ConnectionConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for connections to github.com.
-    indirect case githubConfig(GitHubConfig?)
+    indirect case githubConfig(GitHubConfig)
     /// Configuration for connections to an instance of GitHub Enterprise.
-    indirect case githubEnterpriseConfig(GitHubEnterpriseConfig?)
+    indirect case githubEnterpriseConfig(GitHubEnterpriseConfig)
     /// Configuration for connections to gitlab.com.
-    indirect case gitlabConfig(GitLabConfig?)
+    indirect case gitlabConfig(GitLabConfig)
     /// Configuration for connections to an instance of GitLab Enterprise.
-    indirect case gitlabEnterpriseConfig(GitLabEnterpriseConfig?)
+    indirect case gitlabEnterpriseConfig(GitLabEnterpriseConfig)
     /// Configuration for connections to an instance of Bitbucket Data Center.
-    indirect case bitbucketDataCenterConfig(BitbucketDataCenterConfig?)
+    indirect case bitbucketDataCenterConfig(BitbucketDataCenterConfig)
     /// Configuration for connections to an instance of Bitbucket Clouds.
-    indirect case bitbucketCloudConfig(BitbucketCloudConfig?)
+    indirect case bitbucketCloudConfig(BitbucketCloudConfig)
     /// Configuration for connections to an instance of Secure Source Manager.
-    indirect case secureSourceManagerInstanceConfig(SecureSourceManagerInstanceConfig?)
+    indirect case secureSourceManagerInstanceConfig(SecureSourceManagerInstanceConfig)
     /// Optional. Configuration for connections to an HTTP service provider.
-    indirect case httpConfig(GenericHTTPEndpointConfig?)
+    indirect case httpConfig(GenericHTTPEndpointConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

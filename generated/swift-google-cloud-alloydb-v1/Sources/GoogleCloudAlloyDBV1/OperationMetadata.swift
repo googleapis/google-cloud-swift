@@ -133,12 +133,12 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       requestSpecific = $0
     }
     if let batchCreateInstancesMetadata = try container.decodeIfPresent(
-      BatchCreateInstancesMetadata?.self, forKey: .batchCreateInstancesMetadata)
+      BatchCreateInstancesMetadata.self, forKey: .batchCreateInstancesMetadata)
     {
       try requestSpecificCheckAndSet(.batchCreateInstancesMetadata(batchCreateInstancesMetadata))
     }
     if let upgradeClusterStatus = try container.decodeIfPresent(
-      UpgradeClusterStatus?.self, forKey: .upgradeClusterStatus)
+      UpgradeClusterStatus.self, forKey: .upgradeClusterStatus)
     {
       try requestSpecificCheckAndSet(.upgradeClusterStatus(upgradeClusterStatus))
     }
@@ -175,9 +175,9 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Request specific metadata, if any.
   public enum RequestSpecificOneOf: Codable, Equatable, Sendable {
     /// Output only. BatchCreateInstances related metadata.
-    indirect case batchCreateInstancesMetadata(BatchCreateInstancesMetadata?)
+    indirect case batchCreateInstancesMetadata(BatchCreateInstancesMetadata)
     /// Output only. UpgradeClusterStatus related metadata.
-    indirect case upgradeClusterStatus(UpgradeClusterStatus?)
+    indirect case upgradeClusterStatus(UpgradeClusterStatus)
   }
 
   public static var _anyTypeUrl: Swift.String {

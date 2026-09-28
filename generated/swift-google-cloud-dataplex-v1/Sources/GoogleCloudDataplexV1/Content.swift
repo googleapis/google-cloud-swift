@@ -150,10 +150,10 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       content = $0
     }
-    if let sqlScript = try container.decodeIfPresent(Content.SqlScript?.self, forKey: .sqlScript) {
+    if let sqlScript = try container.decodeIfPresent(Content.SqlScript.self, forKey: .sqlScript) {
       try contentCheckAndSet(.sqlScript(sqlScript))
     }
-    if let notebook = try container.decodeIfPresent(Content.Notebook?.self, forKey: .notebook) {
+    if let notebook = try container.decodeIfPresent(Content.Notebook.self, forKey: .notebook) {
       try contentCheckAndSet(.notebook(notebook))
     }
     self.content = content
@@ -562,9 +562,9 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Types of content
   public enum ContentOneOf: Codable, Equatable, Sendable {
     /// Sql Script related configurations.
-    indirect case sqlScript(Content.SqlScript?)
+    indirect case sqlScript(Content.SqlScript)
     /// Notebook related configurations.
-    indirect case notebook(Content.Notebook?)
+    indirect case notebook(Content.Notebook)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -74,17 +74,16 @@ public struct InspectionRule: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let hotwordRule = try container.decodeIfPresent(
-      CustomInfoType.DetectionRule.HotwordRule?.self, forKey: .hotwordRule)
+      CustomInfoType.DetectionRule.HotwordRule.self, forKey: .hotwordRule)
     {
       try typeCheckAndSet(.hotwordRule(hotwordRule))
     }
-    if let exclusionRule = try container.decodeIfPresent(
-      ExclusionRule?.self, forKey: .exclusionRule)
+    if let exclusionRule = try container.decodeIfPresent(ExclusionRule.self, forKey: .exclusionRule)
     {
       try typeCheckAndSet(.exclusionRule(exclusionRule))
     }
     if let adjustmentRule = try container.decodeIfPresent(
-      AdjustmentRule?.self, forKey: .adjustmentRule)
+      AdjustmentRule.self, forKey: .adjustmentRule)
     {
       try typeCheckAndSet(.adjustmentRule(adjustmentRule))
     }
@@ -116,11 +115,11 @@ public struct InspectionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Inspection rule types.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Hotword-based detection rule.
-    indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule?)
+    indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule)
     /// Exclusion rule.
-    indirect case exclusionRule(ExclusionRule?)
+    indirect case exclusionRule(ExclusionRule)
     /// Adjustment rule.
-    indirect case adjustmentRule(AdjustmentRule?)
+    indirect case adjustmentRule(AdjustmentRule)
   }
 
   public static var _anyTypeUrl: Swift.String {

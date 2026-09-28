@@ -166,12 +166,12 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
       sourceResource = $0
     }
     if let dataSourceGcpResource = try container.decodeIfPresent(
-      DataSourceGcpResource?.self, forKey: .dataSourceGcpResource)
+      DataSourceGcpResource.self, forKey: .dataSourceGcpResource)
     {
       try sourceResourceCheckAndSet(.dataSourceGcpResource(dataSourceGcpResource))
     }
     if let dataSourceBackupApplianceApplication = try container.decodeIfPresent(
-      DataSourceBackupApplianceApplication?.self, forKey: .dataSourceBackupApplianceApplication)
+      DataSourceBackupApplianceApplication.self, forKey: .dataSourceBackupApplianceApplication)
     {
       try sourceResourceCheckAndSet(
         .dataSourceBackupApplianceApplication(dataSourceBackupApplianceApplication))
@@ -349,9 +349,9 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The word 'DataSource' was included in the names to indicate that this is
     /// the representation of the Google Cloud resource used within the
     /// DataSource object.
-    indirect case dataSourceGcpResource(DataSourceGcpResource?)
+    indirect case dataSourceGcpResource(DataSourceGcpResource)
     /// The backed up resource is a backup appliance application.
-    indirect case dataSourceBackupApplianceApplication(DataSourceBackupApplianceApplication?)
+    indirect case dataSourceBackupApplianceApplication(DataSourceBackupApplianceApplication)
   }
 
   public static var _anyTypeUrl: Swift.String {

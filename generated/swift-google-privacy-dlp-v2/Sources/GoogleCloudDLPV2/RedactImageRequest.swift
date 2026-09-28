@@ -225,7 +225,7 @@ public struct RedactImageRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         target = $0
       }
-      if let infoType = try container.decodeIfPresent(InfoType?.self, forKey: .infoType) {
+      if let infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType) {
         try targetCheckAndSet(.infoType(infoType))
       }
       if let redactAllText = try container.decodeIfPresent(Swift.Bool.self, forKey: .redactAllText)
@@ -262,7 +262,7 @@ public struct RedactImageRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       /// specified, and redact_all_text is false, the DLP API will redact all
       /// text that it matches against all info_types that are found, but not
       /// specified in another ImageRedactionConfig.
-      indirect case infoType(InfoType?)
+      indirect case infoType(InfoType)
       /// If true, all text found in the image, regardless whether it matches an
       /// info_type, is redacted. Only one should be provided.
       case redactAllText(Swift.Bool)

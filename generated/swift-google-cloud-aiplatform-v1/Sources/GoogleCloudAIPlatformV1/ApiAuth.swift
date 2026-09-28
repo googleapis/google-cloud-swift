@@ -70,7 +70,7 @@
         authConfig = $0
       }
       if let apiKeyConfig = try container.decodeIfPresent(
-        ApiAuth.ApiKeyConfig?.self, forKey: .apiKeyConfig)
+        ApiAuth.ApiKeyConfig.self, forKey: .apiKeyConfig)
       {
         try authConfigCheckAndSet(.apiKeyConfig(apiKeyConfig))
       }
@@ -169,7 +169,7 @@
     /// The auth config.
     public enum AuthConfigOneOf: Codable, Equatable, Sendable {
       /// The API secret.
-      indirect case apiKeyConfig(ApiAuth.ApiKeyConfig?)
+      indirect case apiKeyConfig(ApiAuth.ApiKeyConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

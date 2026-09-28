@@ -85,7 +85,7 @@
         source = $0
       }
       if let exampleGcsSource = try container.decodeIfPresent(
-        Examples.ExampleGcsSource?.self, forKey: .exampleGcsSource)
+        Examples.ExampleGcsSource.self, forKey: .exampleGcsSource)
       {
         try sourceCheckAndSet(.exampleGcsSource(exampleGcsSource))
       }
@@ -102,11 +102,11 @@
         config = $0
       }
       if let nearestNeighborSearchConfig = try container.decodeIfPresent(
-        GoogleWKT.WKTValue?.self, forKey: .nearestNeighborSearchConfig)
+        GoogleWKT.WKTValue.self, forKey: .nearestNeighborSearchConfig)
       {
         try configCheckAndSet(.nearestNeighborSearchConfig(nearestNeighborSearchConfig))
       }
-      if let presets = try container.decodeIfPresent(Presets?.self, forKey: .presets) {
+      if let presets = try container.decodeIfPresent(Presets.self, forKey: .presets) {
         try configCheckAndSet(.presets(presets))
       }
       self.config = config
@@ -331,7 +331,7 @@
 
     public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The Cloud Storage input instances.
-      indirect case exampleGcsSource(Examples.ExampleGcsSource?)
+      indirect case exampleGcsSource(Examples.ExampleGcsSource)
     }
 
     public enum ConfigOneOf: Codable, Equatable, Sendable {
@@ -341,10 +341,10 @@
       /// [NearestNeighborSearchConfig](https://cloud.google.com/vertex-ai/docs/explainable-ai/configuring-explanations-example-based#nearest-neighbor-search-config).
       ///
       /// [google.cloud.aiplatform.v1.Index.metadata]: <doc:Index/metadata>
-      indirect case nearestNeighborSearchConfig(GoogleWKT.WKTValue?)
+      indirect case nearestNeighborSearchConfig(GoogleWKT.WKTValue)
       /// Simplified preset configuration, which automatically sets configuration
       /// values based on the desired query speed-precision trade-off and modality.
-      indirect case presets(Presets?)
+      indirect case presets(Presets)
     }
 
     public static var _anyTypeUrl: Swift.String {

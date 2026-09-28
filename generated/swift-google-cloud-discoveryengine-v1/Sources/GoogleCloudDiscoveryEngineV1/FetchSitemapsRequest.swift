@@ -228,7 +228,7 @@
           matcher = $0
         }
         if let urisMatcher = try container.decodeIfPresent(
-          FetchSitemapsRequest.UrisMatcher?.self, forKey: .urisMatcher)
+          FetchSitemapsRequest.UrisMatcher.self, forKey: .urisMatcher)
         {
           try matcherCheckAndSet(.urisMatcher(urisMatcher))
         }
@@ -258,7 +258,7 @@
       /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
       public enum MatcherOneOf: Codable, Equatable, Sendable {
         /// Matcher by sitemap URIs.
-        indirect case urisMatcher(FetchSitemapsRequest.UrisMatcher?)
+        indirect case urisMatcher(FetchSitemapsRequest.UrisMatcher)
       }
 
       public static var _anyTypeUrl: Swift.String {

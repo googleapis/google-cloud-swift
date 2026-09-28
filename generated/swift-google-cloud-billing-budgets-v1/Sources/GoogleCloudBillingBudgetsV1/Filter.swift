@@ -175,7 +175,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try usagePeriodCheckAndSet(.calendarPeriod(calendarPeriod))
     }
-    if let customPeriod = try container.decodeIfPresent(CustomPeriod?.self, forKey: .customPeriod) {
+    if let customPeriod = try container.decodeIfPresent(CustomPeriod.self, forKey: .customPeriod) {
       try usagePeriodCheckAndSet(.customPeriod(customPeriod))
     }
     self.usagePeriod = usagePeriod
@@ -353,7 +353,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
     case calendarPeriod(CalendarPeriod)
     /// Optional. Specifies to track usage from any start date (required) to any
     /// end date (optional). This time period is static, it does not recur.
-    indirect case customPeriod(CustomPeriod?)
+    indirect case customPeriod(CustomPeriod)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -95,7 +95,7 @@ public struct BackupRule: Codable, Equatable, GoogleWKT._AnyPackable,
       backupScheduleOneof = $0
     }
     if let standardSchedule = try container.decodeIfPresent(
-      StandardSchedule?.self, forKey: .standardSchedule)
+      StandardSchedule.self, forKey: .standardSchedule)
     {
       try backupScheduleOneofCheckAndSet(.standardSchedule(standardSchedule))
     }
@@ -127,7 +127,7 @@ public struct BackupRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum BackupScheduleOneofOneOf: Codable, Equatable, Sendable {
     /// Optional. Defines a schedule that runs within the confines of a defined
     /// window of time.
-    indirect case standardSchedule(StandardSchedule?)
+    indirect case standardSchedule(StandardSchedule)
   }
 
   public static var _anyTypeUrl: Swift.String {

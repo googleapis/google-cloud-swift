@@ -246,12 +246,12 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
       targetVmDefaults = $0
     }
     if let computeEngineTargetDefaults = try container.decodeIfPresent(
-      ComputeEngineTargetDefaults?.self, forKey: .computeEngineTargetDefaults)
+      ComputeEngineTargetDefaults.self, forKey: .computeEngineTargetDefaults)
     {
       try targetVmDefaultsCheckAndSet(.computeEngineTargetDefaults(computeEngineTargetDefaults))
     }
     if let computeEngineDisksTargetDefaults = try container.decodeIfPresent(
-      ComputeEngineDisksTargetDefaults?.self, forKey: .computeEngineDisksTargetDefaults)
+      ComputeEngineDisksTargetDefaults.self, forKey: .computeEngineDisksTargetDefaults)
     {
       try targetVmDefaultsCheckAndSet(
         .computeEngineDisksTargetDefaults(computeEngineDisksTargetDefaults))
@@ -269,17 +269,17 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
       sourceVmDetails = $0
     }
     if let vmwareSourceVmDetails = try container.decodeIfPresent(
-      VmwareSourceVmDetails?.self, forKey: .vmwareSourceVmDetails)
+      VmwareSourceVmDetails.self, forKey: .vmwareSourceVmDetails)
     {
       try sourceVmDetailsCheckAndSet(.vmwareSourceVmDetails(vmwareSourceVmDetails))
     }
     if let awsSourceVmDetails = try container.decodeIfPresent(
-      AwsSourceVmDetails?.self, forKey: .awsSourceVmDetails)
+      AwsSourceVmDetails.self, forKey: .awsSourceVmDetails)
     {
       try sourceVmDetailsCheckAndSet(.awsSourceVmDetails(awsSourceVmDetails))
     }
     if let azureSourceVmDetails = try container.decodeIfPresent(
-      AzureSourceVmDetails?.self, forKey: .azureSourceVmDetails)
+      AzureSourceVmDetails.self, forKey: .azureSourceVmDetails)
     {
       try sourceVmDetailsCheckAndSet(.azureSourceVmDetails(azureSourceVmDetails))
     }
@@ -628,19 +628,19 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Cloud as a result of the migration.
   public enum TargetVmDefaultsOneOf: Codable, Equatable, Sendable {
     /// Details of the target VM in Compute Engine.
-    indirect case computeEngineTargetDefaults(ComputeEngineTargetDefaults?)
+    indirect case computeEngineTargetDefaults(ComputeEngineTargetDefaults)
     /// Details of the target Persistent Disks in Compute Engine.
-    indirect case computeEngineDisksTargetDefaults(ComputeEngineDisksTargetDefaults?)
+    indirect case computeEngineDisksTargetDefaults(ComputeEngineDisksTargetDefaults)
   }
 
   /// Details about the source VM.
   public enum SourceVmDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Details of the VM from a Vmware source.
-    indirect case vmwareSourceVmDetails(VmwareSourceVmDetails?)
+    indirect case vmwareSourceVmDetails(VmwareSourceVmDetails)
     /// Output only. Details of the VM from an AWS source.
-    indirect case awsSourceVmDetails(AwsSourceVmDetails?)
+    indirect case awsSourceVmDetails(AwsSourceVmDetails)
     /// Output only. Details of the VM from an Azure source.
-    indirect case azureSourceVmDetails(AzureSourceVmDetails?)
+    indirect case azureSourceVmDetails(AzureSourceVmDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

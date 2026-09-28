@@ -83,17 +83,17 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
       policy = $0
     }
     if let dailyMaintenanceWindow = try container.decodeIfPresent(
-      DailyMaintenanceWindow?.self, forKey: .dailyMaintenanceWindow)
+      DailyMaintenanceWindow.self, forKey: .dailyMaintenanceWindow)
     {
       try policyCheckAndSet(.dailyMaintenanceWindow(dailyMaintenanceWindow))
     }
     if let recurringWindow = try container.decodeIfPresent(
-      RecurringTimeWindow?.self, forKey: .recurringWindow)
+      RecurringTimeWindow.self, forKey: .recurringWindow)
     {
       try policyCheckAndSet(.recurringWindow(recurringWindow))
     }
     if let recurringMaintenanceWindow = try container.decodeIfPresent(
-      RecurringMaintenanceWindow?.self, forKey: .recurringMaintenanceWindow)
+      RecurringMaintenanceWindow.self, forKey: .recurringMaintenanceWindow)
     {
       try policyCheckAndSet(.recurringMaintenanceWindow(recurringMaintenanceWindow))
     }
@@ -125,16 +125,16 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum PolicyOneOf: Codable, Equatable, Sendable {
     /// DailyMaintenanceWindow specifies a daily maintenance operation window.
-    indirect case dailyMaintenanceWindow(DailyMaintenanceWindow?)
+    indirect case dailyMaintenanceWindow(DailyMaintenanceWindow)
     /// RecurringWindow specifies some number of recurring time periods for
     /// maintenance to occur. The time windows may be overlapping. If no
     /// maintenance windows are set, maintenance can occur at any time.
-    indirect case recurringWindow(RecurringTimeWindow?)
+    indirect case recurringWindow(RecurringTimeWindow)
     /// RecurringMaintenanceWindow specifies some number of recurring time
     /// periods for maintenance to occur. The time windows may be overlapping.
     /// If no maintenance windows are set, maintenance can occur at any time.
     /// Alternative to RecurringWindow, with renamed fields.
-    indirect case recurringMaintenanceWindow(RecurringMaintenanceWindow?)
+    indirect case recurringMaintenanceWindow(RecurringMaintenanceWindow)
   }
 
   public static var _anyTypeUrl: Swift.String {

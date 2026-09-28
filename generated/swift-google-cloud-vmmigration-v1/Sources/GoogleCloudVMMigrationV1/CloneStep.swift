@@ -83,16 +83,16 @@ public struct CloneStep: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       step = $0
     }
-    if let adaptingOs = try container.decodeIfPresent(AdaptingOSStep?.self, forKey: .adaptingOs) {
+    if let adaptingOs = try container.decodeIfPresent(AdaptingOSStep.self, forKey: .adaptingOs) {
       try stepCheckAndSet(.adaptingOs(adaptingOs))
     }
     if let preparingVmDisks = try container.decodeIfPresent(
-      PreparingVMDisksStep?.self, forKey: .preparingVmDisks)
+      PreparingVMDisksStep.self, forKey: .preparingVmDisks)
     {
       try stepCheckAndSet(.preparingVmDisks(preparingVmDisks))
     }
     if let instantiatingMigratedVm = try container.decodeIfPresent(
-      InstantiatingMigratedVMStep?.self, forKey: .instantiatingMigratedVm)
+      InstantiatingMigratedVMStep.self, forKey: .instantiatingMigratedVm)
     {
       try stepCheckAndSet(.instantiatingMigratedVm(instantiatingMigratedVm))
     }
@@ -125,11 +125,11 @@ public struct CloneStep: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum StepOneOf: Codable, Equatable, Sendable {
     /// Adapting OS step.
-    indirect case adaptingOs(AdaptingOSStep?)
+    indirect case adaptingOs(AdaptingOSStep)
     /// Preparing VM disks step.
-    indirect case preparingVmDisks(PreparingVMDisksStep?)
+    indirect case preparingVmDisks(PreparingVMDisksStep)
     /// Instantiating migrated VM step.
-    indirect case instantiatingMigratedVm(InstantiatingMigratedVMStep?)
+    indirect case instantiatingMigratedVm(InstantiatingMigratedVMStep)
   }
 
   public static var _anyTypeUrl: Swift.String {

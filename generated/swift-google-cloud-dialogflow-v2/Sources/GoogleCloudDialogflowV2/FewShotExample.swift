@@ -96,7 +96,7 @@
         instructionList = $0
       }
       if let summarizationSectionList = try container.decodeIfPresent(
-        SummarizationSectionList?.self, forKey: .summarizationSectionList)
+        SummarizationSectionList.self, forKey: .summarizationSectionList)
       {
         try instructionListCheckAndSet(.summarizationSectionList(summarizationSectionList))
       }
@@ -127,7 +127,7 @@
     /// Instruction list of this few_shot example.
     public enum InstructionListOneOf: Codable, Equatable, Sendable {
       /// Summarization sections.
-      indirect case summarizationSectionList(SummarizationSectionList?)
+      indirect case summarizationSectionList(SummarizationSectionList)
     }
 
     public static var _anyTypeUrl: Swift.String {

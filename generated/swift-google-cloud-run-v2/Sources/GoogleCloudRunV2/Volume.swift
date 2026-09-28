@@ -83,21 +83,21 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       volumeType = $0
     }
-    if let secret = try container.decodeIfPresent(SecretVolumeSource?.self, forKey: .secret) {
+    if let secret = try container.decodeIfPresent(SecretVolumeSource.self, forKey: .secret) {
       try volumeTypeCheckAndSet(.secret(secret))
     }
     if let cloudSqlInstance = try container.decodeIfPresent(
-      CloudSqlInstance?.self, forKey: .cloudSqlInstance)
+      CloudSqlInstance.self, forKey: .cloudSqlInstance)
     {
       try volumeTypeCheckAndSet(.cloudSqlInstance(cloudSqlInstance))
     }
-    if let emptyDir = try container.decodeIfPresent(EmptyDirVolumeSource?.self, forKey: .emptyDir) {
+    if let emptyDir = try container.decodeIfPresent(EmptyDirVolumeSource.self, forKey: .emptyDir) {
       try volumeTypeCheckAndSet(.emptyDir(emptyDir))
     }
-    if let nfs = try container.decodeIfPresent(NFSVolumeSource?.self, forKey: .nfs) {
+    if let nfs = try container.decodeIfPresent(NFSVolumeSource.self, forKey: .nfs) {
       try volumeTypeCheckAndSet(.nfs(nfs))
     }
-    if let gcs = try container.decodeIfPresent(GCSVolumeSource?.self, forKey: .gcs) {
+    if let gcs = try container.decodeIfPresent(GCSVolumeSource.self, forKey: .gcs) {
       try volumeTypeCheckAndSet(.gcs(gcs))
     }
     self.volumeType = volumeType
@@ -132,17 +132,17 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum VolumeTypeOneOf: Codable, Equatable, Sendable {
     /// Secret represents a secret that should populate this volume.
-    indirect case secret(SecretVolumeSource?)
+    indirect case secret(SecretVolumeSource)
     /// For Cloud SQL volumes, contains the specific instances that should be
     /// mounted. Visit https://cloud.google.com/sql/docs/mysql/connect-run for
     /// more information on how to connect Cloud SQL and Cloud Run.
-    indirect case cloudSqlInstance(CloudSqlInstance?)
+    indirect case cloudSqlInstance(CloudSqlInstance)
     /// Ephemeral storage used as a shared volume.
-    indirect case emptyDir(EmptyDirVolumeSource?)
+    indirect case emptyDir(EmptyDirVolumeSource)
     /// For NFS Voumes, contains the path to the nfs Volume
-    indirect case nfs(NFSVolumeSource?)
+    indirect case nfs(NFSVolumeSource)
     /// Persistent storage backed by a Google Cloud Storage bucket.
-    indirect case gcs(GCSVolumeSource?)
+    indirect case gcs(GCSVolumeSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

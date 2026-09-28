@@ -108,7 +108,7 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleWKT._AnyPackable,
       dataProvider = $0
     }
     if let s3Metadata = try container.decodeIfPresent(
-      S3CompatibleMetadata?.self, forKey: .s3Metadata)
+      S3CompatibleMetadata.self, forKey: .s3Metadata)
     {
       try dataProviderCheckAndSet(.s3Metadata(s3Metadata))
     }
@@ -142,7 +142,7 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// providers. When not specified, S3CompatibleMetadata is used by default.
   public enum DataProviderOneOf: Codable, Equatable, Sendable {
     /// A S3 compatible metadata.
-    indirect case s3Metadata(S3CompatibleMetadata?)
+    indirect case s3Metadata(S3CompatibleMetadata)
   }
 
   public static var _anyTypeUrl: Swift.String {

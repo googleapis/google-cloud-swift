@@ -93,12 +93,12 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       mode = $0
     }
     if let standardReadRemoteWrites = try container.decodeIfPresent(
-      StandardReadRemoteWrites?.self, forKey: .standardReadRemoteWrites)
+      StandardReadRemoteWrites.self, forKey: .standardReadRemoteWrites)
     {
       try modeCheckAndSet(.standardReadRemoteWrites(standardReadRemoteWrites))
     }
     if let dataBoostReadLocalWrites = try container.decodeIfPresent(
-      DataBoostReadLocalWrites?.self, forKey: .dataBoostReadLocalWrites)
+      DataBoostReadLocalWrites.self, forKey: .dataBoostReadLocalWrites)
     {
       try modeCheckAndSet(.dataBoostReadLocalWrites(dataBoostReadLocalWrites))
     }
@@ -133,11 +133,11 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     /// Checks that reads using an app profile with `StandardIsolation` can
     /// see all writes committed before the token was created, even if the
     /// read and write target different clusters.
-    indirect case standardReadRemoteWrites(StandardReadRemoteWrites?)
+    indirect case standardReadRemoteWrites(StandardReadRemoteWrites)
     /// Checks that reads using an app profile with `DataBoostIsolationReadOnly`
     /// can see all writes committed before the token was created, but only if
     /// the read and write target the same cluster.
-    indirect case dataBoostReadLocalWrites(DataBoostReadLocalWrites?)
+    indirect case dataBoostReadLocalWrites(DataBoostReadLocalWrites)
   }
 
   public static var _anyTypeUrl: Swift.String {

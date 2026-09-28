@@ -229,177 +229,175 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
       connectionDetails = $0
     }
     if let oracleConnectionProperties = try container.decodeIfPresent(
-      GoldengateOracleConnectionProperties?.self, forKey: .oracleConnectionProperties)
+      GoldengateOracleConnectionProperties.self, forKey: .oracleConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.oracleConnectionProperties(oracleConnectionProperties))
     }
     if let goldengateConnectionProperties = try container.decodeIfPresent(
-      GoldengateGoldengateConnectionProperties?.self, forKey: .goldengateConnectionProperties)
+      GoldengateGoldengateConnectionProperties.self, forKey: .goldengateConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .goldengateConnectionProperties(goldengateConnectionProperties))
     }
     if let genericConnectionProperties = try container.decodeIfPresent(
-      GoldengateGenericConnectionProperties?.self, forKey: .genericConnectionProperties)
+      GoldengateGenericConnectionProperties.self, forKey: .genericConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.genericConnectionProperties(genericConnectionProperties))
     }
     if let googleCloudStorageConnectionProperties = try container.decodeIfPresent(
-      GoldengateGoogleCloudStorageConnectionProperties?.self,
+      GoldengateGoogleCloudStorageConnectionProperties.self,
       forKey: .googleCloudStorageConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .googleCloudStorageConnectionProperties(googleCloudStorageConnectionProperties))
     }
     if let googleBigQueryConnectionProperties = try container.decodeIfPresent(
-      GoldengateGoogleBigQueryConnectionProperties?.self,
-      forKey: .googleBigQueryConnectionProperties)
-    {
+      GoldengateGoogleBigQueryConnectionProperties.self, forKey: .googleBigQueryConnectionProperties
+    ) {
       try connectionDetailsCheckAndSet(
         .googleBigQueryConnectionProperties(googleBigQueryConnectionProperties))
     }
     if let mysqlConnectionProperties = try container.decodeIfPresent(
-      GoldengateMysqlConnectionProperties?.self, forKey: .mysqlConnectionProperties)
+      GoldengateMysqlConnectionProperties.self, forKey: .mysqlConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.mysqlConnectionProperties(mysqlConnectionProperties))
     }
     if let kafkaConnectionProperties = try container.decodeIfPresent(
-      GoldengateKafkaConnectionProperties?.self, forKey: .kafkaConnectionProperties)
+      GoldengateKafkaConnectionProperties.self, forKey: .kafkaConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.kafkaConnectionProperties(kafkaConnectionProperties))
     }
     if let kafkaSchemaRegistryConnectionProperties = try container.decodeIfPresent(
-      GoldengateKafkaSchemaRegistryConnectionProperties?.self,
+      GoldengateKafkaSchemaRegistryConnectionProperties.self,
       forKey: .kafkaSchemaRegistryConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .kafkaSchemaRegistryConnectionProperties(kafkaSchemaRegistryConnectionProperties))
     }
     if let ociObjectStorageConnectionProperties = try container.decodeIfPresent(
-      GoldengateOciObjectStorageConnectionProperties?.self,
+      GoldengateOciObjectStorageConnectionProperties.self,
       forKey: .ociObjectStorageConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .ociObjectStorageConnectionProperties(ociObjectStorageConnectionProperties))
     }
     if let azureDataLakeStorageConnectionProperties = try container.decodeIfPresent(
-      GoldengateAzureDataLakeStorageConnectionProperties?.self,
+      GoldengateAzureDataLakeStorageConnectionProperties.self,
       forKey: .azureDataLakeStorageConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .azureDataLakeStorageConnectionProperties(azureDataLakeStorageConnectionProperties))
     }
     if let azureSynapseAnalyticsConnectionProperties = try container.decodeIfPresent(
-      GoldengateAzureSynapseAnalyticsConnectionProperties?.self,
+      GoldengateAzureSynapseAnalyticsConnectionProperties.self,
       forKey: .azureSynapseAnalyticsConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .azureSynapseAnalyticsConnectionProperties(azureSynapseAnalyticsConnectionProperties))
     }
     if let postgresqlConnectionProperties = try container.decodeIfPresent(
-      GoldengatePostgresqlConnectionProperties?.self, forKey: .postgresqlConnectionProperties)
+      GoldengatePostgresqlConnectionProperties.self, forKey: .postgresqlConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .postgresqlConnectionProperties(postgresqlConnectionProperties))
     }
     if let microsoftSqlserverConnectionProperties = try container.decodeIfPresent(
-      GoldengateMicrosoftSqlserverConnectionProperties?.self,
+      GoldengateMicrosoftSqlserverConnectionProperties.self,
       forKey: .microsoftSqlserverConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .microsoftSqlserverConnectionProperties(microsoftSqlserverConnectionProperties))
     }
     if let amazonS3ConnectionProperties = try container.decodeIfPresent(
-      GoldengateAmazonS3ConnectionProperties?.self, forKey: .amazonS3ConnectionProperties)
+      GoldengateAmazonS3ConnectionProperties.self, forKey: .amazonS3ConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.amazonS3ConnectionProperties(amazonS3ConnectionProperties))
     }
     if let hdfsConnectionProperties = try container.decodeIfPresent(
-      GoldengateHdfsConnectionProperties?.self, forKey: .hdfsConnectionProperties)
+      GoldengateHdfsConnectionProperties.self, forKey: .hdfsConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.hdfsConnectionProperties(hdfsConnectionProperties))
     }
     if let javaMessageServiceConnectionProperties = try container.decodeIfPresent(
-      GoldengateJavaMessageServiceConnectionProperties?.self,
+      GoldengateJavaMessageServiceConnectionProperties.self,
       forKey: .javaMessageServiceConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .javaMessageServiceConnectionProperties(javaMessageServiceConnectionProperties))
     }
     if let mongodbConnectionProperties = try container.decodeIfPresent(
-      GoldengateMongodbConnectionProperties?.self, forKey: .mongodbConnectionProperties)
+      GoldengateMongodbConnectionProperties.self, forKey: .mongodbConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.mongodbConnectionProperties(mongodbConnectionProperties))
     }
     if let oracleNosqlConnectionProperties = try container.decodeIfPresent(
-      GoldengateOracleNosqlConnectionProperties?.self, forKey: .oracleNosqlConnectionProperties)
+      GoldengateOracleNosqlConnectionProperties.self, forKey: .oracleNosqlConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .oracleNosqlConnectionProperties(oracleNosqlConnectionProperties))
     }
     if let snowflakeConnectionProperties = try container.decodeIfPresent(
-      GoldengateSnowflakeConnectionProperties?.self, forKey: .snowflakeConnectionProperties)
+      GoldengateSnowflakeConnectionProperties.self, forKey: .snowflakeConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .snowflakeConnectionProperties(snowflakeConnectionProperties))
     }
     if let amazonRedshiftConnectionProperties = try container.decodeIfPresent(
-      GoldengateAmazonRedshiftConnectionProperties?.self,
-      forKey: .amazonRedshiftConnectionProperties)
-    {
+      GoldengateAmazonRedshiftConnectionProperties.self, forKey: .amazonRedshiftConnectionProperties
+    ) {
       try connectionDetailsCheckAndSet(
         .amazonRedshiftConnectionProperties(amazonRedshiftConnectionProperties))
     }
     if let elasticsearchConnectionProperties = try container.decodeIfPresent(
-      GoldengateElasticsearchConnectionProperties?.self, forKey: .elasticsearchConnectionProperties)
+      GoldengateElasticsearchConnectionProperties.self, forKey: .elasticsearchConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .elasticsearchConnectionProperties(elasticsearchConnectionProperties))
     }
     if let amazonKinesisConnectionProperties = try container.decodeIfPresent(
-      GoldengateAmazonKinesisConnectionProperties?.self, forKey: .amazonKinesisConnectionProperties)
+      GoldengateAmazonKinesisConnectionProperties.self, forKey: .amazonKinesisConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .amazonKinesisConnectionProperties(amazonKinesisConnectionProperties))
     }
     if let db2ConnectionProperties = try container.decodeIfPresent(
-      GoldengateDb2ConnectionProperties?.self, forKey: .db2ConnectionProperties)
+      GoldengateDb2ConnectionProperties.self, forKey: .db2ConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.db2ConnectionProperties(db2ConnectionProperties))
     }
     if let redisConnectionProperties = try container.decodeIfPresent(
-      GoldengateRedisConnectionProperties?.self, forKey: .redisConnectionProperties)
+      GoldengateRedisConnectionProperties.self, forKey: .redisConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.redisConnectionProperties(redisConnectionProperties))
     }
     if let databricksConnectionProperties = try container.decodeIfPresent(
-      GoldengateDatabricksConnectionProperties?.self, forKey: .databricksConnectionProperties)
+      GoldengateDatabricksConnectionProperties.self, forKey: .databricksConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .databricksConnectionProperties(databricksConnectionProperties))
     }
     if let googlePubsubConnectionProperties = try container.decodeIfPresent(
-      GoldengateGooglePubsubConnectionProperties?.self, forKey: .googlePubsubConnectionProperties)
+      GoldengateGooglePubsubConnectionProperties.self, forKey: .googlePubsubConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .googlePubsubConnectionProperties(googlePubsubConnectionProperties))
     }
     if let microsoftFabricConnectionProperties = try container.decodeIfPresent(
-      GoldengateMicrosoftFabricConnectionProperties?.self,
+      GoldengateMicrosoftFabricConnectionProperties.self,
       forKey: .microsoftFabricConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .microsoftFabricConnectionProperties(microsoftFabricConnectionProperties))
     }
     if let oracleAiDataPlatformConnectionProperties = try container.decodeIfPresent(
-      GoldengateOracleAIDataPlatformConnectionProperties?.self,
+      GoldengateOracleAIDataPlatformConnectionProperties.self,
       forKey: .oracleAiDataPlatformConnectionProperties)
     {
       try connectionDetailsCheckAndSet(
         .oracleAiDataPlatformConnectionProperties(oracleAiDataPlatformConnectionProperties))
     }
     if let icebergConnectionProperties = try container.decodeIfPresent(
-      GoldengateIcebergConnectionProperties?.self, forKey: .icebergConnectionProperties)
+      GoldengateIcebergConnectionProperties.self, forKey: .icebergConnectionProperties)
     {
       try connectionDetailsCheckAndSet(.icebergConnectionProperties(icebergConnectionProperties))
     }
@@ -1064,72 +1062,71 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
   /// The connection details.
   public enum ConnectionDetailsOneOf: Codable, Equatable, Sendable {
     /// Properties for an Oracle Database Connection.
-    indirect case oracleConnectionProperties(GoldengateOracleConnectionProperties?)
+    indirect case oracleConnectionProperties(GoldengateOracleConnectionProperties)
     /// Properties for a Goldengate Connection.
-    indirect case goldengateConnectionProperties(GoldengateGoldengateConnectionProperties?)
+    indirect case goldengateConnectionProperties(GoldengateGoldengateConnectionProperties)
     /// Properties for a Generic Connection.
-    indirect case genericConnectionProperties(GoldengateGenericConnectionProperties?)
+    indirect case genericConnectionProperties(GoldengateGenericConnectionProperties)
     /// Properties for a Google Cloud Storage Connection.
     indirect case googleCloudStorageConnectionProperties(
-      GoldengateGoogleCloudStorageConnectionProperties?)
+      GoldengateGoogleCloudStorageConnectionProperties)
     /// Properties for a Google BigQuery Connection.
-    indirect case googleBigQueryConnectionProperties(GoldengateGoogleBigQueryConnectionProperties?)
+    indirect case googleBigQueryConnectionProperties(GoldengateGoogleBigQueryConnectionProperties)
     /// Properties for a Mysql Connection.
-    indirect case mysqlConnectionProperties(GoldengateMysqlConnectionProperties?)
+    indirect case mysqlConnectionProperties(GoldengateMysqlConnectionProperties)
     /// Properties for a Kafka Connection.
-    indirect case kafkaConnectionProperties(GoldengateKafkaConnectionProperties?)
+    indirect case kafkaConnectionProperties(GoldengateKafkaConnectionProperties)
     /// Properties for a Kafka Schema Registry Connection.
     indirect case kafkaSchemaRegistryConnectionProperties(
-      GoldengateKafkaSchemaRegistryConnectionProperties?)
+      GoldengateKafkaSchemaRegistryConnectionProperties)
     /// Properties for an OCI Object Storage Connection.
     indirect case ociObjectStorageConnectionProperties(
-      GoldengateOciObjectStorageConnectionProperties?)
+      GoldengateOciObjectStorageConnectionProperties)
     /// Properties for an Azure Data Lake Storage Connection.
     indirect case azureDataLakeStorageConnectionProperties(
-      GoldengateAzureDataLakeStorageConnectionProperties?)
+      GoldengateAzureDataLakeStorageConnectionProperties)
     /// Properties for an Azure Synapse Analytics connection.
     indirect case azureSynapseAnalyticsConnectionProperties(
-      GoldengateAzureSynapseAnalyticsConnectionProperties?)
+      GoldengateAzureSynapseAnalyticsConnectionProperties)
     /// Properties for a PostgreSQL connection.
-    indirect case postgresqlConnectionProperties(GoldengatePostgresqlConnectionProperties?)
+    indirect case postgresqlConnectionProperties(GoldengatePostgresqlConnectionProperties)
     /// Properties for a Microsoft SQL Server connection.
     indirect case microsoftSqlserverConnectionProperties(
-      GoldengateMicrosoftSqlserverConnectionProperties?)
+      GoldengateMicrosoftSqlserverConnectionProperties)
     /// Properties for an Amazon S3 connection.
-    indirect case amazonS3ConnectionProperties(GoldengateAmazonS3ConnectionProperties?)
+    indirect case amazonS3ConnectionProperties(GoldengateAmazonS3ConnectionProperties)
     /// Properties for an HDFS connection.
-    indirect case hdfsConnectionProperties(GoldengateHdfsConnectionProperties?)
+    indirect case hdfsConnectionProperties(GoldengateHdfsConnectionProperties)
     /// Properties for a Java Message Service connection.
     indirect case javaMessageServiceConnectionProperties(
-      GoldengateJavaMessageServiceConnectionProperties?)
+      GoldengateJavaMessageServiceConnectionProperties)
     /// Properties for a MongoDB connection.
-    indirect case mongodbConnectionProperties(GoldengateMongodbConnectionProperties?)
+    indirect case mongodbConnectionProperties(GoldengateMongodbConnectionProperties)
     /// Properties for an Oracle NoSQL connection.
-    indirect case oracleNosqlConnectionProperties(GoldengateOracleNosqlConnectionProperties?)
+    indirect case oracleNosqlConnectionProperties(GoldengateOracleNosqlConnectionProperties)
     /// Properties for a Snowflake connection.
-    indirect case snowflakeConnectionProperties(GoldengateSnowflakeConnectionProperties?)
+    indirect case snowflakeConnectionProperties(GoldengateSnowflakeConnectionProperties)
     /// Properties for an Amazon Redshift connection.
-    indirect case amazonRedshiftConnectionProperties(GoldengateAmazonRedshiftConnectionProperties?)
+    indirect case amazonRedshiftConnectionProperties(GoldengateAmazonRedshiftConnectionProperties)
     /// Properties for an Elasticsearch connection.
-    indirect case elasticsearchConnectionProperties(GoldengateElasticsearchConnectionProperties?)
+    indirect case elasticsearchConnectionProperties(GoldengateElasticsearchConnectionProperties)
     /// Properties for an Amazon Kinesis connection.
-    indirect case amazonKinesisConnectionProperties(GoldengateAmazonKinesisConnectionProperties?)
+    indirect case amazonKinesisConnectionProperties(GoldengateAmazonKinesisConnectionProperties)
     /// Properties for a DB2 connection.
-    indirect case db2ConnectionProperties(GoldengateDb2ConnectionProperties?)
+    indirect case db2ConnectionProperties(GoldengateDb2ConnectionProperties)
     /// Properties for a Redis connection.
-    indirect case redisConnectionProperties(GoldengateRedisConnectionProperties?)
+    indirect case redisConnectionProperties(GoldengateRedisConnectionProperties)
     /// Properties for a Databricks connection.
-    indirect case databricksConnectionProperties(GoldengateDatabricksConnectionProperties?)
+    indirect case databricksConnectionProperties(GoldengateDatabricksConnectionProperties)
     /// Properties for a Google Pub/Sub connection.
-    indirect case googlePubsubConnectionProperties(GoldengateGooglePubsubConnectionProperties?)
+    indirect case googlePubsubConnectionProperties(GoldengateGooglePubsubConnectionProperties)
     /// Properties for a Microsoft Fabric connection.
-    indirect case microsoftFabricConnectionProperties(
-      GoldengateMicrosoftFabricConnectionProperties?)
+    indirect case microsoftFabricConnectionProperties(GoldengateMicrosoftFabricConnectionProperties)
     /// Properties for an Oracle AI Data Platform connection.
     indirect case oracleAiDataPlatformConnectionProperties(
-      GoldengateOracleAIDataPlatformConnectionProperties?)
+      GoldengateOracleAIDataPlatformConnectionProperties)
     /// Properties for an Iceberg connection.
-    indirect case icebergConnectionProperties(GoldengateIcebergConnectionProperties?)
+    indirect case icebergConnectionProperties(GoldengateIcebergConnectionProperties)
   }
 
   public static var _anyTypeUrl: Swift.String {

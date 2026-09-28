@@ -86,22 +86,22 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
       dimensionMetadata = $0
     }
     if let issueDimensionMetadata = try container.decodeIfPresent(
-      Dimension.IssueDimensionMetadata?.self, forKey: .issueDimensionMetadata)
+      Dimension.IssueDimensionMetadata.self, forKey: .issueDimensionMetadata)
     {
       try dimensionMetadataCheckAndSet(.issueDimensionMetadata(issueDimensionMetadata))
     }
     if let agentDimensionMetadata = try container.decodeIfPresent(
-      Dimension.AgentDimensionMetadata?.self, forKey: .agentDimensionMetadata)
+      Dimension.AgentDimensionMetadata.self, forKey: .agentDimensionMetadata)
     {
       try dimensionMetadataCheckAndSet(.agentDimensionMetadata(agentDimensionMetadata))
     }
     if let qaQuestionDimensionMetadata = try container.decodeIfPresent(
-      Dimension.QaQuestionDimensionMetadata?.self, forKey: .qaQuestionDimensionMetadata)
+      Dimension.QaQuestionDimensionMetadata.self, forKey: .qaQuestionDimensionMetadata)
     {
       try dimensionMetadataCheckAndSet(.qaQuestionDimensionMetadata(qaQuestionDimensionMetadata))
     }
     if let qaQuestionAnswerDimensionMetadata = try container.decodeIfPresent(
-      Dimension.QaQuestionAnswerDimensionMetadata?.self, forKey: .qaQuestionAnswerDimensionMetadata)
+      Dimension.QaQuestionAnswerDimensionMetadata.self, forKey: .qaQuestionAnswerDimensionMetadata)
     {
       try dimensionMetadataCheckAndSet(
         .qaQuestionAnswerDimensionMetadata(qaQuestionAnswerDimensionMetadata))
@@ -648,13 +648,13 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output-only metadata about the dimension.
   public enum DimensionMetadataOneOf: Codable, Equatable, Sendable {
     /// Output only. Metadata about the issue dimension.
-    indirect case issueDimensionMetadata(Dimension.IssueDimensionMetadata?)
+    indirect case issueDimensionMetadata(Dimension.IssueDimensionMetadata)
     /// Output only. Metadata about the agent dimension.
-    indirect case agentDimensionMetadata(Dimension.AgentDimensionMetadata?)
+    indirect case agentDimensionMetadata(Dimension.AgentDimensionMetadata)
     /// Output only. Metadata about the QA question dimension.
-    indirect case qaQuestionDimensionMetadata(Dimension.QaQuestionDimensionMetadata?)
+    indirect case qaQuestionDimensionMetadata(Dimension.QaQuestionDimensionMetadata)
     /// Output only. Metadata about the QA question-answer dimension.
-    indirect case qaQuestionAnswerDimensionMetadata(Dimension.QaQuestionAnswerDimensionMetadata?)
+    indirect case qaQuestionAnswerDimensionMetadata(Dimension.QaQuestionAnswerDimensionMetadata)
   }
 
   public static var _anyTypeUrl: Swift.String {

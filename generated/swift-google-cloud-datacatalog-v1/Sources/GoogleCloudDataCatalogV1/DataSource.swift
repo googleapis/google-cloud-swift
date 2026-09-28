@@ -94,7 +94,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
       properties = $0
     }
     if let storageProperties = try container.decodeIfPresent(
-      StorageProperties?.self, forKey: .storageProperties)
+      StorageProperties.self, forKey: .storageProperties)
     {
       try propertiesCheckAndSet(.storageProperties(storageProperties))
     }
@@ -241,7 +241,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum PropertiesOneOf: Codable, Equatable, Sendable {
     /// Detailed properties of the underlying storage.
-    indirect case storageProperties(StorageProperties?)
+    indirect case storageProperties(StorageProperties)
   }
 
   public static var _anyTypeUrl: Swift.String {

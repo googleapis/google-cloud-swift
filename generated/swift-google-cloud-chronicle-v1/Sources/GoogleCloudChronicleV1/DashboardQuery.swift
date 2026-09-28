@@ -164,12 +164,12 @@ public struct DashboardQuery: Codable, Equatable, GoogleWKT._AnyPackable,
         timeInput = $0
       }
       if let timeWindow = try container.decodeIfPresent(
-        GoogleType.Interval?.self, forKey: .timeWindow)
+        GoogleType.Interval.self, forKey: .timeWindow)
       {
         try timeInputCheckAndSet(.timeWindow(timeWindow))
       }
       if let relativeTime = try container.decodeIfPresent(
-        DashboardQuery.Input.RelativeTime?.self, forKey: .relativeTime)
+        DashboardQuery.Input.RelativeTime.self, forKey: .relativeTime)
       {
         try timeInputCheckAndSet(.relativeTime(relativeTime))
       }
@@ -273,9 +273,9 @@ public struct DashboardQuery: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public enum TimeInputOneOf: Codable, Equatable, Sendable {
       /// time range to fetch the data for.
-      indirect case timeWindow(GoogleType.Interval?)
+      indirect case timeWindow(GoogleType.Interval)
       /// time range for last x units.
-      indirect case relativeTime(DashboardQuery.Input.RelativeTime?)
+      indirect case relativeTime(DashboardQuery.Input.RelativeTime)
     }
 
     public static var _anyTypeUrl: Swift.String {

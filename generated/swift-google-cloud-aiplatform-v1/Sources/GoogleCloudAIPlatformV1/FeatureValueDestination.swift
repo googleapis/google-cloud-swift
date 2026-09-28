@@ -73,17 +73,17 @@
         destination = $0
       }
       if let bigqueryDestination = try container.decodeIfPresent(
-        BigQueryDestination?.self, forKey: .bigqueryDestination)
+        BigQueryDestination.self, forKey: .bigqueryDestination)
       {
         try destinationCheckAndSet(.bigqueryDestination(bigqueryDestination))
       }
       if let tfrecordDestination = try container.decodeIfPresent(
-        TFRecordDestination?.self, forKey: .tfrecordDestination)
+        TFRecordDestination.self, forKey: .tfrecordDestination)
       {
         try destinationCheckAndSet(.tfrecordDestination(tfrecordDestination))
       }
       if let csvDestination = try container.decodeIfPresent(
-        CsvDestination?.self, forKey: .csvDestination)
+        CsvDestination.self, forKey: .csvDestination)
       {
         try destinationCheckAndSet(.csvDestination(csvDestination))
       }
@@ -121,7 +121,7 @@
       ///
       /// [google.cloud.aiplatform.v1.BigQueryDestination.output_uri]: <doc:BigQueryDestination/outputUri>
       /// [google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination]: <doc:FeatureValueDestination/DestinationOneOf/bigqueryDestination(_:)>
-      indirect case bigqueryDestination(BigQueryDestination?)
+      indirect case bigqueryDestination(BigQueryDestination)
       /// Output in TFRecord format.
       ///
       /// Below are the mapping from Feature value type
@@ -133,10 +133,10 @@
       ///     STRING, STRING_ARRAY, BYTES                | BYTES_LIST
       ///     true -> byte_string("true"), false -> byte_string("false")
       ///     BOOL, BOOL_ARRAY (true, false)             | BYTES_LIST
-      indirect case tfrecordDestination(TFRecordDestination?)
+      indirect case tfrecordDestination(TFRecordDestination)
       /// Output in CSV format. Array Feature value types are not allowed in CSV
       /// format.
-      indirect case csvDestination(CsvDestination?)
+      indirect case csvDestination(CsvDestination)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -69,7 +69,7 @@ public struct ExportClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      GcsDestination?.self, forKey: .gcsDestination)
+      GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
@@ -97,7 +97,7 @@ public struct ExportClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Oneof field to support other destinations in future.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Required. Option to export data to cloud storage.
-    indirect case gcsDestination(GcsDestination?)
+    indirect case gcsDestination(GcsDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

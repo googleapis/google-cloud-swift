@@ -136,11 +136,11 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
       }
       teeAttestation = $0
     }
-    if let tdCcel = try container.decodeIfPresent(TdxCcelAttestation?.self, forKey: .tdCcel) {
+    if let tdCcel = try container.decodeIfPresent(TdxCcelAttestation.self, forKey: .tdCcel) {
       try teeAttestationCheckAndSet(.tdCcel(tdCcel))
     }
     if let sevSnpAttestation = try container.decodeIfPresent(
-      SevSnpAttestation?.self, forKey: .sevSnpAttestation)
+      SevSnpAttestation.self, forKey: .sevSnpAttestation)
     {
       try teeAttestationCheckAndSet(.sevSnpAttestation(sevSnpAttestation))
     }
@@ -157,7 +157,7 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
       deviceAttestation = $0
     }
     if let nvidiaAttestation = try container.decodeIfPresent(
-      NvidiaAttestation?.self, forKey: .nvidiaAttestation)
+      NvidiaAttestation.self, forKey: .nvidiaAttestation)
     {
       try deviceAttestationCheckAndSet(.nvidiaAttestation(nvidiaAttestation))
     }
@@ -202,15 +202,15 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// claims.
   public enum TeeAttestationOneOf: Codable, Equatable, Sendable {
     /// Optional. A TDX with CCEL and RTMR Attestation Quote.
-    indirect case tdCcel(TdxCcelAttestation?)
+    indirect case tdCcel(TdxCcelAttestation)
     /// Optional. An SEV-SNP Attestation Report.
-    indirect case sevSnpAttestation(SevSnpAttestation?)
+    indirect case sevSnpAttestation(SevSnpAttestation)
   }
 
   /// An optional device attestation report.
   public enum DeviceAttestationOneOf: Codable, Equatable, Sendable {
     /// Optional. An Nvidia attestation report for GPU and NVSwitch devices.
-    indirect case nvidiaAttestation(NvidiaAttestation?)
+    indirect case nvidiaAttestation(NvidiaAttestation)
   }
 
   public static var _anyTypeUrl: Swift.String {

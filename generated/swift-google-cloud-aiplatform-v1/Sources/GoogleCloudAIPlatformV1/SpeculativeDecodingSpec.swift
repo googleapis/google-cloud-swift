@@ -81,12 +81,12 @@
         speculation = $0
       }
       if let draftModelSpeculation = try container.decodeIfPresent(
-        SpeculativeDecodingSpec.DraftModelSpeculation?.self, forKey: .draftModelSpeculation)
+        SpeculativeDecodingSpec.DraftModelSpeculation.self, forKey: .draftModelSpeculation)
       {
         try speculationCheckAndSet(.draftModelSpeculation(draftModelSpeculation))
       }
       if let ngramSpeculation = try container.decodeIfPresent(
-        SpeculativeDecodingSpec.NgramSpeculation?.self, forKey: .ngramSpeculation)
+        SpeculativeDecodingSpec.NgramSpeculation.self, forKey: .ngramSpeculation)
       {
         try speculationCheckAndSet(.ngramSpeculation(ngramSpeculation))
       }
@@ -261,9 +261,9 @@
     /// The type of speculation method to use.
     public enum SpeculationOneOf: Codable, Equatable, Sendable {
       /// draft model speculation.
-      indirect case draftModelSpeculation(SpeculativeDecodingSpec.DraftModelSpeculation?)
+      indirect case draftModelSpeculation(SpeculativeDecodingSpec.DraftModelSpeculation)
       /// N-Gram speculation.
-      indirect case ngramSpeculation(SpeculativeDecodingSpec.NgramSpeculation?)
+      indirect case ngramSpeculation(SpeculativeDecodingSpec.NgramSpeculation)
     }
 
     public static var _anyTypeUrl: Swift.String {

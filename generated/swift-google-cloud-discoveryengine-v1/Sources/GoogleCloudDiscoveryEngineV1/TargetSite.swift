@@ -217,7 +217,7 @@
           failure = $0
         }
         if let quotaFailure = try container.decodeIfPresent(
-          TargetSite.FailureReason.QuotaFailure?.self, forKey: .quotaFailure)
+          TargetSite.FailureReason.QuotaFailure.self, forKey: .quotaFailure)
         {
           try failureCheckAndSet(.quotaFailure(quotaFailure))
         }
@@ -317,7 +317,7 @@
       /// Failure reason.
       public enum FailureOneOf: Codable, Equatable, Sendable {
         /// Failed due to insufficient quota.
-        indirect case quotaFailure(TargetSite.FailureReason.QuotaFailure?)
+        indirect case quotaFailure(TargetSite.FailureReason.QuotaFailure)
       }
 
       public static var _anyTypeUrl: Swift.String {

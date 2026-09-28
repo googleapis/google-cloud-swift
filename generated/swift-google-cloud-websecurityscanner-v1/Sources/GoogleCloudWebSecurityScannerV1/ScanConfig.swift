@@ -253,17 +253,17 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         authentication = $0
       }
       if let googleAccount = try container.decodeIfPresent(
-        ScanConfig.Authentication.GoogleAccount?.self, forKey: .googleAccount)
+        ScanConfig.Authentication.GoogleAccount.self, forKey: .googleAccount)
       {
         try authenticationCheckAndSet(.googleAccount(googleAccount))
       }
       if let customAccount = try container.decodeIfPresent(
-        ScanConfig.Authentication.CustomAccount?.self, forKey: .customAccount)
+        ScanConfig.Authentication.CustomAccount.self, forKey: .customAccount)
       {
         try authenticationCheckAndSet(.customAccount(customAccount))
       }
       if let iapCredential = try container.decodeIfPresent(
-        ScanConfig.Authentication.IapCredential?.self, forKey: .iapCredential)
+        ScanConfig.Authentication.IapCredential.self, forKey: .iapCredential)
       {
         try authenticationCheckAndSet(.iapCredential(iapCredential))
       }
@@ -515,7 +515,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           iapCredentials = $0
         }
         if let iapTestServiceAccountInfo = try container.decodeIfPresent(
-          ScanConfig.Authentication.IapCredential.IapTestServiceAccountInfo?.self,
+          ScanConfig.Authentication.IapCredential.IapTestServiceAccountInfo.self,
           forKey: .iapTestServiceAccountInfo)
         {
           try iapCredentialsCheckAndSet(.iapTestServiceAccountInfo(iapTestServiceAccountInfo))
@@ -619,7 +619,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         /// Authentication configuration when Web-Security-Scanner service
         /// account is added in Identity-Aware-Proxy (IAP) access policies.
         indirect case iapTestServiceAccountInfo(
-          ScanConfig.Authentication.IapCredential.IapTestServiceAccountInfo?)
+          ScanConfig.Authentication.IapCredential.IapTestServiceAccountInfo)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -639,11 +639,11 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public enum AuthenticationOneOf: Codable, Equatable, Sendable {
       /// Authentication using a Google account.
       @available(*, deprecated)
-      indirect case googleAccount(ScanConfig.Authentication.GoogleAccount?)
+      indirect case googleAccount(ScanConfig.Authentication.GoogleAccount)
       /// Authentication using a custom account.
-      indirect case customAccount(ScanConfig.Authentication.CustomAccount?)
+      indirect case customAccount(ScanConfig.Authentication.CustomAccount)
       /// Authentication using Identity-Aware-Proxy (IAP).
-      indirect case iapCredential(ScanConfig.Authentication.IapCredential?)
+      indirect case iapCredential(ScanConfig.Authentication.IapCredential)
     }
 
     public static var _anyTypeUrl: Swift.String {

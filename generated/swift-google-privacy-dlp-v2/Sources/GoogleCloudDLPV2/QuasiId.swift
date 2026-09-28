@@ -80,13 +80,13 @@ public struct QuasiId: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       tag = $0
     }
-    if let infoType = try container.decodeIfPresent(InfoType?.self, forKey: .infoType) {
+    if let infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType) {
       try tagCheckAndSet(.infoType(infoType))
     }
     if let customTag = try container.decodeIfPresent(Swift.String.self, forKey: .customTag) {
       try tagCheckAndSet(.customTag(customTag))
     }
-    if let inferred = try container.decodeIfPresent(GoogleWKT.WKTEmpty?.self, forKey: .inferred) {
+    if let inferred = try container.decodeIfPresent(GoogleWKT.WKTEmpty.self, forKey: .inferred) {
       try tagCheckAndSet(.inferred(inferred))
     }
     self.tag = tag
@@ -124,14 +124,14 @@ public struct QuasiId: Codable, Equatable, GoogleWKT._AnyPackable,
     /// currently support US ZIP codes, region codes, ages and genders.
     /// To programmatically obtain the list of supported InfoTypes, use
     /// ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
-    indirect case infoType(InfoType?)
+    indirect case infoType(InfoType)
     /// A column can be tagged with a custom tag. In this case, the user must
     /// indicate an auxiliary table that contains statistical information on
     /// the possible values of this column.
     case customTag(Swift.String)
     /// If no semantic tag is indicated, we infer the statistical model from
     /// the distribution of values in the input data
-    indirect case inferred(GoogleWKT.WKTEmpty?)
+    indirect case inferred(GoogleWKT.WKTEmpty)
   }
 
   public static var _anyTypeUrl: Swift.String {

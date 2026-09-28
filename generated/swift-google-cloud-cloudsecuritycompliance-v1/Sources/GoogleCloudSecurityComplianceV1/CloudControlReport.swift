@@ -189,13 +189,13 @@ public struct CloudControlReport: Codable, Equatable, GoogleWKT._AnyPackable,
       assessmentDetails = $0
     }
     if let manualCloudControlAssessmentDetails = try container.decodeIfPresent(
-      ManualCloudControlAssessmentDetails?.self, forKey: .manualCloudControlAssessmentDetails)
+      ManualCloudControlAssessmentDetails.self, forKey: .manualCloudControlAssessmentDetails)
     {
       try assessmentDetailsCheckAndSet(
         .manualCloudControlAssessmentDetails(manualCloudControlAssessmentDetails))
     }
     if let cloudControlAssessmentDetails = try container.decodeIfPresent(
-      CloudControlAssessmentDetails?.self, forKey: .cloudControlAssessmentDetails)
+      CloudControlAssessmentDetails.self, forKey: .cloudControlAssessmentDetails)
     {
       try assessmentDetailsCheckAndSet(
         .cloudControlAssessmentDetails(cloudControlAssessmentDetails))
@@ -240,9 +240,9 @@ public struct CloudControlReport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The assessment details of the cloud control.
   public enum AssessmentDetailsOneOf: Codable, Equatable, Sendable {
     /// The details of a manual cloud control assessment.
-    indirect case manualCloudControlAssessmentDetails(ManualCloudControlAssessmentDetails?)
+    indirect case manualCloudControlAssessmentDetails(ManualCloudControlAssessmentDetails)
     /// The details of a cloud control assessment.
-    indirect case cloudControlAssessmentDetails(CloudControlAssessmentDetails?)
+    indirect case cloudControlAssessmentDetails(CloudControlAssessmentDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -71,12 +71,12 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPacka
       substitutionType = $0
     }
     if let placeholderSubstitutionRule = try container.decodeIfPresent(
-      PlaceholderSubstitutionRule?.self, forKey: .placeholderSubstitutionRule)
+      PlaceholderSubstitutionRule.self, forKey: .placeholderSubstitutionRule)
     {
       try substitutionTypeCheckAndSet(.placeholderSubstitutionRule(placeholderSubstitutionRule))
     }
     if let attributeSubstitutionRule = try container.decodeIfPresent(
-      AttributeSubstitutionRule?.self, forKey: .attributeSubstitutionRule)
+      AttributeSubstitutionRule.self, forKey: .attributeSubstitutionRule)
     {
       try substitutionTypeCheckAndSet(.attributeSubstitutionRule(attributeSubstitutionRule))
     }
@@ -106,9 +106,9 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPacka
   /// The type of substitution.
   public enum SubstitutionTypeOneOf: Codable, Equatable, Sendable {
     /// The placeholder substitution rule.
-    indirect case placeholderSubstitutionRule(PlaceholderSubstitutionRule?)
+    indirect case placeholderSubstitutionRule(PlaceholderSubstitutionRule)
     /// The attribute substitution rule.
-    indirect case attributeSubstitutionRule(AttributeSubstitutionRule?)
+    indirect case attributeSubstitutionRule(AttributeSubstitutionRule)
   }
 
   public static var _anyTypeUrl: Swift.String {

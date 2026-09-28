@@ -376,10 +376,10 @@
             }
             data = $0
           }
-          if let value = try container.decodeIfPresent(FeatureValue?.self, forKey: .value) {
+          if let value = try container.decodeIfPresent(FeatureValue.self, forKey: .value) {
             try dataCheckAndSet(.value(value))
           }
-          if let values = try container.decodeIfPresent(FeatureValueList?.self, forKey: .values) {
+          if let values = try container.decodeIfPresent(FeatureValueList.self, forKey: .values) {
             try dataCheckAndSet(.values(values))
           }
           self.data = data
@@ -407,12 +407,12 @@
 
         public enum DataOneOf: Codable, Equatable, Sendable {
           /// Feature value if a single value is requested.
-          indirect case value(FeatureValue?)
+          indirect case value(FeatureValue)
           /// Feature values list if values, successive in time, are requested.
           /// If the requested number of values is greater than the number of
           /// existing Feature values, nonexistent values are omitted instead of
           /// being returned as empty.
-          indirect case values(FeatureValueList?)
+          indirect case values(FeatureValueList)
         }
 
         public static var _anyTypeUrl: Swift.String {

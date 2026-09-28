@@ -71,12 +71,12 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       serviceDefinition = $0
     }
     if let gatewayServiceMesh = try container.decodeIfPresent(
-      KubernetesConfig.GatewayServiceMesh?.self, forKey: .gatewayServiceMesh)
+      KubernetesConfig.GatewayServiceMesh.self, forKey: .gatewayServiceMesh)
     {
       try serviceDefinitionCheckAndSet(.gatewayServiceMesh(gatewayServiceMesh))
     }
     if let serviceNetworking = try container.decodeIfPresent(
-      KubernetesConfig.ServiceNetworking?.self, forKey: .serviceNetworking)
+      KubernetesConfig.ServiceNetworking.self, forKey: .serviceNetworking)
     {
       try serviceDefinitionCheckAndSet(.serviceNetworking(serviceNetworking))
     }
@@ -423,9 +423,9 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The service definition configuration.
   public enum ServiceDefinitionOneOf: Codable, Equatable, Sendable {
     /// Optional. Kubernetes Gateway API service mesh configuration.
-    indirect case gatewayServiceMesh(KubernetesConfig.GatewayServiceMesh?)
+    indirect case gatewayServiceMesh(KubernetesConfig.GatewayServiceMesh)
     /// Optional. Kubernetes Service networking configuration.
-    indirect case serviceNetworking(KubernetesConfig.ServiceNetworking?)
+    indirect case serviceNetworking(KubernetesConfig.ServiceNetworking)
   }
 
   public static var _anyTypeUrl: Swift.String {

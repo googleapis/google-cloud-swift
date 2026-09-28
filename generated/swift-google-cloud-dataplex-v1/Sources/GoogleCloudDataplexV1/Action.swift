@@ -156,42 +156,42 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let invalidDataFormat = try container.decodeIfPresent(
-      Action.InvalidDataFormat?.self, forKey: .invalidDataFormat)
+      Action.InvalidDataFormat.self, forKey: .invalidDataFormat)
     {
       try detailsCheckAndSet(.invalidDataFormat(invalidDataFormat))
     }
     if let incompatibleDataSchema = try container.decodeIfPresent(
-      Action.IncompatibleDataSchema?.self, forKey: .incompatibleDataSchema)
+      Action.IncompatibleDataSchema.self, forKey: .incompatibleDataSchema)
     {
       try detailsCheckAndSet(.incompatibleDataSchema(incompatibleDataSchema))
     }
     if let invalidDataPartition = try container.decodeIfPresent(
-      Action.InvalidDataPartition?.self, forKey: .invalidDataPartition)
+      Action.InvalidDataPartition.self, forKey: .invalidDataPartition)
     {
       try detailsCheckAndSet(.invalidDataPartition(invalidDataPartition))
     }
     if let missingData = try container.decodeIfPresent(
-      Action.MissingData?.self, forKey: .missingData)
+      Action.MissingData.self, forKey: .missingData)
     {
       try detailsCheckAndSet(.missingData(missingData))
     }
     if let missingResource = try container.decodeIfPresent(
-      Action.MissingResource?.self, forKey: .missingResource)
+      Action.MissingResource.self, forKey: .missingResource)
     {
       try detailsCheckAndSet(.missingResource(missingResource))
     }
     if let unauthorizedResource = try container.decodeIfPresent(
-      Action.UnauthorizedResource?.self, forKey: .unauthorizedResource)
+      Action.UnauthorizedResource.self, forKey: .unauthorizedResource)
     {
       try detailsCheckAndSet(.unauthorizedResource(unauthorizedResource))
     }
     if let failedSecurityPolicyApply = try container.decodeIfPresent(
-      Action.FailedSecurityPolicyApply?.self, forKey: .failedSecurityPolicyApply)
+      Action.FailedSecurityPolicyApply.self, forKey: .failedSecurityPolicyApply)
     {
       try detailsCheckAndSet(.failedSecurityPolicyApply(failedSecurityPolicyApply))
     }
     if let invalidDataOrganization = try container.decodeIfPresent(
-      Action.InvalidDataOrganization?.self, forKey: .invalidDataOrganization)
+      Action.InvalidDataOrganization.self, forKey: .invalidDataOrganization)
     {
       try detailsCheckAndSet(.invalidDataOrganization(invalidDataOrganization))
     }
@@ -1174,23 +1174,23 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Additional details about the action based on the action category.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Details for issues related to invalid or unsupported data formats.
-    indirect case invalidDataFormat(Action.InvalidDataFormat?)
+    indirect case invalidDataFormat(Action.InvalidDataFormat)
     /// Details for issues related to incompatible schemas detected within data.
-    indirect case incompatibleDataSchema(Action.IncompatibleDataSchema?)
+    indirect case incompatibleDataSchema(Action.IncompatibleDataSchema)
     /// Details for issues related to invalid or unsupported data partition
     /// structure.
-    indirect case invalidDataPartition(Action.InvalidDataPartition?)
+    indirect case invalidDataPartition(Action.InvalidDataPartition)
     /// Details for issues related to absence of data within managed resources.
-    indirect case missingData(Action.MissingData?)
+    indirect case missingData(Action.MissingData)
     /// Details for issues related to absence of a managed resource.
-    indirect case missingResource(Action.MissingResource?)
+    indirect case missingResource(Action.MissingResource)
     /// Details for issues related to lack of permissions to access data
     /// resources.
-    indirect case unauthorizedResource(Action.UnauthorizedResource?)
+    indirect case unauthorizedResource(Action.UnauthorizedResource)
     /// Details for issues related to applying security policy.
-    indirect case failedSecurityPolicyApply(Action.FailedSecurityPolicyApply?)
+    indirect case failedSecurityPolicyApply(Action.FailedSecurityPolicyApply)
     /// Details for issues related to invalid data arrangement.
-    indirect case invalidDataOrganization(Action.InvalidDataOrganization?)
+    indirect case invalidDataOrganization(Action.InvalidDataOrganization)
   }
 
   public static var _anyTypeUrl: Swift.String {

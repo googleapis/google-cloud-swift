@@ -77,7 +77,7 @@ public struct ImportYumArtifactsRequest: Codable, Equatable, GoogleWKT._AnyPacka
       source = $0
     }
     if let gcsSource = try container.decodeIfPresent(
-      ImportYumArtifactsGcsSource?.self, forKey: .gcsSource)
+      ImportYumArtifactsGcsSource.self, forKey: .gcsSource)
     {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
@@ -106,7 +106,7 @@ public struct ImportYumArtifactsRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// The source location of the package binaries.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage location where input content is located.
-    indirect case gcsSource(ImportYumArtifactsGcsSource?)
+    indirect case gcsSource(ImportYumArtifactsGcsSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

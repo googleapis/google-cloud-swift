@@ -85,17 +85,16 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       keys = $0
     }
-    if let boolKeys = try container.decodeIfPresent(BoolList?.self, forKey: .boolKeys) {
+    if let boolKeys = try container.decodeIfPresent(BoolList.self, forKey: .boolKeys) {
       try keysCheckAndSet(.boolKeys(boolKeys))
     }
-    if let stringKeys = try container.decodeIfPresent(StringList?.self, forKey: .stringKeys) {
+    if let stringKeys = try container.decodeIfPresent(StringList.self, forKey: .stringKeys) {
       try keysCheckAndSet(.stringKeys(stringKeys))
     }
-    if let int64Keys = try container.decodeIfPresent(Int64List?.self, forKey: .int64Keys) {
+    if let int64Keys = try container.decodeIfPresent(Int64List.self, forKey: .int64Keys) {
       try keysCheckAndSet(.int64Keys(int64Keys))
     }
-    if let accountIdKeys = try container.decodeIfPresent(
-      AccountIdList?.self, forKey: .accountIdKeys)
+    if let accountIdKeys = try container.decodeIfPresent(AccountIdList.self, forKey: .accountIdKeys)
     {
       try keysCheckAndSet(.accountIdKeys(accountIdKeys))
     }
@@ -111,16 +110,16 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       values = $0
     }
-    if let boolValues = try container.decodeIfPresent(BoolList?.self, forKey: .boolValues) {
+    if let boolValues = try container.decodeIfPresent(BoolList.self, forKey: .boolValues) {
       try valuesCheckAndSet(.boolValues(boolValues))
     }
-    if let stringValues = try container.decodeIfPresent(StringList?.self, forKey: .stringValues) {
+    if let stringValues = try container.decodeIfPresent(StringList.self, forKey: .stringValues) {
       try valuesCheckAndSet(.stringValues(stringValues))
     }
-    if let int64Values = try container.decodeIfPresent(Int64List?.self, forKey: .int64Values) {
+    if let int64Values = try container.decodeIfPresent(Int64List.self, forKey: .int64Values) {
       try valuesCheckAndSet(.int64Values(int64Values))
     }
-    if let dictValues = try container.decodeIfPresent(DictList?.self, forKey: .dictValues) {
+    if let dictValues = try container.decodeIfPresent(DictList.self, forKey: .dictValues) {
       try valuesCheckAndSet(.dictValues(dictValues))
     }
     self.values = values
@@ -166,25 +165,25 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Each key can be exactly one kind.
   public enum KeysOneOf: Codable, Equatable, Sendable {
     /// Optional. A list of boolean keys.
-    indirect case boolKeys(BoolList?)
+    indirect case boolKeys(BoolList)
     /// Optional. A list of string keys.
-    indirect case stringKeys(StringList?)
+    indirect case stringKeys(StringList)
     /// Optional. A list of int64 keys.
-    indirect case int64Keys(Int64List?)
+    indirect case int64Keys(Int64List)
     /// Optional. A list of account ID keys.
-    indirect case accountIdKeys(AccountIdList?)
+    indirect case accountIdKeys(AccountIdList)
   }
 
   /// Each value can be exactly one kind.
   public enum ValuesOneOf: Codable, Equatable, Sendable {
     /// Optional. A list of boolean values.
-    indirect case boolValues(BoolList?)
+    indirect case boolValues(BoolList)
     /// Optional. A list of string values.
-    indirect case stringValues(StringList?)
+    indirect case stringValues(StringList)
     /// Optional. A list of int64 values.
-    indirect case int64Values(Int64List?)
+    indirect case int64Values(Int64List)
     /// Optional. Values are a list of nested dictionaries.
-    indirect case dictValues(DictList?)
+    indirect case dictValues(DictList)
   }
 
   public static var _anyTypeUrl: Swift.String {

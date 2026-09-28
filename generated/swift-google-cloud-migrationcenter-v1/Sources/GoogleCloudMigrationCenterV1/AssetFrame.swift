@@ -116,7 +116,7 @@ public struct AssetFrame: Codable, Equatable, GoogleWKT._AnyPackable,
       frameData = $0
     }
     if let machineDetails = try container.decodeIfPresent(
-      MachineDetails?.self, forKey: .machineDetails)
+      MachineDetails.self, forKey: .machineDetails)
     {
       try frameDataCheckAndSet(.machineDetails(machineDetails))
     }
@@ -150,7 +150,7 @@ public struct AssetFrame: Codable, Equatable, GoogleWKT._AnyPackable,
   /// of asset information in the frame.
   public enum FrameDataOneOf: Codable, Equatable, Sendable {
     /// Asset information specific for virtual machines.
-    indirect case machineDetails(MachineDetails?)
+    indirect case machineDetails(MachineDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

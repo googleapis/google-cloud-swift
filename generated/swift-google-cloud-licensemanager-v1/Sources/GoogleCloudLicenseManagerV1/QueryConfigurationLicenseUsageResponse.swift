@@ -70,7 +70,7 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
       details = $0
     }
     if let userCountUsage = try container.decodeIfPresent(
-      UserCountUsage?.self, forKey: .userCountUsage)
+      UserCountUsage.self, forKey: .userCountUsage)
     {
       try detailsCheckAndSet(.userCountUsage(userCountUsage))
     }
@@ -99,7 +99,7 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
   /// will be populated.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Usage information for license types which use user-count billing.
-    indirect case userCountUsage(UserCountUsage?)
+    indirect case userCountUsage(UserCountUsage)
   }
 
   public static var _anyTypeUrl: Swift.String {

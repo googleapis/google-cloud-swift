@@ -128,12 +128,12 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       mongodbConnectionFormat = $0
     }
     if let srvConnectionFormat = try container.decodeIfPresent(
-      SrvConnectionFormat?.self, forKey: .srvConnectionFormat)
+      SrvConnectionFormat.self, forKey: .srvConnectionFormat)
     {
       try mongodbConnectionFormatCheckAndSet(.srvConnectionFormat(srvConnectionFormat))
     }
     if let standardConnectionFormat = try container.decodeIfPresent(
-      StandardConnectionFormat?.self, forKey: .standardConnectionFormat)
+      StandardConnectionFormat.self, forKey: .standardConnectionFormat)
     {
       try mongodbConnectionFormatCheckAndSet(.standardConnectionFormat(standardConnectionFormat))
     }
@@ -170,9 +170,9 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Must specify either srv_connection_format or standard_connection_format.
   public enum MongodbConnectionFormatOneOf: Codable, Equatable, Sendable {
     /// Srv connection format.
-    indirect case srvConnectionFormat(SrvConnectionFormat?)
+    indirect case srvConnectionFormat(SrvConnectionFormat)
     /// Standard connection format.
-    indirect case standardConnectionFormat(StandardConnectionFormat?)
+    indirect case standardConnectionFormat(StandardConnectionFormat)
   }
 
   public static var _anyTypeUrl: Swift.String {

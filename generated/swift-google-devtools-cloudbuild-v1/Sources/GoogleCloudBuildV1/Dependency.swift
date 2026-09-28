@@ -75,7 +75,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
       try depCheckAndSet(.empty(empty))
     }
     if let gitSource = try container.decodeIfPresent(
-      Dependency.GitSourceDependency?.self, forKey: .gitSource)
+      Dependency.GitSourceDependency.self, forKey: .gitSource)
     {
       try depCheckAndSet(.gitSource(gitSource))
     }
@@ -328,7 +328,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     /// source as well).
     case empty(Swift.Bool)
     /// Represents a git repository as a build dependency.
-    indirect case gitSource(Dependency.GitSourceDependency?)
+    indirect case gitSource(Dependency.GitSourceDependency)
   }
 
   public static var _anyTypeUrl: Swift.String {

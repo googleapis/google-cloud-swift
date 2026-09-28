@@ -106,7 +106,7 @@ public struct FeedbackLabel: Codable, Equatable, GoogleWKT._AnyPackable,
       try labelTypeCheckAndSet(.label(label))
     }
     if let qaAnswerLabel = try container.decodeIfPresent(
-      QaAnswer.AnswerValue?.self, forKey: .qaAnswerLabel)
+      QaAnswer.AnswerValue.self, forKey: .qaAnswerLabel)
     {
       try labelTypeCheckAndSet(.qaAnswerLabel(qaAnswerLabel))
     }
@@ -142,7 +142,7 @@ public struct FeedbackLabel: Codable, Equatable, GoogleWKT._AnyPackable,
     /// String label.
     case label(Swift.String)
     /// QaAnswer label.
-    indirect case qaAnswerLabel(QaAnswer.AnswerValue?)
+    indirect case qaAnswerLabel(QaAnswer.AnswerValue)
   }
 
   public static var _anyTypeUrl: Swift.String {

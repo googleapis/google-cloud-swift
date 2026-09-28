@@ -70,10 +70,10 @@ public struct Command: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       commandType = $0
     }
-    if let agentCommand = try container.decodeIfPresent(AgentCommand?.self, forKey: .agentCommand) {
+    if let agentCommand = try container.decodeIfPresent(AgentCommand.self, forKey: .agentCommand) {
       try commandTypeCheckAndSet(.agentCommand(agentCommand))
     }
-    if let shellCommand = try container.decodeIfPresent(ShellCommand?.self, forKey: .shellCommand) {
+    if let shellCommand = try container.decodeIfPresent(ShellCommand.self, forKey: .shellCommand) {
       try commandTypeCheckAndSet(.shellCommand(shellCommand))
     }
     self.commandType = commandType
@@ -103,9 +103,9 @@ public struct Command: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum CommandTypeOneOf: Codable, Equatable, Sendable {
     /// AgentCommand specifies a one-time executable program for the agent to
     /// run.
-    indirect case agentCommand(AgentCommand?)
+    indirect case agentCommand(AgentCommand)
     /// ShellCommand is invoked via the agent's command line executor.
-    indirect case shellCommand(ShellCommand?)
+    indirect case shellCommand(ShellCommand)
   }
 
   public static var _anyTypeUrl: Swift.String {

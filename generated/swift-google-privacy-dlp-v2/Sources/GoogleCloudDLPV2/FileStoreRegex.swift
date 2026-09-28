@@ -69,7 +69,7 @@ public struct FileStoreRegex: Codable, Equatable, GoogleWKT._AnyPackable,
       resourceRegex = $0
     }
     if let cloudStorageRegex = try container.decodeIfPresent(
-      CloudStorageRegex?.self, forKey: .cloudStorageRegex)
+      CloudStorageRegex.self, forKey: .cloudStorageRegex)
     {
       try resourceRegexCheckAndSet(.cloudStorageRegex(cloudStorageRegex))
     }
@@ -97,7 +97,7 @@ public struct FileStoreRegex: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of resource regex to use.
   public enum ResourceRegexOneOf: Codable, Equatable, Sendable {
     /// Optional. Regex for Cloud Storage.
-    indirect case cloudStorageRegex(CloudStorageRegex?)
+    indirect case cloudStorageRegex(CloudStorageRegex)
   }
 
   public static var _anyTypeUrl: Swift.String {

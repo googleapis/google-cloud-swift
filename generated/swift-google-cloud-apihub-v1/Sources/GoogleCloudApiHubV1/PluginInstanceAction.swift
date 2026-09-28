@@ -137,7 +137,7 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
       actionStatus = $0
     }
     if let hubInstanceAction = try container.decodeIfPresent(
-      ExecutionStatus?.self, forKey: .hubInstanceAction)
+      ExecutionStatus.self, forKey: .hubInstanceAction)
     {
       try actionStatusCheckAndSet(.hubInstanceAction(hubInstanceAction))
     }
@@ -402,7 +402,7 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum ActionStatusOneOf: Codable, Equatable, Sendable {
     /// Optional. The execution information for the plugin instance action done
     /// corresponding to an API hub instance.
-    indirect case hubInstanceAction(ExecutionStatus?)
+    indirect case hubInstanceAction(ExecutionStatus)
   }
 
   public static var _anyTypeUrl: Swift.String {

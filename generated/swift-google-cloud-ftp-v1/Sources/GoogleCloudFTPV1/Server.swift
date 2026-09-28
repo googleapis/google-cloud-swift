@@ -143,12 +143,12 @@ public struct Server: Codable, Equatable, GoogleWKT._AnyPackable,
       accessConfig = $0
     }
     if let externalConfig = try container.decodeIfPresent(
-      ExternalServerConfig?.self, forKey: .externalConfig)
+      ExternalServerConfig.self, forKey: .externalConfig)
     {
       try accessConfigCheckAndSet(.externalConfig(externalConfig))
     }
     if let internalConfig = try container.decodeIfPresent(
-      InternalServerConfig?.self, forKey: .internalConfig)
+      InternalServerConfig.self, forKey: .internalConfig)
     {
       try accessConfigCheckAndSet(.internalConfig(internalConfig))
     }
@@ -465,9 +465,9 @@ public struct Server: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If this is set, it must match the value in the `access_type` field.
   public enum AccessConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for external access.
-    indirect case externalConfig(ExternalServerConfig?)
+    indirect case externalConfig(ExternalServerConfig)
     /// Configuration for internal access.
-    indirect case internalConfig(InternalServerConfig?)
+    indirect case internalConfig(InternalServerConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

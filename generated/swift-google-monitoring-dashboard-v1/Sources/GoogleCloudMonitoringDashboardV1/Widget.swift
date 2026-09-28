@@ -110,52 +110,51 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       content = $0
     }
-    if let xyChart = try container.decodeIfPresent(XyChart?.self, forKey: .xyChart) {
+    if let xyChart = try container.decodeIfPresent(XyChart.self, forKey: .xyChart) {
       try contentCheckAndSet(.xyChart(xyChart))
     }
-    if let scorecard = try container.decodeIfPresent(Scorecard?.self, forKey: .scorecard) {
+    if let scorecard = try container.decodeIfPresent(Scorecard.self, forKey: .scorecard) {
       try contentCheckAndSet(.scorecard(scorecard))
     }
-    if let text = try container.decodeIfPresent(Text?.self, forKey: .text) {
+    if let text = try container.decodeIfPresent(Text.self, forKey: .text) {
       try contentCheckAndSet(.text(text))
     }
-    if let blank = try container.decodeIfPresent(GoogleWKT.WKTEmpty?.self, forKey: .blank) {
+    if let blank = try container.decodeIfPresent(GoogleWKT.WKTEmpty.self, forKey: .blank) {
       try contentCheckAndSet(.blank(blank))
     }
-    if let alertChart = try container.decodeIfPresent(AlertChart?.self, forKey: .alertChart) {
+    if let alertChart = try container.decodeIfPresent(AlertChart.self, forKey: .alertChart) {
       try contentCheckAndSet(.alertChart(alertChart))
     }
     if let timeSeriesTable = try container.decodeIfPresent(
-      TimeSeriesTable?.self, forKey: .timeSeriesTable)
+      TimeSeriesTable.self, forKey: .timeSeriesTable)
     {
       try contentCheckAndSet(.timeSeriesTable(timeSeriesTable))
     }
     if let collapsibleGroup = try container.decodeIfPresent(
-      CollapsibleGroup?.self, forKey: .collapsibleGroup)
+      CollapsibleGroup.self, forKey: .collapsibleGroup)
     {
       try contentCheckAndSet(.collapsibleGroup(collapsibleGroup))
     }
-    if let logsPanel = try container.decodeIfPresent(LogsPanel?.self, forKey: .logsPanel) {
+    if let logsPanel = try container.decodeIfPresent(LogsPanel.self, forKey: .logsPanel) {
       try contentCheckAndSet(.logsPanel(logsPanel))
     }
-    if let incidentList = try container.decodeIfPresent(IncidentList?.self, forKey: .incidentList) {
+    if let incidentList = try container.decodeIfPresent(IncidentList.self, forKey: .incidentList) {
       try contentCheckAndSet(.incidentList(incidentList))
     }
-    if let pieChart = try container.decodeIfPresent(PieChart?.self, forKey: .pieChart) {
+    if let pieChart = try container.decodeIfPresent(PieChart.self, forKey: .pieChart) {
       try contentCheckAndSet(.pieChart(pieChart))
     }
     if let errorReportingPanel = try container.decodeIfPresent(
-      ErrorReportingPanel?.self, forKey: .errorReportingPanel)
+      ErrorReportingPanel.self, forKey: .errorReportingPanel)
     {
       try contentCheckAndSet(.errorReportingPanel(errorReportingPanel))
     }
-    if let sectionHeader = try container.decodeIfPresent(
-      SectionHeader?.self, forKey: .sectionHeader)
+    if let sectionHeader = try container.decodeIfPresent(SectionHeader.self, forKey: .sectionHeader)
     {
       try contentCheckAndSet(.sectionHeader(sectionHeader))
     }
     if let singleViewGroup = try container.decodeIfPresent(
-      SingleViewGroup?.self, forKey: .singleViewGroup)
+      SingleViewGroup.self, forKey: .singleViewGroup)
     {
       try contentCheckAndSet(.singleViewGroup(singleViewGroup))
     }
@@ -209,33 +208,33 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Content defines the component used to populate the widget.
   public enum ContentOneOf: Codable, Equatable, Sendable {
     /// A chart of time series data.
-    indirect case xyChart(XyChart?)
+    indirect case xyChart(XyChart)
     /// A scorecard summarizing time series data.
-    indirect case scorecard(Scorecard?)
+    indirect case scorecard(Scorecard)
     /// A raw string or markdown displaying textual content.
-    indirect case text(Text?)
+    indirect case text(Text)
     /// A blank space.
-    indirect case blank(GoogleWKT.WKTEmpty?)
+    indirect case blank(GoogleWKT.WKTEmpty)
     /// A chart of alert policy data.
-    indirect case alertChart(AlertChart?)
+    indirect case alertChart(AlertChart)
     /// A widget that displays time series data in a tabular format.
-    indirect case timeSeriesTable(TimeSeriesTable?)
+    indirect case timeSeriesTable(TimeSeriesTable)
     /// A widget that groups the other widgets. All widgets that are within
     /// the area spanned by the grouping widget are considered member widgets.
-    indirect case collapsibleGroup(CollapsibleGroup?)
+    indirect case collapsibleGroup(CollapsibleGroup)
     /// A widget that shows a stream of logs.
-    indirect case logsPanel(LogsPanel?)
+    indirect case logsPanel(LogsPanel)
     /// A widget that shows list of incidents.
-    indirect case incidentList(IncidentList?)
+    indirect case incidentList(IncidentList)
     /// A widget that displays timeseries data as a pie chart.
-    indirect case pieChart(PieChart?)
+    indirect case pieChart(PieChart)
     /// A widget that displays a list of error groups.
-    indirect case errorReportingPanel(ErrorReportingPanel?)
+    indirect case errorReportingPanel(ErrorReportingPanel)
     /// A widget that defines a section header for easier navigation of the
     /// dashboard.
-    indirect case sectionHeader(SectionHeader?)
+    indirect case sectionHeader(SectionHeader)
     /// A widget that groups the other widgets by using a dropdown menu.
-    indirect case singleViewGroup(SingleViewGroup?)
+    indirect case singleViewGroup(SingleViewGroup)
   }
 
   public static var _anyTypeUrl: Swift.String {

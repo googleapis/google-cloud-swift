@@ -68,7 +68,7 @@ public struct TargetResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       targetResourceInfo = $0
     }
-    if let gcpResource = try container.decodeIfPresent(GcpResource?.self, forKey: .gcpResource) {
+    if let gcpResource = try container.decodeIfPresent(GcpResource.self, forKey: .gcpResource) {
       try targetResourceInfoCheckAndSet(.gcpResource(gcpResource))
     }
     self.targetResourceInfo = targetResourceInfo
@@ -95,7 +95,7 @@ public struct TargetResource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Minimum details to identify the restored resource.
   public enum TargetResourceInfoOneOf: Codable, Equatable, Sendable {
     /// Details of the native Google Cloud resource created as part of restore.
-    indirect case gcpResource(GcpResource?)
+    indirect case gcpResource(GcpResource)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -108,21 +108,21 @@
         method = $0
       }
       if let sampledShapleyAttribution = try container.decodeIfPresent(
-        SampledShapleyAttribution?.self, forKey: .sampledShapleyAttribution)
+        SampledShapleyAttribution.self, forKey: .sampledShapleyAttribution)
       {
         try methodCheckAndSet(.sampledShapleyAttribution(sampledShapleyAttribution))
       }
       if let integratedGradientsAttribution = try container.decodeIfPresent(
-        IntegratedGradientsAttribution?.self, forKey: .integratedGradientsAttribution)
+        IntegratedGradientsAttribution.self, forKey: .integratedGradientsAttribution)
       {
         try methodCheckAndSet(.integratedGradientsAttribution(integratedGradientsAttribution))
       }
       if let xraiAttribution = try container.decodeIfPresent(
-        XraiAttribution?.self, forKey: .xraiAttribution)
+        XraiAttribution.self, forKey: .xraiAttribution)
       {
         try methodCheckAndSet(.xraiAttribution(xraiAttribution))
       }
-      if let examples = try container.decodeIfPresent(Examples?.self, forKey: .examples) {
+      if let examples = try container.decodeIfPresent(Examples.self, forKey: .examples) {
         try methodCheckAndSet(.examples(examples))
       }
       self.method = method
@@ -159,11 +159,11 @@
       /// contribute to the label being predicted. A sampling strategy is used to
       /// approximate the value rather than considering all subsets of features.
       /// Refer to this paper for model details: https://arxiv.org/abs/1306.4265.
-      indirect case sampledShapleyAttribution(SampledShapleyAttribution?)
+      indirect case sampledShapleyAttribution(SampledShapleyAttribution)
       /// An attribution method that computes Aumann-Shapley values taking
       /// advantage of the model's fully differentiable structure. Refer to this
       /// paper for more details: https://arxiv.org/abs/1703.01365
-      indirect case integratedGradientsAttribution(IntegratedGradientsAttribution?)
+      indirect case integratedGradientsAttribution(IntegratedGradientsAttribution)
       /// An attribution method that redistributes Integrated Gradients
       /// attribution to segmented regions, taking advantage of the model's fully
       /// differentiable structure. Refer to this paper for
@@ -173,10 +173,10 @@
       /// house or an animal. If the images are taken in artificial environments,
       /// like a lab or manufacturing line, or from diagnostic equipment, like
       /// x-rays or quality-control cameras, use Integrated Gradients instead.
-      indirect case xraiAttribution(XraiAttribution?)
+      indirect case xraiAttribution(XraiAttribution)
       /// Example-based explanations that returns the nearest neighbors from the
       /// provided dataset.
-      indirect case examples(Examples?)
+      indirect case examples(Examples)
     }
 
     public static var _anyTypeUrl: Swift.String {

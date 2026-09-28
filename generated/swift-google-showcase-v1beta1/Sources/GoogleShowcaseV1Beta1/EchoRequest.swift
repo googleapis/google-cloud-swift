@@ -114,7 +114,7 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let content = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
       try responseCheckAndSet(.content(content))
     }
-    if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
+    if let error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error) {
       try responseCheckAndSet(.error(error))
     }
     self.response = response
@@ -149,7 +149,7 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The content to be echoed by the server.
     case content(Swift.String)
     /// The error to be thrown by the server.
-    indirect case error(GoogleRpc.Status?)
+    indirect case error(GoogleRpc.Status)
   }
 
   public static var _anyTypeUrl: Swift.String {

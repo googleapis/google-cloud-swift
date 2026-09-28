@@ -721,12 +721,12 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         deinterlacingFilter = $0
       }
       if let yadif = try container.decodeIfPresent(
-        PreprocessingConfig.Deinterlace.YadifConfig?.self, forKey: .yadif)
+        PreprocessingConfig.Deinterlace.YadifConfig.self, forKey: .yadif)
       {
         try deinterlacingFilterCheckAndSet(.yadif(yadif))
       }
       if let bwdif = try container.decodeIfPresent(
-        PreprocessingConfig.Deinterlace.BwdifConfig?.self, forKey: .bwdif)
+        PreprocessingConfig.Deinterlace.BwdifConfig.self, forKey: .bwdif)
       {
         try deinterlacingFilterCheckAndSet(.bwdif(bwdif))
       }
@@ -968,9 +968,9 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Specify the video deinterlacing filter. The default is `yadif`.
     public enum DeinterlacingFilterOneOf: Codable, Equatable, Sendable {
       /// Specifies the Yet Another Deinterlacing Filter Configuration.
-      indirect case yadif(PreprocessingConfig.Deinterlace.YadifConfig?)
+      indirect case yadif(PreprocessingConfig.Deinterlace.YadifConfig)
       /// Specifies the Bob Weaver Deinterlacing Filter Configuration.
-      indirect case bwdif(PreprocessingConfig.Deinterlace.BwdifConfig?)
+      indirect case bwdif(PreprocessingConfig.Deinterlace.BwdifConfig)
     }
 
     public static var _anyTypeUrl: Swift.String {

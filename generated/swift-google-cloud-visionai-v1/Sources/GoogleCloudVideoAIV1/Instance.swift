@@ -262,7 +262,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
         try inputResourceInformationCheckAndSet(.inputResource(inputResource))
       }
       if let annotatedStream = try container.decodeIfPresent(
-        StreamWithAnnotation?.self, forKey: .annotatedStream)
+        StreamWithAnnotation.self, forKey: .annotatedStream)
       {
         try inputResourceInformationCheckAndSet(.annotatedStream(annotatedStream))
       }
@@ -308,7 +308,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       /// If the input resource is VisionAI Stream, the associated annotations
       /// can be specified using annotated_stream instead.
       @available(*, deprecated)
-      indirect case annotatedStream(StreamWithAnnotation?)
+      indirect case annotatedStream(StreamWithAnnotation)
     }
 
     public static var _anyTypeUrl: Swift.String {

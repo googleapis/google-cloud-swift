@@ -213,139 +213,139 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       kind = $0
     }
-    if let app = try container.decodeIfPresent(GoogleWKT.WKTAny?.self, forKey: .app) {
+    if let app = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .app) {
       try kindCheckAndSet(.app(app))
     }
-    if let operational = try container.decodeIfPresent(GoogleWKT.WKTAny?.self, forKey: .operational)
+    if let operational = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .operational)
     {
       try kindCheckAndSet(.operational(operational))
     }
     if let transferPlatformOperatorTransaction = try container.decodeIfPresent(
-      TransferPlatformOperator?.self, forKey: .transferPlatformOperatorTransaction)
+      TransferPlatformOperator.self, forKey: .transferPlatformOperatorTransaction)
     {
       try kindCheckAndSet(.transferPlatformOperatorTransaction(transferPlatformOperatorTransaction))
     }
     if let createCurrencyOperatorTransaction = try container.decodeIfPresent(
-      CreateCurrencyOperator?.self, forKey: .createCurrencyOperatorTransaction)
+      CreateCurrencyOperator.self, forKey: .createCurrencyOperatorTransaction)
     {
       try kindCheckAndSet(.createCurrencyOperatorTransaction(createCurrencyOperatorTransaction))
     }
     if let transferCurrencyOperatorTransaction = try container.decodeIfPresent(
-      TransferCurrencyOperator?.self, forKey: .transferCurrencyOperatorTransaction)
+      TransferCurrencyOperator.self, forKey: .transferCurrencyOperatorTransaction)
     {
       try kindCheckAndSet(.transferCurrencyOperatorTransaction(transferCurrencyOperatorTransaction))
     }
     if let createClearinghouseTransaction = try container.decodeIfPresent(
-      CreateClearinghouse?.self, forKey: .createClearinghouseTransaction)
+      CreateClearinghouse.self, forKey: .createClearinghouseTransaction)
     {
       try kindCheckAndSet(.createClearinghouseTransaction(createClearinghouseTransaction))
     }
     if let createAccountManagerTransaction = try container.decodeIfPresent(
-      CreateAccountManager?.self, forKey: .createAccountManagerTransaction)
+      CreateAccountManager.self, forKey: .createAccountManagerTransaction)
     {
       try kindCheckAndSet(.createAccountManagerTransaction(createAccountManagerTransaction))
     }
     if let createTokenManagerTransaction = try container.decodeIfPresent(
-      CreateTokenManager?.self, forKey: .createTokenManagerTransaction)
+      CreateTokenManager.self, forKey: .createTokenManagerTransaction)
     {
       try kindCheckAndSet(.createTokenManagerTransaction(createTokenManagerTransaction))
     }
     if let increaseTokenIssuanceLimitTransaction = try container.decodeIfPresent(
-      IncreaseTokenIssuanceLimit?.self, forKey: .increaseTokenIssuanceLimitTransaction)
+      IncreaseTokenIssuanceLimit.self, forKey: .increaseTokenIssuanceLimitTransaction)
     {
       try kindCheckAndSet(
         .increaseTokenIssuanceLimitTransaction(increaseTokenIssuanceLimitTransaction))
     }
     if let decreaseTokenIssuanceLimitTransaction = try container.decodeIfPresent(
-      DecreaseTokenIssuanceLimit?.self, forKey: .decreaseTokenIssuanceLimitTransaction)
+      DecreaseTokenIssuanceLimit.self, forKey: .decreaseTokenIssuanceLimitTransaction)
     {
       try kindCheckAndSet(
         .decreaseTokenIssuanceLimitTransaction(decreaseTokenIssuanceLimitTransaction))
     }
     if let settlementRequestTransaction = try container.decodeIfPresent(
-      SettlementRequest?.self, forKey: .settlementRequestTransaction)
+      SettlementRequest.self, forKey: .settlementRequestTransaction)
     {
       try kindCheckAndSet(.settlementRequestTransaction(settlementRequestTransaction))
     }
-    if let mintTransaction = try container.decodeIfPresent(Mint?.self, forKey: .mintTransaction) {
+    if let mintTransaction = try container.decodeIfPresent(Mint.self, forKey: .mintTransaction) {
       try kindCheckAndSet(.mintTransaction(mintTransaction))
     }
-    if let burnTransaction = try container.decodeIfPresent(Burn?.self, forKey: .burnTransaction) {
+    if let burnTransaction = try container.decodeIfPresent(Burn.self, forKey: .burnTransaction) {
       try kindCheckAndSet(.burnTransaction(burnTransaction))
     }
     if let createAccountTransaction = try container.decodeIfPresent(
-      CreateAccount?.self, forKey: .createAccountTransaction)
+      CreateAccount.self, forKey: .createAccountTransaction)
     {
       try kindCheckAndSet(.createAccountTransaction(createAccountTransaction))
     }
     if let deactivateAccountTransaction = try container.decodeIfPresent(
-      DeactivateAccount?.self, forKey: .deactivateAccountTransaction)
+      DeactivateAccount.self, forKey: .deactivateAccountTransaction)
     {
       try kindCheckAndSet(.deactivateAccountTransaction(deactivateAccountTransaction))
     }
     if let activateAccountTransaction = try container.decodeIfPresent(
-      ActivateAccount?.self, forKey: .activateAccountTransaction)
+      ActivateAccount.self, forKey: .activateAccountTransaction)
     {
       try kindCheckAndSet(.activateAccountTransaction(activateAccountTransaction))
     }
     if let addRolesTransaction = try container.decodeIfPresent(
-      AddRoles?.self, forKey: .addRolesTransaction)
+      AddRoles.self, forKey: .addRolesTransaction)
     {
       try kindCheckAndSet(.addRolesTransaction(addRolesTransaction))
     }
     if let removeRolesTransaction = try container.decodeIfPresent(
-      RemoveRoles?.self, forKey: .removeRolesTransaction)
+      RemoveRoles.self, forKey: .removeRolesTransaction)
     {
       try kindCheckAndSet(.removeRolesTransaction(removeRolesTransaction))
     }
     if let changeAccountManagerTransaction = try container.decodeIfPresent(
-      ChangeAccountManager?.self, forKey: .changeAccountManagerTransaction)
+      ChangeAccountManager.self, forKey: .changeAccountManagerTransaction)
     {
       try kindCheckAndSet(.changeAccountManagerTransaction(changeAccountManagerTransaction))
     }
     if let transferTransaction = try container.decodeIfPresent(
-      Transfer?.self, forKey: .transferTransaction)
+      Transfer.self, forKey: .transferTransaction)
     {
       try kindCheckAndSet(.transferTransaction(transferTransaction))
     }
     if let createContractTransaction = try container.decodeIfPresent(
-      CreateContract?.self, forKey: .createContractTransaction)
+      CreateContract.self, forKey: .createContractTransaction)
     {
       try kindCheckAndSet(.createContractTransaction(createContractTransaction))
     }
     if let grantContractPermissionsTransaction = try container.decodeIfPresent(
-      GrantContractPermissions?.self, forKey: .grantContractPermissionsTransaction)
+      GrantContractPermissions.self, forKey: .grantContractPermissionsTransaction)
     {
       try kindCheckAndSet(.grantContractPermissionsTransaction(grantContractPermissionsTransaction))
     }
     if let invokeContractMethodTransaction = try container.decodeIfPresent(
-      InvokeContractMethod?.self, forKey: .invokeContractMethodTransaction)
+      InvokeContractMethod.self, forKey: .invokeContractMethodTransaction)
     {
       try kindCheckAndSet(.invokeContractMethodTransaction(invokeContractMethodTransaction))
     }
     if let createContractTokenManagerTransaction = try container.decodeIfPresent(
-      CreateContractTokenManager?.self, forKey: .createContractTokenManagerTransaction)
+      CreateContractTokenManager.self, forKey: .createContractTokenManagerTransaction)
     {
       try kindCheckAndSet(
         .createContractTokenManagerTransaction(createContractTokenManagerTransaction))
     }
     if let transferContractTokenManagerTransaction = try container.decodeIfPresent(
-      TransferContractTokenManager?.self, forKey: .transferContractTokenManagerTransaction)
+      TransferContractTokenManager.self, forKey: .transferContractTokenManagerTransaction)
     {
       try kindCheckAndSet(
         .transferContractTokenManagerTransaction(transferContractTokenManagerTransaction))
     }
     if let removeSigningPublicKeyTransaction = try container.decodeIfPresent(
-      RemoveSigningPublicKey?.self, forKey: .removeSigningPublicKeyTransaction)
+      RemoveSigningPublicKey.self, forKey: .removeSigningPublicKeyTransaction)
     {
       try kindCheckAndSet(.removeSigningPublicKeyTransaction(removeSigningPublicKeyTransaction))
     }
     if let replaceSigningPublicKeyTransaction = try container.decodeIfPresent(
-      ReplaceSigningPublicKey?.self, forKey: .replaceSigningPublicKeyTransaction)
+      ReplaceSigningPublicKey.self, forKey: .replaceSigningPublicKeyTransaction)
     {
       try kindCheckAndSet(.replaceSigningPublicKeyTransaction(replaceSigningPublicKeyTransaction))
     }
-    if let chain = try container.decodeIfPresent(TransactionChain?.self, forKey: .chain) {
+    if let chain = try container.decodeIfPresent(TransactionChain.self, forKey: .chain) {
       try kindCheckAndSet(.chain(chain))
     }
     self.kind = kind
@@ -491,7 +491,7 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.universalledger.v1.TransferCurrencyOperator]: <doc:TransferCurrencyOperator>
     /// [google.cloud.universalledger.v1.TransferPlatformOperator]: <doc:TransferPlatformOperator>
     @available(*, deprecated)
-    indirect case app(GoogleWKT.WKTAny?)
+    indirect case app(GoogleWKT.WKTAny)
     /// Optional. An operational transaction message. Note this can only be sent
     /// by the platform operator. Should be any one of:
     ///
@@ -504,69 +504,69 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// -->
     ///
     /// [google.cloud.universalledger.v1.CreateSnapshot]: <doc:CreateSnapshot>
-    indirect case operational(GoogleWKT.WKTAny?)
+    indirect case operational(GoogleWKT.WKTAny)
     /// Optional. Message for transferring the platform operator role to a new
     /// account.
-    indirect case transferPlatformOperatorTransaction(TransferPlatformOperator?)
+    indirect case transferPlatformOperatorTransaction(TransferPlatformOperator)
     /// Optional. Message for creating a new currency operator.
-    indirect case createCurrencyOperatorTransaction(CreateCurrencyOperator?)
+    indirect case createCurrencyOperatorTransaction(CreateCurrencyOperator)
     /// Optional. Message for transferring the currency operator role to a new
     /// account.
-    indirect case transferCurrencyOperatorTransaction(TransferCurrencyOperator?)
+    indirect case transferCurrencyOperatorTransaction(TransferCurrencyOperator)
     /// Optional. Message for creating a new clearinghouse.
-    indirect case createClearinghouseTransaction(CreateClearinghouse?)
+    indirect case createClearinghouseTransaction(CreateClearinghouse)
     /// Optional. Message for creating a new account manager.
-    indirect case createAccountManagerTransaction(CreateAccountManager?)
+    indirect case createAccountManagerTransaction(CreateAccountManager)
     /// Optional. Message for creating a new token manager associated to the
     /// currency of the operator sending the request.
-    indirect case createTokenManagerTransaction(CreateTokenManager?)
+    indirect case createTokenManagerTransaction(CreateTokenManager)
     /// Optional. Notifies the network that the target account has deposited
     /// reserve funds and increases its token issuance limit.
-    indirect case increaseTokenIssuanceLimitTransaction(IncreaseTokenIssuanceLimit?)
+    indirect case increaseTokenIssuanceLimitTransaction(IncreaseTokenIssuanceLimit)
     /// Optional. Notifies the network that the target account wishes to withdraw
     /// reserve funds and decreases its token issuance limit.
-    indirect case decreaseTokenIssuanceLimitTransaction(DecreaseTokenIssuanceLimit?)
+    indirect case decreaseTokenIssuanceLimitTransaction(DecreaseTokenIssuanceLimit)
     /// Optional. Message for initiating a settlement operation.
-    indirect case settlementRequestTransaction(SettlementRequest?)
+    indirect case settlementRequestTransaction(SettlementRequest)
     /// Optional. Message for minting currency tokens and transferring them to an
     /// account.
-    indirect case mintTransaction(Mint?)
+    indirect case mintTransaction(Mint)
     /// Optional. Message for burning currency tokens from an account.
-    indirect case burnTransaction(Burn?)
+    indirect case burnTransaction(Burn)
     /// Optional. Message for creating a new user account.
-    indirect case createAccountTransaction(CreateAccount?)
+    indirect case createAccountTransaction(CreateAccount)
     /// Optional. Message for deactivating a user account.
-    indirect case deactivateAccountTransaction(DeactivateAccount?)
+    indirect case deactivateAccountTransaction(DeactivateAccount)
     /// Optional. Message for activating a user account.
-    indirect case activateAccountTransaction(ActivateAccount?)
+    indirect case activateAccountTransaction(ActivateAccount)
     /// Optional. Message for adding roles to an account.
-    indirect case addRolesTransaction(AddRoles?)
+    indirect case addRolesTransaction(AddRoles)
     /// Optional. Message for removing roles from an account.
-    indirect case removeRolesTransaction(RemoveRoles?)
+    indirect case removeRolesTransaction(RemoveRoles)
     /// Optional. Message for changing the account manager of an account.
-    indirect case changeAccountManagerTransaction(ChangeAccountManager?)
+    indirect case changeAccountManagerTransaction(ChangeAccountManager)
     /// Optional. Message for transferring tokens from one user account to
     /// another.
-    indirect case transferTransaction(Transfer?)
+    indirect case transferTransaction(Transfer)
     /// Optional. Message for creating a new contract on the ledger.
-    indirect case createContractTransaction(CreateContract?)
+    indirect case createContractTransaction(CreateContract)
     /// Optional. Message for granting permissions to a contract.
-    indirect case grantContractPermissionsTransaction(GrantContractPermissions?)
+    indirect case grantContractPermissionsTransaction(GrantContractPermissions)
     /// Optional. Message for invoking the execution of a contract method.
-    indirect case invokeContractMethodTransaction(InvokeContractMethod?)
+    indirect case invokeContractMethodTransaction(InvokeContractMethod)
     /// Optional. Message for creating a new token manager associated to the
     /// currency of the operator sending the request.
-    indirect case createContractTokenManagerTransaction(CreateContractTokenManager?)
+    indirect case createContractTokenManagerTransaction(CreateContractTokenManager)
     /// Optional. Message for transferring the token manager role for a currency
     /// from one account to another.
-    indirect case transferContractTokenManagerTransaction(TransferContractTokenManager?)
+    indirect case transferContractTokenManagerTransaction(TransferContractTokenManager)
     /// Optional. Message for removing an account signing key.
-    indirect case removeSigningPublicKeyTransaction(RemoveSigningPublicKey?)
+    indirect case removeSigningPublicKeyTransaction(RemoveSigningPublicKey)
     /// Optional. Message for replacing an account signing key.
-    indirect case replaceSigningPublicKeyTransaction(ReplaceSigningPublicKey?)
+    indirect case replaceSigningPublicKeyTransaction(ReplaceSigningPublicKey)
     /// Optional. Message for a transaction chain including multiple transaction
     /// units to execute in sequence.
-    indirect case chain(TransactionChain?)
+    indirect case chain(TransactionChain)
   }
 
   public static var _anyTypeUrl: Swift.String {

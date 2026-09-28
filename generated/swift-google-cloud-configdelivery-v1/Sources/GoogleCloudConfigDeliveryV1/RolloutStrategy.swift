@@ -72,10 +72,10 @@ public struct RolloutStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       strategy = $0
     }
-    if let allAtOnce = try container.decodeIfPresent(AllAtOnceStrategy?.self, forKey: .allAtOnce) {
+    if let allAtOnce = try container.decodeIfPresent(AllAtOnceStrategy.self, forKey: .allAtOnce) {
       try strategyCheckAndSet(.allAtOnce(allAtOnce))
     }
-    if let rolling = try container.decodeIfPresent(RollingStrategy?.self, forKey: .rolling) {
+    if let rolling = try container.decodeIfPresent(RollingStrategy.self, forKey: .rolling) {
       try strategyCheckAndSet(.rolling(rolling))
     }
     self.strategy = strategy
@@ -105,10 +105,10 @@ public struct RolloutStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// across clusters.
   public enum StrategyOneOf: Codable, Equatable, Sendable {
     /// AllAtOnceStrategy causes all clusters to be updated concurrently.
-    indirect case allAtOnce(AllAtOnceStrategy?)
+    indirect case allAtOnce(AllAtOnceStrategy)
     /// RollingStrategy causes a specified number of clusters to be updated
     /// concurrently until all clusters are updated.
-    indirect case rolling(RollingStrategy?)
+    indirect case rolling(RollingStrategy)
   }
 
   public static var _anyTypeUrl: Swift.String {

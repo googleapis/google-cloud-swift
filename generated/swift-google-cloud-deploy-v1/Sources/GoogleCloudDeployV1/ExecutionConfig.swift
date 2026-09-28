@@ -130,10 +130,10 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       executionEnvironment = $0
     }
-    if let defaultPool = try container.decodeIfPresent(DefaultPool?.self, forKey: .defaultPool) {
+    if let defaultPool = try container.decodeIfPresent(DefaultPool.self, forKey: .defaultPool) {
       try executionEnvironmentCheckAndSet(.defaultPool(defaultPool))
     }
-    if let privatePool = try container.decodeIfPresent(PrivatePool?.self, forKey: .privatePool) {
+    if let privatePool = try container.decodeIfPresent(PrivatePool.self, forKey: .privatePool) {
       try executionEnvironmentCheckAndSet(.privatePool(privatePool))
     }
     self.executionEnvironment = executionEnvironment
@@ -306,9 +306,9 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Details of the environment.
   public enum ExecutionEnvironmentOneOf: Codable, Equatable, Sendable {
     /// Optional. Use default Cloud Build pool.
-    indirect case defaultPool(DefaultPool?)
+    indirect case defaultPool(DefaultPool)
     /// Optional. Use private Cloud Build pool.
-    indirect case privatePool(PrivatePool?)
+    indirect case privatePool(PrivatePool)
   }
 
   public static var _anyTypeUrl: Swift.String {

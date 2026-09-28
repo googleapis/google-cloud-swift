@@ -86,7 +86,7 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       source = $0
     }
     if let gcsSource = try container.decodeIfPresent(
-      ImportIssueModelRequest.GcsSource?.self, forKey: .gcsSource)
+      ImportIssueModelRequest.GcsSource.self, forKey: .gcsSource)
     {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
@@ -184,7 +184,7 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage source message.
-    indirect case gcsSource(ImportIssueModelRequest.GcsSource?)
+    indirect case gcsSource(ImportIssueModelRequest.GcsSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -79,32 +79,32 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
       sourceIdentifier = $0
     }
     if let oracleIdentifier = try container.decodeIfPresent(
-      SourceObjectIdentifier.OracleObjectIdentifier?.self, forKey: .oracleIdentifier)
+      SourceObjectIdentifier.OracleObjectIdentifier.self, forKey: .oracleIdentifier)
     {
       try sourceIdentifierCheckAndSet(.oracleIdentifier(oracleIdentifier))
     }
     if let mysqlIdentifier = try container.decodeIfPresent(
-      SourceObjectIdentifier.MysqlObjectIdentifier?.self, forKey: .mysqlIdentifier)
+      SourceObjectIdentifier.MysqlObjectIdentifier.self, forKey: .mysqlIdentifier)
     {
       try sourceIdentifierCheckAndSet(.mysqlIdentifier(mysqlIdentifier))
     }
     if let postgresqlIdentifier = try container.decodeIfPresent(
-      SourceObjectIdentifier.PostgresqlObjectIdentifier?.self, forKey: .postgresqlIdentifier)
+      SourceObjectIdentifier.PostgresqlObjectIdentifier.self, forKey: .postgresqlIdentifier)
     {
       try sourceIdentifierCheckAndSet(.postgresqlIdentifier(postgresqlIdentifier))
     }
     if let sqlServerIdentifier = try container.decodeIfPresent(
-      SourceObjectIdentifier.SqlServerObjectIdentifier?.self, forKey: .sqlServerIdentifier)
+      SourceObjectIdentifier.SqlServerObjectIdentifier.self, forKey: .sqlServerIdentifier)
     {
       try sourceIdentifierCheckAndSet(.sqlServerIdentifier(sqlServerIdentifier))
     }
     if let salesforceIdentifier = try container.decodeIfPresent(
-      SourceObjectIdentifier.SalesforceObjectIdentifier?.self, forKey: .salesforceIdentifier)
+      SourceObjectIdentifier.SalesforceObjectIdentifier.self, forKey: .salesforceIdentifier)
     {
       try sourceIdentifierCheckAndSet(.salesforceIdentifier(salesforceIdentifier))
     }
     if let mongodbIdentifier = try container.decodeIfPresent(
-      SourceObjectIdentifier.MongodbObjectIdentifier?.self, forKey: .mongodbIdentifier)
+      SourceObjectIdentifier.MongodbObjectIdentifier.self, forKey: .mongodbIdentifier)
     {
       try sourceIdentifierCheckAndSet(.mongodbIdentifier(mongodbIdentifier))
     }
@@ -601,17 +601,17 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
   /// The identifier for an object in the data source.
   public enum SourceIdentifierOneOf: Codable, Equatable, Sendable {
     /// Oracle data source object identifier.
-    indirect case oracleIdentifier(SourceObjectIdentifier.OracleObjectIdentifier?)
+    indirect case oracleIdentifier(SourceObjectIdentifier.OracleObjectIdentifier)
     /// Mysql data source object identifier.
-    indirect case mysqlIdentifier(SourceObjectIdentifier.MysqlObjectIdentifier?)
+    indirect case mysqlIdentifier(SourceObjectIdentifier.MysqlObjectIdentifier)
     /// PostgreSQL data source object identifier.
-    indirect case postgresqlIdentifier(SourceObjectIdentifier.PostgresqlObjectIdentifier?)
+    indirect case postgresqlIdentifier(SourceObjectIdentifier.PostgresqlObjectIdentifier)
     /// SQLServer data source object identifier.
-    indirect case sqlServerIdentifier(SourceObjectIdentifier.SqlServerObjectIdentifier?)
+    indirect case sqlServerIdentifier(SourceObjectIdentifier.SqlServerObjectIdentifier)
     /// Salesforce data source object identifier.
-    indirect case salesforceIdentifier(SourceObjectIdentifier.SalesforceObjectIdentifier?)
+    indirect case salesforceIdentifier(SourceObjectIdentifier.SalesforceObjectIdentifier)
     /// MongoDB data source object identifier.
-    indirect case mongodbIdentifier(SourceObjectIdentifier.MongodbObjectIdentifier?)
+    indirect case mongodbIdentifier(SourceObjectIdentifier.MongodbObjectIdentifier)
   }
 
   public static var _anyTypeUrl: Swift.String {

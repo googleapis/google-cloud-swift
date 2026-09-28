@@ -72,7 +72,7 @@
         tuningDataStats = $0
       }
       if let supervisedTuningDataStats = try container.decodeIfPresent(
-        SupervisedTuningDataStats?.self, forKey: .supervisedTuningDataStats)
+        SupervisedTuningDataStats.self, forKey: .supervisedTuningDataStats)
       {
         try tuningDataStatsCheckAndSet(.supervisedTuningDataStats(supervisedTuningDataStats))
       }
@@ -99,7 +99,7 @@
 
     public enum TuningDataStatsOneOf: Codable, Equatable, Sendable {
       /// The SFT Tuning data stats.
-      indirect case supervisedTuningDataStats(SupervisedTuningDataStats?)
+      indirect case supervisedTuningDataStats(SupervisedTuningDataStats)
     }
 
     public static var _anyTypeUrl: Swift.String {

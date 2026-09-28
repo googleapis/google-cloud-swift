@@ -239,7 +239,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
       metastoreConfig = $0
     }
     if let hiveMetastoreConfig = try container.decodeIfPresent(
-      HiveMetastoreConfig?.self, forKey: .hiveMetastoreConfig)
+      HiveMetastoreConfig.self, forKey: .hiveMetastoreConfig)
     {
       try metastoreConfigCheckAndSet(.hiveMetastoreConfig(hiveMetastoreConfig))
     }
@@ -803,7 +803,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum MetastoreConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration information specific to running Hive metastore
     /// software as the metastore service.
-    indirect case hiveMetastoreConfig(HiveMetastoreConfig?)
+    indirect case hiveMetastoreConfig(HiveMetastoreConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

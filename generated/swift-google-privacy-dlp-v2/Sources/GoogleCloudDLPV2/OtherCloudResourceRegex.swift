@@ -72,7 +72,7 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleWKT._AnyPackabl
       resourceRegex = $0
     }
     if let amazonS3BucketRegex = try container.decodeIfPresent(
-      AmazonS3BucketRegex?.self, forKey: .amazonS3BucketRegex)
+      AmazonS3BucketRegex.self, forKey: .amazonS3BucketRegex)
     {
       try resourceRegexCheckAndSet(.amazonS3BucketRegex(amazonS3BucketRegex))
     }
@@ -100,7 +100,7 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The type of resource regex to use.
   public enum ResourceRegexOneOf: Codable, Equatable, Sendable {
     /// Regex for Amazon S3 buckets.
-    indirect case amazonS3BucketRegex(AmazonS3BucketRegex?)
+    indirect case amazonS3BucketRegex(AmazonS3BucketRegex)
   }
 
   public static var _anyTypeUrl: Swift.String {

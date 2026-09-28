@@ -95,34 +95,34 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       values = $0
     }
-    if let integerValues = try container.decodeIfPresent(IntegerArray?.self, forKey: .integerValues)
+    if let integerValues = try container.decodeIfPresent(IntegerArray.self, forKey: .integerValues)
     {
       try valuesCheckAndSet(.integerValues(integerValues))
     }
-    if let floatValues = try container.decodeIfPresent(FloatArray?.self, forKey: .floatValues) {
+    if let floatValues = try container.decodeIfPresent(FloatArray.self, forKey: .floatValues) {
       try valuesCheckAndSet(.floatValues(floatValues))
     }
-    if let textValues = try container.decodeIfPresent(TextArray?.self, forKey: .textValues) {
+    if let textValues = try container.decodeIfPresent(TextArray.self, forKey: .textValues) {
       try valuesCheckAndSet(.textValues(textValues))
     }
-    if let enumValues = try container.decodeIfPresent(EnumArray?.self, forKey: .enumValues) {
+    if let enumValues = try container.decodeIfPresent(EnumArray.self, forKey: .enumValues) {
       try valuesCheckAndSet(.enumValues(enumValues))
     }
     if let propertyValues = try container.decodeIfPresent(
-      PropertyArray?.self, forKey: .propertyValues)
+      PropertyArray.self, forKey: .propertyValues)
     {
       try valuesCheckAndSet(.propertyValues(propertyValues))
     }
     if let dateTimeValues = try container.decodeIfPresent(
-      DateTimeArray?.self, forKey: .dateTimeValues)
+      DateTimeArray.self, forKey: .dateTimeValues)
     {
       try valuesCheckAndSet(.dateTimeValues(dateTimeValues))
     }
-    if let mapProperty = try container.decodeIfPresent(MapProperty?.self, forKey: .mapProperty) {
+    if let mapProperty = try container.decodeIfPresent(MapProperty.self, forKey: .mapProperty) {
       try valuesCheckAndSet(.mapProperty(mapProperty))
     }
     if let timestampValues = try container.decodeIfPresent(
-      TimestampArray?.self, forKey: .timestampValues)
+      TimestampArray.self, forKey: .timestampValues)
     {
       try valuesCheckAndSet(.timestampValues(timestampValues))
     }
@@ -169,23 +169,23 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
   /// field.
   public enum ValuesOneOf: Codable, Equatable, Sendable {
     /// Integer property values.
-    indirect case integerValues(IntegerArray?)
+    indirect case integerValues(IntegerArray)
     /// Float property values.
-    indirect case floatValues(FloatArray?)
+    indirect case floatValues(FloatArray)
     /// String/text property values.
-    indirect case textValues(TextArray?)
+    indirect case textValues(TextArray)
     /// Enum property values.
-    indirect case enumValues(EnumArray?)
+    indirect case enumValues(EnumArray)
     /// Nested structured data property values.
-    indirect case propertyValues(PropertyArray?)
+    indirect case propertyValues(PropertyArray)
     /// Date time property values.
     /// It is not supported by CMEK compliant deployment.
-    indirect case dateTimeValues(DateTimeArray?)
+    indirect case dateTimeValues(DateTimeArray)
     /// Map property values.
-    indirect case mapProperty(MapProperty?)
+    indirect case mapProperty(MapProperty)
     /// Timestamp property values.
     /// It is not supported by CMEK compliant deployment.
-    indirect case timestampValues(TimestampArray?)
+    indirect case timestampValues(TimestampArray)
   }
 
   public static var _anyTypeUrl: Swift.String {

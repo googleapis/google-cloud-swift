@@ -73,12 +73,12 @@ public struct RolloutStrategyInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       strategy = $0
     }
     if let allAtOnceStrategyInfo = try container.decodeIfPresent(
-      AllAtOnceStrategyInfo?.self, forKey: .allAtOnceStrategyInfo)
+      AllAtOnceStrategyInfo.self, forKey: .allAtOnceStrategyInfo)
     {
       try strategyCheckAndSet(.allAtOnceStrategyInfo(allAtOnceStrategyInfo))
     }
     if let rollingStrategyInfo = try container.decodeIfPresent(
-      RollingStrategyInfo?.self, forKey: .rollingStrategyInfo)
+      RollingStrategyInfo.self, forKey: .rollingStrategyInfo)
     {
       try strategyCheckAndSet(.rollingStrategyInfo(rollingStrategyInfo))
     }
@@ -109,10 +109,10 @@ public struct RolloutStrategyInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public enum StrategyOneOf: Codable, Equatable, Sendable {
     /// AllAtOnceStrategyInfo represents the status of AllAtOnce rollout strategy
     /// execution.
-    indirect case allAtOnceStrategyInfo(AllAtOnceStrategyInfo?)
+    indirect case allAtOnceStrategyInfo(AllAtOnceStrategyInfo)
     /// RollingStrategyInfo represents the status of Rolling rollout strategy
     /// execution.
-    indirect case rollingStrategyInfo(RollingStrategyInfo?)
+    indirect case rollingStrategyInfo(RollingStrategyInfo)
   }
 
   public static var _anyTypeUrl: Swift.String {

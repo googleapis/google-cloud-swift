@@ -601,23 +601,23 @@
           source = $0
         }
         if let inlineSource = try container.decodeIfPresent(
-          GenerateGroundedContentRequest.GroundingSource.InlineSource?.self, forKey: .inlineSource)
+          GenerateGroundedContentRequest.GroundingSource.InlineSource.self, forKey: .inlineSource)
         {
           try sourceCheckAndSet(.inlineSource(inlineSource))
         }
         if let searchSource = try container.decodeIfPresent(
-          GenerateGroundedContentRequest.GroundingSource.SearchSource?.self, forKey: .searchSource)
+          GenerateGroundedContentRequest.GroundingSource.SearchSource.self, forKey: .searchSource)
         {
           try sourceCheckAndSet(.searchSource(searchSource))
         }
         if let googleSearchSource = try container.decodeIfPresent(
-          GenerateGroundedContentRequest.GroundingSource.GoogleSearchSource?.self,
+          GenerateGroundedContentRequest.GroundingSource.GoogleSearchSource.self,
           forKey: .googleSearchSource)
         {
           try sourceCheckAndSet(.googleSearchSource(googleSearchSource))
         }
         if let enterpriseWebRetrievalSource = try container.decodeIfPresent(
-          GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource?.self,
+          GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource.self,
           forKey: .enterpriseWebRetrievalSource)
         {
           try sourceCheckAndSet(.enterpriseWebRetrievalSource(enterpriseWebRetrievalSource))
@@ -973,15 +973,15 @@
       /// Sources.
       public enum SourceOneOf: Codable, Equatable, Sendable {
         /// If set, grounding is performed with inline content.
-        indirect case inlineSource(GenerateGroundedContentRequest.GroundingSource.InlineSource?)
+        indirect case inlineSource(GenerateGroundedContentRequest.GroundingSource.InlineSource)
         /// If set, grounding is performed with Vertex AI Search.
-        indirect case searchSource(GenerateGroundedContentRequest.GroundingSource.SearchSource?)
+        indirect case searchSource(GenerateGroundedContentRequest.GroundingSource.SearchSource)
         /// If set, grounding is performed with Google Search.
         indirect case googleSearchSource(
-          GenerateGroundedContentRequest.GroundingSource.GoogleSearchSource?)
+          GenerateGroundedContentRequest.GroundingSource.GoogleSearchSource)
         /// If set, grounding is performed with enterprise web retrieval.
         indirect case enterpriseWebRetrievalSource(
-          GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource?)
+          GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource)
       }
 
       public static var _anyTypeUrl: Swift.String {

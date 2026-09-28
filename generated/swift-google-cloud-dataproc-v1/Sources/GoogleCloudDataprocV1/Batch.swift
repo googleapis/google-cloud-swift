@@ -181,22 +181,21 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       batchConfig = $0
     }
-    if let pysparkBatch = try container.decodeIfPresent(PySparkBatch?.self, forKey: .pysparkBatch) {
+    if let pysparkBatch = try container.decodeIfPresent(PySparkBatch.self, forKey: .pysparkBatch) {
       try batchConfigCheckAndSet(.pysparkBatch(pysparkBatch))
     }
-    if let sparkBatch = try container.decodeIfPresent(SparkBatch?.self, forKey: .sparkBatch) {
+    if let sparkBatch = try container.decodeIfPresent(SparkBatch.self, forKey: .sparkBatch) {
       try batchConfigCheckAndSet(.sparkBatch(sparkBatch))
     }
-    if let sparkRBatch = try container.decodeIfPresent(SparkRBatch?.self, forKey: .sparkRBatch) {
+    if let sparkRBatch = try container.decodeIfPresent(SparkRBatch.self, forKey: .sparkRBatch) {
       try batchConfigCheckAndSet(.sparkRBatch(sparkRBatch))
     }
-    if let sparkSqlBatch = try container.decodeIfPresent(
-      SparkSqlBatch?.self, forKey: .sparkSqlBatch)
+    if let sparkSqlBatch = try container.decodeIfPresent(SparkSqlBatch.self, forKey: .sparkSqlBatch)
     {
       try batchConfigCheckAndSet(.sparkSqlBatch(sparkSqlBatch))
     }
     if let pysparkNotebookBatch = try container.decodeIfPresent(
-      PySparkNotebookBatch?.self, forKey: .pysparkNotebookBatch)
+      PySparkNotebookBatch.self, forKey: .pysparkNotebookBatch)
     {
       try batchConfigCheckAndSet(.pysparkNotebookBatch(pysparkNotebookBatch))
     }
@@ -475,15 +474,15 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The application/framework-specific portion of the batch configuration.
   public enum BatchConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. PySpark batch config.
-    indirect case pysparkBatch(PySparkBatch?)
+    indirect case pysparkBatch(PySparkBatch)
     /// Optional. Spark batch config.
-    indirect case sparkBatch(SparkBatch?)
+    indirect case sparkBatch(SparkBatch)
     /// Optional. SparkR batch config.
-    indirect case sparkRBatch(SparkRBatch?)
+    indirect case sparkRBatch(SparkRBatch)
     /// Optional. SparkSql batch config.
-    indirect case sparkSqlBatch(SparkSqlBatch?)
+    indirect case sparkSqlBatch(SparkSqlBatch)
     /// Optional. PySpark notebook batch config.
-    indirect case pysparkNotebookBatch(PySparkNotebookBatch?)
+    indirect case pysparkNotebookBatch(PySparkNotebookBatch)
   }
 
   public static var _anyTypeUrl: Swift.String {

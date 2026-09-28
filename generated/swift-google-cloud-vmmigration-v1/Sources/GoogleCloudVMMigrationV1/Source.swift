@@ -118,13 +118,13 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       sourceDetails = $0
     }
-    if let vmware = try container.decodeIfPresent(VmwareSourceDetails?.self, forKey: .vmware) {
+    if let vmware = try container.decodeIfPresent(VmwareSourceDetails.self, forKey: .vmware) {
       try sourceDetailsCheckAndSet(.vmware(vmware))
     }
-    if let aws = try container.decodeIfPresent(AwsSourceDetails?.self, forKey: .aws) {
+    if let aws = try container.decodeIfPresent(AwsSourceDetails.self, forKey: .aws) {
       try sourceDetailsCheckAndSet(.aws(aws))
     }
-    if let azure = try container.decodeIfPresent(AzureSourceDetails?.self, forKey: .azure) {
+    if let azure = try container.decodeIfPresent(AzureSourceDetails.self, forKey: .azure) {
       try sourceDetailsCheckAndSet(.azure(azure))
     }
     self.sourceDetails = sourceDetails
@@ -160,11 +160,11 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum SourceDetailsOneOf: Codable, Equatable, Sendable {
     /// Vmware type source details.
-    indirect case vmware(VmwareSourceDetails?)
+    indirect case vmware(VmwareSourceDetails)
     /// AWS type source details.
-    indirect case aws(AwsSourceDetails?)
+    indirect case aws(AwsSourceDetails)
     /// Azure type source details.
-    indirect case azure(AzureSourceDetails?)
+    indirect case azure(AzureSourceDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

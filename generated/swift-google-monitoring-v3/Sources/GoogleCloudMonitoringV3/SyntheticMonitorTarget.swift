@@ -70,7 +70,7 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable
       target = $0
     }
     if let cloudFunctionV2 = try container.decodeIfPresent(
-      SyntheticMonitorTarget.CloudFunctionV2Target?.self, forKey: .cloudFunctionV2)
+      SyntheticMonitorTarget.CloudFunctionV2Target.self, forKey: .cloudFunctionV2)
     {
       try targetCheckAndSet(.cloudFunctionV2(cloudFunctionV2))
     }
@@ -179,7 +179,7 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable
   /// Specifies a Synthetic Monitor's execution stack.
   public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Target a Synthetic Monitor GCFv2 instance.
-    indirect case cloudFunctionV2(SyntheticMonitorTarget.CloudFunctionV2Target?)
+    indirect case cloudFunctionV2(SyntheticMonitorTarget.CloudFunctionV2Target)
   }
 
   public static var _anyTypeUrl: Swift.String {

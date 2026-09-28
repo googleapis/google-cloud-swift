@@ -79,7 +79,7 @@ public struct CELExpression: Codable, Equatable, GoogleWKT._AnyPackable,
       criteria = $0
     }
     if let resourceTypesValues = try container.decodeIfPresent(
-      StringList?.self, forKey: .resourceTypesValues)
+      StringList.self, forKey: .resourceTypesValues)
     {
       try criteriaCheckAndSet(.resourceTypesValues(resourceTypesValues))
     }
@@ -110,7 +110,7 @@ public struct CELExpression: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The resource instance types on which this expression is defined.
     /// The format is `<SERVICE_NAME>/<type>`.
     /// For example: `compute.googleapis.com/Instance`
-    indirect case resourceTypesValues(StringList?)
+    indirect case resourceTypesValues(StringList)
   }
 
   public static var _anyTypeUrl: Swift.String {

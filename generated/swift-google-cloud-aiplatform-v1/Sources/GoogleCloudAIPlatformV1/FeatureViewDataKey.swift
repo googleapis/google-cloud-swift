@@ -74,7 +74,7 @@
         try keyOneofCheckAndSet(.key(key))
       }
       if let compositeKey = try container.decodeIfPresent(
-        FeatureViewDataKey.CompositeKey?.self, forKey: .compositeKey)
+        FeatureViewDataKey.CompositeKey.self, forKey: .compositeKey)
       {
         try keyOneofCheckAndSet(.compositeKey(compositeKey))
       }
@@ -175,7 +175,7 @@
       case key(Swift.String)
       /// The actual Entity ID will be composed from this struct. This should match
       /// with the way ID is defined in the FeatureView spec.
-      indirect case compositeKey(FeatureViewDataKey.CompositeKey?)
+      indirect case compositeKey(FeatureViewDataKey.CompositeKey)
     }
 
     public static var _anyTypeUrl: Swift.String {

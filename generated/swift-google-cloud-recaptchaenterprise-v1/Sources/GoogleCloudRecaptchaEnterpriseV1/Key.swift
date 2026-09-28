@@ -125,24 +125,24 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       platformSettings = $0
     }
-    if let webSettings = try container.decodeIfPresent(WebKeySettings?.self, forKey: .webSettings) {
+    if let webSettings = try container.decodeIfPresent(WebKeySettings.self, forKey: .webSettings) {
       try platformSettingsCheckAndSet(.webSettings(webSettings))
     }
     if let androidSettings = try container.decodeIfPresent(
-      AndroidKeySettings?.self, forKey: .androidSettings)
+      AndroidKeySettings.self, forKey: .androidSettings)
     {
       try platformSettingsCheckAndSet(.androidSettings(androidSettings))
     }
-    if let iosSettings = try container.decodeIfPresent(IOSKeySettings?.self, forKey: .iosSettings) {
+    if let iosSettings = try container.decodeIfPresent(IOSKeySettings.self, forKey: .iosSettings) {
       try platformSettingsCheckAndSet(.iosSettings(iosSettings))
     }
     if let expressSettings = try container.decodeIfPresent(
-      ExpressKeySettings?.self, forKey: .expressSettings)
+      ExpressKeySettings.self, forKey: .expressSettings)
     {
       try platformSettingsCheckAndSet(.expressSettings(expressSettings))
     }
     if let universalSettings = try container.decodeIfPresent(
-      UniversalKeySettings?.self, forKey: .universalSettings)
+      UniversalKeySettings.self, forKey: .universalSettings)
     {
       try platformSettingsCheckAndSet(.universalSettings(universalSettings))
     }
@@ -185,15 +185,15 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
   /// platform for which the settings are enabled.
   public enum PlatformSettingsOneOf: Codable, Equatable, Sendable {
     /// Settings for keys that can be used by websites.
-    indirect case webSettings(WebKeySettings?)
+    indirect case webSettings(WebKeySettings)
     /// Settings for keys that can be used by Android apps.
-    indirect case androidSettings(AndroidKeySettings?)
+    indirect case androidSettings(AndroidKeySettings)
     /// Settings for keys that can be used by iOS apps.
-    indirect case iosSettings(IOSKeySettings?)
+    indirect case iosSettings(IOSKeySettings)
     /// Settings for keys that can be used by reCAPTCHA Express.
-    indirect case expressSettings(ExpressKeySettings?)
+    indirect case expressSettings(ExpressKeySettings)
     /// Settings for keys that are configured through their Policy.
-    indirect case universalSettings(UniversalKeySettings?)
+    indirect case universalSettings(UniversalKeySettings)
   }
 
   public static var _anyTypeUrl: Swift.String {

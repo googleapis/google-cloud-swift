@@ -117,7 +117,7 @@ public struct Database: Codable, Equatable, GoogleWKT._AnyPackable,
       options = $0
     }
     if let hiveOptions = try container.decodeIfPresent(
-      HiveDatabaseOptions?.self, forKey: .hiveOptions)
+      HiveDatabaseOptions.self, forKey: .hiveOptions)
     {
       try optionsCheckAndSet(.hiveOptions(hiveOptions))
     }
@@ -262,7 +262,7 @@ public struct Database: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Options specified for the database type.
   public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// Options of a Hive database.
-    indirect case hiveOptions(HiveDatabaseOptions?)
+    indirect case hiveOptions(HiveDatabaseOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

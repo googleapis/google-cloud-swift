@@ -81,7 +81,7 @@ public struct EnvVar: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
       try valuesCheckAndSet(.value(value))
     }
-    if let valueSource = try container.decodeIfPresent(EnvVarSource?.self, forKey: .valueSource) {
+    if let valueSource = try container.decodeIfPresent(EnvVarSource.self, forKey: .valueSource) {
       try valuesCheckAndSet(.valueSource(valueSource))
     }
     self.values = values
@@ -114,7 +114,7 @@ public struct EnvVar: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Variable references are not supported in Cloud Run.
     case value(Swift.String)
     /// Source for the environment variable's value.
-    indirect case valueSource(EnvVarSource?)
+    indirect case valueSource(EnvVarSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

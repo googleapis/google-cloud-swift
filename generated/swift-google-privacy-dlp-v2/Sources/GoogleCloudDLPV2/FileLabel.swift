@@ -71,12 +71,12 @@ public struct FileLabel: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let sensitivityLabel = try container.decodeIfPresent(
-      FileLabel.SensitivityLabelMetadata?.self, forKey: .sensitivityLabel)
+      FileLabel.SensitivityLabelMetadata.self, forKey: .sensitivityLabel)
     {
       try typeCheckAndSet(.sensitivityLabel(sensitivityLabel))
     }
     if let googleDriveLabel = try container.decodeIfPresent(
-      FileLabel.GoogleDriveLabelMetadata?.self, forKey: .googleDriveLabel)
+      FileLabel.GoogleDriveLabelMetadata.self, forKey: .googleDriveLabel)
     {
       try typeCheckAndSet(.googleDriveLabel(googleDriveLabel))
     }
@@ -331,9 +331,9 @@ public struct FileLabel: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of file label.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Sensitivity labels published by Microsoft.
-    indirect case sensitivityLabel(FileLabel.SensitivityLabelMetadata?)
+    indirect case sensitivityLabel(FileLabel.SensitivityLabelMetadata)
     /// Google Drive labels published by Google.
-    indirect case googleDriveLabel(FileLabel.GoogleDriveLabelMetadata?)
+    indirect case googleDriveLabel(FileLabel.GoogleDriveLabelMetadata)
   }
 
   public static var _anyTypeUrl: Swift.String {

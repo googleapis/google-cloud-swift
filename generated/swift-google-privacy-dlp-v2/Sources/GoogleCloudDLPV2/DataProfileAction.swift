@@ -79,32 +79,32 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       action = $0
     }
     if let exportData = try container.decodeIfPresent(
-      DataProfileAction.Export?.self, forKey: .exportData)
+      DataProfileAction.Export.self, forKey: .exportData)
     {
       try actionCheckAndSet(.exportData(exportData))
     }
     if let pubSubNotification = try container.decodeIfPresent(
-      DataProfileAction.PubSubNotification?.self, forKey: .pubSubNotification)
+      DataProfileAction.PubSubNotification.self, forKey: .pubSubNotification)
     {
       try actionCheckAndSet(.pubSubNotification(pubSubNotification))
     }
     if let publishToChronicle = try container.decodeIfPresent(
-      DataProfileAction.PublishToChronicle?.self, forKey: .publishToChronicle)
+      DataProfileAction.PublishToChronicle.self, forKey: .publishToChronicle)
     {
       try actionCheckAndSet(.publishToChronicle(publishToChronicle))
     }
     if let publishToScc = try container.decodeIfPresent(
-      DataProfileAction.PublishToSecurityCommandCenter?.self, forKey: .publishToScc)
+      DataProfileAction.PublishToSecurityCommandCenter.self, forKey: .publishToScc)
     {
       try actionCheckAndSet(.publishToScc(publishToScc))
     }
     if let tagResources = try container.decodeIfPresent(
-      DataProfileAction.TagResources?.self, forKey: .tagResources)
+      DataProfileAction.TagResources.self, forKey: .tagResources)
     {
       try actionCheckAndSet(.tagResources(tagResources))
     }
     if let publishToDataplexCatalog = try container.decodeIfPresent(
-      DataProfileAction.PublishToDataplexCatalog?.self, forKey: .publishToDataplexCatalog)
+      DataProfileAction.PublishToDataplexCatalog.self, forKey: .publishToDataplexCatalog)
     {
       try actionCheckAndSet(.publishToDataplexCatalog(publishToDataplexCatalog))
     }
@@ -824,7 +824,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
           type = $0
         }
         if let sensitivityScore = try container.decodeIfPresent(
-          SensitivityScore?.self, forKey: .sensitivityScore)
+          SensitivityScore.self, forKey: .sensitivityScore)
         {
           try typeCheckAndSet(.sensitivityScore(sensitivityScore))
         }
@@ -854,7 +854,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum TypeOneOf: Codable, Equatable, Sendable {
         /// Conditions attaching the tag to a resource on its profile having this
         /// sensitivity score.
-        indirect case sensitivityScore(SensitivityScore?)
+        indirect case sensitivityScore(SensitivityScore)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1113,21 +1113,21 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of action to execute when a profile is generated.
   public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Export data profiles into a provided location.
-    indirect case exportData(DataProfileAction.Export?)
+    indirect case exportData(DataProfileAction.Export)
     /// Publish a message into the Pub/Sub topic.
-    indirect case pubSubNotification(DataProfileAction.PubSubNotification?)
+    indirect case pubSubNotification(DataProfileAction.PubSubNotification)
     /// Publishes generated data profiles to Google Security Operations.
     /// For more information, see [Use Sensitive Data Protection data in
     /// context-aware
     /// analytics](https://docs.cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
-    indirect case publishToChronicle(DataProfileAction.PublishToChronicle?)
+    indirect case publishToChronicle(DataProfileAction.PublishToChronicle)
     /// Publishes findings to Security Command Center for each data profile.
-    indirect case publishToScc(DataProfileAction.PublishToSecurityCommandCenter?)
+    indirect case publishToScc(DataProfileAction.PublishToSecurityCommandCenter)
     /// Tags the profiled resources with the specified tag values.
-    indirect case tagResources(DataProfileAction.TagResources?)
+    indirect case tagResources(DataProfileAction.TagResources)
     /// Publishes a portion of each profile to Dataplex Universal Catalog with
     /// the aspect type Sensitive Data Protection Profile.
-    indirect case publishToDataplexCatalog(DataProfileAction.PublishToDataplexCatalog?)
+    indirect case publishToDataplexCatalog(DataProfileAction.PublishToDataplexCatalog)
   }
 
   public static var _anyTypeUrl: Swift.String {

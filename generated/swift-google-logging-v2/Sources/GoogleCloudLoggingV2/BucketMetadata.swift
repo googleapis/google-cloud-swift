@@ -90,12 +90,12 @@ public struct BucketMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       request = $0
     }
     if let createBucketRequest = try container.decodeIfPresent(
-      CreateBucketRequest?.self, forKey: .createBucketRequest)
+      CreateBucketRequest.self, forKey: .createBucketRequest)
     {
       try requestCheckAndSet(.createBucketRequest(createBucketRequest))
     }
     if let updateBucketRequest = try container.decodeIfPresent(
-      UpdateBucketRequest?.self, forKey: .updateBucketRequest)
+      UpdateBucketRequest.self, forKey: .updateBucketRequest)
     {
       try requestCheckAndSet(.updateBucketRequest(updateBucketRequest))
     }
@@ -127,9 +127,9 @@ public struct BucketMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum RequestOneOf: Codable, Equatable, Sendable {
     /// LongRunningCreateBucket RPC request.
-    indirect case createBucketRequest(CreateBucketRequest?)
+    indirect case createBucketRequest(CreateBucketRequest)
     /// LongRunningUpdateBucket RPC request.
-    indirect case updateBucketRequest(UpdateBucketRequest?)
+    indirect case updateBucketRequest(UpdateBucketRequest)
   }
 
   public static var _anyTypeUrl: Swift.String {

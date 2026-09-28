@@ -93,22 +93,22 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       type = $0
     }
     if let userPassword = try container.decodeIfPresent(
-      AuthConfig.UserPassword?.self, forKey: .userPassword)
+      AuthConfig.UserPassword.self, forKey: .userPassword)
     {
       try typeCheckAndSet(.userPassword(userPassword))
     }
     if let oauth2JwtBearer = try container.decodeIfPresent(
-      AuthConfig.Oauth2JwtBearer?.self, forKey: .oauth2JwtBearer)
+      AuthConfig.Oauth2JwtBearer.self, forKey: .oauth2JwtBearer)
     {
       try typeCheckAndSet(.oauth2JwtBearer(oauth2JwtBearer))
     }
     if let oauth2ClientCredentials = try container.decodeIfPresent(
-      AuthConfig.Oauth2ClientCredentials?.self, forKey: .oauth2ClientCredentials)
+      AuthConfig.Oauth2ClientCredentials.self, forKey: .oauth2ClientCredentials)
     {
       try typeCheckAndSet(.oauth2ClientCredentials(oauth2ClientCredentials))
     }
     if let sshPublicKey = try container.decodeIfPresent(
-      AuthConfig.SshPublicKey?.self, forKey: .sshPublicKey)
+      AuthConfig.SshPublicKey.self, forKey: .sshPublicKey)
     {
       try typeCheckAndSet(.sshPublicKey(sshPublicKey))
     }
@@ -552,13 +552,13 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Supported auth types.
   public enum TypeOneOf: Codable, Equatable, Sendable {
     /// UserPassword.
-    indirect case userPassword(AuthConfig.UserPassword?)
+    indirect case userPassword(AuthConfig.UserPassword)
     /// Oauth2JwtBearer.
-    indirect case oauth2JwtBearer(AuthConfig.Oauth2JwtBearer?)
+    indirect case oauth2JwtBearer(AuthConfig.Oauth2JwtBearer)
     /// Oauth2ClientCredentials.
-    indirect case oauth2ClientCredentials(AuthConfig.Oauth2ClientCredentials?)
+    indirect case oauth2ClientCredentials(AuthConfig.Oauth2ClientCredentials)
     /// SSH Public Key.
-    indirect case sshPublicKey(AuthConfig.SshPublicKey?)
+    indirect case sshPublicKey(AuthConfig.SshPublicKey)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -90,12 +90,11 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       filter = $0
     }
-    if let pullRequest = try container.decodeIfPresent(
-      PullRequestFilter?.self, forKey: .pullRequest)
+    if let pullRequest = try container.decodeIfPresent(PullRequestFilter.self, forKey: .pullRequest)
     {
       try filterCheckAndSet(.pullRequest(pullRequest))
     }
-    if let push = try container.decodeIfPresent(PushFilter?.self, forKey: .push) {
+    if let push = try container.decodeIfPresent(PushFilter.self, forKey: .push) {
       try filterCheckAndSet(.push(push))
     }
     self.filter = filter
@@ -250,9 +249,9 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The types of filter to trigger a build.
   public enum FilterOneOf: Codable, Equatable, Sendable {
     /// Filter to match changes in pull requests.
-    indirect case pullRequest(PullRequestFilter?)
+    indirect case pullRequest(PullRequestFilter)
     /// Filter to match changes in refs like branches, tags.
-    indirect case push(PushFilter?)
+    indirect case push(PushFilter)
   }
 
   public static var _anyTypeUrl: Swift.String {

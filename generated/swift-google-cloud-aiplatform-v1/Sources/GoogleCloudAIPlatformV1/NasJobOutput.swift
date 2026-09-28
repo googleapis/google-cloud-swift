@@ -70,7 +70,7 @@
         output = $0
       }
       if let multiTrialJobOutput = try container.decodeIfPresent(
-        NasJobOutput.MultiTrialJobOutput?.self, forKey: .multiTrialJobOutput)
+        NasJobOutput.MultiTrialJobOutput.self, forKey: .multiTrialJobOutput)
       {
         try outputCheckAndSet(.multiTrialJobOutput(multiTrialJobOutput))
       }
@@ -176,7 +176,7 @@
     public enum OutputOneOf: Codable, Equatable, Sendable {
       /// Output only. The output of this multi-trial Neural Architecture Search
       /// (NAS) job.
-      indirect case multiTrialJobOutput(NasJobOutput.MultiTrialJobOutput?)
+      indirect case multiTrialJobOutput(NasJobOutput.MultiTrialJobOutput)
     }
 
     public static var _anyTypeUrl: Swift.String {

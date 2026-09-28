@@ -120,14 +120,14 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       processorFlags = $0
     }
     if let customDocumentExtractionOptions = try container.decodeIfPresent(
-      TrainProcessorVersionRequest.CustomDocumentExtractionOptions?.self,
+      TrainProcessorVersionRequest.CustomDocumentExtractionOptions.self,
       forKey: .customDocumentExtractionOptions)
     {
       try processorFlagsCheckAndSet(
         .customDocumentExtractionOptions(customDocumentExtractionOptions))
     }
     if let foundationModelTuningOptions = try container.decodeIfPresent(
-      TrainProcessorVersionRequest.FoundationModelTuningOptions?.self,
+      TrainProcessorVersionRequest.FoundationModelTuningOptions.self,
       forKey: .foundationModelTuningOptions)
     {
       try processorFlagsCheckAndSet(.foundationModelTuningOptions(foundationModelTuningOptions))
@@ -514,10 +514,10 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
   public enum ProcessorFlagsOneOf: Codable, Equatable, Sendable {
     /// Options to control Custom Document Extraction (CDE) Processor.
     indirect case customDocumentExtractionOptions(
-      TrainProcessorVersionRequest.CustomDocumentExtractionOptions?)
+      TrainProcessorVersionRequest.CustomDocumentExtractionOptions)
     /// Options to control foundation model tuning of a processor.
     indirect case foundationModelTuningOptions(
-      TrainProcessorVersionRequest.FoundationModelTuningOptions?)
+      TrainProcessorVersionRequest.FoundationModelTuningOptions)
   }
 
   public static var _anyTypeUrl: Swift.String {

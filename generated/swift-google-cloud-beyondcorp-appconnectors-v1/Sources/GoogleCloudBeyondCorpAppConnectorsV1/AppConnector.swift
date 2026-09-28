@@ -200,7 +200,7 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
         type = $0
       }
       if let serviceAccount = try container.decodeIfPresent(
-        AppConnector.PrincipalInfo.ServiceAccount?.self, forKey: .serviceAccount)
+        AppConnector.PrincipalInfo.ServiceAccount.self, forKey: .serviceAccount)
       {
         try typeCheckAndSet(.serviceAccount(serviceAccount))
       }
@@ -296,7 +296,7 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public enum TypeOneOf: Codable, Equatable, Sendable {
       /// A GCP service account.
-      indirect case serviceAccount(AppConnector.PrincipalInfo.ServiceAccount?)
+      indirect case serviceAccount(AppConnector.PrincipalInfo.ServiceAccount)
     }
 
     public static var _anyTypeUrl: Swift.String {

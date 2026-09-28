@@ -71,12 +71,12 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       environment = $0
     }
     if let defaultExchangeConfig = try container.decodeIfPresent(
-      SharingEnvironmentConfig.DefaultExchangeConfig?.self, forKey: .defaultExchangeConfig)
+      SharingEnvironmentConfig.DefaultExchangeConfig.self, forKey: .defaultExchangeConfig)
     {
       try environmentCheckAndSet(.defaultExchangeConfig(defaultExchangeConfig))
     }
     if let dcrExchangeConfig = try container.decodeIfPresent(
-      SharingEnvironmentConfig.DcrExchangeConfig?.self, forKey: .dcrExchangeConfig)
+      SharingEnvironmentConfig.DcrExchangeConfig.self, forKey: .dcrExchangeConfig)
     {
       try environmentCheckAndSet(.dcrExchangeConfig(dcrExchangeConfig))
     }
@@ -253,9 +253,9 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
 
   public enum EnvironmentOneOf: Codable, Equatable, Sendable {
     /// Default Analytics Hub data exchange, used for secured data sharing.
-    indirect case defaultExchangeConfig(SharingEnvironmentConfig.DefaultExchangeConfig?)
+    indirect case defaultExchangeConfig(SharingEnvironmentConfig.DefaultExchangeConfig)
     /// Data Clean Room (DCR), used for privacy-safe and secured data sharing.
-    indirect case dcrExchangeConfig(SharingEnvironmentConfig.DcrExchangeConfig?)
+    indirect case dcrExchangeConfig(SharingEnvironmentConfig.DcrExchangeConfig)
   }
 
   public static var _anyTypeUrl: Swift.String {

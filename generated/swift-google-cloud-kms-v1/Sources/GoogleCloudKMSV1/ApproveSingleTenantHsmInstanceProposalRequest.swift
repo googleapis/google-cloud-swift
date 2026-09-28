@@ -90,12 +90,12 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
       approvalPayload = $0
     }
     if let quorumReply = try container.decodeIfPresent(
-      ApproveSingleTenantHsmInstanceProposalRequest.QuorumReply?.self, forKey: .quorumReply)
+      ApproveSingleTenantHsmInstanceProposalRequest.QuorumReply.self, forKey: .quorumReply)
     {
       try approvalPayloadCheckAndSet(.quorumReply(quorumReply))
     }
     if let requiredActionQuorumReply = try container.decodeIfPresent(
-      ApproveSingleTenantHsmInstanceProposalRequest.RequiredActionQuorumReply?.self,
+      ApproveSingleTenantHsmInstanceProposalRequest.RequiredActionQuorumReply.self,
       forKey: .requiredActionQuorumReply)
     {
       try approvalPayloadCheckAndSet(.requiredActionQuorumReply(requiredActionQuorumReply))
@@ -305,14 +305,14 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
     /// for approving the proposal.
     ///
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.QuorumParameters]: <doc:SingleTenantHsmInstanceProposal/QuorumParameters>
-    indirect case quorumReply(ApproveSingleTenantHsmInstanceProposalRequest.QuorumReply?)
+    indirect case quorumReply(ApproveSingleTenantHsmInstanceProposalRequest.QuorumReply)
     /// Required. The reply to
     /// [RequiredActionQuorumParameters][google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RequiredActionQuorumParameters]
     /// for approving the proposal.
     ///
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RequiredActionQuorumParameters]: <doc:SingleTenantHsmInstanceProposal/RequiredActionQuorumParameters>
     indirect case requiredActionQuorumReply(
-      ApproveSingleTenantHsmInstanceProposalRequest.RequiredActionQuorumReply?)
+      ApproveSingleTenantHsmInstanceProposalRequest.RequiredActionQuorumReply)
   }
 
   public static var _anyTypeUrl: Swift.String {

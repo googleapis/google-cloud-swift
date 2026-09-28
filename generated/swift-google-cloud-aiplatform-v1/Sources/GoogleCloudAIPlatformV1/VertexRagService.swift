@@ -357,12 +357,12 @@
     public func augmentPrompt(
       parent: Swift.String,
       model: AugmentPromptRequest.Model?,
-      vertexRagStore: VertexRagStore?,
+      vertexRagStore: VertexRagStore,
     ) async throws -> GoogleCloudAIPlatformV1.AugmentPromptResponse {
       let request = AugmentPromptRequest().with {
         $0.parent = parent
         $0.model = model
-        $0.dataSource = vertexRagStore.map { .vertexRagStore($0) }
+        $0.dataSource = .vertexRagStore(vertexRagStore)
       }
       return try await self.augmentPrompt(request: request)
     }

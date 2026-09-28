@@ -75,22 +75,22 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       strategy = $0
     }
     if let noneStrategy = try container.decodeIfPresent(
-      CustomAPICheckpointConfig.NoneStrategy?.self, forKey: .noneStrategy)
+      CustomAPICheckpointConfig.NoneStrategy.self, forKey: .noneStrategy)
     {
       try strategyCheckAndSet(.noneStrategy(noneStrategy))
     }
     if let latestTimestampStrategy = try container.decodeIfPresent(
-      CustomAPICheckpointConfig.LatestTimestampStrategy?.self, forKey: .latestTimestampStrategy)
+      CustomAPICheckpointConfig.LatestTimestampStrategy.self, forKey: .latestTimestampStrategy)
     {
       try strategyCheckAndSet(.latestTimestampStrategy(latestTimestampStrategy))
     }
     if let latestRecordStrategy = try container.decodeIfPresent(
-      CustomAPICheckpointConfig.LatestRecordStrategy?.self, forKey: .latestRecordStrategy)
+      CustomAPICheckpointConfig.LatestRecordStrategy.self, forKey: .latestRecordStrategy)
     {
       try strategyCheckAndSet(.latestRecordStrategy(latestRecordStrategy))
     }
     if let iteratorStrategy = try container.decodeIfPresent(
-      CustomAPICheckpointConfig.IteratorStrategy?.self, forKey: .iteratorStrategy)
+      CustomAPICheckpointConfig.IteratorStrategy.self, forKey: .iteratorStrategy)
     {
       try strategyCheckAndSet(.iteratorStrategy(iteratorStrategy))
     }
@@ -424,13 +424,13 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// Select the specific checkpointing mechanism the third-party API requires.
   public enum StrategyOneOf: Codable, Equatable, Sendable {
     /// Fetch all available data in one go without tracking progress.
-    indirect case noneStrategy(CustomAPICheckpointConfig.NoneStrategy?)
+    indirect case noneStrategy(CustomAPICheckpointConfig.NoneStrategy)
     /// Track the timestamp of the newest record to fetch newer ones next.
-    indirect case latestTimestampStrategy(CustomAPICheckpointConfig.LatestTimestampStrategy?)
+    indirect case latestTimestampStrategy(CustomAPICheckpointConfig.LatestTimestampStrategy)
     /// Track the highest record ID to fetch only new records next.
-    indirect case latestRecordStrategy(CustomAPICheckpointConfig.LatestRecordStrategy?)
+    indirect case latestRecordStrategy(CustomAPICheckpointConfig.LatestRecordStrategy)
     /// Use progress tokens provided by the API.
-    indirect case iteratorStrategy(CustomAPICheckpointConfig.IteratorStrategy?)
+    indirect case iteratorStrategy(CustomAPICheckpointConfig.IteratorStrategy)
   }
 
   public static var _anyTypeUrl: Swift.String {

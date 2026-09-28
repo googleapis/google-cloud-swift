@@ -130,10 +130,10 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       decision = $0
     }
-    if let approve = try container.decodeIfPresent(ApproveDecision?.self, forKey: .approve) {
+    if let approve = try container.decodeIfPresent(ApproveDecision.self, forKey: .approve) {
       try decisionCheckAndSet(.approve(approve))
     }
-    if let dismiss = try container.decodeIfPresent(DismissDecision?.self, forKey: .dismiss) {
+    if let dismiss = try container.decodeIfPresent(DismissDecision.self, forKey: .dismiss) {
       try decisionCheckAndSet(.dismiss(dismiss))
     }
     self.decision = decision
@@ -170,9 +170,9 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The current decision on the approval request.
   public enum DecisionOneOf: Codable, Equatable, Sendable {
     /// Access was approved.
-    indirect case approve(ApproveDecision?)
+    indirect case approve(ApproveDecision)
     /// The request was dismissed.
-    indirect case dismiss(DismissDecision?)
+    indirect case dismiss(DismissDecision)
   }
 
   public static var _anyTypeUrl: Swift.String {

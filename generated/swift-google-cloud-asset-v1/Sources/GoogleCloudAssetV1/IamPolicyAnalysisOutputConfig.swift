@@ -71,12 +71,12 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleWKT._AnyP
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      IamPolicyAnalysisOutputConfig.GcsDestination?.self, forKey: .gcsDestination)
+      IamPolicyAnalysisOutputConfig.GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
     if let bigqueryDestination = try container.decodeIfPresent(
-      IamPolicyAnalysisOutputConfig.BigQueryDestination?.self, forKey: .bigqueryDestination)
+      IamPolicyAnalysisOutputConfig.BigQueryDestination.self, forKey: .bigqueryDestination)
     {
       try destinationCheckAndSet(.bigqueryDestination(bigqueryDestination))
     }
@@ -422,9 +422,9 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleWKT._AnyP
   /// IAM policy analysis export destination.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Destination on Cloud Storage.
-    indirect case gcsDestination(IamPolicyAnalysisOutputConfig.GcsDestination?)
+    indirect case gcsDestination(IamPolicyAnalysisOutputConfig.GcsDestination)
     /// Destination on BigQuery.
-    indirect case bigqueryDestination(IamPolicyAnalysisOutputConfig.BigQueryDestination?)
+    indirect case bigqueryDestination(IamPolicyAnalysisOutputConfig.BigQueryDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

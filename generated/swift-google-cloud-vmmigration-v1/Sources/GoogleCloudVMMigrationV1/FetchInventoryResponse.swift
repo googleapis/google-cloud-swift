@@ -82,13 +82,13 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleWKT._AnyPackable
       }
       sourceVms = $0
     }
-    if let vmwareVms = try container.decodeIfPresent(VmwareVmsDetails?.self, forKey: .vmwareVms) {
+    if let vmwareVms = try container.decodeIfPresent(VmwareVmsDetails.self, forKey: .vmwareVms) {
       try sourceVmsCheckAndSet(.vmwareVms(vmwareVms))
     }
-    if let awsVms = try container.decodeIfPresent(AwsVmsDetails?.self, forKey: .awsVms) {
+    if let awsVms = try container.decodeIfPresent(AwsVmsDetails.self, forKey: .awsVms) {
       try sourceVmsCheckAndSet(.awsVms(awsVms))
     }
-    if let azureVms = try container.decodeIfPresent(AzureVmsDetails?.self, forKey: .azureVms) {
+    if let azureVms = try container.decodeIfPresent(AzureVmsDetails.self, forKey: .azureVms) {
       try sourceVmsCheckAndSet(.azureVms(azureVms))
     }
     self.sourceVms = sourceVms
@@ -119,11 +119,11 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleWKT._AnyPackable
 
   public enum SourceVmsOneOf: Codable, Equatable, Sendable {
     /// The description of the VMs in a Source of type Vmware.
-    indirect case vmwareVms(VmwareVmsDetails?)
+    indirect case vmwareVms(VmwareVmsDetails)
     /// The description of the VMs in a Source of type AWS.
-    indirect case awsVms(AwsVmsDetails?)
+    indirect case awsVms(AwsVmsDetails)
     /// The description of the VMs in a Source of type Azure.
-    indirect case azureVms(AzureVmsDetails?)
+    indirect case azureVms(AzureVmsDetails)
   }
 
   public static var _anyTypeUrl: Swift.String {

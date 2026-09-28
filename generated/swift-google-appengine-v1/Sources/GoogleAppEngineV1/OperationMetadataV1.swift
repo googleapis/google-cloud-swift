@@ -139,7 +139,7 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleWKT._AnyPackable,
       methodMetadata = $0
     }
     if let createVersionMetadata = try container.decodeIfPresent(
-      CreateVersionMetadataV1?.self, forKey: .createVersionMetadata)
+      CreateVersionMetadataV1.self, forKey: .createVersionMetadata)
     {
       try methodMetadataCheckAndSet(.createVersionMetadata(createVersionMetadata))
     }
@@ -174,7 +174,7 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Metadata specific to the type of operation in progress.
   /// @OutputOnly
   public enum MethodMetadataOneOf: Codable, Equatable, Sendable {
-    indirect case createVersionMetadata(CreateVersionMetadataV1?)
+    indirect case createVersionMetadata(CreateVersionMetadataV1)
   }
 
   public static var _anyTypeUrl: Swift.String {

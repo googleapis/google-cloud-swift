@@ -72,7 +72,7 @@ public struct MonthlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
       dayOfMonth = $0
     }
     if let weekDayOfMonth = try container.decodeIfPresent(
-      WeekDayOfMonth?.self, forKey: .weekDayOfMonth)
+      WeekDayOfMonth.self, forKey: .weekDayOfMonth)
     {
       try dayOfMonthCheckAndSet(.weekDayOfMonth(weekDayOfMonth))
     }
@@ -105,7 +105,7 @@ public struct MonthlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// One day in a month.
   public enum DayOfMonthOneOf: Codable, Equatable, Sendable {
     /// Required. Week day in a month.
-    indirect case weekDayOfMonth(WeekDayOfMonth?)
+    indirect case weekDayOfMonth(WeekDayOfMonth)
     /// Required. One day of the month. 1-31 indicates the 1st to the 31st day.
     /// -1 indicates the last day of the month. Months without the target day
     /// will be skipped. For example, a schedule to run "every month on the 31st"

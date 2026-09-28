@@ -117,12 +117,12 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       routingPolicy = $0
     }
     if let multiClusterRoutingUseAny = try container.decodeIfPresent(
-      AppProfile.MultiClusterRoutingUseAny?.self, forKey: .multiClusterRoutingUseAny)
+      AppProfile.MultiClusterRoutingUseAny.self, forKey: .multiClusterRoutingUseAny)
     {
       try routingPolicyCheckAndSet(.multiClusterRoutingUseAny(multiClusterRoutingUseAny))
     }
     if let singleClusterRouting = try container.decodeIfPresent(
-      AppProfile.SingleClusterRouting?.self, forKey: .singleClusterRouting)
+      AppProfile.SingleClusterRouting.self, forKey: .singleClusterRouting)
     {
       try routingPolicyCheckAndSet(.singleClusterRouting(singleClusterRouting))
     }
@@ -142,12 +142,12 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       try isolationCheckAndSet(.priority(priority))
     }
     if let standardIsolation = try container.decodeIfPresent(
-      AppProfile.StandardIsolation?.self, forKey: .standardIsolation)
+      AppProfile.StandardIsolation.self, forKey: .standardIsolation)
     {
       try isolationCheckAndSet(.standardIsolation(standardIsolation))
     }
     if let dataBoostIsolationReadOnly = try container.decodeIfPresent(
-      AppProfile.DataBoostIsolationReadOnly?.self, forKey: .dataBoostIsolationReadOnly)
+      AppProfile.DataBoostIsolationReadOnly.self, forKey: .dataBoostIsolationReadOnly)
     {
       try isolationCheckAndSet(.dataBoostIsolationReadOnly(dataBoostIsolationReadOnly))
     }
@@ -263,7 +263,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         affinity = $0
       }
       if let rowAffinity = try container.decodeIfPresent(
-        AppProfile.MultiClusterRoutingUseAny.RowAffinity?.self, forKey: .rowAffinity)
+        AppProfile.MultiClusterRoutingUseAny.RowAffinity.self, forKey: .rowAffinity)
       {
         try affinityCheckAndSet(.rowAffinity(rowAffinity))
       }
@@ -366,7 +366,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     public enum AffinityOneOf: Codable, Equatable, Sendable {
       /// Row affinity sticky routing based on the row key of the request.
       /// Requests that span multiple rows are routed non-deterministically.
-      indirect case rowAffinity(AppProfile.MultiClusterRoutingUseAny.RowAffinity?)
+      indirect case rowAffinity(AppProfile.MultiClusterRoutingUseAny.RowAffinity)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -915,9 +915,9 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A value must be explicitly set.
   public enum RoutingPolicyOneOf: Codable, Equatable, Sendable {
     /// Use a multi-cluster routing policy.
-    indirect case multiClusterRoutingUseAny(AppProfile.MultiClusterRoutingUseAny?)
+    indirect case multiClusterRoutingUseAny(AppProfile.MultiClusterRoutingUseAny)
     /// Use a single-cluster routing policy.
-    indirect case singleClusterRouting(AppProfile.SingleClusterRouting?)
+    indirect case singleClusterRouting(AppProfile.SingleClusterRouting)
   }
 
   /// Options for isolating this app profile's traffic from other use cases.
@@ -930,10 +930,10 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     case priority(AppProfile.Priority)
     /// The standard options used for isolating this app profile's traffic from
     /// other use cases.
-    indirect case standardIsolation(AppProfile.StandardIsolation?)
+    indirect case standardIsolation(AppProfile.StandardIsolation)
     /// Specifies that this app profile is intended for read-only usage via the
     /// Data Boost feature.
-    indirect case dataBoostIsolationReadOnly(AppProfile.DataBoostIsolationReadOnly?)
+    indirect case dataBoostIsolationReadOnly(AppProfile.DataBoostIsolationReadOnly)
   }
 
   public static var _anyTypeUrl: Swift.String {

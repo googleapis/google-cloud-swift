@@ -85,22 +85,22 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       catalogDetails = $0
     }
     if let glueIcebergCatalog = try container.decodeIfPresent(
-      GlueIcebergCatalog?.self, forKey: .glueIcebergCatalog)
+      GlueIcebergCatalog.self, forKey: .glueIcebergCatalog)
     {
       try catalogDetailsCheckAndSet(.glueIcebergCatalog(glueIcebergCatalog))
     }
     if let nessieIcebergCatalog = try container.decodeIfPresent(
-      NessieIcebergCatalog?.self, forKey: .nessieIcebergCatalog)
+      NessieIcebergCatalog.self, forKey: .nessieIcebergCatalog)
     {
       try catalogDetailsCheckAndSet(.nessieIcebergCatalog(nessieIcebergCatalog))
     }
     if let polarisIcebergCatalog = try container.decodeIfPresent(
-      PolarisIcebergCatalog?.self, forKey: .polarisIcebergCatalog)
+      PolarisIcebergCatalog.self, forKey: .polarisIcebergCatalog)
     {
       try catalogDetailsCheckAndSet(.polarisIcebergCatalog(polarisIcebergCatalog))
     }
     if let restIcebergCatalog = try container.decodeIfPresent(
-      RestIcebergCatalog?.self, forKey: .restIcebergCatalog)
+      RestIcebergCatalog.self, forKey: .restIcebergCatalog)
     {
       try catalogDetailsCheckAndSet(.restIcebergCatalog(restIcebergCatalog))
     }
@@ -273,13 +273,13 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of Iceberg catalog.
   public enum CatalogDetailsOneOf: Codable, Equatable, Sendable {
     /// The Glue Iceberg catalog.
-    indirect case glueIcebergCatalog(GlueIcebergCatalog?)
+    indirect case glueIcebergCatalog(GlueIcebergCatalog)
     /// The Nessie Iceberg catalog.
-    indirect case nessieIcebergCatalog(NessieIcebergCatalog?)
+    indirect case nessieIcebergCatalog(NessieIcebergCatalog)
     /// The Polaris Iceberg catalog.
-    indirect case polarisIcebergCatalog(PolarisIcebergCatalog?)
+    indirect case polarisIcebergCatalog(PolarisIcebergCatalog)
     /// The REST Iceberg catalog.
-    indirect case restIcebergCatalog(RestIcebergCatalog?)
+    indirect case restIcebergCatalog(RestIcebergCatalog)
   }
 
   public static var _anyTypeUrl: Swift.String {

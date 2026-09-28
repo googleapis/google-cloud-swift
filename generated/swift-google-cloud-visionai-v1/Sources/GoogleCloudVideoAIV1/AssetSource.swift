@@ -70,12 +70,12 @@ public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
       sourceForm = $0
     }
     if let assetGcsSource = try container.decodeIfPresent(
-      AssetSource.AssetGcsSource?.self, forKey: .assetGcsSource)
+      AssetSource.AssetGcsSource.self, forKey: .assetGcsSource)
     {
       try sourceFormCheckAndSet(.assetGcsSource(assetGcsSource))
     }
     if let assetContentData = try container.decodeIfPresent(
-      AssetSource.AssetContentData?.self, forKey: .assetContentData)
+      AssetSource.AssetContentData.self, forKey: .assetContentData)
     {
       try sourceFormCheckAndSet(.assetContentData(assetContentData))
     }
@@ -240,9 +240,9 @@ public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum SourceFormOneOf: Codable, Equatable, Sendable {
     /// The source of the asset is from Cloud Storage.
-    indirect case assetGcsSource(AssetSource.AssetGcsSource?)
+    indirect case assetGcsSource(AssetSource.AssetGcsSource)
     /// The source of the asset is from content bytes.
-    indirect case assetContentData(AssetSource.AssetContentData?)
+    indirect case assetContentData(AssetSource.AssetContentData)
   }
 
   public static var _anyTypeUrl: Swift.String {

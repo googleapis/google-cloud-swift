@@ -119,17 +119,17 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
       rangeFacetConfig = $0
     }
     if let fixedRangeBucketSpec = try container.decodeIfPresent(
-      FacetProperty.FixedRangeBucketSpec?.self, forKey: .fixedRangeBucketSpec)
+      FacetProperty.FixedRangeBucketSpec.self, forKey: .fixedRangeBucketSpec)
     {
       try rangeFacetConfigCheckAndSet(.fixedRangeBucketSpec(fixedRangeBucketSpec))
     }
     if let customRangeBucketSpec = try container.decodeIfPresent(
-      FacetProperty.CustomRangeBucketSpec?.self, forKey: .customRangeBucketSpec)
+      FacetProperty.CustomRangeBucketSpec.self, forKey: .customRangeBucketSpec)
     {
       try rangeFacetConfigCheckAndSet(.customRangeBucketSpec(customRangeBucketSpec))
     }
     if let datetimeBucketSpec = try container.decodeIfPresent(
-      FacetProperty.DateTimeBucketSpec?.self, forKey: .datetimeBucketSpec)
+      FacetProperty.DateTimeBucketSpec.self, forKey: .datetimeBucketSpec)
     {
       try rangeFacetConfigCheckAndSet(.datetimeBucketSpec(datetimeBucketSpec))
     }
@@ -525,11 +525,11 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public enum RangeFacetConfigOneOf: Codable, Equatable, Sendable {
     /// Fixed range facet bucket config.
-    indirect case fixedRangeBucketSpec(FacetProperty.FixedRangeBucketSpec?)
+    indirect case fixedRangeBucketSpec(FacetProperty.FixedRangeBucketSpec)
     /// Custom range facet bucket config.
-    indirect case customRangeBucketSpec(FacetProperty.CustomRangeBucketSpec?)
+    indirect case customRangeBucketSpec(FacetProperty.CustomRangeBucketSpec)
     /// Datetime range facet bucket config.
-    indirect case datetimeBucketSpec(FacetProperty.DateTimeBucketSpec?)
+    indirect case datetimeBucketSpec(FacetProperty.DateTimeBucketSpec)
   }
 
   public static var _anyTypeUrl: Swift.String {

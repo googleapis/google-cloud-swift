@@ -97,7 +97,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       activity = $0
     }
     if let received = try container.decodeIfPresent(
-      MessageBusActivity.Received?.self, forKey: .received)
+      MessageBusActivity.Received.self, forKey: .received)
     {
       try activityCheckAndSet(.received(received))
     }
@@ -205,7 +205,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// published to a message bus.
   public enum ActivityOneOf: Codable, Equatable, Sendable {
     /// Logged when an event is received by a message bus.
-    indirect case received(MessageBusActivity.Received?)
+    indirect case received(MessageBusActivity.Received)
   }
 
   public static var _anyTypeUrl: Swift.String {

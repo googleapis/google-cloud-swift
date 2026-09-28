@@ -76,7 +76,7 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       toolResponse = $0
     }
-    if let codeBlock = try container.decodeIfPresent(CodeBlock?.self, forKey: .codeBlock) {
+    if let codeBlock = try container.decodeIfPresent(CodeBlock.self, forKey: .codeBlock) {
       try toolResponseCheckAndSet(.codeBlock(codeBlock))
     }
     self.toolResponse = toolResponse
@@ -104,7 +104,7 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The response is either static or it is provided by a python function.
   public enum ToolResponseOneOf: Codable, Equatable, Sendable {
     /// Optional. Code block which will be executed instead of a real tool call.
-    indirect case codeBlock(CodeBlock?)
+    indirect case codeBlock(CodeBlock)
   }
 
   public static var _anyTypeUrl: Swift.String {

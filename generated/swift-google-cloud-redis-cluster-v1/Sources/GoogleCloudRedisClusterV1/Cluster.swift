@@ -332,12 +332,12 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       importSources = $0
     }
     if let gcsSource = try container.decodeIfPresent(
-      Cluster.GcsBackupSource?.self, forKey: .gcsSource)
+      Cluster.GcsBackupSource.self, forKey: .gcsSource)
     {
       try importSourcesCheckAndSet(.gcsSource(gcsSource))
     }
     if let managedBackupSource = try container.decodeIfPresent(
-      Cluster.ManagedBackupSource?.self, forKey: .managedBackupSource)
+      Cluster.ManagedBackupSource.self, forKey: .managedBackupSource)
     {
       try importSourcesCheckAndSet(.managedBackupSource(managedBackupSource))
     }
@@ -450,7 +450,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
         info = $0
       }
       if let updateInfo = try container.decodeIfPresent(
-        Cluster.StateInfo.UpdateInfo?.self, forKey: .updateInfo)
+        Cluster.StateInfo.UpdateInfo.self, forKey: .updateInfo)
       {
         try infoCheckAndSet(.updateInfo(updateInfo))
       }
@@ -552,7 +552,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public enum InfoOneOf: Codable, Equatable, Sendable {
       /// Describes ongoing update on the cluster when cluster state is UPDATING.
-      indirect case updateInfo(Cluster.StateInfo.UpdateInfo?)
+      indirect case updateInfo(Cluster.StateInfo.UpdateInfo)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -846,9 +846,9 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The Cloud Storage buckets need to be the same region as the clusters.
     /// Read permission is required to import from the provided Cloud Storage
     /// objects.
-    indirect case gcsSource(Cluster.GcsBackupSource?)
+    indirect case gcsSource(Cluster.GcsBackupSource)
     /// Optional. Backups generated and managed by memorystore service.
-    indirect case managedBackupSource(Cluster.ManagedBackupSource?)
+    indirect case managedBackupSource(Cluster.ManagedBackupSource)
   }
 
   public static var _anyTypeUrl: Swift.String {

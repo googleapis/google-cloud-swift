@@ -77,7 +77,7 @@ public struct CurationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       curationConfig = $0
     }
     if let customCuration = try container.decodeIfPresent(
-      CurationConfig.CustomCuration?.self, forKey: .customCuration)
+      CurationConfig.CustomCuration.self, forKey: .customCuration)
     {
       try curationConfigCheckAndSet(.customCuration(customCuration))
     }
@@ -176,7 +176,7 @@ public struct CurationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The curation information for this plugin instance.
   public enum CurationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Custom curation information for this plugin instance.
-    indirect case customCuration(CurationConfig.CustomCuration?)
+    indirect case customCuration(CurationConfig.CustomCuration)
   }
 
   public static var _anyTypeUrl: Swift.String {

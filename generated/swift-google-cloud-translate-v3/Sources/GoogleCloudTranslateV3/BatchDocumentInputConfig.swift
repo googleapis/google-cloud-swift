@@ -68,7 +68,7 @@ public struct BatchDocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
       source = $0
     }
-    if let gcsSource = try container.decodeIfPresent(GcsSource?.self, forKey: .gcsSource) {
+    if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     self.source = source
@@ -113,7 +113,7 @@ public struct BatchDocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackab
     /// The max file size to support for `.pdf` is 1GB and the max page limit is
     /// 1000 pages.
     /// The max file size to support for all input documents is 1GB.
-    indirect case gcsSource(GcsSource?)
+    indirect case gcsSource(GcsSource)
   }
 
   public static var _anyTypeUrl: Swift.String {
