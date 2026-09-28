@@ -352,7 +352,7 @@ func selectGeneratedPackages() -> SelectedPackages {
     return SelectedPackages(
       forDependencies: staticPkgs + shardedExtra,
       forTarget: sharded,
-      includeBaseModules: false
+      includeBaseModules: index == 0
     )
   }
   let fullBuild = env["GOOGLE_CLOUD_SWIFT_FULL_BUILD"] == "true"
