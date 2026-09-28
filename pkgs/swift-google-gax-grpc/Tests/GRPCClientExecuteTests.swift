@@ -389,7 +389,7 @@ import Testing
           deserializer: ProtobufDeserializer<Google_Protobuf_Empty>(),
           serializer: ProtobufSerializer<Google_Protobuf_Empty>()
         ) { request, _ in
-          let tokenValues = request.metadata[stringValues: _HeaderNames.idempotencyToken].map {
+          let tokenValues = request.metadata[stringValues: "x-goog-gcs-idempotency-token"].map {
             String($0)
           }
           let customValues = request.metadata[stringValues: "x-custom-header"].map { String($0) }
@@ -434,7 +434,7 @@ import Testing
       }
 
       let requestOptions = RequestOptions().with {
-        $0.headers[_HeaderNames.idempotencyToken] = "token-12345"
+        $0.headers["x-goog-gcs-idempotency-token"] = "token-12345"
         $0.headers["x-custom-header"] = "custom-val"
       }
       let _: Google_Protobuf_Empty = try await client.execute(
