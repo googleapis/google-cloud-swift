@@ -20,8 +20,8 @@ extension ContinueOnIO: PollingErrorPolicy where P: PollingErrorPolicy & Sendabl
     return inner.onError(state: state, error: error)
   }
 
-  public func onInProgress(state: PollingState) throws {
-    try inner.onInProgress(state: state)
+  public func onInProgress(state: PollingState) -> InProgressResult {
+    inner.onInProgress(state: state)
   }
 }
 

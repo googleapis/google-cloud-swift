@@ -117,7 +117,12 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
     var state = self.initialState
     var pollingState = PollingState()
     while !state.done {
-      try pollingPolicy.onInProgress(state: pollingState)
+      switch pollingPolicy.onInProgress(state: pollingState) {
+      case .continue:
+        break
+      case .exhausted(let error):
+        throw error
+      }
       let delay = backoffPolicy.backoffDelayFor(pollingState)
       try await sleep(delay)
       pollingState.attemptCount += 1

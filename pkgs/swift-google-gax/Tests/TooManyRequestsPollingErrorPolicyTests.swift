@@ -31,14 +31,15 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: permanent()) == .permanent(permanent()))
   }
 
-  @Test func testTooManyRequestsOnInProgress() throws {
+  @Test func testTooManyRequestsOnInProgress() {
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
+      return .continue
     })
     let policy = mock.continueOnTooManyRequests()
 
-    try policy.onInProgress(state: PollingState())
+    #expect(policy.onInProgress(state: PollingState()) == .continue)
     #expect(called.withLock { $0 })
   }
 

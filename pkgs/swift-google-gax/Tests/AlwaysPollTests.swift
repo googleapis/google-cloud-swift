@@ -32,9 +32,9 @@ import Testing
     #expect(p.onError(state: PollingState(), error: httpUnavailable()) == .retry(httpUnavailable()))
   }
 
-  @Test func alwaysPollOnInProgress() throws {
+  @Test func alwaysPollOnInProgress() {
     let p = AlwaysPoll.unbounded()
-    try p.onInProgress(state: PollingState())
+    #expect(p.onInProgress(state: PollingState()) == .continue)
   }
 
   @Test func equatable() {

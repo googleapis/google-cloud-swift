@@ -42,10 +42,10 @@ import Testing
     #expect(p.onError(state: PollingState(), error: e) == PollingResult.permanent(e))
   }
 
-  @Test("Verify AIP194 onInProgress is a no-op")
-  func onInProgress() throws {
+  @Test("Verify AIP194 onInProgress continues")
+  func onInProgress() {
     let p: any PollingErrorPolicy = AIP194.unbounded()
-    try p.onInProgress(state: PollingState())
+    #expect(p.onInProgress(state: PollingState()) == .continue)
   }
 
   static func unavailable() -> RequestError {

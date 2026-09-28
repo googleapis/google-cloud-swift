@@ -55,7 +55,7 @@ public struct BasePollingErrorPolicy: PollingErrorPolicy, Sendable, Equatable {
     self.inner.onError(state: state, error: error)
   }
 
-  public func onInProgress(state: PollingState) throws {
-    try self.inner.onInProgress(state: state)
+  public func onInProgress(state: PollingState) -> InProgressResult {
+    self.inner.onInProgress(state: state)
   }
 }

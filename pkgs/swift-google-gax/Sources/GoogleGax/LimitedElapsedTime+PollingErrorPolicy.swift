@@ -29,10 +29,15 @@ extension LimitedElapsedTime: PollingErrorPolicy where P: PollingErrorPolicy {
     }
   }
 
-  public func onInProgress(state: PollingState) throws {
-    try inner.onInProgress(state: state)
-    if ContinuousClock.now >= state.start + maximumDuration {
-      throw RequestError.exhausted(.elapsedTime(maximumDuration: maximumDuration))
+  public func onInProgress(state: PollingState) -> InProgressResult {
+    switch inner.onInProgress(state: state) {
+    case .exhausted(let e):
+      return .exhausted(e)
+    case .continue:
+      if ContinuousClock.now >= state.start + maximumDuration {
+        return .exhausted(RequestError.exhausted(.elapsedTime(maximumDuration: maximumDuration)))
+      }
+      return .continue
     }
   }
 }

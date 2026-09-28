@@ -12,18 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import GoogleGax
 
-struct MockPollingPolicy: PollingErrorPolicy {
-  var onError: @Sendable (PollingState, RequestError) -> PollingResult = { _, e in .permanent(e) }
-  var onInProgress: @Sendable (PollingState) -> InProgressResult = { _ in .continue }
-
-  func onError(state: PollingState, error: RequestError) -> PollingResult {
-    onError(state, error)
-  }
-
-  func onInProgress(state: PollingState) -> InProgressResult {
-    onInProgress(state)
+extension InProgressResult: Equatable {
+  static func == (lhs: InProgressResult, rhs: InProgressResult) -> Bool {
+    switch (lhs, rhs) {
+    case (.continue, .continue): return true
+    case (.exhausted(let l), .exhausted(let r)): return l == r
+    default: return false
+    }
   }
 }

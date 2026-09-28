@@ -198,6 +198,7 @@ import GoogleRpc
     }
     pollingPolicy.onInProgress = { _ in
       inProgressCount.add(1, ordering: .sequentiallyConsistent)
+      return .continue
     }
 
     let backoffPolicy = MockBackoff()
@@ -237,6 +238,7 @@ import GoogleRpc
     }
     pollingPolicy.onInProgress = { _ in
       inProgressCount.add(1, ordering: .sequentiallyConsistent)
+      return .continue
     }
 
     let backoffPolicy = MockBackoff()
@@ -357,6 +359,30 @@ import GoogleRpc
     #expect(error == RequestError.exhausted(.attemptCount(maximumAttempts: 3)))
     #expect(pollProvider.pollCount == 3)
     #expect(sleepProvider.sleepCount == 3)
+  }
+
+  @Test func waitStopsWhenOnInProgressExhausted() async throws {
+    let exhaustedError = RequestError.exhausted(.attemptCount(maximumAttempts: 0))
+    var pollingPolicy = MockPollingPolicy()
+    pollingPolicy.onInProgress = { _ in .exhausted(exhaustedError) }
+
+    let pollProvider = MockPoller<String>()
+    let sleepProvider = MockSleeper()
+
+    let op = _PollableOperationImpl<String>(
+      initialState: Self.pendingState(),
+      polling: pollingPolicy,
+      backoff: MockBackoff(),
+      poll: pollProvider.poll,
+      sleep: sleepProvider.sleep
+    )
+
+    let error = await #expect(throws: RequestError.self) {
+      try await op.wait()
+    }
+    #expect(error == exhaustedError)
+    #expect(pollProvider.pollCount == 0)
+    #expect(sleepProvider.sleepCount == 0)
   }
 
   @Test func waitScalesExponentialBackoffDelays() async throws {
