@@ -104,10 +104,10 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = AlwaysPoll().withTimeLimit(.seconds(30))
-    let b = AlwaysPoll().withTimeLimit(.seconds(30))
+    let a = AlwaysPoll.unbounded().withTimeLimit(.seconds(30))
+    let b = AlwaysPoll.unbounded().withTimeLimit(.seconds(30))
     #expect(a == b)
-    let c = AlwaysPoll().withTimeLimit(.seconds(60))
+    let c = AlwaysPoll.unbounded().withTimeLimit(.seconds(60))
     #expect(a != c)
   }
 }

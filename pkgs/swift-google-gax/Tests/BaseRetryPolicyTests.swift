@@ -79,7 +79,7 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = BaseRetryPolicy()
+    let a = BaseRetryPolicy.unbounded()
     let b = BaseRetryPolicy.unbounded()
     #expect(a == b)
   }

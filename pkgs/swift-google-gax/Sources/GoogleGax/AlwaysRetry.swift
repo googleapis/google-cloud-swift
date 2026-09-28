@@ -22,7 +22,7 @@ import Foundation
 /// The policy retries all errors. This may be useful if the service guarantees
 /// idempotency, maybe through the use of request ids.
 public struct AlwaysRetry: RetryPolicy, Sendable, Equatable {
-  public init() {}
+  init() {}
 
   /// Creates an unconstrained retry policy that retries all errors indefinitely.
   ///

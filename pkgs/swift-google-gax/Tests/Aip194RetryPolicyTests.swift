@@ -49,7 +49,7 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = Aip194()
+    let a = Aip194.unbounded()
     let b = Aip194.unbounded()
     #expect(a == b)
   }

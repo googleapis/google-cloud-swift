@@ -43,8 +43,8 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = AlwaysPoll().continueOnTooManyRequests()
-    let b = AlwaysPoll().continueOnTooManyRequests()
+    let a = AlwaysPoll.unbounded().continueOnTooManyRequests()
+    let b = AlwaysPoll.unbounded().continueOnTooManyRequests()
     #expect(a == b)
   }
 

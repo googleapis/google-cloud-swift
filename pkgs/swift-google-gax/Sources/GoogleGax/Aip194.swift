@@ -27,7 +27,7 @@ import GoogleRpc
 ///
 /// [AIP-194]: https://google.aip.dev/194
 public struct Aip194: Sendable, Equatable {
-  public init() {}
+  init() {}
 
   /// Creates an unconstrained AIP-194 policy without attempt or time limits.
   ///

@@ -38,7 +38,7 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = AlwaysPoll()
+    let a = AlwaysPoll.unbounded()
     let b = AlwaysPoll.unbounded()
     #expect(a == b)
   }

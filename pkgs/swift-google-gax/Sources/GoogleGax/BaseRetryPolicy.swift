@@ -28,7 +28,7 @@ import GoogleRpc
 public struct BaseRetryPolicy: RetryPolicy, Sendable, Equatable {
   let inner: StrictIdempotency<ContinueOnIO<Aip194>>
 
-  public init() {
+  init() {
     self.inner = Aip194().retryOnIO().strictIdempotency()
   }
 

@@ -59,7 +59,7 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = BasePollingErrorPolicy()
+    let a = BasePollingErrorPolicy.unbounded()
     let b = BasePollingErrorPolicy.unbounded()
     #expect(a == b)
   }

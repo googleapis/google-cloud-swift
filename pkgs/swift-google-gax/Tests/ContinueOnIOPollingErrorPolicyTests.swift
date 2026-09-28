@@ -41,8 +41,8 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = AlwaysPoll().continueOnIoErrors()
-    let b = AlwaysPoll().continueOnIoErrors()
+    let a = AlwaysPoll.unbounded().continueOnIoErrors()
+    let b = AlwaysPoll.unbounded().continueOnIoErrors()
     #expect(a == b)
   }
 }

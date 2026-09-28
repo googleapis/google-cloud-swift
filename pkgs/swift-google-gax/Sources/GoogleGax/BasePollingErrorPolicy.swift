@@ -27,7 +27,7 @@ import GoogleRpc
 public struct BasePollingErrorPolicy: PollingErrorPolicy, Sendable, Equatable {
   let inner: TooManyRequests<ContinueOnIO<Aip194>>
 
-  public init() {
+  init() {
     self.inner = Aip194().continueOnIoErrors().continueOnTooManyRequests()
   }
 
