@@ -49,8 +49,10 @@ clean_flags=(
 )
 clean_targets=(
     GoogleWKT
+    GoogleWKTConvert
     GoogleAuth
     GoogleGax
+    GoogleGaxGRPC
     GoogleCloudStorage
     GoogleCloudSecretManagerV1
     GoogleCloudWorkflowsV1

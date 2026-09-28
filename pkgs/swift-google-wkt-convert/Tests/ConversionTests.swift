@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 @_spi(GoogleCloudInternal) import GoogleWKTConvert
 import SwiftProtobuf
@@ -104,5 +105,25 @@ import Testing
     let unpackedProto = try SwiftProtobuf.Google_Protobuf_Duration(unpackingAny: proto)
     #expect(unpackedProto.seconds == 123)
     #expect(unpackedProto.nanos == 450000000)
+  }
+
+  @Test("Protobuf unknown wire bytes round-trip")
+  func protobufUnknownBytesRoundTrip() throws {
+    // Field 99 (varint wire type 0) = tag (99 << 3) | 0 = 792 = 0x98 0x06, value = 123 (0x7B)
+    let rawUnknownBytes = Data([0x98, 0x06, 0x7B])
+
+    var proto = SwiftProtobuf.Google_Protobuf_Empty()
+    try proto.merge(serializedBytes: rawUnknownBytes)
+    #expect(proto.unknownFields.data == rawUnknownBytes)
+
+    // Simulate conversion from proto to Swift model struct
+    let unknownFields = _UnknownFields(proto: proto.unknownFields.data)
+
+    // Simulate conversion back from Swift model struct to proto
+    var reencodedProto = SwiftProtobuf.Google_Protobuf_Empty()
+    if !unknownFields.proto.isEmpty {
+      try reencodedProto.merge(serializedBytes: unknownFields.proto)
+    }
+    #expect(reencodedProto.unknownFields.data == rawUnknownBytes)
   }
 }

@@ -1287,6 +1287,15 @@ libraries:
         - output: pkgs/swift-google-gax/Sources/GoogleGax/generated
           api_path: ""
           module_type: package-version
+  - name: google-gax-grpc
+    version: 0.3.0
+    copyright_year: "2026"
+    output: pkgs/swift-google-gax-grpc/Sources/GoogleGaxGRPC/generated
+    swift:
+      modules:
+        - output: pkgs/swift-google-gax-grpc/Sources/GoogleGaxGRPC/generated
+          api_path: ""
+          module_type: package-version
   - name: google-iam-admin-v1
     version: 0.3.0
     copyright_year: "2026"
@@ -1403,6 +1412,15 @@ libraries:
           module_type: default
         - output: pkgs/swift-google-wkt/Sources/GoogleWKT/generated/version
           api_path: google/protobuf
+          module_type: package-version
+  - name: google-wkt-convert
+    version: 0.3.0
+    copyright_year: "2026"
+    output: pkgs/swift-google-wkt-convert/Sources/GoogleWKTConvert/generated
+    swift:
+      modules:
+        - output: pkgs/swift-google-wkt-convert/Sources/GoogleWKTConvert/generated
+          api_path: ""
           module_type: package-version
   - name: grafeas-v1
     version: 0.3.0

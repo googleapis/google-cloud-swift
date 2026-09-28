@@ -14,7 +14,6 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleGaxGRPC
 import Testing
 
 @Suite struct RoutingMatcherTests {
@@ -180,12 +179,6 @@ import Testing
       )
 
     #expect(extracted == "projects/p/buckets/b")
-  }
-
-  @Test func grpcTypealiasCompatibility() {
-    let segment: GoogleGaxGRPC._RoutingSegment = .literal("test")
-    #expect(segment == GoogleGax._RoutingSegment.literal("test"))
-    #expect(GoogleGaxGRPC._RoutingMatcher.encode("foo/bar") == "foo%2Fbar")
   }
 
   @Test func restUriPercentEncoding() {

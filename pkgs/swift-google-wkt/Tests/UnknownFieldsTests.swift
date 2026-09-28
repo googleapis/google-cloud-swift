@@ -14,7 +14,6 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
-import SwiftProtobuf
 import Testing
 
 @Suite struct UnknownFieldsTests {
@@ -166,26 +165,5 @@ import Testing
     #expect(wrapper.nested == SampleMessage())
     #expect(wrapper.nested._unknownFields.json.isEmpty)
     #expect(wrapper.nested._unknownFields.proto.isEmpty)
-  }
-
-  @Test("Protobuf unknown wire bytes round-trip")
-  func protobufUnknownBytesRoundTrip() throws {
-    // Field 99 (varint wire type 0) = tag (99 << 3) | 0 = 792 = 0x98 0x06, value = 123 (0x7B)
-    let rawUnknownBytes = Data([0x98, 0x06, 0x7B])
-
-    var proto = SwiftProtobuf.Google_Protobuf_Empty()
-    try proto.merge(serializedBytes: rawUnknownBytes)
-    #expect(proto.unknownFields.data == rawUnknownBytes)
-
-    // Simulate conversion from proto to Swift model struct
-    var model = SampleMessage()
-    model._unknownFields.proto = proto.unknownFields.data
-
-    // Simulate conversion back from Swift model struct to proto
-    var reencodedProto = SwiftProtobuf.Google_Protobuf_Empty()
-    if !model._unknownFields.proto.isEmpty {
-      try reencodedProto.merge(serializedBytes: model._unknownFields.proto)
-    }
-    #expect(reencodedProto.unknownFields.data == rawUnknownBytes)
   }
 }

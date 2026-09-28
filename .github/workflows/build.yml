@@ -52,6 +52,8 @@ jobs:
 
           echo ==== wkt ====
           swift test "${flags[@]}" --package-path pkgs/swift-google-wkt
+          echo ==== wkt-convert ====
+          swift test "${flags[@]}" --package-path pkgs/swift-google-wkt-convert
           if [[ "${RUNNER_OS}" = "Windows" ]]; then
             # The remaining targets won't compile on Windows because
             # async-http-client and grpc-swift-2 depend on swift-nio-extras,
@@ -64,3 +66,6 @@ jobs:
 
           echo ==== gax ====
           swift test "${flags[@]}" --package-path pkgs/swift-google-gax
+
+          echo ==== gax-grpc ====
+          swift test "${flags[@]}" --package-path pkgs/swift-google-gax-grpc

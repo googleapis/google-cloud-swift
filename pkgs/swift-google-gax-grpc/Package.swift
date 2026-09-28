@@ -23,12 +23,12 @@ let swiftSettings: [SwiftSetting] = [
 ]
 
 let package = Package(
-  name: "GoogleGax",
+  name: "GoogleGaxGRPC",
   platforms: [
     .macOS(.v15)
   ],
   products: [
-    .library(name: "GoogleGax", targets: ["GoogleGax"])
+    .library(name: "GoogleGaxGRPC", targets: ["GoogleGaxGRPC"])
   ],
   dependencies: [
     localOrRemotePackage(
@@ -37,8 +37,18 @@ let package = Package(
       from: "0.3.0"
     ),
     localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-gax",
+      path: "pkgs/swift-google-gax",
+      from: "0.3.0"
+    ),
+    localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
+      from: "0.3.0"
+    ),
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-wkt-convert",
+      path: "pkgs/swift-google-wkt-convert",
       from: "0.3.0"
     ),
     localOrRemotePackage(
@@ -46,36 +56,40 @@ let package = Package(
       path: "generated/swift-google-rpc",
       from: "0.3.0"
     ),
-    .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
-    .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
-    .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
-    .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.36.0"),
+    .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.28.2"),
+    .package(url: "https://github.com/grpc/grpc-swift-2.git", from: "2.3.0"),
+    .package(url: "https://github.com/grpc/grpc-swift-nio-transport.git", from: "2.3.0"),
+    .package(url: "https://github.com/grpc/grpc-swift-protobuf.git", from: "2.3.0"),
   ],
   targets: [
     .target(
-      name: "CGoogleGaxCRC32C"
-    ),
-    .target(
-      name: "GoogleGax",
+      name: "GoogleGaxGRPC",
       dependencies: [
-        "CGoogleGaxCRC32C",
-        .product(name: "AsyncHTTPClient", package: "async-http-client"),
         .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "GoogleWKTConvert", package: "swift-google-wkt-convert"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
-        .product(name: "Logging", package: "swift-log"),
-        .product(name: "NIOCore", package: "swift-nio"),
-        .product(name: "NIOFoundationCompat", package: "swift-nio"),
+        .product(name: "GRPCCore", package: "grpc-swift-2"),
+        .product(name: "GRPCNIOTransportHTTP2Posix", package: "grpc-swift-nio-transport"),
+        .product(name: "GRPCProtobuf", package: "grpc-swift-protobuf"),
+        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ],
       swiftSettings: swiftSettings
     ),
     .testTarget(
-      name: "GoogleGaxTests",
+      name: "GoogleGaxGRPCTests",
       dependencies: [
-        "GoogleGax",
-        .product(name: "DequeModule", package: "swift-collections"),
+        "GoogleGaxGRPC",
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "GoogleWKTConvert", package: "swift-google-wkt-convert"),
+        .product(name: "GRPCCore", package: "grpc-swift-2"),
+        .product(name: "GRPCNIOTransportHTTP2Posix", package: "grpc-swift-nio-transport"),
+        .product(name: "GRPCProtobuf", package: "grpc-swift-protobuf"),
+        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ],
       path: "Tests",
       swiftSettings: swiftSettings

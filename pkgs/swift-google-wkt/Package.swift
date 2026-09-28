@@ -28,12 +28,10 @@ let package = Package(
     .macOS(.v15)
   ],
   products: [
-    .library(name: "GoogleWKT", targets: ["GoogleWKT"]),
-    .library(name: "GoogleWKTConvert", targets: ["GoogleWKTConvert"]),
+    .library(name: "GoogleWKT", targets: ["GoogleWKT"])
   ],
   dependencies: [
-    .package(url: "https://github.com/swift-extras/swift-extras-base64", from: "1.0.0"),
-    .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.28.2"),
+    .package(url: "https://github.com/swift-extras/swift-extras-base64", from: "1.0.0")
   ],
 
   targets: [
@@ -44,21 +42,10 @@ let package = Package(
       ],
       swiftSettings: swiftSettings
     ),
-    .target(
-      name: "GoogleWKTConvert",
-      dependencies: [
-        "GoogleWKT",
-        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
-      ],
-      swiftSettings: swiftSettings
-    ),
-
     .testTarget(
       name: "GoogleWKTTests",
       dependencies: [
-        "GoogleWKT",
-        "GoogleWKTConvert",
-        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
+        "GoogleWKT"
       ],
       path: "Tests",
       swiftSettings: swiftSettings

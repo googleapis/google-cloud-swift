@@ -598,11 +598,14 @@ auto-generated client libraries:
 
 - `pkgs/swift-google-auth`: Authentication library (ADC, service account keys,
   workforce pools, metadata server, token caching).
-- `pkgs/swift-google-gax`: Google API Extensions (HTTP transport, gRPC transport,
-  retry loops, backoff policies, throttlers, pagination, LRO pollers, and
-  request options).
-- `pkgs/swift-google-wkt`: Google Well-Known Types, ProtoJSON encoder/decoder,
-  and conversions to `swift-protobuf`.
+- `pkgs/swift-google-gax`: Google API Extensions (HTTP transport, retry loops,
+  backoff policies, throttlers, pagination, LRO pollers, and request options).
+- `pkgs/swift-google-gax-grpc`: gRPC transport client and error mapping for
+  services that communicate over gRPC.
+- `pkgs/swift-google-wkt`: Google Well-Known Types and ProtoJSON
+  encoder/decoder.
+- `pkgs/swift-google-wkt-convert`: Conversions between `GoogleWKT` types and
+  `swift-protobuf` Well-Known Types.
 - `pkgs/swift-google-cloud-storage`: Hand-written client for Google Cloud
   Storage (uploads, downloads, resumption loops, and checksums).
 - `generated/*`: Generated client libraries and shared schema packages (e.g.

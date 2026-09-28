@@ -15,10 +15,16 @@
 import Foundation
 import Testing
 import GoogleAuth
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleGaxGRPC
 
 @Suite struct GRPCClientTests {
+  @Test func grpcTypealiasCompatibility() {
+    let segment: GoogleGaxGRPC._RoutingSegment = .literal("test")
+    #expect(segment == GoogleGax._RoutingSegment.literal("test"))
+    #expect(GoogleGaxGRPC._RoutingMatcher.encode("foo/bar") == "foo%2Fbar")
+  }
+
   @Test func defaultEndpoint() throws {
     let credentials = try Credentials(configuration: .anonymous)
     let options = ClientOptions().with { $0.credentials = credentials }

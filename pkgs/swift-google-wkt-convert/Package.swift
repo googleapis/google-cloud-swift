@@ -23,59 +23,36 @@ let swiftSettings: [SwiftSetting] = [
 ]
 
 let package = Package(
-  name: "GoogleGax",
+  name: "GoogleWKTConvert",
   platforms: [
     .macOS(.v15)
   ],
   products: [
-    .library(name: "GoogleGax", targets: ["GoogleGax"])
+    .library(name: "GoogleWKTConvert", targets: ["GoogleWKTConvert"])
   ],
   dependencies: [
-    localOrRemotePackage(
-      url: "https://github.com/googleapis/swift-google-auth",
-      path: "pkgs/swift-google-auth",
-      from: "0.3.0"
-    ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
       from: "0.3.0"
     ),
-    localOrRemotePackage(
-      url: "https://github.com/googleapis/swift-google-rpc",
-      path: "generated/swift-google-rpc",
-      from: "0.3.0"
-    ),
-    .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
-    .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
-    .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
-    .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.36.0"),
+    .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.28.2"),
   ],
   targets: [
     .target(
-      name: "CGoogleGaxCRC32C"
-    ),
-    .target(
-      name: "GoogleGax",
+      name: "GoogleWKTConvert",
       dependencies: [
-        "CGoogleGaxCRC32C",
-        .product(name: "AsyncHTTPClient", package: "async-http-client"),
-        .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
-        .product(name: "GoogleRpc", package: "swift-google-rpc"),
-        .product(name: "Logging", package: "swift-log"),
-        .product(name: "NIOCore", package: "swift-nio"),
-        .product(name: "NIOFoundationCompat", package: "swift-nio"),
+        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ],
       swiftSettings: swiftSettings
     ),
     .testTarget(
-      name: "GoogleGaxTests",
+      name: "GoogleWKTConvertTests",
       dependencies: [
-        "GoogleGax",
-        .product(name: "DequeModule", package: "swift-collections"),
-        .product(name: "GoogleRpc", package: "swift-google-rpc"),
+        "GoogleWKTConvert",
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ],
       path: "Tests",
       swiftSettings: swiftSettings

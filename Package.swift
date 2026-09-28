@@ -45,7 +45,9 @@ let baseModules: [Target.Dependency] =
   ? [
     .product(name: "GoogleAuth", package: "swift-google-auth"),
     .product(name: "GoogleGax", package: "swift-google-gax"),
+    .product(name: "GoogleGaxGRPC", package: "swift-google-gax-grpc"),
     .product(name: "GoogleWKT", package: "swift-google-wkt"),
+    .product(name: "GoogleWKTConvert", package: "swift-google-wkt-convert"),
   ] : []
 
 // The "mixin" packages, e.g. `swift-google-iam-v1`, are in `generated/`, and
@@ -64,8 +66,18 @@ let baseDependencies: [Package.Dependency] = [
     from: "0.3.0"
   ),
   localOrRemotePackage(
+    url: "https://github.com/googleapis/swift-google-gax-grpc",
+    path: "pkgs/swift-google-gax-grpc",
+    from: "0.3.0"
+  ),
+  localOrRemotePackage(
     url: "https://github.com/googleapis/swift-google-wkt",
     path: "pkgs/swift-google-wkt",
+    from: "0.3.0"
+  ),
+  localOrRemotePackage(
+    url: "https://github.com/googleapis/swift-google-wkt-convert",
+    path: "pkgs/swift-google-wkt-convert",
     from: "0.3.0"
   ),
   // Reference local packages via paths

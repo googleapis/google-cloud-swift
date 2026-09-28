@@ -77,13 +77,15 @@ go run github.com/googleapis/librarian/cmd/librarian@${V} bump --all
 ### Step 3: Update Handwritten `Package.swift` Manifests (If Needed)
 
 If any core or shared packages (such as `swift-google-auth`, `swift-google-gax`,
-`swift-google-wkt`, `swift-google-rpc`, `swift-google-iam-v1`,
-`swift-google-longrunning`, or `swift-google-type`) had their version bumped,
-update their `from:` version constraints in the handwritten `Package.swift`
-manifests:
+`swift-google-gax-grpc`, `swift-google-wkt`, `swift-google-wkt-convert`,
+`swift-google-rpc`, `swift-google-iam-v1`, `swift-google-longrunning`, or
+`swift-google-type`) had their version bumped, update their `from:` version
+constraints in the handwritten `Package.swift` manifests:
 
 - [`Package.swift`](../../Package.swift) (root repository manifest)
 - [`pkgs/swift-google-gax/Package.swift`](../../pkgs/swift-google-gax/Package.swift)
+- [`pkgs/swift-google-gax-grpc/Package.swift`](../../pkgs/swift-google-gax-grpc/Package.swift)
+- [`pkgs/swift-google-wkt-convert/Package.swift`](../../pkgs/swift-google-wkt-convert/Package.swift)
 - [`pkgs/swift-google-cloud-storage/Package.swift`](../../pkgs/swift-google-cloud-storage/Package.swift)
 - [`guide/Package.swift`](../../guide/Package.swift)
 
@@ -158,6 +160,8 @@ files to match the synchronized version:
 sed -i -E 's/from: "0\.[01]\.0-preview"/from: "0.2.0"/g' \
   Package.swift \
   pkgs/swift-google-gax/Package.swift \
+  pkgs/swift-google-gax-grpc/Package.swift \
+  pkgs/swift-google-wkt-convert/Package.swift \
   pkgs/swift-google-cloud-storage/Package.swift \
   guide/Package.swift
 ```

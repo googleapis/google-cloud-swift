@@ -17,14 +17,13 @@ and long-running operations.
 
 ## Libraries & Products
 
-This package provides two products:
-
 - **`GoogleGax`**: Core HTTP transport (using `AsyncHTTPClient` and
   `SwiftNIO`), client and request configuration options (`ClientOptions`,
   `RequestOptions`), retry and backoff loops, circuit breakers, adaptive
   throttlers, LRO polling policies, and error models.
-- **`GoogleGaxGRPC`**: gRPC transport client built on `grpc-swift-2` and
-  `SwiftProtobuf` for services supporting or requiring gRPC.
+
+For gRPC transport support, see the separate `swift-google-gax-grpc`
+(`GoogleGaxGRPC`) package.
 
 ## Features
 
@@ -71,12 +70,6 @@ Then add `GoogleGax` to your target's dependencies:
 
 ```bash
 swift package add-target-dependency GoogleGax <target-name> --package swift-google-gax
-```
-
-If your service uses the gRPC transport, also add `GoogleGaxGRPC`:
-
-```bash
-swift package add-target-dependency GoogleGaxGRPC <target-name> --package swift-google-gax
 ```
 
 ## Usage
