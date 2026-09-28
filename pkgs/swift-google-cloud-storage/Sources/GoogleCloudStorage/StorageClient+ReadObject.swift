@@ -189,7 +189,7 @@ extension GoogleGax._HTTPClient {
       request.setHeader(name: "Range", value: rangeHeader)
     }
 
-    if !(options.enableDecompressiveTranscoding ?? true) {
+    if options.enableDecompressiveTranscoding != true {
       request.setHeader(name: "Accept-Encoding", value: "gzip")
     }
 
