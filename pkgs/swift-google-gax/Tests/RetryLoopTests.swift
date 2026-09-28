@@ -50,14 +50,14 @@ import Testing
   }
 
   @Test func backoffPolicyFromDefault() {
-    let defaultOptions = ClientOptions().with { $0.backoffPolicy = LinearBackoffPolicy() }
+    let defaultOptions = ClientOptions().with { $0.backoffPolicy = MockBackoff() }
     let requestOptions = RequestOptions()
     let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
-    #expect(loop.backoffPolicy is LinearBackoffPolicy)
+    #expect(loop.backoffPolicy is MockBackoff)
   }
 
   @Test func backoffPolicyFromRequest() {
-    let defaultOptions = ClientOptions().with { $0.backoffPolicy = LinearBackoffPolicy() }
+    let defaultOptions = ClientOptions().with { $0.backoffPolicy = MockBackoff() }
     let requestOptions = RequestOptions().with { $0.backoffPolicy = ExponentialBackoff() }
     let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
     #expect(loop.backoffPolicy is ExponentialBackoff)

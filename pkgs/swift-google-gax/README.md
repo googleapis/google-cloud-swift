@@ -39,8 +39,7 @@ For gRPC transport support, see the separate `swift-google-gax-grpc`
     [AIP-194](https://google.aip.dev/194)), `AlwaysRetry`, and `NeverRetry`.
   - Decorators to cap retry attempts (`.withAttemptLimit(_:)`) and total elapsed
     time (`.withTimeLimit(_:)`).
-  - Exponential backoff with randomized jitter (`ExponentialBackoff`) and linear
-    backoff (`LinearBackoffPolicy`).
+  - Exponential backoff with randomized jitter (`ExponentialBackoff`).
   - Overload protection via `AdaptiveThrottler` (stochastic retry suppression
     based on success/failure ratio) and `CircuitBreaker`.
 - **Long-Running Operations (LRO)**: Polling error policies
