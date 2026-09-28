@@ -53,6 +53,7 @@ public struct ServiceError: Sendable, Error, Equatable, CustomStringConvertible 
   }
 }
 
+@_spi(GoogleCloudInternal)
 extension GoogleRpc.Code {
   /// Maps an HTTP status code to the corresponding canonical `GoogleRpc.Code`.
   public init(httpStatusCode: Int) {
