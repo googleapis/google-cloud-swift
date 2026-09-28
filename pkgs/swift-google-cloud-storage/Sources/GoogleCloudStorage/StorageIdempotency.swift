@@ -15,7 +15,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) package import GoogleGax
 
-// MARK: - Idempotency Resolution Helper
+package let idempotencyToken = "x-goog-gcs-idempotency-token"
 
 func resolveStorageIdempotency(
   isIdempotent: Bool,
@@ -26,14 +26,12 @@ func resolveStorageIdempotency(
   let effectiveIdempotency = options.idempotency ?? isIdempotent
   options.idempotency = effectiveIdempotency
   if isMutating && effectiveIdempotency {
-    if options.headers[_HeaderNames.idempotencyToken] == nil {
-      options.headers[_HeaderNames.idempotencyToken] = UUID().uuidString
+    if options.headers[idempotencyToken] == nil {
+      options.headers[idempotencyToken] = UUID().uuidString
     }
   }
   return options
 }
-
-// MARK: - Request Extensions
 
 extension GetBucketRequest {
   package func resolveIdempotency(options: GoogleGax.RequestOptions) -> GoogleGax.RequestOptions {

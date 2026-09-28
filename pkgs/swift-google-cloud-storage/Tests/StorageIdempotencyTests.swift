@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleGax
+import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
@@ -23,160 +23,160 @@ import Testing
 
     let getBucket = GetBucketRequest().resolveIdempotency(options: initialOptions)
     #expect(getBucket.idempotency == true)
-    #expect(getBucket.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(getBucket.headers[idempotencyToken] == nil)
 
     let listBuckets = ListBucketsRequest().resolveIdempotency(options: initialOptions)
     #expect(listBuckets.idempotency == true)
-    #expect(listBuckets.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(listBuckets.headers[idempotencyToken] == nil)
 
     let getObject = GetObjectRequest().resolveIdempotency(options: initialOptions)
     #expect(getObject.idempotency == true)
-    #expect(getObject.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(getObject.headers[idempotencyToken] == nil)
 
     let listObjects = ListObjectsRequest().resolveIdempotency(options: initialOptions)
     #expect(listObjects.idempotency == true)
-    #expect(listObjects.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(listObjects.headers[idempotencyToken] == nil)
   }
 
   @Test func createBucketIsNotIdempotent() {
     let options = CreateBucketRequest().resolveIdempotency(options: RequestOptions())
     #expect(options.idempotency == false)
-    #expect(options.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(options.headers[idempotencyToken] == nil)
   }
 
   @Test func deleteObjectPreconditions() {
     // Without preconditions: not idempotent, no token
     let unconditioned = DeleteObjectRequest().resolveIdempotency(options: RequestOptions())
     #expect(unconditioned.idempotency == false)
-    #expect(unconditioned.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(unconditioned.headers[idempotencyToken] == nil)
 
     // With generation != 0: idempotent, token stamped
     let withGen = DeleteObjectRequest().with { $0.generation = 42 }
       .resolveIdempotency(options: RequestOptions())
     #expect(withGen.idempotency == true)
-    #expect(withGen.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(withGen.headers[idempotencyToken] != nil)
 
     // With ifGenerationMatch: idempotent, token stamped
     let withGenMatch = DeleteObjectRequest().with { $0.ifGenerationMatch = 42 }
       .resolveIdempotency(options: RequestOptions())
     #expect(withGenMatch.idempotency == true)
-    #expect(withGenMatch.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(withGenMatch.headers[idempotencyToken] != nil)
   }
 
   @Test func deleteBucketPreconditions() {
     let unconditioned = DeleteBucketRequest().resolveIdempotency(options: RequestOptions())
     #expect(unconditioned.idempotency == false)
-    #expect(unconditioned.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(unconditioned.headers[idempotencyToken] == nil)
 
     let conditioned = DeleteBucketRequest().with { $0.ifMetagenerationMatch = 1 }
       .resolveIdempotency(options: RequestOptions())
     #expect(conditioned.idempotency == true)
-    #expect(conditioned.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(conditioned.headers[idempotencyToken] != nil)
   }
 
   @Test func updateBucketPreconditions() {
     let unconditioned = UpdateBucketRequest().resolveIdempotency(options: RequestOptions())
     #expect(unconditioned.idempotency == false)
-    #expect(unconditioned.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(unconditioned.headers[idempotencyToken] == nil)
 
     let conditioned = UpdateBucketRequest().with { $0.ifMetagenerationMatch = 1 }
       .resolveIdempotency(options: RequestOptions())
     #expect(conditioned.idempotency == true)
-    #expect(conditioned.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(conditioned.headers[idempotencyToken] != nil)
   }
 
   @Test func updateObjectPreconditions() {
     let unconditioned = UpdateObjectRequest().resolveIdempotency(options: RequestOptions())
     #expect(unconditioned.idempotency == false)
-    #expect(unconditioned.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(unconditioned.headers[idempotencyToken] == nil)
 
     let withGenMatch = UpdateObjectRequest().with { $0.ifGenerationMatch = 10 }
       .resolveIdempotency(options: RequestOptions())
     #expect(withGenMatch.idempotency == true)
-    #expect(withGenMatch.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(withGenMatch.headers[idempotencyToken] != nil)
 
     let withMetaMatch = UpdateObjectRequest().with { $0.ifMetagenerationMatch = 2 }
       .resolveIdempotency(options: RequestOptions())
     #expect(withMetaMatch.idempotency == true)
-    #expect(withMetaMatch.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(withMetaMatch.headers[idempotencyToken] != nil)
   }
 
   @Test func restoreObjectPreconditions() {
     let unconditioned = RestoreObjectRequest().resolveIdempotency(options: RequestOptions())
     #expect(unconditioned.idempotency == false)
-    #expect(unconditioned.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(unconditioned.headers[idempotencyToken] == nil)
 
     let withGenMatch = RestoreObjectRequest().with { $0.ifGenerationMatch = 1 }
       .resolveIdempotency(options: RequestOptions())
     #expect(withGenMatch.idempotency == true)
-    #expect(withGenMatch.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(withGenMatch.headers[idempotencyToken] != nil)
 
     let withMetaMatch = RestoreObjectRequest().with { $0.ifMetagenerationMatch = 1 }
       .resolveIdempotency(options: RequestOptions())
     #expect(withMetaMatch.idempotency == true)
-    #expect(withMetaMatch.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(withMetaMatch.headers[idempotencyToken] != nil)
   }
 
   @Test func composeObjectPreconditions() {
     let unconditioned = ComposeObjectRequest().resolveIdempotency(options: RequestOptions())
     #expect(unconditioned.idempotency == false)
-    #expect(unconditioned.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(unconditioned.headers[idempotencyToken] == nil)
 
     let conditioned = ComposeObjectRequest().with { $0.ifGenerationMatch = 1 }
       .resolveIdempotency(options: RequestOptions())
     #expect(conditioned.idempotency == true)
-    #expect(conditioned.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(conditioned.headers[idempotencyToken] != nil)
   }
 
   @Test func rewriteObjectPreconditions() {
     let unconditioned = RewriteObjectRequest().resolveIdempotency(options: RequestOptions())
     #expect(unconditioned.idempotency == false)
-    #expect(unconditioned.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(unconditioned.headers[idempotencyToken] == nil)
 
     let conditioned = RewriteObjectRequest().with { $0.ifGenerationMatch = 1 }
       .resolveIdempotency(options: RequestOptions())
     #expect(conditioned.idempotency == true)
-    #expect(conditioned.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(conditioned.headers[idempotencyToken] != nil)
   }
 
   @Test func moveObjectPreconditions() {
     let unconditioned = MoveObjectRequest().resolveIdempotency(options: RequestOptions())
     #expect(unconditioned.idempotency == false)
-    #expect(unconditioned.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(unconditioned.headers[idempotencyToken] == nil)
 
     let sourceOnly = MoveObjectRequest().with { $0.ifSourceGenerationMatch = 1 }
       .resolveIdempotency(options: RequestOptions())
     #expect(sourceOnly.idempotency == false)
-    #expect(sourceOnly.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(sourceOnly.headers[idempotencyToken] == nil)
 
     let destOnly = MoveObjectRequest().with { $0.ifGenerationMatch = 1 }
       .resolveIdempotency(options: RequestOptions())
     #expect(destOnly.idempotency == false)
-    #expect(destOnly.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(destOnly.headers[idempotencyToken] == nil)
 
     let both = MoveObjectRequest().with {
       $0.ifSourceGenerationMatch = 1
       $0.ifGenerationMatch = 2
     }.resolveIdempotency(options: RequestOptions())
     #expect(both.idempotency == true)
-    #expect(both.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(both.headers[idempotencyToken] != nil)
   }
 
   @Test func lockBucketRetentionPolicyPreconditions() {
     let unconditioned = LockBucketRetentionPolicyRequest().resolveIdempotency(
       options: RequestOptions())
     #expect(unconditioned.idempotency == false)
-    #expect(unconditioned.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(unconditioned.headers[idempotencyToken] == nil)
 
     let zero = LockBucketRetentionPolicyRequest().with { $0.ifMetagenerationMatch = 0 }
       .resolveIdempotency(options: RequestOptions())
     #expect(zero.idempotency == false)
-    #expect(zero.headers[_HeaderNames.idempotencyToken] == nil)
+    #expect(zero.headers[idempotencyToken] == nil)
 
     let positive = LockBucketRetentionPolicyRequest().with { $0.ifMetagenerationMatch = 5 }
       .resolveIdempotency(options: RequestOptions())
     #expect(positive.idempotency == true)
-    #expect(positive.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(positive.headers[idempotencyToken] != nil)
   }
 
   @Test func explicitIdempotencyOverrideIsPreserved() {
@@ -184,7 +184,7 @@ import Testing
     let overrideTrue = RequestOptions().with { $0.idempotency = true }
     let resTrue = DeleteObjectRequest().resolveIdempotency(options: overrideTrue)
     #expect(resTrue.idempotency == true)
-    #expect(resTrue.headers[_HeaderNames.idempotencyToken] != nil)
+    #expect(resTrue.headers[idempotencyToken] != nil)
 
     // Explicit override false on an idempotent request
     let overrideFalse = RequestOptions().with { $0.idempotency = false }
@@ -195,11 +195,11 @@ import Testing
   @Test func existingIdempotencyTokenIsNotOverwritten() {
     let existingToken = "custom-token-xyz"
     let options = RequestOptions().with {
-      $0.headers[_HeaderNames.idempotencyToken] = existingToken
+      $0.headers[idempotencyToken] = existingToken
     }
     let res = DeleteObjectRequest().with { $0.ifGenerationMatch = 1 }
       .resolveIdempotency(options: options)
-    #expect(res.headers[_HeaderNames.idempotencyToken] == existingToken)
+    #expect(res.headers[idempotencyToken] == existingToken)
   }
 
   @Test func retryStubSharesSameTokenAcrossRetries() async throws {
@@ -208,7 +208,7 @@ import Testing
       var callCount = 0
 
       func record(options: RequestOptions) -> Bool {
-        tokens.append(options.headers[_HeaderNames.idempotencyToken])
+        tokens.append(options.headers[idempotencyToken])
         callCount += 1
         return callCount >= 2
       }
