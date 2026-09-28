@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 import GoogleWKT
 import GoogleType
 import StorageControlProtos
