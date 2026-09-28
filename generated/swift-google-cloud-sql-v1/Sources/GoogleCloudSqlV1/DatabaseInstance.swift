@@ -244,6 +244,10 @@
     /// false, instance metadata is not sent to the Database Center.
     public var databaseCenterIntegrationEnabled: GoogleWKT.WKTBoolValue? = nil
 
+    /// Optional. State of the Database Center integration for this instance.
+    /// When unspecified, Database Center integration is enabled by default.
+    public var databaseCenterIntegration: DatabaseInstance.DatabaseCenterIntegration? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `DatabaseInstance`.
@@ -325,6 +329,7 @@
       static let dnsNames = CodingKeys(stringValue: "dnsNames")
       static let databaseCenterIntegrationEnabled = CodingKeys(
         stringValue: "databaseCenterIntegrationEnabled")
+      static let databaseCenterIntegration = CodingKeys(stringValue: "databaseCenterIntegration")
 
       static let _knownKeys: Set<Swift.String> = [
         "kind",
@@ -379,6 +384,7 @@
         "nodes",
         "dnsNames",
         "databaseCenterIntegrationEnabled",
+        "databaseCenterIntegration",
       ]
     }
 
@@ -530,6 +536,8 @@
       }
       self.databaseCenterIntegrationEnabled = try container.decodeIfPresent(
         GoogleWKT.WKTBoolValue.self, forKey: .databaseCenterIntegrationEnabled)
+      self.databaseCenterIntegration = try container.decodeIfPresent(
+        DatabaseInstance.DatabaseCenterIntegration.self, forKey: .databaseCenterIntegration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -599,6 +607,8 @@
       try container.encode(self.dnsNames, forKey: .dnsNames)
       try container.encodeIfPresent(
         self.databaseCenterIntegrationEnabled, forKey: .databaseCenterIntegrationEnabled)
+      try container.encodeIfPresent(
+        self.databaseCenterIntegration, forKey: .databaseCenterIntegration)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -1395,6 +1405,124 @@
         case .unspecified: return try container.encode("SQL_NETWORK_ARCHITECTURE_UNSPECIFIED")
         case .newNetworkArchitecture: return try container.encode("NEW_NETWORK_ARCHITECTURE")
         case .oldNetworkArchitecture: return try container.encode("OLD_NETWORK_ARCHITECTURE")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// State of the integration with Database Center.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum DatabaseCenterIntegration: Codable, Equatable, Hashable, Sendable {
+      /// Default value. The integration state is unspecified. When unspecified,
+      /// Database Center integration is enabled by default.
+      case unspecified
+      /// Database Center integration is enabled.
+      case enabled
+      /// Database Center integration is disabled.
+      case disabled
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .unspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .unspecified: return 0
+        case .enabled: return 1
+        case .disabled: return 2
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .unspecified: return "DATABASE_CENTER_INTEGRATION_UNSPECIFIED"
+        case .enabled: return "ENABLED"
+        case .disabled: return "DISABLED"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:DatabaseCenterIntegration/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "DATABASE_CENTER_INTEGRATION_UNSPECIFIED": self = .unspecified
+        case "ENABLED": self = .enabled
+        case "DISABLED": self = .disabled
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:DatabaseCenterIntegration/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .unspecified
+        case 1: self = .enabled
+        case 2: self = .disabled
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .unspecified: return try container.encode("DATABASE_CENTER_INTEGRATION_UNSPECIFIED")
+        case .enabled: return try container.encode("ENABLED")
+        case .disabled: return try container.encode("DISABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

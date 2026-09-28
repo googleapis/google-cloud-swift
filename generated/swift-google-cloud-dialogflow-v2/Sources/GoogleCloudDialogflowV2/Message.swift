@@ -27,7 +27,8 @@
     /// ID>/conversations/<Conversation ID>/messages/<Message ID>`.
     public var name: Swift.String = Swift.String()
 
-    /// Required. The message content.
+    /// Optional. The message content.
+    /// Only one of `content` and `companion_query` should be set - not both.
     public var content: Swift.String = Swift.String()
 
     /// Optional. The message language.

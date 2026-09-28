@@ -28,20 +28,9 @@ import Foundation
 public struct DecreaseTokenIssuanceLimit: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Optional. Deprecated: Use
-  /// [token_manager_id][google.cloud.universalledger.v1.DecreaseTokenIssuanceLimit.token_manager_id]
-  /// instead. The ID of the institutional account whose mint limit is to be
+  /// Required. The ID of the institutional account whose mint limit is to be
   /// lowered. This account must be a token manager for the transaction to be
   /// valid.
-  ///
-  /// [google.cloud.universalledger.v1.DecreaseTokenIssuanceLimit.token_manager_id]: <doc:DecreaseTokenIssuanceLimit/tokenManagerId>
-  @available(*, deprecated)
-  public var tokenManager: Entity? = nil
-
-  /// Optional. The ID of the institutional account whose mint limit is to be
-  /// lowered. This account must be a token manager for the transaction to be
-  /// valid. One of `token_manager_id` (preferred) or `token_manager`
-  /// (deprecated) must be specified.
   public var tokenManagerId: Swift.String = Swift.String()
 
   /// Required. The amount by which to lower the limit. The amount must be
@@ -59,7 +48,7 @@ public struct DecreaseTokenIssuanceLimit: Codable, Equatable, GoogleWKT._AnyPack
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = DecreaseTokenIssuanceLimit().with { $0.tokenManager = ... }
+  /// let value = DecreaseTokenIssuanceLimit().with { $0.tokenManagerId = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -73,23 +62,17 @@ public struct DecreaseTokenIssuanceLimit: Codable, Equatable, GoogleWKT._AnyPack
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let tokenManager = CodingKeys(stringValue: "tokenManager")
     static let tokenManagerId = CodingKeys(stringValue: "tokenManagerId")
     static let amount = CodingKeys(stringValue: "amount")
 
     static let _knownKeys: Set<Swift.String> = [
-      "tokenManager",
       "tokenManagerId",
       "amount",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.tokenManager = try container.decodeIfPresent(Entity.self, forKey: .tokenManager)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tokenManagerId) {
       self.tokenManagerId = value
     }
@@ -100,12 +83,8 @@ public struct DecreaseTokenIssuanceLimit: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.tokenManager, forKey: .tokenManager)
     try container.encode(self.tokenManagerId, forKey: .tokenManagerId)
     try container.encodeIfPresent(self.amount, forKey: .amount)
     for (key, value) in self._unknownFields.json {

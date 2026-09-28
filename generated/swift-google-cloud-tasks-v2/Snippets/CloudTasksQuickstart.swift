@@ -20,6 +20,7 @@ import Foundation
 import GoogleCloudTasksV2
 import GoogleCloudLocation
 import GoogleIAMV1
+import GoogleLongRunning
 import GoogleWKT
 
 func sample(projectId: String, locationId: String, ) async throws {

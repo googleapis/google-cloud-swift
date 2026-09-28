@@ -21,28 +21,11 @@ import Foundation
 public struct InvokeContractMethod: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Optional. Deprecated: Use
-  /// [contract_id][google.cloud.universalledger.v1.InvokeContractMethod.contract_id]
-  /// instead. ID of the contract to run.
-  ///
-  /// [google.cloud.universalledger.v1.InvokeContractMethod.contract_id]: <doc:InvokeContractMethod/contractId>
-  @available(*, deprecated)
-  public var contract: Entity? = nil
-
-  /// Optional. The ID of the contract to run. One of `contract` or `contract_id`
-  /// must be specified.
+  /// Required. The ID of the contract to run.
   public var contractId: Swift.String = Swift.String()
 
   /// Name of the method to run.
   public var methodName: Swift.String = Swift.String()
-
-  /// Optional. Immutable. Deprecated: Use
-  /// [method_arguments][google.cloud.universalledger.v1.InvokeContractMethod.method_arguments]
-  /// instead. Arguments for the method.
-  ///
-  /// [google.cloud.universalledger.v1.InvokeContractMethod.method_arguments]: <doc:InvokeContractMethod/methodArguments>
-  @available(*, deprecated)
-  public var arguments: [Swift.String: Value] = [:]
 
   /// Optional. Immutable. Contains arguments to pass to the method.
   public var methodArguments: [Swift.String: Value] = [:]
@@ -62,7 +45,7 @@ public struct InvokeContractMethod: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = InvokeContractMethod().with { $0.contract = ... }
+  /// let value = InvokeContractMethod().with { $0.contractId = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -76,37 +59,26 @@ public struct InvokeContractMethod: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let contract = CodingKeys(stringValue: "contract")
     static let contractId = CodingKeys(stringValue: "contractId")
     static let methodName = CodingKeys(stringValue: "methodName")
-    static let arguments = CodingKeys(stringValue: "arguments")
     static let methodArguments = CodingKeys(stringValue: "methodArguments")
     static let payment = CodingKeys(stringValue: "payment")
 
     static let _knownKeys: Set<Swift.String> = [
-      "contract",
       "contractId",
       "methodName",
-      "arguments",
       "methodArguments",
       "payment",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.contract = try container.decodeIfPresent(Entity.self, forKey: .contract)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contractId) {
       self.contractId = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .methodName) {
       self.methodName = value
-    }
-    if let value = try container.decodeIfPresent([Swift.String: Value].self, forKey: .arguments) {
-      self.arguments = value
     }
     if let value = try container.decodeIfPresent(
       [Swift.String: Value].self, forKey: .methodArguments)
@@ -120,15 +92,10 @@ public struct InvokeContractMethod: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.contract, forKey: .contract)
     try container.encode(self.contractId, forKey: .contractId)
     try container.encode(self.methodName, forKey: .methodName)
-    try container.encode(self.arguments, forKey: .arguments)
     try container.encode(self.methodArguments, forKey: .methodArguments)
     try container.encodeIfPresent(self.payment, forKey: .payment)
     for (key, value) in self._unknownFields.json {

@@ -84,6 +84,9 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   /// format of this field is a JSON string.
   public var internalMetadata: Swift.String? = nil
 
+  /// Optional. Includes configuration options for end user authentication.
+  public var endUserAuthConfig: Repository.EndUserAuthConfig? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `Repository`.
@@ -124,6 +127,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
     static let dataEncryptionState = CodingKeys(stringValue: "dataEncryptionState")
     static let internalMetadata = CodingKeys(stringValue: "internalMetadata")
+    static let endUserAuthConfig = CodingKeys(stringValue: "endUserAuthConfig")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -140,6 +144,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       "kmsKeyName",
       "dataEncryptionState",
       "internalMetadata",
+      "endUserAuthConfig",
     ]
   }
 
@@ -184,6 +189,8 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       DataEncryptionState.self, forKey: .dataEncryptionState)
     self.internalMetadata = try container.decodeIfPresent(
       Swift.String.self, forKey: .internalMetadata)
+    self.endUserAuthConfig = try container.decodeIfPresent(
+      Repository.EndUserAuthConfig.self, forKey: .endUserAuthConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -208,6 +215,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
     try container.encodeIfPresent(self.dataEncryptionState, forKey: .dataEncryptionState)
     try container.encodeIfPresent(self.internalMetadata, forKey: .internalMetadata)
+    try container.encodeIfPresent(self.endUserAuthConfig, forKey: .endUserAuthConfig)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -644,6 +652,72 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataform.v1.Repository.WorkspaceCompilationOverrides"
+    }
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Includes configuration options for repository end user authentication.
+  public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Optional. OAuth configuration for repository end user authentication.
+    public var oauthConfig: OAuthConfig? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `EndUserAuthConfig`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = EndUserAuthConfig().with { $0.oauthConfig = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let oauthConfig = CodingKeys(stringValue: "oauthConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "oauthConfig"
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.oauthConfig = try container.decodeIfPresent(OAuthConfig.self, forKey: .oauthConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.oauthConfig, forKey: .oauthConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.cloud.dataform.v1.Repository.EndUserAuthConfig"
     }
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)

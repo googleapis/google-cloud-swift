@@ -86,26 +86,36 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
     try await self.inner.submitOperationalTransaction(request: request, options: options)
   }
 
-  /// Queries the state of a transaction. This method can be called for any
-  /// transaction submitted to the network. The returned transaction details may
-  /// vary between calls, because an endpoint may route requests to different
-  /// validators within the network and region, and the validators may not be at
-  /// the same round ID at any given time.
+  /// Deprecated: Use the
+  /// [QueryData][google.cloud.universalledger.v1.UniversalLedger.QueryData]
+  /// method instead. Queries the state of a transaction. This method can be
+  /// called for any transaction submitted to the network. The returned
+  /// transaction details may vary between calls, because an endpoint may route
+  /// requests to different validators within the network and region, and the
+  /// validators may not be at the same round ID at any given time.
+  ///
+  /// [google.cloud.universalledger.v1.UniversalLedger.QueryData]: <doc:UniversalLedgerClient/queryData(request:options:)>
   ///
   /// @Snippet(path: "UniversalLedger_QueryTransactionState")
+  @available(*, deprecated)
   public func queryTransactionState(
     request: QueryTransactionStateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.QueryTransactionStateResponse {
     try await self.inner.queryTransactionState(request: request, options: options)
   }
 
-  /// Queries all the information stored about an account in the network.
-  /// The returned account details may vary between calls, because an
+  /// Deprecated: Use the
+  /// [QueryData][google.cloud.universalledger.v1.UniversalLedger.QueryData]
+  /// method instead. Queries all the information stored about an account in the
+  /// network. The returned account details may vary between calls, because an
   /// endpoint may route requests to different validators within the network and
   /// region, and the validators may not be at the same round ID at any given
   /// time.
   ///
+  /// [google.cloud.universalledger.v1.UniversalLedger.QueryData]: <doc:UniversalLedgerClient/queryData(request:options:)>
+  ///
   /// @Snippet(path: "UniversalLedger_QueryAccount")
+  @available(*, deprecated)
   public func queryAccount(
     request: QueryAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse {
@@ -156,11 +166,13 @@ extension Clients {
     ) async throws -> GoogleCloudUniversalLedgerV1.SubmitOperationalTransactionResponse
 
     /// See `UniversalLedgerClient.queryTransactionState`.
+    @available(*, deprecated)
     func queryTransactionState(
       request: QueryTransactionStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryTransactionStateResponse
 
     /// See `UniversalLedgerClient.queryAccount`.
+    @available(*, deprecated)
     func queryAccount(
       request: QueryAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse
@@ -284,18 +296,21 @@ extension Clients.UniversalLedgerProtocol {
     return try await self.submitOperationalTransaction(request: request)
   }
 
+  @available(*, deprecated)
   public func queryTransactionState(request: QueryTransactionStateRequest) async throws
     -> GoogleCloudUniversalLedgerV1.QueryTransactionStateResponse
   {
     try await self.queryTransactionState(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func queryTransactionState(
     request: QueryTransactionStateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.QueryTransactionStateResponse {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func queryTransactionState(
     endpoint: Swift.String,
     transactionDigestHex: Swift.String,
@@ -307,18 +322,21 @@ extension Clients.UniversalLedgerProtocol {
     return try await self.queryTransactionState(request: request)
   }
 
+  @available(*, deprecated)
   public func queryAccount(request: QueryAccountRequest) async throws
     -> GoogleCloudUniversalLedgerV1.QueryAccountResponse
   {
     try await self.queryAccount(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func queryAccount(
     request: QueryAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func queryAccount(
     endpoint: Swift.String,
     accountId: Swift.String,

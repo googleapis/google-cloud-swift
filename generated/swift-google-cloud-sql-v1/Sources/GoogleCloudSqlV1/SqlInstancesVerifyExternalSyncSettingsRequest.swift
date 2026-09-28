@@ -53,6 +53,9 @@
     /// this field is empty, then migrate all objects.
     public var selectedObjects: [ExternalSyncSelectedObject] = []
 
+    /// Optional. Region of the Cloud SQL instance.
+    public var location: Swift.String = Swift.String()
+
     public var syncConfig: SyncConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -88,6 +91,7 @@
       static let migrationType = CodingKeys(stringValue: "migrationType")
       static let syncParallelLevel = CodingKeys(stringValue: "syncParallelLevel")
       static let selectedObjects = CodingKeys(stringValue: "selectedObjects")
+      static let location = CodingKeys(stringValue: "location")
 
       static let _knownKeys: Set<Swift.String> = [
         "instance",
@@ -99,6 +103,7 @@
         "migrationType",
         "syncParallelLevel",
         "selectedObjects",
+        "location",
       ]
     }
 
@@ -137,6 +142,9 @@
       {
         self.selectedObjects = value
       }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
 
       var syncConfig: SyncConfigOneOf? = nil
       let syncConfigCheckAndSet = {
@@ -170,6 +178,7 @@
       try container.encode(self.migrationType, forKey: .migrationType)
       try container.encode(self.syncParallelLevel, forKey: .syncParallelLevel)
       try container.encode(self.selectedObjects, forKey: .selectedObjects)
+      try container.encode(self.location, forKey: .location)
 
       if let choice = self.syncConfig {
         switch choice {

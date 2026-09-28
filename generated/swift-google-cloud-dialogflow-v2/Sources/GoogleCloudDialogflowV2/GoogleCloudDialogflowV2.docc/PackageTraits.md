@@ -18,6 +18,7 @@ To enable additional traits alongside the defaults, specify them in `Package.swi
 |---|:---:|---|
 | `Agents` | Yes | ``AgentsClient`` |
 | `AnswerRecords` | No | ``AnswerRecordsClient`` |
+| `CompanionAgents` | No | ``CompanionAgentsClient`` |
 | `Contexts` | No | ``ContextsClient`` |
 | `ConversationDatasets` | No | ``ConversationDatasetsClient`` |
 | `ConversationModels` | No | ``ConversationModelsClient`` |

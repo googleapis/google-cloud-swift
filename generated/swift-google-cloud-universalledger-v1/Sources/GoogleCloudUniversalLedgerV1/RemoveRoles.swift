@@ -22,16 +22,8 @@ import Foundation
 public struct RemoveRoles: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Optional. Deprecated: Use
-  /// [account_id][google.cloud.universalledger.v1.RemoveRoles.account_id]
-  /// instead. The ID of the account to be modified.
-  ///
-  /// [google.cloud.universalledger.v1.RemoveRoles.account_id]: <doc:RemoveRoles/accountId>
-  @available(*, deprecated)
-  public var account: Entity? = nil
-
-  /// Optional. The ID of the account to be modified. One of `account` or
-  /// `account_id` must be specified. The value is limited to 60 characters.
+  /// Required. The ID of the account to be modified.
+  /// The value is limited to 60 characters.
   public var accountId: Swift.String = Swift.String()
 
   /// Required. The roles to be removed.
@@ -47,7 +39,7 @@ public struct RemoveRoles: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = RemoveRoles().with { $0.account = ... }
+  /// let value = RemoveRoles().with { $0.accountId = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -61,23 +53,17 @@ public struct RemoveRoles: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let account = CodingKeys(stringValue: "account")
     static let accountId = CodingKeys(stringValue: "accountId")
     static let roles = CodingKeys(stringValue: "roles")
 
     static let _knownKeys: Set<Swift.String> = [
-      "account",
       "accountId",
       "roles",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.account = try container.decodeIfPresent(Entity.self, forKey: .account)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountId) {
       self.accountId = value
     }
@@ -90,12 +76,8 @@ public struct RemoveRoles: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.account, forKey: .account)
     try container.encode(self.accountId, forKey: .accountId)
     try container.encode(self.roles, forKey: .roles)
     for (key, value) in self._unknownFields.json {

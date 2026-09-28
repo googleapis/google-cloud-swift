@@ -21,27 +21,8 @@ import Foundation
 public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Optional. The transaction sender.
-  /// Deprecated: Use
-  /// [sender_id][google.cloud.universalledger.v1.ClientTransaction.sender_id]
-  /// instead.
-  ///
-  /// [google.cloud.universalledger.v1.ClientTransaction.sender_id]: <doc:ClientTransaction/senderId>
-  @available(*, deprecated)
-  public var source: Entity? = nil
-
-  /// Optional. The ID of the account that is sending this transaction.
-  /// One of `source` or `sender_id` must be set.
+  /// Required. The ID of the account that is sending this transaction.
   public var senderId: Swift.String = Swift.String()
-
-  /// Optional. Accounts that, in addition to the sender, have signed this
-  /// transaction. Deprecated: Use
-  /// [other_signatory_ids][google.cloud.universalledger.v1.ClientTransaction.other_signatory_ids]
-  /// instead.
-  ///
-  /// [google.cloud.universalledger.v1.ClientTransaction.other_signatory_ids]: <doc:ClientTransaction/otherSignatoryIds>
-  @available(*, deprecated)
-  public var signatories: [Entity] = []
 
   /// Optional. The IDs of accounts that, in addition to the sender, have signed
   /// this transaction.
@@ -64,6 +45,11 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// chain from being submitted on its own.
   public var chainedUnit: Swift.Bool = Swift.Bool()
 
+  /// Required. The name of the network this transaction is intended for, such as
+  /// `user-testing`. The transaction will be rejected if the name does not
+  /// match that of the network processing the transaction.
+  public var network: Swift.String = Swift.String()
+
   /// The client transaction-specific message.
   public var kind: KindOneOf? = nil
 
@@ -77,7 +63,7 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = ClientTransaction().with { $0.app = ... }
+  /// let value = ClientTransaction().with { $0.operational = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -91,7 +77,6 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let app = CodingKeys(stringValue: "app")
     static let operational = CodingKeys(stringValue: "operational")
     static let transferPlatformOperatorTransaction = CodingKeys(
       stringValue: "transferPlatformOperatorTransaction")
@@ -136,15 +121,13 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
     static let replaceSigningPublicKeyTransaction = CodingKeys(
       stringValue: "replaceSigningPublicKeyTransaction")
     static let chain = CodingKeys(stringValue: "chain")
-    static let source = CodingKeys(stringValue: "source")
     static let senderId = CodingKeys(stringValue: "senderId")
-    static let signatories = CodingKeys(stringValue: "signatories")
     static let otherSignatoryIds = CodingKeys(stringValue: "otherSignatoryIds")
     static let sequenceNumber = CodingKeys(stringValue: "sequenceNumber")
     static let chainedUnit = CodingKeys(stringValue: "chainedUnit")
+    static let network = CodingKeys(stringValue: "network")
 
     static let _knownKeys: Set<Swift.String> = [
-      "app",
       "operational",
       "transferPlatformOperatorTransaction",
       "createCurrencyOperatorTransaction",
@@ -172,26 +155,18 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
       "removeSigningPublicKeyTransaction",
       "replaceSigningPublicKeyTransaction",
       "chain",
-      "source",
       "senderId",
-      "signatories",
       "otherSignatoryIds",
       "sequenceNumber",
       "chainedUnit",
+      "network",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.source = try container.decodeIfPresent(Entity.self, forKey: .source)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .senderId) {
       self.senderId = value
-    }
-    if let value = try container.decodeIfPresent([Entity].self, forKey: .signatories) {
-      self.signatories = value
     }
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .otherSignatoryIds) {
       self.otherSignatoryIds = value
@@ -201,6 +176,9 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .chainedUnit) {
       self.chainedUnit = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
+      self.network = value
     }
 
     var kind: KindOneOf? = nil
@@ -212,9 +190,6 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
           ))
       }
       kind = $0
-    }
-    if let app = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .app) {
-      try kindCheckAndSet(.app(app))
     }
     if let operational = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .operational)
     {
@@ -355,22 +330,16 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.source, forKey: .source)
     try container.encode(self.senderId, forKey: .senderId)
-    try container.encode(self.signatories, forKey: .signatories)
     try container.encode(self.otherSignatoryIds, forKey: .otherSignatoryIds)
     try container.encode(self.sequenceNumber, forKey: .sequenceNumber)
     try container.encode(self.chainedUnit, forKey: .chainedUnit)
+    try container.encode(self.network, forKey: .network)
 
     if let choice = self.kind {
       switch choice {
-      case .app(let value):
-        try container.encode(value, forKey: .app)
       case .operational(let value):
         try container.encode(value, forKey: .operational)
       case .transferPlatformOperatorTransaction(let value):
@@ -434,64 +403,6 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The client transaction-specific message.
   public enum KindOneOf: Codable, Equatable, Sendable {
-    /// Optional. Deprecated: Use one of the message specific fields instead.
-    /// A client transaction-specific message. Should be any one of:
-    ///
-    /// <!--
-    /// clang-format off
-    /// -->
-    /// - [TransferPlatformOperator][google.cloud.universalledger.v1.TransferPlatformOperator]
-    /// - [CreateCurrencyOperator][google.cloud.universalledger.v1.CreateCurrencyOperator]
-    /// - [TransferCurrencyOperator][google.cloud.universalledger.v1.TransferCurrencyOperator]
-    /// - [CreateAccountManager][google.cloud.universalledger.v1.CreateAccountManager]
-    /// - [CreateTokenManager][google.cloud.universalledger.v1.CreateTokenManager]
-    /// - [CreateClearinghouse][google.cloud.universalledger.v1.CreateClearinghouse]
-    /// - [IncreaseTokenIssuanceLimit][google.cloud.universalledger.v1.IncreaseTokenIssuanceLimit]
-    /// - [DecreaseTokenIssuanceLimit][google.cloud.universalledger.v1.DecreaseTokenIssuanceLimit]
-    /// - [SettlementRequest][google.cloud.universalledger.v1.SettlementRequest]
-    /// - [Mint][google.cloud.universalledger.v1.Mint]
-    /// - [Burn][google.cloud.universalledger.v1.Burn]
-    /// - [CreateAccount][google.cloud.universalledger.v1.CreateAccount]
-    /// - [DeactivateAccount][google.cloud.universalledger.v1.DeactivateAccount]
-    /// - [ActivateAccount][google.cloud.universalledger.v1.ActivateAccount]
-    /// - [AddRoles][google.cloud.universalledger.v1.AddRoles]
-    /// - [RemoveRoles][google.cloud.universalledger.v1.RemoveRoles]
-    /// - [ChangeAccountManager][google.cloud.universalledger.v1.ChangeAccountManager]
-    /// - [Transfer][google.cloud.universalledger.v1.Transfer]
-    /// - [CreateContract][google.cloud.universalledger.v1.CreateContract]
-    /// - [GrantContractPermissions][google.cloud.universalledger.v1.GrantContractPermissions]
-    /// - [InvokeContractMethod][google.cloud.universalledger.v1.InvokeContractMethod]
-    /// - [CreateContractTokenManager][google.cloud.universalledger.v1.CreateContractTokenManager]
-    /// - [TransferContractTokenManager][google.cloud.universalledger.v1.TransferContractTokenManager]
-    /// <!--
-    /// clang-format on
-    /// -->
-    ///
-    /// [google.cloud.universalledger.v1.ActivateAccount]: <doc:ActivateAccount>
-    /// [google.cloud.universalledger.v1.AddRoles]: <doc:AddRoles>
-    /// [google.cloud.universalledger.v1.Burn]: <doc:Burn>
-    /// [google.cloud.universalledger.v1.ChangeAccountManager]: <doc:ChangeAccountManager>
-    /// [google.cloud.universalledger.v1.CreateAccount]: <doc:CreateAccount>
-    /// [google.cloud.universalledger.v1.CreateAccountManager]: <doc:CreateAccountManager>
-    /// [google.cloud.universalledger.v1.CreateClearinghouse]: <doc:CreateClearinghouse>
-    /// [google.cloud.universalledger.v1.CreateContract]: <doc:CreateContract>
-    /// [google.cloud.universalledger.v1.CreateContractTokenManager]: <doc:CreateContractTokenManager>
-    /// [google.cloud.universalledger.v1.CreateCurrencyOperator]: <doc:CreateCurrencyOperator>
-    /// [google.cloud.universalledger.v1.CreateTokenManager]: <doc:CreateTokenManager>
-    /// [google.cloud.universalledger.v1.DeactivateAccount]: <doc:DeactivateAccount>
-    /// [google.cloud.universalledger.v1.DecreaseTokenIssuanceLimit]: <doc:DecreaseTokenIssuanceLimit>
-    /// [google.cloud.universalledger.v1.GrantContractPermissions]: <doc:GrantContractPermissions>
-    /// [google.cloud.universalledger.v1.IncreaseTokenIssuanceLimit]: <doc:IncreaseTokenIssuanceLimit>
-    /// [google.cloud.universalledger.v1.InvokeContractMethod]: <doc:InvokeContractMethod>
-    /// [google.cloud.universalledger.v1.Mint]: <doc:Mint>
-    /// [google.cloud.universalledger.v1.RemoveRoles]: <doc:RemoveRoles>
-    /// [google.cloud.universalledger.v1.SettlementRequest]: <doc:SettlementRequest>
-    /// [google.cloud.universalledger.v1.Transfer]: <doc:Transfer>
-    /// [google.cloud.universalledger.v1.TransferContractTokenManager]: <doc:TransferContractTokenManager>
-    /// [google.cloud.universalledger.v1.TransferCurrencyOperator]: <doc:TransferCurrencyOperator>
-    /// [google.cloud.universalledger.v1.TransferPlatformOperator]: <doc:TransferPlatformOperator>
-    @available(*, deprecated)
-    indirect case app(GoogleWKT.WKTAny)
     /// Optional. An operational transaction message. Note this can only be sent
     /// by the platform operator. Should be any one of:
     ///

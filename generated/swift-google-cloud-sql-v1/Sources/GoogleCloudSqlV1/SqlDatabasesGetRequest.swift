@@ -31,6 +31,9 @@
     /// Project ID of the project that contains the instance.
     public var project: Swift.String = Swift.String()
 
+    /// Optional. Region of the Cloud SQL instance.
+    public var location: Swift.String = Swift.String()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SqlDatabasesGetRequest`.
@@ -58,11 +61,13 @@
       static let database = CodingKeys(stringValue: "database")
       static let instance = CodingKeys(stringValue: "instance")
       static let project = CodingKeys(stringValue: "project")
+      static let location = CodingKeys(stringValue: "location")
 
       static let _knownKeys: Set<Swift.String> = [
         "database",
         "instance",
         "project",
+        "location",
       ]
     }
 
@@ -77,6 +82,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
         self.project = value
       }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -88,6 +96,7 @@
       try container.encode(self.database, forKey: .database)
       try container.encode(self.instance, forKey: .instance)
       try container.encode(self.project, forKey: .project)
+      try container.encode(self.location, forKey: .location)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

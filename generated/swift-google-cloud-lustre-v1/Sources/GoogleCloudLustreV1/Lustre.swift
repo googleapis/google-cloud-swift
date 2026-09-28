@@ -19,6 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 @_spi(GoogleCloudInternal) public import GoogleCloudLocation
+@_spi(GoogleCloudInternal) public import GoogleIAMV1
 @_spi(GoogleCloudInternal) public import GoogleLongRunning
 @_spi(GoogleCloudInternal) public import GoogleWKT
 @_spi(GoogleCloudInternal) public import GoogleGax
@@ -169,6 +170,42 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
     try await poller.wait()
   }
 
+  /// Reschedules a planned maintenance event for a specific instance.
+  ///
+  /// @Snippet(path: "Lustre_RescheduleMaintenance")
+  public func rescheduleMaintenance(
+    request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.rescheduleMaintenance(request: request, options: options)
+  }
+
+  /// Reschedules a planned maintenance event for a specific instance.
+  ///
+  /// @Snippet(path: "Lustre_RescheduleMaintenance")
+  public func rescheduleMaintenancePollingUntilDone(
+    request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Instance {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Instance>.State in
+      return try op._extractStatus(Instance.self)
+    }
+    let rawOp = try await self.rescheduleMaintenance(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Imports data from Cloud Storage to a Managed Lustre instance.
   ///
   /// @Snippet(path: "Lustre_ImportData")
@@ -243,7 +280,241 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
     return try await poller.wait()
   }
 
+  /// Creates a new mirror in a given instance.
+  ///
+  /// @Snippet(path: "Lustre_CreateMirror")
+  public func createMirror(
+    request: CreateMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createMirror(request: request, options: options)
+  }
+
+  /// Creates a new mirror in a given instance.
+  ///
+  /// @Snippet(path: "Lustre_CreateMirror")
+  public func createMirrorPollingUntilDone(
+    request: CreateMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Mirror {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Mirror>.State in
+      return try op._extractStatus(Mirror.self)
+    }
+    let rawOp = try await self.createMirror(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Mirror>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Updates the parameters of a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_UpdateMirror")
+  public func updateMirror(
+    request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateMirror(request: request, options: options)
+  }
+
+  /// Updates the parameters of a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_UpdateMirror")
+  public func updateMirrorPollingUntilDone(
+    request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Mirror {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Mirror>.State in
+      return try op._extractStatus(Mirror.self)
+    }
+    let rawOp = try await self.updateMirror(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Mirror>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Deletes a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_DeleteMirror")
+  public func deleteMirror(
+    request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteMirror(request: request, options: options)
+  }
+
+  /// Deletes a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_DeleteMirror")
+  public func deleteMirrorPollingUntilDone(
+    request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteMirror(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Gets details of a single mirror.
+  ///
+  /// @Snippet(path: "Lustre_GetMirror")
+  public func getMirror(
+    request: GetMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudLustreV1.Mirror {
+    try await self.inner.getMirror(request: request, options: options)
+  }
+
+  /// Gets details of multiple mirrors under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListMirrors")
+  public func listMirrors(
+    request: ListMirrorsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudLustreV1.ListMirrorsResponse {
+    try await self.inner.listMirrors(request: request, options: options)
+  }
+
+  /// Creates a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_CreateDirectoryPolicy")
+  public func createDirectoryPolicy(
+    request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.createDirectoryPolicy(request: request, options: options)
+  }
+
+  /// Creates a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_CreateDirectoryPolicy")
+  public func createDirectoryPolicyPollingUntilDone(
+    request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> DirectoryPolicy {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<DirectoryPolicy>.State in
+      return try op._extractStatus(DirectoryPolicy.self)
+    }
+    let rawOp = try await self.createDirectoryPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DirectoryPolicy>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Deletes a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_DeleteDirectoryPolicy")
+  public func deleteDirectoryPolicy(
+    request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteDirectoryPolicy(request: request, options: options)
+  }
+
+  /// Deletes a directory policy resource.
+  ///
+  /// @Snippet(path: "Lustre_DeleteDirectoryPolicy")
+  public func deleteDirectoryPolicyPollingUntilDone(
+    request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteDirectoryPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Gets details of a single directory policy.
+  ///
+  /// @Snippet(path: "Lustre_GetDirectoryPolicy")
+  public func getDirectoryPolicy(
+    request: GetDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudLustreV1.DirectoryPolicy {
+    try await self.inner.getDirectoryPolicy(request: request, options: options)
+  }
+
+  /// Gets details of multiple directory policies under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListDirectoryPolicies")
+  public func listDirectoryPolicies(
+    request: ListDirectoryPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse {
+    try await self.inner.listDirectoryPolicies(request: request, options: options)
+  }
+
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Lustre_ListLocations")
   public func listLocations(
@@ -259,6 +530,44 @@ public final class LustreClient: Clients.LustreProtocol, Sendable {
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
     try await self.inner.getLocation(request: request, options: options)
+  }
+
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "Lustre_SetIamPolicy")
+  public func setIamPolicy(
+    request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    try await self.inner.setIamPolicy(request: request, options: options)
+  }
+
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "Lustre_GetIamPolicy")
+  public func getIamPolicy(
+    request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    try await self.inner.getIamPolicy(request: request, options: options)
+  }
+
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "Lustre_TestIamPermissions")
+  public func testIamPermissions(
+    request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
+    try await self.inner.testIamPermissions(request: request, options: options)
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -353,6 +662,16 @@ extension Clients {
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws
 
+    /// See `LustreClient.rescheduleMaintenance`.
+    func rescheduleMaintenance(
+      request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `LustreClient.rescheduleMaintenance`.
+    func rescheduleMaintenancePollingUntilDone(
+      request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> Instance
+
     /// See `LustreClient.importData`.
     func importData(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
@@ -373,6 +692,76 @@ extension Clients {
       request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportDataResponse
 
+    /// See `LustreClient.createMirror`.
+    func createMirror(
+      request: CreateMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `LustreClient.createMirror`.
+    func createMirrorPollingUntilDone(
+      request: CreateMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> Mirror
+
+    /// See `LustreClient.updateMirror`.
+    func updateMirror(
+      request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `LustreClient.updateMirror`.
+    func updateMirrorPollingUntilDone(
+      request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> Mirror
+
+    /// See `LustreClient.deleteMirror`.
+    func deleteMirror(
+      request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `LustreClient.deleteMirror`.
+    func deleteMirrorPollingUntilDone(
+      request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `LustreClient.getMirror`.
+    func getMirror(
+      request: GetMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.Mirror
+
+    /// See `LustreClient.listMirrors`.
+    func listMirrors(
+      request: ListMirrorsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.ListMirrorsResponse
+
+    /// See `LustreClient.createDirectoryPolicy`.
+    func createDirectoryPolicy(
+      request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `LustreClient.createDirectoryPolicy`.
+    func createDirectoryPolicyPollingUntilDone(
+      request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> DirectoryPolicy
+
+    /// See `LustreClient.deleteDirectoryPolicy`.
+    func deleteDirectoryPolicy(
+      request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `LustreClient.deleteDirectoryPolicy`.
+    func deleteDirectoryPolicyPollingUntilDone(
+      request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `LustreClient.getDirectoryPolicy`.
+    func getDirectoryPolicy(
+      request: GetDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.DirectoryPolicy
+
+    /// See `LustreClient.listDirectoryPolicies`.
+    func listDirectoryPolicies(
+      request: ListDirectoryPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse
+
     /// See `LustreClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
@@ -382,6 +771,21 @@ extension Clients {
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location
+
+    /// See `LustreClient.setIamPolicy`.
+    func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy
+
+    /// See `LustreClient.getIamPolicy`.
+    func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy
+
+    /// See `LustreClient.testIamPermissions`.
+    func testIamPermissions(
+      request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
     /// See `LustreClient.listOperations`.
     func listOperations(
@@ -567,6 +971,41 @@ extension Clients.LustreProtocol {
     try await self.deleteInstancePollingUntilDone(request: request)
   }
 
+  public func rescheduleMaintenance(request: RescheduleMaintenanceRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.rescheduleMaintenance(request: request, options: .init())
+  }
+
+  public func rescheduleMaintenance(
+    request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func rescheduleMaintenancePollingUntilDone(request: RescheduleMaintenanceRequest)
+    async throws -> Instance
+  {
+    return try await self.rescheduleMaintenancePollingUntilDone(request: request, options: .init())
+  }
+
+  public func rescheduleMaintenancePollingUntilDone(
+    request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func rescheduleMaintenancePollingUntilDone(
+    name: Swift.String,
+    reschedule: RescheduleMaintenanceRequest.Reschedule?,
+  ) async throws -> Instance {
+    let request = RescheduleMaintenanceRequest().with {
+      $0.name = name
+      $0.reschedule = reschedule
+    }
+    return try await self.rescheduleMaintenancePollingUntilDone(request: request)
+  }
+
   public func importData(request: ImportDataRequest) async throws -> GoogleLongRunning.Operation {
     try await self.importData(request: request, options: .init())
   }
@@ -620,6 +1059,297 @@ extension Clients.LustreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  public func createMirror(request: CreateMirrorRequest) async throws -> GoogleLongRunning.Operation
+  {
+    try await self.createMirror(request: request, options: .init())
+  }
+
+  public func createMirror(
+    request: CreateMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createMirrorPollingUntilDone(request: CreateMirrorRequest) async throws -> Mirror {
+    return try await self.createMirrorPollingUntilDone(request: request, options: .init())
+  }
+
+  public func createMirrorPollingUntilDone(
+    request: CreateMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Mirror {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createMirrorPollingUntilDone(
+    parent: Swift.String,
+    mirror: Mirror?,
+    mirrorId: Swift.String,
+  ) async throws -> Mirror {
+    let request = CreateMirrorRequest().with {
+      $0.parent = parent
+      $0.mirror = mirror
+      $0.mirrorId = mirrorId
+    }
+    return try await self.createMirrorPollingUntilDone(request: request)
+  }
+
+  public func updateMirror(request: UpdateMirrorRequest) async throws -> GoogleLongRunning.Operation
+  {
+    try await self.updateMirror(request: request, options: .init())
+  }
+
+  public func updateMirror(
+    request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateMirrorPollingUntilDone(request: UpdateMirrorRequest) async throws -> Mirror {
+    return try await self.updateMirrorPollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateMirrorPollingUntilDone(
+    request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Mirror {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateMirrorPollingUntilDone(
+    mirror: Mirror?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> Mirror {
+    let request = UpdateMirrorRequest().with {
+      $0.mirror = mirror
+      $0.updateMask = updateMask
+    }
+    return try await self.updateMirrorPollingUntilDone(request: request)
+  }
+
+  public func deleteMirror(request: DeleteMirrorRequest) async throws -> GoogleLongRunning.Operation
+  {
+    try await self.deleteMirror(request: request, options: .init())
+  }
+
+  public func deleteMirror(
+    request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteMirrorPollingUntilDone(request: DeleteMirrorRequest) async throws {
+    try await self.deleteMirrorPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteMirrorPollingUntilDone(
+    request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteMirrorPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteMirrorRequest().with {
+      $0.name = name
+    }
+    try await self.deleteMirrorPollingUntilDone(request: request)
+  }
+
+  public func getMirror(request: GetMirrorRequest) async throws -> GoogleCloudLustreV1.Mirror {
+    try await self.getMirror(request: request, options: .init())
+  }
+
+  public func getMirror(
+    request: GetMirrorRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudLustreV1.Mirror {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getMirror(
+    name: Swift.String,
+  ) async throws -> GoogleCloudLustreV1.Mirror {
+    let request = GetMirrorRequest().with {
+      $0.name = name
+    }
+    return try await self.getMirror(request: request)
+  }
+
+  public func listMirrors(request: ListMirrorsRequest) async throws
+    -> GoogleCloudLustreV1.ListMirrorsResponse
+  {
+    try await self.listMirrors(request: request, options: .init())
+  }
+
+  public func listMirrors(
+    request: ListMirrorsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudLustreV1.ListMirrorsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listMirrorsByItems(
+    request: ListMirrorsRequest
+  ) -> some AsyncSequence<Mirror, Swift.Error> & Sendable {
+    self.listMirrorsByItems(request: request, options: .init())
+  }
+
+  /// Gets details of multiple mirrors under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListMirrors")
+  public func listMirrorsByItems(
+    request: ListMirrorsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<Mirror, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLustreV1.ListMirrorsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listMirrors(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func listMirrorsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<Mirror, Swift.Error> & Sendable {
+    let request = ListMirrorsRequest().with {
+      $0.parent = parent
+    }
+    return self.listMirrorsByItems(request: request)
+  }
+
+  public func createDirectoryPolicy(request: CreateDirectoryPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.createDirectoryPolicy(request: request, options: .init())
+  }
+
+  public func createDirectoryPolicy(
+    request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createDirectoryPolicyPollingUntilDone(request: CreateDirectoryPolicyRequest)
+    async throws -> DirectoryPolicy
+  {
+    return try await self.createDirectoryPolicyPollingUntilDone(request: request, options: .init())
+  }
+
+  public func createDirectoryPolicyPollingUntilDone(
+    request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> DirectoryPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createDirectoryPolicyPollingUntilDone(
+    parent: Swift.String,
+    directoryPolicy: DirectoryPolicy?,
+    directoryPolicyId: Swift.String,
+  ) async throws -> DirectoryPolicy {
+    let request = CreateDirectoryPolicyRequest().with {
+      $0.parent = parent
+      $0.directoryPolicy = directoryPolicy
+      $0.directoryPolicyId = directoryPolicyId
+    }
+    return try await self.createDirectoryPolicyPollingUntilDone(request: request)
+  }
+
+  public func deleteDirectoryPolicy(request: DeleteDirectoryPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteDirectoryPolicy(request: request, options: .init())
+  }
+
+  public func deleteDirectoryPolicy(
+    request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteDirectoryPolicyPollingUntilDone(request: DeleteDirectoryPolicyRequest)
+    async throws
+  {
+    try await self.deleteDirectoryPolicyPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteDirectoryPolicyPollingUntilDone(
+    request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteDirectoryPolicyPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteDirectoryPolicyRequest().with {
+      $0.name = name
+    }
+    try await self.deleteDirectoryPolicyPollingUntilDone(request: request)
+  }
+
+  public func getDirectoryPolicy(request: GetDirectoryPolicyRequest) async throws
+    -> GoogleCloudLustreV1.DirectoryPolicy
+  {
+    try await self.getDirectoryPolicy(request: request, options: .init())
+  }
+
+  public func getDirectoryPolicy(
+    request: GetDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudLustreV1.DirectoryPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getDirectoryPolicy(
+    name: Swift.String,
+  ) async throws -> GoogleCloudLustreV1.DirectoryPolicy {
+    let request = GetDirectoryPolicyRequest().with {
+      $0.name = name
+    }
+    return try await self.getDirectoryPolicy(request: request)
+  }
+
+  public func listDirectoryPolicies(request: ListDirectoryPoliciesRequest) async throws
+    -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse
+  {
+    try await self.listDirectoryPolicies(request: request, options: .init())
+  }
+
+  public func listDirectoryPolicies(
+    request: ListDirectoryPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listDirectoryPoliciesByItems(
+    request: ListDirectoryPoliciesRequest
+  ) -> some AsyncSequence<DirectoryPolicy, Swift.Error> & Sendable {
+    self.listDirectoryPoliciesByItems(request: request, options: .init())
+  }
+
+  /// Gets details of multiple directory policies under a given instance.
+  ///
+  /// @Snippet(path: "Lustre_ListDirectoryPolicies")
+  public func listDirectoryPoliciesByItems(
+    request: ListDirectoryPoliciesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<DirectoryPolicy, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listDirectoryPolicies(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func listDirectoryPoliciesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<DirectoryPolicy, Swift.Error> & Sendable {
+    let request = ListDirectoryPoliciesRequest().with {
+      $0.parent = parent
+    }
+    return self.listDirectoryPoliciesByItems(request: request)
+  }
+
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -639,6 +1369,23 @@ extension Clients.LustreProtocol {
   }
 
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Lustre_ListLocations")
   public func listLocationsByItems(
@@ -662,6 +1409,42 @@ extension Clients.LustreProtocol {
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
+    -> GoogleIAMV1.Policy
+  {
+    try await self.setIamPolicy(request: request, options: .init())
+  }
+
+  public func setIamPolicy(
+    request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
+    -> GoogleIAMV1.Policy
+  {
+    try await self.getIamPolicy(request: request, options: .init())
+  }
+
+  public func getIamPolicy(
+    request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
+    -> GoogleIAMV1.TestIamPermissionsResponse
+  {
+    try await self.testIamPermissions(request: request, options: .init())
+  }
+
+  public func testIamPermissions(
+    request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
     throw GoogleGax.RequestError.unimplemented
   }
 

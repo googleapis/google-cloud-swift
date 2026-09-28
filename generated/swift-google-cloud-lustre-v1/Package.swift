@@ -40,6 +40,11 @@ let package = Package(
       from: "0.3.0"
     ),
     localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-iam-v1",
+      path: "generated/swift-google-iam-v1",
+      from: "0.3.0"
+    ),
+    localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-longrunning",
       path: "generated/swift-google-longrunning",
       from: "0.3.0"
@@ -47,6 +52,11 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-rpc",
       path: "generated/swift-google-rpc",
+      from: "0.3.0"
+    ),
+    localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-type",
+      path: "generated/swift-google-type",
       from: "0.3.0"
     ),
     localOrRemotePackage(
@@ -63,8 +73,10 @@ let package = Package(
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudLocation", package: "swift-google-cloud-location"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
+        .product(name: "GoogleType", package: "swift-google-type"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
         .product(name: "Logging", package: "swift-log"),
       ],

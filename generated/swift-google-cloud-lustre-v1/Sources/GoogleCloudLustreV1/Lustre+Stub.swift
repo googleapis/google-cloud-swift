@@ -16,6 +16,7 @@
 
 import Foundation
 import GoogleCloudLocation
+import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
@@ -43,6 +44,10 @@ extension Clients {
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func rescheduleMaintenance(
+      request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func importData(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
@@ -51,6 +56,42 @@ extension Clients {
       request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func createMirror(
+      request: CreateMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func updateMirror(
+      request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteMirror(
+      request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getMirror(
+      request: GetMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.Mirror
+
+    func listMirrors(
+      request: ListMirrorsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.ListMirrorsResponse
+
+    func createDirectoryPolicy(
+      request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func deleteDirectoryPolicy(
+      request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getDirectoryPolicy(
+      request: GetDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.DirectoryPolicy
+
+    func listDirectoryPolicies(
+      request: ListDirectoryPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse
+
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse
@@ -58,6 +99,18 @@ extension Clients {
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location
+
+    func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy
+
+    func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy
+
+    func testIamPermissions(
+      request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions

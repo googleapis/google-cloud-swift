@@ -30,7 +30,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   public var filesystem: Swift.String = Swift.String()
 
   /// Required. The storage capacity of the instance in gibibytes (GiB). Allowed
-  /// values are from `18000` to `954000`, in increments of 9000.
+  /// values depend on the `perUnitStorageThroughput`. See [Performance
+  /// tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+  /// for specific minimums, maximums, and step sizes for each performance tier.
   public var capacityGib: Swift.Int64 = Swift.Int64()
 
   /// Required. Immutable. The full name of the VPC network to which the instance
@@ -57,15 +59,71 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Labels as key value pairs.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  /// Required. The throughput of the instance in MB/s/TiB.
-  /// Valid values are 125, 250, 500, 1000.
+  /// Optional. The throughput of the instance in MBps per TiB. Valid values are
+  /// 0, 125, 250, 500, 1000. See [Performance
+  /// tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+  /// for more information.
+  ///
+  /// If the instance is using the Dynamic tier, this field must not be set or
+  /// must be set to zero.
   public var perUnitStorageThroughput: Swift.Int64 = Swift.Int64()
 
-  /// Optional. Indicates whether you want to enable support for GKE clients. By
-  /// default, GKE clients are not supported. Deprecated. No longer required for
-  /// GKE instance creation.
+  /// Optional. Deprecated: No longer required for GKE instance creation.
+  /// Indicates whether you want to enable support for GKE clients. By default,
+  /// GKE clients are not supported.
   @available(*, deprecated)
   public var gkeSupportEnabled: Swift.Bool = Swift.Bool()
+
+  /// Optional. Immutable. The Cloud KMS key name to use for data encryption.
+  /// If not set, the instance will use Google-managed encryption keys.
+  /// If set, the instance will use customer-managed encryption keys.
+  /// The key must be in the same region as the instance.
+  /// The key format is:
+  /// projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}
+  public var kmsKey: Swift.String = Swift.String()
+
+  /// Output only. The reason why the instance is in a certain state (e.g.
+  /// SUSPENDED).
+  public var stateReason: Swift.String = Swift.String()
+
+  /// Optional. The placement policy name for the instance in the format of
+  /// projects/{project}/locations/{location}/resourcePolicies/{resource_policy}
+  public var placementPolicy: Swift.String = Swift.String()
+
+  /// Optional. The access rules options for the instance.
+  public var accessRulesOptions: AccessRulesOptions? = nil
+
+  /// Output only. Unique ID of the resource.
+  /// This is unrelated to the access rules which allow specifying the root
+  /// squash uid.
+  public var uid: Swift.String = Swift.String()
+
+  /// Optional. The maintenance policy for the instance to determine when to
+  /// allow or exclude the instance from maintenance updates.
+  public var maintenancePolicy: MaintenancePolicy? = nil
+
+  /// Output only. Date and time of upcoming maintenance for the instance, if a
+  /// maintenance policy is set.
+  public var upcomingMaintenanceSchedule: MaintenanceSchedule? = nil
+
+  /// Optional. Immutable. Specifies whether the instance is on the Dynamic tier.
+  /// See [Performance
+  /// tiers](https://docs.cloud.google.com/managed-lustre/docs/performance-tiers)
+  /// for more information.
+  public var dynamicTierOptions: DynamicTierOptions? = nil
+
+  /// Output only. The available version that this instance can be upgraded to.
+  /// Format: `Lustre_YYYYMMDD.NN_pXX`
+  public var availableVersion: Swift.String? = nil
+
+  /// Optional. The target version of the instance. Setting this field triggers a
+  /// self-service update to the specified version.
+  /// Format: `Lustre_YYYYMMDD.NN_pXX` or `latest`
+  public var targetVersion: Swift.String? = nil
+
+  /// Output only. The effective version of the instance.
+  /// Format: `Lustre_YYYYMMDD.NN_pXX`
+  public var effectiveVersion: Swift.String? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -103,6 +161,17 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     static let labels = CodingKeys(stringValue: "labels")
     static let perUnitStorageThroughput = CodingKeys(stringValue: "perUnitStorageThroughput")
     static let gkeSupportEnabled = CodingKeys(stringValue: "gkeSupportEnabled")
+    static let kmsKey = CodingKeys(stringValue: "kmsKey")
+    static let stateReason = CodingKeys(stringValue: "stateReason")
+    static let placementPolicy = CodingKeys(stringValue: "placementPolicy")
+    static let accessRulesOptions = CodingKeys(stringValue: "accessRulesOptions")
+    static let uid = CodingKeys(stringValue: "uid")
+    static let maintenancePolicy = CodingKeys(stringValue: "maintenancePolicy")
+    static let upcomingMaintenanceSchedule = CodingKeys(stringValue: "upcomingMaintenanceSchedule")
+    static let dynamicTierOptions = CodingKeys(stringValue: "dynamicTierOptions")
+    static let availableVersion = CodingKeys(stringValue: "availableVersion")
+    static let targetVersion = CodingKeys(stringValue: "targetVersion")
+    static let effectiveVersion = CodingKeys(stringValue: "effectiveVersion")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -117,6 +186,17 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       "labels",
       "perUnitStorageThroughput",
       "gkeSupportEnabled",
+      "kmsKey",
+      "stateReason",
+      "placementPolicy",
+      "accessRulesOptions",
+      "uid",
+      "maintenancePolicy",
+      "upcomingMaintenanceSchedule",
+      "dynamicTierOptions",
+      "availableVersion",
+      "targetVersion",
+      "effectiveVersion",
     ]
   }
 
@@ -162,6 +242,31 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .gkeSupportEnabled) {
       self.gkeSupportEnabled = value
     }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKey) {
+      self.kmsKey = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .stateReason) {
+      self.stateReason = value
+    }
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .placementPolicy) {
+      self.placementPolicy = value
+    }
+    self.accessRulesOptions = try container.decodeIfPresent(
+      AccessRulesOptions.self, forKey: .accessRulesOptions)
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
+      self.uid = value
+    }
+    self.maintenancePolicy = try container.decodeIfPresent(
+      MaintenancePolicy.self, forKey: .maintenancePolicy)
+    self.upcomingMaintenanceSchedule = try container.decodeIfPresent(
+      MaintenanceSchedule.self, forKey: .upcomingMaintenanceSchedule)
+    self.dynamicTierOptions = try container.decodeIfPresent(
+      DynamicTierOptions.self, forKey: .dynamicTierOptions)
+    self.availableVersion = try container.decodeIfPresent(
+      Swift.String.self, forKey: .availableVersion)
+    self.targetVersion = try container.decodeIfPresent(Swift.String.self, forKey: .targetVersion)
+    self.effectiveVersion = try container.decodeIfPresent(
+      Swift.String.self, forKey: .effectiveVersion)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -185,6 +290,18 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.perUnitStorageThroughput, forKey: .perUnitStorageThroughput)
     try container.encode(self.gkeSupportEnabled, forKey: .gkeSupportEnabled)
+    try container.encode(self.kmsKey, forKey: .kmsKey)
+    try container.encode(self.stateReason, forKey: .stateReason)
+    try container.encode(self.placementPolicy, forKey: .placementPolicy)
+    try container.encodeIfPresent(self.accessRulesOptions, forKey: .accessRulesOptions)
+    try container.encode(self.uid, forKey: .uid)
+    try container.encodeIfPresent(self.maintenancePolicy, forKey: .maintenancePolicy)
+    try container.encodeIfPresent(
+      self.upcomingMaintenanceSchedule, forKey: .upcomingMaintenanceSchedule)
+    try container.encodeIfPresent(self.dynamicTierOptions, forKey: .dynamicTierOptions)
+    try container.encodeIfPresent(self.availableVersion, forKey: .availableVersion)
+    try container.encodeIfPresent(self.targetVersion, forKey: .targetVersion)
+    try container.encodeIfPresent(self.effectiveVersion, forKey: .effectiveVersion)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -213,7 +330,14 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The instance is stopped.
     case stopped
     /// The instance is being updated.
+    @available(*, deprecated)
     case updating
+    /// The instance is suspended due to an issue related to Cloud KMS. The
+    /// details are available in
+    /// [state_reason][google.cloud.lustre.v1.Instance.state_reason].
+    ///
+    /// [google.cloud.lustre.v1.Instance.state_reason]: <doc:Instance/stateReason>
+    case suspended
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -250,6 +374,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       case .repairing: return 5
       case .stopped: return 6
       case .updating: return 7
+      case .suspended: return 8
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -268,6 +393,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       case .repairing: return "REPAIRING"
       case .stopped: return "STOPPED"
       case .updating: return "UPDATING"
+      case .suspended: return "SUSPENDED"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -276,6 +402,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from a string value.
     ///
     /// If the value is unknown, this initializes to [`unknownStringValue`](doc:State/unknownStringValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(stringValue: Swift.String) {
       switch stringValue {
       case "STATE_UNSPECIFIED": self = .unspecified
@@ -286,6 +415,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       case "REPAIRING": self = .repairing
       case "STOPPED": self = .stopped
       case "UPDATING": self = .updating
+      case "SUSPENDED": self = .suspended
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -293,6 +423,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Initialize from an integer value.
     ///
     /// If the value is unknown, this initializes to [`unknownIntValue`](doc:State/unknownIntValue(_:)).
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
@@ -303,6 +436,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       case 5: self = .repairing
       case 6: self = .stopped
       case 7: self = .updating
+      case 8: self = .suspended
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -336,6 +470,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       case .repairing: return try container.encode("REPAIRING")
       case .stopped: return try container.encode("STOPPED")
       case .updating: return try container.encode("UPDATING")
+      case .suspended: return try container.encode("SUSPENDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

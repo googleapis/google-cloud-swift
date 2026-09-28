@@ -20,6 +20,7 @@ import Foundation
 #endif
 @_spi(GoogleCloudInternal) public import GoogleCloudLocation
 @_spi(GoogleCloudInternal) public import GoogleIAMV1
+@_spi(GoogleCloudInternal) public import GoogleLongRunning
 @_spi(GoogleCloudInternal) public import GoogleWKT
 @_spi(GoogleCloudInternal) public import GoogleGax
 
@@ -29,6 +30,8 @@ import Foundation
 /// @Snippet(path: "CloudTasksQuickstart")
 public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   let inner: any Clients.CloudTasksStub
+  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CloudTasksClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -38,6 +41,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
       inner = Clients.CloudTasksLogging(inner, logger: logger)
     }
     self.inner = inner
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Lists queues.
@@ -107,8 +112,15 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// This command will delete the queue even if it has tasks in it.
   ///
-  /// Note: If you delete a queue, a queue with the same name can't be created
-  /// for 7 days.
+  /// Note: If you delete a queue, you may be prevented from creating a new queue
+  /// with the same name as the deleted queue for a tombstone window of up to
+  /// 3 days. During this window, the CreateQueue operation may appear to
+  /// recreate the queue, but this can be misleading. If you attempt to create
+  /// a queue with the same name as one that is in the tombstone window, run
+  /// GetQueue to confirm that the queue creation was successful. If GetQueue
+  /// returns 200 response code, your queue was successfully created with the
+  /// name of the previously deleted queue. Otherwise, your queue did not
+  /// successfully recreate.
   ///
   /// WARNING: Using this method may have unintended side effects if you are
   /// using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
@@ -265,6 +277,10 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
 
   /// Gets a task.
   ///
+  /// After a task is successfully executed or has exhausted its retry attempts,
+  /// the task is deleted. A `GetTask` request for a deleted task returns a
+  /// `NOT_FOUND` error.
+  ///
   /// @Snippet(path: "CloudTasks_GetTask")
   public func getTask(
     request: GetTaskRequest, options: GoogleGax.RequestOptions
@@ -285,6 +301,50 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
     try await self.inner.createTask(request: request, options: options)
   }
 
+  /// Creates a batch of tasks and adds them to a queue.
+  ///
+  /// All tasks must be for the same queue.
+  /// A maximum of 100 tasks can be created in a single batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchCreateTasks")
+  public func batchCreateTasks(
+    request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.batchCreateTasks(request: request, options: options)
+  }
+
+  /// Creates a batch of tasks and adds them to a queue.
+  ///
+  /// All tasks must be for the same queue.
+  /// A maximum of 100 tasks can be created in a single batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchCreateTasks")
+  public func batchCreateTasksPollingUntilDone(
+    request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
+  ) async throws -> BatchCreateTasksResponse {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<BatchCreateTasksResponse>.State in
+      return try op._extractStatus(BatchCreateTasksResponse.self)
+    }
+    let rawOp = try await self.batchCreateTasks(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchCreateTasksResponse>.State
+      in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
   /// Deletes a task.
   ///
   /// A task can be deleted if it is scheduled or dispatched. A task
@@ -298,6 +358,50 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
     try await self.inner.deleteTask(request: request, options: options)
   }
 
+  /// Deletes a batch of tasks.
+  /// This is a non-atomic operation: if deletion fails for some tasks, it
+  /// can still succeed for others. The metadata field of
+  /// google.longrunning.Operation contains details of failed deletions.
+  /// A maximum of 1000 tasks can be deleted in a batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchDeleteTasks")
+  public func batchDeleteTasks(
+    request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.batchDeleteTasks(request: request, options: options)
+  }
+
+  /// Deletes a batch of tasks.
+  /// This is a non-atomic operation: if deletion fails for some tasks, it
+  /// can still succeed for others. The metadata field of
+  /// google.longrunning.Operation contains details of failed deletions.
+  /// A maximum of 1000 tasks can be deleted in a batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchDeleteTasks")
+  public func batchDeleteTasksPollingUntilDone(
+    request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.batchDeleteTasks(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
   /// Forces a task to run now.
   ///
   /// When this method is called, Cloud Tasks will dispatch the task, even if
@@ -309,10 +413,6 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// example, [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] can be used to
   /// retry a failed task after a fix has been made or to manually force a task
   /// to be dispatched now.
-  ///
-  /// The dispatched task is returned. That is, the task that is returned
-  /// contains the [status][Task.status] after the task is dispatched but
-  /// before the task is received by its target.
   ///
   /// If Cloud Tasks receives a successful response from the task's
   /// target, then the task will be deleted; otherwise the task's
@@ -338,7 +438,50 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
     try await self.inner.runTask(request: request, options: options)
   }
 
+  /// Creates or Updates a CMEK config.
+  ///
+  /// Updates the Customer Managed Encryption Key associated with the Cloud Tasks
+  /// location (Creates if the key does not already exist). All new tasks created
+  /// in the location will be encrypted at-rest with the KMS-key provided in the
+  /// config.
+  ///
+  /// @Snippet(path: "CloudTasks_UpdateCmekConfig")
+  public func updateCmekConfig(
+    request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudTasksV2.CmekConfig {
+    try await self.inner.updateCmekConfig(request: request, options: options)
+  }
+
+  /// Gets the CMEK config.
+  ///
+  /// Gets the Customer Managed Encryption Key configured with the Cloud Tasks
+  /// location. By default there is no kms_key configured.
+  ///
+  /// @Snippet(path: "CloudTasks_GetCmekConfig")
+  public func getCmekConfig(
+    request: GetCmekConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudTasksV2.CmekConfig {
+    try await self.inner.getCmekConfig(request: request, options: options)
+  }
+
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CloudTasks_ListLocations")
   public func listLocations(
@@ -354,6 +497,17 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
     try await self.inner.getLocation(request: request, options: options)
+  }
+
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudTasks_GetOperation")
+  func getOperation(
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.getOperation(request: request, options: options)
   }
 }
 
@@ -434,15 +588,45 @@ extension Clients {
       request: CreateTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task
 
+    /// See `CloudTasksClient.batchCreateTasks`.
+    func batchCreateTasks(
+      request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `CloudTasksClient.batchCreateTasks`.
+    func batchCreateTasksPollingUntilDone(
+      request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
+    ) async throws -> BatchCreateTasksResponse
+
     /// See `CloudTasksClient.deleteTask`.
     func deleteTask(
       request: DeleteTaskRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `CloudTasksClient.batchDeleteTasks`.
+    func batchDeleteTasks(
+      request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `CloudTasksClient.batchDeleteTasks`.
+    func batchDeleteTasksPollingUntilDone(
+      request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
     ) async throws
 
     /// See `CloudTasksClient.runTask`.
     func runTask(
       request: RunTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task
+
+    /// See `CloudTasksClient.updateCmekConfig`.
+    func updateCmekConfig(
+      request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudTasksV2.CmekConfig
+
+    /// See `CloudTasksClient.getCmekConfig`.
+    func getCmekConfig(
+      request: GetCmekConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudTasksV2.CmekConfig
 
     /// See `CloudTasksClient.listLocations`.
     func listLocations(
@@ -799,6 +983,41 @@ extension Clients.CloudTasksProtocol {
     return try await self.createTask(request: request)
   }
 
+  public func batchCreateTasks(request: BatchCreateTasksRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.batchCreateTasks(request: request, options: .init())
+  }
+
+  public func batchCreateTasks(
+    request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func batchCreateTasksPollingUntilDone(request: BatchCreateTasksRequest) async throws
+    -> BatchCreateTasksResponse
+  {
+    return try await self.batchCreateTasksPollingUntilDone(request: request, options: .init())
+  }
+
+  public func batchCreateTasksPollingUntilDone(
+    request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
+  ) async throws -> BatchCreateTasksResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func batchCreateTasksPollingUntilDone(
+    parent: Swift.String,
+    requests: [CreateTaskRequest],
+  ) async throws -> BatchCreateTasksResponse {
+    let request = BatchCreateTasksRequest().with {
+      $0.parent = parent
+      $0.requests = requests
+    }
+    return try await self.batchCreateTasksPollingUntilDone(request: request)
+  }
+
   public func deleteTask(request: DeleteTaskRequest) async throws {
     try await self.deleteTask(request: request, options: .init())
   }
@@ -816,6 +1035,39 @@ extension Clients.CloudTasksProtocol {
       $0.name = name
     }
     try await self.deleteTask(request: request)
+  }
+
+  public func batchDeleteTasks(request: BatchDeleteTasksRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.batchDeleteTasks(request: request, options: .init())
+  }
+
+  public func batchDeleteTasks(
+    request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func batchDeleteTasksPollingUntilDone(request: BatchDeleteTasksRequest) async throws {
+    try await self.batchDeleteTasksPollingUntilDone(request: request, options: .init())
+  }
+
+  public func batchDeleteTasksPollingUntilDone(
+    request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func batchDeleteTasksPollingUntilDone(
+    parent: Swift.String,
+    names: [Swift.String],
+  ) async throws {
+    let request = BatchDeleteTasksRequest().with {
+      $0.parent = parent
+      $0.names = names
+    }
+    try await self.batchDeleteTasksPollingUntilDone(request: request)
   }
 
   public func runTask(request: RunTaskRequest) async throws -> GoogleCloudTasksV2.Task {
@@ -837,6 +1089,50 @@ extension Clients.CloudTasksProtocol {
     return try await self.runTask(request: request)
   }
 
+  public func updateCmekConfig(request: UpdateCmekConfigRequest) async throws
+    -> GoogleCloudTasksV2.CmekConfig
+  {
+    try await self.updateCmekConfig(request: request, options: .init())
+  }
+
+  public func updateCmekConfig(
+    request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudTasksV2.CmekConfig {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateCmekConfig(
+    cmekConfig: CmekConfig?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> GoogleCloudTasksV2.CmekConfig {
+    let request = UpdateCmekConfigRequest().with {
+      $0.cmekConfig = cmekConfig
+      $0.updateMask = updateMask
+    }
+    return try await self.updateCmekConfig(request: request)
+  }
+
+  public func getCmekConfig(request: GetCmekConfigRequest) async throws
+    -> GoogleCloudTasksV2.CmekConfig
+  {
+    try await self.getCmekConfig(request: request, options: .init())
+  }
+
+  public func getCmekConfig(
+    request: GetCmekConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudTasksV2.CmekConfig {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getCmekConfig(
+    name: Swift.String,
+  ) async throws -> GoogleCloudTasksV2.CmekConfig {
+    let request = GetCmekConfigRequest().with {
+      $0.name = name
+    }
+    return try await self.getCmekConfig(request: request)
+  }
+
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -856,6 +1152,23 @@ extension Clients.CloudTasksProtocol {
   }
 
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CloudTasks_ListLocations")
   public func listLocationsByItems(
@@ -880,5 +1193,26 @@ extension Clients.CloudTasksProtocol {
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
     throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.getOperation(request: request, options: .init())
+  }
+
+  public func getOperation(
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getOperation(
+    name: Swift.String,
+  ) async throws -> GoogleLongRunning.Operation {
+    let request = GoogleLongRunning.GetOperationRequest().with {
+      $0.name = name
+    }
+    return try await self.getOperation(request: request)
   }
 }

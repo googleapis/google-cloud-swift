@@ -21,12 +21,6 @@ import Foundation
 public struct CurrencyOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Output only. Deprecated: Use `currency_code` instead.
-  /// The currency associated with this account, represented by the 3-letter
-  /// ISO 4217 code.
-  @available(*, deprecated)
-  public var currency: Swift.String = Swift.String()
-
   /// Output only. The ID of the currency associated with this account,
   /// represented by the 3-letter ISO 4217 code.
   public var currencyCode: Swift.String = Swift.String()
@@ -34,31 +28,14 @@ public struct CurrencyOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Output only. The status of this account.
   public var accountStatus: AccountStatus = AccountStatus()
 
-  /// Output only. Deprecated: Use `previous_currency_operator_id` instead.
-  /// The previous currency operator which transferred ownership of the currency
-  /// operator role to this account. If this is the first currency operator for
-  /// the currency, this will be empty.
-  @available(*, deprecated)
-  public var previousEntityId: Entity? = nil
-
   /// Output only. The ID of the previous currency operator which transferred
   /// ownership of the currency operator role to this account. If this is the
   /// first currency operator for the currency, this will be empty.
   public var previousCurrencyOperatorId: Swift.String = Swift.String()
 
-  /// Output only. Deprecated: Use `platform_operator_id` instead.
-  /// The platform operator which created this currency operator.
-  @available(*, deprecated)
-  public var platformOperatorEntityId: Entity? = nil
-
   /// Output only. The ID of the platform operator which created this currency
   /// operator.
   public var platformOperatorId: Swift.String = Swift.String()
-
-  /// Output only. Deprecated: Use `contract_token_manager_id` instead.
-  /// The contract token manager associated with this currency operator.
-  @available(*, deprecated)
-  public var contractTokenManager: Entity? = nil
 
   /// Output only. The ID of the contract token manager associated with this
   /// currency operator.
@@ -78,7 +55,7 @@ public struct CurrencyOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = CurrencyOperatorDetails().with { $0.currency = ... }
+  /// let value = CurrencyOperatorDetails().with { $0.currencyCode = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -92,58 +69,39 @@ public struct CurrencyOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackabl
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let currency = CodingKeys(stringValue: "currency")
     static let currencyCode = CodingKeys(stringValue: "currencyCode")
     static let accountStatus = CodingKeys(stringValue: "accountStatus")
-    static let previousEntityId = CodingKeys(stringValue: "previousEntityId")
     static let previousCurrencyOperatorId = CodingKeys(stringValue: "previousCurrencyOperatorId")
-    static let platformOperatorEntityId = CodingKeys(stringValue: "platformOperatorEntityId")
     static let platformOperatorId = CodingKeys(stringValue: "platformOperatorId")
-    static let contractTokenManager = CodingKeys(stringValue: "contractTokenManager")
     static let contractTokenManagerId = CodingKeys(stringValue: "contractTokenManagerId")
     static let clearinghouseId = CodingKeys(stringValue: "clearinghouseId")
 
     static let _knownKeys: Set<Swift.String> = [
-      "currency",
       "currencyCode",
       "accountStatus",
-      "previousEntityId",
       "previousCurrencyOperatorId",
-      "platformOperatorEntityId",
       "platformOperatorId",
-      "contractTokenManager",
       "contractTokenManagerId",
       "clearinghouseId",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currency) {
-      self.currency = value
-    }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currencyCode) {
       self.currencyCode = value
     }
     if let value = try container.decodeIfPresent(AccountStatus.self, forKey: .accountStatus) {
       self.accountStatus = value
     }
-    self.previousEntityId = try container.decodeIfPresent(Entity.self, forKey: .previousEntityId)
     if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .previousCurrencyOperatorId)
     {
       self.previousCurrencyOperatorId = value
     }
-    self.platformOperatorEntityId = try container.decodeIfPresent(
-      Entity.self, forKey: .platformOperatorEntityId)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .platformOperatorId) {
       self.platformOperatorId = value
     }
-    self.contractTokenManager = try container.decodeIfPresent(
-      Entity.self, forKey: .contractTokenManager)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contractTokenManagerId)
     {
       self.contractTokenManagerId = value
@@ -157,19 +115,12 @@ public struct CurrencyOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.currency, forKey: .currency)
     try container.encode(self.currencyCode, forKey: .currencyCode)
     try container.encode(self.accountStatus, forKey: .accountStatus)
-    try container.encodeIfPresent(self.previousEntityId, forKey: .previousEntityId)
     try container.encode(self.previousCurrencyOperatorId, forKey: .previousCurrencyOperatorId)
-    try container.encodeIfPresent(self.platformOperatorEntityId, forKey: .platformOperatorEntityId)
     try container.encode(self.platformOperatorId, forKey: .platformOperatorId)
-    try container.encodeIfPresent(self.contractTokenManager, forKey: .contractTokenManager)
     try container.encode(self.contractTokenManagerId, forKey: .contractTokenManagerId)
     try container.encode(self.clearinghouseId, forKey: .clearinghouseId)
     for (key, value) in self._unknownFields.json {

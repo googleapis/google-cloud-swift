@@ -188,6 +188,9 @@
       /// Optional. The error message of the function.
       public var message: Swift.String = Swift.String()
 
+      /// Optional. Specifies whether the tool call is retryable.
+      public var retryable: Swift.Bool = Swift.Bool()
+
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `Error`.
@@ -213,9 +216,11 @@
         init?(intValue: Swift.Int) { nil }
 
         static let message = CodingKeys(stringValue: "message")
+        static let retryable = CodingKeys(stringValue: "retryable")
 
         static let _knownKeys: Set<Swift.String> = [
-          "message"
+          "message",
+          "retryable",
         ]
       }
 
@@ -223,6 +228,9 @@
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
           self.message = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .retryable) {
+          self.retryable = value
         }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
@@ -233,6 +241,7 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.message, forKey: .message)
+        try container.encode(self.retryable, forKey: .retryable)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

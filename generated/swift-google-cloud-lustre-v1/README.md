@@ -20,6 +20,7 @@ The following example demonstrates using `LustreClient`:
 import Foundation
 import GoogleCloudLustreV1
 import GoogleCloudLocation
+import GoogleIAMV1
 import GoogleLongRunning
 import GoogleWKT
 

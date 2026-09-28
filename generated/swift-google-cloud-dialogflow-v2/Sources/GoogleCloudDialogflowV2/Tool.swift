@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if Conversations || GeneratorEvaluations || Generators || Tools
+#if AnswerRecords || CompanionAgents || Conversations || GeneratorEvaluations || Generators || Participants || Tools
   public import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

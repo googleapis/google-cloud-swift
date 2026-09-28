@@ -27,18 +27,9 @@ public struct Mint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// higher than that, the transaction must be rejected
   public var mintAmount: CurrencyValue? = nil
 
-  /// Optional. Deprecated: Use
-  /// [beneficiary_id][google.cloud.universalledger.v1.Mint.beneficiary_id]
-  /// instead. The account to which the minted amount should be transferred. The
-  /// beneficiary account must have the `ROLE_RECEIVER` enabled on it.
-  ///
-  /// [google.cloud.universalledger.v1.Mint.beneficiary_id]: <doc:Mint/beneficiaryId>
-  @available(*, deprecated)
-  public var beneficiary: Entity? = nil
-
-  /// Optional. The ID of the account to which the minted amount should be
+  /// Required. The ID of the account to which the minted amount should be
   /// transferred. The receiving account must have the `ROLE_RECEIVER` enabled on
-  /// it. One of `beneficiary` or `beneficiary_id` must be specified.
+  /// it.
   public var beneficiaryId: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -66,23 +57,17 @@ public struct Mint: Codable, Equatable, GoogleWKT._AnyPackable,
     init?(intValue: Swift.Int) { nil }
 
     static let mintAmount = CodingKeys(stringValue: "mintAmount")
-    static let beneficiary = CodingKeys(stringValue: "beneficiary")
     static let beneficiaryId = CodingKeys(stringValue: "beneficiaryId")
 
     static let _knownKeys: Set<Swift.String> = [
       "mintAmount",
-      "beneficiary",
       "beneficiaryId",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.mintAmount = try container.decodeIfPresent(CurrencyValue.self, forKey: .mintAmount)
-    self.beneficiary = try container.decodeIfPresent(Entity.self, forKey: .beneficiary)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .beneficiaryId) {
       self.beneficiaryId = value
     }
@@ -92,13 +77,9 @@ public struct Mint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.mintAmount, forKey: .mintAmount)
-    try container.encodeIfPresent(self.beneficiary, forKey: .beneficiary)
     try container.encode(self.beneficiaryId, forKey: .beneficiaryId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

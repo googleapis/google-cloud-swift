@@ -43,6 +43,10 @@ public struct InvocationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. The service account to run workflow invocations under.
   public var serviceAccount: Swift.String = Swift.String()
 
+  /// Optional. Configuration for end user authentication.
+  /// Note that this should not be set when `service_account` is used.
+  public var endUserAuthConfig: InvocationConfig.EndUserAuthenticationConfig? = nil
+
   /// Optional. Specifies the priority for query execution in BigQuery.
   /// More information can be found at
   /// https://cloud.google.com/bigquery/docs/running-queries#queries.
@@ -81,6 +85,7 @@ public struct InvocationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     static let fullyRefreshIncrementalTablesEnabled = CodingKeys(
       stringValue: "fullyRefreshIncrementalTablesEnabled")
     static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
+    static let endUserAuthConfig = CodingKeys(stringValue: "endUserAuthConfig")
     static let queryPriority = CodingKeys(stringValue: "queryPriority")
 
     static let _knownKeys: Set<Swift.String> = [
@@ -90,6 +95,7 @@ public struct InvocationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       "transitiveDependentsIncluded",
       "fullyRefreshIncrementalTablesEnabled",
       "serviceAccount",
+      "endUserAuthConfig",
       "queryPriority",
     ]
   }
@@ -120,6 +126,8 @@ public struct InvocationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
       self.serviceAccount = value
     }
+    self.endUserAuthConfig = try container.decodeIfPresent(
+      InvocationConfig.EndUserAuthenticationConfig.self, forKey: .endUserAuthConfig)
     self.queryPriority = try container.decodeIfPresent(
       InvocationConfig.QueryPriority.self, forKey: .queryPriority)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -138,9 +146,86 @@ public struct InvocationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(
       self.fullyRefreshIncrementalTablesEnabled, forKey: .fullyRefreshIncrementalTablesEnabled)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
+    try container.encodeIfPresent(self.endUserAuthConfig, forKey: .endUserAuthConfig)
     try container.encodeIfPresent(self.queryPriority, forKey: .queryPriority)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
+  /// Includes configuration options for end user authentication.
+  public struct EndUserAuthenticationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Output only. Email address of the user to run workflow invocations under.
+    public var userEmail: Swift.String = Swift.String()
+
+    /// Optional. OAuth configuration for end user authentication.
+    public var oauthConfig: OAuthConfig? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `EndUserAuthenticationConfig`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = EndUserAuthenticationConfig().with { $0.userEmail = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let userEmail = CodingKeys(stringValue: "userEmail")
+      static let oauthConfig = CodingKeys(stringValue: "oauthConfig")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "userEmail",
+        "oauthConfig",
+      ]
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userEmail) {
+        self.userEmail = value
+      }
+      self.oauthConfig = try container.decodeIfPresent(OAuthConfig.self, forKey: .oauthConfig)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.userEmail, forKey: .userEmail)
+      try container.encodeIfPresent(self.oauthConfig, forKey: .oauthConfig)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.dataform.v1.InvocationConfig.EndUserAuthenticationConfig"
+    }
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 

@@ -11,6 +11,7 @@ to learn about this library.
 
 - ``AgentsClient``: Service for managing Agents. (enabled by the `Agents` trait)
 - ``AnswerRecordsClient``: Service for managing AnswerRecords. (enabled by the `AnswerRecords` trait)
+- ``CompanionAgentsClient``: Service for managing companion agents. (enabled by the `CompanionAgents` trait)
 - ``ContextsClient``: Service for managing Contexts. (enabled by the `Contexts` trait)
 - ``ConversationsClient``: Service for managing Conversations. (enabled by the `Conversations` trait)
 - ``ConversationDatasetsClient``: Conversation datasets. (enabled by the `ConversationDatasets` trait)

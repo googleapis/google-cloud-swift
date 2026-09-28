@@ -174,6 +174,7 @@
       static let inputAudio = CodingKeys(stringValue: "inputAudio")
       static let inputText = CodingKeys(stringValue: "inputText")
       static let inputDtmf = CodingKeys(stringValue: "inputDtmf")
+      static let suggestionInput = CodingKeys(stringValue: "suggestionInput")
       static let queryParams = CodingKeys(stringValue: "queryParams")
       static let assistQueryParams = CodingKeys(stringValue: "assistQueryParams")
       static let cxParameters = CodingKeys(stringValue: "cxParameters")
@@ -191,6 +192,7 @@
         "inputAudio",
         "inputText",
         "inputDtmf",
+        "suggestionInput",
         "queryParams",
         "assistQueryParams",
         "cxParameters",
@@ -272,6 +274,11 @@
       {
         try inputCheckAndSet(.inputDtmf(inputDtmf))
       }
+      if let suggestionInput = try container.decodeIfPresent(
+        SuggestionInput.self, forKey: .suggestionInput)
+      {
+        try inputCheckAndSet(.suggestionInput(suggestionInput))
+      }
       self.input = input
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -309,6 +316,8 @@
           try container.encode(value, forKey: .inputText)
         case .inputDtmf(let value):
           try container.encode(value, forKey: .inputDtmf)
+        case .suggestionInput(let value):
+          try container.encode(value, forKey: .suggestionInput)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -340,6 +349,8 @@
       /// This input is ignored if the previous response indicated that DTMF input
       /// is not accepted.
       indirect case inputDtmf(TelephonyDtmfEvents)
+      /// Optional. Input for confirming, revising, or canceling a suggestion.
+      indirect case suggestionInput(SuggestionInput)
     }
 
     public static var _anyTypeUrl: Swift.String {

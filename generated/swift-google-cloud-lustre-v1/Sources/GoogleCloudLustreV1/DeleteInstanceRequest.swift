@@ -40,6 +40,11 @@ public struct DeleteInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// not supported (00000000-0000-0000-0000-000000000000).
   public var requestId: Swift.String = Swift.String()
 
+  /// Optional. If set to true, any sub-resources from this instance will also be
+  /// deleted. Otherwise, the request will only work if the instance has no
+  /// sub-resources.
+  public var force: Swift.Bool = Swift.Bool()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `DeleteInstanceRequest`.
@@ -66,10 +71,12 @@ public struct DeleteInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let name = CodingKeys(stringValue: "name")
     static let requestId = CodingKeys(stringValue: "requestId")
+    static let force = CodingKeys(stringValue: "force")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
       "requestId",
+      "force",
     ]
   }
 
@@ -81,6 +88,9 @@ public struct DeleteInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
       self.requestId = value
     }
+    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .force) {
+      self.force = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -91,6 +101,7 @@ public struct DeleteInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.requestId, forKey: .requestId)
+    try container.encode(self.force, forKey: .force)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

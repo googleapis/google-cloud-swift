@@ -54,18 +54,7 @@ public struct CreateCurrencyOperator: Codable, Equatable, GoogleWKT._AnyPackable
   /// created, the field is immutable.
   public var accountComment: Swift.String = Swift.String()
 
-  /// Optional. Deprecated: Use
-  /// [currency_code][google.cloud.universalledger.v1.CreateCurrencyOperator.currency_code]
-  /// instead.
-  /// The fiat currency associated with this operator, represented as a
-  /// 3-capital-letter ISO 4217 code.
-  /// Considered public information.
-  ///
-  /// [google.cloud.universalledger.v1.CreateCurrencyOperator.currency_code]: <doc:CreateCurrencyOperator/currencyCode>
-  @available(*, deprecated)
-  public var currency: Swift.String = Swift.String()
-
-  /// Optional. The fiat currency associated with this operator, represented as a
+  /// Required. The fiat currency associated with this operator, represented as a
   /// 3-capital-letter ISO 4217 code.
   /// Considered public information.
   public var currencyCode: Swift.String = Swift.String()
@@ -97,21 +86,16 @@ public struct CreateCurrencyOperator: Codable, Equatable, GoogleWKT._AnyPackable
     static let publicKey = CodingKeys(stringValue: "publicKey")
     static let keyFormat = CodingKeys(stringValue: "keyFormat")
     static let accountComment = CodingKeys(stringValue: "accountComment")
-    static let currency = CodingKeys(stringValue: "currency")
     static let currencyCode = CodingKeys(stringValue: "currencyCode")
 
     static let _knownKeys: Set<Swift.String> = [
       "publicKey",
       "keyFormat",
       "accountComment",
-      "currency",
       "currencyCode",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .publicKey) {
@@ -123,9 +107,6 @@ public struct CreateCurrencyOperator: Codable, Equatable, GoogleWKT._AnyPackable
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .accountComment) {
       self.accountComment = value
     }
-    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currency) {
-      self.currency = value
-    }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currencyCode) {
       self.currencyCode = value
     }
@@ -135,15 +116,11 @@ public struct CreateCurrencyOperator: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.publicKey, forKey: .publicKey)
     try container.encode(self.keyFormat, forKey: .keyFormat)
     try container.encode(self.accountComment, forKey: .accountComment)
-    try container.encode(self.currency, forKey: .currency)
     try container.encode(self.currencyCode, forKey: .currencyCode)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

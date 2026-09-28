@@ -19,6 +19,7 @@
 import Foundation
 import GoogleCloudLustreV1
 import GoogleCloudLocation
+import GoogleIAMV1
 import GoogleLongRunning
 import GoogleWKT
 

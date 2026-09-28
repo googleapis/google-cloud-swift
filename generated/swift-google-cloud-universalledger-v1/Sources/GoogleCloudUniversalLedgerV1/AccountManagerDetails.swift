@@ -21,11 +21,6 @@ import Foundation
 public struct AccountManagerDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Output only. Deprecated: Use `token_manager_id` instead.
-  /// The default token manager for accounts created by this account manager.
-  @available(*, deprecated)
-  public var tokenManager: Entity? = nil
-
   /// Output only. The number of accounts created by this account manager.
   public var numAccounts: Swift.Int32 = Swift.Int32()
 
@@ -43,7 +38,7 @@ public struct AccountManagerDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = AccountManagerDetails().with { $0.tokenManager = ... }
+  /// let value = AccountManagerDetails().with { $0.numAccounts = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -57,23 +52,17 @@ public struct AccountManagerDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let tokenManager = CodingKeys(stringValue: "tokenManager")
     static let numAccounts = CodingKeys(stringValue: "numAccounts")
     static let tokenManagerId = CodingKeys(stringValue: "tokenManagerId")
 
     static let _knownKeys: Set<Swift.String> = [
-      "tokenManager",
       "numAccounts",
       "tokenManagerId",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.tokenManager = try container.decodeIfPresent(Entity.self, forKey: .tokenManager)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .numAccounts) {
       self.numAccounts = value
     }
@@ -86,12 +75,8 @@ public struct AccountManagerDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.tokenManager, forKey: .tokenManager)
     try container.encode(self.numAccounts, forKey: .numAccounts)
     try container.encode(self.tokenManagerId, forKey: .tokenManagerId)
     for (key, value) in self._unknownFields.json {

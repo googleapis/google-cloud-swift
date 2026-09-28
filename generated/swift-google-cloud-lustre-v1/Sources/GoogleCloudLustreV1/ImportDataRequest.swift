@@ -30,6 +30,12 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. User-specified service account used to perform the transfer.
   /// If unspecified, the default Managed Lustre service agent will be used.
+  ///
+  /// Use one of the following formats:
+  ///
+  /// * `{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+  /// * `projects/{PROJECT_ID}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+  /// * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
   public var serviceAccount: Swift.String = Swift.String()
 
   /// A Cloud Storage URI of a folder to import file data from, in the

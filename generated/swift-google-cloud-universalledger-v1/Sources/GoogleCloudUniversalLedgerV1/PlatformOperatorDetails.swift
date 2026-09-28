@@ -24,13 +24,6 @@ public struct PlatformOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Output only. The status of this account.
   public var accountStatus: AccountStatus = AccountStatus()
 
-  /// Output only. Deprecated: Use `previous_platform_operator_id` instead.
-  /// The previous platform operator which transferred ownership of the platform
-  /// operator role to this account. If this is the first platform operator, this
-  /// will be empty.
-  @available(*, deprecated)
-  public var previousEntityId: Entity? = nil
-
   /// Output only. The ID of the previous platform operator which transferred
   /// ownership of the platform operator role to this account. If this is the
   /// first platform operator, this will be empty.
@@ -61,25 +54,19 @@ public struct PlatformOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackabl
     init?(intValue: Swift.Int) { nil }
 
     static let accountStatus = CodingKeys(stringValue: "accountStatus")
-    static let previousEntityId = CodingKeys(stringValue: "previousEntityId")
     static let previousPlatformOperatorId = CodingKeys(stringValue: "previousPlatformOperatorId")
 
     static let _knownKeys: Set<Swift.String> = [
       "accountStatus",
-      "previousEntityId",
       "previousPlatformOperatorId",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(AccountStatus.self, forKey: .accountStatus) {
       self.accountStatus = value
     }
-    self.previousEntityId = try container.decodeIfPresent(Entity.self, forKey: .previousEntityId)
     if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .previousPlatformOperatorId)
     {
@@ -91,13 +78,9 @@ public struct PlatformOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.accountStatus, forKey: .accountStatus)
-    try container.encodeIfPresent(self.previousEntityId, forKey: .previousEntityId)
     try container.encode(self.previousPlatformOperatorId, forKey: .previousPlatformOperatorId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

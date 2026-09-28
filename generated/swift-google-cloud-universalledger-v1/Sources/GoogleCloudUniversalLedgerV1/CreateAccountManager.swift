@@ -44,15 +44,6 @@ public struct CreateAccountManager: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Considered public information.
   public var keyFormat: KeyFormat = KeyFormat()
 
-  /// Optional. Deprecated: Use
-  /// [default_token_manager_id][google.cloud.universalledger.v1.CreateAccountManager.default_token_manager_id]
-  /// instead. The default token manager for the accounts that will be created by
-  /// this manager.
-  ///
-  /// [google.cloud.universalledger.v1.CreateAccountManager.default_token_manager_id]: <doc:CreateAccountManager/defaultTokenManagerId>
-  @available(*, deprecated)
-  public var defaultTokenManager: Entity? = nil
-
   /// Optional. The ID of the default token manager for the accounts that will be
   /// created by this manager. The value is limited to 60 characters.
   public var defaultTokenManagerId: Swift.String = Swift.String()
@@ -89,22 +80,17 @@ public struct CreateAccountManager: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let publicKey = CodingKeys(stringValue: "publicKey")
     static let keyFormat = CodingKeys(stringValue: "keyFormat")
-    static let defaultTokenManager = CodingKeys(stringValue: "defaultTokenManager")
     static let defaultTokenManagerId = CodingKeys(stringValue: "defaultTokenManagerId")
     static let accountComment = CodingKeys(stringValue: "accountComment")
 
     static let _knownKeys: Set<Swift.String> = [
       "publicKey",
       "keyFormat",
-      "defaultTokenManager",
       "defaultTokenManagerId",
       "accountComment",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .publicKey) {
@@ -113,8 +99,6 @@ public struct CreateAccountManager: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(KeyFormat.self, forKey: .keyFormat) {
       self.keyFormat = value
     }
-    self.defaultTokenManager = try container.decodeIfPresent(
-      Entity.self, forKey: .defaultTokenManager)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultTokenManagerId)
     {
       self.defaultTokenManagerId = value
@@ -128,14 +112,10 @@ public struct CreateAccountManager: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.publicKey, forKey: .publicKey)
     try container.encode(self.keyFormat, forKey: .keyFormat)
-    try container.encodeIfPresent(self.defaultTokenManager, forKey: .defaultTokenManager)
     try container.encode(self.defaultTokenManagerId, forKey: .defaultTokenManagerId)
     try container.encode(self.accountComment, forKey: .accountComment)
     for (key, value) in self._unknownFields.json {

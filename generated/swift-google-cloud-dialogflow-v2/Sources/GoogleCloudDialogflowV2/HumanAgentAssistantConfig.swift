@@ -464,8 +464,20 @@
       /// features)
       public var useUnredactedConversationData: Swift.Bool = Swift.Bool()
 
-      /// Optional. If true, enable asynchronous execution of tools.
+      /// Optional. Deprecated: This field is not consulted for tool execution.
+      /// Configure asynchronous execution per tool using
+      /// [CesToolSpec.async_execution][google.cloud.dialogflow.v2.CesToolSpec.async_execution]
+      /// or
+      /// [ToolsetTool.async_execution][google.cloud.dialogflow.v2.ToolsetTool.async_execution]
+      /// instead.
+      @available(*, deprecated)
       public var enableAsyncToolCall: Swift.Bool = Swift.Bool()
+
+      /// Optional. The resource name of the companion agent to link.
+      /// This is only supported for `human_agent_suggestion_config`.
+      /// Format:
+      /// `projects/{project}/locations/{location}/companionAgents/{companion_agent}`
+      public var companionAgent: Swift.String = Swift.String()
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -501,6 +513,7 @@
         static let useUnredactedConversationData = CodingKeys(
           stringValue: "useUnredactedConversationData")
         static let enableAsyncToolCall = CodingKeys(stringValue: "enableAsyncToolCall")
+        static let companionAgent = CodingKeys(stringValue: "companionAgent")
 
         static let _knownKeys: Set<Swift.String> = [
           "featureConfigs",
@@ -510,9 +523,13 @@
           "skipEmptyEventBasedSuggestion",
           "useUnredactedConversationData",
           "enableAsyncToolCall",
+          "companionAgent",
         ]
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
@@ -547,12 +564,18 @@
         {
           self.enableAsyncToolCall = value
         }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .companionAgent) {
+          self.companionAgent = value
+        }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.featureConfigs, forKey: .featureConfigs)
@@ -566,6 +589,7 @@
         try container.encode(
           self.useUnredactedConversationData, forKey: .useUnredactedConversationData)
         try container.encode(self.enableAsyncToolCall, forKey: .enableAsyncToolCall)
+        try container.encode(self.companionAgent, forKey: .companionAgent)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

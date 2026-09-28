@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if ConversationProfiles || Conversations
+#if ConversationProfiles || Conversations || Participants || Sessions
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
@@ -104,6 +104,15 @@
     /// seconds of timeout value.
     public var useTimeoutBasedEndpointing: Swift.Bool = Swift.Bool()
 
+    /// Optional. Configuration for using Gemini ASR models served via Vertex AI,
+    /// overriding the default Gemini ASR model or providing additional advanced
+    /// parameters. This field is only used when `use_gemini_asr` is true.
+    public var geminiAsrConfig: SpeechToTextConfig.GeminiAsrConfig? = nil
+
+    /// Optional. If true, Gemini ASR will be used for transcription instead of
+    /// Cloud Speech-to-Text.
+    public var useGeminiAsr: Swift.Bool = Swift.Bool()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SpeechToTextConfig`.
@@ -136,6 +145,8 @@
       static let languageCode = CodingKeys(stringValue: "languageCode")
       static let enableWordInfo = CodingKeys(stringValue: "enableWordInfo")
       static let useTimeoutBasedEndpointing = CodingKeys(stringValue: "useTimeoutBasedEndpointing")
+      static let geminiAsrConfig = CodingKeys(stringValue: "geminiAsrConfig")
+      static let useGeminiAsr = CodingKeys(stringValue: "useGeminiAsr")
 
       static let _knownKeys: Set<Swift.String> = [
         "speechModelVariant",
@@ -146,6 +157,8 @@
         "languageCode",
         "enableWordInfo",
         "useTimeoutBasedEndpointing",
+        "geminiAsrConfig",
+        "useGeminiAsr",
       ]
     }
 
@@ -179,6 +192,11 @@
       {
         self.useTimeoutBasedEndpointing = value
       }
+      self.geminiAsrConfig = try container.decodeIfPresent(
+        SpeechToTextConfig.GeminiAsrConfig.self, forKey: .geminiAsrConfig)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .useGeminiAsr) {
+        self.useGeminiAsr = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -195,8 +213,361 @@
       try container.encode(self.languageCode, forKey: .languageCode)
       try container.encode(self.enableWordInfo, forKey: .enableWordInfo)
       try container.encode(self.useTimeoutBasedEndpointing, forKey: .useTimeoutBasedEndpointing)
+      try container.encodeIfPresent(self.geminiAsrConfig, forKey: .geminiAsrConfig)
+      try container.encode(self.useGeminiAsr, forKey: .useGeminiAsr)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// Configuration for using Gemini ASR models served via Vertex AI. This
+    /// message is used to override the default Gemini ASR model or provide
+    /// additional advanced parameters.
+    public struct GeminiAsrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. The Gemini ASR model ID used for transcription.
+      /// This value overrides the default model ID configured on the server.
+      /// Example: "gemini-3-flash-lite-asr-preview"
+      public var modelId: Swift.String = Swift.String()
+
+      /// Optional. The required duration of detected silence (or non-speech)
+      /// before end-of-speech is committed.
+      public var silenceDurationMs: Swift.Int32 = Swift.Int32()
+
+      /// Optional. The required duration of detected speech before start-of-speech
+      /// is committed.
+      public var prefixPaddingMs: Swift.Int32 = Swift.Int32()
+
+      /// Optional. Start of speech sensitivity.
+      public var startOfSpeechSensitivity: SpeechToTextConfig.GeminiAsrConfig.StartSensitivity =
+        SpeechToTextConfig.GeminiAsrConfig.StartSensitivity()
+
+      /// Optional. End of speech sensitivity.
+      public var endOfSpeechSensitivity: SpeechToTextConfig.GeminiAsrConfig.EndSensitivity =
+        SpeechToTextConfig.GeminiAsrConfig.EndSensitivity()
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `GeminiAsrConfig`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = GeminiAsrConfig().with { $0.modelId = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let modelId = CodingKeys(stringValue: "modelId")
+        static let silenceDurationMs = CodingKeys(stringValue: "silenceDurationMs")
+        static let prefixPaddingMs = CodingKeys(stringValue: "prefixPaddingMs")
+        static let startOfSpeechSensitivity = CodingKeys(stringValue: "startOfSpeechSensitivity")
+        static let endOfSpeechSensitivity = CodingKeys(stringValue: "endOfSpeechSensitivity")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "modelId",
+          "silenceDurationMs",
+          "prefixPaddingMs",
+          "startOfSpeechSensitivity",
+          "endOfSpeechSensitivity",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
+          self.modelId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .silenceDurationMs) {
+          self.silenceDurationMs = value
+        }
+        if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .prefixPaddingMs) {
+          self.prefixPaddingMs = value
+        }
+        if let value = try container.decodeIfPresent(
+          SpeechToTextConfig.GeminiAsrConfig.StartSensitivity.self,
+          forKey: .startOfSpeechSensitivity)
+        {
+          self.startOfSpeechSensitivity = value
+        }
+        if let value = try container.decodeIfPresent(
+          SpeechToTextConfig.GeminiAsrConfig.EndSensitivity.self, forKey: .endOfSpeechSensitivity)
+        {
+          self.endOfSpeechSensitivity = value
+        }
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.modelId, forKey: .modelId)
+        try container.encode(self.silenceDurationMs, forKey: .silenceDurationMs)
+        try container.encode(self.prefixPaddingMs, forKey: .prefixPaddingMs)
+        try container.encode(self.startOfSpeechSensitivity, forKey: .startOfSpeechSensitivity)
+        try container.encode(self.endOfSpeechSensitivity, forKey: .endOfSpeechSensitivity)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// Start of speech sensitivity.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
+      public enum StartSensitivity: Codable, Equatable, Hashable, Sendable {
+        /// The default is START_SENSITIVITY_LOW.
+        case unspecified
+        /// Automatic detection will detect the start of speech more often.
+        case high
+        /// Automatic detection will detect the start of speech less often.
+        case low
+        /// Encodes an unknown integer value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownIntValue(Int)
+        /// Encodes an unknown string value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownStringValue(String)
+
+        public init() {
+          self = .unspecified
+        }
+
+        /// Returns the integer value associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+        public var intValue: Int? {
+          switch self {
+          case .unspecified: return 0
+          case .high: return 1
+          case .low: return 2
+          case .unknownIntValue(let v): return v
+          case .unknownStringValue: return nil
+          }
+        }
+
+        /// Returns the string value (or name) associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+        public var stringValue: Swift.String? {
+          switch self {
+          case .unspecified: return "START_SENSITIVITY_UNSPECIFIED"
+          case .high: return "START_SENSITIVITY_HIGH"
+          case .low: return "START_SENSITIVITY_LOW"
+          case .unknownIntValue: return nil
+          case .unknownStringValue(let v): return v
+          }
+        }
+
+        /// Initialize from a string value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:StartSensitivity/unknownStringValue(_:)).
+        public init(stringValue: Swift.String) {
+          switch stringValue {
+          case "START_SENSITIVITY_UNSPECIFIED": self = .unspecified
+          case "START_SENSITIVITY_HIGH": self = .high
+          case "START_SENSITIVITY_LOW": self = .low
+          default: self = .unknownStringValue(stringValue)
+          }
+        }
+
+        /// Initialize from an integer value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:StartSensitivity/unknownIntValue(_:)).
+        public init(intValue: Int) {
+          switch intValue {
+          case 0: self = .unspecified
+          case 1: self = .high
+          case 2: self = .low
+          default: self = .unknownIntValue(intValue)
+          }
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.singleValueContainer()
+          if let v = try? container.decode(Int.self) {
+            self.init(intValue: v)
+            return
+          }
+          if let s = try? container.decode(String.self) {
+            if let v = Int(s) {
+              self.init(intValue: v)
+            } else {
+              self.init(stringValue: s)
+            }
+            return
+          }
+          throw DecodingError.dataCorruptedError(
+            in: container, debugDescription: "Expected enum value, must be integer or string.")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.singleValueContainer()
+          switch self {
+          case .unspecified: return try container.encode("START_SENSITIVITY_UNSPECIFIED")
+          case .high: return try container.encode("START_SENSITIVITY_HIGH")
+          case .low: return try container.encode("START_SENSITIVITY_LOW")
+          case .unknownIntValue(let v): return try container.encode(v)
+          case .unknownStringValue(let v): return try container.encode(v)
+          }
+        }
+      }
+
+      /// End of speech sensitivity.
+      ///
+      /// - Note: Adding cases to this enumeration is not considered a breaking change.
+      ///   Always include an `@unknown default:` case when switching over this type.
+      ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+      ///   expecting specific values to remain unparsed; future releases may promote
+      ///   them to named cases.
+      public enum EndSensitivity: Codable, Equatable, Hashable, Sendable {
+        /// The default is END_SENSITIVITY_LOW.
+        case unspecified
+        /// Automatic detection ends speech more often.
+        case high
+        /// Automatic detection ends speech less often.
+        case low
+        /// Encodes an unknown integer value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific integer values in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownIntValue(Int)
+        /// Encodes an unknown string value.
+        ///
+        /// The most common cause for an unknown value is for the service to send
+        /// a value unknown to the library. We recommend you update your library to
+        /// the latest version.
+        ///
+        /// - Warning: Do not pattern-match specific string literals in this case;
+        ///   future releases may promote them to named enum cases.
+        case unknownStringValue(String)
+
+        public init() {
+          self = .unspecified
+        }
+
+        /// Returns the integer value associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+        public var intValue: Int? {
+          switch self {
+          case .unspecified: return 0
+          case .high: return 1
+          case .low: return 2
+          case .unknownIntValue(let v): return v
+          case .unknownStringValue: return nil
+          }
+        }
+
+        /// Returns the string value (or name) associated with the enumeration.
+        ///
+        /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+        public var stringValue: Swift.String? {
+          switch self {
+          case .unspecified: return "END_SENSITIVITY_UNSPECIFIED"
+          case .high: return "END_SENSITIVITY_HIGH"
+          case .low: return "END_SENSITIVITY_LOW"
+          case .unknownIntValue: return nil
+          case .unknownStringValue(let v): return v
+          }
+        }
+
+        /// Initialize from a string value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownStringValue`](doc:EndSensitivity/unknownStringValue(_:)).
+        public init(stringValue: Swift.String) {
+          switch stringValue {
+          case "END_SENSITIVITY_UNSPECIFIED": self = .unspecified
+          case "END_SENSITIVITY_HIGH": self = .high
+          case "END_SENSITIVITY_LOW": self = .low
+          default: self = .unknownStringValue(stringValue)
+          }
+        }
+
+        /// Initialize from an integer value.
+        ///
+        /// If the value is unknown, this initializes to [`unknownIntValue`](doc:EndSensitivity/unknownIntValue(_:)).
+        public init(intValue: Int) {
+          switch intValue {
+          case 0: self = .unspecified
+          case 1: self = .high
+          case 2: self = .low
+          default: self = .unknownIntValue(intValue)
+          }
+        }
+
+        public init(from decoder: Decoder) throws {
+          let container = try decoder.singleValueContainer()
+          if let v = try? container.decode(Int.self) {
+            self.init(intValue: v)
+            return
+          }
+          if let s = try? container.decode(String.self) {
+            if let v = Int(s) {
+              self.init(intValue: v)
+            } else {
+              self.init(stringValue: s)
+            }
+            return
+          }
+          throw DecodingError.dataCorruptedError(
+            in: container, debugDescription: "Expected enum value, must be integer or string.")
+        }
+
+        public func encode(to encoder: Encoder) throws {
+          var container = encoder.singleValueContainer()
+          switch self {
+          case .unspecified: return try container.encode("END_SENSITIVITY_UNSPECIFIED")
+          case .high: return try container.encode("END_SENSITIVITY_HIGH")
+          case .low: return try container.encode("END_SENSITIVITY_LOW")
+          case .unknownIntValue(let v): return try container.encode(v)
+          case .unknownStringValue(let v): return try container.encode(v)
+          }
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.dialogflow.v2.SpeechToTextConfig.GeminiAsrConfig"
+      }
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 

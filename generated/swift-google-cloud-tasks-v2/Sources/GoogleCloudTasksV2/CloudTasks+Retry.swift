@@ -20,6 +20,8 @@ import Foundation
 #endif
 import GoogleCloudLocation
 import GoogleIAMV1
+import GoogleLongRunning
+import GoogleRpc
 import GoogleWKT
 @_spi(GoogleCloudInternal) import GoogleGax
 
@@ -255,6 +257,21 @@ extension Clients {
         })
     }
 
+    public func batchCreateTasks(
+      request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: BatchCreateTasksRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.batchCreateTasks(request: r, options: o)
+        })
+    }
+
     public func deleteTask(
       request: DeleteTaskRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -264,6 +281,21 @@ extension Clients {
         idempotent: false,
         action: { (r: DeleteTaskRequest, o: GoogleGax.RequestOptions) async throws -> Void in
           return try await self.inner.deleteTask(request: r, options: o)
+        })
+    }
+
+    public func batchDeleteTasks(
+      request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: BatchDeleteTasksRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.batchDeleteTasks(request: r, options: o)
         })
     }
 
@@ -278,6 +310,36 @@ extension Clients {
           (r: RunTaskRequest, o: GoogleGax.RequestOptions) async throws -> GoogleCloudTasksV2.Task
           in
           return try await self.inner.runTask(request: r, options: o)
+        })
+    }
+
+    public func updateCmekConfig(
+      request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudTasksV2.CmekConfig {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateCmekConfigRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudTasksV2.CmekConfig
+          in
+          return try await self.inner.updateCmekConfig(request: r, options: o)
+        })
+    }
+
+    public func getCmekConfig(
+      request: GetCmekConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudTasksV2.CmekConfig {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetCmekConfigRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudTasksV2.CmekConfig
+          in
+          return try await self.inner.getCmekConfig(request: r, options: o)
         })
     }
 
@@ -308,6 +370,21 @@ extension Clients {
             -> GoogleCloudLocation.Location
           in
           return try await self.inner.getLocation(request: r, options: o)
+        })
+    }
+
+    public func getOperation(
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GoogleLongRunning.GetOperationRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.getOperation(request: r, options: o)
         })
     }
   }

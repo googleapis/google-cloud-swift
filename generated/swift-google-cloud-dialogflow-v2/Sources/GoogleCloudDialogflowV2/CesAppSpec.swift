@@ -18,7 +18,9 @@
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
+  /// Deprecated: Use `CesToolSpec` instead.
   /// Spec of CES app that the generator can choose from.
+  @available(*, deprecated)
   public struct CesAppSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {

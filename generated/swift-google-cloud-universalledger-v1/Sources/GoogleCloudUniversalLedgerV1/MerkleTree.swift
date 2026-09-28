@@ -21,15 +21,6 @@ import Foundation
 public struct MerkleTree: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Output only. The cryptographic digest of the root node.
-  /// Deprecated: Use
-  /// [root_digest_hex][google.cloud.universalledger.v1.MerkleTree.root_digest_hex]
-  /// instead.
-  ///
-  /// [google.cloud.universalledger.v1.MerkleTree.root_digest_hex]: <doc:MerkleTree/rootDigestHex>
-  @available(*, deprecated)
-  public var rootHashHex: Swift.String = Swift.String()
-
   /// Output only. The hexadecimal representation of the digest of the root node.
   /// Format: A 64-character hexadecimal string.
   public var rootDigestHex: Swift.String = Swift.String()
@@ -47,7 +38,7 @@ public struct MerkleTree: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = MerkleTree().with { $0.rootHashHex = ... }
+  /// let value = MerkleTree().with { $0.rootDigestHex = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -61,25 +52,17 @@ public struct MerkleTree: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let rootHashHex = CodingKeys(stringValue: "rootHashHex")
     static let rootDigestHex = CodingKeys(stringValue: "rootDigestHex")
     static let numTransactions = CodingKeys(stringValue: "numTransactions")
 
     static let _knownKeys: Set<Swift.String> = [
-      "rootHashHex",
       "rootDigestHex",
       "numTransactions",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootHashHex) {
-      self.rootHashHex = value
-    }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rootDigestHex) {
       self.rootDigestHex = value
     }
@@ -92,12 +75,8 @@ public struct MerkleTree: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.rootHashHex, forKey: .rootHashHex)
     try container.encode(self.rootDigestHex, forKey: .rootDigestHex)
     try container.encode(self.numTransactions, forKey: .numTransactions)
     for (key, value) in self._unknownFields.json {

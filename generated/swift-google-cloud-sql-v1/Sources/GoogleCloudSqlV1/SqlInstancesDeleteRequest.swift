@@ -34,6 +34,9 @@
     /// Optional. The description of the final backup.
     public var finalBackupDescription: Swift.String = Swift.String()
 
+    /// Optional. Region of the Cloud SQL instance.
+    public var location: Swift.String = Swift.String()
+
     public var expiration: ExpirationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -66,6 +69,7 @@
       static let finalBackupTtlDays = CodingKeys(stringValue: "finalBackupTtlDays")
       static let finalBackupExpiryTime = CodingKeys(stringValue: "finalBackupExpiryTime")
       static let finalBackupDescription = CodingKeys(stringValue: "finalBackupDescription")
+      static let location = CodingKeys(stringValue: "location")
 
       static let _knownKeys: Set<Swift.String> = [
         "instance",
@@ -74,6 +78,7 @@
         "finalBackupTtlDays",
         "finalBackupExpiryTime",
         "finalBackupDescription",
+        "location",
       ]
     }
 
@@ -91,6 +96,9 @@
         Swift.String.self, forKey: .finalBackupDescription)
       {
         self.finalBackupDescription = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
       }
 
       var expiration: ExpirationOneOf? = nil
@@ -126,6 +134,7 @@
       try container.encode(self.project, forKey: .project)
       try container.encodeIfPresent(self.enableFinalBackup, forKey: .enableFinalBackup)
       try container.encode(self.finalBackupDescription, forKey: .finalBackupDescription)
+      try container.encode(self.location, forKey: .location)
 
       if let choice = self.expiration {
         switch choice {

@@ -24,14 +24,6 @@ public struct CreateContract: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Serialised contract bytes.
   public var contractBytes: Foundation.Data = Foundation.Data()
 
-  /// Optional. Immutable. Deprecated: Use
-  /// [init_arguments][google.cloud.universalledger.v1.CreateContract.init_arguments]
-  /// instead. Arguments for the `__init__` method.
-  ///
-  /// [google.cloud.universalledger.v1.CreateContract.init_arguments]: <doc:CreateContract/initArguments>
-  @available(*, deprecated)
-  public var arguments: [Swift.String: Value] = [:]
-
   /// Optional. Immutable. Contains arguments for the `__init__` method.
   public var initArguments: [Swift.String: Value] = [:]
 
@@ -66,28 +58,20 @@ public struct CreateContract: Codable, Equatable, GoogleWKT._AnyPackable,
     init?(intValue: Swift.Int) { nil }
 
     static let contractBytes = CodingKeys(stringValue: "contractBytes")
-    static let arguments = CodingKeys(stringValue: "arguments")
     static let initArguments = CodingKeys(stringValue: "initArguments")
     static let contractComment = CodingKeys(stringValue: "contractComment")
 
     static let _knownKeys: Set<Swift.String> = [
       "contractBytes",
-      "arguments",
       "initArguments",
       "contractComment",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .contractBytes) {
       self.contractBytes = value
-    }
-    if let value = try container.decodeIfPresent([Swift.String: Value].self, forKey: .arguments) {
-      self.arguments = value
     }
     if let value = try container.decodeIfPresent([Swift.String: Value].self, forKey: .initArguments)
     {
@@ -102,13 +86,9 @@ public struct CreateContract: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.contractBytes, forKey: .contractBytes)
-    try container.encode(self.arguments, forKey: .arguments)
     try container.encode(self.initArguments, forKey: .initArguments)
     try container.encode(self.contractComment, forKey: .contractComment)
     for (key, value) in self._unknownFields.json {

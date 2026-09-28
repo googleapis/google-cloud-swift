@@ -35,6 +35,9 @@
     /// Required. The request body.
     public var body: InstancesAcquireSsrsLeaseRequest? = nil
 
+    /// Optional. Region of the Cloud SQL instance.
+    public var location: Swift.String = Swift.String()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SqlInstancesAcquireSsrsLeaseRequest`.
@@ -62,11 +65,13 @@
       static let instance = CodingKeys(stringValue: "instance")
       static let project = CodingKeys(stringValue: "project")
       static let body = CodingKeys(stringValue: "body")
+      static let location = CodingKeys(stringValue: "location")
 
       static let _knownKeys: Set<Swift.String> = [
         "instance",
         "project",
         "body",
+        "location",
       ]
     }
 
@@ -80,6 +85,9 @@
       }
       self.body = try container.decodeIfPresent(
         InstancesAcquireSsrsLeaseRequest.self, forKey: .body)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -91,6 +99,7 @@
       try container.encode(self.instance, forKey: .instance)
       try container.encode(self.project, forKey: .project)
       try container.encodeIfPresent(self.body, forKey: .body)
+      try container.encode(self.location, forKey: .location)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

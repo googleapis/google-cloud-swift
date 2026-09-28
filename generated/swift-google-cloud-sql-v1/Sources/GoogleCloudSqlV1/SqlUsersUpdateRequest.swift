@@ -54,6 +54,9 @@
 
     public var body: User? = nil
 
+    /// Optional. Region of the Cloud SQL instance.
+    public var location: Swift.String = Swift.String()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SqlUsersUpdateRequest`.
@@ -87,6 +90,7 @@
       static let serverRoles = CodingKeys(stringValue: "serverRoles")
       static let revokeExistingServerRoles = CodingKeys(stringValue: "revokeExistingServerRoles")
       static let body = CodingKeys(stringValue: "body")
+      static let location = CodingKeys(stringValue: "location")
 
       static let _knownKeys: Set<Swift.String> = [
         "host",
@@ -98,6 +102,7 @@
         "serverRoles",
         "revokeExistingServerRoles",
         "body",
+        "location",
       ]
     }
 
@@ -126,6 +131,9 @@
       self.revokeExistingServerRoles = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .revokeExistingServerRoles)
       self.body = try container.decodeIfPresent(User.self, forKey: .body)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -144,6 +152,7 @@
       try container.encodeIfPresent(
         self.revokeExistingServerRoles, forKey: .revokeExistingServerRoles)
       try container.encodeIfPresent(self.body, forKey: .body)
+      try container.encode(self.location, forKey: .location)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

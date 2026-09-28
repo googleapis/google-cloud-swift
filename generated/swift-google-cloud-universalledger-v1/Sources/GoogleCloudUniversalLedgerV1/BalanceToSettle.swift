@@ -21,18 +21,8 @@ import Foundation
 public struct BalanceToSettle: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Output only. Deprecated: Use `balance_payer_id` instead.
-  /// The account which owes the balance to be settled.
-  @available(*, deprecated)
-  public var balancePayer: Entity? = nil
-
   /// Output only. The ID of the account which owes the balance to be settled.
   public var balancePayerId: Swift.String = Swift.String()
-
-  /// Output only. Deprecated: Use `balance_receiver_id` instead.
-  /// The account which is owed the balance to be settled.
-  @available(*, deprecated)
-  public var balanceReceiver: Entity? = nil
 
   /// Output only. The ID of the account which is owed the balance to be settled.
   public var balanceReceiverId: Swift.String = Swift.String()
@@ -50,7 +40,7 @@ public struct BalanceToSettle: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = BalanceToSettle().with { $0.balancePayer = ... }
+  /// let value = BalanceToSettle().with { $0.balancePayerId = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -64,31 +54,22 @@ public struct BalanceToSettle: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let balancePayer = CodingKeys(stringValue: "balancePayer")
     static let balancePayerId = CodingKeys(stringValue: "balancePayerId")
-    static let balanceReceiver = CodingKeys(stringValue: "balanceReceiver")
     static let balanceReceiverId = CodingKeys(stringValue: "balanceReceiverId")
     static let balance = CodingKeys(stringValue: "balance")
 
     static let _knownKeys: Set<Swift.String> = [
-      "balancePayer",
       "balancePayerId",
-      "balanceReceiver",
       "balanceReceiverId",
       "balance",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.balancePayer = try container.decodeIfPresent(Entity.self, forKey: .balancePayer)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .balancePayerId) {
       self.balancePayerId = value
     }
-    self.balanceReceiver = try container.decodeIfPresent(Entity.self, forKey: .balanceReceiver)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .balanceReceiverId) {
       self.balanceReceiverId = value
     }
@@ -99,14 +80,9 @@ public struct BalanceToSettle: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.balancePayer, forKey: .balancePayer)
     try container.encode(self.balancePayerId, forKey: .balancePayerId)
-    try container.encodeIfPresent(self.balanceReceiver, forKey: .balanceReceiver)
     try container.encode(self.balanceReceiverId, forKey: .balanceReceiverId)
     try container.encodeIfPresent(self.balance, forKey: .balance)
     for (key, value) in self._unknownFields.json {

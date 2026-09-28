@@ -123,24 +123,6 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Output only. The hexadecimal representation of the digest of the left
-    /// child of a node. Deprecated: Use
-    /// [left_child_digest_hex][google.cloud.universalledger.v1.ProofOfInclusion.MerkleTreeNode.left_child_digest_hex]
-    /// instead.
-    ///
-    /// [google.cloud.universalledger.v1.ProofOfInclusion.MerkleTreeNode.left_child_digest_hex]: <doc:ProofOfInclusion/MerkleTreeNode/leftChildDigestHex>
-    @available(*, deprecated)
-    public var leftChildHashHex: Swift.String = Swift.String()
-
-    /// Output only. The hexadecimal representation of the digest of the right
-    /// child of a node. Deprecated: Use
-    /// [right_child_digest_hex][google.cloud.universalledger.v1.ProofOfInclusion.MerkleTreeNode.right_child_digest_hex]
-    /// instead.
-    ///
-    /// [google.cloud.universalledger.v1.ProofOfInclusion.MerkleTreeNode.right_child_digest_hex]: <doc:ProofOfInclusion/MerkleTreeNode/rightChildDigestHex>
-    @available(*, deprecated)
-    public var rightChildHashHex: Swift.String = Swift.String()
-
-    /// Output only. The hexadecimal representation of the digest of the left
     /// child of a node. Format: A 64-character hexadecimal string.
     public var leftChildDigestHex: Swift.String = Swift.String()
 
@@ -158,7 +140,7 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Commonly used to initialize the value, for example:
     ///
     /// ```
-    /// let value = MerkleTreeNode().with { $0.leftChildHashHex = ... }
+    /// let value = MerkleTreeNode().with { $0.leftChildDigestHex = ... }
     /// ```
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
@@ -172,30 +154,17 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleWKT._AnyPackable,
       init(stringValue: Swift.String) { self.stringValue = stringValue }
       init?(intValue: Swift.Int) { nil }
 
-      static let leftChildHashHex = CodingKeys(stringValue: "leftChildHashHex")
-      static let rightChildHashHex = CodingKeys(stringValue: "rightChildHashHex")
       static let leftChildDigestHex = CodingKeys(stringValue: "leftChildDigestHex")
       static let rightChildDigestHex = CodingKeys(stringValue: "rightChildDigestHex")
 
       static let _knownKeys: Set<Swift.String> = [
-        "leftChildHashHex",
-        "rightChildHashHex",
         "leftChildDigestHex",
         "rightChildDigestHex",
       ]
     }
 
-    #if hasAttribute(diagnose)
-      @diagnose(DeprecatedDeclaration, as: ignored)
-    #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .leftChildHashHex) {
-        self.leftChildHashHex = value
-      }
-      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rightChildHashHex) {
-        self.rightChildHashHex = value
-      }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .leftChildDigestHex) {
         self.leftChildDigestHex = value
       }
@@ -209,13 +178,8 @@ public struct ProofOfInclusion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    #if hasAttribute(diagnose)
-      @diagnose(DeprecatedDeclaration, as: ignored)
-    #endif
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.leftChildHashHex, forKey: .leftChildHashHex)
-      try container.encode(self.rightChildHashHex, forKey: .rightChildHashHex)
       try container.encode(self.leftChildDigestHex, forKey: .leftChildDigestHex)
       try container.encode(self.rightChildDigestHex, forKey: .rightChildDigestHex)
       for (key, value) in self._unknownFields.json {

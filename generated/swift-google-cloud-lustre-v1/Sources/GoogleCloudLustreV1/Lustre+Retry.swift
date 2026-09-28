@@ -19,6 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
+import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
@@ -126,6 +127,21 @@ extension Clients {
         })
     }
 
+    public func rescheduleMaintenance(
+      request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: RescheduleMaintenanceRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.rescheduleMaintenance(request: r, options: o)
+        })
+    }
+
     public func importData(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -156,6 +172,141 @@ extension Clients {
         })
     }
 
+    public func createMirror(
+      request: CreateMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateMirrorRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createMirror(request: r, options: o)
+        })
+    }
+
+    public func updateMirror(
+      request: UpdateMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateMirrorRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateMirror(request: r, options: o)
+        })
+    }
+
+    public func deleteMirror(
+      request: DeleteMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteMirrorRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteMirror(request: r, options: o)
+        })
+    }
+
+    public func getMirror(
+      request: GetMirrorRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.Mirror {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetMirrorRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudLustreV1.Mirror
+          in
+          return try await self.inner.getMirror(request: r, options: o)
+        })
+    }
+
+    public func listMirrors(
+      request: ListMirrorsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.ListMirrorsResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListMirrorsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudLustreV1.ListMirrorsResponse
+          in
+          return try await self.inner.listMirrors(request: r, options: o)
+        })
+    }
+
+    public func createDirectoryPolicy(
+      request: CreateDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateDirectoryPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.createDirectoryPolicy(request: r, options: o)
+        })
+    }
+
+    public func deleteDirectoryPolicy(
+      request: DeleteDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteDirectoryPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.deleteDirectoryPolicy(request: r, options: o)
+        })
+    }
+
+    public func getDirectoryPolicy(
+      request: GetDirectoryPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.DirectoryPolicy {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetDirectoryPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudLustreV1.DirectoryPolicy
+          in
+          return try await self.inner.getDirectoryPolicy(request: r, options: o)
+        })
+    }
+
+    public func listDirectoryPolicies(
+      request: ListDirectoryPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListDirectoryPoliciesRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudLustreV1.ListDirectoryPoliciesResponse
+          in
+          return try await self.inner.listDirectoryPolicies(request: r, options: o)
+        })
+    }
+
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -183,6 +334,51 @@ extension Clients {
             -> GoogleCloudLocation.Location
           in
           return try await self.inner.getLocation(request: r, options: o)
+        })
+    }
+
+    public func setIamPolicy(
+      request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GoogleIAMV1.SetIamPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleIAMV1.Policy
+          in
+          return try await self.inner.setIamPolicy(request: r, options: o)
+        })
+    }
+
+    public func getIamPolicy(
+      request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.Policy {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GoogleIAMV1.GetIamPolicyRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleIAMV1.Policy
+          in
+          return try await self.inner.getIamPolicy(request: r, options: o)
+        })
+    }
+
+    public func testIamPermissions(
+      request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: GoogleIAMV1.TestIamPermissionsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleIAMV1.TestIamPermissionsResponse
+          in
+          return try await self.inner.testIamPermissions(request: r, options: o)
         })
     }
 

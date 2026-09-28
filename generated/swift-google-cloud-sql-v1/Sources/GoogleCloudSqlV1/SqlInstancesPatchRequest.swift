@@ -38,6 +38,9 @@
 
     public var body: DatabaseInstance? = nil
 
+    /// Optional. Region of the Cloud SQL instance.
+    public var location: Swift.String = Swift.String()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SqlInstancesPatchRequest`.
@@ -68,6 +71,7 @@
       static let reconcilePscNetworkingForce = CodingKeys(
         stringValue: "reconcilePscNetworkingForce")
       static let body = CodingKeys(stringValue: "body")
+      static let location = CodingKeys(stringValue: "location")
 
       static let _knownKeys: Set<Swift.String> = [
         "instance",
@@ -75,6 +79,7 @@
         "reconcilePscNetworking",
         "reconcilePscNetworkingForce",
         "body",
+        "location",
       ]
     }
 
@@ -91,6 +96,9 @@
       self.reconcilePscNetworkingForce = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .reconcilePscNetworkingForce)
       self.body = try container.decodeIfPresent(DatabaseInstance.self, forKey: .body)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+        self.location = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -105,6 +113,7 @@
       try container.encodeIfPresent(
         self.reconcilePscNetworkingForce, forKey: .reconcilePscNetworkingForce)
       try container.encodeIfPresent(self.body, forKey: .body)
+      try container.encode(self.location, forKey: .location)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

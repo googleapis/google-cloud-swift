@@ -73,7 +73,7 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// This map contains the header field names and values.
   /// Headers can be set when the
-  /// [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+  /// [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
   ///
   /// These headers represent a subset of the headers that will accompany the
   /// task's HTTP request. Some HTTP request headers will be ignored or replaced.
@@ -89,7 +89,7 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// `Content-Type` won't be set by Cloud Tasks. You can explicitly set
   /// `Content-Type` to a media type when the
-  ///  [task is created][google.cloud.tasks.v2beta3.CloudTasks.CreateTask].
+  ///  [task is created][google.cloud.tasks.v2.CloudTasks.CreateTask].
   ///  For example, `Content-Type` can be set to `"application/octet-stream"` or
   ///  `"application/json"`.
   ///
@@ -98,6 +98,7 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// The size of the headers must be less than 80KB.
   ///
+  /// [google.cloud.tasks.v2.CloudTasks.CreateTask]: <doc:CloudTasksClient/createTask(request:options:)>
   /// [google.cloud.tasks.v2.HttpRequest.url]: <doc:HttpRequest/url>
   public var headers: [Swift.String: Swift.String] = [:]
 
@@ -114,11 +115,13 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The mode for generating an `Authorization` header for HTTP requests.
   ///
-  /// If specified, all `Authorization` headers in the
-  /// [HttpRequest.headers][google.cloud.tasks.v2.HttpRequest.headers] field will
-  /// be overridden.
+  /// If specified at the [Queue][google.cloud.tasks.v2.Queue] level, all
+  /// `Authorization` headers in the
+  /// [HttpRequest.headers][google.cloud.tasks.v2.HttpRequest.headers] field are
+  /// overridden.
   ///
   /// [google.cloud.tasks.v2.HttpRequest.headers]: <doc:HttpRequest/headers>
+  /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
   public var authorizationHeader: AuthorizationHeaderOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -224,11 +227,13 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The mode for generating an `Authorization` header for HTTP requests.
   ///
-  /// If specified, all `Authorization` headers in the
-  /// [HttpRequest.headers][google.cloud.tasks.v2.HttpRequest.headers] field will
-  /// be overridden.
+  /// If specified at the [Queue][google.cloud.tasks.v2.Queue] level, all
+  /// `Authorization` headers in the
+  /// [HttpRequest.headers][google.cloud.tasks.v2.HttpRequest.headers] field are
+  /// overridden.
   ///
   /// [google.cloud.tasks.v2.HttpRequest.headers]: <doc:HttpRequest/headers>
+  /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
   public enum AuthorizationHeaderOneOf: Codable, Equatable, Sendable {
     /// If specified, an
     /// [OAuth token](https://developers.google.com/identity/protocols/OAuth2)

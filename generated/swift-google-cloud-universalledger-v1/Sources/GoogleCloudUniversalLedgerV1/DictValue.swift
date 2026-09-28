@@ -54,21 +54,21 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
     static let boolKeys = CodingKeys(stringValue: "boolKeys")
     static let stringKeys = CodingKeys(stringValue: "stringKeys")
     static let int64Keys = CodingKeys(stringValue: "int64Keys")
-    static let accountIdKeys = CodingKeys(stringValue: "accountIdKeys")
+    static let genericKeys = CodingKeys(stringValue: "genericKeys")
     static let boolValues = CodingKeys(stringValue: "boolValues")
     static let stringValues = CodingKeys(stringValue: "stringValues")
     static let int64Values = CodingKeys(stringValue: "int64Values")
-    static let dictValues = CodingKeys(stringValue: "dictValues")
+    static let genericValues = CodingKeys(stringValue: "genericValues")
 
     static let _knownKeys: Set<Swift.String> = [
       "boolKeys",
       "stringKeys",
       "int64Keys",
-      "accountIdKeys",
+      "genericKeys",
       "boolValues",
       "stringValues",
       "int64Values",
-      "dictValues",
+      "genericValues",
     ]
   }
 
@@ -94,9 +94,8 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let int64Keys = try container.decodeIfPresent(Int64List.self, forKey: .int64Keys) {
       try keysCheckAndSet(.int64Keys(int64Keys))
     }
-    if let accountIdKeys = try container.decodeIfPresent(AccountIdList.self, forKey: .accountIdKeys)
-    {
-      try keysCheckAndSet(.accountIdKeys(accountIdKeys))
+    if let genericKeys = try container.decodeIfPresent(RepeatedValue.self, forKey: .genericKeys) {
+      try keysCheckAndSet(.genericKeys(genericKeys))
     }
     self.keys = keys
 
@@ -119,8 +118,9 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let int64Values = try container.decodeIfPresent(Int64List.self, forKey: .int64Values) {
       try valuesCheckAndSet(.int64Values(int64Values))
     }
-    if let dictValues = try container.decodeIfPresent(DictList.self, forKey: .dictValues) {
-      try valuesCheckAndSet(.dictValues(dictValues))
+    if let genericValues = try container.decodeIfPresent(RepeatedValue.self, forKey: .genericValues)
+    {
+      try valuesCheckAndSet(.genericValues(genericValues))
     }
     self.values = values
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -140,8 +140,8 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(value, forKey: .stringKeys)
       case .int64Keys(let value):
         try container.encode(value, forKey: .int64Keys)
-      case .accountIdKeys(let value):
-        try container.encode(value, forKey: .accountIdKeys)
+      case .genericKeys(let value):
+        try container.encode(value, forKey: .genericKeys)
       }
     }
 
@@ -153,8 +153,8 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(value, forKey: .stringValues)
       case .int64Values(let value):
         try container.encode(value, forKey: .int64Values)
-      case .dictValues(let value):
-        try container.encode(value, forKey: .dictValues)
+      case .genericValues(let value):
+        try container.encode(value, forKey: .genericValues)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -170,8 +170,8 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case stringKeys(StringList)
     /// Optional. A list of int64 keys.
     indirect case int64Keys(Int64List)
-    /// Optional. A list of account ID keys.
-    indirect case accountIdKeys(AccountIdList)
+    /// Optional. A generic list of keys.
+    indirect case genericKeys(RepeatedValue)
   }
 
   /// Each value can be exactly one kind.
@@ -182,8 +182,8 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case stringValues(StringList)
     /// Optional. A list of int64 values.
     indirect case int64Values(Int64List)
-    /// Optional. Values are a list of nested dictionaries.
-    indirect case dictValues(DictList)
+    /// Optional. A generic list of values as values.
+    indirect case genericValues(RepeatedValue)
   }
 
   public static var _anyTypeUrl: Swift.String {

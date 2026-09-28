@@ -26,16 +26,7 @@ import Foundation
 public struct GrantContractPermissions: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Optional. Deprecated: Use
-  /// [contract_id][google.cloud.universalledger.v1.GrantContractPermissions.contract_id]
-  /// instead. ID of the contract to which permissions are being granted.
-  ///
-  /// [google.cloud.universalledger.v1.GrantContractPermissions.contract_id]: <doc:GrantContractPermissions/contractId>
-  @available(*, deprecated)
-  public var contract: Entity? = nil
-
-  /// Optional. The ID of the contract to which permissions are being granted.
-  /// One of `contract` or `contract_id` must be specified.
+  /// Required. The ID of the contract to which permissions are being granted.
   public var contractId: Swift.String = Swift.String()
 
   /// The permissions to be granted.
@@ -55,7 +46,7 @@ public struct GrantContractPermissions: Codable, Equatable, GoogleWKT._AnyPackab
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = GrantContractPermissions().with { $0.contract = ... }
+  /// let value = GrantContractPermissions().with { $0.contractId = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -69,25 +60,19 @@ public struct GrantContractPermissions: Codable, Equatable, GoogleWKT._AnyPackab
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let contract = CodingKeys(stringValue: "contract")
     static let contractId = CodingKeys(stringValue: "contractId")
     static let permissions = CodingKeys(stringValue: "permissions")
     static let delegateContractId = CodingKeys(stringValue: "delegateContractId")
 
     static let _knownKeys: Set<Swift.String> = [
-      "contract",
       "contractId",
       "permissions",
       "delegateContractId",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.contract = try container.decodeIfPresent(Entity.self, forKey: .contract)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contractId) {
       self.contractId = value
     }
@@ -103,12 +88,8 @@ public struct GrantContractPermissions: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.contract, forKey: .contract)
     try container.encode(self.contractId, forKey: .contractId)
     try container.encode(self.permissions, forKey: .permissions)
     try container.encode(self.delegateContractId, forKey: .delegateContractId)

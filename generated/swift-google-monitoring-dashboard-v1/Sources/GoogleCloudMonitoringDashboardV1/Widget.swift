@@ -224,7 +224,7 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case collapsibleGroup(CollapsibleGroup)
     /// A widget that shows a stream of logs.
     indirect case logsPanel(LogsPanel)
-    /// A widget that shows list of incidents.
+    /// A widget that shows list of alerts.
     indirect case incidentList(IncidentList)
     /// A widget that displays timeseries data as a pie chart.
     indirect case pieChart(PieChart)

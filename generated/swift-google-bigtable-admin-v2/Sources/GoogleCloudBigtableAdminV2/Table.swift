@@ -63,6 +63,12 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Note one can still delete the data stored in the table through Data APIs.
   public var deletionProtection: Swift.Bool = Swift.Bool()
 
+  /// Output only. The effective automated backup policy applied to the table.
+  /// This represents the policy actually in effect, which may be a
+  /// system-default policy if the user has not explicitly configured one.
+  /// Views: `SCHEMA_VIEW`, `FULL`.
+  public var effectiveAutomatedBackupPolicy: Table.AutomatedBackupPolicy? = nil
+
   /// Rules to specify what data is stored in each storage tier.
   /// Different tiers store data differently, providing different trade-offs
   /// between cost and performance. Different parts of a table can be stored
@@ -164,6 +170,8 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     static let changeStreamConfig = CodingKeys(stringValue: "changeStreamConfig")
     static let deletionProtection = CodingKeys(stringValue: "deletionProtection")
     static let automatedBackupPolicy = CodingKeys(stringValue: "automatedBackupPolicy")
+    static let effectiveAutomatedBackupPolicy = CodingKeys(
+      stringValue: "effectiveAutomatedBackupPolicy")
     static let tieredStorageConfig = CodingKeys(stringValue: "tieredStorageConfig")
     static let rowKeySchema = CodingKeys(stringValue: "rowKeySchema")
 
@@ -176,6 +184,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       "changeStreamConfig",
       "deletionProtection",
       "automatedBackupPolicy",
+      "effectiveAutomatedBackupPolicy",
       "tieredStorageConfig",
       "rowKeySchema",
     ]
@@ -207,6 +216,8 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .deletionProtection) {
       self.deletionProtection = value
     }
+    self.effectiveAutomatedBackupPolicy = try container.decodeIfPresent(
+      Table.AutomatedBackupPolicy.self, forKey: .effectiveAutomatedBackupPolicy)
     self.tieredStorageConfig = try container.decodeIfPresent(
       TieredStorageConfig.self, forKey: .tieredStorageConfig)
     self.rowKeySchema = try container.decodeIfPresent(Type_.Struct.self, forKey: .rowKeySchema)
@@ -242,6 +253,8 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.restoreInfo, forKey: .restoreInfo)
     try container.encodeIfPresent(self.changeStreamConfig, forKey: .changeStreamConfig)
     try container.encode(self.deletionProtection, forKey: .deletionProtection)
+    try container.encodeIfPresent(
+      self.effectiveAutomatedBackupPolicy, forKey: .effectiveAutomatedBackupPolicy)
     try container.encodeIfPresent(self.tieredStorageConfig, forKey: .tieredStorageConfig)
     try container.encodeIfPresent(self.rowKeySchema, forKey: .rowKeySchema)
 
@@ -505,6 +518,20 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     /// This field can only set for tables in Enterprise Plus instances.
     public var locations: [Swift.String] = []
 
+    /// Optional. The amount of time that the automated backups remain hot.
+    /// If specified, the backups created by this policy are `HOT` backups.
+    /// If not specified, the backups are `STANDARD` backups.
+    ///
+    /// The value must be at least 24 hours and at most 10 days, and can't
+    /// exceed the policy's `retention_period`.
+    ///
+    /// Only SSD instances support `HOT` automated backups.
+    public var keepHotDuration: GoogleWKT.WKTDuration? = nil
+
+    /// Optional. If `true`, automated backups are explicitly disabled on this
+    /// table. This allows users to opt out of default enablement.
+    public var disabled: Swift.Bool = Swift.Bool()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AutomatedBackupPolicy`.
@@ -532,11 +559,15 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       static let retentionPeriod = CodingKeys(stringValue: "retentionPeriod")
       static let frequency = CodingKeys(stringValue: "frequency")
       static let locations = CodingKeys(stringValue: "locations")
+      static let keepHotDuration = CodingKeys(stringValue: "keepHotDuration")
+      static let disabled = CodingKeys(stringValue: "disabled")
 
       static let _knownKeys: Set<Swift.String> = [
         "retentionPeriod",
         "frequency",
         "locations",
+        "keepHotDuration",
+        "disabled",
       ]
     }
 
@@ -547,6 +578,11 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       self.frequency = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .frequency)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
         self.locations = value
+      }
+      self.keepHotDuration = try container.decodeIfPresent(
+        GoogleWKT.WKTDuration.self, forKey: .keepHotDuration)
+      if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
+        self.disabled = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -559,6 +595,8 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encodeIfPresent(self.retentionPeriod, forKey: .retentionPeriod)
       try container.encodeIfPresent(self.frequency, forKey: .frequency)
       try container.encode(self.locations, forKey: .locations)
+      try container.encodeIfPresent(self.keepHotDuration, forKey: .keepHotDuration)
+      try container.encode(self.disabled, forKey: .disabled)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

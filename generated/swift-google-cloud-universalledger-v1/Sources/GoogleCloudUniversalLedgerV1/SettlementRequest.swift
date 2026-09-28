@@ -30,28 +30,12 @@ import Foundation
 public struct SettlementRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Optional. Immutable. Deprecated: Use
-  /// [payer_id][google.cloud.universalledger.v1.SettlementRequest.payer_id]
-  /// instead. The account ID of the party that needs to make the fund transfer.
-  ///
-  /// [google.cloud.universalledger.v1.SettlementRequest.payer_id]: <doc:SettlementRequest/payerId>
-  @available(*, deprecated)
-  public var payer: Entity? = nil
-
-  /// Optional. Immutable. The account ID of the party that needs to make the
-  /// fund transfer. One of `payer` or `payer_id` must be specified.
+  /// Required. Immutable. The account ID of the party that needs to make the
+  /// fund transfer.
   public var payerId: Swift.String = Swift.String()
 
-  /// Optional. Immutable. Deprecated: Use
-  /// [beneficiary_id][google.cloud.universalledger.v1.SettlementRequest.beneficiary_id]
-  /// instead. The account ID of the party that needs to be paid.
-  ///
-  /// [google.cloud.universalledger.v1.SettlementRequest.beneficiary_id]: <doc:SettlementRequest/beneficiaryId>
-  @available(*, deprecated)
-  public var beneficiary: Entity? = nil
-
-  /// Optional. Immutable. The account ID of the party that will receive the
-  /// funds. One of `beneficiary` or `beneficiary_id` must be specified.
+  /// Required. Immutable. The account ID of the party that will receive the
+  /// funds.
   public var beneficiaryId: Swift.String = Swift.String()
 
   /// Required. Immutable. The balance of issued tokens that need to be
@@ -73,7 +57,7 @@ public struct SettlementRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = SettlementRequest().with { $0.payer = ... }
+  /// let value = SettlementRequest().with { $0.payerId = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -87,33 +71,24 @@ public struct SettlementRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let payer = CodingKeys(stringValue: "payer")
     static let payerId = CodingKeys(stringValue: "payerId")
-    static let beneficiary = CodingKeys(stringValue: "beneficiary")
     static let beneficiaryId = CodingKeys(stringValue: "beneficiaryId")
     static let balance = CodingKeys(stringValue: "balance")
     static let roundId = CodingKeys(stringValue: "roundId")
 
     static let _knownKeys: Set<Swift.String> = [
-      "payer",
       "payerId",
-      "beneficiary",
       "beneficiaryId",
       "balance",
       "roundId",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.payer = try container.decodeIfPresent(Entity.self, forKey: .payer)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .payerId) {
       self.payerId = value
     }
-    self.beneficiary = try container.decodeIfPresent(Entity.self, forKey: .beneficiary)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .beneficiaryId) {
       self.beneficiaryId = value
     }
@@ -127,14 +102,9 @@ public struct SettlementRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.payer, forKey: .payer)
     try container.encode(self.payerId, forKey: .payerId)
-    try container.encodeIfPresent(self.beneficiary, forKey: .beneficiary)
     try container.encode(self.beneficiaryId, forKey: .beneficiaryId)
     try container.encodeIfPresent(self.balance, forKey: .balance)
     try container.encode(self.roundId, forKey: .roundId)

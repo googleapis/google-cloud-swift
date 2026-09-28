@@ -39,9 +39,11 @@ public struct SignedTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// For a transaction chain, the bytes to be signed are computed as the
   /// concatenation of:
+  ///
   /// - A digest of the serialized client transaction of the entire chain.
   /// - A digest of the serialized signed transaction of each unit in the chain,
   ///   in the order they appear in the chain.
+  ///
   /// The digests are computed using SHA-256.
   public var senderSignature: Foundation.Data = Foundation.Data()
 

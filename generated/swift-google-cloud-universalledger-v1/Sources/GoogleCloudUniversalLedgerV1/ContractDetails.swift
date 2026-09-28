@@ -21,11 +21,6 @@ public import Foundation
 public struct ContractDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Output only. Deprecated: Use `owner_id` instead.
-  /// The owner of the contract.
-  @available(*, deprecated)
-  public var owner: Entity? = nil
-
   /// Output only. The ID of the owner of the contract.
   public var ownerId: Swift.String = Swift.String()
 
@@ -49,7 +44,7 @@ public struct ContractDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = ContractDetails().with { $0.owner = ... }
+  /// let value = ContractDetails().with { $0.ownerId = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -63,14 +58,12 @@ public struct ContractDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let owner = CodingKeys(stringValue: "owner")
     static let ownerId = CodingKeys(stringValue: "ownerId")
     static let code = CodingKeys(stringValue: "code")
     static let contractFields = CodingKeys(stringValue: "contractFields")
     static let currencyBalances = CodingKeys(stringValue: "currencyBalances")
 
     static let _knownKeys: Set<Swift.String> = [
-      "owner",
       "ownerId",
       "code",
       "contractFields",
@@ -78,12 +71,8 @@ public struct ContractDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.owner = try container.decodeIfPresent(Entity.self, forKey: .owner)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ownerId) {
       self.ownerId = value
     }
@@ -102,12 +91,8 @@ public struct ContractDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.owner, forKey: .owner)
     try container.encode(self.ownerId, forKey: .ownerId)
     try container.encode(self.code, forKey: .code)
     try container.encodeIfPresent(self.contractFields, forKey: .contractFields)

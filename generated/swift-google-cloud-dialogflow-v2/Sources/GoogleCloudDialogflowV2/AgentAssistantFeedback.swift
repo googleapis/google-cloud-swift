@@ -72,6 +72,9 @@
     /// Optional. Feedback for knowledge assist.
     public var knowledgeAssistFeedback: AgentAssistantFeedback.KnowledgeAssistFeedback? = nil
 
+    /// Optional. Feedback for companion agent.
+    public var companionFeedback: AgentAssistantFeedback.CompanionFeedback? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `AgentAssistantFeedback`.
@@ -102,6 +105,7 @@
       static let summarizationFeedback = CodingKeys(stringValue: "summarizationFeedback")
       static let knowledgeSearchFeedback = CodingKeys(stringValue: "knowledgeSearchFeedback")
       static let knowledgeAssistFeedback = CodingKeys(stringValue: "knowledgeAssistFeedback")
+      static let companionFeedback = CodingKeys(stringValue: "companionFeedback")
 
       static let _knownKeys: Set<Swift.String> = [
         "answerRelevance",
@@ -110,6 +114,7 @@
         "summarizationFeedback",
         "knowledgeSearchFeedback",
         "knowledgeAssistFeedback",
+        "companionFeedback",
       ]
     }
 
@@ -136,6 +141,8 @@
         AgentAssistantFeedback.KnowledgeSearchFeedback.self, forKey: .knowledgeSearchFeedback)
       self.knowledgeAssistFeedback = try container.decodeIfPresent(
         AgentAssistantFeedback.KnowledgeAssistFeedback.self, forKey: .knowledgeAssistFeedback)
+      self.companionFeedback = try container.decodeIfPresent(
+        AgentAssistantFeedback.CompanionFeedback.self, forKey: .companionFeedback)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -150,6 +157,7 @@
       try container.encodeIfPresent(self.summarizationFeedback, forKey: .summarizationFeedback)
       try container.encodeIfPresent(self.knowledgeSearchFeedback, forKey: .knowledgeSearchFeedback)
       try container.encodeIfPresent(self.knowledgeAssistFeedback, forKey: .knowledgeAssistFeedback)
+      try container.encodeIfPresent(self.companionFeedback, forKey: .companionFeedback)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -421,6 +429,64 @@
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeAssistFeedback"
+      }
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// Feedback for companion agent.
+    public struct CompanionFeedback: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `CompanionFeedback`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = CompanionFeedback().with { $0.<placeholder> = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let _knownKeys: Set<Swift.String> = []
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.CompanionFeedback"
       }
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)

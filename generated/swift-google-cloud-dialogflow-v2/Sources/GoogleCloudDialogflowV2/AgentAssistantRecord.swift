@@ -53,12 +53,17 @@
       static let faqAnswer = CodingKeys(stringValue: "faqAnswer")
       static let dialogflowAssistAnswer = CodingKeys(stringValue: "dialogflowAssistAnswer")
       static let generatorSuggestion = CodingKeys(stringValue: "generatorSuggestion")
+      static let companionSuggestion = CodingKeys(stringValue: "companionSuggestion")
+      static let reactiveCompanionSuggestion = CodingKeys(
+        stringValue: "reactiveCompanionSuggestion")
 
       static let _knownKeys: Set<Swift.String> = [
         "articleSuggestionAnswer",
         "faqAnswer",
         "dialogflowAssistAnswer",
         "generatorSuggestion",
+        "companionSuggestion",
+        "reactiveCompanionSuggestion",
       ]
     }
 
@@ -93,6 +98,17 @@
       {
         try answerCheckAndSet(.generatorSuggestion(generatorSuggestion))
       }
+      if let companionSuggestion = try container.decodeIfPresent(
+        CompanionSuggestion.self, forKey: .companionSuggestion)
+      {
+        try answerCheckAndSet(.companionSuggestion(companionSuggestion))
+      }
+      if let reactiveCompanionSuggestion = try container.decodeIfPresent(
+        StreamingReactiveCompanionSuggestionsResponse.ReactiveModeResponse.self,
+        forKey: .reactiveCompanionSuggestion)
+      {
+        try answerCheckAndSet(.reactiveCompanionSuggestion(reactiveCompanionSuggestion))
+      }
       self.answer = answer
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -113,6 +129,10 @@
           try container.encode(value, forKey: .dialogflowAssistAnswer)
         case .generatorSuggestion(let value):
           try container.encode(value, forKey: .generatorSuggestion)
+        case .companionSuggestion(let value):
+          try container.encode(value, forKey: .companionSuggestion)
+        case .reactiveCompanionSuggestion(let value):
+          try container.encode(value, forKey: .reactiveCompanionSuggestion)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -130,6 +150,11 @@
       indirect case dialogflowAssistAnswer(DialogflowAssistAnswer)
       /// Output only. The generator suggestion.
       indirect case generatorSuggestion(GeneratorSuggestion)
+      /// Output only. The companion suggestion.
+      indirect case companionSuggestion(CompanionSuggestion)
+      /// Output only. The reactive companion suggestion.
+      indirect case reactiveCompanionSuggestion(
+        StreamingReactiveCompanionSuggestionsResponse.ReactiveModeResponse)
     }
 
     public static var _anyTypeUrl: Swift.String {

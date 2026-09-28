@@ -30,18 +30,8 @@ public struct Burn: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The amount to burn.
   public var burnAmount: CurrencyValue? = nil
 
-  /// Optional. Deprecated: Use
-  /// [payer_id][google.cloud.universalledger.v1.Burn.payer_id] instead. The
-  /// account supplying the tokens to burn. The account must have the
-  /// `ROLE_PAYER` enabled on it.
-  ///
-  /// [google.cloud.universalledger.v1.Burn.payer_id]: <doc:Burn/payerId>
-  @available(*, deprecated)
-  public var payer: Entity? = nil
-
-  /// Optional. The ID of the account supplying the tokens to burn. The payer
-  /// account must have the `ROLE_PAYER` enabled on it. One of `payer` or
-  /// `payer_id` must be specified.
+  /// Required. The ID of the account supplying the tokens to burn. The payer
+  /// account must have the `ROLE_PAYER` enabled on it.
   public var payerId: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -69,23 +59,17 @@ public struct Burn: Codable, Equatable, GoogleWKT._AnyPackable,
     init?(intValue: Swift.Int) { nil }
 
     static let burnAmount = CodingKeys(stringValue: "burnAmount")
-    static let payer = CodingKeys(stringValue: "payer")
     static let payerId = CodingKeys(stringValue: "payerId")
 
     static let _knownKeys: Set<Swift.String> = [
       "burnAmount",
-      "payer",
       "payerId",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.burnAmount = try container.decodeIfPresent(CurrencyValue.self, forKey: .burnAmount)
-    self.payer = try container.decodeIfPresent(Entity.self, forKey: .payer)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .payerId) {
       self.payerId = value
     }
@@ -95,13 +79,9 @@ public struct Burn: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.burnAmount, forKey: .burnAmount)
-    try container.encodeIfPresent(self.payer, forKey: .payer)
     try container.encode(self.payerId, forKey: .payerId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

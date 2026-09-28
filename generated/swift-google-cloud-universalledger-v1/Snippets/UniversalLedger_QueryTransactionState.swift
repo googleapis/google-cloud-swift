@@ -19,6 +19,9 @@
 import Foundation
 import GoogleCloudUniversalLedgerV1
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: UniversalLedgerClient) async throws {
   let response = try await client.queryTransactionState(
     request: QueryTransactionStateRequest()

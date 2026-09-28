@@ -29,6 +29,8 @@ public struct QueryDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. A protobuf serialized
   /// [SignedQueryRequest][google.cloud.universalledger.v1.SignedQueryRequest] to
   /// query the Universal Ledger network.
+  ///
+  /// [google.cloud.universalledger.v1.SignedQueryRequest]: <doc:SignedQueryRequest>
   public var serializedSignedQueryRequest: Foundation.Data = Foundation.Data()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

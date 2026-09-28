@@ -31,6 +31,9 @@ let package = Package(
       name: "AnswerRecords",
     ),
     .trait(
+      name: "CompanionAgents",
+    ),
+    .trait(
       name: "Contexts",
     ),
     .trait(

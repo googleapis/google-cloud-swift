@@ -87,6 +87,10 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   information see
   ///   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).
   ///
+  /// The value must be given as a string that indicates the length of time
+  /// (in seconds) followed by `s` (for "seconds"). For more information on the
+  /// format, see the documentation for
+  /// [Duration](https://protobuf.dev/reference/protobuf/google.protobuf/#duration).
   /// `dispatch_deadline` will be truncated to the nearest millisecond. The
   /// deadline is an approximate deadline.
   ///
@@ -122,6 +126,17 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.tasks.v2.Task]: <doc:Task>
   public var view: Task.View = Task.View()
+
+  /// Optional. Specifies the task-level
+  /// [RetryConfig][google.cloud.tasks.v2.RetryConfig].
+  ///
+  /// If present, this overrides the
+  /// [Queue.retry_config][google.cloud.tasks.v2.Queue.retry_config] for this
+  /// task.
+  ///
+  /// [google.cloud.tasks.v2.Queue.retry_config]: <doc:Queue/retryConfig>
+  /// [google.cloud.tasks.v2.RetryConfig]: <doc:RetryConfig>
+  public var retryConfig: RetryConfig? = nil
 
   /// Required. The message to send to the worker.
   public var messageType: MessageTypeOneOf? = nil
@@ -161,6 +176,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     static let firstAttempt = CodingKeys(stringValue: "firstAttempt")
     static let lastAttempt = CodingKeys(stringValue: "lastAttempt")
     static let view = CodingKeys(stringValue: "view")
+    static let retryConfig = CodingKeys(stringValue: "retryConfig")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -174,6 +190,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       "firstAttempt",
       "lastAttempt",
       "view",
+      "retryConfig",
     ]
   }
 
@@ -199,6 +216,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Task.View.self, forKey: .view) {
       self.view = value
     }
+    self.retryConfig = try container.decodeIfPresent(RetryConfig.self, forKey: .retryConfig)
 
     var messageType: MessageTypeOneOf? = nil
     let messageTypeCheckAndSet = {
@@ -236,6 +254,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.firstAttempt, forKey: .firstAttempt)
     try container.encodeIfPresent(self.lastAttempt, forKey: .lastAttempt)
     try container.encode(self.view, forKey: .view)
+    try container.encodeIfPresent(self.retryConfig, forKey: .retryConfig)
 
     if let choice = self.messageType {
       switch choice {

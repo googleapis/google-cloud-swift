@@ -44,7 +44,7 @@
     /// The latency of the service.
     public var serviceLatency: ServiceLatency? = nil
 
-    /// Token usage metadata for query generation.
+    /// Debug information and model metadata for query generation.
     public var queryGenerationDebugInfo: KnowledgeAssistDebugInfo.QueryGenerationDebugInfo? = nil
 
     /// Debug information from CES runtime API.
@@ -416,7 +416,7 @@
       }
     }
 
-    /// Token usage metadata for query generation.
+    /// Debug information and model metadata for query generation.
     public struct QueryGenerationDebugInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
@@ -428,6 +428,20 @@
 
       /// The total number of tokens for the entire request.
       public var totalTokenCount: Swift.Int32 = Swift.Int32()
+
+      /// The thinking level configured for the Gemini model.
+      public var thinkingLevel: Swift.String = Swift.String()
+
+      /// The thinking budget (in number of tokens) configured for the Gemini
+      /// model.
+      public var thinkingBudgetTokens: Swift.Int32 = Swift.Int32()
+
+      /// The similarity score of the suggested query to the last suggested query.
+      public var similarityToLastQuery: Swift.Float = Swift.Float()
+
+      /// The similarity threshold used to filter out queries similar to the last
+      /// suggestion.
+      public var similarityToLastQueryThreshold: Swift.Float = Swift.Float()
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -456,11 +470,20 @@
         static let promptTokenCount = CodingKeys(stringValue: "promptTokenCount")
         static let candidatesTokenCount = CodingKeys(stringValue: "candidatesTokenCount")
         static let totalTokenCount = CodingKeys(stringValue: "totalTokenCount")
+        static let thinkingLevel = CodingKeys(stringValue: "thinkingLevel")
+        static let thinkingBudgetTokens = CodingKeys(stringValue: "thinkingBudgetTokens")
+        static let similarityToLastQuery = CodingKeys(stringValue: "similarityToLastQuery")
+        static let similarityToLastQueryThreshold = CodingKeys(
+          stringValue: "similarityToLastQueryThreshold")
 
         static let _knownKeys: Set<Swift.String> = [
           "promptTokenCount",
           "candidatesTokenCount",
           "totalTokenCount",
+          "thinkingLevel",
+          "thinkingBudgetTokens",
+          "similarityToLastQuery",
+          "similarityToLastQueryThreshold",
         ]
       }
 
@@ -477,6 +500,24 @@
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalTokenCount) {
           self.totalTokenCount = value
         }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .thinkingLevel) {
+          self.thinkingLevel = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Int32.self, forKey: .thinkingBudgetTokens)
+        {
+          self.thinkingBudgetTokens = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Float.self, forKey: .similarityToLastQuery)
+        {
+          self.similarityToLastQuery = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.Float.self, forKey: .similarityToLastQueryThreshold)
+        {
+          self.similarityToLastQueryThreshold = value
+        }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -488,6 +529,11 @@
         try container.encode(self.promptTokenCount, forKey: .promptTokenCount)
         try container.encode(self.candidatesTokenCount, forKey: .candidatesTokenCount)
         try container.encode(self.totalTokenCount, forKey: .totalTokenCount)
+        try container.encode(self.thinkingLevel, forKey: .thinkingLevel)
+        try container.encode(self.thinkingBudgetTokens, forKey: .thinkingBudgetTokens)
+        try container.encode(self.similarityToLastQuery, forKey: .similarityToLastQuery)
+        try container.encode(
+          self.similarityToLastQueryThreshold, forKey: .similarityToLastQueryThreshold)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

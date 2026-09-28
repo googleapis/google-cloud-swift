@@ -123,6 +123,15 @@
     /// migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
     public var optOutConformerModelMigration: Swift.Bool = Swift.Bool()
 
+    /// Optional. Configuration for using Gemini ASR models served via Vertex AI.
+    /// This field is only used when `use_gemini_asr` is true.
+    public var geminiAsrConfig: SpeechToTextConfig.GeminiAsrConfig? = nil
+
+    /// Optional. If true, Gemini ASR will be used for transcription instead of
+    /// Cloud Speech-to-Text. If false, Cloud Speech-to-Text will be used.
+    /// If unset, this setting is inherited from the ConversationProfile.
+    public var useGeminiAsr: Swift.Bool? = nil
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `InputAudioConfig`.
@@ -163,6 +172,8 @@
       static let phraseSets = CodingKeys(stringValue: "phraseSets")
       static let optOutConformerModelMigration = CodingKeys(
         stringValue: "optOutConformerModelMigration")
+      static let geminiAsrConfig = CodingKeys(stringValue: "geminiAsrConfig")
+      static let useGeminiAsr = CodingKeys(stringValue: "useGeminiAsr")
 
       static let _knownKeys: Set<Swift.String> = [
         "audioEncoding",
@@ -179,6 +190,8 @@
         "enableAutomaticPunctuation",
         "phraseSets",
         "optOutConformerModelMigration",
+        "geminiAsrConfig",
+        "useGeminiAsr",
       ]
     }
 
@@ -237,6 +250,9 @@
       {
         self.optOutConformerModelMigration = value
       }
+      self.geminiAsrConfig = try container.decodeIfPresent(
+        SpeechToTextConfig.GeminiAsrConfig.self, forKey: .geminiAsrConfig)
+      self.useGeminiAsr = try container.decodeIfPresent(Swift.Bool.self, forKey: .useGeminiAsr)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -264,6 +280,8 @@
       try container.encode(self.phraseSets, forKey: .phraseSets)
       try container.encode(
         self.optOutConformerModelMigration, forKey: .optOutConformerModelMigration)
+      try container.encodeIfPresent(self.geminiAsrConfig, forKey: .geminiAsrConfig)
+      try container.encodeIfPresent(self.useGeminiAsr, forKey: .useGeminiAsr)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

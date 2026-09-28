@@ -17,6 +17,8 @@
 import Foundation
 import GoogleCloudLocation
 import GoogleIAMV1
+import GoogleLongRunning
+import GoogleRpc
 import GoogleWKT
 import GoogleGax
 
@@ -78,13 +80,29 @@ extension Clients {
       request: CreateTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task
 
+    func batchCreateTasks(
+      request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func deleteTask(
       request: DeleteTaskRequest, options: GoogleGax.RequestOptions
     ) async throws
 
+    func batchDeleteTasks(
+      request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func runTask(
       request: RunTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task
+
+    func updateCmekConfig(
+      request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudTasksV2.CmekConfig
+
+    func getCmekConfig(
+      request: GetCmekConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudTasksV2.CmekConfig
 
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
@@ -93,5 +111,9 @@ extension Clients {
     func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location
+
+    func getOperation(
+      request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
   }
 }

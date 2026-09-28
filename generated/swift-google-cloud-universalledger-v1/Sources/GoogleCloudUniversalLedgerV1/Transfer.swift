@@ -26,16 +26,7 @@ import Foundation
 public struct Transfer: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Optional. Deprecated: Use
-  /// [beneficiary_id][google.cloud.universalledger.v1.Transfer.beneficiary_id]
-  /// instead. The account that receives the tokens.
-  ///
-  /// [google.cloud.universalledger.v1.Transfer.beneficiary_id]: <doc:Transfer/beneficiaryId>
-  @available(*, deprecated)
-  public var beneficiary: Entity? = nil
-
-  /// Optional. The ID of the account that receives the tokens. One of
-  /// `beneficiary` or `beneficiary_id` must be specified.
+  /// Required. The ID of the account that receives the tokens.
   public var beneficiaryId: Swift.String = Swift.String()
 
   /// Required. The amount to transfer. The amount must be positive.
@@ -51,7 +42,7 @@ public struct Transfer: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = Transfer().with { $0.beneficiary = ... }
+  /// let value = Transfer().with { $0.beneficiaryId = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -65,23 +56,17 @@ public struct Transfer: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let beneficiary = CodingKeys(stringValue: "beneficiary")
     static let beneficiaryId = CodingKeys(stringValue: "beneficiaryId")
     static let amount = CodingKeys(stringValue: "amount")
 
     static let _knownKeys: Set<Swift.String> = [
-      "beneficiary",
       "beneficiaryId",
       "amount",
     ]
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.beneficiary = try container.decodeIfPresent(Entity.self, forKey: .beneficiary)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .beneficiaryId) {
       self.beneficiaryId = value
     }
@@ -92,12 +77,8 @@ public struct Transfer: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  #if hasAttribute(diagnose)
-    @diagnose(DeprecatedDeclaration, as: ignored)
-  #endif
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(self.beneficiary, forKey: .beneficiary)
     try container.encode(self.beneficiaryId, forKey: .beneficiaryId)
     try container.encodeIfPresent(self.amount, forKey: .amount)
     for (key, value) in self._unknownFields.json {

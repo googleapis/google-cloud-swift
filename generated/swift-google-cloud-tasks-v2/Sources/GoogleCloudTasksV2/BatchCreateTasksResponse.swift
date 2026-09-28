@@ -17,16 +17,16 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// A list of account IDs.
-public struct AccountIdList: Codable, Equatable, GoogleWKT._AnyPackable,
+/// Response message for [BatchCreateTasks].
+public struct BatchCreateTasksResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Optional. The account ID values.
-  public var values: [Swift.String] = []
+  /// The tasks that were successfully created.
+  public var tasks: [Task] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `AccountIdList`.
+  /// Initialize a new instance of `BatchCreateTasksResponse`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -34,7 +34,7 @@ public struct AccountIdList: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = AccountIdList().with { $0.values = ... }
+  /// let value = BatchCreateTasksResponse().with { $0.tasks = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -48,17 +48,17 @@ public struct AccountIdList: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let values = CodingKeys(stringValue: "values")
+    static let tasks = CodingKeys(stringValue: "tasks")
 
     static let _knownKeys: Set<Swift.String> = [
-      "values"
+      "tasks"
     ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent([Swift.String].self, forKey: .values) {
-      self.values = value
+    if let value = try container.decodeIfPresent([Task].self, forKey: .tasks) {
+      self.tasks = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -68,14 +68,14 @@ public struct AccountIdList: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.values, forKey: .values)
+    try container.encode(self.tasks, forKey: .tasks)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.cloud.universalledger.v1.AccountIdList"
+    return "type.googleapis.com/google.cloud.tasks.v2.BatchCreateTasksResponse"
   }
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)

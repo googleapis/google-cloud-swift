@@ -57,9 +57,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/addServerCa"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -118,9 +120,11 @@
             }
             let path =
               "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/addServerCertificate"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -179,9 +183,11 @@
             }
             let path =
               "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/addEntraIdCertificate"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -239,9 +245,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/clone"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -322,6 +330,7 @@
             query.append(
               contentsOf: try encoder.encode(
                 request.finalBackupDescription, prefix: "finalBackupDescription"))
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.DELETE) })
@@ -379,9 +388,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/demoteMaster"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -442,9 +453,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/demote"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -505,9 +518,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/export"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -568,9 +583,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/failover"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -631,9 +648,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/reencrypt"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -694,9 +713,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -754,9 +775,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/import"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -809,9 +832,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -865,6 +890,7 @@
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
             query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
             query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -916,9 +942,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/listServerCas"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -977,9 +1005,11 @@
             }
             let path =
               "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/listServerCertificates"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -1039,9 +1069,11 @@
             }
             let path =
               "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/listEntraIdCertificates"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -1110,6 +1142,7 @@
             query.append(
               contentsOf: try encoder.encode(
                 request.reconcilePscNetworkingForce, prefix: "reconcilePscNetworkingForce"))
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.PATCH) })
@@ -1175,6 +1208,7 @@
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.failover, prefix: "failover"))
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1237,6 +1271,7 @@
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.dbTimeout, prefix: "dbTimeout"))
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1299,6 +1334,7 @@
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.mode, prefix: "mode"))
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1356,9 +1392,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/restart"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1416,9 +1454,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/restoreBackup"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1479,9 +1519,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/rotateServerCa"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1543,9 +1585,11 @@
             }
             let path =
               "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/rotateServerCertificate"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1607,9 +1651,11 @@
             }
             let path =
               "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/rotateEntraIdCertificate"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1670,9 +1716,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/startReplica"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1730,9 +1778,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/stopReplica"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1790,9 +1840,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/truncateLog"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1853,9 +1905,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.PUT) })
@@ -1916,9 +1970,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/createEphemeral"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -1980,9 +2036,11 @@
             }
             let path =
               "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/rescheduleMaintenance"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -2171,9 +2229,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/performDiskShrink"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -2235,9 +2295,11 @@
             }
             let path =
               "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/getDiskShrinkConfig"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -2367,6 +2429,7 @@
             query.append(
               contentsOf: try encoder.encode(
                 request.sourceInstanceDeletionTime, prefix: "sourceInstanceDeletionTime"))
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -2425,9 +2488,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/executeSql"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -2488,9 +2553,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/acquireSsrsLease"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -2552,9 +2619,11 @@
               return nil
             }
             let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/releaseSsrsLease"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })
@@ -2614,9 +2683,11 @@
             }
             let path =
               "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/preCheckMajorVersionUpgrade"
-            let query = [
+            var query = [
               URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
             ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.location, prefix: "location"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.POST) })

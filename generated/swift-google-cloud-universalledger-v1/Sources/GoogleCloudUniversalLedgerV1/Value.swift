@@ -52,9 +52,11 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     static let boolValue = CodingKeys(stringValue: "boolValue")
     static let int64Value = CodingKeys(stringValue: "int64Value")
     static let stringValue = CodingKeys(stringValue: "stringValue")
-    static let accountId = CodingKeys(stringValue: "accountId")
     static let dictValue = CodingKeys(stringValue: "dictValue")
+    static let contractValue = CodingKeys(stringValue: "contractValue")
+    static let listValue = CodingKeys(stringValue: "listValue")
     static let qualifiedCurrencyValue = CodingKeys(stringValue: "qualifiedCurrencyValue")
+    static let accountValue = CodingKeys(stringValue: "accountValue")
     static let amountValue = CodingKeys(stringValue: "amountValue")
 
     static let _knownKeys: Set<Swift.String> = [
@@ -62,9 +64,11 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
       "boolValue",
       "int64Value",
       "stringValue",
-      "accountId",
       "dictValue",
+      "contractValue",
+      "listValue",
       "qualifiedCurrencyValue",
+      "accountValue",
       "amountValue",
     ]
   }
@@ -94,16 +98,23 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     if let stringValue = try container.decodeIfPresent(Swift.String.self, forKey: .stringValue) {
       try valueCheckAndSet(.stringValue(stringValue))
     }
-    if let accountId = try container.decodeIfPresent(Swift.String.self, forKey: .accountId) {
-      try valueCheckAndSet(.accountId(accountId))
-    }
     if let dictValue = try container.decodeIfPresent(DictValue.self, forKey: .dictValue) {
       try valueCheckAndSet(.dictValue(dictValue))
+    }
+    if let contractValue = try container.decodeIfPresent(ContractValue.self, forKey: .contractValue)
+    {
+      try valueCheckAndSet(.contractValue(contractValue))
+    }
+    if let listValue = try container.decodeIfPresent(ListValue.self, forKey: .listValue) {
+      try valueCheckAndSet(.listValue(listValue))
     }
     if let qualifiedCurrencyValue = try container.decodeIfPresent(
       QualifiedCurrencyValue.self, forKey: .qualifiedCurrencyValue)
     {
       try valueCheckAndSet(.qualifiedCurrencyValue(qualifiedCurrencyValue))
+    }
+    if let accountValue = try container.decodeIfPresent(AccountValue.self, forKey: .accountValue) {
+      try valueCheckAndSet(.accountValue(accountValue))
     }
     if let amountValue = try container.decodeIfPresent(AmountValue.self, forKey: .amountValue) {
       try valueCheckAndSet(.amountValue(amountValue))
@@ -128,12 +139,16 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(value, forKey: .int64Value)
       case .stringValue(let value):
         try container.encode(value, forKey: .stringValue)
-      case .accountId(let value):
-        try container.encode(value, forKey: .accountId)
       case .dictValue(let value):
         try container.encode(value, forKey: .dictValue)
+      case .contractValue(let value):
+        try container.encode(value, forKey: .contractValue)
+      case .listValue(let value):
+        try container.encode(value, forKey: .listValue)
       case .qualifiedCurrencyValue(let value):
         try container.encode(value, forKey: .qualifiedCurrencyValue)
+      case .accountValue(let value):
+        try container.encode(value, forKey: .accountValue)
       case .amountValue(let value):
         try container.encode(value, forKey: .amountValue)
       }
@@ -153,12 +168,16 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     case int64Value(Swift.Int64)
     /// Optional. A string value.
     case stringValue(Swift.String)
-    /// Optional. An account ID.
-    case accountId(Swift.String)
     /// Optional. A dictionary value.
     indirect case dictValue(DictValue)
+    /// Optional. A contract reference.
+    indirect case contractValue(ContractValue)
+    /// Optional. A list value.
+    indirect case listValue(ListValue)
     /// Optional. A qualified currency value.
     indirect case qualifiedCurrencyValue(QualifiedCurrencyValue)
+    /// Optional. An account value.
+    indirect case accountValue(AccountValue)
     /// Optional. An amount value.
     indirect case amountValue(AmountValue)
   }

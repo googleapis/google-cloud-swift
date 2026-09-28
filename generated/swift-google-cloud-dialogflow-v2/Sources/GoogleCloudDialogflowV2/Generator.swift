@@ -56,7 +56,9 @@
     /// Optional. List of CES tool specs that the generator can choose from.
     public var cesToolSpecs: [CesToolSpec] = []
 
-    /// Optional. List of CES app specs that the generator can choose from.
+    /// Optional. Deprecated: Use `ces_tool_specs` instead.
+    /// List of CES app specs that the generator can choose from.
+    @available(*, deprecated)
     public var cesAppSpecs: [CesAppSpec] = []
 
     /// Required. Input context of the generator.
@@ -126,6 +128,9 @@
       ]
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
@@ -207,6 +212,9 @@
       }
     }
 
+    #if hasAttribute(diagnose)
+      @diagnose(DeprecatedDeclaration, as: ignored)
+    #endif
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)

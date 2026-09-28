@@ -64,6 +64,9 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.tasks.v2.HttpRequest]: <doc:HttpRequest>
   public var appEngineRoutingOverride: AppEngineRouting? = nil
 
+  /// Modifies HTTP target for HTTP tasks.
+  public var httpTarget: HttpTarget? = nil
+
   /// Rate limits for task dispatches.
   ///
   /// [rate_limits][google.cloud.tasks.v2.Queue.rate_limits] and
@@ -77,8 +80,8 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   queue, regardless of whether the dispatch is from a first
   ///   attempt or a retry).
   /// * [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls what
-  /// happens to
-  ///   particular a task after its first attempt fails. That is,
+  /// happens to a
+  ///   particular task after its first attempt fails. That is,
   ///   [retry_config][google.cloud.tasks.v2.Queue.retry_config] controls task
   ///   retries (the second attempt, third attempt, etc).
   ///
@@ -172,6 +175,7 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let name = CodingKeys(stringValue: "name")
     static let appEngineRoutingOverride = CodingKeys(stringValue: "appEngineRoutingOverride")
+    static let httpTarget = CodingKeys(stringValue: "httpTarget")
     static let rateLimits = CodingKeys(stringValue: "rateLimits")
     static let retryConfig = CodingKeys(stringValue: "retryConfig")
     static let state = CodingKeys(stringValue: "state")
@@ -181,6 +185,7 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
     static let _knownKeys: Set<Swift.String> = [
       "name",
       "appEngineRoutingOverride",
+      "httpTarget",
       "rateLimits",
       "retryConfig",
       "state",
@@ -196,6 +201,7 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.appEngineRoutingOverride = try container.decodeIfPresent(
       AppEngineRouting.self, forKey: .appEngineRoutingOverride)
+    self.httpTarget = try container.decodeIfPresent(HttpTarget.self, forKey: .httpTarget)
     self.rateLimits = try container.decodeIfPresent(RateLimits.self, forKey: .rateLimits)
     self.retryConfig = try container.decodeIfPresent(RetryConfig.self, forKey: .retryConfig)
     if let value = try container.decodeIfPresent(Queue.State.self, forKey: .state) {
@@ -214,6 +220,7 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.appEngineRoutingOverride, forKey: .appEngineRoutingOverride)
+    try container.encodeIfPresent(self.httpTarget, forKey: .httpTarget)
     try container.encodeIfPresent(self.rateLimits, forKey: .rateLimits)
     try container.encodeIfPresent(self.retryConfig, forKey: .retryConfig)
     try container.encode(self.state, forKey: .state)
