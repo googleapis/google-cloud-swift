@@ -26,10 +26,10 @@ import GoogleRpc
 /// [AIP-194]: https://google.aip.dev/194
 /// [idempotent]: https://en.wikipedia.org/wiki/Idempotence
 public struct BaseRetryPolicy: RetryPolicy, Sendable, Equatable {
-  let inner: StrictIdempotency<ContinueOnIO<Aip194>>
+  let inner: StrictIdempotency<ContinueOnIO<AIP194>>
 
   init() {
-    self.inner = Aip194().retryOnIO().strictIdempotency()
+    self.inner = AIP194().retryOnIO().strictIdempotency()
   }
 
   /// Creates an unconstrained base retry policy without attempt or time limits.

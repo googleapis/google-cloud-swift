@@ -17,34 +17,34 @@ import GoogleGax
 import GoogleRpc
 import Testing
 
-@Suite struct Aip194PollingErrorPolicyTests {
+@Suite struct AIP194PollingErrorPolicyTests {
   @Test(
-    "Verify Aip194 retries retryable errors for polling",
+    "Verify AIP194 retries retryable errors for polling",
     arguments: [
       unavailable(),
       unknownAnd503(),
       httpUnavailable(),
     ])
   func onRetryable(e: RequestError) {
-    let p: any PollingErrorPolicy = Aip194.unbounded()
+    let p: any PollingErrorPolicy = AIP194.unbounded()
     #expect(p.onError(state: PollingState(), error: e) == PollingResult.retry(e))
   }
 
   @Test(
-    "Verify Aip194 stops permanent errors for polling",
+    "Verify AIP194 stops permanent errors for polling",
     arguments: [
       permissionDenied(),
       httpPermissionDenied(),
     ]
   )
   func onPermanent(e: RequestError) {
-    let p: any PollingErrorPolicy = Aip194.unbounded()
+    let p: any PollingErrorPolicy = AIP194.unbounded()
     #expect(p.onError(state: PollingState(), error: e) == PollingResult.permanent(e))
   }
 
-  @Test("Verify Aip194 onInProgress is a no-op")
+  @Test("Verify AIP194 onInProgress is a no-op")
   func onInProgress() throws {
-    let p: any PollingErrorPolicy = Aip194.unbounded()
+    let p: any PollingErrorPolicy = AIP194.unbounded()
     try p.onInProgress(state: PollingState())
   }
 

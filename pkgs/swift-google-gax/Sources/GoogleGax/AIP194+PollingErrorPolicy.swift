@@ -14,8 +14,8 @@
 
 import Foundation
 
-extension Aip194: RetryPolicy {
-  public func onError(state: RetryState, error: RequestError) -> RetryResult {
+extension AIP194: PollingErrorPolicy {
+  public func onError(state: PollingState, error: RequestError) -> PollingResult {
     if isRetryable(error) {
       return .retry(error)
     }

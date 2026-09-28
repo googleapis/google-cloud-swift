@@ -17,16 +17,16 @@ import GoogleGax
 import GoogleRpc
 import Testing
 
-@Suite struct Aip194Tests {
+@Suite struct AIP194RetryPolicyTests {
   @Test(
-    "Verify Aip194 retries retryable errors",
+    "Verify AIP194 retries retryable errors",
     arguments: [
       unavailable(),
       unknownAnd503(),
       httpUnavailable(),
     ])
   func onRetryable(e: RequestError) {
-    let p = Aip194.unbounded()
+    let p = AIP194.unbounded()
     #expect(p.onError(state: idempotentState(), error: e) == .retry(e))
     #expect(p.onError(state: nonIdempotentState(), error: e) == .retry(e))
     #expect(p.onThrottle(state: idempotentState(), error: e) == .retry(e))
@@ -34,14 +34,14 @@ import Testing
   }
 
   @Test(
-    "Verify Aip194 stops permanent errors",
+    "Verify AIP194 stops permanent errors",
     arguments: [
       permissionDenied(),
       httpPermissionDenied(),
     ]
   )
   func onPermanent(e: RequestError) {
-    let p = Aip194.unbounded()
+    let p = AIP194.unbounded()
     #expect(p.onError(state: idempotentState(), error: e) == .permanent(e))
     #expect(p.onError(state: nonIdempotentState(), error: e) == .permanent(e))
     #expect(p.onThrottle(state: idempotentState(), error: e) == .retry(e))
@@ -49,8 +49,8 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = Aip194.unbounded()
-    let b = Aip194.unbounded()
+    let a = AIP194.unbounded()
+    let b = AIP194.unbounded()
     #expect(a == b)
   }
 

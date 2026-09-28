@@ -25,10 +25,10 @@ import GoogleRpc
 ///
 /// [AIP-194]: https://google.aip.dev/194
 public struct BasePollingErrorPolicy: PollingErrorPolicy, Sendable, Equatable {
-  let inner: TooManyRequests<ContinueOnIO<Aip194>>
+  let inner: TooManyRequests<ContinueOnIO<AIP194>>
 
   init() {
-    self.inner = Aip194().continueOnIO().continueOnTooManyRequests()
+    self.inner = AIP194().continueOnIO().continueOnTooManyRequests()
   }
 
   /// Creates an unconstrained base polling error policy without attempt or time limits.
