@@ -51,19 +51,6 @@ struct ExchangeTokenRequest: Sendable {
   }
 }
 
-/// Represents OAuth client credentials used to authenticate token exchange requests via HTTP Basic Auth.
-struct ClientAuthentication: Sendable {
-  /// The OAuth client ID.
-  let id: String
-  /// The OAuth client secret.
-  let secret: String?
-
-  init(id: String, secret: String? = nil) {
-    self.id = id
-    self.secret = secret
-  }
-}
-
 /// The response payload returned by Google Cloud's Secure Token Service (STS) following a token exchange.
 struct TokenResponse: Codable, Sendable {
   /// The exchanged Google Cloud access token.

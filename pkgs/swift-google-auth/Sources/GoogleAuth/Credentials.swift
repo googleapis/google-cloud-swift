@@ -199,6 +199,40 @@ public enum CredentialsConfiguration: Sendable {
   case apiKey(String)
 }
 
+/// Represents OAuth 2.0 client credentials used for client authentication via HTTP Basic Auth.
+public struct ClientAuthentication: Sendable, Equatable, Hashable {
+  /// The OAuth client ID.
+  public let id: String
+
+  /// The optional OAuth client secret.
+  public let secret: String?
+
+  /// Initializes client authentication credentials.
+  ///
+  /// - Parameters:
+  ///   - id: The OAuth client ID.
+  ///   - secret: The optional OAuth client secret.
+  public init(id: String, secret: String? = nil) {
+    self.id = id
+    self.secret = secret
+  }
+
+  /// Initializes client authentication credentials.
+  ///
+  /// - Parameters:
+  ///   - clientID: The OAuth client ID.
+  ///   - clientSecret: The optional OAuth client secret.
+  public init(clientID: String, clientSecret: String? = nil) {
+    self.init(id: clientID, secret: clientSecret)
+  }
+
+  /// The OAuth client ID.
+  public var clientID: String { id }
+
+  /// The optional OAuth client secret.
+  public var clientSecret: String? { secret }
+}
+
 /// Configuration options for Workload and Workforce Identity Federation credentials.
 ///
 /// Under [AIP-4117](https://google.aip.dev/auth/4117), external credentials exchange a third-party
@@ -248,11 +282,11 @@ public struct ExternalAccountConfig: Sendable {
   /// Defaults to `https://sts.googleapis.com/v1/token`.
   public let tokenURL: URL
 
-  /// Optional OAuth client ID used for client authentication via HTTP Basic Auth.
-  public var clientID: String? = nil
+  /// The OAuth client credentials type used for client authentication via HTTP Basic Auth.
+  public typealias ClientAuthentication = GoogleAuth.ClientAuthentication
 
-  /// Optional OAuth client secret used for client authentication via HTTP Basic Auth.
-  public var clientSecret: String? = nil
+  /// Optional OAuth client credentials used for client authentication via HTTP Basic Auth.
+  public var clientAuthentication: ClientAuthentication? = nil
 
   /// Optional user project ID used to assert billing and quota constraints (`x-goog-user-project`).
   ///
@@ -448,8 +482,7 @@ public struct Credentials: Sendable {
         audience: config.audience,
         subjectTokenType: config.subjectTokenType,
         tokenURL: config.tokenURL,
-        clientID: config.clientID,
-        clientSecret: config.clientSecret,
+        clientAuthentication: config.clientAuthentication,
         workforcePoolUserProject: config.workforcePoolUserProject,
         scopes: config.scopes,
         universeDomain: config.universeDomain

@@ -50,11 +50,8 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   /// The client project ID required for billing and quota attribution when using workforce pools.
   private let workforcePoolUserProject: String?
 
-  /// An optional client ID for authenticating with confidential workforce identity pools.
-  private let clientID: String?
-
-  /// An optional client secret for authenticating with confidential workforce identity pools.
-  private let clientSecret: String?
+  /// Optional client credentials for authenticating with confidential workforce identity pools.
+  private let clientAuthentication: ClientAuthentication?
 
   /// The retry configuration controlling backoff and attempt limits for token exchange requests.
   private let retryConfiguration: RetryConfiguration?
@@ -68,8 +65,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   ///   - audience: STS audience resource name.
   ///   - scopes: Requested OAuth 2.0 scopes.
   ///   - workforcePoolUserProject: Quota/billing project ID for workforce pools.
-  ///   - clientID: Optional client ID for workforce pool authentication.
-  ///   - clientSecret: Optional client secret for workforce pool authentication.
+  ///   - clientAuthentication: Optional client credentials for workforce pool authentication.
   ///   - retryConfiguration: Optional retry configuration.
   ///   - httpClient: HTTP client instance.
   init(
@@ -79,8 +75,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
     audience: String,
     scopes: [String],
     workforcePoolUserProject: String?,
-    clientID: String?,
-    clientSecret: String?,
+    clientAuthentication: ClientAuthentication? = nil,
     retryConfiguration: RetryConfiguration? = nil,
     httpClient: AuthHTTPClient = AuthHTTPClient()
   ) {
@@ -90,8 +85,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
     self.audience = audience
     self.scopes = scopes
     self.workforcePoolUserProject = workforcePoolUserProject
-    self.clientID = clientID
-    self.clientSecret = clientSecret
+    self.clientAuthentication = clientAuthentication
     self.retryConfiguration = retryConfiguration
     self.stsHandler = STSHandler(httpClient: httpClient)
   }
@@ -110,7 +104,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
       audience: audience,
       scopes: scopes,
       workforcePoolUserProject: workforcePoolUserProject,
-      clientAuthentication: clientID.map { ClientAuthentication(id: $0, secret: clientSecret) }
+      clientAuthentication: clientAuthentication
     )
 
     let response: TokenResponse = try await RetryEngine.retry(
@@ -177,11 +171,8 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   /// The Security Token Service endpoint URL.
   let tokenURL: URL
 
-  /// An optional client ID for workforce identity pool authentication.
-  let clientID: String?
-
-  /// An optional client secret for workforce identity pool authentication.
-  let clientSecret: String?
+  /// Optional client credentials for workforce identity pool authentication.
+  let clientAuthentication: ClientAuthentication?
 
   /// The project ID to attribute quota and billing to when accessing workforce pools.
   let workforcePoolUserProject: String?
@@ -199,8 +190,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   ///   - audience: The STS audience resource name.
   ///   - subjectTokenType: The STS token type URI.
   ///   - tokenURL: The STS token endpoint URL.
-  ///   - clientID: Optional client ID for workforce pool authentication.
-  ///   - clientSecret: Optional client secret for workforce pool authentication.
+  ///   - clientAuthentication: Optional client credentials for workforce pool authentication.
   ///   - workforcePoolUserProject: Optional quota project for workforce identity pools.
   ///   - scopes: Array of requested OAuth 2.0 scopes.
   ///   - universeDomain: Target universe domain.
@@ -212,8 +202,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     audience: String,
     subjectTokenType: ExternalAccountConfig.SubjectTokenType,
     tokenURL: URL,
-    clientID: String? = nil,
-    clientSecret: String? = nil,
+    clientAuthentication: ClientAuthentication? = nil,
     workforcePoolUserProject: String? = nil,
     scopes: [String] = [],
     universeDomain: String? = nil,
@@ -246,8 +235,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     self.audience = audience
     self.subjectTokenType = subjectTokenType
     self.tokenURL = tokenURL
-    self.clientID = clientID
-    self.clientSecret = clientSecret
+    self.clientAuthentication = clientAuthentication
     self.workforcePoolUserProject = workforcePoolUserProject
     self.scopes = effectiveScopes
     self.universeDomain = universeDomain
@@ -259,8 +247,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
       audience: audience,
       scopes: effectiveScopes,
       workforcePoolUserProject: workforcePoolUserProject,
-      clientID: clientID,
-      clientSecret: clientSecret,
+      clientAuthentication: clientAuthentication,
       retryConfiguration: retryConfiguration,
       httpClient: httpClient
     )

@@ -42,14 +42,14 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     let provider = MockSubjectTokenProvider(token: "mock-provider-token")
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
 
+    let clientAuth = ClientAuthentication(id: "client-id", secret: "client-secret")
     let creds = try ExternalAccountCredentials(
       credentialSource: .programmatic(subjectTokenProvider: provider),
       audience:
         "//iam.googleapis.com/projects/123/locations/global/workloadPools/pool/providers/prov",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
-      clientID: "client-id",
-      clientSecret: "client-secret",
+      clientAuthentication: clientAuth,
       workforcePoolUserProject: nil,
       scopes: ["scope1", "scope2"],
       universeDomain: "custom-universe.com"
@@ -60,8 +60,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
         == "//iam.googleapis.com/projects/123/locations/global/workloadPools/pool/providers/prov")
     #expect(creds.subjectTokenType == "urn:ietf:params:oauth:token-type:id_token")
     #expect(creds.tokenURL == targetURL)
-    #expect(creds.clientID == "client-id")
-    #expect(creds.clientSecret == "client-secret")
+    #expect(creds.clientAuthentication == clientAuth)
     #expect(creds.workforcePoolUserProject == nil)
     #expect(creds.scopes == ["scope1", "scope2"])
     #expect(creds.universeDomain == "custom-universe.com")
@@ -531,8 +530,8 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: targetURL,
-      clientID: "test-client-id",
-      clientSecret: "test-client-secret",
+      clientAuthentication: ClientAuthentication(
+        id: "test-client-id", secret: "test-client-secret"),
       workforcePoolUserProject: "quota-project",
       httpClient: httpClient
     )
@@ -630,5 +629,97 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     let data = try encoder.encode(SubjectTokenType.idToken)
     let decoded = try JSONDecoder().decode(SubjectTokenType.self, from: data)
     #expect(decoded == .idToken)
+  }
+
+  @Test("ClientAuthentication properties and initializers")
+  func clientAuthenticationProperties() {
+    let authWithSecret = ClientAuthentication(id: "my-id", secret: "my-secret")
+    #expect(authWithSecret.id == "my-id")
+    #expect(authWithSecret.clientID == "my-id")
+    #expect(authWithSecret.secret == "my-secret")
+    #expect(authWithSecret.clientSecret == "my-secret")
+
+    let authNoSecret = ClientAuthentication(id: "my-id")
+    #expect(authNoSecret.id == "my-id")
+    #expect(authNoSecret.clientID == "my-id")
+    #expect(authNoSecret.secret == nil)
+    #expect(authNoSecret.clientSecret == nil)
+
+    let authAlternativeInit = ClientAuthentication(clientID: "alt-id", clientSecret: "alt-secret")
+    #expect(authAlternativeInit.id == "alt-id")
+    #expect(authAlternativeInit.secret == "alt-secret")
+
+    #expect(authWithSecret == ClientAuthentication(clientID: "my-id", clientSecret: "my-secret"))
+    #expect(authWithSecret != authNoSecret)
+  }
+
+  @Test("ExternalAccountConfig configures client authentication")
+  func configWithClientAuthentication() throws {
+    let provider = MockSubjectTokenProvider(token: "mock-token")
+    let clientAuth = ClientAuthentication(id: "pool-client", secret: "pool-secret")
+
+    let config = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "//iam.googleapis.com/locations/global/workforcePools/pool/providers/prov",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+    ).with {
+      $0.clientAuthentication = clientAuth
+    }
+
+    #expect(config.clientAuthentication == clientAuth)
+
+    let credentials = try Credentials(configuration: .externalAccount(config))
+    guard let externalCreds = credentials.credentialsProvider as? ExternalAccountCredentials else {
+      Issue.record("Expected ExternalAccountCredentials provider")
+      return
+    }
+    #expect(externalCreds.clientAuthentication == clientAuth)
+  }
+
+  @Test("Injects Basic Auth header when client authentication has no secret")
+  func stsHandlerInjectsBasicAuthWithoutSecret() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+
+    let expectedResponse = TokenResponse(
+      accessToken: "ya29.sts-token",
+      tokenType: "Bearer",
+      expiresIn: 3600,
+      issuedTokenType: "urn:ietf:params:oauth:token-type:access_token",
+      refreshBy: nil
+    )
+
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(expectedResponse)
+
+    let expectedBasicAuth = "Basic \(Data("test-client-id:".utf8).base64EncodedString())"
+
+    let mock = MockHTTPClient([
+      { request in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.headers.first(name: "Authorization") == expectedBasicAuth)
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData)),
+        )
+      }
+    ])
+
+    let httpClient = AuthHTTPClient(mock: mock)
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      clientAuthentication: ClientAuthentication(id: "test-client-id"),
+      httpClient: httpClient
+    )
+
+    _ = try await creds.headers()
   }
 }
