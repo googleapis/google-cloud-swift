@@ -20,6 +20,5 @@ public enum _HeaderNames {
   public static let apiClient = "x-goog-api-client"
   public static let requestParams = "x-goog-request-params"
   public static let userProject = "x-goog-user-project"
-  public static let idempotencyToken = "x-goog-gcs-idempotency-token"
   public static let host = "Host"
 }
