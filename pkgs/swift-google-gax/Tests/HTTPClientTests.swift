@@ -722,6 +722,8 @@ import NIOHTTP1
         headers: .init([
           ("Content-Type", "text/html; charset=UTF-8"),
           ("x-goog-test-only", "test-header"),
+          ("X-Goog-Duplicate", "first"),
+          ("x-goog-duplicate", "second"),
         ]),
         body: .bytes(.init(string: responsePayload))
       )
@@ -747,6 +749,9 @@ import NIOHTTP1
     #expect(httpError.httpStatusCode == HTTPResponseStatus.forbidden.code)
     #expect(httpError.payload == Data(responsePayload.utf8))
     #expect(httpError.headers["x-goog-test-only"] == "test-header")
+    #expect(httpError.headers["X-Goog-Test-Only"] == "test-header")
+    #expect(httpError.headers["content-type"] == "text/html; charset=UTF-8")
+    #expect(httpError.headers.values(for: "x-goog-duplicate") == ["first", "second"])
   }
 
   @Test func streamingBodyByteBuffer() async throws {

@@ -233,7 +233,7 @@ final class MockRegistry: _HTTPClientProtocol, @unchecked Sendable {
       throw GoogleGax.RequestError.http(
         GoogleGax.HTTPDetails(
           httpStatusCode: 404,
-          headers: [:],
+          headers: [],
           payload: Data("Mock not found for \(request.url)".utf8)
         )
       )

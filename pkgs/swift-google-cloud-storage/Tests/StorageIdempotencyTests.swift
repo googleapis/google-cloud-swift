@@ -222,7 +222,7 @@ import Testing
       func deleteObject(request: DeleteObjectRequest, options: RequestOptions) async throws {
         let shouldSucceed = await tracker.record(options: options)
         if !shouldSucceed {
-          throw RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
+          throw RequestError.http(HTTPDetails(httpStatusCode: 503, headers: []))
         }
       }
 

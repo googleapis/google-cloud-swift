@@ -119,15 +119,15 @@ public struct HTTPDetails: Sendable {
   public let httpStatusCode: Int
 
   /// The HTTP headers.
-  public let headers: [String: String]
+  public let headers: HTTPHeaders
 
   /// The contents of the HTTP error response.
   public let payload: Data
 
-  /// Create a a new `HTTPDetails`.
+  /// Create a new `HTTPDetails`.
   public init(
     httpStatusCode: Int,
-    headers: [String: String],
+    headers: HTTPHeaders = HTTPHeaders(),
     payload: Data = Data()
   ) {
     self.httpStatusCode = httpStatusCode

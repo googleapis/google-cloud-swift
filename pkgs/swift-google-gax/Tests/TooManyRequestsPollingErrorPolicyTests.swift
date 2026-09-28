@@ -57,7 +57,7 @@ import Testing
   }
 
   private func tooManyRequestsHttp() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 429, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 429, headers: [], payload: Data()))
   }
 
   private func permanent() -> RequestError {
