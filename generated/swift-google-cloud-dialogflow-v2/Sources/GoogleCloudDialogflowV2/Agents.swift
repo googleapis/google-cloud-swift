@@ -31,7 +31,7 @@
   public final class AgentsClient: Clients.AgentsProtocol, Sendable {
     let inner: any Clients.AgentsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `AgentsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

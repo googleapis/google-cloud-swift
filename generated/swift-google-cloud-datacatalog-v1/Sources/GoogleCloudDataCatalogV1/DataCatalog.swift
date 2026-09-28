@@ -33,7 +33,7 @@ import Foundation
 public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   let inner: any Clients.DataCatalogStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DataCatalogClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

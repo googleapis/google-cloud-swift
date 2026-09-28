@@ -27,7 +27,7 @@
   public final class SnapshotSettingsClient: Clients.SnapshotSettingsProtocol, Sendable {
     let inner: any Clients.SnapshotSettingsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `SnapshotSettingsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

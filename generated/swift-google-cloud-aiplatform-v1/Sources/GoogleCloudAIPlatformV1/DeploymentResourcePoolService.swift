@@ -33,7 +33,7 @@
   {
     let inner: any Clients.DeploymentResourcePoolServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `DeploymentResourcePoolServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

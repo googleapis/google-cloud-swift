@@ -29,7 +29,7 @@ import Foundation
 public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Sendable {
   let inner: any Clients.SSERealmServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `SSERealmServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

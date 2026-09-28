@@ -27,7 +27,7 @@
   public final class HttpsHealthChecksClient: Clients.HttpsHealthChecksProtocol, Sendable {
     let inner: any Clients.HttpsHealthChecksStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `HttpsHealthChecksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -32,7 +32,7 @@ import Foundation
 public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendable {
   let inner: any Clients.StreamsServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `StreamsServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

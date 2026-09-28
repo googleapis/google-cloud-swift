@@ -27,7 +27,7 @@
   public final class MachineImagesClient: Clients.MachineImagesProtocol, Sendable {
     let inner: any Clients.MachineImagesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `MachineImagesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

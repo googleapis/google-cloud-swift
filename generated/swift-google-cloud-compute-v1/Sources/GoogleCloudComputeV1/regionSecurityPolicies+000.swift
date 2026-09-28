@@ -28,7 +28,7 @@
   {
     let inner: any Clients.RegionSecurityPoliciesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionSecurityPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

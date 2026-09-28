@@ -29,7 +29,7 @@ import Foundation
 public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Sendable {
   let inner: any Clients.StorageInsightsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `StorageInsightsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

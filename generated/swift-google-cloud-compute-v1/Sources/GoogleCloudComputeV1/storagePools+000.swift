@@ -27,7 +27,7 @@
   public final class StoragePoolsClient: Clients.StoragePoolsProtocol, Sendable {
     let inner: any Clients.StoragePoolsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `StoragePoolsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

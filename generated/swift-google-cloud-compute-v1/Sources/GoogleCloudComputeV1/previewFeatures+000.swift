@@ -27,7 +27,7 @@
   public final class PreviewFeaturesClient: Clients.PreviewFeaturesProtocol, Sendable {
     let inner: any Clients.PreviewFeaturesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `PreviewFeaturesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

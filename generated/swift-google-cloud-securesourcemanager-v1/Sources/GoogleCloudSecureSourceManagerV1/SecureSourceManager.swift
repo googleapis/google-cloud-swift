@@ -32,7 +32,7 @@ import Foundation
 public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtocol, Sendable {
   let inner: any Clients.SecureSourceManagerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `SecureSourceManagerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

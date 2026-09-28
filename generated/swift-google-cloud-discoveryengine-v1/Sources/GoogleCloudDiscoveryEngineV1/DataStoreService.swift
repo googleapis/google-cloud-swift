@@ -32,7 +32,7 @@
   public final class DataStoreServiceClient: Clients.DataStoreServiceProtocol, Sendable {
     let inner: any Clients.DataStoreServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `DataStoreServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

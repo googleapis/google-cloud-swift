@@ -35,7 +35,7 @@ import Foundation
 public final class EchoClient: Clients.EchoProtocol, Sendable {
   let inner: any Clients.EchoStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `EchoClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

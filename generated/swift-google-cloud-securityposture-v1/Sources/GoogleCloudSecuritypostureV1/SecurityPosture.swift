@@ -29,7 +29,7 @@ import Foundation
 public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Sendable {
   let inner: any Clients.SecurityPostureStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `SecurityPostureClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

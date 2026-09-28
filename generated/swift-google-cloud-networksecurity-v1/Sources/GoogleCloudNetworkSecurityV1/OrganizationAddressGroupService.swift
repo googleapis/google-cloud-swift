@@ -34,7 +34,7 @@ public final class OrganizationAddressGroupServiceClient: Clients
 {
   let inner: any Clients.OrganizationAddressGroupServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `OrganizationAddressGroupServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -27,7 +27,7 @@ import Foundation
 public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendable {
   let inner: any Clients.AccessPoliciesStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AccessPoliciesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

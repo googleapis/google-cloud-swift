@@ -29,7 +29,7 @@
   public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sendable {
     let inner: any Clients.UserEventServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `UserEventServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

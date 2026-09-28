@@ -28,7 +28,7 @@ import Foundation
 public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sendable {
   let inner: any Clients.WorkloadIdentityStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `WorkloadIdentityClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

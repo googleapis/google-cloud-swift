@@ -43,7 +43,7 @@ import Foundation
 public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, Sendable {
   let inner: any Clients.CloudRedisClusterStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CloudRedisClusterClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

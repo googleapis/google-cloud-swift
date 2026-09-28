@@ -31,7 +31,7 @@ import Foundation
 public final class DataProductServiceClient: Clients.DataProductServiceProtocol, Sendable {
   let inner: any Clients.DataProductServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DataProductServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

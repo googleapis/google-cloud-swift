@@ -31,7 +31,7 @@
   public final class IndexServiceClient: Clients.IndexServiceProtocol, Sendable {
     let inner: any Clients.IndexServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `IndexServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

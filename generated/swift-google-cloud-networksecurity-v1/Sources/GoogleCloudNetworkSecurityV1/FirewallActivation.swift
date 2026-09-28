@@ -30,7 +30,7 @@ import Foundation
 public final class FirewallActivationClient: Clients.FirewallActivationProtocol, Sendable {
   let inner: any Clients.FirewallActivationStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `FirewallActivationClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

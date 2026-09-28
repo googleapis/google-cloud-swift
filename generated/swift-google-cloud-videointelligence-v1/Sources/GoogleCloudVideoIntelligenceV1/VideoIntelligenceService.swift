@@ -29,7 +29,7 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
 {
   let inner: any Clients.VideoIntelligenceServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `VideoIntelligenceServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -27,7 +27,7 @@
   public final class LicensesClient: Clients.LicensesProtocol, Sendable {
     let inner: any Clients.LicensesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `LicensesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

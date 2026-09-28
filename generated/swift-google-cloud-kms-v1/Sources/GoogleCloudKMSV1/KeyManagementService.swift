@@ -46,7 +46,7 @@ public import Foundation
 public final class KeyManagementServiceClient: Clients.KeyManagementServiceProtocol, Sendable {
   let inner: any Clients.KeyManagementServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `KeyManagementServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

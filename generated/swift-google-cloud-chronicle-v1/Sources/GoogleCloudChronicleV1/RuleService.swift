@@ -28,7 +28,7 @@ import Foundation
 public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   let inner: any Clients.RuleServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `RuleServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

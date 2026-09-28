@@ -31,7 +31,7 @@
   public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sendable {
     let inner: any Clients.MigrationServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `MigrationServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

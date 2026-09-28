@@ -42,7 +42,7 @@ import Foundation
 public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sendable {
   let inner: any Clients.ArtifactRegistryStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ArtifactRegistryClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

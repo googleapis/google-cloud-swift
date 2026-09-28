@@ -47,7 +47,7 @@ import Foundation
 public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable {
   let inner: any Clients.ProductSearchStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ProductSearchClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

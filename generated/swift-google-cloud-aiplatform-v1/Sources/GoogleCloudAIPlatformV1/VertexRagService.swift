@@ -30,7 +30,7 @@
   public final class VertexRagServiceClient: Clients.VertexRagServiceProtocol, Sendable {
     let inner: any Clients.VertexRagServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `VertexRagServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

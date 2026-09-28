@@ -29,7 +29,7 @@ import Foundation
 public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Sendable {
   let inner: any Clients.MigrationCenterStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `MigrationCenterClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

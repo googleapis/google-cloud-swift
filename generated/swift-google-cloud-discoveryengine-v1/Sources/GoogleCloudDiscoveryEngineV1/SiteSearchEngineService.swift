@@ -30,7 +30,7 @@
   {
     let inner: any Clients.SiteSearchEngineServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `SiteSearchEngineServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

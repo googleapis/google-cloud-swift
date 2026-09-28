@@ -32,7 +32,7 @@
   public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Sendable {
     let inner: any Clients.DocumentServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `DocumentServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

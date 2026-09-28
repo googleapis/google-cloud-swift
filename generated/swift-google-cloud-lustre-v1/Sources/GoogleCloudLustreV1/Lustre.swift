@@ -29,7 +29,7 @@ import Foundation
 public final class LustreClient: Clients.LustreProtocol, Sendable {
   let inner: any Clients.LustreStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `LustreClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

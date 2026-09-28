@@ -27,7 +27,7 @@
   public final class SubnetworksClient: Clients.SubnetworksProtocol, Sendable {
     let inner: any Clients.SubnetworksStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `SubnetworksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -29,7 +29,7 @@ import Foundation
 public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   let inner: any Clients.MemorystoreStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `MemorystoreClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

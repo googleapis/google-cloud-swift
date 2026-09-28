@@ -34,7 +34,7 @@
   public final class VizierServiceClient: Clients.VizierServiceProtocol, Sendable {
     let inner: any Clients.VizierServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `VizierServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

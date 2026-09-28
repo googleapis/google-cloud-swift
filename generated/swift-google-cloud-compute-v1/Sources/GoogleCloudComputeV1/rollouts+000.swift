@@ -27,7 +27,7 @@
   public final class RolloutsClient: Clients.RolloutsProtocol, Sendable {
     let inner: any Clients.RolloutsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RolloutsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

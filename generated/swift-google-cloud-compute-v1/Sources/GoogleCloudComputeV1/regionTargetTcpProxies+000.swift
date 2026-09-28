@@ -28,7 +28,7 @@
   {
     let inner: any Clients.RegionTargetTcpProxiesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionTargetTcpProxiesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

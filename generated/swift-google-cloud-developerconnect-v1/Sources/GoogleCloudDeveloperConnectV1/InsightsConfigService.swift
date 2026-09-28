@@ -36,7 +36,7 @@ import Foundation
 public final class InsightsConfigServiceClient: Clients.InsightsConfigServiceProtocol, Sendable {
   let inner: any Clients.InsightsConfigServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `InsightsConfigServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

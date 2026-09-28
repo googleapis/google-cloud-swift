@@ -27,7 +27,7 @@ import Foundation
 public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Sendable {
   let inner: any Clients.PipelineServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `PipelineServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

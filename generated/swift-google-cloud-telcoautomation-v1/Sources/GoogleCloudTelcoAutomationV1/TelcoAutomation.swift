@@ -33,7 +33,7 @@ import Foundation
 public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Sendable {
   let inner: any Clients.TelcoAutomationStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `TelcoAutomationClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

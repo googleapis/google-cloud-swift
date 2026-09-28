@@ -46,7 +46,7 @@ import Foundation
 public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, Sendable {
   let inner: any Clients.DataprocMetastoreStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DataprocMetastoreClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

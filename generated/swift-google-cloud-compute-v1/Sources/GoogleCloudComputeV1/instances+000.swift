@@ -27,7 +27,7 @@
   public final class InstancesClient: Clients.InstancesProtocol, Sendable {
     let inner: any Clients.InstancesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstancesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

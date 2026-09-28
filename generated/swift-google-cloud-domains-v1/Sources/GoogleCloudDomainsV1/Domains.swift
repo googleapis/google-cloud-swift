@@ -29,7 +29,7 @@ import Foundation
 public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   let inner: any Clients.DomainsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DomainsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

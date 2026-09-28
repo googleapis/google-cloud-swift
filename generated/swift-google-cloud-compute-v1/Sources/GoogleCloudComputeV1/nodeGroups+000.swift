@@ -27,7 +27,7 @@
   public final class NodeGroupsClient: Clients.NodeGroupsProtocol, Sendable {
     let inner: any Clients.NodeGroupsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `NodeGroupsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -27,7 +27,7 @@
   public final class InstanceGroupsClient: Clients.InstanceGroupsProtocol, Sendable {
     let inner: any Clients.InstanceGroupsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstanceGroupsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

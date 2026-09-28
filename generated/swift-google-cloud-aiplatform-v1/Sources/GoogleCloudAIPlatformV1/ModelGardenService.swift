@@ -30,7 +30,7 @@
   public final class ModelGardenServiceClient: Clients.ModelGardenServiceProtocol, Sendable {
     let inner: any Clients.ModelGardenServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ModelGardenServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

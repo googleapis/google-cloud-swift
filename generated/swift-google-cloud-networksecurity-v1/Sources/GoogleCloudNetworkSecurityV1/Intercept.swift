@@ -31,7 +31,7 @@ import Foundation
 public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   let inner: any Clients.InterceptStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `InterceptClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

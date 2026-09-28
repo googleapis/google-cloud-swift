@@ -27,7 +27,7 @@
   public final class GlobalForwardingRulesClient: Clients.GlobalForwardingRulesProtocol, Sendable {
     let inner: any Clients.GlobalForwardingRulesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `GlobalForwardingRulesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

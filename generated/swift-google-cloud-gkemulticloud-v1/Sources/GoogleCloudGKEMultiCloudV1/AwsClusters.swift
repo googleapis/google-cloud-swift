@@ -30,7 +30,7 @@ import Foundation
 public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   let inner: any Clients.AwsClustersStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AwsClustersClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

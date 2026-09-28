@@ -29,7 +29,7 @@ import Foundation
 public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   let inner: any Clients.NetAppStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `NetAppClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

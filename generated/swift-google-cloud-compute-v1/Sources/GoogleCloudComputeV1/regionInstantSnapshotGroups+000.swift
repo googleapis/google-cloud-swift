@@ -29,7 +29,7 @@
   {
     let inner: any Clients.RegionInstantSnapshotGroupsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionInstantSnapshotGroupsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

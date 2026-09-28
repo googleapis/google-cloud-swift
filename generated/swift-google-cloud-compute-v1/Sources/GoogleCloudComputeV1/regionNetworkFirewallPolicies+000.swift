@@ -29,7 +29,7 @@
   {
     let inner: any Clients.RegionNetworkFirewallPoliciesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionNetworkFirewallPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

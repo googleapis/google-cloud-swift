@@ -32,7 +32,7 @@
   public final class VersionsClient: Clients.VersionsProtocol, Sendable {
     let inner: any Clients.VersionsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `VersionsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

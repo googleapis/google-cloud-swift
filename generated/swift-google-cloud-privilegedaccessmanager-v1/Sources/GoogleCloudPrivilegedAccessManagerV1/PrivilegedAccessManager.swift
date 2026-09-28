@@ -49,7 +49,7 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
 {
   let inner: any Clients.PrivilegedAccessManagerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `PrivilegedAccessManagerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

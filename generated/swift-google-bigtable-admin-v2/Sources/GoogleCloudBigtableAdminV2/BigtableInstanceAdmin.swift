@@ -31,7 +31,7 @@ import Foundation
 public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminProtocol, Sendable {
   let inner: any Clients.BigtableInstanceAdminStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `BigtableInstanceAdminClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

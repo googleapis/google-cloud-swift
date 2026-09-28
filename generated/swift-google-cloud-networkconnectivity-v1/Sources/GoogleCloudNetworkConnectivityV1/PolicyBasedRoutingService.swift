@@ -32,7 +32,7 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
 {
   let inner: any Clients.PolicyBasedRoutingServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `PolicyBasedRoutingServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -32,7 +32,7 @@
   public final class ConversationDatasetsClient: Clients.ConversationDatasetsProtocol, Sendable {
     let inner: any Clients.ConversationDatasetsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ConversationDatasetsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

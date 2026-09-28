@@ -30,7 +30,7 @@ import Foundation
 public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sendable {
   let inner: any Clients.VpcAccessServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `VpcAccessServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

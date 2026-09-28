@@ -29,7 +29,7 @@ import Foundation
 public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   let inner: any Clients.VmMigrationStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `VmMigrationClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

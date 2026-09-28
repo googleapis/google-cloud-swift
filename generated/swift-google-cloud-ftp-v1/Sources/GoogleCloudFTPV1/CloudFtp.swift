@@ -29,7 +29,7 @@ import Foundation
 public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   let inner: any Clients.CloudFtpStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CloudFtpClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

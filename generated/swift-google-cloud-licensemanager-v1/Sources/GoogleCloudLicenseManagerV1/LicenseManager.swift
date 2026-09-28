@@ -29,7 +29,7 @@ import Foundation
 public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendable {
   let inner: any Clients.LicenseManagerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `LicenseManagerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

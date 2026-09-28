@@ -28,7 +28,7 @@ import Foundation
 public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, Sendable {
   let inner: any Clients.ApiGatewayServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ApiGatewayServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

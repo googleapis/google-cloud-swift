@@ -31,7 +31,7 @@ import Foundation
 public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   let inner: any Clients.BackupForGKEStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `BackupForGKEClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

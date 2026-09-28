@@ -73,7 +73,7 @@ import Foundation
 public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendable {
   let inner: any Clients.DatastoreAdminStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DatastoreAdminClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

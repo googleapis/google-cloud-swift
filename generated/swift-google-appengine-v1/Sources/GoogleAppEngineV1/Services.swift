@@ -27,7 +27,7 @@ import Foundation
 public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   let inner: any Clients.ServicesStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ServicesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -27,7 +27,7 @@
   public final class NodeTemplatesClient: Clients.NodeTemplatesProtocol, Sendable {
     let inner: any Clients.NodeTemplatesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `NodeTemplatesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

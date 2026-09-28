@@ -27,7 +27,7 @@
   public final class ReservationSubBlocksClient: Clients.ReservationSubBlocksProtocol, Sendable {
     let inner: any Clients.ReservationSubBlocksStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ReservationSubBlocksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

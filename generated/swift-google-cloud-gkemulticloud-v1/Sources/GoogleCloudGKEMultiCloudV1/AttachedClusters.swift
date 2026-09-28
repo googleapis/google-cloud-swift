@@ -30,7 +30,7 @@ import Foundation
 public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sendable {
   let inner: any Clients.AttachedClustersStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AttachedClustersClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

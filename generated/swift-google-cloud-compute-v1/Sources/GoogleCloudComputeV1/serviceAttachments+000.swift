@@ -27,7 +27,7 @@
   public final class ServiceAttachmentsClient: Clients.ServiceAttachmentsProtocol, Sendable {
     let inner: any Clients.ServiceAttachmentsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ServiceAttachmentsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

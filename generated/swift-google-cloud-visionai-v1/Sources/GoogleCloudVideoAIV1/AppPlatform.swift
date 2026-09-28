@@ -29,7 +29,7 @@ import Foundation
 public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   let inner: any Clients.AppPlatformStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AppPlatformClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

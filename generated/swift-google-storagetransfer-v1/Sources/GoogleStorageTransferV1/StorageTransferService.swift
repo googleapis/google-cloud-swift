@@ -30,7 +30,7 @@ import Foundation
 public final class StorageTransferServiceClient: Clients.StorageTransferServiceProtocol, Sendable {
   let inner: any Clients.StorageTransferServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `StorageTransferServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -32,7 +32,7 @@
   public final class ScheduleServiceClient: Clients.ScheduleServiceProtocol, Sendable {
     let inner: any Clients.ScheduleServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ScheduleServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

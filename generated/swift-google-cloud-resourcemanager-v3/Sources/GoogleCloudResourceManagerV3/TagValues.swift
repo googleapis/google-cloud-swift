@@ -29,7 +29,7 @@ import Foundation
 public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   let inner: any Clients.TagValuesStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `TagValuesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -33,7 +33,7 @@ import Foundation
 public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, Sendable {
   let inner: any Clients.LivestreamServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `LivestreamServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

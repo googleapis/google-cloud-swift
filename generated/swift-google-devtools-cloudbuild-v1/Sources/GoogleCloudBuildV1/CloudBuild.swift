@@ -35,7 +35,7 @@ import Foundation
 public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   let inner: any Clients.CloudBuildStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CloudBuildClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

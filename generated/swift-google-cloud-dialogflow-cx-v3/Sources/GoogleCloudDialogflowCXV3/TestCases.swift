@@ -34,7 +34,7 @@
   public final class TestCasesClient: Clients.TestCasesProtocol, Sendable {
     let inner: any Clients.TestCasesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `TestCasesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -28,7 +28,7 @@ import Foundation
 public final class AuditClient: Clients.AuditProtocol, Sendable {
   let inner: any Clients.AuditStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AuditClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

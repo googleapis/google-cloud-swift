@@ -32,7 +32,7 @@ import Foundation
 public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   let inner: any Clients.HubServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `HubServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

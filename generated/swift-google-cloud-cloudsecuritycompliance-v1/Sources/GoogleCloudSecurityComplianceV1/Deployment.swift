@@ -29,7 +29,7 @@ import Foundation
 public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   let inner: any Clients.DeploymentStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DeploymentClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

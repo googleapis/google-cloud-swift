@@ -29,7 +29,7 @@
   public final class ConversationModelsClient: Clients.ConversationModelsProtocol, Sendable {
     let inner: any Clients.ConversationModelsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ConversationModelsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

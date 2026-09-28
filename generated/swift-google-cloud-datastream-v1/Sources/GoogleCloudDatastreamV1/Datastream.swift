@@ -29,7 +29,7 @@ import Foundation
 public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   let inner: any Clients.DatastreamStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DatastreamClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -30,7 +30,7 @@ import Foundation
 public final class BackupDRClient: Clients.BackupDRProtocol, Sendable {
   let inner: any Clients.BackupDRStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `BackupDRClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

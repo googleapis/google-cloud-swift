@@ -31,7 +31,7 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
 {
   let inner: any Clients.PrincipalAccessBoundaryPoliciesStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `PrincipalAccessBoundaryPoliciesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

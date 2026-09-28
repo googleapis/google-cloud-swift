@@ -27,7 +27,7 @@
   public final class RegionHealthSourcesClient: Clients.RegionHealthSourcesProtocol, Sendable {
     let inner: any Clients.RegionHealthSourcesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionHealthSourcesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

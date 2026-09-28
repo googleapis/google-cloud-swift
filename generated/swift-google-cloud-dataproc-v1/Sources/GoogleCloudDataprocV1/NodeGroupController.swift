@@ -29,7 +29,7 @@ import Foundation
 public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtocol, Sendable {
   let inner: any Clients.NodeGroupControllerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `NodeGroupControllerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

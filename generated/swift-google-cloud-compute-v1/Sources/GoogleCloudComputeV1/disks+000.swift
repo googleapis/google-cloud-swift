@@ -27,7 +27,7 @@
   public final class DisksClient: Clients.DisksProtocol, Sendable {
     let inner: any Clients.DisksStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `DisksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

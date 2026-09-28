@@ -27,7 +27,7 @@
   public final class ImagesClient: Clients.ImagesProtocol, Sendable {
     let inner: any Clients.ImagesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ImagesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

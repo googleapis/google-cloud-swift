@@ -30,7 +30,7 @@ import Foundation
 public final class ApiHubCollectClient: Clients.ApiHubCollectProtocol, Sendable {
   let inner: any Clients.ApiHubCollectStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ApiHubCollectClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -30,7 +30,7 @@ import Foundation
 public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   let inner: any Clients.VmwareEngineStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `VmwareEngineClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

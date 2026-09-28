@@ -32,7 +32,7 @@ import Foundation
 public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtocol, Sendable {
   let inner: any Clients.AddressGroupServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AddressGroupServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

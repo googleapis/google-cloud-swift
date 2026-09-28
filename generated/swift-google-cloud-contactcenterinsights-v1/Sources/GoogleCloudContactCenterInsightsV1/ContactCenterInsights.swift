@@ -28,7 +28,7 @@ import Foundation
 public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsProtocol, Sendable {
   let inner: any Clients.ContactCenterInsightsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ContactCenterInsightsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

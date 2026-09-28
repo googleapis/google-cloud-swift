@@ -30,7 +30,7 @@ import Foundation
 public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable {
   let inner: any Clients.EdgeContainerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `EdgeContainerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

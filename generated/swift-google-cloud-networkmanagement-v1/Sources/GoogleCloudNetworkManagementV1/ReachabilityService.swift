@@ -37,7 +37,7 @@ import Foundation
 public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtocol, Sendable {
   let inner: any Clients.ReachabilityServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ReachabilityServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

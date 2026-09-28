@@ -27,7 +27,7 @@
   public final class RegionAutoscalersClient: Clients.RegionAutoscalersProtocol, Sendable {
     let inner: any Clients.RegionAutoscalersStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionAutoscalersClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

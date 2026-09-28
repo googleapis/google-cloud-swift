@@ -29,7 +29,7 @@ import Foundation
 public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   let inner: any Clients.WorkerPoolsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `WorkerPoolsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

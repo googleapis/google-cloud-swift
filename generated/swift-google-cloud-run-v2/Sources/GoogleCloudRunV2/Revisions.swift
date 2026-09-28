@@ -27,7 +27,7 @@ import Foundation
 public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   let inner: any Clients.RevisionsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `RevisionsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

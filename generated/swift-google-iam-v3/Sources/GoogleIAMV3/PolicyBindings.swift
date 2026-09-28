@@ -29,7 +29,7 @@ import Foundation
 public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendable {
   let inner: any Clients.PolicyBindingsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `PolicyBindingsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

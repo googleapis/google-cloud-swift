@@ -29,7 +29,7 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
 {
   let inner: any Clients.AssuredWorkloadsServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AssuredWorkloadsServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

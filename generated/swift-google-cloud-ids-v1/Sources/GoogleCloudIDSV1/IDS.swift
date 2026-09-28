@@ -27,7 +27,7 @@ import Foundation
 public final class IDSClient: Clients.IDSProtocol, Sendable {
   let inner: any Clients.IDSStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `IDSClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

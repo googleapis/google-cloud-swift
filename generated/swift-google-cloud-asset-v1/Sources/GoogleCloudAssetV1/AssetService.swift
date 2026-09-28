@@ -28,7 +28,7 @@ import Foundation
 public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   let inner: any Clients.AssetServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AssetServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

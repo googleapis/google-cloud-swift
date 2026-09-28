@@ -30,7 +30,7 @@ import Foundation
 public final class ClusterControllerClient: Clients.ClusterControllerProtocol, Sendable {
   let inner: any Clients.ClusterControllerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ClusterControllerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

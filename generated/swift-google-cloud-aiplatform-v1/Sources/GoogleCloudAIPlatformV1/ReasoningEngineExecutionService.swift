@@ -32,7 +32,7 @@
   {
     let inner: any Clients.ReasoningEngineExecutionServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ReasoningEngineExecutionServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

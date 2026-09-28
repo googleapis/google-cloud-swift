@@ -28,7 +28,7 @@
   public final class UserLicenseServiceClient: Clients.UserLicenseServiceProtocol, Sendable {
     let inner: any Clients.UserLicenseServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `UserLicenseServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

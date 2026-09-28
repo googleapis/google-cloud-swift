@@ -27,7 +27,7 @@
   public final class RegionSslCertificatesClient: Clients.RegionSslCertificatesProtocol, Sendable {
     let inner: any Clients.RegionSslCertificatesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionSslCertificatesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

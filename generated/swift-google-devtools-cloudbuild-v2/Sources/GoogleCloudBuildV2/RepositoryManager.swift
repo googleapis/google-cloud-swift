@@ -29,7 +29,7 @@ import Foundation
 public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, Sendable {
   let inner: any Clients.RepositoryManagerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `RepositoryManagerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

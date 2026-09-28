@@ -29,7 +29,7 @@ import Foundation
 public final class TranslationServiceClient: Clients.TranslationServiceProtocol, Sendable {
   let inner: any Clients.TranslationServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `TranslationServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

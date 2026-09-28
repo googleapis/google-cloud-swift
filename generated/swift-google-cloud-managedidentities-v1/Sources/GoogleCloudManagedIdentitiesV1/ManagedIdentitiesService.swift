@@ -61,7 +61,7 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
 {
   let inner: any Clients.ManagedIdentitiesServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ManagedIdentitiesServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

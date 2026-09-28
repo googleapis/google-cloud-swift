@@ -31,7 +31,7 @@
   public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Sendable {
     let inner: any Clients.NotebookServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `NotebookServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -27,7 +27,7 @@
   public final class TargetTcpProxiesClient: Clients.TargetTcpProxiesProtocol, Sendable {
     let inner: any Clients.TargetTcpProxiesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `TargetTcpProxiesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

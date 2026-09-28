@@ -47,7 +47,7 @@ import Foundation
 public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   let inner: any Clients.GkeHubStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `GkeHubClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -32,7 +32,7 @@ import Foundation
 public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Sendable {
   let inner: any Clients.NetworkSecurityStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `NetworkSecurityClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

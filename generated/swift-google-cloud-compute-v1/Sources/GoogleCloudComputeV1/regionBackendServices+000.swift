@@ -27,7 +27,7 @@
   public final class RegionBackendServicesClient: Clients.RegionBackendServicesProtocol, Sendable {
     let inner: any Clients.RegionBackendServicesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionBackendServicesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

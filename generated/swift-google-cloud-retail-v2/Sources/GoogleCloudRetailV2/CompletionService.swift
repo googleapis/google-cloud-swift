@@ -30,7 +30,7 @@ import Foundation
 public final class CompletionServiceClient: Clients.CompletionServiceProtocol, Sendable {
   let inner: any Clients.CompletionServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CompletionServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

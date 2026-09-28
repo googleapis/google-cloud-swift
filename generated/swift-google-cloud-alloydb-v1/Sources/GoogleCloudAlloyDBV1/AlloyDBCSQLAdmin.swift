@@ -28,7 +28,7 @@ import Foundation
 public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sendable {
   let inner: any Clients.AlloyDBCSQLAdminStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AlloyDBCSQLAdminClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

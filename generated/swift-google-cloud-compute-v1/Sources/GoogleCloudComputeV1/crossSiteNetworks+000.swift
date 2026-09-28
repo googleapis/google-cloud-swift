@@ -27,7 +27,7 @@
   public final class CrossSiteNetworksClient: Clients.CrossSiteNetworksProtocol, Sendable {
     let inner: any Clients.CrossSiteNetworksStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `CrossSiteNetworksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

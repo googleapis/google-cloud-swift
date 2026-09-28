@@ -31,7 +31,7 @@ import Foundation
 public final class TpuClient: Clients.TpuProtocol, Sendable {
   let inner: any Clients.TpuStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `TpuClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

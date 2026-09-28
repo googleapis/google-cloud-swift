@@ -39,7 +39,7 @@ import Foundation
 public final class AccessContextManagerClient: Clients.AccessContextManagerProtocol, Sendable {
   let inner: any Clients.AccessContextManagerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AccessContextManagerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

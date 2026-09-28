@@ -47,7 +47,7 @@ import Foundation
 public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol, Sendable {
   let inner: any Clients.CloudFilestoreManagerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CloudFilestoreManagerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

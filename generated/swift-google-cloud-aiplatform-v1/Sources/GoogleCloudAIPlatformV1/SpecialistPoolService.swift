@@ -36,7 +36,7 @@
   public final class SpecialistPoolServiceClient: Clients.SpecialistPoolServiceProtocol, Sendable {
     let inner: any Clients.SpecialistPoolServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `SpecialistPoolServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

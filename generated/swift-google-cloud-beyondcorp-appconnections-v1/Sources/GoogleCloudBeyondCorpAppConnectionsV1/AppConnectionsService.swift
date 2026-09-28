@@ -43,7 +43,7 @@ import Foundation
 public final class AppConnectionsServiceClient: Clients.AppConnectionsServiceProtocol, Sendable {
   let inner: any Clients.AppConnectionsServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AppConnectionsServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

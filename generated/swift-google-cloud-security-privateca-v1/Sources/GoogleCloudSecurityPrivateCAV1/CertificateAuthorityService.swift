@@ -36,7 +36,7 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
 {
   let inner: any Clients.CertificateAuthorityServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CertificateAuthorityServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -31,7 +31,7 @@ import Foundation
 public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   let inner: any Clients.FoldersStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `FoldersClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

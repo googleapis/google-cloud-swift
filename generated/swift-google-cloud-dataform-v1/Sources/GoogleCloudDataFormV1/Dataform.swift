@@ -31,7 +31,7 @@ import Foundation
 public final class DataformClient: Clients.DataformProtocol, Sendable {
   let inner: any Clients.DataformStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DataformClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

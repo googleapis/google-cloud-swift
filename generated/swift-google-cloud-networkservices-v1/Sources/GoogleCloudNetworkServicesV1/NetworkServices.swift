@@ -30,7 +30,7 @@ import Foundation
 public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Sendable {
   let inner: any Clients.NetworkServicesStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `NetworkServicesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

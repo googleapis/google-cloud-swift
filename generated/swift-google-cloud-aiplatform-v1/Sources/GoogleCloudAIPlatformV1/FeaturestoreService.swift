@@ -31,7 +31,7 @@
   public final class FeaturestoreServiceClient: Clients.FeaturestoreServiceProtocol, Sendable {
     let inner: any Clients.FeaturestoreServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `FeaturestoreServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

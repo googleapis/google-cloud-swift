@@ -32,7 +32,7 @@
   public final class EngineServiceClient: Clients.EngineServiceProtocol, Sendable {
     let inner: any Clients.EngineServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `EngineServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

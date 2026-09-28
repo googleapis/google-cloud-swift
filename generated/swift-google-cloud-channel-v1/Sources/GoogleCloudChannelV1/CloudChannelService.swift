@@ -50,7 +50,7 @@ import Foundation
 public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtocol, Sendable {
   let inner: any Clients.CloudChannelServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CloudChannelServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

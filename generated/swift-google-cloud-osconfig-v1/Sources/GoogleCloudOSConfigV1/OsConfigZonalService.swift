@@ -31,7 +31,7 @@ import Foundation
 public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol, Sendable {
   let inner: any Clients.OsConfigZonalServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `OsConfigZonalServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

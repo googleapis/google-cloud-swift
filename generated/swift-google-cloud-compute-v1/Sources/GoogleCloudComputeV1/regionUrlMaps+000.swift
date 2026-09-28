@@ -27,7 +27,7 @@
   public final class RegionUrlMapsClient: Clients.RegionUrlMapsProtocol, Sendable {
     let inner: any Clients.RegionUrlMapsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionUrlMapsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -27,7 +27,7 @@
   public final class ExternalVpnGatewaysClient: Clients.ExternalVpnGatewaysProtocol, Sendable {
     let inner: any Clients.ExternalVpnGatewaysStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ExternalVpnGatewaysClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

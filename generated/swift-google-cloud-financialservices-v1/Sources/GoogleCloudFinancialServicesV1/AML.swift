@@ -30,7 +30,7 @@ import Foundation
 public final class AMLClient: Clients.AMLProtocol, Sendable {
   let inner: any Clients.AMLStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AMLClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

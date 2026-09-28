@@ -31,7 +31,7 @@
   public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Sendable {
     let inner: any Clients.MetadataServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `MetadataServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

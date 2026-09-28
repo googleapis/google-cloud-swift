@@ -30,7 +30,7 @@ import Foundation
 public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable {
   let inner: any Clients.AzureClustersStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AzureClustersClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

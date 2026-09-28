@@ -31,7 +31,7 @@
   public final class SessionServiceClient: Clients.SessionServiceProtocol, Sendable {
     let inner: any Clients.SessionServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `SessionServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

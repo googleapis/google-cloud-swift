@@ -28,7 +28,7 @@ import Foundation
 public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   let inner: any Clients.ApiKeysStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ApiKeysClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

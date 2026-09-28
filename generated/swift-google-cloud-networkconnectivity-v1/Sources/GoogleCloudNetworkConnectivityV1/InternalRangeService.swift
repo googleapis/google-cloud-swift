@@ -31,7 +31,7 @@ import Foundation
 public final class InternalRangeServiceClient: Clients.InternalRangeServiceProtocol, Sendable {
   let inner: any Clients.InternalRangeServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `InternalRangeServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

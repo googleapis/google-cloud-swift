@@ -40,7 +40,7 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
 {
   let inner: any Clients.ConsumerProcurementServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ConsumerProcurementServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -32,7 +32,7 @@ import Foundation
 public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   let inner: any Clients.EdgeNetworkStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `EdgeNetworkClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

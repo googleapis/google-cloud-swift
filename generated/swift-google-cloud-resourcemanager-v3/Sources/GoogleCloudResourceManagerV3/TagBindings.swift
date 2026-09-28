@@ -28,7 +28,7 @@ import Foundation
 public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   let inner: any Clients.TagBindingsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `TagBindingsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

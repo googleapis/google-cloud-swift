@@ -31,7 +31,7 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
 {
   let inner: any Clients.RapidMigrationAssessmentStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `RapidMigrationAssessmentClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

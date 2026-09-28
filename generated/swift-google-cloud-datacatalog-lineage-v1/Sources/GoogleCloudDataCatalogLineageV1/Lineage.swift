@@ -33,7 +33,7 @@ import Foundation
 public final class LineageClient: Clients.LineageProtocol, Sendable {
   let inner: any Clients.LineageStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `LineageClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

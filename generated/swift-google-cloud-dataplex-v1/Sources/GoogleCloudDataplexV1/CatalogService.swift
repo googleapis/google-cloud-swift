@@ -34,7 +34,7 @@ import Foundation
 public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendable {
   let inner: any Clients.CatalogServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CatalogServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

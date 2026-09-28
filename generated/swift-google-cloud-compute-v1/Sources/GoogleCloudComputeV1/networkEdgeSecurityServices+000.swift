@@ -29,7 +29,7 @@
   {
     let inner: any Clients.NetworkEdgeSecurityServicesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `NetworkEdgeSecurityServicesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

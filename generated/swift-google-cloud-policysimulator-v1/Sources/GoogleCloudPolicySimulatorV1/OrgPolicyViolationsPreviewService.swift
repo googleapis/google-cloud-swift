@@ -41,7 +41,7 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
 {
   let inner: any Clients.OrgPolicyViolationsPreviewServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `OrgPolicyViolationsPreviewServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -36,7 +36,7 @@ import Foundation
 public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, Sendable {
   let inner: any Clients.BareMetalSolutionStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `BareMetalSolutionClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -29,7 +29,7 @@
   public final class GeneratorEvaluationsClient: Clients.GeneratorEvaluationsProtocol, Sendable {
     let inner: any Clients.GeneratorEvaluationsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `GeneratorEvaluationsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -30,7 +30,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
 {
   let inner: any Clients.WorkflowTemplateServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `WorkflowTemplateServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

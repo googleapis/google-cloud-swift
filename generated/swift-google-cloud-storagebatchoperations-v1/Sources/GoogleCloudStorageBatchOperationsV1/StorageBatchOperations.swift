@@ -31,7 +31,7 @@ import Foundation
 public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsProtocol, Sendable {
   let inner: any Clients.StorageBatchOperationsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `StorageBatchOperationsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

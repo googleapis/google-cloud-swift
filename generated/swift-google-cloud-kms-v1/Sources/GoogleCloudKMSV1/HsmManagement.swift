@@ -38,7 +38,7 @@ import Foundation
 public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable {
   let inner: any Clients.HsmManagementStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `HsmManagementClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

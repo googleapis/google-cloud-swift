@@ -32,7 +32,7 @@ public final class CrossNetworkAutomationServiceClient: Clients
 {
   let inner: any Clients.CrossNetworkAutomationServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CrossNetworkAutomationServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

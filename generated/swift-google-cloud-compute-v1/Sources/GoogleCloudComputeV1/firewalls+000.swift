@@ -27,7 +27,7 @@
   public final class FirewallsClient: Clients.FirewallsProtocol, Sendable {
     let inner: any Clients.FirewallsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `FirewallsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

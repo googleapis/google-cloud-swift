@@ -36,7 +36,7 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
 {
   let inner: any Clients.BusinessGlossaryServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `BusinessGlossaryServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -32,7 +32,7 @@ import Foundation
 public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Sendable {
   let inner: any Clients.DataScanServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DataScanServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

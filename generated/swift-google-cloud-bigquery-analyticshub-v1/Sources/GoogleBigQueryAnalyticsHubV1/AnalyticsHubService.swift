@@ -34,7 +34,7 @@ import Foundation
 public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol, Sendable {
   let inner: any Clients.AnalyticsHubServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AnalyticsHubServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

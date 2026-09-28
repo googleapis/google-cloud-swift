@@ -30,7 +30,7 @@ import Foundation
 public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtocol, Sendable {
   let inner: any Clients.ManagedKafkaConnectStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ManagedKafkaConnectClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

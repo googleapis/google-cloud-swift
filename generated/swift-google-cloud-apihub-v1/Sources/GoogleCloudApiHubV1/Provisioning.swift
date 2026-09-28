@@ -28,7 +28,7 @@ import Foundation
 public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   let inner: any Clients.ProvisioningStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ProvisioningClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -31,7 +31,7 @@
   public final class EndpointServiceClient: Clients.EndpointServiceProtocol, Sendable {
     let inner: any Clients.EndpointServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `EndpointServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

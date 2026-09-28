@@ -31,7 +31,7 @@
   public final class ProjectServiceClient: Clients.ProjectServiceProtocol, Sendable {
     let inner: any Clients.ProjectServiceStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ProjectServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

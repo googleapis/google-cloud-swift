@@ -43,7 +43,7 @@ import Foundation
 public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable {
   let inner: any Clients.CloudMemcacheStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CloudMemcacheClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

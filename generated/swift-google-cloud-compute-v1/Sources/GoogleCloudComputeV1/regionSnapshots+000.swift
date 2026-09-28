@@ -27,7 +27,7 @@
   public final class RegionSnapshotsClient: Clients.RegionSnapshotsProtocol, Sendable {
     let inner: any Clients.RegionSnapshotsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionSnapshotsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

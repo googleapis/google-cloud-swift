@@ -30,7 +30,7 @@ import Foundation
 public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol, Sendable {
   let inner: any Clients.LiveVideoAnalyticsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `LiveVideoAnalyticsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

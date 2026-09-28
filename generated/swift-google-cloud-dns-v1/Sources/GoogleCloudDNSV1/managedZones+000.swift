@@ -26,7 +26,7 @@ import Foundation
 public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   let inner: any Clients.ManagedZonesStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ManagedZonesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

@@ -29,7 +29,7 @@ import Foundation
 public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   let inner: any Clients.ApiHubPluginStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ApiHubPluginClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

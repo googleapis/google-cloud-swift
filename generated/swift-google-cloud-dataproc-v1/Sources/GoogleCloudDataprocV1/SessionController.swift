@@ -28,7 +28,7 @@ import Foundation
 public final class SessionControllerClient: Clients.SessionControllerProtocol, Sendable {
   let inner: any Clients.SessionControllerStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `SessionControllerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

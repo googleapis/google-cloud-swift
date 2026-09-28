@@ -27,7 +27,7 @@
   public final class InterconnectsClient: Clients.InterconnectsProtocol, Sendable {
     let inner: any Clients.InterconnectsStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InterconnectsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

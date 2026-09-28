@@ -29,7 +29,7 @@ import Foundation
 public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   let inner: any Clients.TagKeysStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `TagKeysClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

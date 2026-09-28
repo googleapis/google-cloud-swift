@@ -27,7 +27,7 @@ import Foundation
 public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendable {
   let inner: any Clients.DomainMappingsStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DomainMappingsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

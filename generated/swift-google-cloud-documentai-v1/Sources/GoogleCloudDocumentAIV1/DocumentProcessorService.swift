@@ -33,7 +33,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
 {
   let inner: any Clients.DocumentProcessorServiceStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DocumentProcessorServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

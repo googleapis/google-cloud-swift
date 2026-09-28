@@ -30,7 +30,7 @@ import Foundation
 public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   let inner: any Clients.AppHubStub
   let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AppHubClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

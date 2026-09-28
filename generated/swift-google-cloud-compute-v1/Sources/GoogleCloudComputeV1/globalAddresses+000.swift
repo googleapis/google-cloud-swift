@@ -27,7 +27,7 @@
   public final class GlobalAddressesClient: Clients.GlobalAddressesProtocol, Sendable {
     let inner: any Clients.GlobalAddressesStub
     let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.BackoffPolicy
+    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `GlobalAddressesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
