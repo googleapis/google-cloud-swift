@@ -55,6 +55,8 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let result = client.readObject(from: bucket, object: objectName)
+    let metadata = try await result.metadata
+    #expect(metadata.checksums?.crc32C == computedCrc)
 
     var receivedData = Data()
     for try await chunk in result.body {
@@ -106,7 +108,8 @@ import Testing
     let objectName = "md5-test.txt"
     let payload = Data("Checksum verification test payload for MD5".utf8)
 
-    let md5Base64 = Data(Insecure.MD5.hash(data: payload)).base64EncodedString()
+    let md5Digest = Data(Insecure.MD5.hash(data: payload))
+    let md5Base64 = md5Digest.base64EncodedString()
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     registry.register(
@@ -127,6 +130,8 @@ import Testing
       $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
     }
     let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
+    #expect(metadata.checksums?.md5Hash == md5Digest)
 
     var receivedData = Data()
     for try await chunk in result.body {
@@ -180,7 +185,8 @@ import Testing
     let objectName = "content-md5.txt"
     let payload = Data("Testing Content-MD5 header verification".utf8)
 
-    let actualMd5Base64 = Data(Insecure.MD5.hash(data: payload)).base64EncodedString()
+    let md5Digest = Data(Insecure.MD5.hash(data: payload))
+    let actualMd5Base64 = md5Digest.base64EncodedString()
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     registry.register(
@@ -200,6 +206,8 @@ import Testing
       $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
     }
     let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
+    #expect(metadata.checksums?.md5Hash == md5Digest)
 
     var receivedData = Data()
     for try await chunk in result.body {
@@ -239,7 +247,8 @@ import Testing
 
     let computedCrc = _CRC32C.compute(payload)
     let crcBase64 = crc32cBase64(computedCrc)
-    let md5Base64 = Data(Insecure.MD5.hash(data: payload)).base64EncodedString()
+    let md5Digest = Data(Insecure.MD5.hash(data: payload))
+    let md5Base64 = md5Digest.base64EncodedString()
 
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     registry.register(
@@ -259,6 +268,9 @@ import Testing
       $0.checksums = ChecksumOptions(crc32c: .auto, md5: .auto)
     }
     let result = client.readObject(from: bucket, object: objectName, options: options)
+    let metadata = try await result.metadata
+    #expect(metadata.checksums?.crc32C == computedCrc)
+    #expect(metadata.checksums?.md5Hash == md5Digest)
 
     var receivedData = Data()
     for try await chunk in result.body {

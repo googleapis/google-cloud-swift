@@ -14,6 +14,7 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) package import GoogleGax
+import GoogleWKT
 import NIOHTTP1
 
 extension StorageClient {
@@ -64,7 +65,7 @@ extension StorageClient {
   ) throws -> ReadObjectMetadata {
     var metadata = ReadObjectMetadata()
     metadata.bucket = BucketName.formatResourceName(bucket)
-    metadata.object = object
+    metadata.name = object
 
     if let contentRangeHeader = headers.first(name: "Content-Range") {
       let contentRange = try HttpContentRange.parse(contentRangeHeader)
@@ -102,25 +103,49 @@ extension StorageClient {
     metadata.contentDisposition = headers.first(name: "Content-Disposition")
     metadata.storageClass = headers.first(name: "x-goog-storage-class")
 
-    if let hashHeader = headers.first(name: "x-goog-hash") {
-      let (crc, md5) = parseGoogHash(hashHeader)
-      metadata.crc32c = crc
-      metadata.md5Hash = md5
+    let (rawCrc, rawMd5) = extractExpectedChecksums(from: headers)
+    var checksums = ObjectChecksums()
+    var hasChecksums = false
+    if let rawCrc, let data = Data(base64Encoded: rawCrc), data.count == 4 {
+      let idx = data.startIndex
+      let val =
+        (UInt32(data[idx]) << 24)
+        | (UInt32(data[idx + 1]) << 16)
+        | (UInt32(data[idx + 2]) << 8)
+        | UInt32(data[idx + 3])
+      checksums.crc32C = val
+      hasChecksums = true
     }
-    if metadata.md5Hash == nil,
-      let contentMd5 = headers.first(name: "Content-MD5")
-    {
-      metadata.md5Hash = contentMd5
+    if let rawMd5, let data = Data(base64Encoded: rawMd5), !data.isEmpty {
+      checksums.md5Hash = data
+      hasChecksums = true
+    }
+    if hasChecksums {
+      metadata.checksums = checksums
     }
 
     if let dateStr = headers.first(name: "Last-Modified")
       ?? headers.first(name: "Date")
       ?? headers.first(name: "x-goog-date")
     {
-      metadata.updated = parseHTTPDate(dateStr)
+      metadata.updateTime = parseHTTPDate(dateStr)
     }
 
     return metadata
+  }
+
+  internal static func extractExpectedChecksums(
+    from headers: NIOHTTP1.HTTPHeaders
+  ) -> (crc32c: String?, md5: String?) {
+    var crc32c: String?
+    var md5: String?
+    if let hashHeader = headers.first(name: "x-goog-hash") {
+      (crc32c, md5) = parseGoogHash(hashHeader)
+    }
+    if md5 == nil, let contentMd5 = headers.first(name: "Content-MD5") {
+      md5 = contentMd5
+    }
+    return (crc32c, md5)
   }
 
   fileprivate static func parseGoogHash(_ headerValue: String) -> (crc32c: String?, md5: String?) {
@@ -138,22 +163,35 @@ extension StorageClient {
     return (crc32c, md5)
   }
 
-  fileprivate static func parseHTTPDate(_ string: String) -> Date? {
+  fileprivate static func parseHTTPDate(_ string: String) -> GoogleWKT.WKTTimestamp? {
+    let date: Date?
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: "en_US_POSIX")
     formatter.timeZone = TimeZone(secondsFromGMT: 0)
     formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
-    if let date = formatter.date(from: string) {
-      return date
+    if let parsed = formatter.date(from: string) {
+      date = parsed
+    } else {
+      let isoFormatter = ISO8601DateFormatter()
+      isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+      if let parsed = isoFormatter.date(from: string) {
+        date = parsed
+      } else {
+        isoFormatter.formatOptions = [.withInternetDateTime]
+        date = isoFormatter.date(from: string)
+      }
     }
 
-    let isoFormatter = ISO8601DateFormatter()
-    isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-    if let date = isoFormatter.date(from: string) {
-      return date
+    guard let date else { return nil }
+    let interval = date.timeIntervalSince1970
+    let wholeSeconds = floor(interval)
+    var seconds = Int64(wholeSeconds)
+    var nanos = Int32(((interval - wholeSeconds) * 1_000_000_000).rounded())
+    if nanos >= 1_000_000_000 {
+      seconds += 1
+      nanos -= 1_000_000_000
     }
-    isoFormatter.formatOptions = [.withInternetDateTime]
-    return isoFormatter.date(from: string)
+    return try? GoogleWKT.WKTTimestamp(seconds: seconds, nanos: nanos)
   }
 }
 

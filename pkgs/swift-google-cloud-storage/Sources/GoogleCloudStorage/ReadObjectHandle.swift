@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 @_spi(GoogleCloudInternal) import GoogleGax
+public import GoogleWKT
 import NIOCore
 
 /// A handle to an in-progress or deferred object download returned by ``StorageProtocol/readObject(from:object:options:)``.
@@ -92,7 +93,7 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   public var bucket: String = ""
 
   /// Name of the object.
-  public var object: String = ""
+  public var name: String = ""
 
   /// Content size of the object payload in bytes.
   public var size: UInt64 = 0
@@ -109,11 +110,8 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   /// HTTP ETag representing the object's entity state.
   public var etag: String?
 
-  /// Base64-encoded CRC32C checksum of the object content.
-  public var crc32c: String?
-
-  /// Base64-encoded MD5 hash of the object content.
-  public var md5Hash: String?
+  /// Hashes for the data of the object.
+  public var checksums: ObjectChecksums? = nil
 
   /// Content-Type MIME type of the object data (e.g., "text/plain", "image/png").
   public var contentType: String?
@@ -128,7 +126,7 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   public var storageClass: String?
 
   /// Modification timestamp of the object.
-  public var updated: Date?
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Creates a new `ReadObjectMetadata` instance.
   public init() {}
@@ -138,6 +136,24 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
     var copy = self
     config(&copy)
     return copy
+  }
+
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(bucket)
+    hasher.combine(name)
+    hasher.combine(size)
+    hasher.combine(storedContentLength)
+    hasher.combine(generation)
+    hasher.combine(metageneration)
+    hasher.combine(etag)
+    hasher.combine(checksums != nil)
+    hasher.combine(checksums?.crc32C)
+    hasher.combine(checksums?.md5Hash)
+    hasher.combine(contentType)
+    hasher.combine(contentEncoding)
+    hasher.combine(contentDisposition)
+    hasher.combine(storageClass)
+    hasher.combine(updateTime)
   }
 }
 
@@ -185,6 +201,8 @@ final class ReadObjectCoordinator: @unchecked Sendable {
   private var isInitialFetched: Bool = false
   private var initialFetchTask: Task<ReadObjectMetadata, Error>?
   private var metadata: ReadObjectMetadata?
+  private var expectedCrc32c: String?
+  private var expectedMd5: String?
   private var bodyIterator: _HTTPResponseBody.AsyncIterator?
   private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
   private var bytesReceived: UInt64 = 0
@@ -237,11 +255,14 @@ final class ReadObjectCoordinator: @unchecked Sendable {
           resumeLoop: self.resumeLoop,
           resumeState: self.resumeState
         )
+        let (rawCrc, rawMd5) = StorageClient.extractExpectedChecksums(from: response.headers)
         try self.lock.withLock {
           if self.isCancelled {
             throw CancellationError()
           }
           self.metadata = metadata
+          self.expectedCrc32c = rawCrc
+          self.expectedMd5 = rawMd5
           self.bodyIterator = response.body.makeAsyncIterator()
           self.isInitialFetched = true
         }
@@ -382,7 +403,9 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     guard !hasValidatedChecksums else { return }
     hasValidatedChecksums = true
 
-    let currentMetadata = lock.withLock { self.metadata } ?? ReadObjectMetadata()
+    let (currentMetadata, rawCrc, rawMd5) = lock.withLock {
+      (self.metadata ?? ReadObjectMetadata(), self.expectedCrc32c, self.expectedMd5)
+    }
     let isRangedRead = (options.range ?? .entire) != .entire
     let isDecompressedTranscoding =
       (currentMetadata.storedContentLength != nil && currentMetadata.contentEncoding == nil)
@@ -391,7 +414,9 @@ final class ReadObjectCoordinator: @unchecked Sendable {
       let actual = calc.finalize()
       switch crcOption {
       case .auto:
-        if !isRangedRead && !isDecompressedTranscoding, let expected = currentMetadata.crc32c {
+        let expected =
+          currentMetadata.checksums?.crc32C.map(crc32cBase64) ?? rawCrc
+        if !isRangedRead && !isDecompressedTranscoding, let expected {
           if actual != expected {
             throw ReadObjectError.checksumMismatch(
               expected: expected,
@@ -415,7 +440,11 @@ final class ReadObjectCoordinator: @unchecked Sendable {
       let actual = calc.finalize()
       switch md5Option {
       case .auto:
-        if !isRangedRead && !isDecompressedTranscoding, let expected = currentMetadata.md5Hash {
+        let expected =
+          currentMetadata.checksums.flatMap({
+            $0.md5Hash.isEmpty ? nil : $0.md5Hash.base64EncodedString()
+          }) ?? rawMd5
+        if !isRangedRead && !isDecompressedTranscoding, let expected {
           if actual != expected {
             throw ReadObjectError.checksumMismatch(
               expected: expected,

@@ -14,6 +14,7 @@
 
 import Foundation
 import GoogleGax
+import GoogleWKT
 @testable import GoogleCloudStorage
 import Testing
 
@@ -84,43 +85,60 @@ import Testing
     #expect(options.checksums == .off)
   }
 
-  @Test func readObjectMetadataProperties() {
-    let now = Date()
+  @Test func readObjectMetadataProperties() throws {
+    let timestamp = try GoogleWKT.WKTTimestamp(seconds: 1_700_000_000, nanos: 500_000_000)
+    let checksums = ObjectChecksums().with {
+      $0.crc32C = 0x1234_5678
+      $0.md5Hash = Data([0xAA, 0xBB, 0xCC, 0xDD])
+    }
     let metadata = ReadObjectMetadata().with {
       $0.bucket = "my-bucket"
-      $0.object = "my-object.txt"
+      $0.name = "my-object.txt"
       $0.size = 2048
       $0.generation = 10
       $0.metageneration = 2
       $0.etag = "etag-123"
-      $0.crc32c = "crc-456"
-      $0.md5Hash = "md5-789"
+      $0.checksums = checksums
       $0.contentType = "text/plain"
       $0.contentEncoding = "gzip"
       $0.contentDisposition = "inline"
       $0.storageClass = "STANDARD"
-      $0.updated = now
+      $0.updateTime = timestamp
     }
 
     #expect(metadata.bucket == "my-bucket")
-    #expect(metadata.object == "my-object.txt")
+    #expect(metadata.name == "my-object.txt")
     #expect(metadata.size == 2048)
     #expect(metadata.generation == 10)
     #expect(metadata.metageneration == 2)
     #expect(metadata.etag == "etag-123")
-    #expect(metadata.crc32c == "crc-456")
-    #expect(metadata.md5Hash == "md5-789")
+    #expect(metadata.checksums == checksums)
+    #expect(metadata.checksums?.crc32C == 0x1234_5678)
+    #expect(metadata.checksums?.md5Hash == Data([0xAA, 0xBB, 0xCC, 0xDD]))
     #expect(metadata.contentType == "text/plain")
     #expect(metadata.contentEncoding == "gzip")
     #expect(metadata.contentDisposition == "inline")
     #expect(metadata.storageClass == "STANDARD")
-    #expect(metadata.updated == now)
+    #expect(metadata.updateTime == timestamp)
+
+    let set: Set<ReadObjectMetadata> = [metadata]
+    #expect(set.contains(metadata))
   }
 
-  @Test func generationTypeInteroperability() {
-    var object = Object()
-    object.generation = 12345
-    object.metageneration = 67890
+  @Test func objectMetadataInteroperability() throws {
+    let timestamp = try GoogleWKT.WKTTimestamp(seconds: 1_700_000_000, nanos: 0)
+    let checksums = ObjectChecksums().with {
+      $0.crc32C = 0xDEAD_BEEF
+      $0.md5Hash = Data(repeating: 0x11, count: 16)
+    }
+    let object = Object().with {
+      $0.bucket = "projects/_/buckets/my-bucket"
+      $0.name = "file.txt"
+      $0.generation = 12345
+      $0.metageneration = 67890
+      $0.checksums = checksums
+      $0.updateTime = timestamp
+    }
 
     // ReadObjectOptions.generation can be assigned directly from Object.generation without casting
     let options = ReadObjectOptions().with {
@@ -128,11 +146,20 @@ import Testing
     }
     #expect(options.generation == 12345)
 
-    // ReadObjectMetadata generation and metageneration can be assigned directly to StoragePreconditions without casting
+    // ReadObjectMetadata fields align directly with Object without type conversion
     let metadata = ReadObjectMetadata().with {
+      $0.bucket = object.bucket
+      $0.name = object.name
       $0.generation = object.generation
       $0.metageneration = object.metageneration
+      $0.checksums = object.checksums
+      $0.updateTime = object.updateTime
     }
+    #expect(metadata.bucket == object.bucket)
+    #expect(metadata.name == object.name)
+    #expect(metadata.checksums == object.checksums)
+    #expect(metadata.updateTime == object.updateTime)
+
     let preconditions = StoragePreconditions().with {
       $0.ifGenerationMatch = metadata.generation
       $0.ifMetagenerationMatch = metadata.metageneration

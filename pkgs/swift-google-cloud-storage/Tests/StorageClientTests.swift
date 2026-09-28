@@ -137,7 +137,7 @@ import Testing
     mock.readHandler = { bucket, object, options in
       let metadata = ReadObjectMetadata().with {
         $0.bucket = bucket
-        $0.object = object
+        $0.name = object
         $0.size = 11
       }
       return MockReadObjectHandle(
@@ -150,7 +150,7 @@ import Testing
     let download = client.readObject(from: "test-bucket", object: "test-object")
     let metadata = try await download.metadata
     #expect(metadata.bucket == "test-bucket")
-    #expect(metadata.object == "test-object")
+    #expect(metadata.name == "test-object")
     #expect(metadata.size == 11)
 
     var received = Data()

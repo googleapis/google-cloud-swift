@@ -64,9 +64,9 @@ struct StorageClientIntegrationTests {
     let result = storage.readObject(from: bucketName, object: objectName)
     let metadata = try await result.metadata
     #expect(metadata.bucket == bucketResource)
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.size == UInt64(data.count))
-    #expect(metadata.generation == UInt64(uploadedObject.generation))
+    #expect(metadata.generation == uploadedObject.generation)
 
     var downloadedData = Data()
     for try await chunk in result.body {
@@ -142,9 +142,9 @@ struct StorageClientIntegrationTests {
     let result = storage.readObject(from: bucketName, object: objectName)
     let metadata = try await result.metadata
     #expect(metadata.bucket == bucketResource)
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.size == UInt64(data.count))
-    #expect(metadata.generation == UInt64(uploadedObject.generation))
+    #expect(metadata.generation == uploadedObject.generation)
 
     var downloadedData = Data()
     for try await chunk in result.body {
@@ -334,9 +334,9 @@ struct StorageClientIntegrationTests {
       from: bucketName, object: objectName, options: downloadOptions)
     let metadata = try await result.metadata
     #expect(metadata.bucket == bucketResource)
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.size == UInt64(data.count))
-    #expect(metadata.generation == UInt64(uploadedObject.generation))
+    #expect(metadata.generation == uploadedObject.generation)
 
     var downloadedData = Data()
     for try await chunk in result.body {
@@ -594,7 +594,7 @@ struct StorageClientGzipDownloadIntegrationTests {
       from: bucketName, object: objectName, options: downloadOptions)
     let metadata = try await result.metadata
     #expect(metadata.bucket == bucketResource)
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
 
     var downloadedData = Data()
     for try await chunk in result.body {
@@ -634,7 +634,7 @@ struct StorageClientGzipDownloadIntegrationTests {
       from: bucketName, object: objectName, options: downloadOptions)
     let metadata = try await result.metadata
     #expect(metadata.bucket == bucketResource)
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.contentEncoding == "gzip")
 
     var downloadedData = Data()
@@ -674,7 +674,7 @@ struct StorageClientGzipDownloadIntegrationTests {
     let result = storage.readObject(from: bucketName, object: objectName)
     let metadata = try await result.metadata
     #expect(metadata.bucket == bucketResource)
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.contentEncoding == "gzip")
 
     var downloadedData = Data()
@@ -741,7 +741,7 @@ struct StorageClientRangedDownloadIntegrationTests {
     let metadata = try await result.metadata
 
     #expect(metadata.size == fixture.totalSize)
-    #expect(metadata.generation == UInt64(fixture.uploadedObject.generation))
+    #expect(metadata.generation == fixture.uploadedObject.generation)
 
     var downloadedData = Data()
     for try await chunk in result.body {
@@ -762,7 +762,7 @@ struct StorageClientRangedDownloadIntegrationTests {
     let metadata = try await result.metadata
 
     #expect(metadata.size == fixture.totalSize)
-    #expect(metadata.generation == UInt64(fixture.uploadedObject.generation))
+    #expect(metadata.generation == fixture.uploadedObject.generation)
 
     var downloadedData = Data()
     for try await chunk in result.body {

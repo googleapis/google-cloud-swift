@@ -27,6 +27,7 @@ struct StorageClientReadObjectChecksumIntegrationTests {
   struct FixtureState: Sendable {
     let bucketName: String
     let objectName: String
+    let uploadedObject: Object
     let data: Data
     let crc32cBase64: String
     let md5Base64: String
@@ -52,6 +53,7 @@ struct StorageClientReadObjectChecksumIntegrationTests {
     return FixtureState(
       bucketName: bucketName,
       objectName: objName,
+      uploadedObject: obj,
       data: data,
       crc32cBase64: crcBase64,
       md5Base64: md5Base64
@@ -63,6 +65,9 @@ struct StorageClientReadObjectChecksumIntegrationTests {
     let storage = try StorageClient()
 
     let result = storage.readObject(from: fixture.bucketName, object: fixture.objectName)
+    let metadata = try await result.metadata
+    #expect(metadata.name == fixture.uploadedObject.name)
+    #expect(metadata.checksums == fixture.uploadedObject.checksums)
     var downloadedData = Data()
     for try await chunk in result.body {
       downloadedData.append(contentsOf: chunk)

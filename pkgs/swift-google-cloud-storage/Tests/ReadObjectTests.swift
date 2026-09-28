@@ -16,6 +16,7 @@ import Crypto
 import Foundation
 import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
+import GoogleWKT
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Testing
 
@@ -56,7 +57,8 @@ import Testing
     let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
     let computedCrc = _CRC32C.compute(payload)
     let crcBase64 = crc32cBase64(computedCrc)
-    let md5Base64 = Data(Insecure.MD5.hash(data: payload)).base64EncodedString()
+    let md5Digest = Data(Insecure.MD5.hash(data: payload))
+    let md5Base64 = md5Digest.base64EncodedString()
 
     let headers = [
       "Content-Type": "text/plain; charset=utf-8",
@@ -79,16 +81,16 @@ import Testing
     let metadata = try await result.metadata
 
     #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.size == UInt64(payload.count))
     #expect(metadata.generation == 17123456789)
     #expect(metadata.metageneration == 3)
     #expect(metadata.etag == "\"CPv1234\"")
-    #expect(metadata.crc32c == crcBase64)
-    #expect(metadata.md5Hash == md5Base64)
+    #expect(metadata.checksums?.crc32C == computedCrc)
+    #expect(metadata.checksums?.md5Hash == md5Digest)
     #expect(metadata.contentType == "text/plain; charset=utf-8")
     #expect(metadata.storageClass == "STANDARD")
-    #expect(metadata.updated != nil)
+    #expect(metadata.updateTime == (try? GoogleWKT.WKTTimestamp(seconds: 1_786_064_400, nanos: 0)))
 
     var downloaded = Data()
     for try await chunk in result.body {
@@ -128,7 +130,7 @@ import Testing
     let result = client.readObject(from: bucket, object: objectName, options: options)
     let metadata = try await result.metadata
     #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.size == UInt64(payload.count))
     #expect(metadata.generation == 42)
 
@@ -307,7 +309,7 @@ import Testing
     let metadata = try await result.metadata
 
     #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
 
     var downloaded = Data()
     for try await chunk in result.body {
@@ -664,7 +666,7 @@ import Testing
     let metadata = try await result.metadata
 
     #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.contentEncoding == "gzip")
     #expect(metadata.size == UInt64(payload.count))
 
@@ -710,7 +712,7 @@ import Testing
     let metadata = try await result.metadata
 
     #expect(metadata.bucket == "projects/_/buckets/\(bucket)")
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.size == UInt64(payload.count))
 
     let lastReq = registry.lastRequest(for: downloadUrl)
@@ -1369,7 +1371,7 @@ import Testing
     let metadata = try await result.metadata
 
     #expect(metadata.bucket == bucketResource)
-    #expect(metadata.object == objectName)
+    #expect(metadata.name == objectName)
     #expect(metadata.size == UInt64(payload.count))
     #expect(metadata.generation == 999)
 

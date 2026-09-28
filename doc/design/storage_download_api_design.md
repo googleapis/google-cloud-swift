@@ -241,18 +241,18 @@ public enum ReadObjectError: Error, Sendable {
 /// Metadata attributes for an object returned in response headers during a download.
 public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   public var bucket: String = ""
-  public var object: String = ""
-  public var size: Int64 = 0
+  public var name: String = ""
+  public var size: UInt64 = 0
+  public var storedContentLength: UInt64?
   public var generation: Int64 = 0
   public var metageneration: Int64?
   public var etag: String?
-  public var crc32c: String?
-  public var md5Hash: String?
+  public var checksums: ObjectChecksums? = nil
   public var contentType: String?
   public var contentEncoding: String?
   public var contentDisposition: String?
   public var storageClass: String?
-  public var updated: Date?
+  public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   public init() {}
 
