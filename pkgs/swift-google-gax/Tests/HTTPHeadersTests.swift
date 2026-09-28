@@ -37,20 +37,14 @@ import Testing
     #expect(headers.map(\.value) == ["text/html; charset=UTF-8", "120"])
   }
 
-  @Test func appendPreservesDuplicateNames() {
-    var headers = HTTPHeaders()
-    headers.append(name: "x-goog-ext", value: "first")
-    headers.append(name: "x-goog-ext", value: "second")
+  @Test func preservesDuplicateNames() {
+    let headers: HTTPHeaders = [
+      ("x-goog-ext", "first"),
+      ("x-goog-ext", "second"),
+    ]
 
     #expect(headers.count == 2)
     #expect(headers == [("x-goog-ext", "first"), ("x-goog-ext", "second")])
-  }
-
-  @Test func appendExtendsExistingHeaders() {
-    var headers: HTTPHeaders = [("Content-Type", "text/plain")]
-    headers.append(name: "Retry-After", value: "60")
-
-    #expect(headers == [("Content-Type", "text/plain"), ("Retry-After", "60")])
   }
 
   @Test func equalityRequiresSameNamesAndValues() {

@@ -25,7 +25,7 @@ public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
   /// A single header field, as a name-value pair.
   public typealias Element = (name: String, value: String)
 
-  private var storage: [Element]
+  private let storage: [Element]
 
   /// The number of header fields in the collection.
   public var count: Int { self.storage.count }
@@ -50,15 +50,6 @@ public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
   /// - Parameter elements: The header fields, in wire order.
   public init(arrayLiteral elements: Element...) {
     self.storage = elements
-  }
-
-  /// Appends a header field, preserving any existing field with the same name.
-  ///
-  /// - Parameters:
-  ///   - name: The header field name.
-  ///   - value: The header field value.
-  public mutating func append(name: String, value: String) {
-    self.storage.append((name: name, value: value))
   }
 
   /// The value of the first field whose name matches `name`, ignoring case.
