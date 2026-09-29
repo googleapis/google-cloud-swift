@@ -1,5 +1,5 @@
 {
-  "originHash" : "43d18a7a521a4c42d55663ed0d2d4eb44a00db797d1d49ae787853626736b574",
+  "originHash" : "e243d1aa491ee851902701b3181d17d821c4f063706c93c2abfae7c874e76b99",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -35,6 +35,15 @@
       "state" : {
         "revision" : "176c5a434fd76f6f479848d1a8f7d44967534168",
         "version" : "2.4.1"
+      }
+    },
+    {
+      "identity" : "hummingbird",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hummingbird-project/hummingbird.git",
+      "state" : {
+        "revision" : "bb1f427eca980a1280a83aee0079cd4371455de6",
+        "version" : "2.27.0"
       }
     },
     {
@@ -168,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-api",
       "state" : {
-        "revision" : "4fa0442edec2e73da81c6a9e9dd26d69f2af00c7",
-        "version" : "0.3.0"
+        "revision" : "c123425e1ef3ec24ea9ad48021692390c72d4971",
+        "version" : "0.4.0"
       }
     },
     {
@@ -177,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-auth",
       "state" : {
-        "revision" : "5d9f6e6489af13870fb58fdfb7bc324b713c625e",
-        "version" : "0.3.0"
+        "revision" : "b268b555ad3eb781fcaec3d63633c50318846b4e",
+        "version" : "0.4.0"
       }
     },
     {
@@ -186,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-cloud-aiplatform-v1",
       "state" : {
-        "revision" : "68493ddfd6c4e1b3fd0794083d323c64dc20fe8d",
-        "version" : "0.3.0"
+        "revision" : "ddea5e63fbf5b3b7d7c8cc3d1f21b6be243e0c85",
+        "version" : "0.4.0"
       }
     },
     {
@@ -195,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-cloud-language-v2",
       "state" : {
-        "revision" : "b4733a77c3ffa9e681ef3a7ade72fbc5f11b633e",
-        "version" : "0.3.0"
+        "revision" : "e2a2bb5d724000b52f8eaa59b45d237a8074a105",
+        "version" : "0.4.0"
       }
     },
     {
@@ -204,8 +213,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-gax",
       "state" : {
-        "revision" : "c3ac9bea6f4d66ec5852890bee208499a3fd3dbb",
-        "version" : "0.3.0"
+        "revision" : "afb5f25d608802be848d0058fcd7cbc3fc1b32cc",
+        "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "swift-google-gax-grpc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-gax-grpc",
+      "state" : {
+        "revision" : "715cc5c27b019cd72105b45d233ab7deb0ef41b0",
+        "version" : "0.4.0"
       }
     },
     {
@@ -213,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-rpc",
       "state" : {
-        "revision" : "b47f955c9384079c2970ce5d2012b0f789cd22be",
-        "version" : "0.3.0"
+        "revision" : "c8e8e7f245089ec640ceaa01b9c33798871a8110",
+        "version" : "0.4.0"
       }
     },
     {
@@ -222,8 +240,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-wkt",
       "state" : {
-        "revision" : "a7cf94e9996e30072c9c0aa0dcab11e11b4512dc",
-        "version" : "0.3.0"
+        "revision" : "ba7519a84676e1a9dd9fdd113a2dd31ea8a5d4bd",
+        "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "swift-google-wkt-convert",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-wkt-convert",
+      "state" : {
+        "revision" : "5a1fbb5935bdf37643de896597ca5dc44b25f130",
+        "version" : "0.4.0"
       }
     },
     {
@@ -251,6 +278,15 @@
       "state" : {
         "revision" : "9c6fb14227f55d8f711ce3847dc2f419fb0ecacb",
         "version" : "1.15.1"
+      }
+    },
+    {
+      "identity" : "swift-metrics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-metrics.git",
+      "state" : {
+        "revision" : "087e8074afa97040c3b870c8664fe5482fb87cc4",
+        "version" : "2.11.0"
       }
     },
     {

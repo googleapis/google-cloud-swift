@@ -29,3 +29,4 @@ best-practices to retry transient RPC errors.
 - <doc:pagination>
 - <doc:package-traits>
 - <doc:generate-text-using-the-vertex-ai-gemini-api>
+- <doc:deploy-to-cloud-run>

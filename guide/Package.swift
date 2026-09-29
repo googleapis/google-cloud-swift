@@ -56,6 +56,7 @@ let package = Package(
       from: "0.4.0"
     ),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
+    .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.0.0"),
   ],
   targets: [
     .target(
@@ -68,6 +69,7 @@ let package = Package(
         .product(name: "GoogleCloudLanguageV2", package: "swift-google-cloud-language-v2"),
         .product(name: "GoogleCloudWorkflowsV1", package: "swift-google-cloud-workflows-v1"),
         .product(name: "GoogleCloudAIPlatformV1", package: "swift-google-cloud-aiplatform-v1"),
+        .product(name: "Hummingbird", package: "hummingbird"),
         .product(name: "Logging", package: "swift-log"),
       ],
       swiftSettings: [
