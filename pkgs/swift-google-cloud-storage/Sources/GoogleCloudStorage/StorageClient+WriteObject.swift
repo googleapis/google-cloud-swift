@@ -924,9 +924,7 @@ extension StorageClient {
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
     let metadataJson = try GoogleWKT._ProtoJSONEncoder().encode(metadata ?? WriteObjectMetadata())
-    var buffer = ByteBufferAllocator().buffer(capacity: metadataJson.count)
-    buffer.writeBytes(metadataJson)
-    request.setBody(buffer: buffer)
+    request.setBody(data: metadataJson)
     return request
   }
 
@@ -973,7 +971,7 @@ extension StorageClient {
       let end = offset + UInt64(data.count) - 1
       request.setHeader(name: "Content-Range", value: "bytes \(offset)-\(end)/\(totalStr)")
     }
-    request.setBody(buffer: data.byteBuffer)
+    request.setBody(byteChunk: data)
     return request
   }
 
@@ -1023,6 +1021,17 @@ extension StorageClient {
       return v1Object.toObject()
     } catch {
       throw RequestError.malformedResponse("\(error)")
+    }
+  }
+}
+
+extension GoogleGax._HTTPClientRequest {
+  mutating func setBody(byteChunk: ByteChunk) {
+    switch byteChunk.storage {
+    case .data(let data):
+      self.setBody(data: data)
+    case .byteBuffer(let buffer):
+      self.setBody(buffer: buffer)
     }
   }
 }
