@@ -20,12 +20,16 @@ import Testing
 struct StorageW1R3IntegrationTests {
   @Test func smoke() async throws {
     let bucketName = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"]!
-    let benchmark = StorageW1R3().with {
-      $0.bucketName = bucketName
-      $0.minObjectSize = 0
-      $0.maxObjectSize = 16 * 1024
-      $0.taskCount = 1
-      $0.iterations = 4
+    let parsed = try StorageW1R3.parseAsRoot([
+      "--bucket-name=\(bucketName)",
+      "--min-object-size=0KiB",
+      "--max-object-size=16KiB",
+      "--task-count=1",
+      "--iterations=4",
+    ])
+    guard let benchmark = parsed as? StorageW1R3 else {
+      Issue.record("cannot convert to StorageW1R3")
+      return
     }
     let counters = try await benchmark.runBenchmark()
     #expect(await counters.sampleCount > 0)

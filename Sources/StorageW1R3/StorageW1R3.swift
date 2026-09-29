@@ -48,12 +48,6 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
 
   public init() {}
 
-  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
-    var copy = self
-    try config(&copy)
-    return copy
-  }
-
   public func run() async throws {
     _ = try await self.runBenchmark()
   }
