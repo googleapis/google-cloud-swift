@@ -48,7 +48,7 @@ import Testing
     #expect(benchmark.bucketName == "my-bucket")
   }
 
-  @Test(arguments:[
+  @Test(arguments: [
     ["--min-object-size=4KiB", "--max-object-size=1KiB"],
     ["--min-delete-batch=50", "--max-delete-batch=20"],
     ["--task-count=0"],
