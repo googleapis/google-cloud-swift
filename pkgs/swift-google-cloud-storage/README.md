@@ -28,24 +28,27 @@ to mock the clients in your tests.
 
 ## Quickstart
 
-The following example demonstrates using `StorageClient`:
+The following example demonstrates using `StorageControlClient`:
 
 ```swift
-import Foundation
 import GoogleCloudStorage
 
-func sample(bucket: String, object: String) async throws {
-  let client = try StorageClient()
-
-  // Upload an object from memory
-  let data = Data("Hello, World!".utf8)
-  _ = try await client.writeObject(data, to: bucket, as: object)
-
-  // Download the object
-  let reader = client.readObject(from: bucket, object: object)
-  for try await chunk in reader.body {
-    print("Received \(chunk.count) bytes")
-  }
+public func quickstart(
+  client: StorageControlClient, projectId: String, bucketId: String
+) async throws {
+  let bucket =
+    try await client
+    .createBucket(
+      request: .init().with {
+        $0.parent = "projects/_"
+        $0.bucketId = bucketId
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
+          bucket.storageClass = "STANDARD"
+          bucket.location = "US"
+        }
+      })
+  print("successfully created bucket \(bucket)")
 }
 ```
 
