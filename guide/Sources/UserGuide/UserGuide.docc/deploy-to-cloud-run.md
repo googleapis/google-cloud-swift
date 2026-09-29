@@ -100,10 +100,10 @@ linked Swift standard library and copies the binary into a minimal Debian
 runtime image:
 
 ```dockerfile
-FROM swift:6.4-bookworm AS builder
+FROM swift:6.3-bookworm AS builder
 
 WORKDIR /app
-COPY Package.* ./
+COPY . .
 RUN swift package resolve
 
 COPY Sources ./Sources
