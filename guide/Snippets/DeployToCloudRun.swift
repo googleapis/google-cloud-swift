@@ -36,7 +36,7 @@ struct CloudRunGemini {
 
     // snippet.client [START swift_cloud_run_client]
     let client = try PredictionServiceClient()
-    let model = "projects/\(projectId)/locations/global/publishers/google/models/gemini-3.8-flash"
+    let model = "projects/\(projectId)/locations/global/publishers/google/models/gemini-2.5-flash"
     // snippet.end [END swift_cloud_run_client]
 
     // snippet.router [START swift_cloud_run_router]
