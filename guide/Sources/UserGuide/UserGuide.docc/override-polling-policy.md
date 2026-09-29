@@ -6,7 +6,8 @@
     https://github.com/swiftlang/swift-docc/issues/685
 -->
 [Getting Started with Swift]: <doc:quickstart>
-[long-running operation]: <doc:long-running-operations>
+[Long-running operations]: <doc:long-running-operations>
+[Override the default retry policies]: <doc:override-retry-policy>
 [AIP-151]: https://google.aip.dev/151
 [AIP-194]: https://google.aip.dev/194
 [Workflows API]: https://cloud.google.com/workflows
@@ -27,32 +28,43 @@ This guide uses the [Workflows API]. To enable this API, follow the
 For complete setup instructions for the Swift client libraries, see
 [Getting started with Swift].
 
+## What is a Long-Running Operation (LRO)?
+
+Some Google Cloud APIs perform operations—such as creating a cluster, training a
+model, or deploying a workflow—that take too long to finish within a single
+request-response cycle. Instead of blocking until the work finishes, these APIs
+follow [AIP-151]: the initial request starts a background task on the server and
+immediately returns an operation resource representing the in-progress work.
+
+To get the final result, the client must periodically poll the service for the
+operation's status. When you call a `*PollingUntilDone` helper method (see
+[Long-running operations]), the client library runs this polling loop for you:
+
+1. It sends the initial request to start the background task on the server.
+2. While the operation is still in progress, it waits for a delay determined by
+   the *polling backoff policy* and requests the latest status of the operation.
+3. If a status check fails (for example, due to a transient network or service
+   error), the *polling error policy* decides whether to continue polling or
+   abort the loop. The policy also enforces overall time or attempt limits so
+   polling does not run indefinitely.
+4. Once the server reports that the operation has finished, the helper returns
+   the completed resource—or throws the operation's error if the background task
+   itself failed on the server.
+
 ## The default behavior
 
-Some Google Cloud APIs perform operations that take too long to finish in a
-single request-response cycle ([AIP-151]). Instead of blocking, the service
-starts a background task on the server and returns an operation object
-immediately. When you call a `*PollingUntilDone` helper method, the client
-starts the [long-running operation] and periodically polls the service to check
-the operation's state until it finishes.
+Each client is configured with default policies for this polling loop:
 
-Each client is configured with two policies that together control how
-long-running operations are polled:
-
-* The *polling error policy* decides how long to keep polling an in-progress
-  operation, and whether an error encountered while polling is transient or
-  should stop the loop. By default it continues polling on [AIP-194] transient
-  errors, `TOO_MANY_REQUESTS` errors, and I/O errors, stopping after 30
+* The *polling error policy* continues polling on [AIP-194] transient errors,
+  `TOO_MANY_REQUESTS` errors, and I/O errors, and stops polling after 30
   minutes.
-* The *polling backoff policy* decides how long to wait between polling
-  attempts. By default it uses truncated [exponential backoff] without jitter,
-  starting at one second and doubling up to a maximum of five minutes.
+* The *polling backoff policy* uses truncated [exponential backoff] without
+  jitter, starting at one second and doubling between attempts up to a maximum
+  of five minutes.
 
-Polling errors are distinct from errors in the long-running operation itself. If
-the operation fails on the server, polling completes and throws the operation's
-error. In addition, each status request made during the polling loop is an
-idempotent RPC and uses the client's retry policy before reporting an error to
-the polling loop.
+In addition, each status request made during the polling loop is an idempotent
+RPC and uses the client's [retry policy][Override the default retry policies]
+before reporting an error to the polling loop.
 
 ## Override the policies for a client
 
