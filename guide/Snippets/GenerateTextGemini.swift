@@ -49,7 +49,26 @@ func sample(projectId: String) async throws {
   let response = try await client.generateContent(request: request)
   // snippet.end [END swift_text_prompt_request]
   // snippet.response [START swift_text_prompt_response]
-  print("RESPONSE = \(response)")
+  if let feedback = response.promptFeedback, feedback.blockReason != .unspecified {
+    print("Prompt was blocked: \(feedback.blockReason)")
+    if !feedback.blockReasonMessage.isEmpty {
+      print("Reason: \(feedback.blockReasonMessage)")
+    }
+    return
+  }
+
+  guard let candidate = response.candidates.first,
+    let content = candidate.content
+  else {
+    print("No candidate content returned.")
+    return
+  }
+
+  for part in content.parts {
+    if case .text(let text)? = part.data {
+      print(text)
+    }
+  }
   // snippet.end [END swift_text_prompt_response]
 }
 

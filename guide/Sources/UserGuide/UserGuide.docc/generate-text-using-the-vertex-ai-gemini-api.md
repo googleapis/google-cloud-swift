@@ -45,7 +45,7 @@ For complete setup instructions for the Swift client libraries, see
    @Snippet(path: "GenerateTextGemini", slice: "model")
 5. Send the request:
    @Snippet(path: "GenerateTextGemini", slice: "request")
-6. Print the response:
+6. Check for safety blocks and extract the generated text response:
    @Snippet(path: "GenerateTextGemini", slice: "response")
 
 ## Send a prompt and an image to the Vertex AI Gemini API
@@ -59,7 +59,7 @@ For complete setup instructions for the Swift client libraries, see
    @Snippet(path: "PromptAndImageGemini", slice: "prompt_part")
 4. Send the request:
    @Snippet(path: "PromptAndImageGemini", slice: "request")
-5. Print the response:
+5. Check for safety blocks and extract the generated text response:
    @Snippet(path: "PromptAndImageGemini", slice: "response")
 
 ## Text prompt: complete code
