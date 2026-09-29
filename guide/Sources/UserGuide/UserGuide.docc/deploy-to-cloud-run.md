@@ -10,9 +10,7 @@
 [Getting started with Swift]: <doc:quickstart>
 [Google Cloud CLI]: https://cloud.google.com/sdk/docs/install
 [Hummingbird]: https://github.com/hummingbird-project/hummingbird
-[Installing Swift]: https://www.swift.org/getting-started/
 [Vertex AI Gemini API]: <doc:generate-text-using-the-vertex-ai-gemini-api>
-[Vertex AI setup guide]: https://cloud.google.com/vertex-ai/docs/start/cloud-environment
 
 In this guide, you build a containerized HTTP service in Swift using
 [Hummingbird] and the [Vertex AI Gemini API], package it with a multi-stage
@@ -48,7 +46,7 @@ For local Swift setup instructions, see [Getting started with Swift].
    specify `platforms: [.macOS(.v15)]`. Linux container builds do not require any
    platform configuration in `Package.swift`.
 
-1. Add the Vertex AI client library and Hummingbird as package dependencies:
+1. Add the Vertex AI client library and [Hummingbird] as package dependencies:
    ```bash
    swift package add-dependency \
      https://github.com/googleapis/swift-google-cloud-aiplatform-v1.git --from 0.4.0
@@ -66,31 +64,27 @@ For local Swift setup instructions, see [Getting started with Swift].
 
 ## Write the HTTP service
 
-Replace the contents of `Sources/CloudRunGemini/CloudRunGemini.swift` (or
-`Sources/main.swift` depending on your Swift version; if using `main.swift`,
-rename it to `CloudRunGemini.swift` so `@main` can be used):
+On [Cloud Run], the client library automatically authenticates using
+[Application Default Credentials] from the service's attached service account.
+Replace the contents of `Sources/CloudRunGemini/CloudRunGemini.swift`:
 
 1. Import the required modules:
    @Snippet(path: "DeployToCloudRun", slice: "imports")
-1. Define the application entry point:
+2. Define the application entry point:
    @Snippet(path: "DeployToCloudRun", slice: "main")
-1. Read the `GOOGLE_CLOUD_PROJECT` and `PORT` environment variables provided by
+3. Read the `GOOGLE_CLOUD_PROJECT` and `PORT` environment variables provided by
    Cloud Run:
    @Snippet(path: "DeployToCloudRun", slice: "config")
-1. Initialize the `PredictionServiceClient` once at startup so it is shared
-   across incoming requests. On Cloud Run, the client automatically uses
-   [Application Default Credentials] from the service's attached service
-   account:
+4. Initialize the `PredictionServiceClient` once at startup so it is shared
+   across incoming requests:
    @Snippet(path: "DeployToCloudRun", slice: "client")
-1. Configure a route that sends a prompt to Gemini and returns the generated
+5. Configure a route that sends a prompt to Gemini and returns the generated
    text:
    @Snippet(path: "DeployToCloudRun", slice: "router")
-1. Start the HTTP server listening on the configured host and port:
+6. Start the HTTP server listening on the configured host and port:
    @Snippet(path: "DeployToCloudRun", slice: "run")
 
-### Complete Swift code
-
-@Snippet(path: "DeployToCloudRun")
+[Cloud Run console]: https://console.cloud.google.com/run
 
 ## Containerize the application
 
@@ -171,7 +165,14 @@ context:
      --condition=None
    ```
 
-1. Deploy the container image to Cloud Run:
+1. Deploy the container image to Cloud Run. Choose one of the following
+   authentication options:
+   - Use `--no-allow-unauthenticated` to require IAM authentication (recommended
+     for internal services or when your organization enforces domain restricted
+     sharing).
+   - Use `--allow-unauthenticated` if you want the service to be publicly
+     accessible without authentication.
+
    ```bash
    gcloud run deploy cloud-run-gemini \
      --image "${REGION}-docker.pkg.dev/${PROJECT_ID}/cloud-run-apps/cloud-run-gemini" \
@@ -183,17 +184,43 @@ context:
 
 ## Test the deployed service
 
-Because the service was deployed with `--no-allow-unauthenticated`, include an
-identity token when sending a request:
+1. Retrieve the URL of the deployed Cloud Run service:
+   ```bash
+   SERVICE_URL=$(gcloud run services describe cloud-run-gemini \
+     --region "${REGION}" \
+     --format="value(status.url)")
+   ```
 
-```bash
-SERVICE_URL=$(gcloud run services describe cloud-run-gemini \
-  --region "${REGION}" \
-  --format="value(status.url)")
+1. Send a request to the service.
 
-curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
-  "${SERVICE_URL}/"
+   If you deployed with `--no-allow-unauthenticated`, include an identity token
+   in the `Authorization` header:
+   ```bash
+   curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
+     "${SERVICE_URL}/"
+   ```
+
+   If you deployed with `--allow-unauthenticated`, you can call the URL
+   directly:
+   ```bash
+   curl "${SERVICE_URL}/"
+   ```
+
+The service sends the prompt to Gemini and returns a response with suggested
+names for a dried-flower shop, similar to the following:
+
+```text
+Here are a few name ideas for a dried flower shop, broken down by vibe:
+
+**Earthy & Bohemian**
+* Everlasting Bloom
+* Sun & Stem
+* Wild & Preserved
+...
 ```
+
+You can also view your deployed service, inspect request logs, and monitor
+revisions and metrics in the [Cloud Run console].
 
 ## Clean up
 
@@ -213,3 +240,10 @@ gcloud projects remove-iam-policy-binding "${PROJECT_ID}" \
 gcloud iam service-accounts delete \
   "cloud-run-gemini@${PROJECT_ID}.iam.gserviceaccount.com"
 ```
+
+## Complete Swift code
+
+The full code for `Sources/CloudRunGemini/CloudRunGemini.swift` should look like
+this:
+
+@Snippet(path: "DeployToCloudRun")

@@ -13,12 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// snippet.show
-// snippet.imports
+// snippet.show [START swift_cloud_run_full]
+// snippet.imports [START swift_cloud_run_imports]
 import Foundation
 import GoogleCloudAIPlatformV1
 import Hummingbird
-// snippet.end
+// snippet.end [END swift_cloud_run_imports]
 
 // snippet.main [START swift_cloud_run_main]
 @main
@@ -74,3 +74,4 @@ struct CloudRunGemini {
     // snippet.end [END swift_cloud_run_run]
   }
 }
+// snippet.hide [END swift_cloud_run_full]
