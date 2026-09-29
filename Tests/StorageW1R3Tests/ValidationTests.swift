@@ -17,91 +17,57 @@ import ArgumentParser
 import Testing
 
 @Suite struct ValidationTests {
-  @Test func validConfigurationPasses() throws {
-    let benchmark = StorageW1R3().with {
-      $0.bucketName = "my-bucket"
-      $0.minObjectSize = 1024
-      $0.maxObjectSize = 2048
-      $0.taskCount = 2
-      $0.iterations = 5
-      $0.minDeleteBatch = 10
-      $0.maxDeleteBatch = 20
-      $0.readCount = 3
-      $0.clientCount = 1
-      $0.controlClientCount = 1
+  @Test func defaultsAreValid() throws {
+    let parsed = try StorageW1R3.parseAsRoot(["--bucket-name=my-bucket"])
+    guard let benchmark = parsed as? StorageW1R3 else {
+      Issue.record("cannot convert to StorageW1R3")
+      return
     }
     try benchmark.validate()
+    #expect(benchmark.bucketName == "my-bucket")
   }
 
-  @Test func invalidObjectSizeRangeThrows() {
-    let benchmark = StorageW1R3().with {
-      $0.bucketName = "my-bucket"
-      $0.minObjectSize = 4096
-      $0.maxObjectSize = 1024
+  @Test func validConfigurationPasses() throws {
+    let parsed = try StorageW1R3.parseAsRoot([
+      "--bucket-name=my-bucket",
+      "--min-object-size=1KiB",
+      "--max-object-size=2KiB",
+      "--task-count=2",
+      "--iterations=5",
+      "--min-delete-batch=10",
+      "--max-delete-batch=20",
+      "--read-count=2",
+      "--client-count=7",
+      "--control-client-count=17",
+    ])
+    guard let benchmark = parsed as? StorageW1R3 else {
+      Issue.record("cannot convert to StorageW1R3")
+      return
     }
-    #expect(throws: ValidationError.self) {
-      try benchmark.validate()
-    }
+    try benchmark.validate()
+    #expect(benchmark.bucketName == "my-bucket")
   }
 
-  @Test func invalidDeleteBatchRangeThrows() {
-    let benchmark = StorageW1R3().with {
-      $0.bucketName = "my-bucket"
-      $0.minDeleteBatch = 50
-      $0.maxDeleteBatch = 20
-    }
-    #expect(throws: ValidationError.self) {
-      try benchmark.validate()
-    }
-  }
-
-  @Test func invalidTaskCountThrows() {
-    let benchmark = StorageW1R3().with {
-      $0.bucketName = "my-bucket"
-      $0.taskCount = 0
-    }
-    #expect(throws: ValidationError.self) {
-      try benchmark.validate()
-    }
-  }
-
-  @Test func invalidIterationsThrows() {
-    let benchmark = StorageW1R3().with {
-      $0.bucketName = "my-bucket"
-      $0.iterations = 0
-    }
-    #expect(throws: ValidationError.self) {
-      try benchmark.validate()
+  @Test(arguments:[
+    ["--min-object-size=4KiB", "--max-object-size=1KiB"],
+    ["--min-delete-batch=50", "--max-delete-batch=20"],
+    ["--task-count=0"],
+    ["--iterations=0"],
+    ["--read-count=-1"],
+    ["--client-count=-1"],
+    ["--client-count=0"],
+    ["--control-client-count=-1"],
+    ["--control-client-count=0"],
+  ])
+  func invalidConfigurationThrows(args: [String]) throws {
+    #expect(throws: Error.self) {
+      let _ = try StorageW1R3.parseAsRoot(["--bucket-name=b"] + args)
     }
   }
 
-  @Test func invalidReadCountThrows() {
-    let benchmark = StorageW1R3().with {
-      $0.bucketName = "my-bucket"
-      $0.readCount = -1
-    }
-    #expect(throws: ValidationError.self) {
-      try benchmark.validate()
-    }
-  }
-
-  @Test func invalidClientCountThrows() {
-    let benchmark = StorageW1R3().with {
-      $0.bucketName = "my-bucket"
-      $0.clientCount = 0
-    }
-    #expect(throws: ValidationError.self) {
-      try benchmark.validate()
-    }
-  }
-
-  @Test func invalidControlClientCountThrows() {
-    let benchmark = StorageW1R3().with {
-      $0.bucketName = "my-bucket"
-      $0.controlClientCount = 0
-    }
-    #expect(throws: ValidationError.self) {
-      try benchmark.validate()
+  @Test func missingBucketName() throws {
+    #expect(throws: Error.self) {
+      let _ = try StorageW1R3.parseAsRoot([])
     }
   }
 }
