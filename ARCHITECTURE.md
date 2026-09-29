@@ -354,7 +354,7 @@ Beyond selecting a client for the quickstarts, we do not document a "primary" or
 "recommended" client because we lack enough information from the service
 specifications to give such a recommendation. Instead, each client is listed
 neutrally with a concise description extracted from its service documentation
-comments. We expect this information is enough for custoemrs to select the
+comments. We expect this information is enough for customers to select the
 client that suits the their use case.
 
 ### Handwritten vs. generated clients
