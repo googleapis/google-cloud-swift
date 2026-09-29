@@ -346,13 +346,16 @@ For example, Cloud Key Management Service (KMS) defines `AutokeyClient`,
 `AutokeyAdminClient`, `EkmServiceClient`, `HsmManagementClient`, and
 `KeyManagementServiceClient`.
 
-In multi-client packages, the code generator picks an arbitrary client (heuristically
-or through explicit quickstart configuration) to construct the package-level quickstart
-code sample. We do not document a "primary" or "recommended" client because we lack
-enough information from the service specifications to give a stronger recommendation.
-Instead, each client is listed neutrally with a concise description extracted from its
-service documentation comments, allowing callers to select the client that suits their
-use case.
+In multi-client packages, the code generator picks an arbitrary client to use in
+the package-level quickstart examples. We can this selection using 
+`quickstart_service_override` in `librarian.yaml`.
+
+Beyond selecting a client for the quickstarts, we do not document a "primary" or
+"recommended" client because we lack enough information from the service
+specifications to give such a recommendation. Instead, each client is listed
+neutrally with a concise description extracted from its service documentation
+comments. We expect this information is enough for custoemrs to select the
+client that suits the their use case.
 
 ### Handwritten vs. generated clients
 
