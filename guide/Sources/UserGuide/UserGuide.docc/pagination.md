@@ -61,12 +61,12 @@ yourself.
 
 ## Next steps
 
-* [Override the default authentication credentials](override-credentials.md)
+* [Override the default authentication credentials](<doc:override-credentials>)
   describes how to configure custom credentials such as API keys.
-* [Override the default endpoint](override-endpoint.md) describes how to change
+* [Override the default endpoint](<doc:override-endpoint>) describes how to change
   the default endpoint used by the Swift client libraries.
-* [Long-running operations](long-running-operations.md) describes how to make
+* [Long-running operations](<doc:long-running-operations>) describes how to make
   API requests that use long-running operations.
-* [Override the default retry policies](override-retry-policy.md) describes how
+* [Override the default retry policies](<doc:override-retry-policy>) describes how
   to change how the Swift client libraries retry failed requests.
 <!-- TODO(https://github.com/googleapis/google-cloud-swift/issues/145) - link the polling policy override guide -->
