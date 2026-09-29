@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 import GoogleRpc
 import Testing
 
@@ -85,5 +85,54 @@ import Testing
       httpStatusCode: 429
     )
     #expect(withDetails.description.hasPrefix("RESOURCE_EXHAUSTED (HTTP 429): Quota exceeded ["))
+  }
+
+  @Test func googleRpcCodeFromHttpStatusCode() {
+    let mappings: [(Int, GoogleRpc.Code)] = [
+      (200, .ok),
+      (204, .ok),
+      (400, .invalidArgument),
+      (401, .unauthenticated),
+      (403, .permissionDenied),
+      (404, .notFound),
+      (409, .alreadyExists),
+      (412, .failedPrecondition),
+      (429, .resourceExhausted),
+      (499, .cancelled),
+      (500, .internal),
+      (501, .unimplemented),
+      (503, .unavailable),
+      (504, .deadlineExceeded),
+      (418, .unknown),
+      (999, .unknown),
+    ]
+    for (status, expectedCode) in mappings {
+      #expect(GoogleRpc.Code(httpStatusCode: status) == expectedCode)
+    }
+  }
+
+  @Test func googleRpcCodeToHttpStatusCode() {
+    let mappings: [(GoogleRpc.Code, Int)] = [
+      (.ok, 200),
+      (.cancelled, 499),
+      (.unknown, 500),
+      (.invalidArgument, 400),
+      (.deadlineExceeded, 504),
+      (.notFound, 404),
+      (.alreadyExists, 409),
+      (.permissionDenied, 403),
+      (.resourceExhausted, 429),
+      (.failedPrecondition, 412),
+      (.aborted, 409),
+      (.outOfRange, 400),
+      (.unimplemented, 501),
+      (.internal, 500),
+      (.unavailable, 503),
+      (.dataLoss, 500),
+      (.unauthenticated, 401),
+    ]
+    for (code, expectedStatus) in mappings {
+      #expect(code.httpStatusCode == expectedStatus)
+    }
   }
 }

@@ -34,11 +34,11 @@ import Testing
     #expect(p.onError(state: state, error: unavailable) == .retry(unavailable))
     #expect(p.onError(state: state, error: resourceExhausted) == .retry(resourceExhausted))
     #expect(p.onError(state: state, error: permissionDenied) == .permanent(permissionDenied))
-    try p.onInProgress(state: state)
+    #expect(p.onInProgress(state: state) == .keepPolling)
   }
 
   @Test("Verify BasePollingErrorPolicy.defaultPolicy enforces 30-minute limit")
-  func defaultPolicyBounds() throws {
+  func defaultPolicyBounds() {
     let p = BasePollingErrorPolicy.defaultPolicy
     let start = ContinuousClock.now
     let unavailable = RequestError.service(
@@ -49,13 +49,16 @@ import Testing
       $0.attemptCount = 1
     }
     #expect(p.onError(state: activeState, error: unavailable) == .retry(unavailable))
-    try p.onInProgress(state: activeState)
+    #expect(p.onInProgress(state: activeState) == .keepPolling)
 
     let expiredState = PollingState().with {
       $0.start = start - .seconds(30 * 60 + 1)
       $0.attemptCount = 1
     }
     #expect(p.onError(state: expiredState, error: unavailable) == .exhausted(unavailable))
+    #expect(
+      p.onInProgress(state: expiredState)
+        == .exhausted(RequestError.exhausted(.elapsedTime(maximumDuration: .seconds(30 * 60)))))
   }
 
   @Test func equatable() {

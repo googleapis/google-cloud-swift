@@ -300,6 +300,17 @@ struct ServiceAccountTests {
       decodedClaims.aud == nil, "Audience claim MUST be omitted/null when scopes are configured!")
   }
 
+  @Test(
+    "Service Account Token Provider defaults to cloud-platform scope when scopes array is empty")
+  func defaultScopesWhenEmpty() throws {
+    let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()
+    let key = try JSONDecoder().decode(ServiceAccountData.self, from: mockKeyJSON)
+
+    let provider = ServiceAccountTokenProvider(key: key, accessSpecifier: .scopes([]))
+    #expect(provider.scopes == ["https://www.googleapis.com/auth/cloud-platform"])
+    #expect(provider.audience == nil)
+  }
+
   @Test("Service Account Token Provider returns token with correct expiration date")
   func serviceAccountTokenVerifyExpiryTime() async throws {
     let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()

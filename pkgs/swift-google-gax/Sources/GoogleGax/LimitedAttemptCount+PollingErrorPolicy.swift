@@ -29,10 +29,15 @@ extension LimitedAttemptCount: PollingErrorPolicy where P: PollingErrorPolicy & 
     }
   }
 
-  public func onInProgress(state: PollingState) throws {
-    try inner.onInProgress(state: state)
-    if state.attemptCount >= maximumAttempts {
-      throw RequestError.exhausted(.attemptCount(maximumAttempts: maximumAttempts))
+  public func onInProgress(state: PollingState) -> InProgressResult {
+    switch inner.onInProgress(state: state) {
+    case .exhausted(let e):
+      return .exhausted(e)
+    case .keepPolling:
+      if state.attemptCount >= maximumAttempts {
+        return .exhausted(RequestError.exhausted(.attemptCount(maximumAttempts: maximumAttempts)))
+      }
+      return .keepPolling
     }
   }
 }

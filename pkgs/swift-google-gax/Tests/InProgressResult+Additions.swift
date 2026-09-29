@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+import GoogleGax
 
-extension Aip194: PollingErrorPolicy {
-  public func onError(state: PollingState, error: RequestError) -> PollingResult {
-    if isRetryable(error) {
-      return .retry(error)
+extension InProgressResult: Equatable {
+  static func == (lhs: InProgressResult, rhs: InProgressResult) -> Bool {
+    switch (lhs, rhs) {
+    case (.keepPolling, .keepPolling): return true
+    case (.exhausted(let l), .exhausted(let r)): return l == r
+    default: return false
     }
-
-    return .permanent(error)
   }
 }

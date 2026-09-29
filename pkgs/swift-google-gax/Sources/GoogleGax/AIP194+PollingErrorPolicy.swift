@@ -13,17 +13,13 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
 
-struct MockPollingPolicy: PollingErrorPolicy {
-  var onError: @Sendable (PollingState, RequestError) -> PollingResult = { _, e in .permanent(e) }
-  var onInProgress: @Sendable (PollingState) -> InProgressResult = { _ in .keepPolling }
+extension AIP194: PollingErrorPolicy {
+  public func onError(state: PollingState, error: RequestError) -> PollingResult {
+    if isRetryable(error) {
+      return .retry(error)
+    }
 
-  func onError(state: PollingState, error: RequestError) -> PollingResult {
-    onError(state, error)
-  }
-
-  func onInProgress(state: PollingState) -> InProgressResult {
-    onInProgress(state)
+    return .permanent(error)
   }
 }

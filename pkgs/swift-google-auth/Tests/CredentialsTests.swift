@@ -65,6 +65,23 @@ import Testing
     }
   }
 
+  @Test func resolveProviderForServiceAccount() async throws {
+    let mockJSON = """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "-----BEGIN PRIVATE KEY-----\\n-----END PRIVATE KEY-----",
+        "client_email": "test@gserviceaccount.com"
+      }
+      """
+    let credentials = try Credentials(
+      configuration: .serviceAccount(keyJSON: Data(mockJSON.utf8))
+    )
+
+    #expect(credentials.credentialsProvider is ServiceAccountCredentials)
+  }
+
   @Test func resolveProviderForUserCredentials() async throws {
     let mockJSON = """
       {

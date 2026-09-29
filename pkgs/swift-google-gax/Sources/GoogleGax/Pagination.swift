@@ -24,6 +24,7 @@ public protocol _PaginatedResponse<Item>: Sendable {
 }
 
 /// A sequence that manages cursor-based pagination automatically.
+@_spi(GoogleCloudInternal)
 public struct PaginatedResponseSequence<Item, ResponseType>:
   AsyncSequence, Sendable
 {
@@ -33,7 +34,6 @@ public struct PaginatedResponseSequence<Item, ResponseType>:
   private let fetchPage: @Sendable (String) async throws -> (items: [Item], nextToken: String)
 
   // Creates a new paginated response sequence.
-  @_spi(GoogleCloudInternal)
   public init(listRpc: @escaping ListRpc) where ResponseType: _PaginatedResponse<Item> {
     self.fetchPage = { token in
       let response = try await listRpc(token)

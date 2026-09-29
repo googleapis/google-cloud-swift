@@ -172,4 +172,41 @@ import Testing
     #expect(
       mismatch3.substitutions[0] == SubstitutionMismatch(fieldName: "page_size", problem: .unset))
   }
+
+  @Test func properties() {
+    let sub = SubstitutionMismatch(fieldName: "field", problem: .unset)
+    #expect(sub.fieldName == "field")
+    #expect(sub.problem == .unset)
+
+    let path = PathMismatch(substitutions: [sub])
+    #expect(path.substitutions == [sub])
+
+    let err = BindingError(paths: [path])
+    #expect(err.paths == [path])
+  }
+
+  @Test func mockUsagePatterns() {
+    // 1. Generic synthetic error in mock client
+    let genericError: RequestError = .binding(BindingError())
+    #expect(genericError == .binding(BindingError()))
+
+    // 2. Specific single-field failure
+    let singleFieldError = BindingError(fieldName: "parent", invalidValue: "")
+    #expect(singleFieldError.description == "Invalid value  for parent")
+
+    // 3. Multi-segment invalid relative path
+    let multiSegmentError = BindingError(fieldName: "name", invalidSegments: "a/../b")
+    #expect(
+      multiSegmentError.description
+        == "Value for name must not contain segments that are exactly . or ..")
+
+    // 4. Multi-path detailed error
+    let detailedError = BindingError(paths: [
+      PathMismatch(substitutions: [
+        SubstitutionMismatch(fieldName: "name", problem: .unset)
+      ])
+    ])
+    #expect(detailedError.paths.count == 1)
+    #expect(detailedError.paths[0].substitutions.count == 1)
+  }
 }

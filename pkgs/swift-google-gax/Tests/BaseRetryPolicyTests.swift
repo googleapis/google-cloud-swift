@@ -36,7 +36,7 @@ import Testing
   }
 
   @Test(
-    "Verify Aip194 stops permanent errors",
+    "Verify BaseRetryPolicy stops permanent errors",
     arguments: [
       permissionDenied(),
       httpPermissionDenied(),

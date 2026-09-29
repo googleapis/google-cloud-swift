@@ -29,14 +29,15 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: otherError) == .permanent(otherError))
   }
 
-  @Test func continueIOOnInProgress() throws {
+  @Test func continueIOOnInProgress() {
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
+      return .keepPolling
     })
     let policy = mock.continueOnIO()
 
-    try policy.onInProgress(state: PollingState())
+    #expect(policy.onInProgress(state: PollingState()) == .keepPolling)
     #expect(called.withLock { $0 })
   }
 

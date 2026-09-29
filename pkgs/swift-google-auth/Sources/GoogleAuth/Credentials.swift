@@ -65,7 +65,7 @@ public enum AccessSpecifier: Sendable, Hashable {
   /// for the token. Therefore, scopes act as an additional restriction on what the token
   /// can be used for.
   ///
-  /// If not specified, client libraries default to the comprehensive
+  /// If empty, client libraries default to the comprehensive
   /// `https://www.googleapis.com/auth/cloud-platform` scope.
   ///
   /// See [Service Account Authorization](https://cloud.google.com/compute/docs/access/service-accounts#authorization)
@@ -130,12 +130,12 @@ public enum CredentialsConfiguration: Sendable {
   ///   - keyJSON: The raw Service Account JSON key file contents.
   ///   - quotaProjectID: A custom project ID used for billing and quota attribution.
   ///   - universeDomain: [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
-  ///   - accessSpecifier: Optional access specifier (either OAuth 2.0 scopes or JWT audience).
+  ///   - accessSpecifier: Access specifier (either OAuth 2.0 scopes or JWT audience). Defaults to `.scopes([])`.
   case serviceAccount(
     keyJSON: Data,
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
-    accessSpecifier: AccessSpecifier? = nil
+    accessSpecifier: AccessSpecifier = .scopes([])
   )
 
   /// Credentials using Authorized User key files created from user authentication.

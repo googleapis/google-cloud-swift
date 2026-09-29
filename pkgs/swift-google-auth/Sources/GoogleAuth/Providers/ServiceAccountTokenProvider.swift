@@ -53,15 +53,13 @@ struct ServiceAccountTokenProvider: TokenProvider, Sendable {
 
   init(
     key: ServiceAccountData,
-    accessSpecifier: AccessSpecifier? = nil,
+    accessSpecifier: AccessSpecifier = .scopes([]),
     timeSource: any TimeSource = SystemTimeSource()
   ) {
     self.key = key
     self.timeSource = timeSource
 
-    let resolvedSpecifier = accessSpecifier ?? .scopes([Self.defaultScope])
-
-    switch resolvedSpecifier {
+    switch accessSpecifier {
     case .audience(let aud):
       self.scopes = nil
       self.audience = aud
