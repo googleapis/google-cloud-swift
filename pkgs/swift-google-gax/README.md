@@ -1,5 +1,8 @@
 # Google Cloud Client Libraries for Swift - GAX (Google API Extensions)
 
+[![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-gax%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/googleapis/swift-google-gax)
+[![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-gax%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/googleapis/swift-google-gax)
+
 Core runtime, transport, and resilience infrastructure for Google Cloud client
 libraries in Swift.
 
@@ -9,11 +12,42 @@ GAX (Google API Extensions) provides the runtime protocols, networking
 abstractions, and resilience utilities that power Google Cloud client libraries
 for Swift.
 
-While developers typically consume high-level, service-specific clients (such as
-Google Cloud Storage or Secret Manager), GAX exposes the configuration types
-and policies used to customize client behavior: retry policies, backoff
-intervals, endpoint overrides, request throttling, structured error handling,
-and long-running operations.
+A default-initialized client is expected to work in most environments. However,
+specific deployments may need to tweak retry policies, backoff intervals,
+authentication credentials, target endpoints, request throttling, structured
+error handling, or long-running operations.
+
+### Client Configuration
+
+The primary type to configure clients is `ClientOptions`. Use this type to
+override default endpoints (e.g. for VPC Service Controls, regional endpoints,
+or emulators), credentials, logging (via Apple's `swift-log`), and default retry
+or polling policies.
+
+### Request Options
+
+When individual requests require distinct handling (such as longer deadlines or
+suppressed retries), pass a `RequestOptions` instance to configure that specific call.
+
+### Structured Error Handling
+
+Client libraries throw `RequestError` when an operation fails. `RequestError`
+distinguishes between service errors (`ServiceError`) with status details,
+HTTP transport errors (`HTTPDetails`), I/O failures, and exhausted retries.
+
+### Retry Loop Control
+
+Retry loops are governed by three orthogonal controls:
+- **`RetryPolicy`**: Controls which errors are retryable (`BaseRetryPolicy.defaultPolicy`,
+  `BaseRetryPolicy.unbounded()`, decorated with `.withAttemptLimit(_:)` and/or `.withTimeLimit(_:)`).
+- **`BackoffPolicy`**: Determines how long the client waits before retrying (`ExponentialBackoff`).
+- **`RetryThrottler`**: Suppresses retries to prevent retry storms (`AdaptiveThrottler`, `CircuitBreaker`).
+
+### Polling Loop Control
+
+Polling loops for long-running operations (LRO) provide two orthogonal controls:
+- **`PollingErrorPolicy`**: Controls which polling errors are retryable (`BasePollingErrorPolicy`).
+- **`PollingBackoffPolicy`**: Determines the interval between polling attempts (`ExponentialBackoff`).
 
 ## Libraries & Products
 
@@ -39,8 +73,7 @@ For gRPC transport support, see the separate `swift-google-gax-grpc`
     [AIP-194](https://google.aip.dev/194)), `AlwaysRetry`, and `NeverRetry`.
   - Decorators to cap retry attempts (`.withAttemptLimit(_:)`) and total elapsed
     time (`.withTimeLimit(_:)`).
-  - Exponential backoff with randomized jitter (`ExponentialBackoff`) and linear
-    backoff (`LinearBackoffPolicy`).
+  - Exponential backoff with randomized jitter (`ExponentialBackoff`).
   - Overload protection via `AdaptiveThrottler` (stochastic retry suppression
     based on success/failure ratio) and `CircuitBreaker`.
 - **Long-Running Operations (LRO)**: Polling error policies

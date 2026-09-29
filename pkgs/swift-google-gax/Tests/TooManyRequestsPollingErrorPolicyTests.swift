@@ -31,20 +31,21 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: permanent()) == .permanent(permanent()))
   }
 
-  @Test func testTooManyRequestsOnInProgress() throws {
+  @Test func testTooManyRequestsOnInProgress() {
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
+      return .keepPolling
     })
     let policy = mock.continueOnTooManyRequests()
 
-    try policy.onInProgress(state: PollingState())
+    #expect(policy.onInProgress(state: PollingState()) == .keepPolling)
     #expect(called.withLock { $0 })
   }
 
   @Test func equatable() {
-    let a = AlwaysPoll().continueOnTooManyRequests()
-    let b = AlwaysPoll().continueOnTooManyRequests()
+    let a = AlwaysPoll.unbounded().continueOnTooManyRequests()
+    let b = AlwaysPoll.unbounded().continueOnTooManyRequests()
     #expect(a == b)
   }
 
@@ -57,7 +58,7 @@ import Testing
   }
 
   private func tooManyRequestsHttp() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 429, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 429, headers: [], payload: Data()))
   }
 
   private func permanent() -> RequestError {

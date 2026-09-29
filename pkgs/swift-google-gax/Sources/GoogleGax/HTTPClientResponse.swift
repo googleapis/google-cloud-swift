@@ -83,12 +83,7 @@ import struct NIOCore.ByteBuffer
         return .service(ServiceError(wrapper: w, httpStatusCode: Int(response.status.code)))
       }
     }
-    let headers = Dictionary(
-      grouping: response.headers,
-      by: { $0.name }
-    )
-    .mapValues { values in values.map { $0.value } }
-    .mapValues { values in values.joined(separator: ";") }
+    let headers = HTTPHeaders(response.headers.map { ($0.name, $0.value) })
     return .http(
       GoogleGax.HTTPDetails(
         httpStatusCode: Int(response.status.code),

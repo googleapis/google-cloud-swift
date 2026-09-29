@@ -17,12 +17,21 @@ import Foundation
 /// A failure to bind a request to an HTTP URI path template.
 public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible {
   /// All candidate paths considered, and why the binding failed for each.
-  public var paths: [PathMismatch]
+  public let paths: [PathMismatch]
 
+  /// Creates a new `BindingError`.
+  ///
+  /// - Parameter paths: The candidate paths considered, and why the binding failed for each.
+  ///   Defaults to an empty array for convenience in tests and mock clients.
   public init(paths: [PathMismatch] = []) {
     self.paths = paths
   }
 
+  /// Creates a new `BindingError` for an invalid single-segment field value.
+  ///
+  /// - Parameters:
+  ///   - fieldName: The name of the field that failed validation.
+  ///   - invalidValue: The invalid value provided for the field.
   public init(fieldName: String, invalidValue: String) {
     self.init(paths: [
       PathMismatch(substitutions: [
@@ -31,6 +40,11 @@ public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible 
     ])
   }
 
+  /// Creates a new `BindingError` for an invalid multi-segment field value containing relative segments.
+  ///
+  /// - Parameters:
+  ///   - fieldName: The name of the field that failed validation.
+  ///   - invalidSegments: The value containing invalid segments (such as `.` or `..`).
   public init(fieldName: String, invalidSegments: String) {
     self.init(paths: [
       PathMismatch(substitutions: [
@@ -61,8 +75,12 @@ public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible 
 /// A failure to bind to a specific candidate URI path template.
 public struct PathMismatch: Sendable, Equatable, CustomStringConvertible {
   /// All missing or misformatted fields needed to bind to this path.
-  public var substitutions: [SubstitutionMismatch]
+  public let substitutions: [SubstitutionMismatch]
 
+  /// Creates a new `PathMismatch`.
+  ///
+  /// - Parameter substitutions: All missing or misformatted fields needed to bind to this path.
+  ///   Defaults to an empty array for convenience in tests and mock clients.
   public init(substitutions: [SubstitutionMismatch] = []) {
     self.substitutions = substitutions
   }
@@ -74,8 +92,8 @@ public struct PathMismatch: Sendable, Equatable, CustomStringConvertible {
 
 /// Details of why a specific field substitution failed.
 public struct SubstitutionMismatch: Sendable, Equatable, CustomStringConvertible {
-  public var fieldName: String
-  public var problem: SubstitutionFail
+  public let fieldName: String
+  public let problem: SubstitutionFail
 
   public init(fieldName: String, problem: SubstitutionFail) {
     self.fieldName = fieldName

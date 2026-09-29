@@ -27,12 +27,11 @@ internal struct ServiceAccountParser: CredentialSourceParser {
     environment: [String: String]
   ) throws -> any CredentialsProvider {
     let data = try JSONSerialization.data(withJSONObject: config, options: [])
-    let accessSpecifier = scopes.isEmpty ? nil : AccessSpecifier.scopes(scopes)
     return try ServiceAccountCredentials(
       keyJSON: data,
       quotaProjectID: quotaProjectID,
       universeDomain: universeDomain,
-      accessSpecifier: accessSpecifier
+      accessSpecifier: .scopes(scopes)
     )
   }
 }
@@ -60,7 +59,7 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
     keyJSON: Data,
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
-    accessSpecifier: AccessSpecifier? = nil
+    accessSpecifier: AccessSpecifier = .scopes([])
   ) throws {
     let key: ServiceAccountData
     do {

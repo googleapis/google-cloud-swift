@@ -39,7 +39,7 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = AlwaysRetry()
+    let a = AlwaysRetry.unbounded()
     let b = AlwaysRetry.unbounded()
     #expect(a == b)
   }
@@ -47,6 +47,6 @@ import Testing
   // Helper functions
 
   private func httpUnavailable() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 503, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 503, headers: [], payload: Data()))
   }
 }

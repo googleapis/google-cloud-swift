@@ -37,14 +37,18 @@ public protocol PollingErrorPolicy: Sendable {
 
   /// Query the policy after successfully polling the LRO.
   ///
-  /// Polling policies may use this to update telemetry counters, or log the event, or otherwise
+  /// Polling policies may use this to update telemetry counters, log the event, or stop
+  /// the loop if limits are exceeded.
   ///
-  /// - Parameters
-  /// - `state` - the current state of the polling loop.
-  func onInProgress(state: PollingState) throws
+  /// - Parameters:
+  ///   - state: The current state of the polling loop.
+  /// - Returns: The result of the in-progress polling decision.
+  func onInProgress(state: PollingState) -> InProgressResult
 }
 
 extension PollingErrorPolicy {
-  /// By default, this method is a no-op.
-  public func onInProgress(state: PollingState) throws {}
+  /// By default, this method continues polling.
+  public func onInProgress(state: PollingState) -> InProgressResult {
+    .keepPolling
+  }
 }

@@ -16,6 +16,7 @@
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
+@_spi(GoogleCloudInternal)
 public enum ProtobufConversionError: Error, CustomStringConvertible, Sendable, Equatable {
   /// Thrown when an unknown string enum value is serialized back to binary protobuf raw value.
   case noIntegerValue(enumType: String, stringValue: String)

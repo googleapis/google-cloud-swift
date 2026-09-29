@@ -17,35 +17,41 @@ import GoogleGax
 import GoogleRpc
 import Testing
 
-@Suite struct Aip194PollingErrorPolicyTests {
+@Suite struct AIP194RetryPolicyTests {
   @Test(
-    "Verify Aip194 retries retryable errors for polling",
+    "Verify AIP194 retries retryable errors",
     arguments: [
       unavailable(),
       unknownAnd503(),
       httpUnavailable(),
     ])
   func onRetryable(e: RequestError) {
-    let p: any PollingErrorPolicy = Aip194.unbounded()
-    #expect(p.onError(state: PollingState(), error: e) == PollingResult.retry(e))
+    let p = AIP194.unbounded()
+    #expect(p.onError(state: idempotentState(), error: e) == .retry(e))
+    #expect(p.onError(state: nonIdempotentState(), error: e) == .retry(e))
+    #expect(p.onThrottle(state: idempotentState(), error: e) == .retry(e))
+    #expect(p.remainingTime(state: idempotentState()) == nil)
   }
 
   @Test(
-    "Verify Aip194 stops permanent errors for polling",
+    "Verify AIP194 stops permanent errors",
     arguments: [
       permissionDenied(),
       httpPermissionDenied(),
     ]
   )
   func onPermanent(e: RequestError) {
-    let p: any PollingErrorPolicy = Aip194.unbounded()
-    #expect(p.onError(state: PollingState(), error: e) == PollingResult.permanent(e))
+    let p = AIP194.unbounded()
+    #expect(p.onError(state: idempotentState(), error: e) == .permanent(e))
+    #expect(p.onError(state: nonIdempotentState(), error: e) == .permanent(e))
+    #expect(p.onThrottle(state: idempotentState(), error: e) == .retry(e))
+    #expect(p.remainingTime(state: idempotentState()) == nil)
   }
 
-  @Test("Verify Aip194 onInProgress is a no-op")
-  func onInProgress() throws {
-    let p: any PollingErrorPolicy = Aip194.unbounded()
-    try p.onInProgress(state: PollingState())
+  @Test func equatable() {
+    let a = AIP194.unbounded()
+    let b = AIP194.unbounded()
+    #expect(a == b)
   }
 
   static func unavailable() -> RequestError {
@@ -54,7 +60,7 @@ import Testing
 
   static func unknownAnd503() -> RequestError {
     // Some services return a status of "Unknown" and a http status code of 503
-    .http(HTTPDetails(httpStatusCode: 503, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 503, headers: [], payload: Data()))
   }
 
   static func permissionDenied() -> RequestError {
@@ -63,10 +69,10 @@ import Testing
   }
 
   static func httpUnavailable() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 503, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 503, headers: [], payload: Data()))
   }
 
   static func httpPermissionDenied() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 403, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 403, headers: [], payload: Data()))
   }
 }

@@ -14,7 +14,7 @@
 
 #if GlobalOperations || GlobalOrganizationOperations || RegionOperations || ZoneOperations
 
-  import GoogleGax
+  @_spi(GoogleCloudInternal) import GoogleGax
   import GoogleWKT
   import GoogleRpc
 

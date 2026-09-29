@@ -1,5 +1,8 @@
 # Google Cloud Client Libraries for Swift - GAX gRPC Transport
 
+[![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-gax-grpc%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/googleapis/swift-google-gax-grpc)
+[![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-gax-grpc%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/googleapis/swift-google-gax-grpc)
+
 gRPC transport infrastructure for Google Cloud client libraries in Swift.
 
 ## Overview

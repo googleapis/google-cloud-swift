@@ -26,8 +26,8 @@ import GoogleRpc
 /// only on the status code, and the only retryable status code is `UNAVAILABLE`.
 ///
 /// [AIP-194]: https://google.aip.dev/194
-public struct Aip194: Sendable, Equatable {
-  public init() {}
+public struct AIP194: Sendable, Equatable {
+  init() {}
 
   /// Creates an unconstrained AIP-194 policy without attempt or time limits.
   ///
@@ -35,7 +35,7 @@ public struct Aip194: Sendable, Equatable {
   /// ``RetryPolicy/withAttemptLimit(_:)`` (and ``RetryPolicy/strictIdempotency()``
   /// when used as a retry policy) to bound the loop:
   /// ```swift
-  /// let policy = Aip194.unbounded()
+  /// let policy = AIP194.unbounded()
   ///   .strictIdempotency()
   ///   .withTimeLimit(.seconds(30))
   ///   .withAttemptLimit(5)
@@ -43,8 +43,8 @@ public struct Aip194: Sendable, Equatable {
   ///
   /// - Warning: Without attempt or time limit decorators, this policy retries
   ///   transient errors indefinitely.
-  public static func unbounded() -> Aip194 {
-    Aip194()
+  public static func unbounded() -> AIP194 {
+    AIP194()
   }
 
   func isRetryable(_ error: RequestError) -> Bool {

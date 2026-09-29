@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 internal import StorageProtos
 internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleWKT

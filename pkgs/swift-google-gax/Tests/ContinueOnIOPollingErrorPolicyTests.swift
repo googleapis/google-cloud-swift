@@ -17,10 +17,10 @@ import GoogleGax
 import Synchronization
 import Testing
 
-@Suite struct RetryIOPollingErrorPolicyTests {
+@Suite struct ContinueOnIOPollingErrorPolicyTests {
   @Test func continueIOOnError() {
     let mock = MockPollingPolicy(onError: { _, e in .permanent(e) })
-    let policy = mock.continueOnIoErrors()
+    let policy = mock.continueOnIO()
 
     let ioError = mockIOError()
     #expect(policy.onError(state: PollingState(), error: ioError) == .retry(ioError))
@@ -29,20 +29,21 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: otherError) == .permanent(otherError))
   }
 
-  @Test func continueIOOnInProgress() throws {
+  @Test func continueIOOnInProgress() {
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
+      return .keepPolling
     })
-    let policy = mock.continueOnIoErrors()
+    let policy = mock.continueOnIO()
 
-    try policy.onInProgress(state: PollingState())
+    #expect(policy.onInProgress(state: PollingState()) == .keepPolling)
     #expect(called.withLock { $0 })
   }
 
   @Test func equatable() {
-    let a = AlwaysPoll().continueOnIoErrors()
-    let b = AlwaysPoll().continueOnIoErrors()
+    let a = AlwaysPoll.unbounded().continueOnIO()
+    let b = AlwaysPoll.unbounded().continueOnIO()
     #expect(a == b)
   }
 }

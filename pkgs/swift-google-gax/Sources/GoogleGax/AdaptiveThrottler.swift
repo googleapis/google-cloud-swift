@@ -60,10 +60,10 @@ public final class AdaptiveThrottler: RetryThrottler, Sendable {
   ///
   /// - Parameter factor: A factor to adjust the relative weight of transient
   ///   failures vs. accepted requests.
-  /// - Throws: ``RetryThrottlerError/scalingOutOfRange(_:)`` if `factor` is negative.
+  /// - Throws: ``RetryThrottlerError/factorOutOfRange(_:)`` if `factor` is negative.
   public init(factor: Double) throws {
     if factor < 0.0 {
-      throw RetryThrottlerError.scalingOutOfRange(factor)
+      throw RetryThrottlerError.factorOutOfRange(factor)
     }
     self.factor = factor
   }

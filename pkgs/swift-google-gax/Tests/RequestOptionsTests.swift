@@ -41,11 +41,11 @@ import GoogleAuth
           $0.initialDelay = .milliseconds(100)
         }
       )
-      $0.pollingBackoffPolicy = LinearBackoffPolicy(delay: .seconds(2))
+      $0.pollingBackoffPolicy = MockBackoff(delay: .seconds(2))
     }
     #expect(got.retryPolicy != nil)
     #expect(got.backoffPolicy != nil)
-    #expect(got.pollingBackoffPolicy is LinearBackoffPolicy)
+    #expect(got.pollingBackoffPolicy is MockBackoff)
 
     #expect(throws: TestError()) {
       try RequestOptions().with { _ in

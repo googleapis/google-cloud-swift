@@ -32,13 +32,13 @@ import Testing
     #expect(p.onError(state: PollingState(), error: httpUnavailable()) == .retry(httpUnavailable()))
   }
 
-  @Test func alwaysPollOnInProgress() throws {
+  @Test func alwaysPollOnInProgress() {
     let p = AlwaysPoll.unbounded()
-    try p.onInProgress(state: PollingState())
+    #expect(p.onInProgress(state: PollingState()) == .keepPolling)
   }
 
   @Test func equatable() {
-    let a = AlwaysPoll()
+    let a = AlwaysPoll.unbounded()
     let b = AlwaysPoll.unbounded()
     #expect(a == b)
   }
@@ -46,6 +46,6 @@ import Testing
   // Helper functions
 
   private func httpUnavailable() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 503, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 503, headers: [], payload: Data()))
   }
 }

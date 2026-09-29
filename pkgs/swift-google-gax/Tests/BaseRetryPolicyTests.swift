@@ -36,7 +36,7 @@ import Testing
   }
 
   @Test(
-    "Verify Aip194 stops permanent errors",
+    "Verify BaseRetryPolicy stops permanent errors",
     arguments: [
       permissionDenied(),
       httpPermissionDenied(),
@@ -79,7 +79,7 @@ import Testing
   }
 
   @Test func equatable() {
-    let a = BaseRetryPolicy()
+    let a = BaseRetryPolicy.unbounded()
     let b = BaseRetryPolicy.unbounded()
     #expect(a == b)
   }
@@ -90,7 +90,7 @@ import Testing
 
   static func unknownAnd503() -> RequestError {
     // Some services return a status of "Unknown" and a http status code of 503
-    .http(HTTPDetails(httpStatusCode: 503, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 503, headers: [], payload: Data()))
   }
 
   static func permissionDenied() -> RequestError {
@@ -99,10 +99,10 @@ import Testing
   }
 
   static func httpUnavailable() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 503, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 503, headers: [], payload: Data()))
   }
 
   static func httpPermissionDenied() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 403, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 403, headers: [], payload: Data()))
   }
 }

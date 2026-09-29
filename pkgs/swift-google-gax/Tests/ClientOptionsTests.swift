@@ -51,12 +51,12 @@ import GoogleGax
           $0.scaling = 1.5
         }
       )
-      $0.pollingBackoffPolicy = LinearBackoffPolicy(delay: .seconds(2))
+      $0.pollingBackoffPolicy = MockBackoff(delay: .seconds(2))
     }
     #expect(got.endpoint == "https://private.googleapis.com")
     #expect(got.credentials != nil)
     #expect(got.retryPolicy != nil)
-    #expect(got.pollingBackoffPolicy is LinearBackoffPolicy)
+    #expect(got.pollingBackoffPolicy is MockBackoff)
 
     #expect(throws: TestError()) {
       try ClientOptions().with { _ in

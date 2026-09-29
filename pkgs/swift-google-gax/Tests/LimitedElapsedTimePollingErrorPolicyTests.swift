@@ -69,45 +69,44 @@ import Testing
     #expect(policy.onError(state: stateAfter, error: error) == .exhausted(error))
   }
 
-  @Test func testLimitedTimeOnInProgressBeforeDeadline() throws {
+  @Test func testLimitedTimeOnInProgressBeforeDeadline() {
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
+      return .keepPolling
     })
     let limit = Duration.seconds(60)
     let policy = mock.withTimeLimit(limit)
 
     let state = PollingState().with { $0.start = .now - .seconds(10) }
-    try policy.onInProgress(state: state)
+    #expect(policy.onInProgress(state: state) == .keepPolling)
     #expect(called.withLock { $0 })
   }
 
-  @Test func testLimitedTimeOnInProgressAfterDeadline() throws {
+  @Test func testLimitedTimeOnInProgressAfterDeadline() {
     let mock = MockPollingPolicy()
     let limit = Duration.seconds(60)
     let policy = mock.withTimeLimit(limit)
 
     let state = PollingState().with { $0.start = .now - .seconds(70) }
-    #expect(throws: RequestError.exhausted(.elapsedTime(maximumDuration: limit))) {
-      try policy.onInProgress(state: state)
-    }
+    #expect(
+      policy.onInProgress(state: state)
+        == .exhausted(RequestError.exhausted(.elapsedTime(maximumDuration: limit))))
   }
 
-  @Test func testLimitedTimeOnInProgressInnerThrows() throws {
-    struct CustomError: Error, Equatable {}
-    let mock = MockPollingPolicy(onInProgress: { _ in throw CustomError() })
+  @Test func testLimitedTimeOnInProgressInnerExhausted() {
+    let exhaustedError = RequestError.exhausted(.attemptCount(maximumAttempts: 5))
+    let mock = MockPollingPolicy(onInProgress: { _ in .exhausted(exhaustedError) })
     let policy = mock.withTimeLimit(.seconds(60))
 
-    #expect(throws: CustomError()) {
-      try policy.onInProgress(state: PollingState())
-    }
+    #expect(policy.onInProgress(state: PollingState()) == .exhausted(exhaustedError))
   }
 
   @Test func equatable() {
-    let a = AlwaysPoll().withTimeLimit(.seconds(30))
-    let b = AlwaysPoll().withTimeLimit(.seconds(30))
+    let a = AlwaysPoll.unbounded().withTimeLimit(.seconds(30))
+    let b = AlwaysPoll.unbounded().withTimeLimit(.seconds(30))
     #expect(a == b)
-    let c = AlwaysPoll().withTimeLimit(.seconds(60))
+    let c = AlwaysPoll.unbounded().withTimeLimit(.seconds(60))
     #expect(a != c)
   }
 }

@@ -50,68 +50,67 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: error) == .exhausted(error))
   }
 
-  @Test func testLimitedAttemptCountOnInProgressBeforeLimit() throws {
+  @Test func testLimitedAttemptCountOnInProgressBeforeLimit() {
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
+      return .keepPolling
     })
     let policy = mock.withAttemptLimit(3)
 
     let state = PollingState().with { $0.attemptCount = 2 }
-    try policy.onInProgress(state: state)
+    #expect(policy.onInProgress(state: state) == .keepPolling)
     #expect(called.withLock { $0 })
   }
 
-  @Test func testLimitedAttemptCountOnInProgressAtLimit() throws {
+  @Test func testLimitedAttemptCountOnInProgressAtLimit() {
     let mock = MockPollingPolicy()
     let policy = mock.withAttemptLimit(3)
 
     let state = PollingState().with { $0.attemptCount = 3 }
-    #expect(throws: RequestError.exhausted(.attemptCount(maximumAttempts: 3))) {
-      try policy.onInProgress(state: state)
-    }
+    #expect(
+      policy.onInProgress(state: state)
+        == .exhausted(RequestError.exhausted(.attemptCount(maximumAttempts: 3))))
   }
 
-  @Test func testLimitedAttemptCountOnInProgressZeroLimit() throws {
+  @Test func testLimitedAttemptCountOnInProgressZeroLimit() {
     let mock = MockPollingPolicy()
     let policy = mock.withAttemptLimit(0)
 
-    #expect(throws: RequestError.exhausted(.attemptCount(maximumAttempts: 0))) {
-      try policy.onInProgress(state: PollingState())
-    }
+    #expect(
+      policy.onInProgress(state: PollingState())
+        == .exhausted(RequestError.exhausted(.attemptCount(maximumAttempts: 0))))
   }
 
-  @Test func testLimitedAttemptCountOnInProgressNegativeLimit() throws {
+  @Test func testLimitedAttemptCountOnInProgressNegativeLimit() {
     let mock = MockPollingPolicy()
     let policy = mock.withAttemptLimit(-5)
 
-    #expect(throws: RequestError.exhausted(.attemptCount(maximumAttempts: 0))) {
-      try policy.onInProgress(state: PollingState())
-    }
+    #expect(
+      policy.onInProgress(state: PollingState())
+        == .exhausted(RequestError.exhausted(.attemptCount(maximumAttempts: 0))))
   }
 
-  @Test func testLimitedAttemptCountOnInProgressInnerThrows() throws {
-    struct CustomError: Error, Equatable {}
-    let mock = MockPollingPolicy(onInProgress: { _ in throw CustomError() })
+  @Test func testLimitedAttemptCountOnInProgressInnerExhausted() {
+    let exhaustedError = RequestError.exhausted(.elapsedTime(maximumDuration: .seconds(30)))
+    let mock = MockPollingPolicy(onInProgress: { _ in .exhausted(exhaustedError) })
     let policy = mock.withAttemptLimit(3)
 
-    #expect(throws: CustomError()) {
-      try policy.onInProgress(state: PollingState())
-    }
+    #expect(policy.onInProgress(state: PollingState()) == .exhausted(exhaustedError))
   }
 
   @Test func equatable() {
-    let a = AlwaysPoll().withAttemptLimit(3)
-    let b = AlwaysPoll().withAttemptLimit(3)
+    let a = AlwaysPoll.unbounded().withAttemptLimit(3)
+    let b = AlwaysPoll.unbounded().withAttemptLimit(3)
     #expect(a == b)
-    let c = AlwaysPoll().withAttemptLimit(5)
+    let c = AlwaysPoll.unbounded().withAttemptLimit(5)
     #expect(a != c)
   }
 
   func transient() -> RequestError {
-    RequestError.http(HTTPDetails(httpStatusCode: 429, headers: [:]))
+    RequestError.http(HTTPDetails(httpStatusCode: 429, headers: []))
   }
   func permanent() -> RequestError {
-    RequestError.http(HTTPDetails(httpStatusCode: 403, headers: [:]))
+    RequestError.http(HTTPDetails(httpStatusCode: 403, headers: []))
   }
 }

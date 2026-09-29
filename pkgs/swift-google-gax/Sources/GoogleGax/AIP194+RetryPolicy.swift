@@ -14,8 +14,12 @@
 
 import Foundation
 
-extension LinearBackoffPolicy: PollingBackoffPolicy {
-  public func backoffDelayFor(_ state: PollingState) -> Duration {
-    return self.delay
+extension AIP194: RetryPolicy {
+  public func onError(state: RetryState, error: RequestError) -> RetryResult {
+    if isRetryable(error) {
+      return .retry(error)
+    }
+
+    return .permanent(error)
   }
 }
