@@ -143,6 +143,22 @@ context:
    export REGION=us-central1
    ```
 
+1. Create an Artifact Registry repository to store the container image:
+   ```bash
+   gcloud artifacts repositories create cloud-run-apps \
+     --repository-format=docker \
+     --location="${REGION}" \
+     --description="Docker repository for Cloud Run apps"
+   ```
+
+1. Build and push the container image using Cloud Build with a high-CPU machine
+   type (`e2-highcpu-32`) to speed up Swift compilation:
+   ```bash
+   gcloud builds submit \
+     --machine-type=e2-highcpu-32 \
+     --tag "${REGION}-docker.pkg.dev/${PROJECT_ID}/cloud-run-apps/cloud-run-gemini"
+   ```
+
 1. Create a dedicated service account for the Cloud Run service and grant it the
    Vertex AI User role (`roles/aiplatform.user`) so it can invoke Gemini models:
    ```bash
@@ -155,11 +171,10 @@ context:
      --condition=None
    ```
 
-1. Deploy the service to Cloud Run from source. Cloud Build builds the
-   `Dockerfile` and deploys the resulting container image:
+1. Deploy the container image to Cloud Run:
    ```bash
    gcloud run deploy cloud-run-gemini \
-     --source . \
+     --image "${REGION}-docker.pkg.dev/${PROJECT_ID}/cloud-run-apps/cloud-run-gemini" \
      --region "${REGION}" \
      --service-account "cloud-run-gemini@${PROJECT_ID}.iam.gserviceaccount.com" \
      --no-allow-unauthenticated \
@@ -182,11 +197,13 @@ curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
 
 ## Clean up
 
-To avoid incurring ongoing charges, delete the Cloud Run service and service
-account when you are finished:
+To avoid incurring ongoing charges, delete the Cloud Run service, Artifact
+Registry repository, and service account when you are finished:
 
 ```bash
 gcloud run services delete cloud-run-gemini --region "${REGION}"
+
+gcloud artifacts repositories delete cloud-run-apps --location "${REGION}"
 
 gcloud projects remove-iam-policy-binding "${PROJECT_ID}" \
   --member="serviceAccount:cloud-run-gemini@${PROJECT_ID}.iam.gserviceaccount.com" \
