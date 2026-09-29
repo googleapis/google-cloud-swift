@@ -36,6 +36,7 @@ jobs:
           args=(
             --transform-for-static-hosting
             --disable-indexing
+            --warnings-as-errors
           )
           declare -A targets=(
             [UserGuide]=guide

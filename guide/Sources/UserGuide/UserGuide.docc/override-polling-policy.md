@@ -83,11 +83,11 @@ client configuration.
 
 ## Next steps
 
-* [Override the default endpoint](override-endpoint.md) describes how to change
+* [Override the default endpoint](<doc:override-endpoint>) describes how to change
   the default endpoint used by the Swift client libraries.
-* [Override the default credentials](override-credentials.md) describes how to
+* [Override the default credentials](<doc:override-credentials>) describes how to
   change the default credentials used by the Swift client libraries.
-* [Long-running operations](long-running-operations.md) describes how to make
+* [Long-running operations](<doc:long-running-operations>) describes how to make
   API requests that use long-running operations.
-* [Override the default retry policies](override-retry-policy.md) describes how
+* [Override the default retry policies](<doc:override-retry-policy>) describes how
   to change how the Swift client libraries retry failed requests.

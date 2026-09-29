@@ -46,11 +46,11 @@ polls until the operation completes, returning the created `Workflow` object.
 
 ## Next steps
 
-* [Override the default authentication credentials](override-credentials.md)
+* [Override the default authentication credentials](<doc:override-credentials>)
   describes how to configure custom credentials such as API keys.
-* [Override the default endpoint](override-endpoint.md) describes how to change
+* [Override the default endpoint](<doc:override-endpoint>) describes how to change
   the default endpoint used by the Swift client libraries.
-* [Override the default retry policies](override-retry-policy.md) describes how
+* [Override the default retry policies](<doc:override-retry-policy>) describes how
   to change how the Swift client libraries retry failed requests.
-* [Override the default polling policies](override-polling-policy.md) describes
+* [Override the default polling policies](<doc:override-polling-policy>) describes
   how to change how the Swift client libraries poll long-running operations.
