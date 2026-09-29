@@ -76,7 +76,7 @@ Clone the code and build/run the test:
 ```shell
 git clone https://github.com/googleapis/google-cloud-swift.git
 cd google-cloud-swift
-swift run -c release Endurance
+swift run -c release EnduranceRunner
 ```
 
 That should print some progress metrics every 10 seconds or so. If it fails to
@@ -87,13 +87,13 @@ Once it is working, run it in the background with the logs going to Cloud Loggin
 First, copy the binary to `/usr/local/bin`:
 
 ```shell
-sudo cp .build/release/Endurance /usr/local/bin/endurance-test
+sudo cp .build/release/EnduranceRunner /usr/local/bin/endurance-test
 ```
 
 Create the systemd user service unit:
 
 ```shell
-sed "s/@PROJECT@/$PROJECT_ID/" Tests/Endurance/endurance-test.service | sudo tee /etc/systemd/system/swift-endurance.service
+sed "s/@PROJECT@/$PROJECT_ID/" Sources/Endurance/endurance-test.service | sudo tee /etc/systemd/system/swift-endurance.service
 ```
 
 Start the program as a background service:

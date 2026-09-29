@@ -29,7 +29,7 @@ private let payloadData = Data("the quick brown fox jumps over the lazy dog".utf
 // and converting the CRC32C base64 output to hex or integer.
 private let payloadCrc32c: Int64 = 0x3c18f4d6
 
-enum EnduranceError: Error, CustomStringConvertible {
+enum EnduranceError: Error, CustomStringConvertible, Equatable {
   case missingProjectId
   case noEnduranceSecretsFound(projectId: String)
 
@@ -43,8 +43,14 @@ enum EnduranceError: Error, CustomStringConvertible {
   }
 }
 
-@main
-struct Endurance: AsyncParsableCommand, Sendable {
+public struct Endurance: AsyncParsableCommand, Sendable {
+  public static let configuration = CommandConfiguration(
+    commandName: "Endurance",
+    abstract: "Endurance test for the Google Cloud Secret Manager Swift client library."
+  )
+
+  public init() {}
+
   @Option(
     name: [.customLong("requests-per-minute"), .customLong("request-rate")],
     help: "The target request rate in requests per minute across all workers.",
@@ -58,15 +64,33 @@ struct Endurance: AsyncParsableCommand, Sendable {
   )
   var requestsPerMinute: Int = 80_000
 
-  func validate() throws {
+  @Option(
+    name: .customLong("iterations"),
+    help: "Optional maximum number of access iterations per worker before exiting."
+  )
+  var iterations: Int? = nil
+
+  public func validate() throws {
     guard requestsPerMinute > 0 else {
       throw ValidationError("requests-per-minute must be positive")
     }
+    if let iterations, iterations <= 0 {
+      throw ValidationError("iterations must be positive")
+    }
   }
 
-  func run() async throws {
+  public func run() async throws {
+    _ = try await run(secrets: nil)
+  }
+
+  @discardableResult
+  func run(secrets: [String]? = nil) async throws -> MetricsTracker {
     do {
-      try await startWorkers(requestsPerMinute: requestsPerMinute)
+      return try await startWorkers(
+        requestsPerMinute: requestsPerMinute,
+        iterations: iterations,
+        secrets: secrets
+      )
     } catch {
       reportError(error, task: "main")
       throw error
@@ -75,7 +99,7 @@ struct Endurance: AsyncParsableCommand, Sendable {
 }
 
 /// Helper to create a decorated retry policy for SecretManagerServiceClient methods.
-private func makeRetryPolicy(
+func makeRetryPolicy(
   methodName: String,
   counter: RetryAttemptCounter,
   task: String = "worker"
@@ -85,24 +109,32 @@ private func makeRetryPolicy(
 }
 
 /// Starts concurrent worker tasks for all endurance secrets found in the project.
-private func startWorkers(requestsPerMinute: Int) async throws {
-  let value = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]
-  guard let projectId = value, !projectId.isEmpty else {
-    throw EnduranceError.missingProjectId
-  }
-
+@discardableResult
+func startWorkers(
+  requestsPerMinute: Int,
+  iterations: Int? = nil,
+  secrets: [String]? = nil
+) async throws -> MetricsTracker {
   let clientOptions = ClientOptions().with {
     $0.retryPolicy = BaseRetryPolicy.defaultPolicy
   }
-  let discoveryClient = try SecretManagerServiceClient(clientOptions)
-
   let metrics = MetricsTracker()
 
-  let enduranceSecrets = try await getEnduranceSecrets(
-    client: discoveryClient,
-    projectId: projectId,
-    counter: metrics.retryAttempts
-  )
+  let enduranceSecrets: [String]
+  if let secrets, !secrets.isEmpty {
+    enduranceSecrets = secrets
+  } else {
+    let value = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]
+    guard let projectId = value, !projectId.isEmpty else {
+      throw EnduranceError.missingProjectId
+    }
+    let discoveryClient = try SecretManagerServiceClient(clientOptions)
+    enduranceSecrets = try await getEnduranceSecrets(
+      client: discoveryClient,
+      projectId: projectId,
+      counter: metrics.retryAttempts
+    )
+  }
   let totalWorkers = enduranceSecrets.count
   precondition(totalWorkers > 0, "totalWorkers must not be 0")
 
@@ -118,6 +150,7 @@ private func startWorkers(requestsPerMinute: Int) async throws {
             taskId: taskId,
             totalWorkers: totalWorkers,
             requestsPerMinute: requestsPerMinute,
+            iterations: iterations,
             metrics: metrics
           )
         } catch {
@@ -128,15 +161,17 @@ private func startWorkers(requestsPerMinute: Int) async throws {
     }
     try await group.waitForAll()
   }
+  return metrics
 }
 
 /// Continuously perform RPCs to a given secret.
-private func worker(
+func worker(
   client: SecretManagerServiceClient,
   secret: String,
   taskId: Int,
   totalWorkers: Int,
   requestsPerMinute: Int,
+  iterations: Int? = nil,
   metrics: MetricsTracker
 ) async throws {
   let taskName = "task[\(taskId)]"
@@ -159,9 +194,10 @@ private func worker(
   var lastReport = ContinuousClock.now
   var errorCount: UInt64 = 0
   var successCount: UInt64 = 0
-  var updateCount: UInt64 = 0
+  var updateCount: UInt64 = 1
+  var completedIterations = 0
 
-  while true {
+  while iterations == nil || completedIterations < iterations! {
     let now = ContinuousClock.now
     if now >= lastAddVersion + addVersionPeriod {
       do {
@@ -232,9 +268,22 @@ private func worker(
       reportError(error, task: taskName)
     }
 
+    completedIterations += 1
+    if let iterations, completedIterations >= iterations {
+      break
+    }
+
     if ContinuousClock.now < nextTargetTime {
       try await Task.sleep(until: nextTargetTime, clock: .continuous)
     }
+  }
+
+  if successCount > 0 || errorCount > 0 || updateCount > 0 {
+    _ = await metrics.record(
+      successes: successCount,
+      errors: errorCount,
+      updates: updateCount
+    )
   }
 }
 

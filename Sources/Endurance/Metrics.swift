@@ -16,41 +16,41 @@ import Foundation
 import Synchronization
 
 /// A thread-safe counter for tracking retry attempts across workers and retry policies.
-public final class RetryAttemptCounter: Sendable {
+final class RetryAttemptCounter: Sendable {
   private let count: Atomic<UInt64>
 
-  public init(initialValue: UInt64 = 0) {
+  init(initialValue: UInt64 = 0) {
     self.count = Atomic(initialValue)
   }
 
   /// Increments the retry attempt counter by 1.
-  public func recordRetryAttempt() {
+  func recordRetryAttempt() {
     count.add(1, ordering: .relaxed)
   }
 
   /// Increments the retry attempt counter by 1.
-  public func increment() {
+  func increment() {
     count.add(1, ordering: .relaxed)
   }
 
   /// The current number of retry attempts recorded.
-  public var value: UInt64 {
+  var value: UInt64 {
     count.load(ordering: .relaxed)
   }
 
   /// The current number of retry attempts recorded.
-  public var countValue: UInt64 {
+  var countValue: UInt64 {
     value
   }
 }
 
-public typealias RetryCounter = RetryAttemptCounter
+typealias RetryCounter = RetryAttemptCounter
 
 /// A thread-safe metrics tracker for aggregating request counts across concurrent workers.
 actor MetricsTracker {
-  private var totalSuccessCount: UInt64 = 0
-  private var totalErrorCount: UInt64 = 0
-  private var totalUpdateCount: UInt64 = 0
+  private(set) var totalSuccessCount: UInt64 = 0
+  private(set) var totalErrorCount: UInt64 = 0
+  private(set) var totalUpdateCount: UInt64 = 0
   let retryAttempts: RetryAttemptCounter
 
   init(retryAttempts: RetryAttemptCounter = RetryAttemptCounter()) {

@@ -188,7 +188,7 @@ let package = Package(
       path: "Tests/Auth",
       swiftSettings: [.strictMemorySafety()]
     ),
-    .executableTarget(
+    .target(
       name: "Endurance",
       dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
@@ -196,10 +196,26 @@ let package = Package(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
+      ],
+      path: "Sources/Endurance",
+      exclude: ["README.md", "endurance-test.service"],
+      swiftSettings: [.strictMemorySafety()]
+    ),
+    .executableTarget(
+      name: "EnduranceRunner",
+      dependencies: [
+        "Endurance"
+      ],
+      path: "Sources/EnduranceRunner",
+      swiftSettings: [.strictMemorySafety()]
+    ),
+    .testTarget(
+      name: "EnduranceTests",
+      dependencies: [
+        "Endurance",
         "GoogleCloudTestHelpers",
       ],
-      path: "Tests/Endurance",
-      exclude: ["README.md", "endurance-test.service"],
+      path: "Tests/EnduranceTests",
       swiftSettings: [.strictMemorySafety()]
     ),
     .executableTarget(

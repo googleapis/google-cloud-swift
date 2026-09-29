@@ -17,13 +17,13 @@ import GoogleGax
 
 /// A retry policy decorator that counts each retry attempt and logs errors with the retry attempt
 /// and the name of the method that failed.
-public struct RetryPolicyDecorator<P: RetryPolicy>: RetryPolicy {
-  public let inner: P
-  public let counter: RetryAttemptCounter
-  public let methodName: String
-  public let task: String
+struct RetryPolicyDecorator<P: RetryPolicy>: RetryPolicy {
+  let inner: P
+  let counter: RetryAttemptCounter
+  let methodName: String
+  let task: String
 
-  public init(
+  init(
     inner: P,
     counter: RetryAttemptCounter,
     methodName: String,
@@ -35,7 +35,7 @@ public struct RetryPolicyDecorator<P: RetryPolicy>: RetryPolicy {
     self.task = task
   }
 
-  public func onError(state: RetryState, error: RequestError) -> RetryResult {
+  func onError(state: RetryState, error: RequestError) -> RetryResult {
     let result = inner.onError(state: state, error: error)
     counter.recordRetryAttempt()
     switch result {
@@ -48,18 +48,18 @@ public struct RetryPolicyDecorator<P: RetryPolicy>: RetryPolicy {
     return result
   }
 
-  public func onThrottle(state: RetryState, error: RequestError) -> ThrottleResult {
+  func onThrottle(state: RetryState, error: RequestError) -> ThrottleResult {
     inner.onThrottle(state: state, error: error)
   }
 
-  public func remainingTime(state: RetryState) -> Duration? {
+  func remainingTime(state: RetryState) -> Duration? {
     inner.remainingTime(state: state)
   }
 }
 
 extension RetryPolicy {
   /// Decorates this retry policy to count retry attempts and log errors with method name and attempt count.
-  public func countedAndLogged(
+  func countedAndLogged(
     counter: RetryAttemptCounter,
     methodName: String,
     task: String = "worker"
