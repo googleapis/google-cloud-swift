@@ -225,6 +225,40 @@ cases:
 These convenience overloads keep common operations concise while retaining the
 full request struct methods for complex calls with multiple optional fields.
 
+### Why convenience overloads omit RequestOptions
+
+Generated convenience overloads intentionally omit the `options: RequestOptions`
+parameter:
+
+- **Simplicity and scope:** Convenience overloads are designed exclusively for
+  straightforward, high-frequency operations relying on default client settings.
+  When an application requires custom per-request options (such as custom
+  timeouts, retry policies, or credential overrides), it should use the primary
+  overload accepting the full request struct (`request:options:`).
+- **Parameter collision prevention:** Convenience methods unpack fields from the
+  underlying request struct into positional parameters. If a service definition
+  contains a field named `options`, adding an `options: RequestOptions` parameter
+  creates an ambiguous naming collision. Disambiguating parameter names across
+  hundreds of APIs in a backwards-compatible manner is fragile.
+- **Signature explosion:** Omitting `options:` variants keeps protocol definitions
+  and client implementations minimal and concise.
+
+### Optionality of message-typed parameters
+
+In positional convenience overloads, message-typed parameters remain `Optional`
+(for example, `secret: Secret?` in `createSecret` or `updateSecret`), even when
+the server requires the message for the RPC to succeed:
+
+- **Adherence to no client-side validation:** In accordance with our
+  [No client-side validation](#no-client-side-validation) principle, the SDK
+  validates only parameters necessary to form a valid HTTP/gRPC request (such as
+  URI path bindings). It does not validate payload completeness or semantic
+  correctness.
+- **Server authority and forward compatibility:** If a required message is
+  omitted (`nil`), the server returns an authoritative error. Enforcing
+  non-optionality in the client could cause breaking changes if the service
+  relaxes field requirements in the future.
+
 ## Major design decisions
 
 This section explains the rationale behind some of the major design choices in
@@ -551,6 +585,10 @@ Client-side validation cannot replace server-side checks in distributed systems:
 - **Forward compatibility:** When a required parameter becomes optional on the
   service, client-side validation would unnecessarily block valid requests until
   a new version of the client library is released.
+- **Message parameters in convenience overloads:** Positional convenience
+  methods retain `Optional` message types (e.g. `secret: Secret?`) rather than
+  enforcing non-nullability locally, relying on server validation for semantic
+  correctness.
 
 ### Localize error messages
 
