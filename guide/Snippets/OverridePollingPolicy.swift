@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// snippet.show
+// snippet.show [START swift_override_polling_policy_full]
 // snippet.imports
 import Foundation
 import GoogleGax
@@ -64,8 +64,7 @@ func sample(projectId: String, location: String, workflowId: String) async throw
     options: options)
   // snippet.end [END swift_override_polling_policy_request]
 }
-
-// snippet.hide
+// snippet.hide [END swift_override_polling_policy_full]
 @main struct SnippetRunner {
   static func main() async throws {
     try await sample(

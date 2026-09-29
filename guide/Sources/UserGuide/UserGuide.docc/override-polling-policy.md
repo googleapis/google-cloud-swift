@@ -6,18 +6,18 @@
     https://github.com/swiftlang/swift-docc/issues/685
 -->
 [Getting Started with Swift]: <doc:quickstart>
-[Long-running operations]: <doc:long-running-operations>
+[long-running operation]: <doc:long-running-operations>
+[AIP-151]: https://google.aip.dev/151
 [AIP-194]: https://google.aip.dev/194
 [Workflows API]: https://cloud.google.com/workflows
 [service quickstart]: https://cloud.google.com/workflows/docs/create-workflow-gcloud
 [exponential backoff]: https://en.wikipedia.org/wiki/Exponential_backoff
 
-When you use a `*PollingUntilDone` helper method on a
-[long-running operation][Long-running operations], the Swift client libraries
-automatically poll the service until the operation finishes. Some applications
-need different behavior: they may need to poll more frequently for fast
-operations, keep waiting longer for multi-hour operations, or fail faster when
-polling encounters errors. This guide shows you how to override the defaults.
+The Swift client libraries provide `*PollingUntilDone` methods to poll
+long-running operations until they complete. Some applications may need to
+change the default polling limits, the backoff intervals, and/or the type of
+polling errors that abort the polling loop. This guide shows you how to
+override the default settings in the client libraries.
 
 ## Prerequisites
 
@@ -29,14 +29,21 @@ For complete setup instructions for the Swift client libraries, see
 
 ## The default behavior
 
+Some Google Cloud APIs perform operations that take too long to finish in a
+single request-response cycle ([AIP-151]). Instead of blocking, the service
+starts a background task on the server and returns an operation object
+immediately. When you call a `*PollingUntilDone` helper method, the client
+starts the [long-running operation] and periodically polls the service to check
+the operation's state until it finishes.
+
 Each client is configured with two policies that together control how
 long-running operations are polled:
 
 * The *polling error policy* decides how long to keep polling an in-progress
   operation, and whether an error encountered while polling is transient or
   should stop the loop. By default it continues polling on [AIP-194] transient
-  errors (`UNAVAILABLE`), `TOO_MANY_REQUESTS` (`RESOURCE_EXHAUSTED`), and I/O
-  errors, stopping after 30 minutes.
+  errors, `TOO_MANY_REQUESTS` errors, and I/O errors, stopping after 30
+  minutes.
 * The *polling backoff policy* decides how long to wait between polling
   attempts. By default it uses truncated [exponential backoff] without jitter,
   starting at one second and doubling up to a maximum of five minutes.
