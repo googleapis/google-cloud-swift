@@ -1,5 +1,8 @@
 # Google Cloud Client Libraries for Swift - Well-Known Types (WKT)
 
+[![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-wkt%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/googleapis/swift-google-wkt)
+[![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-wkt%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/googleapis/swift-google-wkt)
+
 Idiomatic Swift implementations of Protocol Buffers Well-Known Types.
 
 ## Overview
@@ -17,25 +20,42 @@ API conventions and ProtoJSON mapping rules.
 
 ## Key Types
 
-- **`Timestamp`**: UTC point in time with nanosecond resolution covering years
+- **`WKTTimestamp`**: UTC point in time with nanosecond resolution covering years
   0001-01-01 to 9999-12-31. Serializes to and from RFC 3339 formatted strings
   (e.g., `"2026-09-03T19:48:28.000000000Z"`). Avoids the valid range and
   precision limits of `Foundation.Date`.
-- **`Duration`**: Signed, fixed-length time span with nanosecond resolution.
+- **`WKTDuration`**: Signed, fixed-length time span with nanosecond resolution.
   Serializes to and from decimal strings with an `"s"` suffix (e.g., `"3.5s"`).
-- **`FieldMask`**: Represents a set of symbolic field paths for partial update
+- **`WKTFieldMask`**: Represents a set of symbolic field paths for partial update
   requests and read projections. Automatically converts to and from
   comma-separated camelCase strings in JSON (e.g.,
   `"displayName,userProfile.avatarUrl"`).
-- **`Any`**: Container for arbitrary serialized messages accompanied by a
+- **`WKTAny`**: Container for arbitrary serialized messages accompanied by a
   `@type` URL identifier.
-- **`Struct`, `Value`, `ListValue`, `NullValue`**: Dynamic JSON-compatible data
-  structures for APIs that produce or consume unstructured payloads.
-- **Wrapper Types**: Swift typealiases for nullable primitive wrappers
-  (`StringValue`, `Int32Value`, `Int64Value`, `UInt32Value`, `UInt64Value`,
-  `FloatValue`, `DoubleValue`, `BoolValue`, `BytesValue`).
-- **`Recursive`**: Box wrapper enabling self-referential or recursively nested
-  fields in API models without infinite layout size.
+- **`WKTEmpty`**: An empty request or response message, automatically converted
+  to `Void` where appropriate by client libraries.
+
+### Embedded JSON Objects
+
+Some APIs use dynamic JSON-compatible data structures to represent parts of their
+request or response payloads:
+- `WKTStruct`, `WKTValue`, `WKTListValue`, `WKTNullValue`
+
+### Optional Primitive Values
+
+APIs using Protocol Buffers wrapper types represent optional or nullable fields via:
+- `WKTStringValue`, `WKTInt32Value`, `WKTInt64Value`, `WKTUInt32Value`, `WKTUInt64Value`
+- `WKTFloatValue`, `WKTDoubleValue`, `WKTBoolValue`, `WKTBytesValue`
+
+### Recursive Field Wrapper
+
+- **`WKTRecursive`**: Box wrapper enabling self-referential or recursively nested
+  fields in API models without infinite value type layout size.
+
+### API Introspection
+
+- **`WKTApi`**: Introspection types for services that consume or expose API definitions
+  as part of their operations.
 
 ## Requirements
 
@@ -59,55 +79,55 @@ swift package add-target-dependency GoogleWKT <target-name> --package swift-goog
 
 ## Usage
 
-### Timestamp
+### Timestamp (WKTTimestamp)
 
-`Timestamp` represents a point in time independent of timezone or calendar:
+`WKTTimestamp` represents a point in time independent of timezone or calendar:
 
 ```swift
 import Foundation
 import GoogleWKT
 
-// Create a Timestamp with seconds and nanoseconds
-let timestamp = try Timestamp(seconds: 1_700_000_000, nanos: 500_000_000)
+// Create a WKTTimestamp with seconds and nanoseconds
+let timestamp = try WKTTimestamp(seconds: 1_700_000_000, nanos: 500_000_000)
 print("Seconds: \(timestamp.seconds), Nanos: \(timestamp.nanos)")
 
 // Encodes to and decodes from RFC 3339 formatted JSON strings
 let encoder = JSONEncoder()
 let data = try encoder.encode(timestamp) // "2023-11-14T22:13:20.500000000Z"
 
-let decoded = try JSONDecoder().decode(Timestamp.self, from: data)
+let decoded = try JSONDecoder().decode(WKTTimestamp.self, from: data)
 ```
 
-### Duration
+### Duration (WKTDuration)
 
-`Duration` represents a fixed-length span of time:
+`WKTDuration` represents a fixed-length span of time:
 
 ```swift
 import Foundation
 import GoogleWKT
 
-// Create a Duration of 45.25 seconds
-let duration = try Duration(seconds: 45, nanos: 250_000_000)
+// Create a WKTDuration of 45.25 seconds
+let duration = try WKTDuration(seconds: 45, nanos: 250_000_000)
 
 // Encodes in JSON to "45.250000000s"
 let data = try JSONEncoder().encode(duration)
-let decoded = try JSONDecoder().decode(Duration.self, from: data)
+let decoded = try JSONDecoder().decode(WKTDuration.self, from: data)
 ```
 
-### FieldMask
+### FieldMask (WKTFieldMask)
 
-`FieldMask` is used for partial update operations and projection filters:
+`WKTFieldMask` is used for partial update operations and projection filters:
 
 ```swift
 import Foundation
 import GoogleWKT
 
 // Specify the paths to update
-let mask = FieldMask(paths: ["display_name", "billing_account.id"])
+let mask = WKTFieldMask(paths: ["display_name", "billing_account.id"])
 
 // Encodes in ProtoJSON as comma-separated camelCase: "displayName,billingAccountId"
 let data = try JSONEncoder().encode(mask)
-let decoded = try JSONDecoder().decode(FieldMask.self, from: data)
+let decoded = try JSONDecoder().decode(WKTFieldMask.self, from: data)
 ```
 
 ## See Also
