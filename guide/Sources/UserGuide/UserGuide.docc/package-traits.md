@@ -122,3 +122,4 @@ the corresponding client classes in two places:
   with Google Cloud client libraries.
 * <doc:override-endpoint> describes how to change the service endpoint.
 * <doc:override-retry-policy> describes how to configure retry policies.
+* <doc:override-polling-policy> describes how to configure polling policies.
