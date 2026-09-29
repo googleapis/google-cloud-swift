@@ -1,5 +1,5 @@
 {
-  "originHash" : "b5ab5e73d08855a818f248463174959c80e586acc4198f552cdb8808165ce367",
+  "originHash" : "43d18a7a521a4c42d55663ed0d2d4eb44a00db797d1d49ae787853626736b574",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -161,6 +161,69 @@
       "state" : {
         "revision" : "c803790ffc55c4b4f297f52ee6fbd5b0b3d046ef",
         "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swift-google-api",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-api",
+      "state" : {
+        "revision" : "4fa0442edec2e73da81c6a9e9dd26d69f2af00c7",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "swift-google-auth",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-auth",
+      "state" : {
+        "revision" : "5d9f6e6489af13870fb58fdfb7bc324b713c625e",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "swift-google-cloud-aiplatform-v1",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-cloud-aiplatform-v1",
+      "state" : {
+        "revision" : "68493ddfd6c4e1b3fd0794083d323c64dc20fe8d",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "swift-google-cloud-language-v2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-cloud-language-v2",
+      "state" : {
+        "revision" : "b4733a77c3ffa9e681ef3a7ade72fbc5f11b633e",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "swift-google-gax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-gax",
+      "state" : {
+        "revision" : "c3ac9bea6f4d66ec5852890bee208499a3fd3dbb",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "swift-google-rpc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-rpc",
+      "state" : {
+        "revision" : "b47f955c9384079c2970ce5d2012b0f789cd22be",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "swift-google-wkt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-wkt",
+      "state" : {
+        "revision" : "a7cf94e9996e30072c9c0aa0dcab11e11b4512dc",
+        "version" : "0.3.0"
       }
     },
     {
