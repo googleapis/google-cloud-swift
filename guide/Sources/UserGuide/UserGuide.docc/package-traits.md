@@ -16,7 +16,8 @@ services.
 To optimize build performance, Google Cloud client libraries for Swift use
 package traits to partition large libraries. Enabling a trait conditionally
 compiles the specific service client and all the types required to use that
-client.
+client. We enable package traits for large APIs to manage build overhead,
+though the exact threshold is subject to change.
 
 ## Default traits
 

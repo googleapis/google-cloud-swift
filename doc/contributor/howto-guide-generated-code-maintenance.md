@@ -50,6 +50,16 @@ git add .
 git commit -m "feat(kms/v1): generate library"
 ```
 
+### Package traits for large libraries
+
+For large APIs defining many independent services (such as Compute Engine or
+Vertex AI), we enable Swift package traits (`per_service_traits: true`) in
+`librarian.yaml` to reduce compile times and binary bloat. When traits are
+enabled, configure `default_traits` for commonly used services. We enable
+`per_service_traits` for large APIs, but the threshold is subject to change.
+See [Architecture Guide](../../ARCHITECTURE.md#package-traits-for-large-apis)
+for further details.
+
 ### Troubleshooting
 
 See the [playbook](librarian-playbook.md).

@@ -315,6 +315,45 @@ and issue tracking reside exclusively in the `google-cloud-swift` monorepo. Duri
 tooling (`librarian split` and `librarian publish`) extracts the package subtree and synchronizes commits
 to the corresponding standalone distribution repository.
 
+### Package traits for large APIs
+
+Several Google Cloud APIs define large numbers of independent services. For
+example, Google Compute Engine defines over 120 services, and Vertex AI defines
+over 30 services. Generating and compiling every client and its associated request,
+response, and model types in a single monolithic target results in long compile
+times and large symbol tables, even when an application only interacts with one or
+two services.
+
+To mitigate this build overhead, we enable Swift package traits
+(`per_service_traits: true` in `librarian.yaml`) for large APIs. Enabling a trait
+conditionally compiles the specific service client and all the types required to
+use that client.
+
+There are some downsides: the application developer has more configuration
+knobs to choose from. For that reason, we try to use this sparingly, only the
+largest libraries get this setting. When to enable this is a bit subjective,
+and we may change the threshold as we gain experience.
+
+Packages that use traits define a sensible set of default traits for commonly
+used services (such as `Instances` in Compute Engine). This ensures that standard
+package dependencies work out of the box without requiring callers to specify
+individual traits unless they need additional services.
+
+### Multi-client APIs and quickstart selection
+
+Several Google Cloud APIs define multiple distinct services within a single package.
+For example, Cloud Key Management Service (KMS) defines `AutokeyClient`,
+`AutokeyAdminClient`, `EkmServiceClient`, `HsmManagementClient`, and
+`KeyManagementServiceClient`.
+
+In multi-client packages, the code generator picks an arbitrary client (heuristically
+or through explicit quickstart configuration) to construct the package-level quickstart
+code sample. We do not document a "primary" or "recommended" client because we lack
+enough information from the service specifications to give a stronger recommendation.
+Instead, each client is listed neutrally with a concise description extracted from its
+service documentation comments, allowing callers to select the client that suits their
+use case.
+
 ### Handwritten vs. generated clients
 
 Most Google Cloud APIs are straightforward request-response or streaming
