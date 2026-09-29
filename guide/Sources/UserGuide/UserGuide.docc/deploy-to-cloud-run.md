@@ -103,10 +103,10 @@ runtime image:
 FROM swift:6.3-bookworm AS builder
 
 WORKDIR /app
-COPY . .
+COPY Package.* ./
 RUN swift package resolve
 
-COPY Sources ./Sources
+COPY . .
 RUN swift build -c release --static-swift-stdlib
 
 FROM debian:bookworm-slim
@@ -151,7 +151,8 @@ context:
 
    gcloud projects add-iam-policy-binding "${PROJECT_ID}" \
      --member="serviceAccount:cloud-run-gemini@${PROJECT_ID}.iam.gserviceaccount.com" \
-     --role="roles/aiplatform.user"
+     --role="roles/aiplatform.user" \
+     --condition=None
    ```
 
 1. Deploy the service to Cloud Run from source. Cloud Build builds the
@@ -181,9 +182,17 @@ curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
 
 ## Clean up
 
-To avoid incurring ongoing charges, delete the Cloud Run service when you are
-finished:
+To avoid incurring ongoing charges, delete the Cloud Run service and service
+account when you are finished:
 
 ```bash
 gcloud run services delete cloud-run-gemini --region "${REGION}"
+
+gcloud projects remove-iam-policy-binding "${PROJECT_ID}" \
+  --member="serviceAccount:cloud-run-gemini@${PROJECT_ID}.iam.gserviceaccount.com" \
+  --role="roles/aiplatform.user" \
+  --condition=None
+
+gcloud iam service-accounts delete \
+  "cloud-run-gemini@${PROJECT_ID}.iam.gserviceaccount.com"
 ```
