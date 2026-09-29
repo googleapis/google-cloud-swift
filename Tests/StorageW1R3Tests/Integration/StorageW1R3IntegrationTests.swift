@@ -13,20 +13,20 @@
 // limitations under the License.
 
 import Foundation
-import StorageW1R3
+@testable import StorageW1R3
 import Testing
 
 @Suite(.enabled(if: storageW1R3IntegrationEnabled()))
 struct StorageW1R3IntegrationTests {
   @Test func smoke() async throws {
     let bucketName = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_BUCKET"]!
-    let benchmark = StorageW1R3(
-      bucketName: bucketName,
-      minObjectSize: 0,
-      maxObjectSize: 16 * 1024,
-      taskCount: 1,
-      iterations: 4
-    )
+    let benchmark = StorageW1R3().with {
+      $0.bucketName = bucketName
+      $0.minObjectSize = 0
+      $0.maxObjectSize = 16 * 1024
+      $0.taskCount = 1
+      $0.iterations = 4
+    }
     let counters = try await benchmark.runBenchmark()
     #expect(await counters.sampleCount > 0)
     #expect(await counters.writeError == 0)

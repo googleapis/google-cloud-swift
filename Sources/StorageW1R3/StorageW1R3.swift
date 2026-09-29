@@ -48,36 +48,10 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
 
   public init() {}
 
-  public init(
-    bucketName: String = "",
-    minObjectSize: Int = 0,
-    maxObjectSize: Int = 128 * 1024,
-    taskCount: Int = 1,
-    iterations: Int = 1,
-    minDeleteBatch: Int = 20,
-    maxDeleteBatch: Int = 20,
-    rampupPeriod: Duration = .milliseconds(500),
-    readCount: Int = 3,
-    noDelete: Bool = false,
-    skipOkSamples: Bool = false,
-    clientCount: Int = 1,
-    controlClientCount: Int = 1,
-    crc32c: Crc32cOption = .always
-  ) {
-    self.bucketName = bucketName
-    self.minObjectSize = minObjectSize
-    self.maxObjectSize = maxObjectSize
-    self.taskCount = taskCount
-    self.iterations = iterations
-    self.minDeleteBatch = minDeleteBatch
-    self.maxDeleteBatch = maxDeleteBatch
-    self.rampupPeriod = rampupPeriod
-    self.readCount = readCount
-    self.noDelete = noDelete
-    self.skipOkSamples = skipOkSamples
-    self.clientCount = clientCount
-    self.controlClientCount = controlClientCount
-    self.crc32c = crc32c
+  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
+    var copy = self
+    try config(&copy)
+    return copy
   }
 
   public func run() async throws {
@@ -141,7 +115,7 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
     name: .customLong("bucket-name"),
     help: "The name of the GCS bucket used by the benchmark."
   )
-  public var bucketName: String
+  var bucketName: String
 
   @Option(
     name: .customLong("min-object-size"),
