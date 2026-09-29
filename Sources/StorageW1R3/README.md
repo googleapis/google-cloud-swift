@@ -35,7 +35,7 @@ these instructions may help:
 Start the program and use different files for `stdout` vs. `stderr`:
 
 ```shell
-TS=$(date +%s); swift run -c release StorageW1R3 \
+TS=$(date +%s); swift run -c release StorageW1R3Benchmark \
     --bucket-name ${BUCKET_NAME} --max-object-size 128KiB --task-count 4 \
     >bm-${TS}.txt 2>bm-${TS}.log </dev/null &
 ```

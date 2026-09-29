@@ -202,17 +202,32 @@ let package = Package(
       exclude: ["README.md", "endurance-test.service"],
       swiftSettings: [.strictMemorySafety()]
     ),
-    .executableTarget(
+    .target(
       name: "StorageW1R3",
       dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
         .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
-        .product(name: "Logging", package: "swift-log"),
       ],
-      path: "Tests/StorageW1R3",
+      path: "Sources/StorageW1R3",
       exclude: ["README.md"],
+      swiftSettings: [.strictMemorySafety()]
+    ),
+    .executableTarget(
+      name: "StorageW1R3Benchmark",
+      dependencies: [
+        "StorageW1R3"
+      ],
+      path: "Sources/StorageW1R3Benchmark",
+      swiftSettings: [.strictMemorySafety()]
+    ),
+    .testTarget(
+      name: "StorageW1R3Tests",
+      dependencies: [
+        "StorageW1R3"
+      ],
+      path: "Tests/StorageW1R3Tests",
       swiftSettings: [.strictMemorySafety()]
     ),
     .target(

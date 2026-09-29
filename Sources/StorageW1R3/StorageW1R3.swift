@@ -17,9 +17,8 @@ import Foundation
 import GoogleAuth
 import GoogleCloudStorage
 
-@main
-struct StorageW1R3: AsyncParsableCommand, Sendable {
-  static let configuration = CommandConfiguration(
+public struct StorageW1R3: AsyncParsableCommand, Sendable {
+  public static let configuration = CommandConfiguration(
     commandName: "StorageW1R3",
     abstract: "W1R3 Benchmark for Google Cloud Storage Swift client library.",
     discussion: """
@@ -47,7 +46,46 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
       """
   )
 
-  func run() async throws {
+  public init() {}
+
+  public init(
+    bucketName: String = "",
+    minObjectSize: Int = 0,
+    maxObjectSize: Int = 128 * 1024,
+    taskCount: Int = 1,
+    iterations: Int = 1,
+    minDeleteBatch: Int = 20,
+    maxDeleteBatch: Int = 20,
+    rampupPeriod: Duration = .milliseconds(500),
+    readCount: Int = 3,
+    noDelete: Bool = false,
+    skipOkSamples: Bool = false,
+    clientCount: Int = 1,
+    controlClientCount: Int = 1,
+    crc32c: Crc32cOption = .always
+  ) {
+    self.bucketName = bucketName
+    self.minObjectSize = minObjectSize
+    self.maxObjectSize = maxObjectSize
+    self.taskCount = taskCount
+    self.iterations = iterations
+    self.minDeleteBatch = minDeleteBatch
+    self.maxDeleteBatch = maxDeleteBatch
+    self.rampupPeriod = rampupPeriod
+    self.readCount = readCount
+    self.noDelete = noDelete
+    self.skipOkSamples = skipOkSamples
+    self.clientCount = clientCount
+    self.controlClientCount = controlClientCount
+    self.crc32c = crc32c
+  }
+
+  public func run() async throws {
+    _ = try await self.runBenchmark()
+  }
+
+  @discardableResult
+  public func runBenchmark() async throws -> BenchmarkCounters {
     logToStderr(
       "# Starting W1R3 benchmark with bucket: \(bucketName), tasks: \(taskCount), iterations: \(iterations)"
     )
@@ -96,13 +134,14 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
 
     let finalSummary = await counters.formattedDescription()
     logToStderr("DONE. Final \(finalSummary)")
+    return counters
   }
 
   @Option(
     name: .customLong("bucket-name"),
     help: "The name of the GCS bucket used by the benchmark."
   )
-  var bucketName: String
+  public var bucketName: String
 
   @Option(
     name: .customLong("min-object-size"),
@@ -196,7 +235,7 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
     }
   }
 
-  func validate() throws {
+  public func validate() throws {
     guard minObjectSize <= maxObjectSize else {
       throw ValidationError(
         "Invalid object size range: min (\(minObjectSize)) > max (\(maxObjectSize))")
@@ -223,12 +262,12 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
   }
 }
 
-enum Crc32cOption: String, ExpressibleByArgument, CaseIterable, Sendable {
+public enum Crc32cOption: String, ExpressibleByArgument, CaseIterable, Sendable {
   case always
   case random
   case never
 
-  init?(argument: String) {
+  public init?(argument: String) {
     switch argument.lowercased() {
     case "always", "enabled", "true":
       self = .always
