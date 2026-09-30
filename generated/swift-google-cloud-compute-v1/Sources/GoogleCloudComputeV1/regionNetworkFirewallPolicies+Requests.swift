@@ -25,6 +25,11 @@
     public struct AddAssociationRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
+      /// Name of the firewall policy associated with the target network to swap
+      /// association with. This field is mutually exclusive with
+      /// 'replace_existing_association'.
+      public var associatedPolicyToBeReplaced: Swift.String? = nil
+
       /// Name of the firewall policy to update.
       public var firewallPolicy: Swift.String = Swift.String()
 
@@ -69,7 +74,7 @@
       /// Commonly used to initialize the value, for example:
       ///
       /// ```
-      /// let value = AddAssociationRequest().with { $0.firewallPolicy = ... }
+      /// let value = AddAssociationRequest().with { $0.associatedPolicyToBeReplaced = ... }
       /// ```
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
@@ -83,6 +88,8 @@
         init(stringValue: Swift.String) { self.stringValue = stringValue }
         init?(intValue: Swift.Int) { nil }
 
+        static let associatedPolicyToBeReplaced = CodingKeys(
+          stringValue: "associatedPolicyToBeReplaced")
         static let firewallPolicy = CodingKeys(stringValue: "firewallPolicy")
         static let project = CodingKeys(stringValue: "project")
         static let region = CodingKeys(stringValue: "region")
@@ -92,6 +99,7 @@
         static let body = CodingKeys(stringValue: "body")
 
         static let _knownKeys: Set<Swift.String> = [
+          "associatedPolicyToBeReplaced",
           "firewallPolicy",
           "project",
           "region",
@@ -103,6 +111,8 @@
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.associatedPolicyToBeReplaced = try container.decodeIfPresent(
+          Swift.String.self, forKey: .associatedPolicyToBeReplaced)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .firewallPolicy) {
           self.firewallPolicy = value
         }
@@ -124,6 +134,8 @@
 
       public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(
+          self.associatedPolicyToBeReplaced, forKey: .associatedPolicyToBeReplaced)
         try container.encode(self.firewallPolicy, forKey: .firewallPolicy)
         try container.encode(self.project, forKey: .project)
         try container.encode(self.region, forKey: .region)
@@ -1179,14 +1191,6 @@
       /// Name of the region scoping this request.
       public var region: Swift.String = Swift.String()
 
-      /// Opt-in for partial success behavior which provides partial results in case
-      /// of failure. The default value is false.
-      ///
-      /// For example, when partial success behavior is enabled, aggregatedList for a
-      /// single zone scope either returns all resources in the zone or no resources,
-      /// with an error code.
-      public var returnPartialSuccess: Swift.Bool? = nil
-
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ListRequest`.
@@ -1217,7 +1221,6 @@
         static let pageToken = CodingKeys(stringValue: "pageToken")
         static let project = CodingKeys(stringValue: "project")
         static let region = CodingKeys(stringValue: "region")
-        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
 
         static let _knownKeys: Set<Swift.String> = [
           "filter",
@@ -1226,7 +1229,6 @@
           "pageToken",
           "project",
           "region",
-          "returnPartialSuccess",
         ]
       }
 
@@ -1242,8 +1244,6 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
           self.region = value
         }
-        self.returnPartialSuccess = try container.decodeIfPresent(
-          Swift.Bool.self, forKey: .returnPartialSuccess)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -1258,7 +1258,6 @@
         try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
         try container.encode(self.project, forKey: .project)
         try container.encode(self.region, forKey: .region)
-        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -1384,6 +1383,123 @@
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRequest"
+      }
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// Synthetic request message for the [patchAssociation()][google.cloud.compute.v1.regionNetworkFirewallPolicies.patchAssociation] method.
+    ///
+    /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patchAssociation]: <doc:RegionNetworkFirewallPoliciesClient/patchAssociation(request:options:)>
+    public struct PatchAssociationRequest: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Name of the firewall policy to update.
+      public var firewallPolicy: Swift.String = Swift.String()
+
+      /// Project ID for this request.
+      public var project: Swift.String = Swift.String()
+
+      /// Name of the region scoping this request.
+      public var region: Swift.String = Swift.String()
+
+      /// An optional request ID to identify requests. Specify a unique request ID so
+      /// that if you must retry your request, the server will know to ignore the
+      /// request if it has already been completed.
+      ///
+      /// For example, consider a situation where you make an initial request and
+      /// the request times out. If you make the request again with the same
+      /// request ID, the server can check if original operation with the same
+      /// request ID was received, and if so, will ignore the second request. This
+      /// prevents clients from accidentally creating duplicate commitments.
+      ///
+      /// The request ID must be
+      /// a valid UUID with the exception that zero UUID is not supported
+      /// (00000000-0000-0000-0000-000000000000).
+      public var requestId: Swift.String? = nil
+
+      /// Synthetic request body field for the [patchAssociation()][google.cloud.compute.v1.regionNetworkFirewallPolicies.patchAssociation] method.
+      ///
+      /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patchAssociation]: <doc:RegionNetworkFirewallPoliciesClient/patchAssociation(request:options:)>
+      public var body: FirewallPolicyAssociation? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `PatchAssociationRequest`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = PatchAssociationRequest().with { $0.firewallPolicy = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let firewallPolicy = CodingKeys(stringValue: "firewallPolicy")
+        static let project = CodingKeys(stringValue: "project")
+        static let region = CodingKeys(stringValue: "region")
+        static let requestId = CodingKeys(stringValue: "requestId")
+        static let body = CodingKeys(stringValue: "body")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "firewallPolicy",
+          "project",
+          "region",
+          "requestId",
+          "body",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .firewallPolicy) {
+          self.firewallPolicy = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+          self.region = value
+        }
+        self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
+        self.body = try container.decodeIfPresent(FirewallPolicyAssociation.self, forKey: .body)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.firewallPolicy, forKey: .firewallPolicy)
+        try container.encode(self.project, forKey: .project)
+        try container.encode(self.region, forKey: .region)
+        try container.encodeIfPresent(self.requestId, forKey: .requestId)
+        try container.encodeIfPresent(self.body, forKey: .body)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.patchAssociationRequest"
       }
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)

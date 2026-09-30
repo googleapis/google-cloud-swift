@@ -52,7 +52,8 @@
             let path =
               "/compute/v1/locations/global/securityPolicies/\(pathVariable0)/addAssociation"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(
@@ -107,7 +108,8 @@
             }
             let path = "/compute/v1/locations/global/securityPolicies/\(pathVariable0)/addRule"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -159,7 +161,8 @@
             }
             let path = "/compute/v1/locations/global/securityPolicies/\(pathVariable0)/copyRules"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -210,7 +213,8 @@
             }
             let path = "/compute/v1/locations/global/securityPolicies/\(pathVariable0)"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -258,7 +262,8 @@
             }
             let path = "/compute/v1/locations/global/securityPolicies/\(pathVariable0)"
             let query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -306,7 +311,8 @@
             let path =
               "/compute/v1/locations/global/securityPolicies/\(pathVariable0)/getAssociation"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.name, prefix: "name"))
@@ -355,7 +361,8 @@
             }
             let path = "/compute/v1/locations/global/securityPolicies/\(pathVariable0)/getRule"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.priority, prefix: "priority"))
@@ -395,7 +402,8 @@
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             let path = "/compute/v1/locations/global/securityPolicies"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.parentId, prefix: "parentId"))
@@ -432,7 +440,8 @@
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             let path = "/compute/v1/locations/global/securityPolicies"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -440,9 +449,6 @@
             query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
             query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
             query.append(contentsOf: try encoder.encode(request.parentId, prefix: "parentId"))
-            query.append(
-              contentsOf: try encoder.encode(
-                request.returnPartialSuccess, prefix: "returnPartialSuccess"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -473,7 +479,8 @@
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             let path = "/compute/v1/locations/global/securityPolicies/listAssociations"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(
@@ -511,7 +518,8 @@
             let path =
               "/compute/v1/locations/global/securityPolicies/listPreconfiguredExpressionSets"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -519,9 +527,6 @@
             query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
             query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
             query.append(contentsOf: try encoder.encode(request.parentId, prefix: "parentId"))
-            query.append(
-              contentsOf: try encoder.encode(
-                request.returnPartialSuccess, prefix: "returnPartialSuccess"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -560,7 +565,8 @@
             }
             let path = "/compute/v1/locations/global/securityPolicies/\(pathVariable0)/move"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.parentId, prefix: "parentId"))
@@ -609,7 +615,8 @@
             }
             let path = "/compute/v1/locations/global/securityPolicies/\(pathVariable0)"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -661,7 +668,8 @@
             }
             let path = "/compute/v1/locations/global/securityPolicies/\(pathVariable0)/patchRule"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.priority, prefix: "priority"))
@@ -715,7 +723,8 @@
             let path =
               "/compute/v1/locations/global/securityPolicies/\(pathVariable0)/removeAssociation"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.name, prefix: "name"))
@@ -765,7 +774,8 @@
             }
             let path = "/compute/v1/locations/global/securityPolicies/\(pathVariable0)/removeRule"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.priority, prefix: "priority"))

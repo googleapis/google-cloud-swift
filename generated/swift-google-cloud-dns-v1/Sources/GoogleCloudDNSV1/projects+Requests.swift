@@ -22,9 +22,6 @@ extension ProjectsClient {
   public struct GetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-    public var clientOperationId: Swift.String? = nil
-
     /// Identifies the project addressed by this request.
     public var project: Swift.String = Swift.String()
 
@@ -38,7 +35,7 @@ extension ProjectsClient {
     /// Commonly used to initialize the value, for example:
     ///
     /// ```
-    /// let value = GetRequest().with { $0.clientOperationId = ... }
+    /// let value = GetRequest().with { $0.project = ... }
     /// ```
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
@@ -52,19 +49,15 @@ extension ProjectsClient {
       init(stringValue: Swift.String) { self.stringValue = stringValue }
       init?(intValue: Swift.Int) { nil }
 
-      static let clientOperationId = CodingKeys(stringValue: "clientOperationId")
       static let project = CodingKeys(stringValue: "project")
 
       static let _knownKeys: Set<Swift.String> = [
-        "clientOperationId",
-        "project",
+        "project"
       ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.clientOperationId = try container.decodeIfPresent(
-        Swift.String.self, forKey: .clientOperationId)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
         self.project = value
       }
@@ -76,7 +69,6 @@ extension ProjectsClient {
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.project, forKey: .project)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -300,6 +300,56 @@
       return try await poller.wait()
     }
 
+    /// Sets name of an interconnect.
+    ///
+    /// @Snippet(path: "interconnects_setName")
+    public func setName(
+      request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      try await self.inner.setName(request: request, options: options)
+    }
+
+    /// Sets name of an interconnect.
+    ///
+    /// @Snippet(path: "interconnects_setName")
+    public func setNamePollingUntilDone(
+      request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      let extractStatus = {
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        guard op._done() else {
+          return .init(done: false, result: nil)
+        }
+
+        do {
+          try op._detectErrors()
+        } catch let e as GoogleGax.RequestError {
+          return .init(done: true, result: .failure(e))
+        }
+        return .init(done: true, result: .success(op))
+      }
+      let rawOp = try await self.setName(request: request, options: options)
+      let initialState = try extractStatus(rawOp)
+      let poll = {
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        let op = try await self.getOperation(
+          request: .init().with {
+            $0.operation = rawOp._name()
+            $0.project = request.project
+          }, options: options)
+        return try extractStatus(op)
+      }
+      let poller = GoogleGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
+      return try await poller.wait()
+    }
+
     /// Retrieves the specified Operations resource.
     ///
     /// @Snippet(path: "interconnects_getOperation")
@@ -375,6 +425,16 @@
       /// See `InterconnectsClient.setLabels`.
       func setLabelsPollingUntilDone(
         request: InterconnectsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InterconnectsClient.setName`.
+      func setName(
+        request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InterconnectsClient.setName`.
+      func setNamePollingUntilDone(
+        request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
     }
   }
@@ -634,6 +694,43 @@
         $0.body = body
       }
       return try await self.setLabelsPollingUntilDone(request: request)
+    }
+
+    public func setName(request: InterconnectsClient.SetNameRequest) async throws
+      -> GoogleCloudComputeV1.Operation
+    {
+      try await self.setName(request: request, options: .init())
+    }
+
+    public func setName(
+      request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func setNamePollingUntilDone(
+      request: InterconnectsClient.SetNameRequest
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setNamePollingUntilDone(request: request, options: .init())
+    }
+
+    public func setNamePollingUntilDone(
+      request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func setNamePollingUntilDone(
+      project: Swift.String,
+      interconnect: Swift.String,
+      body: InterconnectsSetNameRequest?,
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      let request = InterconnectsClient.SetNameRequest().with {
+        $0.project = project
+        $0.interconnect = interconnect
+        $0.body = body
+      }
+      return try await self.setNamePollingUntilDone(request: request)
     }
 
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws

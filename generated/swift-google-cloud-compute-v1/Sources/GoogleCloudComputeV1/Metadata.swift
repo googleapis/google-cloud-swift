@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if InstanceTemplates || Instances || MachineImages || Projects || RegionInstanceTemplates || RegionInstances
+#if InstanceTemplates || Instances || MachineImages || ProjectViews || Projects || RegionInstanceTemplates || RegionInstances
   public import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

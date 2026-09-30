@@ -911,14 +911,6 @@
       /// parent is an organization.
       public var parentId: Swift.String? = nil
 
-      /// Opt-in for partial success behavior which provides partial results in case
-      /// of failure. The default value is false.
-      ///
-      /// For example, when partial success behavior is enabled, aggregatedList for a
-      /// single zone scope either returns all resources in the zone or no resources,
-      /// with an error code.
-      public var returnPartialSuccess: Swift.Bool? = nil
-
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ListRequest`.
@@ -948,7 +940,6 @@
         static let orderBy = CodingKeys(stringValue: "orderBy")
         static let pageToken = CodingKeys(stringValue: "pageToken")
         static let parentId = CodingKeys(stringValue: "parentId")
-        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
 
         static let _knownKeys: Set<Swift.String> = [
           "filter",
@@ -956,7 +947,6 @@
           "orderBy",
           "pageToken",
           "parentId",
-          "returnPartialSuccess",
         ]
       }
 
@@ -967,8 +957,6 @@
         self.orderBy = try container.decodeIfPresent(Swift.String.self, forKey: .orderBy)
         self.pageToken = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken)
         self.parentId = try container.decodeIfPresent(Swift.String.self, forKey: .parentId)
-        self.returnPartialSuccess = try container.decodeIfPresent(
-          Swift.Bool.self, forKey: .returnPartialSuccess)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -982,7 +970,6 @@
         try container.encodeIfPresent(self.orderBy, forKey: .orderBy)
         try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
         try container.encodeIfPresent(self.parentId, forKey: .parentId)
-        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

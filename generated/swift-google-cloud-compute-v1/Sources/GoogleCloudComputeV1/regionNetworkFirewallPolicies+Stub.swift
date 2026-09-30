@@ -78,6 +78,11 @@
         request: RegionNetworkFirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      func patchAssociation(
+        request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation
+
       func patchRule(
         request: RegionNetworkFirewallPoliciesClient.PatchRuleRequest,
         options: GoogleGax.RequestOptions

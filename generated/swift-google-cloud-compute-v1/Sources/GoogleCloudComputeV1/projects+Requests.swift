@@ -629,14 +629,6 @@
       /// Project ID for this request.
       public var project: Swift.String = Swift.String()
 
-      /// Opt-in for partial success behavior which provides partial results in case
-      /// of failure. The default value is false.
-      ///
-      /// For example, when partial success behavior is enabled, aggregatedList for a
-      /// single zone scope either returns all resources in the zone or no resources,
-      /// with an error code.
-      public var returnPartialSuccess: Swift.Bool? = nil
-
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `GetXpnResourcesRequest`.
@@ -666,7 +658,6 @@
         static let orderBy = CodingKeys(stringValue: "orderBy")
         static let pageToken = CodingKeys(stringValue: "pageToken")
         static let project = CodingKeys(stringValue: "project")
-        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
 
         static let _knownKeys: Set<Swift.String> = [
           "filter",
@@ -674,7 +665,6 @@
           "orderBy",
           "pageToken",
           "project",
-          "returnPartialSuccess",
         ]
       }
 
@@ -687,8 +677,6 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
           self.project = value
         }
-        self.returnPartialSuccess = try container.decodeIfPresent(
-          Swift.Bool.self, forKey: .returnPartialSuccess)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -702,7 +690,6 @@
         try container.encodeIfPresent(self.orderBy, forKey: .orderBy)
         try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
         try container.encode(self.project, forKey: .project)
-        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -813,14 +800,6 @@
       /// Project ID for this request.
       public var project: Swift.String = Swift.String()
 
-      /// Opt-in for partial success behavior which provides partial results in case
-      /// of failure. The default value is false.
-      ///
-      /// For example, when partial success behavior is enabled, aggregatedList for a
-      /// single zone scope either returns all resources in the zone or no resources,
-      /// with an error code.
-      public var returnPartialSuccess: Swift.Bool? = nil
-
       /// Synthetic request body field for the [listXpnHosts()][google.cloud.compute.v1.projects.listXpnHosts] method.
       ///
       /// [google.cloud.compute.v1.projects.listXpnHosts]: <doc:ProjectsClient/listXpnHosts(request:options:)>
@@ -855,7 +834,6 @@
         static let orderBy = CodingKeys(stringValue: "orderBy")
         static let pageToken = CodingKeys(stringValue: "pageToken")
         static let project = CodingKeys(stringValue: "project")
-        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
         static let body = CodingKeys(stringValue: "body")
 
         static let _knownKeys: Set<Swift.String> = [
@@ -864,7 +842,6 @@
           "orderBy",
           "pageToken",
           "project",
-          "returnPartialSuccess",
           "body",
         ]
       }
@@ -878,8 +855,6 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
           self.project = value
         }
-        self.returnPartialSuccess = try container.decodeIfPresent(
-          Swift.Bool.self, forKey: .returnPartialSuccess)
         self.body = try container.decodeIfPresent(ProjectsListXpnHostsRequest.self, forKey: .body)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
@@ -894,7 +869,6 @@
         try container.encodeIfPresent(self.orderBy, forKey: .orderBy)
         try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
         try container.encode(self.project, forKey: .project)
-        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
         try container.encodeIfPresent(self.body, forKey: .body)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

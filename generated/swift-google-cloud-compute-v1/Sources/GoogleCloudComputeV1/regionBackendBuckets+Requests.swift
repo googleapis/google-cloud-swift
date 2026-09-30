@@ -518,14 +518,6 @@
       /// Name of the region of this request.
       public var region: Swift.String = Swift.String()
 
-      /// Opt-in for partial success behavior which provides partial results in case
-      /// of failure. The default value is false.
-      ///
-      /// For example, when partial success behavior is enabled, aggregatedList for a
-      /// single zone scope either returns all resources in the zone or no resources,
-      /// with an error code.
-      public var returnPartialSuccess: Swift.Bool? = nil
-
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ListRequest`.
@@ -556,7 +548,6 @@
         static let pageToken = CodingKeys(stringValue: "pageToken")
         static let project = CodingKeys(stringValue: "project")
         static let region = CodingKeys(stringValue: "region")
-        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
 
         static let _knownKeys: Set<Swift.String> = [
           "filter",
@@ -565,7 +556,6 @@
           "pageToken",
           "project",
           "region",
-          "returnPartialSuccess",
         ]
       }
 
@@ -581,8 +571,6 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
           self.region = value
         }
-        self.returnPartialSuccess = try container.decodeIfPresent(
-          Swift.Bool.self, forKey: .returnPartialSuccess)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -597,7 +585,6 @@
         try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
         try container.encode(self.project, forKey: .project)
         try container.encode(self.region, forKey: .region)
-        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -712,14 +699,6 @@
       /// It must be a string that meets the requirements in RFC1035.
       public var region: Swift.String = Swift.String()
 
-      /// Opt-in for partial success behavior which provides partial results in case
-      /// of failure. The default value is false.
-      ///
-      /// For example, when partial success behavior is enabled, aggregatedList for a
-      /// single zone scope either returns all resources in the zone or no resources,
-      /// with an error code.
-      public var returnPartialSuccess: Swift.Bool? = nil
-
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
       /// Initialize a new instance of `ListUsableRequest`.
@@ -750,7 +729,6 @@
         static let pageToken = CodingKeys(stringValue: "pageToken")
         static let project = CodingKeys(stringValue: "project")
         static let region = CodingKeys(stringValue: "region")
-        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
 
         static let _knownKeys: Set<Swift.String> = [
           "filter",
@@ -759,7 +737,6 @@
           "pageToken",
           "project",
           "region",
-          "returnPartialSuccess",
         ]
       }
 
@@ -775,8 +752,6 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
           self.region = value
         }
-        self.returnPartialSuccess = try container.decodeIfPresent(
-          Swift.Bool.self, forKey: .returnPartialSuccess)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -791,7 +766,6 @@
         try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
         try container.encode(self.project, forKey: .project)
         try container.encode(self.region, forKey: .region)
-        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

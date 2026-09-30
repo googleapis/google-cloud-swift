@@ -47,12 +47,9 @@ extension Clients {
             return nil
           }
           let path = "/dns/v1/projects/\(pathVariable0)"
-          var query = [
+          let query = [
             URLQueryItem(name: "$alt", value: "json")
           ]
-          let encoder = GoogleGax._QueryParameterEncoder()
-          query.append(
-            contentsOf: try encoder.encode(request.clientOperationId, prefix: "clientOperationId"))
           return (path, query)
         }() {
           return (candidate.0, candidate.1, { $0.setMethod(.GET) })

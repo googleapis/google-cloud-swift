@@ -415,6 +415,59 @@
       return try await poller.wait()
     }
 
+    /// Updates an association for the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patchAssociation")
+    public func patchAssociation(
+      request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
+      options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      try await self.inner.patchAssociation(request: request, options: options)
+    }
+
+    /// Updates an association for the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patchAssociation")
+    public func patchAssociationPollingUntilDone(
+      request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
+      options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      let extractStatus = {
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        guard op._done() else {
+          return .init(done: false, result: nil)
+        }
+
+        do {
+          try op._detectErrors()
+        } catch let e as GoogleGax.RequestError {
+          return .init(done: true, result: .failure(e))
+        }
+        return .init(done: true, result: .success(op))
+      }
+      let rawOp = try await self.patchAssociation(request: request, options: options)
+      let initialState = try extractStatus(rawOp)
+      let poll = {
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        let op = try await self.getOperation(
+          request: .init().with {
+            $0.operation = rawOp._name()
+            $0.project = request.project
+            $0.region = request.region
+          }, options: options)
+        return try extractStatus(op)
+      }
+      let poller = GoogleGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
+      return try await poller.wait()
+    }
+
     /// Patches a rule of the specified priority.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_patchRule")
@@ -715,6 +768,18 @@
       /// See `RegionNetworkFirewallPoliciesClient.patch`.
       func patchPollingUntilDone(
         request: RegionNetworkFirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionNetworkFirewallPoliciesClient.patchAssociation`.
+      func patchAssociation(
+        request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionNetworkFirewallPoliciesClient.patchAssociation`.
+      func patchAssociationPollingUntilDone(
+        request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
+        options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionNetworkFirewallPoliciesClient.patchRule`.
@@ -1178,6 +1243,47 @@
         $0.body = body
       }
       return try await self.patchPollingUntilDone(request: request)
+    }
+
+    public func patchAssociation(
+      request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      try await self.patchAssociation(request: request, options: .init())
+    }
+
+    public func patchAssociation(
+      request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
+      options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func patchAssociationPollingUntilDone(
+      request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.patchAssociationPollingUntilDone(request: request, options: .init())
+    }
+
+    public func patchAssociationPollingUntilDone(
+      request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
+      options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func patchAssociationPollingUntilDone(
+      project: Swift.String,
+      region: Swift.String,
+      firewallPolicy: Swift.String,
+      body: FirewallPolicyAssociation?,
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      let request = RegionNetworkFirewallPoliciesClient.PatchAssociationRequest().with {
+        $0.project = project
+        $0.region = region
+        $0.firewallPolicy = firewallPolicy
+        $0.body = body
+      }
+      return try await self.patchAssociationPollingUntilDone(request: request)
     }
 
     public func patchRule(request: RegionNetworkFirewallPoliciesClient.PatchRuleRequest)

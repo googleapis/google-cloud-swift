@@ -151,7 +151,7 @@
     /// resource types.
     ///
     ///  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-    ///  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+    ///  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T,STORAGE_OPTIMIZED_Z4M. For
     /// example, type MEMORY_OPTIMIZED specifies a commitment that
     /// applies only to eligible resources of memory optimized M1 and M2 machine
     /// series. Type GENERAL_PURPOSE specifies a commitment that
@@ -575,6 +575,14 @@
       /// CUD bucket for NETWORK_OPTIMIZED_U4S machines.
       case networkOptimizedU4S
       case storageOptimizedZ3
+      /// CUD bucket for Z4D-4T machines.
+      case storageOptimizedZ4D4T
+      /// CUD bucket for Z4DH machines.
+      case storageOptimizedZ4Dh
+      /// CUD bucket for Z4DS machines.
+      case storageOptimizedZ4Ds
+      /// CUD bucket for Z4M (bare metal) machines.
+      case storageOptimizedZ4M
       /// Note for internal users: When adding a new enum Type for v1, make sure
       /// to also add it in the comment for the `optional Type type` definition.
       /// This ensures that the public documentation displays the new enum Type.
@@ -635,6 +643,10 @@
         case .networkOptimizedU4P: return "NETWORK_OPTIMIZED_U4P"
         case .networkOptimizedU4S: return "NETWORK_OPTIMIZED_U4S"
         case .storageOptimizedZ3: return "STORAGE_OPTIMIZED_Z3"
+        case .storageOptimizedZ4D4T: return "STORAGE_OPTIMIZED_Z4D4T"
+        case .storageOptimizedZ4Dh: return "STORAGE_OPTIMIZED_Z4DH"
+        case .storageOptimizedZ4Ds: return "STORAGE_OPTIMIZED_Z4DS"
+        case .storageOptimizedZ4M: return "STORAGE_OPTIMIZED_Z4M"
         case .unspecified: return "TYPE_UNSPECIFIED"
         case .unknownStringValue(let v): return v
         }
@@ -688,6 +700,10 @@
         case "NETWORK_OPTIMIZED_U4P": self = .networkOptimizedU4P
         case "NETWORK_OPTIMIZED_U4S": self = .networkOptimizedU4S
         case "STORAGE_OPTIMIZED_Z3": self = .storageOptimizedZ3
+        case "STORAGE_OPTIMIZED_Z4D4T": self = .storageOptimizedZ4D4T
+        case "STORAGE_OPTIMIZED_Z4DH": self = .storageOptimizedZ4Dh
+        case "STORAGE_OPTIMIZED_Z4DS": self = .storageOptimizedZ4Ds
+        case "STORAGE_OPTIMIZED_Z4M": self = .storageOptimizedZ4M
         case "TYPE_UNSPECIFIED": self = .unspecified
         default: self = .unknownStringValue(stringValue)
         }
@@ -747,6 +763,10 @@
         case .networkOptimizedU4P: return try container.encode("NETWORK_OPTIMIZED_U4P")
         case .networkOptimizedU4S: return try container.encode("NETWORK_OPTIMIZED_U4S")
         case .storageOptimizedZ3: return try container.encode("STORAGE_OPTIMIZED_Z3")
+        case .storageOptimizedZ4D4T: return try container.encode("STORAGE_OPTIMIZED_Z4D4T")
+        case .storageOptimizedZ4Dh: return try container.encode("STORAGE_OPTIMIZED_Z4DH")
+        case .storageOptimizedZ4Ds: return try container.encode("STORAGE_OPTIMIZED_Z4DS")
+        case .storageOptimizedZ4M: return try container.encode("STORAGE_OPTIMIZED_Z4M")
         case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
         case .unknownStringValue(let v): return try container.encode(v)
         }

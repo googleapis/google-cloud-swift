@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if Projects
+#if ProjectViews || Projects
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

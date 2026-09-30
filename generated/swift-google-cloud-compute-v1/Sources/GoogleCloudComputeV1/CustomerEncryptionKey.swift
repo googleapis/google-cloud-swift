@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if Disks || ImageFamilyViews || Images || InstanceTemplates || Instances || MachineImages || RegionDisks || RegionInstanceTemplates || RegionInstances || RegionSnapshots || Snapshots
+#if Disks || ImageFamilyViews || ImageViews || Images || InstanceGroupManagers || InstanceTemplates || Instances || MachineImages || RegionDisks || RegionInstanceGroupManagers || RegionInstanceTemplates || RegionInstances || RegionSnapshots || Snapshots
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

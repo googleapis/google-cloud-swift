@@ -59,7 +59,8 @@
             let path =
               "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/advice/calendarMode"
             let query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -93,6 +94,136 @@
         }
         return try await req.rpc(
           GoogleCloudComputeV1.CalendarModeAdviceResponse.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
+      public func capacity(
+        request: AdviceClient.CapacityRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.CapacityAdviceResponse {
+        let (path, query, configure) = try {
+          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
+          in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.region as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "region")
+            else {
+              return nil
+            }
+            let path =
+              "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/advice/capacity"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.region as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "region",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+        if let body = request.body {
+          try req.setBody(json: body)
+        }
+        return try await req.rpc(
+          GoogleCloudComputeV1.CapacityAdviceResponse.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
+      public func capacityHistory(
+        request: AdviceClient.CapacityHistoryRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.CapacityHistoryResponse {
+        let (path, query, configure) = try {
+          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
+          in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.region as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "region")
+            else {
+              return nil
+            }
+            let path =
+              "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/advice/capacityHistory"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.region as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "region",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+        if let body = request.body {
+          try req.setBody(json: body)
+        }
+        return try await req.rpc(
+          GoogleCloudComputeV1.CapacityHistoryResponse.self, timeout: options.attemptTimeout
         ).get()
       }
     }

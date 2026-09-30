@@ -22,8 +22,15 @@
       ._AnyPackable,
     Sendable
   {
+    /// List of disks to be attached to the instance.
+    public var disks: [AttachedDisk] = []
+
     /// Output only. The machine type to be used for this instance.
     public var machineType: Swift.String? = nil
+
+    /// Name of the minimum CPU platform to be used by this instance.
+    /// e.g. 'Intel Ice Lake'.
+    public var minCpuPlatform: Swift.String? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -35,7 +42,7 @@
     /// Commonly used to initialize the value, for example:
     ///
     /// ```
-    /// let value = ManagedInstancePropertiesFromFlexibilityPolicy().with { $0.machineType = ... }
+    /// let value = ManagedInstancePropertiesFromFlexibilityPolicy().with { $0.disks = ... }
     /// ```
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
@@ -49,16 +56,25 @@
       init(stringValue: Swift.String) { self.stringValue = stringValue }
       init?(intValue: Swift.Int) { nil }
 
+      static let disks = CodingKeys(stringValue: "disks")
       static let machineType = CodingKeys(stringValue: "machineType")
+      static let minCpuPlatform = CodingKeys(stringValue: "minCpuPlatform")
 
       static let _knownKeys: Set<Swift.String> = [
-        "machineType"
+        "disks",
+        "machineType",
+        "minCpuPlatform",
       ]
     }
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent([AttachedDisk].self, forKey: .disks) {
+        self.disks = value
+      }
       self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
+      self.minCpuPlatform = try container.decodeIfPresent(
+        Swift.String.self, forKey: .minCpuPlatform)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -67,7 +83,9 @@
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.disks, forKey: .disks)
       try container.encodeIfPresent(self.machineType, forKey: .machineType)
+      try container.encodeIfPresent(self.minCpuPlatform, forKey: .minCpuPlatform)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

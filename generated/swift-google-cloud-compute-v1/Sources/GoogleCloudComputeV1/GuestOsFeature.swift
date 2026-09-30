@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if Disks || ImageFamilyViews || Images || InstanceTemplates || Instances || MachineImages || RegionDisks || RegionInstanceTemplates || RegionInstances || RegionSnapshots || Snapshots
+#if Disks || ImageFamilyViews || ImageViews || Images || InstanceGroupManagers || InstanceTemplates || Instances || MachineImages || RegionDisks || RegionInstanceGroupManagers || RegionInstanceTemplates || RegionInstances || RegionSnapshots || Snapshots
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
@@ -104,6 +104,9 @@
     ///   them to named cases.
     public enum Type_: Codable, Equatable, Hashable, Sendable {
       case bareMetalLinuxCompatible
+      /// Indicates the guest OS is capable of Bare Metal Secure AI (BMSAI)
+      /// confidential computing.
+      case bmsaiCapable
       case ccaCapable
       case featureTypeUnspecified
       case gvnic
@@ -136,6 +139,7 @@
       public var stringValue: Swift.String {
         switch self {
         case .bareMetalLinuxCompatible: return "BARE_METAL_LINUX_COMPATIBLE"
+        case .bmsaiCapable: return "BMSAI_CAPABLE"
         case .ccaCapable: return "CCA_CAPABLE"
         case .featureTypeUnspecified: return "FEATURE_TYPE_UNSPECIFIED"
         case .gvnic: return "GVNIC"
@@ -162,6 +166,7 @@
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "BARE_METAL_LINUX_COMPATIBLE": self = .bareMetalLinuxCompatible
+        case "BMSAI_CAPABLE": self = .bmsaiCapable
         case "CCA_CAPABLE": self = .ccaCapable
         case "FEATURE_TYPE_UNSPECIFIED": self = .featureTypeUnspecified
         case "GVNIC": self = .gvnic
@@ -192,6 +197,7 @@
         var container = encoder.singleValueContainer()
         switch self {
         case .bareMetalLinuxCompatible: return try container.encode("BARE_METAL_LINUX_COMPATIBLE")
+        case .bmsaiCapable: return try container.encode("BMSAI_CAPABLE")
         case .ccaCapable: return try container.encode("CCA_CAPABLE")
         case .featureTypeUnspecified: return try container.encode("FEATURE_TYPE_UNSPECIFIED")
         case .gvnic: return try container.encode("GVNIC")

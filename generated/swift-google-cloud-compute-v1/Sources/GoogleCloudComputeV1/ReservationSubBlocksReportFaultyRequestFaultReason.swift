@@ -95,6 +95,12 @@
       case faultBehaviorUnspecified
       /// The subBlock experienced a GPU error.
       case gpuError
+      /// The subBlock experienced an NVSwitch controller error.
+      case nvswitchFaultControllerError
+      /// The subBlock experienced NVSwitch degraded bandwidth.
+      case nvswitchFaultDegradedBandwidth
+      /// The subBlock experienced an NVSwitch switch error.
+      case nvswitchFaultSwitchError
       /// The subBlock experienced performance issues.
       case performance
       /// The subBlock experienced silent data corruption.
@@ -116,6 +122,9 @@
         switch self {
         case .faultBehaviorUnspecified: return "FAULT_BEHAVIOR_UNSPECIFIED"
         case .gpuError: return "GPU_ERROR"
+        case .nvswitchFaultControllerError: return "NVSWITCH_FAULT_CONTROLLER_ERROR"
+        case .nvswitchFaultDegradedBandwidth: return "NVSWITCH_FAULT_DEGRADED_BANDWIDTH"
+        case .nvswitchFaultSwitchError: return "NVSWITCH_FAULT_SWITCH_ERROR"
         case .performance: return "PERFORMANCE"
         case .silentDataCorruption: return "SILENT_DATA_CORRUPTION"
         case .switchFailure: return "SWITCH_FAILURE"
@@ -130,6 +139,9 @@
         switch stringValue {
         case "FAULT_BEHAVIOR_UNSPECIFIED": self = .faultBehaviorUnspecified
         case "GPU_ERROR": self = .gpuError
+        case "NVSWITCH_FAULT_CONTROLLER_ERROR": self = .nvswitchFaultControllerError
+        case "NVSWITCH_FAULT_DEGRADED_BANDWIDTH": self = .nvswitchFaultDegradedBandwidth
+        case "NVSWITCH_FAULT_SWITCH_ERROR": self = .nvswitchFaultSwitchError
         case "PERFORMANCE": self = .performance
         case "SILENT_DATA_CORRUPTION": self = .silentDataCorruption
         case "SWITCH_FAILURE": self = .switchFailure
@@ -148,6 +160,11 @@
         switch self {
         case .faultBehaviorUnspecified: return try container.encode("FAULT_BEHAVIOR_UNSPECIFIED")
         case .gpuError: return try container.encode("GPU_ERROR")
+        case .nvswitchFaultControllerError:
+          return try container.encode("NVSWITCH_FAULT_CONTROLLER_ERROR")
+        case .nvswitchFaultDegradedBandwidth:
+          return try container.encode("NVSWITCH_FAULT_DEGRADED_BANDWIDTH")
+        case .nvswitchFaultSwitchError: return try container.encode("NVSWITCH_FAULT_SWITCH_ERROR")
         case .performance: return try container.encode("PERFORMANCE")
         case .silentDataCorruption: return try container.encode("SILENT_DATA_CORRUPTION")
         case .switchFailure: return try container.encode("SWITCH_FAILURE")

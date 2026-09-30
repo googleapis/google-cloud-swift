@@ -32,7 +32,6 @@ public struct ResourceRecordSet: Codable, Equatable, GoogleWKT._AnyPackable,
   /// As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.
   public var rrdatas: [Swift.String] = []
 
-  /// As defined in RFC 4034 (section 3.2).
   public var signatureRrdatas: [Swift.String] = []
 
   /// Number of seconds that this `ResourceRecordSet` can be cached by resolvers.

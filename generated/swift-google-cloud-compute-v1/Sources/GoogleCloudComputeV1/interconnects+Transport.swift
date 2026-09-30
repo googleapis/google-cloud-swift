@@ -58,7 +58,8 @@
             }
             let path = "/compute/v1/projects/\(pathVariable0)/global/interconnects/\(pathVariable1)"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -120,7 +121,8 @@
             }
             let path = "/compute/v1/projects/\(pathVariable0)/global/interconnects/\(pathVariable1)"
             let query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -181,7 +183,8 @@
             let path =
               "/compute/v1/projects/\(pathVariable0)/global/interconnects/\(pathVariable1)/getDiagnostics"
             let query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -243,7 +246,8 @@
             let path =
               "/compute/v1/projects/\(pathVariable0)/global/interconnects/\(pathVariable1)/getMacsecConfig"
             let query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -296,7 +300,8 @@
             }
             let path = "/compute/v1/projects/\(pathVariable0)/global/interconnects"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -347,16 +352,14 @@
             }
             let path = "/compute/v1/projects/\(pathVariable0)/global/interconnects"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
             query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
             query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
             query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-            query.append(
-              contentsOf: try encoder.encode(
-                request.returnPartialSuccess, prefix: "returnPartialSuccess"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -409,7 +412,8 @@
             }
             let path = "/compute/v1/projects/\(pathVariable0)/global/interconnects/\(pathVariable1)"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -475,7 +479,8 @@
             let path =
               "/compute/v1/projects/\(pathVariable0)/global/interconnects/\(pathVariable1)/setLabels"
             let query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -494,6 +499,73 @@
               request.resource as Swift.String?,
               matching: [.singleWildcard],
               fieldName: "resource",
+              expecting: "*"
+            )
+            paths.append(builder.build())
+          }
+          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+        }()
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
+        configure(&req)
+        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+        if let body = request.body {
+          try req.setBody(json: body)
+        }
+        return try await req.rpc(
+          GoogleCloudComputeV1.Operation.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
+      @concurrent
+      public func setName(
+        request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation {
+        let (path, query, configure) = try {
+          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
+          in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+                request.project as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "project")
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = try GoogleGax._RoutingMatcher.pathValue(
+                request.interconnect as Swift.String?,
+                matching: [.singleWildcard],
+                fieldName: "interconnect")
+            else {
+              return nil
+            }
+            let path =
+              "/compute/v1/projects/\(pathVariable0)/global/interconnects/\(pathVariable1)/setName"
+            var query = [
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
+            ]
+            let encoder = GoogleGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
+          }
+          var paths: [GoogleGax.PathMismatch] = []
+          do {
+            var builder = GoogleGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.interconnect as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "interconnect",
               expecting: "*"
             )
             paths.append(builder.build())

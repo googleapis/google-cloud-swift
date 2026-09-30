@@ -70,6 +70,36 @@
             return try await self.inner.calendarMode(request: r, options: o)
           })
       }
+
+      public func capacity(
+        request: AdviceClient.CapacityRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.CapacityAdviceResponse {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "capacity",
+          action: {
+            (r: AdviceClient.CapacityRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudComputeV1.CapacityAdviceResponse
+            in
+            return try await self.inner.capacity(request: r, options: o)
+          })
+      }
+
+      public func capacityHistory(
+        request: AdviceClient.CapacityHistoryRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.CapacityHistoryResponse {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "capacityHistory",
+          action: {
+            (r: AdviceClient.CapacityHistoryRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudComputeV1.CapacityHistoryResponse
+            in
+            return try await self.inner.capacityHistory(request: r, options: o)
+          })
+      }
     }
   }
 #endif

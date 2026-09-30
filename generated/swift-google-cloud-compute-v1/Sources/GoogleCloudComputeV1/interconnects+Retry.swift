@@ -168,6 +168,21 @@
           })
       }
 
+      public func setName(
+        request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation {
+        return try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: false,
+          action: {
+            (r: InterconnectsClient.SetNameRequest, o: GoogleGax.RequestOptions) async throws
+              -> GoogleCloudComputeV1.Operation
+            in
+            return try await self.inner.setName(request: r, options: o)
+          })
+      }
+
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

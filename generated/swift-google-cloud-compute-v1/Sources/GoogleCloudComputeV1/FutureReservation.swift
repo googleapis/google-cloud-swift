@@ -46,6 +46,11 @@
     /// to false.
     public var autoDeleteAutoCreatedReservations: Swift.Bool? = nil
 
+    /// Full or partial URL of an existing future reservation to indicate
+    /// intent for reserving capacity in the same cluster as the colocation
+    /// resource.
+    public var colocationResource: Swift.String? = nil
+
     /// If not present, then FR will not deliver a new commitment or update an
     /// existing commitment.
     public var commitmentInfo: FutureReservationCommitmentInfo? = nil
@@ -183,6 +188,7 @@
         stringValue: "autoCreatedReservationsDuration")
       static let autoDeleteAutoCreatedReservations = CodingKeys(
         stringValue: "autoDeleteAutoCreatedReservations")
+      static let colocationResource = CodingKeys(stringValue: "colocationResource")
       static let commitmentInfo = CodingKeys(stringValue: "commitmentInfo")
       static let confidentialComputeType = CodingKeys(stringValue: "confidentialComputeType")
       static let creationTimestamp = CodingKeys(stringValue: "creationTimestamp")
@@ -216,6 +222,7 @@
         "autoCreatedReservationsDeleteTime",
         "autoCreatedReservationsDuration",
         "autoDeleteAutoCreatedReservations",
+        "colocationResource",
         "commitmentInfo",
         "confidentialComputeType",
         "creationTimestamp",
@@ -255,6 +262,8 @@
         GoogleCloudComputeV1.Duration.self, forKey: .autoCreatedReservationsDuration)
       self.autoDeleteAutoCreatedReservations = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .autoDeleteAutoCreatedReservations)
+      self.colocationResource = try container.decodeIfPresent(
+        Swift.String.self, forKey: .colocationResource)
       self.commitmentInfo = try container.decodeIfPresent(
         FutureReservationCommitmentInfo.self, forKey: .commitmentInfo)
       self.confidentialComputeType = try container.decodeIfPresent(
@@ -311,6 +320,7 @@
         self.autoCreatedReservationsDuration, forKey: .autoCreatedReservationsDuration)
       try container.encodeIfPresent(
         self.autoDeleteAutoCreatedReservations, forKey: .autoDeleteAutoCreatedReservations)
+      try container.encodeIfPresent(self.colocationResource, forKey: .colocationResource)
       try container.encodeIfPresent(self.commitmentInfo, forKey: .commitmentInfo)
       try container.encodeIfPresent(self.confidentialComputeType, forKey: .confidentialComputeType)
       try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)

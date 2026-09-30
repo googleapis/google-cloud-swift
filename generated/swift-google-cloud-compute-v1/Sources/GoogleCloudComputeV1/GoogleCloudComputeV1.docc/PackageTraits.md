@@ -32,6 +32,7 @@ To enable additional traits alongside the defaults, specify them in `Package.swi
 | `FutureReservations` | No | ``FutureReservationsClient`` |
 | `GlobalAddresses` | No | ``GlobalAddressesClient`` |
 | `GlobalForwardingRules` | No | ``GlobalForwardingRulesClient`` |
+| `GlobalFrontendSettings` | No | ``GlobalFrontendSettingsClient`` |
 | `GlobalNetworkEndpointGroups` | No | ``GlobalNetworkEndpointGroupsClient`` |
 | `GlobalOperations` | No | ``GlobalOperationsClient`` |
 | `GlobalOrganizationOperations` | No | ``GlobalOrganizationOperationsClient`` |
@@ -42,6 +43,7 @@ To enable additional traits alongside the defaults, specify them in `Package.swi
 | `HttpHealthChecks` | No | ``HttpHealthChecksClient`` |
 | `HttpsHealthChecks` | No | ``HttpsHealthChecksClient`` |
 | `ImageFamilyViews` | No | ``ImageFamilyViewsClient`` |
+| `ImageViews` | No | ``ImageViewsClient`` |
 | `Images` | No | ``ImagesClient`` |
 | `InstanceGroupManagerResizeRequests` | No | ``InstanceGroupManagerResizeRequestsClient`` |
 | `InstanceGroupManagers` | No | ``InstanceGroupManagersClient`` |
@@ -61,6 +63,7 @@ To enable additional traits alongside the defaults, specify them in `Package.swi
 | `Licenses` | No | ``LicensesClient`` |
 | `MachineImages` | No | ``MachineImagesClient`` |
 | `MachineTypes` | No | ``MachineTypesClient`` |
+| `ManagedRulesets` | No | ``ManagedRulesetsClient`` |
 | `NetworkAttachments` | No | ``NetworkAttachmentsClient`` |
 | `NetworkEdgeSecurityServices` | No | ``NetworkEdgeSecurityServicesClient`` |
 | `NetworkEndpointGroups` | No | ``NetworkEndpointGroupsClient`` |
@@ -73,6 +76,7 @@ To enable additional traits alongside the defaults, specify them in `Package.swi
 | `OrganizationSecurityPolicies` | No | ``OrganizationSecurityPoliciesClient`` |
 | `PacketMirrorings` | No | ``PacketMirroringsClient`` |
 | `PreviewFeatures` | No | ``PreviewFeaturesClient`` |
+| `ProjectViews` | No | ``ProjectViewsClient`` |
 | `Projects` | No | ``ProjectsClient`` |
 | `PublicAdvertisedPrefixes` | No | ``PublicAdvertisedPrefixesClient`` |
 | `PublicDelegatedPrefixes` | No | ``PublicDelegatedPrefixesClient`` |

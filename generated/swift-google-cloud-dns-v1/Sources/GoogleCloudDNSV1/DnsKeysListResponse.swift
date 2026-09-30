@@ -25,7 +25,7 @@ public struct DnsKeysListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The requested resources.
   public var dnsKeys: [DnsKey] = []
 
-  /// Type of resource.
+  /// Output only. Type of resource.
   public var kind: Swift.String? = nil
 
   /// This field indicates that more results are available beyond the last page displayed. To fetch the results, make another list request and use this value as your page token. This lets you retrieve the complete contents of a very large collection one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You can't retrieve a consistent snapshot of a collection larger than the maximum page size.

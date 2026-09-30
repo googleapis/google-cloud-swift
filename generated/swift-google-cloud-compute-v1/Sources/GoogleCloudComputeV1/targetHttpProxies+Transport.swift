@@ -50,7 +50,8 @@
             }
             let path = "/compute/v1/projects/\(pathVariable0)/aggregated/targetHttpProxies"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
@@ -59,9 +60,6 @@
             query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
             query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
             query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-            query.append(
-              contentsOf: try encoder.encode(
-                request.returnPartialSuccess, prefix: "returnPartialSuccess"))
             query.append(
               contentsOf: try encoder.encode(
                 request.serviceProjectNumber, prefix: "serviceProjectNumber"))
@@ -118,7 +116,8 @@
             let path =
               "/compute/v1/projects/\(pathVariable0)/global/targetHttpProxies/\(pathVariable1)"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -181,7 +180,8 @@
             let path =
               "/compute/v1/projects/\(pathVariable0)/global/targetHttpProxies/\(pathVariable1)"
             let query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {
@@ -233,7 +233,8 @@
             }
             let path = "/compute/v1/projects/\(pathVariable0)/global/targetHttpProxies"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -284,16 +285,14 @@
             }
             let path = "/compute/v1/projects/\(pathVariable0)/global/targetHttpProxies"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
             query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
             query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
             query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-            query.append(
-              contentsOf: try encoder.encode(
-                request.returnPartialSuccess, prefix: "returnPartialSuccess"))
             return (path, query)
           }() {
             return (candidate.0, candidate.1, { $0.setMethod(.GET) })
@@ -347,7 +346,8 @@
             let path =
               "/compute/v1/projects/\(pathVariable0)/global/targetHttpProxies/\(pathVariable1)"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
@@ -413,7 +413,8 @@
             let path =
               "/compute/v1/projects/\(pathVariable0)/targetHttpProxies/\(pathVariable1)/setUrlMap"
             var query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             let encoder = GoogleGax._QueryParameterEncoder()
             query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))

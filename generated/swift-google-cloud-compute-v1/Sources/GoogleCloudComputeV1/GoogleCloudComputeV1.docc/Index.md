@@ -5,7 +5,7 @@ Creates and runs virtual machines on Google Cloud Platform.
 
 ## Overview
 
-This client library was generated from the "20260821" revision of the API.
+This client library was generated from the "20260922" revision of the API.
 
 The following types provide methods to make RPCs. They are a good starting point
 to learn about this library.
@@ -26,6 +26,7 @@ to learn about this library.
 - ``FutureReservationsClient``: Service for the futureReservations resource. (enabled by the `FutureReservations` trait)
 - ``GlobalAddressesClient``: Service for the globalAddresses resource. (enabled by the `GlobalAddresses` trait)
 - ``GlobalForwardingRulesClient``: Service for the globalForwardingRules resource. (enabled by the `GlobalForwardingRules` trait)
+- ``GlobalFrontendSettingsClient``: Service for the globalFrontendSettings resource. (enabled by the `GlobalFrontendSettings` trait)
 - ``GlobalNetworkEndpointGroupsClient``: Service for the globalNetworkEndpointGroups resource. (enabled by the `GlobalNetworkEndpointGroups` trait)
 - ``GlobalOperationsClient``: Service for the globalOperations resource. (enabled by the `GlobalOperations` trait)
 - ``GlobalOrganizationOperationsClient``: Service for the globalOrganizationOperations resource. (enabled by the `GlobalOrganizationOperations` trait)
@@ -36,6 +37,7 @@ to learn about this library.
 - ``HttpHealthChecksClient``: Service for the httpHealthChecks resource. (enabled by the `HttpHealthChecks` trait)
 - ``HttpsHealthChecksClient``: Service for the httpsHealthChecks resource. (enabled by the `HttpsHealthChecks` trait)
 - ``ImageFamilyViewsClient``: Service for the imageFamilyViews resource. (enabled by the `ImageFamilyViews` trait)
+- ``ImageViewsClient``: Service for the imageViews resource. (enabled by the `ImageViews` trait)
 - ``ImagesClient``: Service for the images resource. (enabled by the `Images` trait)
 - ``InstanceGroupManagerResizeRequestsClient``: Service for the instanceGroupManagerResizeRequests resource. (enabled by the `InstanceGroupManagerResizeRequests` trait)
 - ``InstanceGroupManagersClient``: Service for the instanceGroupManagers resource. (enabled by the `InstanceGroupManagers` trait)
@@ -55,6 +57,7 @@ to learn about this library.
 - ``LicensesClient``: Service for the licenses resource. (enabled by the `Licenses` trait)
 - ``MachineImagesClient``: Service for the machineImages resource. (enabled by the `MachineImages` trait)
 - ``MachineTypesClient``: Service for the machineTypes resource. (enabled by the `MachineTypes` trait)
+- ``ManagedRulesetsClient``: Service for the managedRulesets resource. (enabled by the `ManagedRulesets` trait)
 - ``NetworkAttachmentsClient``: Service for the networkAttachments resource. (enabled by the `NetworkAttachments` trait)
 - ``NetworkEdgeSecurityServicesClient``: Service for the networkEdgeSecurityServices resource. (enabled by the `NetworkEdgeSecurityServices` trait)
 - ``NetworkEndpointGroupsClient``: Service for the networkEndpointGroups resource. (enabled by the `NetworkEndpointGroups` trait)
@@ -67,6 +70,7 @@ to learn about this library.
 - ``OrganizationSecurityPoliciesClient``: Service for the organizationSecurityPolicies resource. (enabled by the `OrganizationSecurityPolicies` trait)
 - ``PacketMirroringsClient``: Service for the packetMirrorings resource. (enabled by the `PacketMirrorings` trait)
 - ``PreviewFeaturesClient``: Service for the previewFeatures resource. (enabled by the `PreviewFeatures` trait)
+- ``ProjectViewsClient``: Service for the projectViews resource. (enabled by the `ProjectViews` trait)
 - ``ProjectsClient``: Service for the projects resource. (enabled by the `Projects` trait)
 - ``PublicAdvertisedPrefixesClient``: Service for the publicAdvertisedPrefixes resource. (enabled by the `PublicAdvertisedPrefixes` trait)
 - ``PublicDelegatedPrefixesClient``: Service for the publicDelegatedPrefixes resource. (enabled by the `PublicDelegatedPrefixes` trait)

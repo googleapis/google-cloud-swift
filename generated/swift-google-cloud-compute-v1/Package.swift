@@ -112,6 +112,9 @@ let package = Package(
       ]
     ),
     .trait(
+      name: "GlobalFrontendSettings",
+    ),
+    .trait(
       name: "GlobalNetworkEndpointGroups",
       enabledTraits: [
         "GlobalOperations"
@@ -161,6 +164,9 @@ let package = Package(
     ),
     .trait(
       name: "ImageFamilyViews",
+    ),
+    .trait(
+      name: "ImageViews",
     ),
     .trait(
       name: "Images",
@@ -265,6 +271,9 @@ let package = Package(
       name: "MachineTypes",
     ),
     .trait(
+      name: "ManagedRulesets",
+    ),
+    .trait(
       name: "NetworkAttachments",
       enabledTraits: [
         "RegionOperations"
@@ -329,6 +338,9 @@ let package = Package(
       enabledTraits: [
         "GlobalOperations"
       ]
+    ),
+    .trait(
+      name: "ProjectViews",
     ),
     .trait(
       name: "Projects",

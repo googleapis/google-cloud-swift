@@ -106,5 +106,182 @@
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
+
+    /// Synthetic request message for the [capacity()][google.cloud.compute.v1.advice.capacity] method.
+    ///
+    /// [google.cloud.compute.v1.advice.capacity]: <doc:AdviceClient/capacity(request:options:)>
+    public struct CapacityRequest: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Project ID for this request.
+      public var project: Swift.String = Swift.String()
+
+      /// Name of the region for this request.
+      public var region: Swift.String = Swift.String()
+
+      /// Synthetic request body field for the [capacity()][google.cloud.compute.v1.advice.capacity] method.
+      ///
+      /// [google.cloud.compute.v1.advice.capacity]: <doc:AdviceClient/capacity(request:options:)>
+      public var body: CapacityAdviceRequest? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `CapacityRequest`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = CapacityRequest().with { $0.project = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let project = CodingKeys(stringValue: "project")
+        static let region = CodingKeys(stringValue: "region")
+        static let body = CodingKeys(stringValue: "body")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "project",
+          "region",
+          "body",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+          self.region = value
+        }
+        self.body = try container.decodeIfPresent(CapacityAdviceRequest.self, forKey: .body)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.project, forKey: .project)
+        try container.encode(self.region, forKey: .region)
+        try container.encodeIfPresent(self.body, forKey: .body)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.compute.v1.advice.capacityRequest"
+      }
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// Synthetic request message for the [capacityHistory()][google.cloud.compute.v1.advice.capacityHistory] method.
+    ///
+    /// [google.cloud.compute.v1.advice.capacityHistory]: <doc:AdviceClient/capacityHistory(request:options:)>
+    public struct CapacityHistoryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// Project ID for this request.
+      public var project: Swift.String = Swift.String()
+
+      /// Name of the region for this request.
+      public var region: Swift.String = Swift.String()
+
+      /// Synthetic request body field for the [capacityHistory()][google.cloud.compute.v1.advice.capacityHistory] method.
+      ///
+      /// [google.cloud.compute.v1.advice.capacityHistory]: <doc:AdviceClient/capacityHistory(request:options:)>
+      public var body: GoogleCloudComputeV1.CapacityHistoryRequest? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `CapacityHistoryRequest`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = CapacityHistoryRequest().with { $0.project = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let project = CodingKeys(stringValue: "project")
+        static let region = CodingKeys(stringValue: "region")
+        static let body = CodingKeys(stringValue: "body")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "project",
+          "region",
+          "body",
+        ]
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
+          self.project = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
+          self.region = value
+        }
+        self.body = try container.decodeIfPresent(
+          GoogleCloudComputeV1.CapacityHistoryRequest.self, forKey: .body)
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.project, forKey: .project)
+        try container.encode(self.region, forKey: .region)
+        try container.encodeIfPresent(self.body, forKey: .body)
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.compute.v1.advice.capacityHistoryRequest"
+      }
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
   }
 #endif

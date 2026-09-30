@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if AcceleratorTypes || DiskTypes || ImageFamilyViews || Images || MachineTypes || NodeTypes || RegionDiskTypes || RegionZones || Regions || StoragePoolTypes || Zones
+#if AcceleratorTypes || DiskTypes || ImageFamilyViews || ImageViews || Images || MachineTypes || NodeTypes || RegionDiskTypes || RegionZones || Regions || StoragePoolTypes || Zones
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

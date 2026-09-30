@@ -22,6 +22,9 @@
   public struct InstancePropertiesPatch: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
+    /// This optional flag exposes the hashed physical host ID.
+    public var exposeHostTopology: Swift.Bool? = nil
+
     /// The label key-value pairs that you want to patch onto the instance.
     public var labels: [Swift.String: Swift.String] = [:]
 
@@ -40,7 +43,7 @@
     /// Commonly used to initialize the value, for example:
     ///
     /// ```
-    /// let value = InstancePropertiesPatch().with { $0.labels = ... }
+    /// let value = InstancePropertiesPatch().with { $0.exposeHostTopology = ... }
     /// ```
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
@@ -54,10 +57,12 @@
       init(stringValue: Swift.String) { self.stringValue = stringValue }
       init?(intValue: Swift.Int) { nil }
 
+      static let exposeHostTopology = CodingKeys(stringValue: "exposeHostTopology")
       static let labels = CodingKeys(stringValue: "labels")
       static let metadata = CodingKeys(stringValue: "metadata")
 
       static let _knownKeys: Set<Swift.String> = [
+        "exposeHostTopology",
         "labels",
         "metadata",
       ]
@@ -65,6 +70,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
+      self.exposeHostTopology = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .exposeHostTopology)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .labels)
       {
@@ -83,6 +90,7 @@
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encodeIfPresent(self.exposeHostTopology, forKey: .exposeHostTopology)
       try container.encode(self.labels, forKey: .labels)
       try container.encode(self.metadata, forKey: .metadata)
       for (key, value) in self._unknownFields.json {

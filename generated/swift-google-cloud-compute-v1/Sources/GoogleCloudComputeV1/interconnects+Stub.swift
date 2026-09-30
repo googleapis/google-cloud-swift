@@ -52,6 +52,10 @@
         request: InterconnectsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      func setName(
+        request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation
+
       func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

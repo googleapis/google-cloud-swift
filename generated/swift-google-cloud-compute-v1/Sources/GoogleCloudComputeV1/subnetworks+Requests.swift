@@ -122,14 +122,6 @@
       /// Project ID for this request.
       public var project: Swift.String = Swift.String()
 
-      /// Opt-in for partial success behavior which provides partial results in case
-      /// of failure. The default value is false.
-      ///
-      /// For example, when partial success behavior is enabled, aggregatedList for a
-      /// single zone scope either returns all resources in the zone or no resources,
-      /// with an error code.
-      public var returnPartialSuccess: Swift.Bool? = nil
-
       /// The Shared VPC service project id or service project number for which
       /// aggregated list request is invoked for subnetworks list-usable api.
       public var serviceProjectNumber: Swift.Int64? = nil
@@ -171,7 +163,6 @@
         static let orderBy = CodingKeys(stringValue: "orderBy")
         static let pageToken = CodingKeys(stringValue: "pageToken")
         static let project = CodingKeys(stringValue: "project")
-        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
         static let serviceProjectNumber = CodingKeys(stringValue: "serviceProjectNumber")
         static let views = CodingKeys(stringValue: "views")
 
@@ -182,7 +173,6 @@
           "orderBy",
           "pageToken",
           "project",
-          "returnPartialSuccess",
           "serviceProjectNumber",
           "views",
         ]
@@ -199,8 +189,6 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
           self.project = value
         }
-        self.returnPartialSuccess = try container.decodeIfPresent(
-          Swift.Bool.self, forKey: .returnPartialSuccess)
         self.serviceProjectNumber = try container.decodeIfPresent(
           Swift.Int64.self, forKey: .serviceProjectNumber)
         self.views = try container.decodeIfPresent(
@@ -219,7 +207,6 @@
         try container.encodeIfPresent(self.orderBy, forKey: .orderBy)
         try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
         try container.encode(self.project, forKey: .project)
-        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
         try container.encodeIfPresent(self.serviceProjectNumber, forKey: .serviceProjectNumber)
         try container.encodeIfPresent(self.views, forKey: .views)
         for (key, value) in self._unknownFields.json {
@@ -982,14 +969,6 @@
       /// Name of the region scoping this request.
       public var region: Swift.String = Swift.String()
 
-      /// Opt-in for partial success behavior which provides partial results in case
-      /// of failure. The default value is false.
-      ///
-      /// For example, when partial success behavior is enabled, aggregatedList for a
-      /// single zone scope either returns all resources in the zone or no resources,
-      /// with an error code.
-      public var returnPartialSuccess: Swift.Bool? = nil
-
       /// Defines the extra views returned back in the subnetwork resource.
       /// Supported values:
       ///
@@ -1027,7 +1006,6 @@
         static let pageToken = CodingKeys(stringValue: "pageToken")
         static let project = CodingKeys(stringValue: "project")
         static let region = CodingKeys(stringValue: "region")
-        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
         static let views = CodingKeys(stringValue: "views")
 
         static let _knownKeys: Set<Swift.String> = [
@@ -1037,7 +1015,6 @@
           "pageToken",
           "project",
           "region",
-          "returnPartialSuccess",
           "views",
         ]
       }
@@ -1054,8 +1031,6 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
           self.region = value
         }
-        self.returnPartialSuccess = try container.decodeIfPresent(
-          Swift.Bool.self, forKey: .returnPartialSuccess)
         self.views = try container.decodeIfPresent(
           SubnetworksClient.ListRequest.Views.self, forKey: .views)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -1072,7 +1047,6 @@
         try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
         try container.encode(self.project, forKey: .project)
         try container.encode(self.region, forKey: .region)
-        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
         try container.encodeIfPresent(self.views, forKey: .views)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1243,14 +1217,6 @@
       /// Project ID for this request.
       public var project: Swift.String = Swift.String()
 
-      /// Opt-in for partial success behavior which provides partial results in case
-      /// of failure. The default value is false.
-      ///
-      /// For example, when partial success behavior is enabled, aggregatedList for a
-      /// single zone scope either returns all resources in the zone or no resources,
-      /// with an error code.
-      public var returnPartialSuccess: Swift.Bool? = nil
-
       /// The project id or project number in which the subnetwork is intended to be
       /// used. Only applied for Shared VPC. See [Shared VPC
       /// documentation](https://cloud.google.com/vpc/docs/shared-vpc/)
@@ -1285,7 +1251,6 @@
         static let orderBy = CodingKeys(stringValue: "orderBy")
         static let pageToken = CodingKeys(stringValue: "pageToken")
         static let project = CodingKeys(stringValue: "project")
-        static let returnPartialSuccess = CodingKeys(stringValue: "returnPartialSuccess")
         static let serviceProject = CodingKeys(stringValue: "serviceProject")
 
         static let _knownKeys: Set<Swift.String> = [
@@ -1294,7 +1259,6 @@
           "orderBy",
           "pageToken",
           "project",
-          "returnPartialSuccess",
           "serviceProject",
         ]
       }
@@ -1308,8 +1272,6 @@
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
           self.project = value
         }
-        self.returnPartialSuccess = try container.decodeIfPresent(
-          Swift.Bool.self, forKey: .returnPartialSuccess)
         self.serviceProject = try container.decodeIfPresent(
           Swift.String.self, forKey: .serviceProject)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -1325,7 +1287,6 @@
         try container.encodeIfPresent(self.orderBy, forKey: .orderBy)
         try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
         try container.encode(self.project, forKey: .project)
-        try container.encodeIfPresent(self.returnPartialSuccess, forKey: .returnPartialSuccess)
         try container.encodeIfPresent(self.serviceProject, forKey: .serviceProject)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

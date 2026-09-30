@@ -36,6 +36,10 @@
     /// specified in the spread placement policy attached to the instance.
     public var availabilityDomain: Swift.Int32? = nil
 
+    /// This optional flag exposes the hashed physical host ID in the
+    /// ResourceStatus resource of the VM.
+    public var exposeHostTopology: Swift.Bool? = nil
+
     public var gracefulShutdown: SchedulingGracefulShutdown? = nil
 
     /// Specify the time in seconds for host error detection, the value must be
@@ -130,6 +134,7 @@
 
       static let automaticRestart = CodingKeys(stringValue: "automaticRestart")
       static let availabilityDomain = CodingKeys(stringValue: "availabilityDomain")
+      static let exposeHostTopology = CodingKeys(stringValue: "exposeHostTopology")
       static let gracefulShutdown = CodingKeys(stringValue: "gracefulShutdown")
       static let hostErrorTimeoutSeconds = CodingKeys(stringValue: "hostErrorTimeoutSeconds")
       static let instanceTerminationAction = CodingKeys(stringValue: "instanceTerminationAction")
@@ -149,6 +154,7 @@
       static let _knownKeys: Set<Swift.String> = [
         "automaticRestart",
         "availabilityDomain",
+        "exposeHostTopology",
         "gracefulShutdown",
         "hostErrorTimeoutSeconds",
         "instanceTerminationAction",
@@ -173,6 +179,8 @@
         Swift.Bool.self, forKey: .automaticRestart)
       self.availabilityDomain = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .availabilityDomain)
+      self.exposeHostTopology = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .exposeHostTopology)
       self.gracefulShutdown = try container.decodeIfPresent(
         SchedulingGracefulShutdown.self, forKey: .gracefulShutdown)
       self.hostErrorTimeoutSeconds = try container.decodeIfPresent(
@@ -213,6 +221,7 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.automaticRestart, forKey: .automaticRestart)
       try container.encodeIfPresent(self.availabilityDomain, forKey: .availabilityDomain)
+      try container.encodeIfPresent(self.exposeHostTopology, forKey: .exposeHostTopology)
       try container.encodeIfPresent(self.gracefulShutdown, forKey: .gracefulShutdown)
       try container.encodeIfPresent(self.hostErrorTimeoutSeconds, forKey: .hostErrorTimeoutSeconds)
       try container.encodeIfPresent(

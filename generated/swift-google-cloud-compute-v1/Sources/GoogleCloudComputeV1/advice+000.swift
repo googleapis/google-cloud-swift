@@ -48,6 +48,26 @@
     ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse {
       try await self.inner.calendarMode(request: request, options: options)
     }
+
+    /// Advice on making real-time decisions (such as choosing zone or
+    /// machine types) during deployment to maximize your chances of obtaining
+    /// capacity.
+    ///
+    /// @Snippet(path: "advice_capacity")
+    public func capacity(
+      request: AdviceClient.CapacityRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.CapacityAdviceResponse {
+      try await self.inner.capacity(request: request, options: options)
+    }
+
+    /// Gets the capacity history.
+    ///
+    /// @Snippet(path: "advice_capacityHistory")
+    public func capacityHistory(
+      request: AdviceClient.CapacityHistoryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.CapacityHistoryResponse {
+      try await self.inner.capacityHistory(request: request, options: options)
+    }
   }
 
   extension Clients {
@@ -61,6 +81,16 @@
       func calendarMode(
         request: AdviceClient.CalendarModeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse
+
+      /// See `AdviceClient.capacity`.
+      func capacity(
+        request: AdviceClient.CapacityRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.CapacityAdviceResponse
+
+      /// See `AdviceClient.capacityHistory`.
+      func capacityHistory(
+        request: AdviceClient.CapacityHistoryRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.CapacityHistoryResponse
     }
   }
 
@@ -89,6 +119,56 @@
         $0.body = body
       }
       return try await self.calendarMode(request: request)
+    }
+
+    public func capacity(request: AdviceClient.CapacityRequest) async throws
+      -> GoogleCloudComputeV1.CapacityAdviceResponse
+    {
+      try await self.capacity(request: request, options: .init())
+    }
+
+    public func capacity(
+      request: AdviceClient.CapacityRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.CapacityAdviceResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func capacity(
+      project: Swift.String,
+      region: Swift.String,
+      body: CapacityAdviceRequest?,
+    ) async throws -> GoogleCloudComputeV1.CapacityAdviceResponse {
+      let request = AdviceClient.CapacityRequest().with {
+        $0.project = project
+        $0.region = region
+        $0.body = body
+      }
+      return try await self.capacity(request: request)
+    }
+
+    public func capacityHistory(request: AdviceClient.CapacityHistoryRequest) async throws
+      -> GoogleCloudComputeV1.CapacityHistoryResponse
+    {
+      try await self.capacityHistory(request: request, options: .init())
+    }
+
+    public func capacityHistory(
+      request: AdviceClient.CapacityHistoryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.CapacityHistoryResponse {
+      throw GoogleGax.RequestError.unimplemented
+    }
+
+    public func capacityHistory(
+      project: Swift.String,
+      region: Swift.String,
+      body: GoogleCloudComputeV1.CapacityHistoryRequest?,
+    ) async throws -> GoogleCloudComputeV1.CapacityHistoryResponse {
+      let request = AdviceClient.CapacityHistoryRequest().with {
+        $0.project = project
+        $0.region = region
+        $0.body = body
+      }
+      return try await self.capacityHistory(request: request)
     }
   }
 #else

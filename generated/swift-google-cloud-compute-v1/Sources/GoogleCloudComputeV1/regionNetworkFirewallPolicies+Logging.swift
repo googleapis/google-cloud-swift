@@ -256,6 +256,24 @@
           })
       }
 
+      public func patchAssociation(
+        request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation {
+        try await self._intercept(
+          request: request,
+          options: options,
+          name: "patchAssociation",
+          action: {
+            (
+              r: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
+              o: GoogleGax.RequestOptions
+            ) async throws -> GoogleCloudComputeV1.Operation
+            in
+            return try await self.inner.patchAssociation(request: r, options: o)
+          })
+      }
+
       public func patchRule(
         request: RegionNetworkFirewallPoliciesClient.PatchRuleRequest,
         options: GoogleGax.RequestOptions

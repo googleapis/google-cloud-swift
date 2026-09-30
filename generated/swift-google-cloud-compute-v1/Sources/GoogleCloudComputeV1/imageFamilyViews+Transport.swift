@@ -67,7 +67,8 @@
             let path =
               "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/imageFamilyViews/\(pathVariable2)"
             let query = [
-              URLQueryItem(name: "$alt", value: "json")
+              URLQueryItem(name: "$alt", value: "json"),
+              URLQueryItem(name: "$apiVersion", value: "2026-09-01"),
             ]
             return (path, query)
           }() {

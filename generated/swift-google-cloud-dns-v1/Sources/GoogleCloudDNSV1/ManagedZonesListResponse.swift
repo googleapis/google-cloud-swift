@@ -21,7 +21,7 @@ import Foundation
 public struct ManagedZonesListResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Type of resource.
+  /// Output only. Type of resource.
   public var kind: Swift.String? = nil
 
   /// The managed zone resources.

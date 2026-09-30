@@ -22,6 +22,11 @@
       ._AnyPackable,
     Sendable
   {
+    /// A list of request body fields to be excluded from inspection during
+    /// preconfigured WAF evaluation.
+    public var requestBodiesToExclude:
+      [SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams] = []
+
     /// A list of request cookie names whose value will be excluded from
     /// inspection during preconfigured WAF evaluation.
     public var requestCookiesToExclude:
@@ -62,7 +67,7 @@
     /// Commonly used to initialize the value, for example:
     ///
     /// ```
-    /// let value = SecurityPolicyRulePreconfiguredWafConfigExclusion().with { $0.requestCookiesToExclude = ... }
+    /// let value = SecurityPolicyRulePreconfiguredWafConfigExclusion().with { $0.requestBodiesToExclude = ... }
     /// ```
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
@@ -76,6 +81,7 @@
       init(stringValue: Swift.String) { self.stringValue = stringValue }
       init?(intValue: Swift.Int) { nil }
 
+      static let requestBodiesToExclude = CodingKeys(stringValue: "requestBodiesToExclude")
       static let requestCookiesToExclude = CodingKeys(stringValue: "requestCookiesToExclude")
       static let requestHeadersToExclude = CodingKeys(stringValue: "requestHeadersToExclude")
       static let requestQueryParamsToExclude = CodingKeys(
@@ -85,6 +91,7 @@
       static let targetRuleSet = CodingKeys(stringValue: "targetRuleSet")
 
       static let _knownKeys: Set<Swift.String> = [
+        "requestBodiesToExclude",
         "requestCookiesToExclude",
         "requestHeadersToExclude",
         "requestQueryParamsToExclude",
@@ -96,6 +103,12 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams].self,
+        forKey: .requestBodiesToExclude)
+      {
+        self.requestBodiesToExclude = value
+      }
       if let value = try container.decodeIfPresent(
         [SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams].self,
         forKey: .requestCookiesToExclude)
@@ -132,6 +145,7 @@
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.requestBodiesToExclude, forKey: .requestBodiesToExclude)
       try container.encode(self.requestCookiesToExclude, forKey: .requestCookiesToExclude)
       try container.encode(self.requestHeadersToExclude, forKey: .requestHeadersToExclude)
       try container.encode(self.requestQueryParamsToExclude, forKey: .requestQueryParamsToExclude)

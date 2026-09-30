@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if FutureReservations || InstanceTemplates || Instances || MachineImages || NodeGroups || NodeTemplates || RegionCommitments || RegionInstanceTemplates || RegionInstances || Reservations
+#if Advice || FutureReservations || InstanceTemplates || Instances || MachineImages || NodeGroups || NodeTemplates || RegionCommitments || RegionInstanceTemplates || RegionInstances || Reservations
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 

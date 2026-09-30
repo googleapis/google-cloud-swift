@@ -35,6 +35,14 @@
     /// The name for an association.
     public var name: Swift.String? = nil
 
+    /// An integer indicating the priority of an association. The priority
+    /// must be a positive value between 1 and 2147483647.
+    /// Firewall Policies are evaluated from highest to lowest priority where 1
+    /// is the highest priority and 2147483647 is the lowest priority.
+    /// The default value is `1000`. If two associations have the same priority
+    /// then lexicographical order on association names is applied.
+    public var priority: Swift.Int32? = nil
+
     /// Output only. [Output Only] The short name of the firewall policy of the association.
     public var shortName: Swift.String? = nil
 
@@ -66,6 +74,7 @@
       static let displayName = CodingKeys(stringValue: "displayName")
       static let firewallPolicyId = CodingKeys(stringValue: "firewallPolicyId")
       static let name = CodingKeys(stringValue: "name")
+      static let priority = CodingKeys(stringValue: "priority")
       static let shortName = CodingKeys(stringValue: "shortName")
 
       static let _knownKeys: Set<Swift.String> = [
@@ -73,6 +82,7 @@
         "displayName",
         "firewallPolicyId",
         "name",
+        "priority",
         "shortName",
       ]
     }
@@ -88,6 +98,7 @@
       self.firewallPolicyId = try container.decodeIfPresent(
         Swift.String.self, forKey: .firewallPolicyId)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
+      self.priority = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority)
       self.shortName = try container.decodeIfPresent(Swift.String.self, forKey: .shortName)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -104,6 +115,7 @@
       try container.encodeIfPresent(self.displayName, forKey: .displayName)
       try container.encodeIfPresent(self.firewallPolicyId, forKey: .firewallPolicyId)
       try container.encodeIfPresent(self.name, forKey: .name)
+      try container.encodeIfPresent(self.priority, forKey: .priority)
       try container.encodeIfPresent(self.shortName, forKey: .shortName)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -23,6 +23,14 @@
       func calendarMode(
         request: AdviceClient.CalendarModeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse
+
+      func capacity(
+        request: AdviceClient.CapacityRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.CapacityAdviceResponse
+
+      func capacityHistory(
+        request: AdviceClient.CapacityHistoryRequest, options: GoogleGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.CapacityHistoryResponse
     }
   }
 #endif
