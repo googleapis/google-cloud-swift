@@ -65,9 +65,10 @@ versions become available.
 
 ## Status and Stability
 
-This project is currently in **Public Preview** (versioned at `0.x`). While the
-libraries are functional and actively maintained, APIs may undergo refinements
-before 1.0 General Availability (GA).
+This project is in **General Availability (GA)** (as of the `0.4.0` release).
+These 0.x releases are supported for production use and will receive fixes as
+necessary, though we reserve the right to introduce minor breaking changes prior
+to releasing 1.0.
 
 ## Semantic versioning
 
