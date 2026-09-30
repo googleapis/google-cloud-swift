@@ -25,7 +25,7 @@
   {
     /// The duration for graceful shutdown. Only applicable when
     /// `stop_state=PENDING_STOP`.
-    public var maxDuration: Duration? = nil
+    public var maxDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// Past timestamp indicating the beginning of current `stopState` in RFC3339 text format.
     public var requestTimestamp: Swift.String? = nil
@@ -75,7 +75,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.maxDuration = try container.decodeIfPresent(Duration.self, forKey: .maxDuration)
+      self.maxDuration = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .maxDuration)
       self.requestTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .requestTimestamp)
       self.stopState = try container.decodeIfPresent(

@@ -31,7 +31,7 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
   public var lifecycleDetails: Swift.String = Swift.String()
 
   /// Output only. The current lifecycle state of the Autonomous Database.
-  public var state: State = State()
+  public var state: GoogleCloudOracleDatabaseV1.State = GoogleCloudOracleDatabaseV1.State()
 
   /// Output only. The date and time the Autonomous Data Guard role was switched
   /// for the standby Autonomous Database.
@@ -88,7 +88,9 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
       self.lifecycleDetails = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudOracleDatabaseV1.State.self, forKey: .state)
+    {
       self.state = value
     }
     self.dataGuardRoleChangedTime = try container.decodeIfPresent(

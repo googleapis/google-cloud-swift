@@ -190,12 +190,12 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
       result = $0
     }
     if let dataQualityResult = try container.decodeIfPresent(
-      DataQualityResult.self, forKey: .dataQualityResult)
+      GoogleCloudDataplexV1.DataQualityResult.self, forKey: .dataQualityResult)
     {
       try resultCheckAndSet(.dataQualityResult(dataQualityResult))
     }
     if let dataProfileResult = try container.decodeIfPresent(
-      DataProfileResult.self, forKey: .dataProfileResult)
+      GoogleCloudDataplexV1.DataProfileResult.self, forKey: .dataProfileResult)
     {
       try resultCheckAndSet(.dataProfileResult(dataProfileResult))
     }
@@ -425,9 +425,9 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The result of the data scan.
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. The result of a data quality scan.
-    indirect case dataQualityResult(DataQualityResult)
+    indirect case dataQualityResult(GoogleCloudDataplexV1.DataQualityResult)
     /// Output only. The result of a data profile scan.
-    indirect case dataProfileResult(DataProfileResult)
+    indirect case dataProfileResult(GoogleCloudDataplexV1.DataProfileResult)
     /// Output only. The result of a data discovery scan.
     indirect case dataDiscoveryResult(DataDiscoveryResult)
     /// Output only. The result of a data documentation scan.

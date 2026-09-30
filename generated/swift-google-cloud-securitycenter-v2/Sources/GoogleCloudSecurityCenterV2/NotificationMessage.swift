@@ -25,7 +25,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   public var notificationConfigName: Swift.String = Swift.String()
 
   /// The Cloud resource tied to this notification's Finding.
-  public var resource: Resource? = nil
+  public var resource: GoogleCloudSecurityCenterV2.Resource? = nil
 
   /// Notification Event.
   public var event: EventOneOf? = nil
@@ -71,7 +71,8 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.notificationConfigName = value
     }
-    self.resource = try container.decodeIfPresent(Resource.self, forKey: .resource)
+    self.resource = try container.decodeIfPresent(
+      GoogleCloudSecurityCenterV2.Resource.self, forKey: .resource)
 
     var event: EventOneOf? = nil
     let eventCheckAndSet = {

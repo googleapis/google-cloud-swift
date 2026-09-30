@@ -66,7 +66,8 @@
     public var toolUsePromptTokensDetails: [ModalityTokenCount] = []
 
     /// Output only. The traffic type for this request.
-    public var trafficType: UsageMetadata.TrafficType = UsageMetadata.TrafficType()
+    public var trafficType: GoogleCloudAIPlatformV1.UsageMetadata.TrafficType =
+      GoogleCloudAIPlatformV1.UsageMetadata.TrafficType()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -165,7 +166,7 @@
         self.toolUsePromptTokensDetails = value
       }
       if let value = try container.decodeIfPresent(
-        UsageMetadata.TrafficType.self, forKey: .trafficType)
+        GoogleCloudAIPlatformV1.UsageMetadata.TrafficType.self, forKey: .trafficType)
       {
         self.trafficType = value
       }

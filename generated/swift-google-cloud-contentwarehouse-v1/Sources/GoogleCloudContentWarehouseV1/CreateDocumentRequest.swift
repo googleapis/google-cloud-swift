@@ -27,7 +27,7 @@ public struct CreateDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var parent: Swift.String = Swift.String()
 
   /// Required. The document to create.
-  public var document: Document? = nil
+  public var document: GoogleCloudContentWarehouseV1.Document? = nil
 
   /// The meta information collected about the end user, used to enforce access
   /// control for the service.
@@ -98,7 +98,8 @@ public struct CreateDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.document = try container.decodeIfPresent(Document.self, forKey: .document)
+    self.document = try container.decodeIfPresent(
+      GoogleCloudContentWarehouseV1.Document.self, forKey: .document)
     self.requestMetadata = try container.decodeIfPresent(
       RequestMetadata.self, forKey: .requestMetadata)
     self.policy = try container.decodeIfPresent(GoogleIAMV1.Policy.self, forKey: .policy)

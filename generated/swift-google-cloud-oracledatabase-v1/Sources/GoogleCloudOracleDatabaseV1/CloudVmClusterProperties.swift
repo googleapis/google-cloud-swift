@@ -125,7 +125,8 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   public var clusterName: Swift.String = Swift.String()
 
   /// Output only. The compute model of the VM Cluster.
-  public var computeModel: ComputeModel = ComputeModel()
+  public var computeModel: GoogleCloudOracleDatabaseV1.ComputeModel =
+    GoogleCloudOracleDatabaseV1.ComputeModel()
 
   /// Output only. The storage management type of the VM Cluster.
   public var storageManagementType: CloudVmClusterProperties.StorageManagementType =
@@ -345,7 +346,9 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
       self.clusterName = value
     }
-    if let value = try container.decodeIfPresent(ComputeModel.self, forKey: .computeModel) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudOracleDatabaseV1.ComputeModel.self, forKey: .computeModel)
+    {
       self.computeModel = value
     }
     if let value = try container.decodeIfPresent(

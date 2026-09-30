@@ -24,7 +24,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Network config is used to configure how Eventarc resolves and
   /// connect to a destination.
   /// This should only be used with HttpEndpoint destination type.
-  public var networkConfig: NetworkConfig? = nil
+  public var networkConfig: GoogleCloudEventarcV1.NetworkConfig? = nil
 
   public var descriptor: DescriptorOneOf? = nil
 
@@ -71,7 +71,8 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.networkConfig = try container.decodeIfPresent(NetworkConfig.self, forKey: .networkConfig)
+    self.networkConfig = try container.decodeIfPresent(
+      GoogleCloudEventarcV1.NetworkConfig.self, forKey: .networkConfig)
 
     var descriptor: DescriptorOneOf? = nil
     let descriptorCheckAndSet = {
@@ -96,7 +97,9 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     if let workflow = try container.decodeIfPresent(Swift.String.self, forKey: .workflow) {
       try descriptorCheckAndSet(.workflow(workflow))
     }
-    if let httpEndpoint = try container.decodeIfPresent(HttpEndpoint.self, forKey: .httpEndpoint) {
+    if let httpEndpoint = try container.decodeIfPresent(
+      GoogleCloudEventarcV1.HttpEndpoint.self, forKey: .httpEndpoint)
+    {
       try descriptorCheckAndSet(.httpEndpoint(httpEndpoint))
     }
     self.descriptor = descriptor
@@ -150,7 +153,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Format: `projects/{project}/locations/{location}/workflows/{workflow}`
     case workflow(Swift.String)
     /// An HTTP endpoint destination described by an URI.
-    indirect case httpEndpoint(HttpEndpoint)
+    indirect case httpEndpoint(GoogleCloudEventarcV1.HttpEndpoint)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -48,7 +48,7 @@ public struct EntrySource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Immutable. The entries representing the ancestors of the data resource in
   /// the source system.
-  public var ancestors: [EntrySource.Ancestor] = []
+  public var ancestors: [GoogleCloudDataplexV1.EntrySource.Ancestor] = []
 
   /// The time when the resource was created in the source system.
   public var createTime: GoogleWKT.WKTTimestamp? = nil
@@ -135,7 +135,9 @@ public struct EntrySource: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.labels = value
     }
-    if let value = try container.decodeIfPresent([EntrySource.Ancestor].self, forKey: .ancestors) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudDataplexV1.EntrySource.Ancestor].self, forKey: .ancestors)
+    {
       self.ancestors = value
     }
     self.createTime = try container.decodeIfPresent(

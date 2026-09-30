@@ -41,7 +41,7 @@
     public var modelId: Swift.String = Swift.String()
 
     /// Required. The Model to create.
-    public var model: Model? = nil
+    public var model: GoogleCloudAIPlatformV1.Model? = nil
 
     /// Optional. The user-provided custom service account to use to do the model
     /// upload. If empty, [Vertex AI Service
@@ -102,7 +102,7 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
         self.modelId = value
       }
-      self.model = try container.decodeIfPresent(Model.self, forKey: .model)
+      self.model = try container.decodeIfPresent(GoogleCloudAIPlatformV1.Model.self, forKey: .model)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
         self.serviceAccount = value
       }

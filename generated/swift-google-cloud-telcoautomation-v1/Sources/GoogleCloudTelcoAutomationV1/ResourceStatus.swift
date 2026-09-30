@@ -40,7 +40,7 @@ public struct ResourceStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   public var resourceType: ResourceType = ResourceType()
 
   /// Output only. Status of the resource.
-  public var status: Status = Status()
+  public var status: GoogleCloudTelcoAutomationV1.Status = GoogleCloudTelcoAutomationV1.Status()
 
   /// Output only. Detailed status of NFDeploy.
   public var nfDeployStatus: NFDeployStatus? = nil
@@ -110,7 +110,9 @@ public struct ResourceStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(ResourceType.self, forKey: .resourceType) {
       self.resourceType = value
     }
-    if let value = try container.decodeIfPresent(Status.self, forKey: .status) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudTelcoAutomationV1.Status.self, forKey: .status)
+    {
       self.status = value
     }
     self.nfDeployStatus = try container.decodeIfPresent(

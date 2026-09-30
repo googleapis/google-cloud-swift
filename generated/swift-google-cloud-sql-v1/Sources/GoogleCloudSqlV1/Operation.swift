@@ -30,7 +30,8 @@
     public var targetLink: Swift.String = Swift.String()
 
     /// The status of an operation.
-    public var status: Operation.SqlOperationStatus = Operation.SqlOperationStatus()
+    public var status: GoogleCloudSqlV1.Operation.SqlOperationStatus = GoogleCloudSqlV1.Operation
+      .SqlOperationStatus()
 
     /// The email address of the user who initiated this operation.
     public var user: Swift.String = Swift.String()
@@ -70,7 +71,8 @@
     /// *  `DELETE_USER`
     /// *  `CREATE_DATABASE`
     /// *  `DELETE_DATABASE`
-    public var operationType: Operation.SqlOperationType = Operation.SqlOperationType()
+    public var operationType: GoogleCloudSqlV1.Operation.SqlOperationType = GoogleCloudSqlV1
+      .Operation.SqlOperationType()
 
     /// The context for import operation, if applicable.
     public var importContext: ImportContext? = nil
@@ -187,7 +189,7 @@
         self.targetLink = value
       }
       if let value = try container.decodeIfPresent(
-        Operation.SqlOperationStatus.self, forKey: .status)
+        GoogleCloudSqlV1.Operation.SqlOperationStatus.self, forKey: .status)
       {
         self.status = value
       }
@@ -202,7 +204,7 @@
       self.error = try container.decodeIfPresent(OperationErrors.self, forKey: .error)
       self.apiWarning = try container.decodeIfPresent(ApiWarning.self, forKey: .apiWarning)
       if let value = try container.decodeIfPresent(
-        Operation.SqlOperationType.self, forKey: .operationType)
+        GoogleCloudSqlV1.Operation.SqlOperationType.self, forKey: .operationType)
       {
         self.operationType = value
       }

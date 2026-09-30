@@ -236,7 +236,8 @@
       /// 2. END_OF_UTTERANCE
       /// 3. CUSTOMER_MESSAGE
       /// 4. AGENT_MESSAGE
-      public var suggestionTriggerEvent: TriggerEvent = TriggerEvent()
+      public var suggestionTriggerEvent: GoogleCloudDialogflowV2.TriggerEvent =
+        GoogleCloudDialogflowV2.TriggerEvent()
 
       /// Optional. If true, disable appending available search context to the
       /// search query. Supported features: KNOWLEDGE_ASSIST
@@ -354,7 +355,7 @@
         }
         self.raiSettings = try container.decodeIfPresent(RaiSettings.self, forKey: .raiSettings)
         if let value = try container.decodeIfPresent(
-          TriggerEvent.self, forKey: .suggestionTriggerEvent)
+          GoogleCloudDialogflowV2.TriggerEvent.self, forKey: .suggestionTriggerEvent)
         {
           self.suggestionTriggerEvent = value
         }

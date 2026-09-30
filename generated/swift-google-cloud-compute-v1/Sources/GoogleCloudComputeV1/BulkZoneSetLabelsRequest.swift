@@ -21,7 +21,7 @@
   public struct BulkZoneSetLabelsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var requests: [BulkSetLabelsRequest] = []
+    public var requests: [GoogleCloudComputeV1.BulkSetLabelsRequest] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -56,7 +56,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([BulkSetLabelsRequest].self, forKey: .requests) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudComputeV1.BulkSetLabelsRequest].self, forKey: .requests)
+      {
         self.requests = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

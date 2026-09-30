@@ -27,7 +27,7 @@
     public var kind: Swift.String = Swift.String()
 
     /// List of operation resources.
-    public var items: [Operation] = []
+    public var items: [GoogleCloudSqlV1.Operation] = []
 
     /// The continuation token, used to page through large result sets. Provide
     /// this value in a subsequent request to return the next page of results.
@@ -73,7 +73,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
         self.kind = value
       }
-      if let value = try container.decodeIfPresent([Operation].self, forKey: .items) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudSqlV1.Operation].self, forKey: .items)
+      {
         self.items = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -108,7 +110,7 @@
 
   @_spi(GoogleCloudInternal)
   extension OperationsListResponse: GoogleGax._PaginatedResponse {
-    public func _getPaginatedItems() -> [Operation] {
+    public func _getPaginatedItems() -> [GoogleCloudSqlV1.Operation] {
       return self.items
     }
 

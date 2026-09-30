@@ -28,7 +28,7 @@
     /// Required. The FeatureGroup's `name` field is used to identify the
     /// FeatureGroup to be updated. Format:
     /// `projects/{project}/locations/{location}/featureGroups/{feature_group}`
-    public var featureGroup: FeatureGroup? = nil
+    public var featureGroup: GoogleCloudAIPlatformV1.FeatureGroup? = nil
 
     /// Field mask is used to specify the fields to be overwritten in the
     /// FeatureGroup resource by the update.
@@ -81,7 +81,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.featureGroup = try container.decodeIfPresent(FeatureGroup.self, forKey: .featureGroup)
+      self.featureGroup = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.FeatureGroup.self, forKey: .featureGroup)
       self.updateMask = try container.decodeIfPresent(
         GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

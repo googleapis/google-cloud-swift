@@ -129,7 +129,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   public var lifecycleDetails: Swift.String = Swift.String()
 
   /// Output only. The current lifecycle state of the Autonomous Database.
-  public var state: State = State()
+  public var state: GoogleCloudOracleDatabaseV1.State = GoogleCloudOracleDatabaseV1.State()
 
   /// Output only. The Autonomous Container Database OCID.
   public var autonomousContainerDatabaseId: Swift.String = Swift.String()
@@ -194,7 +194,8 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
 
   /// Output only. This field indicates the state of Operations Insights for the
   /// Autonomous Database.
-  public var operationsInsightsState: OperationsInsightsState = OperationsInsightsState()
+  public var operationsInsightsState: GoogleCloudOracleDatabaseV1.OperationsInsightsState =
+    GoogleCloudOracleDatabaseV1.OperationsInsightsState()
 
   /// Output only. The list of OCIDs of standby databases located in Autonomous
   /// Data Guard remote regions that are associated with the source database.
@@ -551,7 +552,9 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .lifecycleDetails) {
       self.lifecycleDetails = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudOracleDatabaseV1.State.self, forKey: .state)
+    {
       self.state = value
     }
     if let value = try container.decodeIfPresent(
@@ -611,7 +614,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
       self.openMode = value
     }
     if let value = try container.decodeIfPresent(
-      OperationsInsightsState.self, forKey: .operationsInsightsState)
+      GoogleCloudOracleDatabaseV1.OperationsInsightsState.self, forKey: .operationsInsightsState)
     {
       self.operationsInsightsState = value
     }

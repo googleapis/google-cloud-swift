@@ -21,7 +21,7 @@
   public struct FutureReservationTimeWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var duration: Duration? = nil
+    public var duration: GoogleCloudComputeV1.Duration? = nil
 
     public var endTime: Swift.String? = nil
 
@@ -66,7 +66,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.duration = try container.decodeIfPresent(Duration.self, forKey: .duration)
+      self.duration = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .duration)
       self.endTime = try container.decodeIfPresent(Swift.String.self, forKey: .endTime)
       self.startTime = try container.decodeIfPresent(Swift.String.self, forKey: .startTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

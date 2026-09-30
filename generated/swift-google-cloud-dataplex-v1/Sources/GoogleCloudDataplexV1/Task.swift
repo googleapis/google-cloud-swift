@@ -43,7 +43,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   public var displayName: Swift.String = Swift.String()
 
   /// Output only. Current state of the task.
-  public var state: State = State()
+  public var state: GoogleCloudDataplexV1.State = GoogleCloudDataplexV1.State()
 
   /// Optional. User-defined labels for the task.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -133,7 +133,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
       self.displayName = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(GoogleCloudDataplexV1.State.self, forKey: .state) {
       self.state = value
     }
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)

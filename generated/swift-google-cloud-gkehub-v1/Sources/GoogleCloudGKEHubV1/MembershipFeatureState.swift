@@ -24,7 +24,7 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleWKT._AnyPackable
   Sendable
 {
   /// The high-level state of this Feature for a single membership.
-  public var state: FeatureState? = nil
+  public var state: GoogleCloudGKEHubV1.FeatureState? = nil
 
   public var featureState: FeatureStateOneOf? = nil
 
@@ -63,7 +63,8 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleWKT._AnyPackable
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.state = try container.decodeIfPresent(FeatureState.self, forKey: .state)
+    self.state = try container.decodeIfPresent(
+      GoogleCloudGKEHubV1.FeatureState.self, forKey: .state)
 
     var featureState: FeatureStateOneOf? = nil
     let featureStateCheckAndSet = {

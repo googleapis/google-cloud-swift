@@ -100,7 +100,7 @@
         payload = $0
       }
       if let newMessagePayload = try container.decodeIfPresent(
-        Message.self, forKey: .newMessagePayload)
+        GoogleCloudDialogflowV2.Message.self, forKey: .newMessagePayload)
       {
         try payloadCheckAndSet(.newMessagePayload(newMessagePayload))
       }
@@ -304,7 +304,7 @@
     /// Payload of conversation event.
     public enum PayloadOneOf: Codable, Equatable, Sendable {
       /// Payload of NEW_MESSAGE event.
-      indirect case newMessagePayload(Message)
+      indirect case newMessagePayload(GoogleCloudDialogflowV2.Message)
       /// Payload of NEW_RECOGNITION_RESULT event.
       indirect case newRecognitionResultPayload(StreamingRecognitionResult)
     }

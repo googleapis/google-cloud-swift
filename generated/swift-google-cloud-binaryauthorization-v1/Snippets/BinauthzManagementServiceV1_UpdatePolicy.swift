@@ -24,7 +24,7 @@ func sample(client: BinauthzManagementServiceV1Client, projectId: String) async 
   let response = try await client.updatePolicy(
     request: UpdatePolicyRequest()
       .with {
-        $0.policy = Policy().with {
+        $0.policy = GoogleCloudBinaryAuthorizationV1.Policy().with {
           $0.name = "projects/\(projectId)/policy"
         }
       }

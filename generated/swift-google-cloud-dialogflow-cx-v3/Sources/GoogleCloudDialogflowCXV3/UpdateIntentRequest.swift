@@ -26,7 +26,7 @@
     Sendable
   {
     /// Required. The intent to update.
-    public var intent: Intent? = nil
+    public var intent: GoogleCloudDialogflowCXV3.Intent? = nil
 
     /// The language of the following fields in `intent`:
     ///
@@ -80,7 +80,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.intent = try container.decodeIfPresent(Intent.self, forKey: .intent)
+      self.intent = try container.decodeIfPresent(
+        GoogleCloudDialogflowCXV3.Intent.self, forKey: .intent)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
         self.languageCode = value
       }

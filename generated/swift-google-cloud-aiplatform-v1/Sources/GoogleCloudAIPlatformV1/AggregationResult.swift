@@ -23,7 +23,8 @@
     Sendable
   {
     /// Aggregation metric.
-    public var aggregationMetric: Metric.AggregationMetric = Metric.AggregationMetric()
+    public var aggregationMetric: GoogleCloudAIPlatformV1.Metric.AggregationMetric =
+      GoogleCloudAIPlatformV1.Metric.AggregationMetric()
 
     /// The aggregation result.
     public var aggregationResult: AggregationResultOneOf? = nil
@@ -72,7 +73,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
-        Metric.AggregationMetric.self, forKey: .aggregationMetric)
+        GoogleCloudAIPlatformV1.Metric.AggregationMetric.self, forKey: .aggregationMetric)
       {
         self.aggregationMetric = value
       }

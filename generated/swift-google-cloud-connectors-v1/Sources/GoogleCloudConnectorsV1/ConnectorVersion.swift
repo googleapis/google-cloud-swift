@@ -39,7 +39,8 @@ public struct ConnectorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. Flag to mark the version indicating the launch stage.
-  public var launchStage: LaunchStage = LaunchStage()
+  public var launchStage: GoogleCloudConnectorsV1.LaunchStage =
+    GoogleCloudConnectorsV1.LaunchStage()
 
   /// Output only. ReleaseVersion of the connector, for example: "1.0.1-alpha".
   public var releaseVersion: Swift.String = Swift.String()
@@ -140,7 +141,9 @@ public struct ConnectorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.labels = value
     }
-    if let value = try container.decodeIfPresent(LaunchStage.self, forKey: .launchStage) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudConnectorsV1.LaunchStage.self, forKey: .launchStage)
+    {
       self.launchStage = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .releaseVersion) {

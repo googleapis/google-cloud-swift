@@ -24,7 +24,7 @@
   {
     /// Relative deadline for waiting for capacity. Relevant only for
     /// Instances.Insert API.
-    public var requestValidForDuration: Duration? = nil
+    public var requestValidForDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// Input only. Resource manager tags to be bound to the instance. Tag keys and values
     /// have the same definition as resource
@@ -71,7 +71,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.requestValidForDuration = try container.decodeIfPresent(
-        Duration.self, forKey: .requestValidForDuration)
+        GoogleCloudComputeV1.Duration.self, forKey: .requestValidForDuration)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .resourceManagerTags)
       {

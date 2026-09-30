@@ -115,7 +115,8 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleWK
   public var monthlyDbServerVersion: Swift.String = Swift.String()
 
   /// Output only. The compute model of the Exadata Infrastructure.
-  public var computeModel: ComputeModel = ComputeModel()
+  public var computeModel: GoogleCloudOracleDatabaseV1.ComputeModel =
+    GoogleCloudOracleDatabaseV1.ComputeModel()
 
   /// Optional. The database server type of the Exadata Infrastructure.
   public var databaseServerType: Swift.String = Swift.String()
@@ -307,7 +308,9 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleWK
     {
       self.monthlyDbServerVersion = value
     }
-    if let value = try container.decodeIfPresent(ComputeModel.self, forKey: .computeModel) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudOracleDatabaseV1.ComputeModel.self, forKey: .computeModel)
+    {
       self.computeModel = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .databaseServerType) {

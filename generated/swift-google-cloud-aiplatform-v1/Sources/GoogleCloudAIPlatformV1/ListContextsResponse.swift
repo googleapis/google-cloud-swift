@@ -27,7 +27,7 @@
     Sendable
   {
     /// The Contexts retrieved from the MetadataStore.
-    public var contexts: [Context] = []
+    public var contexts: [GoogleCloudAIPlatformV1.Context] = []
 
     /// A token, which can be sent as
     /// [ListContextsRequest.page_token][google.cloud.aiplatform.v1.ListContextsRequest.page_token]
@@ -72,7 +72,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Context].self, forKey: .contexts) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Context].self, forKey: .contexts)
+      {
         self.contexts = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -106,7 +108,7 @@
 
   @_spi(GoogleCloudInternal)
   extension ListContextsResponse: GoogleGax._PaginatedResponse {
-    public func _getPaginatedItems() -> [Context] {
+    public func _getPaginatedItems() -> [GoogleCloudAIPlatformV1.Context] {
       return self.contexts
     }
 

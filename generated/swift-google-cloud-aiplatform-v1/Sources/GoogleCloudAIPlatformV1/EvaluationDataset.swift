@@ -75,7 +75,7 @@
         try sourceCheckAndSet(.gcsSource(gcsSource))
       }
       if let bigquerySource = try container.decodeIfPresent(
-        BigQuerySource.self, forKey: .bigquerySource)
+        GoogleCloudAIPlatformV1.BigQuerySource.self, forKey: .bigquerySource)
       {
         try sourceCheckAndSet(.bigquerySource(bigquerySource))
       }
@@ -108,7 +108,7 @@
       /// file path is supported.
       indirect case gcsSource(GcsSource)
       /// BigQuery source holds the dataset.
-      indirect case bigquerySource(BigQuerySource)
+      indirect case bigquerySource(GoogleCloudAIPlatformV1.BigQuerySource)
     }
 
     public static var _anyTypeUrl: Swift.String {

@@ -31,7 +31,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Required. The condition that triggers the rule.
   /// If the condition is empty, the rule will always apply.
-  public var condition: Condition? = nil
+  public var condition: GoogleCloudRetailV2.Condition? = nil
 
   /// An action must be provided.
   public var action: ActionOneOf? = nil
@@ -91,7 +91,8 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.condition = try container.decodeIfPresent(Condition.self, forKey: .condition)
+    self.condition = try container.decodeIfPresent(
+      GoogleCloudRetailV2.Condition.self, forKey: .condition)
 
     var action: ActionOneOf? = nil
     let actionCheckAndSet = {

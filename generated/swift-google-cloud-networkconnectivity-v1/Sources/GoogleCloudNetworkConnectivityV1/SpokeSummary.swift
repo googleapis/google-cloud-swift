@@ -191,7 +191,8 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Output only. The state of the spokes.
-    public var state: State = State()
+    public var state: GoogleCloudNetworkConnectivityV1.State =
+      GoogleCloudNetworkConnectivityV1.State()
 
     /// Output only. The total number of spokes that are in this state
     /// and associated with a given hub.
@@ -232,7 +233,9 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudNetworkConnectivityV1.State.self, forKey: .state)
+      {
         self.state = value
       }
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .count) {

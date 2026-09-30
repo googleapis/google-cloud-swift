@@ -311,7 +311,7 @@
       /// [google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig.parameter_values]: <doc:PipelineJob/RuntimeConfig/parameterValues>
       /// [google.cloud.aiplatform.v1.PipelineJob.pipeline_spec]: <doc:PipelineJob/pipelineSpec>
       @available(*, deprecated)
-      public var parameters: [Swift.String: Value] = [:]
+      public var parameters: [Swift.String: GoogleCloudAIPlatformV1.Value] = [:]
 
       /// Required. A path in a Cloud Storage bucket, which will be treated as the
       /// root output directory of the pipeline. It is used by the system to
@@ -390,7 +390,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
-          [Swift.String: Value].self, forKey: .parameters)
+          [Swift.String: GoogleCloudAIPlatformV1.Value].self, forKey: .parameters)
         {
           self.parameters = value
         }

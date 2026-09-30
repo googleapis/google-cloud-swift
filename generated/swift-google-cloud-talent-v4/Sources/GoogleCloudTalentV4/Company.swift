@@ -244,7 +244,7 @@ public struct Company: Codable, Equatable, GoogleWKT._AnyPackable,
     /// if provided.
     ///
     /// [google.cloud.talent.v4.Company.headquarters_address]: <doc:Company/headquartersAddress>
-    public var headquartersLocation: Location? = nil
+    public var headquartersLocation: GoogleCloudTalentV4.Location? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -280,7 +280,7 @@ public struct Company: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.headquartersLocation = try container.decodeIfPresent(
-        Location.self, forKey: .headquartersLocation)
+        GoogleCloudTalentV4.Location.self, forKey: .headquartersLocation)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

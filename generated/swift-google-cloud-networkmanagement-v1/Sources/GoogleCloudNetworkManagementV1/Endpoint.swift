@@ -48,7 +48,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   public var loadBalancerId: Swift.String? = nil
 
   /// Output only. Type of the load balancer the forwarding rule points to.
-  public var loadBalancerType: LoadBalancerType? = nil
+  public var loadBalancerType: GoogleCloudNetworkManagementV1.LoadBalancerType? = nil
 
   /// A cluster URI for [Google Kubernetes Engine cluster control
   /// plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
@@ -205,7 +205,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
       Endpoint.ForwardingRuleTarget.self, forKey: .forwardingRuleTarget)
     self.loadBalancerId = try container.decodeIfPresent(Swift.String.self, forKey: .loadBalancerId)
     self.loadBalancerType = try container.decodeIfPresent(
-      LoadBalancerType.self, forKey: .loadBalancerType)
+      GoogleCloudNetworkManagementV1.LoadBalancerType.self, forKey: .loadBalancerType)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .gkeMasterCluster) {
       self.gkeMasterCluster = value
     }

@@ -731,7 +731,7 @@ extension Clients.OsConfigZonalServiceProtocol {
 
   public func listInventoriesByItems(
     request: ListInventoriesRequest
-  ) -> some AsyncSequence<Inventory, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudOSConfigV1.Inventory, Swift.Error> & Sendable {
     self.listInventoriesByItems(request: request, options: .init())
   }
 
@@ -740,7 +740,7 @@ extension Clients.OsConfigZonalServiceProtocol {
   /// @Snippet(path: "OsConfigZonalService_ListInventories")
   public func listInventoriesByItems(
     request: ListInventoriesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Inventory, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudOSConfigV1.Inventory, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudOSConfigV1.ListInventoriesResponse
       in
@@ -753,7 +753,7 @@ extension Clients.OsConfigZonalServiceProtocol {
 
   public func listInventoriesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Inventory, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudOSConfigV1.Inventory, Swift.Error> & Sendable {
     let request = ListInventoriesRequest().with {
       $0.parent = parent
     }

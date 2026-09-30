@@ -41,7 +41,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   public var likelihood: Likelihood = Likelihood()
 
   /// Where the content was found.
-  public var location: Location? = nil
+  public var location: GoogleCloudDLPV2.Location? = nil
 
   /// Timestamp when finding was detected.
   public var createTime: GoogleWKT.WKTTimestamp? = nil
@@ -149,7 +149,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Likelihood.self, forKey: .likelihood) {
       self.likelihood = value
     }
-    self.location = try container.decodeIfPresent(Location.self, forKey: .location)
+    self.location = try container.decodeIfPresent(GoogleCloudDLPV2.Location.self, forKey: .location)
     self.createTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.quoteInfo = try container.decodeIfPresent(QuoteInfo.self, forKey: .quoteInfo)

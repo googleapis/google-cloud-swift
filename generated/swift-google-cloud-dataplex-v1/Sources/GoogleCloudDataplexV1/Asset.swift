@@ -47,7 +47,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. Current state of the asset.
-  public var state: State = State()
+  public var state: GoogleCloudDataplexV1.State = GoogleCloudDataplexV1.State()
 
   /// Required. Specification of the resource that is referenced by this asset.
   public var resourceSpec: Asset.ResourceSpec? = nil
@@ -145,7 +145,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(GoogleCloudDataplexV1.State.self, forKey: .state) {
       self.state = value
     }
     self.resourceSpec = try container.decodeIfPresent(

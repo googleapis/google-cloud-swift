@@ -26,7 +26,7 @@
     /// corpus only or ragfiles. Currently only support one corpus or multiple
     /// files from one corpus. In the future we may open up multiple corpora
     /// support.
-    public var ragResources: [VertexRagStore.RagResource] = []
+    public var ragResources: [GoogleCloudAIPlatformV1.VertexRagStore.RagResource] = []
 
     /// Optional. Number of top k results to return from the selected corpora.
     @available(*, deprecated)
@@ -83,7 +83,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
-        [VertexRagStore.RagResource].self, forKey: .ragResources)
+        [GoogleCloudAIPlatformV1.VertexRagStore.RagResource].self, forKey: .ragResources)
       {
         self.ragResources = value
       }

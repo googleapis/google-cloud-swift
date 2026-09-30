@@ -62,7 +62,7 @@
     /// this machine image. These pairs can consist of custom metadata or
     /// predefined keys. SeeProject and
     /// instance metadata for more information.
-    public var metadata: Metadata? = nil
+    public var metadata: GoogleCloudComputeV1.Metadata? = nil
 
     /// Minimum cpu/platform to be used by instances created from this machine
     /// image. The instance may be scheduled on the specified or newer
@@ -177,7 +177,8 @@
         self.labels = value
       }
       self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
-      self.metadata = try container.decodeIfPresent(Metadata.self, forKey: .metadata)
+      self.metadata = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Metadata.self, forKey: .metadata)
       self.minCpuPlatform = try container.decodeIfPresent(
         Swift.String.self, forKey: .minCpuPlatform)
       if let value = try container.decodeIfPresent(

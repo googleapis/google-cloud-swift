@@ -98,15 +98,19 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// @Snippet(path: "RapidMigrationAssessment_CreateAnnotation")
   public func createAnnotationPollingUntilDone(
     request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> Annotation {
+  ) async throws -> GoogleCloudRapidMigrationAssessmentV1.Annotation {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
-        -> GoogleGax._PollableOperationImpl<Annotation>.State in
-      return try op._extractStatus(Annotation.self)
+        -> GoogleGax._PollableOperationImpl<GoogleCloudRapidMigrationAssessmentV1.Annotation>.State
+      in
+      return try op._extractStatus(GoogleCloudRapidMigrationAssessmentV1.Annotation.self)
     }
     let rawOp = try await self.createAnnotation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Annotation>.State in
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<GoogleCloudRapidMigrationAssessmentV1.Annotation>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -417,7 +421,7 @@ extension Clients {
     /// See `RapidMigrationAssessmentClient.createAnnotation`.
     func createAnnotationPollingUntilDone(
       request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> Annotation
+    ) async throws -> GoogleCloudRapidMigrationAssessmentV1.Annotation
 
     /// See `RapidMigrationAssessmentClient.getAnnotation`.
     func getAnnotation(
@@ -563,21 +567,21 @@ extension Clients.RapidMigrationAssessmentProtocol {
   }
 
   public func createAnnotationPollingUntilDone(request: CreateAnnotationRequest) async throws
-    -> Annotation
+    -> GoogleCloudRapidMigrationAssessmentV1.Annotation
   {
     return try await self.createAnnotationPollingUntilDone(request: request, options: .init())
   }
 
   public func createAnnotationPollingUntilDone(
     request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> Annotation {
+  ) async throws -> GoogleCloudRapidMigrationAssessmentV1.Annotation {
     throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAnnotationPollingUntilDone(
     parent: Swift.String,
-    annotation: Annotation?,
-  ) async throws -> Annotation {
+    annotation: GoogleCloudRapidMigrationAssessmentV1.Annotation?,
+  ) async throws -> GoogleCloudRapidMigrationAssessmentV1.Annotation {
     let request = CreateAnnotationRequest().with {
       $0.parent = parent
       $0.annotation = annotation

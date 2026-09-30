@@ -66,7 +66,7 @@
     /// Omit to always apply the action.
     /// Currently only a single condition may be specified.
     /// Otherwise an INVALID ARGUMENT error is thrown.
-    public var conditions: [Condition] = []
+    public var conditions: [GoogleCloudDiscoveryEngineV1.Condition] = []
 
     /// Actions are restricted by Vertical and Solution
     ///
@@ -143,7 +143,9 @@
       if let value = try container.decodeIfPresent([SearchUseCase].self, forKey: .useCases) {
         self.useCases = value
       }
-      if let value = try container.decodeIfPresent([Condition].self, forKey: .conditions) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDiscoveryEngineV1.Condition].self, forKey: .conditions)
+      {
         self.conditions = value
       }
 

@@ -25,7 +25,8 @@ public struct LogicalInterface: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// List of logical network interfaces within a logical interface.
-  public var logicalNetworkInterfaces: [LogicalInterface.LogicalNetworkInterface] = []
+  public var logicalNetworkInterfaces:
+    [GoogleCloudBareMetalSolutionV2.LogicalInterface.LogicalNetworkInterface] = []
 
   /// Interface name. This is of syntax <bond><bond_mode> or <nic> and
   /// forms part of the network template name.
@@ -77,7 +78,8 @@ public struct LogicalInterface: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
-      [LogicalInterface.LogicalNetworkInterface].self, forKey: .logicalNetworkInterfaces)
+      [GoogleCloudBareMetalSolutionV2.LogicalInterface.LogicalNetworkInterface].self,
+      forKey: .logicalNetworkInterfaces)
     {
       self.logicalNetworkInterfaces = value
     }

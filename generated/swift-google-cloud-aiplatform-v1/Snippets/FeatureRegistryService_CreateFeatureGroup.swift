@@ -31,7 +31,7 @@
       request: CreateFeatureGroupRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
-          $0.featureGroup = FeatureGroup() /* .with { ... } */
+          $0.featureGroup = GoogleCloudAIPlatformV1.FeatureGroup() /* .with { ... } */
         }
     )
     print("Success: \(response)")

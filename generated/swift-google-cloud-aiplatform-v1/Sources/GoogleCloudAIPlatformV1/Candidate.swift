@@ -39,7 +39,8 @@
 
     /// Output only. The reason why the model stopped generating tokens.
     /// If empty, the model has not stopped generating the tokens.
-    public var finishReason: Candidate.FinishReason = Candidate.FinishReason()
+    public var finishReason: GoogleCloudAIPlatformV1.Candidate.FinishReason =
+      GoogleCloudAIPlatformV1.Candidate.FinishReason()
 
     /// Output only. List of ratings for the safety of a response candidate.
     ///
@@ -125,7 +126,7 @@
       self.logprobsResult = try container.decodeIfPresent(
         LogprobsResult.self, forKey: .logprobsResult)
       if let value = try container.decodeIfPresent(
-        Candidate.FinishReason.self, forKey: .finishReason)
+        GoogleCloudAIPlatformV1.Candidate.FinishReason.self, forKey: .finishReason)
       {
         self.finishReason = value
       }

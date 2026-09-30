@@ -26,7 +26,7 @@
     Sendable
   {
     /// The Features created.
-    public var features: [Feature] = []
+    public var features: [GoogleCloudAIPlatformV1.Feature] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Feature].self, forKey: .features) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Feature].self, forKey: .features)
+      {
         self.features = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

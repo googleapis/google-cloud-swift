@@ -26,7 +26,7 @@
     Sendable
   {
     /// The nearest neighbors of the query entity.
-    public var nearestNeighbors: NearestNeighbors? = nil
+    public var nearestNeighbors: GoogleCloudAIPlatformV1.NearestNeighbors? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.nearestNeighbors = try container.decodeIfPresent(
-        NearestNeighbors.self, forKey: .nearestNeighbors)
+        GoogleCloudAIPlatformV1.NearestNeighbors.self, forKey: .nearestNeighbors)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

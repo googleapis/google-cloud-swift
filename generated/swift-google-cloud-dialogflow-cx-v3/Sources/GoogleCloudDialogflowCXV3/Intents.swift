@@ -386,7 +386,7 @@
 
     public func listIntentsByItems(
       request: ListIntentsRequest
-    ) -> some AsyncSequence<Intent, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudDialogflowCXV3.Intent, Swift.Error> & Sendable {
       self.listIntentsByItems(request: request, options: .init())
     }
 
@@ -395,7 +395,7 @@
     /// @Snippet(path: "Intents_ListIntents")
     public func listIntentsByItems(
       request: ListIntentsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Intent, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudDialogflowCXV3.Intent, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.ListIntentsResponse in
@@ -408,7 +408,7 @@
 
     public func listIntentsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Intent, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudDialogflowCXV3.Intent, Swift.Error> & Sendable {
       let request = ListIntentsRequest().with {
         $0.parent = parent
       }
@@ -450,7 +450,7 @@
 
     public func createIntent(
       parent: Swift.String,
-      intent: Intent?,
+      intent: GoogleCloudDialogflowCXV3.Intent?,
     ) async throws -> GoogleCloudDialogflowCXV3.Intent {
       let request = CreateIntentRequest().with {
         $0.parent = parent
@@ -472,7 +472,7 @@
     }
 
     public func updateIntent(
-      intent: Intent?,
+      intent: GoogleCloudDialogflowCXV3.Intent?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Intent {
       let request = UpdateIntentRequest().with {

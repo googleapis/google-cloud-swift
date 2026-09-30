@@ -22,7 +22,8 @@ public struct MembershipState: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Output only. The current state of the Membership resource.
-  public var code: MembershipState.Code = MembershipState.Code()
+  public var code: GoogleCloudGKEHubV1.MembershipState.Code = GoogleCloudGKEHubV1.MembershipState
+    .Code()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -57,7 +58,9 @@ public struct MembershipState: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(MembershipState.Code.self, forKey: .code) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudGKEHubV1.MembershipState.Code.self, forKey: .code)
+    {
       self.code = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

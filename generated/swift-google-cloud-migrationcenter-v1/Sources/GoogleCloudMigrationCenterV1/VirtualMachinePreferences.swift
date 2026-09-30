@@ -38,7 +38,8 @@ public struct VirtualMachinePreferences: Codable, Equatable, GoogleWKT._AnyPacka
   /// insights and recommendations.
   /// If you are unsure which value to set, a 3 year commitment plan is often a
   /// good value to start with.
-  public var commitmentPlan: CommitmentPlan = CommitmentPlan()
+  public var commitmentPlan: GoogleCloudMigrationCenterV1.CommitmentPlan =
+    GoogleCloudMigrationCenterV1.CommitmentPlan()
 
   /// Sizing optimization strategy specifies the preferred strategy used when
   /// extrapolating usage data to calculate insights and recommendations for a
@@ -110,7 +111,9 @@ public struct VirtualMachinePreferences: Codable, Equatable, GoogleWKT._AnyPacka
     }
     self.regionPreferences = try container.decodeIfPresent(
       RegionPreferences.self, forKey: .regionPreferences)
-    if let value = try container.decodeIfPresent(CommitmentPlan.self, forKey: .commitmentPlan) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudMigrationCenterV1.CommitmentPlan.self, forKey: .commitmentPlan)
+    {
       self.commitmentPlan = value
     }
     if let value = try container.decodeIfPresent(

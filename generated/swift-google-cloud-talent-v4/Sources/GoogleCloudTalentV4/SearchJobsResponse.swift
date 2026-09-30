@@ -44,7 +44,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.talent.v4.Location.LocationType.LOCATION_TYPE_UNSPECIFIED]: <doc:Location/LocationType/unspecified>
   /// [google.cloud.talent.v4.Location.location_type]: <doc:Location/locationType>
-  public var locationFilters: [Location] = []
+  public var locationFilters: [GoogleCloudTalentV4.Location] = []
 
   /// Number of jobs that match the specified query.
   ///
@@ -127,7 +127,9 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
       self.nextPageToken = value
     }
-    if let value = try container.decodeIfPresent([Location].self, forKey: .locationFilters) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudTalentV4.Location].self, forKey: .locationFilters)
+    {
       self.locationFilters = value
     }
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .totalSize) {
@@ -288,7 +290,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Location used as the destination in the commute calculation.
-    public var jobLocation: Location? = nil
+    public var jobLocation: GoogleCloudTalentV4.Location? = nil
 
     /// The number of seconds required to travel to the job location from the
     /// query location. A duration of 0 seconds indicates that the job isn't
@@ -331,7 +333,8 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.jobLocation = try container.decodeIfPresent(Location.self, forKey: .jobLocation)
+      self.jobLocation = try container.decodeIfPresent(
+        GoogleCloudTalentV4.Location.self, forKey: .jobLocation)
       self.travelDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .travelDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

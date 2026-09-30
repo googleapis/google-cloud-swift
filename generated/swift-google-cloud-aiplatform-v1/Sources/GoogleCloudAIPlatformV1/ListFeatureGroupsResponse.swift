@@ -27,7 +27,7 @@
     Sendable
   {
     /// The FeatureGroups matching the request.
-    public var featureGroups: [FeatureGroup] = []
+    public var featureGroups: [GoogleCloudAIPlatformV1.FeatureGroup] = []
 
     /// A token, which can be sent as
     /// [ListFeatureGroupsRequest.page_token][google.cloud.aiplatform.v1.ListFeatureGroupsRequest.page_token]
@@ -72,7 +72,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([FeatureGroup].self, forKey: .featureGroups) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.FeatureGroup].self, forKey: .featureGroups)
+      {
         self.featureGroups = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -106,7 +108,7 @@
 
   @_spi(GoogleCloudInternal)
   extension ListFeatureGroupsResponse: GoogleGax._PaginatedResponse {
-    public func _getPaginatedItems() -> [FeatureGroup] {
+    public func _getPaginatedItems() -> [GoogleCloudAIPlatformV1.FeatureGroup] {
       return self.featureGroups
     }
 

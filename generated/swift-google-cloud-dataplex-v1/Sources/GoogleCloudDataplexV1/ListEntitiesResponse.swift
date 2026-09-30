@@ -23,7 +23,7 @@ public struct ListEntitiesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Entities in the specified parent zone.
-  public var entities: [Entity] = []
+  public var entities: [GoogleCloudDataplexV1.Entity] = []
 
   /// Token to retrieve the next page of results, or empty if there are no
   /// remaining results in the list.
@@ -64,7 +64,9 @@ public struct ListEntitiesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent([Entity].self, forKey: .entities) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudDataplexV1.Entity].self, forKey: .entities)
+    {
       self.entities = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -98,7 +100,7 @@ public struct ListEntitiesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
 
 @_spi(GoogleCloudInternal)
 extension ListEntitiesResponse: GoogleGax._PaginatedResponse {
-  public func _getPaginatedItems() -> [Entity] {
+  public func _getPaginatedItems() -> [GoogleCloudDataplexV1.Entity] {
     return self.entities
   }
 

@@ -29,7 +29,7 @@
     /// The list of messages. There will be a maximum number of items
     /// returned based on the page_size field in the request.
     /// `messages` is sorted by `create_time` in descending order.
-    public var messages: [Message] = []
+    public var messages: [GoogleCloudDialogflowV2.Message] = []
 
     /// Token to retrieve the next page of results, or empty if there are
     /// no more results in the list.
@@ -70,7 +70,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Message].self, forKey: .messages) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDialogflowV2.Message].self, forKey: .messages)
+      {
         self.messages = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -104,7 +106,7 @@
 
   @_spi(GoogleCloudInternal)
   extension ListMessagesResponse: GoogleGax._PaginatedResponse {
-    public func _getPaginatedItems() -> [Message] {
+    public func _getPaginatedItems() -> [GoogleCloudDialogflowV2.Message] {
       return self.messages
     }
 

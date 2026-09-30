@@ -261,7 +261,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Range of values considered "good." For a one-sided range, set one bound
     /// to an infinite value.
-    public var range: Range? = nil
+    public var range: GoogleCloudMonitoringV3.Range? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -301,7 +301,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeSeries) {
         self.timeSeries = value
       }
-      self.range = try container.decodeIfPresent(Range.self, forKey: .range)
+      self.range = try container.decodeIfPresent(GoogleCloudMonitoringV3.Range.self, forKey: .range)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

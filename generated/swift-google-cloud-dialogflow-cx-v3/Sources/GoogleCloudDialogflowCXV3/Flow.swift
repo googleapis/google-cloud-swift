@@ -83,7 +83,7 @@
     ///
     /// [Page.event_handlers]: <doc:Page/eventHandlers>
     /// [google.cloud.dialogflow.cx.v3.Flow.transition_routes]: <doc:Flow/transitionRoutes>
-    public var eventHandlers: [EventHandler] = []
+    public var eventHandlers: [GoogleCloudDialogflowCXV3.EventHandler] = []
 
     /// A flow's transition route group serve two purposes:
     ///
@@ -110,7 +110,8 @@
     public var advancedSettings: AdvancedSettings? = nil
 
     /// Optional. Knowledge connector configuration.
-    public var knowledgeConnectorSettings: KnowledgeConnectorSettings? = nil
+    public var knowledgeConnectorSettings: GoogleCloudDialogflowCXV3.KnowledgeConnectorSettings? =
+      nil
 
     /// Optional. Defined structured input parameters for this flow.
     public var inputParameterDefinitions: [ParameterDefinition] = []
@@ -196,7 +197,9 @@
       {
         self.transitionRoutes = value
       }
-      if let value = try container.decodeIfPresent([EventHandler].self, forKey: .eventHandlers) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDialogflowCXV3.EventHandler].self, forKey: .eventHandlers)
+      {
         self.eventHandlers = value
       }
       if let value = try container.decodeIfPresent(
@@ -208,7 +211,8 @@
       self.advancedSettings = try container.decodeIfPresent(
         AdvancedSettings.self, forKey: .advancedSettings)
       self.knowledgeConnectorSettings = try container.decodeIfPresent(
-        KnowledgeConnectorSettings.self, forKey: .knowledgeConnectorSettings)
+        GoogleCloudDialogflowCXV3.KnowledgeConnectorSettings.self,
+        forKey: .knowledgeConnectorSettings)
       if let value = try container.decodeIfPresent(
         [ParameterDefinition].self, forKey: .inputParameterDefinitions)
       {

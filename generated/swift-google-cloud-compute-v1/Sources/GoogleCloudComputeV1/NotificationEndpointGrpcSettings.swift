@@ -41,7 +41,7 @@
     /// If specified, must be in the range between 600 seconds to 3600 seconds.
     /// Nanos are disallowed. Can only be set for regional notification
     /// endpoints.
-    public var resendInterval: Duration? = nil
+    public var resendInterval: GoogleCloudComputeV1.Duration? = nil
 
     /// How much time (in seconds) is spent attempting notification retries
     /// until a successful response is received. Default is 30s. Limit is 20m
@@ -92,7 +92,8 @@
       self.authority = try container.decodeIfPresent(Swift.String.self, forKey: .authority)
       self.endpoint = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint)
       self.payloadName = try container.decodeIfPresent(Swift.String.self, forKey: .payloadName)
-      self.resendInterval = try container.decodeIfPresent(Duration.self, forKey: .resendInterval)
+      self.resendInterval = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .resendInterval)
       self.retryDurationSec = try container.decodeIfPresent(
         Swift.UInt32.self, forKey: .retryDurationSec)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

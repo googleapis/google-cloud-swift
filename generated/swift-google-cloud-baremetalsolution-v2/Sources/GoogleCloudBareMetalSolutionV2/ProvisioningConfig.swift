@@ -29,7 +29,7 @@ public struct ProvisioningConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var instances: [InstanceConfig] = []
 
   /// Networks to be created.
-  public var networks: [NetworkConfig] = []
+  public var networks: [GoogleCloudBareMetalSolutionV2.NetworkConfig] = []
 
   /// Volumes to be created.
   public var volumes: [VolumeConfig] = []
@@ -136,7 +136,9 @@ public struct ProvisioningConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent([InstanceConfig].self, forKey: .instances) {
       self.instances = value
     }
-    if let value = try container.decodeIfPresent([NetworkConfig].self, forKey: .networks) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudBareMetalSolutionV2.NetworkConfig].self, forKey: .networks)
+    {
       self.networks = value
     }
     if let value = try container.decodeIfPresent([VolumeConfig].self, forKey: .volumes) {

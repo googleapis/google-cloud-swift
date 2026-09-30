@@ -152,7 +152,7 @@
     /// The metadata key/value pairs assigned
     /// to this instance. This includes metadata keys that were explicitly defined
     /// for the instance.
-    public var metadata: Metadata? = nil
+    public var metadata: GoogleCloudComputeV1.Metadata? = nil
 
     /// Specifies aminimum CPU
     /// platform for the VM instance. Applicable values are the friendly names
@@ -445,7 +445,8 @@
       self.localSsdEncryptionMode = try container.decodeIfPresent(
         Instance.LocalSsdEncryptionMode.self, forKey: .localSsdEncryptionMode)
       self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
-      self.metadata = try container.decodeIfPresent(Metadata.self, forKey: .metadata)
+      self.metadata = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Metadata.self, forKey: .metadata)
       self.minCpuPlatform = try container.decodeIfPresent(
         Swift.String.self, forKey: .minCpuPlatform)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)

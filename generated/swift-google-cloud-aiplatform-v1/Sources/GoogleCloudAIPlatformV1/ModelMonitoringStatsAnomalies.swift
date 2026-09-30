@@ -115,7 +115,7 @@
       public var featureDisplayName: Swift.String = Swift.String()
 
       /// Threshold for anomaly detection.
-      public var threshold: ThresholdConfig? = nil
+      public var threshold: GoogleCloudAIPlatformV1.ThresholdConfig? = nil
 
       /// Stats calculated for the Training Dataset.
       public var trainingStats: FeatureStatsAnomaly? = nil
@@ -167,7 +167,8 @@
         {
           self.featureDisplayName = value
         }
-        self.threshold = try container.decodeIfPresent(ThresholdConfig.self, forKey: .threshold)
+        self.threshold = try container.decodeIfPresent(
+          GoogleCloudAIPlatformV1.ThresholdConfig.self, forKey: .threshold)
         self.trainingStats = try container.decodeIfPresent(
           FeatureStatsAnomaly.self, forKey: .trainingStats)
         if let value = try container.decodeIfPresent(

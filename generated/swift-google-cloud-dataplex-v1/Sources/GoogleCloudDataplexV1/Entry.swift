@@ -61,7 +61,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. Information related to the source system of the data resource
   /// that is represented by the entry.
-  public var entrySource: EntrySource? = nil
+  public var entrySource: GoogleCloudDataplexV1.EntrySource? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -129,7 +129,8 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullyQualifiedName) {
       self.fullyQualifiedName = value
     }
-    self.entrySource = try container.decodeIfPresent(EntrySource.self, forKey: .entrySource)
+    self.entrySource = try container.decodeIfPresent(
+      GoogleCloudDataplexV1.EntrySource.self, forKey: .entrySource)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)

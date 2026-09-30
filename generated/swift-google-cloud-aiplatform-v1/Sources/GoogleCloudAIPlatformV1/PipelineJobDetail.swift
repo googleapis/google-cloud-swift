@@ -23,10 +23,10 @@
     Sendable
   {
     /// Output only. The context of the pipeline.
-    public var pipelineContext: Context? = nil
+    public var pipelineContext: GoogleCloudAIPlatformV1.Context? = nil
 
     /// Output only. The context of the current pipeline run.
-    public var pipelineRunContext: Context? = nil
+    public var pipelineRunContext: GoogleCloudAIPlatformV1.Context? = nil
 
     /// Output only. The runtime details of the tasks under the pipeline.
     public var taskDetails: [PipelineTaskDetail] = []
@@ -68,9 +68,10 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.pipelineContext = try container.decodeIfPresent(Context.self, forKey: .pipelineContext)
+      self.pipelineContext = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Context.self, forKey: .pipelineContext)
       self.pipelineRunContext = try container.decodeIfPresent(
-        Context.self, forKey: .pipelineRunContext)
+        GoogleCloudAIPlatformV1.Context.self, forKey: .pipelineRunContext)
       if let value = try container.decodeIfPresent([PipelineTaskDetail].self, forKey: .taskDetails)
       {
         self.taskDetails = value

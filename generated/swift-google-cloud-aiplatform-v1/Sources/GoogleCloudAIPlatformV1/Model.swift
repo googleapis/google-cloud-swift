@@ -94,7 +94,7 @@
 
     /// Output only. The formats in which this Model may be exported. If empty,
     /// this Model is not available for export.
-    public var supportedExportFormats: [Model.ExportFormat] = []
+    public var supportedExportFormats: [GoogleCloudAIPlatformV1.Model.ExportFormat] = []
 
     /// Output only. The resource name of the TrainingPipeline that uploaded this
     /// Model, if any.
@@ -142,7 +142,8 @@
     /// [google.cloud.aiplatform.v1.Model.supported_output_storage_formats]: <doc:Model/supportedOutputStorageFormats>
     /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:options:)>
     /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:options:)>
-    public var supportedDeploymentResourcesTypes: [Model.DeploymentResourcesType] = []
+    public var supportedDeploymentResourcesTypes:
+      [GoogleCloudAIPlatformV1.Model.DeploymentResourcesType] = []
 
     /// Output only. The formats this Model supports in
     /// [BatchPredictionJob.input_config][google.cloud.aiplatform.v1.BatchPredictionJob.input_config].
@@ -322,7 +323,7 @@
     /// [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
     ///
     /// [google.cloud.aiplatform.v1.TrainingPipeline.input_data_config]: <doc:TrainingPipeline/inputDataConfig>
-    public var dataStats: Model.DataStats? = nil
+    public var dataStats: GoogleCloudAIPlatformV1.Model.DataStats? = nil
 
     /// Customer-managed encryption key spec for a Model. If set, this
     /// Model and all sub-resources of this Model will be secured by this key.
@@ -335,7 +336,7 @@
 
     /// Output only. If this Model is a copy of another Model, this contains info
     /// about the original.
-    public var originalModelInfo: Model.OriginalModelInfo? = nil
+    public var originalModelInfo: GoogleCloudAIPlatformV1.Model.OriginalModelInfo? = nil
 
     /// Output only. The resource name of the Artifact that was created in
     /// MetadataStore when creating the Model. The Artifact resource name pattern
@@ -345,7 +346,7 @@
 
     /// Optional. User input field to specify the base model source. Currently it
     /// only supports specifing the Model Garden models and Genie models.
-    public var baseModelSource: Model.BaseModelSource? = nil
+    public var baseModelSource: GoogleCloudAIPlatformV1.Model.BaseModelSource? = nil
 
     /// Output only. Reserved for future use.
     public var satisfiesPzs: Swift.Bool = Swift.Bool()
@@ -493,7 +494,7 @@
       }
       self.metadata = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .metadata)
       if let value = try container.decodeIfPresent(
-        [Model.ExportFormat].self, forKey: .supportedExportFormats)
+        [GoogleCloudAIPlatformV1.Model.ExportFormat].self, forKey: .supportedExportFormats)
       {
         self.supportedExportFormats = value
       }
@@ -509,7 +510,8 @@
         self.artifactUri = value
       }
       if let value = try container.decodeIfPresent(
-        [Model.DeploymentResourcesType].self, forKey: .supportedDeploymentResourcesTypes)
+        [GoogleCloudAIPlatformV1.Model.DeploymentResourcesType].self,
+        forKey: .supportedDeploymentResourcesTypes)
       {
         self.supportedDeploymentResourcesTypes = value
       }
@@ -541,18 +543,19 @@
       {
         self.labels = value
       }
-      self.dataStats = try container.decodeIfPresent(Model.DataStats.self, forKey: .dataStats)
+      self.dataStats = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Model.DataStats.self, forKey: .dataStats)
       self.encryptionSpec = try container.decodeIfPresent(
         EncryptionSpec.self, forKey: .encryptionSpec)
       self.modelSourceInfo = try container.decodeIfPresent(
         ModelSourceInfo.self, forKey: .modelSourceInfo)
       self.originalModelInfo = try container.decodeIfPresent(
-        Model.OriginalModelInfo.self, forKey: .originalModelInfo)
+        GoogleCloudAIPlatformV1.Model.OriginalModelInfo.self, forKey: .originalModelInfo)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metadataArtifact) {
         self.metadataArtifact = value
       }
       self.baseModelSource = try container.decodeIfPresent(
-        Model.BaseModelSource.self, forKey: .baseModelSource)
+        GoogleCloudAIPlatformV1.Model.BaseModelSource.self, forKey: .baseModelSource)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs) {
         self.satisfiesPzs = value
       }
@@ -641,7 +644,8 @@
       public var id: Swift.String = Swift.String()
 
       /// Output only. The content of this Model that may be exported.
-      public var exportableContents: [Model.ExportFormat.ExportableContent] = []
+      public var exportableContents:
+        [GoogleCloudAIPlatformV1.Model.ExportFormat.ExportableContent] = []
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -682,7 +686,8 @@
           self.id = value
         }
         if let value = try container.decodeIfPresent(
-          [Model.ExportFormat.ExportableContent].self, forKey: .exportableContents)
+          [GoogleCloudAIPlatformV1.Model.ExportFormat.ExportableContent].self,
+          forKey: .exportableContents)
         {
           self.exportableContents = value
         }

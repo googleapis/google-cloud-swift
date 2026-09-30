@@ -24,7 +24,7 @@ public struct FeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The high-level, machine-readable status of this Feature.
-  public var code: FeatureState.Code = FeatureState.Code()
+  public var code: GoogleCloudGKEHubV1.FeatureState.Code = GoogleCloudGKEHubV1.FeatureState.Code()
 
   /// A human-readable description of the current status.
   public var description: Swift.String = Swift.String()
@@ -69,7 +69,9 @@ public struct FeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(FeatureState.Code.self, forKey: .code) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudGKEHubV1.FeatureState.Code.self, forKey: .code)
+    {
       self.code = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {

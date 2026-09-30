@@ -80,7 +80,9 @@
       if let userInput = try container.decodeIfPresent(TextInput.self, forKey: .userInput) {
         try messageCheckAndSet(.userInput(userInput))
       }
-      if let reply = try container.decodeIfPresent(Reply.self, forKey: .reply) {
+      if let reply = try container.decodeIfPresent(
+        GoogleCloudDiscoveryEngineV1.Reply.self, forKey: .reply)
+      {
         try messageCheckAndSet(.reply(reply))
       }
       self.message = message
@@ -111,7 +113,7 @@
       /// User text input.
       indirect case userInput(TextInput)
       /// Search reply.
-      indirect case reply(Reply)
+      indirect case reply(GoogleCloudDiscoveryEngineV1.Reply)
     }
 
     public static var _anyTypeUrl: Swift.String {

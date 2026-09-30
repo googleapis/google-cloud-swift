@@ -4996,7 +4996,9 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateConnectionTypesByItems(
     request: ListGoldengateConnectionTypesRequest
-  ) -> some AsyncSequence<GoldengateConnectionType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudOracleDatabaseV1.GoldengateConnectionType, Swift.Error>
+    & Sendable
+  {
     self.listGoldengateConnectionTypesByItems(request: request, options: .init())
   }
 
@@ -5005,7 +5007,9 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListGoldengateConnectionTypes")
   public func listGoldengateConnectionTypesByItems(
     request: ListGoldengateConnectionTypesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoldengateConnectionType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudOracleDatabaseV1.GoldengateConnectionType, Swift.Error>
+    & Sendable
+  {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateConnectionTypesResponse in
@@ -5018,7 +5022,9 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateConnectionTypesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<GoldengateConnectionType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudOracleDatabaseV1.GoldengateConnectionType, Swift.Error>
+    & Sendable
+  {
     let request = ListGoldengateConnectionTypesRequest().with {
       $0.parent = parent
     }

@@ -53,7 +53,7 @@
     public var automatedAgentReply: AutomatedAgentReply? = nil
 
     /// Message analyzed by CCAI.
-    public var message: Message? = nil
+    public var message: GoogleCloudDialogflowV2.Message? = nil
 
     /// The suggestions for most recent human agent. The order is the same as
     /// [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
@@ -138,7 +138,8 @@
       self.replyAudio = try container.decodeIfPresent(OutputAudio.self, forKey: .replyAudio)
       self.automatedAgentReply = try container.decodeIfPresent(
         AutomatedAgentReply.self, forKey: .automatedAgentReply)
-      self.message = try container.decodeIfPresent(Message.self, forKey: .message)
+      self.message = try container.decodeIfPresent(
+        GoogleCloudDialogflowV2.Message.self, forKey: .message)
       if let value = try container.decodeIfPresent(
         [SuggestionResult].self, forKey: .humanAgentSuggestionResults)
       {

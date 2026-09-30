@@ -25,7 +25,7 @@ public struct GoogleLongrunningOperation: Codable, Equatable, GoogleWKT._AnyPack
   public var done: Swift.Bool? = nil
 
   /// The error result of the operation in case of failure or cancellation.
-  public var error: Status? = nil
+  public var error: GoogleCloudDNSV1.Status? = nil
 
   /// Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
   public var metadata: GoogleWKT.WKTAny? = nil
@@ -78,7 +78,7 @@ public struct GoogleLongrunningOperation: Codable, Equatable, GoogleWKT._AnyPack
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.done = try container.decodeIfPresent(Swift.Bool.self, forKey: .done)
-    self.error = try container.decodeIfPresent(Status.self, forKey: .error)
+    self.error = try container.decodeIfPresent(GoogleCloudDNSV1.Status.self, forKey: .error)
     self.metadata = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .metadata)
     self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
     self.response = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .response)

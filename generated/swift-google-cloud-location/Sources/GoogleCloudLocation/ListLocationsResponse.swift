@@ -25,7 +25,7 @@ public struct ListLocationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// A list of locations that matches the specified filter in the request.
-  public var locations: [Location] = []
+  public var locations: [GoogleCloudLocation.Location] = []
 
   /// The standard List next-page token.
   public var nextPageToken: Swift.String = Swift.String()
@@ -65,7 +65,9 @@ public struct ListLocationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent([Location].self, forKey: .locations) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudLocation.Location].self, forKey: .locations)
+    {
       self.locations = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -99,7 +101,7 @@ public struct ListLocationsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
 
 @_spi(GoogleCloudInternal)
 extension ListLocationsResponse: GoogleGax._PaginatedResponse {
-  public func _getPaginatedItems() -> [Location] {
+  public func _getPaginatedItems() -> [GoogleCloudLocation.Location] {
     return self.locations
   }
 

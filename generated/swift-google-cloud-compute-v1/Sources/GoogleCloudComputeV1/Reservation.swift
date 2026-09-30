@@ -44,7 +44,7 @@
 
     /// Duration time relative to reservation creation when Compute Engine will
     /// automatically delete this resource.
-    public var deleteAfterDuration: Duration? = nil
+    public var deleteAfterDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// Absolute time in future when the reservation will be
     ///  auto-deleted by Compute Engine. Timestamp is represented inRFC3339 text format.
@@ -253,7 +253,7 @@
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
       self.deleteAfterDuration = try container.decodeIfPresent(
-        Duration.self, forKey: .deleteAfterDuration)
+        GoogleCloudComputeV1.Duration.self, forKey: .deleteAfterDuration)
       self.deleteAtTime = try container.decodeIfPresent(Swift.String.self, forKey: .deleteAtTime)
       self.deploymentType = try container.decodeIfPresent(
         Reservation.DeploymentType.self, forKey: .deploymentType)

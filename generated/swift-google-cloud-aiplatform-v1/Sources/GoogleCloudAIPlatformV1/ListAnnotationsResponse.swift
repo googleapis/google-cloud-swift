@@ -27,7 +27,7 @@
     Sendable
   {
     /// A list of Annotations that matches the specified filter in the request.
-    public var annotations: [Annotation] = []
+    public var annotations: [GoogleCloudAIPlatformV1.Annotation] = []
 
     /// The standard List next-page token.
     public var nextPageToken: Swift.String = Swift.String()
@@ -67,7 +67,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Annotation].self, forKey: .annotations) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Annotation].self, forKey: .annotations)
+      {
         self.annotations = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -101,7 +103,7 @@
 
   @_spi(GoogleCloudInternal)
   extension ListAnnotationsResponse: GoogleGax._PaginatedResponse {
-    public func _getPaginatedItems() -> [Annotation] {
+    public func _getPaginatedItems() -> [GoogleCloudAIPlatformV1.Annotation] {
       return self.annotations
     }
 

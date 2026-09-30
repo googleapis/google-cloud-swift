@@ -132,7 +132,7 @@
         try readOptionCheckAndSet(.csvReadInstances(csvReadInstances))
       }
       if let bigqueryReadInstances = try container.decodeIfPresent(
-        BigQuerySource.self, forKey: .bigqueryReadInstances)
+        GoogleCloudAIPlatformV1.BigQuerySource.self, forKey: .bigqueryReadInstances)
       {
         try readOptionCheckAndSet(.bigqueryReadInstances(bigqueryReadInstances))
       }
@@ -359,7 +359,7 @@
       /// `2012-07-30T10:43:17.123Z`.
       indirect case csvReadInstances(CsvSource)
       /// Similar to csv_read_instances, but from BigQuery source.
-      indirect case bigqueryReadInstances(BigQuerySource)
+      indirect case bigqueryReadInstances(GoogleCloudAIPlatformV1.BigQuerySource)
     }
 
     public static var _anyTypeUrl: Swift.String {

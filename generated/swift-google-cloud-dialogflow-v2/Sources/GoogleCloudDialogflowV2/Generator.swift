@@ -34,7 +34,8 @@
 
     /// Optional. The trigger event of the generator. It defines when the generator
     /// is triggered in a conversation.
-    public var triggerEvent: TriggerEvent = TriggerEvent()
+    public var triggerEvent: GoogleCloudDialogflowV2.TriggerEvent =
+      GoogleCloudDialogflowV2.TriggerEvent()
 
     /// Output only. Creation time of this generator.
     public var createTime: GoogleWKT.WKTTimestamp? = nil
@@ -141,7 +142,9 @@
       }
       self.inferenceParameter = try container.decodeIfPresent(
         InferenceParameter.self, forKey: .inferenceParameter)
-      if let value = try container.decodeIfPresent(TriggerEvent.self, forKey: .triggerEvent) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudDialogflowV2.TriggerEvent.self, forKey: .triggerEvent)
+      {
         self.triggerEvent = value
       }
       self.createTime = try container.decodeIfPresent(

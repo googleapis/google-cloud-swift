@@ -25,7 +25,7 @@ public struct EchoResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public var content: Swift.String = Swift.String()
 
   /// The severity specified in the request.
-  public var severity: Severity = Severity()
+  public var severity: GoogleShowcaseV1Beta1.Severity = GoogleShowcaseV1Beta1.Severity()
 
   /// The request ID specified or autopopulated in the request.
   public var requestId: Swift.String = Swift.String()
@@ -75,7 +75,9 @@ public struct EchoResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
       self.content = value
     }
-    if let value = try container.decodeIfPresent(Severity.self, forKey: .severity) {
+    if let value = try container.decodeIfPresent(
+      GoogleShowcaseV1Beta1.Severity.self, forKey: .severity)
+    {
       self.severity = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {

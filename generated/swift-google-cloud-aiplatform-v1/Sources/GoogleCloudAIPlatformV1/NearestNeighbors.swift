@@ -23,7 +23,7 @@
     Sendable
   {
     /// All its neighbors.
-    public var neighbors: [NearestNeighbors.Neighbor] = []
+    public var neighbors: [GoogleCloudAIPlatformV1.NearestNeighbors.Neighbor] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
-        [NearestNeighbors.Neighbor].self, forKey: .neighbors)
+        [GoogleCloudAIPlatformV1.NearestNeighbors.Neighbor].self, forKey: .neighbors)
       {
         self.neighbors = value
       }

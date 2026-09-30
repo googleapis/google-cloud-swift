@@ -30,7 +30,7 @@ func sample(
     request: CreateEntityRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/zones/\(zoneId)"
-        $0.entity = Entity() /* .with { ... } */
+        $0.entity = GoogleCloudDataplexV1.Entity() /* .with { ... } */
       }
   )
   print("Success: \(response)")

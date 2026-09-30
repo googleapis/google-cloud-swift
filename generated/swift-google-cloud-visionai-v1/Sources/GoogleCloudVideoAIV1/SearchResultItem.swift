@@ -45,7 +45,7 @@ public struct SearchResultItem: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Search result annotations specified by result_annotation_keys in search
   /// request.
-  public var requestedAnnotations: [Annotation] = []
+  public var requestedAnnotations: [GoogleCloudVideoAIV1.Annotation] = []
 
   /// Criteria or facet-selection based annotation matching results associated to
   /// this search result item. Only contains results for criteria or
@@ -110,7 +110,9 @@ public struct SearchResultItem: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .relevance) {
       self.relevance = value
     }
-    if let value = try container.decodeIfPresent([Annotation].self, forKey: .requestedAnnotations) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudVideoAIV1.Annotation].self, forKey: .requestedAnnotations)
+    {
       self.requestedAnnotations = value
     }
     if let value = try container.decodeIfPresent(

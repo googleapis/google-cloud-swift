@@ -57,7 +57,7 @@
 
     /// Requested run duration for instances that will be created by this request.
     /// At the end of the run duration instance will be deleted.
-    public var requestedRunDuration: Duration? = nil
+    public var requestedRunDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// The number of instances to be created by this resize request. The group's
     /// target size will be increased by this number. This field cannot be used
@@ -151,7 +151,7 @@
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.region = try container.decodeIfPresent(Swift.String.self, forKey: .region)
       self.requestedRunDuration = try container.decodeIfPresent(
-        Duration.self, forKey: .requestedRunDuration)
+        GoogleCloudComputeV1.Duration.self, forKey: .requestedRunDuration)
       self.resizeBy = try container.decodeIfPresent(Swift.Int32.self, forKey: .resizeBy)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
       self.selfLinkWithId = try container.decodeIfPresent(

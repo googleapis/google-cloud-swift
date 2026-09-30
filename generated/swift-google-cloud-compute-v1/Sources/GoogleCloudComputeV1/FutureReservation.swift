@@ -34,7 +34,7 @@
     /// auto-created reservations will be automatically deleted by Compute
     /// Engine. Duration time unit is represented as a count of seconds
     /// and fractions of seconds at nanosecond resolution.
-    public var autoCreatedReservationsDuration: Duration? = nil
+    public var autoCreatedReservationsDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// Setting for enabling or disabling automatic deletion for auto-created
     /// reservation. If set to true, auto-created reservations will be
@@ -252,7 +252,7 @@
       self.autoCreatedReservationsDeleteTime = try container.decodeIfPresent(
         Swift.String.self, forKey: .autoCreatedReservationsDeleteTime)
       self.autoCreatedReservationsDuration = try container.decodeIfPresent(
-        Duration.self, forKey: .autoCreatedReservationsDuration)
+        GoogleCloudComputeV1.Duration.self, forKey: .autoCreatedReservationsDuration)
       self.autoDeleteAutoCreatedReservations = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .autoDeleteAutoCreatedReservations)
       self.commitmentInfo = try container.decodeIfPresent(

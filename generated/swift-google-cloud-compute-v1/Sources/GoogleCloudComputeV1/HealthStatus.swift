@@ -32,7 +32,7 @@
     public var forwardingRuleIp: Swift.String? = nil
 
     /// Health state of the IPv4 address of the instance.
-    public var healthState: HealthStatus.HealthState? = nil
+    public var healthState: GoogleCloudComputeV1.HealthStatus.HealthState? = nil
 
     /// URL of the instance resource.
     public var instance: Swift.String? = nil
@@ -45,7 +45,7 @@
     public var ipv6Address: Swift.String? = nil
 
     /// Health state of the IPv6 address of the instance.
-    public var ipv6HealthState: HealthStatus.Ipv6HealthState? = nil
+    public var ipv6HealthState: GoogleCloudComputeV1.HealthStatus.Ipv6HealthState? = nil
 
     /// The named port of the instance group, not necessarily the port that is
     /// health-checked.
@@ -53,7 +53,7 @@
 
     public var weight: Swift.String? = nil
 
-    public var weightError: HealthStatus.WeightError? = nil
+    public var weightError: GoogleCloudComputeV1.HealthStatus.WeightError? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -118,16 +118,16 @@
       self.forwardingRuleIp = try container.decodeIfPresent(
         Swift.String.self, forKey: .forwardingRuleIp)
       self.healthState = try container.decodeIfPresent(
-        HealthStatus.HealthState.self, forKey: .healthState)
+        GoogleCloudComputeV1.HealthStatus.HealthState.self, forKey: .healthState)
       self.instance = try container.decodeIfPresent(Swift.String.self, forKey: .instance)
       self.ipAddress = try container.decodeIfPresent(Swift.String.self, forKey: .ipAddress)
       self.ipv6Address = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Address)
       self.ipv6HealthState = try container.decodeIfPresent(
-        HealthStatus.Ipv6HealthState.self, forKey: .ipv6HealthState)
+        GoogleCloudComputeV1.HealthStatus.Ipv6HealthState.self, forKey: .ipv6HealthState)
       self.port = try container.decodeIfPresent(Swift.Int32.self, forKey: .port)
       self.weight = try container.decodeIfPresent(Swift.String.self, forKey: .weight)
       self.weightError = try container.decodeIfPresent(
-        HealthStatus.WeightError.self, forKey: .weightError)
+        GoogleCloudComputeV1.HealthStatus.WeightError.self, forKey: .weightError)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

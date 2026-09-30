@@ -44,10 +44,10 @@
 
     /// The collection of training phrases the agent is trained on to identify the
     /// intent.
-    public var trainingPhrases: [Intent.TrainingPhrase] = []
+    public var trainingPhrases: [GoogleCloudDialogflowCXV3.Intent.TrainingPhrase] = []
 
     /// The collection of parameters associated with the intent.
-    public var parameters: [Intent.Parameter] = []
+    public var parameters: [GoogleCloudDialogflowCXV3.Intent.Parameter] = []
 
     /// The priority of this intent. Higher numbers represent higher
     /// priorities.
@@ -144,11 +144,13 @@
         self.displayName = value
       }
       if let value = try container.decodeIfPresent(
-        [Intent.TrainingPhrase].self, forKey: .trainingPhrases)
+        [GoogleCloudDialogflowCXV3.Intent.TrainingPhrase].self, forKey: .trainingPhrases)
       {
         self.trainingPhrases = value
       }
-      if let value = try container.decodeIfPresent([Intent.Parameter].self, forKey: .parameters) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDialogflowCXV3.Intent.Parameter].self, forKey: .parameters)
+      {
         self.parameters = value
       }
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority) {
@@ -219,7 +221,7 @@
       ///     and the `parameter_id` field is set.
       ///
       /// [google.cloud.dialogflow.cx.v3.Intent.TrainingPhrase.Part.text]: <doc:Intent/TrainingPhrase/Part/text>
-      public var parts: [Intent.TrainingPhrase.Part] = []
+      public var parts: [GoogleCloudDialogflowCXV3.Intent.TrainingPhrase.Part] = []
 
       /// Indicates how many times this example was added to the intent.
       public var repeatCount: Swift.Int32 = Swift.Int32()
@@ -265,7 +267,7 @@
           self.id = value
         }
         if let value = try container.decodeIfPresent(
-          [Intent.TrainingPhrase.Part].self, forKey: .parts)
+          [GoogleCloudDialogflowCXV3.Intent.TrainingPhrase.Part].self, forKey: .parts)
         {
           self.parts = value
         }

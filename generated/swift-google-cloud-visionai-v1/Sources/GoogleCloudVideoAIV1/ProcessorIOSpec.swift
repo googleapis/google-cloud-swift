@@ -131,7 +131,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The data types of the current input channel.
     /// When this field has more than 1 value, it means this input channel can be
     /// connected to either of these different data types.
-    public var dataType: DataType = DataType()
+    public var dataType: GoogleCloudVideoAIV1.DataType = GoogleCloudVideoAIV1.DataType()
 
     /// If specified, only those detailed data types can be connected to the
     /// processor. For example, jpeg stream for MEDIA, or PredictionResult proto
@@ -192,7 +192,9 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
-      if let value = try container.decodeIfPresent(DataType.self, forKey: .dataType) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudVideoAIV1.DataType.self, forKey: .dataType)
+      {
         self.dataType = value
       }
       if let value = try container.decodeIfPresent(
@@ -244,7 +246,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     public var name: Swift.String = Swift.String()
 
     /// The data type of the current output channel.
-    public var dataType: DataType = DataType()
+    public var dataType: GoogleCloudVideoAIV1.DataType = GoogleCloudVideoAIV1.DataType()
 
     public var dataTypeUri: Swift.String = Swift.String()
 
@@ -288,7 +290,9 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
-      if let value = try container.decodeIfPresent(DataType.self, forKey: .dataType) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudVideoAIV1.DataType.self, forKey: .dataType)
+      {
         self.dataType = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataTypeUri) {

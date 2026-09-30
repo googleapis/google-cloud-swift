@@ -32,7 +32,7 @@ public struct Session: Codable, Equatable, GoogleWKT._AnyPackable,
   public var createTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Output only. State of Session
-  public var state: State = State()
+  public var state: GoogleCloudDataplexV1.State = GoogleCloudDataplexV1.State()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@ public struct Session: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.createTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .createTime)
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(GoogleCloudDataplexV1.State.self, forKey: .state) {
       self.state = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

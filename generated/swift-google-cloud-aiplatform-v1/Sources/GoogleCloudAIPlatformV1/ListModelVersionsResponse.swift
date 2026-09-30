@@ -29,7 +29,7 @@
     /// List of Model versions in the requested page.
     /// In the returned Model name field, version ID instead of regvision tag will
     /// be included.
-    public var models: [Model] = []
+    public var models: [GoogleCloudAIPlatformV1.Model] = []
 
     /// A token to retrieve the next page of results.
     /// Pass to
@@ -74,7 +74,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Model].self, forKey: .models) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Model].self, forKey: .models)
+      {
         self.models = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -108,7 +110,7 @@
 
   @_spi(GoogleCloudInternal)
   extension ListModelVersionsResponse: GoogleGax._PaginatedResponse {
-    public func _getPaginatedItems() -> [Model] {
+    public func _getPaginatedItems() -> [GoogleCloudAIPlatformV1.Model] {
       return self.models
     }
 

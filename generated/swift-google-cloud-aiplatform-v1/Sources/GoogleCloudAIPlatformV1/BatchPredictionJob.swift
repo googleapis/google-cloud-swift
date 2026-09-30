@@ -538,7 +538,7 @@
           try sourceCheckAndSet(.gcsSource(gcsSource))
         }
         if let bigquerySource = try container.decodeIfPresent(
-          BigQuerySource.self, forKey: .bigquerySource)
+          GoogleCloudAIPlatformV1.BigQuerySource.self, forKey: .bigquerySource)
         {
           try sourceCheckAndSet(.bigquerySource(bigquerySource))
         }
@@ -582,7 +582,7 @@
         /// context OpenAPI Schema, if one is provided. The table may contain
         /// additional columns that are not described by the schema, and they will
         /// be ignored.
-        indirect case bigquerySource(BigQuerySource)
+        indirect case bigquerySource(GoogleCloudAIPlatformV1.BigQuerySource)
         /// A Vertex Managed Dataset. Currently, only datasets of type Multimodal
         /// are supported.
         indirect case vertexMultimodalDatasetSource(VertexMultimodalDatasetSource)

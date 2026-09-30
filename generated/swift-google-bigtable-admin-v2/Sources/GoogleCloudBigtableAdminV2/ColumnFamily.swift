@@ -39,7 +39,7 @@ public struct ColumnFamily: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// If `value_type` is `Aggregate`, written data must be compatible with:
   ///  * `value_type.input_type` for `AddInput` mutations
-  public var valueType: Type_? = nil
+  public var valueType: GoogleCloudBigtableAdminV2.Type_? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,7 +77,8 @@ public struct ColumnFamily: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.gcRule = try container.decodeIfPresent(GcRule.self, forKey: .gcRule)
-    self.valueType = try container.decodeIfPresent(Type_.self, forKey: .valueType)
+    self.valueType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.self, forKey: .valueType)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)

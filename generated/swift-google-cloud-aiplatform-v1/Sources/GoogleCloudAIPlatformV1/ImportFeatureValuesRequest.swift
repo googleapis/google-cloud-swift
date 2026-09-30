@@ -153,7 +153,7 @@
         try sourceCheckAndSet(.avroSource(avroSource))
       }
       if let bigquerySource = try container.decodeIfPresent(
-        BigQuerySource.self, forKey: .bigquerySource)
+        GoogleCloudAIPlatformV1.BigQuerySource.self, forKey: .bigquerySource)
       {
         try sourceCheckAndSet(.bigquerySource(bigquerySource))
       }
@@ -306,7 +306,7 @@
     /// the format.
     public enum SourceOneOf: Codable, Equatable, Sendable {
       indirect case avroSource(AvroSource)
-      indirect case bigquerySource(BigQuerySource)
+      indirect case bigquerySource(GoogleCloudAIPlatformV1.BigQuerySource)
       indirect case csvSource(CsvSource)
     }
 

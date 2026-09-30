@@ -25,7 +25,7 @@ public struct CreateAnnotationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public var parent: Swift.String = Swift.String()
 
   /// Required. The resource being created.
-  public var annotation: Annotation? = nil
+  public var annotation: GoogleCloudRapidMigrationAssessmentV1.Annotation? = nil
 
   /// Optional. An optional request ID to identify requests.
   public var requestId: Swift.String = Swift.String()
@@ -70,7 +70,8 @@ public struct CreateAnnotationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.annotation = try container.decodeIfPresent(Annotation.self, forKey: .annotation)
+    self.annotation = try container.decodeIfPresent(
+      GoogleCloudRapidMigrationAssessmentV1.Annotation.self, forKey: .annotation)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .requestId) {
       self.requestId = value
     }

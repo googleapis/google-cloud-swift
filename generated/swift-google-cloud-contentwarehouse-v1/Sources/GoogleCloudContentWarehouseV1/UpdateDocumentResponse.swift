@@ -22,7 +22,7 @@ public struct UpdateDocumentResponse: Codable, Equatable, GoogleWKT._AnyPackable
   Sendable
 {
   /// Updated document after executing update request.
-  public var document: Document? = nil
+  public var document: GoogleCloudContentWarehouseV1.Document? = nil
 
   /// Output from Rule Engine recording the rule evaluator and action executor's
   /// output.
@@ -71,7 +71,8 @@ public struct UpdateDocumentResponse: Codable, Equatable, GoogleWKT._AnyPackable
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.document = try container.decodeIfPresent(Document.self, forKey: .document)
+    self.document = try container.decodeIfPresent(
+      GoogleCloudContentWarehouseV1.Document.self, forKey: .document)
     self.ruleEngineOutput = try container.decodeIfPresent(
       RuleEngineOutput.self, forKey: .ruleEngineOutput)
     self.metadata = try container.decodeIfPresent(ResponseMetadata.self, forKey: .metadata)

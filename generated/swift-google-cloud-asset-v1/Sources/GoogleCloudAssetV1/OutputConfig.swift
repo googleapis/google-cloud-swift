@@ -71,12 +71,12 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       destination = $0
     }
     if let gcsDestination = try container.decodeIfPresent(
-      GcsDestination.self, forKey: .gcsDestination)
+      GoogleCloudAssetV1.GcsDestination.self, forKey: .gcsDestination)
     {
       try destinationCheckAndSet(.gcsDestination(gcsDestination))
     }
     if let bigqueryDestination = try container.decodeIfPresent(
-      BigQueryDestination.self, forKey: .bigqueryDestination)
+      GoogleCloudAssetV1.BigQueryDestination.self, forKey: .bigqueryDestination)
     {
       try destinationCheckAndSet(.bigqueryDestination(bigqueryDestination))
     }
@@ -106,10 +106,10 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Asset export destination.
   public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Destination on Cloud Storage.
-    indirect case gcsDestination(GcsDestination)
+    indirect case gcsDestination(GoogleCloudAssetV1.GcsDestination)
     /// Destination on BigQuery. The output table stores the fields in asset
     /// Protobuf as columns in BigQuery.
-    indirect case bigqueryDestination(BigQueryDestination)
+    indirect case bigqueryDestination(GoogleCloudAssetV1.BigQueryDestination)
   }
 
   public static var _anyTypeUrl: Swift.String {

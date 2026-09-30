@@ -36,7 +36,7 @@ public struct ReleaseNotificationEvent: Codable, Equatable, GoogleWKT._AnyPackab
   public var release: Swift.String = Swift.String()
 
   /// Type of this notification, e.g. for a Pub/Sub failure.
-  public var type: Type_ = Type_()
+  public var type: GoogleCloudDeployV1.Type_ = GoogleCloudDeployV1.Type_()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -91,7 +91,7 @@ public struct ReleaseNotificationEvent: Codable, Equatable, GoogleWKT._AnyPackab
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .release) {
       self.release = value
     }
-    if let value = try container.decodeIfPresent(Type_.self, forKey: .type) {
+    if let value = try container.decodeIfPresent(GoogleCloudDeployV1.Type_.self, forKey: .type) {
       self.type = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

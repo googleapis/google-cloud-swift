@@ -22,7 +22,7 @@ public struct ScopeFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Output only. The "running state" of the Feature in this Scope.
-  public var state: FeatureState? = nil
+  public var state: GoogleCloudGKEHubV1.FeatureState? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -57,7 +57,8 @@ public struct ScopeFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.state = try container.decodeIfPresent(FeatureState.self, forKey: .state)
+    self.state = try container.decodeIfPresent(
+      GoogleCloudGKEHubV1.FeatureState.self, forKey: .state)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)

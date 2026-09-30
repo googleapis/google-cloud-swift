@@ -477,7 +477,7 @@
 
     public func listMessagesByItems(
       request: ListMessagesRequest
-    ) -> some AsyncSequence<Message, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudDialogflowV2.Message, Swift.Error> & Sendable {
       self.listMessagesByItems(request: request, options: .init())
     }
 
@@ -490,7 +490,7 @@
     /// @Snippet(path: "Conversations_ListMessages")
     public func listMessagesByItems(
       request: ListMessagesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Message, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudDialogflowV2.Message, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudDialogflowV2.ListMessagesResponse
         in
@@ -503,7 +503,7 @@
 
     public func listMessagesByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Message, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudDialogflowV2.Message, Swift.Error> & Sendable {
       let request = ListMessagesRequest().with {
         $0.parent = parent
       }

@@ -25,7 +25,7 @@ public struct UpdateEntityRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. Update description.
-  public var entity: Entity? = nil
+  public var entity: GoogleCloudDataplexV1.Entity? = nil
 
   /// Optional. Only validate the request, but do not perform mutations.
   /// The default is false.
@@ -66,7 +66,7 @@ public struct UpdateEntityRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.entity = try container.decodeIfPresent(Entity.self, forKey: .entity)
+    self.entity = try container.decodeIfPresent(GoogleCloudDataplexV1.Entity.self, forKey: .entity)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
       self.validateOnly = value
     }

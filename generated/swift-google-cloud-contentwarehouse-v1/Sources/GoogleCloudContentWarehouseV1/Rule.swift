@@ -38,7 +38,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var condition: Swift.String = Swift.String()
 
   /// List of actions that are executed when the rule is satisfied.
-  public var actions: [Action] = []
+  public var actions: [GoogleCloudContentWarehouseV1.Action] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,9 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
       self.condition = value
     }
-    if let value = try container.decodeIfPresent([Action].self, forKey: .actions) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudContentWarehouseV1.Action].self, forKey: .actions)
+    {
       self.actions = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

@@ -51,15 +51,16 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public var scannedData: ScannedData? = nil
 
   /// Output only. The result of post scan actions.
-  public var postScanActionsResult: DataQualityResult.PostScanActionsResult? = nil
+  public var postScanActionsResult: GoogleCloudDataplexV1.DataQualityResult.PostScanActionsResult? =
+    nil
 
   /// Output only. The status of publishing the data scan as Dataplex Universal
   /// Catalog metadata.
   public var catalogPublishingStatus: DataScanCatalogPublishingStatus? = nil
 
   /// Output only. The generated assets for anomaly detection.
-  public var anomalyDetectionGeneratedAssets: DataQualityResult.AnomalyDetectionGeneratedAssets? =
-    nil
+  public var anomalyDetectionGeneratedAssets:
+    GoogleCloudDataplexV1.DataQualityResult.AnomalyDetectionGeneratedAssets? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -133,11 +134,12 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.scannedData = try container.decodeIfPresent(ScannedData.self, forKey: .scannedData)
     self.postScanActionsResult = try container.decodeIfPresent(
-      DataQualityResult.PostScanActionsResult.self, forKey: .postScanActionsResult)
+      GoogleCloudDataplexV1.DataQualityResult.PostScanActionsResult.self,
+      forKey: .postScanActionsResult)
     self.catalogPublishingStatus = try container.decodeIfPresent(
       DataScanCatalogPublishingStatus.self, forKey: .catalogPublishingStatus)
     self.anomalyDetectionGeneratedAssets = try container.decodeIfPresent(
-      DataQualityResult.AnomalyDetectionGeneratedAssets.self,
+      GoogleCloudDataplexV1.DataQualityResult.AnomalyDetectionGeneratedAssets.self,
       forKey: .anomalyDetectionGeneratedAssets)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -168,8 +170,8 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Output only. The result of BigQuery export post scan action.
-    public var bigqueryExportResult: DataQualityResult.PostScanActionsResult.BigQueryExportResult? =
-      nil
+    public var bigqueryExportResult:
+      GoogleCloudDataplexV1.DataQualityResult.PostScanActionsResult.BigQueryExportResult? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -205,7 +207,7 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.bigqueryExportResult = try container.decodeIfPresent(
-        DataQualityResult.PostScanActionsResult.BigQueryExportResult.self,
+        GoogleCloudDataplexV1.DataQualityResult.PostScanActionsResult.BigQueryExportResult.self,
         forKey: .bigqueryExportResult)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -226,8 +228,9 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Output only. Execution state for the BigQuery exporting.
-      public var state: DataQualityResult.PostScanActionsResult.BigQueryExportResult.State =
-        DataQualityResult.PostScanActionsResult.BigQueryExportResult.State()
+      public var state:
+        GoogleCloudDataplexV1.DataQualityResult.PostScanActionsResult.BigQueryExportResult.State =
+          GoogleCloudDataplexV1.DataQualityResult.PostScanActionsResult.BigQueryExportResult.State()
 
       /// Output only. Additional information about the BigQuery exporting.
       public var message: Swift.String = Swift.String()
@@ -268,7 +271,8 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
-          DataQualityResult.PostScanActionsResult.BigQueryExportResult.State.self, forKey: .state)
+          GoogleCloudDataplexV1.DataQualityResult.PostScanActionsResult.BigQueryExportResult.State
+            .self, forKey: .state)
         {
           self.state = value
         }

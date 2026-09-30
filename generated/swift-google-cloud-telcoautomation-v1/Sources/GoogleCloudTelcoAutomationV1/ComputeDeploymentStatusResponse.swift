@@ -25,7 +25,8 @@ public struct ComputeDeploymentStatusResponse: Codable, Equatable, GoogleWKT._An
   public var name: Swift.String = Swift.String()
 
   /// Output only. Aggregated status of a deployment.
-  public var aggregatedStatus: Status = Status()
+  public var aggregatedStatus: GoogleCloudTelcoAutomationV1.Status =
+    GoogleCloudTelcoAutomationV1.Status()
 
   /// Output only. Resource level status details in deployments.
   public var resourceStatuses: [ResourceStatus] = []
@@ -70,7 +71,9 @@ public struct ComputeDeploymentStatusResponse: Codable, Equatable, GoogleWKT._An
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    if let value = try container.decodeIfPresent(Status.self, forKey: .aggregatedStatus) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudTelcoAutomationV1.Status.self, forKey: .aggregatedStatus)
+    {
       self.aggregatedStatus = value
     }
     if let value = try container.decodeIfPresent([ResourceStatus].self, forKey: .resourceStatuses) {

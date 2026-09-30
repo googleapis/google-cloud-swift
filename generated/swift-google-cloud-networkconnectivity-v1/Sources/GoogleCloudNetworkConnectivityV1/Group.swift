@@ -47,7 +47,8 @@ public struct Group: Codable, Equatable, GoogleWKT._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The current lifecycle state of this group.
-  public var state: State = State()
+  public var state: GoogleCloudNetworkConnectivityV1.State =
+    GoogleCloudNetworkConnectivityV1.State()
 
   /// Optional. The auto-accept setting for this group.
   public var autoAccept: AutoAccept? = nil
@@ -123,7 +124,9 @@ public struct Group: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
       self.uid = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudNetworkConnectivityV1.State.self, forKey: .state)
+    {
       self.state = value
     }
     self.autoAccept = try container.decodeIfPresent(AutoAccept.self, forKey: .autoAccept)

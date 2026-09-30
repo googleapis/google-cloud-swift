@@ -26,7 +26,7 @@
     Sendable
   {
     /// Optional. The type of the data.
-    public var type: Type_ = Type_()
+    public var type: GoogleCloudAIPlatformV1.Type_ = GoogleCloudAIPlatformV1.Type_()
 
     /// Optional. The format of the data.
     /// Supported formats:
@@ -221,7 +221,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent(Type_.self, forKey: .type) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Type_.self, forKey: .type)
+      {
         self.type = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .format) {

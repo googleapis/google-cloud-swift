@@ -35,7 +35,7 @@
     ///
     /// Not supported when the URL map is bound to a target gRPC proxy that
     /// has the validateForProxyless field set to true.
-    public var perTryTimeout: Duration? = nil
+    public var perTryTimeout: GoogleCloudComputeV1.Duration? = nil
 
     /// Specifies one or more conditions when this retry policy applies. Valid
     /// values are:
@@ -114,7 +114,8 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.numRetries = try container.decodeIfPresent(Swift.UInt32.self, forKey: .numRetries)
-      self.perTryTimeout = try container.decodeIfPresent(Duration.self, forKey: .perTryTimeout)
+      self.perTryTimeout = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .perTryTimeout)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .retryConditions) {
         self.retryConditions = value
       }

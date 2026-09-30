@@ -21,7 +21,7 @@
   public struct TargetPoolInstanceHealth: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var healthStatus: [HealthStatus] = []
+    public var healthStatus: [GoogleCloudComputeV1.HealthStatus] = []
 
     /// Output only. [Output Only] Type of resource. Alwayscompute#targetPoolInstanceHealth when checking the health of
     /// an instance.
@@ -62,7 +62,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([HealthStatus].self, forKey: .healthStatus) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudComputeV1.HealthStatus].self, forKey: .healthStatus)
+      {
         self.healthStatus = value
       }
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)

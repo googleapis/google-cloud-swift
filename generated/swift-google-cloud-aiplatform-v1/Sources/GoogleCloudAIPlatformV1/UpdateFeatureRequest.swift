@@ -33,7 +33,7 @@
     /// Format:
     /// `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
     /// `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
-    public var feature: Feature? = nil
+    public var feature: GoogleCloudAIPlatformV1.Feature? = nil
 
     /// Field mask is used to specify the fields to be overwritten in the
     /// Features resource by the update.
@@ -86,7 +86,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.feature = try container.decodeIfPresent(Feature.self, forKey: .feature)
+      self.feature = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Feature.self, forKey: .feature)
       self.updateMask = try container.decodeIfPresent(
         GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

@@ -89,7 +89,7 @@
         try sourceCheckAndSet(.vertexAiSearch(vertexAiSearch))
       }
       if let vertexRagStore = try container.decodeIfPresent(
-        VertexRagStore.self, forKey: .vertexRagStore)
+        GoogleCloudAIPlatformV1.VertexRagStore.self, forKey: .vertexRagStore)
       {
         try sourceCheckAndSet(.vertexRagStore(vertexRagStore))
       }
@@ -126,7 +126,7 @@
       indirect case vertexAiSearch(VertexAISearch)
       /// Set to use data source powered by Vertex RAG store.
       /// User data is uploaded via the VertexRagDataService.
-      indirect case vertexRagStore(VertexRagStore)
+      indirect case vertexRagStore(GoogleCloudAIPlatformV1.VertexRagStore)
     }
 
     public static var _anyTypeUrl: Swift.String {

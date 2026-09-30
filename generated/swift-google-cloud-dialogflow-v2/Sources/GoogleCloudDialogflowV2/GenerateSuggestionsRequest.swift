@@ -40,7 +40,7 @@
 
     /// Optional. A list of trigger events. Only generators configured in the
     /// conversation_profile whose trigger_event is listed here will be triggered.
-    public var triggerEvents: [TriggerEvent] = []
+    public var triggerEvents: [GoogleCloudDialogflowV2.TriggerEvent] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latestMessage) {
         self.latestMessage = value
       }
-      if let value = try container.decodeIfPresent([TriggerEvent].self, forKey: .triggerEvents) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDialogflowV2.TriggerEvent].self, forKey: .triggerEvents)
+      {
         self.triggerEvents = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

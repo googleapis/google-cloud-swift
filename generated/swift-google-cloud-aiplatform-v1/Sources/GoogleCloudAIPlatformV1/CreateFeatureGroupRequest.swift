@@ -31,7 +31,7 @@
     public var parent: Swift.String = Swift.String()
 
     /// Required. The FeatureGroup to create.
-    public var featureGroup: FeatureGroup? = nil
+    public var featureGroup: GoogleCloudAIPlatformV1.FeatureGroup? = nil
 
     /// Required. The ID to use for this FeatureGroup, which will become the final
     /// component of the FeatureGroup's resource name.
@@ -82,7 +82,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
         self.parent = value
       }
-      self.featureGroup = try container.decodeIfPresent(FeatureGroup.self, forKey: .featureGroup)
+      self.featureGroup = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.FeatureGroup.self, forKey: .featureGroup)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .featureGroupId) {
         self.featureGroupId = value
       }

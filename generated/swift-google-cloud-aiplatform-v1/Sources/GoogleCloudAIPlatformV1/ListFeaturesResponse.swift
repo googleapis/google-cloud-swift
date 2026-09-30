@@ -30,7 +30,7 @@
     Sendable
   {
     /// The Features matching the request.
-    public var features: [Feature] = []
+    public var features: [GoogleCloudAIPlatformV1.Feature] = []
 
     /// A token, which can be sent as
     /// [ListFeaturesRequest.page_token][google.cloud.aiplatform.v1.ListFeaturesRequest.page_token]
@@ -75,7 +75,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Feature].self, forKey: .features) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Feature].self, forKey: .features)
+      {
         self.features = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -109,7 +111,7 @@
 
   @_spi(GoogleCloudInternal)
   extension ListFeaturesResponse: GoogleGax._PaginatedResponse {
-    public func _getPaginatedItems() -> [Feature] {
+    public func _getPaginatedItems() -> [GoogleCloudAIPlatformV1.Feature] {
       return self.features
     }
 

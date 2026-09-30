@@ -35,8 +35,9 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// policy for common system-level images. Images not covered by the global
   /// policy will be subject to the project admission policy. This setting
   /// has no effect when specified inside a global admission policy.
-  public var globalPolicyEvaluationMode: Policy.GlobalPolicyEvaluationMode =
-    Policy.GlobalPolicyEvaluationMode()
+  public var globalPolicyEvaluationMode:
+    GoogleCloudBinaryAuthorizationV1.Policy.GlobalPolicyEvaluationMode =
+      GoogleCloudBinaryAuthorizationV1.Policy.GlobalPolicyEvaluationMode()
 
   /// Optional. Admission policy allowlisting. A matching admission request will
   /// always be permitted. This feature is typically used to exclude Google or
@@ -148,7 +149,8 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
     if let value = try container.decodeIfPresent(
-      Policy.GlobalPolicyEvaluationMode.self, forKey: .globalPolicyEvaluationMode)
+      GoogleCloudBinaryAuthorizationV1.Policy.GlobalPolicyEvaluationMode.self,
+      forKey: .globalPolicyEvaluationMode)
     {
       self.globalPolicyEvaluationMode = value
     }

@@ -115,50 +115,74 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       kind = $0
     }
-    if let bytesType = try container.decodeIfPresent(Type_.Bytes.self, forKey: .bytesType) {
+    if let bytesType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Bytes.self, forKey: .bytesType)
+    {
       try kindCheckAndSet(.bytesType(bytesType))
     }
-    if let stringType = try container.decodeIfPresent(Type_.String.self, forKey: .stringType) {
+    if let stringType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.String.self, forKey: .stringType)
+    {
       try kindCheckAndSet(.stringType(stringType))
     }
-    if let int64Type = try container.decodeIfPresent(Type_.Int64.self, forKey: .int64Type) {
+    if let int64Type = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Int64.self, forKey: .int64Type)
+    {
       try kindCheckAndSet(.int64Type(int64Type))
     }
-    if let float32Type = try container.decodeIfPresent(Type_.Float32.self, forKey: .float32Type) {
+    if let float32Type = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Float32.self, forKey: .float32Type)
+    {
       try kindCheckAndSet(.float32Type(float32Type))
     }
-    if let float64Type = try container.decodeIfPresent(Type_.Float64.self, forKey: .float64Type) {
+    if let float64Type = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Float64.self, forKey: .float64Type)
+    {
       try kindCheckAndSet(.float64Type(float64Type))
     }
-    if let boolType = try container.decodeIfPresent(Type_.Bool.self, forKey: .boolType) {
+    if let boolType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Bool.self, forKey: .boolType)
+    {
       try kindCheckAndSet(.boolType(boolType))
     }
     if let timestampType = try container.decodeIfPresent(
-      Type_.Timestamp.self, forKey: .timestampType)
+      GoogleCloudBigtableAdminV2.Type_.Timestamp.self, forKey: .timestampType)
     {
       try kindCheckAndSet(.timestampType(timestampType))
     }
-    if let dateType = try container.decodeIfPresent(Type_.Date.self, forKey: .dateType) {
+    if let dateType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Date.self, forKey: .dateType)
+    {
       try kindCheckAndSet(.dateType(dateType))
     }
     if let aggregateType = try container.decodeIfPresent(
-      Type_.Aggregate.self, forKey: .aggregateType)
+      GoogleCloudBigtableAdminV2.Type_.Aggregate.self, forKey: .aggregateType)
     {
       try kindCheckAndSet(.aggregateType(aggregateType))
     }
-    if let structType = try container.decodeIfPresent(Type_.Struct.self, forKey: .structType) {
+    if let structType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Struct.self, forKey: .structType)
+    {
       try kindCheckAndSet(.structType(structType))
     }
-    if let arrayType = try container.decodeIfPresent(Type_.Array.self, forKey: .arrayType) {
+    if let arrayType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Array.self, forKey: .arrayType)
+    {
       try kindCheckAndSet(.arrayType(arrayType))
     }
-    if let mapType = try container.decodeIfPresent(Type_.Map.self, forKey: .mapType) {
+    if let mapType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Map.self, forKey: .mapType)
+    {
       try kindCheckAndSet(.mapType(mapType))
     }
-    if let protoType = try container.decodeIfPresent(Type_.Proto.self, forKey: .protoType) {
+    if let protoType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Proto.self, forKey: .protoType)
+    {
       try kindCheckAndSet(.protoType(protoType))
     }
-    if let enumType = try container.decodeIfPresent(Type_.Enum.self, forKey: .enumType) {
+    if let enumType = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Enum.self, forKey: .enumType)
+    {
       try kindCheckAndSet(.enumType(enumType))
     }
     self.kind = kind
@@ -214,7 +238,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The encoding to use when converting to or from lower level types.
-    public var encoding: Type_.Bytes.Encoding? = nil
+    public var encoding: GoogleCloudBigtableAdminV2.Type_.Bytes.Encoding? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -249,7 +273,8 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.encoding = try container.decodeIfPresent(Type_.Bytes.Encoding.self, forKey: .encoding)
+      self.encoding = try container.decodeIfPresent(
+        GoogleCloudBigtableAdminV2.Type_.Bytes.Encoding.self, forKey: .encoding)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -315,7 +340,9 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           }
           encoding = $0
         }
-        if let raw = try container.decodeIfPresent(Type_.Bytes.Encoding.Raw.self, forKey: .raw) {
+        if let raw = try container.decodeIfPresent(
+          GoogleCloudBigtableAdminV2.Type_.Bytes.Encoding.Raw.self, forKey: .raw)
+        {
           try encodingCheckAndSet(.raw(raw))
         }
         self.encoding = encoding
@@ -403,7 +430,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Which encoding to use.
       public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Use `Raw` encoding.
-        indirect case raw(Type_.Bytes.Encoding.Raw)
+        indirect case raw(GoogleCloudBigtableAdminV2.Type_.Bytes.Encoding.Raw)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -434,7 +461,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The encoding to use when converting to or from lower level types.
-    public var encoding: Type_.String.Encoding? = nil
+    public var encoding: GoogleCloudBigtableAdminV2.Type_.String.Encoding? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -469,7 +496,8 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.encoding = try container.decodeIfPresent(Type_.String.Encoding.self, forKey: .encoding)
+      self.encoding = try container.decodeIfPresent(
+        GoogleCloudBigtableAdminV2.Type_.String.Encoding.self, forKey: .encoding)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -541,12 +569,12 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           encoding = $0
         }
         if let utf8Raw = try container.decodeIfPresent(
-          Type_.String.Encoding.Utf8Raw.self, forKey: .utf8Raw)
+          GoogleCloudBigtableAdminV2.Type_.String.Encoding.Utf8Raw.self, forKey: .utf8Raw)
         {
           try encodingCheckAndSet(.utf8Raw(utf8Raw))
         }
         if let utf8Bytes = try container.decodeIfPresent(
-          Type_.String.Encoding.Utf8Bytes.self, forKey: .utf8Bytes)
+          GoogleCloudBigtableAdminV2.Type_.String.Encoding.Utf8Bytes.self, forKey: .utf8Bytes)
         {
           try encodingCheckAndSet(.utf8Bytes(utf8Bytes))
         }
@@ -707,9 +735,9 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Deprecated: if set, converts to an empty `utf8_bytes`.
         @available(*, deprecated)
-        indirect case utf8Raw(Type_.String.Encoding.Utf8Raw)
+        indirect case utf8Raw(GoogleCloudBigtableAdminV2.Type_.String.Encoding.Utf8Raw)
         /// Use `Utf8Bytes` encoding.
-        indirect case utf8Bytes(Type_.String.Encoding.Utf8Bytes)
+        indirect case utf8Bytes(GoogleCloudBigtableAdminV2.Type_.String.Encoding.Utf8Bytes)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -740,7 +768,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The encoding to use when converting to or from lower level types.
-    public var encoding: Type_.Int64.Encoding? = nil
+    public var encoding: GoogleCloudBigtableAdminV2.Type_.Int64.Encoding? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -775,7 +803,8 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.encoding = try container.decodeIfPresent(Type_.Int64.Encoding.self, forKey: .encoding)
+      self.encoding = try container.decodeIfPresent(
+        GoogleCloudBigtableAdminV2.Type_.Int64.Encoding.self, forKey: .encoding)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -844,12 +873,14 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           encoding = $0
         }
         if let bigEndianBytes = try container.decodeIfPresent(
-          Type_.Int64.Encoding.BigEndianBytes.self, forKey: .bigEndianBytes)
+          GoogleCloudBigtableAdminV2.Type_.Int64.Encoding.BigEndianBytes.self,
+          forKey: .bigEndianBytes)
         {
           try encodingCheckAndSet(.bigEndianBytes(bigEndianBytes))
         }
         if let orderedCodeBytes = try container.decodeIfPresent(
-          Type_.Int64.Encoding.OrderedCodeBytes.self, forKey: .orderedCodeBytes)
+          GoogleCloudBigtableAdminV2.Type_.Int64.Encoding.OrderedCodeBytes.self,
+          forKey: .orderedCodeBytes)
         {
           try encodingCheckAndSet(.orderedCodeBytes(orderedCodeBytes))
         }
@@ -892,7 +923,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       {
         /// Deprecated: ignored if set.
         @available(*, deprecated)
-        public var bytesType: Type_.Bytes? = nil
+        public var bytesType: GoogleCloudBigtableAdminV2.Type_.Bytes? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -930,7 +961,8 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         #endif
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
-          self.bytesType = try container.decodeIfPresent(Type_.Bytes.self, forKey: .bytesType)
+          self.bytesType = try container.decodeIfPresent(
+            GoogleCloudBigtableAdminV2.Type_.Bytes.self, forKey: .bytesType)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
               GoogleWKT.WKTValue.self, forKey: key)
@@ -1024,9 +1056,10 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Which encoding to use.
       public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Use `BigEndianBytes` encoding.
-        indirect case bigEndianBytes(Type_.Int64.Encoding.BigEndianBytes)
+        indirect case bigEndianBytes(GoogleCloudBigtableAdminV2.Type_.Int64.Encoding.BigEndianBytes)
         /// Use `OrderedCodeBytes` encoding.
-        indirect case orderedCodeBytes(Type_.Int64.Encoding.OrderedCodeBytes)
+        indirect case orderedCodeBytes(
+          GoogleCloudBigtableAdminV2.Type_.Int64.Encoding.OrderedCodeBytes)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1231,7 +1264,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The encoding to use when converting to or from lower level types.
-    public var encoding: Type_.Timestamp.Encoding? = nil
+    public var encoding: GoogleCloudBigtableAdminV2.Type_.Timestamp.Encoding? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1267,7 +1300,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.encoding = try container.decodeIfPresent(
-        Type_.Timestamp.Encoding.self, forKey: .encoding)
+        GoogleCloudBigtableAdminV2.Type_.Timestamp.Encoding.self, forKey: .encoding)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -1334,7 +1367,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           encoding = $0
         }
         if let unixMicrosInt64 = try container.decodeIfPresent(
-          Type_.Int64.Encoding.self, forKey: .unixMicrosInt64)
+          GoogleCloudBigtableAdminV2.Type_.Int64.Encoding.self, forKey: .unixMicrosInt64)
         {
           try encodingCheckAndSet(.unixMicrosInt64(unixMicrosInt64))
         }
@@ -1367,7 +1400,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         /// Compatible with:
         ///
         ///  - Java `Instant.truncatedTo()` with `ChronoUnit.MICROS`
-        indirect case unixMicrosInt64(Type_.Int64.Encoding)
+        indirect case unixMicrosInt64(GoogleCloudBigtableAdminV2.Type_.Int64.Encoding)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -1458,10 +1491,10 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The names and types of the fields in this struct.
-    public var fields: [Type_.Struct.Field] = []
+    public var fields: [GoogleCloudBigtableAdminV2.Type_.Struct.Field] = []
 
     /// The encoding to use when converting to or from lower level types.
-    public var encoding: Type_.Struct.Encoding? = nil
+    public var encoding: GoogleCloudBigtableAdminV2.Type_.Struct.Encoding? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1498,10 +1531,13 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Type_.Struct.Field].self, forKey: .fields) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudBigtableAdminV2.Type_.Struct.Field].self, forKey: .fields)
+      {
         self.fields = value
       }
-      self.encoding = try container.decodeIfPresent(Type_.Struct.Encoding.self, forKey: .encoding)
+      self.encoding = try container.decodeIfPresent(
+        GoogleCloudBigtableAdminV2.Type_.Struct.Encoding.self, forKey: .encoding)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -1526,7 +1562,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       public var fieldName: Swift.String = Swift.String()
 
       /// The type of values in this field.
-      public var type: GoogleWKT.WKTRecursive<Type_>? = nil
+      public var type: GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1566,7 +1602,8 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldName) {
           self.fieldName = value
         }
-        self.type = try container.decodeIfPresent(GoogleWKT.WKTRecursive<Type_>.self, forKey: .type)
+        self.type = try container.decodeIfPresent(
+          GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>.self, forKey: .type)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -1649,17 +1686,19 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
           encoding = $0
         }
         if let singleton = try container.decodeIfPresent(
-          Type_.Struct.Encoding.Singleton.self, forKey: .singleton)
+          GoogleCloudBigtableAdminV2.Type_.Struct.Encoding.Singleton.self, forKey: .singleton)
         {
           try encodingCheckAndSet(.singleton(singleton))
         }
         if let delimitedBytes = try container.decodeIfPresent(
-          Type_.Struct.Encoding.DelimitedBytes.self, forKey: .delimitedBytes)
+          GoogleCloudBigtableAdminV2.Type_.Struct.Encoding.DelimitedBytes.self,
+          forKey: .delimitedBytes)
         {
           try encodingCheckAndSet(.delimitedBytes(delimitedBytes))
         }
         if let orderedCodeBytes = try container.decodeIfPresent(
-          Type_.Struct.Encoding.OrderedCodeBytes.self, forKey: .orderedCodeBytes)
+          GoogleCloudBigtableAdminV2.Type_.Struct.Encoding.OrderedCodeBytes.self,
+          forKey: .orderedCodeBytes)
         {
           try encodingCheckAndSet(.orderedCodeBytes(orderedCodeBytes))
         }
@@ -1931,11 +1970,13 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Which encoding to use.
       public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Use `Singleton` encoding.
-        indirect case singleton(Type_.Struct.Encoding.Singleton)
+        indirect case singleton(GoogleCloudBigtableAdminV2.Type_.Struct.Encoding.Singleton)
         /// Use `DelimitedBytes` encoding.
-        indirect case delimitedBytes(Type_.Struct.Encoding.DelimitedBytes)
+        indirect case delimitedBytes(
+          GoogleCloudBigtableAdminV2.Type_.Struct.Encoding.DelimitedBytes)
         /// User `OrderedCodeBytes` encoding.
-        indirect case orderedCodeBytes(Type_.Struct.Encoding.OrderedCodeBytes)
+        indirect case orderedCodeBytes(
+          GoogleCloudBigtableAdminV2.Type_.Struct.Encoding.OrderedCodeBytes)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -2124,7 +2165,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The type of the elements in the array. This must not be `Array`.
-    public var elementType: GoogleWKT.WKTRecursive<Type_>? = nil
+    public var elementType: GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2160,7 +2201,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.elementType = try container.decodeIfPresent(
-        GoogleWKT.WKTRecursive<Type_>.self, forKey: .elementType)
+        GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>.self, forKey: .elementType)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -2198,10 +2239,10 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// The type of a map key.
     /// Only `Bytes`, `String`, and `Int64` are allowed as key types.
-    public var keyType: GoogleWKT.WKTRecursive<Type_>? = nil
+    public var keyType: GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>? = nil
 
     /// The type of the values in a map.
-    public var valueType: GoogleWKT.WKTRecursive<Type_>? = nil
+    public var valueType: GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2239,9 +2280,9 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.keyType = try container.decodeIfPresent(
-        GoogleWKT.WKTRecursive<Type_>.self, forKey: .keyType)
+        GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>.self, forKey: .keyType)
       self.valueType = try container.decodeIfPresent(
-        GoogleWKT.WKTRecursive<Type_>.self, forKey: .valueType)
+        GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>.self, forKey: .valueType)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -2279,12 +2320,12 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Type of the inputs that are accumulated by this `Aggregate`, which must
     /// specify a full encoding.
     /// Use `AddInput` mutations to accumulate new inputs.
-    public var inputType: GoogleWKT.WKTRecursive<Type_>? = nil
+    public var inputType: GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>? = nil
 
     /// Output only. Type that holds the internal accumulator state for the
     /// `Aggregate`. This is a function of the `input_type` and `aggregator`
     /// chosen, and will always specify a full encoding.
-    public var stateType: GoogleWKT.WKTRecursive<Type_>? = nil
+    public var stateType: GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>? = nil
 
     /// Which aggregator function to use. The configured types must match.
     public var aggregator: AggregatorOneOf? = nil
@@ -2333,9 +2374,9 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.inputType = try container.decodeIfPresent(
-        GoogleWKT.WKTRecursive<Type_>.self, forKey: .inputType)
+        GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>.self, forKey: .inputType)
       self.stateType = try container.decodeIfPresent(
-        GoogleWKT.WKTRecursive<Type_>.self, forKey: .stateType)
+        GoogleWKT.WKTRecursive<GoogleCloudBigtableAdminV2.Type_>.self, forKey: .stateType)
 
       var aggregator: AggregatorOneOf? = nil
       let aggregatorCheckAndSet = {
@@ -2347,18 +2388,25 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         aggregator = $0
       }
-      if let sum = try container.decodeIfPresent(Type_.Aggregate.Sum.self, forKey: .sum) {
+      if let sum = try container.decodeIfPresent(
+        GoogleCloudBigtableAdminV2.Type_.Aggregate.Sum.self, forKey: .sum)
+      {
         try aggregatorCheckAndSet(.sum(sum))
       }
       if let hllppUniqueCount = try container.decodeIfPresent(
-        Type_.Aggregate.HyperLogLogPlusPlusUniqueCount.self, forKey: .hllppUniqueCount)
+        GoogleCloudBigtableAdminV2.Type_.Aggregate.HyperLogLogPlusPlusUniqueCount.self,
+        forKey: .hllppUniqueCount)
       {
         try aggregatorCheckAndSet(.hllppUniqueCount(hllppUniqueCount))
       }
-      if let max = try container.decodeIfPresent(Type_.Aggregate.Max.self, forKey: .max) {
+      if let max = try container.decodeIfPresent(
+        GoogleCloudBigtableAdminV2.Type_.Aggregate.Max.self, forKey: .max)
+      {
         try aggregatorCheckAndSet(.max(max))
       }
-      if let min = try container.decodeIfPresent(Type_.Aggregate.Min.self, forKey: .min) {
+      if let min = try container.decodeIfPresent(
+        GoogleCloudBigtableAdminV2.Type_.Aggregate.Min.self, forKey: .min)
+      {
         try aggregatorCheckAndSet(.min(min))
       }
       self.aggregator = aggregator
@@ -2634,13 +2682,14 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Which aggregator function to use. The configured types must match.
     public enum AggregatorOneOf: Codable, Equatable, Sendable {
       /// Sum aggregator.
-      indirect case sum(Type_.Aggregate.Sum)
+      indirect case sum(GoogleCloudBigtableAdminV2.Type_.Aggregate.Sum)
       /// HyperLogLogPlusPlusUniqueCount aggregator.
-      indirect case hllppUniqueCount(Type_.Aggregate.HyperLogLogPlusPlusUniqueCount)
+      indirect case hllppUniqueCount(
+        GoogleCloudBigtableAdminV2.Type_.Aggregate.HyperLogLogPlusPlusUniqueCount)
       /// Max aggregator.
-      indirect case max(Type_.Aggregate.Max)
+      indirect case max(GoogleCloudBigtableAdminV2.Type_.Aggregate.Max)
       /// Min aggregator.
-      indirect case min(Type_.Aggregate.Min)
+      indirect case min(GoogleCloudBigtableAdminV2.Type_.Aggregate.Min)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -2657,33 +2706,33 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The kind of type that this represents.
   public enum KindOneOf: Codable, Equatable, Sendable {
     /// Bytes
-    indirect case bytesType(Type_.Bytes)
+    indirect case bytesType(GoogleCloudBigtableAdminV2.Type_.Bytes)
     /// String
-    indirect case stringType(Type_.String)
+    indirect case stringType(GoogleCloudBigtableAdminV2.Type_.String)
     /// Int64
-    indirect case int64Type(Type_.Int64)
+    indirect case int64Type(GoogleCloudBigtableAdminV2.Type_.Int64)
     /// Float32
-    indirect case float32Type(Type_.Float32)
+    indirect case float32Type(GoogleCloudBigtableAdminV2.Type_.Float32)
     /// Float64
-    indirect case float64Type(Type_.Float64)
+    indirect case float64Type(GoogleCloudBigtableAdminV2.Type_.Float64)
     /// Bool
-    indirect case boolType(Type_.Bool)
+    indirect case boolType(GoogleCloudBigtableAdminV2.Type_.Bool)
     /// Timestamp
-    indirect case timestampType(Type_.Timestamp)
+    indirect case timestampType(GoogleCloudBigtableAdminV2.Type_.Timestamp)
     /// Date
-    indirect case dateType(Type_.Date)
+    indirect case dateType(GoogleCloudBigtableAdminV2.Type_.Date)
     /// Aggregate
-    indirect case aggregateType(Type_.Aggregate)
+    indirect case aggregateType(GoogleCloudBigtableAdminV2.Type_.Aggregate)
     /// Struct
-    indirect case structType(Type_.Struct)
+    indirect case structType(GoogleCloudBigtableAdminV2.Type_.Struct)
     /// Array
-    indirect case arrayType(Type_.Array)
+    indirect case arrayType(GoogleCloudBigtableAdminV2.Type_.Array)
     /// Map
-    indirect case mapType(Type_.Map)
+    indirect case mapType(GoogleCloudBigtableAdminV2.Type_.Map)
     /// Proto
-    indirect case protoType(Type_.Proto)
+    indirect case protoType(GoogleCloudBigtableAdminV2.Type_.Proto)
     /// Enum
-    indirect case enumType(Type_.Enum)
+    indirect case enumType(GoogleCloudBigtableAdminV2.Type_.Enum)
   }
 
   public static var _anyTypeUrl: Swift.String {

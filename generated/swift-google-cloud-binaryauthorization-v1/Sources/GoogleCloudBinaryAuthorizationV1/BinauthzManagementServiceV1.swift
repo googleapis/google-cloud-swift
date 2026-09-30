@@ -287,7 +287,7 @@ extension Clients.BinauthzManagementServiceV1Protocol {
   }
 
   public func updatePolicy(
-    policy: Policy?,
+    policy: GoogleCloudBinaryAuthorizationV1.Policy?,
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
     let request = UpdatePolicyRequest().with {
       $0.policy = policy

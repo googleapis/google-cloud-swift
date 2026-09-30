@@ -66,7 +66,7 @@
     ///
     /// For models deployed with the examples explanations feature enabled, the
     /// attributions field is empty and instead the neighbors field is populated.
-    public var neighbors: [Neighbor] = []
+    public var neighbors: [GoogleCloudAIPlatformV1.Neighbor] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -106,7 +106,9 @@
       if let value = try container.decodeIfPresent([Attribution].self, forKey: .attributions) {
         self.attributions = value
       }
-      if let value = try container.decodeIfPresent([Neighbor].self, forKey: .neighbors) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Neighbor].self, forKey: .neighbors)
+      {
         self.neighbors = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

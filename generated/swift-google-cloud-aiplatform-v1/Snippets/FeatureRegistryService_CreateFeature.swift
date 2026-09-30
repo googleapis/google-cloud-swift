@@ -34,7 +34,7 @@
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/featurestores/\(featurestoreId)/entityTypes/\(entityTypeId)"
           $0.featureId = "[replace with a valid ID]"
-          $0.feature = Feature() /* .with { ... } */
+          $0.feature = GoogleCloudAIPlatformV1.Feature() /* .with { ... } */
         }
     )
     print("Success: \(response)")

@@ -26,7 +26,7 @@ public struct CreateEntityRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var parent: Swift.String = Swift.String()
 
   /// Required. Entity resource.
-  public var entity: Entity? = nil
+  public var entity: GoogleCloudDataplexV1.Entity? = nil
 
   /// Optional. Only validate the request, but do not perform mutations.
   /// The default is false.
@@ -72,7 +72,7 @@ public struct CreateEntityRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.entity = try container.decodeIfPresent(Entity.self, forKey: .entity)
+    self.entity = try container.decodeIfPresent(GoogleCloudDataplexV1.Entity.self, forKey: .entity)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
       self.validateOnly = value
     }

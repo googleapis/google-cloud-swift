@@ -23,7 +23,7 @@ public struct ListActionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Actions under the given parent lake/zone/asset.
-  public var actions: [Action] = []
+  public var actions: [GoogleCloudDataplexV1.Action] = []
 
   /// Token to retrieve the next page of results, or empty if there are no more
   /// results in the list.
@@ -64,7 +64,9 @@ public struct ListActionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent([Action].self, forKey: .actions) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudDataplexV1.Action].self, forKey: .actions)
+    {
       self.actions = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -98,7 +100,7 @@ public struct ListActionsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
 
 @_spi(GoogleCloudInternal)
 extension ListActionsResponse: GoogleGax._PaginatedResponse {
-  public func _getPaginatedItems() -> [Action] {
+  public func _getPaginatedItems() -> [GoogleCloudDataplexV1.Action] {
     return self.actions
   }
 

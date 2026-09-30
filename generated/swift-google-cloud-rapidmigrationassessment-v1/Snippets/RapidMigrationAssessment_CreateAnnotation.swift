@@ -27,7 +27,7 @@ func sample(client: RapidMigrationAssessmentClient, parent: String) async throws
     request: CreateAnnotationRequest()
       .with {
         $0.parent = "\(parent)"
-        $0.annotation = Annotation() /* .with { ... } */
+        $0.annotation = GoogleCloudRapidMigrationAssessmentV1.Annotation() /* .with { ... } */
       }
   )
   print("Success: \(response)")

@@ -53,7 +53,7 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
   public var serviceAccount: Swift.String = Swift.String()
 
   /// Required. Destination specifies where the events should be sent to.
-  public var destination: Destination? = nil
+  public var destination: GoogleCloudEventarcV1.Destination? = nil
 
   /// Optional. To deliver messages, Eventarc might use other Google Cloud
   /// products as a transport intermediary. This field contains a reference to
@@ -170,7 +170,8 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
       self.serviceAccount = value
     }
-    self.destination = try container.decodeIfPresent(Destination.self, forKey: .destination)
+    self.destination = try container.decodeIfPresent(
+      GoogleCloudEventarcV1.Destination.self, forKey: .destination)
     self.transport = try container.decodeIfPresent(Transport.self, forKey: .transport)
     if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .labels)
     {

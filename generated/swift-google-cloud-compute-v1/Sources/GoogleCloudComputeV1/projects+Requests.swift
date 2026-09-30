@@ -1236,7 +1236,7 @@
       /// Synthetic request body field for the [setCommonInstanceMetadata()][google.cloud.compute.v1.projects.setCommonInstanceMetadata] method.
       ///
       /// [google.cloud.compute.v1.projects.setCommonInstanceMetadata]: <doc:ProjectsClient/setCommonInstanceMetadata(request:options:)>
-      public var body: Metadata? = nil
+      public var body: GoogleCloudComputeV1.Metadata? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1279,7 +1279,7 @@
           self.project = value
         }
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
-        self.body = try container.decodeIfPresent(Metadata.self, forKey: .body)
+        self.body = try container.decodeIfPresent(GoogleCloudComputeV1.Metadata.self, forKey: .body)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)

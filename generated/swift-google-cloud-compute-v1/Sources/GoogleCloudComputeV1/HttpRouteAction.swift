@@ -62,7 +62,7 @@
     ///
     /// This field is only allowed if the Url map is used with backend services
     /// with loadBalancingScheme set toINTERNAL_SELF_MANAGED.
-    public var maxStreamDuration: Duration? = nil
+    public var maxStreamDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// Specifies the policy on how requests intended for the route's backends
     /// are shadowed to a separate mirrored backend service. The load balancer does
@@ -86,7 +86,7 @@
     ///
     /// Not supported when the URL map is bound to a target gRPC proxy that
     /// has validateForProxyless field set to true.
-    public var timeout: Duration? = nil
+    public var timeout: GoogleCloudComputeV1.Duration? = nil
 
     /// The spec to modify the URL of the request, before forwarding the request
     /// to the matched service.
@@ -164,11 +164,12 @@
       self.faultInjectionPolicy = try container.decodeIfPresent(
         HttpFaultInjection.self, forKey: .faultInjectionPolicy)
       self.maxStreamDuration = try container.decodeIfPresent(
-        Duration.self, forKey: .maxStreamDuration)
+        GoogleCloudComputeV1.Duration.self, forKey: .maxStreamDuration)
       self.requestMirrorPolicy = try container.decodeIfPresent(
         RequestMirrorPolicy.self, forKey: .requestMirrorPolicy)
       self.retryPolicy = try container.decodeIfPresent(HttpRetryPolicy.self, forKey: .retryPolicy)
-      self.timeout = try container.decodeIfPresent(Duration.self, forKey: .timeout)
+      self.timeout = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .timeout)
       self.urlRewrite = try container.decodeIfPresent(UrlRewrite.self, forKey: .urlRewrite)
       if let value = try container.decodeIfPresent(
         [WeightedBackendService].self, forKey: .weightedBackendServices)

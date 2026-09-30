@@ -87,13 +87,14 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the Instance.networks field and the Instance.logical_interfaces fields will
   /// be filled to ensure backward compatibility. For the others, only
   /// Instance.logical_interfaces will be filled.
-  public var logicalInterfaces: [LogicalInterface] = []
+  public var logicalInterfaces: [GoogleCloudBareMetalSolutionV2.LogicalInterface] = []
 
   /// Output only. Text field about info for logging in.
   public var loginInfo: Swift.String = Swift.String()
 
   /// The workload profile for the instance.
-  public var workloadProfile: WorkloadProfile = WorkloadProfile()
+  public var workloadProfile: GoogleCloudBareMetalSolutionV2.WorkloadProfile =
+    GoogleCloudBareMetalSolutionV2.WorkloadProfile()
 
   /// Output only. The firmware version for the instance.
   public var firmwareVersion: Swift.String = Swift.String()
@@ -215,14 +216,16 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       self.networkTemplate = value
     }
     if let value = try container.decodeIfPresent(
-      [LogicalInterface].self, forKey: .logicalInterfaces)
+      [GoogleCloudBareMetalSolutionV2.LogicalInterface].self, forKey: .logicalInterfaces)
     {
       self.logicalInterfaces = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .loginInfo) {
       self.loginInfo = value
     }
-    if let value = try container.decodeIfPresent(WorkloadProfile.self, forKey: .workloadProfile) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudBareMetalSolutionV2.WorkloadProfile.self, forKey: .workloadProfile)
+    {
       self.workloadProfile = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .firmwareVersion) {

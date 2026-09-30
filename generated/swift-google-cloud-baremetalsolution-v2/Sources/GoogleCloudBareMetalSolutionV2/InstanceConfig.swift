@@ -67,7 +67,7 @@ public struct InstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// List of logical interfaces for the instance. The number of logical
   /// interfaces will be the same as number of hardware bond/nic on the chosen
   /// network template. Filled if InstanceConfig.multivlan_config is true.
-  public var logicalInterfaces: [LogicalInterface] = []
+  public var logicalInterfaces: [GoogleCloudBareMetalSolutionV2.LogicalInterface] = []
 
   /// List of names of ssh keys used to provision the instance.
   public var sshKeyNames: [Swift.String] = []
@@ -166,7 +166,7 @@ public struct InstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.networkTemplate = value
     }
     if let value = try container.decodeIfPresent(
-      [LogicalInterface].self, forKey: .logicalInterfaces)
+      [GoogleCloudBareMetalSolutionV2.LogicalInterface].self, forKey: .logicalInterfaces)
     {
       self.logicalInterfaces = value
     }

@@ -25,7 +25,7 @@
   {
     /// Output only. [Output only] A predetermined duration for the window, automatically
     /// chosen to be the smallest possible in the given scenario.
-    public var maintenanceDuration: Duration? = nil
+    public var maintenanceDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// Start time of the window. This must be in UTC format that resolves to one
     /// of 00:00, 04:00, 08:00,12:00, 16:00, or 20:00. For
@@ -68,7 +68,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.maintenanceDuration = try container.decodeIfPresent(
-        Duration.self, forKey: .maintenanceDuration)
+        GoogleCloudComputeV1.Duration.self, forKey: .maintenanceDuration)
       self.startTime = try container.decodeIfPresent(Swift.String.self, forKey: .startTime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(

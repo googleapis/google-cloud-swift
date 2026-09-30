@@ -349,7 +349,7 @@ extension Clients.MetadataServiceProtocol {
 
   public func createEntity(
     parent: Swift.String,
-    entity: Entity?,
+    entity: GoogleCloudDataplexV1.Entity?,
   ) async throws -> GoogleCloudDataplexV1.Entity {
     let request = CreateEntityRequest().with {
       $0.parent = parent
@@ -422,7 +422,7 @@ extension Clients.MetadataServiceProtocol {
 
   public func listEntitiesByItems(
     request: ListEntitiesRequest
-  ) -> some AsyncSequence<Entity, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudDataplexV1.Entity, Swift.Error> & Sendable {
     self.listEntitiesByItems(request: request, options: .init())
   }
 
@@ -431,7 +431,7 @@ extension Clients.MetadataServiceProtocol {
   /// @Snippet(path: "MetadataService_ListEntities")
   public func listEntitiesByItems(
     request: ListEntitiesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Entity, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudDataplexV1.Entity, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListEntitiesResponse in
       var request = request
@@ -443,7 +443,7 @@ extension Clients.MetadataServiceProtocol {
 
   public func listEntitiesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Entity, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudDataplexV1.Entity, Swift.Error> & Sendable {
     let request = ListEntitiesRequest().with {
       $0.parent = parent
     }

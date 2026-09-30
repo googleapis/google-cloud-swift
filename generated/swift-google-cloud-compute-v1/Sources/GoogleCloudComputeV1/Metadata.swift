@@ -35,7 +35,7 @@
 
     /// Array of key/value pairs. The total size of all keys and values must be
     /// less than 512 KB.
-    public var items: [Metadata.Items] = []
+    public var items: [GoogleCloudComputeV1.Metadata.Items] = []
 
     /// Output only. [Output Only] Type of the resource. Always compute#metadata
     /// for metadata.
@@ -87,7 +87,9 @@
         }
         self.fingerprint = v
       }
-      if let value = try container.decodeIfPresent([Metadata.Items].self, forKey: .items) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudComputeV1.Metadata.Items].self, forKey: .items)
+      {
         self.items = value
       }
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)

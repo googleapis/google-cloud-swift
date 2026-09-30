@@ -31,7 +31,7 @@
     let response = try await client.updateFeatureGroupPollingUntilDone(
       request: UpdateFeatureGroupRequest()
         .with {
-          $0.featureGroup = FeatureGroup().with {
+          $0.featureGroup = GoogleCloudAIPlatformV1.FeatureGroup().with {
             $0.name =
               "projects/\(projectId)/locations/\(locationId)/featureGroups/\(featureGroupId)"
           }

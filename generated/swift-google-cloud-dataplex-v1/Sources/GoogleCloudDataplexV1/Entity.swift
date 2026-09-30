@@ -50,7 +50,7 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// Required. Immutable. The type of entity.
-  public var type: Entity.Type_ = Entity.Type_()
+  public var type: GoogleCloudDataplexV1.Entity.Type_ = GoogleCloudDataplexV1.Entity.Type_()
 
   /// Required. Immutable. The ID of the asset associated with the storage
   /// location containing the entity data. The entity must be with in the same
@@ -80,7 +80,7 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
   public var format: StorageFormat? = nil
 
   /// Output only. Metadata stores that the entity is compatible with.
-  public var compatibility: Entity.CompatibilityStatus? = nil
+  public var compatibility: GoogleCloudDataplexV1.Entity.CompatibilityStatus? = nil
 
   /// Output only. Identifies the access mechanism to the entity. Not user
   /// settable.
@@ -93,7 +93,7 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The description of the data structure and layout.
   /// The schema is not included in list responses. It is only included in
   /// `SCHEMA` and `FULL` entity views of a `GetEntity` response.
-  public var schema: Schema? = nil
+  public var schema: GoogleCloudDataplexV1.Schema? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -181,7 +181,9 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
     }
-    if let value = try container.decodeIfPresent(Entity.Type_.self, forKey: .type) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudDataplexV1.Entity.Type_.self, forKey: .type)
+    {
       self.type = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .asset) {
@@ -201,12 +203,12 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.format = try container.decodeIfPresent(StorageFormat.self, forKey: .format)
     self.compatibility = try container.decodeIfPresent(
-      Entity.CompatibilityStatus.self, forKey: .compatibility)
+      GoogleCloudDataplexV1.Entity.CompatibilityStatus.self, forKey: .compatibility)
     self.access = try container.decodeIfPresent(StorageAccess.self, forKey: .access)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
       self.uid = value
     }
-    self.schema = try container.decodeIfPresent(Schema.self, forKey: .schema)
+    self.schema = try container.decodeIfPresent(GoogleCloudDataplexV1.Schema.self, forKey: .schema)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -243,10 +245,10 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Output only. Whether this entity is compatible with Hive Metastore.
-    public var hiveMetastore: Entity.CompatibilityStatus.Compatibility? = nil
+    public var hiveMetastore: GoogleCloudDataplexV1.Entity.CompatibilityStatus.Compatibility? = nil
 
     /// Output only. Whether this entity is compatible with BigQuery.
-    public var bigquery: Entity.CompatibilityStatus.Compatibility? = nil
+    public var bigquery: GoogleCloudDataplexV1.Entity.CompatibilityStatus.Compatibility? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -284,9 +286,9 @@ public struct Entity: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.hiveMetastore = try container.decodeIfPresent(
-        Entity.CompatibilityStatus.Compatibility.self, forKey: .hiveMetastore)
+        GoogleCloudDataplexV1.Entity.CompatibilityStatus.Compatibility.self, forKey: .hiveMetastore)
       self.bigquery = try container.decodeIfPresent(
-        Entity.CompatibilityStatus.Compatibility.self, forKey: .bigquery)
+        GoogleCloudDataplexV1.Entity.CompatibilityStatus.Compatibility.self, forKey: .bigquery)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

@@ -32,7 +32,7 @@ public struct UpdatePolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.binaryauthorization.v1.Policy]: <doc:Policy>
   /// [google.cloud.binaryauthorization.v1.Policy.name]: <doc:Policy/name>
-  public var policy: Policy? = nil
+  public var policy: GoogleCloudBinaryAuthorizationV1.Policy? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,8 @@ public struct UpdatePolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.policy = try container.decodeIfPresent(Policy.self, forKey: .policy)
+    self.policy = try container.decodeIfPresent(
+      GoogleCloudBinaryAuthorizationV1.Policy.self, forKey: .policy)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)

@@ -36,7 +36,7 @@
     public var parent: Swift.String = Swift.String()
 
     /// Required. The Feature to create.
-    public var feature: Feature? = nil
+    public var feature: GoogleCloudAIPlatformV1.Feature? = nil
 
     /// Required. The ID to use for the Feature, which will become the final
     /// component of the Feature's resource name.
@@ -87,7 +87,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
         self.parent = value
       }
-      self.feature = try container.decodeIfPresent(Feature.self, forKey: .feature)
+      self.feature = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Feature.self, forKey: .feature)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .featureId) {
         self.featureId = value
       }

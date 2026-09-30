@@ -27,7 +27,7 @@
     Sendable
   {
     /// List of Models in the requested page.
-    public var models: [Model] = []
+    public var models: [GoogleCloudAIPlatformV1.Model] = []
 
     /// A token to retrieve next page of results.
     /// Pass to
@@ -72,7 +72,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Model].self, forKey: .models) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Model].self, forKey: .models)
+      {
         self.models = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -106,7 +108,7 @@
 
   @_spi(GoogleCloudInternal)
   extension ListModelsResponse: GoogleGax._PaginatedResponse {
-    public func _getPaginatedItems() -> [Model] {
+    public func _getPaginatedItems() -> [GoogleCloudAIPlatformV1.Model] {
       return self.models
     }
 

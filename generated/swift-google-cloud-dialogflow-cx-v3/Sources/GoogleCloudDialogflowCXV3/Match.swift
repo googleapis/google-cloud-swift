@@ -29,7 +29,7 @@
     ///
     /// [google.cloud.dialogflow.cx.v3.Intent]: <doc:Intent>
     /// [google.cloud.dialogflow.cx.v3.Match.MatchType]: <doc:Match/MatchType>
-    public var intent: Intent? = nil
+    public var intent: GoogleCloudDialogflowCXV3.Intent? = nil
 
     /// The event that matched the query. Filled for
     /// [`EVENT`][google.cloud.dialogflow.cx.v3.Match.MatchType],
@@ -116,7 +116,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.intent = try container.decodeIfPresent(Intent.self, forKey: .intent)
+      self.intent = try container.decodeIfPresent(
+        GoogleCloudDialogflowCXV3.Intent.self, forKey: .intent)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .event) {
         self.event = value
       }

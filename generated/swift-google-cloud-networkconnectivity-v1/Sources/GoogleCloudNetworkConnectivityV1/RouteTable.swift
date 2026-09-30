@@ -46,7 +46,8 @@ public struct RouteTable: Codable, Equatable, GoogleWKT._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The current lifecycle state of this route table.
-  public var state: State = State()
+  public var state: GoogleCloudNetworkConnectivityV1.State =
+    GoogleCloudNetworkConnectivityV1.State()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -110,7 +111,9 @@ public struct RouteTable: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uid) {
       self.uid = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudNetworkConnectivityV1.State.self, forKey: .state)
+    {
       self.state = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

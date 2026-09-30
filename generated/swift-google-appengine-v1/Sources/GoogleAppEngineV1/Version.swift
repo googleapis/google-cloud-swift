@@ -88,7 +88,7 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `SERVING` status create instances and can be billed.
   ///
   /// `SERVING_STATUS_UNSPECIFIED` is an invalid value. Defaults to `SERVING`.
-  public var servingStatus: ServingStatus = ServingStatus()
+  public var servingStatus: GoogleAppEngineV1.ServingStatus = GoogleAppEngineV1.ServingStatus()
 
   /// Email address of the user who created this version.
   ///
@@ -367,7 +367,9 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .env) {
       self.env = value
     }
-    if let value = try container.decodeIfPresent(ServingStatus.self, forKey: .servingStatus) {
+    if let value = try container.decodeIfPresent(
+      GoogleAppEngineV1.ServingStatus.self, forKey: .servingStatus)
+    {
       self.servingStatus = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .createdBy) {

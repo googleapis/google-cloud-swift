@@ -29,7 +29,7 @@
     let response = try await client.updateIntent(
       request: UpdateIntentRequest()
         .with {
-          $0.intent = Intent().with {
+          $0.intent = GoogleCloudDialogflowCXV3.Intent().with {
             $0.name =
               "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)/intents/\(intentId)"
           }

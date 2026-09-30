@@ -48,7 +48,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. Current state of the zone.
-  public var state: State = State()
+  public var state: GoogleCloudDataplexV1.State = GoogleCloudDataplexV1.State()
 
   /// Required. Immutable. The type of the zone.
   public var type: Zone.Type_ = Zone.Type_()
@@ -139,7 +139,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(GoogleCloudDataplexV1.State.self, forKey: .state) {
       self.state = value
     }
     if let value = try container.decodeIfPresent(Zone.Type_.self, forKey: .type) {

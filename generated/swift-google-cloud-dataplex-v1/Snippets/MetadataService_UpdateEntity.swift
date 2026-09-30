@@ -29,7 +29,7 @@ func sample(
   let response = try await client.updateEntity(
     request: UpdateEntityRequest()
       .with {
-        $0.entity = Entity().with {
+        $0.entity = GoogleCloudDataplexV1.Entity().with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/zones/\(zoneId)/entities/\(entityId)"
         }

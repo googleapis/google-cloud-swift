@@ -258,7 +258,7 @@
         ///
         /// If the event handler for the corresponding event can't be found on the
         /// parameter, `initial_prompt_fulfillment` will be re-prompted.
-        public var repromptEventHandlers: [EventHandler] = []
+        public var repromptEventHandlers: [GoogleCloudDialogflowCXV3.EventHandler] = []
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -298,7 +298,7 @@
           self.initialPromptFulfillment = try container.decodeIfPresent(
             Fulfillment.self, forKey: .initialPromptFulfillment)
           if let value = try container.decodeIfPresent(
-            [EventHandler].self, forKey: .repromptEventHandlers)
+            [GoogleCloudDialogflowCXV3.EventHandler].self, forKey: .repromptEventHandlers)
           {
             self.repromptEventHandlers = value
           }

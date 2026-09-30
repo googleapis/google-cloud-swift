@@ -26,7 +26,7 @@ public struct PackageOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// All of the places within the filesystem versions of this package
   /// have been found.
-  public var location: [Location] = []
+  public var location: [GoogleGrafeasV1.Location] = []
 
   /// The type of package; whether native or non native (e.g., ruby gems,
   /// node.js packages, etc.).
@@ -95,7 +95,8 @@ public struct PackageOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    if let value = try container.decodeIfPresent([Location].self, forKey: .location) {
+    if let value = try container.decodeIfPresent([GoogleGrafeasV1.Location].self, forKey: .location)
+    {
       self.location = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .packageType) {

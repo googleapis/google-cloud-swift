@@ -108,7 +108,7 @@
         task = $0
       }
       if let containerSpec = try container.decodeIfPresent(
-        ContainerSpec.self, forKey: .containerSpec)
+        GoogleCloudAIPlatformV1.ContainerSpec.self, forKey: .containerSpec)
       {
         try taskCheckAndSet(.containerSpec(containerSpec))
       }
@@ -148,7 +148,7 @@
     /// The custom task to be executed in this worker pool.
     public enum TaskOneOf: Codable, Equatable, Sendable {
       /// The custom container task.
-      indirect case containerSpec(ContainerSpec)
+      indirect case containerSpec(GoogleCloudAIPlatformV1.ContainerSpec)
       /// The Python packaged task.
       indirect case pythonPackageSpec(PythonPackageSpec)
     }

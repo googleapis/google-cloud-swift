@@ -29,7 +29,7 @@ public struct UpdateDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Required. The document to update.
-  public var document: Document? = nil
+  public var document: GoogleCloudContentWarehouseV1.Document? = nil
 
   /// The meta information collected about the end user, used to enforce access
   /// control for the service.
@@ -88,7 +88,8 @@ public struct UpdateDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.document = try container.decodeIfPresent(Document.self, forKey: .document)
+    self.document = try container.decodeIfPresent(
+      GoogleCloudContentWarehouseV1.Document.self, forKey: .document)
     self.requestMetadata = try container.decodeIfPresent(
       RequestMetadata.self, forKey: .requestMetadata)
     self.cloudAiDocumentOption = try container.decodeIfPresent(

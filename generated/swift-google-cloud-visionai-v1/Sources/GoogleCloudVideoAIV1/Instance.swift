@@ -168,7 +168,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Data type for the current input resource.
-    public var dataType: DataType = DataType()
+    public var dataType: GoogleCloudVideoAIV1.DataType = GoogleCloudVideoAIV1.DataType()
 
     /// The name of graph node who receives the input resource.
     /// For example:
@@ -233,7 +233,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     #endif
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent(DataType.self, forKey: .dataType) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudVideoAIV1.DataType.self, forKey: .dataType)
+      {
         self.dataType = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .consumerNode) {

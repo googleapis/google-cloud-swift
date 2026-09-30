@@ -97,7 +97,7 @@
     /// [google.cloud.aiplatform.v1.Model.name]: <doc:Model/name>
     /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:options:)>
     /// [google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]: <doc:TrainingPipeline/trainingTaskDefinition>
-    public var modelToUpload: Model? = nil
+    public var modelToUpload: GoogleCloudAIPlatformV1.Model? = nil
 
     /// Optional. The ID to use for the uploaded Model, which will become the final
     /// component of the model resource name.
@@ -234,7 +234,8 @@
         GoogleWKT.WKTValue.self, forKey: .trainingTaskInputs)
       self.trainingTaskMetadata = try container.decodeIfPresent(
         GoogleWKT.WKTValue.self, forKey: .trainingTaskMetadata)
-      self.modelToUpload = try container.decodeIfPresent(Model.self, forKey: .modelToUpload)
+      self.modelToUpload = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Model.self, forKey: .modelToUpload)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
         self.modelId = value
       }

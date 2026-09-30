@@ -33,7 +33,7 @@
           $0.parent =
             "projects/\(projectId)/locations/\(locationId)/metadataStores/\(metadataStoreId)"
           $0.contextId = "[replace with a valid ID]"
-          $0.context = Context() /* .with { ... } */
+          $0.context = GoogleCloudAIPlatformV1.Context() /* .with { ... } */
         }
     )
     print("Success: \(response)")

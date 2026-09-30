@@ -121,7 +121,7 @@
       /// contain any PII. Required fields: {content, language_code, participant,
       /// participant_role} Optional fields: {send_time} If send_time is not
       /// provided, then the messages must be provided in chronological order.
-      public var messages: [Message] = []
+      public var messages: [GoogleCloudDialogflowV2.Message] = []
 
       /// Required. The parent resource to charge for the Summary's generation.
       /// Format: `projects/<Project ID>/locations/<Location ID>`.
@@ -162,7 +162,9 @@
 
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let value = try container.decodeIfPresent([Message].self, forKey: .messages) {
+        if let value = try container.decodeIfPresent(
+          [GoogleCloudDialogflowV2.Message].self, forKey: .messages)
+        {
           self.messages = value
         }
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {

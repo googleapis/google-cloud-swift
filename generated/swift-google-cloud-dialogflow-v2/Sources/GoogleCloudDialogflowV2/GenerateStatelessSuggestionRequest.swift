@@ -40,7 +40,7 @@
 
     /// Optional. A list of trigger events. Generator will be triggered only if
     /// it's trigger event is included here.
-    public var triggerEvents: [TriggerEvent] = []
+    public var triggerEvents: [GoogleCloudDialogflowV2.TriggerEvent] = []
 
     /// Optional. Name of the CX SecuritySettings which is used to redact generated
     /// response. If this field is empty, try to fetch v2 security_settings, which
@@ -110,7 +110,9 @@
       }
       self.conversationContext = try container.decodeIfPresent(
         ConversationContext.self, forKey: .conversationContext)
-      if let value = try container.decodeIfPresent([TriggerEvent].self, forKey: .triggerEvents) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDialogflowV2.TriggerEvent].self, forKey: .triggerEvents)
+      {
         self.triggerEvents = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securitySettings) {

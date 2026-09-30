@@ -66,7 +66,7 @@
 
     /// If set, this license will be unable to be removed or replaced once attached
     /// to a disk until the minimum_retention period has passed.
-    public var minimumRetention: Duration? = nil
+    public var minimumRetention: GoogleCloudComputeV1.Duration? = nil
 
     /// If true, this license can only be used on VMs on multi tenant nodes.
     public var multiTenantOnly: Swift.Bool? = nil
@@ -207,7 +207,7 @@
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       self.licenseCode = try container.decodeIfPresent(Swift.UInt64.self, forKey: .licenseCode)
       self.minimumRetention = try container.decodeIfPresent(
-        Duration.self, forKey: .minimumRetention)
+        GoogleCloudComputeV1.Duration.self, forKey: .minimumRetention)
       self.multiTenantOnly = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .multiTenantOnly)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)

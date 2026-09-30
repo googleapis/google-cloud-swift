@@ -29,20 +29,24 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var id: Swift.String = Swift.String()
 
   /// The type of this network, either Client or Private.
-  public var type: NetworkConfig.Type_ = NetworkConfig.Type_()
+  public var type: GoogleCloudBareMetalSolutionV2.NetworkConfig.Type_ =
+    GoogleCloudBareMetalSolutionV2.NetworkConfig.Type_()
 
   /// Interconnect bandwidth. Set only when type is CLIENT.
-  public var bandwidth: NetworkConfig.Bandwidth = NetworkConfig.Bandwidth()
+  public var bandwidth: GoogleCloudBareMetalSolutionV2.NetworkConfig.Bandwidth =
+    GoogleCloudBareMetalSolutionV2.NetworkConfig.Bandwidth()
 
   /// List of VLAN attachments. As of now there are always 2 attachments, but it
   /// is going to change in  the future (multi vlan).
-  public var vlanAttachments: [NetworkConfig.IntakeVlanAttachment] = []
+  public var vlanAttachments: [GoogleCloudBareMetalSolutionV2.NetworkConfig.IntakeVlanAttachment] =
+    []
 
   /// CIDR range of the network.
   public var cidr: Swift.String = Swift.String()
 
   /// Service CIDR, if any.
-  public var serviceCidr: NetworkConfig.ServiceCidr = NetworkConfig.ServiceCidr()
+  public var serviceCidr: GoogleCloudBareMetalSolutionV2.NetworkConfig.ServiceCidr =
+    GoogleCloudBareMetalSolutionV2.NetworkConfig.ServiceCidr()
 
   /// User note field, it can be used by customers to add additional information
   /// for the BMS Ops team .
@@ -117,14 +121,19 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
       self.id = value
     }
-    if let value = try container.decodeIfPresent(NetworkConfig.Type_.self, forKey: .type) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudBareMetalSolutionV2.NetworkConfig.Type_.self, forKey: .type)
+    {
       self.type = value
     }
-    if let value = try container.decodeIfPresent(NetworkConfig.Bandwidth.self, forKey: .bandwidth) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudBareMetalSolutionV2.NetworkConfig.Bandwidth.self, forKey: .bandwidth)
+    {
       self.bandwidth = value
     }
     if let value = try container.decodeIfPresent(
-      [NetworkConfig.IntakeVlanAttachment].self, forKey: .vlanAttachments)
+      [GoogleCloudBareMetalSolutionV2.NetworkConfig.IntakeVlanAttachment].self,
+      forKey: .vlanAttachments)
     {
       self.vlanAttachments = value
     }
@@ -132,7 +141,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.cidr = value
     }
     if let value = try container.decodeIfPresent(
-      NetworkConfig.ServiceCidr.self, forKey: .serviceCidr)
+      GoogleCloudBareMetalSolutionV2.NetworkConfig.ServiceCidr.self, forKey: .serviceCidr)
     {
       self.serviceCidr = value
     }

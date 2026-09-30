@@ -26,7 +26,7 @@ public struct SystemComponentsConfig: Codable, Equatable, GoogleWKT._AnyPackable
   public var tolerations: [Toleration] = []
 
   /// Sets custom labels for pods created by auto-installed components.
-  public var labels: [Label] = []
+  public var labels: [GoogleCloudGKEMultiCloudV1.Label] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,9 @@ public struct SystemComponentsConfig: Codable, Equatable, GoogleWKT._AnyPackable
     if let value = try container.decodeIfPresent([Toleration].self, forKey: .tolerations) {
       self.tolerations = value
     }
-    if let value = try container.decodeIfPresent([Label].self, forKey: .labels) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudGKEMultiCloudV1.Label].self, forKey: .labels)
+    {
       self.labels = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

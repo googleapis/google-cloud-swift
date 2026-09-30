@@ -50,7 +50,7 @@
     /// recovery of the Local Ssd state is attempted. Its value should be in
     /// between 0 and 168 hours with hour granularity and the default value being 1
     /// hour.
-    public var localSsdRecoveryTimeout: Duration? = nil
+    public var localSsdRecoveryTimeout: GoogleCloudComputeV1.Duration? = nil
 
     /// An opaque location hint used to place the instance close to other
     /// resources.
@@ -60,7 +60,7 @@
     /// Specifies the max run duration for the given instance. If specified,
     /// the instance termination action will be performed at the end of the run
     /// duration.
-    public var maxRunDuration: Duration? = nil
+    public var maxRunDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// The minimum number of virtual CPUs this instance will consume when running
     /// on a sole-tenant node.
@@ -90,7 +90,7 @@
     /// Specifies the Metadata Service preemption notice duration before the GCE ACPI G2
     /// Soft Off signal is triggered for Spot VMs only. If not specified,
     /// there will be no wait before the G2 Soft Off signal is triggered.
-    public var preemptionNoticeDuration: Duration? = nil
+    public var preemptionNoticeDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// Specifies the provisioning model of the instance.
     public var provisioningModel: Scheduling.ProvisioningModel? = nil
@@ -180,9 +180,10 @@
       self.instanceTerminationAction = try container.decodeIfPresent(
         Scheduling.InstanceTerminationAction.self, forKey: .instanceTerminationAction)
       self.localSsdRecoveryTimeout = try container.decodeIfPresent(
-        Duration.self, forKey: .localSsdRecoveryTimeout)
+        GoogleCloudComputeV1.Duration.self, forKey: .localSsdRecoveryTimeout)
       self.locationHint = try container.decodeIfPresent(Swift.String.self, forKey: .locationHint)
-      self.maxRunDuration = try container.decodeIfPresent(Duration.self, forKey: .maxRunDuration)
+      self.maxRunDuration = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .maxRunDuration)
       self.minNodeCpus = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCpus)
       if let value = try container.decodeIfPresent(
         [SchedulingNodeAffinity].self, forKey: .nodeAffinities)
@@ -195,7 +196,7 @@
         SchedulingOnInstanceStopAction.self, forKey: .onInstanceStopAction)
       self.preemptible = try container.decodeIfPresent(Swift.Bool.self, forKey: .preemptible)
       self.preemptionNoticeDuration = try container.decodeIfPresent(
-        Duration.self, forKey: .preemptionNoticeDuration)
+        GoogleCloudComputeV1.Duration.self, forKey: .preemptionNoticeDuration)
       self.provisioningModel = try container.decodeIfPresent(
         Scheduling.ProvisioningModel.self, forKey: .provisioningModel)
       self.skipGuestOsShutdown = try container.decodeIfPresent(

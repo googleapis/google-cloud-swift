@@ -65,7 +65,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. Current state of the DataScan.
-  public var state: State = State()
+  public var state: GoogleCloudDataplexV1.State = GoogleCloudDataplexV1.State()
 
   /// Output only. The time when the scan was created.
   public var createTime: GoogleWKT.WKTTimestamp? = nil
@@ -189,7 +189,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.labels = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(GoogleCloudDataplexV1.State.self, forKey: .state) {
       self.state = value
     }
     self.createTime = try container.decodeIfPresent(
@@ -250,12 +250,12 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
       result = $0
     }
     if let dataQualityResult = try container.decodeIfPresent(
-      DataQualityResult.self, forKey: .dataQualityResult)
+      GoogleCloudDataplexV1.DataQualityResult.self, forKey: .dataQualityResult)
     {
       try resultCheckAndSet(.dataQualityResult(dataQualityResult))
     }
     if let dataProfileResult = try container.decodeIfPresent(
-      DataProfileResult.self, forKey: .dataProfileResult)
+      GoogleCloudDataplexV1.DataProfileResult.self, forKey: .dataProfileResult)
     {
       try resultCheckAndSet(.dataProfileResult(dataProfileResult))
     }
@@ -330,7 +330,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// If not specified, the default is `OnDemand`, which means the scan will
     /// not run until the user calls `RunDataScan` API.
-    public var trigger: Trigger? = nil
+    public var trigger: GoogleCloudDataplexV1.Trigger? = nil
 
     /// Spec related to incremental scan of the data
     ///
@@ -374,7 +374,8 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.trigger = try container.decodeIfPresent(Trigger.self, forKey: .trigger)
+      self.trigger = try container.decodeIfPresent(
+        GoogleCloudDataplexV1.Trigger.self, forKey: .trigger)
 
       var incremental: IncrementalOneOf? = nil
       let incrementalCheckAndSet = {
@@ -536,9 +537,9 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The result of the data scan.
   public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. The result of a data quality scan.
-    indirect case dataQualityResult(DataQualityResult)
+    indirect case dataQualityResult(GoogleCloudDataplexV1.DataQualityResult)
     /// Output only. The result of a data profile scan.
-    indirect case dataProfileResult(DataProfileResult)
+    indirect case dataProfileResult(GoogleCloudDataplexV1.DataProfileResult)
     /// Output only. The result of a data discovery scan.
     indirect case dataDiscoveryResult(DataDiscoveryResult)
     /// Output only. The result of a data documentation scan.

@@ -154,7 +154,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Pod labels.  For Kubernetes containers, these are applied to the
     /// container.
-    public var labels: [Label] = []
+    public var labels: [GoogleCloudSecurityCenterV2.Label] = []
 
     /// Pod containers associated with this finding, if any.
     public var containers: [Container] = []
@@ -204,7 +204,9 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
-      if let value = try container.decodeIfPresent([Label].self, forKey: .labels) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudSecurityCenterV2.Label].self, forKey: .labels)
+      {
         self.labels = value
       }
       if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {

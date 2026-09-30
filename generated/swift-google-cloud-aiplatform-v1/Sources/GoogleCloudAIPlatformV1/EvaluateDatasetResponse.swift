@@ -27,7 +27,7 @@
     public var aggregationOutput: AggregationOutput? = nil
 
     /// Output only. Output info for EvaluationService.
-    public var outputInfo: OutputInfo? = nil
+    public var outputInfo: GoogleCloudAIPlatformV1.OutputInfo? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,8 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.aggregationOutput = try container.decodeIfPresent(
         AggregationOutput.self, forKey: .aggregationOutput)
-      self.outputInfo = try container.decodeIfPresent(OutputInfo.self, forKey: .outputInfo)
+      self.outputInfo = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.OutputInfo.self, forKey: .outputInfo)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

@@ -50,7 +50,7 @@
     /// specified, Cloud CDN uses 3600s (1 hour) for `CACHE_ALL_STATIC` mode.
     /// Cannot exceed `maxTtl`. Cannot be specified when `cacheMode` is
     /// `USE_ORIGIN_HEADERS`.
-    public var clientTtl: Duration? = nil
+    public var clientTtl: GoogleCloudComputeV1.Duration? = nil
 
     /// Specifies the default TTL for cached content for responses that do not have
     /// an existing valid TTL (max-age or s-maxage). Setting a TTL of "0" means
@@ -62,7 +62,7 @@
     /// not specified, Cloud CDN uses 3600s (1 hour) for `CACHE_ALL_STATIC` and
     /// `FORCE_CACHE_ALL` modes. Cannot be specified when `cacheMode` is
     /// `USE_ORIGIN_HEADERS`.
-    public var defaultTtl: Duration? = nil
+    public var defaultTtl: GoogleCloudComputeV1.Duration? = nil
 
     /// Specifies the maximum allowed TTL for cached content. Cache directives that
     /// attempt to set a max-age or s-maxage higher than this, or an Expires header
@@ -74,7 +74,7 @@
     /// defined TTL. If not specified, Cloud CDN uses 86400s (1 day) for
     /// `CACHE_ALL_STATIC` mode. Can be specified only for `CACHE_ALL_STATIC` cache
     /// mode.
-    public var maxTtl: Duration? = nil
+    public var maxTtl: GoogleCloudComputeV1.Duration? = nil
 
     /// Negative caching allows per-status code TTLs to be set, in order
     /// to apply fine-grained caching for common errors or redirects.
@@ -121,7 +121,7 @@
     /// response.
     /// The maximum allowed value is 604800 (1 week).
     /// Set this to zero (0) to disable serve-while-stale.
-    public var serveWhileStale: Duration? = nil
+    public var serveWhileStale: GoogleCloudComputeV1.Duration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -183,9 +183,12 @@
       self.cacheKeyPolicy = try container.decodeIfPresent(
         CachePolicyCacheKeyPolicy.self, forKey: .cacheKeyPolicy)
       self.cacheMode = try container.decodeIfPresent(CachePolicy.CacheMode.self, forKey: .cacheMode)
-      self.clientTtl = try container.decodeIfPresent(Duration.self, forKey: .clientTtl)
-      self.defaultTtl = try container.decodeIfPresent(Duration.self, forKey: .defaultTtl)
-      self.maxTtl = try container.decodeIfPresent(Duration.self, forKey: .maxTtl)
+      self.clientTtl = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .clientTtl)
+      self.defaultTtl = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .defaultTtl)
+      self.maxTtl = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .maxTtl)
       self.negativeCaching = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .negativeCaching)
       if let value = try container.decodeIfPresent(
@@ -195,7 +198,8 @@
       }
       self.requestCoalescing = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .requestCoalescing)
-      self.serveWhileStale = try container.decodeIfPresent(Duration.self, forKey: .serveWhileStale)
+      self.serveWhileStale = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .serveWhileStale)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

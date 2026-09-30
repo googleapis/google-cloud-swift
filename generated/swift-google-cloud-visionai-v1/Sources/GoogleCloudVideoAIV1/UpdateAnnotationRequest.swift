@@ -25,7 +25,7 @@ public struct UpdateAnnotationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The annotation's `name` field is used to identify the annotation to be
   /// updated. Format:
   /// `projects/{project_number}/locations/{location}/corpora/{corpus}/assets/{asset}/annotations/{annotation}`
-  public var annotation: Annotation? = nil
+  public var annotation: GoogleCloudVideoAIV1.Annotation? = nil
 
   /// The list of fields to be updated.
   public var updateMask: GoogleWKT.WKTFieldMask? = nil
@@ -65,7 +65,8 @@ public struct UpdateAnnotationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.annotation = try container.decodeIfPresent(Annotation.self, forKey: .annotation)
+    self.annotation = try container.decodeIfPresent(
+      GoogleCloudVideoAIV1.Annotation.self, forKey: .annotation)
     self.updateMask = try container.decodeIfPresent(
       GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

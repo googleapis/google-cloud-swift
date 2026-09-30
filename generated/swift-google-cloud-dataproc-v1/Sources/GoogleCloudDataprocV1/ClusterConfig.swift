@@ -91,7 +91,7 @@ public struct ClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var initializationActions: [NodeInitializationAction] = []
 
   /// Optional. Encryption settings for the cluster.
-  public var encryptionConfig: EncryptionConfig? = nil
+  public var encryptionConfig: GoogleCloudDataprocV1.EncryptionConfig? = nil
 
   /// Optional. Autoscaling config for the policy associated with the cluster.
   /// Cluster does not autoscale if this field is unset.
@@ -219,7 +219,7 @@ public struct ClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.initializationActions = value
     }
     self.encryptionConfig = try container.decodeIfPresent(
-      EncryptionConfig.self, forKey: .encryptionConfig)
+      GoogleCloudDataprocV1.EncryptionConfig.self, forKey: .encryptionConfig)
     self.autoscalingConfig = try container.decodeIfPresent(
       AutoscalingConfig.self, forKey: .autoscalingConfig)
     self.securityConfig = try container.decodeIfPresent(

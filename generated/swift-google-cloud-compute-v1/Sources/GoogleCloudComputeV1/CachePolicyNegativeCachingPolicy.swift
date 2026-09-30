@@ -32,7 +32,7 @@
     /// corresponding status code.
     /// The maximum allowed value is 1800s (30 minutes). Infrequently accessed
     /// objects may be evicted from the cache before the defined TTL.
-    public var ttl: Duration? = nil
+    public var ttl: GoogleCloudComputeV1.Duration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.code = try container.decodeIfPresent(Swift.Int32.self, forKey: .code)
-      self.ttl = try container.decodeIfPresent(Duration.self, forKey: .ttl)
+      self.ttl = try container.decodeIfPresent(GoogleCloudComputeV1.Duration.self, forKey: .ttl)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

@@ -30,7 +30,7 @@
       request: CreateIntentRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)"
-          $0.intent = Intent() /* .with { ... } */
+          $0.intent = GoogleCloudDialogflowCXV3.Intent() /* .with { ... } */
         }
     )
     print("Success: \(response)")

@@ -32,7 +32,7 @@
     /// REQUIRED: The complete policy to be applied to the 'resource'. The size of
     /// the policy is limited to a few 10s of KB. An empty policy is in general a
     /// valid policy but certain services (like Projects) might reject them.
-    public var policy: Policy? = nil
+    public var policy: GoogleCloudComputeV1.Policy? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@
         }
         self.etag = v
       }
-      self.policy = try container.decodeIfPresent(Policy.self, forKey: .policy)
+      self.policy = try container.decodeIfPresent(GoogleCloudComputeV1.Policy.self, forKey: .policy)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

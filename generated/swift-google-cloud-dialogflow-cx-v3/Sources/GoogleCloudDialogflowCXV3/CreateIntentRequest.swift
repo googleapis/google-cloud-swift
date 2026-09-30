@@ -30,7 +30,7 @@
     public var parent: Swift.String = Swift.String()
 
     /// Required. The intent to create.
-    public var intent: Intent? = nil
+    public var intent: GoogleCloudDialogflowCXV3.Intent? = nil
 
     /// The language of the following fields in `intent`:
     ///
@@ -83,7 +83,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
         self.parent = value
       }
-      self.intent = try container.decodeIfPresent(Intent.self, forKey: .intent)
+      self.intent = try container.decodeIfPresent(
+        GoogleCloudDialogflowCXV3.Intent.self, forKey: .intent)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
         self.languageCode = value
       }

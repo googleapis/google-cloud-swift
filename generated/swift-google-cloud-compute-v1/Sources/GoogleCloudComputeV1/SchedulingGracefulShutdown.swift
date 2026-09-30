@@ -28,7 +28,7 @@
     /// The time allotted for the instance to gracefully shut down. If the
     /// graceful shutdown isn't complete after this time, then the instance
     /// transitions to the STOPPING state.
-    public var maxDuration: Duration? = nil
+    public var maxDuration: GoogleCloudComputeV1.Duration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,8 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
-      self.maxDuration = try container.decodeIfPresent(Duration.self, forKey: .maxDuration)
+      self.maxDuration = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .maxDuration)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

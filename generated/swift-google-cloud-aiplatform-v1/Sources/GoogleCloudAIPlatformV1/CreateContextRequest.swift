@@ -31,7 +31,7 @@
     public var parent: Swift.String = Swift.String()
 
     /// Required. The Context to create.
-    public var context: Context? = nil
+    public var context: GoogleCloudAIPlatformV1.Context? = nil
 
     /// The {context} portion of the resource name with the format:
     /// `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`.
@@ -82,7 +82,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
         self.parent = value
       }
-      self.context = try container.decodeIfPresent(Context.self, forKey: .context)
+      self.context = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Context.self, forKey: .context)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .contextId) {
         self.contextId = value
       }

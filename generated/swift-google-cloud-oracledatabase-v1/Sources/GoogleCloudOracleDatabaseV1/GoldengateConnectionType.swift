@@ -28,8 +28,8 @@ public struct GoldengateConnectionType: Codable, Equatable, GoogleWKT._AnyPackab
 
   /// Output only. The connection type of the Goldengate Connection Type
   /// resource.
-  public var connectionType: GoldengateConnectionType.ConnectionType =
-    GoldengateConnectionType.ConnectionType()
+  public var connectionType: GoogleCloudOracleDatabaseV1.GoldengateConnectionType.ConnectionType =
+    GoogleCloudOracleDatabaseV1.GoldengateConnectionType.ConnectionType()
 
   /// Output only. The technology type of the Goldengate Connection Type
   /// resource.
@@ -76,7 +76,8 @@ public struct GoldengateConnectionType: Codable, Equatable, GoogleWKT._AnyPackab
       self.name = value
     }
     if let value = try container.decodeIfPresent(
-      GoldengateConnectionType.ConnectionType.self, forKey: .connectionType)
+      GoogleCloudOracleDatabaseV1.GoldengateConnectionType.ConnectionType.self,
+      forKey: .connectionType)
     {
       self.connectionType = value
     }

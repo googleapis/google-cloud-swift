@@ -33,7 +33,7 @@ public struct Container: Codable, Equatable, GoogleWKT._AnyPackable,
   public var imageId: Swift.String = Swift.String()
 
   /// Container labels, as provided by the container runtime.
-  public var labels: [Label] = []
+  public var labels: [GoogleCloudSecurityCenterV2.Label] = []
 
   /// The time that the container was created.
   public var createTime: GoogleWKT.WKTTimestamp? = nil
@@ -88,7 +88,9 @@ public struct Container: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .imageId) {
       self.imageId = value
     }
-    if let value = try container.decodeIfPresent([Label].self, forKey: .labels) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudSecurityCenterV2.Label].self, forKey: .labels)
+    {
       self.labels = value
     }
     self.createTime = try container.decodeIfPresent(

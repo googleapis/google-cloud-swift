@@ -31,12 +31,12 @@
     /// Maximum of 10 query terms.
     ///
     /// [google.cloud.discoveryengine.v1.Condition.query_regex]: <doc:Condition/queryRegex>
-    public var queryTerms: [Condition.QueryTerm] = []
+    public var queryTerms: [GoogleCloudDiscoveryEngineV1.Condition.QueryTerm] = []
 
     /// Range of time(s) specifying when condition is active.
     ///
     /// Maximum of 10 time ranges.
-    public var activeTimeRange: [Condition.TimeRange] = []
+    public var activeTimeRange: [GoogleCloudDiscoveryEngineV1.Condition.TimeRange] = []
 
     /// Optional. Query regex to match the whole search query.
     /// Cannot be set when
@@ -83,12 +83,13 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Condition.QueryTerm].self, forKey: .queryTerms)
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDiscoveryEngineV1.Condition.QueryTerm].self, forKey: .queryTerms)
       {
         self.queryTerms = value
       }
       if let value = try container.decodeIfPresent(
-        [Condition.TimeRange].self, forKey: .activeTimeRange)
+        [GoogleCloudDiscoveryEngineV1.Condition.TimeRange].self, forKey: .activeTimeRange)
       {
         self.activeTimeRange = value
       }

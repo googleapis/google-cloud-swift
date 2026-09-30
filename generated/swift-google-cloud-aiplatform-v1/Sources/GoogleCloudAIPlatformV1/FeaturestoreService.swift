@@ -294,15 +294,17 @@
     /// @Snippet(path: "FeaturestoreService_CreateFeature")
     public func createFeaturePollingUntilDone(
       request: CreateFeatureRequest, options: GoogleGax.RequestOptions
-    ) async throws -> Feature {
+    ) async throws -> GoogleCloudAIPlatformV1.Feature {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
-          -> GoogleGax._PollableOperationImpl<Feature>.State in
-        return try op._extractStatus(Feature.self)
+          -> GoogleGax._PollableOperationImpl<GoogleCloudAIPlatformV1.Feature>.State in
+        return try op._extractStatus(GoogleCloudAIPlatformV1.Feature.self)
       }
       let rawOp = try await self.createFeature(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
+      let poll = {
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudAIPlatformV1.Feature>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -847,7 +849,7 @@
       /// See `FeaturestoreServiceClient.createFeature`.
       func createFeaturePollingUntilDone(
         request: CreateFeatureRequest, options: GoogleGax.RequestOptions
-      ) async throws -> Feature
+      ) async throws -> GoogleCloudAIPlatformV1.Feature
 
       /// See `FeaturestoreServiceClient.batchCreateFeatures`.
       func batchCreateFeatures(
@@ -1357,21 +1359,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createFeaturePollingUntilDone(request: CreateFeatureRequest) async throws -> Feature
+    public func createFeaturePollingUntilDone(request: CreateFeatureRequest) async throws
+      -> GoogleCloudAIPlatformV1.Feature
     {
       return try await self.createFeaturePollingUntilDone(request: request, options: .init())
     }
 
     public func createFeaturePollingUntilDone(
       request: CreateFeatureRequest, options: GoogleGax.RequestOptions
-    ) async throws -> Feature {
+    ) async throws -> GoogleCloudAIPlatformV1.Feature {
       throw GoogleGax.RequestError.unimplemented
     }
 
     public func createFeaturePollingUntilDone(
       parent: Swift.String,
-      feature: Feature?,
-    ) async throws -> Feature {
+      feature: GoogleCloudAIPlatformV1.Feature?,
+    ) async throws -> GoogleCloudAIPlatformV1.Feature {
       let request = CreateFeatureRequest().with {
         $0.parent = parent
         $0.feature = feature
@@ -1381,9 +1384,9 @@
 
     public func createFeaturePollingUntilDone(
       parent: Swift.String,
-      feature: Feature?,
+      feature: GoogleCloudAIPlatformV1.Feature?,
       featureId: Swift.String,
-    ) async throws -> Feature {
+    ) async throws -> GoogleCloudAIPlatformV1.Feature {
       let request = CreateFeatureRequest().with {
         $0.parent = parent
         $0.feature = feature
@@ -1462,7 +1465,7 @@
 
     public func listFeaturesByItems(
       request: ListFeaturesRequest
-    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Feature, Swift.Error> & Sendable {
       self.listFeaturesByItems(request: request, options: .init())
     }
 
@@ -1471,7 +1474,7 @@
     /// @Snippet(path: "FeaturestoreService_ListFeatures")
     public func listFeaturesByItems(
       request: ListFeaturesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Feature, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse
         in
@@ -1484,7 +1487,7 @@
 
     public func listFeaturesByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Feature, Swift.Error> & Sendable {
       let request = ListFeaturesRequest().with {
         $0.parent = parent
       }
@@ -1504,7 +1507,7 @@
     }
 
     public func updateFeature(
-      feature: Feature?,
+      feature: GoogleCloudAIPlatformV1.Feature?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Feature {
       let request = UpdateFeatureRequest().with {
@@ -1692,7 +1695,7 @@
 
     public func searchFeaturesByItems(
       request: SearchFeaturesRequest
-    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Feature, Swift.Error> & Sendable {
       self.searchFeaturesByItems(request: request, options: .init())
     }
 
@@ -1701,7 +1704,7 @@
     /// @Snippet(path: "FeaturestoreService_SearchFeatures")
     public func searchFeaturesByItems(
       request: SearchFeaturesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Feature, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.SearchFeaturesResponse in
@@ -1714,7 +1717,7 @@
 
     public func searchFeaturesByItems(
       location: Swift.String,
-    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Feature, Swift.Error> & Sendable {
       let request = SearchFeaturesRequest().with {
         $0.location = location
       }
@@ -1724,7 +1727,7 @@
     public func searchFeaturesByItems(
       location: Swift.String,
       query: Swift.String,
-    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Feature, Swift.Error> & Sendable {
       let request = SearchFeaturesRequest().with {
         $0.location = location
         $0.query = query

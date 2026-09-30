@@ -34,7 +34,7 @@
     /// Only present for custom code training export use case. Records data stats,
     /// i.e., train/validation/test item/annotation counts calculated during
     /// the export operation.
-    public var dataStats: Model.DataStats? = nil
+    public var dataStats: GoogleCloudAIPlatformV1.Model.DataStats? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,8 @@
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exportedFiles) {
         self.exportedFiles = value
       }
-      self.dataStats = try container.decodeIfPresent(Model.DataStats.self, forKey: .dataStats)
+      self.dataStats = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Model.DataStats.self, forKey: .dataStats)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

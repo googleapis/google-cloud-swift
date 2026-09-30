@@ -31,7 +31,7 @@
     /// `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
     ///
     /// [google.cloud.aiplatform.v1.Context.name]: <doc:Context/name>
-    public var context: Context? = nil
+    public var context: GoogleCloudAIPlatformV1.Context? = nil
 
     /// Optional. A FieldMask indicating which fields should be updated.
     public var updateMask: GoogleWKT.WKTFieldMask? = nil
@@ -79,7 +79,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.context = try container.decodeIfPresent(Context.self, forKey: .context)
+      self.context = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Context.self, forKey: .context)
       self.updateMask = try container.decodeIfPresent(
         GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowMissing) {

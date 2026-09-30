@@ -22,7 +22,8 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The category of issue associated with the action.
-  public var category: Action.Category = Action.Category()
+  public var category: GoogleCloudDataplexV1.Action.Category = GoogleCloudDataplexV1.Action
+    .Category()
 
   /// Detailed description of the issue requiring action.
   public var issue: Swift.String = Swift.String()
@@ -121,7 +122,9 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Action.Category.self, forKey: .category) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudDataplexV1.Action.Category.self, forKey: .category)
+    {
       self.category = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issue) {
@@ -156,42 +159,43 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       details = $0
     }
     if let invalidDataFormat = try container.decodeIfPresent(
-      Action.InvalidDataFormat.self, forKey: .invalidDataFormat)
+      GoogleCloudDataplexV1.Action.InvalidDataFormat.self, forKey: .invalidDataFormat)
     {
       try detailsCheckAndSet(.invalidDataFormat(invalidDataFormat))
     }
     if let incompatibleDataSchema = try container.decodeIfPresent(
-      Action.IncompatibleDataSchema.self, forKey: .incompatibleDataSchema)
+      GoogleCloudDataplexV1.Action.IncompatibleDataSchema.self, forKey: .incompatibleDataSchema)
     {
       try detailsCheckAndSet(.incompatibleDataSchema(incompatibleDataSchema))
     }
     if let invalidDataPartition = try container.decodeIfPresent(
-      Action.InvalidDataPartition.self, forKey: .invalidDataPartition)
+      GoogleCloudDataplexV1.Action.InvalidDataPartition.self, forKey: .invalidDataPartition)
     {
       try detailsCheckAndSet(.invalidDataPartition(invalidDataPartition))
     }
     if let missingData = try container.decodeIfPresent(
-      Action.MissingData.self, forKey: .missingData)
+      GoogleCloudDataplexV1.Action.MissingData.self, forKey: .missingData)
     {
       try detailsCheckAndSet(.missingData(missingData))
     }
     if let missingResource = try container.decodeIfPresent(
-      Action.MissingResource.self, forKey: .missingResource)
+      GoogleCloudDataplexV1.Action.MissingResource.self, forKey: .missingResource)
     {
       try detailsCheckAndSet(.missingResource(missingResource))
     }
     if let unauthorizedResource = try container.decodeIfPresent(
-      Action.UnauthorizedResource.self, forKey: .unauthorizedResource)
+      GoogleCloudDataplexV1.Action.UnauthorizedResource.self, forKey: .unauthorizedResource)
     {
       try detailsCheckAndSet(.unauthorizedResource(unauthorizedResource))
     }
     if let failedSecurityPolicyApply = try container.decodeIfPresent(
-      Action.FailedSecurityPolicyApply.self, forKey: .failedSecurityPolicyApply)
+      GoogleCloudDataplexV1.Action.FailedSecurityPolicyApply.self,
+      forKey: .failedSecurityPolicyApply)
     {
       try detailsCheckAndSet(.failedSecurityPolicyApply(failedSecurityPolicyApply))
     }
     if let invalidDataOrganization = try container.decodeIfPresent(
-      Action.InvalidDataOrganization.self, forKey: .invalidDataOrganization)
+      GoogleCloudDataplexV1.Action.InvalidDataOrganization.self, forKey: .invalidDataOrganization)
     {
       try detailsCheckAndSet(.invalidDataOrganization(invalidDataOrganization))
     }
@@ -535,8 +539,8 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     public var sampledDataLocations: [Swift.String] = []
 
     /// Whether the action relates to a schema that is incompatible or modified.
-    public var schemaChange: Action.IncompatibleDataSchema.SchemaChange = Action
-      .IncompatibleDataSchema.SchemaChange()
+    public var schemaChange: GoogleCloudDataplexV1.Action.IncompatibleDataSchema.SchemaChange =
+      GoogleCloudDataplexV1.Action.IncompatibleDataSchema.SchemaChange()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -594,8 +598,8 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
         self.sampledDataLocations = value
       }
       if let value = try container.decodeIfPresent(
-        Action.IncompatibleDataSchema.SchemaChange.self, forKey: .schemaChange)
-      {
+        GoogleCloudDataplexV1.Action.IncompatibleDataSchema.SchemaChange.self, forKey: .schemaChange
+      ) {
         self.schemaChange = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -750,8 +754,9 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The issue type of InvalidDataPartition.
-    public var expectedStructure: Action.InvalidDataPartition.PartitionStructure = Action
-      .InvalidDataPartition.PartitionStructure()
+    public var expectedStructure:
+      GoogleCloudDataplexV1.Action.InvalidDataPartition.PartitionStructure = GoogleCloudDataplexV1
+        .Action.InvalidDataPartition.PartitionStructure()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -787,7 +792,8 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
-        Action.InvalidDataPartition.PartitionStructure.self, forKey: .expectedStructure)
+        GoogleCloudDataplexV1.Action.InvalidDataPartition.PartitionStructure.self,
+        forKey: .expectedStructure)
       {
         self.expectedStructure = value
       }
@@ -1174,23 +1180,23 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Additional details about the action based on the action category.
   public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Details for issues related to invalid or unsupported data formats.
-    indirect case invalidDataFormat(Action.InvalidDataFormat)
+    indirect case invalidDataFormat(GoogleCloudDataplexV1.Action.InvalidDataFormat)
     /// Details for issues related to incompatible schemas detected within data.
-    indirect case incompatibleDataSchema(Action.IncompatibleDataSchema)
+    indirect case incompatibleDataSchema(GoogleCloudDataplexV1.Action.IncompatibleDataSchema)
     /// Details for issues related to invalid or unsupported data partition
     /// structure.
-    indirect case invalidDataPartition(Action.InvalidDataPartition)
+    indirect case invalidDataPartition(GoogleCloudDataplexV1.Action.InvalidDataPartition)
     /// Details for issues related to absence of data within managed resources.
-    indirect case missingData(Action.MissingData)
+    indirect case missingData(GoogleCloudDataplexV1.Action.MissingData)
     /// Details for issues related to absence of a managed resource.
-    indirect case missingResource(Action.MissingResource)
+    indirect case missingResource(GoogleCloudDataplexV1.Action.MissingResource)
     /// Details for issues related to lack of permissions to access data
     /// resources.
-    indirect case unauthorizedResource(Action.UnauthorizedResource)
+    indirect case unauthorizedResource(GoogleCloudDataplexV1.Action.UnauthorizedResource)
     /// Details for issues related to applying security policy.
-    indirect case failedSecurityPolicyApply(Action.FailedSecurityPolicyApply)
+    indirect case failedSecurityPolicyApply(GoogleCloudDataplexV1.Action.FailedSecurityPolicyApply)
     /// Details for issues related to invalid data arrangement.
-    indirect case invalidDataOrganization(Action.InvalidDataOrganization)
+    indirect case invalidDataOrganization(GoogleCloudDataplexV1.Action.InvalidDataOrganization)
   }
 
   public static var _anyTypeUrl: Swift.String {

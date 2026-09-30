@@ -22,7 +22,7 @@ public struct TransactionEffects: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resulting status of the transaction execution.
-  public var status: TransactionStatus? = nil
+  public var status: GoogleCloudUniversalLedgerV1.TransactionStatus? = nil
 
   /// Output only. Deprecated: Query the network state instead to determine any
   /// changes to the world state. The effects of the transaction in the world
@@ -68,7 +68,8 @@ public struct TransactionEffects: Codable, Equatable, GoogleWKT._AnyPackable,
   #endif
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.status = try container.decodeIfPresent(TransactionStatus.self, forKey: .status)
+    self.status = try container.decodeIfPresent(
+      GoogleCloudUniversalLedgerV1.TransactionStatus.self, forKey: .status)
     if let value = try container.decodeIfPresent([TransactionEffect].self, forKey: .effects) {
       self.effects = value
     }

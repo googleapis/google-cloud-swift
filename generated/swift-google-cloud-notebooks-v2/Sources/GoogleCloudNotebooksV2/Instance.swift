@@ -42,7 +42,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   public var creator: Swift.String = Swift.String()
 
   /// Output only. The state of this instance.
-  public var state: State = State()
+  public var state: GoogleCloudNotebooksV2.State = GoogleCloudNotebooksV2.State()
 
   /// Output only. The upgrade history of this instance.
   public var upgradeHistory: [UpgradeHistoryEntry] = []
@@ -152,7 +152,8 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .creator) {
       self.creator = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(GoogleCloudNotebooksV2.State.self, forKey: .state)
+    {
       self.state = value
     }
     if let value = try container.decodeIfPresent(

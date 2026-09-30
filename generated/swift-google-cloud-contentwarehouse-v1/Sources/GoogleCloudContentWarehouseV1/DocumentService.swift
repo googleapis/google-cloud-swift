@@ -196,7 +196,7 @@ extension Clients.DocumentServiceProtocol {
 
   public func createDocument(
     parent: Swift.String,
-    document: Document?,
+    document: GoogleCloudContentWarehouseV1.Document?,
   ) async throws -> GoogleCloudContentWarehouseV1.CreateDocumentResponse {
     let request = CreateDocumentRequest().with {
       $0.parent = parent
@@ -240,7 +240,7 @@ extension Clients.DocumentServiceProtocol {
 
   public func updateDocument(
     name: Swift.String,
-    document: Document?,
+    document: GoogleCloudContentWarehouseV1.Document?,
   ) async throws -> GoogleCloudContentWarehouseV1.UpdateDocumentResponse {
     let request = UpdateDocumentRequest().with {
       $0.name = name

@@ -23,7 +23,7 @@ public struct ListAnnotationsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   Sendable
 {
   /// The annotations from the specified asset.
-  public var annotations: [Annotation] = []
+  public var annotations: [GoogleCloudVideoAIV1.Annotation] = []
 
   /// A token, which can be sent as `page_token` to retrieve the next page.
   /// If this field is omitted, there are no subsequent pages.
@@ -64,7 +64,9 @@ public struct ListAnnotationsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent([Annotation].self, forKey: .annotations) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudVideoAIV1.Annotation].self, forKey: .annotations)
+    {
       self.annotations = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -98,7 +100,7 @@ public struct ListAnnotationsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
 
 @_spi(GoogleCloudInternal)
 extension ListAnnotationsResponse: GoogleGax._PaginatedResponse {
-  public func _getPaginatedItems() -> [Annotation] {
+  public func _getPaginatedItems() -> [GoogleCloudVideoAIV1.Annotation] {
     return self.annotations
   }
 

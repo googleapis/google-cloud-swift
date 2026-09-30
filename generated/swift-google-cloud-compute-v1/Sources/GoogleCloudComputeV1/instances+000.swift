@@ -3902,7 +3902,7 @@
       project: Swift.String,
       zone: Swift.String,
       instance: Swift.String,
-      body: Metadata?,
+      body: GoogleCloudComputeV1.Metadata?,
     ) async throws -> GoogleCloudComputeV1.Operation {
       let request = InstancesClient.SetMetadataRequest().with {
         $0.project = project

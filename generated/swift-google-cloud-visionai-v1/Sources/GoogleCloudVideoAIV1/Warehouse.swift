@@ -2404,7 +2404,7 @@ extension Clients.WarehouseProtocol {
 
   public func createAnnotation(
     parent: Swift.String,
-    annotation: Annotation?,
+    annotation: GoogleCloudVideoAIV1.Annotation?,
     annotationId: Swift.String?,
   ) async throws -> GoogleCloudVideoAIV1.Annotation {
     let request = CreateAnnotationRequest().with {
@@ -2450,7 +2450,7 @@ extension Clients.WarehouseProtocol {
 
   public func listAnnotationsByItems(
     request: ListAnnotationsRequest
-  ) -> some AsyncSequence<Annotation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudVideoAIV1.Annotation, Swift.Error> & Sendable {
     self.listAnnotationsByItems(request: request, options: .init())
   }
 
@@ -2459,7 +2459,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListAnnotations")
   public func listAnnotationsByItems(
     request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Annotation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudVideoAIV1.Annotation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse
       in
@@ -2472,7 +2472,7 @@ extension Clients.WarehouseProtocol {
 
   public func listAnnotationsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Annotation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudVideoAIV1.Annotation, Swift.Error> & Sendable {
     let request = ListAnnotationsRequest().with {
       $0.parent = parent
     }
@@ -2492,7 +2492,7 @@ extension Clients.WarehouseProtocol {
   }
 
   public func updateAnnotation(
-    annotation: Annotation?,
+    annotation: GoogleCloudVideoAIV1.Annotation?,
     updateMask: GoogleWKT.WKTFieldMask?,
   ) async throws -> GoogleCloudVideoAIV1.Annotation {
     let request = UpdateAnnotationRequest().with {

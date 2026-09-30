@@ -26,7 +26,7 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The severity to be echoed by the server.
-  public var severity: Severity = Severity()
+  public var severity: GoogleShowcaseV1Beta1.Severity = GoogleShowcaseV1Beta1.Severity()
 
   /// Optional. This field can be set to test the routing annotation on the Echo method.
   public var header: Swift.String = Swift.String()
@@ -87,7 +87,9 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Severity.self, forKey: .severity) {
+    if let value = try container.decodeIfPresent(
+      GoogleShowcaseV1Beta1.Severity.self, forKey: .severity)
+    {
       self.severity = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .header) {

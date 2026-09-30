@@ -70,7 +70,9 @@ public struct ConversationDataSource: Codable, Equatable, GoogleWKT._AnyPackable
       }
       source = $0
     }
-    if let gcsSource = try container.decodeIfPresent(GcsSource.self, forKey: .gcsSource) {
+    if let gcsSource = try container.decodeIfPresent(
+      GoogleCloudContactCenterInsightsV1.GcsSource.self, forKey: .gcsSource)
+    {
       try sourceCheckAndSet(.gcsSource(gcsSource))
     }
     if let dialogflowSource = try container.decodeIfPresent(
@@ -104,7 +106,7 @@ public struct ConversationDataSource: Codable, Equatable, GoogleWKT._AnyPackable
   /// The source of the conversation.
   public enum SourceOneOf: Codable, Equatable, Sendable {
     /// A Cloud Storage location specification for the audio and transcript.
-    indirect case gcsSource(GcsSource)
+    indirect case gcsSource(GoogleCloudContactCenterInsightsV1.GcsSource)
     /// The source when the conversation comes from Dialogflow.
     indirect case dialogflowSource(DialogflowSource)
   }

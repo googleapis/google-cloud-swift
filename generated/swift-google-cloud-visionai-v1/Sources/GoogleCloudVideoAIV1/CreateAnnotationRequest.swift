@@ -27,7 +27,7 @@ public struct CreateAnnotationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public var parent: Swift.String = Swift.String()
 
   /// Required. The annotation to create.
-  public var annotation: Annotation? = nil
+  public var annotation: GoogleCloudVideoAIV1.Annotation? = nil
 
   /// Optional. The ID to use for the annotation, which will become the final
   /// component of the annotation's resource name if user choose to specify.
@@ -78,7 +78,8 @@ public struct CreateAnnotationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
     }
-    self.annotation = try container.decodeIfPresent(Annotation.self, forKey: .annotation)
+    self.annotation = try container.decodeIfPresent(
+      GoogleCloudVideoAIV1.Annotation.self, forKey: .annotation)
     self.annotationId = try container.decodeIfPresent(Swift.String.self, forKey: .annotationId)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(

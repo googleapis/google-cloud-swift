@@ -128,7 +128,8 @@
         }
         source = $0
       }
-      if let bigQuery = try container.decodeIfPresent(FeatureGroup.BigQuery.self, forKey: .bigQuery)
+      if let bigQuery = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.FeatureGroup.BigQuery.self, forKey: .bigQuery)
       {
         try sourceCheckAndSet(.bigQuery(bigQuery))
       }
@@ -165,7 +166,7 @@
     {
       /// Required. Immutable. The BigQuery source URI that points to either a
       /// BigQuery Table or View.
-      public var bigQuerySource: BigQuerySource? = nil
+      public var bigQuerySource: GoogleCloudAIPlatformV1.BigQuerySource? = nil
 
       /// Optional. Columns to construct entity_id / row keys.
       /// If not provided defaults to `entity_id`.
@@ -181,7 +182,7 @@
       /// source with `feature_timestamp` as timestamp column and no scan boundary.
       ///
       /// [google.cloud.aiplatform.v1.FeatureView]: <doc:FeatureView>
-      public var timeSeries: FeatureGroup.BigQuery.TimeSeries? = nil
+      public var timeSeries: GoogleCloudAIPlatformV1.FeatureGroup.BigQuery.TimeSeries? = nil
 
       /// Optional. If set, all feature values will be fetched
       /// from a single row per unique entityId including nulls.
@@ -238,7 +239,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.bigQuerySource = try container.decodeIfPresent(
-          BigQuerySource.self, forKey: .bigQuerySource)
+          GoogleCloudAIPlatformV1.BigQuerySource.self, forKey: .bigQuerySource)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .entityIdColumns)
         {
           self.entityIdColumns = value
@@ -247,7 +248,7 @@
           self.staticDataSource = value
         }
         self.timeSeries = try container.decodeIfPresent(
-          FeatureGroup.BigQuery.TimeSeries.self, forKey: .timeSeries)
+          GoogleCloudAIPlatformV1.FeatureGroup.BigQuery.TimeSeries.self, forKey: .timeSeries)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dense) {
           self.dense = value
         }
@@ -356,7 +357,7 @@
       /// By default treats the source as a sparse time series source. The BigQuery
       /// source table or view must have at least one entity ID column and a column
       /// named `feature_timestamp`.
-      indirect case bigQuery(FeatureGroup.BigQuery)
+      indirect case bigQuery(GoogleCloudAIPlatformV1.FeatureGroup.BigQuery)
     }
 
     public static var _anyTypeUrl: Swift.String {

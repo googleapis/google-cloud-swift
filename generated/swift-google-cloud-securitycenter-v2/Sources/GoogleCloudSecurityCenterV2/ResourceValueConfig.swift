@@ -28,7 +28,8 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Resource value level this expression represents
   /// Only required when there is no Sensitive Data Protection mapping in the
   /// request
-  public var resourceValue: ResourceValue = ResourceValue()
+  public var resourceValue: GoogleCloudSecurityCenterV2.ResourceValue =
+    GoogleCloudSecurityCenterV2.ResourceValue()
 
   /// Tag values combined with `AND` to check against.
   /// For Google Cloud resources, they are tag value IDs in the form of
@@ -131,7 +132,9 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    if let value = try container.decodeIfPresent(ResourceValue.self, forKey: .resourceValue) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudSecurityCenterV2.ResourceValue.self, forKey: .resourceValue)
+    {
       self.resourceValue = value
     }
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tagValues) {
@@ -194,11 +197,13 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// Resource value mapping for high-sensitivity Sensitive Data Protection
     /// findings
-    public var highSensitivityMapping: ResourceValue = ResourceValue()
+    public var highSensitivityMapping: GoogleCloudSecurityCenterV2.ResourceValue =
+      GoogleCloudSecurityCenterV2.ResourceValue()
 
     /// Resource value mapping for medium-sensitivity Sensitive Data Protection
     /// findings
-    public var mediumSensitivityMapping: ResourceValue = ResourceValue()
+    public var mediumSensitivityMapping: GoogleCloudSecurityCenterV2.ResourceValue =
+      GoogleCloudSecurityCenterV2.ResourceValue()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -236,12 +241,12 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
-        ResourceValue.self, forKey: .highSensitivityMapping)
+        GoogleCloudSecurityCenterV2.ResourceValue.self, forKey: .highSensitivityMapping)
       {
         self.highSensitivityMapping = value
       }
       if let value = try container.decodeIfPresent(
-        ResourceValue.self, forKey: .mediumSensitivityMapping)
+        GoogleCloudSecurityCenterV2.ResourceValue.self, forKey: .mediumSensitivityMapping)
       {
         self.mediumSensitivityMapping = value
       }

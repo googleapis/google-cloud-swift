@@ -210,7 +210,7 @@
       /// response. Only name and displayName will be set.
       ///
       /// [google.cloud.dialogflow.cx.v3.Intent]: <doc:Intent>
-      public var triggeredIntent: Intent? = nil
+      public var triggeredIntent: GoogleCloudDialogflowCXV3.Intent? = nil
 
       /// The [Page][google.cloud.dialogflow.cx.v3.Page] on which the utterance was
       /// spoken. Only name and displayName will be set.
@@ -281,7 +281,8 @@
         }
         self.diagnosticInfo = try container.decodeIfPresent(
           GoogleWKT.WKTStruct.self, forKey: .diagnosticInfo)
-        self.triggeredIntent = try container.decodeIfPresent(Intent.self, forKey: .triggeredIntent)
+        self.triggeredIntent = try container.decodeIfPresent(
+          GoogleCloudDialogflowCXV3.Intent.self, forKey: .triggeredIntent)
         self.currentPage = try container.decodeIfPresent(Page.self, forKey: .currentPage)
         if let value = try container.decodeIfPresent(
           [ResponseMessage.Text].self, forKey: .textResponses)

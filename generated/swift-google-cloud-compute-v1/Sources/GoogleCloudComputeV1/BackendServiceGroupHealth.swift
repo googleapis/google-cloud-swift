@@ -26,7 +26,7 @@
 
     /// Health state of the backend instances or endpoints in requested instance or
     /// network endpoint group, determined based on configured health checks.
-    public var healthStatus: [HealthStatus] = []
+    public var healthStatus: [GoogleCloudComputeV1.HealthStatus] = []
 
     /// Output only. [Output Only] Type of resource. Alwayscompute#backendServiceGroupHealth for the health of backend
     /// services.
@@ -74,7 +74,9 @@
       {
         self.annotations = value
       }
-      if let value = try container.decodeIfPresent([HealthStatus].self, forKey: .healthStatus) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudComputeV1.HealthStatus].self, forKey: .healthStatus)
+      {
         self.healthStatus = value
       }
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)

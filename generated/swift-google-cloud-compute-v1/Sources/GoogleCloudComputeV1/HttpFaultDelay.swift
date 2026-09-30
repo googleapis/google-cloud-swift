@@ -24,7 +24,7 @@
     Sendable
   {
     /// Specifies the value of the fixed delay interval.
-    public var fixedDelay: Duration? = nil
+    public var fixedDelay: GoogleCloudComputeV1.Duration? = nil
 
     /// The percentage of traffic for connections, operations, or requests for
     /// which a delay is introduced as part of fault injection.
@@ -67,7 +67,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.fixedDelay = try container.decodeIfPresent(Duration.self, forKey: .fixedDelay)
+      self.fixedDelay = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .fixedDelay)
       self.percentage = try container.decodeIfPresent(Swift.Double.self, forKey: .percentage)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(

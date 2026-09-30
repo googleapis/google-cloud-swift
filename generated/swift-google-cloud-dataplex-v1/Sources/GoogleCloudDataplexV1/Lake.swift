@@ -52,7 +52,7 @@ public struct Lake: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. Current state of the lake.
-  public var state: State = State()
+  public var state: GoogleCloudDataplexV1.State = GoogleCloudDataplexV1.State()
 
   /// Output only. Service account associated with this lake. This service
   /// account must be authorized to access or operate on resources managed by the
@@ -144,7 +144,7 @@ public struct Lake: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(GoogleCloudDataplexV1.State.self, forKey: .state) {
       self.state = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {

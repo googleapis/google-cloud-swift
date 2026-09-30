@@ -25,7 +25,7 @@ public struct EventImpact: Codable, Equatable, GoogleWKT._AnyPackable,
   public var product: Product? = nil
 
   /// Location impacted by the event.
-  public var location: Location? = nil
+  public var location: GoogleCloudServiceHealthV1.Location? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,8 @@ public struct EventImpact: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.product = try container.decodeIfPresent(Product.self, forKey: .product)
-    self.location = try container.decodeIfPresent(Location.self, forKey: .location)
+    self.location = try container.decodeIfPresent(
+      GoogleCloudServiceHealthV1.Location.self, forKey: .location)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)

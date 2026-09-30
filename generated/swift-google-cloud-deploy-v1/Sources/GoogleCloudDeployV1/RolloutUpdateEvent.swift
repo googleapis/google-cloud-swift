@@ -43,7 +43,7 @@ public struct RolloutUpdateEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var targetId: Swift.String = Swift.String()
 
   /// Type of this notification, e.g. for a rollout update event.
-  public var type: Type_ = Type_()
+  public var type: GoogleCloudDeployV1.Type_ = GoogleCloudDeployV1.Type_()
 
   /// The type of the rollout update.
   public var rolloutUpdateType: RolloutUpdateEvent.RolloutUpdateType =
@@ -114,7 +114,7 @@ public struct RolloutUpdateEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetId) {
       self.targetId = value
     }
-    if let value = try container.decodeIfPresent(Type_.self, forKey: .type) {
+    if let value = try container.decodeIfPresent(GoogleCloudDeployV1.Type_.self, forKey: .type) {
       self.type = value
     }
     if let value = try container.decodeIfPresent(

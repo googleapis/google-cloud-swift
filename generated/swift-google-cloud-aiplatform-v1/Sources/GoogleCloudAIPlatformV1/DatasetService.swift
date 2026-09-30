@@ -1338,7 +1338,7 @@
 
     public func listAnnotationsByItems(
       request: ListAnnotationsRequest
-    ) -> some AsyncSequence<Annotation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, Swift.Error> & Sendable {
       self.listAnnotationsByItems(request: request, options: .init())
     }
 
@@ -1347,7 +1347,7 @@
     /// @Snippet(path: "DatasetService_ListAnnotations")
     public func listAnnotationsByItems(
       request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Annotation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListAnnotationsResponse in
@@ -1360,7 +1360,7 @@
 
     public func listAnnotationsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Annotation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, Swift.Error> & Sendable {
       let request = ListAnnotationsRequest().with {
         $0.parent = parent
       }

@@ -153,7 +153,7 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     /// This document only contains indexed metadata information.
     ///
     /// [google.cloud.contentwarehouse.v1.SearchDocumentsRequest]: <doc:SearchDocumentsRequest>
-    public var document: Document? = nil
+    public var document: GoogleCloudContentWarehouseV1.Document? = nil
 
     /// Contains snippets of text from the document full raw text that most
     /// closely match a search query's keywords, if available. All HTML tags in
@@ -216,7 +216,8 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.document = try container.decodeIfPresent(Document.self, forKey: .document)
+      self.document = try container.decodeIfPresent(
+        GoogleCloudContentWarehouseV1.Document.self, forKey: .document)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .searchTextSnippet) {
         self.searchTextSnippet = value
       }

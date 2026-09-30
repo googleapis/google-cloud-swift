@@ -30,7 +30,7 @@
     let response = try await client.updateModel(
       request: UpdateModelRequest()
         .with {
-          $0.model = Model().with {
+          $0.model = GoogleCloudAIPlatformV1.Model().with {
             $0.name = "projects/\(projectId)/locations/\(locationId)/models/\(modelId)"
           }
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])

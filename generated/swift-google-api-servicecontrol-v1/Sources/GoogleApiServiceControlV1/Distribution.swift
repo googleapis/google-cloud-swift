@@ -176,17 +176,17 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       bucketOption = $0
     }
     if let linearBuckets = try container.decodeIfPresent(
-      Distribution.LinearBuckets.self, forKey: .linearBuckets)
+      GoogleApiServiceControlV1.Distribution.LinearBuckets.self, forKey: .linearBuckets)
     {
       try bucketOptionCheckAndSet(.linearBuckets(linearBuckets))
     }
     if let exponentialBuckets = try container.decodeIfPresent(
-      Distribution.ExponentialBuckets.self, forKey: .exponentialBuckets)
+      GoogleApiServiceControlV1.Distribution.ExponentialBuckets.self, forKey: .exponentialBuckets)
     {
       try bucketOptionCheckAndSet(.exponentialBuckets(exponentialBuckets))
     }
     if let explicitBuckets = try container.decodeIfPresent(
-      Distribution.ExplicitBuckets.self, forKey: .explicitBuckets)
+      GoogleApiServiceControlV1.Distribution.ExplicitBuckets.self, forKey: .explicitBuckets)
     {
       try bucketOptionCheckAndSet(.explicitBuckets(explicitBuckets))
     }
@@ -516,11 +516,11 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// bucket.
   public enum BucketOptionOneOf: Codable, Equatable, Sendable {
     /// Buckets with constant width.
-    indirect case linearBuckets(Distribution.LinearBuckets)
+    indirect case linearBuckets(GoogleApiServiceControlV1.Distribution.LinearBuckets)
     /// Buckets with exponentially growing width.
-    indirect case exponentialBuckets(Distribution.ExponentialBuckets)
+    indirect case exponentialBuckets(GoogleApiServiceControlV1.Distribution.ExponentialBuckets)
     /// Buckets with arbitrary user-provided width.
-    indirect case explicitBuckets(Distribution.ExplicitBuckets)
+    indirect case explicitBuckets(GoogleApiServiceControlV1.Distribution.ExplicitBuckets)
   }
 
   public static var _anyTypeUrl: Swift.String {

@@ -43,7 +43,7 @@
     /// precondition error.
     /// 6. One request cannot update both the model and the version fields. You
     /// must update them separately.
-    public var model: Model? = nil
+    public var model: GoogleCloudAIPlatformV1.Model? = nil
 
     /// Required. The update mask applies to the resource.
     /// For the `FieldMask` definition, see
@@ -87,7 +87,7 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.model = try container.decodeIfPresent(Model.self, forKey: .model)
+      self.model = try container.decodeIfPresent(GoogleCloudAIPlatformV1.Model.self, forKey: .model)
       self.updateMask = try container.decodeIfPresent(
         GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

@@ -95,7 +95,7 @@
         dataSource = $0
       }
       if let vertexRagStore = try container.decodeIfPresent(
-        VertexRagStore.self, forKey: .vertexRagStore)
+        GoogleCloudAIPlatformV1.VertexRagStore.self, forKey: .vertexRagStore)
       {
         try dataSourceCheckAndSet(.vertexRagStore(vertexRagStore))
       }
@@ -204,7 +204,7 @@
     /// The data source for retrieving contexts.
     public enum DataSourceOneOf: Codable, Equatable, Sendable {
       /// Optional. Retrieves contexts from the Vertex RagStore.
-      indirect case vertexRagStore(VertexRagStore)
+      indirect case vertexRagStore(GoogleCloudAIPlatformV1.VertexRagStore)
     }
 
     public static var _anyTypeUrl: Swift.String {

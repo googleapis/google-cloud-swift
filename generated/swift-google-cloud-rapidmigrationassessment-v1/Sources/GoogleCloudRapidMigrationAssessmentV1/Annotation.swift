@@ -34,7 +34,8 @@ public struct Annotation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Type of an annotation.
-  public var type: Annotation.Type_ = Annotation.Type_()
+  public var type: GoogleCloudRapidMigrationAssessmentV1.Annotation.Type_ =
+    GoogleCloudRapidMigrationAssessmentV1.Annotation.Type_()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -88,7 +89,9 @@ public struct Annotation: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.labels = value
     }
-    if let value = try container.decodeIfPresent(Annotation.Type_.self, forKey: .type) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudRapidMigrationAssessmentV1.Annotation.Type_.self, forKey: .type)
+    {
       self.type = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

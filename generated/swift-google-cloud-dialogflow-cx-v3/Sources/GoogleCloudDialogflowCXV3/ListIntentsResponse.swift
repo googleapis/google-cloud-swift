@@ -28,7 +28,7 @@
   {
     /// The list of intents. There will be a maximum number of items returned based
     /// on the page_size field in the request.
-    public var intents: [Intent] = []
+    public var intents: [GoogleCloudDialogflowCXV3.Intent] = []
 
     /// Token to retrieve the next page of results, or empty if there are no more
     /// results in the list.
@@ -69,7 +69,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Intent].self, forKey: .intents) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDialogflowCXV3.Intent].self, forKey: .intents)
+      {
         self.intents = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -103,7 +105,7 @@
 
   @_spi(GoogleCloudInternal)
   extension ListIntentsResponse: GoogleGax._PaginatedResponse {
-    public func _getPaginatedItems() -> [Intent] {
+    public func _getPaginatedItems() -> [GoogleCloudDialogflowCXV3.Intent] {
       return self.intents
     }
 

@@ -28,7 +28,7 @@ public struct EventLink: Codable, Equatable, GoogleWKT._AnyPackable,
   public var target: EntityReference? = nil
 
   /// Optional. Describes how the target depends on the source.
-  public var dependencyInfo: DependencyInfo? = nil
+  public var dependencyInfo: GoogleCloudDataCatalogLineageV1.DependencyInfo? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct EventLink: Codable, Equatable, GoogleWKT._AnyPackable,
     self.source = try container.decodeIfPresent(EntityReference.self, forKey: .source)
     self.target = try container.decodeIfPresent(EntityReference.self, forKey: .target)
     self.dependencyInfo = try container.decodeIfPresent(
-      DependencyInfo.self, forKey: .dependencyInfo)
+      GoogleCloudDataCatalogLineageV1.DependencyInfo.self, forKey: .dependencyInfo)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)

@@ -23,7 +23,7 @@ public struct ListGoldengateConnectionTypesResponse: Codable, Equatable, GoogleW
   Sendable
 {
   /// The list of GoldengateConnectionType
-  public var goldengateConnectionTypes: [GoldengateConnectionType] = []
+  public var goldengateConnectionTypes: [GoogleCloudOracleDatabaseV1.GoldengateConnectionType] = []
 
   /// A token, which can be sent as `page_token` to retrieve the next page.
   /// If this field is omitted, there are no subsequent pages.
@@ -70,7 +70,8 @@ public struct ListGoldengateConnectionTypesResponse: Codable, Equatable, GoogleW
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
-      [GoldengateConnectionType].self, forKey: .goldengateConnectionTypes)
+      [GoogleCloudOracleDatabaseV1.GoldengateConnectionType].self,
+      forKey: .goldengateConnectionTypes)
     {
       self.goldengateConnectionTypes = value
     }
@@ -110,7 +111,7 @@ public struct ListGoldengateConnectionTypesResponse: Codable, Equatable, GoogleW
 
 @_spi(GoogleCloudInternal)
 extension ListGoldengateConnectionTypesResponse: GoogleGax._PaginatedResponse {
-  public func _getPaginatedItems() -> [GoldengateConnectionType] {
+  public func _getPaginatedItems() -> [GoogleCloudOracleDatabaseV1.GoldengateConnectionType] {
     return self.goldengateConnectionTypes
   }
 

@@ -1272,7 +1272,7 @@
 
     public func createContext(
       parent: Swift.String,
-      context: Context?,
+      context: GoogleCloudAIPlatformV1.Context?,
       contextId: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Context {
       let request = CreateContextRequest().with {
@@ -1318,7 +1318,7 @@
 
     public func listContextsByItems(
       request: ListContextsRequest
-    ) -> some AsyncSequence<Context, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, Swift.Error> & Sendable {
       self.listContextsByItems(request: request, options: .init())
     }
 
@@ -1327,7 +1327,7 @@
     /// @Snippet(path: "MetadataService_ListContexts")
     public func listContextsByItems(
       request: ListContextsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Context, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListContextsResponse
         in
@@ -1340,7 +1340,7 @@
 
     public func listContextsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Context, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, Swift.Error> & Sendable {
       let request = ListContextsRequest().with {
         $0.parent = parent
       }
@@ -1360,7 +1360,7 @@
     }
 
     public func updateContext(
-      context: Context?,
+      context: GoogleCloudAIPlatformV1.Context?,
       updateMask: GoogleWKT.WKTFieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Context {
       let request = UpdateContextRequest().with {

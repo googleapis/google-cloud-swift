@@ -31,7 +31,7 @@
     let response = try await client.updateContext(
       request: UpdateContextRequest()
         .with {
-          $0.context = Context().with {
+          $0.context = GoogleCloudAIPlatformV1.Context().with {
             $0.name =
               "projects/\(projectId)/locations/\(locationId)/metadataStores/\(metadataStoreId)/contexts/\(contextId)"
           }

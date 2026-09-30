@@ -134,7 +134,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   an INVALID_ARGUMENT error.
   /// Any other row key schema update operation (e.g. update existing schema
   /// columns names or types) is currently unsupported.
-  public var rowKeySchema: Type_.Struct? = nil
+  public var rowKeySchema: GoogleCloudBigtableAdminV2.Type_.Struct? = nil
 
   public var automatedBackupConfig: AutomatedBackupConfigOneOf? = nil
 
@@ -220,7 +220,8 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       Table.AutomatedBackupPolicy.self, forKey: .effectiveAutomatedBackupPolicy)
     self.tieredStorageConfig = try container.decodeIfPresent(
       TieredStorageConfig.self, forKey: .tieredStorageConfig)
-    self.rowKeySchema = try container.decodeIfPresent(Type_.Struct.self, forKey: .rowKeySchema)
+    self.rowKeySchema = try container.decodeIfPresent(
+      GoogleCloudBigtableAdminV2.Type_.Struct.self, forKey: .rowKeySchema)
 
     var automatedBackupConfig: AutomatedBackupConfigOneOf? = nil
     let automatedBackupConfigCheckAndSet = {

@@ -30,11 +30,11 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// specified, match all queries.
   /// If many query terms are specified, the condition
   /// is matched if any of the terms is a match (i.e. using the OR operator).
-  public var queryTerms: [Condition.QueryTerm] = []
+  public var queryTerms: [GoogleCloudRetailV2.Condition.QueryTerm] = []
 
   /// Range of time(s) specifying when Condition is active.
   /// Condition true if any time range matches.
-  public var activeTimeRange: [Condition.TimeRange] = []
+  public var activeTimeRange: [GoogleCloudRetailV2.Condition.TimeRange] = []
 
   /// Used to support browse uses cases.
   /// A list (up to 10 entries) of categories or departments.
@@ -81,11 +81,13 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent([Condition.QueryTerm].self, forKey: .queryTerms) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudRetailV2.Condition.QueryTerm].self, forKey: .queryTerms)
+    {
       self.queryTerms = value
     }
     if let value = try container.decodeIfPresent(
-      [Condition.TimeRange].self, forKey: .activeTimeRange)
+      [GoogleCloudRetailV2.Condition.TimeRange].self, forKey: .activeTimeRange)
     {
       self.activeTimeRange = value
     }

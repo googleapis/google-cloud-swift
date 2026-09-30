@@ -24,7 +24,7 @@ public struct ListInventoriesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   Sendable
 {
   /// List of inventory objects.
-  public var inventories: [Inventory] = []
+  public var inventories: [GoogleCloudOSConfigV1.Inventory] = []
 
   /// The pagination token to retrieve the next page of inventory objects.
   public var nextPageToken: Swift.String = Swift.String()
@@ -64,7 +64,9 @@ public struct ListInventoriesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent([Inventory].self, forKey: .inventories) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudOSConfigV1.Inventory].self, forKey: .inventories)
+    {
       self.inventories = value
     }
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken) {
@@ -98,7 +100,7 @@ public struct ListInventoriesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
 
 @_spi(GoogleCloudInternal)
 extension ListInventoriesResponse: GoogleGax._PaginatedResponse {
-  public func _getPaginatedItems() -> [Inventory] {
+  public func _getPaginatedItems() -> [GoogleCloudOSConfigV1.Inventory] {
     return self.inventories
   }
 

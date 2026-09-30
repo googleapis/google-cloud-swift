@@ -28,7 +28,7 @@
     /// The Annotations on the DataItem. If too many Annotations should be returned
     /// for the DataItem, this field will be truncated per annotations_limit in
     /// request. If it was, then the has_truncated_annotations will be set to true.
-    public var annotations: [Annotation] = []
+    public var annotations: [GoogleCloudAIPlatformV1.Annotation] = []
 
     /// True if and only if the Annotations field has been truncated. It happens if
     /// more Annotations for this DataItem met the request's annotation_filter than
@@ -76,7 +76,9 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.dataItem = try container.decodeIfPresent(DataItem.self, forKey: .dataItem)
-      if let value = try container.decodeIfPresent([Annotation].self, forKey: .annotations) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Annotation].self, forKey: .annotations)
+      {
         self.annotations = value
       }
       if let value = try container.decodeIfPresent(

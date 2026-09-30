@@ -51,7 +51,8 @@ public struct Hub: Codable, Equatable, GoogleWKT._AnyPackable,
   public var uniqueId: Swift.String = Swift.String()
 
   /// Output only. The current lifecycle state of this hub.
-  public var state: State = State()
+  public var state: GoogleCloudNetworkConnectivityV1.State =
+    GoogleCloudNetworkConnectivityV1.State()
 
   /// The VPC networks associated with this hub's spokes.
   ///
@@ -166,7 +167,9 @@ public struct Hub: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uniqueId) {
       self.uniqueId = value
     }
-    if let value = try container.decodeIfPresent(State.self, forKey: .state) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudNetworkConnectivityV1.State.self, forKey: .state)
+    {
       self.state = value
     }
     if let value = try container.decodeIfPresent([RoutingVPC].self, forKey: .routingVpcs) {

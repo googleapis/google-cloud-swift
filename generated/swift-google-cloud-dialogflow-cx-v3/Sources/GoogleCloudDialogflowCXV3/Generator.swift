@@ -42,7 +42,7 @@
     public var displayName: Swift.String = Swift.String()
 
     /// Required. Prompt for the LLM model.
-    public var promptText: Phrase? = nil
+    public var promptText: GoogleCloudDialogflowCXV3.Phrase? = nil
 
     /// Optional. List of custom placeholders in the prompt text.
     public var placeholders: [Generator.Placeholder] = []
@@ -102,7 +102,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
         self.displayName = value
       }
-      self.promptText = try container.decodeIfPresent(Phrase.self, forKey: .promptText)
+      self.promptText = try container.decodeIfPresent(
+        GoogleCloudDialogflowCXV3.Phrase.self, forKey: .promptText)
       if let value = try container.decodeIfPresent(
         [Generator.Placeholder].self, forKey: .placeholders)
       {

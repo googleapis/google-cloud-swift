@@ -24,7 +24,7 @@
   {
     /// [Output Only] If state is `ABANDONED` or `FAILED`, this field is
     /// populated.
-    public var error: Status? = nil
+    public var error: GoogleCloudComputeV1.Status? = nil
 
     /// [Output Only] Status of the action, which can be one of the following:
     /// `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
@@ -66,7 +66,7 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.error = try container.decodeIfPresent(Status.self, forKey: .error)
+      self.error = try container.decodeIfPresent(GoogleCloudComputeV1.Status.self, forKey: .error)
       self.state = try container.decodeIfPresent(
         SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo.State.self,
         forKey: .state)

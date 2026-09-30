@@ -23,7 +23,7 @@
     Sendable
   {
     /// Output only. Generated candidates.
-    public var candidates: [Candidate] = []
+    public var candidates: [GoogleCloudAIPlatformV1.Candidate] = []
 
     /// Output only. The model version used to generate the response.
     public var modelVersion: Swift.String = Swift.String()
@@ -86,7 +86,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Candidate].self, forKey: .candidates) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Candidate].self, forKey: .candidates)
+      {
         self.candidates = value
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelVersion) {

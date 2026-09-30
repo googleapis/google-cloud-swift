@@ -26,13 +26,14 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public var rowCount: Swift.Int64 = Swift.Int64()
 
   /// Output only. The profile information per field.
-  public var profile: DataProfileResult.Profile? = nil
+  public var profile: GoogleCloudDataplexV1.DataProfileResult.Profile? = nil
 
   /// Output only. The data scanned for this result.
   public var scannedData: ScannedData? = nil
 
   /// Output only. The result of post scan actions.
-  public var postScanActionsResult: DataProfileResult.PostScanActionsResult? = nil
+  public var postScanActionsResult: GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult? =
+    nil
 
   /// Output only. The status of publishing the data scan as Dataplex Universal
   /// Catalog metadata.
@@ -82,10 +83,12 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowCount) {
       self.rowCount = value
     }
-    self.profile = try container.decodeIfPresent(DataProfileResult.Profile.self, forKey: .profile)
+    self.profile = try container.decodeIfPresent(
+      GoogleCloudDataplexV1.DataProfileResult.Profile.self, forKey: .profile)
     self.scannedData = try container.decodeIfPresent(ScannedData.self, forKey: .scannedData)
     self.postScanActionsResult = try container.decodeIfPresent(
-      DataProfileResult.PostScanActionsResult.self, forKey: .postScanActionsResult)
+      GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult.self,
+      forKey: .postScanActionsResult)
     self.catalogPublishingStatus = try container.decodeIfPresent(
       DataScanCatalogPublishingStatus.self, forKey: .catalogPublishingStatus)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -112,7 +115,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// Output only. List of fields with structural and profile information for
     /// each field.
-    public var fields: [DataProfileResult.Profile.Field] = []
+    public var fields: [GoogleCloudDataplexV1.DataProfileResult.Profile.Field] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -148,7 +151,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
-        [DataProfileResult.Profile.Field].self, forKey: .fields)
+        [GoogleCloudDataplexV1.DataProfileResult.Profile.Field].self, forKey: .fields)
       {
         self.fields = value
       }
@@ -189,7 +192,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
       public var mode: Swift.String = Swift.String()
 
       /// Output only. Profile information for the corresponding field.
-      public var profile: DataProfileResult.Profile.Field.ProfileInfo? = nil
+      public var profile: GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -240,7 +243,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
           self.mode = value
         }
         self.profile = try container.decodeIfPresent(
-          DataProfileResult.Profile.Field.ProfileInfo.self, forKey: .profile)
+          GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.self, forKey: .profile)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -277,7 +280,8 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
         /// number of distinct values in the field, whichever is smaller. Not
         /// available for complex non-groupable field type, including RECORD,
         /// ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
-        public var topNValues: [DataProfileResult.Profile.Field.ProfileInfo.TopNValue] = []
+        public var topNValues:
+          [GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue] = []
 
         /// Structural and profile information for specific field type. Not
         /// available, if mode is REPEATABLE.
@@ -333,7 +337,8 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             self.distinctRatio = value
           }
           if let value = try container.decodeIfPresent(
-            [DataProfileResult.Profile.Field.ProfileInfo.TopNValue].self, forKey: .topNValues)
+            [GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue].self,
+            forKey: .topNValues)
           {
             self.topNValues = value
           }
@@ -349,19 +354,21 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             fieldInfo = $0
           }
           if let stringProfile = try container.decodeIfPresent(
-            DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo.self, forKey: .stringProfile
-          ) {
+            GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo.self,
+            forKey: .stringProfile)
+          {
             try fieldInfoCheckAndSet(.stringProfile(stringProfile))
           }
           if let integerProfile = try container.decodeIfPresent(
-            DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo.self,
+            GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo.self,
             forKey: .integerProfile)
           {
             try fieldInfoCheckAndSet(.integerProfile(integerProfile))
           }
           if let doubleProfile = try container.decodeIfPresent(
-            DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo.self, forKey: .doubleProfile
-          ) {
+            GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo.self,
+            forKey: .doubleProfile)
+          {
             try fieldInfoCheckAndSet(.doubleProfile(doubleProfile))
           }
           self.fieldInfo = fieldInfo
@@ -816,11 +823,14 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
         /// available, if mode is REPEATABLE.
         public enum FieldInfoOneOf: Codable, Equatable, Sendable {
           /// String type field information.
-          indirect case stringProfile(DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo)
+          indirect case stringProfile(
+            GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo)
           /// Integer type field information.
-          indirect case integerProfile(DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo)
+          indirect case integerProfile(
+            GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo)
           /// Double type field information.
-          indirect case doubleProfile(DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo)
+          indirect case doubleProfile(
+            GoogleCloudDataplexV1.DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo)
         }
 
         public static var _anyTypeUrl: Swift.String {
@@ -862,8 +872,8 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Output only. The result of BigQuery export post scan action.
-    public var bigqueryExportResult: DataProfileResult.PostScanActionsResult.BigQueryExportResult? =
-      nil
+    public var bigqueryExportResult:
+      GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult.BigQueryExportResult? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -899,7 +909,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.bigqueryExportResult = try container.decodeIfPresent(
-        DataProfileResult.PostScanActionsResult.BigQueryExportResult.self,
+        GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult.BigQueryExportResult.self,
         forKey: .bigqueryExportResult)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -920,8 +930,9 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Output only. Execution state for the BigQuery exporting.
-      public var state: DataProfileResult.PostScanActionsResult.BigQueryExportResult.State =
-        DataProfileResult.PostScanActionsResult.BigQueryExportResult.State()
+      public var state:
+        GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult.BigQueryExportResult.State =
+          GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult.BigQueryExportResult.State()
 
       /// Output only. Additional information about the BigQuery exporting.
       public var message: Swift.String = Swift.String()
@@ -962,7 +973,8 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
-          DataProfileResult.PostScanActionsResult.BigQueryExportResult.State.self, forKey: .state)
+          GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult.BigQueryExportResult.State
+            .self, forKey: .state)
         {
           self.state = value
         }

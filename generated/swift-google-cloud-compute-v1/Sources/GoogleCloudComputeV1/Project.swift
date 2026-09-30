@@ -35,7 +35,7 @@
     /// Metadata key/value pairs available to all instances contained in this
     /// project. See Custom
     /// metadata for more information.
-    public var commonInstanceMetadata: Metadata? = nil
+    public var commonInstanceMetadata: GoogleCloudComputeV1.Metadata? = nil
 
     /// [Output Only] Creation timestamp inRFC3339
     /// text format.
@@ -151,7 +151,7 @@
       self.cloudArmorTier = try container.decodeIfPresent(
         Project.CloudArmorTier.self, forKey: .cloudArmorTier)
       self.commonInstanceMetadata = try container.decodeIfPresent(
-        Metadata.self, forKey: .commonInstanceMetadata)
+        GoogleCloudComputeV1.Metadata.self, forKey: .commonInstanceMetadata)
       self.creationTimestamp = try container.decodeIfPresent(
         Swift.String.self, forKey: .creationTimestamp)
       self.defaultNetworkTier = try container.decodeIfPresent(

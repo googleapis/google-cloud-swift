@@ -362,7 +362,7 @@
     ///
     /// This field is only allowed when the loadBalancingScheme of
     /// the backend service is INTERNAL_SELF_MANAGED.
-    public var maxStreamDuration: Duration? = nil
+    public var maxStreamDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// Deployment metadata associated with the resource to be set by a GKE hub
     /// controller and read by the backend RCTH
@@ -762,7 +762,7 @@
       self.logConfig = try container.decodeIfPresent(
         BackendServiceLogConfig.self, forKey: .logConfig)
       self.maxStreamDuration = try container.decodeIfPresent(
-        Duration.self, forKey: .maxStreamDuration)
+        GoogleCloudComputeV1.Duration.self, forKey: .maxStreamDuration)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .metadatas)
       {

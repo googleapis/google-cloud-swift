@@ -35,7 +35,8 @@ public struct VmwareSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public var vmCapabilitiesInfo: VmCapabilities? = nil
 
   /// Output only. The VM architecture.
-  public var architecture: VmArchitecture = VmArchitecture()
+  public var architecture: GoogleCloudVMMigrationV1.VmArchitecture =
+    GoogleCloudVMMigrationV1.VmArchitecture()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +94,9 @@ public struct VmwareSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.vmCapabilitiesInfo = try container.decodeIfPresent(
       VmCapabilities.self, forKey: .vmCapabilitiesInfo)
-    if let value = try container.decodeIfPresent(VmArchitecture.self, forKey: .architecture) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudVMMigrationV1.VmArchitecture.self, forKey: .architecture)
+    {
       self.architecture = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

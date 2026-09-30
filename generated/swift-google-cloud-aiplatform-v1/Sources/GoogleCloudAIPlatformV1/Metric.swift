@@ -23,7 +23,7 @@
     Sendable
   {
     /// Optional. The aggregation metrics to use.
-    public var aggregationMetrics: [Metric.AggregationMetric] = []
+    public var aggregationMetrics: [GoogleCloudAIPlatformV1.Metric.AggregationMetric] = []
 
     /// The spec for the metric.
     /// It would be either a pre-defined metric, or a inline metric spec.
@@ -79,7 +79,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
-        [Metric.AggregationMetric].self, forKey: .aggregationMetrics)
+        [GoogleCloudAIPlatformV1.Metric.AggregationMetric].self, forKey: .aggregationMetrics)
       {
         self.aggregationMetrics = value
       }

@@ -29,7 +29,7 @@ func sample(
   let response = try await client.updateAnnotation(
     request: UpdateAnnotationRequest()
       .with {
-        $0.annotation = Annotation().with {
+        $0.annotation = GoogleCloudVideoAIV1.Annotation().with {
           $0.name =
             "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)/assets/\(assetId)/annotations/\(annotationId)"
         }

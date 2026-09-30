@@ -32,7 +32,7 @@ func sample(
         $0.parent =
           "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)/assets/\(assetId)"
         $0.annotationId = "[replace with a valid ID]"
-        $0.annotation = Annotation() /* .with { ... } */
+        $0.annotation = GoogleCloudVideoAIV1.Annotation() /* .with { ... } */
       }
   )
   print("Success: \(response)")

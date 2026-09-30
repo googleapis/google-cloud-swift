@@ -35,7 +35,7 @@ public struct ReleaseRenderEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var release: Swift.String = Swift.String()
 
   /// Type of this notification, e.g. for a release render state change event.
-  public var type: Type_ = Type_()
+  public var type: GoogleCloudDeployV1.Type_ = GoogleCloudDeployV1.Type_()
 
   /// The state of the release render.
   public var releaseRenderState: Release.RenderState = Release.RenderState()
@@ -90,7 +90,7 @@ public struct ReleaseRenderEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .release) {
       self.release = value
     }
-    if let value = try container.decodeIfPresent(Type_.self, forKey: .type) {
+    if let value = try container.decodeIfPresent(GoogleCloudDeployV1.Type_.self, forKey: .type) {
       self.type = value
     }
     if let value = try container.decodeIfPresent(

@@ -682,7 +682,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// [google.cloud.talent.v4.Job.DerivedInfo.locations]: <doc:Job/DerivedInfo/locations>
     /// [google.cloud.talent.v4.Job.addresses]: <doc:Job/addresses>
-    public var locations: [Location] = []
+    public var locations: [GoogleCloudTalentV4.Location] = []
 
     /// Job categories derived from [Job.title][google.cloud.talent.v4.Job.title]
     /// and [Job.description][google.cloud.talent.v4.Job.description].
@@ -726,7 +726,9 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Location].self, forKey: .locations) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudTalentV4.Location].self, forKey: .locations)
+      {
         self.locations = value
       }
       if let value = try container.decodeIfPresent([JobCategory].self, forKey: .jobCategories) {

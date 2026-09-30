@@ -39,7 +39,8 @@
 
     /// Immutable. Only applicable for Vertex AI Feature Store (Legacy).
     /// Type of Feature value.
-    public var valueType: Feature.ValueType = Feature.ValueType()
+    public var valueType: GoogleCloudAIPlatformV1.Feature.ValueType = GoogleCloudAIPlatformV1
+      .Feature.ValueType()
 
     /// Output only. Only applicable for Vertex AI Feature Store (Legacy).
     /// Timestamp when this EntityType was created.
@@ -81,7 +82,8 @@
 
     /// Output only. Only applicable for Vertex AI Feature Store (Legacy).
     /// The list of historical stats and anomalies with specified objectives.
-    public var monitoringStatsAnomalies: [Feature.MonitoringStatsAnomaly] = []
+    public var monitoringStatsAnomalies: [GoogleCloudAIPlatformV1.Feature.MonitoringStatsAnomaly] =
+      []
 
     /// Only applicable for Vertex AI Feature Store.
     /// The name of the BigQuery Table/View column hosting data for this version.
@@ -151,7 +153,9 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
         self.description = value
       }
-      if let value = try container.decodeIfPresent(Feature.ValueType.self, forKey: .valueType) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Feature.ValueType.self, forKey: .valueType)
+      {
         self.valueType = value
       }
       self.createTime = try container.decodeIfPresent(
@@ -170,7 +174,8 @@
         self.disableMonitoring = value
       }
       if let value = try container.decodeIfPresent(
-        [Feature.MonitoringStatsAnomaly].self, forKey: .monitoringStatsAnomalies)
+        [GoogleCloudAIPlatformV1.Feature.MonitoringStatsAnomaly].self,
+        forKey: .monitoringStatsAnomalies)
       {
         self.monitoringStatsAnomalies = value
       }
@@ -219,8 +224,8 @@
       Sendable
     {
       /// Output only. The objective for each stats.
-      public var objective: Feature.MonitoringStatsAnomaly.Objective = Feature
-        .MonitoringStatsAnomaly.Objective()
+      public var objective: GoogleCloudAIPlatformV1.Feature.MonitoringStatsAnomaly.Objective =
+        GoogleCloudAIPlatformV1.Feature.MonitoringStatsAnomaly.Objective()
 
       /// Output only. The stats and anomalies generated at specific timestamp.
       public var featureStatsAnomaly: FeatureStatsAnomaly? = nil
@@ -261,7 +266,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
-          Feature.MonitoringStatsAnomaly.Objective.self, forKey: .objective)
+          GoogleCloudAIPlatformV1.Feature.MonitoringStatsAnomaly.Objective.self, forKey: .objective)
         {
           self.objective = value
         }

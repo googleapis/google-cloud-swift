@@ -72,7 +72,7 @@
     /// these properties. These pairs can consist of custom metadata or predefined
     /// keys. SeeProject and
     /// instance metadata for more information.
-    public var metadata: Metadata? = nil
+    public var metadata: GoogleCloudComputeV1.Metadata? = nil
 
     /// Minimum cpu/platform to be used by instances. The instance may be
     /// scheduled on the specified or newer cpu/platform. Applicable values are the
@@ -232,7 +232,8 @@
       self.localSsdEncryptionMode = try container.decodeIfPresent(
         InstanceProperties.LocalSsdEncryptionMode.self, forKey: .localSsdEncryptionMode)
       self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
-      self.metadata = try container.decodeIfPresent(Metadata.self, forKey: .metadata)
+      self.metadata = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Metadata.self, forKey: .metadata)
       self.minCpuPlatform = try container.decodeIfPresent(
         Swift.String.self, forKey: .minCpuPlatform)
       if let value = try container.decodeIfPresent(

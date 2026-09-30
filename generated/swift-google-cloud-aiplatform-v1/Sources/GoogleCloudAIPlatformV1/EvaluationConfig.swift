@@ -23,10 +23,10 @@
     Sendable
   {
     /// Required. The metrics used for evaluation.
-    public var metrics: [Metric] = []
+    public var metrics: [GoogleCloudAIPlatformV1.Metric] = []
 
     /// Required. Config for evaluation output.
-    public var outputConfig: OutputConfig? = nil
+    public var outputConfig: GoogleCloudAIPlatformV1.OutputConfig? = nil
 
     /// Optional. Autorater config for evaluation.
     public var autoraterConfig: AutoraterConfig? = nil
@@ -74,10 +74,13 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent([Metric].self, forKey: .metrics) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudAIPlatformV1.Metric].self, forKey: .metrics)
+      {
         self.metrics = value
       }
-      self.outputConfig = try container.decodeIfPresent(OutputConfig.self, forKey: .outputConfig)
+      self.outputConfig = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.OutputConfig.self, forKey: .outputConfig)
       self.autoraterConfig = try container.decodeIfPresent(
         AutoraterConfig.self, forKey: .autoraterConfig)
       self.inferenceGenerationConfig = try container.decodeIfPresent(

@@ -23,7 +23,7 @@
     Sendable
   {
     /// The modality associated with this token count.
-    public var modality: Modality = Modality()
+    public var modality: GoogleCloudAIPlatformV1.Modality = GoogleCloudAIPlatformV1.Modality()
 
     /// Number of tokens.
     public var tokenCount: Swift.Int32 = Swift.Int32()
@@ -63,7 +63,9 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      if let value = try container.decodeIfPresent(Modality.self, forKey: .modality) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.Modality.self, forKey: .modality)
+      {
         self.modality = value
       }
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .tokenCount) {

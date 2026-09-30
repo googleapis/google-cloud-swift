@@ -47,7 +47,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The severity of the rule as specified in the meta section of
   /// text. Populated in BASIC view and FULL view.
-  public var severity: Severity? = nil
+  public var severity: GoogleCloudChronicleV1.Severity? = nil
 
   /// Output only. Additional metadata specified in the meta section of text.
   /// Populated in FULL view.
@@ -190,7 +190,8 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .author) {
       self.author = value
     }
-    self.severity = try container.decodeIfPresent(Severity.self, forKey: .severity)
+    self.severity = try container.decodeIfPresent(
+      GoogleCloudChronicleV1.Severity.self, forKey: .severity)
     if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .metadata)
     {

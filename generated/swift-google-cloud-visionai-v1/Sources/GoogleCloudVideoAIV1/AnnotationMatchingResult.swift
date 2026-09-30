@@ -27,7 +27,7 @@ public struct AnnotationMatchingResult: Codable, Equatable, GoogleWKT._AnyPackab
   public var criteria: Criteria? = nil
 
   /// Matched annotations for the criteria.
-  public var matchedAnnotations: [Annotation] = []
+  public var matchedAnnotations: [GoogleCloudVideoAIV1.Annotation] = []
 
   /// Status of the match result. Possible values:
   /// FAILED_PRECONDITION - the criteria is not eligible for match.
@@ -72,7 +72,9 @@ public struct AnnotationMatchingResult: Codable, Equatable, GoogleWKT._AnyPackab
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.criteria = try container.decodeIfPresent(Criteria.self, forKey: .criteria)
-    if let value = try container.decodeIfPresent([Annotation].self, forKey: .matchedAnnotations) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudVideoAIV1.Annotation].self, forKey: .matchedAnnotations)
+    {
       self.matchedAnnotations = value
     }
     self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)

@@ -40,15 +40,16 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. The sequence of fields describing data in table entities.
   /// **Note:** BigQuery SchemaFields are immutable.
-  public var fields: [Schema.SchemaField] = []
+  public var fields: [GoogleCloudDataplexV1.Schema.SchemaField] = []
 
   /// Optional. The sequence of fields describing the partition structure in
   /// entities. If this field is empty, there are no partitions within the data.
-  public var partitionFields: [Schema.PartitionField] = []
+  public var partitionFields: [GoogleCloudDataplexV1.Schema.PartitionField] = []
 
   /// Optional. The structure of paths containing partition data within the
   /// entity.
-  public var partitionStyle: Schema.PartitionStyle = Schema.PartitionStyle()
+  public var partitionStyle: GoogleCloudDataplexV1.Schema.PartitionStyle = GoogleCloudDataplexV1
+    .Schema.PartitionStyle()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,16 +93,18 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .userManaged) {
       self.userManaged = value
     }
-    if let value = try container.decodeIfPresent([Schema.SchemaField].self, forKey: .fields) {
+    if let value = try container.decodeIfPresent(
+      [GoogleCloudDataplexV1.Schema.SchemaField].self, forKey: .fields)
+    {
       self.fields = value
     }
     if let value = try container.decodeIfPresent(
-      [Schema.PartitionField].self, forKey: .partitionFields)
+      [GoogleCloudDataplexV1.Schema.PartitionField].self, forKey: .partitionFields)
     {
       self.partitionFields = value
     }
     if let value = try container.decodeIfPresent(
-      Schema.PartitionStyle.self, forKey: .partitionStyle)
+      GoogleCloudDataplexV1.Schema.PartitionStyle.self, forKey: .partitionStyle)
     {
       self.partitionStyle = value
     }
@@ -136,13 +139,13 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
     public var description: Swift.String = Swift.String()
 
     /// Required. The type of field.
-    public var type: Schema.Type_ = Schema.Type_()
+    public var type: GoogleCloudDataplexV1.Schema.Type_ = GoogleCloudDataplexV1.Schema.Type_()
 
     /// Required. Additional field semantics.
-    public var mode: Schema.Mode = Schema.Mode()
+    public var mode: GoogleCloudDataplexV1.Schema.Mode = GoogleCloudDataplexV1.Schema.Mode()
 
     /// Optional. Any nested field for complex types.
-    public var fields: [Schema.SchemaField] = []
+    public var fields: [GoogleCloudDataplexV1.Schema.SchemaField] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -191,13 +194,19 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
         self.description = value
       }
-      if let value = try container.decodeIfPresent(Schema.Type_.self, forKey: .type) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudDataplexV1.Schema.Type_.self, forKey: .type)
+      {
         self.type = value
       }
-      if let value = try container.decodeIfPresent(Schema.Mode.self, forKey: .mode) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudDataplexV1.Schema.Mode.self, forKey: .mode)
+      {
         self.mode = value
       }
-      if let value = try container.decodeIfPresent([Schema.SchemaField].self, forKey: .fields) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDataplexV1.Schema.SchemaField].self, forKey: .fields)
+      {
         self.fields = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -242,7 +251,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
     public var name: Swift.String = Swift.String()
 
     /// Required. Immutable. The type of field.
-    public var type: Schema.Type_ = Schema.Type_()
+    public var type: GoogleCloudDataplexV1.Schema.Type_ = GoogleCloudDataplexV1.Schema.Type_()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -282,7 +291,9 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
-      if let value = try container.decodeIfPresent(Schema.Type_.self, forKey: .type) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudDataplexV1.Schema.Type_.self, forKey: .type)
+      {
         self.type = value
       }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

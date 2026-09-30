@@ -45,7 +45,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. State of the Membership resource.
-  public var state: MembershipState? = nil
+  public var state: GoogleCloudGKEHubV1.MembershipState? = nil
 
   /// Output only. When the Membership was created.
   public var createTime: GoogleWKT.WKTTimestamp? = nil
@@ -155,7 +155,8 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
     }
-    self.state = try container.decodeIfPresent(MembershipState.self, forKey: .state)
+    self.state = try container.decodeIfPresent(
+      GoogleCloudGKEHubV1.MembershipState.self, forKey: .state)
     self.createTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(

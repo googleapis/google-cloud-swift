@@ -30,7 +30,7 @@
     /// can be ejected again in another ejection analysis. Thus, the total ejection
     /// time is equal to the base ejection time multiplied by the number of times
     /// the backend endpoint has been ejected. Defaults to 30000ms or 30s.
-    public var baseEjectionTime: Duration? = nil
+    public var baseEjectionTime: GoogleCloudComputeV1.Duration? = nil
 
     /// Number of consecutive errors before a backend endpoint is ejected from the
     /// load balancing pool. When the backend endpoint is accessed over HTTP, a 5xx
@@ -65,7 +65,7 @@
     /// equal to the number of seconds as defined in
     /// outlierDetection.interval.seconds plus the number of nanoseconds as defined
     /// in outlierDetection.interval.nanos. Defaults to 1 second.
-    public var interval: Duration? = nil
+    public var interval: GoogleCloudComputeV1.Duration? = nil
 
     /// Maximum percentage of backend endpoints in the load balancing pool for the
     /// backend service that can be ejected if the ejection conditions are met.
@@ -155,7 +155,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.baseEjectionTime = try container.decodeIfPresent(
-        Duration.self, forKey: .baseEjectionTime)
+        GoogleCloudComputeV1.Duration.self, forKey: .baseEjectionTime)
       self.consecutiveErrors = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .consecutiveErrors)
       self.consecutiveGatewayFailure = try container.decodeIfPresent(
@@ -166,7 +166,8 @@
         Swift.Int32.self, forKey: .enforcingConsecutiveGatewayFailure)
       self.enforcingSuccessRate = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .enforcingSuccessRate)
-      self.interval = try container.decodeIfPresent(Duration.self, forKey: .interval)
+      self.interval = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .interval)
       self.maxEjectionPercent = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .maxEjectionPercent)
       self.successRateMinimumHosts = try container.decodeIfPresent(

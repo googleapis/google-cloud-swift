@@ -35,13 +35,13 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Base level operating system information for the VM.
-  public var osInfo: Inventory.OsInfo? = nil
+  public var osInfo: GoogleCloudOSConfigV1.Inventory.OsInfo? = nil
 
   /// Inventory items related to the VM keyed by an opaque unique identifier for
   /// each inventory item.  The identifier is unique to each distinct and
   /// addressable inventory item and will change, when there is a new package
   /// version.
-  public var items: [Swift.String: Inventory.Item] = [:]
+  public var items: [Swift.String: GoogleCloudOSConfigV1.Inventory.Item] = [:]
 
   /// Output only. Timestamp of the last reported inventory for the VM.
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
@@ -88,9 +88,10 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
     }
-    self.osInfo = try container.decodeIfPresent(Inventory.OsInfo.self, forKey: .osInfo)
+    self.osInfo = try container.decodeIfPresent(
+      GoogleCloudOSConfigV1.Inventory.OsInfo.self, forKey: .osInfo)
     if let value = try container.decodeIfPresent(
-      [Swift.String: Inventory.Item].self, forKey: .items)
+      [Swift.String: GoogleCloudOSConfigV1.Inventory.Item].self, forKey: .items)
     {
       self.items = value
     }
@@ -256,7 +257,8 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     public var id: Swift.String = Swift.String()
 
     /// The origin of this inventory item.
-    public var originType: Inventory.Item.OriginType = Inventory.Item.OriginType()
+    public var originType: GoogleCloudOSConfigV1.Inventory.Item.OriginType = GoogleCloudOSConfigV1
+      .Inventory.Item.OriginType()
 
     /// When this inventory item was first detected.
     public var createTime: GoogleWKT.WKTTimestamp? = nil
@@ -265,7 +267,8 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The specific type of inventory, correlating to its specific details.
-    public var type: Inventory.Item.Type_ = Inventory.Item.Type_()
+    public var type: GoogleCloudOSConfigV1.Inventory.Item.Type_ = GoogleCloudOSConfigV1.Inventory
+      .Item.Type_()
 
     /// Specific details of this inventory item based on its type.
     public var details: DetailsOneOf? = nil
@@ -319,7 +322,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
         self.id = value
       }
       if let value = try container.decodeIfPresent(
-        Inventory.Item.OriginType.self, forKey: .originType)
+        GoogleCloudOSConfigV1.Inventory.Item.OriginType.self, forKey: .originType)
       {
         self.originType = value
       }
@@ -327,7 +330,9 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
         GoogleWKT.WKTTimestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
-      if let value = try container.decodeIfPresent(Inventory.Item.Type_.self, forKey: .type) {
+      if let value = try container.decodeIfPresent(
+        GoogleCloudOSConfigV1.Inventory.Item.Type_.self, forKey: .type)
+      {
         self.type = value
       }
 
@@ -342,12 +347,12 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
         details = $0
       }
       if let installedPackage = try container.decodeIfPresent(
-        Inventory.SoftwarePackage.self, forKey: .installedPackage)
+        GoogleCloudOSConfigV1.Inventory.SoftwarePackage.self, forKey: .installedPackage)
       {
         try detailsCheckAndSet(.installedPackage(installedPackage))
       }
       if let availablePackage = try container.decodeIfPresent(
-        Inventory.SoftwarePackage.self, forKey: .availablePackage)
+        GoogleCloudOSConfigV1.Inventory.SoftwarePackage.self, forKey: .availablePackage)
       {
         try detailsCheckAndSet(.availablePackage(availablePackage))
       }
@@ -610,9 +615,9 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Specific details of this inventory item based on its type.
     public enum DetailsOneOf: Codable, Equatable, Sendable {
       /// Software package present on the VM instance.
-      indirect case installedPackage(Inventory.SoftwarePackage)
+      indirect case installedPackage(GoogleCloudOSConfigV1.Inventory.SoftwarePackage)
       /// Software package available to be installed on the VM instance.
-      indirect case availablePackage(Inventory.SoftwarePackage)
+      indirect case availablePackage(GoogleCloudOSConfigV1.Inventory.SoftwarePackage)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -694,47 +699,47 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
         details = $0
       }
       if let yumPackage = try container.decodeIfPresent(
-        Inventory.VersionedPackage.self, forKey: .yumPackage)
+        GoogleCloudOSConfigV1.Inventory.VersionedPackage.self, forKey: .yumPackage)
       {
         try detailsCheckAndSet(.yumPackage(yumPackage))
       }
       if let aptPackage = try container.decodeIfPresent(
-        Inventory.VersionedPackage.self, forKey: .aptPackage)
+        GoogleCloudOSConfigV1.Inventory.VersionedPackage.self, forKey: .aptPackage)
       {
         try detailsCheckAndSet(.aptPackage(aptPackage))
       }
       if let zypperPackage = try container.decodeIfPresent(
-        Inventory.VersionedPackage.self, forKey: .zypperPackage)
+        GoogleCloudOSConfigV1.Inventory.VersionedPackage.self, forKey: .zypperPackage)
       {
         try detailsCheckAndSet(.zypperPackage(zypperPackage))
       }
       if let googetPackage = try container.decodeIfPresent(
-        Inventory.VersionedPackage.self, forKey: .googetPackage)
+        GoogleCloudOSConfigV1.Inventory.VersionedPackage.self, forKey: .googetPackage)
       {
         try detailsCheckAndSet(.googetPackage(googetPackage))
       }
       if let zypperPatch = try container.decodeIfPresent(
-        Inventory.ZypperPatch.self, forKey: .zypperPatch)
+        GoogleCloudOSConfigV1.Inventory.ZypperPatch.self, forKey: .zypperPatch)
       {
         try detailsCheckAndSet(.zypperPatch(zypperPatch))
       }
       if let wuaPackage = try container.decodeIfPresent(
-        Inventory.WindowsUpdatePackage.self, forKey: .wuaPackage)
+        GoogleCloudOSConfigV1.Inventory.WindowsUpdatePackage.self, forKey: .wuaPackage)
       {
         try detailsCheckAndSet(.wuaPackage(wuaPackage))
       }
       if let qfePackage = try container.decodeIfPresent(
-        Inventory.WindowsQuickFixEngineeringPackage.self, forKey: .qfePackage)
+        GoogleCloudOSConfigV1.Inventory.WindowsQuickFixEngineeringPackage.self, forKey: .qfePackage)
       {
         try detailsCheckAndSet(.qfePackage(qfePackage))
       }
       if let cosPackage = try container.decodeIfPresent(
-        Inventory.VersionedPackage.self, forKey: .cosPackage)
+        GoogleCloudOSConfigV1.Inventory.VersionedPackage.self, forKey: .cosPackage)
       {
         try detailsCheckAndSet(.cosPackage(cosPackage))
       }
       if let windowsApplication = try container.decodeIfPresent(
-        Inventory.WindowsApplication.self, forKey: .windowsApplication)
+        GoogleCloudOSConfigV1.Inventory.WindowsApplication.self, forKey: .windowsApplication)
       {
         try detailsCheckAndSet(.windowsApplication(windowsApplication))
       }
@@ -780,36 +785,36 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Yum package info.
       /// For details about the yum package manager, see
       /// https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/ch-yum.
-      indirect case yumPackage(Inventory.VersionedPackage)
+      indirect case yumPackage(GoogleCloudOSConfigV1.Inventory.VersionedPackage)
       /// Details of an APT package.
       /// For details about the apt package manager, see
       /// https://wiki.debian.org/Apt.
-      indirect case aptPackage(Inventory.VersionedPackage)
+      indirect case aptPackage(GoogleCloudOSConfigV1.Inventory.VersionedPackage)
       /// Details of a Zypper package.
       /// For details about the Zypper package manager, see
       /// https://en.opensuse.org/SDB:Zypper_manual.
-      indirect case zypperPackage(Inventory.VersionedPackage)
+      indirect case zypperPackage(GoogleCloudOSConfigV1.Inventory.VersionedPackage)
       /// Details of a Googet package.
       ///  For details about the googet package manager, see
       ///  https://github.com/google/googet.
-      indirect case googetPackage(Inventory.VersionedPackage)
+      indirect case googetPackage(GoogleCloudOSConfigV1.Inventory.VersionedPackage)
       /// Details of a Zypper patch.
       /// For details about the Zypper package manager, see
       /// https://en.opensuse.org/SDB:Zypper_manual.
-      indirect case zypperPatch(Inventory.ZypperPatch)
+      indirect case zypperPatch(GoogleCloudOSConfigV1.Inventory.ZypperPatch)
       /// Details of a Windows Update package.
       /// See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for
       /// information about Windows Update.
-      indirect case wuaPackage(Inventory.WindowsUpdatePackage)
+      indirect case wuaPackage(GoogleCloudOSConfigV1.Inventory.WindowsUpdatePackage)
       /// Details of a Windows Quick Fix engineering package.
       /// See
       /// https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering
       /// for info in Windows Quick Fix Engineering.
-      indirect case qfePackage(Inventory.WindowsQuickFixEngineeringPackage)
+      indirect case qfePackage(GoogleCloudOSConfigV1.Inventory.WindowsQuickFixEngineeringPackage)
       /// Details of a COS package.
-      indirect case cosPackage(Inventory.VersionedPackage)
+      indirect case cosPackage(GoogleCloudOSConfigV1.Inventory.VersionedPackage)
       /// Details of Windows Application.
-      indirect case windowsApplication(Inventory.WindowsApplication)
+      indirect case windowsApplication(GoogleCloudOSConfigV1.Inventory.WindowsApplication)
     }
 
     public static var _anyTypeUrl: Swift.String {
@@ -1020,7 +1025,8 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     public var description: Swift.String = Swift.String()
 
     /// The categories that are associated with this update package.
-    public var categories: [Inventory.WindowsUpdatePackage.WindowsUpdateCategory] = []
+    public var categories:
+      [GoogleCloudOSConfigV1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory] = []
 
     /// A collection of Microsoft Knowledge Base article IDs that are associated
     /// with the update package.
@@ -1099,7 +1105,8 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
         self.description = value
       }
       if let value = try container.decodeIfPresent(
-        [Inventory.WindowsUpdatePackage.WindowsUpdateCategory].self, forKey: .categories)
+        [GoogleCloudOSConfigV1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory].self,
+        forKey: .categories)
       {
         self.categories = value
       }

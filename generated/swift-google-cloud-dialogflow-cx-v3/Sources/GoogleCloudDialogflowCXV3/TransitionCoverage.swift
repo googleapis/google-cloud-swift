@@ -285,7 +285,7 @@
           try detailCheckAndSet(.transitionRoute(transitionRoute))
         }
         if let eventHandler = try container.decodeIfPresent(
-          EventHandler.self, forKey: .eventHandler)
+          GoogleCloudDialogflowCXV3.EventHandler.self, forKey: .eventHandler)
         {
           try detailCheckAndSet(.eventHandler(eventHandler))
         }
@@ -321,7 +321,7 @@
         /// Intent route or condition route.
         indirect case transitionRoute(TransitionRoute)
         /// Event handler.
-        indirect case eventHandler(EventHandler)
+        indirect case eventHandler(GoogleCloudDialogflowCXV3.EventHandler)
       }
 
       public static var _anyTypeUrl: Swift.String {

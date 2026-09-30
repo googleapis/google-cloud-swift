@@ -205,7 +205,7 @@
           try dataSourceCheckAndSet(.gcsSource(gcsSource))
         }
         if let bigquerySource = try container.decodeIfPresent(
-          BigQuerySource.self, forKey: .bigquerySource)
+          GoogleCloudAIPlatformV1.BigQuerySource.self, forKey: .bigquerySource)
         {
           try dataSourceCheckAndSet(.bigquerySource(bigquerySource))
         }
@@ -246,7 +246,7 @@
         indirect case gcsSource(GcsSource)
         /// The BigQuery table of the unmanaged Dataset used to train this
         /// Model.
-        indirect case bigquerySource(BigQuerySource)
+        indirect case bigquerySource(GoogleCloudAIPlatformV1.BigQuerySource)
       }
 
       public static var _anyTypeUrl: Swift.String {
@@ -270,17 +270,18 @@
       /// be monitored for skew, a value threshold must be configured for that
       /// feature. The threshold here is against feature distribution distance
       /// between the training and prediction feature.
-      public var skewThresholds: [Swift.String: ThresholdConfig] = [:]
+      public var skewThresholds: [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig] = [:]
 
       /// Key is the feature name and value is the threshold. The threshold here is
       /// against attribution score distance between the training and prediction
       /// feature.
-      public var attributionScoreSkewThresholds: [Swift.String: ThresholdConfig] = [:]
+      public var attributionScoreSkewThresholds:
+        [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig] = [:]
 
       /// Skew anomaly detection threshold used by all features.
       /// When the per-feature thresholds are not set, this field can be used to
       /// specify a threshold for all features.
-      public var defaultSkewThreshold: ThresholdConfig? = nil
+      public var defaultSkewThreshold: GoogleCloudAIPlatformV1.ThresholdConfig? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -321,17 +322,18 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
-          [Swift.String: ThresholdConfig].self, forKey: .skewThresholds)
+          [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig].self, forKey: .skewThresholds)
         {
           self.skewThresholds = value
         }
         if let value = try container.decodeIfPresent(
-          [Swift.String: ThresholdConfig].self, forKey: .attributionScoreSkewThresholds)
+          [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig].self,
+          forKey: .attributionScoreSkewThresholds)
         {
           self.attributionScoreSkewThresholds = value
         }
         self.defaultSkewThreshold = try container.decodeIfPresent(
-          ThresholdConfig.self, forKey: .defaultSkewThreshold)
+          GoogleCloudAIPlatformV1.ThresholdConfig.self, forKey: .defaultSkewThreshold)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
@@ -369,16 +371,17 @@
       /// be monitored for drift, a value threshold must be configured for that
       /// feature. The threshold here is against feature distribution distance
       /// between different time windws.
-      public var driftThresholds: [Swift.String: ThresholdConfig] = [:]
+      public var driftThresholds: [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig] = [:]
 
       /// Key is the feature name and value is the threshold. The threshold here is
       /// against attribution score distance between different time windows.
-      public var attributionScoreDriftThresholds: [Swift.String: ThresholdConfig] = [:]
+      public var attributionScoreDriftThresholds:
+        [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig] = [:]
 
       /// Drift anomaly detection threshold used by all features.
       /// When the per-feature thresholds are not set, this field can be used to
       /// specify a threshold for all features.
-      public var defaultDriftThreshold: ThresholdConfig? = nil
+      public var defaultDriftThreshold: GoogleCloudAIPlatformV1.ThresholdConfig? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -419,17 +422,18 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
-          [Swift.String: ThresholdConfig].self, forKey: .driftThresholds)
+          [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig].self, forKey: .driftThresholds)
         {
           self.driftThresholds = value
         }
         if let value = try container.decodeIfPresent(
-          [Swift.String: ThresholdConfig].self, forKey: .attributionScoreDriftThresholds)
+          [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig].self,
+          forKey: .attributionScoreDriftThresholds)
         {
           self.attributionScoreDriftThresholds = value
         }
         self.defaultDriftThreshold = try container.decodeIfPresent(
-          ThresholdConfig.self, forKey: .defaultDriftThreshold)
+          GoogleCloudAIPlatformV1.ThresholdConfig.self, forKey: .defaultDriftThreshold)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)

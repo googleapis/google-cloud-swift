@@ -31,7 +31,7 @@
     public var path: Swift.String? = nil
 
     /// Lifetime of the cookie.
-    public var ttl: Duration? = nil
+    public var ttl: GoogleCloudComputeV1.Duration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.path = try container.decodeIfPresent(Swift.String.self, forKey: .path)
-      self.ttl = try container.decodeIfPresent(Duration.self, forKey: .ttl)
+      self.ttl = try container.decodeIfPresent(GoogleCloudComputeV1.Duration.self, forKey: .ttl)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

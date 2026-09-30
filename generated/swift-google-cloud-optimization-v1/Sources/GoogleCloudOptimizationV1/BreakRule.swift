@@ -31,11 +31,11 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Sequence of breaks. See the `BreakRequest` message.
-  public var breakRequests: [BreakRule.BreakRequest] = []
+  public var breakRequests: [GoogleCloudOptimizationV1.BreakRule.BreakRequest] = []
 
   /// Several `FrequencyConstraint` may apply. They must all be satisfied by
   /// the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
-  public var frequencyConstraints: [BreakRule.FrequencyConstraint] = []
+  public var frequencyConstraints: [GoogleCloudOptimizationV1.BreakRule.FrequencyConstraint] = []
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,12 +73,12 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
-      [BreakRule.BreakRequest].self, forKey: .breakRequests)
+      [GoogleCloudOptimizationV1.BreakRule.BreakRequest].self, forKey: .breakRequests)
     {
       self.breakRequests = value
     }
     if let value = try container.decodeIfPresent(
-      [BreakRule.FrequencyConstraint].self, forKey: .frequencyConstraints)
+      [GoogleCloudOptimizationV1.BreakRule.FrequencyConstraint].self, forKey: .frequencyConstraints)
     {
       self.frequencyConstraints = value
     }

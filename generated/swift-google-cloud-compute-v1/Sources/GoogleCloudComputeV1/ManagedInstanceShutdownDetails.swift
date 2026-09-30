@@ -23,7 +23,7 @@
   {
     /// Output only. The duration for graceful shutdown. Only applicable when the instance is
     /// in `PENDING_STOP` state.
-    public var maxDuration: Duration? = nil
+    public var maxDuration: GoogleCloudComputeV1.Duration? = nil
 
     /// Output only. Past timestamp indicating the beginning of `PENDING_STOP` state of
     /// instance in RFC3339
@@ -65,7 +65,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.maxDuration = try container.decodeIfPresent(Duration.self, forKey: .maxDuration)
+      self.maxDuration = try container.decodeIfPresent(
+        GoogleCloudComputeV1.Duration.self, forKey: .maxDuration)
       self.requestTimestamp = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .requestTimestamp)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

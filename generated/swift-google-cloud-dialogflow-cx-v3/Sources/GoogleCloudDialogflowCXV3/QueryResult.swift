@@ -88,7 +88,7 @@
     /// [google.cloud.dialogflow.cx.v3.Intent]: <doc:Intent>
     /// [google.cloud.dialogflow.cx.v3.QueryResult.match]: <doc:QueryResult/match>
     @available(*, deprecated)
-    public var intent: Intent? = nil
+    public var intent: GoogleCloudDialogflowCXV3.Intent? = nil
 
     /// The intent detection confidence. Values range from 0.0 (completely
     /// uncertain) to 1.0 (completely certain).
@@ -130,7 +130,7 @@
     /// [`analyze_query_text_sentiment`]
     /// [google.cloud.dialogflow.cx.v3.QueryParameters.analyze_query_text_sentiment],
     /// specified in the request.
-    public var sentimentAnalysisResult: SentimentAnalysisResult? = nil
+    public var sentimentAnalysisResult: GoogleCloudDialogflowCXV3.SentimentAnalysisResult? = nil
 
     /// Returns the current advanced settings including IVR settings. Even though
     /// the operations configured by these settings are performed by Dialogflow,
@@ -253,7 +253,8 @@
       }
       self.currentPage = try container.decodeIfPresent(Page.self, forKey: .currentPage)
       self.currentFlow = try container.decodeIfPresent(Flow.self, forKey: .currentFlow)
-      self.intent = try container.decodeIfPresent(Intent.self, forKey: .intent)
+      self.intent = try container.decodeIfPresent(
+        GoogleCloudDialogflowCXV3.Intent.self, forKey: .intent)
       if let value = try container.decodeIfPresent(
         Swift.Float.self, forKey: .intentDetectionConfidence)
       {
@@ -263,7 +264,7 @@
       self.diagnosticInfo = try container.decodeIfPresent(
         GoogleWKT.WKTStruct.self, forKey: .diagnosticInfo)
       self.sentimentAnalysisResult = try container.decodeIfPresent(
-        SentimentAnalysisResult.self, forKey: .sentimentAnalysisResult)
+        GoogleCloudDialogflowCXV3.SentimentAnalysisResult.self, forKey: .sentimentAnalysisResult)
       self.advancedSettings = try container.decodeIfPresent(
         AdvancedSettings.self, forKey: .advancedSettings)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowAnswerFeedback) {

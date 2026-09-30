@@ -32,7 +32,8 @@ public struct Location: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.talent.v4.Location.LocationType.LOCALITY]: <doc:Location/LocationType/locality>
   /// [google.cloud.talent.v4.Location.LocationType.NEIGHBORHOOD]: <doc:Location/LocationType/neighborhood>
   /// [google.type.PostalAddress]: https://www.google.com/search?q=Swift+google.type+GoogleType.PostalAddress
-  public var locationType: Location.LocationType = Location.LocationType()
+  public var locationType: GoogleCloudTalentV4.Location.LocationType = GoogleCloudTalentV4.Location
+    .LocationType()
 
   /// Postal address of the location that includes human readable information,
   /// such as postal delivery and payments addresses. Given a postal address,
@@ -91,7 +92,8 @@ public struct Location: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Location.LocationType.self, forKey: .locationType)
+    if let value = try container.decodeIfPresent(
+      GoogleCloudTalentV4.Location.LocationType.self, forKey: .locationType)
     {
       self.locationType = value
     }

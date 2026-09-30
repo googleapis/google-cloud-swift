@@ -53,7 +53,8 @@ public struct Provider: Codable, Equatable, GoogleWKT._AnyPackable,
   public var displayName: Swift.String = Swift.String()
 
   /// Output only. Flag to mark the version indicating the launch stage.
-  public var launchStage: LaunchStage = LaunchStage()
+  public var launchStage: GoogleCloudConnectorsV1.LaunchStage =
+    GoogleCloudConnectorsV1.LaunchStage()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -132,7 +133,9 @@ public struct Provider: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
       self.displayName = value
     }
-    if let value = try container.decodeIfPresent(LaunchStage.self, forKey: .launchStage) {
+    if let value = try container.decodeIfPresent(
+      GoogleCloudConnectorsV1.LaunchStage.self, forKey: .launchStage)
+    {
       self.launchStage = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {

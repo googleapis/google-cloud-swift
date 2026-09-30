@@ -29,7 +29,7 @@
     public var embedding: EmbedContentResponse.Embedding? = nil
 
     /// Usage metadata about the response(s).
-    public var usageMetadata: UsageMetadata? = nil
+    public var usageMetadata: GoogleCloudAIPlatformV1.UsageMetadata? = nil
 
     /// Whether the input content was truncated before generating the embedding.
     public var truncated: Swift.Bool = Swift.Bool()
@@ -73,7 +73,8 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.embedding = try container.decodeIfPresent(
         EmbedContentResponse.Embedding.self, forKey: .embedding)
-      self.usageMetadata = try container.decodeIfPresent(UsageMetadata.self, forKey: .usageMetadata)
+      self.usageMetadata = try container.decodeIfPresent(
+        GoogleCloudAIPlatformV1.UsageMetadata.self, forKey: .usageMetadata)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .truncated) {
         self.truncated = value
       }

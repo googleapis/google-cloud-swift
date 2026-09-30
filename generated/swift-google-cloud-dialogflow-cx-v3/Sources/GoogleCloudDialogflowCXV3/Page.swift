@@ -113,14 +113,15 @@
 
     /// Handlers associated with the page to handle events such as webhook errors,
     /// no match or no input.
-    public var eventHandlers: [EventHandler] = []
+    public var eventHandlers: [GoogleCloudDialogflowCXV3.EventHandler] = []
 
     /// Hierarchical advanced settings for this page. The settings exposed at the
     /// lower level overrides the settings exposed at the higher level.
     public var advancedSettings: AdvancedSettings? = nil
 
     /// Optional. Knowledge connector configuration.
-    public var knowledgeConnectorSettings: KnowledgeConnectorSettings? = nil
+    public var knowledgeConnectorSettings: GoogleCloudDialogflowCXV3.KnowledgeConnectorSettings? =
+      nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -195,13 +196,16 @@
       {
         self.transitionRoutes = value
       }
-      if let value = try container.decodeIfPresent([EventHandler].self, forKey: .eventHandlers) {
+      if let value = try container.decodeIfPresent(
+        [GoogleCloudDialogflowCXV3.EventHandler].self, forKey: .eventHandlers)
+      {
         self.eventHandlers = value
       }
       self.advancedSettings = try container.decodeIfPresent(
         AdvancedSettings.self, forKey: .advancedSettings)
       self.knowledgeConnectorSettings = try container.decodeIfPresent(
-        KnowledgeConnectorSettings.self, forKey: .knowledgeConnectorSettings)
+        GoogleCloudDialogflowCXV3.KnowledgeConnectorSettings.self,
+        forKey: .knowledgeConnectorSettings)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)

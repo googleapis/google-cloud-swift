@@ -209,7 +209,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Describes the break schedule to be enforced on this vehicle.
   /// If empty, no breaks will be scheduled for this vehicle.
-  public var breakRule: BreakRule? = nil
+  public var breakRule: GoogleCloudOptimizationV1.BreakRule? = nil
 
   /// Specifies a label for this vehicle. This label is reported in the response
   /// as the `vehicle_label` of the corresponding
@@ -421,7 +421,8 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.extraVisitDurationForVisitType = value
     }
-    self.breakRule = try container.decodeIfPresent(BreakRule.self, forKey: .breakRule)
+    self.breakRule = try container.decodeIfPresent(
+      GoogleCloudOptimizationV1.BreakRule.self, forKey: .breakRule)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
       self.label = value
     }

@@ -53,7 +53,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
   public var assetType: Swift.String = Swift.String()
 
   /// A representation of the resource.
-  public var resource: Resource? = nil
+  public var resource: GoogleCloudAssetV1.Resource? = nil
 
   /// A representation of the IAM policy set on a Google Cloud resource.
   /// There can be a maximum of one IAM policy set on any given resource.
@@ -170,7 +170,8 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .assetType) {
       self.assetType = value
     }
-    self.resource = try container.decodeIfPresent(Resource.self, forKey: .resource)
+    self.resource = try container.decodeIfPresent(
+      GoogleCloudAssetV1.Resource.self, forKey: .resource)
     self.iamPolicy = try container.decodeIfPresent(GoogleIAMV1.Policy.self, forKey: .iamPolicy)
     if let value = try container.decodeIfPresent(
       [GoogleCloudOrgPolicyV1.Policy].self, forKey: .orgPolicy)

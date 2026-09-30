@@ -27,7 +27,7 @@
     Sendable
   {
     /// Answer to the current query.
-    public var reply: Reply? = nil
+    public var reply: GoogleCloudDiscoveryEngineV1.Reply? = nil
 
     /// Updated conversation including the answer.
     public var conversation: Conversation? = nil
@@ -72,7 +72,8 @@
 
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      self.reply = try container.decodeIfPresent(Reply.self, forKey: .reply)
+      self.reply = try container.decodeIfPresent(
+        GoogleCloudDiscoveryEngineV1.Reply.self, forKey: .reply)
       self.conversation = try container.decodeIfPresent(Conversation.self, forKey: .conversation)
       if let value = try container.decodeIfPresent(
         [SearchResponse.SearchResult].self, forKey: .searchResults)
