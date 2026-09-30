@@ -24,6 +24,7 @@ best-practices to retry transient RPC errors.
 
 - <doc:override-endpoint>
 - <doc:override-credentials>
+- <doc:enable-logging>
 - <doc:override-retry-policy>
 - <doc:override-polling-policy>
 - <doc:long-running-operations>
