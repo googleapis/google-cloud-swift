@@ -272,6 +272,16 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
     try self.impl.encode(String(value), forKey: key)
   }
 
+  /// Encodes an optional value when present.
+  ///
+  /// In generated code, collection types (repeated fields and maps) are never optional; they are
+  /// always declared as non-optional collections (`[T] = []` and `[K: V] = [:]`) and encoded via
+  /// `encode(_:forKey:)`.
+  ///
+  /// `encodeIfPresent` is only called for optional fields (scalars, message structs, and Well-Known
+  /// Types such as `WKTStruct?` and `WKTListValue?`). When non-nil, these represent explicitly set
+  /// values whose presence must be preserved (e.g., an explicitly set empty `WKTStruct` encodes as
+  /// `{}`).
   mutating func encodeIfPresent<T>(_ value: T?, forKey key: K) throws where T: Encodable {
     guard !self.omits(key) else { return }
     guard let value = value else { return }
@@ -313,6 +323,12 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
     }
   }
 
+  /// Encodes a non-optional value.
+  ///
+  /// All collection types in generated code (repeated fields and maps) are non-optional and encoded
+  /// via this method. When `omitEmptyCollections` is true, empty collections are omitted from the
+  /// output to avoid emitting default unpopulated collections in request bodies (e.g. in Compute
+  /// Engine PATCH and INSERT operations).
   mutating func encode<T>(_ value: T, forKey key: K) throws where T: Encodable {
     guard !self.omits(key) else { return }
     if self.omitEmptyCollections {

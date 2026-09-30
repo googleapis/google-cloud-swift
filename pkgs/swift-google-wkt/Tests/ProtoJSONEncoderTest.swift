@@ -211,8 +211,6 @@ import Testing
     var populatedList: [String] = ["a", "b"]
     var emptyMap: [String: String] = [:]
     var populatedMap: [String: String] = ["k": "v"]
-    var optionalEmptyList: [String]? = []
-    var optionalNilList: [String]? = nil
     var matrix: [[Int]] = [[], [1, 2]]
   }
 
@@ -226,7 +224,7 @@ import Testing
 
     #expect(
       jsonString
-        == #"{"matrix":[[],[1,2]],"name":"test","optionalEmptyList":[],"populatedList":["a","b"],"populatedMap":{"k":"v"}}"#
+        == #"{"matrix":[[],[1,2]],"name":"test","populatedList":["a","b"],"populatedMap":{"k":"v"}}"#
     )
   }
 
@@ -241,7 +239,28 @@ import Testing
 
     #expect(
       jsonString
-        == #"{"emptyList":[],"emptyMap":{},"matrix":[[],[1,2]],"name":"test","optionalEmptyList":[],"populatedList":["a","b"],"populatedMap":{"k":"v"}}"#
+        == #"{"emptyList":[],"emptyMap":{},"matrix":[[],[1,2]],"name":"test","populatedList":["a","b"],"populatedMap":{"k":"v"}}"#
+    )
+  }
+
+  struct WKTMessageModel: Codable, Equatable {
+    var structField: WKTStruct?
+    var listField: WKTListValue?
+  }
+
+  @Test func encodeWKTStructAndListValuePreservedWhenPresent() throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+
+    let emptyModel = WKTMessageModel(structField: nil, listField: nil)
+    let emptyData = try encoder.encode(emptyModel)
+    #expect(String(data: emptyData, encoding: .utf8) == "{}")
+
+    let presentModel = WKTMessageModel(structField: [:], listField: [])
+    let presentData = try encoder.encode(presentModel)
+    #expect(
+      String(data: presentData, encoding: .utf8)
+        == #"{"listField":[],"structField":{}}"#
     )
   }
 }
