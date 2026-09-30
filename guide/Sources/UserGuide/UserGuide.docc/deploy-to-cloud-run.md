@@ -93,33 +93,52 @@ multi-stage build compiles the application in release mode with a statically
 linked Swift standard library and copies the binary into a minimal Debian
 runtime image:
 
-```dockerfile
-FROM swift:6.3-bookworm AS builder
+1. The initial layer contains the Swift toolchain
+   ```dockerfile
+   FROM swift:6.3-bookworm AS builder
+   ```
 
-WORKDIR /app
-COPY Package.* ./
-RUN swift package resolve
+2. Copy just the package file(s) and populate the Swift package cache.
+   ```dockerfile
+   WORKDIR /app
+   COPY Package.* ./
+   RUN swift package resolve
+   ```
 
-COPY . .
-RUN swift build -c release --static-swift-stdlib
+3. Copy the full source code. This allows code-only modifications to
+   preserve the dependency layer in the cache. 
+   ```dockerfile
+   COPY . .
+   ```
 
-FROM debian:bookworm-slim
+4. Compile the code for production
+   ```dockerfile
+   RUN swift build -c release --static-swift-stdlib
+   ```
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates \
-    libcurl4 \
-  && rm -rf /var/lib/apt/lists/*
+5. We use a smaller runtime image that includes the minimum
+   runtime requirements (excludes the Swift build toolchain)
+   in order to reduce the size of the container image.
+   ```dockerfile
+   FROM debian:bookworm-slim
 
-RUN useradd --user-group --create-home --system --skel /dev/null --home-dir /app swift
-WORKDIR /app
+   RUN apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates \
+      libcurl4 \
+   && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /app/.build/release/CloudRunGemini /app/CloudRunGemini
+   RUN useradd --user-group --create-home --system --skel /dev/null --home-dir /app swift
+   WORKDIR /app
+   ```
 
-USER swift:swift
-EXPOSE 8080
+6. Copy the production binary and prepare the entrypoint
+   ```dockerfile
+   COPY --from=builder /app/.build/release/CloudRunGemini /app/CloudRunGemini
+   USER swift:swift
+   EXPOSE 8080
 
-ENTRYPOINT ["/app/CloudRunGemini"]
-```
+   ENTRYPOINT ["/app/CloudRunGemini"]
+   ```
 
 Create a `.dockerignore` file to exclude local build artifacts from the build
 context:
