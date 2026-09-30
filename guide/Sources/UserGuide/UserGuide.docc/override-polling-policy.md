@@ -26,14 +26,13 @@ This guide uses the [Workflows API]. To enable this API, follow the
 [service quickstart].
 
 For complete setup instructions for the Swift client libraries, see
-[Getting started with Swift].
+[Getting Started with Swift].
 
 ## What is a Long-Running Operation (LRO)?
 
-Some Google Cloud APIs perform operations—such as creating a cluster, training a
-model, or deploying a workflow—that take too long to finish within a single
-request-response cycle. Instead of blocking until the work finishes, these APIs
-follow [AIP-151]: the initial request starts a background task on the server and
+Some Google Cloud APIs perform operations that take too long to finish within a
+single request-response cycle. Instead of blocking until the work finishes, these
+APIs make an initial request that starts a background task on the server and
 immediately returns an operation resource representing the in-progress work.
 
 To get the final result, the client must periodically poll the service for the
