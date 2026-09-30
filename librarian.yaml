@@ -1147,11 +1147,15 @@ libraries:
     swift:
       library_name_override: GoogleCloudTextToSpeechV1
   - name: google-cloud-timeseriesinsights-v1
-    version: 0.4.0
+    version: 0.5.0
     copyright_year: "2026"
-    skip_release: true
+    output: generated/swift-google-cloud-timeseriesinsights-v1/Sources/GoogleCloudTimeseriesInsightsV1/version
     swift:
       library_name_override: GoogleCloudTimeseriesInsightsV1
+      modules:
+        - output: generated/swift-google-cloud-timeseriesinsights-v1/Sources/GoogleCloudTimeseriesInsightsV1/version
+          api_path: ""
+          module_type: package-version
   - name: google-cloud-tpu-v2
     version: 0.4.0
     copyright_year: "2026"

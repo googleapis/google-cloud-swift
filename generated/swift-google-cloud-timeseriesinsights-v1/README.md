@@ -5,75 +5,7 @@
 [![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-cloud-timeseriesinsights-v1%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/googleapis/swift-google-cloud-timeseriesinsights-v1)
 [![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-cloud-timeseriesinsights-v1%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/googleapis/swift-google-cloud-timeseriesinsights-v1)
 
-Provides a Timeseries Insights service which operates over time series
-data. Users can perform time series spike, trend, and anomaly detection.
-With a straightforward API and easy to understand results, the service
-makes it simple to gather insights from large amounts of time series data
-(e.g. monitoring datasets) and integrate these insights in their
-applications.
-
-## Overview
-
-The following types provide methods to make RPCs. They are a good starting point
-to learn about this library.
-
-- `TimeseriesInsightsControllerClient`: Client for the TimeseriesInsightsController.
-
-## Quickstart
-
-The following example demonstrates using `TimeseriesInsightsControllerClient`:
-
-```swift
-import Foundation
-import GoogleCloudTimeseriesInsightsV1
-
-func sample(parent: String, ) async throws {
-  let client = try GoogleCloudTimeseriesInsightsV1.TimeseriesInsightsControllerClient()
-  let items = client.listDataSetsByItems(
-    request: ListDataSetsRequest()
-  .with {
-    $0.parent = "\(parent)"
-  }
-)
-  for try await item in items {
-    print("  \(item)")
-  }
-}
-```
-
-## Requirements
-
-For the minimum supported Swift version and platform requirements, see the
-[Requirements](https://github.com/googleapis/google-cloud-swift#minimum-supported-swift-version)
-section in the `google-cloud-swift` repository.
-
-## Installation
-
-Add `swift-google-cloud-timeseriesinsights-v1` as a package dependency:
-
-```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-timeseriesinsights-v1.git --from 0.4.0
-```
-
-Then add `GoogleCloudTimeseriesInsightsV1` to your target's dependencies:
-
-```bash
-swift package add-target-dependency GoogleCloudTimeseriesInsightsV1 <target-name> --package swift-google-cloud-timeseriesinsights-v1
-```
-
-## Troubleshooting
-
-For questions, bug reports, or feature requests, please open an issue in the
-[google-cloud-swift](https://github.com/googleapis/google-cloud-swift/issues) repository.
-
-## Contributing
-
-Contributions to this library are always welcome and highly encouraged.
-
-All development, issues, and pull requests are managed in the
-[google-cloud-swift](https://github.com/googleapis/google-cloud-swift) monorepo.
-See [CONTRIBUTING.md](https://github.com/googleapis/google-cloud-swift/blob/main/CONTRIBUTING.md)
-for details on getting started.
+This service is decommissioned. The package will see no more updates.
 
 ## License
 
