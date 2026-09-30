@@ -1149,6 +1149,7 @@ libraries:
   - name: google-cloud-timeseriesinsights-v1
     version: 0.4.0
     copyright_year: "2026"
+    skip_release: true
     swift:
       library_name_override: GoogleCloudTimeseriesInsightsV1
   - name: google-cloud-tpu-v2
