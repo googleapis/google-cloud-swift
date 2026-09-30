@@ -15,7 +15,6 @@
 
 // snippet.show [START swift_enable_logging_full]
 // snippet.imports [START swift_enable_logging_imports]
-import Foundation
 import GoogleCloudSecretManagerV1
 import GoogleGax
 import Logging
