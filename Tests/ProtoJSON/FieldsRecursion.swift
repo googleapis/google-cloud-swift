@@ -59,7 +59,7 @@ import Testing
       ),
       // Optional recursive field
       (
-        #"{"optional": {"side": {"value": "optional-side"}}}"#,
+        #"{"optional":{"side":{"value":"optional-side"}}}"#,
         MessageWithRecursion().with {
           $0.optional = WKTRecursive(
             value: MessageWithRecursion.Level0().with {
@@ -69,7 +69,7 @@ import Testing
       ),
       // Repeated recursive field
       (
-        #"{"repeated": [{"side": {"value": "side-1"}}, {"side": {"value": "side-2"}}]}"#,
+        #"{"repeated":[{"side":{"value":"side-1"}},{"side":{"value":"side-2"}}]}"#,
         MessageWithRecursion().with {
           $0.repeated = [
             MessageWithRecursion.Level0().with {
@@ -83,7 +83,7 @@ import Testing
       ),
       // Map recursive field
       (
-        #"{"map": {"key1": {"side": {"value": "side-1"}}, "key2": {"side": {"value": "side-2"}}}}"#,
+        #"{"map":{"key1":{"side":{"value":"side-1"}},"key2":{"side":{"value":"side-2"}}}}"#,
         MessageWithRecursion().with {
           $0.map = [
             "key1": MessageWithRecursion.Level0().with {

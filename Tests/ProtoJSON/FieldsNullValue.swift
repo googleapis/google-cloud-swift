@@ -22,13 +22,13 @@ import Testing
   @Test(
     "NullValue fields deserialize",
     arguments: [
-      (#"{                        }"#, T()),
-      (#"{"singular": null        }"#, T()),
-      (#"{"optional": null        }"#, T()),
-      (#"{"repeated": []          }"#, T()),
-      (#"{"repeated": [null]      }"#, T().with { $0.repeated = [WKTNullValue()] }),
-      (#"{"map":      {}          }"#, T()),
-      (#"{"map":      {"a": null} }"#, T().with { $0.map = ["a": WKTNullValue()] }),
+      (#"{}"#, T()),
+      (#"{"singular":null}"#, T()),
+      (#"{"optional":null}"#, T()),
+      (#"{}"#, T()),
+      (#"{"repeated":[null]}"#, T().with { $0.repeated = [WKTNullValue()] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":null}}"#, T().with { $0.map = ["a": WKTNullValue()] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -39,13 +39,13 @@ import Testing
   @Test(
     "NullValue fields serialize",
     arguments: [
-      (#"{"map":{},"repeated":[],"singular":null}"#, T()),
+      (#"{"singular":null}"#, T()),
       (
-        #"{"map":{},"repeated":[null],"singular":null}"#,
+        #"{"repeated":[null],"singular":null}"#,
         T().with { $0.repeated = [WKTNullValue()] }
       ),
       (
-        #"{"map":{"a":null},"repeated":[],"singular":null}"#,
+        #"{"map":{"a":null},"singular":null}"#,
         T().with { $0.map = ["a": WKTNullValue()] }
       ),
     ]

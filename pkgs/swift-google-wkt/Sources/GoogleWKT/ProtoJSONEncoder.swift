@@ -24,6 +24,7 @@ public import Foundation
 /// This encoder configures the native Swift JSON encoder to implement ProtoJSON rules.
 @_spi(GoogleCloudInternal) final public class _ProtoJSONEncoder {
   public var outputFormatting: JSONEncoder.OutputFormatting = [.withoutEscapingSlashes]
+  public var omitEmptyCollections: Bool = true
 
   public init() {}
 
@@ -47,7 +48,8 @@ public import Foundation
       nan: "NaN"
     )
     let omit = omitting.isEmpty ? nil : OmitNode(paths: omitting)
-    return try encoder.encode(Interceptor(inner: value, omit: omit))
+    return try encoder.encode(
+      Interceptor(inner: value, omit: omit, omitEmptyCollections: self.omitEmptyCollections))
   }
 }
 
@@ -104,22 +106,43 @@ extension Optional: _OptionalProtocol {
   }
 }
 
+fileprivate protocol _EmptyCollectionProtocol {
+  var _isEmptyCollection: Bool { get }
+}
+
+extension Array: _EmptyCollectionProtocol {
+  var _isEmptyCollection: Bool { self.isEmpty }
+}
+
+extension Dictionary: _EmptyCollectionProtocol {
+  var _isEmptyCollection: Bool { self.isEmpty }
+}
+
+extension Set: _EmptyCollectionProtocol {
+  var _isEmptyCollection: Bool { self.isEmpty }
+}
+
 fileprivate struct Interceptor<T: Encodable>: Encodable {
   let inner: T
   var omit: OmitNode? = nil
+  var omitEmptyCollections: Bool = true
 
   func encode(to encoder: any Encoder) throws {
-    try self.inner.encode(to: InternalEncoder(impl: encoder, omit: self.omit))
+    try self.inner.encode(
+      to: InternalEncoder(
+        impl: encoder, omit: self.omit, omitEmptyCollections: self.omitEmptyCollections))
   }
 }
 
 fileprivate struct InternalEncoder {
   let impl: any Encoder
   let omit: OmitNode?
+  let omitEmptyCollections: Bool
 
-  init(impl: any Encoder, omit: OmitNode? = nil) {
+  init(impl: any Encoder, omit: OmitNode? = nil, omitEmptyCollections: Bool = true) {
     self.impl = impl
     self.omit = omit
+    self.omitEmptyCollections = omitEmptyCollections
   }
 }
 
@@ -129,17 +152,21 @@ extension InternalEncoder: Encoder {
 
   func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key: CodingKey {
     let impl = self.impl.container(keyedBy: type)
-    return KeyedEncodingContainer(InternalKeyedContainer(impl, omit: self.omit))
+    return KeyedEncodingContainer(
+      InternalKeyedContainer(
+        impl, omit: self.omit, omitEmptyCollections: self.omitEmptyCollections))
   }
 
   func unkeyedContainer() -> any UnkeyedEncodingContainer {
     let impl = self.impl.unkeyedContainer()
-    return InternalUnkeyedEncodingContainer(impl)
+    return InternalUnkeyedEncodingContainer(
+      impl, omitEmptyCollections: self.omitEmptyCollections)
   }
 
   func singleValueContainer() -> any SingleValueEncodingContainer {
     let impl = self.impl.singleValueContainer()
-    return InternalSingleValueEncodingContainer(impl)
+    return InternalSingleValueEncodingContainer(
+      impl, omitEmptyCollections: self.omitEmptyCollections)
   }
 }
 
@@ -147,10 +174,15 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
   typealias Key = K
   var impl: KeyedEncodingContainer<K>
   var omit: OmitNode?
+  var omitEmptyCollections: Bool
 
-  init(_ impl: KeyedEncodingContainer<K>, omit: OmitNode? = nil) {
+  init(
+    _ impl: KeyedEncodingContainer<K>, omit: OmitNode? = nil,
+    omitEmptyCollections: Bool = true
+  ) {
     self.impl = impl
     self.omit = omit
+    self.omitEmptyCollections = omitEmptyCollections
   }
 
   var codingPath: [any CodingKey] { self.impl.codingPath }
@@ -240,8 +272,54 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
     try self.impl.encode(String(value), forKey: key)
   }
 
+  mutating func encodeIfPresent<T>(_ value: T?, forKey key: K) throws where T: Encodable {
+    guard !self.omits(key) else { return }
+    guard let value = value else { return }
+    if let v = value as? Int64 {
+      try self.impl.encode(String(v), forKey: key)
+    } else if let v = value as? UInt64 {
+      try self.impl.encode(String(v), forKey: key)
+    } else if let v = value as? String {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? Bool {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? Double {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? Float {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? Int {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? Int8 {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? Int16 {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? Int32 {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? UInt {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? UInt8 {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? UInt16 {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? UInt32 {
+      try self.impl.encode(v, forKey: key)
+    } else if let v = value as? Data {
+      try self.impl.encode(v, forKey: key)
+    } else {
+      try self.impl.encode(
+        Interceptor(
+          inner: value, omit: self.omitted(below: key),
+          omitEmptyCollections: self.omitEmptyCollections), forKey: key)
+    }
+  }
+
   mutating func encode<T>(_ value: T, forKey key: K) throws where T: Encodable {
     guard !self.omits(key) else { return }
+    if self.omitEmptyCollections {
+      if let checkable = value as? _EmptyCollectionProtocol, checkable._isEmptyCollection {
+        return
+      }
+    }
     if let opt = value as? _OptionalProtocol, opt._isNil {
       try self.impl.encodeNil(forKey: key)
     } else if let opt = value as? _OptionalProtocol, let unwrapped = opt._unwrappedValue {
@@ -251,7 +329,9 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
         try self.impl.encode(String(v), forKey: key)
       } else {
         try self.impl.encode(
-          Interceptor(inner: value, omit: self.omitted(below: key)), forKey: key)
+          Interceptor(
+            inner: value, omit: self.omitted(below: key),
+            omitEmptyCollections: self.omitEmptyCollections), forKey: key)
       }
     } else if let v = value as? Int64 {
       try self.impl.encode(String(v), forKey: key)
@@ -285,7 +365,9 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
       try self.impl.encode(v, forKey: key)
     } else {
       try self.impl.encode(
-        Interceptor(inner: value, omit: self.omitted(below: key)), forKey: key)
+        Interceptor(
+          inner: value, omit: self.omitted(below: key),
+          omitEmptyCollections: self.omitEmptyCollections), forKey: key)
     }
   }
 
@@ -300,28 +382,37 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
   {
     let nested = self.impl.nestedContainer(keyedBy: keyType, forKey: key)
     return KeyedEncodingContainer(
-      InternalKeyedContainer<NestedKey>(nested, omit: self.omitted(below: key)))
+      InternalKeyedContainer<NestedKey>(
+        nested, omit: self.omitted(below: key),
+        omitEmptyCollections: self.omitEmptyCollections))
   }
 
   mutating func nestedUnkeyedContainer(forKey key: K) -> any UnkeyedEncodingContainer {
     let nested = self.impl.nestedUnkeyedContainer(forKey: key)
-    return InternalUnkeyedEncodingContainer(nested)
+    return InternalUnkeyedEncodingContainer(
+      nested, omitEmptyCollections: self.omitEmptyCollections)
   }
 
   mutating func superEncoder() -> any Encoder {
-    return InternalEncoder(impl: self.impl.superEncoder())
+    return InternalEncoder(
+      impl: self.impl.superEncoder(), omitEmptyCollections: self.omitEmptyCollections)
   }
 
   mutating func superEncoder(forKey key: K) -> any Encoder {
     return InternalEncoder(
-      impl: self.impl.superEncoder(forKey: key), omit: self.omitted(below: key))
+      impl: self.impl.superEncoder(forKey: key), omit: self.omitted(below: key),
+      omitEmptyCollections: self.omitEmptyCollections)
   }
 }
 
 fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
   var impl: any UnkeyedEncodingContainer
+  var omitEmptyCollections: Bool
 
-  init(_ impl: any UnkeyedEncodingContainer) { self.impl = impl }
+  init(_ impl: any UnkeyedEncodingContainer, omitEmptyCollections: Bool = true) {
+    self.impl = impl
+    self.omitEmptyCollections = omitEmptyCollections
+  }
 
   var codingPath: [any CodingKey] { self.impl.codingPath }
   var count: Int { self.impl.count }
@@ -395,7 +486,8 @@ fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
       } else if let v = unwrapped as? UInt64 {
         try self.impl.encode(String(v))
       } else {
-        try self.impl.encode(Interceptor(inner: value))
+        try self.impl.encode(
+          Interceptor(inner: value, omitEmptyCollections: self.omitEmptyCollections))
       }
     } else if let v = value as? Int64 {
       try self.impl.encode(String(v))
@@ -428,7 +520,8 @@ fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
     } else if let v = value as? Data {
       try self.impl.encode(v)
     } else {
-      try self.impl.encode(Interceptor(inner: value))
+      try self.impl.encode(
+        Interceptor(inner: value, omitEmptyCollections: self.omitEmptyCollections))
     }
   }
 
@@ -441,23 +534,31 @@ fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
     -> KeyedEncodingContainer<NestedKey> where NestedKey: CodingKey
   {
     let nested = self.impl.nestedContainer(keyedBy: keyType)
-    return KeyedEncodingContainer(InternalKeyedContainer<NestedKey>(nested))
+    return KeyedEncodingContainer(
+      InternalKeyedContainer<NestedKey>(
+        nested, omitEmptyCollections: self.omitEmptyCollections))
   }
 
   mutating func nestedUnkeyedContainer() -> any UnkeyedEncodingContainer {
     let nested = self.impl.nestedUnkeyedContainer()
-    return InternalUnkeyedEncodingContainer(nested)
+    return InternalUnkeyedEncodingContainer(
+      nested, omitEmptyCollections: self.omitEmptyCollections)
   }
 
   mutating func superEncoder() -> any Encoder {
-    return InternalEncoder(impl: self.impl.superEncoder())
+    return InternalEncoder(
+      impl: self.impl.superEncoder(), omitEmptyCollections: self.omitEmptyCollections)
   }
 }
 
 fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingContainer {
   var impl: any SingleValueEncodingContainer
+  var omitEmptyCollections: Bool
 
-  init(_ impl: any SingleValueEncodingContainer) { self.impl = impl }
+  init(_ impl: any SingleValueEncodingContainer, omitEmptyCollections: Bool = true) {
+    self.impl = impl
+    self.omitEmptyCollections = omitEmptyCollections
+  }
 
   var codingPath: [any CodingKey] { self.impl.codingPath }
 
@@ -530,7 +631,8 @@ fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingCont
       } else if let v = unwrapped as? UInt64 {
         try self.impl.encode(String(v))
       } else {
-        try self.impl.encode(Interceptor(inner: value))
+        try self.impl.encode(
+          Interceptor(inner: value, omitEmptyCollections: self.omitEmptyCollections))
       }
     } else if let v = value as? Int64 {
       try self.impl.encode(String(v))
@@ -563,7 +665,8 @@ fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingCont
     } else if let v = value as? Data {
       try self.impl.encode(v)
     } else {
-      try self.impl.encode(Interceptor(inner: value))
+      try self.impl.encode(
+        Interceptor(inner: value, omitEmptyCollections: self.omitEmptyCollections))
     }
   }
 }

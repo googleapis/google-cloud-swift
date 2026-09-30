@@ -23,21 +23,21 @@ import Testing
     "string fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular"   : ""                }"#, T()),
-      (#"{"singular"   : "42"              }"#, T().with { $0.singular = "42" }),
-      (#"{"option"     : null              }"#, T()),
-      (#"{"option"     : ""                }"#, T().with { $0.option = "" }),
-      (#"{"option"     : "42"              }"#, T().with { $0.option = "42" }),
-      (#"{"repeated"   : []                }"#, T()),
-      (#"{"repeated"   : [""]              }"#, T().with { $0.repeated = [""] }),
-      (#"{"repeated"   : ["4", "2"]        }"#, T().with { $0.repeated = ["4", "2"] }),
-      (#"{"mapValue"   : {}                }"#, T()),
-      (#"{"mapValue"   : {"42": "a"}       }"#, T().with { $0.mapValue = [42: "a"] }),
-      (#"{"mapKey"     : {}                }"#, T()),
-      (#"{"mapKey"     : {"4": 2}          }"#, T().with { $0.mapKey = ["4": 2] }),
-      (#"{"mapKey"     : {"4": "2"}        }"#, T().with { $0.mapKey = ["4": 2] }),
-      (#"{"mapKeyValue": {}                }"#, T()),
-      (#"{"mapKeyValue": {"4": "2"}        }"#, T().with { $0.mapKeyValue = ["4": "2"] }),
+      (#"{"singular":""}"#, T()),
+      (#"{"singular":"42"}"#, T().with { $0.singular = "42" }),
+      (#"{"option":null}"#, T()),
+      (#"{"option":""}"#, T().with { $0.option = "" }),
+      (#"{"option":"42"}"#, T().with { $0.option = "42" }),
+      (#"{}"#, T()),
+      (#"{"repeated":[""]}"#, T().with { $0.repeated = [""] }),
+      (#"{"repeated":["4","2"]}"#, T().with { $0.repeated = ["4", "2"] }),
+      (#"{}"#, T()),
+      (#"{"mapValue":{"42":"a"}}"#, T().with { $0.mapValue = [42: "a"] }),
+      (#"{}"#, T()),
+      (#"{"mapKey":{"4":2}}"#, T().with { $0.mapKey = ["4": 2] }),
+      (#"{"mapKey":{"4":"2"}}"#, T().with { $0.mapKey = ["4": 2] }),
+      (#"{}"#, T()),
+      (#"{"mapKeyValue":{"4":"2"}}"#, T().with { $0.mapKeyValue = ["4": "2"] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -48,15 +48,15 @@ import Testing
   @Test(
     arguments: [
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":""}"#,
+        #"{"singular":""}"#,
         T()
       ),
       (
-        #"{"mapKey":{"a":42},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":""}"#,
+        #"{"mapKey":{"a":42},"singular":""}"#,
         T().with { $0.mapKey = ["a": 42] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{"42":"a"},"repeated":[],"singular":""}"#,
+        #"{"mapValue":{"42":"a"},"singular":""}"#,
         T().with { $0.mapValue = [42: "a"] }
       ),
     ])

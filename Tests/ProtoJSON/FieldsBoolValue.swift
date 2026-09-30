@@ -23,13 +23,13 @@ import Testing
     "BoolValue fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular": null         }"#, T()),
-      (#"{"singular": true         }"#, T().with { $0.singular = true }),
-      (#"{"singular": "false"      }"#, T().with { $0.singular = false }),
-      (#"{"repeated": []           }"#, T()),
-      (#"{"repeated": [true]       }"#, T().with { $0.repeated = [true] }),
-      (#"{"map":      {}           }"#, T()),
-      (#"{"map":      {"a": false} }"#, T().with { $0.map = ["a": false] }),
+      (#"{"singular":null}"#, T()),
+      (#"{"singular":true}"#, T().with { $0.singular = true }),
+      (#"{"singular":"false"}"#, T().with { $0.singular = false }),
+      (#"{}"#, T()),
+      (#"{"repeated":[true]}"#, T().with { $0.repeated = [true] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":false}}"#, T().with { $0.map = ["a": false] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -40,11 +40,11 @@ import Testing
   @Test(
     "BoolValue fields serialize",
     arguments: [
-      (#"{"map":{},"repeated":[]}"#, T()),
-      (#"{"map":{},"repeated":[],"singular":true}"#, T().with { $0.singular = true }),
-      (#"{"map":{},"repeated":[],"singular":false}"#, T().with { $0.singular = false }),
-      (#"{"map":{},"repeated":[true,false]}"#, T().with { $0.repeated = [true, false] }),
-      (#"{"map":{"a":false},"repeated":[]}"#, T().with { $0.map = ["a": false] }),
+      (#"{}"#, T()),
+      (#"{"singular":true}"#, T().with { $0.singular = true }),
+      (#"{"singular":false}"#, T().with { $0.singular = false }),
+      (#"{"repeated":[true,false]}"#, T().with { $0.repeated = [true, false] }),
+      (#"{"map":{"a":false}}"#, T().with { $0.map = ["a": false] }),
     ]
   )
   func serialize(want: String, input: T) throws {

@@ -23,22 +23,22 @@ import Testing
     "double fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular": 0.0            }"#, T()),
-      (#"{"singular": 1.5            }"#, T().with { $0.singular = 1.5 }),
-      (#"{"singular": "1.5"          }"#, T().with { $0.singular = 1.5 }),
-      (#"{"singular": "Infinity"     }"#, T().with { $0.singular = .infinity }),
-      (#"{"singular": "-Infinity"    }"#, T().with { $0.singular = -.infinity }),
-      (#"{"option":   null           }"#, T()),
-      (#"{"option":   0.0            }"#, T().with { $0.option = 0.0 }),
-      (#"{"option":   1.5            }"#, T().with { $0.option = 1.5 }),
-      (#"{"option":   "1.5"          }"#, T().with { $0.option = 1.5 }),
-      (#"{"repeated": []             }"#, T()),
-      (#"{"repeated": [0.0]          }"#, T().with { $0.repeated = [0.0] }),
-      (#"{"repeated": [1.5, -2.0]    }"#, T().with { $0.repeated = [1.5, -2.0] }),
-      (#"{"repeated": ["1.5", "-2.0"]}"#, T().with { $0.repeated = [1.5, -2.0] }),
-      (#"{"map":      {}             }"#, T()),
-      (#"{"map":      {"a": 1.5}     }"#, T().with { $0.map = ["a": 1.5] }),
-      (#"{"map":      {"a": "1.5"}   }"#, T().with { $0.map = ["a": 1.5] }),
+      (#"{"singular":0.0}"#, T()),
+      (#"{"singular":1.5}"#, T().with { $0.singular = 1.5 }),
+      (#"{"singular":"1.5"}"#, T().with { $0.singular = 1.5 }),
+      (#"{"singular":"Infinity"}"#, T().with { $0.singular = .infinity }),
+      (#"{"singular":"-Infinity"}"#, T().with { $0.singular = -.infinity }),
+      (#"{"option":null}"#, T()),
+      (#"{"option":0.0}"#, T().with { $0.option = 0.0 }),
+      (#"{"option":1.5}"#, T().with { $0.option = 1.5 }),
+      (#"{"option":"1.5"}"#, T().with { $0.option = 1.5 }),
+      (#"{}"#, T()),
+      (#"{"repeated":[0.0]}"#, T().with { $0.repeated = [0.0] }),
+      (#"{"repeated":[1.5,-2.0]}"#, T().with { $0.repeated = [1.5, -2.0] }),
+      (#"{"repeated":["1.5","-2.0"]}"#, T().with { $0.repeated = [1.5, -2.0] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":1.5}}"#, T().with { $0.map = ["a": 1.5] }),
+      (#"{"map":{"a":"1.5"}}"#, T().with { $0.map = ["a": 1.5] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -51,19 +51,19 @@ import Testing
     "float fields deserialize NaN",
     arguments: [
       (
-        #"{"singular": "NaN"        }"#,
+        #"{"singular":"NaN"}"#,
         { @Sendable (got: T) -> Float64? in .some(got.singular) }
       ),
       (
-        #"{"option":   "NaN"        }"#,
+        #"{"option":"NaN"}"#,
         { @Sendable (got: T) -> Float64? in got.option }
       ),
       (
-        #"{"repeated": ["NaN"]      }"#,
+        #"{"repeated":["NaN"]}"#,
         { @Sendable (got: T) -> Float64? in got.repeated.first }
       ),
       (
-        #"{"map":      {"a": "NaN"} }"#,
+        #"{"map":{"a":"NaN"}}"#,
         { @Sendable (got: T) -> Float64? in got.map["a"] }
       ),
     ]
@@ -77,55 +77,55 @@ import Testing
     "double fields serialize",
     arguments: [
       (
-        #"{"map":{},"repeated":[],"singular":0}"#,
+        #"{"singular":0}"#,
         T()
       ),
       (
-        #"{"map":{},"repeated":[],"singular":1.5}"#,
+        #"{"singular":1.5}"#,
         T().with { $0.singular = 1.5 }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":"Infinity"}"#,
+        #"{"singular":"Infinity"}"#,
         T().with { $0.singular = .infinity }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":"-Infinity"}"#,
+        #"{"singular":"-Infinity"}"#,
         T().with { $0.singular = -.infinity }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":"NaN"}"#,
+        #"{"singular":"NaN"}"#,
         T().with { $0.singular = .nan }
       ),
       (
-        #"{"map":{},"option":"Infinity","repeated":[],"singular":0}"#,
+        #"{"option":"Infinity","singular":0}"#,
         T().with { $0.option = .infinity }
       ),
       (
-        #"{"map":{},"option":"-Infinity","repeated":[],"singular":0}"#,
+        #"{"option":"-Infinity","singular":0}"#,
         T().with { $0.option = -.infinity }
       ),
       (
-        #"{"map":{},"option":"NaN","repeated":[],"singular":0}"#,
+        #"{"option":"NaN","singular":0}"#,
         T().with { $0.option = .nan }
       ),
       (
-        #"{"map":{},"repeated":["Infinity","-Infinity"],"singular":0}"#,
+        #"{"repeated":["Infinity","-Infinity"],"singular":0}"#,
         T().with { $0.repeated = [.infinity, -.infinity] }
       ),
       (
-        #"{"map":{},"repeated":["NaN"],"singular":0}"#,
+        #"{"repeated":["NaN"],"singular":0}"#,
         T().with { $0.repeated = [.nan] }
       ),
       (
-        #"{"map":{"a":"Infinity"},"repeated":[],"singular":0}"#,
+        #"{"map":{"a":"Infinity"},"singular":0}"#,
         T().with { $0.map = ["a": .infinity] }
       ),
       (
-        #"{"map":{"a":"-Infinity"},"repeated":[],"singular":0}"#,
+        #"{"map":{"a":"-Infinity"},"singular":0}"#,
         T().with { $0.map = ["a": -.infinity] }
       ),
       (
-        #"{"map":{"a":"NaN"},"repeated":[],"singular":0}"#,
+        #"{"map":{"a":"NaN"},"singular":0}"#,
         T().with { $0.map = ["a": .nan] }
       ),
     ]

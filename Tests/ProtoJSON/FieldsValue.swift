@@ -23,22 +23,22 @@ import Testing
     "Value fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular": null         }"#, T()),
-      (#"{"singular": 42           }"#, T().with { $0.singular = .number(42) }),
-      (#"{"singular": "42"         }"#, T().with { $0.singular = .string("42") }),
-      (#"{"singular": "hello"      }"#, T().with { $0.singular = .string("hello") }),
-      (#"{"singular": true         }"#, T().with { $0.singular = .bool(true) }),
-      (#"{"singular": {}           }"#, T().with { $0.singular = .object([:]) }),
-      (#"{"singular": []           }"#, T().with { $0.singular = .array([]) }),
-      (#"{"optional": 42           }"#, T().with { $0.optional = .number(42) }),
-      (#"{"repeated": []           }"#, T()),
-      (#"{"repeated": [null]       }"#, T().with { $0.repeated = [.null(WKTNullValue())] }),
+      (#"{"singular":null}"#, T()),
+      (#"{"singular":42}"#, T().with { $0.singular = .number(42) }),
+      (#"{"singular":"42"}"#, T().with { $0.singular = .string("42") }),
+      (#"{"singular":"hello"}"#, T().with { $0.singular = .string("hello") }),
+      (#"{"singular":true}"#, T().with { $0.singular = .bool(true) }),
+      (#"{"singular":{}}"#, T().with { $0.singular = .object([:]) }),
+      (#"{"singular":[]}"#, T().with { $0.singular = .array([]) }),
+      (#"{"optional":42}"#, T().with { $0.optional = .number(42) }),
+      (#"{}"#, T()),
+      (#"{"repeated":[null]}"#, T().with { $0.repeated = [.null(WKTNullValue())] }),
       (
-        #"{"repeated": [42, "hello"]}"#, T().with { $0.repeated = [.number(42), .string("hello")] }
+        #"{"repeated":[42,"hello"]}"#, T().with { $0.repeated = [.number(42), .string("hello")] }
       ),
-      (#"{"map":      {}           }"#, T()),
-      (#"{"map":      {"a": 42}    }"#, T().with { $0.map = ["a": .number(42)] }),
-      (#"{"map":      {"a": null}  }"#, T().with { $0.map = ["a": .null(WKTNullValue())] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":42}}"#, T().with { $0.map = ["a": .number(42)] }),
+      (#"{"map":{"a":null}}"#, T().with { $0.map = ["a": .null(WKTNullValue())] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -49,45 +49,45 @@ import Testing
   @Test(
     "Value fields serialize",
     arguments: [
-      (#"{"map":{},"repeated":[]}"#, T()),
+      (#"{}"#, T()),
       (
-        #"{"map":{},"repeated":[],"singular":42}"#,
+        #"{"singular":42}"#,
         T().with { $0.singular = .number(42) }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":"hello"}"#,
+        #"{"singular":"hello"}"#,
         T().with { $0.singular = .string("hello") }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":true}"#,
+        #"{"singular":true}"#,
         T().with { $0.singular = .bool(true) }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":{}}"#,
+        #"{"singular":{}}"#,
         T().with { $0.singular = .object([:]) }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":[]}"#,
+        #"{"singular":[]}"#,
         T().with { $0.singular = .array([]) }
       ),
       (
-        #"{"map":{},"optional":42,"repeated":[]}"#,
+        #"{"optional":42}"#,
         T().with { $0.optional = .number(42) }
       ),
       (
-        #"{"map":{},"repeated":[null]}"#,
+        #"{"repeated":[null]}"#,
         T().with { $0.repeated = [.null(WKTNullValue())] }
       ),
       (
-        #"{"map":{},"repeated":[42,"hello"]}"#,
+        #"{"repeated":[42,"hello"]}"#,
         T().with { $0.repeated = [.number(42), .string("hello")] }
       ),
       (
-        #"{"map":{"a":42},"repeated":[]}"#,
+        #"{"map":{"a":42}}"#,
         T().with { $0.map = ["a": .number(42)] }
       ),
       (
-        #"{"map":{"a":null},"repeated":[]}"#,
+        #"{"map":{"a":null}}"#,
         T().with { $0.map = ["a": .null(WKTNullValue())] }
       ),
     ]

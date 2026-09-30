@@ -23,21 +23,21 @@ import Testing
     "FloatValue fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular": null         }"#, T()),
-      (#"{"singular": 4.2          }"#, T().with { $0.singular = 4.2 }),
-      (#"{"singular": "4.2"        }"#, T().with { $0.singular = 4.2 }),
-      (#"{"repeated": []           }"#, T()),
-      (#"{"repeated": [4.2]        }"#, T().with { $0.repeated = [4.2] }),
-      (#"{"map":      {}           }"#, T()),
-      (#"{"map":      {"a": 4.2 }  }"#, T().with { $0.map = ["a": 4.2] }),
-      (#"{"singular": "Infinity"   }"#, T().with { $0.singular = .infinity }),
-      (#"{"singular": "-Infinity"  }"#, T().with { $0.singular = -.infinity }),
+      (#"{"singular":null}"#, T()),
+      (#"{"singular":4.2}"#, T().with { $0.singular = 4.2 }),
+      (#"{"singular":"4.2"}"#, T().with { $0.singular = 4.2 }),
+      (#"{}"#, T()),
+      (#"{"repeated":[4.2]}"#, T().with { $0.repeated = [4.2] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":4.2}}"#, T().with { $0.map = ["a": 4.2] }),
+      (#"{"singular":"Infinity"}"#, T().with { $0.singular = .infinity }),
+      (#"{"singular":"-Infinity"}"#, T().with { $0.singular = -.infinity }),
       (
-        #"{"repeated": ["Infinity", "-Infinity"]}"#,
+        #"{"repeated":["Infinity","-Infinity"]}"#,
         T().with { $0.repeated = [.infinity, -.infinity] }
       ),
-      (#"{"map":      {"a": "Infinity"} }"#, T().with { $0.map = ["a": .infinity] }),
-      (#"{"map":      {"a": "-Infinity"} }"#, T().with { $0.map = ["a": -.infinity] }),
+      (#"{"map":{"a":"Infinity"}}"#, T().with { $0.map = ["a": .infinity] }),
+      (#"{"map":{"a":"-Infinity"}}"#, T().with { $0.map = ["a": -.infinity] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -49,15 +49,15 @@ import Testing
     "FloatValue fields deserialize NaN",
     arguments: [
       (
-        #"{"singular": "NaN"        }"#,
+        #"{"singular":"NaN"}"#,
         { @Sendable (got: T) -> Float32? in got.singular }
       ),
       (
-        #"{"repeated": ["NaN"]      }"#,
+        #"{"repeated":["NaN"]}"#,
         { @Sendable (got: T) -> Float32? in got.repeated.first }
       ),
       (
-        #"{"map":      {"a": "NaN"} }"#,
+        #"{"map":{"a":"NaN"}}"#,
         { @Sendable (got: T) -> Float32? in got.map["a"] }
       ),
     ]
@@ -71,43 +71,43 @@ import Testing
     "FloatValue fields serialize",
     arguments: [
       (
-        #"{"map":{},"repeated":[]}"#,
+        #"{}"#,
         T()
       ),
       (
-        #"{"map":{},"repeated":[],"singular":4.2}"#,
+        #"{"singular":4.2}"#,
         T().with { $0.singular = 4.2 }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":"Infinity"}"#,
+        #"{"singular":"Infinity"}"#,
         T().with { $0.singular = .infinity }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":"-Infinity"}"#,
+        #"{"singular":"-Infinity"}"#,
         T().with { $0.singular = -.infinity }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":"NaN"}"#,
+        #"{"singular":"NaN"}"#,
         T().with { $0.singular = .nan }
       ),
       (
-        #"{"map":{},"repeated":["Infinity","-Infinity"]}"#,
+        #"{"repeated":["Infinity","-Infinity"]}"#,
         T().with { $0.repeated = [.infinity, -.infinity] }
       ),
       (
-        #"{"map":{},"repeated":["NaN"]}"#,
+        #"{"repeated":["NaN"]}"#,
         T().with { $0.repeated = [.nan] }
       ),
       (
-        #"{"map":{"a":"Infinity"},"repeated":[]}"#,
+        #"{"map":{"a":"Infinity"}}"#,
         T().with { $0.map = ["a": .infinity] }
       ),
       (
-        #"{"map":{"a":"-Infinity"},"repeated":[]}"#,
+        #"{"map":{"a":"-Infinity"}}"#,
         T().with { $0.map = ["a": -.infinity] }
       ),
       (
-        #"{"map":{"a":"NaN"},"repeated":[]}"#,
+        #"{"map":{"a":"NaN"}}"#,
         T().with { $0.map = ["a": .nan] }
       ),
     ]

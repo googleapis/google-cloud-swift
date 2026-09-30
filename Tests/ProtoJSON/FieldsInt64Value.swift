@@ -23,15 +23,15 @@ import Testing
     "Int64Value fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular": null         }"#, T()),
-      (#"{"singular": 42           }"#, T().with { $0.singular = 42 }),
-      (#"{"singular": "42"         }"#, T().with { $0.singular = 42 }),
-      (#"{"repeated": []           }"#, T()),
-      (#"{"repeated": [42]         }"#, T().with { $0.repeated = [42] }),
-      (#"{"map":      {}           }"#, T()),
-      (#"{"map":      {"a": 42 }   }"#, T().with { $0.map = ["a": 42] }),
-      (#"{"singular": "-9223372036854775808"}"#, T().with { $0.singular = Int64.min }),
-      (#"{"singular": "9223372036854775807" }"#, T().with { $0.singular = Int64.max }),
+      (#"{"singular":null}"#, T()),
+      (#"{"singular":42}"#, T().with { $0.singular = 42 }),
+      (#"{"singular":"42"}"#, T().with { $0.singular = 42 }),
+      (#"{}"#, T()),
+      (#"{"repeated":[42]}"#, T().with { $0.repeated = [42] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":42}}"#, T().with { $0.map = ["a": 42] }),
+      (#"{"singular":"-9223372036854775808"}"#, T().with { $0.singular = Int64.min }),
+      (#"{"singular":"9223372036854775807"}"#, T().with { $0.singular = Int64.max }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -42,16 +42,16 @@ import Testing
   @Test(
     "Int64Value fields serialize",
     arguments: [
-      (#"{"map":{},"repeated":[]}"#, T()),
-      (#"{"map":{},"repeated":[],"singular":"42"}"#, T().with { $0.singular = 42 }),
-      (#"{"map":{},"repeated":["42"]}"#, T().with { $0.repeated = [42] }),
-      (#"{"map":{"a":"42"},"repeated":[]}"#, T().with { $0.map = ["a": 42] }),
+      (#"{}"#, T()),
+      (#"{"singular":"42"}"#, T().with { $0.singular = 42 }),
+      (#"{"repeated":["42"]}"#, T().with { $0.repeated = [42] }),
+      (#"{"map":{"a":"42"}}"#, T().with { $0.map = ["a": 42] }),
       (
-        #"{"map":{},"repeated":[],"singular":"-9223372036854775808"}"#,
+        #"{"singular":"-9223372036854775808"}"#,
         T().with { $0.singular = Int64.min }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":"9223372036854775807"}"#,
+        #"{"singular":"9223372036854775807"}"#,
         T().with { $0.singular = Int64.max }
       ),
     ]

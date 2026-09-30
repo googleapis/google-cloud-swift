@@ -23,21 +23,21 @@ import Testing
     "bool fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular"   : false             }"#, T()),
-      (#"{"singular"   : true              }"#, T().with { $0.singular = true }),
-      (#"{"option"     : null              }"#, T()),
-      (#"{"option"     : false             }"#, T().with { $0.option = false }),
-      (#"{"option"     : true              }"#, T().with { $0.option = true }),
-      (#"{"repeated"   : []                }"#, T()),
-      (#"{"repeated"   : [false]           }"#, T().with { $0.repeated = [false] }),
-      (#"{"repeated"   : [true, false]     }"#, T().with { $0.repeated = [true, false] }),
-      (#"{"mapKey"     : {}                }"#, T()),
-      (#"{"mapKey"     : {"true": "a"}     }"#, T().with { $0.mapKey = [true: "a"] }),
-      (#"{"mapKeyValue": {"true": false}   }"#, T().with { $0.mapKeyValue = [true: false] }),
-      (#"{"mapKeyValue": {"false": "true"} }"#, T().with { $0.mapKeyValue = [false: true] }),
-      (#"{"mapValue"   : {}                }"#, T()),
-      (#"{"mapValue"   : {"a": true}       }"#, T().with { $0.mapValue = ["a": true] }),
-      (#"{"mapValue"   : {"a": "true"}     }"#, T().with { $0.mapValue = ["a": true] }),
+      (#"{"singular":false}"#, T()),
+      (#"{"singular":true}"#, T().with { $0.singular = true }),
+      (#"{"option":null}"#, T()),
+      (#"{"option":false}"#, T().with { $0.option = false }),
+      (#"{"option":true}"#, T().with { $0.option = true }),
+      (#"{}"#, T()),
+      (#"{"repeated":[false]}"#, T().with { $0.repeated = [false] }),
+      (#"{"repeated":[true,false]}"#, T().with { $0.repeated = [true, false] }),
+      (#"{}"#, T()),
+      (#"{"mapKey":{"true":"a"}}"#, T().with { $0.mapKey = [true: "a"] }),
+      (#"{"mapKeyValue":{"true":false}}"#, T().with { $0.mapKeyValue = [true: false] }),
+      (#"{"mapKeyValue":{"false":"true"}}"#, T().with { $0.mapKeyValue = [false: true] }),
+      (#"{}"#, T()),
+      (#"{"mapValue":{"a":true}}"#, T().with { $0.mapValue = ["a": true] }),
+      (#"{"mapValue":{"a":"true"}}"#, T().with { $0.mapValue = ["a": true] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -48,15 +48,15 @@ import Testing
   @Test(
     arguments: [
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":false}"#,
+        #"{"singular":false}"#,
         T()
       ),
       (
-        #"{"mapKey":{"false":"a"},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":false}"#,
+        #"{"mapKey":{"false":"a"},"singular":false}"#,
         T().with { $0.mapKey = [false: "a"] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{"false":true},"mapValue":{},"repeated":[],"singular":false}"#,
+        #"{"mapKeyValue":{"false":true},"singular":false}"#,
         T().with { $0.mapKeyValue = [false: true] }
       ),
     ])

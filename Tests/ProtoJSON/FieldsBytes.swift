@@ -23,16 +23,16 @@ import Testing
     "bytes fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular": ""            }"#, T()),
-      (#"{"singular": "NDI="        }"#, T().with { $0.singular = Data("42".utf8) }),
-      (#"{"option":   null          }"#, T()),
-      (#"{"option":   ""            }"#, T().with { $0.option = Data() }),
-      (#"{"option":   "NDI="        }"#, T().with { $0.option = Data("42".utf8) }),
-      (#"{"repeated": []            }"#, T()),
-      (#"{"repeated": ["NDI="]      }"#, T().with { $0.repeated = [Data("42".utf8)] }),
-      (#"{"repeated": ["NDI=", ""]  }"#, T().with { $0.repeated = [Data("42".utf8), Data()] }),
-      (#"{"map":      {}            }"#, T()),
-      (#"{"map":      {"a": "NDI="} }"#, T().with { $0.map = ["a": Data("42".utf8)] }),
+      (#"{"singular":""}"#, T()),
+      (#"{"singular":"NDI="}"#, T().with { $0.singular = Data("42".utf8) }),
+      (#"{"option":null}"#, T()),
+      (#"{"option":""}"#, T().with { $0.option = Data() }),
+      (#"{"option":"NDI="}"#, T().with { $0.option = Data("42".utf8) }),
+      (#"{}"#, T()),
+      (#"{"repeated":["NDI="]}"#, T().with { $0.repeated = [Data("42".utf8)] }),
+      (#"{"repeated":["NDI=",""]}"#, T().with { $0.repeated = [Data("42".utf8), Data()] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":"NDI="}}"#, T().with { $0.map = ["a": Data("42".utf8)] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -43,21 +43,21 @@ import Testing
   @Test(
     "bytes fields serialize",
     arguments: [
-      (#"{"map":{},"repeated":[],"singular":""}"#, T()),
+      (#"{"singular":""}"#, T()),
       (
-        #"{"map":{},"repeated":[],"singular":"NDI="}"#,
+        #"{"singular":"NDI="}"#,
         T().with { $0.singular = Data("42".utf8) }
       ),
       (
-        #"{"map":{},"option":"NDI=","repeated":[],"singular":""}"#,
+        #"{"option":"NDI=","singular":""}"#,
         T().with { $0.option = Data("42".utf8) }
       ),
       (
-        #"{"map":{},"repeated":["NDI="],"singular":""}"#,
+        #"{"repeated":["NDI="],"singular":""}"#,
         T().with { $0.repeated = [Data("42".utf8)] }
       ),
       (
-        #"{"map":{"a":"NDI="},"repeated":[],"singular":""}"#,
+        #"{"map":{"a":"NDI="},"singular":""}"#,
         T().with { $0.map = ["a": Data("42".utf8)] }
       ),
     ]

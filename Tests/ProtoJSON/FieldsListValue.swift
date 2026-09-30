@@ -23,18 +23,18 @@ import Testing
     "ListValue fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular": null         }"#, T()),
-      (#"{"singular": []           }"#, T().with { $0.singular = [] }),
-      (#"{"singular": [42]         }"#, T().with { $0.singular = [.number(42)] }),
-      (#"{"singular": ["hello"]    }"#, T().with { $0.singular = [.string("hello")] }),
+      (#"{"singular":null}"#, T()),
+      (#"{"singular":[]}"#, T().with { $0.singular = [] }),
+      (#"{"singular":[42]}"#, T().with { $0.singular = [.number(42)] }),
+      (#"{"singular":["hello"]}"#, T().with { $0.singular = [.string("hello")] }),
       (
-        #"{"singular": [42, "hello"]}"#, T().with { $0.singular = [.number(42), .string("hello")] }
+        #"{"singular":[42,"hello"]}"#, T().with { $0.singular = [.number(42), .string("hello")] }
       ),
-      (#"{"optional": [42]         }"#, T().with { $0.optional = [.number(42)] }),
-      (#"{"repeated": []           }"#, T()),
-      (#"{"repeated": [[42]]       }"#, T().with { $0.repeated = [[.number(42)]] }),
-      (#"{"map":      {}           }"#, T()),
-      (#"{"map":      {"a": [42] } }"#, T().with { $0.map = ["a": [.number(42)]] }),
+      (#"{"optional":[42]}"#, T().with { $0.optional = [.number(42)] }),
+      (#"{}"#, T()),
+      (#"{"repeated":[[42]]}"#, T().with { $0.repeated = [[.number(42)]] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":[42]}}"#, T().with { $0.map = ["a": [.number(42)]] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -45,33 +45,33 @@ import Testing
   @Test(
     "ListValue fields serialize",
     arguments: [
-      (#"{"map":{},"repeated":[]}"#, T()),
+      (#"{}"#, T()),
       (
-        #"{"map":{},"repeated":[],"singular":[]}"#,
+        #"{"singular":[]}"#,
         T().with { $0.singular = [] }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":[42]}"#,
+        #"{"singular":[42]}"#,
         T().with { $0.singular = [.number(42)] }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":["hello"]}"#,
+        #"{"singular":["hello"]}"#,
         T().with { $0.singular = [.string("hello")] }
       ),
       (
-        #"{"map":{},"repeated":[],"singular":[42,"hello"]}"#,
+        #"{"singular":[42,"hello"]}"#,
         T().with { $0.singular = [.number(42), .string("hello")] }
       ),
       (
-        #"{"map":{},"optional":[42],"repeated":[]}"#,
+        #"{"optional":[42]}"#,
         T().with { $0.optional = [.number(42)] }
       ),
       (
-        #"{"map":{},"repeated":[[42]]}"#,
+        #"{"repeated":[[42]]}"#,
         T().with { $0.repeated = [[.number(42)]] }
       ),
       (
-        #"{"map":{"a":[42]},"repeated":[]}"#,
+        #"{"map":{"a":[42]}}"#,
         T().with { $0.map = ["a": [.number(42)]] }
       ),
     ]

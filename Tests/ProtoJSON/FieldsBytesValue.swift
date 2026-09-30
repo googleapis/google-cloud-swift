@@ -23,11 +23,11 @@ import Testing
     "BytesValue fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular": "NDI="         }"#, T().with { $0.singular = Data("42".utf8) }),
-      (#"{"repeated": []             }"#, T()),
-      (#"{"repeated": ["NDI="]       }"#, T().with { $0.repeated = [Data("42".utf8)] }),
-      (#"{"map":      {}             }"#, T()),
-      (#"{"map":      {"a": "NDI=" } }"#, T().with { $0.map = ["a": Data("42".utf8)] }),
+      (#"{"singular":"NDI="}"#, T().with { $0.singular = Data("42".utf8) }),
+      (#"{}"#, T()),
+      (#"{"repeated":["NDI="]}"#, T().with { $0.repeated = [Data("42".utf8)] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":"NDI="}}"#, T().with { $0.map = ["a": Data("42".utf8)] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -38,17 +38,17 @@ import Testing
   @Test(
     "BytesValue fields serialize",
     arguments: [
-      (#"{"map":{},"repeated":[]}"#, T()),
+      (#"{}"#, T()),
       (
-        #"{"map":{},"repeated":[],"singular":"NDI="}"#,
+        #"{"singular":"NDI="}"#,
         T().with { $0.singular = Data("42".utf8) }
       ),
       (
-        #"{"map":{},"repeated":["NDI="]}"#,
+        #"{"repeated":["NDI="]}"#,
         T().with { $0.repeated = [Data("42".utf8)] }
       ),
       (
-        #"{"map":{"a":"NDI="},"repeated":[]}"#,
+        #"{"map":{"a":"NDI="}}"#,
         T().with { $0.map = ["a": Data("42".utf8)] }
       ),
     ]

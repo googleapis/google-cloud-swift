@@ -52,15 +52,15 @@ import Testing
 
   @Test(
     arguments: [
-      (#"{"map":{},"repeated":[]}"#, T()),
-      (#"{"map":{},"optional":"","repeated":[]}"#, T().with { $0.optional = Data() }),
-      (#"{"map":{},"optional":"Pz8_","repeated":[]}"#, T().with { $0.optional = Data("???".utf8) }),
-      (#"{"map":{},"repeated":["Pz8_"]}"#, T().with { $0.repeated = [Data("???".utf8)] }),
+      (#"{}"#, T()),
+      (#"{"optional":""}"#, T().with { $0.optional = Data() }),
+      (#"{"optional":"Pz8_"}"#, T().with { $0.optional = Data("???".utf8) }),
+      (#"{"repeated":["Pz8_"]}"#, T().with { $0.repeated = [Data("???".utf8)] }),
       (
-        #"{"map":{},"repeated":["Pz8_",""]}"#,
+        #"{"repeated":["Pz8_",""]}"#,
         T().with { $0.repeated = [Data("???".utf8), Data()] }
       ),
-      (#"{"map":{"a":"Pz8_"},"repeated":[]}"#, T().with { $0.map = ["a": Data("???".utf8)] }),
+      (#"{"map":{"a":"Pz8_"}}"#, T().with { $0.map = ["a": Data("???".utf8)] }),
     ])
   func roundtrip(want: String, input: T) throws {
     let encoder = _ProtoJSONEncoder()

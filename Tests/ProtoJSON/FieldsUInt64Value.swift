@@ -23,14 +23,14 @@ import Testing
     "UInt64Value fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular": null         }"#, T()),
-      (#"{"singular": 42           }"#, T().with { $0.singular = 42 }),
-      (#"{"singular": "42"         }"#, T().with { $0.singular = 42 }),
-      (#"{"repeated": []           }"#, T()),
-      (#"{"repeated": [42]         }"#, T().with { $0.repeated = [42] }),
-      (#"{"map":      {}           }"#, T()),
-      (#"{"map":      {"a": 42 }   }"#, T().with { $0.map = ["a": 42] }),
-      (#"{"singular": "18446744073709551615"}"#, T().with { $0.singular = UInt64.max }),
+      (#"{"singular":null}"#, T()),
+      (#"{"singular":42}"#, T().with { $0.singular = 42 }),
+      (#"{"singular":"42"}"#, T().with { $0.singular = 42 }),
+      (#"{}"#, T()),
+      (#"{"repeated":[42]}"#, T().with { $0.repeated = [42] }),
+      (#"{}"#, T()),
+      (#"{"map":{"a":42}}"#, T().with { $0.map = ["a": 42] }),
+      (#"{"singular":"18446744073709551615"}"#, T().with { $0.singular = UInt64.max }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -41,12 +41,12 @@ import Testing
   @Test(
     "UInt64Value fields serialize",
     arguments: [
-      (#"{"map":{},"repeated":[]}"#, T()),
-      (#"{"map":{},"repeated":[],"singular":"42"}"#, T().with { $0.singular = 42 }),
-      (#"{"map":{},"repeated":["42"]}"#, T().with { $0.repeated = [42] }),
-      (#"{"map":{"a":"42"},"repeated":[]}"#, T().with { $0.map = ["a": 42] }),
+      (#"{}"#, T()),
+      (#"{"singular":"42"}"#, T().with { $0.singular = 42 }),
+      (#"{"repeated":["42"]}"#, T().with { $0.repeated = [42] }),
+      (#"{"map":{"a":"42"}}"#, T().with { $0.map = ["a": 42] }),
       (
-        #"{"map":{},"repeated":[],"singular":"18446744073709551615"}"#,
+        #"{"singular":"18446744073709551615"}"#,
         T().with { $0.singular = UInt64.max }
       ),
     ]

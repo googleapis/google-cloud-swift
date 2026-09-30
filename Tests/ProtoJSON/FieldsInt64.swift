@@ -23,26 +23,26 @@ import Testing
     "int64 fields deserialize",
     arguments: [
       (#"{}"#, T()),
-      (#"{"singular"   : 0                 }"#, T()),
-      (#"{"singular"   : 42                }"#, T().with { $0.singular = 42 }),
-      (#"{"singular"   : "42"              }"#, T().with { $0.singular = 42 }),
-      (#"{"option"     : null              }"#, T()),
-      (#"{"option"     : 0                 }"#, T().with { $0.option = 0 }),
-      (#"{"option"     : 42                }"#, T().with { $0.option = 42 }),
-      (#"{"option"     : "42"              }"#, T().with { $0.option = 42 }),
-      (#"{"repeated"   : []                }"#, T()),
-      (#"{"repeated"   : [0]               }"#, T().with { $0.repeated = [0] }),
-      (#"{"repeated"   : [4, 2]            }"#, T().with { $0.repeated = [4, 2] }),
-      (#"{"repeated"   : ["4", "2"]        }"#, T().with { $0.repeated = [4, 2] }),
-      (#"{"mapKey"     : {}                }"#, T()),
-      (#"{"mapKey"     : {"42": "a"}       }"#, T().with { $0.mapKey = [42: "a"] }),
-      (#"{"mapKeyValue": {"42": 7}         }"#, T().with { $0.mapKeyValue = [42: 7] }),
-      (#"{"mapKeyValue": {"7": "42"}       }"#, T().with { $0.mapKeyValue = [7: 42] }),
-      (#"{"mapValue"   : {}                }"#, T()),
-      (#"{"mapValue"   : {"a": 42}         }"#, T().with { $0.mapValue = ["a": 42] }),
-      (#"{"mapValue"   : {"a": "42"}       }"#, T().with { $0.mapValue = ["a": 42] }),
-      (#"{"singular"   : "-9223372036854775808"}"#, T().with { $0.singular = Int64.min }),
-      (#"{"singular"   : "9223372036854775807" }"#, T().with { $0.singular = Int64.max }),
+      (#"{"singular":0}"#, T()),
+      (#"{"singular":42}"#, T().with { $0.singular = 42 }),
+      (#"{"singular":"42"}"#, T().with { $0.singular = 42 }),
+      (#"{"option":null}"#, T()),
+      (#"{"option":0}"#, T().with { $0.option = 0 }),
+      (#"{"option":42}"#, T().with { $0.option = 42 }),
+      (#"{"option":"42"}"#, T().with { $0.option = 42 }),
+      (#"{}"#, T()),
+      (#"{"repeated":[0]}"#, T().with { $0.repeated = [0] }),
+      (#"{"repeated":[4,2]}"#, T().with { $0.repeated = [4, 2] }),
+      (#"{"repeated":["4","2"]}"#, T().with { $0.repeated = [4, 2] }),
+      (#"{}"#, T()),
+      (#"{"mapKey":{"42":"a"}}"#, T().with { $0.mapKey = [42: "a"] }),
+      (#"{"mapKeyValue":{"42":7}}"#, T().with { $0.mapKeyValue = [42: 7] }),
+      (#"{"mapKeyValue":{"7":"42"}}"#, T().with { $0.mapKeyValue = [7: 42] }),
+      (#"{}"#, T()),
+      (#"{"mapValue":{"a":42}}"#, T().with { $0.mapValue = ["a": 42] }),
+      (#"{"mapValue":{"a":"42"}}"#, T().with { $0.mapValue = ["a": 42] }),
+      (#"{"singular":"-9223372036854775808"}"#, T().with { $0.singular = Int64.min }),
+      (#"{"singular":"9223372036854775807"}"#, T().with { $0.singular = Int64.max }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -53,39 +53,39 @@ import Testing
   @Test(
     arguments: [
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":"0"}"#,
+        #"{"singular":"0"}"#,
         T()
       ),
       (
-        #"{"mapKey":{"42":"a"},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":"0"}"#,
+        #"{"mapKey":{"42":"a"},"singular":"0"}"#,
         T().with { $0.mapKey = [42: "a"] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{"42":"7"},"mapValue":{},"repeated":[],"singular":"0"}"#,
+        #"{"mapKeyValue":{"42":"7"},"singular":"0"}"#,
         T().with { $0.mapKeyValue = [42: 7] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":"42","repeated":[],"singular":"0"}"#,
+        #"{"option":"42","singular":"0"}"#,
         T().with { $0.option = 42 }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":["4","2"],"singular":"0"}"#,
+        #"{"repeated":["4","2"],"singular":"0"}"#,
         T().with { $0.repeated = [4, 2] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{"a":"42"},"repeated":[],"singular":"0"}"#,
+        #"{"mapValue":{"a":"42"},"singular":"0"}"#,
         T().with { $0.mapValue = ["a": 42] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":"42"}"#,
+        #"{"singular":"42"}"#,
         T().with { $0.singular = 42 }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":"-9223372036854775808"}"#,
+        #"{"singular":"-9223372036854775808"}"#,
         T().with { $0.singular = Int64.min }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"repeated":[],"singular":"9223372036854775807"}"#,
+        #"{"singular":"9223372036854775807"}"#,
         T().with { $0.singular = Int64.max }
       ),
     ])

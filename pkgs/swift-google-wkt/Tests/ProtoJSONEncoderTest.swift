@@ -204,4 +204,44 @@ import Testing
     let expected = try encoder.encode(Self.omitModel)
     #expect(data == expected)
   }
+
+  struct CollectionModel: Codable, Equatable {
+    var name: String = "test"
+    var emptyList: [String] = []
+    var populatedList: [String] = ["a", "b"]
+    var emptyMap: [String: String] = [:]
+    var populatedMap: [String: String] = ["k": "v"]
+    var optionalEmptyList: [String]? = []
+    var optionalNilList: [String]? = nil
+    var matrix: [[Int]] = [[], [1, 2]]
+  }
+
+  @Test func encodeOmitEmptyCollectionsByDefault() throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+
+    let model = CollectionModel()
+    let data = try encoder.encode(model)
+    let jsonString = try #require(String(data: data, encoding: .utf8))
+
+    #expect(
+      jsonString
+        == #"{"matrix":[[],[1,2]],"name":"test","optionalEmptyList":[],"populatedList":["a","b"],"populatedMap":{"k":"v"}}"#
+    )
+  }
+
+  @Test func encodePreserveEmptyCollectionsWhenDisabled() throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    encoder.omitEmptyCollections = false
+
+    let model = CollectionModel()
+    let data = try encoder.encode(model)
+    let jsonString = try #require(String(data: data, encoding: .utf8))
+
+    #expect(
+      jsonString
+        == #"{"emptyList":[],"emptyMap":{},"matrix":[[],[1,2]],"name":"test","optionalEmptyList":[],"populatedList":["a","b"],"populatedMap":{"k":"v"}}"#
+    )
+  }
 }

@@ -27,20 +27,20 @@ import Testing
     arguments: [
       (#"{}"#, T()),
       (
-        #"{"singular": "userDisplayName,photo"}"#,
+        #"{"singular":"userDisplayName,photo"}"#,
         T().with { $0.singular = mask(["user_display_name", "photo"]) }
       ),
       (
-        #"{"optional": "userDisplayName,photo"}"#,
+        #"{"optional":"userDisplayName,photo"}"#,
         T().with { $0.optional = mask(["user_display_name", "photo"]) }
       ),
-      (#"{"repeated": []}"#, T()),
+      (#"{}"#, T()),
       (
-        #"{"repeated": ["userDisplayName,photo"]}"#,
+        #"{"repeated":["userDisplayName,photo"]}"#,
         T().with { $0.repeated = [mask(["user_display_name", "photo"])] }
       ),
       (
-        #"{"map":      {"a": "userDisplayName,photo"}}"#,
+        #"{"map":{"a":"userDisplayName,photo"}}"#,
         T().with { $0.map = ["a": mask(["user_display_name", "photo"])] }
       ),
     ])
@@ -53,21 +53,21 @@ import Testing
   @Test(
     "FieldMask fields serialize",
     arguments: [
-      (#"{"map":{},"repeated":[]}"#, T()),
+      (#"{}"#, T()),
       (
-        #"{"map":{},"repeated":[],"singular":"userDisplayName,photo"}"#,
+        #"{"singular":"userDisplayName,photo"}"#,
         T().with { $0.singular = mask(["user_display_name", "photo"]) }
       ),
       (
-        #"{"map":{},"optional":"userDisplayName,photo","repeated":[]}"#,
+        #"{"optional":"userDisplayName,photo"}"#,
         T().with { $0.optional = mask(["user_display_name", "photo"]) }
       ),
       (
-        #"{"map":{},"repeated":["userDisplayName,photo"]}"#,
+        #"{"repeated":["userDisplayName,photo"]}"#,
         T().with { $0.repeated = [mask(["user_display_name", "photo"])] }
       ),
       (
-        #"{"map":{"a":"userDisplayName,photo"},"repeated":[]}"#,
+        #"{"map":{"a":"userDisplayName,photo"}}"#,
         T().with { $0.map = ["a": mask(["user_display_name", "photo"])] }
       ),
     ]
