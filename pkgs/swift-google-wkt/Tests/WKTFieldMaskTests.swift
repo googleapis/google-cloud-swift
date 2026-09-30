@@ -110,4 +110,14 @@ import Testing
     fieldMask.paths.append("photo")
     #expect(fieldMask.paths == ["user.display_name", "photo"])
   }
+
+  @Test func expressibleByArrayLiteral() {
+    let emptyMask: WKTFieldMask = []
+    #expect(emptyMask == WKTFieldMask(paths: []))
+    #expect(emptyMask.paths.isEmpty)
+
+    let fieldMask: WKTFieldMask = ["user.display_name", "photo"]
+    #expect(fieldMask == WKTFieldMask(paths: ["user.display_name", "photo"]))
+    #expect(fieldMask.paths == ["user.display_name", "photo"])
+  }
 }

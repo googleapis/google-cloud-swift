@@ -57,6 +57,13 @@ public struct WKTFieldMask: Codable, Equatable, Sendable {
   }
 }
 
+extension WKTFieldMask: ExpressibleByArrayLiteral {
+  /// Initialize a new instance of `WKTFieldMask` from an array literal of field paths.
+  public init(arrayLiteral elements: String...) {
+    self.init(paths: elements)
+  }
+}
+
 // Makes `WKTFieldMask` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTFieldMask: _AnyPackable {
   public static var _anyTypeUrl: String {
