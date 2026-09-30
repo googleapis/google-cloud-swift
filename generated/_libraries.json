@@ -1457,15 +1457,6 @@
       "Product": "Cloud Text-to-Speech API"
     }
   ],
-  "swift-google-cloud-timeseriesinsights-v1": [
-    {
-      "PkgName": "swift-google-cloud-timeseriesinsights-v1",
-      "Language": "Swift",
-      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-timeseriesinsights-v1/0.4.0/documentation",
-      "APIShortname": "timeseriesinsights",
-      "Product": "Timeseries Insights API"
-    }
-  ],
   "swift-google-cloud-tpu-v2": [
     {
       "PkgName": "swift-google-cloud-tpu-v2",
