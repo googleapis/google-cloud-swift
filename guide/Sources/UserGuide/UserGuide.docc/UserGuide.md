@@ -28,6 +28,7 @@ best-practices to retry transient RPC errors.
 - <doc:override-polling-policy>
 - <doc:long-running-operations>
 - <doc:pagination>
+- <doc:update-resource>
 - <doc:package-traits>
 - <doc:generate-text-using-the-vertex-ai-gemini-api>
 - <doc:deploy-to-cloud-run>
