@@ -32,3 +32,4 @@ best-practices to retry transient RPC errors.
 - <doc:package-traits>
 - <doc:generate-text-using-the-vertex-ai-gemini-api>
 - <doc:deploy-to-cloud-run>
+- <doc:post-quantum-cryptography>
