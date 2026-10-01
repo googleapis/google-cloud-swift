@@ -23,7 +23,6 @@ source "${SCRIPT_DIR}/fetch.sh"
 source "${SCRIPT_DIR}/build-flags.sh"
 
 flags=("${build_flags[@]}")
-source "${REPO_ROOT}/ci/package-dependencies.sh"
 if [[ -z "${PROJECT_ID:-}" ]]; then
     echo "✗ missing PROJECT_ID environment variable"
     exit 1
@@ -50,7 +49,6 @@ export GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/109
 errors=0
 count=1
 echo "--- Running top-level integration tests ---"
-edit_package_dependencies .
 if swift test "${flags[@]}" --disable-automatic-resolution --quiet; then
     echo; echo "✓ integration tests passed"
 else
@@ -58,13 +56,10 @@ else
     errors=$((errors + 1))
 fi
 
-restore_package_dependencies .
-
 for dir in pkgs/*; do
     [[ -f "${dir}/Package.swift" ]] || continue
     [[ -d "${dir}/Tests/IntegrationTests" ]] || continue
     count=$((count + 1))
-    edit_package_dependencies "${dir}"
     echo "--- Running ${dir} integration tests ---"
     if swift test "${flags[@]}" --quiet --package-path "${dir}" --enable-all-traits; then
         echo; echo "✓ ${dir} passed"
@@ -72,7 +67,6 @@ for dir in pkgs/*; do
         echo; echo "✗ ${dir} failed"
         errors=$((errors + 1))
     fi
-    restore_package_dependencies "${dir}"
 done
 
 echo; echo; echo "${count} local package(s) tested, ${errors} failure(s)."

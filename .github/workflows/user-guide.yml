@@ -48,9 +48,8 @@ jobs:
           )
           # Build the documentation against the packages in this repository,
           # not against the last published version of each package.
-          source ci/package-dependencies.sh
+          export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS="${PWD}"
           mkdir -p .render
-          edit_package_dependencies "."
           for target in "${!targets[@]}"; do
             dir="${target[${target}]}"
             swift package \

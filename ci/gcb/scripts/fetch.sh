@@ -16,8 +16,7 @@
 
 _FETCH_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${_FETCH_SCRIPT_DIR}/../../.." && pwd)"
-source "${REPO_ROOT}/ci/package-dependencies.sh"
-edit_package_dependencies "."
+export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS="${REPO_ROOT}"
 
 echo "--- SWIFT VERSION ---"
 swift --version

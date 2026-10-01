@@ -29,7 +29,7 @@ Use the following command to test a single package:
 env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift test -Xswiftc -warnings-as-errors --package-path pkgs/${package_name}
 ```
 
-Running `./ci/test.sh` automatically overrides dependencies with local working directories for all packages in the repository and restores them on exit via `ci/package-dependencies.sh`.
+Running `./ci/test.sh` automatically resolves dependencies using local working directories for all packages in the repository via `GOOGLE_CLOUD_SWIFT_LOCAL_DEPS` configured in `ci/build-flags.sh`.
 
 ## Code Generation (`generated/`)
 
@@ -52,7 +52,7 @@ Running `./ci/test.sh` automatically overrides dependencies with local working d
   ```bash
   env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift test -Xswiftc -warnings-as-errors --package-path pkgs/${package_name}
   ```
-  If testing changes to `swift-google-auth` or `swift-google-wkt`, remember to put the dependency into edit mode first (see above) or run `ci/test.sh`.
+  If testing changes to `swift-google-auth` or `swift-google-wkt`, ensure `GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true` is set or run `ci/test.sh`.
 - **Global Validation**: To perform full validation on all packages (formatting, linting, test coverage), examine the workflow scripts in the `ci/` directory:
   ```bash
   ./ci/lint.sh pr

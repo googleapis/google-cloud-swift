@@ -115,11 +115,10 @@ The integration tests check for the presence of the following environment variab
 
 ### 4.2 Execute the Test
 
-Before running root tests, link local package dependencies using `ci/package-dependencies.sh`:
+Before running root tests, enable local package dependencies:
 
 ```bash
-source ci/package-dependencies.sh
-edit_package_dependencies .
+export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true
 ```
 
 #### Run Google OIDC Test:
@@ -136,11 +135,6 @@ GOOGLE_CLOUD_PROJECT="rust-external-account-joonix" \
 APPLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/1092239828259/locations/global/workloadIdentityPools/google-idp/providers/apple-idp" \
 APPLE_ID_TOKEN="<PASTE_FRESH_APPLE_ID_TOKEN>" \
 swift test -q --filter ExternalAccountIntegrationTests/testAppleIDWorkloadIdentityFederation
-```
-
-When finished, restore the root package manifest:
-```bash
-restore_package_dependencies .
 ```
 
 ### 4.3 Expected Output

@@ -320,9 +320,9 @@ Each Google Cloud service and version has its own Swift package (for example,
   independently.
 - **Remote dependencies by default:** In `Package.swift`, packages declare
   dependencies on remote GitHub repositories (`https://github.com/googleapis/...`).
-  During local development, developer workflows (`swift package edit`,
-  `ci/test.sh`, and `ci/package-dependencies.sh`) temporarily override remote
-  references with local monorepo checkouts.
+  During local development, developer workflows (`GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true`,
+  `ci/test.sh`, and `ci/build-flags.sh`) resolve references using local monorepo
+  checkouts.
 
 #### Split repositories and distribution
 
@@ -693,6 +693,6 @@ auto-generated client libraries:
 - `Package.swift`: Root package manifest linking local packages for development
   and CI verification.
 - `ci/*`: Continuous integration scripts for linting (`ci/lint.sh`), testing
-  (`ci/test.sh`), and dependency management (`ci/package-dependencies.sh`).
+  (`ci/test.sh`), and build flags (`ci/build-flags.sh`).
 - `doc/*`: Contributor documentation, how-to guides, and architectural designs.
 - `guide/*`: Tutorials and code snippets.

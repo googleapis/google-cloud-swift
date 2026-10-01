@@ -27,7 +27,6 @@ count=0
 
 flags=("${build_flags[@]}")
 flags+=(--sanitize=address)
-source "${REPO_ROOT}/ci/package-dependencies.sh"
 mapfile -t packages < <(find . -type f -name 'Package.swift' | grep -v /generated/ | xargs -I{} dirname {} | sort)
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
@@ -36,8 +35,6 @@ for dir in "${packages[@]}"; do
     if [[ ${dir} == . ]]; then
         name="top-level package"
     fi
-
-    edit_package_dependencies "${dir}"
 
     pkg_flags=("${flags[@]}")
     if [[ "${dir}" == "." ]]; then
@@ -51,7 +48,6 @@ for dir in "${packages[@]}"; do
         cat ${dir}/.build.log
         echo "✗ ${name} failed to build"
         errors=$((errors + 1))
-        restore_package_dependencies "${dir}"
         continue
     fi
 
@@ -65,8 +61,6 @@ for dir in "${packages[@]}"; do
             errors=$((errors + 1))
         fi
     fi
-
-    restore_package_dependencies "${dir}"
 done
 
 echo; echo; echo "${count} local package(s) tested, ${errors} failure(s)."

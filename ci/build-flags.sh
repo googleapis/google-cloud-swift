@@ -23,6 +23,8 @@ build_flags=(
     --scratch-path "${GOOGLE_CLOUD_SWIFT_SCRATCH_PATH:-${REPO_ROOT}/.build-cache}"
 )
 
+export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS="${REPO_ROOT}"
+
 # Swift < 6.4 cannot honor the `@diagnose` attributes in the generated code.
 # The remaining builds stay strict.
 source "${_BUILD_FLAGS_SCRIPT_DIR}/swift-version.sh"

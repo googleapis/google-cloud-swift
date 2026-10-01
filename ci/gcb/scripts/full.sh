@@ -45,7 +45,6 @@ if (( shard_index >= shard_count )); then
 fi
 
 flags=("${build_flags[@]}")
-source "${REPO_ROOT}/ci/package-dependencies.sh"
 # By default, build all the packages. We search for `Package.swift` files
 mapfile -t packages < <(find . \( -name Sources -o -name .build -o -name .build-cache \) -prune -o -type f -name Package.swift -exec dirname {} \; | sort -u)
 # On PRs, detect any new libraries and compile their documentation. Without this
@@ -87,8 +86,6 @@ for dir in "${packages[@]}"; do
         name="top-level package"
     fi
 
-    edit_package_dependencies "${dir}"
-
     pkg_flags=("${flags[@]}")
     if [[ "${dir}" == "." ]]; then
         pkg_flags+=(--disable-automatic-resolution)
@@ -101,11 +98,8 @@ for dir in "${packages[@]}"; do
         cat "${dir}/.test.log"
         echo; echo "✗ ${name} failed to build"
         errors=$((errors + 1))
-        restore_package_dependencies "${dir}"
         continue
     fi
-
-    restore_package_dependencies "${dir}"
 done
 
 echo; echo; echo "${count} local package(s) built, ${errors} failure(s)."

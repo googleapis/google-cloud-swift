@@ -38,8 +38,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          source ci/package-dependencies.sh
-          edit_package_dependencies "."
+          export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS="${PWD}"
           cache_flags=(--scratch-path "$PWD/.build-cache")
           flags=(
             "${cache_flags[@]}"

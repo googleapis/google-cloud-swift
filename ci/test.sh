@@ -32,13 +32,10 @@ IFS=$'\n'
 packages=($(git ls-files -- 'Package.swift' 'pkgs/*Package.swift' | xargs -I{} dirname {} | sort))
 unset IFS
 source "${SCRIPT_DIR}/build-flags.sh"
-source "${SCRIPT_DIR}/package-dependencies.sh"
 
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))
-
-    edit_package_dependencies "${dir}"
 
     pkg_flags=("${flags[@]}")
     if [[ "${dir}" == "." ]]; then
@@ -52,7 +49,6 @@ for dir in "${packages[@]}"; do
         echo "::endgroup::"
         echo "::error:: ✗ ${dir} failed to build" >&2
         errors=$((errors + 1))
-        restore_package_dependencies "${dir}"
         continue
     fi
 
@@ -69,8 +65,6 @@ for dir in "${packages[@]}"; do
     else
         echo "::endgroup::"
     fi
-
-    restore_package_dependencies "${dir}"
 done
 
 echo ""

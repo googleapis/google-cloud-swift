@@ -19,8 +19,6 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 
-source "${REPO_ROOT}/ci/package-dependencies.sh"
-
 errors=0
 count=0
 
@@ -106,9 +104,8 @@ else
 fi
 
 # Build the documentation against the packages in this repository, not against
-# the last published version of each package. `restore_all_package_dependencies`
-# runs on exit, via the trap installed by `package-dependencies.sh`.
-edit_package_dependencies "."
+# the last published version of each package.
+export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS="${REPO_ROOT}"
 
 echo "--- SWIFT VERSION ---"
 swift --version

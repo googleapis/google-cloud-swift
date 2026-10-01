@@ -30,30 +30,19 @@ Next identify the name of the target for the examples. Look at the top-level
 `Package.swift` file. By convention this is the same name as the directory
 containing the samples.
 
-### Local dependencies (`swift package edit`)
+### Local dependencies (`GOOGLE_CLOUD_SWIFT_LOCAL_DEPS`)
 
 Packages in this repository declare dependencies on published remote GitHub
 URLs by default. When building samples against local changes or unreleased
 features in `pkgs/*` or `generated/*` (such as `swift-google-gax`,
-`swift-google-auth`, or `swift-google-wkt`), you must put those dependencies
-into edit mode pointing to local checkouts:
+`swift-google-auth`, or `swift-google-wkt`), enable local dependencies via
+`GOOGLE_CLOUD_SWIFT_LOCAL_DEPS`:
 
 ```shell
-REPO_ROOT="$(git rev-parse --show-toplevel)"
-swift package edit --path "${REPO_ROOT}/pkgs/swift-google-gax" swift-google-gax
-swift package edit --path "${REPO_ROOT}/pkgs/swift-google-auth" swift-google-auth
-swift package edit --path "${REPO_ROOT}/pkgs/swift-google-wkt" swift-google-wkt
+export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true
 ```
 
-Alternatively, use the helper function from `ci/package-dependencies.sh`:
-
-```shell
-source ci/package-dependencies.sh
-edit_package_dependencies .
-```
-
-Always remember to restore dependencies with `swift package unedit` or
-`restore_package_dependencies .` before creating a pull request.
+Or pass it directly when invoking `swift build` or `swift test`.
 
 ### Build the samples target
 
@@ -251,16 +240,8 @@ times in a row, ask for help.
 When this passes, clean up the code.
 
 - Make it concise.
-- Restore any edited dependencies back to remote Git URLs:
+- Ensure no local dependency changes to `Package.resolved` remain:
   ```shell
-  source ci/package-dependencies.sh
-  restore_package_dependencies .
-  ```
-  Or individually:
-  ```shell
-  swift package unedit --force swift-google-gax
-  swift package unedit --force swift-google-auth
-  swift package unedit --force swift-google-wkt
   git restore Package.resolved
   ```
 - Run `ci/format.sh` (or `swift-format format -i -r ...`).
