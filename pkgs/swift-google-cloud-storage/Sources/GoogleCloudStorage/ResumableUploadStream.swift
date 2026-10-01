@@ -29,7 +29,7 @@ final class UploadChecksumTracker: Sendable {
   init(crc32cSeed: UInt32? = nil, trackCrc32c: Bool) {
     var s = State()
     if trackCrc32c {
-      s.crc32c = crc32cSeed != nil ? _CRC32C(seed: crc32cSeed!) : _CRC32C()
+      s.crc32c = crc32cSeed.map { _CRC32C(seed: $0) } ?? _CRC32C()
     }
     self.state = Mutex(s)
   }
@@ -66,7 +66,7 @@ final class UploadChecksumTracker: Sendable {
 struct ResumableUploadStream<S: SeekableWriteObjectSource>: AsyncSequence, Sendable {
   typealias Element = NIOCore.ByteBuffer
 
-  var source: S
+  let source: S
   let rangeStart: UInt64
   let rangeEnd: UInt64
   let chunkSize: Int

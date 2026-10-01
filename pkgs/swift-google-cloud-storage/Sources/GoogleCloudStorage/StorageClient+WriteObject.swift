@@ -785,8 +785,19 @@ extension StorageClient {
           if committedBytes == total {
             uploadStatus = .unknown
             if checksummedSource == nil {
-              checksummedSource = ChecksummedSource(
-                source: source, options: options.checksums ?? .default)
+              var cs = ChecksummedSource(source: source, options: options.checksums ?? .default)
+              if let seed = crc32cSeed {
+                cs.seedCRC32C(seed: seed, bytesHashed: committedBytes)
+              }
+              if committedBytes > 0 {
+                try await cs.seek(to: committedBytes)
+              }
+              checksummedSource = cs
+            } else {
+              if let seed = crc32cSeed {
+                checksummedSource!.seedCRC32C(seed: seed, bytesHashed: committedBytes)
+              }
+              try await checksummedSource!.seek(to: committedBytes)
             }
             let emptyResult: (status: ResumableUploadStatus, crc32cSeed: UInt32?)
             do {
