@@ -108,8 +108,12 @@ struct MockUploadSource: SeekableWriteObjectSource {
 }
 
 func makeObjectJSON(
-  name: String = "test-object", bucket: String = "test-bucket", size: Int = 10 * 1024 * 1024
+  name: String = "test-object",
+  bucket: String = "test-bucket",
+  size: Int = 10 * 1024 * 1024,
+  crc32c: String? = nil
 ) -> Data {
+  let crcField = crc32c.map { ",\n      \"crc32c\": \"\($0)\"" } ?? ""
   let json = """
     {
       "name": "\(name)",
@@ -118,7 +122,7 @@ func makeObjectJSON(
       "metageneration": "1",
       "size": "\(size)",
       "contentType": "application/octet-stream",
-      "storageClass": "STANDARD"
+      "storageClass": "STANDARD"\(crcField)
     }
     """
   return Data(json.utf8)

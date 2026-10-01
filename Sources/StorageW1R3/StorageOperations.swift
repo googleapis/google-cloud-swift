@@ -26,6 +26,7 @@ enum StorageOperations {
     objectName: String,
     buffer: ByteChunk,
     isResumable: Bool,
+    isStreaming: Bool = false,
     crc32cEnabled: Bool
   ) async throws -> GoogleCloudStorage.Object {
     let options = WriteObjectOptions().with {
@@ -33,9 +34,12 @@ enum StorageOperations {
         $0.ifGenerationMatch = 0
       }
       $0.checksums = crc32cEnabled ? .default : .off
-      // If resumable, chunk size is set to 32MiB; if simple, threshold handles it
       if isResumable {
-        $0.chunkSize = 32 * 1024 * 1024
+        if isStreaming {
+          $0.chunkSize = nil
+        } else {
+          $0.chunkSize = 32 * 1024 * 1024
+        }
         $0.resumableUploadThreshold = buffer.count
       } else {
         $0.resumableUploadThreshold = buffer.count + 256 * 1024

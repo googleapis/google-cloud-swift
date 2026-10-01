@@ -292,7 +292,11 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
+    let options = WriteObjectOptions().with {
+      $0.chunkSize = 8 * 1024 * 1024
+    }
+    let object = try await client.resumeWriteObject(
+      source, uploadId: queryUrl.absoluteString, options: options)
     #expect(object.name == objectName)
 
     let requests = registry.recordedRequests()
@@ -367,7 +371,11 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let object = try await client.writeObject(source, to: bucket, as: objectName)
+    let options = WriteObjectOptions().with {
+      $0.chunkSize = chunkSize
+    }
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1188,6 +1196,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let uploadOptions = WriteObjectOptions().with {
+      $0.chunkSize = 8 * 1024 * 1024
       $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
     }
     let object = try await client.resumeWriteObject(
@@ -2952,6 +2961,196 @@ import Testing
 
       let chunkRequest = try #require(registry.lastRequest(for: chunkUrl))
       #expect(chunkRequest.httpBody == Data(slicedData))
+    }
+  }
+
+  /// Tests resumable upload default streaming mode: seekable source with known size sends payload in a single streaming PUT request.
+  @Test func resumableUploadStreamingSinglePut() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "streaming-object"
+    let dataSize = 10 * 1024 * 1024  // 10MiB, exceeds 8MiB threshold and spans multiple 2MiB chunks
+    let data = Data((0..<dataSize).map { UInt8($0 % 251) })
+    let source = BytesSource(data: data)
+    let expectedCRC = _CRC32C.compute(data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=streaming-upload-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(
+          name: objectName, bucket: bucket, size: dataSize, crc32c: "\(expectedCRC)"),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[0].httpMethod == "POST")
+    #expect(requests[1].httpMethod == "PUT")
+    #expect(
+      requests[1].value(forHTTPHeaderField: "Content-Range")
+        == "bytes 0-\(dataSize - 1)/\(dataSize)"
+    )
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Length") == "\(dataSize)")
+  }
+
+  /// Tests resumable upload streaming mode when network interruption occurs during streaming PUT, verifying status query and resumption.
+  @Test func resumableUploadStreamingInterruptedAndResumed() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "streaming-interrupted-object"
+    let dataSize = 10 * 1024 * 1024  // 10MiB
+    let data = Data((0..<dataSize).map { UInt8($0 % 251) })
+    let source = BytesSource(data: data)
+    let fullCRC = _CRC32C.compute(data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=streaming-interrupted-id")
+
+    // 1. Session start succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+
+    // 2. Initial streaming PUT fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Unavailable".utf8),
+        headers: [:]),
+      for: sessionUrl)
+
+    // 3. Status query returns 308 with 2MiB committed and running hash
+    let committedBytes: Int = 2 * 1024 * 1024
+    let committedData = data.prefix(committedBytes)
+    let committedCRC = _CRC32C.compute(committedData)
+    let runningHashHeader = "crc32c=" + crc32cBase64(committedCRC)
+
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: [
+          "Range": "bytes=0-\(committedBytes - 1)",
+          "x-goog-running-hash": runningHashHeader,
+        ]),
+      for: sessionUrl)
+
+    // 4. Resumed streaming PUT succeeds with 200
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(
+          name: objectName, bucket: bucket, size: dataSize, crc32c: "\(fullCRC)"),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy.unbounded().withAttemptLimit(3)
+    )
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 4)
+    #expect(requests[0].httpMethod == "POST")
+    #expect(requests[1].httpMethod == "PUT")
+    #expect(
+      requests[1].value(forHTTPHeaderField: "Content-Range")
+        == "bytes 0-\(dataSize - 1)/\(dataSize)"
+    )
+    #expect(requests[2].httpMethod == "PUT")
+    #expect(requests[2].value(forHTTPHeaderField: "Content-Range") == "bytes */*")
+    #expect(requests[3].httpMethod == "PUT")
+    #expect(
+      requests[3].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(committedBytes)-\(dataSize - 1)/\(dataSize)")
+    #expect(
+      requests[3].value(forHTTPHeaderField: "Content-Length") == "\(dataSize - committedBytes)")
+  }
+
+  /// Tests resumable upload streaming mode with a 0-byte object completing with Content-Range: bytes */0.
+  @Test func resumableUploadStreamingZeroByteObject() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "empty-object"
+    let data = Data()
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=empty-upload-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: 0),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = WriteObjectOptions().with {
+      $0.resumableUploadThreshold = 0
+    }
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: uploadOptions)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[1].value(forHTTPHeaderField: "Content-Range") == "bytes */0")
+    #expect(requests[1].value(forHTTPHeaderField: "x-goog-hash") == "crc32c=AAAAAA==")
+  }
+
+  /// Tests resumable upload streaming mode detects CRC32C mismatch against server returned metadata.
+  @Test func resumableUploadStreamingCRC32CMismatch() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "streaming-mismatch-object"
+    let dataSize = 10 * 1024 * 1024
+    let data = Data((0..<dataSize).map { UInt8($0 % 251) })
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=streaming-mismatch-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+    // Server returns mismatched CRC32C in metadata
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: dataSize, crc32c: "99999999"),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    await #expect(throws: WriteObjectError.self) {
+      try await client.writeObject(source, to: bucket, as: objectName)
     }
   }
 }

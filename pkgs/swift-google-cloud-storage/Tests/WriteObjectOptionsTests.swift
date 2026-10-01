@@ -41,7 +41,7 @@ import Testing
       effectiveOptions.resumableUploadThreshold
         == WriteObjectOptions.defaultResumableUploadThreshold
     )
-    #expect(effectiveOptions.chunkSize == WriteObjectOptions.defaultChunkSize)
+    #expect(effectiveOptions.chunkSize == nil)
     #expect(effectiveOptions.checksums == .default)
   }
 

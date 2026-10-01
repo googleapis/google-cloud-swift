@@ -54,7 +54,7 @@ public struct SampleBuilder: Sendable {
       / 1_000_000_000_000
   }
 
-  public func success(transferSize: Int? = nil) -> Sample {
+  public func success(transferSize: Int? = nil, details: String = "") -> Sample {
     Sample(
       task: task,
       iteration: iteration,
@@ -66,7 +66,7 @@ public struct SampleBuilder: Sendable {
       object: object,
       crc32cEnabled: crc32cEnabled,
       result: .ok,
-      details: ""
+      details: details.replacingOccurrences(of: ",", with: ";")
     )
   }
 
