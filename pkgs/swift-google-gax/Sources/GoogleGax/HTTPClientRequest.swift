@@ -65,8 +65,8 @@ enum _RequestBody: Sendable {
   }
 
   public mutating func setBody(data: Data, ofContentType: String) {
-    self.body = .byteBuffer(NIOCore.ByteBuffer(data: data))
-    self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
+    self.setBody(data: data)
+    self.setHeader(name: "Content-Type", value: ofContentType)
   }
 
   public mutating func setBody<T: Encodable>(
