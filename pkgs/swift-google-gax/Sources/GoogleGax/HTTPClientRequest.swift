@@ -20,10 +20,9 @@ import struct Logging.Logger
 import NIOFoundationCompat
 @_spi(GoogleCloudInternal) public import NIOHTTP1
 
-/// Represents the body of an HTTP request, encapsulating either `Foundation.Data`,
-/// `NIOCore.ByteBuffer`, or a custom body without premature conversion or copying.
+/// Represents the body of an HTTP request, encapsulating either `NIOCore.ByteBuffer`
+/// or a custom body without premature conversion or copying.
 enum _RequestBody: Sendable {
-  case data(Data)
   case byteBuffer(NIOCore.ByteBuffer)
   case custom(AsyncHTTPClient.HTTPClientRequest.Body)
 }
@@ -62,11 +61,11 @@ enum _RequestBody: Sendable {
   }
 
   public mutating func setBody(data: Data) {
-    self.body = .data(data)
+    self.body = .byteBuffer(NIOCore.ByteBuffer(data: data))
   }
 
   public mutating func setBody(data: Data, ofContentType: String) {
-    self.body = .data(data)
+    self.body = .byteBuffer(NIOCore.ByteBuffer(data: data))
     self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
   }
 
@@ -158,8 +157,6 @@ enum _RequestBody: Sendable {
     switch self.body {
     case .byteBuffer(let b):
       request.body = .bytes(b)
-    case .data(let d):
-      request.body = .bytes(.init(data: d))
     case .custom(let s):
       request.body = s
     case nil:

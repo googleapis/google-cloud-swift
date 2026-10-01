@@ -92,11 +92,11 @@ import NIOHTTP1
     request.setBody(data: Data("test".utf8))
     #expect(request.components.url?.absoluteString == uri)
     #expect(request.headers["X-Test-Header"] == ["TestValue"])
-    guard case .data(let data) = request.body else {
-      Issue.record("expected .data body")
+    guard case .byteBuffer(let buf) = request.body else {
+      Issue.record("expected .byteBuffer body")
       return
     }
-    #expect(data == Data("test".utf8))
+    #expect(Data(buffer: buf) == Data("test".utf8))
 
     var buffer = ByteBufferAllocator().buffer(capacity: 4)
     buffer.writeString("test2")
