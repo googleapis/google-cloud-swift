@@ -31,48 +31,125 @@ public struct PaginatedResponseSequence<Item, ResponseType>:
   public typealias Element = Item
   public typealias ListRpc = @Sendable (String) async throws -> ResponseType
 
-  private let fetchPage: @Sendable (String) async throws -> (items: [Item], nextToken: String)
+  private let initialPageToken: String
+  private let fetchPage:
+    @Sendable (String) async throws -> (response: ResponseType, items: [Item], nextToken: String)
 
-  // Creates a new paginated response sequence.
-  public init(listRpc: @escaping ListRpc) where ResponseType: _PaginatedResponse<Item> {
+  /// Creates a new paginated response sequence.
+  public init(
+    listRpc: @escaping ListRpc,
+    initialPageToken: String? = nil
+  ) where ResponseType: _PaginatedResponse<Item> {
+    self.initialPageToken = initialPageToken ?? ""
     self.fetchPage = { token in
       let response = try await listRpc(token)
-      return (response._getPaginatedItems(), response._nextPageToken())
+      return (response, response._getPaginatedItems(), response._nextPageToken())
     }
   }
 
+  /// An `AsyncSequence` that yields each response page instead of individual items.
+  public var pages: PageSequence {
+    PageSequence(fetchPage: fetchPage, initialPageToken: initialPageToken)
+  }
+
   public func makeAsyncIterator() -> _ItemIterator {
-    _ItemIterator(fetchPage: fetchPage)
+    _ItemIterator(fetchPage: fetchPage, initialPageToken: initialPageToken)
   }
 
   public struct _ItemIterator: AsyncIteratorProtocol {
-    private let fetchPage: @Sendable (String) async throws -> (items: [Item], nextToken: String)
-    private var buffer: [Item] = []
-    private var nextToken: String = String()
+    private let fetchPage:
+      @Sendable (String) async throws -> (response: ResponseType, items: [Item], nextToken: String)
+    private var buffer: ArraySlice<Item> = []
     private var hasReachedEnd = false
 
-    init(fetchPage: @escaping @Sendable (String) async throws -> (items: [Item], nextToken: String))
-    {
+    /// The page token for the next page to fetch. Callers can inspect this token if iteration
+    /// halts or throws to resume iteration on a subsequent request.
+    public private(set) var nextPageToken: String
+
+    init(
+      fetchPage:
+        @escaping @Sendable (String) async throws -> (
+          response: ResponseType, items: [Item], nextToken: String
+        ),
+      initialPageToken: String = ""
+    ) {
       self.fetchPage = fetchPage
+      self.nextPageToken = initialPageToken
     }
 
     public mutating func next() async throws -> Item? {
       // Continue fetching pages until we have items to return or there are no more pages.
       // According to AIP-158, intermediate pages may be empty while still returning a next page token.
       while buffer.isEmpty && !hasReachedEnd {
-        let page = try await fetchPage(nextToken)
-        buffer = page.items
-        nextToken = page.nextToken
-        if nextToken.isEmpty {
+        let page = try await fetchPage(nextPageToken)
+        buffer = ArraySlice(page.items)
+        nextPageToken = page.nextToken
+        if nextPageToken.isEmpty {
           hasReachedEnd = true
         }
       }
 
-      guard !buffer.isEmpty else {
-        return nil
+      return buffer.popFirst()
+    }
+  }
+
+  /// A sequence that yields whole response pages.
+  public struct PageSequence: AsyncSequence, Sendable {
+    public typealias Element = ResponseType
+
+    private let fetchPage:
+      @Sendable (String) async throws -> (response: ResponseType, items: [Item], nextToken: String)
+    private let initialPageToken: String
+
+    init(
+      fetchPage:
+        @escaping @Sendable (String) async throws -> (
+          response: ResponseType, items: [Item], nextToken: String
+        ),
+      initialPageToken: String = ""
+    ) {
+      self.fetchPage = fetchPage
+      self.initialPageToken = initialPageToken
+    }
+
+    public func makeAsyncIterator() -> _PageIterator {
+      _PageIterator(fetchPage: fetchPage, initialPageToken: initialPageToken)
+    }
+
+    public struct _PageIterator: AsyncIteratorProtocol {
+      private let fetchPage:
+        @Sendable (String) async throws -> (
+          response: ResponseType, items: [Item], nextToken: String
+        )
+      private var hasReachedEnd = false
+
+      /// The page token for the next page to fetch. Callers can inspect this token if iteration
+      /// halts or throws to resume iteration on a subsequent request.
+      public private(set) var nextPageToken: String
+
+      init(
+        fetchPage:
+          @escaping @Sendable (String) async throws -> (
+            response: ResponseType, items: [Item], nextToken: String
+          ),
+        initialPageToken: String = ""
+      ) {
+        self.fetchPage = fetchPage
+        self.nextPageToken = initialPageToken
       }
 
-      return buffer.removeFirst()
+      public mutating func next() async throws -> ResponseType? {
+        guard !hasReachedEnd else {
+          return nil
+        }
+
+        let page = try await fetchPage(nextPageToken)
+        nextPageToken = page.nextToken
+        if nextPageToken.isEmpty {
+          hasReachedEnd = true
+        }
+        return page.response
+      }
     }
   }
 }

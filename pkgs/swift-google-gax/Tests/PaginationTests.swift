@@ -46,10 +46,12 @@ import Testing
 
   final class PaginatedService: PaginatedServiceProtocol, @unchecked Sendable {
     public var mockResponses: [ListItemsResponse] = []
+    public var requestedTokens: [String] = []
     init(mockResponses: [ListItemsResponse]) {
       self.mockResponses = mockResponses
     }
     public func listItems(request: ListItemsRequest) async throws -> ListItemsResponse {
+      requestedTokens.append(request.pageToken)
       if mockResponses.isEmpty {
         throw NSError(domain: "no responses", code: 0)
       }
@@ -276,6 +278,123 @@ import Testing
     }
     #expect(filteredAndMapped == ["A", "C"])
   }
+
+  @Test func initialPageToken() async throws {
+    let service = PaginatedService(
+      mockResponses: [
+        ListItemsResponse(
+          items: [Item(name: "item3"), Item(name: "item4")], nextPageToken: "token3"),
+        ListItemsResponse(items: [Item(name: "item5")], nextPageToken: ""),
+      ])
+    var array: [Item] = []
+    for try await item in service.listItemsByItems(
+      request: .init(pageToken: "token2")
+    ) {
+      array.append(item)
+    }
+    #expect(array == [Item(name: "item3"), Item(name: "item4"), Item(name: "item5")])
+    #expect(service.requestedTokens == ["token2", "token3"])
+
+    let optionalToken: String? = nil
+    let nilTokenSequence = PaginatedResponseSequence<Item, ListItemsResponse>(
+      listRpc: { _ in
+        ListItemsResponse(items: [Item(name: "item1")], nextPageToken: "")
+      },
+      initialPageToken: optionalToken
+    )
+    var nilTokenItems: [Item] = []
+    for try await item in nilTokenSequence {
+      nilTokenItems.append(item)
+    }
+    #expect(nilTokenItems == [Item(name: "item1")])
+  }
+
+  @Test func resumptionTokenOnFailure() async throws {
+    let sequence = PaginatedResponseSequence<Item, ListItemsResponse>(
+      listRpc: { token in
+        if token.isEmpty {
+          return ListItemsResponse(
+            items: [Item(name: "page1_item")], nextPageToken: "page2_token")
+        }
+        throw NSError(domain: "network_failure", code: 500)
+      }
+    )
+
+    var iterator = sequence.makeAsyncIterator()
+    #expect(iterator.nextPageToken == "")
+
+    let item1 = try await iterator.next()
+    #expect(item1 == Item(name: "page1_item"))
+    #expect(iterator.nextPageToken == "page2_token")
+
+    do {
+      _ = try await iterator.next()
+      Issue.record("Expected error")
+    } catch {
+      // The iterator should preserve the page token that was attempted and failed
+      #expect(iterator.nextPageToken == "page2_token")
+    }
+
+    // Now resume from the saved token
+    let resumedSequence = PaginatedResponseSequence<Item, ListItemsResponse>(
+      listRpc: { token in
+        #expect(token == "page2_token")
+        return ListItemsResponse(items: [Item(name: "page2_item")], nextPageToken: "")
+      },
+      initialPageToken: iterator.nextPageToken
+    )
+    var resumedItems: [Item] = []
+    for try await item in resumedSequence {
+      resumedItems.append(item)
+    }
+    #expect(resumedItems == [Item(name: "page2_item")])
+  }
+
+  @Test func pageSequence() async throws {
+    let service = PaginatedService(
+      mockResponses: [
+        ListItemsResponse(items: [Item(name: "item1"), Item(name: "item2")], nextPageToken: "p2"),
+        ListItemsResponse(items: [], nextPageToken: "p3"),
+        ListItemsResponse(items: [Item(name: "item3")], nextPageToken: ""),
+      ])
+
+    let seq = service.listItemsSequence(request: .init(pageToken: "p1"))
+    var pageCount = 0
+    var allItems: [Item] = []
+    for try await page in seq.pages {
+      pageCount += 1
+      allItems.append(contentsOf: page.items)
+    }
+    #expect(pageCount == 3)
+    #expect(allItems == [Item(name: "item1"), Item(name: "item2"), Item(name: "item3")])
+    #expect(service.requestedTokens == ["p1", "p2", "p3"])
+  }
+
+  @Test func pageSequenceResumption() async throws {
+    let sequence = PaginatedResponseSequence<Item, ListItemsResponse>(
+      listRpc: { token in
+        if token == "p1" {
+          return ListItemsResponse(items: [Item(name: "i1")], nextPageToken: "p2")
+        }
+        throw NSError(domain: "page_fetch_failed", code: 503)
+      },
+      initialPageToken: "p1"
+    )
+
+    var pageIterator = sequence.pages.makeAsyncIterator()
+    #expect(pageIterator.nextPageToken == "p1")
+
+    let page1 = try await pageIterator.next()
+    #expect(page1?.items == [Item(name: "i1")])
+    #expect(pageIterator.nextPageToken == "p2")
+
+    do {
+      _ = try await pageIterator.next()
+      Issue.record("Expected error")
+    } catch {
+      #expect(pageIterator.nextPageToken == "p2")
+    }
+  }
 }
 
 protocol PaginatedServiceProtocol: Sendable {
@@ -293,6 +412,22 @@ extension PaginatedServiceProtocol {
       request.pageToken = token
       return try await self.listItems(request: request)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  func listItemsSequence(request: PaginatedResponseTest.ListItemsRequest)
+    -> GoogleGax.PaginatedResponseSequence<
+      PaginatedResponseTest.Item, PaginatedResponseTest.ListItemsResponse
+    >
+  {
+    let listRpc = {
+      @Sendable (token: String) async throws -> PaginatedResponseTest.ListItemsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listItems(request: request)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 }
