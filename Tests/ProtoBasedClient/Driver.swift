@@ -22,6 +22,11 @@ import GoogleCloudTestHelpers
 //
 // The functions are only invoked if the `GOOGLE_CLOUD_PROJECT` environment variable is set.
 @Suite(.enabled(if: protoBasedClientEnabled())) struct ProtoBasedClient {
+  @Test func fieldMasks() async throws {
+    await cleanupStaleSecrets()
+    try await runLoggedTest(#function, { try await FieldMasks.run($0) })
+  }
+
   @Test func globalEndpoint() async throws {
     await cleanupStaleSecrets()
     try await runLoggedTest(#function, { try await GlobalEndpoint.run($0) })
