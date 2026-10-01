@@ -261,7 +261,8 @@ extension Clients.CloudControlsPartnerCoreProtocol {
       request.pageToken = token
       return try await self.listWorkloads(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkloadsByItems(
@@ -325,7 +326,8 @@ extension Clients.CloudControlsPartnerCoreProtocol {
       request.pageToken = token
       return try await self.listCustomers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCustomersByItems(
@@ -415,7 +417,8 @@ extension Clients.CloudControlsPartnerCoreProtocol {
       request.pageToken = token
       return try await self.listAccessApprovalRequests(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   @available(*, deprecated)

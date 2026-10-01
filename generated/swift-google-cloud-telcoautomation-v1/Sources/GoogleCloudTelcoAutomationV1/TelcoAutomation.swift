@@ -817,7 +817,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listOrchestrationClusters(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOrchestrationClustersByItems(
@@ -952,7 +953,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listEdgeSlms(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEdgeSlmsByItems(
@@ -1170,7 +1172,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listBlueprints(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBlueprintsByItems(
@@ -1276,7 +1279,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listBlueprintRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBlueprintRevisionsByItems(
@@ -1319,7 +1323,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.searchBlueprintRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchBlueprintRevisionsByItems(
@@ -1364,7 +1369,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.searchDeploymentRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchDeploymentRevisionsByItems(
@@ -1431,7 +1437,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listPublicBlueprints(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPublicBlueprintsByItems(
@@ -1583,7 +1590,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDeploymentsByItems(
@@ -1626,7 +1634,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listDeploymentRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDeploymentRevisionsByItems(
@@ -1776,7 +1785,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listHydratedDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listHydratedDeploymentsByItems(
@@ -1862,7 +1872,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1909,7 +1920,8 @@ extension Clients.TelcoAutomationProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

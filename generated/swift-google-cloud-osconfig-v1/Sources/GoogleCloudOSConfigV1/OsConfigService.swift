@@ -327,7 +327,8 @@ extension Clients.OsConfigServiceProtocol {
       request.pageToken = token
       return try await self.listPatchJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPatchJobsByItems(
@@ -370,7 +371,8 @@ extension Clients.OsConfigServiceProtocol {
       request.pageToken = token
       return try await self.listPatchJobInstanceDetails(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPatchJobInstanceDetailsByItems(
@@ -459,7 +461,8 @@ extension Clients.OsConfigServiceProtocol {
       request.pageToken = token
       return try await self.listPatchDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPatchDeploymentsByItems(

@@ -643,7 +643,8 @@ extension Clients.FoldersProtocol {
       request.pageToken = token
       return try await self.listFolders(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFoldersByItems(
@@ -691,7 +692,8 @@ extension Clients.FoldersProtocol {
       request.pageToken = token
       return try await self.searchFolders(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchFoldersByItems(

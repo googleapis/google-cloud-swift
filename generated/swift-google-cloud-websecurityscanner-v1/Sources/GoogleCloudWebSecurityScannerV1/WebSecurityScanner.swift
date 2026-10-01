@@ -298,7 +298,8 @@ extension Clients.WebSecurityScannerProtocol {
       request.pageToken = token
       return try await self.listScanConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func updateScanConfig(request: UpdateScanConfigRequest) async throws
@@ -369,7 +370,8 @@ extension Clients.WebSecurityScannerProtocol {
       request.pageToken = token
       return try await self.listScanRuns(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func stopScanRun(request: StopScanRunRequest) async throws
@@ -415,7 +417,8 @@ extension Clients.WebSecurityScannerProtocol {
       request.pageToken = token
       return try await self.listCrawledUrls(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getFinding(request: GetFindingRequest) async throws
@@ -461,7 +464,8 @@ extension Clients.WebSecurityScannerProtocol {
       request.pageToken = token
       return try await self.listFindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFindingTypeStats(request: ListFindingTypeStatsRequest) async throws

@@ -246,7 +246,8 @@ extension Clients.CompanyServiceProtocol {
       request.pageToken = token
       return try await self.listCompanies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCompaniesByItems(

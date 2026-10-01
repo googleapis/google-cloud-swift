@@ -286,7 +286,8 @@ extension Clients.ControlServiceProtocol {
       request.pageToken = token
       return try await self.listControls(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listControlsByItems(
@@ -330,7 +331,8 @@ extension Clients.ControlServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

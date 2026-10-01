@@ -1719,7 +1719,8 @@ extension Clients.ClusterManagerProtocol {
       request.pageToken = token
       return try await self.listUsableSubnetworks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func checkAutopilotCompatibility(request: CheckAutopilotCompatibilityRequest) async throws

@@ -151,7 +151,8 @@ extension Clients.CloudLocationFinderProtocol {
       request.pageToken = token
       return try await self.listCloudLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCloudLocationsByItems(
@@ -215,7 +216,8 @@ extension Clients.CloudLocationFinderProtocol {
       request.pageToken = token
       return try await self.searchCloudLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchCloudLocationsByItems(
@@ -261,7 +263,8 @@ extension Clients.CloudLocationFinderProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

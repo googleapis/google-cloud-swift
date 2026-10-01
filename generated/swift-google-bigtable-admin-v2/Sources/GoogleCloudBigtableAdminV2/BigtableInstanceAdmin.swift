@@ -1377,7 +1377,8 @@ extension Clients.BigtableInstanceAdminProtocol {
       request.pageToken = token
       return try await self.listMemoryLayers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMemoryLayersByItems(
@@ -1487,7 +1488,8 @@ extension Clients.BigtableInstanceAdminProtocol {
       request.pageToken = token
       return try await self.listAppProfiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAppProfilesByItems(
@@ -1663,7 +1665,8 @@ extension Clients.BigtableInstanceAdminProtocol {
       request.pageToken = token
       return try await self.listHotTablets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listHotTabletsByItems(
@@ -1764,7 +1767,8 @@ extension Clients.BigtableInstanceAdminProtocol {
       request.pageToken = token
       return try await self.listLogicalViews(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLogicalViewsByItems(
@@ -1919,7 +1923,8 @@ extension Clients.BigtableInstanceAdminProtocol {
       request.pageToken = token
       return try await self.listMaterializedViews(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMaterializedViewsByItems(
@@ -2017,7 +2022,8 @@ extension Clients.BigtableInstanceAdminProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

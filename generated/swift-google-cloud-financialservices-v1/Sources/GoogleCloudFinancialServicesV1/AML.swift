@@ -1528,7 +1528,8 @@ extension Clients.AMLProtocol {
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInstancesByItems(
@@ -1773,7 +1774,8 @@ extension Clients.AMLProtocol {
       request.pageToken = token
       return try await self.listDatasets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDatasetsByItems(
@@ -1936,7 +1938,8 @@ extension Clients.AMLProtocol {
       request.pageToken = token
       return try await self.listModels(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listModelsByItems(
@@ -2128,7 +2131,8 @@ extension Clients.AMLProtocol {
       request.pageToken = token
       return try await self.listEngineConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEngineConfigsByItems(
@@ -2352,7 +2356,8 @@ extension Clients.AMLProtocol {
       request.pageToken = token
       return try await self.listEngineVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEngineVersionsByItems(
@@ -2395,7 +2400,8 @@ extension Clients.AMLProtocol {
       request.pageToken = token
       return try await self.listPredictionResults(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPredictionResultsByItems(
@@ -2600,7 +2606,8 @@ extension Clients.AMLProtocol {
       request.pageToken = token
       return try await self.listBacktestResults(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBacktestResultsByItems(
@@ -2804,7 +2811,8 @@ extension Clients.AMLProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2851,7 +2859,8 @@ extension Clients.AMLProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

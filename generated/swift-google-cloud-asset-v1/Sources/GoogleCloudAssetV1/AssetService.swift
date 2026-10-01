@@ -637,7 +637,8 @@ extension Clients.AssetServiceProtocol {
       request.pageToken = token
       return try await self.listAssets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAssetsByItems(
@@ -792,7 +793,8 @@ extension Clients.AssetServiceProtocol {
       request.pageToken = token
       return try await self.searchAllResources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchAllResourcesByItems(
@@ -842,7 +844,8 @@ extension Clients.AssetServiceProtocol {
       request.pageToken = token
       return try await self.searchAllIamPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchAllIamPoliciesByItems(
@@ -993,7 +996,8 @@ extension Clients.AssetServiceProtocol {
       request.pageToken = token
       return try await self.listSavedQueries(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSavedQueriesByItems(
@@ -1090,7 +1094,8 @@ extension Clients.AssetServiceProtocol {
       request.pageToken = token
       return try await self.analyzeOrgPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func analyzeOrgPoliciesByItems(
@@ -1142,7 +1147,8 @@ extension Clients.AssetServiceProtocol {
       request.pageToken = token
       return try await self.analyzeOrgPolicyGovernedContainers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func analyzeOrgPolicyGovernedContainersByItems(
@@ -1243,7 +1249,8 @@ extension Clients.AssetServiceProtocol {
       request.pageToken = token
       return try await self.analyzeOrgPolicyGovernedAssets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func analyzeOrgPolicyGovernedAssetsByItems(

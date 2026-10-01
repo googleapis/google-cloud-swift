@@ -477,7 +477,8 @@ extension Clients.AuditManagerProtocol {
       request.pageToken = token
       return try await self.listAuditSchedules(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAuditSchedulesByItems(
@@ -614,7 +615,8 @@ extension Clients.AuditManagerProtocol {
       request.pageToken = token
       return try await self.listAuditReports(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAuditReportsByItems(
@@ -700,7 +702,8 @@ extension Clients.AuditManagerProtocol {
       request.pageToken = token
       return try await self.listResourceEnrollmentStatuses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listResourceEnrollmentStatusesByItems(
@@ -744,7 +747,8 @@ extension Clients.AuditManagerProtocol {
       request.pageToken = token
       return try await self.listControls(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listControlsByItems(
@@ -803,7 +807,8 @@ extension Clients.AuditManagerProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -850,7 +855,8 @@ extension Clients.AuditManagerProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

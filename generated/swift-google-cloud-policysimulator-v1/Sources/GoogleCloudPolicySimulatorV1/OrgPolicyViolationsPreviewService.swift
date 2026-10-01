@@ -250,7 +250,8 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
       request.pageToken = token
       return try await self.listOrgPolicyViolationsPreviews(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOrgPolicyViolationsPreviewsByItems(
@@ -354,7 +355,8 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
       request.pageToken = token
       return try await self.listOrgPolicyViolations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOrgPolicyViolationsByItems(
@@ -398,7 +400,8 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

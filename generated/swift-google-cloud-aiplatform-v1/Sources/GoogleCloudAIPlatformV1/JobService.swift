@@ -1095,7 +1095,8 @@
         request.pageToken = token
         return try await self.listCustomJobs(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listCustomJobsByItems(
@@ -1232,7 +1233,8 @@
         request.pageToken = token
         return try await self.listDataLabelingJobs(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listDataLabelingJobsByItems(
@@ -1371,7 +1373,8 @@
         request.pageToken = token
         return try await self.listHyperparameterTuningJobs(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listHyperparameterTuningJobsByItems(
@@ -1512,7 +1515,8 @@
         request.pageToken = token
         return try await self.listNasJobs(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listNasJobsByItems(
@@ -1626,7 +1630,8 @@
         request.pageToken = token
         return try await self.listNasTrialDetails(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listNasTrialDetailsByItems(
@@ -1713,7 +1718,8 @@
         request.pageToken = token
         return try await self.listBatchPredictionJobs(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listBatchPredictionJobsByItems(
@@ -1837,7 +1843,8 @@
         return try await self.searchModelDeploymentMonitoringStatsAnomalies(
           request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func searchModelDeploymentMonitoringStatsAnomaliesByItems(
@@ -1903,7 +1910,8 @@
         request.pageToken = token
         return try await self.listModelDeploymentMonitoringJobs(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listModelDeploymentMonitoringJobsByItems(
@@ -2057,7 +2065,8 @@
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2140,7 +2149,8 @@
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listOperationsByItems(

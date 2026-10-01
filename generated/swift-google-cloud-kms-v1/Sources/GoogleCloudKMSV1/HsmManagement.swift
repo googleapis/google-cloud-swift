@@ -506,7 +506,8 @@ extension Clients.HsmManagementProtocol {
       request.pageToken = token
       return try await self.listSingleTenantHsmInstances(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSingleTenantHsmInstancesByItems(
@@ -727,7 +728,8 @@ extension Clients.HsmManagementProtocol {
       request.pageToken = token
       return try await self.listSingleTenantHsmInstanceProposals(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSingleTenantHsmInstanceProposalsByItems(
@@ -807,7 +809,8 @@ extension Clients.HsmManagementProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

@@ -195,7 +195,8 @@ extension Clients.ServiceHealthProtocol {
       request.pageToken = token
       return try await self.listEvents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEventsByItems(
@@ -257,7 +258,8 @@ extension Clients.ServiceHealthProtocol {
       request.pageToken = token
       return try await self.listOrganizationEvents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOrganizationEventsByItems(
@@ -322,7 +324,8 @@ extension Clients.ServiceHealthProtocol {
       request.pageToken = token
       return try await self.listOrganizationImpacts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOrganizationImpactsByItems(
@@ -385,7 +388,8 @@ extension Clients.ServiceHealthProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

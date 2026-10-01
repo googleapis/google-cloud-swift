@@ -1589,7 +1589,8 @@ extension Clients.DataMigrationServiceProtocol {
       request.pageToken = token
       return try await self.listMigrationJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMigrationJobsByItems(
@@ -1925,7 +1926,8 @@ extension Clients.DataMigrationServiceProtocol {
       request.pageToken = token
       return try await self.listConnectionProfiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listConnectionProfilesByItems(
@@ -2155,7 +2157,8 @@ extension Clients.DataMigrationServiceProtocol {
       request.pageToken = token
       return try await self.listPrivateConnections(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPrivateConnectionsByItems(
@@ -2252,7 +2255,8 @@ extension Clients.DataMigrationServiceProtocol {
       request.pageToken = token
       return try await self.listConversionWorkspaces(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listConversionWorkspacesByItems(
@@ -2445,7 +2449,8 @@ extension Clients.DataMigrationServiceProtocol {
       request.pageToken = token
       return try await self.listMappingRules(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMappingRulesByItems(
@@ -2663,7 +2668,8 @@ extension Clients.DataMigrationServiceProtocol {
       request.pageToken = token
       return try await self.describeDatabaseEntities(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchBackgroundJobs(request: SearchBackgroundJobsRequest) async throws
@@ -2741,7 +2747,8 @@ extension Clients.DataMigrationServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2824,7 +2831,8 @@ extension Clients.DataMigrationServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

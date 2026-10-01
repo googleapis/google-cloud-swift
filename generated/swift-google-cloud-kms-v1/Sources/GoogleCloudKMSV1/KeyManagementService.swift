@@ -1059,7 +1059,8 @@ extension Clients.KeyManagementServiceProtocol {
       request.pageToken = token
       return try await self.listKeyRings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listKeyRingsByItems(
@@ -1103,7 +1104,8 @@ extension Clients.KeyManagementServiceProtocol {
       request.pageToken = token
       return try await self.listCryptoKeys(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCryptoKeysByItems(
@@ -1148,7 +1150,8 @@ extension Clients.KeyManagementServiceProtocol {
       request.pageToken = token
       return try await self.listCryptoKeyVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCryptoKeyVersionsByItems(
@@ -1192,7 +1195,8 @@ extension Clients.KeyManagementServiceProtocol {
       request.pageToken = token
       return try await self.listImportJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listImportJobsByItems(
@@ -1240,7 +1244,8 @@ extension Clients.KeyManagementServiceProtocol {
       request.pageToken = token
       return try await self.listRetiredResources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRetiredResourcesByItems(
@@ -1923,7 +1928,8 @@ extension Clients.KeyManagementServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

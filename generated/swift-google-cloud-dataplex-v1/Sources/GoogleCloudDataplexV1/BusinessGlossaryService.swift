@@ -685,7 +685,8 @@ extension Clients.BusinessGlossaryServiceProtocol {
       request.pageToken = token
       return try await self.listGlossaries(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGlossariesByItems(
@@ -816,7 +817,8 @@ extension Clients.BusinessGlossaryServiceProtocol {
       request.pageToken = token
       return try await self.listGlossaryCategories(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGlossaryCategoriesByItems(
@@ -947,7 +949,8 @@ extension Clients.BusinessGlossaryServiceProtocol {
       request.pageToken = token
       return try await self.listGlossaryTerms(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGlossaryTermsByItems(
@@ -1006,7 +1009,8 @@ extension Clients.BusinessGlossaryServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1089,7 +1093,8 @@ extension Clients.BusinessGlossaryServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

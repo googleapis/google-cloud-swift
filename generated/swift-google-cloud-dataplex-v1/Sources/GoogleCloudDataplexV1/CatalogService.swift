@@ -1308,7 +1308,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.listEntryTypes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEntryTypesByItems(
@@ -1475,7 +1476,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.listAspectTypes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAspectTypesByItems(
@@ -1642,7 +1644,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.listEntryGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEntryGroupsByItems(
@@ -1768,7 +1771,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.listEntries(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEntriesByItems(
@@ -1849,7 +1853,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.searchEntries(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchEntriesByItems(
@@ -1952,7 +1957,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.listMetadataJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMetadataJobsByItems(
@@ -2081,7 +2087,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.lookupEntryLinks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func lookupContext(request: LookupContextRequest) async throws
@@ -2206,7 +2213,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.listMetadataFeeds(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMetadataFeedsByItems(
@@ -2331,7 +2339,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2414,7 +2423,8 @@ extension Clients.CatalogServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

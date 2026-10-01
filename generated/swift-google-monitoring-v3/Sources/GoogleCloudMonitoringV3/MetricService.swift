@@ -230,7 +230,8 @@ extension Clients.MetricServiceProtocol {
       request.pageToken = token
       return try await self.listMonitoredResourceDescriptors(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMonitoredResourceDescriptorsByItems(
@@ -294,7 +295,8 @@ extension Clients.MetricServiceProtocol {
       request.pageToken = token
       return try await self.listMetricDescriptors(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMetricDescriptorsByItems(
@@ -400,7 +402,8 @@ extension Clients.MetricServiceProtocol {
       request.pageToken = token
       return try await self.listTimeSeries(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTimeSeriesByItems(

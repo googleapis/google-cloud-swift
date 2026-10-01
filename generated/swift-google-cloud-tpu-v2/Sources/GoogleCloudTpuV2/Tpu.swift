@@ -684,7 +684,8 @@ extension Clients.TpuProtocol {
       request.pageToken = token
       return try await self.listNodes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNodesByItems(
@@ -879,7 +880,8 @@ extension Clients.TpuProtocol {
       request.pageToken = token
       return try await self.listQueuedResources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listQueuedResourcesByItems(
@@ -1058,7 +1060,8 @@ extension Clients.TpuProtocol {
       request.pageToken = token
       return try await self.listAcceleratorTypes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAcceleratorTypesByItems(
@@ -1122,7 +1125,8 @@ extension Clients.TpuProtocol {
       request.pageToken = token
       return try await self.listRuntimeVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRuntimeVersionsByItems(
@@ -1197,7 +1201,8 @@ extension Clients.TpuProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1244,7 +1249,8 @@ extension Clients.TpuProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

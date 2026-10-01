@@ -583,7 +583,8 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
       request.pageToken = token
       return try await self.listSecurityProfileGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSecurityProfileGroupsByItems(
@@ -754,7 +755,8 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
       request.pageToken = token
       return try await self.listSecurityProfiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSecurityProfilesByItems(
@@ -939,7 +941,8 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1022,7 +1025,8 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

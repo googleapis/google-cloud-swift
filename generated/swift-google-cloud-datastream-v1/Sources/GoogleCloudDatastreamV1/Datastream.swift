@@ -904,7 +904,8 @@ extension Clients.DatastreamProtocol {
       request.pageToken = token
       return try await self.listConnectionProfiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listConnectionProfilesByItems(
@@ -1086,7 +1087,8 @@ extension Clients.DatastreamProtocol {
       request.pageToken = token
       return try await self.listStreams(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listStreamsByItems(
@@ -1297,7 +1299,8 @@ extension Clients.DatastreamProtocol {
       request.pageToken = token
       return try await self.listStreamObjects(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listStreamObjectsByItems(
@@ -1463,7 +1466,8 @@ extension Clients.DatastreamProtocol {
       request.pageToken = token
       return try await self.listPrivateConnections(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPrivateConnectionsByItems(
@@ -1591,7 +1595,8 @@ extension Clients.DatastreamProtocol {
       request.pageToken = token
       return try await self.listRoutes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRoutesByItems(
@@ -1662,7 +1667,8 @@ extension Clients.DatastreamProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1709,7 +1715,8 @@ extension Clients.DatastreamProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -892,7 +892,8 @@ extension Clients.EdgeNetworkProtocol {
       request.pageToken = token
       return try await self.listZones(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   @available(*, deprecated)
@@ -958,7 +959,8 @@ extension Clients.EdgeNetworkProtocol {
       request.pageToken = token
       return try await self.listNetworks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNetworksByItems(
@@ -1109,7 +1111,8 @@ extension Clients.EdgeNetworkProtocol {
       request.pageToken = token
       return try await self.listSubnets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSubnetsByItems(
@@ -1267,7 +1270,8 @@ extension Clients.EdgeNetworkProtocol {
       request.pageToken = token
       return try await self.listInterconnects(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInterconnectsByItems(
@@ -1352,7 +1356,8 @@ extension Clients.EdgeNetworkProtocol {
       request.pageToken = token
       return try await self.listInterconnectAttachments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInterconnectAttachmentsByItems(
@@ -1487,7 +1492,8 @@ extension Clients.EdgeNetworkProtocol {
       request.pageToken = token
       return try await self.listRouters(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRoutersByItems(
@@ -1665,7 +1671,8 @@ extension Clients.EdgeNetworkProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1712,7 +1719,8 @@ extension Clients.EdgeNetworkProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

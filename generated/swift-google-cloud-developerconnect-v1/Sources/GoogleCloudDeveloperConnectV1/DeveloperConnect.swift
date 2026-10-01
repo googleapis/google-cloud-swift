@@ -881,7 +881,8 @@ extension Clients.DeveloperConnectProtocol {
       request.pageToken = token
       return try await self.listConnections(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listConnectionsByItems(
@@ -1119,7 +1120,8 @@ extension Clients.DeveloperConnectProtocol {
       request.pageToken = token
       return try await self.listGitRepositoryLinks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGitRepositoryLinksByItems(
@@ -1226,7 +1228,8 @@ extension Clients.DeveloperConnectProtocol {
       request.pageToken = token
       return try await self.fetchLinkableGitRepositories(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchLinkableGitRepositoriesByItems(
@@ -1313,7 +1316,8 @@ extension Clients.DeveloperConnectProtocol {
       request.pageToken = token
       return try await self.listAccountConnectors(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAccountConnectorsByItems(
@@ -1503,7 +1507,8 @@ extension Clients.DeveloperConnectProtocol {
       request.pageToken = token
       return try await self.listUsers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listUsersByItems(
@@ -1673,7 +1678,8 @@ extension Clients.DeveloperConnectProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1720,7 +1726,8 @@ extension Clients.DeveloperConnectProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -846,7 +846,8 @@ extension Clients.CloudFilestoreManagerProtocol {
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInstancesByItems(
@@ -1062,7 +1063,8 @@ extension Clients.CloudFilestoreManagerProtocol {
       request.pageToken = token
       return try await self.listSnapshots(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSnapshotsByItems(
@@ -1229,7 +1231,8 @@ extension Clients.CloudFilestoreManagerProtocol {
       request.pageToken = token
       return try await self.listBackups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupsByItems(
@@ -1410,7 +1413,8 @@ extension Clients.CloudFilestoreManagerProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1457,7 +1461,8 @@ extension Clients.CloudFilestoreManagerProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

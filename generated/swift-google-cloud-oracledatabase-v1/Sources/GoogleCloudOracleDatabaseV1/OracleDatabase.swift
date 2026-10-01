@@ -2474,7 +2474,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listCloudExadataInfrastructures(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCloudExadataInfrastructuresByItems(
@@ -2647,7 +2648,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listCloudVmClusters(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCloudVmClustersByItems(
@@ -2781,7 +2783,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listEntitlements(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEntitlementsByItems(
@@ -2824,7 +2827,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listDbServers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDbServersByItems(
@@ -2867,7 +2871,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listDbNodes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDbNodesByItems(
@@ -2911,7 +2916,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listGiVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGiVersionsByItems(
@@ -2955,7 +2961,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listMinorVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMinorVersionsByItems(
@@ -2998,7 +3005,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listDbSystemShapes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDbSystemShapesByItems(
@@ -3041,7 +3049,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listAutonomousDatabases(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAutonomousDatabasesByItems(
@@ -3276,7 +3285,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listAutonomousDbVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAutonomousDbVersionsByItems(
@@ -3319,7 +3329,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listAutonomousDatabaseCharacterSets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAutonomousDatabaseCharacterSetsByItems(
@@ -3362,7 +3373,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listAutonomousDatabaseBackups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAutonomousDatabaseBackupsByItems(
@@ -3635,7 +3647,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listOdbNetworks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOdbNetworksByItems(
@@ -3767,7 +3780,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listOdbSubnets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOdbSubnetsByItems(
@@ -3900,7 +3914,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listExadbVmClusters(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listExadbVmClustersByItems(
@@ -4106,7 +4121,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listExascaleDbStorageVaults(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listExascaleDbStorageVaultsByItems(
@@ -4242,7 +4258,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listDbSystemInitialStorageSizes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDbSystemInitialStorageSizesByItems(
@@ -4285,7 +4302,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listDatabases(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDatabasesByItems(
@@ -4350,7 +4368,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listPluggableDatabases(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPluggableDatabasesByItems(
@@ -4414,7 +4433,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listDbSystems(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDbSystemsByItems(
@@ -4546,7 +4566,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listGoldengateDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGoldengateDeploymentsByItems(
@@ -4749,7 +4770,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listGoldengateConnections(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGoldengateConnectionsByItems(
@@ -4884,7 +4906,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listGoldengateDeploymentVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGoldengateDeploymentVersionsByItems(
@@ -4927,7 +4950,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listGoldengateDeploymentTypes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGoldengateDeploymentTypesByItems(
@@ -4970,7 +4994,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listGoldengateDeploymentEnvironments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGoldengateDeploymentEnvironmentsByItems(
@@ -5017,7 +5042,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listGoldengateConnectionTypes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGoldengateConnectionTypesByItems(
@@ -5062,7 +5088,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listDbVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDbVersionsByItems(
@@ -5105,7 +5132,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listDatabaseCharacterSets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDatabaseCharacterSetsByItems(
@@ -5148,7 +5176,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listGoldengateConnectionAssignments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGoldengateConnectionAssignmentsByItems(
@@ -5321,7 +5350,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -5368,7 +5398,8 @@ extension Clients.OracleDatabaseProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

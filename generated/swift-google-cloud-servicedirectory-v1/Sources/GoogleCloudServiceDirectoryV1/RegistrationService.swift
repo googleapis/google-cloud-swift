@@ -408,7 +408,8 @@ extension Clients.RegistrationServiceProtocol {
       request.pageToken = token
       return try await self.listNamespaces(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNamespacesByItems(
@@ -539,7 +540,8 @@ extension Clients.RegistrationServiceProtocol {
       request.pageToken = token
       return try await self.listServices(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServicesByItems(
@@ -670,7 +672,8 @@ extension Clients.RegistrationServiceProtocol {
       request.pageToken = token
       return try await self.listEndpoints(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEndpointsByItems(
@@ -811,7 +814,8 @@ extension Clients.RegistrationServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

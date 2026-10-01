@@ -108,7 +108,8 @@ extension Clients.CloudCatalogProtocol {
       request.pageToken = token
       return try await self.listServices(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSkus(request: ListSkusRequest) async throws
@@ -141,7 +142,8 @@ extension Clients.CloudCatalogProtocol {
       request.pageToken = token
       return try await self.listSkus(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSkusByItems(

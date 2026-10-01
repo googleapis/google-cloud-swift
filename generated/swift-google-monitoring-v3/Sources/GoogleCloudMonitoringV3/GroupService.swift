@@ -175,7 +175,8 @@ extension Clients.GroupServiceProtocol {
       request.pageToken = token
       return try await self.listGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGroupsByItems(
@@ -298,7 +299,8 @@ extension Clients.GroupServiceProtocol {
       request.pageToken = token
       return try await self.listGroupMembers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGroupMembersByItems(

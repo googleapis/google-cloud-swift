@@ -259,7 +259,8 @@ extension Clients.DocumentSchemaServiceProtocol {
       request.pageToken = token
       return try await self.listDocumentSchemas(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDocumentSchemasByItems(

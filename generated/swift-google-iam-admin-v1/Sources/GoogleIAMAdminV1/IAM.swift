@@ -740,7 +740,8 @@ extension Clients.IAMProtocol {
       request.pageToken = token
       return try await self.listServiceAccounts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServiceAccountsByItems(
@@ -1161,7 +1162,8 @@ extension Clients.IAMProtocol {
       request.pageToken = token
       return try await self.queryGrantableRoles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func queryGrantableRolesByItems(
@@ -1206,7 +1208,8 @@ extension Clients.IAMProtocol {
       request.pageToken = token
       return try await self.listRoles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getRole(request: GetRoleRequest) async throws -> GoogleIAMAdminV1.Role {
@@ -1292,7 +1295,8 @@ extension Clients.IAMProtocol {
       request.pageToken = token
       return try await self.queryTestablePermissions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func queryAuditableServices(request: QueryAuditableServicesRequest) async throws

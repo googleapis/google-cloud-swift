@@ -655,7 +655,8 @@ extension Clients.SecurityPostureProtocol {
       request.pageToken = token
       return try await self.listPostures(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPosturesByItems(
@@ -698,7 +699,8 @@ extension Clients.SecurityPostureProtocol {
       request.pageToken = token
       return try await self.listPostureRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getPosture(request: GetPostureRequest) async throws
@@ -889,7 +891,8 @@ extension Clients.SecurityPostureProtocol {
       request.pageToken = token
       return try await self.listPostureDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPostureDeploymentsByItems(
@@ -1061,7 +1064,8 @@ extension Clients.SecurityPostureProtocol {
       request.pageToken = token
       return try await self.listPostureTemplates(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPostureTemplatesByItems(
@@ -1124,7 +1128,8 @@ extension Clients.SecurityPostureProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1171,7 +1176,8 @@ extension Clients.SecurityPostureProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

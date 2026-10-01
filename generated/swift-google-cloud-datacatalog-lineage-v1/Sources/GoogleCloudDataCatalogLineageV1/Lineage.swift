@@ -591,7 +591,8 @@ extension Clients.LineageProtocol {
       request.pageToken = token
       return try await self.listProcesses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProcessesByItems(
@@ -731,7 +732,8 @@ extension Clients.LineageProtocol {
       request.pageToken = token
       return try await self.listRuns(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRunsByItems(
@@ -848,7 +850,8 @@ extension Clients.LineageProtocol {
       request.pageToken = token
       return try await self.listLineageEvents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLineageEventsByItems(
@@ -918,7 +921,8 @@ extension Clients.LineageProtocol {
       request.pageToken = token
       return try await self.searchLinks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func batchSearchLinkProcesses(request: BatchSearchLinkProcessesRequest) async throws
@@ -967,7 +971,8 @@ extension Clients.LineageProtocol {
       request.pageToken = token
       return try await self.batchSearchLinkProcesses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
@@ -1002,7 +1007,8 @@ extension Clients.LineageProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

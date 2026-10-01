@@ -2627,7 +2627,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listStoragePools(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listStoragePoolsByItems(
@@ -2842,7 +2843,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listVolumes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVolumesByItems(
@@ -3044,7 +3046,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listSnapshots(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSnapshotsByItems(
@@ -3210,7 +3213,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listActiveDirectories(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listActiveDirectoriesByItems(
@@ -3378,7 +3382,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listKmsConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listKmsConfigsByItems(
@@ -3581,7 +3586,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listReplications(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listReplicationsByItems(
@@ -3927,7 +3933,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listBackupVaults(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupVaultsByItems(
@@ -4088,7 +4095,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listBackups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupsByItems(
@@ -4251,7 +4259,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listBackupPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupPoliciesByItems(
@@ -4359,7 +4368,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listQuotaRules(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listQuotaRulesByItems(
@@ -4550,7 +4560,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listHostGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listHostGroupsByItems(
@@ -4781,7 +4792,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -4828,7 +4840,8 @@ extension Clients.NetAppProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

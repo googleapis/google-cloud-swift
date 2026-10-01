@@ -837,7 +837,8 @@ extension Clients.ConfigServiceV2Protocol {
       request.pageToken = token
       return try await self.listBuckets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBucketsByItems(
@@ -981,7 +982,8 @@ extension Clients.ConfigServiceV2Protocol {
       request.pageToken = token
       return try await self.listViews(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listViewsByItems(
@@ -1063,7 +1065,8 @@ extension Clients.ConfigServiceV2Protocol {
       request.pageToken = token
       return try await self.listSinks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSinksByItems(
@@ -1260,7 +1263,8 @@ extension Clients.ConfigServiceV2Protocol {
       request.pageToken = token
       return try await self.listLinks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLinksByItems(
@@ -1321,7 +1325,8 @@ extension Clients.ConfigServiceV2Protocol {
       request.pageToken = token
       return try await self.listExclusions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listExclusionsByItems(
@@ -1544,7 +1549,8 @@ extension Clients.ConfigServiceV2Protocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

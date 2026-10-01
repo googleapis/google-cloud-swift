@@ -826,7 +826,8 @@
         request.pageToken = token
         return try await self.listModels(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listModelsByItems(
@@ -869,7 +870,8 @@
         request.pageToken = token
         return try await self.listModelVersions(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listModelVersionsByItems(
@@ -912,7 +914,8 @@
         request.pageToken = token
         return try await self.listModelVersionCheckpoints(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listModelVersionCheckpointsByItems(
@@ -1254,7 +1257,8 @@
         request.pageToken = token
         return try await self.listModelEvaluations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listModelEvaluationsByItems(
@@ -1318,7 +1322,8 @@
         request.pageToken = token
         return try await self.listModelEvaluationSlices(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listModelEvaluationSlicesByItems(
@@ -1360,7 +1365,8 @@
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1443,7 +1449,8 @@
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listOperationsByItems(

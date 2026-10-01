@@ -959,7 +959,8 @@ extension Clients.DocumentProcessorServiceProtocol {
       request.pageToken = token
       return try await self.listProcessorTypes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProcessorTypesByItems(
@@ -1023,7 +1024,8 @@ extension Clients.DocumentProcessorServiceProtocol {
       request.pageToken = token
       return try await self.listProcessors(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProcessorsByItems(
@@ -1143,7 +1145,8 @@ extension Clients.DocumentProcessorServiceProtocol {
       request.pageToken = token
       return try await self.listProcessorVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProcessorVersionsByItems(
@@ -1501,7 +1504,8 @@ extension Clients.DocumentProcessorServiceProtocol {
       request.pageToken = token
       return try await self.listEvaluations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEvaluationsByItems(
@@ -1543,7 +1547,8 @@ extension Clients.DocumentProcessorServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1590,7 +1595,8 @@ extension Clients.DocumentProcessorServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

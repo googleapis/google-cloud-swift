@@ -272,7 +272,8 @@ extension Clients.InstancesProtocol {
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getInstance(request: GetInstanceRequest) async throws -> GoogleAppEngineV1.Instance {
@@ -362,7 +363,8 @@ extension Clients.InstancesProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

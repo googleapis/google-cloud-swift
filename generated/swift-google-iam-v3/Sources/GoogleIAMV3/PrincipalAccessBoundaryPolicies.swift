@@ -420,7 +420,8 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
       request.pageToken = token
       return try await self.listPrincipalAccessBoundaryPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPrincipalAccessBoundaryPoliciesByItems(
@@ -465,7 +466,8 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
       return try await self.searchPrincipalAccessBoundaryPolicyBindings(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchPrincipalAccessBoundaryPolicyBindingsByItems(

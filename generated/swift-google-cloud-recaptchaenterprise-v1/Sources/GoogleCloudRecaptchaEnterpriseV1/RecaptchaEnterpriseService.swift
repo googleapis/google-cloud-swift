@@ -506,7 +506,8 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
       request.pageToken = token
       return try await self.listKeys(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listKeysByItems(
@@ -689,7 +690,8 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
       request.pageToken = token
       return try await self.listIpOverrides(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listIpOverridesByItems(
@@ -820,7 +822,8 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
       request.pageToken = token
       return try await self.listFirewallPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFirewallPoliciesByItems(
@@ -949,7 +952,8 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
       request.pageToken = token
       return try await self.listRelatedAccountGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRelatedAccountGroupsByItems(
@@ -992,7 +996,8 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
       request.pageToken = token
       return try await self.listRelatedAccountGroupMemberships(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRelatedAccountGroupMembershipsByItems(
@@ -1038,7 +1043,8 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
       request.pageToken = token
       return try await self.searchRelatedAccountGroupMemberships(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   #if hasAttribute(diagnose)

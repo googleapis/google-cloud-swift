@@ -266,7 +266,8 @@
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func aggregatedListByItems(
@@ -402,7 +403,8 @@
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listByItems(

@@ -268,7 +268,8 @@ extension Clients.ServiceMonitoringServiceProtocol {
       request.pageToken = token
       return try await self.listServices(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServicesByItems(
@@ -395,7 +396,8 @@ extension Clients.ServiceMonitoringServiceProtocol {
       request.pageToken = token
       return try await self.listServiceLevelObjectives(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServiceLevelObjectivesByItems(

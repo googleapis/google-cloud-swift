@@ -458,7 +458,8 @@ extension Clients.StorageTransferServiceProtocol {
       request.pageToken = token
       return try await self.listTransferJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func pauseTransferOperation(request: PauseTransferOperationRequest) async throws {
@@ -613,7 +614,8 @@ extension Clients.StorageTransferServiceProtocol {
       request.pageToken = token
       return try await self.listAgentPools(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAgentPoolsByItems(
@@ -675,7 +677,8 @@ extension Clients.StorageTransferServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

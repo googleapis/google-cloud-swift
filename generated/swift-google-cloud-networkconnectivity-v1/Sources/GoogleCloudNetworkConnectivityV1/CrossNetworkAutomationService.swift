@@ -810,7 +810,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
       request.pageToken = token
       return try await self.listServiceConnectionMaps(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServiceConnectionMapsByItems(
@@ -981,7 +982,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
       request.pageToken = token
       return try await self.listServiceConnectionPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServiceConnectionPoliciesByItems(
@@ -1152,7 +1154,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
       request.pageToken = token
       return try await self.listServiceClasses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServiceClassesByItems(
@@ -1303,7 +1306,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
       request.pageToken = token
       return try await self.listServiceConnectionTokens(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServiceConnectionTokensByItems(
@@ -1416,7 +1420,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1499,7 +1504,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

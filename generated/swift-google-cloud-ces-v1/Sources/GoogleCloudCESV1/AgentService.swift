@@ -1062,7 +1062,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listApps(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAppsByItems(
@@ -1281,7 +1282,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listAgents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAgentsByItems(
@@ -1416,7 +1418,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listExamples(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listExamplesByItems(
@@ -1553,7 +1556,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listTools(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listToolsByItems(
@@ -1614,7 +1618,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listConversations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listConversationsByItems(
@@ -1810,7 +1815,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listGuardrails(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGuardrailsByItems(
@@ -1950,7 +1956,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDeploymentsByItems(
@@ -2091,7 +2098,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listToolsets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listToolsetsByItems(
@@ -2228,7 +2236,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listAppVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAppVersionsByItems(
@@ -2379,7 +2388,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listChangelogs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listChangelogsByItems(
@@ -2458,7 +2468,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2505,7 +2516,8 @@ extension Clients.AgentServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -750,7 +750,8 @@ extension Clients.FirewallActivationProtocol {
       request.pageToken = token
       return try await self.listFirewallEndpoints(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFirewallEndpointsByItems(
@@ -793,7 +794,8 @@ extension Clients.FirewallActivationProtocol {
       request.pageToken = token
       return try await self.listProjectFirewallEndpoints(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProjectFirewallEndpointsByItems(
@@ -1090,7 +1092,8 @@ extension Clients.FirewallActivationProtocol {
       request.pageToken = token
       return try await self.listFirewallEndpointAssociations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFirewallEndpointAssociationsByItems(
@@ -1278,7 +1281,8 @@ extension Clients.FirewallActivationProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1361,7 +1365,8 @@ extension Clients.FirewallActivationProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

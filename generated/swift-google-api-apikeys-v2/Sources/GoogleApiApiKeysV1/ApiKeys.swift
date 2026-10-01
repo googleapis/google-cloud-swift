@@ -414,7 +414,8 @@ extension Clients.ApiKeysProtocol {
       request.pageToken = token
       return try await self.listKeys(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listKeysByItems(

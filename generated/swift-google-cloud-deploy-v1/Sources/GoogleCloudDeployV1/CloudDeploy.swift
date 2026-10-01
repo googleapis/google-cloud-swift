@@ -1411,7 +1411,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listDeliveryPipelines(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDeliveryPipelinesByItems(
@@ -1579,7 +1580,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listTargets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTargetsByItems(
@@ -1762,7 +1764,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listCustomTargetTypes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCustomTargetTypesByItems(
@@ -1930,7 +1933,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listReleases(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listReleasesByItems(
@@ -2151,7 +2155,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listDeployPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDeployPoliciesByItems(
@@ -2279,7 +2284,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listRollouts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRolloutsByItems(
@@ -2425,7 +2431,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listJobRuns(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listJobRunsByItems(
@@ -2650,7 +2657,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listAutomations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAutomationsByItems(
@@ -2714,7 +2722,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listAutomationRuns(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAutomationRunsByItems(
@@ -2777,7 +2786,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2860,7 +2870,8 @@ extension Clients.CloudDeployProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

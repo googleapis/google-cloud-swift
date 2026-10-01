@@ -365,7 +365,8 @@ extension Clients.MetastoreServiceProtocol {
       request.pageToken = token
       return try await self.listCatalogs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCatalogsByItems(
@@ -498,7 +499,8 @@ extension Clients.MetastoreServiceProtocol {
       request.pageToken = token
       return try await self.listDatabases(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDatabasesByItems(
@@ -647,7 +649,8 @@ extension Clients.MetastoreServiceProtocol {
       request.pageToken = token
       return try await self.listTables(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTablesByItems(

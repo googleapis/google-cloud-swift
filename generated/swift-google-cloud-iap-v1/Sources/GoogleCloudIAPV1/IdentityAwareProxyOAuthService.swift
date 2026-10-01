@@ -253,7 +253,8 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
       request.pageToken = token
       return try await self.listIdentityAwareProxyClients(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getIdentityAwareProxyClient(request: GetIdentityAwareProxyClientRequest) async throws

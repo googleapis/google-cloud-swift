@@ -316,7 +316,8 @@ extension Clients.RecommenderProtocol {
       request.pageToken = token
       return try await self.listInsights(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInsightsByItems(
@@ -406,7 +407,8 @@ extension Clients.RecommenderProtocol {
       request.pageToken = token
       return try await self.listRecommendations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRecommendationsByItems(

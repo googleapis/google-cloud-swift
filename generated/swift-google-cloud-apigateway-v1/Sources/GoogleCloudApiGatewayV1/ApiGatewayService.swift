@@ -642,7 +642,8 @@ extension Clients.ApiGatewayServiceProtocol {
       request.pageToken = token
       return try await self.listGateways(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGatewaysByItems(
@@ -803,7 +804,8 @@ extension Clients.ApiGatewayServiceProtocol {
       request.pageToken = token
       return try await self.listApis(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listApisByItems(
@@ -958,7 +960,8 @@ extension Clients.ApiGatewayServiceProtocol {
       request.pageToken = token
       return try await self.listApiConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listApiConfigsByItems(
@@ -1126,7 +1129,8 @@ extension Clients.ApiGatewayServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

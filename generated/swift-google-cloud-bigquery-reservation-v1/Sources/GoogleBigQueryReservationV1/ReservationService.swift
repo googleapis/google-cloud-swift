@@ -722,7 +722,8 @@ extension Clients.ReservationServiceProtocol {
       request.pageToken = token
       return try await self.listReservations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listReservationsByItems(
@@ -863,7 +864,8 @@ extension Clients.ReservationServiceProtocol {
       request.pageToken = token
       return try await self.listCapacityCommitments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCapacityCommitmentsByItems(
@@ -1058,7 +1060,8 @@ extension Clients.ReservationServiceProtocol {
       request.pageToken = token
       return try await self.listAssignments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAssignmentsByItems(
@@ -1146,7 +1149,8 @@ extension Clients.ReservationServiceProtocol {
       request.pageToken = token
       return try await self.searchAssignments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   @available(*, deprecated)
@@ -1211,7 +1215,8 @@ extension Clients.ReservationServiceProtocol {
       request.pageToken = token
       return try await self.searchAllAssignments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchAllAssignmentsByItems(
@@ -1454,7 +1459,8 @@ extension Clients.ReservationServiceProtocol {
       request.pageToken = token
       return try await self.listReservationGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listReservationGroupsByItems(

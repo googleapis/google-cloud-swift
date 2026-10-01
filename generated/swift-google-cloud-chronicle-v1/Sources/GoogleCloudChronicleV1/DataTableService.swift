@@ -375,7 +375,8 @@ extension Clients.DataTableServiceProtocol {
       request.pageToken = token
       return try await self.listDataTables(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDataTablesByItems(
@@ -529,7 +530,8 @@ extension Clients.DataTableServiceProtocol {
       request.pageToken = token
       return try await self.listDataTableRows(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDataTableRowsByItems(
@@ -726,7 +728,8 @@ extension Clients.DataTableServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

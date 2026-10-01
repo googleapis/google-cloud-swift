@@ -107,6 +107,7 @@ extension Clients.QueryServiceProtocol {
       request.pageToken = token
       return try await self.queryTimeSeries(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 }

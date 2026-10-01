@@ -400,7 +400,8 @@ extension Clients.RuleServiceProtocol {
       request.pageToken = token
       return try await self.listRules(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRulesByItems(
@@ -506,7 +507,8 @@ extension Clients.RuleServiceProtocol {
       request.pageToken = token
       return try await self.listRuleRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRuleRevisionsByItems(
@@ -605,7 +607,8 @@ extension Clients.RuleServiceProtocol {
       request.pageToken = token
       return try await self.listRetrohunts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRetrohuntsByItems(
@@ -669,7 +672,8 @@ extension Clients.RuleServiceProtocol {
       request.pageToken = token
       return try await self.listRuleDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRuleDeploymentsByItems(
@@ -736,7 +740,8 @@ extension Clients.RuleServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

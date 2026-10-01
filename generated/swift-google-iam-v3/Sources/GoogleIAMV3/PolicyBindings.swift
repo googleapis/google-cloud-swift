@@ -416,7 +416,8 @@ extension Clients.PolicyBindingsProtocol {
       request.pageToken = token
       return try await self.listPolicyBindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPolicyBindingsByItems(
@@ -460,7 +461,8 @@ extension Clients.PolicyBindingsProtocol {
       request.pageToken = token
       return try await self.searchTargetPolicyBindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchTargetPolicyBindingsByItems(

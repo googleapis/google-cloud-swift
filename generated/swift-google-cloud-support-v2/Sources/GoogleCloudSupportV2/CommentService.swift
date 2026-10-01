@@ -151,7 +151,8 @@ extension Clients.CommentServiceProtocol {
       request.pageToken = token
       return try await self.listComments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCommentsByItems(

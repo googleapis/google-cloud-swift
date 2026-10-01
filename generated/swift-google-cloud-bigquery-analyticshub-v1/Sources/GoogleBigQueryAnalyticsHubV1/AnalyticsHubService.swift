@@ -625,7 +625,8 @@ extension Clients.AnalyticsHubServiceProtocol {
       request.pageToken = token
       return try await self.listDataExchanges(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDataExchangesByItems(
@@ -669,7 +670,8 @@ extension Clients.AnalyticsHubServiceProtocol {
       request.pageToken = token
       return try await self.listOrgDataExchanges(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOrgDataExchangesByItems(
@@ -798,7 +800,8 @@ extension Clients.AnalyticsHubServiceProtocol {
       request.pageToken = token
       return try await self.listListings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listListingsByItems(
@@ -1035,7 +1038,8 @@ extension Clients.AnalyticsHubServiceProtocol {
       request.pageToken = token
       return try await self.listSubscriptions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSubscriptionsByItems(
@@ -1078,7 +1082,8 @@ extension Clients.AnalyticsHubServiceProtocol {
       request.pageToken = token
       return try await self.listSharedResourceSubscriptions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSharedResourceSubscriptionsByItems(
@@ -1255,7 +1260,8 @@ extension Clients.AnalyticsHubServiceProtocol {
       request.pageToken = token
       return try await self.listQueryTemplates(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listQueryTemplatesByItems(

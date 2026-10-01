@@ -1006,7 +1006,8 @@
         request.pageToken = token
         return try await self.getXpnResources(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func getXpnResourcesByItems(
@@ -1048,7 +1049,8 @@
         request.pageToken = token
         return try await self.listXpnHosts(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listXpnHostsByItems(

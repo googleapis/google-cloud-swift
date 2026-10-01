@@ -304,7 +304,8 @@ extension Clients.DocumentServiceProtocol {
       request.pageToken = token
       return try await self.searchDocuments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchDocumentsByItems(

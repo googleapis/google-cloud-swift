@@ -376,7 +376,8 @@ extension Clients.DataFusionProtocol {
       request.pageToken = token
       return try await self.listAvailableVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAvailableVersionsByItems(
@@ -419,7 +420,8 @@ extension Clients.DataFusionProtocol {
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getInstance(request: GetInstanceRequest) async throws
@@ -593,7 +595,8 @@ extension Clients.DataFusionProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

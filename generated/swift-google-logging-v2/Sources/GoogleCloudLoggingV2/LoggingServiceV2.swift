@@ -255,7 +255,8 @@ extension Clients.LoggingServiceV2Protocol {
       request.pageToken = token
       return try await self.listLogEntries(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLogEntriesByItems(
@@ -302,7 +303,8 @@ extension Clients.LoggingServiceV2Protocol {
       request.pageToken = token
       return try await self.listMonitoredResourceDescriptors(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLogs(request: ListLogsRequest) async throws
@@ -358,7 +360,8 @@ extension Clients.LoggingServiceV2Protocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

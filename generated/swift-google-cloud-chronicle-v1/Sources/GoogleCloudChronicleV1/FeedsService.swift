@@ -462,7 +462,8 @@ extension Clients.FeedsServiceProtocol {
       request.pageToken = token
       return try await self.listFeeds(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFeedsByItems(
@@ -505,7 +506,8 @@ extension Clients.FeedsServiceProtocol {
       request.pageToken = token
       return try await self.listFeedPacks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFeedPacksByItems(
@@ -590,7 +592,8 @@ extension Clients.FeedsServiceProtocol {
       request.pageToken = token
       return try await self.listFeedSourceTypeSchemas(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFeedSourceTypeSchemasByItems(
@@ -634,7 +637,8 @@ extension Clients.FeedsServiceProtocol {
       request.pageToken = token
       return try await self.listLogTypeSchemas(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLogTypeSchemasByItems(
@@ -718,7 +722,8 @@ extension Clients.FeedsServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -177,7 +177,8 @@ extension Clients.UptimeCheckServiceProtocol {
       request.pageToken = token
       return try await self.listUptimeCheckConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listUptimeCheckConfigsByItems(
@@ -304,6 +305,7 @@ extension Clients.UptimeCheckServiceProtocol {
       request.pageToken = token
       return try await self.listUptimeCheckIps(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 }

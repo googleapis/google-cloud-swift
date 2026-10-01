@@ -750,7 +750,8 @@ extension Clients.LiveVideoAnalyticsProtocol {
       request.pageToken = token
       return try await self.listPublicOperators(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPublicOperatorsByItems(
@@ -815,7 +816,8 @@ extension Clients.LiveVideoAnalyticsProtocol {
       request.pageToken = token
       return try await self.listOperators(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperatorsByItems(
@@ -980,7 +982,8 @@ extension Clients.LiveVideoAnalyticsProtocol {
       request.pageToken = token
       return try await self.listAnalyses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAnalysesByItems(
@@ -1145,7 +1148,8 @@ extension Clients.LiveVideoAnalyticsProtocol {
       request.pageToken = token
       return try await self.listProcesses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProcessesByItems(
@@ -1340,7 +1344,8 @@ extension Clients.LiveVideoAnalyticsProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1387,7 +1392,8 @@ extension Clients.LiveVideoAnalyticsProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

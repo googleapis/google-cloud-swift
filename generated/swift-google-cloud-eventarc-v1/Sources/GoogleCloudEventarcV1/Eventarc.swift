@@ -1439,7 +1439,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listTriggers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTriggersByItems(
@@ -1603,7 +1604,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listChannels(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listChannelsByItems(
@@ -1765,7 +1767,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listProviders(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProvidersByItems(
@@ -1829,7 +1832,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listChannelConnections(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listChannelConnectionsByItems(
@@ -2009,7 +2013,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listMessageBuses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMessageBusesByItems(
@@ -2201,7 +2206,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listEnrollments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEnrollmentsByItems(
@@ -2371,7 +2377,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listPipelines(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPipelinesByItems(
@@ -2542,7 +2549,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listGoogleApiSources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGoogleApiSourcesByItems(
@@ -2691,7 +2699,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2774,7 +2783,8 @@ extension Clients.EventarcProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

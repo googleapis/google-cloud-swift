@@ -309,7 +309,8 @@ extension Clients.OrgPolicyProtocol {
       request.pageToken = token
       return try await self.listConstraints(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listConstraintsByItems(
@@ -351,7 +352,8 @@ extension Clients.OrgPolicyProtocol {
       request.pageToken = token
       return try await self.listPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPoliciesByItems(
@@ -563,7 +565,8 @@ extension Clients.OrgPolicyProtocol {
       request.pageToken = token
       return try await self.listCustomConstraints(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCustomConstraintsByItems(

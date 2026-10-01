@@ -353,7 +353,8 @@ extension Clients.CloudChannelReportsServiceProtocol {
       request.pageToken = token
       return try await self.fetchReportResults(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   @available(*, deprecated)
@@ -405,7 +406,8 @@ extension Clients.CloudChannelReportsServiceProtocol {
       request.pageToken = token
       return try await self.listReports(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   @available(*, deprecated)
@@ -450,7 +452,8 @@ extension Clients.CloudChannelReportsServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

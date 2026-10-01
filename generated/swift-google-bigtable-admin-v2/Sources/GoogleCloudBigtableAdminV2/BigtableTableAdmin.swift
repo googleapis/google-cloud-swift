@@ -1173,7 +1173,8 @@ extension Clients.BigtableTableAdminProtocol {
       request.pageToken = token
       return try await self.listTables(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTablesByItems(
@@ -1353,7 +1354,8 @@ extension Clients.BigtableTableAdminProtocol {
       request.pageToken = token
       return try await self.listAuthorizedViews(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAuthorizedViewsByItems(
@@ -1613,7 +1615,8 @@ extension Clients.BigtableTableAdminProtocol {
       request.pageToken = token
       return try await self.listSnapshots(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSnapshotsByItems(
@@ -1772,7 +1775,8 @@ extension Clients.BigtableTableAdminProtocol {
       request.pageToken = token
       return try await self.listBackups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupsByItems(
@@ -2031,7 +2035,8 @@ extension Clients.BigtableTableAdminProtocol {
       request.pageToken = token
       return try await self.listSchemaBundles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSchemaBundlesByItems(
@@ -2094,7 +2099,8 @@ extension Clients.BigtableTableAdminProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -987,7 +987,8 @@ extension Clients.AppHubProtocol {
       request.pageToken = token
       return try await self.listServiceProjectAttachments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServiceProjectAttachmentsByItems(
@@ -1145,7 +1146,8 @@ extension Clients.AppHubProtocol {
       request.pageToken = token
       return try await self.listDiscoveredServices(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDiscoveredServicesByItems(
@@ -1231,7 +1233,8 @@ extension Clients.AppHubProtocol {
       request.pageToken = token
       return try await self.listServices(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServicesByItems(
@@ -1393,7 +1396,8 @@ extension Clients.AppHubProtocol {
       request.pageToken = token
       return try await self.listDiscoveredWorkloads(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDiscoveredWorkloadsByItems(
@@ -1479,7 +1483,8 @@ extension Clients.AppHubProtocol {
       request.pageToken = token
       return try await self.listWorkloads(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkloadsByItems(
@@ -1645,7 +1650,8 @@ extension Clients.AppHubProtocol {
       request.pageToken = token
       return try await self.listApplications(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listApplicationsByItems(
@@ -1811,7 +1817,8 @@ extension Clients.AppHubProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1894,7 +1901,8 @@ extension Clients.AppHubProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

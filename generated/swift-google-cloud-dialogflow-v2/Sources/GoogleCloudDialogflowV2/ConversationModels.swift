@@ -627,7 +627,8 @@
         request.pageToken = token
         return try await self.listConversationModels(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listConversationModelsByItems(
@@ -772,7 +773,8 @@
         request.pageToken = token
         return try await self.listConversationModelEvaluations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listConversationModelEvaluationsByItems(
@@ -867,7 +869,8 @@
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -914,7 +917,8 @@
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listOperationsByItems(

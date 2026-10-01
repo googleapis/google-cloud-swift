@@ -1574,7 +1574,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listMemberships(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMembershipsByItems(
@@ -1618,7 +1619,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listBoundMemberships(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBoundMembershipsByItems(
@@ -1660,7 +1662,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listFeatures(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFeaturesByItems(
@@ -2071,7 +2074,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listFleets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFleetsByItems(
@@ -2240,7 +2244,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listScopeNamespaces(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listScopeNamespacesByItems(
@@ -2411,7 +2416,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listScopeRbacroleBindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listScopeRbacroleBindingsByItems(
@@ -2565,7 +2571,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listScopes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listScopesByItems(
@@ -2608,7 +2615,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listPermittedScopes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPermittedScopesByItems(
@@ -2779,7 +2787,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listMembershipBindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMembershipBindingsByItems(
@@ -2951,7 +2960,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listMembershipRbacroleBindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMembershipRbacroleBindingsByItems(
@@ -3007,7 +3017,8 @@ extension Clients.GkeHubProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -1300,7 +1300,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listManagementServers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listManagementServersByItems(
@@ -1471,7 +1472,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listBackupVaults(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupVaultsByItems(
@@ -1516,7 +1518,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.fetchUsableBackupVaults(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchUsableBackupVaultsByItems(
@@ -1646,7 +1649,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listDataSources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDataSourcesByItems(
@@ -1744,7 +1748,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listBackups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupsByItems(
@@ -1787,7 +1792,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.fetchBackupsForResourceType(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchBackupsForResourceTypeByItems(
@@ -2039,7 +2045,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listBackupPlans(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupPlansByItems(
@@ -2134,7 +2141,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listBackupPlanRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupPlanRevisionsByItems(
@@ -2272,7 +2280,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listBackupPlanAssociations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupPlanAssociationsByItems(
@@ -2316,7 +2325,8 @@ extension Clients.BackupDRProtocol {
       return try await self.fetchBackupPlanAssociationsForResourceType(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchBackupPlanAssociationsForResourceTypeByItems(
@@ -2450,7 +2460,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listDataSourceReferences(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDataSourceReferencesByItems(
@@ -2494,7 +2505,8 @@ extension Clients.BackupDRProtocol {
       return try await self.fetchDataSourceReferencesForResourceType(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchDataSourceReferencesForResourceTypeByItems(
@@ -2562,7 +2574,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2645,7 +2658,8 @@ extension Clients.BackupDRProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

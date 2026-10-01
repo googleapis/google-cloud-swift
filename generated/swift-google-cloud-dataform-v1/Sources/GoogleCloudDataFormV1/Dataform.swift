@@ -1513,7 +1513,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.queryTeamFolderContents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func queryTeamFolderContentsByItems(
@@ -1561,7 +1562,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.searchTeamFolders(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getFolder(request: GetFolderRequest) async throws -> GoogleCloudDataFormV1.Folder {
@@ -1712,7 +1714,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.queryFolderContents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func queryFolderContentsByItems(
@@ -1757,7 +1760,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.queryUserRootContents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func queryUserRootContentsByItems(
@@ -1834,7 +1838,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.listRepositories(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRepositoriesByItems(
@@ -2023,7 +2028,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.queryRepositoryDirectoryContents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchRepositoryHistory(request: FetchRepositoryHistoryRequest) async throws
@@ -2058,7 +2064,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.fetchRepositoryHistory(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func computeRepositoryAccessTokenStatus(request: ComputeRepositoryAccessTokenStatusRequest)
@@ -2116,7 +2123,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.listWorkspaces(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkspacesByItems(
@@ -2320,7 +2328,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.queryDirectoryContents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchFiles(request: SearchFilesRequest) async throws
@@ -2353,7 +2362,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.searchFiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func makeDirectory(request: MakeDirectoryRequest) async throws
@@ -2471,7 +2481,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.listReleaseConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listReleaseConfigsByItems(
@@ -2602,7 +2613,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.listCompilationResults(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCompilationResultsByItems(
@@ -2689,7 +2701,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.queryCompilationResultActions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkflowConfigs(request: ListWorkflowConfigsRequest) async throws
@@ -2723,7 +2736,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.listWorkflowConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkflowConfigsByItems(
@@ -2854,7 +2868,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.listWorkflowInvocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkflowInvocationsByItems(
@@ -2972,7 +2987,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.queryWorkflowInvocationActions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getConfig(request: GetConfigRequest) async throws -> GoogleCloudDataFormV1.Config {
@@ -3109,7 +3125,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -3156,7 +3173,8 @@ extension Clients.DataformProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

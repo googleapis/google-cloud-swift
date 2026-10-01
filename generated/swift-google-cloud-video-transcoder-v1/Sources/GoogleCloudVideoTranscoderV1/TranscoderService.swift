@@ -218,7 +218,8 @@ extension Clients.TranscoderServiceProtocol {
       request.pageToken = token
       return try await self.listJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listJobsByItems(
@@ -324,7 +325,8 @@ extension Clients.TranscoderServiceProtocol {
       request.pageToken = token
       return try await self.listJobTemplates(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listJobTemplatesByItems(

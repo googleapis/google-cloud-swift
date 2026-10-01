@@ -636,7 +636,8 @@ extension Clients.ProjectsProtocol {
       request.pageToken = token
       return try await self.listProjects(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProjectsByItems(
@@ -690,7 +691,8 @@ extension Clients.ProjectsProtocol {
       request.pageToken = token
       return try await self.searchProjects(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchProjectsByItems(

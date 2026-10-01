@@ -1288,7 +1288,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInstancesByItems(
@@ -1608,7 +1609,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listSshkeys(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSshkeysByItems(
@@ -1695,7 +1697,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listVolumes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVolumesByItems(
@@ -1875,7 +1878,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listNetworks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNetworksByItems(
@@ -2091,7 +2095,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listVolumeSnapshots(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVolumeSnapshotsByItems(
@@ -2153,7 +2158,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listLuns(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLunsByItems(
@@ -2246,7 +2252,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listNfsShares(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNfsSharesByItems(
@@ -2413,7 +2420,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listProvisioningQuotas(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProvisioningQuotasByItems(
@@ -2569,7 +2577,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listOsimages(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOsimagesByItems(
@@ -2611,7 +2620,8 @@ extension Clients.BareMetalSolutionProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

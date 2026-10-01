@@ -224,7 +224,8 @@ extension Clients.MigrationServiceProtocol {
       request.pageToken = token
       return try await self.listMigrationWorkflows(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMigrationWorkflowsByItems(
@@ -326,7 +327,8 @@ extension Clients.MigrationServiceProtocol {
       request.pageToken = token
       return try await self.listMigrationSubtasks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMigrationSubtasksByItems(

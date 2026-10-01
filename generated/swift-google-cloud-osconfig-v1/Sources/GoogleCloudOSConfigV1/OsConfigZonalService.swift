@@ -543,7 +543,8 @@ extension Clients.OsConfigZonalServiceProtocol {
       request.pageToken = token
       return try await self.listOspolicyAssignments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOspolicyAssignmentsByItems(
@@ -586,7 +587,8 @@ extension Clients.OsConfigZonalServiceProtocol {
       request.pageToken = token
       return try await self.listOspolicyAssignmentRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOspolicyAssignmentRevisionsByItems(
@@ -684,7 +686,8 @@ extension Clients.OsConfigZonalServiceProtocol {
       request.pageToken = token
       return try await self.listOspolicyAssignmentReports(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOspolicyAssignmentReportsByItems(
@@ -748,7 +751,8 @@ extension Clients.OsConfigZonalServiceProtocol {
       request.pageToken = token
       return try await self.listInventories(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInventoriesByItems(
@@ -812,7 +816,8 @@ extension Clients.OsConfigZonalServiceProtocol {
       request.pageToken = token
       return try await self.listVulnerabilityReports(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVulnerabilityReportsByItems(

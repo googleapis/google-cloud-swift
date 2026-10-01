@@ -1034,7 +1034,8 @@
         request.pageToken = token
         return try await self.listMetadataStores(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listMetadataStoresByItems(
@@ -1159,7 +1160,8 @@
         request.pageToken = token
         return try await self.listArtifacts(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listArtifactsByItems(
@@ -1335,7 +1337,8 @@
         request.pageToken = token
         return try await self.listContexts(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listContextsByItems(
@@ -1603,7 +1606,8 @@
         request.pageToken = token
         return try await self.listExecutions(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listExecutionsByItems(
@@ -1823,7 +1827,8 @@
         request.pageToken = token
         return try await self.listMetadataSchemas(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listMetadataSchemasByItems(
@@ -1886,7 +1891,8 @@
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1969,7 +1975,8 @@
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listOperationsByItems(

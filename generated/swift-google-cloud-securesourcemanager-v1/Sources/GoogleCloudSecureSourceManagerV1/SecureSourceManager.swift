@@ -1997,7 +1997,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInstancesByItems(
@@ -2132,7 +2133,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listRepositories(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRepositoriesByItems(
@@ -2299,7 +2301,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listHooks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listHooksByItems(
@@ -2555,7 +2558,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listBranchRules(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBranchRulesByItems(
@@ -2741,7 +2745,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listPullRequests(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPullRequestsByItems(
@@ -2918,7 +2923,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listPullRequestFileDiffs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPullRequestFileDiffsByItems(
@@ -2961,7 +2967,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.fetchTree(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchBlob(request: FetchBlobRequest) async throws
@@ -3007,7 +3014,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.fetchRefs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func createIssue(request: CreateIssueRequest) async throws -> GoogleLongRunning.Operation {
@@ -3093,7 +3101,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listIssues(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listIssuesByItems(
@@ -3275,7 +3284,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listPullRequestComments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPullRequestCommentsByItems(
@@ -3587,7 +3597,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listIssueComments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listIssueCommentsByItems(
@@ -3712,7 +3723,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -3795,7 +3807,8 @@ extension Clients.SecureSourceManagerProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

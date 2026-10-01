@@ -2277,7 +2277,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listSources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSourcesByItems(
@@ -2461,7 +2462,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.fetchStorageInventory(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchStorageInventoryByItems(
@@ -2506,7 +2508,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listUtilizationReports(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listUtilizationReportsByItems(
@@ -2641,7 +2644,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listDatacenterConnectors(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDatacenterConnectorsByItems(
@@ -2837,7 +2841,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listMigratingVms(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMigratingVmsByItems(
@@ -3176,7 +3181,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listCloneJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCloneJobsByItems(
@@ -3311,7 +3317,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listCutoverJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCutoverJobsByItems(
@@ -3374,7 +3381,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGroupsByItems(
@@ -3598,7 +3606,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listTargetProjects(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTargetProjectsByItems(
@@ -3766,7 +3775,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listReplicationCycles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listReplicationCyclesByItems(
@@ -3830,7 +3840,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listImageImports(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listImageImportsByItems(
@@ -3962,7 +3973,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listImageImportJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listImageImportJobsByItems(
@@ -4096,7 +4108,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listDiskMigrationJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDiskMigrationJobsByItems(
@@ -4284,7 +4297,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -4331,7 +4345,8 @@ extension Clients.VmMigrationProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

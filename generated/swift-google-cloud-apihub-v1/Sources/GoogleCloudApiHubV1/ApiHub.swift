@@ -988,7 +988,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.listApis(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listApisByItems(
@@ -1114,7 +1115,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.listVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVersionsByItems(
@@ -1261,7 +1263,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.listSpecs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSpecsByItems(
@@ -1390,7 +1393,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.listApiOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listApiOperationsByItems(
@@ -1541,7 +1545,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.listDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDeploymentsByItems(
@@ -1713,7 +1718,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.listAttributes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAttributesByItems(
@@ -1755,7 +1761,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.searchResources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchResourcesByItems(
@@ -1888,7 +1895,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.listExternalApis(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listExternalApisByItems(
@@ -1930,7 +1938,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1977,7 +1986,8 @@ extension Clients.ApiHubProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

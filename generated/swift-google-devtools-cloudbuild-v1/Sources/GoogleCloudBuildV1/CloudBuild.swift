@@ -770,7 +770,8 @@ extension Clients.CloudBuildProtocol {
       request.pageToken = token
       return try await self.listBuilds(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBuildsByItems(
@@ -981,7 +982,8 @@ extension Clients.CloudBuildProtocol {
       request.pageToken = token
       return try await self.listBuildTriggers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBuildTriggersByItems(
@@ -1250,7 +1252,8 @@ extension Clients.CloudBuildProtocol {
       request.pageToken = token
       return try await self.listWorkerPools(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkerPoolsByItems(

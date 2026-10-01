@@ -830,7 +830,8 @@
         request.pageToken = token
         return try await self.listNotebookRuntimeTemplates(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listNotebookRuntimeTemplatesByItems(
@@ -991,7 +992,8 @@
         request.pageToken = token
         return try await self.listNotebookRuntimes(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listNotebookRuntimesByItems(
@@ -1226,7 +1228,8 @@
         request.pageToken = token
         return try await self.listNotebookExecutionJobs(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listNotebookExecutionJobsByItems(
@@ -1301,7 +1304,8 @@
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1384,7 +1388,8 @@
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listOperationsByItems(

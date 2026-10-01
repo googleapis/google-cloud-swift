@@ -2531,7 +2531,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listCustomers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getCustomer(request: GetCustomerRequest) async throws -> GoogleCloudChannelV1.Customer
@@ -2688,7 +2689,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listEntitlements(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTransferableSkus(request: ListTransferableSkusRequest) async throws
@@ -2742,7 +2744,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listTransferableSkus(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTransferableOffers(request: ListTransferableOffersRequest) async throws
@@ -2799,7 +2802,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listTransferableOffers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getEntitlement(request: GetEntitlementRequest) async throws
@@ -3092,7 +3096,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listChannelPartnerLinks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getChannelPartnerLink(request: GetChannelPartnerLinkRequest) async throws
@@ -3212,7 +3217,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listCustomerRepricingConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCustomerRepricingConfigsByItems(
@@ -3368,7 +3374,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listChannelPartnerRepricingConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listChannelPartnerRepricingConfigsByItems(
@@ -3496,7 +3503,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listSkuGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSkuGroupsByItems(
@@ -3561,7 +3569,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listSkuGroupBillableSkus(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSkuGroupBillableSkusByItems(
@@ -3617,7 +3626,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listProducts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSkus(request: ListSkusRequest) async throws
@@ -3654,7 +3664,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listSkus(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOffers(request: ListOffersRequest) async throws
@@ -3691,7 +3702,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listOffers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPurchasableSkus(request: ListPurchasableSkusRequest) async throws
@@ -3733,7 +3745,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listPurchasableSkus(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPurchasableOffers(request: ListPurchasableOffersRequest) async throws
@@ -3778,7 +3791,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listPurchasableOffers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func queryEligibleBillingAccounts(request: QueryEligibleBillingAccountsRequest)
@@ -3877,7 +3891,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listEntitlementChanges(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEntitlementChangesByItems(
@@ -3921,7 +3936,8 @@ extension Clients.CloudChannelServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -434,7 +434,8 @@ extension Clients.ParameterManagerProtocol {
       request.pageToken = token
       return try await self.listParameters(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listParametersByItems(
@@ -565,7 +566,8 @@ extension Clients.ParameterManagerProtocol {
       request.pageToken = token
       return try await self.listParameterVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listParameterVersionsByItems(
@@ -717,7 +719,8 @@ extension Clients.ParameterManagerProtocol {
       request.pageToken = token
       return try await self.listTemplates(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTemplatesByItems(
@@ -848,7 +851,8 @@ extension Clients.ParameterManagerProtocol {
       request.pageToken = token
       return try await self.listTemplateVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTemplateVersionsByItems(
@@ -1016,7 +1020,8 @@ extension Clients.ParameterManagerProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

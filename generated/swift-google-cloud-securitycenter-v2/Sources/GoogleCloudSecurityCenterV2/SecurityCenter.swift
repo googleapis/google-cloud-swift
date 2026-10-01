@@ -1222,7 +1222,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.groupFindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func groupFindingsByItems(
@@ -1268,7 +1269,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.listAttackPaths(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAttackPathsByItems(
@@ -1315,7 +1317,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.listBigQueryExports(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBigQueryExportsByItems(
@@ -1366,7 +1369,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.listFindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFindingsByItems(
@@ -1410,7 +1414,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.listMuteConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMuteConfigsByItems(
@@ -1453,7 +1458,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.listNotificationConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNotificationConfigsByItems(
@@ -1496,7 +1502,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.listResourceValueConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listResourceValueConfigsByItems(
@@ -1539,7 +1546,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.listSources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSourcesByItems(
@@ -1582,7 +1590,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.listValuedResources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listValuedResourcesByItems(
@@ -1900,7 +1909,8 @@ extension Clients.SecurityCenterProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

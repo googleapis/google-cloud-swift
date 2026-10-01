@@ -656,7 +656,8 @@ extension Clients.ProductSearchProtocol {
       request.pageToken = token
       return try await self.listProductSets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProductSetsByItems(
@@ -790,7 +791,8 @@ extension Clients.ProductSearchProtocol {
       request.pageToken = token
       return try await self.listProducts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProductsByItems(
@@ -944,7 +946,8 @@ extension Clients.ProductSearchProtocol {
       request.pageToken = token
       return try await self.listReferenceImages(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listReferenceImagesByItems(
@@ -1057,7 +1060,8 @@ extension Clients.ProductSearchProtocol {
       request.pageToken = token
       return try await self.listProductsInProductSet(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProductsInProductSetByItems(

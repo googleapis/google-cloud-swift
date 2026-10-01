@@ -254,7 +254,8 @@ extension Clients.SynonymSetServiceProtocol {
       request.pageToken = token
       return try await self.listSynonymSets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSynonymSetsByItems(

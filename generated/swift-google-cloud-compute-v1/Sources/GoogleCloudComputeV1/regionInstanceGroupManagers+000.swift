@@ -1971,7 +1971,8 @@
         request.pageToken = token
         return try await self.list(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listByItems(
@@ -2019,7 +2020,8 @@
         request.pageToken = token
         return try await self.listErrors(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listErrorsByItems(
@@ -2073,7 +2075,8 @@
         request.pageToken = token
         return try await self.listManagedInstances(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listManagedInstancesByItems(
@@ -2123,7 +2126,8 @@
         request.pageToken = token
         return try await self.listPerInstanceConfigs(request: request, options: options)
       }
-      return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+      return GoogleGax.PaginatedResponseSequence(
+        listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
     public func listPerInstanceConfigsByItems(

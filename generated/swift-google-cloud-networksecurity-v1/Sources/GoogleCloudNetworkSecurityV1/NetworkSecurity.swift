@@ -1763,7 +1763,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listAuthorizationPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAuthorizationPoliciesByItems(
@@ -1934,7 +1935,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listBackendAuthenticationConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackendAuthenticationConfigsByItems(
@@ -2106,7 +2108,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listServerTlsPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listServerTlsPoliciesByItems(
@@ -2275,7 +2278,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listClientTlsPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listClientTlsPoliciesByItems(
@@ -2444,7 +2448,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listGatewaySecurityPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGatewaySecurityPoliciesByItems(
@@ -2615,7 +2620,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listGatewaySecurityPolicyRules(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGatewaySecurityPolicyRulesByItems(
@@ -2787,7 +2793,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listUrlLists(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listUrlListsByItems(
@@ -2950,7 +2957,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listTlsInspectionPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTlsInspectionPoliciesByItems(
@@ -3121,7 +3129,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listAuthzPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAuthzPoliciesByItems(
@@ -3304,7 +3313,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -3387,7 +3397,8 @@ extension Clients.NetworkSecurityProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

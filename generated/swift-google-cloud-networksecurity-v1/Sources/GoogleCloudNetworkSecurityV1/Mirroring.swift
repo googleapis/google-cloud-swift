@@ -956,7 +956,8 @@ extension Clients.MirroringProtocol {
       request.pageToken = token
       return try await self.listMirroringEndpointGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMirroringEndpointGroupsByItems(
@@ -1129,7 +1130,8 @@ extension Clients.MirroringProtocol {
       return try await self.listMirroringEndpointGroupAssociations(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMirroringEndpointGroupAssociationsByItems(
@@ -1302,7 +1304,8 @@ extension Clients.MirroringProtocol {
       request.pageToken = token
       return try await self.listMirroringDeploymentGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMirroringDeploymentGroupsByItems(
@@ -1475,7 +1478,8 @@ extension Clients.MirroringProtocol {
       request.pageToken = token
       return try await self.listMirroringDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMirroringDeploymentsByItems(
@@ -1662,7 +1666,8 @@ extension Clients.MirroringProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1745,7 +1750,8 @@ extension Clients.MirroringProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

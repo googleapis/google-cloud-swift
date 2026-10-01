@@ -923,7 +923,8 @@ extension Clients.HubServiceProtocol {
       request.pageToken = token
       return try await self.listHubs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listHubsByItems(
@@ -1080,7 +1081,8 @@ extension Clients.HubServiceProtocol {
       request.pageToken = token
       return try await self.listHubSpokes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listHubSpokesByItems(
@@ -1124,7 +1126,8 @@ extension Clients.HubServiceProtocol {
       request.pageToken = token
       return try await self.queryHubStatus(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func queryHubStatusByItems(
@@ -1168,7 +1171,8 @@ extension Clients.HubServiceProtocol {
       request.pageToken = token
       return try await self.listSpokes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSpokesByItems(
@@ -1511,7 +1515,8 @@ extension Clients.HubServiceProtocol {
       request.pageToken = token
       return try await self.listRoutes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRoutesByItems(
@@ -1554,7 +1559,8 @@ extension Clients.HubServiceProtocol {
       request.pageToken = token
       return try await self.listRouteTables(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRouteTablesByItems(
@@ -1618,7 +1624,8 @@ extension Clients.HubServiceProtocol {
       request.pageToken = token
       return try await self.listGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGroupsByItems(
@@ -1691,7 +1698,8 @@ extension Clients.HubServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1774,7 +1782,8 @@ extension Clients.HubServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -1004,7 +1004,8 @@ extension Clients.VideoStitcherServiceProtocol {
       request.pageToken = token
       return try await self.listCdnKeys(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCdnKeysByItems(
@@ -1174,7 +1175,8 @@ extension Clients.VideoStitcherServiceProtocol {
       request.pageToken = token
       return try await self.listVodStitchDetails(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVodStitchDetailsByItems(
@@ -1238,7 +1240,8 @@ extension Clients.VideoStitcherServiceProtocol {
       request.pageToken = token
       return try await self.listVodAdTagDetails(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVodAdTagDetailsByItems(
@@ -1302,7 +1305,8 @@ extension Clients.VideoStitcherServiceProtocol {
       request.pageToken = token
       return try await self.listLiveAdTagDetails(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLiveAdTagDetailsByItems(
@@ -1399,7 +1403,8 @@ extension Clients.VideoStitcherServiceProtocol {
       request.pageToken = token
       return try await self.listSlates(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSlatesByItems(
@@ -1603,7 +1608,8 @@ extension Clients.VideoStitcherServiceProtocol {
       request.pageToken = token
       return try await self.listLiveConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLiveConfigsByItems(
@@ -1771,7 +1777,8 @@ extension Clients.VideoStitcherServiceProtocol {
       request.pageToken = token
       return try await self.listVodConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVodConfigsByItems(
@@ -1902,7 +1909,8 @@ extension Clients.VideoStitcherServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

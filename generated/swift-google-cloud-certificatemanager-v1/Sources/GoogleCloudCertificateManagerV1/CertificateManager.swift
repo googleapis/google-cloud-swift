@@ -1160,7 +1160,8 @@ extension Clients.CertificateManagerProtocol {
       request.pageToken = token
       return try await self.listCertificates(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCertificatesByItems(
@@ -1327,7 +1328,8 @@ extension Clients.CertificateManagerProtocol {
       request.pageToken = token
       return try await self.listCertificateMaps(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCertificateMapsByItems(
@@ -1496,7 +1498,8 @@ extension Clients.CertificateManagerProtocol {
       request.pageToken = token
       return try await self.listCertificateMapEntries(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCertificateMapEntriesByItems(
@@ -1667,7 +1670,8 @@ extension Clients.CertificateManagerProtocol {
       request.pageToken = token
       return try await self.listDnsAuthorizations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDnsAuthorizationsByItems(
@@ -1836,7 +1840,8 @@ extension Clients.CertificateManagerProtocol {
       request.pageToken = token
       return try await self.listCertificateIssuanceConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listCertificateIssuanceConfigsByItems(
@@ -1972,7 +1977,8 @@ extension Clients.CertificateManagerProtocol {
       request.pageToken = token
       return try await self.listTrustConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTrustConfigsByItems(
@@ -2138,7 +2144,8 @@ extension Clients.CertificateManagerProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2185,7 +2192,8 @@ extension Clients.CertificateManagerProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

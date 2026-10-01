@@ -1108,7 +1108,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listLakes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLakesByItems(
@@ -1169,7 +1170,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listLakeActions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLakeActionsByItems(
@@ -1304,7 +1306,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listZones(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listZonesByItems(
@@ -1365,7 +1368,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listZoneActions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listZoneActionsByItems(
@@ -1500,7 +1504,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listAssets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAssetsByItems(
@@ -1561,7 +1566,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listAssetActions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAssetActionsByItems(
@@ -1696,7 +1702,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listTasks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTasksByItems(
@@ -1757,7 +1764,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listJobsByItems(
@@ -1874,7 +1882,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1957,7 +1966,8 @@ extension Clients.DataplexServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

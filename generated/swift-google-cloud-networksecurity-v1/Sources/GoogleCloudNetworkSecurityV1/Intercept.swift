@@ -957,7 +957,8 @@ extension Clients.InterceptProtocol {
       request.pageToken = token
       return try await self.listInterceptEndpointGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInterceptEndpointGroupsByItems(
@@ -1130,7 +1131,8 @@ extension Clients.InterceptProtocol {
       return try await self.listInterceptEndpointGroupAssociations(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInterceptEndpointGroupAssociationsByItems(
@@ -1303,7 +1305,8 @@ extension Clients.InterceptProtocol {
       request.pageToken = token
       return try await self.listInterceptDeploymentGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInterceptDeploymentGroupsByItems(
@@ -1476,7 +1479,8 @@ extension Clients.InterceptProtocol {
       request.pageToken = token
       return try await self.listInterceptDeployments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInterceptDeploymentsByItems(
@@ -1663,7 +1667,8 @@ extension Clients.InterceptProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1746,7 +1751,8 @@ extension Clients.InterceptProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

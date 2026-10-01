@@ -2754,7 +2754,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listPrivateClouds(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPrivateCloudsByItems(
@@ -2956,7 +2957,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listClusters(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listClustersByItems(
@@ -3118,7 +3120,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listNodes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNodesByItems(
@@ -3181,7 +3184,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listExternalAddresses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listExternalAddressesByItems(
@@ -3225,7 +3229,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.fetchNetworkPolicyExternalAddresses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchNetworkPolicyExternalAddressesByItems(
@@ -3394,7 +3399,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listSubnets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSubnetsByItems(
@@ -3489,7 +3495,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listExternalAccessRules(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listExternalAccessRulesByItems(
@@ -3661,7 +3668,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listLoggingServers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLoggingServersByItems(
@@ -3829,7 +3837,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listNodeTypes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNodeTypesByItems(
@@ -4080,7 +4089,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listNetworkPeerings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNetworkPeeringsByItems(
@@ -4229,7 +4239,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listPeeringRoutes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPeeringRoutesByItems(
@@ -4309,7 +4320,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listHcxActivationKeys(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listHcxActivationKeysByItems(
@@ -4394,7 +4406,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listNetworkPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNetworkPoliciesByItems(
@@ -4541,7 +4554,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listManagementDnsZoneBindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listManagementDnsZoneBindingsByItems(
@@ -4875,7 +4889,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listVmwareEngineNetworks(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVmwareEngineNetworksByItems(
@@ -4977,7 +4992,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listPrivateConnections(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPrivateConnectionsByItems(
@@ -5089,7 +5105,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listPrivateConnectionPeeringRoutes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPrivateConnectionPeeringRoutesByItems(
@@ -5223,7 +5240,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -5306,7 +5324,8 @@ extension Clients.VmwareEngineProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

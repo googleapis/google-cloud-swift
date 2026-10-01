@@ -404,7 +404,8 @@ extension Clients.PolicyTagManagerProtocol {
       request.pageToken = token
       return try await self.listTaxonomies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTaxonomiesByItems(
@@ -531,7 +532,8 @@ extension Clients.PolicyTagManagerProtocol {
       request.pageToken = token
       return try await self.listPolicyTags(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPolicyTagsByItems(
@@ -632,7 +634,8 @@ extension Clients.PolicyTagManagerProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

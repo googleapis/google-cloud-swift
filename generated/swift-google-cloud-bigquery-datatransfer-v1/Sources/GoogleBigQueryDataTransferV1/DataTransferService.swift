@@ -379,7 +379,8 @@ extension Clients.DataTransferServiceProtocol {
       request.pageToken = token
       return try await self.listDataSources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDataSourcesByItems(
@@ -515,7 +516,8 @@ extension Clients.DataTransferServiceProtocol {
       request.pageToken = token
       return try await self.listTransferConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTransferConfigsByItems(
@@ -638,7 +640,8 @@ extension Clients.DataTransferServiceProtocol {
       request.pageToken = token
       return try await self.listTransferRuns(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTransferRunsByItems(
@@ -681,7 +684,8 @@ extension Clients.DataTransferServiceProtocol {
       request.pageToken = token
       return try await self.listTransferLogs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTransferLogsByItems(
@@ -764,7 +768,8 @@ extension Clients.DataTransferServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

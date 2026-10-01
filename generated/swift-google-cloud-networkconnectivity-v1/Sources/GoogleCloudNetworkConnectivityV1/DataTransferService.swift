@@ -608,7 +608,8 @@ extension Clients.DataTransferServiceProtocol {
       request.pageToken = token
       return try await self.listMulticloudDataTransferConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMulticloudDataTransferConfigsByItems(
@@ -780,7 +781,8 @@ extension Clients.DataTransferServiceProtocol {
       request.pageToken = token
       return try await self.listDestinations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDestinationsByItems(
@@ -974,7 +976,8 @@ extension Clients.DataTransferServiceProtocol {
       return try await self.listMulticloudDataTransferSupportedServices(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMulticloudDataTransferSupportedServicesByItems(
@@ -1016,7 +1019,8 @@ extension Clients.DataTransferServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1099,7 +1103,8 @@ extension Clients.DataTransferServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

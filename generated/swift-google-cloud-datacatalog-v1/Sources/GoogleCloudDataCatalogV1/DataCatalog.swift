@@ -1117,7 +1117,8 @@ extension Clients.DataCatalogProtocol {
       request.pageToken = token
       return try await self.searchCatalog(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   @available(*, deprecated)
@@ -1289,7 +1290,8 @@ extension Clients.DataCatalogProtocol {
       request.pageToken = token
       return try await self.listEntryGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   @available(*, deprecated)
@@ -1465,7 +1467,8 @@ extension Clients.DataCatalogProtocol {
       request.pageToken = token
       return try await self.listEntries(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   @available(*, deprecated)
@@ -1881,7 +1884,8 @@ extension Clients.DataCatalogProtocol {
       request.pageToken = token
       return try await self.listTags(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   @available(*, deprecated)
@@ -2136,7 +2140,8 @@ extension Clients.DataCatalogProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

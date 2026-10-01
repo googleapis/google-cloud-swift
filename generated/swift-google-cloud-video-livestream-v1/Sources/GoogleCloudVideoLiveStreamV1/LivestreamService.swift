@@ -1284,7 +1284,8 @@ extension Clients.LivestreamServiceProtocol {
       request.pageToken = token
       return try await self.listChannels(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listChannelsByItems(
@@ -1578,7 +1579,8 @@ extension Clients.LivestreamServiceProtocol {
       request.pageToken = token
       return try await self.listInputs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInputsByItems(
@@ -1747,7 +1749,8 @@ extension Clients.LivestreamServiceProtocol {
       request.pageToken = token
       return try await self.listEvents(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEventsByItems(
@@ -1829,7 +1832,8 @@ extension Clients.LivestreamServiceProtocol {
       request.pageToken = token
       return try await self.listClips(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listClipsByItems(
@@ -1990,7 +1994,8 @@ extension Clients.LivestreamServiceProtocol {
       request.pageToken = token
       return try await self.listDvrSessions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDvrSessionsByItems(
@@ -2202,7 +2207,8 @@ extension Clients.LivestreamServiceProtocol {
       request.pageToken = token
       return try await self.listAssets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAssetsByItems(
@@ -2294,7 +2300,8 @@ extension Clients.LivestreamServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2341,7 +2348,8 @@ extension Clients.LivestreamServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

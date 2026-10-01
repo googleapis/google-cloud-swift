@@ -569,7 +569,8 @@ extension Clients.PrivilegedAccessManagerProtocol {
       request.pageToken = token
       return try await self.listEntitlements(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEntitlementsByItems(
@@ -613,7 +614,8 @@ extension Clients.PrivilegedAccessManagerProtocol {
       request.pageToken = token
       return try await self.searchEntitlements(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getEntitlement(request: GetEntitlementRequest) async throws
@@ -773,7 +775,8 @@ extension Clients.PrivilegedAccessManagerProtocol {
       request.pageToken = token
       return try await self.listGrants(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGrantsByItems(
@@ -817,7 +820,8 @@ extension Clients.PrivilegedAccessManagerProtocol {
       request.pageToken = token
       return try await self.searchGrants(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getGrant(request: GetGrantRequest) async throws
@@ -938,7 +942,8 @@ extension Clients.PrivilegedAccessManagerProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -985,7 +990,8 @@ extension Clients.PrivilegedAccessManagerProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

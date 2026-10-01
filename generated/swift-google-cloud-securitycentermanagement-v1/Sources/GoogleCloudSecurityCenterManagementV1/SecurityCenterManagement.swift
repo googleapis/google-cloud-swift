@@ -559,7 +559,8 @@ extension Clients.SecurityCenterManagementProtocol {
       return try await self.listEffectiveSecurityHealthAnalyticsCustomModules(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
@@ -642,7 +643,8 @@ extension Clients.SecurityCenterManagementProtocol {
       return try await self.listSecurityHealthAnalyticsCustomModules(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSecurityHealthAnalyticsCustomModulesByItems(
@@ -702,7 +704,8 @@ extension Clients.SecurityCenterManagementProtocol {
       return try await self.listDescendantSecurityHealthAnalyticsCustomModules(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
@@ -875,7 +878,8 @@ extension Clients.SecurityCenterManagementProtocol {
       return try await self.listEffectiveEventThreatDetectionCustomModules(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEffectiveEventThreatDetectionCustomModulesByItems(
@@ -949,7 +953,8 @@ extension Clients.SecurityCenterManagementProtocol {
       return try await self.listEventThreatDetectionCustomModules(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEventThreatDetectionCustomModulesByItems(
@@ -1002,7 +1007,8 @@ extension Clients.SecurityCenterManagementProtocol {
       return try await self.listDescendantEventThreatDetectionCustomModules(
         request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDescendantEventThreatDetectionCustomModulesByItems(
@@ -1171,7 +1177,8 @@ extension Clients.SecurityCenterManagementProtocol {
       request.pageToken = token
       return try await self.listSecurityCenterServices(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSecurityCenterServicesByItems(
@@ -1236,7 +1243,8 @@ extension Clients.SecurityCenterManagementProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

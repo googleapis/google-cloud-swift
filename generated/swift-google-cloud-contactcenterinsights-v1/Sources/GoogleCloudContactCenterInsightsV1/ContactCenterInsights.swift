@@ -1850,7 +1850,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listConversations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listConversationsByItems(
@@ -1968,7 +1969,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listAnalyses(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAnalysesByItems(
@@ -2582,7 +2584,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listPhraseMatchers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPhraseMatchersByItems(
@@ -2776,7 +2779,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listAnalysisRules(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAnalysisRulesByItems(
@@ -2960,7 +2964,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listViews(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listViewsByItems(
@@ -3156,7 +3161,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listQaQuestions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listQaQuestionsByItems(
@@ -3287,7 +3293,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listQaScorecards(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listQaScorecardsByItems(
@@ -3457,7 +3464,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listQaScorecardRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listQaScorecardRevisionsByItems(
@@ -3525,7 +3533,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listFeedbackLabels(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFeedbackLabelsByItems(
@@ -3631,7 +3640,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listAllFeedbackLabels(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAllFeedbackLabelsByItems(
@@ -3743,7 +3753,8 @@ extension Clients.ContactCenterInsightsProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

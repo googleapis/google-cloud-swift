@@ -608,7 +608,8 @@ extension StorageControlProtocol {
       request.pageToken = token
       return try await self.listBuckets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func lockBucketRetentionPolicy(request: LockBucketRetentionPolicyRequest) async throws
@@ -707,7 +708,8 @@ extension StorageControlProtocol {
       request.pageToken = token
       return try await self.listObjects(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func rewriteObject(request: RewriteObjectRequest) async throws -> RewriteResponse {
@@ -784,7 +786,8 @@ extension StorageControlProtocol {
       request.pageToken = token
       return try await self.listFolders(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func renameFolder(request: RenameFolderRequest) async throws -> GoogleLongRunning.Operation
@@ -899,7 +902,8 @@ extension StorageControlProtocol {
       request.pageToken = token
       return try await self.listManagedFolders(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func updateManagedFolder(request: UpdateManagedFolderRequest) async throws -> ManagedFolder
@@ -1030,7 +1034,8 @@ extension StorageControlProtocol {
       request.pageToken = token
       return try await self.listAnywhereCaches(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func createRapidCache(request: CreateRapidCacheRequest) async throws
@@ -1141,7 +1146,8 @@ extension StorageControlProtocol {
       request.pageToken = token
       return try await self.listRapidCaches(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getProjectIntelligenceConfig(request: GetProjectIntelligenceConfigRequest)
@@ -1291,7 +1297,8 @@ extension StorageControlProtocol {
       request.pageToken = token
       return try await self.listIntelligenceFindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func summarizeIntelligenceFindings(request: SummarizeIntelligenceFindingsRequest)
@@ -1321,7 +1328,8 @@ extension StorageControlProtocol {
       request.pageToken = token
       return try await self.summarizeIntelligenceFindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getIntelligenceFindingRevision(request: GetIntelligenceFindingRevisionRequest)
@@ -1363,7 +1371,8 @@ extension StorageControlProtocol {
       request.pageToken = token
       return try await self.listIntelligenceFindingRevisions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func viewObjectFullContext(request: ViewObjectFullContextRequest) async throws

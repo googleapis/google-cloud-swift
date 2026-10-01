@@ -243,7 +243,8 @@ extension Clients.DataObjectSearchServiceProtocol {
       request.pageToken = token
       return try await self.searchDataObjects(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func queryDataObjects(request: QueryDataObjectsRequest) async throws
@@ -277,7 +278,8 @@ extension Clients.DataObjectSearchServiceProtocol {
       request.pageToken = token
       return try await self.queryDataObjects(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func aggregateDataObjects(request: AggregateDataObjectsRequest) async throws
@@ -351,7 +353,8 @@ extension Clients.DataObjectSearchServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -398,7 +401,8 @@ extension Clients.DataObjectSearchServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -231,7 +231,8 @@ extension Clients.EssentialContactsServiceProtocol {
       request.pageToken = token
       return try await self.listContacts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listContactsByItems(
@@ -316,7 +317,8 @@ extension Clients.EssentialContactsServiceProtocol {
       request.pageToken = token
       return try await self.computeContacts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func sendTestMessage(request: SendTestMessageRequest) async throws {

@@ -314,7 +314,8 @@ extension Clients.GrafeasProtocol {
       request.pageToken = token
       return try await self.listOccurrences(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOccurrencesByItems(
@@ -487,7 +488,8 @@ extension Clients.GrafeasProtocol {
       request.pageToken = token
       return try await self.listNotes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNotesByItems(
@@ -621,7 +623,8 @@ extension Clients.GrafeasProtocol {
       request.pageToken = token
       return try await self.listNoteOccurrences(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNoteOccurrencesByItems(

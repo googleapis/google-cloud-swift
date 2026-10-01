@@ -1236,7 +1236,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listDockerImages(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDockerImagesByItems(
@@ -1300,7 +1301,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listMavenArtifacts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMavenArtifactsByItems(
@@ -1364,7 +1366,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listNpmPackages(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listNpmPackagesByItems(
@@ -1428,7 +1431,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listPythonPackages(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPythonPackagesByItems(
@@ -1540,7 +1544,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listRepositories(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRepositoriesByItems(
@@ -1695,7 +1700,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listPackages(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPackagesByItems(
@@ -1790,7 +1796,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVersionsByItems(
@@ -1942,7 +1949,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listFiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFilesByItems(
@@ -2056,7 +2064,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listTags(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTagsByItems(
@@ -2208,7 +2217,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listRules(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRulesByItems(
@@ -2459,7 +2469,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listAttachments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAttachmentsByItems(
@@ -2621,7 +2632,8 @@ extension Clients.ArtifactRegistryProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

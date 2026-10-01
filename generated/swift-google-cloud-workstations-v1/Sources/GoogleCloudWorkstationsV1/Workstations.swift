@@ -862,7 +862,8 @@ extension Clients.WorkstationsProtocol {
       request.pageToken = token
       return try await self.listWorkstationClusters(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkstationClustersByItems(
@@ -1034,7 +1035,8 @@ extension Clients.WorkstationsProtocol {
       request.pageToken = token
       return try await self.listWorkstationConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkstationConfigsByItems(
@@ -1078,7 +1080,8 @@ extension Clients.WorkstationsProtocol {
       request.pageToken = token
       return try await self.listUsableWorkstationConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listUsableWorkstationConfigsByItems(
@@ -1250,7 +1253,8 @@ extension Clients.WorkstationsProtocol {
       request.pageToken = token
       return try await self.listWorkstations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkstationsByItems(
@@ -1294,7 +1298,8 @@ extension Clients.WorkstationsProtocol {
       request.pageToken = token
       return try await self.listUsableWorkstations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listUsableWorkstationsByItems(
@@ -1566,7 +1571,8 @@ extension Clients.WorkstationsProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

@@ -1585,7 +1585,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listAssets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAssetsByItems(
@@ -1795,7 +1796,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listImportJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listImportJobsByItems(
@@ -2007,7 +2009,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listImportDataFiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listImportDataFilesByItems(
@@ -2120,7 +2123,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listGroups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listGroupsByItems(
@@ -2342,7 +2346,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listErrorFrames(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listErrorFramesByItems(
@@ -2406,7 +2411,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listSources(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listSourcesByItems(
@@ -2566,7 +2572,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listPreferenceSets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listPreferenceSetsByItems(
@@ -2848,7 +2855,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listReportConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listReportConfigsByItems(
@@ -2977,7 +2985,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listReports(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listReportsByItems(
@@ -3049,7 +3058,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -3096,7 +3106,8 @@ extension Clients.MigrationCenterProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

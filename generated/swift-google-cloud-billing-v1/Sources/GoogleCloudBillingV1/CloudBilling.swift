@@ -328,7 +328,8 @@ extension Clients.CloudBillingProtocol {
       request.pageToken = token
       return try await self.listBillingAccounts(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBillingAccountsByItems(
@@ -429,7 +430,8 @@ extension Clients.CloudBillingProtocol {
       request.pageToken = token
       return try await self.listProjectBillingInfo(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProjectBillingInfoByItems(

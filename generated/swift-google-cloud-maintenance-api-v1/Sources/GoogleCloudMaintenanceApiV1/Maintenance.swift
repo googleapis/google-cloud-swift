@@ -150,7 +150,8 @@ extension Clients.MaintenanceProtocol {
       request.pageToken = token
       return try await self.summarizeMaintenances(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func summarizeMaintenancesByItems(
@@ -193,7 +194,8 @@ extension Clients.MaintenanceProtocol {
       request.pageToken = token
       return try await self.listResourceMaintenances(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listResourceMaintenancesByItems(
@@ -256,7 +258,8 @@ extension Clients.MaintenanceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

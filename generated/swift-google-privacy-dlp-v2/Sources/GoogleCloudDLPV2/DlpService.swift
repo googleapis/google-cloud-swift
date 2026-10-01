@@ -1206,7 +1206,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listInspectTemplates(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listInspectTemplatesByItems(
@@ -1340,7 +1341,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listDeidentifyTemplates(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDeidentifyTemplatesByItems(
@@ -1494,7 +1496,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listJobTriggers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listJobTriggersByItems(
@@ -1637,7 +1640,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listDiscoveryConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDiscoveryConfigsByItems(
@@ -1735,7 +1739,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listDlpJobs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listDlpJobsByItems(
@@ -1898,7 +1903,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listStoredInfoTypes(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listStoredInfoTypesByItems(
@@ -1960,7 +1966,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listProjectDataProfiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listProjectDataProfilesByItems(
@@ -2003,7 +2010,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listTableDataProfiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listTableDataProfilesByItems(
@@ -2046,7 +2054,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listColumnDataProfiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listColumnDataProfilesByItems(
@@ -2110,7 +2119,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listFileStoreDataProfiles(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listFileStoreDataProfilesByItems(
@@ -2329,7 +2339,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listConnections(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listConnectionsByItems(
@@ -2371,7 +2382,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.searchConnections(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func searchConnectionsByItems(
@@ -2523,7 +2535,8 @@ extension Clients.DlpServiceProtocol {
       request.pageToken = token
       return try await self.listContentPolicies(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listContentPoliciesByItems(

@@ -1391,7 +1391,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listBackupPlans(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupPlansByItems(
@@ -1558,7 +1559,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listBackupChannels(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupChannelsByItems(
@@ -1689,7 +1691,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listBackupPlanBindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupPlanBindingsByItems(
@@ -1786,7 +1789,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listBackups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listBackupsByItems(
@@ -1910,7 +1914,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listVolumeBackups(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVolumeBackupsByItems(
@@ -2011,7 +2016,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listRestorePlans(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRestorePlansByItems(
@@ -2178,7 +2184,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listRestoreChannels(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRestoreChannelsByItems(
@@ -2310,7 +2317,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listRestorePlanBindings(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRestorePlanBindingsByItems(
@@ -2408,7 +2416,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listRestores(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRestoresByItems(
@@ -2535,7 +2544,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listVolumeRestores(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVolumeRestoresByItems(
@@ -2619,7 +2629,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -2702,7 +2713,8 @@ extension Clients.BackupForGKEProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

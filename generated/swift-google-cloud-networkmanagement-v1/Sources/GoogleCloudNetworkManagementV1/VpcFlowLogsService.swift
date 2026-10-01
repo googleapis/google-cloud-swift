@@ -490,7 +490,8 @@ extension Clients.VpcFlowLogsServiceProtocol {
       request.pageToken = token
       return try await self.listVpcFlowLogsConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listVpcFlowLogsConfigsByItems(
@@ -662,7 +663,8 @@ extension Clients.VpcFlowLogsServiceProtocol {
       request.pageToken = token
       return try await self.queryOrgVpcFlowLogsConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func showEffectiveFlowLogsConfigs(request: ShowEffectiveFlowLogsConfigsRequest)
@@ -697,7 +699,8 @@ extension Clients.VpcFlowLogsServiceProtocol {
       request.pageToken = token
       return try await self.showEffectiveFlowLogsConfigs(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
@@ -737,7 +740,8 @@ extension Clients.VpcFlowLogsServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -820,7 +824,8 @@ extension Clients.VpcFlowLogsServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

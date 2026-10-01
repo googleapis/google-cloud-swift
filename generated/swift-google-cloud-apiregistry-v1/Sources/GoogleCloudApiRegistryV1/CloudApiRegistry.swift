@@ -186,7 +186,8 @@ extension Clients.CloudApiRegistryProtocol {
       request.pageToken = token
       return try await self.listMcpServers(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMcpServersByItems(
@@ -250,7 +251,8 @@ extension Clients.CloudApiRegistryProtocol {
       request.pageToken = token
       return try await self.listMcpTools(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listMcpToolsByItems(
@@ -292,7 +294,8 @@ extension Clients.CloudApiRegistryProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws

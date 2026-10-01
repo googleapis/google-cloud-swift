@@ -348,7 +348,8 @@ extension Clients.VersionsProtocol {
       request.pageToken = token
       return try await self.listVersions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getVersion(request: GetVersionRequest) async throws -> GoogleAppEngineV1.Version {
@@ -459,7 +460,8 @@ extension Clients.VersionsProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

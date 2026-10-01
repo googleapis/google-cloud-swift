@@ -905,7 +905,8 @@ extension Clients.DepServiceProtocol {
       request.pageToken = token
       return try await self.listLbTrafficExtensions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLbTrafficExtensionsByItems(
@@ -1076,7 +1077,8 @@ extension Clients.DepServiceProtocol {
       request.pageToken = token
       return try await self.listLbRouteExtensions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLbRouteExtensionsByItems(
@@ -1245,7 +1247,8 @@ extension Clients.DepServiceProtocol {
       request.pageToken = token
       return try await self.listLbEdgeExtensions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listLbEdgeExtensionsByItems(
@@ -1414,7 +1417,8 @@ extension Clients.DepServiceProtocol {
       request.pageToken = token
       return try await self.listAuthzExtensions(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listAuthzExtensionsByItems(
@@ -1582,7 +1586,8 @@ extension Clients.DepServiceProtocol {
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
@@ -1665,7 +1670,8 @@ extension Clients.DepServiceProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

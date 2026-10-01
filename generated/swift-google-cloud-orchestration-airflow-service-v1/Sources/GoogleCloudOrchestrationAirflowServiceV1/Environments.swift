@@ -800,7 +800,8 @@ extension Clients.EnvironmentsProtocol {
       request.pageToken = token
       return try await self.listEnvironments(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listEnvironmentsByItems(
@@ -951,7 +952,8 @@ extension Clients.EnvironmentsProtocol {
       request.pageToken = token
       return try await self.listWorkloads(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listWorkloadsByItems(
@@ -1064,7 +1066,8 @@ extension Clients.EnvironmentsProtocol {
       request.pageToken = token
       return try await self.listUserWorkloadsSecrets(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listUserWorkloadsSecretsByItems(
@@ -1194,7 +1197,8 @@ extension Clients.EnvironmentsProtocol {
       request.pageToken = token
       return try await self.listUserWorkloadsConfigMaps(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listUserWorkloadsConfigMapsByItems(
@@ -1362,7 +1366,8 @@ extension Clients.EnvironmentsProtocol {
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listOperationsByItems(

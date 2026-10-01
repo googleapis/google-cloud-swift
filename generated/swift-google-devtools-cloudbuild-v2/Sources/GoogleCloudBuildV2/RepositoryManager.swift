@@ -614,7 +614,8 @@ extension Clients.RepositoryManagerProtocol {
       request.pageToken = token
       return try await self.listConnections(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listConnectionsByItems(
@@ -816,7 +817,8 @@ extension Clients.RepositoryManagerProtocol {
       request.pageToken = token
       return try await self.listRepositories(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func listRepositoriesByItems(
@@ -933,7 +935,8 @@ extension Clients.RepositoryManagerProtocol {
       request.pageToken = token
       return try await self.fetchLinkableRepositories(request: request, options: options)
     }
-    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
   public func fetchGitRefs(request: FetchGitRefsRequest) async throws
