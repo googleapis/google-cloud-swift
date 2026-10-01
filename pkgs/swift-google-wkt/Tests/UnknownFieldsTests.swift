@@ -158,6 +158,40 @@ import Testing
     #expect(roundTripped._unknownFields == message._unknownFields)
   }
 
+  @Test("JSON decoding and encoding preserves unknown non-finite float fields")
+  func jsonUnknownNonFiniteFloatsRoundTrip() throws {
+    let json = """
+      {
+        "name": "projects/123",
+        "unknownNaN": "NaN",
+        "unknownInfinity": "Infinity",
+        "unknownNegativeInfinity": "-Infinity"
+      }
+      """
+    let decoder = _ProtoJSONDecoder()
+    let message = try decoder.decode(SampleMessage.self, from: Data(json.utf8))
+
+    #expect(message.name == "projects/123")
+    #expect(message._unknownFields.json.count == 3)
+    #expect(message._unknownFields.json["unknownNaN"] == .string("NaN"))
+    #expect(message._unknownFields.json["unknownInfinity"] == .string("Infinity"))
+    #expect(message._unknownFields.json["unknownNegativeInfinity"] == .string("-Infinity"))
+
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let encodedData = try encoder.encode(message)
+    let encodedString = try #require(String(data: encodedData, encoding: .utf8))
+
+    #expect(
+      encodedString
+        == #"{"name":"projects/123","unknownInfinity":"Infinity","unknownNaN":"NaN","unknownNegativeInfinity":"-Infinity"}"#
+    )
+
+    let roundTripped = try decoder.decode(SampleMessage.self, from: encodedData)
+    #expect(roundTripped == message)
+    #expect(roundTripped._unknownFields == message._unknownFields)
+  }
+
   @Test("Missing nested message decodes to default with empty unknown fields")
   func decodeMissingNestedMessage() throws {
     let decoder = _ProtoJSONDecoder()
