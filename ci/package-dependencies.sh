@@ -24,8 +24,6 @@ REPO_ROOT="$(cd "${_PKG_DEPS_SCRIPT_DIR}/.." && pwd)"
 
 export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS="${REPO_ROOT}"
 
-_REMOVED_DISABLE_RESOLUTION=false
-
 edit_package_dependencies() {
     local dir="$1"
     local clean_dir="${dir#./}"
@@ -38,30 +36,10 @@ edit_package_dependencies() {
             rm -f "${ws}"
         fi
     done
-
-    # SwiftPM's --disable-automatic-resolution flag is only valid for the root package
-    # where Package.resolved is tracked in git. Subpackages do not track Package.resolved
-    # and fail when automatic resolution is disabled.
-    if [[ "${clean_dir}" != "." && "${clean_dir}" != "${REPO_ROOT}" && -n "${flags+x}" ]]; then
-        local filtered_flags=()
-        for f in "${flags[@]}"; do
-            if [[ "${f}" == "--disable-automatic-resolution" ]]; then
-                _REMOVED_DISABLE_RESOLUTION=true
-            else
-                filtered_flags+=("${f}")
-            fi
-        done
-        if [[ "${_REMOVED_DISABLE_RESOLUTION}" == true ]]; then
-            flags=("${filtered_flags[@]}")
-        fi
-    fi
 }
 
 restore_package_dependencies() {
-    if [[ "${_REMOVED_DISABLE_RESOLUTION}" == true && -n "${flags+x}" ]]; then
-        flags+=("--disable-automatic-resolution")
-        _REMOVED_DISABLE_RESOLUTION=false
-    fi
+    :
 }
 
 restore_all_package_dependencies() {

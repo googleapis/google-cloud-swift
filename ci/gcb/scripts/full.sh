@@ -89,8 +89,13 @@ for dir in "${packages[@]}"; do
 
     edit_package_dependencies "${dir}"
 
+    pkg_flags=("${flags[@]}")
+    if [[ "${dir}" == "." ]]; then
+        pkg_flags+=(--disable-automatic-resolution)
+    fi
+
     echo; echo "--- Building ${name} ---"
-    if swift build --build-tests "${flags[@]}" --package-path "${dir}" >"${dir}/.test.log" 2>&1; then
+    if swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}" >"${dir}/.test.log" 2>&1; then
         echo "✓ ${name} built successfully"
     else
         cat "${dir}/.test.log"

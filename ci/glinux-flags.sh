@@ -37,5 +37,28 @@
 add_glinux_flags() {
     [[ -r /etc/os-release ]] || return 0
     grep -q glinux /etc/os-release || return 0
-    flags+=(-Xcc --gcc-toolchain=/usr -Xcxx --gcc-toolchain=/usr)
+    if [[ -n "${build_flags+x}" ]]; then
+        local found=false
+        for f in "${build_flags[@]}"; do
+            if [[ "${f}" == "--gcc-toolchain=/usr" ]]; then
+                found=true
+                break
+            fi
+        done
+        if [[ "${found}" == false ]]; then
+            build_flags+=(-Xcc --gcc-toolchain=/usr -Xcxx --gcc-toolchain=/usr)
+        fi
+    fi
+    if [[ -n "${flags+x}" ]]; then
+        local found=false
+        for f in "${flags[@]}"; do
+            if [[ "${f}" == "--gcc-toolchain=/usr" ]]; then
+                found=true
+                break
+            fi
+        done
+        if [[ "${found}" == false ]]; then
+            flags+=(-Xcc --gcc-toolchain=/usr -Xcxx --gcc-toolchain=/usr)
+        fi
+    fi
 }

@@ -31,18 +31,7 @@ count=0
 IFS=$'\n'
 packages=($(git ls-files -- 'Package.swift' 'pkgs/*Package.swift' | xargs -I{} dirname {} | sort))
 unset IFS
-flags=(
-    -Xswiftc -warnings-as-errors
-    --scratch-path "${REPO_ROOT}/.build-cache"
-    # Use the versions from `Package.resolved`.
-    --disable-automatic-resolution
-)
-source "${SCRIPT_DIR}/swift-version.sh"
-if ! swift_supports_diagnose; then
-    flags+=(-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration)
-fi
-source "${SCRIPT_DIR}/glinux-flags.sh"
-add_glinux_flags
+source "${SCRIPT_DIR}/build-flags.sh"
 source "${SCRIPT_DIR}/package-dependencies.sh"
 
 for dir in "${packages[@]}"; do
@@ -51,8 +40,13 @@ for dir in "${packages[@]}"; do
 
     edit_package_dependencies "${dir}"
 
+    pkg_flags=("${flags[@]}")
+    if [[ "${dir}" == "." ]]; then
+        pkg_flags+=(--disable-automatic-resolution)
+    fi
+
     echo "::group::--- Building ${dir} ---"
-    if swift build --build-tests "${flags[@]}" --package-path "${dir}"; then
+    if swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}"; then
         echo "::info:: ✓ ${dir} built"
     else
         echo "::endgroup::"
@@ -64,7 +58,7 @@ for dir in "${packages[@]}"; do
 
     if [[ -d "${dir}/Tests" ]]; then
         echo "::info:: --- Testing ${dir} ---"
-        if swift test "${flags[@]}" --quiet --package-path "${dir}"; then
+        if swift test "${pkg_flags[@]}" --quiet --package-path "${dir}"; then
             echo "::notice:: ✓ ${dir} passed"
             echo "::endgroup::"
         else

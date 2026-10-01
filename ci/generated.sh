@@ -36,16 +36,7 @@ generated=(
   # emits for them.
   "generated/swift-google-container-v1"
 )
-flags=(
-    -Xswiftc -warnings-as-errors
-    --scratch-path "${REPO_ROOT}/.build-cache"
-)
-source "${SCRIPT_DIR}/swift-version.sh"
-if ! swift_supports_diagnose; then
-    flags+=(-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration)
-fi
-source "${SCRIPT_DIR}/glinux-flags.sh"
-add_glinux_flags
+source "${SCRIPT_DIR}/build-flags.sh"
 source "${SCRIPT_DIR}/package-dependencies.sh"
 
 for dir in "${generated[@]}"; do

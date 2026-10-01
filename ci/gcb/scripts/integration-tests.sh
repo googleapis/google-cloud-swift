@@ -51,7 +51,7 @@ errors=0
 count=1
 echo "--- Running top-level integration tests ---"
 edit_package_dependencies .
-if swift test "${flags[@]}" --quiet; then
+if swift test "${flags[@]}" --disable-automatic-resolution --quiet; then
     echo; echo "✓ integration tests passed"
 else
     echo; echo "✗ integration tests failed"
