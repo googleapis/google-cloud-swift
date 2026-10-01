@@ -72,9 +72,9 @@ field masks using array literals:
   determined dynamically at runtime from an array of strings (`[String]`). This
   requires importing `GoogleWKT` and adding `swift-google-wkt` as a dependency.
 
-Field paths use the Protocol Buffer `snake_case` field names relative to the
-resource being updated. When encoding requests to JSON, `WKTFieldMask`
-automatically converts each path to `camelCase`.
+Field paths should use the Protocol Buffer `snake_case` field names relative to
+the resource being updated, matching the protobuf specification (for example,
+`"version_aliases"` rather than the Swift property name `versionAliases`).
 
 To reset a field to its default value, include the field path in the mask and
 leave the field set to its default value on the provided resource.
