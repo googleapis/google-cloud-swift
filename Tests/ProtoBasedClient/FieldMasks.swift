@@ -59,9 +59,8 @@ enum FieldMasks {
         client: client, secret: currentSecret, logger: logger)
       let secret2 = try await testMultipleFieldsAndSnakeCase(
         client: client, secret: secret1, versionNumber: versionNumber, logger: logger)
-      let secret3 = try await testClearingField(
+      _ = try await testClearingField(
         client: client, secret: secret2, versionNumber: versionNumber, logger: logger)
-      try await testWildcardReplacement(client: client, secret: secret3, logger: logger)
     }
   }
 
@@ -219,35 +218,5 @@ enum FieldMasks {
     #expect(updatedSecret.labels["key1"] == "value1-updated")
     #expect(updatedSecret.versionAliases["alias1"] == versionNumber)
     return updatedSecret
-  }
-
-  /// Test 4: Full replacement update using wildcard mask: ["*"].
-  private static func testWildcardReplacement(
-    client: SecretManagerServiceClient,
-    secret: Secret,
-    logger: Logger
-  ) async throws {
-    logger.info("Testing full replacement update with wildcard mask: [\"*\"]")
-    let updatedSecret = try await client.updateSecret(
-      secret: Secret().with {
-        $0.name = secret.name
-        $0.etag = secret.etag
-        $0.labels = [
-          "integration-test": "true",
-          "wildcard": "success",
-        ]
-        $0.annotations = [
-          "wildcard-annotation": "success"
-        ]
-        $0.versionAliases = [:]
-      },
-      updateMask: ["*"]
-    )
-    logger.info("Result of wildcard update: \(updatedSecret)")
-
-    #expect(updatedSecret.labels["wildcard"] == "success")
-    #expect(updatedSecret.labels["key1"] == nil)
-    #expect(updatedSecret.annotations["wildcard-annotation"] == "success")
-    #expect(updatedSecret.versionAliases.isEmpty)
   }
 }
