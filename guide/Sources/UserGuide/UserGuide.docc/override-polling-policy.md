@@ -109,3 +109,5 @@ client configuration.
   API requests that use long-running operations.
 * [Override the default retry policies](<doc:override-retry-policy>) describes how
   to change how the Swift client libraries retry failed requests.
+* [Enable logging](<doc:enable-logging>) describes how to enable debug logging
+  to troubleshoot requests and responses.

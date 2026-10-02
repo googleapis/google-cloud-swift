@@ -54,3 +54,5 @@ services that support them.
   to change how the Swift client libraries retry failed requests.
 * [Override the default polling policies](<doc:override-polling-policy>) describes
   how to change how the Swift client libraries poll long-running operations.
+* [Enable logging](<doc:enable-logging>) describes how to enable debug logging
+  to troubleshoot requests and responses.
