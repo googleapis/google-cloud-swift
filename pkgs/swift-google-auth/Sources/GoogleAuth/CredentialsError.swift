@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 /// Represents any error occurring during credentials resolution or initialization.
 ///
@@ -69,6 +69,50 @@ extension CredentialsError: CustomDebugStringConvertible {
         \(message)
         Underlying error: \(error)
         """
+    }
+  }
+}
+
+extension CredentialsError: CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case .notSupported(let detail):
+      return "Operation not supported: \(detail)"
+    case .parseError(let detail):
+      return "Configuration parse error: \(detail)"
+    case .cannotFetchToken(let message, _):
+      return message
+    }
+  }
+}
+
+extension CredentialsError: LocalizedError {
+  public var errorDescription: String? {
+    description
+  }
+
+  public var failureReason: String? {
+    switch self {
+    case .notSupported(let detail):
+      return "The requested credential type or feature is not supported (\(detail))."
+    case .parseError(let detail):
+      return "Failed to parse credentials data (\(detail))."
+    case .cannotFetchToken(let message, _):
+      return message
+    }
+  }
+
+  public var recoverySuggestion: String? {
+    switch self {
+    case .notSupported:
+      return
+        "Ensure the requested credential configuration is supported in the target environment or universe domain."
+    case .parseError:
+      return
+        "Check JSON key file formatting and ensure required fields like client_email and private_key are present."
+    case .cannotFetchToken:
+      return
+        "Run 'gcloud auth application-default login' to set up local credentials, or verify Service Account / Workload Identity configuration."
     }
   }
 }
