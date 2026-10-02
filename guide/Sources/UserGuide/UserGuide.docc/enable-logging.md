@@ -54,7 +54,9 @@ available.
    logger with the default `.info` level will not output these messages:
    @Snippet(path: "EnableLogging", slice: "logger")
 5. Initialize a client with logging enabled by setting `logger` on
-   `ClientOptions`:
+   `ClientOptions`. Because `Logger` has value semantics, configure `logLevel`
+   (and any custom metadata) before passing `logger` to `ClientOptions`;
+   modifying `logger` afterward does not affect the client:
    @Snippet(path: "EnableLogging", slice: "client")
 6. Use the client to send a request:
    @Snippet(path: "EnableLogging", slice: "call")
