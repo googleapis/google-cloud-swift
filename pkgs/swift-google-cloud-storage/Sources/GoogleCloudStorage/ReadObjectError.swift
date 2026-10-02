@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
 public import GoogleGax
 
 /// Errors thrown by object read and download operations.
@@ -21,7 +20,7 @@ public import GoogleGax
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
 public enum ReadObjectError: Error, Sendable, CustomStringConvertible,
-  CustomDebugStringConvertible, LocalizedError
+  CustomDebugStringConvertible
 {
   /// The downloaded payload checksum did not match the expected checksum.
   case checksumMismatch(expected: String, actual: String, algorithm: String)
@@ -68,43 +67,6 @@ public enum ReadObjectError: Error, Sendable, CustomStringConvertible,
         "ReadObjectError.unexpectedServerResponse(statusCode: \(statusCode), message: \(String(reflecting: message)))"
     case .requestError(let error):
       return "ReadObjectError.requestError(\(String(reflecting: error)))"
-    }
-  }
-
-  public var errorDescription: String? {
-    switch self {
-    case .requestError(let error):
-      return (error as? LocalizedError)?.errorDescription ?? description
-    default:
-      return description
-    }
-  }
-
-  public var failureReason: String? {
-    switch self {
-    case .checksumMismatch:
-      return "The downloaded data checksum did not match the expected value."
-    case .invalidRangeHeader:
-      return "The range header returned by Cloud Storage is invalid or malformed."
-    case .resumeFailed:
-      return "Transparent download auto-resumption failed after a network interruption."
-    case .unexpectedServerResponse:
-      return "Cloud Storage returned an unexpected HTTP status code during download."
-    case .requestError(let error):
-      return (error as? LocalizedError)?.failureReason
-    }
-  }
-
-  public var recoverySuggestion: String? {
-    switch self {
-    case .checksumMismatch:
-      return "Verify data integrity or retry the download."
-    case .resumeFailed:
-      return "Retry the download from the beginning."
-    case .requestError(let error):
-      return (error as? LocalizedError)?.recoverySuggestion
-    default:
-      return nil
     }
   }
 }

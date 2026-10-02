@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
 public import GoogleGax
 
 /// Errors thrown by the write object API.
@@ -21,7 +20,7 @@ public import GoogleGax
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
 public enum WriteObjectError: Error, Sendable, CustomStringConvertible,
-  CustomDebugStringConvertible, LocalizedError
+  CustomDebugStringConvertible
 {
   /// GCS returned an unexpected response.
   case unexpectedServerResponse(statusCode: Int, message: String)
@@ -73,39 +72,6 @@ public enum WriteObjectError: Error, Sendable, CustomStringConvertible,
       return "WriteObjectError.requestError(\(String(reflecting: error)))"
     case .sourceError(let error):
       return "WriteObjectError.sourceError(\(String(reflecting: error)))"
-    }
-  }
-
-  public var errorDescription: String? {
-    switch self {
-    case .requestError(let error):
-      return (error as? LocalizedError)?.errorDescription ?? description
-    default:
-      return description
-    }
-  }
-
-  public var failureReason: String? {
-    switch self {
-    case .unexpectedServerResponse:
-      return "Cloud Storage returned an unexpected HTTP status code or error response during write."
-    case .internalError:
-      return "An internal error occurred in the upload library."
-    case .invalidRangeHeader:
-      return "The range header returned by Cloud Storage is invalid or malformed."
-    case .requestError(let error):
-      return (error as? LocalizedError)?.failureReason
-    case .sourceError:
-      return "An error occurred while reading from or seeking the write object source."
-    }
-  }
-
-  public var recoverySuggestion: String? {
-    switch self {
-    case .requestError(let error):
-      return (error as? LocalizedError)?.recoverySuggestion
-    default:
-      return nil
     }
   }
 }

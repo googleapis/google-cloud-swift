@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 
 /// Errors thrown by `WriteObjectSource` and `SeekableWriteObjectSource` implementations.
 ///
@@ -20,7 +20,7 @@ public import Foundation
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
 public enum WriteObjectSourceError: Error, Sendable, CustomStringConvertible,
-  CustomDebugStringConvertible, LocalizedError
+  CustomDebugStringConvertible
 {
   /// The requested seek offset exceeds the size of the source.
   case offsetOutOfBounds(offset: UInt64, size: UInt64)
@@ -44,19 +44,6 @@ public enum WriteObjectSourceError: Error, Sendable, CustomStringConvertible,
     case .readFailed(let underlyingError):
       return
         "WriteObjectSourceError.readFailed(underlyingError: \(String(reflecting: underlyingError)))"
-    }
-  }
-
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    switch self {
-    case .offsetOutOfBounds:
-      return "The requested seek offset exceeds the size of the source."
-    case .readFailed:
-      return "Reading from the underlying data source failed."
     }
   }
 }

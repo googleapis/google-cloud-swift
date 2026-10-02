@@ -29,23 +29,12 @@ import Testing
       error.debugDescription
         == "ReadObjectError.checksumMismatch(expected: \"abc\", actual: \"xyz\", algorithm: \"crc32c\")"
     )
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason == "The downloaded data checksum did not match the expected value."
-    )
-    #expect(error.recoverySuggestion == "Verify data integrity or retry the download.")
   }
 
   @Test func invalidRangeHeader() {
     let error = ReadObjectError.invalidRangeHeader("bytes=invalid")
     #expect(error.description == "Invalid range header: 'bytes=invalid'")
     #expect(error.debugDescription == "ReadObjectError.invalidRangeHeader(\"bytes=invalid\")")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The range header returned by Cloud Storage is invalid or malformed."
-    )
-    #expect(error.recoverySuggestion == nil)
   }
 
   @Test func resumeFailed() {
@@ -65,12 +54,6 @@ import Testing
       error.debugDescription
         == "ReadObjectError.resumeFailed(bytesReceived: 1024, underlyingError: \(String(reflecting: underlying)))"
     )
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "Transparent download auto-resumption failed after a network interruption."
-    )
-    #expect(error.recoverySuggestion == "Retry the download from the beginning.")
   }
 
   @Test func unexpectedServerResponse() {
@@ -80,12 +63,6 @@ import Testing
       error.debugDescription
         == "ReadObjectError.unexpectedServerResponse(statusCode: 418, message: \"Teapot\")"
     )
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "Cloud Storage returned an unexpected HTTP status code during download."
-    )
-    #expect(error.recoverySuggestion == nil)
   }
 
   @Test func requestError() {
@@ -102,12 +79,6 @@ import Testing
       error.debugDescription
         == "ReadObjectError.requestError(\(String(reflecting: requestError)))"
     )
-    #expect(
-      error.localizedDescription
-        == ((requestError as? LocalizedError)?.errorDescription ?? error.description)
-    )
-    #expect(error.failureReason == (requestError as? LocalizedError)?.failureReason)
-    #expect(error.recoverySuggestion == (requestError as? LocalizedError)?.recoverySuggestion)
   }
 }
 
@@ -119,35 +90,18 @@ import Testing
       error.debugDescription
         == "WriteObjectError.unexpectedServerResponse(statusCode: 500, message: \"Server Error\")"
     )
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "Cloud Storage returned an unexpected HTTP status code or error response during write."
-    )
-    #expect(error.recoverySuggestion == nil)
   }
 
   @Test func internalError() {
     let error = WriteObjectError.internalError("buffer overflow")
     #expect(error.description == "Internal error in upload library: buffer overflow")
     #expect(error.debugDescription == "WriteObjectError.internalError(\"buffer overflow\")")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason == "An internal error occurred in the upload library."
-    )
-    #expect(error.recoverySuggestion == nil)
   }
 
   @Test func invalidRangeHeader() {
     let error = WriteObjectError.invalidRangeHeader("invalid")
     #expect(error.description == "Invalid range header: 'invalid'")
     #expect(error.debugDescription == "WriteObjectError.invalidRangeHeader(\"invalid\")")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The range header returned by Cloud Storage is invalid or malformed."
-    )
-    #expect(error.recoverySuggestion == nil)
   }
 
   @Test func requestError() {
@@ -164,12 +118,6 @@ import Testing
       error.debugDescription
         == "WriteObjectError.requestError(\(String(reflecting: requestError)))"
     )
-    #expect(
-      error.localizedDescription
-        == ((requestError as? LocalizedError)?.errorDescription ?? error.description)
-    )
-    #expect(error.failureReason == (requestError as? LocalizedError)?.failureReason)
-    #expect(error.recoverySuggestion == (requestError as? LocalizedError)?.recoverySuggestion)
   }
 
   @Test func sourceError() {
@@ -178,12 +126,6 @@ import Testing
     }
     let error = WriteObjectError.sourceError(TestSourceError())
     #expect(error.description == "Source error: custom source failure")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "An error occurred while reading from or seeking the write object source."
-    )
-    #expect(error.recoverySuggestion == nil)
   }
 
   @Test func fromSourceError() {
@@ -218,12 +160,6 @@ import Testing
       error.debugDescription
         == "CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32)"
     )
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The key length in bytes does not match the expected length required by the algorithm."
-    )
-    #expect(error.recoverySuggestion == "Provide a 256-bit (32-byte) AES key.")
   }
 
   @Test func invalidBase64Key() {
@@ -233,12 +169,6 @@ import Testing
         == "Customer encryption key is not a valid base64-encoded string."
     )
     #expect(error.debugDescription == "CustomerEncryptionKeyError.invalidBase64Key")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The provided key string is not a valid Base64-encoded string."
-    )
-    #expect(error.recoverySuggestion == "Ensure the key is encoded as standard Base64.")
   }
 }
 
@@ -250,12 +180,6 @@ import Testing
       error.debugDescription
         == "WriteObjectSourceError.offsetOutOfBounds(offset: 200, size: 100)"
     )
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The requested seek offset exceeds the size of the source."
-    )
-    #expect(error.recoverySuggestion == nil)
   }
 
   @Test func readFailed() {
@@ -264,10 +188,5 @@ import Testing
     }
     let error = WriteObjectSourceError.readFailed(underlyingError: TestUnderlyingError())
     #expect(error.description == "Read from source failed: disk read failure")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason == "Reading from the underlying data source failed."
-    )
-    #expect(error.recoverySuggestion == nil)
   }
 }
