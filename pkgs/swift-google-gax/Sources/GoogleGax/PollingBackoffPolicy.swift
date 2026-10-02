@@ -33,5 +33,5 @@ public protocol PollingBackoffPolicy: Sendable {
   /// - Parameters:
   ///   - state: The current polling state.
   /// - Returns: The delay before the next polling attempt.
-  func backoffDelayFor(_ state: PollingState) -> Duration
+  func backoffDelay(for state: PollingState) -> Duration
 }

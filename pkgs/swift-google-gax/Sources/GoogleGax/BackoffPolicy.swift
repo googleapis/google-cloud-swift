@@ -37,5 +37,5 @@ public protocol BackoffPolicy: Sendable {
   /// - Parameters:
   ///   - state: The current retry state.
   /// - Returns: The delay before the next retry attempt.
-  func backoffDelayFor(_ state: RetryState) -> Duration
+  func backoffDelay(for state: RetryState) -> Duration
 }

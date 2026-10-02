@@ -111,7 +111,7 @@ import Foundation
             throw e
           case .retry(let e):
             lastError = e
-            nextDelay = backoffPolicy.backoffDelayFor(state)
+            nextDelay = backoffPolicy.backoffDelay(for: state)
             continue
           }
         }
@@ -134,7 +134,7 @@ import Foundation
           throw error
         }
         let retryResult = retryPolicy.onError(state: state, error: requestError)
-        nextDelay = backoffPolicy.backoffDelayFor(state)
+        nextDelay = backoffPolicy.backoffDelay(for: state)
         retryThrottler.onRetryFailure(retryResult)
 
         switch retryResult {

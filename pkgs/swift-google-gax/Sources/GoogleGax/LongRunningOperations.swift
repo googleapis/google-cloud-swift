@@ -123,7 +123,7 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
       case .exhausted(let error):
         throw error
       }
-      let delay = backoffPolicy.backoffDelayFor(pollingState)
+      let delay = backoffPolicy.backoffDelay(for: pollingState)
       try await sleep(delay)
       pollingState.attemptCount += 1
       do {

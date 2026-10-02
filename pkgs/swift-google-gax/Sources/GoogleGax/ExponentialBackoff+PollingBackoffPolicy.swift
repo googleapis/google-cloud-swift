@@ -15,7 +15,7 @@
 import Foundation
 
 extension ExponentialBackoff: PollingBackoffPolicy {
-  public func backoffDelayFor(_ state: PollingState) -> Duration {
+  public func backoffDelay(for state: PollingState) -> Duration {
     delay(attemptCount: state.attemptCount)
   }
 }

@@ -17,6 +17,6 @@ import GoogleGax
 
 struct MockBackoff: BackoffPolicy, PollingBackoffPolicy {
   var delay: Duration = .zero
-  func backoffDelayFor(_ state: RetryState) -> Duration { delay }
-  func backoffDelayFor(_ state: PollingState) -> Duration { delay }
+  func backoffDelay(for state: RetryState) -> Duration { delay }
+  func backoffDelay(for state: PollingState) -> Duration { delay }
 }

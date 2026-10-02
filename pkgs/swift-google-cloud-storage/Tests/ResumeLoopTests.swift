@@ -21,7 +21,7 @@ import Testing
 
 private struct MockBackoff: BackoffPolicy {
   var delay: Duration = .zero
-  func backoffDelayFor(_ state: RetryState) -> Duration { delay }
+  func backoffDelay(for state: RetryState) -> Duration { delay }
 }
 
 @Suite struct ResumeLoopTests {

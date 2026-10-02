@@ -15,7 +15,7 @@
 import Foundation
 
 extension ExponentialBackoff: BackoffPolicy {
-  public func backoffDelayFor(_ state: RetryState) -> Duration {
+  public func backoffDelay(for state: RetryState) -> Duration {
     let count = state.attemptCount <= 1 ? 0 : state.attemptCount - 1
     let d = delay(attemptCount: count)
     return Duration(attoseconds: Int128.random(in: 0...d.attoseconds))
