@@ -192,11 +192,28 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
   )
   var crc32c: Crc32cOption = .always
 
+  @Option(
+    name: .customLong("resumable-mode"),
+    help: "Resumable upload mode: streaming (single PUT), chunked (fixed 32MiB chunks), or random."
+  )
+  var resumableMode: ResumableModeOption = .streaming
+
   func pickCrc32c() -> Bool {
     switch self.crc32c {
     case .always:
       return true
     case .never:
+      return false
+    case .random:
+      return Bool.random()
+    }
+  }
+
+  func pickResumableMode() -> Bool {
+    switch self.resumableMode {
+    case .streaming:
+      return true
+    case .chunked:
       return false
     case .random:
       return Bool.random()
@@ -226,6 +243,25 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
     }
     guard controlClientCount >= 1 else {
       throw ValidationError("control-client-count must be at least 1")
+    }
+  }
+}
+
+public enum ResumableModeOption: String, ExpressibleByArgument, CaseIterable, Sendable {
+  case streaming
+  case chunked
+  case random
+
+  public init?(argument: String) {
+    switch argument.lowercased() {
+    case "streaming", "stream":
+      self = .streaming
+    case "chunked", "chunk":
+      self = .chunked
+    case "random":
+      self = .random
+    default:
+      return nil
     }
   }
 }

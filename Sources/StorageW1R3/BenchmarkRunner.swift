@@ -53,6 +53,7 @@ extension StorageW1R3 {
       let size = pickObjectSize()
       let objectName = Self.randomObjectName()
       let isResumable = Bool.random()
+      let isStreaming = self.pickResumableMode()
       let uploadCrc32c = self.pickCrc32c()
       let uploadSlice = buffer.subdata(in: 0..<size)
       let iterationId = IterationId(
@@ -68,6 +69,7 @@ extension StorageW1R3 {
           objectName: objectName,
           buffer: uploadSlice,
           isResumable: isResumable,
+          isStreaming: isStreaming,
           crc32cEnabled: uploadCrc32c)
       else {
         continue
@@ -125,9 +127,11 @@ extension StorageW1R3 {
     objectName: String,
     buffer: ByteChunk,
     isResumable: Bool,
+    isStreaming: Bool,
     crc32cEnabled: Bool
   ) async -> GoogleCloudStorage.Object? {
     let uploadOp: Operation = isResumable ? .resumable : .singleShot
+    let modeDetails = isResumable ? (isStreaming ? "mode=streaming" : "mode=chunked") : ""
 
     let uploadBuilder = SampleBuilder(
       iterationId: iterationId,
@@ -144,16 +148,18 @@ extension StorageW1R3 {
         objectName: objectName,
         buffer: buffer,
         isResumable: isResumable,
+        isStreaming: isStreaming,
         crc32cEnabled: crc32cEnabled
       )
-      let sample = uploadBuilder.success()
+      let sample = uploadBuilder.success(details: modeDetails)
       self.emitSample(sample)
       await counters.incrementWrite()
       await counters.incrementSample()
       return object
     } catch {
       let details = await counters.errorDetails(error: error)
-      let sample = uploadBuilder.error(details: details)
+      let combinedDetails = [modeDetails, details].filter { !$0.isEmpty }.joined(separator: ";")
+      let sample = uploadBuilder.error(details: combinedDetails)
       self.emitSample(sample)
       await counters.incrementWrite()
       await counters.incrementWriteError()
