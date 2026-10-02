@@ -125,6 +125,9 @@ import GoogleWKT
 // Specify the paths to update
 let mask: WKTFieldMask = ["display_name", "billing_account.id"]
 
+// Formatted as comma-separated camelCase: "displayName,billingAccountId"
+print(mask)
+
 // Encodes in ProtoJSON as comma-separated camelCase: "displayName,billingAccountId"
 let data = try JSONEncoder().encode(mask)
 let decoded = try JSONDecoder().decode(WKTFieldMask.self, from: data)

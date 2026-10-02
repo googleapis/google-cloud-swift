@@ -120,4 +120,19 @@ import Testing
     #expect(fieldMask == WKTFieldMask(paths: ["user.display_name", "photo"]))
     #expect(fieldMask.paths == ["user.display_name", "photo"])
   }
+
+  @Test(
+    "FieldMask CustomStringConvertible description",
+    arguments: [
+      ([], ""),
+      (["user_id"], "userId"),
+      (["user_id", "foo_bar"], "userId,fooBar"),
+      (["author.profile.avatar"], "author.profile.avatar"),
+      (["author_profile.avatar_url"], "authorProfile.avatarUrl"),
+    ])
+  func testDescription(_ paths: [String], _ expected: String) {
+    let fieldMask = WKTFieldMask(paths: paths)
+    #expect(fieldMask.description == expected)
+    #expect("\(fieldMask)" == expected)
+  }
 }
