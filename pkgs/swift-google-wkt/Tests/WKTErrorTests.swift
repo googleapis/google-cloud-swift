@@ -24,11 +24,6 @@ import Testing
         == "The type URL of the message does not match the contents in the WKTAny."
     )
     #expect(error.debugDescription == "WKTAnyError.mismatchedTypeURL")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The caller attempted to extract a message from the WKTAny that has a different type URL from the contents of the Any itself."
-    )
   }
 
   @Test func invalidNestedAnyType() {
@@ -38,11 +33,6 @@ import Testing
         == "The @type field in a nested WKTAny is missing or invalid."
     )
     #expect(error.debugDescription == "WKTAnyError.invalidNestedAnyType")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The nested @type field for the inner WKTAny contents was missing or was not a JSON string."
-    )
   }
 
   @Test func missingValueField() {
@@ -52,10 +42,6 @@ import Testing
         == "The message is encoded as a JSON string but the 'value' field is missing."
     )
     #expect(error.debugDescription == "WKTAnyError.missingValueField")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason == "The 'value' field is missing from the JSON object."
-    )
   }
 
   @Test func invalidValueField() {
@@ -65,11 +51,6 @@ import Testing
         == "The message is encoded as a JSON string but the 'value' field is not a string."
     )
     #expect(error.debugDescription == "WKTAnyError.invalidValueField")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The 'value' field is present, but it is not of string type."
-    )
   }
 
   @Test func equatable() {
@@ -85,11 +66,6 @@ import Testing
       error.description == "The seconds and nanosecond signs did not match."
     )
     #expect(error.debugDescription == "WKTDurationError.mismatchedSigns")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The seconds and nanoseconds components of the duration must have the same sign."
-    )
   }
 
   @Test func outOfRange() {
@@ -99,11 +75,6 @@ import Testing
         == "The seconds or nanosecond components are out of range."
     )
     #expect(error.debugDescription == "WKTDurationError.outOfRange")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The duration values exceed the allowed range of approximately ±10,000 years."
-    )
   }
 
   @Test func invalidFormat() {
@@ -113,11 +84,6 @@ import Testing
         == "Invalid format when parsing a duration from a string."
     )
     #expect(error.debugDescription == "WKTDurationError.invalidFormat")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The duration string could not be parsed into valid seconds and nanoseconds."
-    )
   }
 
   @Test func equatable() {
@@ -134,11 +100,6 @@ import Testing
         == "The seconds or nanosecond components are out of range."
     )
     #expect(error.debugDescription == "WKTTimestampError.outOfRange")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The timestamp values exceed the allowed range (0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z)."
-    )
   }
 
   @Test func invalidFormat() {
@@ -148,11 +109,6 @@ import Testing
         == "Invalid format when parsing a timestamp from a string."
     )
     #expect(error.debugDescription == "WKTTimestampError.invalidFormat")
-    #expect(error.localizedDescription == error.description)
-    #expect(
-      error.failureReason
-        == "The timestamp string could not be parsed as a valid RFC 3339 date-time format."
-    )
   }
 
   @Test func equatable() {

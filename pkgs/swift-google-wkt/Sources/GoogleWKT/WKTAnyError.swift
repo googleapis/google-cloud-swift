@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 
 /// An error that occurs when extracting messages from a ``WKTAny``.
 ///
@@ -20,7 +20,7 @@ public import Foundation
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
 public enum WKTAnyError: Error, Sendable, Equatable, CustomStringConvertible,
-  CustomDebugStringConvertible, LocalizedError
+  CustomDebugStringConvertible
 {
   /// The type URL of the message does not match the contents in the `WKTAny`.
   ///
@@ -86,25 +86,6 @@ public enum WKTAnyError: Error, Sendable, Equatable, CustomStringConvertible,
       return "WKTAnyError.missingValueField"
     case .invalidValueField:
       return "WKTAnyError.invalidValueField"
-    }
-  }
-
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    switch self {
-    case .mismatchedTypeURL:
-      return
-        "The caller attempted to extract a message from the WKTAny that has a different type URL from the contents of the Any itself."
-    case .invalidNestedAnyType:
-      return
-        "The nested @type field for the inner WKTAny contents was missing or was not a JSON string."
-    case .missingValueField:
-      return "The 'value' field is missing from the JSON object."
-    case .invalidValueField:
-      return "The 'value' field is present, but it is not of string type."
     }
   }
 }

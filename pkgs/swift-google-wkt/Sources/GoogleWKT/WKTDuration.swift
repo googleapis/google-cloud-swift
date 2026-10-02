@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 
 /// A time duration type for Google APIs.
 ///
@@ -183,7 +183,7 @@ extension WKTDuration: _AnyPackable {
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
 public enum WKTDurationError: Error, Sendable, Equatable, CustomStringConvertible,
-  CustomDebugStringConvertible, LocalizedError
+  CustomDebugStringConvertible
 {
   /// The seconds and nanosecond signs did no match.
   case mismatchedSigns
@@ -211,21 +211,6 @@ public enum WKTDurationError: Error, Sendable, Equatable, CustomStringConvertibl
       return "WKTDurationError.outOfRange"
     case .invalidFormat:
       return "WKTDurationError.invalidFormat"
-    }
-  }
-
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    switch self {
-    case .mismatchedSigns:
-      return "The seconds and nanoseconds components of the duration must have the same sign."
-    case .outOfRange:
-      return "The duration values exceed the allowed range of approximately ±10,000 years."
-    case .invalidFormat:
-      return "The duration string could not be parsed into valid seconds and nanoseconds."
     }
   }
 }
