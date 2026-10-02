@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 /// A time duration type for Google APIs.
 ///
@@ -182,13 +182,52 @@ extension WKTDuration: _AnyPackable {
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
-public enum WKTDurationError: Error {
+public enum WKTDurationError: Error, Sendable, Equatable, CustomStringConvertible,
+  CustomDebugStringConvertible, LocalizedError
+{
   /// The seconds and nanosecond signs did no match.
   case mismatchedSigns
   /// The seconds or nanosecond components are out of range.
   case outOfRange
   /// Invalid format when parsing a duration from a string.
   case invalidFormat
+
+  public var description: String {
+    switch self {
+    case .mismatchedSigns:
+      return "The seconds and nanosecond signs did not match."
+    case .outOfRange:
+      return "The seconds or nanosecond components are out of range."
+    case .invalidFormat:
+      return "Invalid format when parsing a duration from a string."
+    }
+  }
+
+  public var debugDescription: String {
+    switch self {
+    case .mismatchedSigns:
+      return "WKTDurationError.mismatchedSigns"
+    case .outOfRange:
+      return "WKTDurationError.outOfRange"
+    case .invalidFormat:
+      return "WKTDurationError.invalidFormat"
+    }
+  }
+
+  public var errorDescription: String? {
+    description
+  }
+
+  public var failureReason: String? {
+    switch self {
+    case .mismatchedSigns:
+      return "The seconds and nanoseconds components of the duration must have the same sign."
+    case .outOfRange:
+      return "The duration values exceed the allowed range of approximately ±10,000 years."
+    case .invalidFormat:
+      return "The duration string could not be parsed into valid seconds and nanoseconds."
+    }
+  }
 }
 
 /// The number of nanoseconds in a second.

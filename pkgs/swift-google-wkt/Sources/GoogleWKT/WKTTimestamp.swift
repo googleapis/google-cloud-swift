@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 let secondsPerDay: Int64 = 86_400
 let secondsPerHour: Int64 = 3_600
@@ -362,9 +362,43 @@ extension WKTTimestamp: _AnyPackable {
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
-public enum WKTTimestampError: Error {
+public enum WKTTimestampError: Error, Sendable, Equatable, CustomStringConvertible,
+  CustomDebugStringConvertible, LocalizedError
+{
   /// The seconds or nanosecond components are out of range.
   case outOfRange
   /// Invalid format when parsing a timestamp from a string.
   case invalidFormat
+
+  public var description: String {
+    switch self {
+    case .outOfRange:
+      return "The seconds or nanosecond components are out of range."
+    case .invalidFormat:
+      return "Invalid format when parsing a timestamp from a string."
+    }
+  }
+
+  public var debugDescription: String {
+    switch self {
+    case .outOfRange:
+      return "WKTTimestampError.outOfRange"
+    case .invalidFormat:
+      return "WKTTimestampError.invalidFormat"
+    }
+  }
+
+  public var errorDescription: String? {
+    description
+  }
+
+  public var failureReason: String? {
+    switch self {
+    case .outOfRange:
+      return
+        "The timestamp values exceed the allowed range (0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z)."
+    case .invalidFormat:
+      return "The timestamp string could not be parsed as a valid RFC 3339 date-time format."
+    }
+  }
 }

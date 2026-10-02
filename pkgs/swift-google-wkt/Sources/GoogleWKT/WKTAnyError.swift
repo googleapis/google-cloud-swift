@@ -12,14 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 /// An error that occurs when extracting messages from a ``WKTAny``.
 ///
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
-public enum WKTAnyError: Error {
+public enum WKTAnyError: Error, Sendable, Equatable, CustomStringConvertible,
+  CustomDebugStringConvertible, LocalizedError
+{
   /// The type URL of the message does not match the contents in the `WKTAny`.
   ///
   /// Each `WKTAny` carries a field indicating the type URL of its contents. This error indicates that
@@ -45,8 +47,8 @@ public enum WKTAnyError: Error {
   ///     {"@type": "type.googleapis.com/google.protobuf.Duration", "value": "123.45s"}
   ///
   /// This error indicates that the `value` field is missing.
-
   case missingValueField
+
   /// The message is encoded as a JSON string but the `value` field is not a string.
   ///
   /// Some messages, notably many well-known types, are JSON encoded to strings. When stored in a
@@ -60,4 +62,49 @@ public enum WKTAnyError: Error {
   ///
   /// This error indicates that the `value` field is present, but it is not of string type.
   case invalidValueField
+
+  public var description: String {
+    switch self {
+    case .mismatchedTypeURL:
+      return "The type URL of the message does not match the contents in the WKTAny."
+    case .invalidNestedAnyType:
+      return "The @type field in a nested WKTAny is missing or invalid."
+    case .missingValueField:
+      return "The message is encoded as a JSON string but the 'value' field is missing."
+    case .invalidValueField:
+      return "The message is encoded as a JSON string but the 'value' field is not a string."
+    }
+  }
+
+  public var debugDescription: String {
+    switch self {
+    case .mismatchedTypeURL:
+      return "WKTAnyError.mismatchedTypeURL"
+    case .invalidNestedAnyType:
+      return "WKTAnyError.invalidNestedAnyType"
+    case .missingValueField:
+      return "WKTAnyError.missingValueField"
+    case .invalidValueField:
+      return "WKTAnyError.invalidValueField"
+    }
+  }
+
+  public var errorDescription: String? {
+    description
+  }
+
+  public var failureReason: String? {
+    switch self {
+    case .mismatchedTypeURL:
+      return
+        "The caller attempted to extract a message from the WKTAny that has a different type URL from the contents of the Any itself."
+    case .invalidNestedAnyType:
+      return
+        "The nested @type field for the inner WKTAny contents was missing or was not a JSON string."
+    case .missingValueField:
+      return "The 'value' field is missing from the JSON object."
+    case .invalidValueField:
+      return "The 'value' field is present, but it is not of string type."
+    }
+  }
 }
