@@ -213,7 +213,7 @@ import Testing
 
   @Test func timeoutDynamicallyAdjustsAcrossAttempts() async throws {
     let transientError = transient()
-    let remainingTimeValues: [Duration?] = [.seconds(10), .seconds(3)]
+    let remainingTimeValues: [Duration?] = [.seconds(10), .seconds(4), .seconds(3)]
     let remainingTimeIndex = AtomicCounter()
     var capturedTimeouts: [Duration?] = []
 
@@ -244,6 +244,111 @@ import Testing
 
     #expect(response == "success")
     #expect(capturedTimeouts == [.seconds(5), .seconds(3)])
+  }
+
+  @Test func postSleepRemainingTimeBoundsAttemptTimeout() async throws {
+    let transientError = transient()
+    let remainingTimeValues: [Duration?] = [.seconds(10), .seconds(8), .seconds(6)]
+    let remainingTimeIndex = AtomicCounter()
+    var capturedTimeouts: [Duration?] = []
+    var sleepDurations: [Duration] = []
+
+    let loop = _RetryLoop(
+      retryPolicy: MockPolicy(
+        onError: { _, e in .retry(e) },
+        remainingTime: { _ in
+          let index = remainingTimeIndex.increment()
+          return index < remainingTimeValues.count ? remainingTimeValues[index] : nil
+        }
+      ),
+      backoffPolicy: MockBackoff(delay: .seconds(2)),
+      retryThrottler: MockThrottler(),
+      idempotent: true,
+      attemptTimeout: .seconds(10)
+    )
+
+    let response = try await loop.run(
+      inner: { timeout in
+        capturedTimeouts.append(timeout)
+        if capturedTimeouts.count == 1 {
+          throw transientError
+        }
+        return "success"
+      },
+      sleep: { duration in
+        sleepDurations.append(duration)
+      }
+    )
+
+    #expect(response == "success")
+    #expect(sleepDurations == [.seconds(2)])
+    #expect(capturedTimeouts == [.seconds(10), .seconds(6)])
+  }
+
+  @Test func postSleepRemainingTimeExhaustedThrowsError() async throws {
+    let transientError = transient()
+    let remainingTimeValues: [Duration?] = [.seconds(5), .seconds(2), .zero]
+    let remainingTimeIndex = AtomicCounter()
+    var attempts = 0
+
+    let loop = _RetryLoop(
+      retryPolicy: MockPolicy(
+        onError: { _, e in .retry(e) },
+        remainingTime: { _ in
+          let index = remainingTimeIndex.increment()
+          return index < remainingTimeValues.count ? remainingTimeValues[index] : nil
+        }
+      ),
+      backoffPolicy: MockBackoff(delay: .seconds(2)),
+      retryThrottler: MockThrottler(),
+      idempotent: true,
+      attemptTimeout: .seconds(10)
+    )
+
+    await #expect(throws: RequestError.self) {
+      try await loop.run(
+        inner: { _ in
+          attempts += 1
+          throw transientError
+        },
+        sleep: { _ in }
+      )
+    }
+
+    #expect(attempts == 1)
+  }
+
+  @Test func postSleepRemainingTimeNegativeThrowsError() async throws {
+    let transientError = transient()
+    let remainingTimeValues: [Duration?] = [.seconds(5), .seconds(2), .seconds(-1)]
+    let remainingTimeIndex = AtomicCounter()
+    var attempts = 0
+
+    let loop = _RetryLoop(
+      retryPolicy: MockPolicy(
+        onError: { _, e in .retry(e) },
+        remainingTime: { _ in
+          let index = remainingTimeIndex.increment()
+          return index < remainingTimeValues.count ? remainingTimeValues[index] : nil
+        }
+      ),
+      backoffPolicy: MockBackoff(delay: .seconds(2)),
+      retryThrottler: MockThrottler(),
+      idempotent: true,
+      attemptTimeout: .seconds(10)
+    )
+
+    await #expect(throws: RequestError.self) {
+      try await loop.run(
+        inner: { _ in
+          attempts += 1
+          throw transientError
+        },
+        sleep: { _ in }
+      )
+    }
+
+    #expect(attempts == 1)
   }
 
   @Test func immediateSuccess() async throws {

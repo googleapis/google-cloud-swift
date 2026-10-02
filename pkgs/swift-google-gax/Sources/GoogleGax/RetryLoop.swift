@@ -93,7 +93,7 @@ import Foundation
         $0.start = loopStart
         $0.attemptCount = attemptCount
       }
-      let remainingTime = retryPolicy.remainingTime(state: state)
+      var remainingTime = retryPolicy.remainingTime(state: state)
 
       if let prevError = lastError {
         if let remaining = remainingTime, remaining < nextDelay {
@@ -114,6 +114,11 @@ import Foundation
             nextDelay = backoffPolicy.backoffDelayFor(state)
             continue
           }
+        }
+
+        remainingTime = retryPolicy.remainingTime(state: state)
+        if let remaining = remainingTime, remaining <= .zero {
+          throw prevError
         }
       }
 
