@@ -34,7 +34,7 @@ The Swift client libraries use Apple's [swift-log] package (`Logging` module) to
 emit structured, contextual diagnostic messages. The `swift-log` package
 separates the logging API (`Logger`) from the components that collect and format
 log messages (`LogHandler`). By default, `swift-log` uses `StreamLogHandler` to
-write log messages to standard output, and many other [logging backends] are
+write log messages to standard error, and many other [logging backends] are
 available.
 
 1. Add the `swift-log` package and its `Logging` product to your target
