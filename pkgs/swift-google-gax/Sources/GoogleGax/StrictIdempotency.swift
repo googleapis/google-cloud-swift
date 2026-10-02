@@ -23,7 +23,7 @@ import Foundation
 public struct StrictIdempotency<P: RetryPolicy>: RetryPolicy {
   let inner: P
 
-  public init(inner: P) {
+  init(inner: P) {
     self.inner = inner
   }
 

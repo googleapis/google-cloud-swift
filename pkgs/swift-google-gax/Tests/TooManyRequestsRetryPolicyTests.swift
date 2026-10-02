@@ -45,7 +45,7 @@ import Testing
       remainingTime: { _ in nil }
     )
 
-    let policy = TooManyRequests(inner: mock)
+    let policy = mock.retryOnTooManyRequests()
     let state = RetryState(idempotent: true)
 
     #expect(policy.onError(state: state, error: transient()) == .permanent(transient()))

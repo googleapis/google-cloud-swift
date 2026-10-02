@@ -23,7 +23,7 @@ import GoogleRpc
 public struct TooManyRequests<P: Sendable>: Sendable {
   let inner: P
 
-  public init(inner: P) {
+  init(inner: P) {
     self.inner = inner
   }
 

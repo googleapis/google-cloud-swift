@@ -35,7 +35,7 @@ public struct LimitedAttemptCount<P: Sendable>: Sendable {
   ///   - inner: The inner policy to decorate.
   ///   - maximumAttempts: The maximum number of attempts allowed by the policy.
   ///     Clamped to be non-negative (`max(0, maximumAttempts)`).
-  public init(inner: P, maximumAttempts: Int) {
+  init(inner: P, maximumAttempts: Int) {
     self.inner = inner
     self.maximumAttempts = max(0, maximumAttempts)
   }
