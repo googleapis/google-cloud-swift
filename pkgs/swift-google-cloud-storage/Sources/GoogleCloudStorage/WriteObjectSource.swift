@@ -12,19 +12,53 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 /// Errors thrown by `WriteObjectSource` and `SeekableWriteObjectSource` implementations.
 ///
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
-public enum WriteObjectSourceError: Error, Sendable {
+public enum WriteObjectSourceError: Error, Sendable, CustomStringConvertible,
+  CustomDebugStringConvertible, LocalizedError
+{
   /// The requested seek offset exceeds the size of the source.
   case offsetOutOfBounds(offset: UInt64, size: UInt64)
 
   /// Reading from the underlying data source failed.
   case readFailed(underlyingError: any Error)
+
+  public var description: String {
+    switch self {
+    case .offsetOutOfBounds(let offset, let size):
+      return "Seek offset out of bounds: offset \(offset) exceeds size \(size)"
+    case .readFailed(let underlyingError):
+      return "Read from source failed: \(underlyingError)"
+    }
+  }
+
+  public var debugDescription: String {
+    switch self {
+    case .offsetOutOfBounds(let offset, let size):
+      return "WriteObjectSourceError.offsetOutOfBounds(offset: \(offset), size: \(size))"
+    case .readFailed(let underlyingError):
+      return
+        "WriteObjectSourceError.readFailed(underlyingError: \(String(reflecting: underlyingError)))"
+    }
+  }
+
+  public var errorDescription: String? {
+    description
+  }
+
+  public var failureReason: String? {
+    switch self {
+    case .offsetOutOfBounds:
+      return "The requested seek offset exceeds the size of the source."
+    case .readFailed:
+      return "Reading from the underlying data source failed."
+    }
+  }
 }
 
 /// Represents a data source that can be read from sequentially.
