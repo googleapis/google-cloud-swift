@@ -23,7 +23,8 @@ extension LimitedElapsedTime: RetryPolicy where P: RetryPolicy {
       return .exhausted(e)
     case .retry(let e):
       if ContinuousClock.now >= state.start + maximumDuration {
-        return .exhausted(e)
+        return .exhausted(
+          .exhausted(.elapsedTime(maximumDuration: maximumDuration, source: e)))
       }
       return .retry(e)
     }

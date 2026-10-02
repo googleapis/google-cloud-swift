@@ -23,13 +23,31 @@ import Testing
     let errWithSource = PolicyExhaustedError.elapsedTime(maximumDuration: limit, source: source)
     #expect(errWithSource.source == source)
     #expect(errWithSource.description.contains("123"))
+    #expect(errWithSource.description.contains("last error"))
 
     let errWithoutSource = PolicyExhaustedError.elapsedTime(maximumDuration: limit)
     #expect(errWithoutSource.source == nil)
+    #expect(errWithoutSource.description.contains("123"))
+
+    let errNoLimitWithSource = PolicyExhaustedError.elapsedTime(source: source)
+    #expect(errNoLimitWithSource.source == source)
+    #expect(
+      errNoLimitWithSource.description
+        == "policy exhausted: elapsed time limit exceeded; last error: \(source)")
+
+    let errNoLimitNoSource = PolicyExhaustedError.elapsedTime()
+    #expect(errNoLimitNoSource.source == nil)
+    #expect(errNoLimitNoSource.description == "policy exhausted: elapsed time limit exceeded")
 
     let errAttempts = PolicyExhaustedError.attemptCount(maximumAttempts: 5)
     #expect(errAttempts.source == nil)
     #expect(errAttempts.description.contains("5"))
+
+    let errAttemptsWithSource = PolicyExhaustedError.attemptCount(
+      maximumAttempts: 5, source: source)
+    #expect(errAttemptsWithSource.source == source)
+    #expect(errAttemptsWithSource.description.contains("5"))
+    #expect(errAttemptsWithSource.description.contains("last error"))
   }
 
   @Test func testLimitedTimeForwards() {
@@ -97,7 +115,9 @@ import Testing
     let stateAfter = RetryState(idempotent: true).with {
       $0.start = .now - .seconds(70)
     }
-    #expect(policy.onError(state: stateAfter, error: error) == .exhausted(error))
+    #expect(
+      policy.onError(state: stateAfter, error: error)
+        == .exhausted(.exhausted(.elapsedTime(maximumDuration: limit, source: error))))
   }
 
   @Test func testLimitedTimeInnerPermanent() {

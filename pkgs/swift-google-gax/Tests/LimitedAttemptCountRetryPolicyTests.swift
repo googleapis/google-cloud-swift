@@ -30,7 +30,7 @@ import Testing
         == .retry(error))
     #expect(
       policy.onError(state: idempotentState().with { $0.attemptCount = 3 }, error: error)
-        == .exhausted(error))
+        == .exhausted(.exhausted(.attemptCount(maximumAttempts: 3, source: error))))
   }
 
   @Test func testLimitedAttemptCountNegativeAndZeroLimit() {
@@ -41,10 +41,10 @@ import Testing
 
     #expect(
       policyZero.onError(state: idempotentState().with { $0.attemptCount = 1 }, error: error)
-        == .exhausted(error))
+        == .exhausted(.exhausted(.attemptCount(maximumAttempts: 0, source: error))))
     #expect(
       policyNegative.onError(state: idempotentState().with { $0.attemptCount = 1 }, error: error)
-        == .exhausted(error))
+        == .exhausted(.exhausted(.attemptCount(maximumAttempts: 0, source: error))))
   }
 
   @Test func testLimitedAttemptCountOnThrottleContinue() {
