@@ -87,7 +87,7 @@ public final class CircuitBreaker: RetryThrottler, Sendable {
   ///     value. Clamped to be in the `[0, tokens]` range.
   ///   - errorCost: Decrease the token count by this value on failed request attempts. Clamped to be
   ///     non-negative (`max(0, errorCost)`).
-  public init(clampingTokens tokens: Int, minTokens: Int, errorCost: Int) {
+  public init(clamping tokens: Int, minTokens: Int, errorCost: Int) {
     let clampedTokens = max(0, tokens)
     self.maxTokens = clampedTokens
     self.minTokens = min(max(0, minTokens), clampedTokens)

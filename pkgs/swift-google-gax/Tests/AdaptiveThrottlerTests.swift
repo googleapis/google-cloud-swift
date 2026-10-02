@@ -29,6 +29,18 @@ import Testing
     let _ = AdaptiveThrottler()
   }
 
+  @Test func clamping() {
+    let t1 = AdaptiveThrottler(clamping: -1.0)
+    #expect(!t1.throttleRetryAttempt())
+    t1.onSuccess()
+    // With clamped factor 0.0: rejectProbability = (1.0 - 0.0) / 2.0 = 0.5
+    #expect(t1.throttleRetryAttemptImpl(gen: { 0.49 }))
+    #expect(!t1.throttleRetryAttemptImpl(gen: { 0.51 }))
+
+    let t2 = AdaptiveThrottler(clamping: 2.0)
+    #expect(!t2.throttleRetryAttempt())
+  }
+
   @Test func basics() throws {
     let throttler = try AdaptiveThrottler(factor: 2.0)
     let error = RequestError.unimplemented

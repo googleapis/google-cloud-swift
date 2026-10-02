@@ -37,13 +37,13 @@ import GoogleGax
   }
 
   @Test func clamping() {
-    let c1 = CircuitBreaker(clampingTokens: -10, minTokens: -5, errorCost: -1)
+    let c1 = CircuitBreaker(clamping: -10, minTokens: -5, errorCost: -1)
     #expect(c1.throttleRetryAttempt())
 
-    let c2 = CircuitBreaker(clampingTokens: 100, minTokens: 200, errorCost: 10)
+    let c2 = CircuitBreaker(clamping: 100, minTokens: 200, errorCost: 10)
     #expect(c2.throttleRetryAttempt())
 
-    let c3 = CircuitBreaker(clampingTokens: 100, minTokens: -10, errorCost: 10)
+    let c3 = CircuitBreaker(clamping: 100, minTokens: -10, errorCost: 10)
     #expect(!c3.throttleRetryAttempt())
   }
 
