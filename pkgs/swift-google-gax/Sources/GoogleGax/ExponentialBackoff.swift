@@ -71,7 +71,6 @@ extension ExponentialBackoffError: LocalizedError {
 }
 
 /// Configuration for ``ExponentialBackoff``.
-
 public struct ExponentialBackoffConfig: Sendable, Equatable {
   /// The initial delay before the first retry.
   public var initialDelay: Duration = .seconds(1)

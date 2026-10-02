@@ -11,8 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-public import Foundation
-
 /// Errors that can occur during protobuf conversions.
 ///
 /// - Note: As Google Cloud APIs and client libraries evolve, new error cases may be added to this
@@ -35,33 +33,5 @@ public enum ProtobufConversionError: Error, CustomStringConvertible, Sendable, E
       return
         "Cannot convert Any message: type URL '\(typeUrl)' is not registered with SwiftProtobuf."
     }
-  }
-}
-
-@_spi(GoogleCloudInternal)
-extension ProtobufConversionError: CustomDebugStringConvertible {
-  public var debugDescription: String {
-    switch self {
-    case .noIntegerValue(let enumType, let stringValue):
-      return
-        "ProtobufConversionError.noIntegerValue(enumType: \(String(reflecting: enumType)), stringValue: \(String(reflecting: stringValue)))"
-    case .unknownTypeUrl(let typeUrl):
-      return "ProtobufConversionError.unknownTypeUrl(\(String(reflecting: typeUrl)))"
-    }
-  }
-}
-
-@_spi(GoogleCloudInternal)
-extension ProtobufConversionError: LocalizedError {
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    description
-  }
-
-  public var recoverySuggestion: String? {
-    "Ensure that the protobuf message type is registered and string enum values match known enum cases."
   }
 }
