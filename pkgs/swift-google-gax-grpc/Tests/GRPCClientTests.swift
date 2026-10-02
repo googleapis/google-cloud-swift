@@ -90,15 +90,14 @@ import GoogleAuth
       from: locationalOptions, withDefaultEndpoint: "https://storage.googleapis.com")
     locationalClient.close()
 
-    // Universe domain
-    let universeOptions = ClientOptions().with {
+    // Custom domain endpoint
+    let customDomainOptions = ClientOptions().with {
       $0.credentials = credentials
-      $0.universeDomain = "my-universe.com"
       $0.endpoint = "https://storage.my-universe.com"
     }
-    let universeClient = try _GRPCClient(
-      from: universeOptions, withDefaultEndpoint: "https://storage.googleapis.com")
-    universeClient.close()
+    let customDomainClient = try _GRPCClient(
+      from: customDomainOptions, withDefaultEndpoint: "https://storage.googleapis.com")
+    customDomainClient.close()
   }
 
   @Test(arguments: [

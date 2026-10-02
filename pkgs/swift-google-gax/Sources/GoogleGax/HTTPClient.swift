@@ -37,8 +37,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.hostHeader = try _Host.header(
       endpoint: from.endpoint,
-      defaultEndpoint: withDefaultEndpoint,
-      universeDomain: from.universeDomain ?? _Host.defaultUniverseDomain
+      defaultEndpoint: withDefaultEndpoint
     )
     self.inner = HTTPClientHolder()
   }

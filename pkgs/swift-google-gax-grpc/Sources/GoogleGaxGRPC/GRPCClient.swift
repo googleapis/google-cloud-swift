@@ -62,8 +62,7 @@ public final class _GRPCClient: Sendable {
 
     let authority = try _Host.authority(
       endpoint: options.endpoint,
-      defaultEndpoint: defaultEndpoint,
-      universeDomain: options.universeDomain ?? _Host.defaultUniverseDomain
+      defaultEndpoint: defaultEndpoint
     )
 
     let transport = try HTTP2ClientTransport.Posix(

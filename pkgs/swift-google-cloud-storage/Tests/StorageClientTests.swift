@@ -275,7 +275,6 @@ import Testing
     let options = StorageClientOptions().with {
       $0.client = .init().with {
         $0.endpoint = "https://storage.my-universe.com"
-        $0.universeDomain = "my-universe.com"
         $0.credentials = try! Credentials(configuration: .anonymous)
       }
     }
