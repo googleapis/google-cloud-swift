@@ -33,6 +33,6 @@ extension PollingErrorPolicy {
   ///
   /// For other errors it returns the same value as the inner policy.
   public func continueOnIO() -> ContinueOnIO<Self> {
-    ContinueOnIO(inner: self)
+    ContinueOnIO(self)
   }
 }

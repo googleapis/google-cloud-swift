@@ -26,7 +26,7 @@ public struct LimitedElapsedTime<P: Sendable>: Sendable {
   let inner: P
   let maximumDuration: Duration
 
-  init(inner: P, maximumDuration: Duration) {
+  init(_ inner: P, maximumDuration: Duration) {
     self.inner = inner
     self.maximumDuration = maximumDuration
   }

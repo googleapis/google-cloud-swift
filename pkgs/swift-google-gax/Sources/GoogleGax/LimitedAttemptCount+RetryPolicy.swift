@@ -46,6 +46,6 @@ extension RetryPolicy {
   ///   Clamped to be non-negative (`max(0, maximumAttempts)`).
   /// - Returns: A decorated retry policy.
   public func withAttemptLimit(_ maximumAttempts: Int) -> LimitedAttemptCount<Self> {
-    LimitedAttemptCount(inner: self, maximumAttempts: maximumAttempts)
+    LimitedAttemptCount(self, maximumAttempts: maximumAttempts)
   }
 }

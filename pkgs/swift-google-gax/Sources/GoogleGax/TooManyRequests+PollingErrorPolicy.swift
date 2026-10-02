@@ -34,6 +34,6 @@ extension PollingErrorPolicy {
   ///
   /// For other errors it returns the same value as the inner policy.
   public func continueOnTooManyRequests() -> TooManyRequests<Self> {
-    TooManyRequests(inner: self)
+    TooManyRequests(self)
   }
 }

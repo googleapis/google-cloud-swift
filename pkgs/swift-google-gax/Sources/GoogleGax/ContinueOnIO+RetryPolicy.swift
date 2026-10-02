@@ -37,6 +37,6 @@ extension RetryPolicy {
   ///
   /// For other errors it returns the same value as the inner policy.
   public func retryOnIO() -> ContinueOnIO<Self> {
-    ContinueOnIO(inner: self)
+    ContinueOnIO(self)
   }
 }

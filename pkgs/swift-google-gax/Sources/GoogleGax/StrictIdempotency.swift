@@ -23,7 +23,7 @@ import Foundation
 public struct StrictIdempotency<P: RetryPolicy>: RetryPolicy {
   let inner: P
 
-  init(inner: P) {
+  init(_ inner: P) {
     self.inner = inner
   }
 
@@ -54,6 +54,6 @@ extension RetryPolicy {
   /// This policy decorates an inner policy and stops with
   /// [.permanent](``ResultResult.permanent(_:)``) if the request is not idempotent.
   public func strictIdempotency() -> StrictIdempotency<Self> {
-    StrictIdempotency(inner: self)
+    StrictIdempotency(self)
   }
 }

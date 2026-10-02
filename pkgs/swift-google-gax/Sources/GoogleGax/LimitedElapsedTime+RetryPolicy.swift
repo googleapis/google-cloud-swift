@@ -59,6 +59,6 @@ extension RetryPolicy {
   /// - Parameter maximumDuration: The maximum duration allowed by the policy.
   /// - Returns: A decorated retry policy.
   public func withTimeLimit(_ maximumDuration: Duration) -> LimitedElapsedTime<Self> {
-    LimitedElapsedTime(inner: self, maximumDuration: maximumDuration)
+    LimitedElapsedTime(self, maximumDuration: maximumDuration)
   }
 }

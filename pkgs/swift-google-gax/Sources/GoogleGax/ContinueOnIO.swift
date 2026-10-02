@@ -21,7 +21,7 @@ import Foundation
 public struct ContinueOnIO<P: Sendable>: Sendable {
   let inner: P
 
-  init(inner: P) {
+  init(_ inner: P) {
     self.inner = inner
   }
 }

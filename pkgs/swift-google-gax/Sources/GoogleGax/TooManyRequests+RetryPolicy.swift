@@ -38,6 +38,6 @@ extension RetryPolicy {
   ///
   /// For other errors it returns the same value as the inner policy.
   public func retryOnTooManyRequests() -> TooManyRequests<Self> {
-    TooManyRequests(inner: self)
+    TooManyRequests(self)
   }
 }
