@@ -135,7 +135,7 @@ import Foundation
         }
         let retryResult = retryPolicy.onError(state: state, error: requestError)
         nextDelay = backoffPolicy.backoffDelayFor(state)
-        retryThrottler.onRetryFailure(result: retryResult)
+        retryThrottler.onRetryFailure(retryResult)
 
         switch retryResult {
         case .permanent(let e), .exhausted(let e):

@@ -44,7 +44,7 @@ public protocol RetryThrottler: Sendable {
   /// Called by the retry loop after a retry failure.
   ///
   /// - Parameter result: The result of the retry attempt.
-  func onRetryFailure(result: RetryResult)
+  func onRetryFailure(_ result: RetryResult)
 
   /// Called by the retry loop when a RPC succeeds.
   func onSuccess()

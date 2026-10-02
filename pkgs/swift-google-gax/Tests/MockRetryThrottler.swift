@@ -47,7 +47,7 @@ final class MockThrottler: RetryThrottler, Sendable {
     }
   }
 
-  func onRetryFailure(result: RetryResult) {
+  func onRetryFailure(_ result: RetryResult) {
     state.withLock {
       $0.onRetryFailureCalled.append(result)
     }
