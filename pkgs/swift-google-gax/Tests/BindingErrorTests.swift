@@ -209,4 +209,39 @@ import Testing
     #expect(detailedError.paths.count == 1)
     #expect(detailedError.paths[0].substitutions.count == 1)
   }
+
+  @Test func debugDescriptionAndLocalizedError() {
+    let sub = SubstitutionMismatch(fieldName: "name", problem: .unset)
+    #expect(
+      sub.debugDescription
+        == "SubstitutionMismatch(fieldName: \"name\", problem: SubstitutionFail.unset)"
+    )
+    #expect(SubstitutionFail.unset.description == "unset")
+    #expect(
+      SubstitutionFail.unsetExpecting("pattern").description == "unset (expecting pattern)"
+    )
+    #expect(
+      SubstitutionFail.mismatchExpecting(actual: "a", expected: "b").description
+        == "mismatch (actual: a, expecting: b)"
+    )
+    #expect(SubstitutionFail.invalidValue(actual: "bad").description == "invalidValue (bad)")
+    #expect(
+      SubstitutionFail.invalidSegments(actual: "../").description == "invalidSegments (../)"
+    )
+
+    let path = PathMismatch(substitutions: [sub])
+    #expect(path.debugDescription.contains("PathMismatch(substitutions:"))
+
+    let err = BindingError(paths: [path])
+    #expect(err.debugDescription.contains("BindingError(paths:"))
+
+    let localized = err as LocalizedError
+    #expect(localized.errorDescription == err.description)
+    #expect(localized.failureReason == "The request failed to match any valid URL path template.")
+    #expect(
+      localized.recoverySuggestion
+        == "Verify that all required fields in the request (such as 'name' or 'parent') are set and correctly formatted."
+    )
+    #expect(err.localizedDescription == err.description)
+  }
 }

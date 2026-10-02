@@ -34,13 +34,6 @@ extension RequestError: Equatable {
   }
 }
 
-extension HTTPDetails: Equatable {
-  static func == (lhs: HTTPDetails, rhs: HTTPDetails) -> Bool {
-    return lhs.statusCode == rhs.statusCode && lhs.headers == rhs.headers
-      && lhs.payload == rhs.payload
-  }
-}
-
 extension PolicyExhaustedError: Equatable {
   static func == (lhs: PolicyExhaustedError, rhs: PolicyExhaustedError) -> Bool {
     switch (lhs, rhs) {

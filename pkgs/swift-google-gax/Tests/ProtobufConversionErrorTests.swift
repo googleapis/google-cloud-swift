@@ -33,4 +33,12 @@ import Testing
     )
     #expect(error.description.contains("type.googleapis.com/google.protobuf.Struct"))
   }
+
+  @Test("Verify debugDescription and LocalizedError")
+  func debugDescriptionAndLocalizedError() {
+    let error = ProtobufConversionError.unknownTypeUrl(typeUrl: "test.url")
+    #expect(error.debugDescription.contains("ProtobufConversionError.unknownTypeUrl(\"test.url\")"))
+    let localized = error as (any Error)
+    #expect(localized.localizedDescription == error.description)
+  }
 }

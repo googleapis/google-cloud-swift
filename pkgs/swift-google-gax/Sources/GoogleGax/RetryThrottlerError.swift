@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 /// Errors that can occur when building a retry throttler.
 ///
@@ -38,5 +38,47 @@ extension RetryThrottlerError: Equatable {
       return lt == rt && lm == rm && le == re
     default: return false
     }
+  }
+}
+
+extension RetryThrottlerError: CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case .factorOutOfRange(let factor):
+      return "Retry throttler factor out of range: \(factor) (must be >= 0.0)"
+    case .tooFewMinTokens(let tokens, let minTokens):
+      return "Minimum tokens (\(minTokens)) must be <= initial tokens (\(tokens))"
+    case .tokensOutOfRange(let tokens, let minTokens, let errorCost):
+      return
+        "Token counts and error costs must be non-negative (tokens: \(tokens), minTokens: \(minTokens), errorCost: \(errorCost))"
+    }
+  }
+}
+
+extension RetryThrottlerError: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    switch self {
+    case .factorOutOfRange(let factor):
+      return "RetryThrottlerError.factorOutOfRange(\(factor))"
+    case .tooFewMinTokens(let tokens, let minTokens):
+      return "RetryThrottlerError.tooFewMinTokens(tokens: \(tokens), minTokens: \(minTokens))"
+    case .tokensOutOfRange(let tokens, let minTokens, let errorCost):
+      return
+        "RetryThrottlerError.tokensOutOfRange(tokens: \(tokens), minTokens: \(minTokens), errorCost: \(errorCost))"
+    }
+  }
+}
+
+extension RetryThrottlerError: LocalizedError {
+  public var errorDescription: String? {
+    description
+  }
+
+  public var failureReason: String? {
+    description
+  }
+
+  public var recoverySuggestion: String? {
+    "Ensure token counts, minimum tokens, and error cost are non-negative and minTokens does not exceed tokens."
   }
 }

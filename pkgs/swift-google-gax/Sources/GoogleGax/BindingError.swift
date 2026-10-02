@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 /// A failure to bind a request to an HTTP URI path template.
 public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible {
@@ -72,6 +72,26 @@ public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible 
   }
 }
 
+extension BindingError: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    "BindingError(paths: \(String(reflecting: paths)))"
+  }
+}
+
+extension BindingError: LocalizedError {
+  public var errorDescription: String? {
+    description
+  }
+
+  public var failureReason: String? {
+    "The request failed to match any valid URL path template."
+  }
+
+  public var recoverySuggestion: String? {
+    "Verify that all required fields in the request (such as 'name' or 'parent') are set and correctly formatted."
+  }
+}
+
 /// A failure to bind to a specific candidate URI path template.
 public struct PathMismatch: Sendable, Equatable, CustomStringConvertible {
   /// All missing or misformatted fields needed to bind to this path.
@@ -87,6 +107,12 @@ public struct PathMismatch: Sendable, Equatable, CustomStringConvertible {
 
   public var description: String {
     substitutions.map(\.description).joined(separator: " AND ")
+  }
+}
+
+extension PathMismatch: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    "PathMismatch(substitutions: \(String(reflecting: substitutions)))"
   }
 }
 
@@ -116,6 +142,12 @@ public struct SubstitutionMismatch: Sendable, Equatable, CustomStringConvertible
   }
 }
 
+extension SubstitutionMismatch: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    "SubstitutionMismatch(fieldName: \(String(reflecting: fieldName)), problem: \(String(reflecting: problem)))"
+  }
+}
+
 /// Categories of substitution failure.
 ///
 /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
@@ -127,6 +159,41 @@ public enum SubstitutionFail: Sendable, Equatable {
   case mismatchExpecting(actual: String, expected: String)
   case invalidValue(actual: String)
   case invalidSegments(actual: String)
+}
+
+extension SubstitutionFail: CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case .unset:
+      return "unset"
+    case .unsetExpecting(let expected):
+      return "unset (expecting \(expected))"
+    case .mismatchExpecting(let actual, let expected):
+      return "mismatch (actual: \(actual), expecting: \(expected))"
+    case .invalidValue(let actual):
+      return "invalidValue (\(actual))"
+    case .invalidSegments(let actual):
+      return "invalidSegments (\(actual))"
+    }
+  }
+}
+
+extension SubstitutionFail: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    switch self {
+    case .unset:
+      return "SubstitutionFail.unset"
+    case .unsetExpecting(let expected):
+      return "SubstitutionFail.unsetExpecting(\(String(reflecting: expected)))"
+    case .mismatchExpecting(let actual, let expected):
+      return
+        "SubstitutionFail.mismatchExpecting(actual: \(String(reflecting: actual)), expected: \(String(reflecting: expected)))"
+    case .invalidValue(let actual):
+      return "SubstitutionFail.invalidValue(\(String(reflecting: actual)))"
+    case .invalidSegments(let actual):
+      return "SubstitutionFail.invalidSegments(\(String(reflecting: actual)))"
+    }
+  }
 }
 
 /// Helper builder for accumulating path substitution errors in generated transport code.

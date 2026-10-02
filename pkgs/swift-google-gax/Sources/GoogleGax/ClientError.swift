@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 
 /// Represents an error while trying to initialize a client.
 ///
@@ -29,4 +29,44 @@ public enum ClientError: Error, Sendable {
   ///
   /// Review the configuration for your client.
   case invalidEndpoint(String)
+}
+
+extension ClientError: Equatable {}
+
+extension ClientError: CustomStringConvertible {
+  public var description: String {
+    switch self {
+    case .invalidEndpoint(let endpoint):
+      return "Invalid endpoint: \(endpoint)"
+    }
+  }
+}
+
+extension ClientError: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    switch self {
+    case .invalidEndpoint(let endpoint):
+      return "ClientError.invalidEndpoint(\(String(reflecting: endpoint)))"
+    }
+  }
+}
+
+extension ClientError: LocalizedError {
+  public var errorDescription: String? {
+    description
+  }
+
+  public var failureReason: String? {
+    switch self {
+    case .invalidEndpoint:
+      return "The endpoint string does not represent a valid URL."
+    }
+  }
+
+  public var recoverySuggestion: String? {
+    switch self {
+    case .invalidEndpoint:
+      return "Review the endpoint client option and ensure it is a valid URL."
+    }
+  }
 }

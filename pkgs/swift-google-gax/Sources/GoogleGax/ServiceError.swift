@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+public import Foundation
 public import GoogleRpc
 
 /// The details for ``RequestError/service(_:)``.
@@ -50,6 +50,35 @@ public struct ServiceError: Sendable, Error, Equatable, CustomStringConvertible 
       result += " \(details)"
     }
     return result
+  }
+}
+
+extension ServiceError: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    var desc = "ServiceError(code: \(code)"
+    if let httpStatusCode {
+      desc += ", httpStatusCode: \(httpStatusCode)"
+    }
+    desc += ", message: \(String(reflecting: message))"
+    if !details.isEmpty {
+      desc += ", details: \(String(reflecting: details))"
+    }
+    desc += ")"
+    return desc
+  }
+}
+
+extension ServiceError: LocalizedError {
+  public var errorDescription: String? {
+    description
+  }
+
+  public var failureReason: String? {
+    message
+  }
+
+  public var recoverySuggestion: String? {
+    "Review the error code and details, and consult the service documentation."
   }
 }
 
