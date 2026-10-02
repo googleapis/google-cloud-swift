@@ -78,7 +78,7 @@ The output (formatted for readability) includes lines such as:
 2026-09-30T18:00:00+0000 debug com.example.my-app:
   gcp.artifact.id=google-cloud-secretmanager-v1
   gcp.client.service=secretmanager
-  gcp.experimental.swift.client=SecretManagerService
+  gcp.experimental.swift.client=SecretManagerServiceClient
   gcp.experimental.swift.method=listSecrets
   gcp.experimental.swift.request.id=550E8400-E29B-41D4-A716-446655440000
   [GoogleCloudSecretManagerV1] enter  : ListSecretsRequest(parent: "projects/my-project", ...) RequestOptions(...)
@@ -90,7 +90,7 @@ Followed by the response on success:
 2026-09-30T18:00:01+0000 debug com.example.my-app:
   gcp.artifact.id=google-cloud-secretmanager-v1
   gcp.client.service=secretmanager
-  gcp.experimental.swift.client=SecretManagerService
+  gcp.experimental.swift.client=SecretManagerServiceClient
   gcp.experimental.swift.method=listSecrets
   gcp.experimental.swift.request.id=550E8400-E29B-41D4-A716-446655440000
   [GoogleCloudSecretManagerV1] success: ListSecretsRequest(...) RequestOptions(...) ListSecretsResponse(...)
@@ -102,7 +102,7 @@ Or the error details if the request fails:
 2026-09-30T18:00:01+0000 debug com.example.my-app:
   gcp.artifact.id=google-cloud-secretmanager-v1
   gcp.client.service=secretmanager
-  gcp.experimental.swift.client=SecretManagerService
+  gcp.experimental.swift.client=SecretManagerServiceClient
   gcp.experimental.swift.method=listSecrets
   gcp.experimental.swift.request.id=550E8400-E29B-41D4-A716-446655440000
   [GoogleCloudSecretManagerV1] error  : ListSecretsRequest(...) RequestOptions(...) http(StatusError(...))
@@ -117,7 +117,7 @@ entry:
 * `gcp.client.service`: The target Google Cloud service name (for example,
   `secretmanager`).
 * `gcp.experimental.swift.client`: The name of the service client (for example,
-  `SecretManagerService`).
+  `SecretManagerServiceClient`).
 * `gcp.experimental.swift.method`: The RPC method name being invoked (for
   example, `listSecrets`).
 * `gcp.experimental.swift.request.id`: A unique UUID generated for each RPC
