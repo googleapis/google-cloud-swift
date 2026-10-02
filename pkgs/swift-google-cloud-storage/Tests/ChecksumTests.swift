@@ -108,7 +108,7 @@ import Testing
       try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
     }
     if case .requestError(.http(let details)) = error {
-      #expect(details.httpStatusCode == 400)
+      #expect(details.statusCode == 400)
       #expect(String(data: details.payload, encoding: .utf8) == errorMessage)
     } else {
       Issue.record("Expected .requestError(.http), got \(String(describing: error))")
@@ -155,7 +155,7 @@ import Testing
       try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
     }
     if case .requestError(.http(let details)) = error {
-      #expect(details.httpStatusCode == 400)
+      #expect(details.statusCode == 400)
       #expect(String(data: details.payload, encoding: .utf8) == errorMessage)
     } else {
       Issue.record("Expected .requestError(.http), got \(String(describing: error))")

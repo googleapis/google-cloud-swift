@@ -152,7 +152,7 @@ import Testing
       try await client.writeObject(source, to: bucket, as: objectName)
     }
     if case .requestError(.http(let details)) = error {
-      #expect(details.httpStatusCode == 400)
+      #expect(details.statusCode == 400)
     } else {
       Issue.record("Expected .requestError(.http), got \(String(describing: error))")
     }
@@ -432,7 +432,7 @@ import Testing
       try await client.writeObject(source, to: bucket, as: objectName)
     }
     if case .requestError(.http(let details)) = error {
-      #expect(details.httpStatusCode == 503)
+      #expect(details.statusCode == 503)
     } else {
       Issue.record("Expected .requestError(.http 503), got \(String(describing: error))")
     }
@@ -575,7 +575,7 @@ import Testing
       try await client.writeObject(source, to: bucket, as: objectName, options: options)
     }
     if case .requestError(.http(let details)) = error {
-      #expect(details.httpStatusCode == 503)
+      #expect(details.statusCode == 503)
     } else {
       Issue.record("Expected .requestError(.http 503), got \(String(describing: error))")
     }

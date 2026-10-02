@@ -36,7 +36,7 @@ extension RequestError: Equatable {
 
 extension HTTPDetails: Equatable {
   static func == (lhs: HTTPDetails, rhs: HTTPDetails) -> Bool {
-    return lhs.httpStatusCode == rhs.httpStatusCode && lhs.headers == rhs.headers
+    return lhs.statusCode == rhs.statusCode && lhs.headers == rhs.headers
       && lhs.payload == rhs.payload
   }
 }

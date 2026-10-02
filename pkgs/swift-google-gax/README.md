@@ -170,7 +170,7 @@ do {
             print("Status detail: \(detail)")
         }
     case .http(let httpDetails):
-        print("HTTP error with status code: \(httpDetails.httpStatusCode)")
+        print("HTTP error with status code: \(httpDetails.statusCode)")
     case .io(let ioError):
         print("Transport I/O error: \(ioError)")
     case .exhausted(let exhausted):

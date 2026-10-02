@@ -32,7 +32,7 @@ public struct TooManyRequests<P: Sendable>: Sendable {
       return details.code == GoogleRpc.Code.resourceExhausted
     }
     if case .http(let details) = error {
-      return details.httpStatusCode == 429
+      return details.statusCode == 429
     }
     return false
   }

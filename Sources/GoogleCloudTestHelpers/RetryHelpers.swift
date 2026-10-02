@@ -28,7 +28,7 @@ extension RequestError {
     case .service(let err):
       return err.code == .alreadyExists || err.httpStatusCode == 409
     case .http(let details):
-      return details.httpStatusCode == 409
+      return details.statusCode == 409
     case .exhausted(let details):
       return details.source?.isAlreadyExists ?? false
     default:
@@ -41,7 +41,7 @@ extension RequestError {
     case .service(let err):
       return err.code == .notFound || err.httpStatusCode == 404
     case .http(let details):
-      return details.httpStatusCode == 404
+      return details.statusCode == 404
     case .exhausted(let details):
       return details.source?.isNotFound ?? false
     default:
@@ -55,7 +55,7 @@ extension RequestError {
       return err.code == .failedPrecondition || err.code == .aborted || err.httpStatusCode == 412
         || err.httpStatusCode == 409
     case .http(let details):
-      return details.httpStatusCode == 412 || details.httpStatusCode == 409
+      return details.statusCode == 412 || details.statusCode == 409
     case .exhausted(let details):
       return details.source?.isFailedPreconditionOrAborted ?? false
     default:

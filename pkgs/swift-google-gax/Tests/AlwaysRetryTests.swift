@@ -47,6 +47,6 @@ import Testing
   // Helper functions
 
   private func httpUnavailable() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 503, headers: [], payload: Data()))
+    .http(HTTPDetails(statusCode: 503, headers: [], payload: Data()))
   }
 }

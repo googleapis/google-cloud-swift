@@ -118,12 +118,12 @@ import Testing
     let state = ResumeState()
 
     // Recoverable HTTP status codes
-    let err408 = RequestError.http(HTTPDetails(httpStatusCode: 408, headers: []))
-    let err429 = RequestError.http(HTTPDetails(httpStatusCode: 429, headers: []))
-    let err500 = RequestError.http(HTTPDetails(httpStatusCode: 500, headers: []))
-    let err502 = RequestError.http(HTTPDetails(httpStatusCode: 502, headers: []))
-    let err503 = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: []))
-    let err504 = RequestError.http(HTTPDetails(httpStatusCode: 504, headers: []))
+    let err408 = RequestError.http(HTTPDetails(statusCode: 408, headers: []))
+    let err429 = RequestError.http(HTTPDetails(statusCode: 429, headers: []))
+    let err500 = RequestError.http(HTTPDetails(statusCode: 500, headers: []))
+    let err502 = RequestError.http(HTTPDetails(statusCode: 502, headers: []))
+    let err503 = RequestError.http(HTTPDetails(statusCode: 503, headers: []))
+    let err504 = RequestError.http(HTTPDetails(statusCode: 504, headers: []))
     let errIO = RequestError.io(NSError(domain: "test", code: -1))
 
     #expect(isResume(policy.onError(state: state, error: err408)))
@@ -150,11 +150,11 @@ import Testing
     #expect(isResume(policy.onError(state: state, error: rpcInternal)))
 
     // Permanent HTTP status codes
-    let err400 = RequestError.http(HTTPDetails(httpStatusCode: 400, headers: []))
-    let err401 = RequestError.http(HTTPDetails(httpStatusCode: 401, headers: []))
-    let err403 = RequestError.http(HTTPDetails(httpStatusCode: 403, headers: []))
-    let err404 = RequestError.http(HTTPDetails(httpStatusCode: 404, headers: []))
-    let err412 = RequestError.http(HTTPDetails(httpStatusCode: 412, headers: []))
+    let err400 = RequestError.http(HTTPDetails(statusCode: 400, headers: []))
+    let err401 = RequestError.http(HTTPDetails(statusCode: 401, headers: []))
+    let err403 = RequestError.http(HTTPDetails(statusCode: 403, headers: []))
+    let err404 = RequestError.http(HTTPDetails(statusCode: 404, headers: []))
+    let err412 = RequestError.http(HTTPDetails(statusCode: 412, headers: []))
 
     #expect(isPermanent(policy.onError(state: state, error: err400)))
     #expect(isPermanent(policy.onError(state: state, error: err401)))
@@ -178,8 +178,8 @@ import Testing
     let policy = StorageResumePolicy<Void>.unbounded()
     let state = ResumeState(idempotent: false)
 
-    let err503 = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: []))
-    let err429 = RequestError.http(HTTPDetails(httpStatusCode: 429, headers: []))
+    let err503 = RequestError.http(HTTPDetails(statusCode: 503, headers: []))
+    let err429 = RequestError.http(HTTPDetails(statusCode: 429, headers: []))
     let errIO = RequestError.io(NSError(domain: "test", code: -1))
     let rpcUnavailable = RequestError.service(
       ServiceError(code: Code.unavailable, message: "unavailable"))
@@ -197,9 +197,9 @@ import Testing
     let policy = StorageResumePolicy<Void>.unbounded().stopOnConsecutiveErrors(2)
     var state = ResumeState()
 
-    let transientError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: []))
-    let permanentError = RequestError.http(HTTPDetails(httpStatusCode: 404, headers: []))
-    let authError = RequestError.http(HTTPDetails(httpStatusCode: 401, headers: []))
+    let transientError = RequestError.http(HTTPDetails(statusCode: 503, headers: []))
+    let permanentError = RequestError.http(HTTPDetails(statusCode: 404, headers: []))
+    let authError = RequestError.http(HTTPDetails(statusCode: 401, headers: []))
     let ioError = RequestError.io(NSError(domain: "test", code: -1))
 
     // Permanent errors halt immediately
@@ -227,7 +227,7 @@ import Testing
   @Test func storageResumePolicyDefaultPolicy() {
     let policy = StorageResumePolicy<Void>.defaultPolicy
     var state = ResumeState()
-    let transientError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: []))
+    let transientError = RequestError.http(HTTPDetails(statusCode: 503, headers: []))
 
     state.consecutiveErrorCount = 2
     #expect(isResume(policy.onError(state: state, error: transientError)))
@@ -240,8 +240,8 @@ import Testing
     let policy = StorageResumePolicy<Void>.unbounded().withTotalResumeLimit(2)
     var state = ResumeState()
 
-    let transientError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: []))
-    let permanentError = RequestError.http(HTTPDetails(httpStatusCode: 403, headers: []))
+    let transientError = RequestError.http(HTTPDetails(statusCode: 503, headers: []))
+    let permanentError = RequestError.http(HTTPDetails(statusCode: 403, headers: []))
 
     // Permanent error
     #expect(isPermanent(policy.onError(state: state, error: permanentError)))
@@ -262,7 +262,7 @@ import Testing
   @Test func neverResumePolicy() {
     let policy = NeverResume<Void>()
     let state = ResumeState()
-    let transientError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: []))
+    let transientError = RequestError.http(HTTPDetails(statusCode: 503, headers: []))
     let ioError = RequestError.io(NSError(domain: "test", code: -1))
 
     #expect(isPermanent(policy.onError(state: state, error: transientError)))
@@ -272,8 +272,8 @@ import Testing
   @Test func alwaysResumePolicy() {
     let policy = AlwaysResume<Void>.unbounded()
     var state = ResumeState()
-    let transientError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: []))
-    let permanentError = RequestError.http(HTTPDetails(httpStatusCode: 400, headers: []))
+    let transientError = RequestError.http(HTTPDetails(statusCode: 503, headers: []))
+    let permanentError = RequestError.http(HTTPDetails(statusCode: 400, headers: []))
 
     #expect(isResume(policy.onError(state: state, error: permanentError)))
 
@@ -322,7 +322,7 @@ import Testing
       try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
     }
     if case .requestError(.http(let details)) = error {
-      #expect(details.httpStatusCode == 503)
+      #expect(details.statusCode == 503)
     } else {
       Issue.record("Expected .requestError(.http) 503, got \(String(describing: error))")
     }

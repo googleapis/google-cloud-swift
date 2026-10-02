@@ -32,7 +32,7 @@ struct StorageRetryErrors: RetryPolicy, Sendable, Equatable {
   func isRetryable(_ error: RequestError) -> Bool {
     switch error {
     case .http(let details):
-      let code = details.httpStatusCode
+      let code = details.statusCode
       return code == 408 || code == 429 || (500...599).contains(code)
     case .service(let details):
       let code = details.code

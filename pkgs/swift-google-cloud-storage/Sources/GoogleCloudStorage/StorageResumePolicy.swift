@@ -64,7 +64,7 @@ public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Eq
     case .io:
       return true
     case .http(let details):
-      let code = details.httpStatusCode
+      let code = details.statusCode
       return code == 408 || code == 429 || (500...599).contains(code)
     case .service(let details):
       let code = details.code

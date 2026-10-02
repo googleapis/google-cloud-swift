@@ -47,7 +47,7 @@ import GoogleRpc
   }
 
   static func httpError() -> RequestError {
-    .http(HTTPDetails(httpStatusCode: 404, headers: []))
+    .http(HTTPDetails(statusCode: 404, headers: []))
   }
 
   static func pendingState() -> _PollableOperationImpl<String>.State {

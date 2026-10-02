@@ -105,7 +105,7 @@ struct StorageClientIntegrationTests {
       #expect(serviceError.httpStatusCode == 412)
       print("GCS correctly returned 412 Precondition Failed: \(serviceError.message)")
     } catch ReadObjectError.requestError(.http(let details)) {
-      #expect(details.httpStatusCode == 412)
+      #expect(details.statusCode == 412)
       print(
         "GCS correctly returned 412 Precondition Failed: \(String(data: details.payload, encoding: .utf8) ?? "")"
       )
@@ -284,7 +284,7 @@ struct StorageClientIntegrationTests {
       #expect(serviceError.message.contains("doesn't match"))
       print("GCS correctly rejected bad checksum: \(serviceError.message)")
     } catch WriteObjectError.requestError(.http(let details)) {
-      #expect(details.httpStatusCode == 400)
+      #expect(details.statusCode == 400)
       print(
         "GCS correctly rejected bad checksum: \(String(data: details.payload, encoding: .utf8) ?? "")"
       )
@@ -321,7 +321,7 @@ struct StorageClientIntegrationTests {
     } catch ReadObjectError.requestError(.service(let serviceError)) {
       #expect(serviceError.httpStatusCode == 400)
     } catch ReadObjectError.requestError(.http(let details)) {
-      #expect(details.httpStatusCode == 400)
+      #expect(details.statusCode == 400)
     } catch {
       Issue.record("Expected ReadObjectError.requestError, got \(error)")
     }
@@ -795,7 +795,7 @@ struct StorageClientRangedDownloadIntegrationTests {
     } catch ReadObjectError.requestError(.service(let serviceError)) {
       #expect(serviceError.httpStatusCode == 404)
     } catch ReadObjectError.requestError(.http(let details)) {
-      #expect(details.httpStatusCode == 404)
+      #expect(details.statusCode == 404)
     } catch {
       Issue.record("Expected ReadObjectError.requestError, got \(error)")
     }

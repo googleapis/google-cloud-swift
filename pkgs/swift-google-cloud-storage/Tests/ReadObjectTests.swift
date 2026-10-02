@@ -271,7 +271,7 @@ import Testing
     }
 
     if case .requestError(.http(let details)) = err {
-      #expect(details.httpStatusCode == 412)
+      #expect(details.statusCode == 412)
       #expect(String(data: details.payload, encoding: .utf8) == "Precondition Failed")
     } else {
       Issue.record(
@@ -337,7 +337,7 @@ import Testing
     }
 
     if case .requestError(.http(let details)) = err {
-      #expect(details.httpStatusCode == 404)
+      #expect(details.statusCode == 404)
       #expect(String(data: details.payload, encoding: .utf8) == "Object not found")
     } else {
       Issue.record("Expected requestError(.http) error, got \(String(describing: err))")
@@ -618,7 +618,7 @@ import Testing
       ).metadata
       Issue.record("Expected requestError(.http) error to be thrown for 404")
     } catch ReadObjectError.requestError(.http(let details)) {
-      #expect(details.httpStatusCode == 404)
+      #expect(details.statusCode == 404)
     } catch {
       Issue.record("Expected requestError(.http), got \(error)")
     }
@@ -1162,7 +1162,7 @@ import Testing
       for try await _ in result.body {}
       Issue.record("Expected error when resume fails with 404")
     } catch ReadObjectError.requestError(.http(let details)) {
-      #expect(details.httpStatusCode == 404)
+      #expect(details.statusCode == 404)
       #expect(String(data: details.payload, encoding: .utf8) == "Object deleted")
     } catch {
       Issue.record("Expected ReadObjectError.requestError(.http) 404, got \(error)")

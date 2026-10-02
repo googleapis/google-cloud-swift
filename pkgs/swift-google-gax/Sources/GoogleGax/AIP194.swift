@@ -65,7 +65,7 @@ public struct AIP194: Sendable, Equatable {
 extension RequestError {
   fileprivate var httpStatusCode: Int? {
     if case .http(let details) = self {
-      return details.httpStatusCode
+      return details.statusCode
     }
     return nil
   }

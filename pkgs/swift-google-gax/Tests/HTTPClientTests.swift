@@ -462,7 +462,7 @@ import NIOHTTP1
       Issue.record("expected an http error response, got=\(response)")
       return
     }
-    #expect(httpError.httpStatusCode == 404)
+    #expect(httpError.statusCode == 404)
   }
 
   @Test("verify the client when used as GAPICs do for Create-like operations")
@@ -746,7 +746,7 @@ import NIOHTTP1
       Issue.record("expected service error , got \(e)")
       return
     }
-    #expect(httpError.httpStatusCode == HTTPResponseStatus.forbidden.code)
+    #expect(httpError.statusCode == HTTPResponseStatus.forbidden.code)
     #expect(httpError.payload == Data(responsePayload.utf8))
     #expect(httpError.headers["x-goog-test-only"] == "test-header")
     #expect(httpError.headers["X-Goog-Test-Only"] == "test-header")
