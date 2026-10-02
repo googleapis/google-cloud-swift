@@ -40,7 +40,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
       defaultEndpoint: withDefaultEndpoint,
       universeDomain: from.universeDomain ?? _Host.defaultUniverseDomain
     )
-    self.inner = HTTPClientHolder()
+    self.inner = try HTTPClientHolder(rootCertificates: from.rootCertificates)
   }
 
   // Creates a new testing client.
@@ -97,6 +97,14 @@ import struct AsyncHTTPClient.HTTPClientResponse
     request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
   }
 
+  private static func setQuery(_ query: [URLQueryItem], on components: inout URLComponents) {
+    guard !query.isEmpty else { return }
+    components.queryItems = query
+    if let encoded = components.percentEncodedQuery, encoded.contains(";") {
+      components.percentEncodedQuery = encoded.replacingOccurrences(of: ";", with: "%3B")
+    }
+  }
+
   public func newRequest(
     path: String,
     query: [URLQueryItem],
@@ -104,9 +112,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
   ) async throws -> _HTTPClientRequest {
     var components = self.baseURL
     components.path = path
-    if !query.isEmpty {
-      components.queryItems = query
-    }
+    Self.setQuery(query, on: &components)
     var request = _HTTPClientRequest(self.inner, url: components)
     try await self.configureHeaders(on: &request, options: options)
     return request
@@ -120,9 +126,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
     -> _HTTPClientRequest
   {
     var components = self.baseURL
-    if !query.isEmpty {
-      components.queryItems = query
-    }
+    Self.setQuery(query, on: &components)
     components.percentEncodedPath = percentEncodedPath
     var request = _HTTPClientRequest(self.inner, url: components)
     try await self.configureHeaders(on: &request, options: options)

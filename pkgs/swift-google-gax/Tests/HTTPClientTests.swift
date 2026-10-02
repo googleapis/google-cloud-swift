@@ -476,6 +476,8 @@ import NIOHTTP1
       URLQueryItem(name: "$alt", value: "json;enum-encoding=int"),
       URLQueryItem(name: "thingId", value: "test-only-thing-id"),
     ]
+    wantURL.percentEncodedQuery = wantURL.percentEncodedQuery?.replacingOccurrences(
+      of: ";", with: "%3B")
     let wantURLString = wantURL.url?.absoluteString
     let requestBody = Data(#"{"thingAttribute":"test-value"}"#.utf8)
     let responseBody = #"{"name":"projects/p/things/test-only-thing-id"}"#
@@ -534,6 +536,8 @@ import NIOHTTP1
     wantURL.queryItems = [
       URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
     ]
+    wantURL.percentEncodedQuery = wantURL.percentEncodedQuery?.replacingOccurrences(
+      of: ";", with: "%3B")
     let wantURLString = wantURL.url?.absoluteString
     let responseBody = #"{"name":"projects/p/things/test-only-thing-id","value":"test-value"}"#
 
@@ -587,6 +591,8 @@ import NIOHTTP1
     wantURL.queryItems = [
       URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
     ]
+    wantURL.percentEncodedQuery = wantURL.percentEncodedQuery?.replacingOccurrences(
+      of: ";", with: "%3B")
     let wantURLString = wantURL.url?.absoluteString
 
     let mockCredentials = MockCredentials([
@@ -637,6 +643,8 @@ import NIOHTTP1
     wantURL.queryItems = [
       URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
     ]
+    wantURL.percentEncodedQuery = wantURL.percentEncodedQuery?.replacingOccurrences(
+      of: ";", with: "%3B")
     let wantURLString = wantURL.url?.absoluteString
 
     let mockCredentials = MockCredentials([
@@ -696,6 +704,8 @@ import NIOHTTP1
     wantURL.queryItems = [
       URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
     ]
+    wantURL.percentEncodedQuery = wantURL.percentEncodedQuery?.replacingOccurrences(
+      of: ";", with: "%3B")
     let wantURLString = wantURL.url?.absoluteString
     let responsePayload = "<!DOCTYPE html><html lang=en><title>Error 404</title></html>"
 
@@ -943,12 +953,47 @@ import NIOHTTP1
     #expect(response.status == .ok)
   }
 
+  @Test func rootCertificatesInvalidPEMThrows() {
+    let options = ClientOptions().with {
+      $0.rootCertificates = "not-a-valid-pem"
+    }
+    #expect(throws: (any Error).self) {
+      try _HTTPClient(from: options, withDefaultEndpoint: "https://localhost:1234")
+    }
+  }
+
+  @Test func rootCertificatesValidPEMInitializes() throws {
+    let options = ClientOptions().with {
+      $0.rootCertificates = testCertificatePEM
+    }
+    _ = try _HTTPClient(from: options, withDefaultEndpoint: "https://localhost:1234")
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String
     public let value: String
   }
 }
+
+fileprivate let testCertificatePEM = """
+  -----BEGIN CERTIFICATE-----
+  MIICmDCCAYACCQCPC8JDqMh1zzANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJ1
+  czAgFw0xODEwMzExNTU1MjJaGA8yMTE4MTAwNzE1NTUyMlowDTELMAkGA1UEBhMC
+  dXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDiC+TGmbSP/nWWN1tj
+  yNfnWCU5ATjtIOfdtP6ycx8JSeqkvyNXG21kNUn14jTTU8BglGL2hfVpCbMisUdb
+  d3LpP8unSsvlOWwORFOViSy4YljSNM/FNoMtavuITA/sEELYgjWkz2o/uHPZHud9
+  +JQwGJgqIlMa3mr2IaaUZlWN3D1u88bzJYhpt3YyxRy9+OEoOKy36KdWwhKzV3S8
+  kXb0Y1GbAo68jJ9RfzeLy290mIs9qG2y1CNXWO6sxf6B//LaalizZiCfzYAVKcNR
+  9oNYsEJc5KB/+DsAGTzR7mL+oiU4h/vwVb2GTDat5C+PFGi6j1ujxYTRPO538ljg
+  dslnAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAFYhA7sw8odOsRO8/DUklBOjPnmn
+  a078oSumgPXXw6AgcoAJv/Qthjo6CCEtrjYfcA9jaBw9/Tii7mDmqDRS5c9ZPL8+
+  NEPdHjFCFBOEvlL6uHOgw0Z9Wz+5yCXnJ8oNUEgc3H2NbbzJF6sMBXSPtFS2NOK8
+  OsAI9OodMrDd6+lwljrmFoCCkJHDEfE637IcsbgFKkzhO/oNCRK6OrudG4teDahz
+  Au4LoEYwT730QKC/VQxxEVZobjn9/sTrq9CZlbPYHxX4fz6e00sX7H9i49vk9zQ5
+  5qCm9ljhrQPSa42Q62PPE2BEEGSP2KBm0J+H3vlvCD6+SNc/nMZjrRmgjrI=
+  -----END CERTIFICATE-----
+  """
 
 fileprivate let errorResponseWithDetails = """
   {

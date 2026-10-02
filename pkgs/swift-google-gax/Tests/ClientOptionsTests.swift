@@ -101,6 +101,7 @@ import GoogleGax
     #expect(got.credentials == nil)
     #expect(got.retryPolicy == nil)
     #expect(got.attemptTimeout == .seconds(15))
+    #expect(got.rootCertificates == nil)
   }
 
   @Test func attemptTimeoutConfiguration() {
@@ -113,5 +114,12 @@ import GoogleGax
       $0.attemptTimeout = nil
     }
     #expect(disabled.attemptTimeout == nil)
+  }
+
+  @Test func rootCertificatesConfiguration() {
+    let custom = ClientOptions().with {
+      $0.rootCertificates = "custom-cert-pem"
+    }
+    #expect(custom.rootCertificates == "custom-cert-pem")
   }
 }
