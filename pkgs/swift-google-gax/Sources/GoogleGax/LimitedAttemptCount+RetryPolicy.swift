@@ -23,8 +23,7 @@ extension LimitedAttemptCount: RetryPolicy where P: RetryPolicy & Sendable {
       return .exhausted(e)
     case .retry(let e):
       if state.attemptCount >= maximumAttempts {
-        return .exhausted(
-          .exhausted(.attemptCount(maximumAttempts: maximumAttempts, source: e)))
+        return .exhausted(e)
       }
       return .retry(e)
     }

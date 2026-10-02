@@ -69,17 +69,13 @@ import Testing
       $0.start = start
       $0.attemptCount = 10
     }
-    #expect(
-      p.onError(state: attempt10, error: e)
-        == .exhausted(.exhausted(.attemptCount(maximumAttempts: 10, source: e))))
+    #expect(p.onError(state: attempt10, error: e) == .exhausted(e))
 
     let expired = RetryState(idempotent: true).with {
       $0.start = start - .seconds(61)
       $0.attemptCount = 1
     }
-    #expect(
-      p.onError(state: expired, error: e)
-        == .exhausted(.exhausted(.elapsedTime(maximumDuration: .seconds(60), source: e))))
+    #expect(p.onError(state: expired, error: e) == .exhausted(e))
   }
 
   @Test func equatable() {

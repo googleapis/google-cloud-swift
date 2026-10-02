@@ -115,9 +115,7 @@ import Testing
     let stateAfter = RetryState(idempotent: true).with {
       $0.start = .now - .seconds(70)
     }
-    #expect(
-      policy.onError(state: stateAfter, error: error)
-        == .exhausted(.exhausted(.elapsedTime(maximumDuration: limit, source: error))))
+    #expect(policy.onError(state: stateAfter, error: error) == .exhausted(error))
   }
 
   @Test func testLimitedTimeInnerPermanent() {
