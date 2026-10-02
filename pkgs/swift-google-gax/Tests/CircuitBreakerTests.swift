@@ -56,12 +56,12 @@ import GoogleGax
 
     // The first 4 failures should succeed (100 -> 90 -> 80 -> 70 -> 60)
     for _ in 0..<4 {
-      throttler.onRetryFailure(flow: .retry(error))
+      throttler.onRetryFailure(result: .retry(error))
       #expect(!throttler.throttleRetryAttempt(), "\(throttler)")
     }
     // Two more failures get us to 50 tokens, which cause throttling:
-    throttler.onRetryFailure(flow: .retry(error))
-    throttler.onRetryFailure(flow: .retry(error))
+    throttler.onRetryFailure(result: .retry(error))
+    throttler.onRetryFailure(result: .retry(error))
     #expect(throttler.throttleRetryAttempt(), "\(throttler)")
 
     // 10 successes are not enough.
@@ -74,13 +74,13 @@ import GoogleGax
     #expect(!throttler.throttleRetryAttempt(), "\(throttler)")
 
     // Permanent errors also help recovery
-    throttler.onRetryFailure(flow: .retry(error))
+    throttler.onRetryFailure(result: .retry(error))
     #expect(throttler.throttleRetryAttempt())
     for _ in 0..<9 {
-      throttler.onRetryFailure(flow: .permanent(error))
+      throttler.onRetryFailure(result: .permanent(error))
       #expect(throttler.throttleRetryAttempt())
     }
-    throttler.onRetryFailure(flow: .permanent(error))
+    throttler.onRetryFailure(result: .permanent(error))
     #expect(!throttler.throttleRetryAttempt())
   }
 }

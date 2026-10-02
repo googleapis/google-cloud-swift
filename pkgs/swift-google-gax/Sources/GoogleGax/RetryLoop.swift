@@ -133,11 +133,11 @@ import Foundation
         guard let requestError = error as? RequestError else {
           throw error
         }
-        let flow = retryPolicy.onError(state: state, error: requestError)
+        let retryResult = retryPolicy.onError(state: state, error: requestError)
         nextDelay = backoffPolicy.backoffDelayFor(state)
-        retryThrottler.onRetryFailure(flow: flow)
+        retryThrottler.onRetryFailure(result: retryResult)
 
-        switch flow {
+        switch retryResult {
         case .permanent(let e), .exhausted(let e):
           throw e
         case .retry(let e):

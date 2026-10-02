@@ -80,10 +80,10 @@ public final class AdaptiveThrottler: RetryThrottler, Sendable {
     throttleRetryAttemptImpl(gen: { () in Double.random(in: 0.0...1.0) })
   }
 
-  public func onRetryFailure(flow: RetryResult) {
+  public func onRetryFailure(result: RetryResult) {
     state.withLock { state in
       state.requestCount += 1.0
-      switch flow {
+      switch result {
       case .retry, .exhausted:
         break
       case .permanent:

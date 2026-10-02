@@ -99,9 +99,9 @@ public final class CircuitBreaker: RetryThrottler, Sendable {
     return state.withLock { $0.curTokens <= minTokens }
   }
 
-  public func onRetryFailure(flow: RetryResult) {
+  public func onRetryFailure(result: RetryResult) {
     state.withLock { state in
-      switch flow {
+      switch result {
       case .retry, .exhausted:
         if state.curTokens >= errorCost {
           state.curTokens -= errorCost

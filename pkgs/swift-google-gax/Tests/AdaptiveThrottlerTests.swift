@@ -41,12 +41,12 @@ import Testing
     #expect(!throttler.throttleRetryAttempt())
 
     // Permanent failure also increases accept count: it is interpreted as received by the service
-    throttler.onRetryFailure(flow: .permanent(error))
+    throttler.onRetryFailure(result: .permanent(error))
     #expect(!throttler.throttleRetryAttempt())
 
     // Retry failures do NOT increase accept count, but increase request count
     for _ in 0..<100 {
-      throttler.onRetryFailure(flow: .retry(error))
+      throttler.onRetryFailure(result: .retry(error))
     }
 
     // 102 requests, 2 accepts. Prob = (102 - 2*2) / 103 = 98 / 103 ~= 0.95
