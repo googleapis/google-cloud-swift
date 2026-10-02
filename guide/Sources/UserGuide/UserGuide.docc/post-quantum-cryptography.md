@@ -1,11 +1,14 @@
 # Post-quantum cryptography
 
 [Post-quantum cryptography]: https://cloud.google.com/security/resources/post-quantum-cryptography
+[grpc-swift-2]: https://github.com/grpc/grpc-swift-2
+[async-http-client]: https://github.com/swift-server/async-http-client
+[swift-nio-ssl]: https://github.com/apple/swift-nio-ssl
 
-In this guide, you learn about the Google Cloud client libraries for Swift
-support for Post-quantum cryptography (PQC). PQC protects encrypted
-communications against potential future quantum computing capabilities that
-could compromise classical public-key cryptography.
+In this guide, you learn how the Google Cloud client libraries for Swift
+support Post-quantum cryptography (PQC). PQC protects encrypted communications
+against potential future quantum computing capabilities that could compromise
+classical public-key cryptography.
 
 ## Summary
 
@@ -18,8 +21,8 @@ hybrid key agreement by default without requiring custom configuration.
 
 ## How PQC operates in the Swift client libraries
 
-The Swift client libraries either gRPC or `AsyncHTTPClient`, both backed by
-`swift-nio-ssl` and embedded BoringSSL (`CNIOBoringSSL`).
+The Swift client libraries use either [grpc-swift-2] or [async-http-client],
+both backed by Apple's [swift-nio-ssl] and embedded BoringSSL (`CNIOBoringSSL`).
 
 When negotiating TLS 1.3 connections, `swift-nio-ssl` configures
 `X25519MLKEM768` as the first and preferred key exchange group in its default
@@ -37,7 +40,7 @@ data in transit against retrospective decryption attacks.
 If a server or intermediate network proxy does not support `X25519MLKEM768`,
 negotiation automatically and transparently falls back to classical algorithms.
 
-## Next Steps
+## More information
 
-* Google's [Post-quantum cryptography] guide contains more information about
-  this topic.
+The [Post-quantum cryptography] guide contains more information about Google
+Cloud's PQC support.
