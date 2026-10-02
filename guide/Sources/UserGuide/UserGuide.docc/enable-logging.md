@@ -75,7 +75,7 @@ entries.
 The output (formatted for readability) includes lines such as:
 
 ```text
-2026-09-30T18:00:00+0000 debug com.example.my-app :
+2026-09-30T18:00:00+0000 debug com.example.my-app:
   gcp.artifact.id=google-cloud-secretmanager-v1
   gcp.client.service=secretmanager
   gcp.experimental.swift.client=SecretManagerService
@@ -87,7 +87,7 @@ The output (formatted for readability) includes lines such as:
 Followed by the response on success:
 
 ```text
-2026-09-30T18:00:01+0000 debug com.example.my-app :
+2026-09-30T18:00:01+0000 debug com.example.my-app:
   gcp.artifact.id=google-cloud-secretmanager-v1
   gcp.client.service=secretmanager
   gcp.experimental.swift.client=SecretManagerService
@@ -99,13 +99,13 @@ Followed by the response on success:
 Or the error details if the request fails:
 
 ```text
-2026-09-30T18:00:01+0000 debug com.example.my-app :
+2026-09-30T18:00:01+0000 debug com.example.my-app:
   gcp.artifact.id=google-cloud-secretmanager-v1
   gcp.client.service=secretmanager
   gcp.experimental.swift.client=SecretManagerService
   gcp.experimental.swift.method=listSecrets
   gcp.experimental.swift.request.id=550E8400-E29B-41D4-A716-446655440000
-  [GoogleCloudSecretManagerV1] error  : ListSecretsRequest(...) RequestOptions(...) RequestError(...)
+  [GoogleCloudSecretManagerV1] error  : ListSecretsRequest(...) RequestOptions(...) http(StatusError(...))
 ```
 
 In addition to any metadata already attached to the `Logger` by your
@@ -124,6 +124,8 @@ entry:
   invocation to correlate its `enter` and `success` or `error` log entries.
 
 ## Complete code
+
+The full code for this guide looks like this:
 
 @Snippet(path: "EnableLogging")
 
