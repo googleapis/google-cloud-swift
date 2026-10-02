@@ -57,7 +57,7 @@ import GoogleAuth
   @Test func cannotFetchTokenDetails() {
     let source = CredentialsError.notSupported("--inner--")
     let got = CredentialsError.cannotFetchToken(message: "--message here--", source: source)
-    #expect(got.description == "--message here--")
+    #expect(got.description == "--message here--: Operation not supported: --inner--")
     #expect(
       got.debugDescription.contains("--message here--"),
       "\(got):\n\(got.debugDescription)")
@@ -66,7 +66,7 @@ import GoogleAuth
       "\(got):\n\(got.debugDescription)")
     let localized = got as LocalizedError
     #expect(localized.errorDescription == got.description)
-    #expect(localized.failureReason == "--message here--")
+    #expect(localized.failureReason == "Operation not supported: --inner--")
     #expect(
       localized.recoverySuggestion
         == "Run 'gcloud auth application-default login' to set up local credentials, or verify Service Account / Workload Identity configuration."

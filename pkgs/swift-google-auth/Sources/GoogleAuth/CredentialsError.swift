@@ -80,8 +80,8 @@ extension CredentialsError: CustomStringConvertible {
       return "Operation not supported: \(detail)"
     case .parseError(let detail):
       return "Configuration parse error: \(detail)"
-    case .cannotFetchToken(let message, _):
-      return message
+    case .cannotFetchToken(let message, let source):
+      return "\(message): \(source)"
     }
   }
 }
@@ -97,8 +97,8 @@ extension CredentialsError: LocalizedError {
       return "The requested credential type or feature is not supported (\(detail))."
     case .parseError(let detail):
       return "Failed to parse credentials data (\(detail))."
-    case .cannotFetchToken(let message, _):
-      return message
+    case .cannotFetchToken(_, let source):
+      return source.localizedDescription
     }
   }
 
