@@ -21,13 +21,6 @@ import Testing
     let error = RetryThrottlerError.factorOutOfRange(-0.5)
     #expect(error.description == "Retry throttler factor out of range: -0.5 (must be >= 0.0)")
     #expect(error.debugDescription == "RetryThrottlerError.factorOutOfRange(-0.5)")
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == error.description)
-    #expect(localized.failureReason == error.description)
-    #expect(
-      localized.recoverySuggestion
-        == "Ensure token counts, minimum tokens, and error cost are non-negative and minTokens does not exceed tokens."
-    )
   }
 
   @Test func tooFewMinTokens() {
@@ -35,8 +28,6 @@ import Testing
     #expect(error.description == "Minimum tokens (20) must be <= initial tokens (10)")
     #expect(
       error.debugDescription == "RetryThrottlerError.tooFewMinTokens(tokens: 10, minTokens: 20)")
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == error.description)
   }
 
   @Test func tokensOutOfRange() {
@@ -49,7 +40,5 @@ import Testing
       error.debugDescription
         == "RetryThrottlerError.tokensOutOfRange(tokens: -1, minTokens: 0, errorCost: 5)"
     )
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == error.description)
   }
 }

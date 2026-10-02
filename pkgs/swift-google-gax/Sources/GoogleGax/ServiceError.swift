@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 public import GoogleRpc
 
 /// The details for ``RequestError/service(_:)``.
@@ -65,20 +65,6 @@ extension ServiceError: CustomDebugStringConvertible {
     }
     desc += ")"
     return desc
-  }
-}
-
-extension ServiceError: LocalizedError {
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    message
-  }
-
-  public var recoverySuggestion: String? {
-    "Review the error code and details, and consult the service documentation."
   }
 }
 

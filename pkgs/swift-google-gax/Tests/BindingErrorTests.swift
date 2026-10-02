@@ -210,7 +210,7 @@ import Testing
     #expect(detailedError.paths[0].substitutions.count == 1)
   }
 
-  @Test func debugDescriptionAndLocalizedError() {
+  @Test func debugDescription() {
     let sub = SubstitutionMismatch(fieldName: "name", problem: .unset)
     #expect(
       sub.debugDescription
@@ -234,14 +234,5 @@ import Testing
 
     let err = BindingError(paths: [path])
     #expect(err.debugDescription.contains("BindingError(paths:"))
-
-    let localized = err as LocalizedError
-    #expect(localized.errorDescription == err.description)
-    #expect(localized.failureReason == "The request failed to match any valid URL path template.")
-    #expect(
-      localized.recoverySuggestion
-        == "Verify that all required fields in the request (such as 'name' or 'parent') are set and correctly formatted."
-    )
-    #expect(err.localizedDescription == err.description)
   }
 }

@@ -51,14 +51,6 @@ import Testing
 
     #expect(error.description == "URL binding error: field 'name' needs to be set")
     #expect(error.debugDescription.hasPrefix("RequestError.binding(BindingError(paths:"))
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == error.description)
-    #expect(localized.failureReason == "The request could not be mapped to a valid URL path.")
-    #expect(
-      localized.recoverySuggestion
-        == "Verify that all required fields in the request (such as 'name' or 'parent') are set and correctly formatted."
-    )
-    #expect(error.localizedDescription == error.description)
   }
 
   @Test func requestErrorIOCase() {
@@ -70,14 +62,6 @@ import Testing
 
     #expect(error.description == "I/O error: connection reset by peer")
     #expect(error.debugDescription.hasPrefix("RequestError.io("))
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == error.description)
-    #expect(localized.failureReason?.contains("connection reset by peer") == true)
-    #expect(
-      localized.recoverySuggestion
-        == "Check network connectivity and retry the request if the operation is idempotent."
-    )
-    #expect(error.localizedDescription == error.description)
   }
 
   @Test func requestErrorHTTPCase() {
@@ -90,14 +74,6 @@ import Testing
 
     #expect(error.description == "HTTP error 503")
     #expect(error.debugDescription.contains("RequestError.http(HTTPDetails(statusCode: 503"))
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == "HTTP error 503")
-    #expect(localized.failureReason == "The server responded with HTTP status code 503.")
-    #expect(
-      localized.recoverySuggestion
-        == "Review network settings and request parameters. Examine response headers or payload for details."
-    )
-    #expect(error.localizedDescription == "HTTP error 503")
   }
 
   @Test func requestErrorServiceCase() {
@@ -110,17 +86,6 @@ import Testing
 
     #expect(error.description == "PERMISSION_DENIED (HTTP 403): Access denied")
     #expect(error.debugDescription.hasPrefix("RequestError.service(ServiceError("))
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == error.description)
-    #expect(
-      localized.failureReason
-        == "The service returned error code PERMISSION_DENIED: Access denied"
-    )
-    #expect(
-      localized.recoverySuggestion
-        == "Review the error code and details, and consult the service documentation."
-    )
-    #expect(error.localizedDescription == error.description)
   }
 
   @Test func requestErrorExhaustedCase() {
@@ -135,16 +100,6 @@ import Testing
         == "policy exhausted: elapsed time limit of 30.0 seconds exceeded; last error: Invalid endpoint URL: http://example.com"
     )
     #expect(error.debugDescription.hasPrefix("RequestError.exhausted(PolicyExhaustedError."))
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == error.description)
-    #expect(
-      localized.failureReason
-        == "The retry or polling policy exceeded its elapsed time limit of 30.0 seconds."
-    )
-    #expect(
-      localized.recoverySuggestion
-        == "Increase the retry or polling policy limit (such as timeout duration or maximum attempt count)."
-    )
   }
 
   @Test func requestErrorUnimplementedCase() {
@@ -152,13 +107,6 @@ import Testing
 
     #expect(error.description == "Method unimplemented")
     #expect(error.debugDescription == "RequestError.unimplemented")
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == "Method unimplemented")
-    #expect(localized.failureReason == "The requested method is not implemented.")
-    #expect(
-      localized.recoverySuggestion
-        == "If using a mock client, implement the method. Otherwise, check for client library updates."
-    )
   }
 
   @Test func requestErrorMalformedResponseCase() {
@@ -167,12 +115,6 @@ import Testing
     #expect(error.description == "Malformed response: missing 'name' field")
     #expect(error.debugDescription.contains("RequestError.malformedResponse("))
     #expect(error.debugDescription.contains("missing 'name' field"))
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == "Malformed response: missing 'name' field")
-    #expect(
-      localized.failureReason == "The service returned a malformed response: missing 'name' field"
-    )
-    #expect(localized.recoverySuggestion == "Report this issue to the service team.")
   }
 
   @Test func requestErrorBadURLCase() {
@@ -180,13 +122,6 @@ import Testing
 
     #expect(error.description == "Invalid endpoint URL: ht tp://bad url")
     #expect(error.debugDescription == "RequestError.badURL(\"ht tp://bad url\")")
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == "Invalid endpoint URL: ht tp://bad url")
-    #expect(localized.failureReason == "The endpoint URL is invalid: ht tp://bad url")
-    #expect(
-      localized.recoverySuggestion
-        == "Review and correct the endpoint URL configured for the client."
-    )
   }
 
   @Test func policyExhaustedErrorConformances() {
@@ -199,16 +134,6 @@ import Testing
       timeExhaustedWithoutSource.debugDescription
         == "PolicyExhaustedError.elapsedTime(maximumDuration: 10.0 seconds)"
     )
-    let timeLocalized = timeExhaustedWithoutSource as LocalizedError
-    #expect(timeLocalized.errorDescription == timeExhaustedWithoutSource.description)
-    #expect(
-      timeLocalized.failureReason
-        == "The retry or polling policy exceeded its elapsed time limit of 10.0 seconds."
-    )
-    #expect(
-      timeLocalized.recoverySuggestion
-        == "Increase the retry or polling policy limit (such as timeout duration or maximum attempt count)."
-    )
 
     let attemptExhausted = PolicyExhaustedError.attemptCount(maximumAttempts: 5)
     #expect(
@@ -216,16 +141,6 @@ import Testing
     )
     #expect(
       attemptExhausted.debugDescription == "PolicyExhaustedError.attemptCount(maximumAttempts: 5)"
-    )
-    let attemptLocalized = attemptExhausted as LocalizedError
-    #expect(attemptLocalized.errorDescription == attemptExhausted.description)
-    #expect(
-      attemptLocalized.failureReason
-        == "The retry or polling policy exceeded its attempt limit of 5."
-    )
-    #expect(
-      attemptLocalized.recoverySuggestion
-        == "Increase the retry or polling policy limit (such as timeout duration or maximum attempt count)."
     )
   }
 }

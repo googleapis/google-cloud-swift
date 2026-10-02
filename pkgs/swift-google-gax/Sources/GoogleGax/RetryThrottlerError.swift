@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 
 /// Errors that can occur when building a retry throttler.
 ///
@@ -66,19 +66,5 @@ extension RetryThrottlerError: CustomDebugStringConvertible {
       return
         "RetryThrottlerError.tokensOutOfRange(tokens: \(tokens), minTokens: \(minTokens), errorCost: \(errorCost))"
     }
-  }
-}
-
-extension RetryThrottlerError: LocalizedError {
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    description
-  }
-
-  public var recoverySuggestion: String? {
-    "Ensure token counts, minimum tokens, and error cost are non-negative and minTokens does not exceed tokens."
   }
 }

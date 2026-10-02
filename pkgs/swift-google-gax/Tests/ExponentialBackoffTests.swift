@@ -139,12 +139,6 @@ import Testing
     let scalingErr = ExponentialBackoffError.invalidScalingFactor(0.5)
     #expect(scalingErr.description == "Invalid scaling factor: 0.5 (must be >= 1.0)")
     #expect(scalingErr.debugDescription == "ExponentialBackoffError.invalidScalingFactor(0.5)")
-    let scalingLoc = scalingErr as LocalizedError
-    #expect(scalingLoc.errorDescription == scalingErr.description)
-    #expect(
-      scalingLoc.recoverySuggestion
-        == "Ensure the scaling factor is >= 1.0, the initial delay is > 0, and the initial delay does not exceed the maximum delay."
-    )
 
     let delayErr = ExponentialBackoffError.invalidInitialDelay(.seconds(0))
     #expect(delayErr.description == "Invalid initial delay: 0.0 seconds (must be > 0)")

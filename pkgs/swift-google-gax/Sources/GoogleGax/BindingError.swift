@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 
 /// A failure to bind a request to an HTTP URI path template.
 public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible {
@@ -75,20 +75,6 @@ public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible 
 extension BindingError: CustomDebugStringConvertible {
   public var debugDescription: String {
     "BindingError(paths: \(String(reflecting: paths)))"
-  }
-}
-
-extension BindingError: LocalizedError {
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    "The request failed to match any valid URL path template."
-  }
-
-  public var recoverySuggestion: String? {
-    "Verify that all required fields in the request (such as 'name' or 'parent') are set and correctly formatted."
   }
 }
 

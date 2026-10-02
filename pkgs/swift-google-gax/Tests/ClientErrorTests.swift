@@ -22,15 +22,6 @@ import Testing
     #expect(error.description == "Invalid endpoint: bad://endpoint:123")
     #expect(error.debugDescription == "ClientError.invalidEndpoint(\"bad://endpoint:123\")")
 
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == "Invalid endpoint: bad://endpoint:123")
-    #expect(localized.failureReason == "The endpoint string does not represent a valid URL.")
-    #expect(
-      localized.recoverySuggestion
-        == "Review the endpoint client option and ensure it is a valid URL."
-    )
-    #expect(error.localizedDescription == "Invalid endpoint: bad://endpoint:123")
-
     let identical = ClientError.invalidEndpoint("bad://endpoint:123")
     #expect(error == identical)
     let different = ClientError.invalidEndpoint("other://endpoint")

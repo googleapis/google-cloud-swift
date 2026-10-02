@@ -87,7 +87,7 @@ import Testing
     #expect(withDetails.description.hasPrefix("RESOURCE_EXHAUSTED (HTTP 429): Quota exceeded ["))
   }
 
-  @Test func debugDescriptionAndLocalizedError() {
+  @Test func debugDescription() {
     let error = ServiceError(
       code: .notFound,
       message: "Resource missing",
@@ -97,14 +97,6 @@ import Testing
       error.debugDescription
         == "ServiceError(code: notFound, httpStatusCode: 404, message: \"Resource missing\")"
     )
-    let localized = error as LocalizedError
-    #expect(localized.errorDescription == error.description)
-    #expect(localized.failureReason == "Resource missing")
-    #expect(
-      localized.recoverySuggestion
-        == "Review the error code and details, and consult the service documentation."
-    )
-    #expect(error.localizedDescription == error.description)
   }
 
   @Test func googleRpcCodeFromHttpStatusCode() {

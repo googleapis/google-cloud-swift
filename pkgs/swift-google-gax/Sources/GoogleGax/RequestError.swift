@@ -202,59 +202,6 @@ extension RequestError: CustomDebugStringConvertible {
   }
 }
 
-extension RequestError: LocalizedError {
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    switch self {
-    case .binding:
-      return "The request could not be mapped to a valid URL path."
-    case .io(let error):
-      return "The transport failed before receiving a status code (\(error))."
-    case .http(let details):
-      return "The server responded with HTTP status code \(details.statusCode)."
-    case .service(let error):
-      let codeStr = error.code.stringValue ?? "\(error.code)"
-      return "The service returned error code \(codeStr): \(error.message)"
-    case .exhausted(let error):
-      return error.failureReason
-    case .unimplemented:
-      return "The requested method is not implemented."
-    case .malformedResponse(let message):
-      return "The service returned a malformed response: \(message)"
-    case .badURL(let url):
-      return "The endpoint URL is invalid: \(url)"
-    }
-  }
-
-  public var recoverySuggestion: String? {
-    switch self {
-    case .binding:
-      return
-        "Verify that all required fields in the request (such as 'name' or 'parent') are set and correctly formatted."
-    case .io:
-      return "Check network connectivity and retry the request if the operation is idempotent."
-    case .http:
-      return
-        "Review network settings and request parameters. Examine response headers or payload for details."
-    case .service:
-      return "Review the error code and details, and consult the service documentation."
-    case .exhausted:
-      return
-        "Increase the retry or polling policy limit (such as timeout duration or maximum attempt count)."
-    case .unimplemented:
-      return
-        "If using a mock client, implement the method. Otherwise, check for client library updates."
-    case .malformedResponse:
-      return "Report this issue to the service team."
-    case .badURL:
-      return "Review and correct the endpoint URL configured for the client."
-    }
-  }
-}
-
 /// The details for ``RequestError/exhausted(_:)``.
 public enum PolicyExhaustedError: Error, Sendable, CustomStringConvertible {
   /// The retry or polling policy exceeded its maximum elapsed time.
@@ -299,24 +246,5 @@ extension PolicyExhaustedError: CustomDebugStringConvertible {
     case .attemptCount(let maxAttempts):
       return "PolicyExhaustedError.attemptCount(maximumAttempts: \(maxAttempts))"
     }
-  }
-}
-
-extension PolicyExhaustedError: LocalizedError {
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    switch self {
-    case .elapsedTime(let maxDuration, _):
-      return "The retry or polling policy exceeded its elapsed time limit of \(maxDuration)."
-    case .attemptCount(let maxAttempts):
-      return "The retry or polling policy exceeded its attempt limit of \(maxAttempts)."
-    }
-  }
-
-  public var recoverySuggestion: String? {
-    "Increase the retry or polling policy limit (such as timeout duration or maximum attempt count)."
   }
 }

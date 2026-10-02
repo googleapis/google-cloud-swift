@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public import Foundation
+import Foundation
 
 /// The error type for exponential backoff creation.
 ///
@@ -53,20 +53,6 @@ extension ExponentialBackoffError: CustomDebugStringConvertible {
     case .emptyRange(let initial, let maximum):
       return "ExponentialBackoffError.emptyRange(initial: \(initial), maximum: \(maximum))"
     }
-  }
-}
-
-extension ExponentialBackoffError: LocalizedError {
-  public var errorDescription: String? {
-    description
-  }
-
-  public var failureReason: String? {
-    description
-  }
-
-  public var recoverySuggestion: String? {
-    "Ensure the scaling factor is >= 1.0, the initial delay is > 0, and the initial delay does not exceed the maximum delay."
   }
 }
 
