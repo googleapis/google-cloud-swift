@@ -65,7 +65,11 @@ available.
 
 When the client executes an RPC, it logs an `enter` message before sending the
 request, followed by either a `success` message with the response or an `error`
-message if the call fails.
+message if the call fails. These log entries wrap the logical RPC call across
+any retry attempts rather than logging each individual attempt. When iterating
+over a paginated sequence such as `listSecretsByItems`, each page fetched issues
+a separate `listSecrets` RPC with its own `enter` and `success` or `error` log
+entries.
 
 The output (formatted for readability) includes lines such as:
 
