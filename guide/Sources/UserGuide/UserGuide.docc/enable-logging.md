@@ -42,8 +42,9 @@ available.
    ```bash
    swift package add-dependency \
      https://github.com/apple/swift-log.git --from 1.12.0
+   # Replace Quickstart with the name of your target
    swift package add-target-dependency \
-     Logging MyProgram --package swift-log
+     Logging Quickstart --package swift-log
    ```
 2. Add the imports needed to use the client library and `Logging`:
    @Snippet(path: "EnableLogging", slice: "imports")
