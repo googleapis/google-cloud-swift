@@ -227,7 +227,7 @@ let package = Package(
         .product(name: "GoogleGax", package: "swift-google-gax"),
       ],
       path: "Sources/StorageW1R3",
-      exclude: ["README.md"],
+      exclude: ["README.md", "scripts"],
       swiftSettings: [.strictMemorySafety()]
     ),
     .executableTarget(
