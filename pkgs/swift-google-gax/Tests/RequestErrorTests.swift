@@ -135,12 +135,39 @@ import Testing
         == "PolicyExhaustedError.elapsedTime(maximumDuration: 10.0 seconds)"
     )
 
+    let timeExhaustedWithSource = PolicyExhaustedError.elapsedTime(
+      maximumDuration: .seconds(10), source: .unimplemented)
+    #expect(
+      timeExhaustedWithSource.debugDescription
+        == "PolicyExhaustedError.elapsedTime("
+        + "maximumDuration: 10.0 seconds, source: RequestError.unimplemented)"
+    )
+
+    let timeExhaustedNoLimit = PolicyExhaustedError.elapsedTime(source: .unimplemented)
+    #expect(
+      timeExhaustedNoLimit.debugDescription
+        == "PolicyExhaustedError.elapsedTime(source: RequestError.unimplemented)"
+    )
+
+    let timeExhaustedEmpty = PolicyExhaustedError.elapsedTime()
+    #expect(
+      timeExhaustedEmpty.debugDescription
+        == "PolicyExhaustedError.elapsedTime()"
+    )
+
     let attemptExhausted = PolicyExhaustedError.attemptCount(maximumAttempts: 5)
     #expect(
       attemptExhausted.description == "policy exhausted: attempt count limit of 5 exceeded"
     )
     #expect(
       attemptExhausted.debugDescription == "PolicyExhaustedError.attemptCount(maximumAttempts: 5)"
+    )
+
+    let attemptExhaustedWithSource = PolicyExhaustedError.attemptCount(
+      maximumAttempts: 5, source: .unimplemented)
+    #expect(
+      attemptExhaustedWithSource.debugDescription
+        == "PolicyExhaustedError.attemptCount(maximumAttempts: 5, source: RequestError.unimplemented)"
     )
   }
 }

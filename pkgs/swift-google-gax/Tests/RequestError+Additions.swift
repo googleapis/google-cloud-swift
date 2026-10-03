@@ -39,8 +39,8 @@ extension PolicyExhaustedError: Equatable {
     switch (lhs, rhs) {
     case (.elapsedTime(let ld, let ls), .elapsedTime(let rd, let rs)):
       return ld == rd && ls == rs
-    case (.attemptCount(let l), .attemptCount(let r)):
-      return l == r
+    case (.attemptCount(let lm, let ls), .attemptCount(let rm, let rs)):
+      return lm == rm && ls == rs
     default:
       return false
     }
