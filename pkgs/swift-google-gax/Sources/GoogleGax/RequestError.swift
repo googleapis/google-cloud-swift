@@ -227,19 +227,19 @@ public enum PolicyExhaustedError: Error, Sendable, CustomStringConvertible {
   private func formatMessage() -> String {
     switch self {
     case .elapsedTime(let maxDuration, let source):
-      formatElapsedTime(maxDuration: maxDuration, source: source)
+      formatElapsedTime(maxDuration, source: source)
     case .attemptCount(let maxAttempts, let source):
-      formatAttemptCount(maxAttempts: maxAttempts, source: source)
+      formatAttemptCount(maxAttempts, source: source)
     }
   }
 
-  private func formatElapsedTime(maxDuration: Duration?, source: RequestError?) -> String {
+  private func formatElapsedTime(_ maxDuration: Duration?, source: RequestError?) -> String {
     let limitStr = maxDuration.map { " of \($0)" } ?? ""
     let sourceStr = source.map { "; last error: \($0)" } ?? ""
     return "policy exhausted: elapsed time limit\(limitStr) exceeded\(sourceStr)"
   }
 
-  private func formatAttemptCount(maxAttempts: Int, source: RequestError?) -> String {
+  private func formatAttemptCount(_ maxAttempts: Int, source: RequestError?) -> String {
     let sourceStr = source.map { "; last error: \($0)" } ?? ""
     return "policy exhausted: attempt count limit of \(maxAttempts) exceeded\(sourceStr)"
   }
@@ -249,12 +249,22 @@ extension PolicyExhaustedError: CustomDebugStringConvertible {
   public var debugDescription: String {
     switch self {
     case .elapsedTime(let maxDuration, let source):
-      if let source {
+      switch (maxDuration, source) {
+      case (.some(let maxDuration), .some(let source)):
         return
           "PolicyExhaustedError.elapsedTime(maximumDuration: \(maxDuration), source: \(String(reflecting: source)))"
+      case (.some(let maxDuration), .none):
+        return "PolicyExhaustedError.elapsedTime(maximumDuration: \(maxDuration))"
+      case (.none, .some(let source)):
+        return "PolicyExhaustedError.elapsedTime(source: \(String(reflecting: source)))"
+      case (.none, .none):
+        return "PolicyExhaustedError.elapsedTime()"
       }
-      return "PolicyExhaustedError.elapsedTime(maximumDuration: \(maxDuration))"
-    case .attemptCount(let maxAttempts):
+    case .attemptCount(let maxAttempts, let source):
+      if let source {
+        return
+          "PolicyExhaustedError.attemptCount(maximumAttempts: \(maxAttempts), source: \(String(reflecting: source)))"
+      }
       return "PolicyExhaustedError.attemptCount(maximumAttempts: \(maxAttempts))"
     }
   }
