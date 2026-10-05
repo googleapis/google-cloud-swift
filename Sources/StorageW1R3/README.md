@@ -80,7 +80,7 @@ gcloud compute instances tail-serial-port-output <INSTANCE_NAME> --zone=<ZONE>
 | `--project` | Current gcloud project | GCP Project ID |
 | `--zone` | `us-central1-a` | GCE zone |
 | `--region` | Derived from zone | GCP region |
-| `--machine-type` | `c2d-standard-8` | GCE machine type (prefer `c2d-*` family) |
+| `--machine-type` | `c4-standard-192` | GCE machine type (default: `c4-standard-192`) |
 | `--bucket` | `w1r3-<PROJECT>-<REGION>` | Cloud Storage test bucket name (has 1-day auto-delete lifecycle) |
 | `--results-bucket` | `w1r3-results-<PROJECT>-<REGION>` | Cloud Storage bucket for persistent CSV results and logs |
 | `--bq-dataset` | `w1r3` | BigQuery dataset name |

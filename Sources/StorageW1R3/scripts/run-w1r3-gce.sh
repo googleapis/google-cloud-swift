@@ -40,7 +40,7 @@ Options:
   --project PROJECT_ID         GCP project ID (default: current gcloud project)
   --zone ZONE                  GCE zone (default: us-central1-a)
   --region REGION              GCP region (default: derived from zone)
-  --machine-type TYPE          GCE machine type (default: c2d-standard-8)
+  --machine-type TYPE          GCE machine type (default: c4-standard-192)
   --bucket BUCKET_NAME         GCS test bucket name (has 1-day auto-delete lifecycle; default: w1r3-<PROJECT>-<REGION>)
   --results-bucket BUCKET_NAME GCS bucket for persistent results and logs (default: w1r3-results-<PROJECT>-<REGION>)
   --bq-dataset DATASET         BigQuery dataset for benchmark results (default: w1r3)
@@ -85,7 +85,7 @@ EOF
 PROJECT_ID=""
 ZONE="us-central1-a"
 REGION=""
-MACHINE_TYPE="c2d-standard-8"
+MACHINE_TYPE="c4-standard-192"
 BUCKET_NAME=""
 RESULTS_BUCKET=""
 BQ_DATASET="w1r3"
