@@ -96,24 +96,6 @@ import struct AsyncHTTPClient.HTTPClientResponse
     request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
   }
 
-  private static let queryItemAllowedCharacters: CharacterSet = {
-    var set = CharacterSet.urlQueryAllowed
-    set.remove(charactersIn: ";&=")
-    return set
-  }()
-
-  private static func encodeQuery(on components: inout URLComponents, query: [URLQueryItem]) {
-    guard !query.isEmpty else { return }
-    components.percentEncodedQueryItems = query.map { item in
-      let name =
-        item.name.addingPercentEncoding(withAllowedCharacters: queryItemAllowedCharacters)
-        ?? item.name
-      let value = item.value?.addingPercentEncoding(
-        withAllowedCharacters: queryItemAllowedCharacters)
-      return URLQueryItem(name: name, value: value)
-    }
-  }
-
   public func newRequest(
     path: String,
     query: [URLQueryItem],
@@ -121,7 +103,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
   ) async throws -> _HTTPClientRequest {
     var components = self.baseURL
     components.path = path
-    Self.encodeQuery(on: &components, query: query)
+    components.encodeQuery(query)
     var request = _HTTPClientRequest(self.inner, url: components)
     try await self.configureHeaders(on: &request, options: options)
     return request
@@ -135,7 +117,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
     -> _HTTPClientRequest
   {
     var components = self.baseURL
-    Self.encodeQuery(on: &components, query: query)
+    components.encodeQuery(query)
     components.percentEncodedPath = percentEncodedPath
     var request = _HTTPClientRequest(self.inner, url: components)
     try await self.configureHeaders(on: &request, options: options)
@@ -155,5 +137,27 @@ import struct AsyncHTTPClient.HTTPClientResponse
     var request = _HTTPClientRequest(self.inner, url: components)
     try await self.configureHeaders(on: &request, options: options)
     return request
+  }
+}
+
+private let queryItemAllowedCharacters: CharacterSet = {
+  var set = CharacterSet.urlQueryAllowed
+  set.remove(charactersIn: ";&=")
+  return set
+}()
+
+extension URLComponents {
+  fileprivate mutating func encodeQuery(_ query: [URLQueryItem]) {
+    guard !query.isEmpty else { return }
+    self.percentEncodedQueryItems = query.map { item in
+      let name =
+        item.name.addingPercentEncoding(withAllowedCharacters: queryItemAllowedCharacters)
+        ?? item.name
+      // `value` is optional, unlike `name`. We do not fall back to `item.value`
+      // because passing unencoded characters to `percentEncodedQueryItems` causes a runtime fatal error.
+      let value = item.value?.addingPercentEncoding(
+        withAllowedCharacters: queryItemAllowedCharacters)
+      return URLQueryItem(name: name, value: value)
+    }
   }
 }
