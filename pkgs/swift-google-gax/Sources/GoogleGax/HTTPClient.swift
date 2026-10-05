@@ -96,6 +96,24 @@ import struct AsyncHTTPClient.HTTPClientResponse
     request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
   }
 
+  private static let queryItemAllowedCharacters: CharacterSet = {
+    var set = CharacterSet.urlQueryAllowed
+    set.remove(charactersIn: ";&=")
+    return set
+  }()
+
+  private static func encodeQuery(on components: inout URLComponents, query: [URLQueryItem]) {
+    guard !query.isEmpty else { return }
+    components.percentEncodedQueryItems = query.map { item in
+      let name =
+        item.name.addingPercentEncoding(withAllowedCharacters: queryItemAllowedCharacters)
+        ?? item.name
+      let value = item.value?.addingPercentEncoding(
+        withAllowedCharacters: queryItemAllowedCharacters)
+      return URLQueryItem(name: name, value: value)
+    }
+  }
+
   public func newRequest(
     path: String,
     query: [URLQueryItem],
@@ -103,9 +121,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
   ) async throws -> _HTTPClientRequest {
     var components = self.baseURL
     components.path = path
-    if !query.isEmpty {
-      components.queryItems = query
-    }
+    Self.encodeQuery(on: &components, query: query)
     var request = _HTTPClientRequest(self.inner, url: components)
     try await self.configureHeaders(on: &request, options: options)
     return request
@@ -119,20 +135,9 @@ import struct AsyncHTTPClient.HTTPClientResponse
     -> _HTTPClientRequest
   {
     var components = self.baseURL
-    if !query.isEmpty {
-      components.queryItems = query
-    }
+    Self.encodeQuery(on: &components, query: query)
     components.percentEncodedPath = percentEncodedPath
     var request = _HTTPClientRequest(self.inner, url: components)
-    try await self.configureHeaders(on: &request, options: options)
-    return request
-  }
-
-  public func newRequest(
-    urlComponents: URLComponents,
-    options: RequestOptions = .init()
-  ) async throws -> _HTTPClientRequest {
-    var request = _HTTPClientRequest(self.inner, url: urlComponents)
     try await self.configureHeaders(on: &request, options: options)
     return request
   }
@@ -141,9 +146,14 @@ import struct AsyncHTTPClient.HTTPClientResponse
     uri: String,
     options: RequestOptions = .init()
   ) async throws -> _HTTPClientRequest {
-    guard let components = URLComponents(string: uri) else {
+    guard var components = URLComponents(string: uri) else {
       throw RequestError.badURL(uri)
     }
-    return try await newRequest(urlComponents: components, options: options)
+    if let encoded = components.percentEncodedQuery {
+      components.percentEncodedQuery = encoded.replacingOccurrences(of: ";", with: "%3B")
+    }
+    var request = _HTTPClientRequest(self.inner, url: components)
+    try await self.configureHeaders(on: &request, options: options)
+    return request
   }
 }

@@ -127,12 +127,8 @@ import NIOHTTP1
     #expect(percentEncodedRequest.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
     #expect(percentEncodedRequest.headers["custom-header"] == ["custom-val"])
 
-    guard let components = URLComponents(string: "http://localhost:1234/test") else {
-      Issue.record("failed to create components")
-      return
-    }
     let componentsRequest = try await client.newRequest(
-      urlComponents: components, options: reqOptions
+      uri: "http://localhost:1234/test", options: reqOptions
     )
     #expect(componentsRequest.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
     #expect(componentsRequest.headers["custom-header"] == ["custom-val"])
@@ -472,8 +468,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/v1/projects/p/things"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int"),
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint"),
       URLQueryItem(name: "thingId", value: "test-only-thing-id"),
     ]
     let wantURLString = wantURL.url?.absoluteString
@@ -531,8 +527,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/v1/projects/p/things/test-only-thing-id"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint")
     ]
     let wantURLString = wantURL.url?.absoluteString
     let responseBody = #"{"name":"projects/p/things/test-only-thing-id","value":"test-value"}"#
@@ -584,8 +580,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/v1/projects/p/things/test-only-thing-id"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint")
     ]
     let wantURLString = wantURL.url?.absoluteString
 
@@ -634,8 +630,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/v1/projects/p/things/test-only-thing-id"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint")
     ]
     let wantURLString = wantURL.url?.absoluteString
 
@@ -693,8 +689,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/invalid/path"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint")
     ]
     let wantURLString = wantURL.url?.absoluteString
     let responsePayload = "<!DOCTYPE html><html lang=en><title>Error 404</title></html>"
@@ -941,6 +937,30 @@ import NIOHTTP1
     let request = try await client.newRequest(path: "/v1/projects/p/secrets", query: [])
     let response = try await request.execute()
     #expect(response.status == .ok)
+  }
+
+  @Test("verify query parameters with semicolons are percent-encoded")
+  func percentEncodedQuerySemicolon() async throws {
+    let mock = MockHTTPClient { @Sendable (request, _) in
+      #expect(
+        request.url
+          == "https://test-only.googleapis.com/v1/test?$alt=json%3Benum-encoding%3Dint&filter=a%3Db%3Bc%3Dd"
+      )
+      return HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json; charset=UTF-8")]),
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+    let client = try _HTTPClient(mock, endpoint: "https://test-only.googleapis.com")
+    let query = [
+      URLQueryItem(name: "$alt", value: "json;enum-encoding=int"),
+      URLQueryItem(name: "filter", value: "a=b;c=d"),
+    ]
+    var req = try await client.newRequest(path: "/v1/test", query: query)
+    req.setMethod(.GET)
+    _ = try await req.rpc(GoogleWKT.WKTEmpty.self).get()
   }
 
   /// A test response type.
