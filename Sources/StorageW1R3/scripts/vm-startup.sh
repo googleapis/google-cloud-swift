@@ -278,9 +278,10 @@ if [[ -f "ci/swift-version.sh" ]]; then
   fi
 fi
 
-GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=1 swift build "${BUILD_FLAGS[@]}"
+export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=1
+swift build "${BUILD_FLAGS[@]}"
 
-BIN_DIR=$(swift build "${BUILD_FLAGS[@]}" --show-bin-path 2>/dev/null || echo "/root/workspace/.build/release")
+BIN_DIR=$(swift build "${BUILD_FLAGS[@]}" --show-bin-path 2>/dev/null || echo "/root/workspace/.build/$(uname -m)-unknown-linux-gnu/release")
 BENCHMARK_BIN="${BIN_DIR}/StorageW1R3Benchmark"
 if [[ ! -x "${BENCHMARK_BIN}" ]]; then
   echo "ERROR: Benchmark binary not found at ${BENCHMARK_BIN}"
