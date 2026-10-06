@@ -17,6 +17,7 @@ import Foundation
 import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
+import NIOCore
 import Testing
 
 @Suite struct ChecksumTests {
@@ -506,5 +507,48 @@ import Testing
 
     // All dynamic calculators were discarded, and no CRC32C was added; checksum is nil
     #expect(chunk2?.checksum == nil)
+  }
+
+  /// Tests that ChecksummedSource functions directly as an AsyncSequence yielding ByteBuffers.
+  @Test func testChecksummedSourceAsyncSequenceStreaming() async throws {
+    let message = "The quick brown fox jumps over the lazy dog"
+    let data = Data(message.utf8)
+    let source = BytesSource(data: data)
+    var checksummedSource = ChecksummedSource(source: source, options: .default)
+    checksummedSource.configureStream(bytesToRead: UInt64(data.count), chunkSize: 10)
+
+    var accumulated = Data()
+    for try await buffer in checksummedSource {
+      accumulated.append(contentsOf: buffer.readableBytesView)
+    }
+
+    #expect(accumulated == data)
+    #expect(checksummedSource.finalizeChecksum() != nil)
+
+    // Validation against matching CRC32C should succeed
+    var calc = CRC32CCalculator()
+    calc.update(ByteChunk(data))
+    let expectedCRC = calc.finalizeCRC32C()
+    let checksums = ObjectChecksums().with {
+      $0.crc32C = expectedCRC
+    }
+    let object = Object().with {
+      $0.checksums = checksums
+    }
+    #expect(throws: Never.self) {
+      try checksummedSource.validate(object: object)
+    }
+  }
+
+  /// Tests that ChecksummedSource as AsyncSequence throws offsetOutOfBounds if source ends early.
+  @Test func testChecksummedSourceAsyncSequencePrematureEOFThrows() async throws {
+    let data = Data("short".utf8)
+    let source = BytesSource(data: data)
+    var checksummedSource = ChecksummedSource(source: source, options: .default)
+    checksummedSource.configureStream(bytesToRead: 100, chunkSize: 10)
+
+    await #expect(throws: WriteObjectError.self) {
+      for try await _ in checksummedSource {}
+    }
   }
 }

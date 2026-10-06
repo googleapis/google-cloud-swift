@@ -1139,13 +1139,12 @@ extension StorageClient {
     request.setHeader(name: "Content-Range", value: "bytes \(offset)-\(end)/\(totalSize)")
     request.setHeader(name: "Content-Length", value: String(contentLength))
 
-    let stream = ResumableUploadStream(
-      source: source,
-      rangeStart: offset,
-      rangeEnd: end,
+    var streamSource = source
+    streamSource.configureStream(
+      bytesToRead: UInt64(contentLength),
       chunkSize: defaultStreamChunkSize
     )
-    request.setBody(stream: stream, length: contentLength)
+    request.setBody(stream: streamSource, length: contentLength)
     return request
   }
 

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import NIOCore
 import Synchronization
 
 struct ChunkInfo: Sendable {
@@ -115,13 +116,19 @@ final class ChecksumTracker: Sendable {
   }
 }
 
-struct ChecksummedSource<S: WriteObjectSource>: Sendable where S: Sendable {
+struct ChecksummedSource<S: WriteObjectSource>: Sendable, AsyncSequence, AsyncIteratorProtocol
+where S: Sendable {
+  public typealias Element = NIOCore.ByteBuffer
+
   var source: S
   let options: ChecksumOptions
   private let tracker: ChecksumTracker
   private var nextChunk: ByteChunk? = nil
   private var isInitialized = false
   private var nextChunkOffset: UInt64 = 0
+  private var streamLimit: UInt64? = nil
+  private var streamChunkSize: Int = 8 * 1024 * 1024
+  private var streamBytesRead: UInt64 = 0
 
   init(source: S, options: ChecksumOptions) {
     self.source = source
@@ -213,6 +220,41 @@ struct ChecksummedSource<S: WriteObjectSource>: Sendable where S: Sendable {
   func validate(object: Object) throws {
     try tracker.validate(object: object)
   }
+
+  /// Configures streaming bounds and chunk size when consumed as an `AsyncSequence`.
+  mutating func configureStream(bytesToRead: UInt64? = nil, chunkSize: Int = 8 * 1024 * 1024) {
+    self.streamLimit = bytesToRead
+    self.streamChunkSize = chunkSize
+    self.streamBytesRead = 0
+  }
+
+  func makeAsyncIterator() -> Self {
+    self
+  }
+
+  mutating func next() async throws -> NIOCore.ByteBuffer? {
+    try Task.checkCancellation()
+    if let limit = streamLimit {
+      guard streamBytesRead < limit else { return nil }
+      let remaining = limit - streamBytesRead
+      let toRead = Int(Swift.min(UInt64(streamChunkSize), remaining))
+      guard let chunk = try await read(maxBytes: toRead), !chunk.isEmpty else {
+        if streamBytesRead < limit {
+          throw WriteObjectError.sourceError(
+            WriteObjectSourceError.offsetOutOfBounds(offset: streamBytesRead, size: limit))
+        }
+        return nil
+      }
+      let effectiveChunk = chunk.count > toRead ? chunk.subdata(in: 0..<toRead) : chunk
+      streamBytesRead += UInt64(effectiveChunk.count)
+      return effectiveChunk.byteBuffer
+    } else {
+      guard let chunk = try await read(maxBytes: streamChunkSize), !chunk.isEmpty else {
+        return nil
+      }
+      return chunk.byteBuffer
+    }
+  }
 }
 
 extension ChecksummedSource where S: SeekableWriteObjectSource {
@@ -228,6 +270,7 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
     nextChunk = nil
     isInitialized = false
     nextChunkOffset = offset
+    streamBytesRead = 0
 
     guard offset > tracker.bytesHashed && tracker.hasCalculators else {
       do {
@@ -252,7 +295,7 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
     var bytesRemaining = offset - tracker.bytesHashed
     let bufferSize: UInt64 = 8 * 1024 * 1024
     while bytesRemaining > 0 {
-      let toRead = Int(min(bytesRemaining, bufferSize))
+      let toRead = Int(Swift.min(bytesRemaining, bufferSize))
       let chunk: ByteChunk?
       do {
         chunk = try await source.read(maxBytes: toRead)
