@@ -245,9 +245,12 @@ where S: Sendable {
         }
         return nil
       }
-      let effectiveChunk = chunk.count > toRead ? chunk.subdata(in: 0..<toRead) : chunk
-      streamBytesRead += UInt64(effectiveChunk.count)
-      return effectiveChunk.byteBuffer
+      guard chunk.count <= toRead else {
+        throw WriteObjectError.internalError(
+          "Source returned more bytes (\(chunk.count)) than requested (\(toRead))")
+      }
+      streamBytesRead += UInt64(chunk.count)
+      return chunk.byteBuffer
     } else {
       guard let chunk = try await read(maxBytes: streamChunkSize), !chunk.isEmpty else {
         return nil
@@ -308,9 +311,13 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
         throw WriteObjectError.sourceError(
           WriteObjectSourceError.offsetOutOfBounds(offset: offset, size: currentSeekOffset))
       }
-      tracker.update(data: chunk, startOffset: currentSeekOffset)
-      currentSeekOffset += UInt64(chunk.count)
-      bytesRemaining -= UInt64(chunk.count)
+      let chunkCount = UInt64(chunk.count)
+      let effectiveCount = Swift.min(chunkCount, bytesRemaining)
+      let effectiveChunk =
+        chunkCount > effectiveCount ? chunk.subdata(in: 0..<Int(effectiveCount)) : chunk
+      tracker.update(data: effectiveChunk, startOffset: currentSeekOffset)
+      currentSeekOffset += effectiveCount
+      bytesRemaining -= effectiveCount
     }
   }
 }

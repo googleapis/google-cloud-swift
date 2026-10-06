@@ -551,4 +551,21 @@ import Testing
       for try await _ in checksummedSource {}
     }
   }
+
+  /// Tests that ChecksummedSource throws an internal error if the source returns more bytes than requested.
+  @Test func testChecksummedSourceAsyncSequenceSourceExceedsMaxBytesThrows() async throws {
+    struct OverproducingSource: WriteObjectSource {
+      var totalSize: UInt64? = 100
+      mutating func read(maxBytes: Int) async throws -> ByteChunk? {
+        ByteChunk(Data(repeating: 0x41, count: maxBytes + 10))
+      }
+    }
+    let source = OverproducingSource()
+    var checksummedSource = ChecksummedSource(source: source, options: .default)
+    checksummedSource.configureStream(bytesToRead: 50, chunkSize: 20)
+
+    await #expect(throws: WriteObjectError.self) {
+      for try await _ in checksummedSource {}
+    }
+  }
 }
