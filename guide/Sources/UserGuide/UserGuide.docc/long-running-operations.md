@@ -44,6 +44,30 @@ polls until the operation completes, returning the created `Workflow` object.
 4. Create the workflow and automatically poll until completion:
    @Snippet(path: "LongRunningOperations", slice: "call")
 
+## Operation return types: gRPC vs. Discovery-based APIs
+
+Depending on the underlying API design, the return value of a `*PollingUntilDone`
+helper method varies:
+
+* **gRPC and AIP-151 APIs** (such as Workflows, Cloud Storage, or Secret Manager):
+  The operation service metadata includes the response type of the target
+  resource. In these libraries, polling helpers unwrap the operation and return
+  the target resource directly (such as `Workflow` or `Secret`).
+
+* **Discovery-based APIs** (such as Compute Engine):
+  The Discovery document schema defines operation methods as returning a service
+  `Operation` status resource (for example, `GoogleCloudComputeV1.Operation`).
+  The polling helper returns this completed `Operation` object once the task
+  finishes, rather than fetching the created or modified resource.
+
+To obtain the created or modified resource after a Discovery-based operation
+completes:
+
+1. Await the polling helper. If the operation fails, the helper will throw an error.
+2. Call the corresponding `get` method for the target resource using the
+   identifiers from the request or properties on the returned `Operation`
+   (such as `operation.targetLink`).
+
 ## Next steps
 
 * [Override the default authentication credentials](<doc:override-credentials>)
