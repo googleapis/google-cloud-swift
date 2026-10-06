@@ -60,13 +60,13 @@ import Testing
     ["--control-client-count=0"],
   ])
   func invalidConfigurationThrows(args: [String]) throws {
-    #expect(throws: Error.self) {
+    #expect(throws: (any Error).self) {
       let _ = try StorageW1R3.parseAsRoot(["--bucket-name=b"] + args)
     }
   }
 
   @Test func missingBucketName() throws {
-    #expect(throws: Error.self) {
+    #expect(throws: (any Error).self) {
       let _ = try StorageW1R3.parseAsRoot([])
     }
   }

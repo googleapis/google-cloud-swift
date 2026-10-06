@@ -23,11 +23,11 @@ import Testing
 private actor JitterMockTokenProvider: TokenProvider {
   private var fetchCount = 0
   private var nextToken: Token?
-  private var nextError: Error?
+  private var nextError: (any Error)?
   private var fetchContinuations: [CheckedContinuation<Void, Never>] = []
   private var fetchIsStarted = false
 
-  func configure(token: Token?, error: Error? = nil) {
+  func configure(token: Token?, error: (any Error)? = nil) {
     self.nextToken = token
     self.nextError = error
   }

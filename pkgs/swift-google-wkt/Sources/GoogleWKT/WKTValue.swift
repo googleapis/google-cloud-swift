@@ -58,7 +58,7 @@ public enum WKTValue: Codable, Equatable, Sendable {
   ///
   /// - Parameters:
   ///   - decoder: the decoder to read data from.
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.singleValueContainer()
     if container.decodeNil() {
       self = .null(WKTNullValue())
@@ -86,7 +86,7 @@ public enum WKTValue: Codable, Equatable, Sendable {
   ///
   /// - Parameters:
   ///   - encoder: The encoder to write data to.
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
     case .null:
@@ -198,7 +198,7 @@ public struct WKTNullValue: Codable, Equatable, Sendable {
   ///
   ///- Throws: `DecodingError.dataCorruptedError` if the decoder contains a
   ///  non-null value.
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.singleValueContainer()
     if container.decodeNil() {
       return

@@ -54,7 +54,7 @@ private struct StringKey: CodingKey {
 }
 
 private class InternalEncoder: Encoder {
-  var codingPath: [CodingKey]
+  var codingPath: [any CodingKey]
   var userInfo: [CodingUserInfoKey: Any] = [:]
   var queryItems: [URLQueryItem] = []
 
@@ -67,11 +67,11 @@ private class InternalEncoder: Encoder {
       InternalKeyedContainer<Key>(encoder: self, codingPath: self.codingPath))
   }
 
-  func unkeyedContainer() -> UnkeyedEncodingContainer {
+  func unkeyedContainer() -> any UnkeyedEncodingContainer {
     return InternalUnkeyedContainer(encoder: self, codingPath: self.codingPath)
   }
 
-  func singleValueContainer() -> SingleValueEncodingContainer {
+  func singleValueContainer() -> any SingleValueEncodingContainer {
     return self
   }
 
@@ -111,9 +111,9 @@ extension InternalEncoder: SingleValueEncodingContainer {
 private struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerProtocol {
   typealias Key = K
   let encoder: InternalEncoder
-  let codingPath: [CodingKey]
+  let codingPath: [any CodingKey]
 
-  init(encoder: InternalEncoder, codingPath: [CodingKey]) {
+  init(encoder: InternalEncoder, codingPath: [any CodingKey]) {
     self.encoder = encoder
     self.codingPath = codingPath
   }
@@ -155,15 +155,15 @@ private struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerProto
       InternalKeyedContainer<NestedKey>(encoder: encoder, codingPath: codingPath + [key]))
   }
 
-  func nestedUnkeyedContainer(forKey key: Key) -> UnkeyedEncodingContainer {
+  func nestedUnkeyedContainer(forKey key: Key) -> any UnkeyedEncodingContainer {
     return InternalUnkeyedContainer(encoder: encoder, codingPath: codingPath + [key])
   }
 
-  func superEncoder() -> Encoder {
+  func superEncoder() -> any Encoder {
     encoder.codingPath = codingPath
     return encoder
   }
-  func superEncoder(forKey key: Key) -> Encoder {
+  func superEncoder(forKey key: Key) -> any Encoder {
     encoder.codingPath = codingPath + [key]
     return encoder
   }
@@ -171,10 +171,10 @@ private struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerProto
 
 private struct InternalUnkeyedContainer: UnkeyedEncodingContainer {
   let encoder: InternalEncoder
-  let codingPath: [CodingKey]
+  let codingPath: [any CodingKey]
   private(set) var count: Int = 0
 
-  init(encoder: InternalEncoder, codingPath: [CodingKey]) {
+  init(encoder: InternalEncoder, codingPath: [any CodingKey]) {
     self.encoder = encoder
     self.codingPath = codingPath
   }
@@ -218,12 +218,12 @@ private struct InternalUnkeyedContainer: UnkeyedEncodingContainer {
     return container
   }
 
-  mutating func nestedUnkeyedContainer() -> UnkeyedEncodingContainer {
+  mutating func nestedUnkeyedContainer() -> any UnkeyedEncodingContainer {
     let container = InternalUnkeyedContainer(encoder: encoder, codingPath: codingPath)
     return container
   }
 
-  mutating func superEncoder() -> Encoder {
+  mutating func superEncoder() -> any Encoder {
     encoder.codingPath = codingPath
     return encoder
   }

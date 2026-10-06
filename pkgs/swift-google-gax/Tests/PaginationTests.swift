@@ -191,7 +191,7 @@ import Testing
       self.service = service
     }
 
-    func startBackgroundStream() -> Task<[Item], Swift.Error> {
+    func startBackgroundStream() -> Task<[Item], any Swift.Error> {
       // Construct the paginated sequence on @MainActor from the service protocol existential
       // and send it across isolation boundaries into a detached background worker.
       let sequence = service.listItemsByItems(request: .init())
@@ -404,7 +404,7 @@ protocol PaginatedServiceProtocol: Sendable {
 
 extension PaginatedServiceProtocol {
   func listItemsByItems(request: PaginatedResponseTest.ListItemsRequest)
-    -> some AsyncSequence<PaginatedResponseTest.Item, Swift.Error> & Sendable
+    -> some AsyncSequence<PaginatedResponseTest.Item, any Swift.Error> & Sendable
   {
     let listRpc = {
       @Sendable (token: String) async throws -> PaginatedResponseTest.ListItemsResponse in

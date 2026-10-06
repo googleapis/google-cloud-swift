@@ -198,7 +198,7 @@ import Testing
   struct BucketListModel {
     let client: any StorageControlProtocol
 
-    func streamBucketNamesInBackground() -> Task<[String], Swift.Error> {
+    func streamBucketNamesInBackground() -> Task<[String], any Swift.Error> {
       // Construct the paginated sequence on @MainActor and stream it inside a detached task.
       let buckets = client.listBucketsByItems(
         request: .init().with { $0.parent = "projects/test-project" })

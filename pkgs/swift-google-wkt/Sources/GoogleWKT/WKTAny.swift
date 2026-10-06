@@ -39,7 +39,7 @@ public struct WKTAny: Codable, Equatable, Sendable {
     case type = "@type"  // must be literal, cannot use `typeURLField`
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     var fields = try WKTStruct(from: decoder)
     guard case let .string(ty)? = fields.removeValue(forKey: Self.typeURLField) else {
       throw DecodingError.keyNotFound(
