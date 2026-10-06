@@ -60,7 +60,7 @@ public struct PolicyDelta: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([BindingDelta].self, forKey: .bindingDeltas) {
       self.bindingDeltas = value
@@ -76,7 +76,7 @@ public struct PolicyDelta: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.bindingDeltas, forKey: .bindingDeltas)
     try container.encode(self.auditConfigDeltas, forKey: .auditConfigDeltas)

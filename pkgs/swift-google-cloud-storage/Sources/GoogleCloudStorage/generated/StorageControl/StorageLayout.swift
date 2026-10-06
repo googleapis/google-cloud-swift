@@ -84,7 +84,7 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -107,7 +107,7 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.location, forKey: .location)
@@ -160,7 +160,7 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataLocations) {
         self.dataLocations = value
@@ -171,7 +171,7 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataLocations, forKey: .dataLocations)
       for (key, value) in self._unknownFields.json {
@@ -228,7 +228,7 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
         self.enabled = value
@@ -239,7 +239,7 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enabled, forKey: .enabled)
       for (key, value) in self._unknownFields.json {
@@ -297,7 +297,7 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cacheType) {
         self.cacheType = value
@@ -308,7 +308,7 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.cacheType, forKey: .cacheType)
       for (key, value) in self._unknownFields.json {

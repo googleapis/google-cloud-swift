@@ -63,7 +63,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var paginationStrategy: PaginationStrategyOneOf? = nil
@@ -108,7 +108,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.paginationStrategy {
@@ -161,7 +161,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -169,7 +169,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -232,7 +232,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .nextPageTokenJsonPath)
@@ -248,7 +248,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.nextPageTokenJsonPath, forKey: .nextPageTokenJsonPath)
       try container.encode(self.queryParam, forKey: .queryParam)
@@ -307,7 +307,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageLinkJsonPath)
       {
@@ -319,7 +319,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.nextPageLinkJsonPath, forKey: .nextPageLinkJsonPath)
       for (key, value) in self._unknownFields.json {
@@ -376,7 +376,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .offsetQueryParam) {
         self.offsetQueryParam = value
@@ -387,7 +387,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.offsetQueryParam, forKey: .offsetQueryParam)
       for (key, value) in self._unknownFields.json {
@@ -445,7 +445,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pageNumberQueryParam)
       {
@@ -457,7 +457,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.pageNumberQueryParam, forKey: .pageNumberQueryParam)
       for (key, value) in self._unknownFields.json {

@@ -73,7 +73,7 @@ public struct RRSetRoutingPolicyGeoPolicyGeoPolicyItem: Codable, Equatable, Goog
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.healthCheckedTargets = try container.decodeIfPresent(
       RRSetRoutingPolicyHealthCheckTargets.self, forKey: .healthCheckedTargets)
@@ -91,7 +91,7 @@ public struct RRSetRoutingPolicyGeoPolicyGeoPolicyItem: Codable, Equatable, Goog
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.healthCheckedTargets, forKey: .healthCheckedTargets)
     try container.encodeIfPresent(self.kind, forKey: .kind)

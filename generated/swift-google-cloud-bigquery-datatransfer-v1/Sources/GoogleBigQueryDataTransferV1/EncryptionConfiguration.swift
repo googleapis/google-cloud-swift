@@ -55,7 +55,7 @@ public struct EncryptionConfiguration: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.kmsKeyName = try container.decodeIfPresent(
       GoogleWKT.WKTStringValue.self, forKey: .kmsKeyName)
@@ -65,7 +65,7 @@ public struct EncryptionConfiguration: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.kmsKeyName, forKey: .kmsKeyName)
     for (key, value) in self._unknownFields.json {

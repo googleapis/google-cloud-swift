@@ -91,7 +91,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.replaceExistingAssociation = try container.decodeIfPresent(
           Swift.Bool.self, forKey: .replaceExistingAssociation)
@@ -106,7 +106,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(
           self.replaceExistingAssociation, forKey: .replaceExistingAssociation)
@@ -194,7 +194,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securityPolicy) {
@@ -207,7 +207,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)
         try container.encode(self.securityPolicy, forKey: .securityPolicy)
@@ -291,7 +291,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securityPolicy) {
@@ -305,7 +305,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)
         try container.encode(self.securityPolicy, forKey: .securityPolicy)
@@ -384,7 +384,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securityPolicy) {
@@ -396,7 +396,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)
         try container.encode(self.securityPolicy, forKey: .securityPolicy)
@@ -457,7 +457,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securityPolicy) {
           self.securityPolicy = value
@@ -468,7 +468,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.securityPolicy, forKey: .securityPolicy)
         for (key, value) in self._unknownFields.json {
@@ -532,7 +532,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securityPolicy) {
@@ -544,7 +544,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encode(self.securityPolicy, forKey: .securityPolicy)
@@ -610,7 +610,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.priority = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securityPolicy) {
@@ -622,7 +622,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.priority, forKey: .priority)
         try container.encode(self.securityPolicy, forKey: .securityPolicy)
@@ -709,7 +709,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.parentId = try container.decodeIfPresent(Swift.String.self, forKey: .parentId)
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
@@ -720,7 +720,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.parentId, forKey: .parentId)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)
@@ -875,7 +875,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.filter = try container.decodeIfPresent(Swift.String.self, forKey: .filter)
         self.maxResults = try container.decodeIfPresent(Swift.UInt32.self, forKey: .maxResults)
@@ -888,7 +888,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.filter, forKey: .filter)
         try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
@@ -953,7 +953,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.targetResource = try container.decodeIfPresent(
           Swift.String.self, forKey: .targetResource)
@@ -963,7 +963,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.targetResource, forKey: .targetResource)
         for (key, value) in self._unknownFields.json {
@@ -1117,7 +1117,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.filter = try container.decodeIfPresent(Swift.String.self, forKey: .filter)
         self.maxResults = try container.decodeIfPresent(Swift.UInt32.self, forKey: .maxResults)
@@ -1130,7 +1130,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.filter, forKey: .filter)
         try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
@@ -1216,7 +1216,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.parentId = try container.decodeIfPresent(Swift.String.self, forKey: .parentId)
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
@@ -1229,7 +1229,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.parentId, forKey: .parentId)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)
@@ -1315,7 +1315,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .securityPolicy) {
@@ -1328,7 +1328,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)
         try container.encode(self.securityPolicy, forKey: .securityPolicy)
@@ -1419,7 +1419,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.priority = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority)
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
@@ -1433,7 +1433,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.priority, forKey: .priority)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)
@@ -1518,7 +1518,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
@@ -1531,7 +1531,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)
@@ -1615,7 +1615,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.priority = try container.decodeIfPresent(Swift.Int32.self, forKey: .priority)
         self.requestId = try container.decodeIfPresent(Swift.String.self, forKey: .requestId)
@@ -1628,7 +1628,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.priority, forKey: .priority)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)

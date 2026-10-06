@@ -135,7 +135,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -183,7 +183,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.id, forKey: .id)
@@ -275,7 +275,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
           self.mimeType = value
@@ -304,7 +304,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.mimeType, forKey: .mimeType)
 
@@ -387,7 +387,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [Document.AclInfo.AccessRestriction].self, forKey: .readers)
@@ -400,7 +400,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.readers, forKey: .readers)
         for (key, value) in self._unknownFields.json {
@@ -509,7 +509,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent([Principal].self, forKey: .principals) {
             self.principals = value
@@ -523,7 +523,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.principals, forKey: .principals)
           try container.encode(self.idpWide, forKey: .idpWide)
@@ -606,7 +606,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.indexTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .indexTime)
@@ -623,7 +623,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.indexTime, forKey: .indexTime)
         try container.encode(self.errorSamples, forKey: .errorSamples)

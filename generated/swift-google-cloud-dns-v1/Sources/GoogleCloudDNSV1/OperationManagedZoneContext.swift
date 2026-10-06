@@ -59,7 +59,7 @@ public struct OperationManagedZoneContext: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.newValue = try container.decodeIfPresent(ManagedZone.self, forKey: .newValue)
     self.oldValue = try container.decodeIfPresent(ManagedZone.self, forKey: .oldValue)
@@ -69,7 +69,7 @@ public struct OperationManagedZoneContext: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.newValue, forKey: .newValue)
     try container.encodeIfPresent(self.oldValue, forKey: .oldValue)

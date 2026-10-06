@@ -69,7 +69,7 @@ public struct StreamingSequence: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -88,7 +88,7 @@ public struct StreamingSequence: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.content, forKey: .content)
@@ -146,7 +146,7 @@ public struct StreamingSequence: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
       self.delay = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .delay)
@@ -159,7 +159,7 @@ public struct StreamingSequence: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.status, forKey: .status)
       try container.encodeIfPresent(self.delay, forKey: .delay)

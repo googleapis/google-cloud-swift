@@ -78,7 +78,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowCount) {
       self.rowCount = value
@@ -97,7 +97,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.rowCount, forKey: .rowCount)
     try container.encodeIfPresent(self.profile, forKey: .profile)
@@ -148,7 +148,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [GoogleCloudDataplexV1.DataProfileResult.Profile.Field].self, forKey: .fields)
@@ -161,7 +161,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fields, forKey: .fields)
       for (key, value) in self._unknownFields.json {
@@ -231,7 +231,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
           self.name = value
@@ -250,7 +250,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.name, forKey: .name)
         try container.encode(self.type, forKey: .type)
@@ -328,7 +328,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .nullRatio) {
             self.nullRatio = value
@@ -378,7 +378,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.nullRatio, forKey: .nullRatio)
           try container.encode(self.distinctRatio, forKey: .distinctRatio)
@@ -447,7 +447,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minLength) {
               self.minLength = value
@@ -465,7 +465,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.minLength, forKey: .minLength)
             try container.encode(self.maxLength, forKey: .maxLength)
@@ -560,7 +560,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .average) {
               self.average = value
@@ -585,7 +585,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.average, forKey: .average)
             try container.encode(self.standardDeviation, forKey: .standardDeviation)
@@ -682,7 +682,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .average) {
               self.average = value
@@ -707,7 +707,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.average, forKey: .average)
             try container.encode(self.standardDeviation, forKey: .standardDeviation)
@@ -780,7 +780,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
               self.value = value
@@ -797,7 +797,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.value, forKey: .value)
             try container.encode(self.count, forKey: .count)
@@ -906,7 +906,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.bigqueryExportResult = try container.decodeIfPresent(
         GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult.BigQueryExportResult.self,
@@ -917,7 +917,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.bigqueryExportResult, forKey: .bigqueryExportResult)
       for (key, value) in self._unknownFields.json {
@@ -970,7 +970,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           GoogleCloudDataplexV1.DataProfileResult.PostScanActionsResult.BigQueryExportResult.State
@@ -987,7 +987,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.state, forKey: .state)
         try container.encode(self.message, forKey: .message)
@@ -1090,7 +1090,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -1108,7 +1108,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("STATE_UNSPECIFIED")

@@ -29,8 +29,8 @@ import Foundation
 /// @Snippet(path: "VpcAccessServiceQuickstart")
 public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sendable {
   let inner: any Clients.VpcAccessServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `VpcAccessServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -292,7 +292,7 @@ extension Clients.VpcAccessServiceProtocol {
 
   public func listConnectorsByItems(
     request: ListConnectorsRequest
-  ) -> some AsyncSequence<Connector, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
     self.listConnectorsByItems(request: request, options: .init())
   }
 
@@ -301,7 +301,7 @@ extension Clients.VpcAccessServiceProtocol {
   /// @Snippet(path: "VpcAccessService_ListConnectors")
   public func listConnectorsByItems(
     request: ListConnectorsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Connector, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVPCAccessV1.ListConnectorsResponse
       in
@@ -315,7 +315,7 @@ extension Clients.VpcAccessServiceProtocol {
 
   public func listConnectorsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Connector, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
     let request = ListConnectorsRequest().with {
       $0.parent = parent
     }
@@ -367,7 +367,7 @@ extension Clients.VpcAccessServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -376,7 +376,7 @@ extension Clients.VpcAccessServiceProtocol {
   /// @Snippet(path: "VpcAccessService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -401,7 +401,7 @@ extension Clients.VpcAccessServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -412,7 +412,7 @@ extension Clients.VpcAccessServiceProtocol {
   /// @Snippet(path: "VpcAccessService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -426,7 +426,7 @@ extension Clients.VpcAccessServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

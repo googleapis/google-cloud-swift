@@ -84,7 +84,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.initialUser = try container.decodeIfPresent(
       AlloyDbSettings.UserPassword.self, forKey: .initialUser)
@@ -105,7 +105,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.initialUser, forKey: .initialUser)
     try container.encode(self.vpcNetwork, forKey: .vpcNetwork)
@@ -166,7 +166,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .user) {
         self.user = value
@@ -183,7 +183,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.user, forKey: .user)
       try container.encode(self.password, forKey: .password)
@@ -268,7 +268,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
         self.id = value
@@ -294,7 +294,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
       try container.encodeIfPresent(self.machineConfig, forKey: .machineConfig)
@@ -344,7 +344,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .cpuCount) {
           self.cpuCount = value
@@ -355,7 +355,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.cpuCount, forKey: .cpuCount)
         for (key, value) in self._unknownFields.json {
@@ -427,7 +427,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
         self.kmsKeyName = value
@@ -438,7 +438,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
       for (key, value) in self._unknownFields.json {

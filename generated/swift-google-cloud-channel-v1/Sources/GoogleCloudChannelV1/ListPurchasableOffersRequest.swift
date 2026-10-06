@@ -82,7 +82,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customer) {
       self.customer = value
@@ -125,7 +125,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.customer, forKey: .customer)
     try container.encode(self.pageSize, forKey: .pageSize)
@@ -190,7 +190,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sku) {
         self.sku = value
@@ -204,7 +204,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sku, forKey: .sku)
       try container.encode(self.billingAccount, forKey: .billingAccount)
@@ -282,7 +282,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entitlement) {
         self.entitlement = value
@@ -299,7 +299,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entitlement, forKey: .entitlement)
       try container.encode(self.newSku, forKey: .newSku)

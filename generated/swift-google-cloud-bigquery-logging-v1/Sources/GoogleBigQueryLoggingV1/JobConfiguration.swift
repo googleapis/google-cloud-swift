@@ -73,7 +73,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dryRun) {
       self.dryRun = value
@@ -115,7 +115,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dryRun, forKey: .dryRun)
     try container.encode(self.labels, forKey: .labels)
@@ -220,7 +220,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
         self.query = value
@@ -253,7 +253,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.query, forKey: .query)
       try container.encodeIfPresent(self.destinationTable, forKey: .destinationTable)
@@ -349,7 +349,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceUris) {
         self.sourceUris = value
@@ -373,7 +373,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sourceUris, forKey: .sourceUris)
       try container.encode(self.schemaJson, forKey: .schemaJson)
@@ -442,7 +442,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destinationUris) {
         self.destinationUris = value
@@ -454,7 +454,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.destinationUris, forKey: .destinationUris)
       try container.encodeIfPresent(self.sourceTable, forKey: .sourceTable)
@@ -535,7 +535,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([TableName].self, forKey: .sourceTables) {
         self.sourceTables = value
@@ -556,7 +556,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sourceTables, forKey: .sourceTables)
       try container.encodeIfPresent(self.destinationTable, forKey: .destinationTable)

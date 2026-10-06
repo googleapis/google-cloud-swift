@@ -272,7 +272,7 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
 
   public func listRuntimeProjectAttachmentsByItems(
     request: ListRuntimeProjectAttachmentsRequest
-  ) -> some AsyncSequence<RuntimeProjectAttachment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeProjectAttachment, any Swift.Error> & Sendable {
     self.listRuntimeProjectAttachmentsByItems(request: request, options: .init())
   }
 
@@ -281,7 +281,7 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
   /// @Snippet(path: "RuntimeProjectAttachmentService_ListRuntimeProjectAttachments")
   public func listRuntimeProjectAttachmentsByItems(
     request: ListRuntimeProjectAttachmentsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<RuntimeProjectAttachment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeProjectAttachment, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudApiHubV1.ListRuntimeProjectAttachmentsResponse in
@@ -295,7 +295,7 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
 
   public func listRuntimeProjectAttachmentsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<RuntimeProjectAttachment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeProjectAttachment, any Swift.Error> & Sendable {
     let request = ListRuntimeProjectAttachmentsRequest().with {
       $0.parent = parent
     }
@@ -358,7 +358,7 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -367,7 +367,7 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
   /// @Snippet(path: "RuntimeProjectAttachmentService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -404,7 +404,7 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -415,7 +415,7 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
   /// @Snippet(path: "RuntimeProjectAttachmentService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -429,7 +429,7 @@ extension Clients.RuntimeProjectAttachmentServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

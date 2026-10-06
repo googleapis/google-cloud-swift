@@ -74,7 +74,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.notificationConfig = try container.decodeIfPresent(
         NotificationConfig.self, forKey: .notificationConfig)
@@ -90,7 +90,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.notificationConfig, forKey: .notificationConfig)
       try container.encodeIfPresent(
@@ -146,7 +146,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .noSmalltalk) {
           self.noSmalltalk = value
@@ -160,7 +160,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.noSmalltalk, forKey: .noSmalltalk)
         try container.encode(self.onlyEndUser, forKey: .onlyEndUser)
@@ -319,7 +319,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.suggestionFeature = try container.decodeIfPresent(
           SuggestionFeature.self, forKey: .suggestionFeature)
@@ -380,7 +380,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.suggestionFeature, forKey: .suggestionFeature)
         try container.encode(self.enableEventBasedSuggestion, forKey: .enableEventBasedSuggestion)
@@ -531,7 +531,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [HumanAgentAssistantConfig.SuggestionFeatureConfig].self, forKey: .featureConfigs)
@@ -577,7 +577,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.featureConfigs, forKey: .featureConfigs)
         try container.encode(self.groupSuggestionResponses, forKey: .groupSuggestionResponses)
@@ -699,7 +699,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResults) {
           self.maxResults = value
@@ -752,7 +752,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.maxResults, forKey: .maxResults)
         try container.encode(self.confidenceThreshold, forKey: .confidenceThreshold)
@@ -818,7 +818,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent([Swift.String].self, forKey: .knowledgeBases)
           {
@@ -830,7 +830,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.knowledgeBases, forKey: .knowledgeBases)
           for (key, value) in self._unknownFields.json {
@@ -893,7 +893,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent([Swift.String].self, forKey: .documents) {
             self.documents = value
@@ -904,7 +904,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.documents, forKey: .documents)
           for (key, value) in self._unknownFields.json {
@@ -974,7 +974,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
             self.agent = value
@@ -988,7 +988,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.agent, forKey: .agent)
           try container.encodeIfPresent(self.humanAgentSideConfig, forKey: .humanAgentSideConfig)
@@ -1038,7 +1038,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agent) {
               self.agent = value
@@ -1049,7 +1049,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.agent, forKey: .agent)
             for (key, value) in self._unknownFields.json {
@@ -1131,7 +1131,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             Swift.Bool.self, forKey: .dropHandoffMessages)
@@ -1152,7 +1152,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.dropHandoffMessages, forKey: .dropHandoffMessages)
           try container.encode(self.dropVirtualAgentMessages, forKey: .dropVirtualAgentMessages)
@@ -1220,7 +1220,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [HumanAgentAssistantConfig.SuggestionQueryConfig.Sections.SectionType].self,
@@ -1234,7 +1234,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.sectionTypes, forKey: .sectionTypes)
           for (key, value) in self._unknownFields.json {
@@ -1364,7 +1364,7 @@
             }
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             if let v = try? container.decode(Int.self) {
               self.init(intValue: v)
@@ -1382,7 +1382,7 @@
               in: container, debugDescription: "Expected enum value, must be integer or string.")
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
             case .unspecified: return try container.encode("SECTION_TYPE_UNSPECIFIED")
@@ -1494,7 +1494,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
           self.model = value
@@ -1510,7 +1510,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.model, forKey: .model)
         try container.encode(self.baselineModelVersion, forKey: .baselineModelVersion)
@@ -1570,7 +1570,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .recentSentencesCount)
@@ -1583,7 +1583,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.recentSentencesCount, forKey: .recentSentencesCount)
         for (key, value) in self._unknownFields.json {
@@ -1710,7 +1710,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Bool.self, forKey: .enableEntityExtraction)
@@ -1733,7 +1733,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.enableEntityExtraction, forKey: .enableEntityExtraction)
         try container.encode(self.enableSentimentAnalysis, forKey: .enableSentimentAnalysis)

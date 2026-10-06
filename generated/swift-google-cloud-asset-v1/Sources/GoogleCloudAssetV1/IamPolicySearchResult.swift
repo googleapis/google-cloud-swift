@@ -138,7 +138,7 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
       self.resource = value
@@ -164,7 +164,7 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.resource, forKey: .resource)
     try container.encode(self.assetType, forKey: .assetType)
@@ -223,7 +223,7 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [Swift.String: IamPolicySearchResult.Explanation.Permissions].self,
@@ -237,7 +237,7 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.matchedPermissions, forKey: .matchedPermissions)
       for (key, value) in self._unknownFields.json {
@@ -283,7 +283,7 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .permissions) {
           self.permissions = value
@@ -294,7 +294,7 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.permissions, forKey: .permissions)
         for (key, value) in self._unknownFields.json {

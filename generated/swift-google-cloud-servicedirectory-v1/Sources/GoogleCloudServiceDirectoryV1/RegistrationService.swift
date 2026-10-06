@@ -391,7 +391,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listNamespacesByItems(
     request: ListNamespacesRequest
-  ) -> some AsyncSequence<Namespace, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Namespace, any Swift.Error> & Sendable {
     self.listNamespacesByItems(request: request, options: .init())
   }
 
@@ -400,7 +400,7 @@ extension Clients.RegistrationServiceProtocol {
   /// @Snippet(path: "RegistrationService_ListNamespaces")
   public func listNamespacesByItems(
     request: ListNamespacesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Namespace, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Namespace, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse in
@@ -414,7 +414,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listNamespacesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Namespace, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Namespace, any Swift.Error> & Sendable {
     let request = ListNamespacesRequest().with {
       $0.parent = parent
     }
@@ -523,7 +523,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listServicesByItems(
     request: ListServicesRequest
-  ) -> some AsyncSequence<Service, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
     self.listServicesByItems(request: request, options: .init())
   }
 
@@ -532,7 +532,7 @@ extension Clients.RegistrationServiceProtocol {
   /// @Snippet(path: "RegistrationService_ListServices")
   public func listServicesByItems(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Service, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudServiceDirectoryV1.ListServicesResponse in
@@ -546,7 +546,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listServicesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Service, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
     let request = ListServicesRequest().with {
       $0.parent = parent
     }
@@ -655,7 +655,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listEndpointsByItems(
     request: ListEndpointsRequest
-  ) -> some AsyncSequence<Endpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
     self.listEndpointsByItems(request: request, options: .init())
   }
 
@@ -664,7 +664,7 @@ extension Clients.RegistrationServiceProtocol {
   /// @Snippet(path: "RegistrationService_ListEndpoints")
   public func listEndpointsByItems(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Endpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse in
@@ -678,7 +678,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listEndpointsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Endpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
     let request = ListEndpointsRequest().with {
       $0.parent = parent
     }
@@ -798,7 +798,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -807,7 +807,7 @@ extension Clients.RegistrationServiceProtocol {
   /// @Snippet(path: "RegistrationService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

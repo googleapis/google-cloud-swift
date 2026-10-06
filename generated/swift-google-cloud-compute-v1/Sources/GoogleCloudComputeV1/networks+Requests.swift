@@ -88,7 +88,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -104,7 +104,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)
@@ -195,7 +195,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -212,7 +212,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)
@@ -297,7 +297,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -312,7 +312,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)
@@ -378,7 +378,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -392,7 +392,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)
@@ -457,7 +457,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -471,7 +471,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)
@@ -555,7 +555,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
           self.project = value
@@ -568,7 +568,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.project, forKey: .project)
         try container.encodeIfPresent(self.requestId, forKey: .requestId)
@@ -722,7 +722,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.filter = try container.decodeIfPresent(Swift.String.self, forKey: .filter)
         self.maxResults = try container.decodeIfPresent(Swift.UInt32.self, forKey: .maxResults)
@@ -737,7 +737,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.filter, forKey: .filter)
         try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
@@ -914,7 +914,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.direction = try container.decodeIfPresent(
           NetworksClient.ListPeeringRoutesRequest.Direction.self, forKey: .direction)
@@ -936,7 +936,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.direction, forKey: .direction)
         try container.encodeIfPresent(self.filter, forKey: .filter)
@@ -996,13 +996,13 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           let s = try container.decode(Swift.String.self)
           self.init(stringValue: s)
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .incoming: return try container.encode("INCOMING")
@@ -1092,7 +1092,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -1108,7 +1108,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)
@@ -1199,7 +1199,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -1215,7 +1215,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)
@@ -1306,7 +1306,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -1323,7 +1323,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)
@@ -1407,7 +1407,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -1422,7 +1422,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)
@@ -1512,7 +1512,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .network) {
           self.network = value
@@ -1528,7 +1528,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.network, forKey: .network)
         try container.encode(self.project, forKey: .project)

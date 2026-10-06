@@ -26,8 +26,8 @@
   /// @Snippet(path: "networkAttachmentsQuickstart")
   public final class NetworkAttachmentsClient: Clients.NetworkAttachmentsProtocol, Sendable {
     let inner: any Clients.NetworkAttachmentsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `NetworkAttachmentsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -359,7 +359,9 @@
 
     public func aggregatedListByItems(
       request: NetworkAttachmentsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), any Swift.Error>
+      & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -372,7 +374,9 @@
     /// @Snippet(path: "networkAttachments_aggregatedList")
     public func aggregatedListByItems(
       request: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), any Swift.Error>
+      & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList in
@@ -386,7 +390,9 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), any Swift.Error>
+      & Sendable
+    {
       let request = NetworkAttachmentsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -531,7 +537,7 @@
 
     public func listByItems(
       request: NetworkAttachmentsClient.ListRequest
-    ) -> some AsyncSequence<NetworkAttachment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkAttachment, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -540,7 +546,7 @@
     /// @Snippet(path: "networkAttachments_list")
     public func listByItems(
       request: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<NetworkAttachment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkAttachment, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentList
         in
@@ -555,7 +561,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<NetworkAttachment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkAttachment, any Swift.Error> & Sendable {
       let request = NetworkAttachmentsClient.ListRequest().with {
         $0.project = project
         $0.region = region

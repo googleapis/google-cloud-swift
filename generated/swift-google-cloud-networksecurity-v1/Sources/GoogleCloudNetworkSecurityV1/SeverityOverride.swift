@@ -60,7 +60,7 @@ public struct SeverityOverride: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Severity.self, forKey: .severity) {
       self.severity = value
@@ -74,7 +74,7 @@ public struct SeverityOverride: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.severity, forKey: .severity)
     try container.encode(self.action, forKey: .action)

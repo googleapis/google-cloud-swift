@@ -38,8 +38,8 @@ import Foundation
 /// @Snippet(path: "AccessContextManagerQuickstart")
 public final class AccessContextManagerClient: Clients.AccessContextManagerProtocol, Sendable {
   let inner: any Clients.AccessContextManagerStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AccessContextManagerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1202,7 +1202,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func listAccessPoliciesByItems(
     request: ListAccessPoliciesRequest
-  ) -> some AsyncSequence<AccessPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AccessPolicy, any Swift.Error> & Sendable {
     self.listAccessPoliciesByItems(request: request, options: .init())
   }
 
@@ -1213,7 +1213,7 @@ extension Clients.AccessContextManagerProtocol {
   /// @Snippet(path: "AccessContextManager_ListAccessPolicies")
   public func listAccessPoliciesByItems(
     request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AccessPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AccessPolicy, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListAccessPoliciesResponse in
@@ -1348,7 +1348,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func listAccessLevelsByItems(
     request: ListAccessLevelsRequest
-  ) -> some AsyncSequence<AccessLevel, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AccessLevel, any Swift.Error> & Sendable {
     self.listAccessLevelsByItems(request: request, options: .init())
   }
 
@@ -1359,7 +1359,7 @@ extension Clients.AccessContextManagerProtocol {
   /// @Snippet(path: "AccessContextManager_ListAccessLevels")
   public func listAccessLevelsByItems(
     request: ListAccessLevelsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AccessLevel, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AccessLevel, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListAccessLevelsResponse in
@@ -1373,7 +1373,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func listAccessLevelsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<AccessLevel, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AccessLevel, any Swift.Error> & Sendable {
     let request = ListAccessLevelsRequest().with {
       $0.parent = parent
     }
@@ -1540,7 +1540,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func listServicePerimetersByItems(
     request: ListServicePerimetersRequest
-  ) -> some AsyncSequence<ServicePerimeter, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServicePerimeter, any Swift.Error> & Sendable {
     self.listServicePerimetersByItems(request: request, options: .init())
   }
 
@@ -1551,7 +1551,7 @@ extension Clients.AccessContextManagerProtocol {
   /// @Snippet(path: "AccessContextManager_ListServicePerimeters")
   public func listServicePerimetersByItems(
     request: ListServicePerimetersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ServicePerimeter, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServicePerimeter, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListServicePerimetersResponse in
@@ -1565,7 +1565,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func listServicePerimetersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ServicePerimeter, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServicePerimeter, any Swift.Error> & Sendable {
     let request = ListServicePerimetersRequest().with {
       $0.parent = parent
     }
@@ -1760,7 +1760,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func listGcpUserAccessBindingsByItems(
     request: ListGcpUserAccessBindingsRequest
-  ) -> some AsyncSequence<GcpUserAccessBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GcpUserAccessBinding, any Swift.Error> & Sendable {
     self.listGcpUserAccessBindingsByItems(request: request, options: .init())
   }
 
@@ -1771,7 +1771,7 @@ extension Clients.AccessContextManagerProtocol {
   /// @Snippet(path: "AccessContextManager_ListGcpUserAccessBindings")
   public func listGcpUserAccessBindingsByItems(
     request: ListGcpUserAccessBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GcpUserAccessBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GcpUserAccessBinding, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleIdentityAccessContextManagerV1.ListGcpUserAccessBindingsResponse in
@@ -1785,7 +1785,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func listGcpUserAccessBindingsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<GcpUserAccessBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GcpUserAccessBinding, any Swift.Error> & Sendable {
     let request = ListGcpUserAccessBindingsRequest().with {
       $0.parent = parent
     }

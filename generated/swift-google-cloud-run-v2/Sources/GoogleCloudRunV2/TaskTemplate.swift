@@ -111,7 +111,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Container].self, forKey: .containers) {
       self.containers = value
@@ -156,7 +156,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.containers, forKey: .containers)
     try container.encode(self.volumes, forKey: .volumes)

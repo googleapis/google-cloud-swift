@@ -77,7 +77,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
       self.location = value
@@ -96,7 +96,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.location, forKey: .location)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
@@ -166,7 +166,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Dimension].self, forKey: .dimensions) {
         self.dimensions = value
@@ -181,7 +181,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dimensions, forKey: .dimensions)
       try container.encodeIfPresent(self.total, forKey: .total)
@@ -239,7 +239,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.interval = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .interval)
 
@@ -266,7 +266,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.interval, forKey: .interval)
 
@@ -373,7 +373,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.conversationCount = try container.decodeIfPresent(
             Swift.Int32.self, forKey: .conversationCount)
@@ -405,7 +405,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.conversationCount, forKey: .conversationCount)
           try container.encodeIfPresent(
@@ -472,7 +472,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
               self.tag = value
@@ -488,7 +488,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.tag, forKey: .tag)
             try container.encode(self.averageTagNormalizedScore, forKey: .averageTagNormalizedScore)
@@ -577,7 +577,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [QueryMetricsResponse.Slice.DataPoint].self, forKey: .dataPoints)
@@ -590,7 +590,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.dataPoints, forKey: .dataPoints)
         for (key, value) in self._unknownFields.json {

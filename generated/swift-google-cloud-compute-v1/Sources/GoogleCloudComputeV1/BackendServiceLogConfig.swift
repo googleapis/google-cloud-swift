@@ -94,7 +94,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.enable = try container.decodeIfPresent(Swift.Bool.self, forKey: .enable)
       if let value = try container.decodeIfPresent(
@@ -119,7 +119,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.enable, forKey: .enable)
       try container.encode(self.loggingHttpRequestHeaders, forKey: .loggingHttpRequestHeaders)
@@ -180,13 +180,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .custom: return try container.encode("CUSTOM")

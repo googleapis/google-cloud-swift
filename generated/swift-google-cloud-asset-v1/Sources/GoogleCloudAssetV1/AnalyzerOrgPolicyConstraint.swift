@@ -56,7 +56,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var constraintDefinition: ConstraintDefinitionOneOf? = nil
@@ -86,7 +86,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.constraintDefinition {
@@ -169,7 +169,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -213,7 +213,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
@@ -282,7 +282,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .supportsIn) {
           self.supportsIn = value
@@ -296,7 +296,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.supportsIn, forKey: .supportsIn)
         try container.encode(self.supportsUnder, forKey: .supportsUnder)
@@ -352,7 +352,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         static let _knownKeys: Set<Swift.String> = []
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
@@ -360,7 +360,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -470,7 +470,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -488,7 +488,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("CONSTRAINT_DEFAULT_UNSPECIFIED")
@@ -599,7 +599,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -632,7 +632,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.resourceTypes, forKey: .resourceTypes)
@@ -754,7 +754,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -772,7 +772,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("METHOD_TYPE_UNSPECIFIED")
@@ -874,7 +874,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -892,7 +892,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("ACTION_TYPE_UNSPECIFIED")

@@ -89,7 +89,7 @@ public struct FixedSizeBucketingConfig: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.lowerBound = try container.decodeIfPresent(Value.self, forKey: .lowerBound)
     self.upperBound = try container.decodeIfPresent(Value.self, forKey: .upperBound)
@@ -102,7 +102,7 @@ public struct FixedSizeBucketingConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.lowerBound, forKey: .lowerBound)
     try container.encodeIfPresent(self.upperBound, forKey: .upperBound)

@@ -194,7 +194,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.address = try container.decodeIfPresent(Swift.String.self, forKey: .address)
       self.availabilityZone = try container.decodeIfPresent(
@@ -248,7 +248,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.address, forKey: .address)
       try container.encodeIfPresent(self.availabilityZone, forKey: .availabilityZone)
@@ -326,13 +326,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .ifCrossSiteNetwork: return try container.encode("IF_CROSS_SITE_NETWORK")
@@ -392,13 +392,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .linkTypeEthernet100GLr: return try container.encode("LINK_TYPE_ETHERNET_100G_LR")
@@ -475,13 +475,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .africa: return try container.encode("AFRICA")
@@ -543,13 +543,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .available: return try container.encode("AVAILABLE")

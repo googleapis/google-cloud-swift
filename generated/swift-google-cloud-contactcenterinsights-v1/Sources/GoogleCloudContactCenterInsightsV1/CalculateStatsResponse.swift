@@ -103,7 +103,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.averageDuration = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .averageDuration)
@@ -144,7 +144,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.averageDuration, forKey: .averageDuration)
     try container.encode(self.averageTurnCount, forKey: .averageTurnCount)
@@ -205,7 +205,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.intervalDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .intervalDuration)
@@ -220,7 +220,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.intervalDuration, forKey: .intervalDuration)
       try container.encode(self.points, forKey: .points)
@@ -272,7 +272,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -285,7 +285,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encode(self.conversationCount, forKey: .conversationCount)

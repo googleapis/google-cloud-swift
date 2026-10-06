@@ -56,7 +56,7 @@ public struct BatchTransferResourcesResponse: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [BatchTransferResourcesResponse.TransferResourceResponse].self, forKey: .responses)
@@ -69,7 +69,7 @@ public struct BatchTransferResourcesResponse: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.responses, forKey: .responses)
     for (key, value) in self._unknownFields.json {
@@ -126,7 +126,7 @@ public struct BatchTransferResourcesResponse: Codable, Equatable, GoogleWKT._Any
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .source) {
         self.source = value
@@ -141,7 +141,7 @@ public struct BatchTransferResourcesResponse: Codable, Equatable, GoogleWKT._Any
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.source, forKey: .source)
       try container.encode(self.target, forKey: .target)

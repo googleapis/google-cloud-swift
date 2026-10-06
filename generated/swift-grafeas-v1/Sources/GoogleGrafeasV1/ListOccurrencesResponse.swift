@@ -71,7 +71,7 @@ public struct ListOccurrencesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Occurrence].self, forKey: .occurrences) {
       self.occurrences = value
@@ -88,7 +88,7 @@ public struct ListOccurrencesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.occurrences, forKey: .occurrences)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

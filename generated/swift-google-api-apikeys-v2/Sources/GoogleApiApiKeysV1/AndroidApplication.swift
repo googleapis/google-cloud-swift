@@ -63,7 +63,7 @@ public struct AndroidApplication: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sha1Fingerprint) {
       self.sha1Fingerprint = value
@@ -77,7 +77,7 @@ public struct AndroidApplication: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sha1Fingerprint, forKey: .sha1Fingerprint)
     try container.encode(self.packageName, forKey: .packageName)

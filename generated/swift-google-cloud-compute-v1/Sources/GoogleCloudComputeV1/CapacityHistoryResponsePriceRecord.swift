@@ -61,7 +61,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.interval = try container.decodeIfPresent(Interval.self, forKey: .interval)
       self.listPrice = try container.decodeIfPresent(Money.self, forKey: .listPrice)
@@ -71,7 +71,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.interval, forKey: .interval)
       try container.encodeIfPresent(self.listPrice, forKey: .listPrice)

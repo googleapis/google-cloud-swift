@@ -83,7 +83,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.snapshotAnalysis = try container.decodeIfPresent(
         FeaturestoreMonitoringConfig.SnapshotAnalysis.self, forKey: .snapshotAnalysis)
@@ -99,7 +99,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.snapshotAnalysis, forKey: .snapshotAnalysis)
       try container.encodeIfPresent(self.importFeaturesAnalysis, forKey: .importFeaturesAnalysis)
@@ -176,7 +176,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .disabled) {
           self.disabled = value
@@ -195,7 +195,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.disabled, forKey: .disabled)
         try container.encode(self.monitoringIntervalDays, forKey: .monitoringIntervalDays)
@@ -271,7 +271,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           FeaturestoreMonitoringConfig.ImportFeaturesAnalysis.State.self, forKey: .state)
@@ -290,7 +290,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.state, forKey: .state)
         try container.encode(self.anomalyDetectionBaseline, forKey: .anomalyDetectionBaseline)
@@ -401,7 +401,7 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -419,7 +419,7 @@
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("STATE_UNSPECIFIED")
@@ -534,7 +534,7 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -552,7 +552,7 @@
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("BASELINE_UNSPECIFIED")
@@ -615,7 +615,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var threshold: ThresholdOneOf? = nil
@@ -638,7 +638,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.threshold {

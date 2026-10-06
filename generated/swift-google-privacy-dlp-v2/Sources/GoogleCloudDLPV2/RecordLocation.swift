@@ -65,7 +65,7 @@ public struct RecordLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.recordKey = try container.decodeIfPresent(RecordKey.self, forKey: .recordKey)
     self.fieldId = try container.decodeIfPresent(FieldId.self, forKey: .fieldId)
@@ -76,7 +76,7 @@ public struct RecordLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.recordKey, forKey: .recordKey)
     try container.encodeIfPresent(self.fieldId, forKey: .fieldId)

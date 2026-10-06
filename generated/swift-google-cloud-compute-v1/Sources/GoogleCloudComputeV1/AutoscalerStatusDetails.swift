@@ -113,7 +113,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
       self.type = try container.decodeIfPresent(AutoscalerStatusDetails.Type_.self, forKey: .type)
@@ -123,7 +123,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.message, forKey: .message)
       try container.encodeIfPresent(self.type, forKey: .type)
@@ -272,13 +272,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .allInstancesUnhealthy: return try container.encode("ALL_INSTANCES_UNHEALTHY")

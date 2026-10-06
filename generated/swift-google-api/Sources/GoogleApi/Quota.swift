@@ -111,7 +111,7 @@ public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([QuotaLimit].self, forKey: .limits) {
       self.limits = value
@@ -125,7 +125,7 @@ public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.limits, forKey: .limits)
     try container.encode(self.metricRules, forKey: .metricRules)

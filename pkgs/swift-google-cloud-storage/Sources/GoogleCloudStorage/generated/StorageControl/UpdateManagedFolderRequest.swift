@@ -87,7 +87,7 @@ public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.managedFolder = try container.decodeIfPresent(ManagedFolder.self, forKey: .managedFolder)
     self.updateMask = try container.decodeIfPresent(
@@ -105,7 +105,7 @@ public struct UpdateManagedFolderRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.managedFolder, forKey: .managedFolder)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

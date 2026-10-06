@@ -66,7 +66,7 @@ public struct DashboardDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([DashboardFilter].self, forKey: .filters) {
       self.filters = value
@@ -85,7 +85,7 @@ public struct DashboardDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.filters, forKey: .filters)
     try container.encode(self.fingerprint, forKey: .fingerprint)
@@ -141,7 +141,7 @@ public struct DashboardDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dashboardChart) {
         self.dashboardChart = value
@@ -157,7 +157,7 @@ public struct DashboardDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dashboardChart, forKey: .dashboardChart)
       try container.encodeIfPresent(self.chartLayout, forKey: .chartLayout)
@@ -216,7 +216,7 @@ public struct DashboardDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startX = try container.decodeIfPresent(Swift.Int32.self, forKey: .startX)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .spanX) {
@@ -232,7 +232,7 @@ public struct DashboardDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startX, forKey: .startX)
         try container.encode(self.spanX, forKey: .spanX)

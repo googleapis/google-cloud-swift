@@ -83,7 +83,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -108,7 +108,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.locations, forKey: .locations)
@@ -174,7 +174,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([DependencyType].self, forKey: .dependencyTypes)
       {
@@ -192,7 +192,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dependencyTypes, forKey: .dependencyTypes)
       try container.encode(self.entitySet, forKey: .entitySet)
@@ -268,7 +268,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDepth) {
         self.maxDepth = value
@@ -285,7 +285,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.maxDepth, forKey: .maxDepth)
       try container.encode(self.maxResults, forKey: .maxResults)
@@ -345,7 +345,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var criteria: CriteriaOneOf? = nil
@@ -370,7 +370,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.criteria {
@@ -491,7 +491,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -509,7 +509,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("SEARCH_DIRECTION_UNSPECIFIED")
@@ -603,7 +603,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -621,7 +621,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("ENTITY_SET_UNSPECIFIED")

@@ -206,7 +206,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ipv4Range = try container.decodeIfPresent(Swift.String.self, forKey: .ipv4Range)
       self.autoCreateSubnetworks = try container.decodeIfPresent(
@@ -251,7 +251,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ipv4Range, forKey: .ipv4Range)
       try container.encodeIfPresent(self.autoCreateSubnetworks, forKey: .autoCreateSubnetworks)
@@ -321,13 +321,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .afterClassicFirewall: return try container.encode("AFTER_CLASSIC_FIREWALL")

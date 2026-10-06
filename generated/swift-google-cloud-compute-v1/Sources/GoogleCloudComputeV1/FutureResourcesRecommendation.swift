@@ -85,7 +85,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
       self.location = try container.decodeIfPresent(Swift.String.self, forKey: .location)
@@ -106,7 +106,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
       try container.encodeIfPresent(self.location, forKey: .location)
@@ -163,13 +163,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .futureReservation: return try container.encode("FUTURE_RESERVATION")

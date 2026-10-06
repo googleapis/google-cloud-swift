@@ -76,7 +76,7 @@ public struct Attributes: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.criticality = try container.decodeIfPresent(Criticality.self, forKey: .criticality)
     self.environment = try container.decodeIfPresent(Environment.self, forKey: .environment)
@@ -95,7 +95,7 @@ public struct Attributes: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.criticality, forKey: .criticality)
     try container.encodeIfPresent(self.environment, forKey: .environment)

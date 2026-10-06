@@ -64,7 +64,7 @@ public struct InfoTypeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .estimatedPrevalence) {
@@ -79,7 +79,7 @@ public struct InfoTypeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.infoType, forKey: .infoType)
     try container.encode(self.estimatedPrevalence, forKey: .estimatedPrevalence)

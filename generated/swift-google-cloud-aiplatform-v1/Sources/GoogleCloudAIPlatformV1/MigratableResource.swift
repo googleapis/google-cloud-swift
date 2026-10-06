@@ -74,7 +74,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.lastMigrateTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .lastMigrateTime)
@@ -118,7 +118,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.lastMigrateTime, forKey: .lastMigrateTime)
       try container.encodeIfPresent(self.lastUpdateTime, forKey: .lastUpdateTime)
@@ -191,7 +191,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
           self.endpoint = value
@@ -205,7 +205,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.endpoint, forKey: .endpoint)
         try container.encode(self.version, forKey: .version)
@@ -271,7 +271,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .model) {
           self.model = value
@@ -285,7 +285,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.model, forKey: .model)
         try container.encode(self.modelDisplayName, forKey: .modelDisplayName)
@@ -350,7 +350,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
           self.dataset = value
@@ -365,7 +365,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.dataset, forKey: .dataset)
         try container.encode(self.datasetDisplayName, forKey: .datasetDisplayName)
@@ -438,7 +438,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
           self.dataset = value
@@ -459,7 +459,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.dataset, forKey: .dataset)
         try container.encode(self.datasetDisplayName, forKey: .datasetDisplayName)
@@ -516,7 +516,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .annotatedDataset)
           {
@@ -533,7 +533,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.annotatedDataset, forKey: .annotatedDataset)
           try container.encode(

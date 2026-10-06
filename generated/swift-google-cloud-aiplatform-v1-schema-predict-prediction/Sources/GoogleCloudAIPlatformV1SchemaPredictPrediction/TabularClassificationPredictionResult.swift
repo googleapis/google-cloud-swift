@@ -63,7 +63,7 @@ public struct TabularClassificationPredictionResult: Codable, Equatable, GoogleW
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .classes) {
       self.classes = value
@@ -77,7 +77,7 @@ public struct TabularClassificationPredictionResult: Codable, Equatable, GoogleW
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.classes, forKey: .classes)
     try container.encode(self.scores, forKey: .scores)

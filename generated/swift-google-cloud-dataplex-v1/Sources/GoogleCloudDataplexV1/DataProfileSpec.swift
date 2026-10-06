@@ -101,7 +101,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .samplingPercent) {
       self.samplingPercent = value
@@ -128,7 +128,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.samplingPercent, forKey: .samplingPercent)
     try container.encode(self.rowFilter, forKey: .rowFilter)
@@ -181,7 +181,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.bigqueryExport = try container.decodeIfPresent(
         DataProfileSpec.PostScanActions.BigQueryExport.self, forKey: .bigqueryExport)
@@ -191,7 +191,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.bigqueryExport, forKey: .bigqueryExport)
       for (key, value) in self._unknownFields.json {
@@ -239,7 +239,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resultsTable) {
           self.resultsTable = value
@@ -250,7 +250,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.resultsTable, forKey: .resultsTable)
         for (key, value) in self._unknownFields.json {
@@ -325,7 +325,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .fieldNames) {
         self.fieldNames = value
@@ -336,7 +336,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fieldNames, forKey: .fieldNames)
       for (key, value) in self._unknownFields.json {
@@ -448,7 +448,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -466,7 +466,7 @@ public struct DataProfileSpec: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("MODE_UNSPECIFIED")

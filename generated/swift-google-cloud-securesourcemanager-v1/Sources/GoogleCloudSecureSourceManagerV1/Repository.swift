@@ -115,7 +115,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -149,7 +149,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
@@ -216,7 +216,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .html) {
         self.html = value
@@ -233,7 +233,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.html, forKey: .html)
       try container.encode(self.gitHttps, forKey: .gitHttps)
@@ -431,7 +431,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultBranch) {
         self.defaultBranch = value
@@ -451,7 +451,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.defaultBranch, forKey: .defaultBranch)
       try container.encode(self.gitignores, forKey: .gitignores)
@@ -511,7 +511,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.secretScanConfig = try container.decodeIfPresent(
         Repository.ScanConfig.SecretScanConfig.self, forKey: .secretScanConfig)
@@ -521,7 +521,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.secretScanConfig, forKey: .secretScanConfig)
       for (key, value) in self._unknownFields.json {
@@ -572,7 +572,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
           self.enabled = value
@@ -586,7 +586,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.enabled, forKey: .enabled)
         try container.encode(self.inspectTemplate, forKey: .inspectTemplate)

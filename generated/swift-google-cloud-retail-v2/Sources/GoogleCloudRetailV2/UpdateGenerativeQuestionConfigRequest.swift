@@ -69,7 +69,7 @@ public struct UpdateGenerativeQuestionConfigRequest: Codable, Equatable, GoogleW
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.generativeQuestionConfig = try container.decodeIfPresent(
       GenerativeQuestionConfig.self, forKey: .generativeQuestionConfig)
@@ -81,7 +81,7 @@ public struct UpdateGenerativeQuestionConfigRequest: Codable, Equatable, GoogleW
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.generativeQuestionConfig, forKey: .generativeQuestionConfig)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

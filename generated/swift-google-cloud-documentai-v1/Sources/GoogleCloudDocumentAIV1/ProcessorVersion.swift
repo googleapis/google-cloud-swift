@@ -128,7 +128,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -175,7 +175,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
@@ -240,7 +240,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.deprecationTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .deprecationTime)
@@ -255,7 +255,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.deprecationTime, forKey: .deprecationTime)
       try container.encode(self.replacementProcessorVersion, forKey: .replacementProcessorVersion)
@@ -316,7 +316,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var modelInfo: ModelInfoOneOf? = nil
@@ -347,7 +347,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.modelInfo {
@@ -407,7 +407,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .finetuningAllowed) {
           self.finetuningAllowed = value
@@ -423,7 +423,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.finetuningAllowed, forKey: .finetuningAllowed)
         try container.encode(self.minTrainLabeledDocuments, forKey: .minTrainLabeledDocuments)
@@ -491,7 +491,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           ProcessorVersion.GenAiModelInfo.CustomGenAiModelInfo.CustomModelType.self,
@@ -510,7 +510,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.customModelType, forKey: .customModelType)
         try container.encode(self.baseProcessorVersionId, forKey: .baseProcessorVersionId)
@@ -606,7 +606,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -624,7 +624,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("CUSTOM_MODEL_TYPE_UNSPECIFIED")
@@ -792,7 +792,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -810,7 +810,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("STATE_UNSPECIFIED")
@@ -915,7 +915,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -933,7 +933,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("MODEL_TYPE_UNSPECIFIED")

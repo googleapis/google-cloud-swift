@@ -59,7 +59,7 @@ public struct InfoTypeTransformations: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [InfoTypeTransformations.InfoTypeTransformation].self, forKey: .transformations)
@@ -72,7 +72,7 @@ public struct InfoTypeTransformations: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.transformations, forKey: .transformations)
     for (key, value) in self._unknownFields.json {
@@ -126,7 +126,7 @@ public struct InfoTypeTransformations: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([InfoType].self, forKey: .infoTypes) {
         self.infoTypes = value
@@ -139,7 +139,7 @@ public struct InfoTypeTransformations: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.infoTypes, forKey: .infoTypes)
       try container.encodeIfPresent(self.primitiveTransformation, forKey: .primitiveTransformation)

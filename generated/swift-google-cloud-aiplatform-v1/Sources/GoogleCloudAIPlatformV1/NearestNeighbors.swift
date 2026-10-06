@@ -56,7 +56,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [GoogleCloudAIPlatformV1.NearestNeighbors.Neighbor].self, forKey: .neighbors)
@@ -69,7 +69,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.neighbors, forKey: .neighbors)
       for (key, value) in self._unknownFields.json {
@@ -128,7 +128,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityId) {
           self.entityId = value
@@ -144,7 +144,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.entityId, forKey: .entityId)
         try container.encode(self.distance, forKey: .distance)

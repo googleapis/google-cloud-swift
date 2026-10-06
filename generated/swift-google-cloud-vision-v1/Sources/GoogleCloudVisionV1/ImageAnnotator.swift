@@ -28,8 +28,8 @@ import Foundation
 /// @Snippet(path: "ImageAnnotatorQuickstart")
 public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendable {
   let inner: any Clients.ImageAnnotatorStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ImageAnnotatorClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

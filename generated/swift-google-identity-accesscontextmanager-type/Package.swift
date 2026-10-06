@@ -29,6 +29,7 @@ let package = Package(
     .target(
       name: "GoogleIdentityAccessContextManagerType",
       swiftSettings: [
+        .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),

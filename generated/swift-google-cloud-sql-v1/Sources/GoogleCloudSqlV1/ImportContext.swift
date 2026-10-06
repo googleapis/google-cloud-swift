@@ -105,7 +105,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
         self.uri = value
@@ -136,7 +136,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uri, forKey: .uri)
       try container.encode(self.database, forKey: .database)
@@ -199,7 +199,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.threads = try container.decodeIfPresent(GoogleWKT.WKTInt32Value.self, forKey: .threads)
         self.parallel = try container.decodeIfPresent(
@@ -212,7 +212,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.threads, forKey: .threads)
         try container.encodeIfPresent(self.parallel, forKey: .parallel)
@@ -266,7 +266,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.clean = try container.decodeIfPresent(GoogleWKT.WKTBoolValue.self, forKey: .clean)
           self.ifExists = try container.decodeIfPresent(
@@ -277,7 +277,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.clean, forKey: .clean)
           try container.encodeIfPresent(self.ifExists, forKey: .ifExists)
@@ -375,7 +375,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .table) {
           self.table = value
@@ -403,7 +403,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.table, forKey: .table)
         try container.encode(self.columns, forKey: .columns)
@@ -504,7 +504,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.encryptionOptions = try container.decodeIfPresent(
           ImportContext.SqlBakImportOptions.EncryptionOptions.self, forKey: .encryptionOptions)
@@ -526,7 +526,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.encryptionOptions, forKey: .encryptionOptions)
         try container.encodeIfPresent(self.striped, forKey: .striped)
@@ -596,7 +596,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certPath) {
             self.certPath = value
@@ -615,7 +615,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.certPath, forKey: .certPath)
           try container.encode(self.pvkPath, forKey: .pvkPath)
@@ -708,7 +708,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certificatePath) {
           self.certificatePath = value
@@ -729,7 +729,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.certificatePath, forKey: .certificatePath)
         try container.encode(self.privateKeyPath, forKey: .privateKeyPath)

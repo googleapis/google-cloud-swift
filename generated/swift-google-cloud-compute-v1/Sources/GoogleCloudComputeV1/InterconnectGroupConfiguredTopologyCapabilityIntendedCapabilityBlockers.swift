@@ -98,7 +98,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.blockerType = try container.decodeIfPresent(
         InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers.BlockerType.self,
@@ -124,7 +124,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.blockerType, forKey: .blockerType)
       try container.encodeIfPresent(self.documentationLink, forKey: .documentationLink)
@@ -192,13 +192,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .incompatibleMetros: return try container.encode("INCOMPATIBLE_METROS")

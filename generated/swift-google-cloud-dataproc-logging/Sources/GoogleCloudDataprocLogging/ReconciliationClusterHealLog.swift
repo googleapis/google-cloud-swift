@@ -55,7 +55,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.outputs = try container.decodeIfPresent(
       ReconciliationClusterHealLog.Outputs.self, forKey: .outputs)
@@ -65,7 +65,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.outputs, forKey: .outputs)
     for (key, value) in self._unknownFields.json {
@@ -116,7 +116,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repairOperationId) {
         self.repairOperationId = value
@@ -130,7 +130,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.repairOperationId, forKey: .repairOperationId)
       try container.encode(self.decisionDetails, forKey: .decisionDetails)

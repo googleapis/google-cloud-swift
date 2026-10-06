@@ -26,8 +26,8 @@
   /// @Snippet(path: "urlMapsQuickstart")
   public final class UrlMapsClient: Clients.UrlMapsProtocol, Sendable {
     let inner: any Clients.UrlMapsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `UrlMapsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -471,7 +471,7 @@
 
     public func aggregatedListByItems(
       request: UrlMapsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -484,7 +484,7 @@
     /// @Snippet(path: "urlMaps_aggregatedList")
     public func aggregatedListByItems(
       request: UrlMapsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapsAggregatedList
         in
@@ -498,7 +498,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), any Swift.Error> & Sendable {
       let request = UrlMapsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -648,7 +648,7 @@
 
     public func listByItems(
       request: UrlMapsClient.ListRequest
-    ) -> some AsyncSequence<UrlMap, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -658,7 +658,7 @@
     /// @Snippet(path: "urlMaps_list")
     public func listByItems(
       request: UrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<UrlMap, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
         var request = request
@@ -671,7 +671,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<UrlMap, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
       let request = UrlMapsClient.ListRequest().with {
         $0.project = project
       }

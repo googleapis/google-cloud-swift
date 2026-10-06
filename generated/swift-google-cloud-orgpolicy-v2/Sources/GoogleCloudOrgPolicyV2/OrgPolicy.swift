@@ -292,7 +292,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listConstraintsByItems(
     request: ListConstraintsRequest
-  ) -> some AsyncSequence<Constraint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Constraint, any Swift.Error> & Sendable {
     self.listConstraintsByItems(request: request, options: .init())
   }
 
@@ -301,7 +301,7 @@ extension Clients.OrgPolicyProtocol {
   /// @Snippet(path: "OrgPolicy_ListConstraints")
   public func listConstraintsByItems(
     request: ListConstraintsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Constraint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Constraint, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse
       in
@@ -315,7 +315,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listConstraintsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Constraint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Constraint, any Swift.Error> & Sendable {
     let request = ListConstraintsRequest().with {
       $0.parent = parent
     }
@@ -336,7 +336,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listPoliciesByItems(
     request: ListPoliciesRequest
-  ) -> some AsyncSequence<Policy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
     self.listPoliciesByItems(request: request, options: .init())
   }
 
@@ -345,7 +345,7 @@ extension Clients.OrgPolicyProtocol {
   /// @Snippet(path: "OrgPolicy_ListPolicies")
   public func listPoliciesByItems(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Policy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse in
       var request = request
@@ -358,7 +358,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listPoliciesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Policy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
     let request = ListPoliciesRequest().with {
       $0.parent = parent
     }
@@ -547,7 +547,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listCustomConstraintsByItems(
     request: ListCustomConstraintsRequest
-  ) -> some AsyncSequence<CustomConstraint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CustomConstraint, any Swift.Error> & Sendable {
     self.listCustomConstraintsByItems(request: request, options: .init())
   }
 
@@ -557,7 +557,7 @@ extension Clients.OrgPolicyProtocol {
   /// @Snippet(path: "OrgPolicy_ListCustomConstraints")
   public func listCustomConstraintsByItems(
     request: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<CustomConstraint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CustomConstraint, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse in
@@ -571,7 +571,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listCustomConstraintsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<CustomConstraint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CustomConstraint, any Swift.Error> & Sendable {
     let request = ListCustomConstraintsRequest().with {
       $0.parent = parent
     }

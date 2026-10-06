@@ -55,7 +55,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [DatasetInputConfig.InputFile].self, forKey: .inputFiles)
@@ -68,7 +68,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.inputFiles, forKey: .inputFiles)
     for (key, value) in self._unknownFields.json {
@@ -122,7 +122,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .usage) {
         self.usage = value
@@ -148,7 +148,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.usage, forKey: .usage)
 

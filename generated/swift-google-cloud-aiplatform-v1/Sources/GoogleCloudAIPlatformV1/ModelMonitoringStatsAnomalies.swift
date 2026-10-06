@@ -72,7 +72,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         ModelDeploymentMonitoringObjectiveType.self, forKey: .objective)
@@ -96,7 +96,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.objective, forKey: .objective)
       try container.encode(self.deployedModelId, forKey: .deployedModelId)
@@ -161,7 +161,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .featureDisplayName)
         {
@@ -182,7 +182,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.featureDisplayName, forKey: .featureDisplayName)
         try container.encodeIfPresent(self.threshold, forKey: .threshold)

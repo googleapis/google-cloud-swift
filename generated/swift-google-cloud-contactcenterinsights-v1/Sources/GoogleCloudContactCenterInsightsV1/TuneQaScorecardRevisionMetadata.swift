@@ -87,7 +87,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .createTime)
@@ -116,7 +116,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
@@ -181,7 +181,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .question) {
         self.question = value
@@ -202,7 +202,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.question, forKey: .question)
       try container.encode(self.datasetValidationWarnings, forKey: .datasetValidationWarnings)
@@ -270,7 +270,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .question) {
         self.question = value
@@ -284,7 +284,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.question, forKey: .question)
       try container.encodeIfPresent(self.metrics, forKey: .metrics)
@@ -332,7 +332,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .accuracy) {
           self.accuracy = value
@@ -343,7 +343,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.accuracy, forKey: .accuracy)
         for (key, value) in self._unknownFields.json {

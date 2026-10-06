@@ -58,7 +58,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([NetworkConfig.Consumer].self, forKey: .consumers)
     {
@@ -70,7 +70,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.consumers, forKey: .consumers)
     for (key, value) in self._unknownFields.json {
@@ -129,7 +129,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpointUri) {
         self.endpointUri = value
@@ -158,7 +158,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.endpointUri, forKey: .endpointUri)
       try container.encode(self.endpointLocation, forKey: .endpointLocation)

@@ -273,7 +273,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -353,7 +353,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.bucketId, forKey: .bucketId)
@@ -430,7 +430,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requesterPays) {
         self.requesterPays = value
@@ -441,7 +441,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.requesterPays, forKey: .requesterPays)
       for (key, value) in self._unknownFields.json {
@@ -526,7 +526,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .origin) {
         self.origin = value
@@ -546,7 +546,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.origin, forKey: .origin)
       try container.encode(self.method, forKey: .method)
@@ -637,7 +637,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .defaultKmsKey) {
         self.defaultKmsKey = value
@@ -657,7 +657,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.defaultKmsKey, forKey: .defaultKmsKey)
       try container.encodeIfPresent(
@@ -723,7 +723,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.restrictionMode = try container.decodeIfPresent(
           Swift.String.self, forKey: .restrictionMode)
@@ -735,7 +735,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.restrictionMode, forKey: .restrictionMode)
         try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
@@ -805,7 +805,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.restrictionMode = try container.decodeIfPresent(
           Swift.String.self, forKey: .restrictionMode)
@@ -817,7 +817,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.restrictionMode, forKey: .restrictionMode)
         try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
@@ -888,7 +888,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.restrictionMode = try container.decodeIfPresent(
           Swift.String.self, forKey: .restrictionMode)
@@ -900,7 +900,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.restrictionMode, forKey: .restrictionMode)
         try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
@@ -976,7 +976,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.uniformBucketLevelAccess = try container.decodeIfPresent(
         Bucket.IamConfig.UniformBucketLevelAccess.self, forKey: .uniformBucketLevelAccess)
@@ -991,7 +991,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.uniformBucketLevelAccess, forKey: .uniformBucketLevelAccess)
@@ -1049,7 +1049,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
           self.enabled = value
@@ -1062,7 +1062,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.enabled, forKey: .enabled)
         try container.encodeIfPresent(self.lockTime, forKey: .lockTime)
@@ -1134,7 +1134,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Bucket.Lifecycle.Rule].self, forKey: .rule) {
         self.rule = value
@@ -1145,7 +1145,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.rule, forKey: .rule)
       for (key, value) in self._unknownFields.json {
@@ -1197,7 +1197,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.action = try container.decodeIfPresent(
           Bucket.Lifecycle.Rule.Action.self, forKey: .action)
@@ -1209,7 +1209,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.action, forKey: .action)
         try container.encodeIfPresent(self.condition, forKey: .condition)
@@ -1264,7 +1264,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .type) {
             self.type = value
@@ -1278,7 +1278,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.type, forKey: .type)
           try container.encode(self.storageClass, forKey: .storageClass)
@@ -1408,7 +1408,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.ageDays = try container.decodeIfPresent(Swift.Int32.self, forKey: .ageDays)
           self.createdBefore = try container.decodeIfPresent(
@@ -1443,7 +1443,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.ageDays, forKey: .ageDays)
           try container.encodeIfPresent(self.createdBefore, forKey: .createdBefore)
@@ -1539,7 +1539,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .logBucket) {
         self.logBucket = value
@@ -1553,7 +1553,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.logBucket, forKey: .logBucket)
       try container.encode(self.logObjectPrefix, forKey: .logObjectPrefix)
@@ -1612,7 +1612,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
         self.enabled = value
@@ -1623,7 +1623,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enabled, forKey: .enabled)
       for (key, value) in self._unknownFields.json {
@@ -1695,7 +1695,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.effectiveTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .effectiveTime)
@@ -1710,7 +1710,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
       try container.encode(self.isLocked, forKey: .isLocked)
@@ -1776,7 +1776,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.retentionDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .retentionDuration)
@@ -1788,7 +1788,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.retentionDuration, forKey: .retentionDuration)
       try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
@@ -1848,7 +1848,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
         self.enabled = value
@@ -1859,7 +1859,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enabled, forKey: .enabled)
       for (key, value) in self._unknownFields.json {
@@ -1930,7 +1930,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mainPageSuffix) {
         self.mainPageSuffix = value
@@ -1944,7 +1944,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.mainPageSuffix, forKey: .mainPageSuffix)
       try container.encode(self.notFoundPage, forKey: .notFoundPage)
@@ -2006,7 +2006,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataLocations) {
         self.dataLocations = value
@@ -2017,7 +2017,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataLocations, forKey: .dataLocations)
       for (key, value) in self._unknownFields.json {
@@ -2096,7 +2096,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
         self.enabled = value
@@ -2113,7 +2113,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enabled, forKey: .enabled)
       try container.encodeIfPresent(self.toggleTime, forKey: .toggleTime)
@@ -2207,7 +2207,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.mode = try container.decodeIfPresent(Swift.String.self, forKey: .mode)
       self.publicNetworkSource = try container.decodeIfPresent(
@@ -2228,7 +2228,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.mode, forKey: .mode)
       try container.encodeIfPresent(self.publicNetworkSource, forKey: .publicNetworkSource)
@@ -2281,7 +2281,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [Swift.String].self, forKey: .allowedIpCidrRanges)
@@ -2294,7 +2294,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.allowedIpCidrRanges, forKey: .allowedIpCidrRanges)
         for (key, value) in self._unknownFields.json {
@@ -2363,7 +2363,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.network = try container.decodeIfPresent(Swift.String.self, forKey: .network)
         if let value = try container.decodeIfPresent(
@@ -2377,7 +2377,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.network, forKey: .network)
         try container.encode(self.allowedIpCidrRanges, forKey: .allowedIpCidrRanges)
@@ -2446,7 +2446,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
         self.enabled = value
@@ -2457,7 +2457,7 @@ public struct Bucket: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enabled, forKey: .enabled)
       for (key, value) in self._unknownFields.json {

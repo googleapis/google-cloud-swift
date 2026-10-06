@@ -70,7 +70,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.singular = try container.decodeIfPresent(
       GoogleWKT.WKTRecursive<MessageWithRecursion.Level0>.self, forKey: .singular)
@@ -92,7 +92,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.singular, forKey: .singular)
     try container.encodeIfPresent(self.`optional`, forKey: .`optional`)
@@ -143,7 +143,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.level1 = try container.decodeIfPresent(
         GoogleWKT.WKTRecursive<MessageWithRecursion.Level1>.self, forKey: .level1)
@@ -155,7 +155,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.level1, forKey: .level1)
       try container.encodeIfPresent(self.side, forKey: .side)
@@ -211,7 +211,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.recurse = try container.decodeIfPresent(
         GoogleWKT.WKTRecursive<MessageWithRecursion>.self, forKey: .recurse)
@@ -221,7 +221,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.recurse, forKey: .recurse)
       for (key, value) in self._unknownFields.json {
@@ -276,7 +276,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
         self.value = value
@@ -287,7 +287,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.value, forKey: .value)
       for (key, value) in self._unknownFields.json {

@@ -79,7 +79,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.metadata = try container.decodeIfPresent(FeatureValue.Metadata.self, forKey: .metadata)
 
@@ -137,7 +137,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.metadata, forKey: .metadata)
 
@@ -215,7 +215,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.generateTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .generateTime)
@@ -225,7 +225,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.generateTime, forKey: .generateTime)
         for (key, value) in self._unknownFields.json {

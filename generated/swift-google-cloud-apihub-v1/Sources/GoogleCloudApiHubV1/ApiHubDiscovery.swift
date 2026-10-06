@@ -211,7 +211,7 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listDiscoveredApiObservationsByItems(
     request: ListDiscoveredApiObservationsRequest
-  ) -> some AsyncSequence<DiscoveredApiObservation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredApiObservation, any Swift.Error> & Sendable {
     self.listDiscoveredApiObservationsByItems(request: request, options: .init())
   }
 
@@ -220,7 +220,7 @@ extension Clients.ApiHubDiscoveryProtocol {
   /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiObservations")
   public func listDiscoveredApiObservationsByItems(
     request: ListDiscoveredApiObservationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DiscoveredApiObservation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredApiObservation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudApiHubV1.ListDiscoveredApiObservationsResponse in
@@ -234,7 +234,7 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listDiscoveredApiObservationsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DiscoveredApiObservation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredApiObservation, any Swift.Error> & Sendable {
     let request = ListDiscoveredApiObservationsRequest().with {
       $0.parent = parent
     }
@@ -276,7 +276,7 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listDiscoveredApiOperationsByItems(
     request: ListDiscoveredApiOperationsRequest
-  ) -> some AsyncSequence<DiscoveredApiOperation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredApiOperation, any Swift.Error> & Sendable {
     self.listDiscoveredApiOperationsByItems(request: request, options: .init())
   }
 
@@ -286,7 +286,7 @@ extension Clients.ApiHubDiscoveryProtocol {
   /// @Snippet(path: "ApiHubDiscovery_ListDiscoveredApiOperations")
   public func listDiscoveredApiOperationsByItems(
     request: ListDiscoveredApiOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DiscoveredApiOperation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredApiOperation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudApiHubV1.ListDiscoveredApiOperationsResponse in
@@ -300,7 +300,7 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listDiscoveredApiOperationsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DiscoveredApiOperation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredApiOperation, any Swift.Error> & Sendable {
     let request = ListDiscoveredApiOperationsRequest().with {
       $0.parent = parent
     }
@@ -342,7 +342,7 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -351,7 +351,7 @@ extension Clients.ApiHubDiscoveryProtocol {
   /// @Snippet(path: "ApiHubDiscovery_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -388,7 +388,7 @@ extension Clients.ApiHubDiscoveryProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -399,7 +399,7 @@ extension Clients.ApiHubDiscoveryProtocol {
   /// @Snippet(path: "ApiHubDiscovery_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -413,7 +413,7 @@ extension Clients.ApiHubDiscoveryProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -70,7 +70,7 @@ public struct DataQualityDimensionResult: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dimension = try container.decodeIfPresent(DataQualityDimension.self, forKey: .dimension)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .passed) {
@@ -83,7 +83,7 @@ public struct DataQualityDimensionResult: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.dimension, forKey: .dimension)
     try container.encode(self.passed, forKey: .passed)

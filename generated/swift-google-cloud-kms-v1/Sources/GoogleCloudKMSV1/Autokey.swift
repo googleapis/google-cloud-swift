@@ -50,8 +50,8 @@ import Foundation
 /// @Snippet(path: "AutokeyQuickstart")
 public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   let inner: any Clients.AutokeyStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AutokeyClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -353,7 +353,7 @@ extension Clients.AutokeyProtocol {
 
   public func listKeyHandlesByItems(
     request: ListKeyHandlesRequest
-  ) -> some AsyncSequence<KeyHandle, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<KeyHandle, any Swift.Error> & Sendable {
     self.listKeyHandlesByItems(request: request, options: .init())
   }
 
@@ -364,7 +364,7 @@ extension Clients.AutokeyProtocol {
   /// @Snippet(path: "Autokey_ListKeyHandles")
   public func listKeyHandlesByItems(
     request: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<KeyHandle, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<KeyHandle, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudKMSV1.ListKeyHandlesResponse in
       var request = request
@@ -377,7 +377,7 @@ extension Clients.AutokeyProtocol {
 
   public func listKeyHandlesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<KeyHandle, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<KeyHandle, any Swift.Error> & Sendable {
     let request = ListKeyHandlesRequest().with {
       $0.parent = parent
     }
@@ -398,7 +398,7 @@ extension Clients.AutokeyProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -424,7 +424,7 @@ extension Clients.AutokeyProtocol {
   /// @Snippet(path: "Autokey_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

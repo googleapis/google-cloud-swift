@@ -69,7 +69,7 @@ public struct ConditionalOverride: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.adjustment = try container.decodeIfPresent(RepricingAdjustment.self, forKey: .adjustment)
     if let value = try container.decodeIfPresent(RebillingBasis.self, forKey: .rebillingBasis) {
@@ -83,7 +83,7 @@ public struct ConditionalOverride: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.adjustment, forKey: .adjustment)
     try container.encode(self.rebillingBasis, forKey: .rebillingBasis)

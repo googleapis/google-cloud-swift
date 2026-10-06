@@ -61,7 +61,7 @@ public struct ConnectAgentResource: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.type = try container.decodeIfPresent(TypeMeta.self, forKey: .type)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .manifest) {
@@ -73,7 +73,7 @@ public struct ConnectAgentResource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.type, forKey: .type)
     try container.encode(self.manifest, forKey: .manifest)

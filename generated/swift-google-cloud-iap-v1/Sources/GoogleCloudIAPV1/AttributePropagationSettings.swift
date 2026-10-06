@@ -97,7 +97,7 @@ public struct AttributePropagationSettings: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.expression = try container.decodeIfPresent(Swift.String.self, forKey: .expression)
     if let value = try container.decodeIfPresent(
@@ -112,7 +112,7 @@ public struct AttributePropagationSettings: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.expression, forKey: .expression)
     try container.encode(self.outputCredentials, forKey: .outputCredentials)
@@ -219,7 +219,7 @@ public struct AttributePropagationSettings: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -237,7 +237,7 @@ public struct AttributePropagationSettings: Codable, Equatable, GoogleWKT._AnyPa
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("OUTPUT_CREDENTIALS_UNSPECIFIED")

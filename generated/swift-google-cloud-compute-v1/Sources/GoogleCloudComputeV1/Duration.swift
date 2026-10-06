@@ -69,7 +69,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.nanos = try container.decodeIfPresent(Swift.Int32.self, forKey: .nanos)
       self.seconds = try container.decodeIfPresent(Swift.Int64.self, forKey: .seconds)
@@ -79,7 +79,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.nanos, forKey: .nanos)
       try container.encodeIfPresent(self.seconds, forKey: .seconds)

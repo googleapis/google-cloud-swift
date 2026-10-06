@@ -71,7 +71,7 @@ public struct CreateWorkloadOperationMetadata: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .createTime)
@@ -92,7 +92,7 @@ public struct CreateWorkloadOperationMetadata: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.displayName, forKey: .displayName)

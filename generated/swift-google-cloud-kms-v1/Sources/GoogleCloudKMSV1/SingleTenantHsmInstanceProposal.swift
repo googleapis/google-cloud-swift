@@ -163,7 +163,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -288,7 +288,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -400,7 +400,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .requiredApproverCount)
       {
@@ -420,7 +420,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.requiredApproverCount, forKey: .requiredApproverCount)
       try container.encode(self.challenges, forKey: .challenges)
@@ -507,7 +507,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Challenge].self, forKey: .requiredChallenges) {
         self.requiredChallenges = value
@@ -530,7 +530,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.requiredChallenges, forKey: .requiredChallenges)
       try container.encode(self.requiredApproverCount, forKey: .requiredApproverCount)
@@ -615,7 +615,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .requiredApproverCount)
       {
@@ -632,7 +632,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.requiredApproverCount, forKey: .requiredApproverCount)
       try container.encode(self.twoFactorPublicKeyPems, forKey: .twoFactorPublicKeyPems)
@@ -692,7 +692,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -700,7 +700,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -758,7 +758,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -766,7 +766,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -832,7 +832,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -840,7 +840,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -910,7 +910,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .twoFactorPublicKeyPem)
@@ -923,7 +923,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.twoFactorPublicKeyPem, forKey: .twoFactorPublicKeyPem)
       for (key, value) in self._unknownFields.json {
@@ -994,7 +994,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .twoFactorPublicKeyPem)
@@ -1007,7 +1007,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.twoFactorPublicKeyPem, forKey: .twoFactorPublicKeyPem)
       for (key, value) in self._unknownFields.json {
@@ -1072,7 +1072,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -1080,7 +1080,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1150,7 +1150,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -1166,7 +1166,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.twoFactorPublicKeyPem, forKey: .twoFactorPublicKeyPem)
@@ -1335,7 +1335,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1353,7 +1353,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("STATE_UNSPECIFIED")

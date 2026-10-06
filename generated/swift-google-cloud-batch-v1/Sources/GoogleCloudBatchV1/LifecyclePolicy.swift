@@ -65,7 +65,7 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(LifecyclePolicy.Action.self, forKey: .action) {
       self.action = value
@@ -78,7 +78,7 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.action, forKey: .action)
     try container.encodeIfPresent(self.actionCondition, forKey: .actionCondition)
@@ -128,7 +128,7 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .exitCodes) {
         self.exitCodes = value
@@ -139,7 +139,7 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.exitCodes, forKey: .exitCodes)
       for (key, value) in self._unknownFields.json {
@@ -245,7 +245,7 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -263,7 +263,7 @@ public struct LifecyclePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("ACTION_UNSPECIFIED")

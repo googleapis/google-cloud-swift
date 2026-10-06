@@ -162,7 +162,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         SpeechModelVariant.self, forKey: .speechModelVariant)
@@ -203,7 +203,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.speechModelVariant, forKey: .speechModelVariant)
       try container.encode(self.model, forKey: .model)
@@ -286,7 +286,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
           self.modelId = value
@@ -314,7 +314,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.modelId, forKey: .modelId)
         try container.encode(self.silenceDurationMs, forKey: .silenceDurationMs)
@@ -413,7 +413,7 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -431,7 +431,7 @@
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("START_SENSITIVITY_UNSPECIFIED")
@@ -530,7 +530,7 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -548,7 +548,7 @@
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("END_SENSITIVITY_UNSPECIFIED")

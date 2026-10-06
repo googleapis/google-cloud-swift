@@ -106,7 +106,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -153,7 +153,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.filter, forKey: .filter)
@@ -240,7 +240,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         BulkDownloadFeedbackLabelsRequest.GcsDestination.Format.self, forKey: .format)
@@ -266,7 +266,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.format, forKey: .format)
       try container.encode(self.objectUri, forKey: .objectUri)
@@ -369,7 +369,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -387,7 +387,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("FORMAT_UNSPECIFIED")
@@ -499,7 +499,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -517,7 +517,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("FEEDBACK_LABEL_TYPE_UNSPECIFIED")

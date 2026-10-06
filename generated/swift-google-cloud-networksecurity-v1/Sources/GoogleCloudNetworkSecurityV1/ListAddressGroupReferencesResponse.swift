@@ -63,7 +63,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ListAddressGroupReferencesResponse.AddressGroupReference].self,
@@ -80,7 +80,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.addressGroupReferences, forKey: .addressGroupReferences)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -137,7 +137,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .firewallPolicy) {
         self.firewallPolicy = value
@@ -154,7 +154,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.firewallPolicy, forKey: .firewallPolicy)
       try container.encode(self.securityPolicy, forKey: .securityPolicy)

@@ -26,8 +26,8 @@
   /// @Snippet(path: "firewallPoliciesQuickstart")
   public final class FirewallPoliciesClient: Clients.FirewallPoliciesProtocol, Sendable {
     let inner: any Clients.FirewallPoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `FirewallPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1028,7 +1028,7 @@
 
     public func listByItems(
       request: FirewallPoliciesClient.ListRequest
-    ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1038,7 +1038,7 @@
     /// @Snippet(path: "firewallPolicies_list")
     public func listByItems(
       request: FirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         var request = request

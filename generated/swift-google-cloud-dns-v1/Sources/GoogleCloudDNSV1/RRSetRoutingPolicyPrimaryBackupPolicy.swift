@@ -69,7 +69,7 @@ public struct RRSetRoutingPolicyPrimaryBackupPolicy: Codable, Equatable, GoogleW
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.backupGeoTargets = try container.decodeIfPresent(
       RRSetRoutingPolicyGeoPolicy.self, forKey: .backupGeoTargets)
@@ -83,7 +83,7 @@ public struct RRSetRoutingPolicyPrimaryBackupPolicy: Codable, Equatable, GoogleW
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.backupGeoTargets, forKey: .backupGeoTargets)
     try container.encodeIfPresent(self.kind, forKey: .kind)

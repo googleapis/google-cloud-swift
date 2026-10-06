@@ -64,7 +64,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [TransitionRouteGroupCoverage.Coverage].self, forKey: .coverages)
@@ -80,7 +80,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.coverages, forKey: .coverages)
       try container.encode(self.coverageScore, forKey: .coverageScore)
@@ -138,7 +138,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.routeGroup = try container.decodeIfPresent(
           TransitionRouteGroup.self, forKey: .routeGroup)
@@ -156,7 +156,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.routeGroup, forKey: .routeGroup)
         try container.encode(self.transitions, forKey: .transitions)
@@ -210,7 +210,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.transitionRoute = try container.decodeIfPresent(
             TransitionRoute.self, forKey: .transitionRoute)
@@ -223,7 +223,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.transitionRoute, forKey: .transitionRoute)
           try container.encode(self.covered, forKey: .covered)

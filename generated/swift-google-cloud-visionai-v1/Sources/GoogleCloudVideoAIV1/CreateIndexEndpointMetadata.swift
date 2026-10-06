@@ -55,7 +55,7 @@ public struct CreateIndexEndpointMetadata: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.operationMetadata = try container.decodeIfPresent(
       OperationMetadata.self, forKey: .operationMetadata)
@@ -65,7 +65,7 @@ public struct CreateIndexEndpointMetadata: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.operationMetadata, forKey: .operationMetadata)
     for (key, value) in self._unknownFields.json {

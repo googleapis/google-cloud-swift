@@ -97,7 +97,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.query = try container.decodeIfPresent(Swift.String.self, forKey: .query)
       self.title = try container.decodeIfPresent(Swift.String.self, forKey: .title)
@@ -116,7 +116,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.query, forKey: .query)
       try container.encodeIfPresent(self.title, forKey: .title)

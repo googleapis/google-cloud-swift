@@ -54,7 +54,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var config: ConfigOneOf? = nil
@@ -79,7 +79,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.config {
@@ -131,7 +131,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pubsubSubscription) {
         self.pubsubSubscription = value
@@ -142,7 +142,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.pubsubSubscription, forKey: .pubsubSubscription)
       for (key, value) in self._unknownFields.json {

@@ -60,7 +60,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [AccountDefenderAssessment.AccountDefenderLabel].self, forKey: .labels)
@@ -75,7 +75,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.accountTakeoverVerdict, forKey: .accountTakeoverVerdict)
@@ -137,7 +137,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .risk) {
         self.risk = value
@@ -158,7 +158,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.risk, forKey: .risk)
       try container.encode(self.riskReasons, forKey: .riskReasons)
@@ -219,7 +219,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         AccountDefenderAssessment.AccountRiskReason.RiskReason.self, forKey: .reason)
@@ -232,7 +232,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.reason, forKey: .reason)
       for (key, value) in self._unknownFields.json {
@@ -347,7 +347,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -365,7 +365,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("RISK_REASON_UNSPECIFIED")
@@ -433,7 +433,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         AccountDefenderAssessment.AccountTrustReason.TrustReason.self, forKey: .reason)
@@ -446,7 +446,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.reason, forKey: .reason)
       for (key, value) in self._unknownFields.json {
@@ -558,7 +558,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -576,7 +576,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("TRUST_REASON_UNSPECIFIED")
@@ -707,7 +707,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -725,7 +725,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("ACCOUNT_DEFENDER_LABEL_UNSPECIFIED")

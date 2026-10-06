@@ -133,7 +133,7 @@ public struct ManagedZone: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.cloudLoggingConfig = try container.decodeIfPresent(
       ManagedZoneCloudLoggingConfig.self, forKey: .cloudLoggingConfig)
@@ -171,7 +171,7 @@ public struct ManagedZone: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.cloudLoggingConfig, forKey: .cloudLoggingConfig)
     try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
@@ -237,13 +237,13 @@ public struct ManagedZone: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       let s = try container.decode(Swift.String.self)
       self.init(stringValue: s)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .`public`: return try container.encode("public")

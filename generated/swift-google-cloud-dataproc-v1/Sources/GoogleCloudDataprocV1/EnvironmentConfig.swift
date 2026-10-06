@@ -60,7 +60,7 @@ public struct EnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.executionConfig = try container.decodeIfPresent(
       ExecutionConfig.self, forKey: .executionConfig)
@@ -72,7 +72,7 @@ public struct EnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.executionConfig, forKey: .executionConfig)
     try container.encodeIfPresent(self.peripheralsConfig, forKey: .peripheralsConfig)

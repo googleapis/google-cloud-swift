@@ -25,8 +25,8 @@ import Foundation
 /// @Snippet(path: "managedZonesQuickstart")
 public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   let inner: any Clients.ManagedZonesStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ManagedZonesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -374,7 +374,7 @@ extension Clients.ManagedZonesProtocol {
 
   public func listByItems(
     request: ManagedZonesClient.ListRequest
-  ) -> some AsyncSequence<ManagedZone, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ManagedZone, any Swift.Error> & Sendable {
     self.listByItems(request: request, options: .init())
   }
 
@@ -383,7 +383,7 @@ extension Clients.ManagedZonesProtocol {
   /// @Snippet(path: "managedZones_list")
   public func listByItems(
     request: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ManagedZone, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ManagedZone, any Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> ManagedZonesListResponse in
       var request = request
       request.pageToken = token
@@ -395,7 +395,7 @@ extension Clients.ManagedZonesProtocol {
 
   public func listByItems(
     project: Swift.String,
-  ) -> some AsyncSequence<ManagedZone, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ManagedZone, any Swift.Error> & Sendable {
     let request = ManagedZonesClient.ListRequest().with {
       $0.project = project
     }

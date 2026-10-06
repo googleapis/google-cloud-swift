@@ -68,7 +68,7 @@ public struct LogoRecognitionAnnotation: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.entity = try container.decodeIfPresent(Entity.self, forKey: .entity)
     if let value = try container.decodeIfPresent([Track].self, forKey: .tracks) {
@@ -83,7 +83,7 @@ public struct LogoRecognitionAnnotation: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.entity, forKey: .entity)
     try container.encode(self.tracks, forKey: .tracks)

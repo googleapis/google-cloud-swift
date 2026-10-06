@@ -60,7 +60,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
@@ -70,7 +70,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.description, forKey: .description)
       try container.encodeIfPresent(self.selfLink, forKey: .selfLink)

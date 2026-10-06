@@ -58,7 +58,7 @@ public struct AcceptSpokeUpdateResponse: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.spoke = try container.decodeIfPresent(Spoke.self, forKey: .spoke)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -67,7 +67,7 @@ public struct AcceptSpokeUpdateResponse: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.spoke, forKey: .spoke)
     for (key, value) in self._unknownFields.json {

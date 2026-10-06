@@ -61,7 +61,7 @@ public struct PartialUpdateInstanceRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.instance = try container.decodeIfPresent(Instance.self, forKey: .instance)
     self.updateMask = try container.decodeIfPresent(
@@ -72,7 +72,7 @@ public struct PartialUpdateInstanceRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.instance, forKey: .instance)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

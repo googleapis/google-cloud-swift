@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionSslPoliciesQuickstart")
   public final class RegionSslPoliciesClient: Clients.RegionSslPoliciesProtocol, Sendable {
     let inner: any Clients.RegionSslPoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionSslPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -410,7 +410,7 @@
 
     public func listByItems(
       request: RegionSslPoliciesClient.ListRequest
-    ) -> some AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslPolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -420,7 +420,7 @@
     /// @Snippet(path: "regionSslPolicies_list")
     public func listByItems(
       request: RegionSslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslPolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesList in
         var request = request
@@ -434,7 +434,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslPolicy, any Swift.Error> & Sendable {
       let request = RegionSslPoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region

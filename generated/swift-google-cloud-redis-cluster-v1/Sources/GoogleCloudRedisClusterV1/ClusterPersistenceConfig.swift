@@ -66,7 +66,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       ClusterPersistenceConfig.PersistenceMode.self, forKey: .mode)
@@ -83,7 +83,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.mode, forKey: .mode)
     try container.encodeIfPresent(self.rdbConfig, forKey: .rdbConfig)
@@ -139,7 +139,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         ClusterPersistenceConfig.RDBConfig.SnapshotPeriod.self, forKey: .rdbSnapshotPeriod)
@@ -154,7 +154,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.rdbSnapshotPeriod, forKey: .rdbSnapshotPeriod)
       try container.encodeIfPresent(self.rdbSnapshotStartTime, forKey: .rdbSnapshotStartTime)
@@ -262,7 +262,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -280,7 +280,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("SNAPSHOT_PERIOD_UNSPECIFIED")
@@ -344,7 +344,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         ClusterPersistenceConfig.AOFConfig.AppendFsync.self, forKey: .appendFsync)
@@ -357,7 +357,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.appendFsync, forKey: .appendFsync)
       for (key, value) in self._unknownFields.json {
@@ -461,7 +461,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -479,7 +479,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("APPEND_FSYNC_UNSPECIFIED")
@@ -596,7 +596,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -614,7 +614,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("PERSISTENCE_MODE_UNSPECIFIED")

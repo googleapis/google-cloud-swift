@@ -194,7 +194,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -264,7 +264,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
@@ -355,7 +355,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePrivateEndpoint)
       {
@@ -377,7 +377,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enablePrivateEndpoint, forKey: .enablePrivateEndpoint)
       try container.encode(self.clusterHostname, forKey: .clusterHostname)
@@ -438,7 +438,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
         self.domain = value
@@ -449,7 +449,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.domain, forKey: .domain)
       for (key, value) in self._unknownFields.json {
@@ -507,7 +507,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .http2Enabled) {
         self.http2Enabled = value
@@ -518,7 +518,7 @@ public struct WorkstationCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.http2Enabled, forKey: .http2Enabled)
       for (key, value) in self._unknownFields.json {

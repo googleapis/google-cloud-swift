@@ -88,7 +88,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.debuggingInfo = try container.decodeIfPresent(
         CloudConversationDebuggingInfo.self, forKey: .debuggingInfo)
@@ -120,7 +120,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.debuggingInfo, forKey: .debuggingInfo)
 

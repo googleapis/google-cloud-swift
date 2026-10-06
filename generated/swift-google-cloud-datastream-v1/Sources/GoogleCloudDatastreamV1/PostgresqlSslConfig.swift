@@ -60,7 +60,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var encryptionSetting: EncryptionSettingOneOf? = nil
@@ -90,7 +90,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.encryptionSetting {
@@ -153,7 +153,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .caCertificate) {
         self.caCertificate = value
@@ -169,7 +169,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.caCertificate, forKey: .caCertificate)
       try container.encode(self.serverCertificateHostname, forKey: .serverCertificateHostname)
@@ -255,7 +255,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientCertificate) {
         self.clientCertificate = value
@@ -277,7 +277,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.clientCertificate, forKey: .clientCertificate)
       try container.encode(self.clientKey, forKey: .clientKey)

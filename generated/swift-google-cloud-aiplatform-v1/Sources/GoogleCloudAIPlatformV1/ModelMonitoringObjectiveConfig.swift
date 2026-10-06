@@ -77,7 +77,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.trainingDataset = try container.decodeIfPresent(
         ModelMonitoringObjectiveConfig.TrainingDataset.self, forKey: .trainingDataset)
@@ -95,7 +95,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.trainingDataset, forKey: .trainingDataset)
       try container.encodeIfPresent(
@@ -177,7 +177,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataFormat) {
           self.dataFormat = value
@@ -216,7 +216,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.dataFormat, forKey: .dataFormat)
         try container.encode(self.targetField, forKey: .targetField)
@@ -319,7 +319,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig].self, forKey: .skewThresholds)
@@ -340,7 +340,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.skewThresholds, forKey: .skewThresholds)
         try container.encode(
@@ -419,7 +419,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [Swift.String: GoogleCloudAIPlatformV1.ThresholdConfig].self, forKey: .driftThresholds)
@@ -440,7 +440,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.driftThresholds, forKey: .driftThresholds)
         try container.encode(
@@ -510,7 +510,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Bool.self, forKey: .enableFeatureAttributes)
@@ -526,7 +526,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.enableFeatureAttributes, forKey: .enableFeatureAttributes)
         try container.encodeIfPresent(self.explanationBaseline, forKey: .explanationBaseline)
@@ -588,7 +588,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             ModelMonitoringObjectiveConfig.ExplanationConfig.ExplanationBaseline.PredictionFormat
@@ -622,7 +622,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.predictionFormat, forKey: .predictionFormat)
 
@@ -726,7 +726,7 @@
             }
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             if let v = try? container.decode(Int.self) {
               self.init(intValue: v)
@@ -744,7 +744,7 @@
               in: container, debugDescription: "Expected enum value, must be integer or string.")
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
             case .unspecified: return try container.encode("PREDICTION_FORMAT_UNSPECIFIED")

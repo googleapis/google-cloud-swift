@@ -64,7 +64,7 @@ public struct UpdateAccessPolicyRequest: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.accessPolicy = try container.decodeIfPresent(AccessPolicy.self, forKey: .accessPolicy)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
@@ -76,7 +76,7 @@ public struct UpdateAccessPolicyRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.accessPolicy, forKey: .accessPolicy)
     try container.encode(self.validateOnly, forKey: .validateOnly)

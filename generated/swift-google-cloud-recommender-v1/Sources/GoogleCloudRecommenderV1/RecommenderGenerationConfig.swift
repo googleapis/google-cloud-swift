@@ -58,7 +58,7 @@ public struct RecommenderGenerationConfig: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.params = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .params)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -67,7 +67,7 @@ public struct RecommenderGenerationConfig: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.params, forKey: .params)
     for (key, value) in self._unknownFields.json {

@@ -76,7 +76,7 @@ public struct GenerateConfigReportRequest: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.newConfig = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .newConfig)
     self.oldConfig = try container.decodeIfPresent(GoogleWKT.WKTAny.self, forKey: .oldConfig)
@@ -86,7 +86,7 @@ public struct GenerateConfigReportRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.newConfig, forKey: .newConfig)
     try container.encodeIfPresent(self.oldConfig, forKey: .oldConfig)

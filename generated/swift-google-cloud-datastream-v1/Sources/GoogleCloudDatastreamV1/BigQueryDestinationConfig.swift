@@ -76,7 +76,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dataFreshness = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .dataFreshness)
@@ -132,7 +132,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.dataFreshness, forKey: .dataFreshness)
     try container.encodeIfPresent(self.blmtConfig, forKey: .blmtConfig)
@@ -199,7 +199,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .datasetId) {
         self.datasetId = value
@@ -210,7 +210,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.datasetId, forKey: .datasetId)
       for (key, value) in self._unknownFields.json {
@@ -276,7 +276,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.datasetTemplate = try container.decodeIfPresent(
         BigQueryDestinationConfig.SourceHierarchyDatasets.DatasetTemplate.self,
@@ -288,7 +288,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.datasetTemplate, forKey: .datasetTemplate)
       try container.encodeIfPresent(self.projectId, forKey: .projectId)
@@ -355,7 +355,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
           self.location = value
@@ -372,7 +372,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.location, forKey: .location)
         try container.encode(self.datasetIdPrefix, forKey: .datasetIdPrefix)
@@ -467,7 +467,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
         self.bucket = value
@@ -494,7 +494,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.bucket, forKey: .bucket)
       try container.encode(self.rootPath, forKey: .rootPath)
@@ -587,7 +587,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -605,7 +605,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("FILE_FORMAT_UNSPECIFIED")
@@ -697,7 +697,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -715,7 +715,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("TABLE_FORMAT_UNSPECIFIED")
@@ -769,7 +769,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -777,7 +777,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -827,7 +827,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -835,7 +835,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -31,8 +31,8 @@
   public final class ReasoningEngineServiceClient: Clients.ReasoningEngineServiceProtocol, Sendable
   {
     let inner: any Clients.ReasoningEngineServiceStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ReasoningEngineServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -455,7 +455,7 @@
 
     public func listReasoningEnginesByItems(
       request: ListReasoningEnginesRequest
-    ) -> some AsyncSequence<ReasoningEngine, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReasoningEngine, any Swift.Error> & Sendable {
       self.listReasoningEnginesByItems(request: request, options: .init())
     }
 
@@ -464,7 +464,7 @@
     /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
     public func listReasoningEnginesByItems(
       request: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ReasoningEngine, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReasoningEngine, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse in
@@ -478,7 +478,7 @@
 
     public func listReasoningEnginesByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<ReasoningEngine, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReasoningEngine, any Swift.Error> & Sendable {
       let request = ListReasoningEnginesRequest().with {
         $0.parent = parent
       }
@@ -568,7 +568,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -577,7 +577,7 @@
     /// @Snippet(path: "ReasoningEngineService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -650,7 +650,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -661,7 +661,7 @@
     /// @Snippet(path: "ReasoningEngineService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -675,7 +675,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

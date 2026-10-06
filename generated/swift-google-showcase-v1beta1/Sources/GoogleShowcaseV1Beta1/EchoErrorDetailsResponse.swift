@@ -58,7 +58,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.singleDetail = try container.decodeIfPresent(
       EchoErrorDetailsResponse.SingleDetail.self, forKey: .singleDetail)
@@ -70,7 +70,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.singleDetail, forKey: .singleDetail)
     try container.encodeIfPresent(self.multipleDetails, forKey: .multipleDetails)
@@ -115,7 +115,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.error = try container.decodeIfPresent(ErrorWithSingleDetail.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -124,7 +124,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.error, forKey: .error)
       for (key, value) in self._unknownFields.json {
@@ -179,7 +179,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.error = try container.decodeIfPresent(ErrorWithMultipleDetails.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -188,7 +188,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.error, forKey: .error)
       for (key, value) in self._unknownFields.json {

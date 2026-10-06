@@ -59,7 +59,7 @@ public struct LookupApiHubInstanceResponse: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.apiHubInstance = try container.decodeIfPresent(
       ApiHubInstance.self, forKey: .apiHubInstance)
@@ -69,7 +69,7 @@ public struct LookupApiHubInstanceResponse: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.apiHubInstance, forKey: .apiHubInstance)
     for (key, value) in self._unknownFields.json {

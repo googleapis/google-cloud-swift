@@ -73,7 +73,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer].self,
@@ -92,7 +92,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.governedContainers, forKey: .governedContainers)
     try container.encodeIfPresent(self.constraint, forKey: .constraint)
@@ -205,7 +205,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
         self.fullResourceName = value
@@ -239,7 +239,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fullResourceName, forKey: .fullResourceName)
       try container.encode(self.parent, forKey: .parent)

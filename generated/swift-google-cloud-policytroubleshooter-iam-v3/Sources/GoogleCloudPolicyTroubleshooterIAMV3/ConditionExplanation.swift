@@ -68,7 +68,7 @@ public struct ConditionExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.value = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .value)
     if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errors) {
@@ -85,7 +85,7 @@ public struct ConditionExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.value, forKey: .value)
     try container.encode(self.errors, forKey: .errors)
@@ -151,7 +151,7 @@ public struct ConditionExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .start) {
         self.start = value
@@ -169,7 +169,7 @@ public struct ConditionExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.start, forKey: .start)
       try container.encode(self.end, forKey: .end)

@@ -65,7 +65,7 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var dataObject: DataObjectOneOf? = nil
@@ -110,7 +110,7 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.dataObject {

@@ -56,7 +56,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([RagContexts.Context].self, forKey: .contexts) {
         self.contexts = value
@@ -67,7 +67,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.contexts, forKey: .contexts)
       for (key, value) in self._unknownFields.json {
@@ -142,7 +142,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceUri) {
           self.sourceUri = value
@@ -162,7 +162,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.sourceUri, forKey: .sourceUri)
         try container.encode(self.sourceDisplayName, forKey: .sourceDisplayName)

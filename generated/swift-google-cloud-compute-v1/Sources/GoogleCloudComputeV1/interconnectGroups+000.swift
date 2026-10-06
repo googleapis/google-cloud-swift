@@ -26,8 +26,8 @@
   /// @Snippet(path: "interconnectGroupsQuickstart")
   public final class InterconnectGroupsClient: Clients.InterconnectGroupsProtocol, Sendable {
     let inner: any Clients.InterconnectGroupsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InterconnectGroupsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -594,7 +594,7 @@
 
     public func listByItems(
       request: InterconnectGroupsClient.ListRequest
-    ) -> some AsyncSequence<InterconnectGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InterconnectGroup, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -603,7 +603,7 @@
     /// @Snippet(path: "interconnectGroups_list")
     public func listByItems(
       request: InterconnectGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InterconnectGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InterconnectGroup, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectGroupsListResponse in
@@ -617,7 +617,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<InterconnectGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InterconnectGroup, any Swift.Error> & Sendable {
       let request = InterconnectGroupsClient.ListRequest().with {
         $0.project = project
       }

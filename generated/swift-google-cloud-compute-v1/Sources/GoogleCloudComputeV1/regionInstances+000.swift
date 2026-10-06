@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionInstancesQuickstart")
   public final class RegionInstancesClient: Clients.RegionInstancesProtocol, Sendable {
     let inner: any Clients.RegionInstancesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionInstancesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

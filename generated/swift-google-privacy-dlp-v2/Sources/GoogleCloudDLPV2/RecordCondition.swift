@@ -56,7 +56,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.expressions = try container.decodeIfPresent(
       RecordCondition.Expressions.self, forKey: .expressions)
@@ -66,7 +66,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.expressions, forKey: .expressions)
     for (key, value) in self._unknownFields.json {
@@ -140,7 +140,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
       if let value = try container.decodeIfPresent(RelationalOperator.self, forKey: .`operator`) {
@@ -153,7 +153,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.field, forKey: .field)
       try container.encode(self.`operator`, forKey: .`operator`)
@@ -212,7 +212,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [RecordCondition.Condition].self, forKey: .conditions)
@@ -225,7 +225,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.conditions, forKey: .conditions)
       for (key, value) in self._unknownFields.json {
@@ -289,7 +289,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         RecordCondition.Expressions.LogicalOperator.self, forKey: .logicalOperator)
@@ -319,7 +319,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.logicalOperator, forKey: .logicalOperator)
 
@@ -415,7 +415,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -433,7 +433,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("LOGICAL_OPERATOR_UNSPECIFIED")

@@ -26,8 +26,8 @@
   /// @Snippet(path: "externalVpnGatewaysQuickstart")
   public final class ExternalVpnGatewaysClient: Clients.ExternalVpnGatewaysProtocol, Sendable {
     let inner: any Clients.ExternalVpnGatewaysStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ExternalVpnGatewaysClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -402,7 +402,7 @@
 
     public func listByItems(
       request: ExternalVpnGatewaysClient.ListRequest
-    ) -> some AsyncSequence<ExternalVpnGateway, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ExternalVpnGateway, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -412,7 +412,7 @@
     /// @Snippet(path: "externalVpnGateways_list")
     public func listByItems(
       request: ExternalVpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ExternalVpnGateway, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ExternalVpnGateway, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ExternalVpnGatewayList
         in
@@ -426,7 +426,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<ExternalVpnGateway, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ExternalVpnGateway, any Swift.Error> & Sendable {
       let request = ExternalVpnGatewaysClient.ListRequest().with {
         $0.project = project
       }

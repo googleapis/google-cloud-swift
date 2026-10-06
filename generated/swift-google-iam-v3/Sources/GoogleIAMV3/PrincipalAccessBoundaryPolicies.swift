@@ -30,8 +30,8 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
     .PrincipalAccessBoundaryPoliciesProtocol, Sendable
 {
   let inner: any Clients.PrincipalAccessBoundaryPoliciesStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `PrincipalAccessBoundaryPoliciesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -403,7 +403,7 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func listPrincipalAccessBoundaryPoliciesByItems(
     request: ListPrincipalAccessBoundaryPoliciesRequest
-  ) -> some AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PrincipalAccessBoundaryPolicy, any Swift.Error> & Sendable {
     self.listPrincipalAccessBoundaryPoliciesByItems(request: request, options: .init())
   }
 
@@ -412,7 +412,7 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_ListPrincipalAccessBoundaryPolicies")
   public func listPrincipalAccessBoundaryPoliciesByItems(
     request: ListPrincipalAccessBoundaryPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PrincipalAccessBoundaryPolicy, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleIAMV3.ListPrincipalAccessBoundaryPoliciesResponse in
@@ -426,7 +426,7 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func listPrincipalAccessBoundaryPoliciesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<PrincipalAccessBoundaryPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PrincipalAccessBoundaryPolicy, any Swift.Error> & Sendable {
     let request = ListPrincipalAccessBoundaryPoliciesRequest().with {
       $0.parent = parent
     }
@@ -447,7 +447,7 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func searchPrincipalAccessBoundaryPolicyBindingsByItems(
     request: SearchPrincipalAccessBoundaryPolicyBindingsRequest
-  ) -> some AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
     self.searchPrincipalAccessBoundaryPolicyBindingsByItems(request: request, options: .init())
   }
 
@@ -457,7 +457,7 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
   /// @Snippet(path: "PrincipalAccessBoundaryPolicies_SearchPrincipalAccessBoundaryPolicyBindings")
   public func searchPrincipalAccessBoundaryPolicyBindingsByItems(
     request: SearchPrincipalAccessBoundaryPolicyBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleIAMV3.SearchPrincipalAccessBoundaryPolicyBindingsResponse in
@@ -472,7 +472,7 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func searchPrincipalAccessBoundaryPolicyBindingsByItems(
     name: Swift.String,
-  ) -> some AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBinding, any Swift.Error> & Sendable {
     let request = SearchPrincipalAccessBoundaryPolicyBindingsRequest().with {
       $0.name = name
     }

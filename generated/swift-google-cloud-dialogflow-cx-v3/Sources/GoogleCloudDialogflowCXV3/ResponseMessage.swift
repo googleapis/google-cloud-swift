@@ -107,7 +107,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         ResponseMessage.ResponseType.self, forKey: .responseType)
@@ -184,7 +184,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.responseType, forKey: .responseType)
       try container.encode(self.channel, forKey: .channel)
@@ -266,7 +266,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .text) {
           self.text = value
@@ -282,7 +282,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.text, forKey: .text)
         try container.encode(self.allowPlaybackInterruption, forKey: .allowPlaybackInterruption)
@@ -357,7 +357,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.metadata = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .metadata)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -366,7 +366,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.metadata, forKey: .metadata)
         for (key, value) in self._unknownFields.json {
@@ -442,7 +442,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.metadata = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .metadata)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -451,7 +451,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.metadata, forKey: .metadata)
         for (key, value) in self._unknownFields.json {
@@ -519,7 +519,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Bool.self, forKey: .allowPlaybackInterruption)
@@ -550,7 +550,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.allowPlaybackInterruption, forKey: .allowPlaybackInterruption)
 
@@ -620,7 +620,7 @@
         static let _knownKeys: Set<Swift.String> = []
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
@@ -628,7 +628,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -692,7 +692,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audioUri) {
           self.audioUri = value
@@ -708,7 +708,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.audioUri, forKey: .audioUri)
         try container.encode(self.allowPlaybackInterruption, forKey: .allowPlaybackInterruption)
@@ -774,7 +774,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [ResponseMessage.MixedAudio.Segment].self, forKey: .segments)
@@ -787,7 +787,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.segments, forKey: .segments)
         for (key, value) in self._unknownFields.json {
@@ -843,7 +843,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             Swift.Bool.self, forKey: .allowPlaybackInterruption)
@@ -874,7 +874,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.allowPlaybackInterruption, forKey: .allowPlaybackInterruption)
 
@@ -963,7 +963,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var endpoint: EndpointOneOf? = nil
@@ -987,7 +987,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.endpoint {
@@ -1055,7 +1055,7 @@
         static let _knownKeys: Set<Swift.String> = []
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
@@ -1063,7 +1063,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1187,7 +1187,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1205,7 +1205,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("RESPONSE_TYPE_UNSPECIFIED")

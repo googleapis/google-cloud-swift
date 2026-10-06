@@ -81,7 +81,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.requestedPrivacyMetric = try container.decodeIfPresent(
       PrivacyMetric.self, forKey: .requestedPrivacyMetric)
@@ -138,7 +138,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.requestedPrivacyMetric, forKey: .requestedPrivacyMetric)
     try container.encodeIfPresent(self.requestedSourceTable, forKey: .requestedSourceTable)
@@ -214,7 +214,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.minValue = try container.decodeIfPresent(Value.self, forKey: .minValue)
       self.maxValue = try container.decodeIfPresent(Value.self, forKey: .maxValue)
@@ -227,7 +227,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.minValue, forKey: .minValue)
       try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
@@ -289,7 +289,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket].self,
@@ -303,7 +303,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(
         self.valueFrequencyHistogramBuckets, forKey: .valueFrequencyHistogramBuckets)
@@ -371,7 +371,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Int64.self, forKey: .valueFrequencyLowerBound)
@@ -398,7 +398,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.valueFrequencyLowerBound, forKey: .valueFrequencyLowerBound)
         try container.encode(self.valueFrequencyUpperBound, forKey: .valueFrequencyUpperBound)
@@ -474,7 +474,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket].self,
@@ -488,7 +488,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(
         self.equivalenceClassHistogramBuckets, forKey: .equivalenceClassHistogramBuckets)
@@ -543,7 +543,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Value].self, forKey: .quasiIdsValues) {
           self.quasiIdsValues = value
@@ -559,7 +559,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.quasiIdsValues, forKey: .quasiIdsValues)
         try container.encode(self.equivalenceClassSize, forKey: .equivalenceClassSize)
@@ -642,7 +642,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Int64.self, forKey: .equivalenceClassSizeLowerBound)
@@ -672,7 +672,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(
           self.equivalenceClassSizeLowerBound, forKey: .equivalenceClassSizeLowerBound)
@@ -750,7 +750,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityHistogramBucket].self,
@@ -764,7 +764,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(
         self.sensitiveValueFrequencyHistogramBuckets,
@@ -829,7 +829,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Value].self, forKey: .quasiIdsValues) {
           self.quasiIdsValues = value
@@ -855,7 +855,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.quasiIdsValues, forKey: .quasiIdsValues)
         try container.encode(self.equivalenceClassSize, forKey: .equivalenceClassSize)
@@ -942,7 +942,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Int64.self, forKey: .sensitiveValueFrequencyLowerBound)
@@ -972,7 +972,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(
           self.sensitiveValueFrequencyLowerBound, forKey: .sensitiveValueFrequencyLowerBound)
@@ -1057,7 +1057,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationHistogramBucket].self,
@@ -1071,7 +1071,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kMapEstimationHistogram, forKey: .kMapEstimationHistogram)
       for (key, value) in self._unknownFields.json {
@@ -1122,7 +1122,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Value].self, forKey: .quasiIdsValues) {
           self.quasiIdsValues = value
@@ -1137,7 +1137,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.quasiIdsValues, forKey: .quasiIdsValues)
         try container.encode(self.estimatedAnonymity, forKey: .estimatedAnonymity)
@@ -1225,7 +1225,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .minAnonymity) {
           self.minAnonymity = value
@@ -1251,7 +1251,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.minAnonymity, forKey: .minAnonymity)
         try container.encode(self.maxAnonymity, forKey: .maxAnonymity)
@@ -1336,7 +1336,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [
@@ -1352,7 +1352,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(
         self.deltaPresenceEstimationHistogram, forKey: .deltaPresenceEstimationHistogram)
@@ -1411,7 +1411,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Value].self, forKey: .quasiIdsValues) {
           self.quasiIdsValues = value
@@ -1427,7 +1427,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.quasiIdsValues, forKey: .quasiIdsValues)
         try container.encode(self.estimatedProbability, forKey: .estimatedProbability)
@@ -1518,7 +1518,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .minProbability) {
           self.minProbability = value
@@ -1546,7 +1546,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.minProbability, forKey: .minProbability)
         try container.encode(self.maxProbability, forKey: .maxProbability)
@@ -1620,7 +1620,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.jobConfig = try container.decodeIfPresent(RiskAnalysisJobConfig.self, forKey: .jobConfig)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -1629,7 +1629,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.jobConfig, forKey: .jobConfig)
       for (key, value) in self._unknownFields.json {

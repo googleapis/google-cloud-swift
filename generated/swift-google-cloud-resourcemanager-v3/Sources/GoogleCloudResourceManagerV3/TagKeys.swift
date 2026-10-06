@@ -28,8 +28,8 @@ import Foundation
 /// @Snippet(path: "TagKeysQuickstart")
 public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   let inner: any Clients.TagKeysStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `TagKeysClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -326,7 +326,7 @@ extension Clients.TagKeysProtocol {
 
   public func listTagKeysByItems(
     request: ListTagKeysRequest
-  ) -> some AsyncSequence<TagKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TagKey, any Swift.Error> & Sendable {
     self.listTagKeysByItems(request: request, options: .init())
   }
 
@@ -335,7 +335,7 @@ extension Clients.TagKeysProtocol {
   /// @Snippet(path: "TagKeys_ListTagKeys")
   public func listTagKeysByItems(
     request: ListTagKeysRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<TagKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TagKey, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudResourceManagerV3.ListTagKeysResponse in
@@ -349,7 +349,7 @@ extension Clients.TagKeysProtocol {
 
   public func listTagKeysByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<TagKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TagKey, any Swift.Error> & Sendable {
     let request = ListTagKeysRequest().with {
       $0.parent = parent
     }

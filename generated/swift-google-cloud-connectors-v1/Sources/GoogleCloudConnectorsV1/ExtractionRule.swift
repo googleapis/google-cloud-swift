@@ -61,7 +61,7 @@ public struct ExtractionRule: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.source = try container.decodeIfPresent(ExtractionRule.Source.self, forKey: .source)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .extractionRegex) {
@@ -73,7 +73,7 @@ public struct ExtractionRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.source, forKey: .source)
     try container.encode(self.extractionRegex, forKey: .extractionRegex)
@@ -125,7 +125,7 @@ public struct ExtractionRule: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         ExtractionRule.SourceType.self, forKey: .sourceType)
@@ -141,7 +141,7 @@ public struct ExtractionRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sourceType, forKey: .sourceType)
       try container.encode(self.fieldId, forKey: .fieldId)
@@ -242,7 +242,7 @@ public struct ExtractionRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -260,7 +260,7 @@ public struct ExtractionRule: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("SOURCE_TYPE_UNSPECIFIED")

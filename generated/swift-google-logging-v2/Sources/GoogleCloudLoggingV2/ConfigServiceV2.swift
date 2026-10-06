@@ -27,8 +27,8 @@ import Foundation
 /// @Snippet(path: "ConfigServiceV2Quickstart")
 public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Sendable {
   let inner: any Clients.ConfigServiceV2Stub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ConfigServiceV2Client` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -821,7 +821,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listBucketsByItems(
     request: ListBucketsRequest
-  ) -> some AsyncSequence<LogBucket, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogBucket, any Swift.Error> & Sendable {
     self.listBucketsByItems(request: request, options: .init())
   }
 
@@ -830,7 +830,7 @@ extension Clients.ConfigServiceV2Protocol {
   /// @Snippet(path: "ConfigServiceV2_ListBuckets")
   public func listBucketsByItems(
     request: ListBucketsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<LogBucket, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogBucket, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListBucketsResponse in
       var request = request
@@ -843,7 +843,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listBucketsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<LogBucket, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogBucket, any Swift.Error> & Sendable {
     let request = ListBucketsRequest().with {
       $0.parent = parent
     }
@@ -966,7 +966,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listViewsByItems(
     request: ListViewsRequest
-  ) -> some AsyncSequence<LogView, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogView, any Swift.Error> & Sendable {
     self.listViewsByItems(request: request, options: .init())
   }
 
@@ -975,7 +975,7 @@ extension Clients.ConfigServiceV2Protocol {
   /// @Snippet(path: "ConfigServiceV2_ListViews")
   public func listViewsByItems(
     request: ListViewsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<LogView, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogView, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListViewsResponse in
       var request = request
@@ -988,7 +988,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listViewsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<LogView, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogView, any Swift.Error> & Sendable {
     let request = ListViewsRequest().with {
       $0.parent = parent
     }
@@ -1049,7 +1049,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listSinksByItems(
     request: ListSinksRequest
-  ) -> some AsyncSequence<LogSink, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogSink, any Swift.Error> & Sendable {
     self.listSinksByItems(request: request, options: .init())
   }
 
@@ -1058,7 +1058,7 @@ extension Clients.ConfigServiceV2Protocol {
   /// @Snippet(path: "ConfigServiceV2_ListSinks")
   public func listSinksByItems(
     request: ListSinksRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<LogSink, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogSink, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListSinksResponse in
       var request = request
@@ -1071,7 +1071,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listSinksByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<LogSink, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogSink, any Swift.Error> & Sendable {
     let request = ListSinksRequest().with {
       $0.parent = parent
     }
@@ -1247,7 +1247,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listLinksByItems(
     request: ListLinksRequest
-  ) -> some AsyncSequence<Link, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Link, any Swift.Error> & Sendable {
     self.listLinksByItems(request: request, options: .init())
   }
 
@@ -1256,7 +1256,7 @@ extension Clients.ConfigServiceV2Protocol {
   /// @Snippet(path: "ConfigServiceV2_ListLinks")
   public func listLinksByItems(
     request: ListLinksRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Link, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Link, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLinksResponse in
       var request = request
@@ -1269,7 +1269,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listLinksByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Link, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Link, any Swift.Error> & Sendable {
     let request = ListLinksRequest().with {
       $0.parent = parent
     }
@@ -1309,7 +1309,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listExclusionsByItems(
     request: ListExclusionsRequest
-  ) -> some AsyncSequence<LogExclusion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogExclusion, any Swift.Error> & Sendable {
     self.listExclusionsByItems(request: request, options: .init())
   }
 
@@ -1318,7 +1318,7 @@ extension Clients.ConfigServiceV2Protocol {
   /// @Snippet(path: "ConfigServiceV2_ListExclusions")
   public func listExclusionsByItems(
     request: ListExclusionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<LogExclusion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogExclusion, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListExclusionsResponse in
       var request = request
@@ -1331,7 +1331,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listExclusionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<LogExclusion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogExclusion, any Swift.Error> & Sendable {
     let request = ListExclusionsRequest().with {
       $0.parent = parent
     }
@@ -1531,7 +1531,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1542,7 +1542,7 @@ extension Clients.ConfigServiceV2Protocol {
   /// @Snippet(path: "ConfigServiceV2_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1556,7 +1556,7 @@ extension Clients.ConfigServiceV2Protocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

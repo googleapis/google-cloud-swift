@@ -60,7 +60,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.totalAllocatedIp = try container.decodeIfPresent(Uint128.self, forKey: .totalAllocatedIp)
       self.totalFreeIp = try container.decodeIfPresent(Uint128.self, forKey: .totalFreeIp)
@@ -70,7 +70,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.totalAllocatedIp, forKey: .totalAllocatedIp)
       try container.encodeIfPresent(self.totalFreeIp, forKey: .totalFreeIp)

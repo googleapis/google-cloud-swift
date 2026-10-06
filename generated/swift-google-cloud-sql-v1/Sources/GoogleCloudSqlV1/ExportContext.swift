@@ -115,7 +115,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
         self.uri = value
@@ -144,7 +144,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uri, forKey: .uri)
       try container.encode(self.databases, forKey: .databases)
@@ -220,7 +220,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selectQuery) {
           self.selectQuery = value
@@ -245,7 +245,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.selectQuery, forKey: .selectQuery)
         try container.encode(self.escapeCharacter, forKey: .escapeCharacter)
@@ -331,7 +331,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .tables) {
           self.tables = value
@@ -351,7 +351,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.tables, forKey: .tables)
         try container.encodeIfPresent(self.schemaOnly, forKey: .schemaOnly)
@@ -407,7 +407,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.masterData = try container.decodeIfPresent(
             GoogleWKT.WKTInt32Value.self, forKey: .masterData)
@@ -417,7 +417,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.masterData, forKey: .masterData)
           for (key, value) in self._unknownFields.json {
@@ -483,7 +483,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.clean = try container.decodeIfPresent(GoogleWKT.WKTBoolValue.self, forKey: .clean)
           self.ifExists = try container.decodeIfPresent(
@@ -494,7 +494,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.clean, forKey: .clean)
           try container.encodeIfPresent(self.ifExists, forKey: .ifExists)
@@ -609,7 +609,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.striped = try container.decodeIfPresent(GoogleWKT.WKTBoolValue.self, forKey: .striped)
         self.stripeCount = try container.decodeIfPresent(
@@ -634,7 +634,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.striped, forKey: .striped)
         try container.encodeIfPresent(self.stripeCount, forKey: .stripeCount)
@@ -718,7 +718,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .certificatePath) {
           self.certificatePath = value
@@ -739,7 +739,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.certificatePath, forKey: .certificatePath)
         try container.encode(self.privateKeyPath, forKey: .privateKeyPath)

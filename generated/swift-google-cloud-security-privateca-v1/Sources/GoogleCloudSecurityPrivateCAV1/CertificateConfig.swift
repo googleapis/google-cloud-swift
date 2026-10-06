@@ -89,7 +89,7 @@ public struct CertificateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.subjectConfig = try container.decodeIfPresent(
       CertificateConfig.SubjectConfig.self, forKey: .subjectConfig)
@@ -103,7 +103,7 @@ public struct CertificateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.subjectConfig, forKey: .subjectConfig)
     try container.encodeIfPresent(self.x509Config, forKey: .x509Config)
@@ -159,7 +159,7 @@ public struct CertificateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.subject = try container.decodeIfPresent(Subject.self, forKey: .subject)
       self.subjectAltName = try container.decodeIfPresent(
@@ -170,7 +170,7 @@ public struct CertificateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.subject, forKey: .subject)
       try container.encodeIfPresent(self.subjectAltName, forKey: .subjectAltName)
@@ -231,7 +231,7 @@ public struct CertificateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyId) {
         self.keyId = value
@@ -242,7 +242,7 @@ public struct CertificateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.keyId, forKey: .keyId)
       for (key, value) in self._unknownFields.json {

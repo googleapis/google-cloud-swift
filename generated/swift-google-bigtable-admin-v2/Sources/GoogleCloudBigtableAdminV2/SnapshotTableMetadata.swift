@@ -70,7 +70,7 @@ public struct SnapshotTableMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.originalRequest = try container.decodeIfPresent(
       SnapshotTableRequest.self, forKey: .originalRequest)
@@ -84,7 +84,7 @@ public struct SnapshotTableMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.originalRequest, forKey: .originalRequest)
     try container.encodeIfPresent(self.requestTime, forKey: .requestTime)

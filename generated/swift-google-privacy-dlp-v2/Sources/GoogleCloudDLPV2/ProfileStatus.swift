@@ -62,7 +62,7 @@ public struct ProfileStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
     self.timestamp = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .timestamp)
@@ -72,7 +72,7 @@ public struct ProfileStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.status, forKey: .status)
     try container.encodeIfPresent(self.timestamp, forKey: .timestamp)

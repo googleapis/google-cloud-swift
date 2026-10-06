@@ -169,7 +169,7 @@ extension Clients.CloudApiRegistryProtocol {
 
   public func listMcpServersByItems(
     request: ListMcpServersRequest
-  ) -> some AsyncSequence<McpServer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<McpServer, any Swift.Error> & Sendable {
     self.listMcpServersByItems(request: request, options: .init())
   }
 
@@ -178,7 +178,7 @@ extension Clients.CloudApiRegistryProtocol {
   /// @Snippet(path: "CloudApiRegistry_ListMcpServers")
   public func listMcpServersByItems(
     request: ListMcpServersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<McpServer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<McpServer, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudApiRegistryV1.ListMcpServersResponse in
@@ -192,7 +192,7 @@ extension Clients.CloudApiRegistryProtocol {
 
   public func listMcpServersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<McpServer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<McpServer, any Swift.Error> & Sendable {
     let request = ListMcpServersRequest().with {
       $0.parent = parent
     }
@@ -234,7 +234,7 @@ extension Clients.CloudApiRegistryProtocol {
 
   public func listMcpToolsByItems(
     request: ListMcpToolsRequest
-  ) -> some AsyncSequence<McpTool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<McpTool, any Swift.Error> & Sendable {
     self.listMcpToolsByItems(request: request, options: .init())
   }
 
@@ -243,7 +243,7 @@ extension Clients.CloudApiRegistryProtocol {
   /// @Snippet(path: "CloudApiRegistry_ListMcpTools")
   public func listMcpToolsByItems(
     request: ListMcpToolsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<McpTool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<McpTool, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudApiRegistryV1.ListMcpToolsResponse
       in
@@ -257,7 +257,7 @@ extension Clients.CloudApiRegistryProtocol {
 
   public func listMcpToolsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<McpTool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<McpTool, any Swift.Error> & Sendable {
     let request = ListMcpToolsRequest().with {
       $0.parent = parent
     }
@@ -278,7 +278,7 @@ extension Clients.CloudApiRegistryProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -287,7 +287,7 @@ extension Clients.CloudApiRegistryProtocol {
   /// @Snippet(path: "CloudApiRegistry_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

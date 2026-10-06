@@ -76,7 +76,7 @@ extension DnsKeysClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -96,7 +96,7 @@ extension DnsKeysClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encodeIfPresent(self.digestType, forKey: .digestType)
@@ -177,7 +177,7 @@ extension DnsKeysClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.digestType = try container.decodeIfPresent(Swift.String.self, forKey: .digestType)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .managedZone) {
@@ -194,7 +194,7 @@ extension DnsKeysClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.digestType, forKey: .digestType)
       try container.encode(self.managedZone, forKey: .managedZone)

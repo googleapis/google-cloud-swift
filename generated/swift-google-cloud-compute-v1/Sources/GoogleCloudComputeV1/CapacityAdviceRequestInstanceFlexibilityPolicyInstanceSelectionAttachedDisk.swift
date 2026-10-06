@@ -58,7 +58,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.type = try container.decodeIfPresent(
         CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk.Type_.self,
@@ -69,7 +69,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.type, forKey: .type)
       for (key, value) in self._unknownFields.json {
@@ -121,13 +121,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .diskTypeUnspecified: return try container.encode("DISK_TYPE_UNSPECIFIED")

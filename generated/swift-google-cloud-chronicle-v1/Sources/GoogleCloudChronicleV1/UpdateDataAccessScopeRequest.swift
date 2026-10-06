@@ -68,7 +68,7 @@ public struct UpdateDataAccessScopeRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dataAccessScope = try container.decodeIfPresent(
       DataAccessScope.self, forKey: .dataAccessScope)
@@ -80,7 +80,7 @@ public struct UpdateDataAccessScopeRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.dataAccessScope, forKey: .dataAccessScope)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

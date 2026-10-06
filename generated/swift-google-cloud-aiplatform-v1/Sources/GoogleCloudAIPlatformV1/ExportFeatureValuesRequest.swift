@@ -83,7 +83,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
         self.entityType = value
@@ -125,7 +125,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entityType, forKey: .entityType)
       try container.encodeIfPresent(self.destination, forKey: .destination)
@@ -193,7 +193,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.snapshotTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .snapshotTime)
@@ -205,7 +205,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.snapshotTime, forKey: .snapshotTime)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
@@ -274,7 +274,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -285,7 +285,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encodeIfPresent(self.endTime, forKey: .endTime)

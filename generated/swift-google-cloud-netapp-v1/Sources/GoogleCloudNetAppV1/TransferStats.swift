@@ -92,7 +92,7 @@ public struct TransferStats: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.transferBytes = try container.decodeIfPresent(Swift.Int64.self, forKey: .transferBytes)
     self.totalTransferDuration = try container.decodeIfPresent(
@@ -115,7 +115,7 @@ public struct TransferStats: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.transferBytes, forKey: .transferBytes)
     try container.encodeIfPresent(self.totalTransferDuration, forKey: .totalTransferDuration)

@@ -61,7 +61,7 @@ public struct ExecuteSqlResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([SqlResult].self, forKey: .sqlResults) {
       self.sqlResults = value
@@ -73,7 +73,7 @@ public struct ExecuteSqlResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sqlResults, forKey: .sqlResults)
     try container.encodeIfPresent(self.metadata, forKey: .metadata)

@@ -63,7 +63,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [SpeechAdaptation.AdaptationPhraseSet].self, forKey: .phraseSets)
@@ -79,7 +79,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.phraseSets, forKey: .phraseSets)
     try container.encode(self.customClasses, forKey: .customClasses)
@@ -128,7 +128,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var value: ValueOneOf? = nil
@@ -156,7 +156,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.value {

@@ -26,8 +26,8 @@
   /// @Snippet(path: "projectsQuickstart")
   public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
     let inner: any Clients.ProjectsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ProjectsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -988,7 +988,7 @@
 
     public func getXpnResourcesByItems(
       request: ProjectsClient.GetXpnResourcesRequest
-    ) -> some AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<XpnResourceId, any Swift.Error> & Sendable {
       self.getXpnResourcesByItems(request: request, options: .init())
     }
 
@@ -998,7 +998,7 @@
     /// @Snippet(path: "projects_getXpnResources")
     public func getXpnResourcesByItems(
       request: ProjectsClient.GetXpnResourcesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<XpnResourceId, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ProjectsGetXpnResources
         in
@@ -1012,7 +1012,7 @@
 
     public func getXpnResourcesByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<XpnResourceId, any Swift.Error> & Sendable {
       let request = ProjectsClient.GetXpnResourcesRequest().with {
         $0.project = project
       }
@@ -1033,7 +1033,7 @@
 
     public func listXpnHostsByItems(
       request: ProjectsClient.ListXpnHostsRequest
-    ) -> some AsyncSequence<Project, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Project, any Swift.Error> & Sendable {
       self.listXpnHostsByItems(request: request, options: .init())
     }
 
@@ -1042,7 +1042,7 @@
     /// @Snippet(path: "projects_listXpnHosts")
     public func listXpnHostsByItems(
       request: ProjectsClient.ListXpnHostsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Project, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Project, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.XpnHostList in
         var request = request
@@ -1056,7 +1056,7 @@
     public func listXpnHostsByItems(
       project: Swift.String,
       body: ProjectsListXpnHostsRequest?,
-    ) -> some AsyncSequence<Project, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Project, any Swift.Error> & Sendable {
       let request = ProjectsClient.ListXpnHostsRequest().with {
         $0.project = project
         $0.body = body

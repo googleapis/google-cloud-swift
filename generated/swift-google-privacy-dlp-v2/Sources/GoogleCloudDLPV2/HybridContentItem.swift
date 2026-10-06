@@ -61,7 +61,7 @@ public struct HybridContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.item = try container.decodeIfPresent(ContentItem.self, forKey: .item)
     self.findingDetails = try container.decodeIfPresent(
@@ -72,7 +72,7 @@ public struct HybridContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.item, forKey: .item)
     try container.encodeIfPresent(self.findingDetails, forKey: .findingDetails)

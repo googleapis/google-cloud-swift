@@ -91,7 +91,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.ocrConfig = try container.decodeIfPresent(OcrConfig.self, forKey: .ocrConfig)
     self.layoutConfig = try container.decodeIfPresent(
@@ -127,7 +127,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.ocrConfig, forKey: .ocrConfig)
     try container.encodeIfPresent(self.layoutConfig, forKey: .layoutConfig)
@@ -207,7 +207,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.chunkingConfig = try container.decodeIfPresent(
         ProcessOptions.LayoutConfig.ChunkingConfig.self, forKey: .chunkingConfig)
@@ -231,7 +231,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.chunkingConfig, forKey: .chunkingConfig)
       try container.encode(self.returnImages, forKey: .returnImages)
@@ -287,7 +287,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .chunkSize) {
           self.chunkSize = value
@@ -303,7 +303,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.chunkSize, forKey: .chunkSize)
         try container.encode(self.includeAncestorHeadings, forKey: .includeAncestorHeadings)
@@ -373,7 +373,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.Int32].self, forKey: .pages) {
         self.pages = value
@@ -384,7 +384,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.pages, forKey: .pages)
       for (key, value) in self._unknownFields.json {

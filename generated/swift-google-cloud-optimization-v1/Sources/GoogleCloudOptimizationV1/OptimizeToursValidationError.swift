@@ -333,7 +333,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .code) {
       self.code = value
@@ -358,7 +358,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.code, forKey: .code)
     try container.encode(self.displayName, forKey: .displayName)
@@ -427,7 +427,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -458,7 +458,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encodeIfPresent(self.subField, forKey: .subField)

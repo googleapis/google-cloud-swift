@@ -84,7 +84,7 @@ public struct UpdateCertificateAuthorityRequest: Codable, Equatable, GoogleWKT._
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.certificateAuthority = try container.decodeIfPresent(
       CertificateAuthority.self, forKey: .certificateAuthority)
@@ -99,7 +99,7 @@ public struct UpdateCertificateAuthorityRequest: Codable, Equatable, GoogleWKT._
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.certificateAuthority, forKey: .certificateAuthority)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

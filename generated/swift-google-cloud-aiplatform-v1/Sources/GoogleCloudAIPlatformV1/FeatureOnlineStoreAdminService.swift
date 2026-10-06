@@ -33,8 +33,8 @@
       .FeatureOnlineStoreAdminServiceProtocol, Sendable
   {
     let inner: any Clients.FeatureOnlineStoreAdminServiceStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `FeatureOnlineStoreAdminServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -672,7 +672,7 @@
 
     public func listFeatureOnlineStoresByItems(
       request: ListFeatureOnlineStoresRequest
-    ) -> some AsyncSequence<FeatureOnlineStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FeatureOnlineStore, any Swift.Error> & Sendable {
       self.listFeatureOnlineStoresByItems(request: request, options: .init())
     }
 
@@ -681,7 +681,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListFeatureOnlineStores")
     public func listFeatureOnlineStoresByItems(
       request: ListFeatureOnlineStoresRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<FeatureOnlineStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FeatureOnlineStore, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListFeatureOnlineStoresResponse in
@@ -695,7 +695,7 @@
 
     public func listFeatureOnlineStoresByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<FeatureOnlineStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FeatureOnlineStore, any Swift.Error> & Sendable {
       let request = ListFeatureOnlineStoresRequest().with {
         $0.parent = parent
       }
@@ -845,7 +845,7 @@
 
     public func listFeatureViewsByItems(
       request: ListFeatureViewsRequest
-    ) -> some AsyncSequence<FeatureView, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FeatureView, any Swift.Error> & Sendable {
       self.listFeatureViewsByItems(request: request, options: .init())
     }
 
@@ -854,7 +854,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListFeatureViews")
     public func listFeatureViewsByItems(
       request: ListFeatureViewsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<FeatureView, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FeatureView, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListFeatureViewsResponse in
@@ -868,7 +868,7 @@
 
     public func listFeatureViewsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<FeatureView, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FeatureView, any Swift.Error> & Sendable {
       let request = ListFeatureViewsRequest().with {
         $0.parent = parent
       }
@@ -997,7 +997,7 @@
 
     public func listFeatureViewSyncsByItems(
       request: ListFeatureViewSyncsRequest
-    ) -> some AsyncSequence<FeatureViewSync, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FeatureViewSync, any Swift.Error> & Sendable {
       self.listFeatureViewSyncsByItems(request: request, options: .init())
     }
 
@@ -1006,7 +1006,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListFeatureViewSyncs")
     public func listFeatureViewSyncsByItems(
       request: ListFeatureViewSyncsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<FeatureViewSync, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FeatureViewSync, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListFeatureViewSyncsResponse in
@@ -1020,7 +1020,7 @@
 
     public func listFeatureViewSyncsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<FeatureViewSync, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FeatureViewSync, any Swift.Error> & Sendable {
       let request = ListFeatureViewSyncsRequest().with {
         $0.parent = parent
       }
@@ -1041,7 +1041,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -1050,7 +1050,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -1123,7 +1123,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -1134,7 +1134,7 @@
     /// @Snippet(path: "FeatureOnlineStoreAdminService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -1148,7 +1148,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

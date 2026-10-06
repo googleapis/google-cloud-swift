@@ -183,7 +183,7 @@
 
     public func listByItems(
       request: RegionOperationsClient.ListRequest
-    ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -193,7 +193,7 @@
     /// @Snippet(path: "regionOperations_list")
     public func listByItems(
       request: RegionOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
         var request = request
@@ -207,7 +207,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
       let request = RegionOperationsClient.ListRequest().with {
         $0.project = project
         $0.region = region

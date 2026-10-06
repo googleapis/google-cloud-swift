@@ -79,7 +79,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.summary = try container.decodeIfPresent(
         GenerateStatelessSummaryResponse.Summary.self, forKey: .summary)
@@ -95,7 +95,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.summary, forKey: .summary)
       try container.encode(self.latestMessage, forKey: .latestMessage)
@@ -156,7 +156,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .text) {
           self.text = value
@@ -177,7 +177,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.text, forKey: .text)
         try container.encode(self.textSections, forKey: .textSections)

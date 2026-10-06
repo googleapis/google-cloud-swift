@@ -66,7 +66,7 @@ extension ManagedZonesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -80,7 +80,7 @@ extension ManagedZonesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.project, forKey: .project)
@@ -149,7 +149,7 @@ extension ManagedZonesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -165,7 +165,7 @@ extension ManagedZonesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.managedZone, forKey: .managedZone)
@@ -234,7 +234,7 @@ extension ManagedZonesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -250,7 +250,7 @@ extension ManagedZonesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.managedZone, forKey: .managedZone)
@@ -314,7 +314,7 @@ extension ManagedZonesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
         self.resource = value
@@ -326,7 +326,7 @@ extension ManagedZonesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.resource, forKey: .resource)
       try container.encodeIfPresent(self.body, forKey: .body)
@@ -399,7 +399,7 @@ extension ManagedZonesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.dnsName = try container.decodeIfPresent(Swift.String.self, forKey: .dnsName)
       self.maxResults = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResults)
@@ -413,7 +413,7 @@ extension ManagedZonesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.dnsName, forKey: .dnsName)
       try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
@@ -488,7 +488,7 @@ extension ManagedZonesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -505,7 +505,7 @@ extension ManagedZonesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.managedZone, forKey: .managedZone)
@@ -570,7 +570,7 @@ extension ManagedZonesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
         self.resource = value
@@ -582,7 +582,7 @@ extension ManagedZonesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.resource, forKey: .resource)
       try container.encodeIfPresent(self.body, forKey: .body)
@@ -645,7 +645,7 @@ extension ManagedZonesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resource) {
         self.resource = value
@@ -658,7 +658,7 @@ extension ManagedZonesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.resource, forKey: .resource)
       try container.encodeIfPresent(self.body, forKey: .body)
@@ -731,7 +731,7 @@ extension ManagedZonesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -748,7 +748,7 @@ extension ManagedZonesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.managedZone, forKey: .managedZone)

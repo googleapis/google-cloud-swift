@@ -77,7 +77,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [SqlInstancesExecuteSqlResponse.Message].self, forKey: .messages)
@@ -95,7 +95,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.messages, forKey: .messages)
       try container.encodeIfPresent(self.metadata, forKey: .metadata)
@@ -153,7 +153,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
         self.severity = try container.decodeIfPresent(Swift.String.self, forKey: .severity)
@@ -163,7 +163,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.message, forKey: .message)
         try container.encodeIfPresent(self.severity, forKey: .severity)

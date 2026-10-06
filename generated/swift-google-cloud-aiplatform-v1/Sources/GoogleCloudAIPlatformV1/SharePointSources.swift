@@ -56,7 +56,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [SharePointSources.SharePointSource].self, forKey: .sharePointSources)
@@ -69,7 +69,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sharePointSources, forKey: .sharePointSources)
       for (key, value) in self._unknownFields.json {
@@ -152,7 +152,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
           self.clientId = value
@@ -215,7 +215,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.clientId, forKey: .clientId)
         try container.encodeIfPresent(self.clientSecret, forKey: .clientSecret)

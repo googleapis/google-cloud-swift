@@ -55,7 +55,7 @@ public struct GoogleIamV1GetPolicyOptions: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.requestedPolicyVersion = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .requestedPolicyVersion)
@@ -65,7 +65,7 @@ public struct GoogleIamV1GetPolicyOptions: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.requestedPolicyVersion, forKey: .requestedPolicyVersion)
     for (key, value) in self._unknownFields.json {

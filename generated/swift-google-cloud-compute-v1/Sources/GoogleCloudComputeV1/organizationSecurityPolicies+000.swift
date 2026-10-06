@@ -28,8 +28,8 @@
       .OrganizationSecurityPoliciesProtocol, Sendable
   {
     let inner: any Clients.OrganizationSecurityPoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `OrganizationSecurityPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1135,7 +1135,7 @@
 
     public func listByItems(
       request: OrganizationSecurityPoliciesClient.ListRequest
-    ) -> some AsyncSequence<SecurityPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SecurityPolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1149,7 +1149,7 @@
     /// @Snippet(path: "organizationSecurityPolicies_list")
     public func listByItems(
       request: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<SecurityPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SecurityPolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
         var request = request

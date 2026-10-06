@@ -60,7 +60,7 @@ public struct AutoMlImageClassification: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.inputs = try container.decodeIfPresent(
       AutoMlImageClassificationInputs.self, forKey: .inputs)
@@ -72,7 +72,7 @@ public struct AutoMlImageClassification: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.inputs, forKey: .inputs)
     try container.encodeIfPresent(self.metadata, forKey: .metadata)

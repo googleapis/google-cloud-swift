@@ -103,7 +103,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -126,7 +126,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encodeIfPresent(self.query, forKey: .query)
@@ -178,7 +178,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [StreamAssistRequest.AgentsSpec.AgentSpec].self, forKey: .agentSpecs)
@@ -191,7 +191,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.agentSpecs, forKey: .agentSpecs)
         for (key, value) in self._unknownFields.json {
@@ -241,7 +241,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentId) {
             self.agentId = value
@@ -252,7 +252,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.agentId, forKey: .agentId)
           for (key, value) in self._unknownFields.json {
@@ -340,7 +340,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.vertexAiSearchSpec = try container.decodeIfPresent(
           StreamAssistRequest.ToolsSpec.VertexAiSearchSpec.self, forKey: .vertexAiSearchSpec)
@@ -356,7 +356,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.vertexAiSearchSpec, forKey: .vertexAiSearchSpec)
         try container.encodeIfPresent(self.webGroundingSpec, forKey: .webGroundingSpec)
@@ -431,7 +431,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [SearchRequest.DataStoreSpec].self, forKey: .dataStoreSpecs)
@@ -447,7 +447,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.dataStoreSpecs, forKey: .dataStoreSpecs)
           try container.encode(self.filter, forKey: .filter)
@@ -499,7 +499,7 @@
           static let _knownKeys: Set<Swift.String> = []
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
@@ -507,7 +507,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -557,7 +557,7 @@
           static let _knownKeys: Set<Swift.String> = []
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
@@ -565,7 +565,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -615,7 +615,7 @@
           static let _knownKeys: Set<Swift.String> = []
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
@@ -623,7 +623,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -694,7 +694,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
           self.modelId = value
@@ -705,7 +705,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.modelId, forKey: .modelId)
         for (key, value) in self._unknownFields.json {

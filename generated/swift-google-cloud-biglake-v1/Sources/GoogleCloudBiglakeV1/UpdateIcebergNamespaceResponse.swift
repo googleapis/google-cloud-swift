@@ -66,7 +66,7 @@ public struct UpdateIcebergNamespaceResponse: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .removed) {
       self.removed = value
@@ -83,7 +83,7 @@ public struct UpdateIcebergNamespaceResponse: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.removed, forKey: .removed)
     try container.encode(self.updated, forKey: .updated)

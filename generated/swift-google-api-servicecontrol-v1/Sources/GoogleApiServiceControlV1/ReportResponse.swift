@@ -79,7 +79,7 @@ public struct ReportResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ReportResponse.ReportError].self, forKey: .reportErrors)
@@ -98,7 +98,7 @@ public struct ReportResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.reportErrors, forKey: .reportErrors)
     try container.encode(self.serviceConfigId, forKey: .serviceConfigId)
@@ -161,7 +161,7 @@ public struct ReportResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .operationId) {
         self.operationId = value
@@ -173,7 +173,7 @@ public struct ReportResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.operationId, forKey: .operationId)
       try container.encodeIfPresent(self.status, forKey: .status)

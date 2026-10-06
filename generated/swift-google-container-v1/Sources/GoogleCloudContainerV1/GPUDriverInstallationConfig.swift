@@ -56,7 +56,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.gpuDriverVersion = try container.decodeIfPresent(
       GPUDriverInstallationConfig.GPUDriverVersion.self, forKey: .gpuDriverVersion)
@@ -66,7 +66,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.gpuDriverVersion, forKey: .gpuDriverVersion)
     for (key, value) in self._unknownFields.json {
@@ -167,7 +167,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -185,7 +185,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("GPU_DRIVER_VERSION_UNSPECIFIED")

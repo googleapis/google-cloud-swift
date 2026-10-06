@@ -58,7 +58,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
       self.scope = try container.decodeIfPresent(NetworkProfileLocation.Scope.self, forKey: .scope)
@@ -68,7 +68,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.name, forKey: .name)
       try container.encodeIfPresent(self.scope, forKey: .scope)
@@ -119,13 +119,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .region: return try container.encode("REGION")

@@ -61,7 +61,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Disk].self, forKey: .disks) {
         self.disks = value
@@ -73,7 +73,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.disks, forKey: .disks)
       try container.encodeIfPresent(self.warning, forKey: .warning)
@@ -141,7 +141,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.code = try container.decodeIfPresent(DisksScopedList.Warning.Code.self, forKey: .code)
         if let value = try container.decodeIfPresent(
@@ -156,7 +156,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encode(self.data, forKey: .data)
@@ -217,7 +217,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.key = try container.decodeIfPresent(Swift.String.self, forKey: .key)
           self.value = try container.decodeIfPresent(Swift.String.self, forKey: .value)
@@ -227,7 +227,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.key, forKey: .key)
           try container.encodeIfPresent(self.value, forKey: .value)
@@ -423,13 +423,13 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           let s = try container.decode(Swift.String.self)
           self.init(stringValue: s)
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .cleanupFailed: return try container.encode("CLEANUP_FAILED")

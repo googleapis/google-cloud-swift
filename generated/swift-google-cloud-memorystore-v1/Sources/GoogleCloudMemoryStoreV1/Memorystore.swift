@@ -28,8 +28,8 @@ import Foundation
 /// @Snippet(path: "MemorystoreQuickstart")
 public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   let inner: any Clients.MemorystoreStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `MemorystoreClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -991,7 +991,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listInstancesByItems(
     request: ListInstancesRequest
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     self.listInstancesByItems(request: request, options: .init())
   }
 
@@ -1000,7 +1000,7 @@ extension Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListInstances")
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse
       in
@@ -1014,7 +1014,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listInstancesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
@@ -1238,7 +1238,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listBackupCollectionsByItems(
     request: ListBackupCollectionsRequest
-  ) -> some AsyncSequence<BackupCollection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BackupCollection, any Swift.Error> & Sendable {
     self.listBackupCollectionsByItems(request: request, options: .init())
   }
 
@@ -1251,7 +1251,7 @@ extension Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListBackupCollections")
   public func listBackupCollectionsByItems(
     request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<BackupCollection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BackupCollection, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse in
@@ -1265,7 +1265,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listBackupCollectionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<BackupCollection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BackupCollection, any Swift.Error> & Sendable {
     let request = ListBackupCollectionsRequest().with {
       $0.parent = parent
     }
@@ -1307,7 +1307,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listBackupsByItems(
     request: ListBackupsRequest
-  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
     self.listBackupsByItems(request: request, options: .init())
   }
 
@@ -1316,7 +1316,7 @@ extension Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListBackups")
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse
       in
@@ -1330,7 +1330,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listBackupsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
@@ -1513,7 +1513,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listTokenAuthUsersByItems(
     request: ListTokenAuthUsersRequest
-  ) -> some AsyncSequence<TokenAuthUser, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
     self.listTokenAuthUsersByItems(request: request, options: .init())
   }
 
@@ -1522,7 +1522,7 @@ extension Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListTokenAuthUsers")
   public func listTokenAuthUsersByItems(
     request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<TokenAuthUser, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse in
@@ -1536,7 +1536,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listTokenAuthUsersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<TokenAuthUser, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
     let request = ListTokenAuthUsersRequest().with {
       $0.parent = parent
     }
@@ -1578,7 +1578,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listAuthTokensByItems(
     request: ListAuthTokensRequest
-  ) -> some AsyncSequence<AuthToken, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
     self.listAuthTokensByItems(request: request, options: .init())
   }
 
@@ -1587,7 +1587,7 @@ extension Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListAuthTokens")
   public func listAuthTokensByItems(
     request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AuthToken, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse in
@@ -1601,7 +1601,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listAuthTokensByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<AuthToken, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
     let request = ListAuthTokensRequest().with {
       $0.parent = parent
     }
@@ -1775,7 +1775,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1801,7 +1801,7 @@ extension Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1838,7 +1838,7 @@ extension Clients.MemorystoreProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1849,7 +1849,7 @@ extension Clients.MemorystoreProtocol {
   /// @Snippet(path: "Memorystore_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1863,7 +1863,7 @@ extension Clients.MemorystoreProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

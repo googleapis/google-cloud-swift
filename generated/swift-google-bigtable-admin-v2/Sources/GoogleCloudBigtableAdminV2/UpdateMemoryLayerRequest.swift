@@ -63,7 +63,7 @@ public struct UpdateMemoryLayerRequest: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.memoryLayer = try container.decodeIfPresent(MemoryLayer.self, forKey: .memoryLayer)
     self.updateMask = try container.decodeIfPresent(
@@ -74,7 +74,7 @@ public struct UpdateMemoryLayerRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.memoryLayer, forKey: .memoryLayer)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

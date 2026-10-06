@@ -391,7 +391,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
         self.kind = value
@@ -547,7 +547,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kind, forKey: .kind)
       try container.encode(self.state, forKey: .state)
@@ -660,7 +660,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
           self.name = value
@@ -673,7 +673,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.name, forKey: .name)
         try container.encodeIfPresent(self.available, forKey: .available)
@@ -749,7 +749,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -770,7 +770,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encode(self.canDefer, forKey: .canDefer)
@@ -845,7 +845,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.sqlOutOfDiskState = try container.decodeIfPresent(
           DatabaseInstance.SqlOutOfDiskReport.SqlOutOfDiskState.self, forKey: .sqlOutOfDiskState)
@@ -857,7 +857,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.sqlOutOfDiskState, forKey: .sqlOutOfDiskState)
         try container.encodeIfPresent(
@@ -955,7 +955,7 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -973,7 +973,7 @@
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("SQL_OUT_OF_DISK_STATE_UNSPECIFIED")
@@ -1074,7 +1074,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
         self.gceZone = try container.decodeIfPresent(Swift.String.self, forKey: .gceZone)
@@ -1100,7 +1100,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.gceZone, forKey: .gceZone)
@@ -1259,7 +1259,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1277,7 +1277,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("SQL_INSTANCE_STATE_UNSPECIFIED")
@@ -1381,7 +1381,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1399,7 +1399,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("SQL_NETWORK_ARCHITECTURE_UNSPECIFIED")
@@ -1499,7 +1499,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1517,7 +1517,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("DATABASE_CENTER_INTEGRATION_UNSPECIFIED")

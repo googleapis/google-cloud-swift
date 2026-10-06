@@ -80,7 +80,7 @@ public struct LintResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Issue].self, forKey: .issues) {
       self.issues = value
@@ -106,7 +106,7 @@ public struct LintResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.issues, forKey: .issues)
     try container.encode(self.summary, forKey: .summary)
@@ -162,7 +162,7 @@ public struct LintResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Severity.self, forKey: .severity) {
         self.severity = value
@@ -176,7 +176,7 @@ public struct LintResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.severity, forKey: .severity)
       try container.encode(self.count, forKey: .count)

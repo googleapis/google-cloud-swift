@@ -100,7 +100,7 @@ public struct HybridFindingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.containerDetails = try container.decodeIfPresent(Container.self, forKey: .containerDetails)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .fileOffset) {
@@ -120,7 +120,7 @@ public struct HybridFindingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.containerDetails, forKey: .containerDetails)
     try container.encode(self.fileOffset, forKey: .fileOffset)

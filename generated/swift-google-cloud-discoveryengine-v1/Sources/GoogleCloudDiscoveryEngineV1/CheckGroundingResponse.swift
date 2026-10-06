@@ -79,7 +79,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.supportScore = try container.decodeIfPresent(Swift.Float.self, forKey: .supportScore)
       if let value = try container.decodeIfPresent([FactChunk].self, forKey: .citedChunks) {
@@ -101,7 +101,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.supportScore, forKey: .supportScore)
       try container.encode(self.citedChunks, forKey: .citedChunks)
@@ -150,7 +150,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .chunkText) {
           self.chunkText = value
@@ -161,7 +161,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.chunkText, forKey: .chunkText)
         for (key, value) in self._unknownFields.json {
@@ -270,7 +270,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startPos = try container.decodeIfPresent(Swift.Int32.self, forKey: .startPos)
         self.endPos = try container.decodeIfPresent(Swift.Int32.self, forKey: .endPos)
@@ -289,7 +289,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startPos, forKey: .startPos)
         try container.encodeIfPresent(self.endPos, forKey: .endPos)

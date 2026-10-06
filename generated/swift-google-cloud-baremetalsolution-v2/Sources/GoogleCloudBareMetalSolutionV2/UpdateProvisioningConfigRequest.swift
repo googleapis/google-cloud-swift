@@ -66,7 +66,7 @@ public struct UpdateProvisioningConfigRequest: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.provisioningConfig = try container.decodeIfPresent(
       ProvisioningConfig.self, forKey: .provisioningConfig)
@@ -81,7 +81,7 @@ public struct UpdateProvisioningConfigRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.provisioningConfig, forKey: .provisioningConfig)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

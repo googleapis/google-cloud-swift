@@ -26,8 +26,8 @@
   /// @Snippet(path: "instancesQuickstart")
   public final class InstancesClient: Clients.InstancesProtocol, Sendable {
     let inner: any Clients.InstancesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstancesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -2857,7 +2857,7 @@
 
     public func aggregatedListByItems(
       request: InstancesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstancesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -2873,7 +2873,7 @@
     /// @Snippet(path: "instances_aggregatedList")
     public func aggregatedListByItems(
       request: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstancesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceAggregatedList
         in
@@ -2887,7 +2887,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstancesScopedList), any Swift.Error> & Sendable {
       let request = InstancesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -3355,7 +3355,7 @@
 
     public func listByItems(
       request: InstancesClient.ListRequest
-    ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -3365,7 +3365,7 @@
     /// @Snippet(path: "instances_list")
     public func listByItems(
       request: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceList in
         var request = request
@@ -3379,7 +3379,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
       let request = InstancesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
@@ -3401,7 +3401,7 @@
 
     public func listReferrersByItems(
       request: InstancesClient.ListReferrersRequest
-    ) -> some AsyncSequence<Reference, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Reference, any Swift.Error> & Sendable {
       self.listReferrersByItems(request: request, options: .init())
     }
 
@@ -3414,7 +3414,7 @@
     /// @Snippet(path: "instances_listReferrers")
     public func listReferrersByItems(
       request: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Reference, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Reference, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceListReferrers
         in
@@ -3430,7 +3430,7 @@
       project: Swift.String,
       zone: Swift.String,
       instance: Swift.String,
-    ) -> some AsyncSequence<Reference, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Reference, any Swift.Error> & Sendable {
       let request = InstancesClient.ListReferrersRequest().with {
         $0.project = project
         $0.zone = zone

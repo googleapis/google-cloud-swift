@@ -28,8 +28,8 @@
       .InstanceGroupManagerResizeRequestsProtocol, Sendable
   {
     let inner: any Clients.InstanceGroupManagerResizeRequestsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstanceGroupManagerResizeRequestsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -471,7 +471,7 @@
 
     public func listByItems(
       request: InstanceGroupManagerResizeRequestsClient.ListRequest
-    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -482,7 +482,7 @@
     public func listByItems(
       request: InstanceGroupManagerResizeRequestsClient.ListRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequestsListResponse in
@@ -498,7 +498,7 @@
       project: Swift.String,
       zone: Swift.String,
       instanceGroupManager: Swift.String,
-    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, any Swift.Error> & Sendable {
       let request = InstanceGroupManagerResizeRequestsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

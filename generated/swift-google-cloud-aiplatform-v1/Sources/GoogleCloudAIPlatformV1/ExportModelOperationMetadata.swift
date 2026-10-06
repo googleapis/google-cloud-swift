@@ -66,7 +66,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.genericMetadata = try container.decodeIfPresent(
         GenericOperationMetadata.self, forKey: .genericMetadata)
@@ -78,7 +78,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.genericMetadata, forKey: .genericMetadata)
       try container.encodeIfPresent(self.outputInfo, forKey: .outputInfo)
@@ -136,7 +136,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .artifactOutputUri)
         {
@@ -151,7 +151,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.artifactOutputUri, forKey: .artifactOutputUri)
         try container.encode(self.imageOutputUri, forKey: .imageOutputUri)

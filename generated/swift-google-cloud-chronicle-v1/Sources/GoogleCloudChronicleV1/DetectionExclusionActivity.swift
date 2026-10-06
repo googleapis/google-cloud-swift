@@ -58,7 +58,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [DetectionExclusionActivity.DetectionExclusionDetectorActivity].self,
@@ -72,7 +72,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(
       self.detectionExclusionDetectorActivities, forKey: .detectionExclusionDetectorActivities)
@@ -137,7 +137,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .excludedDetectionCount)
@@ -181,7 +181,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.excludedDetectionCount, forKey: .excludedDetectionCount)
       try container.encode(self.totalDetectionCount, forKey: .totalDetectionCount)

@@ -28,8 +28,8 @@
     Sendable
   {
     let inner: any Clients.PublicAdvertisedPrefixesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `PublicAdvertisedPrefixesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -543,7 +543,7 @@
 
     public func listByItems(
       request: PublicAdvertisedPrefixesClient.ListRequest
-    ) -> some AsyncSequence<PublicAdvertisedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicAdvertisedPrefix, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -552,7 +552,7 @@
     /// @Snippet(path: "publicAdvertisedPrefixes_list")
     public func listByItems(
       request: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<PublicAdvertisedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicAdvertisedPrefix, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PublicAdvertisedPrefixList in
@@ -566,7 +566,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<PublicAdvertisedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicAdvertisedPrefix, any Swift.Error> & Sendable {
       let request = PublicAdvertisedPrefixesClient.ListRequest().with {
         $0.project = project
       }

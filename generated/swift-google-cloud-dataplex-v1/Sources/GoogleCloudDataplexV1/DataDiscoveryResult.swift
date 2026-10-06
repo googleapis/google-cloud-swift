@@ -60,7 +60,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.bigqueryPublishing = try container.decodeIfPresent(
       DataDiscoveryResult.BigQueryPublishing.self, forKey: .bigqueryPublishing)
@@ -72,7 +72,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.bigqueryPublishing, forKey: .bigqueryPublishing)
     try container.encodeIfPresent(self.scanStatistics, forKey: .scanStatistics)
@@ -124,7 +124,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
         self.dataset = value
@@ -138,7 +138,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataset, forKey: .dataset)
       try container.encode(self.location, forKey: .location)
@@ -236,7 +236,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scannedFileCount) {
         self.scannedFileCount = value
@@ -271,7 +271,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.scannedFileCount, forKey: .scannedFileCount)
       try container.encode(self.dataProcessedBytes, forKey: .dataProcessedBytes)

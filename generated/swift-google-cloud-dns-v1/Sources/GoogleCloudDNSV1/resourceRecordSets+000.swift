@@ -210,7 +210,7 @@ extension Clients.ResourceRecordSetsProtocol {
 
   public func listByItems(
     request: ResourceRecordSetsClient.ListRequest
-  ) -> some AsyncSequence<ResourceRecordSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ResourceRecordSet, any Swift.Error> & Sendable {
     self.listByItems(request: request, options: .init())
   }
 
@@ -219,7 +219,7 @@ extension Clients.ResourceRecordSetsProtocol {
   /// @Snippet(path: "resourceRecordSets_list")
   public func listByItems(
     request: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ResourceRecordSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ResourceRecordSet, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> ResourceRecordSetsListResponse in
       var request = request
@@ -233,7 +233,7 @@ extension Clients.ResourceRecordSetsProtocol {
   public func listByItems(
     project: Swift.String,
     managedZone: Swift.String,
-  ) -> some AsyncSequence<ResourceRecordSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ResourceRecordSet, any Swift.Error> & Sendable {
     let request = ResourceRecordSetsClient.ListRequest().with {
       $0.project = project
       $0.managedZone = managedZone

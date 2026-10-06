@@ -66,7 +66,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(PairwiseChoice.self, forKey: .pairwiseChoice) {
         self.pairwiseChoice = value
@@ -81,7 +81,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.pairwiseChoice, forKey: .pairwiseChoice)
       try container.encode(self.explanation, forKey: .explanation)

@@ -160,7 +160,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .predictionType) {
       self.predictionType = value
@@ -226,7 +226,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.predictionType, forKey: .predictionType)
     try container.encode(self.targetColumn, forKey: .targetColumn)
@@ -304,7 +304,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var transformationDetail: TransformationDetailOneOf? = nil
@@ -365,7 +365,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.transformationDetail {
@@ -431,7 +431,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
           self.columnName = value
@@ -442,7 +442,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.columnName, forKey: .columnName)
         for (key, value) in self._unknownFields.json {
@@ -516,7 +516,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
           self.columnName = value
@@ -531,7 +531,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.columnName, forKey: .columnName)
         try container.encode(self.invalidValuesAllowed, forKey: .invalidValuesAllowed)
@@ -597,7 +597,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
           self.columnName = value
@@ -608,7 +608,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.columnName, forKey: .columnName)
         for (key, value) in self._unknownFields.json {
@@ -694,7 +694,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
           self.columnName = value
@@ -712,7 +712,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.columnName, forKey: .columnName)
         try container.encode(self.timeFormat, forKey: .timeFormat)
@@ -781,7 +781,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
           self.columnName = value
@@ -792,7 +792,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.columnName, forKey: .columnName)
         for (key, value) in self._unknownFields.json {
@@ -861,7 +861,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
           self.columnName = value
@@ -876,7 +876,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.columnName, forKey: .columnName)
         try container.encode(self.invalidValuesAllowed, forKey: .invalidValuesAllowed)
@@ -941,7 +941,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
           self.columnName = value
@@ -952,7 +952,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.columnName, forKey: .columnName)
         for (key, value) in self._unknownFields.json {
@@ -1015,7 +1015,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .columnName) {
           self.columnName = value
@@ -1026,7 +1026,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.columnName, forKey: .columnName)
         for (key, value) in self._unknownFields.json {

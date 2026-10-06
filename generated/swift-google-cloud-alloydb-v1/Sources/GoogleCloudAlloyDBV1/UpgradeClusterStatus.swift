@@ -75,7 +75,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(UpgradeClusterResponse.Status.self, forKey: .state)
     {
@@ -101,7 +101,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.cancellable, forKey: .cancellable)
@@ -166,7 +166,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         UpgradeClusterResponse.Stage.self, forKey: .stage)
@@ -204,7 +204,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.stage, forKey: .stage)
       try container.encode(self.state, forKey: .state)
@@ -276,7 +276,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.estimatedStartTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .estimatedStartTime)
@@ -292,7 +292,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.estimatedStartTime, forKey: .estimatedStartTime)
         try container.encodeIfPresent(self.actualStartTime, forKey: .actualStartTime)
@@ -371,7 +371,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.upgradeStats = try container.decodeIfPresent(
         UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus.Stats.self, forKey: .upgradeStats)
@@ -381,7 +381,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.upgradeStats, forKey: .upgradeStats)
       for (key, value) in self._unknownFields.json {
@@ -442,7 +442,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .notStarted) {
           self.notStarted = value
@@ -462,7 +462,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.notStarted, forKey: .notStarted)
         try container.encode(self.ongoing, forKey: .ongoing)

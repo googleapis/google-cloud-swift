@@ -86,7 +86,7 @@ public struct UpdateVmwareEngineNetworkRequest: Codable, Equatable, GoogleWKT._A
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.vmwareEngineNetwork = try container.decodeIfPresent(
       VmwareEngineNetwork.self, forKey: .vmwareEngineNetwork)
@@ -101,7 +101,7 @@ public struct UpdateVmwareEngineNetworkRequest: Codable, Equatable, GoogleWKT._A
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.vmwareEngineNetwork, forKey: .vmwareEngineNetwork)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

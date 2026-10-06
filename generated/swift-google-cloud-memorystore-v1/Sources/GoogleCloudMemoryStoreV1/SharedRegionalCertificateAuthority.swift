@@ -62,7 +62,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -91,7 +91,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
 
@@ -147,7 +147,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority.RegionalCertChain]
@@ -161,7 +161,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.caCerts, forKey: .caCerts)
       for (key, value) in self._unknownFields.json {
@@ -207,7 +207,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .certificates) {
           self.certificates = value
@@ -218,7 +218,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.certificates, forKey: .certificates)
         for (key, value) in self._unknownFields.json {

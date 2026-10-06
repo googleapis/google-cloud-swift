@@ -57,7 +57,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var request: RequestOneOf? = nil
@@ -86,7 +86,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.request {
@@ -174,7 +174,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.metadata = try container.decodeIfPresent(RequestMetadata.self, forKey: .metadata)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .receiver) {
@@ -212,7 +212,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.metadata, forKey: .metadata)
       try container.encode(self.receiver, forKey: .receiver)

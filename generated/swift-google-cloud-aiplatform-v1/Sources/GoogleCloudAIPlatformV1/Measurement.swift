@@ -71,7 +71,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.elapsedDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .elapsedDuration)
@@ -87,7 +87,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.elapsedDuration, forKey: .elapsedDuration)
       try container.encode(self.stepCount, forKey: .stepCount)
@@ -143,7 +143,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricId) {
           self.metricId = value
@@ -157,7 +157,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.metricId, forKey: .metricId)
         try container.encode(self.value, forKey: .value)

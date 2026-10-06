@@ -77,7 +77,7 @@ public struct Location: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.byteRange = try container.decodeIfPresent(Range.self, forKey: .byteRange)
     self.codepointRange = try container.decodeIfPresent(Range.self, forKey: .codepointRange)
@@ -92,7 +92,7 @@ public struct Location: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.byteRange, forKey: .byteRange)
     try container.encodeIfPresent(self.codepointRange, forKey: .codepointRange)

@@ -238,7 +238,7 @@ extension Clients.MonitoringProtocol {
 
   public func listFrameworkComplianceSummariesByItems(
     request: ListFrameworkComplianceSummariesRequest
-  ) -> some AsyncSequence<FrameworkComplianceSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FrameworkComplianceSummary, any Swift.Error> & Sendable {
     self.listFrameworkComplianceSummariesByItems(request: request, options: .init())
   }
 
@@ -247,7 +247,7 @@ extension Clients.MonitoringProtocol {
   /// @Snippet(path: "Monitoring_ListFrameworkComplianceSummaries")
   public func listFrameworkComplianceSummariesByItems(
     request: ListFrameworkComplianceSummariesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<FrameworkComplianceSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FrameworkComplianceSummary, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListFrameworkComplianceSummariesResponse in
@@ -261,7 +261,7 @@ extension Clients.MonitoringProtocol {
 
   public func listFrameworkComplianceSummariesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<FrameworkComplianceSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FrameworkComplianceSummary, any Swift.Error> & Sendable {
     let request = ListFrameworkComplianceSummariesRequest().with {
       $0.parent = parent
     }
@@ -282,7 +282,7 @@ extension Clients.MonitoringProtocol {
 
   public func listFindingSummariesByItems(
     request: ListFindingSummariesRequest
-  ) -> some AsyncSequence<FindingSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FindingSummary, any Swift.Error> & Sendable {
     self.listFindingSummariesByItems(request: request, options: .init())
   }
 
@@ -294,7 +294,7 @@ extension Clients.MonitoringProtocol {
   #endif
   public func listFindingSummariesByItems(
     request: ListFindingSummariesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<FindingSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FindingSummary, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListFindingSummariesResponse in
@@ -311,7 +311,7 @@ extension Clients.MonitoringProtocol {
   #endif
   public func listFindingSummariesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<FindingSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FindingSummary, any Swift.Error> & Sendable {
     let request = ListFindingSummariesRequest().with {
       $0.parent = parent
     }
@@ -353,7 +353,7 @@ extension Clients.MonitoringProtocol {
 
   public func listControlComplianceSummariesByItems(
     request: ListControlComplianceSummariesRequest
-  ) -> some AsyncSequence<ControlComplianceSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ControlComplianceSummary, any Swift.Error> & Sendable {
     self.listControlComplianceSummariesByItems(request: request, options: .init())
   }
 
@@ -365,7 +365,7 @@ extension Clients.MonitoringProtocol {
   #endif
   public func listControlComplianceSummariesByItems(
     request: ListControlComplianceSummariesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ControlComplianceSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ControlComplianceSummary, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListControlComplianceSummariesResponse in
@@ -382,7 +382,7 @@ extension Clients.MonitoringProtocol {
   #endif
   public func listControlComplianceSummariesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ControlComplianceSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ControlComplianceSummary, any Swift.Error> & Sendable {
     let request = ListControlComplianceSummariesRequest().with {
       $0.parent = parent
     }
@@ -424,7 +424,7 @@ extension Clients.MonitoringProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -450,7 +450,7 @@ extension Clients.MonitoringProtocol {
   /// @Snippet(path: "Monitoring_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -487,7 +487,7 @@ extension Clients.MonitoringProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -498,7 +498,7 @@ extension Clients.MonitoringProtocol {
   /// @Snippet(path: "Monitoring_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -512,7 +512,7 @@ extension Clients.MonitoringProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

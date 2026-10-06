@@ -63,7 +63,7 @@ public struct ListScopeRBACRoleBindingsResponse: Codable, Equatable, GoogleWKT._
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([RBACRoleBinding].self, forKey: .rbacrolebindings)
     {
@@ -78,7 +78,7 @@ public struct ListScopeRBACRoleBindingsResponse: Codable, Equatable, GoogleWKT._
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.rbacrolebindings, forKey: .rbacrolebindings)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

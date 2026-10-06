@@ -73,7 +73,7 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -107,7 +107,7 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
 
@@ -172,7 +172,7 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([ChallengeReply].self, forKey: .challengeReplies)
       {
@@ -184,7 +184,7 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.challengeReplies, forKey: .challengeReplies)
       for (key, value) in self._unknownFields.json {
@@ -258,7 +258,7 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [ChallengeReply].self, forKey: .requiredChallengeReplies)
@@ -276,7 +276,7 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.requiredChallengeReplies, forKey: .requiredChallengeReplies)
       try container.encode(self.quorumChallengeReplies, forKey: .quorumChallengeReplies)

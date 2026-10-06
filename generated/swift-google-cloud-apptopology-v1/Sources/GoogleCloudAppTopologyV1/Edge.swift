@@ -82,7 +82,7 @@ public struct Edge: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.properties = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .properties)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceNodeName) {
@@ -101,7 +101,7 @@ public struct Edge: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.properties, forKey: .properties)
     try container.encode(self.sourceNodeName, forKey: .sourceNodeName)

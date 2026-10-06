@@ -60,7 +60,7 @@ public struct RenderMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.cloudRun = try container.decodeIfPresent(CloudRunRenderMetadata.self, forKey: .cloudRun)
     self.custom = try container.decodeIfPresent(CustomMetadata.self, forKey: .custom)
@@ -70,7 +70,7 @@ public struct RenderMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.cloudRun, forKey: .cloudRun)
     try container.encodeIfPresent(self.custom, forKey: .custom)

@@ -60,7 +60,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var chunkType: ChunkTypeOneOf? = nil
@@ -91,7 +91,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.chunkType {
@@ -152,7 +152,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.uri = try container.decodeIfPresent(Swift.String.self, forKey: .uri)
         self.title = try container.decodeIfPresent(Swift.String.self, forKey: .title)
@@ -162,7 +162,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.uri, forKey: .uri)
         try container.encodeIfPresent(self.title, forKey: .title)
@@ -241,7 +241,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.uri = try container.decodeIfPresent(Swift.String.self, forKey: .uri)
         self.title = try container.decodeIfPresent(Swift.String.self, forKey: .title)
@@ -268,7 +268,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.uri, forKey: .uri)
         try container.encodeIfPresent(self.title, forKey: .title)
@@ -372,7 +372,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.uri = try container.decodeIfPresent(Swift.String.self, forKey: .uri)
         self.title = try container.decodeIfPresent(Swift.String.self, forKey: .title)
@@ -387,7 +387,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.uri, forKey: .uri)
         try container.encodeIfPresent(self.title, forKey: .title)
@@ -437,7 +437,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [GroundingChunk.Maps.PlaceAnswerSources.ReviewSnippet].self, forKey: .reviewSnippets)
@@ -450,7 +450,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.reviewSnippets, forKey: .reviewSnippets)
           for (key, value) in self._unknownFields.json {
@@ -506,7 +506,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .reviewId) {
               self.reviewId = value
@@ -524,7 +524,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.reviewId, forKey: .reviewId)
             try container.encode(self.googleMapsUri, forKey: .googleMapsUri)
@@ -607,7 +607,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .distanceMeters) {
             self.distanceMeters = value
@@ -624,7 +624,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.distanceMeters, forKey: .distanceMeters)
           try container.encodeIfPresent(self.duration, forKey: .duration)

@@ -66,7 +66,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [PollAirflowCommandResponse.Line].self, forKey: .output)
@@ -84,7 +84,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.output, forKey: .output)
     try container.encode(self.outputEnd, forKey: .outputEnd)
@@ -137,7 +137,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lineNumber) {
         self.lineNumber = value
@@ -151,7 +151,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.lineNumber, forKey: .lineNumber)
       try container.encode(self.content, forKey: .content)
@@ -215,7 +215,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .exitCode) {
         self.exitCode = value
@@ -229,7 +229,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.exitCode, forKey: .exitCode)
       try container.encode(self.error, forKey: .error)

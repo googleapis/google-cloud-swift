@@ -83,7 +83,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(QueuedResourceState.State.self, forKey: .state) {
       self.state = value
@@ -151,7 +151,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.state, forKey: .state)
     try container.encode(self.stateInitiator, forKey: .stateInitiator)
@@ -212,7 +212,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -220,7 +220,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -269,7 +269,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -277,7 +277,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -326,7 +326,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -334,7 +334,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -391,7 +391,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -400,7 +400,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.error, forKey: .error)
       for (key, value) in self._unknownFields.json {
@@ -450,7 +450,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -458,7 +458,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -507,7 +507,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -515,7 +515,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -564,7 +564,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -572,7 +572,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -621,7 +621,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -629,7 +629,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -795,7 +795,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -813,7 +813,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("STATE_UNSPECIFIED")
@@ -919,7 +919,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -937,7 +937,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("STATE_INITIATOR_UNSPECIFIED")

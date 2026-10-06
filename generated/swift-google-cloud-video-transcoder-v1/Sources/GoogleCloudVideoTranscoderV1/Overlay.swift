@@ -61,7 +61,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.image = try container.decodeIfPresent(Overlay.Image.self, forKey: .image)
     if let value = try container.decodeIfPresent([Overlay.Animation].self, forKey: .animations) {
@@ -73,7 +73,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.image, forKey: .image)
     try container.encode(self.animations, forKey: .animations)
@@ -125,7 +125,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .x) {
         self.x = value
@@ -139,7 +139,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.x, forKey: .x)
       try container.encode(self.y, forKey: .y)
@@ -212,7 +212,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
         self.uri = value
@@ -228,7 +228,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uri, forKey: .uri)
       try container.encodeIfPresent(self.resolution, forKey: .resolution)
@@ -296,7 +296,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.xy = try container.decodeIfPresent(Overlay.NormalizedCoordinate.self, forKey: .xy)
       self.startTimeOffset = try container.decodeIfPresent(
@@ -307,7 +307,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.xy, forKey: .xy)
       try container.encodeIfPresent(self.startTimeOffset, forKey: .startTimeOffset)
@@ -385,7 +385,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Overlay.FadeType.self, forKey: .fadeType) {
         self.fadeType = value
@@ -401,7 +401,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fadeType, forKey: .fadeType)
       try container.encodeIfPresent(self.xy, forKey: .xy)
@@ -463,7 +463,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startTimeOffset = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .startTimeOffset)
@@ -473,7 +473,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.startTimeOffset, forKey: .startTimeOffset)
       for (key, value) in self._unknownFields.json {
@@ -534,7 +534,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var animationType: AnimationTypeOneOf? = nil
@@ -569,7 +569,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.animationType {
@@ -695,7 +695,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -713,7 +713,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("FADE_TYPE_UNSPECIFIED")

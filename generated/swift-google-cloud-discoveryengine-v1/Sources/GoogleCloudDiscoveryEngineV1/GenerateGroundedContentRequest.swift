@@ -107,7 +107,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
         self.location = value
@@ -134,7 +134,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.location, forKey: .location)
       try container.encodeIfPresent(self.systemInstruction, forKey: .systemInstruction)
@@ -226,7 +226,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
           self.modelId = value
@@ -250,7 +250,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.modelId, forKey: .modelId)
         try container.encode(self.languageCode, forKey: .languageCode)
@@ -318,7 +318,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.predictor = try container.decodeIfPresent(
           GenerateGroundedContentRequest.DynamicRetrievalConfiguration.DynamicRetrievalPredictor
@@ -329,7 +329,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.predictor, forKey: .predictor)
         for (key, value) in self._unknownFields.json {
@@ -384,7 +384,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             GenerateGroundedContentRequest.DynamicRetrievalConfiguration.DynamicRetrievalPredictor
@@ -399,7 +399,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.version, forKey: .version)
           try container.encodeIfPresent(self.threshold, forKey: .threshold)
@@ -489,7 +489,7 @@
             }
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             if let v = try? container.decode(Int.self) {
               self.init(intValue: v)
@@ -507,7 +507,7 @@
               in: container, debugDescription: "Expected enum value, must be integer or string.")
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
             case .unspecified: return try container.encode("VERSION_UNSPECIFIED")
@@ -587,7 +587,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var source: SourceOneOf? = nil
@@ -629,7 +629,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.source {
@@ -695,7 +695,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [GroundingFact].self, forKey: .groundingFacts)
@@ -713,7 +713,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.groundingFacts, forKey: .groundingFacts)
           try container.encode(self.attributes, forKey: .attributes)
@@ -797,7 +797,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servingConfig) {
             self.servingConfig = value
@@ -817,7 +817,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.servingConfig, forKey: .servingConfig)
           try container.encode(self.maxResultCount, forKey: .maxResultCount)
@@ -880,7 +880,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.dynamicRetrievalConfig = try container.decodeIfPresent(
             GenerateGroundedContentRequest.DynamicRetrievalConfiguration.self,
@@ -891,7 +891,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(
             self.dynamicRetrievalConfig, forKey: .dynamicRetrievalConfig)
@@ -943,7 +943,7 @@
           static let _knownKeys: Set<Swift.String> = []
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
@@ -951,7 +951,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1034,7 +1034,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [GenerateGroundedContentRequest.GroundingSource].self, forKey: .groundingSources)
@@ -1047,7 +1047,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.groundingSources, forKey: .groundingSources)
         for (key, value) in self._unknownFields.json {

@@ -26,8 +26,8 @@
   /// @Snippet(path: "backendServicesQuickstart")
   public final class BackendServicesClient: Clients.BackendServicesProtocol, Sendable {
     let inner: any Clients.BackendServicesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `BackendServicesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -764,7 +764,7 @@
 
     public func aggregatedListByItems(
       request: BackendServicesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -777,7 +777,7 @@
     /// @Snippet(path: "backendServices_aggregatedList")
     public func aggregatedListByItems(
       request: BackendServicesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.BackendServiceAggregatedList in
@@ -791,7 +791,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), any Swift.Error> & Sendable {
       let request = BackendServicesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -1014,7 +1014,7 @@
 
     public func listByItems(
       request: BackendServicesClient.ListRequest
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1024,7 +1024,7 @@
     /// @Snippet(path: "backendServices_list")
     public func listByItems(
       request: BackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceList in
         var request = request
@@ -1037,7 +1037,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       let request = BackendServicesClient.ListRequest().with {
         $0.project = project
       }
@@ -1058,7 +1058,7 @@
 
     public func listUsableByItems(
       request: BackendServicesClient.ListUsableRequest
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       self.listUsableByItems(request: request, options: .init())
     }
 
@@ -1070,7 +1070,7 @@
     /// @Snippet(path: "backendServices_listUsable")
     public func listUsableByItems(
       request: BackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.BackendServiceListUsable in
@@ -1084,7 +1084,7 @@
 
     public func listUsableByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       let request = BackendServicesClient.ListUsableRequest().with {
         $0.project = project
       }

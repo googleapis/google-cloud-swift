@@ -53,8 +53,8 @@ import Foundation
 /// @Snippet(path: "CertificateManagerQuickstart")
 public final class CertificateManagerClient: Clients.CertificateManagerProtocol, Sendable {
   let inner: any Clients.CertificateManagerStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CertificateManagerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1143,7 +1143,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listCertificatesByItems(
     request: ListCertificatesRequest
-  ) -> some AsyncSequence<Certificate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Certificate, any Swift.Error> & Sendable {
     self.listCertificatesByItems(request: request, options: .init())
   }
 
@@ -1152,7 +1152,7 @@ extension Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_ListCertificates")
   public func listCertificatesByItems(
     request: ListCertificatesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Certificate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Certificate, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudCertificateManagerV1.ListCertificatesResponse in
@@ -1166,7 +1166,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listCertificatesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Certificate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Certificate, any Swift.Error> & Sendable {
     let request = ListCertificatesRequest().with {
       $0.parent = parent
     }
@@ -1311,7 +1311,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listCertificateMapsByItems(
     request: ListCertificateMapsRequest
-  ) -> some AsyncSequence<CertificateMap, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CertificateMap, any Swift.Error> & Sendable {
     self.listCertificateMapsByItems(request: request, options: .init())
   }
 
@@ -1320,7 +1320,7 @@ extension Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_ListCertificateMaps")
   public func listCertificateMapsByItems(
     request: ListCertificateMapsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<CertificateMap, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CertificateMap, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudCertificateManagerV1.ListCertificateMapsResponse in
@@ -1334,7 +1334,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listCertificateMapsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<CertificateMap, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CertificateMap, any Swift.Error> & Sendable {
     let request = ListCertificateMapsRequest().with {
       $0.parent = parent
     }
@@ -1481,7 +1481,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listCertificateMapEntriesByItems(
     request: ListCertificateMapEntriesRequest
-  ) -> some AsyncSequence<CertificateMapEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CertificateMapEntry, any Swift.Error> & Sendable {
     self.listCertificateMapEntriesByItems(request: request, options: .init())
   }
 
@@ -1490,7 +1490,7 @@ extension Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_ListCertificateMapEntries")
   public func listCertificateMapEntriesByItems(
     request: ListCertificateMapEntriesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<CertificateMapEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CertificateMapEntry, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudCertificateManagerV1.ListCertificateMapEntriesResponse in
@@ -1504,7 +1504,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listCertificateMapEntriesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<CertificateMapEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CertificateMapEntry, any Swift.Error> & Sendable {
     let request = ListCertificateMapEntriesRequest().with {
       $0.parent = parent
     }
@@ -1653,7 +1653,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listDnsAuthorizationsByItems(
     request: ListDnsAuthorizationsRequest
-  ) -> some AsyncSequence<DnsAuthorization, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DnsAuthorization, any Swift.Error> & Sendable {
     self.listDnsAuthorizationsByItems(request: request, options: .init())
   }
 
@@ -1662,7 +1662,7 @@ extension Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_ListDnsAuthorizations")
   public func listDnsAuthorizationsByItems(
     request: ListDnsAuthorizationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DnsAuthorization, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DnsAuthorization, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudCertificateManagerV1.ListDnsAuthorizationsResponse in
@@ -1676,7 +1676,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listDnsAuthorizationsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DnsAuthorization, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DnsAuthorization, any Swift.Error> & Sendable {
     let request = ListDnsAuthorizationsRequest().with {
       $0.parent = parent
     }
@@ -1823,7 +1823,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listCertificateIssuanceConfigsByItems(
     request: ListCertificateIssuanceConfigsRequest
-  ) -> some AsyncSequence<CertificateIssuanceConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CertificateIssuanceConfig, any Swift.Error> & Sendable {
     self.listCertificateIssuanceConfigsByItems(request: request, options: .init())
   }
 
@@ -1832,7 +1832,7 @@ extension Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_ListCertificateIssuanceConfigs")
   public func listCertificateIssuanceConfigsByItems(
     request: ListCertificateIssuanceConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<CertificateIssuanceConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CertificateIssuanceConfig, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudCertificateManagerV1.ListCertificateIssuanceConfigsResponse in
@@ -1846,7 +1846,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listCertificateIssuanceConfigsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<CertificateIssuanceConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CertificateIssuanceConfig, any Swift.Error> & Sendable {
     let request = ListCertificateIssuanceConfigsRequest().with {
       $0.parent = parent
     }
@@ -1960,7 +1960,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listTrustConfigsByItems(
     request: ListTrustConfigsRequest
-  ) -> some AsyncSequence<TrustConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TrustConfig, any Swift.Error> & Sendable {
     self.listTrustConfigsByItems(request: request, options: .init())
   }
 
@@ -1969,7 +1969,7 @@ extension Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_ListTrustConfigs")
   public func listTrustConfigsByItems(
     request: ListTrustConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<TrustConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TrustConfig, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudCertificateManagerV1.ListTrustConfigsResponse in
@@ -1983,7 +1983,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listTrustConfigsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<TrustConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TrustConfig, any Swift.Error> & Sendable {
     let request = ListTrustConfigsRequest().with {
       $0.parent = parent
     }
@@ -2128,7 +2128,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -2137,7 +2137,7 @@ extension Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -2174,7 +2174,7 @@ extension Clients.CertificateManagerProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -2185,7 +2185,7 @@ extension Clients.CertificateManagerProtocol {
   /// @Snippet(path: "CertificateManager_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -2199,7 +2199,7 @@ extension Clients.CertificateManagerProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

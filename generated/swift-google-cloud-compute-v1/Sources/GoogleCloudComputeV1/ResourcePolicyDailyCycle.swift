@@ -70,7 +70,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.daysInCycle = try container.decodeIfPresent(Swift.Int32.self, forKey: .daysInCycle)
       self.duration = try container.decodeIfPresent(Swift.String.self, forKey: .duration)
@@ -81,7 +81,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.daysInCycle, forKey: .daysInCycle)
       try container.encodeIfPresent(self.duration, forKey: .duration)

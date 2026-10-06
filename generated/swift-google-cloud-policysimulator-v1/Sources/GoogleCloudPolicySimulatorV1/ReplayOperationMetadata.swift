@@ -55,7 +55,7 @@ public struct ReplayOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -64,7 +64,7 @@ public struct ReplayOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     for (key, value) in self._unknownFields.json {

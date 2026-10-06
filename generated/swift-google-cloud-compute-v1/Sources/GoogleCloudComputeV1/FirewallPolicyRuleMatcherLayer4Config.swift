@@ -68,7 +68,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ipProtocol = try container.decodeIfPresent(Swift.String.self, forKey: .ipProtocol)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ports) {
@@ -80,7 +80,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ipProtocol, forKey: .ipProtocol)
       try container.encode(self.ports, forKey: .ports)

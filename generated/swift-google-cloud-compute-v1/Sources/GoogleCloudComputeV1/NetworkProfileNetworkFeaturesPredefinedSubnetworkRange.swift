@@ -61,7 +61,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ipv6Range = try container.decodeIfPresent(Swift.String.self, forKey: .ipv6Range)
       self.namePrefix = try container.decodeIfPresent(Swift.String.self, forKey: .namePrefix)
@@ -71,7 +71,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ipv6Range, forKey: .ipv6Range)
       try container.encodeIfPresent(self.namePrefix, forKey: .namePrefix)

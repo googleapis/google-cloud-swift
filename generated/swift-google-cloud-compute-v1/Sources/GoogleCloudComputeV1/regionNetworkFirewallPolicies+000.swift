@@ -28,8 +28,8 @@
       .RegionNetworkFirewallPoliciesProtocol, Sendable
   {
     let inner: any Clients.RegionNetworkFirewallPoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionNetworkFirewallPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1175,7 +1175,7 @@
 
     public func listByItems(
       request: RegionNetworkFirewallPoliciesClient.ListRequest
-    ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1185,7 +1185,7 @@
     /// @Snippet(path: "regionNetworkFirewallPolicies_list")
     public func listByItems(
       request: RegionNetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         var request = request
@@ -1199,7 +1199,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
       let request = RegionNetworkFirewallPoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region

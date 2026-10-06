@@ -55,7 +55,7 @@ public struct UpdateGlossaryEntryRequest: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.glossaryEntry = try container.decodeIfPresent(GlossaryEntry.self, forKey: .glossaryEntry)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -64,7 +64,7 @@ public struct UpdateGlossaryEntryRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.glossaryEntry, forKey: .glossaryEntry)
     for (key, value) in self._unknownFields.json {

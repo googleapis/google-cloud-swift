@@ -120,7 +120,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.datasource = try container.decodeIfPresent(Swift.String.self, forKey: .datasource)
       self.pointInTime = try container.decodeIfPresent(
@@ -148,7 +148,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.datasource, forKey: .datasource)
       try container.encodeIfPresent(self.pointInTime, forKey: .pointInTime)

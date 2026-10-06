@@ -65,7 +65,7 @@ public struct NativeDashboardWithChartsAndQueries: Codable, Equatable, GoogleWKT
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dashboard = try container.decodeIfPresent(NativeDashboard.self, forKey: .dashboard)
     if let value = try container.decodeIfPresent([DashboardChart].self, forKey: .dashboardCharts) {
@@ -80,7 +80,7 @@ public struct NativeDashboardWithChartsAndQueries: Codable, Equatable, GoogleWKT
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.dashboard, forKey: .dashboard)
     try container.encode(self.dashboardCharts, forKey: .dashboardCharts)

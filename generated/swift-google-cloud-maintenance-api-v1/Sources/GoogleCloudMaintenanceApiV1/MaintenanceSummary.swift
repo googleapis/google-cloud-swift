@@ -117,7 +117,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .maintenanceName) {
       self.maintenanceName = value
@@ -154,7 +154,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.maintenanceName, forKey: .maintenanceName)
     try container.encode(self.title, forKey: .title)
@@ -220,7 +220,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .groupBy) {
         self.groupBy = value
@@ -236,7 +236,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.groupBy, forKey: .groupBy)
       try container.encode(self.aggregates, forKey: .aggregates)
@@ -301,7 +301,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .group) {
         self.group = value
@@ -315,7 +315,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.group, forKey: .group)
       try container.encode(self.count, forKey: .count)

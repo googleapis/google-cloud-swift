@@ -57,7 +57,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var environment: EnvironmentOneOf? = nil
@@ -87,7 +87,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.environment {
@@ -134,7 +134,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -142,7 +142,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -215,7 +215,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.singleSelectedResourceSharingRestriction = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .singleSelectedResourceSharingRestriction)
@@ -227,7 +227,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.singleSelectedResourceSharingRestriction,

@@ -68,7 +68,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.stackFrames = try container.decodeIfPresent(
       StackTrace.StackFrames.self, forKey: .stackFrames)
@@ -81,7 +81,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.stackFrames, forKey: .stackFrames)
     try container.encode(self.stackTraceHashId, forKey: .stackTraceHashId)
@@ -164,7 +164,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.functionName = try container.decodeIfPresent(
         TruncatableString.self, forKey: .functionName)
@@ -186,7 +186,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.functionName, forKey: .functionName)
       try container.encodeIfPresent(self.originalFunctionName, forKey: .originalFunctionName)
@@ -256,7 +256,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([StackTrace.StackFrame].self, forKey: .frame) {
         self.frame = value
@@ -270,7 +270,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.frame, forKey: .frame)
       try container.encode(self.droppedFramesCount, forKey: .droppedFramesCount)

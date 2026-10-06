@@ -60,7 +60,7 @@ public struct EventImpact: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.product = try container.decodeIfPresent(Product.self, forKey: .product)
     self.location = try container.decodeIfPresent(
@@ -71,7 +71,7 @@ public struct EventImpact: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.product, forKey: .product)
     try container.encodeIfPresent(self.location, forKey: .location)

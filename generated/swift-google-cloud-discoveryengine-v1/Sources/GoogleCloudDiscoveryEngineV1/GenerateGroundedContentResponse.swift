@@ -56,7 +56,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [GenerateGroundedContentResponse.Candidate].self, forKey: .candidates)
@@ -69,7 +69,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.candidates, forKey: .candidates)
       for (key, value) in self._unknownFields.json {
@@ -131,7 +131,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .index) {
           self.index = value
@@ -149,7 +149,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.index, forKey: .index)
         try container.encodeIfPresent(self.content, forKey: .content)
@@ -233,7 +233,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [GenerateGroundedContentResponse.Candidate.GroundingMetadata.RetrievalMetadata].self,
@@ -270,7 +270,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.retrievalMetadata, forKey: .retrievalMetadata)
           try container.encode(self.supportChunks, forKey: .supportChunks)
@@ -331,7 +331,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(
               GenerateGroundedContentResponse.Candidate.GroundingMetadata.RetrievalMetadata.Source
@@ -348,7 +348,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.source, forKey: .source)
             try container.encodeIfPresent(
@@ -457,7 +457,7 @@
               }
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
               let container = try decoder.singleValueContainer()
               if let v = try? container.decode(Int.self) {
                 self.init(intValue: v)
@@ -475,7 +475,7 @@
                 in: container, debugDescription: "Expected enum value, must be integer or string.")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
               var container = encoder.singleValueContainer()
               switch self {
               case .unspecified: return try container.encode("SOURCE_UNSPECIFIED")
@@ -541,7 +541,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.predictorMetadata = try container.decodeIfPresent(
               GenerateGroundedContentResponse.Candidate.GroundingMetadata
@@ -552,7 +552,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.predictorMetadata, forKey: .predictorMetadata)
             for (key, value) in self._unknownFields.json {
@@ -622,7 +622,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(
               GenerateGroundedContentResponse.Candidate.GroundingMetadata
@@ -637,7 +637,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.version, forKey: .version)
             try container.encodeIfPresent(self.prediction, forKey: .prediction)
@@ -727,7 +727,7 @@
               }
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
               let container = try decoder.singleValueContainer()
               if let v = try? container.decode(Int.self) {
                 self.init(intValue: v)
@@ -745,7 +745,7 @@
                 in: container, debugDescription: "Expected enum value, must be integer or string.")
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
               var container = encoder.singleValueContainer()
               switch self {
               case .unspecified: return try container.encode("VERSION_UNSPECIFIED")
@@ -813,7 +813,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(
               Swift.String.self, forKey: .renderedContent)
@@ -829,7 +829,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.renderedContent, forKey: .renderedContent)
             try container.encode(self.sdkBlob, forKey: .sdkBlob)
@@ -904,7 +904,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .claimText) {
               self.claimText = value
@@ -922,7 +922,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.claimText, forKey: .claimText)
             try container.encode(self.supportChunkIndices, forKey: .supportChunkIndices)
@@ -996,7 +996,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.image = try container.decodeIfPresent(
               GenerateGroundedContentResponse.Candidate.GroundingMetadata.ImageMetadata.Image.self,
@@ -1013,7 +1013,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.image, forKey: .image)
             try container.encodeIfPresent(self.thumbnail, forKey: .thumbnail)
@@ -1066,7 +1066,7 @@
               ]
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
               let container = try decoder.container(keyedBy: CodingKeys.self)
               if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
                 self.uri = value
@@ -1080,7 +1080,7 @@
               }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
               var container = encoder.container(keyedBy: CodingKeys.self)
               try container.encode(self.uri, forKey: .uri)
               try container.encode(self.title, forKey: .title)
@@ -1149,7 +1149,7 @@
               ]
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
               let container = try decoder.container(keyedBy: CodingKeys.self)
               if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
                 self.uri = value
@@ -1166,7 +1166,7 @@
               }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
               var container = encoder.container(keyedBy: CodingKeys.self)
               try container.encode(self.uri, forKey: .uri)
               try container.encode(self.width, forKey: .width)

@@ -26,8 +26,8 @@
   /// @Snippet(path: "rolloutPlansQuickstart")
   public final class RolloutPlansClient: Clients.RolloutPlansProtocol, Sendable {
     let inner: any Clients.RolloutPlansStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RolloutPlansClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -317,7 +317,7 @@
 
     public func listByItems(
       request: RolloutPlansClient.ListRequest
-    ) -> some AsyncSequence<RolloutPlan, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<RolloutPlan, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -326,7 +326,7 @@
     /// @Snippet(path: "rolloutPlans_list")
     public func listByItems(
       request: RolloutPlansClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<RolloutPlan, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<RolloutPlan, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RolloutPlansListResponse in
@@ -340,7 +340,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<RolloutPlan, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<RolloutPlan, any Swift.Error> & Sendable {
       let request = RolloutPlansClient.ListRequest().with {
         $0.project = project
       }

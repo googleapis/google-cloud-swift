@@ -61,7 +61,7 @@ public struct ListPurchasableSkusResponse: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([PurchasableSku].self, forKey: .purchasableSkus) {
       self.purchasableSkus = value
@@ -75,7 +75,7 @@ public struct ListPurchasableSkusResponse: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.purchasableSkus, forKey: .purchasableSkus)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

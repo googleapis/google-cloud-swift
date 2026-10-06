@@ -77,7 +77,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Match].self, forKey: .matches) {
         self.matches = value
@@ -116,7 +116,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.matches, forKey: .matches)
       try container.encodeIfPresent(self.currentPage, forKey: .currentPage)

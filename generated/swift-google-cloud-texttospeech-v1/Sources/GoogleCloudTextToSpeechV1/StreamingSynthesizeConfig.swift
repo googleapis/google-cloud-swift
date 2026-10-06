@@ -79,7 +79,7 @@ public struct StreamingSynthesizeConfig: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.voice = try container.decodeIfPresent(VoiceSelectionParams.self, forKey: .voice)
     self.streamingAudioConfig = try container.decodeIfPresent(
@@ -94,7 +94,7 @@ public struct StreamingSynthesizeConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.voice, forKey: .voice)
     try container.encodeIfPresent(self.streamingAudioConfig, forKey: .streamingAudioConfig)

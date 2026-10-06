@@ -106,7 +106,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
       self.etag = value
@@ -128,7 +128,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.etag, forKey: .etag)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
@@ -211,7 +211,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
       self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
@@ -247,7 +247,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.condition, forKey: .condition)
       try container.encodeIfPresent(self.parameters, forKey: .parameters)
@@ -328,7 +328,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedValues) {
           self.allowedValues = value
@@ -342,7 +342,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.allowedValues, forKey: .allowedValues)
         try container.encode(self.deniedValues, forKey: .deniedValues)

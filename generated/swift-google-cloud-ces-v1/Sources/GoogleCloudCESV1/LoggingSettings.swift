@@ -117,7 +117,7 @@ public struct LoggingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.redactionConfig = try container.decodeIfPresent(
       RedactionConfig.self, forKey: .redactionConfig)
@@ -143,7 +143,7 @@ public struct LoggingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.redactionConfig, forKey: .redactionConfig)
     try container.encodeIfPresent(self.audioRecordingConfig, forKey: .audioRecordingConfig)

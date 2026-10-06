@@ -146,7 +146,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -196,7 +196,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.credentialMode, forKey: .credentialMode)
@@ -260,7 +260,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .region) {
         self.region = value
@@ -276,7 +276,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.region, forKey: .region)
       try container.encode(self.state, forKey: .state)
@@ -380,7 +380,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -398,7 +398,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unknown: return try container.encode("STATE_UNKNOWN")
@@ -467,7 +467,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .restrictedLocations)
@@ -480,7 +480,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.restrictedLocations, forKey: .restrictedLocations)
       for (key, value) in self._unknownFields.json {
@@ -576,7 +576,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.secretName = try container.decodeIfPresent(Swift.String.self, forKey: .secretName)
       self.serviceDirectoryName = try container.decodeIfPresent(
@@ -619,7 +619,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.secretName, forKey: .secretName)
       try container.encodeIfPresent(self.serviceDirectoryName, forKey: .serviceDirectoryName)
@@ -695,7 +695,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.instanceName = try container.decodeIfPresent(Swift.String.self, forKey: .instanceName)
         self.catalogName = try container.decodeIfPresent(Swift.String.self, forKey: .catalogName)
@@ -707,7 +707,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.instanceName, forKey: .instanceName)
         try container.encodeIfPresent(self.catalogName, forKey: .catalogName)
@@ -790,7 +790,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.warehouse = try container.decodeIfPresent(Swift.String.self, forKey: .warehouse)
         self.awsRegion = try container.decodeIfPresent(Swift.String.self, forKey: .awsRegion)
@@ -801,7 +801,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.warehouse, forKey: .warehouse)
         try container.encodeIfPresent(self.awsRegion, forKey: .awsRegion)
@@ -887,7 +887,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.accountIdentifier = try container.decodeIfPresent(
           Swift.String.self, forKey: .accountIdentifier)
@@ -900,7 +900,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.accountIdentifier, forKey: .accountIdentifier)
         try container.encodeIfPresent(self.warehouse, forKey: .warehouse)
@@ -964,7 +964,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.refreshInterval = try container.decodeIfPresent(
           GoogleWKT.WKTDuration.self, forKey: .refreshInterval)
@@ -974,7 +974,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.refreshInterval, forKey: .refreshInterval)
         for (key, value) in self._unknownFields.json {
@@ -1037,7 +1037,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .namespaceFilters)
         {
@@ -1049,7 +1049,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.namespaceFilters, forKey: .namespaceFilters)
         for (key, value) in self._unknownFields.json {
@@ -1113,7 +1113,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.refreshSchedule = try container.decodeIfPresent(
           IcebergCatalog.FederatedCatalogOptions.RefreshSchedule.self, forKey: .refreshSchedule)
@@ -1125,7 +1125,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.refreshSchedule, forKey: .refreshSchedule)
         try container.encodeIfPresent(self.refreshScope, forKey: .refreshScope)
@@ -1197,7 +1197,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -1209,7 +1209,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encodeIfPresent(self.endTime, forKey: .endTime)
@@ -1346,7 +1346,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1364,7 +1364,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("CATALOG_TYPE_UNSPECIFIED")
@@ -1476,7 +1476,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1494,7 +1494,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("CREDENTIAL_MODE_UNSPECIFIED")

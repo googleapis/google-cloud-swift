@@ -144,7 +144,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([InfoType].self, forKey: .infoTypes) {
       self.infoTypes = value
@@ -179,7 +179,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.infoTypes, forKey: .infoTypes)
     try container.encode(self.minLikelihood, forKey: .minLikelihood)
@@ -245,7 +245,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
       if let value = try container.decodeIfPresent(Likelihood.self, forKey: .minLikelihood) {
@@ -257,7 +257,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.infoType, forKey: .infoType)
       try container.encode(self.minLikelihood, forKey: .minLikelihood)
@@ -357,7 +357,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxFindingsPerItem) {
         self.maxFindingsPerItem = value
@@ -377,7 +377,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.maxFindingsPerItem, forKey: .maxFindingsPerItem)
       try container.encode(self.maxFindingsPerRequest, forKey: .maxFindingsPerRequest)
@@ -434,7 +434,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxFindings) {
@@ -446,7 +446,7 @@ public struct InspectConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.infoType, forKey: .infoType)
         try container.encode(self.maxFindings, forKey: .maxFindings)

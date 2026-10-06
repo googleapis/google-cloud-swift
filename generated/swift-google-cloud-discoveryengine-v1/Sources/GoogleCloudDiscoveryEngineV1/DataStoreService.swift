@@ -31,8 +31,8 @@
   /// @Snippet(path: "DataStoreServiceQuickstart")
   public final class DataStoreServiceClient: Clients.DataStoreServiceProtocol, Sendable {
     let inner: any Clients.DataStoreServiceStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `DataStoreServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -339,7 +339,7 @@
 
     public func listDataStoresByItems(
       request: ListDataStoresRequest
-    ) -> some AsyncSequence<DataStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DataStore, any Swift.Error> & Sendable {
       self.listDataStoresByItems(request: request, options: .init())
     }
 
@@ -351,7 +351,7 @@
     /// @Snippet(path: "DataStoreService_ListDataStores")
     public func listDataStoresByItems(
       request: ListDataStoresRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<DataStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DataStore, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse in
@@ -365,7 +365,7 @@
 
     public func listDataStoresByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<DataStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DataStore, any Swift.Error> & Sendable {
       let request = ListDataStoresRequest().with {
         $0.parent = parent
       }
@@ -440,7 +440,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -451,7 +451,7 @@
     /// @Snippet(path: "DataStoreService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -465,7 +465,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

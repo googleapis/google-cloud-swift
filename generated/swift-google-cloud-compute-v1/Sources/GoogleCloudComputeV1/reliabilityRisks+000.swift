@@ -114,7 +114,7 @@
 
     public func listByItems(
       request: ReliabilityRisksClient.ListRequest
-    ) -> some AsyncSequence<ReliabilityRisk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReliabilityRisk, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -123,7 +123,7 @@
     /// @Snippet(path: "reliabilityRisks_list")
     public func listByItems(
       request: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ReliabilityRisk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReliabilityRisk, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.ReliabilityRisksListResponse in
@@ -137,7 +137,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<ReliabilityRisk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReliabilityRisk, any Swift.Error> & Sendable {
       let request = ReliabilityRisksClient.ListRequest().with {
         $0.project = project
       }

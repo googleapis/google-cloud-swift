@@ -88,7 +88,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.awsV4Authentication = try container.decodeIfPresent(
         AWSV4Signature.self, forKey: .awsV4Authentication)
@@ -103,7 +103,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.awsV4Authentication, forKey: .awsV4Authentication)
       try container.encodeIfPresent(self.clientTlsPolicy, forKey: .clientTlsPolicy)

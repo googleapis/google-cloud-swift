@@ -157,7 +157,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.cachePolicy = try container.decodeIfPresent(CachePolicy.self, forKey: .cachePolicy)
       self.corsPolicy = try container.decodeIfPresent(CorsPolicy.self, forKey: .corsPolicy)
@@ -182,7 +182,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.cachePolicy, forKey: .cachePolicy)
       try container.encodeIfPresent(self.corsPolicy, forKey: .corsPolicy)

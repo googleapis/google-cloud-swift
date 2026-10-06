@@ -130,7 +130,7 @@ public struct TimeSeries: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.metric = try container.decodeIfPresent(GoogleApi.Metric.self, forKey: .metric)
     self.resource = try container.decodeIfPresent(
@@ -162,7 +162,7 @@ public struct TimeSeries: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.metric, forKey: .metric)
     try container.encodeIfPresent(self.resource, forKey: .resource)

@@ -79,7 +79,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [GoogleCloudRetailV2.Condition.QueryTerm].self, forKey: .queryTerms)
@@ -100,7 +100,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.queryTerms, forKey: .queryTerms)
     try container.encode(self.activeTimeRange, forKey: .activeTimeRange)
@@ -158,7 +158,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
         self.value = value
@@ -172,7 +172,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.value, forKey: .value)
       try container.encode(self.fullMatch, forKey: .fullMatch)
@@ -236,7 +236,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -247,7 +247,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)

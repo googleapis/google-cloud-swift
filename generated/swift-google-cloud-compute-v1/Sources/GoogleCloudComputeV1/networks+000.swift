@@ -26,8 +26,8 @@
   /// @Snippet(path: "networksQuickstart")
   public final class NetworksClient: Clients.NetworksProtocol, Sendable {
     let inner: any Clients.NetworksStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `NetworksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -877,7 +877,7 @@
 
     public func listByItems(
       request: NetworksClient.ListRequest
-    ) -> some AsyncSequence<Network, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Network, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -886,7 +886,7 @@
     /// @Snippet(path: "networks_list")
     public func listByItems(
       request: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Network, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Network, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkList in
         var request = request
@@ -899,7 +899,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<Network, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Network, any Swift.Error> & Sendable {
       let request = NetworksClient.ListRequest().with {
         $0.project = project
       }
@@ -920,7 +920,7 @@
 
     public func listPeeringRoutesByItems(
       request: NetworksClient.ListPeeringRoutesRequest
-    ) -> some AsyncSequence<ExchangedPeeringRoute, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ExchangedPeeringRoute, any Swift.Error> & Sendable {
       self.listPeeringRoutesByItems(request: request, options: .init())
     }
 
@@ -929,7 +929,7 @@
     /// @Snippet(path: "networks_listPeeringRoutes")
     public func listPeeringRoutesByItems(
       request: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ExchangedPeeringRoute, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ExchangedPeeringRoute, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.ExchangedPeeringRoutesList in
@@ -944,7 +944,7 @@
     public func listPeeringRoutesByItems(
       project: Swift.String,
       network: Swift.String,
-    ) -> some AsyncSequence<ExchangedPeeringRoute, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ExchangedPeeringRoute, any Swift.Error> & Sendable {
       let request = NetworksClient.ListPeeringRoutesRequest().with {
         $0.project = project
         $0.network = network

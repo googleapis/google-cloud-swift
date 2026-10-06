@@ -66,7 +66,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.temporalPartition = try container.decodeIfPresent(
       Partition.TemporalPartition.self, forKey: .temporalPartition)
@@ -80,7 +80,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.temporalPartition, forKey: .temporalPartition)
     try container.encodeIfPresent(self.spatialPartition, forKey: .spatialPartition)
@@ -135,7 +135,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -146,7 +146,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
@@ -219,7 +219,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.xMin = try container.decodeIfPresent(Swift.Int64.self, forKey: .xMin)
       self.yMin = try container.decodeIfPresent(Swift.Int64.self, forKey: .yMin)
@@ -231,7 +231,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.xMin, forKey: .xMin)
       try container.encodeIfPresent(self.yMin, forKey: .yMin)
@@ -297,7 +297,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startOffset = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .startOffset)
@@ -308,7 +308,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.startOffset, forKey: .startOffset)
       try container.encodeIfPresent(self.endOffset, forKey: .endOffset)

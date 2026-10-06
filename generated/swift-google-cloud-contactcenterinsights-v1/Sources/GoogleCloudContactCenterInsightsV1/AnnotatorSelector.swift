@@ -124,7 +124,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .runInterruptionAnnotator)
     {
@@ -174,7 +174,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.runInterruptionAnnotator, forKey: .runInterruptionAnnotator)
     try container.encode(self.runSilenceAnnotator, forKey: .runSilenceAnnotator)
@@ -235,7 +235,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var modelSource: ModelSourceOneOf? = nil
@@ -265,7 +265,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.modelSource {
@@ -368,7 +368,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -386,7 +386,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("SUMMARIZATION_MODEL_UNSPECIFIED")
@@ -459,7 +459,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var scorecardSource: ScorecardSourceOneOf? = nil
@@ -484,7 +484,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.scorecardSource {
@@ -536,7 +536,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [Swift.String].self, forKey: .qaScorecardRevisions)
@@ -549,7 +549,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.qaScorecardRevisions, forKey: .qaScorecardRevisions)
         for (key, value) in self._unknownFields.json {

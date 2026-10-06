@@ -61,7 +61,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .labelFingerprint) {
         guard let v = GoogleWKT._DiscoveryBase64.decode(s) else {
@@ -83,7 +83,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       if let v = labelFingerprint {
         try container.encode(

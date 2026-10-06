@@ -56,7 +56,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.authProvider = try container.decodeIfPresent(
         DeployedIndexAuthConfig.AuthProvider.self, forKey: .authProvider)
@@ -66,7 +66,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.authProvider, forKey: .authProvider)
       for (key, value) in self._unknownFields.json {
@@ -125,7 +125,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .audiences) {
           self.audiences = value
@@ -139,7 +139,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.audiences, forKey: .audiences)
         try container.encode(self.allowedIssuers, forKey: .allowedIssuers)

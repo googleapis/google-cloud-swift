@@ -61,7 +61,7 @@ public struct ListBranchRulesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([BranchRule].self, forKey: .branchRules) {
       self.branchRules = value
@@ -75,7 +75,7 @@ public struct ListBranchRulesResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.branchRules, forKey: .branchRules)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

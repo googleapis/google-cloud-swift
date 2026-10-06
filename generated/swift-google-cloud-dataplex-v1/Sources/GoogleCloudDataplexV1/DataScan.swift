@@ -171,7 +171,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -276,7 +276,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.uid, forKey: .uid)
@@ -372,7 +372,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.trigger = try container.decodeIfPresent(
         GoogleCloudDataplexV1.Trigger.self, forKey: .trigger)
@@ -397,7 +397,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.trigger, forKey: .trigger)
 
@@ -484,7 +484,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.latestJobStartTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .latestJobStartTime)
@@ -498,7 +498,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.latestJobStartTime, forKey: .latestJobStartTime)
       try container.encodeIfPresent(self.latestJobEndTime, forKey: .latestJobEndTime)

@@ -75,7 +75,7 @@ public struct MaliciousUriFilterResult: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(FilterExecutionState.self, forKey: .executionState)
     {
@@ -98,7 +98,7 @@ public struct MaliciousUriFilterResult: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.executionState, forKey: .executionState)
     try container.encode(self.messageItems, forKey: .messageItems)
@@ -155,7 +155,7 @@ public struct MaliciousUriFilterResult: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
         self.uri = value
@@ -169,7 +169,7 @@ public struct MaliciousUriFilterResult: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uri, forKey: .uri)
       try container.encode(self.locations, forKey: .locations)

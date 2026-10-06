@@ -48,7 +48,7 @@ public struct HoldData: Codable, Equatable, GoogleWKT._AnyPackable,
     static let _knownKeys: Set<Swift.String> = []
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -56,7 +56,7 @@ public struct HoldData: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

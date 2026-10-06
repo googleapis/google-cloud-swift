@@ -57,7 +57,7 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [CustomCanaryDeployment.PhaseConfig].self, forKey: .phaseConfigs)
@@ -70,7 +70,7 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.phaseConfigs, forKey: .phaseConfigs)
     for (key, value) in self._unknownFields.json {
@@ -151,7 +151,7 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phaseId) {
         self.phaseId = value
@@ -173,7 +173,7 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.phaseId, forKey: .phaseId)
       try container.encode(self.percentage, forKey: .percentage)

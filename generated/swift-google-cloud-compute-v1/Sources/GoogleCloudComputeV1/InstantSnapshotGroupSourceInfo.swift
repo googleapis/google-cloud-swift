@@ -58,7 +58,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.consistencyGroup = try container.decodeIfPresent(
         Swift.String.self, forKey: .consistencyGroup)
@@ -70,7 +70,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.consistencyGroup, forKey: .consistencyGroup)
       try container.encodeIfPresent(self.consistencyGroupId, forKey: .consistencyGroupId)

@@ -99,7 +99,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.audioExportGcsDestination = try container.decodeIfPresent(
         GcsDestination.self, forKey: .audioExportGcsDestination)
@@ -115,7 +115,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.audioExportGcsDestination, forKey: .audioExportGcsDestination)
@@ -187,7 +187,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .endpointerSensitivity)
@@ -212,7 +212,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.endpointerSensitivity, forKey: .endpointerSensitivity)
         try container.encodeIfPresent(self.noSpeechTimeout, forKey: .noSpeechTimeout)
@@ -298,7 +298,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
           self.enabled = value
@@ -319,7 +319,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.enabled, forKey: .enabled)
         try container.encode(self.maxDigits, forKey: .maxDigits)
@@ -395,7 +395,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Bool.self, forKey: .enableStackdriverLogging)
@@ -418,7 +418,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.enableStackdriverLogging, forKey: .enableStackdriverLogging)
         try container.encode(self.enableInteractionLogging, forKey: .enableInteractionLogging)

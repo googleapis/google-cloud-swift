@@ -64,7 +64,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.apiVersion = try container.decodeIfPresent(Swift.String.self, forKey: .apiVersion)
       self.resourceType = try container.decodeIfPresent(Swift.String.self, forKey: .resourceType)
@@ -74,7 +74,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.apiVersion, forKey: .apiVersion)
       try container.encodeIfPresent(self.resourceType, forKey: .resourceType)

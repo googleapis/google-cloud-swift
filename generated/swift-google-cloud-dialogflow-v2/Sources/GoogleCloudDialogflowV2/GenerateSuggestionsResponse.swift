@@ -69,7 +69,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [GenerateSuggestionsResponse.GeneratorSuggestionAnswer].self,
@@ -86,7 +86,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.generatorSuggestionAnswers, forKey: .generatorSuggestionAnswers)
       try container.encode(self.latestMessage, forKey: .latestMessage)
@@ -146,7 +146,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.generatorSuggestion = try container.decodeIfPresent(
           GeneratorSuggestion.self, forKey: .generatorSuggestion)
@@ -162,7 +162,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.generatorSuggestion, forKey: .generatorSuggestion)
         try container.encode(self.sourceGenerator, forKey: .sourceGenerator)

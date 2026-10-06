@@ -107,7 +107,7 @@ public struct ForwardingRuleInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
       self.displayName = value
@@ -150,7 +150,7 @@ public struct ForwardingRuleInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.uri, forKey: .uri)

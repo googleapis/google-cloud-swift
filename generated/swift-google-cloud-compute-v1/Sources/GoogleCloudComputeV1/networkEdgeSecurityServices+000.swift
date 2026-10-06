@@ -28,8 +28,8 @@
     Sendable
   {
     let inner: any Clients.NetworkEdgeSecurityServicesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `NetworkEdgeSecurityServicesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -299,7 +299,7 @@
 
     public func aggregatedListByItems(
       request: NetworkEdgeSecurityServicesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), any Swift.Error>
       & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
@@ -315,7 +315,7 @@
     public func aggregatedListByItems(
       request: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), any Swift.Error>
       & Sendable
     {
       let listRpc = {
@@ -331,7 +331,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), any Swift.Error>
       & Sendable
     {
       let request = NetworkEdgeSecurityServicesClient.AggregatedListRequest().with {

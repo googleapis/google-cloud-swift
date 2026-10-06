@@ -43,6 +43,7 @@ let package = Package(
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
       ],
       swiftSettings: [
+        .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),

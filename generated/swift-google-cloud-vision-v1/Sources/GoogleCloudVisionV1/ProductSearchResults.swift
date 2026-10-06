@@ -70,7 +70,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.indexTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .indexTime)
     if let value = try container.decodeIfPresent(
@@ -89,7 +89,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.indexTime, forKey: .indexTime)
     try container.encode(self.results, forKey: .results)
@@ -149,7 +149,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.product = try container.decodeIfPresent(Product.self, forKey: .product)
       if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .score) {
@@ -164,7 +164,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.product, forKey: .product)
       try container.encode(self.score, forKey: .score)
@@ -240,7 +240,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mid) {
         self.mid = value
@@ -260,7 +260,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.mid, forKey: .mid)
       try container.encode(self.languageCode, forKey: .languageCode)
@@ -331,7 +331,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.boundingPoly = try container.decodeIfPresent(BoundingPoly.self, forKey: .boundingPoly)
       if let value = try container.decodeIfPresent(
@@ -350,7 +350,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.boundingPoly, forKey: .boundingPoly)
       try container.encode(self.results, forKey: .results)

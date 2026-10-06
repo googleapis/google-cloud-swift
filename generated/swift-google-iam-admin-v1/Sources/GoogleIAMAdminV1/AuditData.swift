@@ -57,7 +57,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.permissionDelta = try container.decodeIfPresent(
       AuditData.PermissionDelta.self, forKey: .permissionDelta)
@@ -67,7 +67,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.permissionDelta, forKey: .permissionDelta)
     for (key, value) in self._unknownFields.json {
@@ -119,7 +119,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .addedPermissions) {
         self.addedPermissions = value
@@ -134,7 +134,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.addedPermissions, forKey: .addedPermissions)
       try container.encode(self.removedPermissions, forKey: .removedPermissions)

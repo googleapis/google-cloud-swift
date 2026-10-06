@@ -106,7 +106,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.domain = try container.decodeIfPresent(Swift.String.self, forKey: .domain)
       if let value = try container.decodeIfPresent(
@@ -121,7 +121,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.domain, forKey: .domain)
       try container.encode(self.metadatas, forKey: .metadatas)

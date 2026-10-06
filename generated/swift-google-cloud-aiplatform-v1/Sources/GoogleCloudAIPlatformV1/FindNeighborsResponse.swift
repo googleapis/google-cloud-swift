@@ -59,7 +59,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [FindNeighborsResponse.NearestNeighbors].self, forKey: .nearestNeighbors)
@@ -72,7 +72,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.nearestNeighbors, forKey: .nearestNeighbors)
       for (key, value) in self._unknownFields.json {
@@ -131,7 +131,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.datapoint = try container.decodeIfPresent(IndexDatapoint.self, forKey: .datapoint)
         if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .distance) {
@@ -146,7 +146,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.datapoint, forKey: .datapoint)
         try container.encode(self.distance, forKey: .distance)
@@ -210,7 +210,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
           self.id = value
@@ -226,7 +226,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.neighbors, forKey: .neighbors)

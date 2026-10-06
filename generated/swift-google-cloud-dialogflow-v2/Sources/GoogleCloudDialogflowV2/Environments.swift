@@ -250,7 +250,7 @@
 
     public func listEnvironmentsByItems(
       request: ListEnvironmentsRequest
-    ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
       self.listEnvironmentsByItems(request: request, options: .init())
     }
 
@@ -259,7 +259,7 @@
     /// @Snippet(path: "Environments_ListEnvironments")
     public func listEnvironmentsByItems(
       request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowV2.ListEnvironmentsResponse in
@@ -273,7 +273,7 @@
 
     public func listEnvironmentsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
       let request = ListEnvironmentsRequest().with {
         $0.parent = parent
       }
@@ -340,7 +340,7 @@
 
     public func getEnvironmentHistoryByItems(
       request: GetEnvironmentHistoryRequest
-    ) -> some AsyncSequence<EnvironmentHistory.Entry, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<EnvironmentHistory.Entry, any Swift.Error> & Sendable {
       self.getEnvironmentHistoryByItems(request: request, options: .init())
     }
 
@@ -349,7 +349,7 @@
     /// @Snippet(path: "Environments_GetEnvironmentHistory")
     public func getEnvironmentHistoryByItems(
       request: GetEnvironmentHistoryRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<EnvironmentHistory.Entry, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<EnvironmentHistory.Entry, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudDialogflowV2.EnvironmentHistory
         in
@@ -375,7 +375,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -401,7 +401,7 @@
     /// @Snippet(path: "Environments_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -438,7 +438,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -449,7 +449,7 @@
     /// @Snippet(path: "Environments_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -463,7 +463,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

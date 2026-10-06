@@ -72,7 +72,7 @@ public struct GenerateFrameworkAuditScopeReportRequest: Codable, Equatable, Goog
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
       self.scope = value
@@ -91,7 +91,7 @@ public struct GenerateFrameworkAuditScopeReportRequest: Codable, Equatable, Goog
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.scope, forKey: .scope)
     try container.encode(self.reportFormat, forKey: .reportFormat)
@@ -182,7 +182,7 @@ public struct GenerateFrameworkAuditScopeReportRequest: Codable, Equatable, Goog
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -200,7 +200,7 @@ public struct GenerateFrameworkAuditScopeReportRequest: Codable, Equatable, Goog
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("FORMAT_UNSPECIFIED")

@@ -62,7 +62,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [AmazonS3BucketConditions.BucketType].self, forKey: .bucketTypes)
@@ -80,7 +80,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.bucketTypes, forKey: .bucketTypes)
     try container.encode(self.objectStorageClasses, forKey: .objectStorageClasses)
@@ -177,7 +177,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -195,7 +195,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleWKT._AnyPackab
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .typeUnspecified: return try container.encode("TYPE_UNSPECIFIED")
@@ -313,7 +313,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -331,7 +331,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleWKT._AnyPackab
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("UNSPECIFIED")

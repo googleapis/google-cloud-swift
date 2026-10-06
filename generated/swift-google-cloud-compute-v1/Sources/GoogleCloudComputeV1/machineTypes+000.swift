@@ -109,7 +109,7 @@
 
     public func aggregatedListByItems(
       request: MachineTypesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, MachineTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, MachineTypesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -121,7 +121,7 @@
     /// @Snippet(path: "machineTypes_aggregatedList")
     public func aggregatedListByItems(
       request: MachineTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, MachineTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, MachineTypesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.MachineTypeAggregatedList in
@@ -135,7 +135,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, MachineTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, MachineTypesScopedList), any Swift.Error> & Sendable {
       let request = MachineTypesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -181,7 +181,7 @@
 
     public func listByItems(
       request: MachineTypesClient.ListRequest
-    ) -> some AsyncSequence<MachineType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MachineType, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -191,7 +191,7 @@
     /// @Snippet(path: "machineTypes_list")
     public func listByItems(
       request: MachineTypesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<MachineType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MachineType, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.MachineTypeList in
         var request = request
@@ -205,7 +205,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<MachineType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MachineType, any Swift.Error> & Sendable {
       let request = MachineTypesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

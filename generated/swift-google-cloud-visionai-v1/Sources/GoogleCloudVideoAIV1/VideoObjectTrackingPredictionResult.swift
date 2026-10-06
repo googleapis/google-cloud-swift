@@ -68,7 +68,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.segmentStartTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .segmentStartTime)
@@ -85,7 +85,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.segmentStartTime, forKey: .segmentStartTime)
     try container.encodeIfPresent(self.segmentEndTime, forKey: .segmentEndTime)
@@ -150,7 +150,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .xMin) {
         self.xMin = value
@@ -170,7 +170,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.xMin, forKey: .xMin)
       try container.encode(self.xMax, forKey: .xMax)
@@ -257,7 +257,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
         self.id = value
@@ -279,7 +279,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
       try container.encode(self.displayName, forKey: .displayName)

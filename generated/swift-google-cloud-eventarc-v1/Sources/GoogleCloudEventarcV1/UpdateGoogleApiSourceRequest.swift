@@ -75,7 +75,7 @@ public struct UpdateGoogleApiSourceRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.googleApiSource = try container.decodeIfPresent(
       GoogleApiSource.self, forKey: .googleApiSource)
@@ -93,7 +93,7 @@ public struct UpdateGoogleApiSourceRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.googleApiSource, forKey: .googleApiSource)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

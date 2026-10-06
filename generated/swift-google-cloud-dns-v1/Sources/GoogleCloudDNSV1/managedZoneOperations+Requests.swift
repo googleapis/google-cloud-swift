@@ -71,7 +71,7 @@ extension ManagedZoneOperationsClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -90,7 +90,7 @@ extension ManagedZoneOperationsClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.managedZone, forKey: .managedZone)
@@ -170,7 +170,7 @@ extension ManagedZoneOperationsClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .managedZone) {
         self.managedZone = value
@@ -188,7 +188,7 @@ extension ManagedZoneOperationsClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.managedZone, forKey: .managedZone)
       try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
@@ -240,13 +240,13 @@ extension ManagedZoneOperationsClient {
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .startTime: return try container.encode("startTime")

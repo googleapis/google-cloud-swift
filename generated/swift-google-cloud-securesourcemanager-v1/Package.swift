@@ -76,6 +76,7 @@ let package = Package(
         .product(name: "Logging", package: "swift-log"),
       ],
       swiftSettings: [
+        .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),

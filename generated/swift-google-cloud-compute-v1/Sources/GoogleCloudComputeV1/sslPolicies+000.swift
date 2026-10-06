@@ -26,8 +26,8 @@
   /// @Snippet(path: "sslPoliciesQuickstart")
   public final class SslPoliciesClient: Clients.SslPoliciesProtocol, Sendable {
     let inner: any Clients.SslPoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `SslPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -322,7 +322,7 @@
 
     public func aggregatedListByItems(
       request: SslPoliciesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, SslPoliciesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -335,7 +335,7 @@
     /// @Snippet(path: "sslPolicies_aggregatedList")
     public func aggregatedListByItems(
       request: SslPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, SslPoliciesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.SslPoliciesAggregatedList in
@@ -349,7 +349,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, SslPoliciesScopedList), any Swift.Error> & Sendable {
       let request = SslPoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -463,7 +463,7 @@
 
     public func listByItems(
       request: SslPoliciesClient.ListRequest
-    ) -> some AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslPolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -473,7 +473,7 @@
     /// @Snippet(path: "sslPolicies_list")
     public func listByItems(
       request: SslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslPolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesList in
         var request = request
@@ -486,7 +486,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslPolicy, any Swift.Error> & Sendable {
       let request = SslPoliciesClient.ListRequest().with {
         $0.project = project
       }

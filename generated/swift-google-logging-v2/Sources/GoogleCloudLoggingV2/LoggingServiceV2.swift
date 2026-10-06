@@ -236,7 +236,7 @@ extension Clients.LoggingServiceV2Protocol {
 
   public func listLogEntriesByItems(
     request: ListLogEntriesRequest
-  ) -> some AsyncSequence<LogEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogEntry, any Swift.Error> & Sendable {
     self.listLogEntriesByItems(request: request, options: .init())
   }
 
@@ -248,7 +248,7 @@ extension Clients.LoggingServiceV2Protocol {
   /// @Snippet(path: "LoggingServiceV2_ListLogEntries")
   public func listLogEntriesByItems(
     request: ListLogEntriesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<LogEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogEntry, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLogEntriesResponse in
       var request = request
@@ -263,7 +263,7 @@ extension Clients.LoggingServiceV2Protocol {
     resourceNames: [Swift.String],
     filter: Swift.String,
     orderBy: Swift.String,
-  ) -> some AsyncSequence<LogEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogEntry, any Swift.Error> & Sendable {
     let request = ListLogEntriesRequest().with {
       $0.resourceNames = resourceNames
       $0.filter = filter
@@ -286,7 +286,7 @@ extension Clients.LoggingServiceV2Protocol {
 
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest
-  ) -> some AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleApi.MonitoredResourceDescriptor, any Swift.Error> & Sendable {
     self.listMonitoredResourceDescriptorsByItems(request: request, options: .init())
   }
 
@@ -295,7 +295,7 @@ extension Clients.LoggingServiceV2Protocol {
   /// @Snippet(path: "LoggingServiceV2_ListMonitoredResourceDescriptors")
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleApi.MonitoredResourceDescriptor, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudLoggingV2.ListMonitoredResourceDescriptorsResponse in
@@ -342,7 +342,7 @@ extension Clients.LoggingServiceV2Protocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -353,7 +353,7 @@ extension Clients.LoggingServiceV2Protocol {
   /// @Snippet(path: "LoggingServiceV2_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -367,7 +367,7 @@ extension Clients.LoggingServiceV2Protocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

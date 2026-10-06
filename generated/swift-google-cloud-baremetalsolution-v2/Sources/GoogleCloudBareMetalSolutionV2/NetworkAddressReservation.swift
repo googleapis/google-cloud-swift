@@ -69,7 +69,7 @@ public struct NetworkAddressReservation: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .startAddress) {
       self.startAddress = value
@@ -86,7 +86,7 @@ public struct NetworkAddressReservation: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.startAddress, forKey: .startAddress)
     try container.encode(self.endAddress, forKey: .endAddress)

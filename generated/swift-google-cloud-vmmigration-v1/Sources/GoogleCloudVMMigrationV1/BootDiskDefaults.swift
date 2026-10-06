@@ -79,7 +79,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .diskName) {
       self.diskName = value
@@ -114,7 +114,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.diskName, forKey: .diskName)
     try container.encode(self.diskType, forKey: .diskType)
@@ -170,7 +170,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceImage) {
         self.sourceImage = value
@@ -181,7 +181,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sourceImage, forKey: .sourceImage)
       for (key, value) in self._unknownFields.json {

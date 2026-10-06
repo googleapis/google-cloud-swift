@@ -69,7 +69,7 @@ public struct UpdateProjectIntelligenceConfigRequest: Codable, Equatable, Google
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.intelligenceConfig = try container.decodeIfPresent(
       IntelligenceConfig.self, forKey: .intelligenceConfig)
@@ -84,7 +84,7 @@ public struct UpdateProjectIntelligenceConfigRequest: Codable, Equatable, Google
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.intelligenceConfig, forKey: .intelligenceConfig)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

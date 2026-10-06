@@ -26,8 +26,8 @@
   /// @Snippet(path: "targetTcpProxiesQuickstart")
   public final class TargetTcpProxiesClient: Clients.TargetTcpProxiesProtocol, Sendable {
     let inner: any Clients.TargetTcpProxiesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `TargetTcpProxiesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -379,7 +379,8 @@
 
     public func aggregatedListByItems(
       request: TargetTcpProxiesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -392,7 +393,8 @@
     /// @Snippet(path: "targetTcpProxies_aggregatedList")
     public func aggregatedListByItems(
       request: TargetTcpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.TargetTcpProxyAggregatedList in
@@ -406,7 +408,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), any Swift.Error> & Sendable
+    {
       let request = TargetTcpProxiesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -520,7 +523,7 @@
 
     public func listByItems(
       request: TargetTcpProxiesClient.ListRequest
-    ) -> some AsyncSequence<TargetTcpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -530,7 +533,7 @@
     /// @Snippet(path: "targetTcpProxies_list")
     public func listByItems(
       request: TargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<TargetTcpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
         var request = request
@@ -543,7 +546,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<TargetTcpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
       let request = TargetTcpProxiesClient.ListRequest().with {
         $0.project = project
       }

@@ -53,7 +53,7 @@ public struct ResponsePolicyRulesPatchResponse: Codable, Equatable, GoogleWKT._A
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.responsePolicyRule = try container.decodeIfPresent(
       ResponsePolicyRule.self, forKey: .responsePolicyRule)
@@ -63,7 +63,7 @@ public struct ResponsePolicyRulesPatchResponse: Codable, Equatable, GoogleWKT._A
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.responsePolicyRule, forKey: .responsePolicyRule)
     for (key, value) in self._unknownFields.json {

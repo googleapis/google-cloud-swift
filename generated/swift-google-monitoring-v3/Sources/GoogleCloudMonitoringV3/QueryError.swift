@@ -61,7 +61,7 @@ public struct QueryError: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.locator = try container.decodeIfPresent(TextLocator.self, forKey: .locator)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .message) {
@@ -73,7 +73,7 @@ public struct QueryError: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.locator, forKey: .locator)
     try container.encode(self.message, forKey: .message)

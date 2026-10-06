@@ -69,7 +69,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       KeyOperationAttestation.AttestationFormat.self, forKey: .format)
@@ -87,7 +87,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.format, forKey: .format)
     try container.encode(self.content, forKey: .content)
@@ -147,7 +147,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .caviumCerts) {
         self.caviumCerts = value
@@ -166,7 +166,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.caviumCerts, forKey: .caviumCerts)
       try container.encode(self.googleCardCerts, forKey: .googleCardCerts)
@@ -279,7 +279,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -297,7 +297,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("ATTESTATION_FORMAT_UNSPECIFIED")

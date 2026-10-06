@@ -61,7 +61,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError].self,
@@ -75,7 +75,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.errors, forKey: .errors)
     for (key, value) in self._unknownFields.json {
@@ -143,7 +143,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
         self.description = value
@@ -161,7 +161,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.description, forKey: .description)
       try container.encode(self.fieldPath, forKey: .fieldPath)
@@ -227,7 +227,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lineNumber) {
         self.lineNumber = value
@@ -241,7 +241,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.lineNumber, forKey: .lineNumber)
       try container.encode(self.columnNumber, forKey: .columnNumber)

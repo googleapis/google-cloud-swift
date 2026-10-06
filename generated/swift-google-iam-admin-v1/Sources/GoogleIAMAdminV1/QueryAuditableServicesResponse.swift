@@ -55,7 +55,7 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [QueryAuditableServicesResponse.AuditableService].self, forKey: .services)
@@ -68,7 +68,7 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.services, forKey: .services)
     for (key, value) in self._unknownFields.json {
@@ -115,7 +115,7 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleWKT._Any
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -126,7 +126,7 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleWKT._Any
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       for (key, value) in self._unknownFields.json {

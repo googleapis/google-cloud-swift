@@ -68,7 +68,7 @@ public struct Error: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.details = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .details)
     if let value = try container.decodeIfPresent([GoogleWKT.WKTTimestamp].self, forKey: .timestamps)
@@ -84,7 +84,7 @@ public struct Error: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.details, forKey: .details)
     try container.encode(self.timestamps, forKey: .timestamps)
@@ -181,7 +181,7 @@ public struct Error: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -199,7 +199,7 @@ public struct Error: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .errorInfoUnspecified: return try container.encode("ERROR_INFO_UNSPECIFIED")

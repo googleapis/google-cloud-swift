@@ -115,7 +115,7 @@
 
     public func listByItems(
       request: NetworkProfilesClient.ListRequest
-    ) -> some AsyncSequence<NetworkProfile, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkProfile, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -125,7 +125,7 @@
     /// @Snippet(path: "networkProfiles_list")
     public func listByItems(
       request: NetworkProfilesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<NetworkProfile, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkProfile, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkProfilesListResponse in
@@ -139,7 +139,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<NetworkProfile, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkProfile, any Swift.Error> & Sendable {
       let request = NetworkProfilesClient.ListRequest().with {
         $0.project = project
       }

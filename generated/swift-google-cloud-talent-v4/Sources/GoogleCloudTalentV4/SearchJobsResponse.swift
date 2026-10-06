@@ -112,7 +112,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [SearchJobsResponse.MatchingJob].self, forKey: .matchingJobs)
@@ -148,7 +148,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.matchingJobs, forKey: .matchingJobs)
     try container.encode(self.histogramQueryResults, forKey: .histogramQueryResults)
@@ -242,7 +242,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.job = try container.decodeIfPresent(Job.self, forKey: .job)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .jobSummary) {
@@ -262,7 +262,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.job, forKey: .job)
       try container.encode(self.jobSummary, forKey: .jobSummary)
@@ -331,7 +331,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.jobLocation = try container.decodeIfPresent(
         GoogleCloudTalentV4.Location.self, forKey: .jobLocation)
@@ -343,7 +343,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.jobLocation, forKey: .jobLocation)
       try container.encodeIfPresent(self.travelDuration, forKey: .travelDuration)

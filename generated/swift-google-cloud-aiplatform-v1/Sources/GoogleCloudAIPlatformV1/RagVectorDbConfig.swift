@@ -70,7 +70,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.apiAuth = try container.decodeIfPresent(ApiAuth.self, forKey: .apiAuth)
       self.ragEmbeddingModelConfig = try container.decodeIfPresent(
@@ -108,7 +108,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.apiAuth, forKey: .apiAuth)
       try container.encodeIfPresent(self.ragEmbeddingModelConfig, forKey: .ragEmbeddingModelConfig)
@@ -168,7 +168,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var retrievalStrategy: RetrievalStrategyOneOf? = nil
@@ -198,7 +198,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.retrievalStrategy {
@@ -245,7 +245,7 @@
           static let _knownKeys: Set<Swift.String> = []
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
@@ -253,7 +253,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -331,7 +331,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .treeDepth) {
             self.treeDepth = value
@@ -345,7 +345,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.treeDepth, forKey: .treeDepth)
           try container.encode(self.leafCount, forKey: .leafCount)
@@ -425,7 +425,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexName) {
           self.indexName = value
@@ -436,7 +436,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.indexName, forKey: .indexName)
         for (key, value) in self._unknownFields.json {
@@ -502,7 +502,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexEndpoint) {
           self.indexEndpoint = value
@@ -516,7 +516,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.indexEndpoint, forKey: .indexEndpoint)
         try container.encode(self.index, forKey: .index)

@@ -149,7 +149,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [MachineType.Accelerators].self, forKey: .accelerators)
@@ -183,7 +183,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.accelerators, forKey: .accelerators)
       try container.encodeIfPresent(self.architecture, forKey: .architecture)
@@ -253,7 +253,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.guestAcceleratorCount = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .guestAcceleratorCount)
@@ -265,7 +265,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.guestAcceleratorCount, forKey: .guestAcceleratorCount)
         try container.encodeIfPresent(self.guestAcceleratorType, forKey: .guestAcceleratorType)
@@ -333,13 +333,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("ARCHITECTURE_UNSPECIFIED")

@@ -106,7 +106,7 @@ public struct Companion: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .apiFramework) {
       self.apiFramework = value
@@ -168,7 +168,7 @@ public struct Companion: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.apiFramework, forKey: .apiFramework)
     try container.encode(self.heightPx, forKey: .heightPx)

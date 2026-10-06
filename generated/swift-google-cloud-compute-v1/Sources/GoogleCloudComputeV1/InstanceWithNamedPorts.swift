@@ -65,7 +65,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.instance = try container.decodeIfPresent(Swift.String.self, forKey: .instance)
       if let value = try container.decodeIfPresent([NamedPort].self, forKey: .namedPorts) {
@@ -79,7 +79,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.instance, forKey: .instance)
       try container.encode(self.namedPorts, forKey: .namedPorts)
@@ -177,13 +177,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .deprovisioning: return try container.encode("DEPROVISIONING")

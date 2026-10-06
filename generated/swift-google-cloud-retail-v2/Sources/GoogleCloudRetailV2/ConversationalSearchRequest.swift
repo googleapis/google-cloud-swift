@@ -168,7 +168,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .placement) {
       self.placement = value
@@ -208,7 +208,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.placement, forKey: .placement)
     try container.encode(self.branch, forKey: .branch)
@@ -298,7 +298,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
         self.filter = value
@@ -317,7 +317,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.filter, forKey: .filter)
       try container.encode(self.canonicalFilter, forKey: .canonicalFilter)
@@ -381,7 +381,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var type: TypeOneOf? = nil
@@ -409,7 +409,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.type {
@@ -465,7 +465,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.productAttributeValue = try container.decodeIfPresent(
           ProductAttributeValue.self, forKey: .productAttributeValue)
@@ -475,7 +475,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.productAttributeValue, forKey: .productAttributeValue)
         for (key, value) in self._unknownFields.json {
@@ -585,7 +585,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableConversationalFiltering)
@@ -609,7 +609,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(
         self.enableConversationalFiltering, forKey: .enableConversationalFiltering)
@@ -716,7 +716,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -734,7 +734,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("MODE_UNSPECIFIED")

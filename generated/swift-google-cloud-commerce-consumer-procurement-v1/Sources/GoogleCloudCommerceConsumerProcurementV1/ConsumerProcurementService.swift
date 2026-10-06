@@ -39,8 +39,8 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   Sendable
 {
   let inner: any Clients.ConsumerProcurementServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ConsumerProcurementServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -342,7 +342,7 @@ extension Clients.ConsumerProcurementServiceProtocol {
 
   public func listOrdersByItems(
     request: ListOrdersRequest
-  ) -> some AsyncSequence<Order, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Order, any Swift.Error> & Sendable {
     self.listOrdersByItems(request: request, options: .init())
   }
 
@@ -355,7 +355,7 @@ extension Clients.ConsumerProcurementServiceProtocol {
   /// @Snippet(path: "ConsumerProcurementService_ListOrders")
   public func listOrdersByItems(
     request: ListOrdersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Order, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Order, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse in
@@ -369,7 +369,7 @@ extension Clients.ConsumerProcurementServiceProtocol {
 
   public func listOrdersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Order, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Order, any Swift.Error> & Sendable {
     let request = ListOrdersRequest().with {
       $0.parent = parent
     }

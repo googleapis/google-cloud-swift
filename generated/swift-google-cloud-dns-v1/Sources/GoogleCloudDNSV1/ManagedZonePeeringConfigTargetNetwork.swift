@@ -63,7 +63,7 @@ public struct ManagedZonePeeringConfigTargetNetwork: Codable, Equatable, GoogleW
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.deactivateTime = try container.decodeIfPresent(Swift.String.self, forKey: .deactivateTime)
     self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
@@ -74,7 +74,7 @@ public struct ManagedZonePeeringConfigTargetNetwork: Codable, Equatable, GoogleW
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.deactivateTime, forKey: .deactivateTime)
     try container.encodeIfPresent(self.kind, forKey: .kind)

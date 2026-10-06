@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionUrlMapsQuickstart")
   public final class RegionUrlMapsClient: Clients.RegionUrlMapsProtocol, Sendable {
     let inner: any Clients.RegionUrlMapsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionUrlMapsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -474,7 +474,7 @@
 
     public func listByItems(
       request: RegionUrlMapsClient.ListRequest
-    ) -> some AsyncSequence<UrlMap, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -484,7 +484,7 @@
     /// @Snippet(path: "regionUrlMaps_list")
     public func listByItems(
       request: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<UrlMap, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
         var request = request
@@ -498,7 +498,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<UrlMap, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
       let request = RegionUrlMapsClient.ListRequest().with {
         $0.project = project
         $0.region = region

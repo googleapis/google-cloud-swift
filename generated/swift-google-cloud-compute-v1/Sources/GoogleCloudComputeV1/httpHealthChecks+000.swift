@@ -26,8 +26,8 @@
   /// @Snippet(path: "httpHealthChecksQuickstart")
   public final class HttpHealthChecksClient: Clients.HttpHealthChecksProtocol, Sendable {
     let inner: any Clients.HttpHealthChecksStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `HttpHealthChecksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -462,7 +462,7 @@
 
     public func listByItems(
       request: HttpHealthChecksClient.ListRequest
-    ) -> some AsyncSequence<HttpHealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HttpHealthCheck, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -472,7 +472,7 @@
     /// @Snippet(path: "httpHealthChecks_list")
     public func listByItems(
       request: HttpHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<HttpHealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HttpHealthCheck, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.HttpHealthCheckList in
         var request = request
@@ -485,7 +485,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<HttpHealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HttpHealthCheck, any Swift.Error> & Sendable {
       let request = HttpHealthChecksClient.ListRequest().with {
         $0.project = project
       }

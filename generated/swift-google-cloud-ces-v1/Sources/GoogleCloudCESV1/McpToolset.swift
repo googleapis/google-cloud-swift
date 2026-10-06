@@ -97,7 +97,7 @@ public struct McpToolset: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serverAddress) {
       self.serverAddress = value
@@ -121,7 +121,7 @@ public struct McpToolset: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.serverAddress, forKey: .serverAddress)
     try container.encodeIfPresent(self.apiAuthentication, forKey: .apiAuthentication)

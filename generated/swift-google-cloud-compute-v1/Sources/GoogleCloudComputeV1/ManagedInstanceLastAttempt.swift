@@ -56,7 +56,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.errors = try container.decodeIfPresent(
         ManagedInstanceLastAttempt.Errors.self, forKey: .errors)
@@ -66,7 +66,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.errors, forKey: .errors)
       for (key, value) in self._unknownFields.json {
@@ -115,7 +115,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [ManagedInstanceLastAttempt.Errors.Errors].self, forKey: .errors)
@@ -128,7 +128,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.errors, forKey: .errors)
         for (key, value) in self._unknownFields.json {
@@ -196,7 +196,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.code = try container.decodeIfPresent(Swift.String.self, forKey: .code)
           if let value = try container.decodeIfPresent(
@@ -212,7 +212,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.code, forKey: .code)
           try container.encode(self.errorDetails, forKey: .errorDetails)
@@ -278,7 +278,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.errorInfo = try container.decodeIfPresent(ErrorInfo.self, forKey: .errorInfo)
             self.help = try container.decodeIfPresent(Help.self, forKey: .help)
@@ -292,7 +292,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.errorInfo, forKey: .errorInfo)
             try container.encodeIfPresent(self.help, forKey: .help)

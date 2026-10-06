@@ -61,7 +61,7 @@ public struct LatLongRect: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.minLatLng = try container.decodeIfPresent(GoogleType.LatLng.self, forKey: .minLatLng)
     self.maxLatLng = try container.decodeIfPresent(GoogleType.LatLng.self, forKey: .maxLatLng)
@@ -71,7 +71,7 @@ public struct LatLongRect: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.minLatLng, forKey: .minLatLng)
     try container.encodeIfPresent(self.maxLatLng, forKey: .maxLatLng)

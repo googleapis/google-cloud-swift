@@ -70,7 +70,7 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.inputSchema = try container.decodeIfPresent(Schema.self, forKey: .inputSchema)
     self.outputSchema = try container.decodeIfPresent(Schema.self, forKey: .outputSchema)
@@ -98,7 +98,7 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.inputSchema, forKey: .inputSchema)
     try container.encodeIfPresent(self.outputSchema, forKey: .outputSchema)

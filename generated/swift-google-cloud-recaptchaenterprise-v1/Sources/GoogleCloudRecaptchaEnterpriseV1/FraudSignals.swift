@@ -61,7 +61,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.userSignals = try container.decodeIfPresent(
       FraudSignals.UserSignals.self, forKey: .userSignals)
@@ -73,7 +73,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.userSignals, forKey: .userSignals)
     try container.encodeIfPresent(self.cardSignals, forKey: .cardSignals)
@@ -128,7 +128,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .activeDaysLowerBound)
       {
@@ -143,7 +143,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.activeDaysLowerBound, forKey: .activeDaysLowerBound)
       try container.encode(self.syntheticRisk, forKey: .syntheticRisk)
@@ -201,7 +201,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [FraudSignals.CardSignals.CardLabel].self, forKey: .cardLabels)
@@ -214,7 +214,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.cardLabels, forKey: .cardLabels)
       for (key, value) in self._unknownFields.json {
@@ -319,7 +319,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -337,7 +337,7 @@ public struct FraudSignals: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("CARD_LABEL_UNSPECIFIED")

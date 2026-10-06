@@ -100,7 +100,7 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [SearchDocumentsResponse.MatchingDocument].self, forKey: .matchingDocuments)
@@ -128,7 +128,7 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.matchingDocuments, forKey: .matchingDocuments)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -214,7 +214,7 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.document = try container.decodeIfPresent(
         GoogleCloudContentWarehouseV1.Document.self, forKey: .document)
@@ -233,7 +233,7 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.document, forKey: .document)
       try container.encode(self.searchTextSnippet, forKey: .searchTextSnippet)

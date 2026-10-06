@@ -60,7 +60,7 @@ public struct InfoTypeStats: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .count) {
@@ -72,7 +72,7 @@ public struct InfoTypeStats: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.infoType, forKey: .infoType)
     try container.encode(self.count, forKey: .count)

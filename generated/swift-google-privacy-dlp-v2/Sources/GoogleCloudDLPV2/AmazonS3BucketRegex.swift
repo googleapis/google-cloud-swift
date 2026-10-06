@@ -61,7 +61,7 @@ public struct AmazonS3BucketRegex: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.awsAccountRegex = try container.decodeIfPresent(
       AwsAccountRegex.self, forKey: .awsAccountRegex)
@@ -74,7 +74,7 @@ public struct AmazonS3BucketRegex: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.awsAccountRegex, forKey: .awsAccountRegex)
     try container.encode(self.bucketNameRegex, forKey: .bucketNameRegex)

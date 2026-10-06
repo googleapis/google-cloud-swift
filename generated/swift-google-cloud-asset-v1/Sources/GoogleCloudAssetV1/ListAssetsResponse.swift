@@ -68,7 +68,7 @@ public struct ListAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.readTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .readTime)
     if let value = try container.decodeIfPresent([Asset].self, forKey: .assets) {
@@ -83,7 +83,7 @@ public struct ListAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.readTime, forKey: .readTime)
     try container.encode(self.assets, forKey: .assets)

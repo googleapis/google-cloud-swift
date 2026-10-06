@@ -63,7 +63,7 @@ public struct ThreatEntryRemovals: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.rawIndices = try container.decodeIfPresent(RawIndices.self, forKey: .rawIndices)
     self.riceIndices = try container.decodeIfPresent(RiceDeltaEncoding.self, forKey: .riceIndices)
@@ -73,7 +73,7 @@ public struct ThreatEntryRemovals: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.rawIndices, forKey: .rawIndices)
     try container.encodeIfPresent(self.riceIndices, forKey: .riceIndices)

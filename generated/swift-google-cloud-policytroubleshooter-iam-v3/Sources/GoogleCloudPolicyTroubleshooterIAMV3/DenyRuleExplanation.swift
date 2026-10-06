@@ -156,7 +156,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(DenyAccessState.self, forKey: .denyAccessState) {
       self.denyAccessState = value
@@ -205,7 +205,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.denyAccessState, forKey: .denyAccessState)
     try container.encodeIfPresent(self.combinedDeniedPermission, forKey: .combinedDeniedPermission)
@@ -273,7 +273,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         PermissionPatternMatchingState.self, forKey: .permissionMatchingState)
@@ -289,7 +289,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.permissionMatchingState, forKey: .permissionMatchingState)
       try container.encode(self.relevance, forKey: .relevance)
@@ -357,7 +357,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         MembershipMatchingState.self, forKey: .membership)
@@ -373,7 +373,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.membership, forKey: .membership)
       try container.encode(self.relevance, forKey: .relevance)

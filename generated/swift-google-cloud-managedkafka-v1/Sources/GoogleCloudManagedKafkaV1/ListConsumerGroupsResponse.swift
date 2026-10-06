@@ -63,7 +63,7 @@ public struct ListConsumerGroupsResponse: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([ConsumerGroup].self, forKey: .consumerGroups) {
       self.consumerGroups = value
@@ -77,7 +77,7 @@ public struct ListConsumerGroupsResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.consumerGroups, forKey: .consumerGroups)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

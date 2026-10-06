@@ -28,8 +28,8 @@
     Sendable
   {
     let inner: any Clients.RegionInstanceTemplatesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionInstanceTemplatesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -333,7 +333,7 @@
 
     public func listByItems(
       request: RegionInstanceTemplatesClient.ListRequest
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -343,7 +343,7 @@
     /// @Snippet(path: "regionInstanceTemplates_list")
     public func listByItems(
       request: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
         var request = request
@@ -357,7 +357,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       let request = RegionInstanceTemplatesClient.ListRequest().with {
         $0.project = project
         $0.region = region

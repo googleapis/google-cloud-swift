@@ -61,7 +61,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.currentTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .currentTime)
@@ -76,7 +76,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.currentTime, forKey: .currentTime)
     try container.encode(self.detectedPersons, forKey: .detectedPersons)
@@ -123,7 +123,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .personEntityId) {
         self.personEntityId = value
@@ -134,7 +134,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.personEntityId, forKey: .personEntityId)
       for (key, value) in self._unknownFields.json {
@@ -209,7 +209,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .ppeLabelId) {
         self.ppeLabelId = value
@@ -231,7 +231,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.ppeLabelId, forKey: .ppeLabelId)
       try container.encode(self.ppeLabelString, forKey: .ppeLabelString)
@@ -307,7 +307,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .xmin) {
         self.xmin = value
@@ -327,7 +327,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.xmin, forKey: .xmin)
       try container.encode(self.ymin, forKey: .ymin)
@@ -405,7 +405,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .boxId) {
         self.boxId = value
@@ -424,7 +424,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.boxId, forKey: .boxId)
       try container.encodeIfPresent(self.normalizedBoundingBox, forKey: .normalizedBoundingBox)
@@ -501,7 +501,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .boxId) {
         self.boxId = value
@@ -520,7 +520,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.boxId, forKey: .boxId)
       try container.encodeIfPresent(self.normalizedBoundingBox, forKey: .normalizedBoundingBox)
@@ -626,7 +626,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .personId) {
         self.personId = value
@@ -658,7 +658,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.personId, forKey: .personId)
       try container.encodeIfPresent(

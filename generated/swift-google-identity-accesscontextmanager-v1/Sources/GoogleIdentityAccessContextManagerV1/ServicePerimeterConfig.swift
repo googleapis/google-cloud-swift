@@ -106,7 +106,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resources) {
       self.resources = value
@@ -135,7 +135,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.resources, forKey: .resources)
     try container.encode(self.accessLevels, forKey: .accessLevels)
@@ -196,7 +196,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableRestriction) {
         self.enableRestriction = value
@@ -210,7 +210,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enableRestriction, forKey: .enableRestriction)
       try container.encode(self.allowedServices, forKey: .allowedServices)
@@ -272,7 +272,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var kind: KindOneOf? = nil
@@ -298,7 +298,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.kind {
@@ -394,7 +394,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceName) {
         self.serviceName = value
@@ -410,7 +410,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.serviceName, forKey: .serviceName)
       try container.encode(self.methodSelectors, forKey: .methodSelectors)
@@ -475,7 +475,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var source: SourceOneOf? = nil
@@ -501,7 +501,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.source {
@@ -621,7 +621,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [ServicePerimeterConfig.IngressSource].self, forKey: .sources)
@@ -642,7 +642,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sources, forKey: .sources)
       try container.encode(self.identities, forKey: .identities)
@@ -727,7 +727,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [ServicePerimeterConfig.ApiOperation].self, forKey: .operations)
@@ -743,7 +743,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.operations, forKey: .operations)
       try container.encode(self.resources, forKey: .resources)
@@ -833,7 +833,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ingressFrom = try container.decodeIfPresent(
         ServicePerimeterConfig.IngressFrom.self, forKey: .ingressFrom)
@@ -845,7 +845,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ingressFrom, forKey: .ingressFrom)
       try container.encodeIfPresent(self.ingressTo, forKey: .ingressTo)
@@ -924,7 +924,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .identities) {
         self.identities = value
@@ -940,7 +940,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.identities, forKey: .identities)
       try container.encode(self.identityType, forKey: .identityType)
@@ -1040,7 +1040,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .resources) {
         self.resources = value
@@ -1060,7 +1060,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.resources, forKey: .resources)
       try container.encode(self.operations, forKey: .operations)
@@ -1158,7 +1158,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.egressFrom = try container.decodeIfPresent(
         ServicePerimeterConfig.EgressFrom.self, forKey: .egressFrom)
@@ -1170,7 +1170,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.egressFrom, forKey: .egressFrom)
       try container.encodeIfPresent(self.egressTo, forKey: .egressTo)
@@ -1289,7 +1289,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1307,7 +1307,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("IDENTITY_TYPE_UNSPECIFIED")

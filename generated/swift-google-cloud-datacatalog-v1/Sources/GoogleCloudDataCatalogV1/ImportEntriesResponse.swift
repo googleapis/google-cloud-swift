@@ -66,7 +66,7 @@ public struct ImportEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.upsertedEntriesCount = try container.decodeIfPresent(
       Swift.Int64.self, forKey: .upsertedEntriesCount)
@@ -78,7 +78,7 @@ public struct ImportEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.upsertedEntriesCount, forKey: .upsertedEntriesCount)
     try container.encodeIfPresent(self.deletedEntriesCount, forKey: .deletedEntriesCount)

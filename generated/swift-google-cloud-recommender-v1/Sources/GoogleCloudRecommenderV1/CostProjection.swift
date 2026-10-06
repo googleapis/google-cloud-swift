@@ -71,7 +71,7 @@ public struct CostProjection: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.cost = try container.decodeIfPresent(GoogleType.Money.self, forKey: .cost)
     self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
@@ -83,7 +83,7 @@ public struct CostProjection: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.cost, forKey: .cost)
     try container.encodeIfPresent(self.duration, forKey: .duration)

@@ -28,8 +28,8 @@
       .GlobalPublicDelegatedPrefixesProtocol, Sendable
   {
     let inner: any Clients.GlobalPublicDelegatedPrefixesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `GlobalPublicDelegatedPrefixesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -392,7 +392,7 @@
 
     public func listByItems(
       request: GlobalPublicDelegatedPrefixesClient.ListRequest
-    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -401,7 +401,7 @@
     /// @Snippet(path: "globalPublicDelegatedPrefixes_list")
     public func listByItems(
       request: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
@@ -415,7 +415,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, any Swift.Error> & Sendable {
       let request = GlobalPublicDelegatedPrefixesClient.ListRequest().with {
         $0.project = project
       }

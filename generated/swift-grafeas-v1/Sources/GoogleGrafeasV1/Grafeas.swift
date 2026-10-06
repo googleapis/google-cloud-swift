@@ -298,7 +298,7 @@ extension Clients.GrafeasProtocol {
 
   public func listOccurrencesByItems(
     request: ListOccurrencesRequest
-  ) -> some AsyncSequence<Occurrence, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Occurrence, any Swift.Error> & Sendable {
     self.listOccurrencesByItems(request: request, options: .init())
   }
 
@@ -307,7 +307,7 @@ extension Clients.GrafeasProtocol {
   /// @Snippet(path: "Grafeas_ListOccurrences")
   public func listOccurrencesByItems(
     request: ListOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Occurrence, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Occurrence, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleGrafeasV1.ListOccurrencesResponse in
       var request = request
@@ -321,7 +321,7 @@ extension Clients.GrafeasProtocol {
   public func listOccurrencesByItems(
     parent: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<Occurrence, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Occurrence, any Swift.Error> & Sendable {
     let request = ListOccurrencesRequest().with {
       $0.parent = parent
       $0.filter = filter
@@ -472,7 +472,7 @@ extension Clients.GrafeasProtocol {
 
   public func listNotesByItems(
     request: ListNotesRequest
-  ) -> some AsyncSequence<Note, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Note, any Swift.Error> & Sendable {
     self.listNotesByItems(request: request, options: .init())
   }
 
@@ -481,7 +481,7 @@ extension Clients.GrafeasProtocol {
   /// @Snippet(path: "Grafeas_ListNotes")
   public func listNotesByItems(
     request: ListNotesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Note, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Note, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleGrafeasV1.ListNotesResponse in
       var request = request
@@ -495,7 +495,7 @@ extension Clients.GrafeasProtocol {
   public func listNotesByItems(
     parent: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<Note, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Note, any Swift.Error> & Sendable {
     let request = ListNotesRequest().with {
       $0.parent = parent
       $0.filter = filter
@@ -605,7 +605,7 @@ extension Clients.GrafeasProtocol {
 
   public func listNoteOccurrencesByItems(
     request: ListNoteOccurrencesRequest
-  ) -> some AsyncSequence<Occurrence, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Occurrence, any Swift.Error> & Sendable {
     self.listNoteOccurrencesByItems(request: request, options: .init())
   }
 
@@ -616,7 +616,7 @@ extension Clients.GrafeasProtocol {
   /// @Snippet(path: "Grafeas_ListNoteOccurrences")
   public func listNoteOccurrencesByItems(
     request: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Occurrence, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Occurrence, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse in
       var request = request
@@ -630,7 +630,7 @@ extension Clients.GrafeasProtocol {
   public func listNoteOccurrencesByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<Occurrence, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Occurrence, any Swift.Error> & Sendable {
     let request = ListNoteOccurrencesRequest().with {
       $0.name = name
       $0.filter = filter

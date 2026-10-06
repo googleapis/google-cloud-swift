@@ -77,7 +77,7 @@ public struct AzureSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       AzureSourceVmDetails.Firmware.self, forKey: .firmware)
@@ -105,7 +105,7 @@ public struct AzureSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.firmware, forKey: .firmware)
     try container.encode(self.committedStorageBytes, forKey: .committedStorageBytes)
@@ -165,7 +165,7 @@ public struct AzureSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .diskNumber) {
         self.diskNumber = value
@@ -182,7 +182,7 @@ public struct AzureSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.diskNumber, forKey: .diskNumber)
       try container.encode(self.diskId, forKey: .diskId)
@@ -290,7 +290,7 @@ public struct AzureSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -308,7 +308,7 @@ public struct AzureSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("FIRMWARE_UNSPECIFIED")

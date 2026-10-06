@@ -85,7 +85,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .destination) {
         self.destination = value
@@ -124,7 +124,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.destination, forKey: .destination)
       try container.encodeIfPresent(self.modelConfig, forKey: .modelConfig)
@@ -219,7 +219,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .acceptEula) {
           self.acceptEula = value
@@ -248,7 +248,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.acceptEula, forKey: .acceptEula)
         try container.encode(self.huggingFaceAccessToken, forKey: .huggingFaceAccessToken)
@@ -360,7 +360,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.String.self, forKey: .endpointDisplayName)
@@ -389,7 +389,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.endpointDisplayName, forKey: .endpointDisplayName)
         try container.encode(self.dedicatedEndpointEnabled, forKey: .dedicatedEndpointEnabled)
@@ -462,7 +462,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.dedicatedResources = try container.decodeIfPresent(
           DedicatedResources.self, forKey: .dedicatedResources)
@@ -480,7 +480,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.dedicatedResources, forKey: .dedicatedResources)
         try container.encode(self.fastTryoutEnabled, forKey: .fastTryoutEnabled)

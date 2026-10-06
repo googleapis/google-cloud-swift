@@ -61,7 +61,7 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.nextPromotionTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .nextPromotionTime)
@@ -76,7 +76,7 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.nextPromotionTime, forKey: .nextPromotionTime)
     try container.encode(self.targetsList, forKey: .targetsList)
@@ -128,7 +128,7 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceTargetId) {
         self.sourceTargetId = value
@@ -143,7 +143,7 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sourceTargetId, forKey: .sourceTargetId)
       try container.encode(self.destinationTargetId, forKey: .destinationTargetId)

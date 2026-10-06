@@ -26,8 +26,8 @@
   /// @Snippet(path: "snapshotsQuickstart")
   public final class SnapshotsClient: Clients.SnapshotsProtocol, Sendable {
     let inner: any Clients.SnapshotsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `SnapshotsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -531,7 +531,7 @@
 
     public func listByItems(
       request: SnapshotsClient.ListRequest
-    ) -> some AsyncSequence<Snapshot, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -541,7 +541,7 @@
     /// @Snippet(path: "snapshots_list")
     public func listByItems(
       request: SnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Snapshot, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SnapshotList in
         var request = request
@@ -554,7 +554,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<Snapshot, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
       let request = SnapshotsClient.ListRequest().with {
         $0.project = project
       }

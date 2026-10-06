@@ -26,8 +26,8 @@
   /// @Snippet(path: "packetMirroringsQuickstart")
   public final class PacketMirroringsClient: Clients.PacketMirroringsProtocol, Sendable {
     let inner: any Clients.PacketMirroringsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `PacketMirroringsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -327,7 +327,8 @@
 
     public func aggregatedListByItems(
       request: PacketMirroringsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -339,7 +340,8 @@
     /// @Snippet(path: "packetMirrorings_aggregatedList")
     public func aggregatedListByItems(
       request: PacketMirroringsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PacketMirroringAggregatedList in
@@ -353,7 +355,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), any Swift.Error> & Sendable
+    {
       let request = PacketMirroringsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -473,7 +476,7 @@
 
     public func listByItems(
       request: PacketMirroringsClient.ListRequest
-    ) -> some AsyncSequence<PacketMirroring, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PacketMirroring, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -483,7 +486,7 @@
     /// @Snippet(path: "packetMirrorings_list")
     public func listByItems(
       request: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<PacketMirroring, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PacketMirroring, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringList in
         var request = request
@@ -497,7 +500,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<PacketMirroring, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PacketMirroring, any Swift.Error> & Sendable {
       let request = PacketMirroringsClient.ListRequest().with {
         $0.project = project
         $0.region = region

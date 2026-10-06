@@ -29,8 +29,8 @@ import Foundation
 /// @Snippet(path: "ConnectorsQuickstart")
 public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   let inner: any Clients.ConnectorsStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ConnectorsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -580,7 +580,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listConnectionsByItems(
     request: ListConnectionsRequest
-  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
     self.listConnectionsByItems(request: request, options: .init())
   }
 
@@ -589,7 +589,7 @@ extension Clients.ConnectorsProtocol {
   /// @Snippet(path: "Connectors_ListConnections")
   public func listConnectionsByItems(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudConnectorsV1.ListConnectionsResponse in
@@ -603,7 +603,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listConnectionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }
@@ -748,7 +748,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listProvidersByItems(
     request: ListProvidersRequest
-  ) -> some AsyncSequence<Provider, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Provider, any Swift.Error> & Sendable {
     self.listProvidersByItems(request: request, options: .init())
   }
 
@@ -757,7 +757,7 @@ extension Clients.ConnectorsProtocol {
   /// @Snippet(path: "Connectors_ListProviders")
   public func listProvidersByItems(
     request: ListProvidersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Provider, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Provider, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudConnectorsV1.ListProvidersResponse
       in
@@ -771,7 +771,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listProvidersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Provider, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Provider, any Swift.Error> & Sendable {
     let request = ListProvidersRequest().with {
       $0.parent = parent
     }
@@ -813,7 +813,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listConnectorsByItems(
     request: ListConnectorsRequest
-  ) -> some AsyncSequence<Connector, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
     self.listConnectorsByItems(request: request, options: .init())
   }
 
@@ -822,7 +822,7 @@ extension Clients.ConnectorsProtocol {
   /// @Snippet(path: "Connectors_ListConnectors")
   public func listConnectorsByItems(
     request: ListConnectorsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Connector, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudConnectorsV1.ListConnectorsResponse
       in
@@ -836,7 +836,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listConnectorsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Connector, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
     let request = ListConnectorsRequest().with {
       $0.parent = parent
     }
@@ -878,7 +878,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listConnectorVersionsByItems(
     request: ListConnectorVersionsRequest
-  ) -> some AsyncSequence<ConnectorVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ConnectorVersion, any Swift.Error> & Sendable {
     self.listConnectorVersionsByItems(request: request, options: .init())
   }
 
@@ -887,7 +887,7 @@ extension Clients.ConnectorsProtocol {
   /// @Snippet(path: "Connectors_ListConnectorVersions")
   public func listConnectorVersionsByItems(
     request: ListConnectorVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ConnectorVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ConnectorVersion, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudConnectorsV1.ListConnectorVersionsResponse in
@@ -901,7 +901,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listConnectorVersionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ConnectorVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ConnectorVersion, any Swift.Error> & Sendable {
     let request = ListConnectorVersionsRequest().with {
       $0.parent = parent
     }
@@ -998,7 +998,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listRuntimeEntitySchemasByItems(
     request: ListRuntimeEntitySchemasRequest
-  ) -> some AsyncSequence<RuntimeEntitySchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeEntitySchema, any Swift.Error> & Sendable {
     self.listRuntimeEntitySchemasByItems(request: request, options: .init())
   }
 
@@ -1007,7 +1007,7 @@ extension Clients.ConnectorsProtocol {
   /// @Snippet(path: "Connectors_ListRuntimeEntitySchemas")
   public func listRuntimeEntitySchemasByItems(
     request: ListRuntimeEntitySchemasRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<RuntimeEntitySchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeEntitySchema, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudConnectorsV1.ListRuntimeEntitySchemasResponse in
@@ -1021,7 +1021,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listRuntimeEntitySchemasByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<RuntimeEntitySchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeEntitySchema, any Swift.Error> & Sendable {
     let request = ListRuntimeEntitySchemasRequest().with {
       $0.parent = parent
     }
@@ -1042,7 +1042,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listRuntimeActionSchemasByItems(
     request: ListRuntimeActionSchemasRequest
-  ) -> some AsyncSequence<RuntimeActionSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeActionSchema, any Swift.Error> & Sendable {
     self.listRuntimeActionSchemasByItems(request: request, options: .init())
   }
 
@@ -1051,7 +1051,7 @@ extension Clients.ConnectorsProtocol {
   /// @Snippet(path: "Connectors_ListRuntimeActionSchemas")
   public func listRuntimeActionSchemasByItems(
     request: ListRuntimeActionSchemasRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<RuntimeActionSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeActionSchema, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudConnectorsV1.ListRuntimeActionSchemasResponse in
@@ -1065,7 +1065,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listRuntimeActionSchemasByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<RuntimeActionSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeActionSchema, any Swift.Error> & Sendable {
     let request = ListRuntimeActionSchemasRequest().with {
       $0.parent = parent
     }
@@ -1128,7 +1128,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1137,7 +1137,7 @@ extension Clients.ConnectorsProtocol {
   /// @Snippet(path: "Connectors_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1210,7 +1210,7 @@ extension Clients.ConnectorsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1220,7 +1220,7 @@ extension Clients.ConnectorsProtocol {
   /// @Snippet(path: "Connectors_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1234,7 +1234,7 @@ extension Clients.ConnectorsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

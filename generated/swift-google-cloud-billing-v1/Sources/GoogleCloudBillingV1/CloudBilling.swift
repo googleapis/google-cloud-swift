@@ -309,7 +309,7 @@ extension Clients.CloudBillingProtocol {
 
   public func listBillingAccountsByItems(
     request: ListBillingAccountsRequest
-  ) -> some AsyncSequence<BillingAccount, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BillingAccount, any Swift.Error> & Sendable {
     self.listBillingAccountsByItems(request: request, options: .init())
   }
 
@@ -320,7 +320,7 @@ extension Clients.CloudBillingProtocol {
   /// @Snippet(path: "CloudBilling_ListBillingAccounts")
   public func listBillingAccountsByItems(
     request: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<BillingAccount, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BillingAccount, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBillingV1.ListBillingAccountsResponse in
@@ -334,7 +334,7 @@ extension Clients.CloudBillingProtocol {
 
   public func listBillingAccountsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<BillingAccount, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BillingAccount, any Swift.Error> & Sendable {
     let request = ListBillingAccountsRequest().with {
       $0.parent = parent
     }
@@ -410,7 +410,7 @@ extension Clients.CloudBillingProtocol {
 
   public func listProjectBillingInfoByItems(
     request: ListProjectBillingInfoRequest
-  ) -> some AsyncSequence<ProjectBillingInfo, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProjectBillingInfo, any Swift.Error> & Sendable {
     self.listProjectBillingInfoByItems(request: request, options: .init())
   }
 
@@ -422,7 +422,7 @@ extension Clients.CloudBillingProtocol {
   /// @Snippet(path: "CloudBilling_ListProjectBillingInfo")
   public func listProjectBillingInfoByItems(
     request: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ProjectBillingInfo, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProjectBillingInfo, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBillingV1.ListProjectBillingInfoResponse in
@@ -436,7 +436,7 @@ extension Clients.CloudBillingProtocol {
 
   public func listProjectBillingInfoByItems(
     name: Swift.String,
-  ) -> some AsyncSequence<ProjectBillingInfo, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProjectBillingInfo, any Swift.Error> & Sendable {
     let request = ListProjectBillingInfoRequest().with {
       $0.name = name
     }

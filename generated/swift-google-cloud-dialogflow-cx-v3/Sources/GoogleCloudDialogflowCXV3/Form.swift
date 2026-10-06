@@ -64,7 +64,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Form.Parameter].self, forKey: .parameters) {
         self.parameters = value
@@ -75,7 +75,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parameters, forKey: .parameters)
       for (key, value) in self._unknownFields.json {
@@ -174,7 +174,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
           self.displayName = value
@@ -203,7 +203,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.displayName, forKey: .displayName)
         try container.encode(self.`required`, forKey: .`required`)
@@ -293,7 +293,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.initialPromptFulfillment = try container.decodeIfPresent(
             Fulfillment.self, forKey: .initialPromptFulfillment)
@@ -308,7 +308,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(
             self.initialPromptFulfillment, forKey: .initialPromptFulfillment)

@@ -58,7 +58,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.phase1 = try container.decodeIfPresent(VpnTunnelPhase1Algorithms.self, forKey: .phase1)
       self.phase2 = try container.decodeIfPresent(VpnTunnelPhase2Algorithms.self, forKey: .phase2)
@@ -68,7 +68,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.phase1, forKey: .phase1)
       try container.encodeIfPresent(self.phase2, forKey: .phase2)

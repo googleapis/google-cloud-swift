@@ -57,7 +57,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var result: ResultOneOf? = nil
@@ -87,7 +87,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.result {
@@ -152,7 +152,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .overview) {
         self.overview = value
@@ -173,7 +173,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.overview, forKey: .overview)
       try container.encode(self.schemaRelationships, forKey: .schemaRelationships)
@@ -250,7 +250,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -271,7 +271,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.overview, forKey: .overview)
@@ -353,7 +353,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.leftSchemaPaths = try container.decodeIfPresent(
         DataDocumentationResult.SchemaRelationship.SchemaPaths.self, forKey: .leftSchemaPaths)
@@ -375,7 +375,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.leftSchemaPaths, forKey: .leftSchemaPaths)
       try container.encodeIfPresent(self.rightSchemaPaths, forKey: .rightSchemaPaths)
@@ -434,7 +434,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tableFqn) {
           self.tableFqn = value
@@ -448,7 +448,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.tableFqn, forKey: .tableFqn)
         try container.encode(self.paths, forKey: .paths)
@@ -564,7 +564,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -582,7 +582,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("SOURCE_UNSPECIFIED")
@@ -676,7 +676,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -694,7 +694,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
@@ -760,7 +760,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sql) {
         self.sql = value
@@ -774,7 +774,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sql, forKey: .sql)
       try container.encode(self.description, forKey: .description)
@@ -832,7 +832,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [DataDocumentationResult.Field].self, forKey: .fields)
@@ -845,7 +845,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fields, forKey: .fields)
       for (key, value) in self._unknownFields.json {
@@ -912,7 +912,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -931,7 +931,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.description, forKey: .description)

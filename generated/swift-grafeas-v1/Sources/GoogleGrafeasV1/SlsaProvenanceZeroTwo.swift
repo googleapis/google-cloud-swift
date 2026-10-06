@@ -73,7 +73,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.builder = try container.decodeIfPresent(
       SlsaProvenanceZeroTwo.SlsaBuilder.self, forKey: .builder)
@@ -96,7 +96,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.builder, forKey: .builder)
     try container.encode(self.buildType, forKey: .buildType)
@@ -147,7 +147,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
         self.id = value
@@ -158,7 +158,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
       for (key, value) in self._unknownFields.json {
@@ -219,7 +219,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
         self.uri = value
@@ -235,7 +235,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uri, forKey: .uri)
       try container.encode(self.digest, forKey: .digest)
@@ -300,7 +300,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.configSource = try container.decodeIfPresent(
         SlsaProvenanceZeroTwo.SlsaConfigSource.self, forKey: .configSource)
@@ -313,7 +313,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.configSource, forKey: .configSource)
       try container.encodeIfPresent(self.parameters, forKey: .parameters)
@@ -380,7 +380,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
         self.uri = value
@@ -399,7 +399,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uri, forKey: .uri)
       try container.encode(self.digest, forKey: .digest)
@@ -473,7 +473,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .buildInvocationId) {
         self.buildInvocationId = value
@@ -493,7 +493,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.buildInvocationId, forKey: .buildInvocationId)
       try container.encodeIfPresent(self.buildStartedOn, forKey: .buildStartedOn)
@@ -562,7 +562,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .parameters) {
         self.parameters = value
@@ -579,7 +579,7 @@ public struct SlsaProvenanceZeroTwo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parameters, forKey: .parameters)
       try container.encode(self.environment, forKey: .environment)

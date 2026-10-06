@@ -81,7 +81,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.eccP256EncryptionKey = try container.decodeIfPresent(
         ShieldedInstanceIdentityEntry.self, forKey: .eccP256EncryptionKey)
@@ -98,7 +98,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.eccP256EncryptionKey, forKey: .eccP256EncryptionKey)
       try container.encodeIfPresent(self.eccP256SigningKey, forKey: .eccP256SigningKey)

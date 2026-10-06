@@ -66,7 +66,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [TimeSeriesTable.TableDataSet].self, forKey: .dataSets)
@@ -89,7 +89,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dataSets, forKey: .dataSets)
     try container.encode(self.metricVisualization, forKey: .metricVisualization)
@@ -161,7 +161,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.timeSeriesQuery = try container.decodeIfPresent(
         TimeSeriesQuery.self, forKey: .timeSeriesQuery)
@@ -178,7 +178,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.timeSeriesQuery, forKey: .timeSeriesQuery)
       try container.encode(self.tableTemplate, forKey: .tableTemplate)
@@ -243,7 +243,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .column) {
         self.column = value
@@ -257,7 +257,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.column, forKey: .column)
       try container.encode(self.visible, forKey: .visible)
@@ -364,7 +364,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -382,7 +382,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("METRIC_VISUALIZATION_UNSPECIFIED")

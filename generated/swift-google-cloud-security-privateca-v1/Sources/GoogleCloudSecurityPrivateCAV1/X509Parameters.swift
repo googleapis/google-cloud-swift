@@ -95,7 +95,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.keyUsage = try container.decodeIfPresent(KeyUsage.self, forKey: .keyUsage)
     self.caOptions = try container.decodeIfPresent(
@@ -119,7 +119,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.keyUsage, forKey: .keyUsage)
     try container.encodeIfPresent(self.caOptions, forKey: .caOptions)
@@ -182,7 +182,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.isCa = try container.decodeIfPresent(Swift.Bool.self, forKey: .isCa)
       self.maxIssuerPathLength = try container.decodeIfPresent(
@@ -193,7 +193,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.isCa, forKey: .isCa)
       try container.encodeIfPresent(self.maxIssuerPathLength, forKey: .maxIssuerPathLength)
@@ -316,7 +316,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .critical) {
         self.critical = value
@@ -357,7 +357,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.critical, forKey: .critical)
       try container.encode(self.permittedDnsNames, forKey: .permittedDnsNames)

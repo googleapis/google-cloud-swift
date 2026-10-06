@@ -67,7 +67,7 @@ public struct ListServiceConnectionPoliciesResponse: Codable, Equatable, GoogleW
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ServiceConnectionPolicy].self, forKey: .serviceConnectionPolicies)
@@ -86,7 +86,7 @@ public struct ListServiceConnectionPoliciesResponse: Codable, Equatable, GoogleW
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.serviceConnectionPolicies, forKey: .serviceConnectionPolicies)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

@@ -122,7 +122,7 @@ extension Clients.ExecutionsProtocol {
 
   public func listExecutionsByItems(
     request: ListExecutionsRequest
-  ) -> some AsyncSequence<Execution, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
     self.listExecutionsByItems(request: request, options: .init())
   }
 
@@ -134,7 +134,7 @@ extension Clients.ExecutionsProtocol {
   /// @Snippet(path: "Executions_ListExecutions")
   public func listExecutionsByItems(
     request: ListExecutionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Execution, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse in
@@ -148,7 +148,7 @@ extension Clients.ExecutionsProtocol {
 
   public func listExecutionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Execution, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
     let request = ListExecutionsRequest().with {
       $0.parent = parent
     }

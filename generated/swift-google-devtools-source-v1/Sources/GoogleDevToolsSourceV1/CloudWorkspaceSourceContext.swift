@@ -61,7 +61,7 @@ public struct CloudWorkspaceSourceContext: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.workspaceId = try container.decodeIfPresent(CloudWorkspaceId.self, forKey: .workspaceId)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .snapshotId) {
@@ -73,7 +73,7 @@ public struct CloudWorkspaceSourceContext: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.workspaceId, forKey: .workspaceId)
     try container.encode(self.snapshotId, forKey: .snapshotId)

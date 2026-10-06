@@ -88,7 +88,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.maxOutputTokens = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .maxOutputTokens)
@@ -101,7 +101,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.maxOutputTokens, forKey: .maxOutputTokens)
       try container.encodeIfPresent(self.temperature, forKey: .temperature)

@@ -139,7 +139,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -176,7 +176,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.selfLink, forKey: .selfLink)
@@ -251,7 +251,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .header) {
         self.header = value
@@ -297,7 +297,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.header, forKey: .header)
       try container.encode(self.invertMatch, forKey: .invertMatch)
@@ -366,7 +366,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .start) {
           self.start = value
@@ -380,7 +380,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.start, forKey: .start)
         try container.encode(self.end, forKey: .end)
@@ -478,7 +478,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryParameter) {
         self.queryParameter = value
@@ -510,7 +510,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.queryParameter, forKey: .queryParameter)
 
@@ -621,7 +621,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreCase) {
         self.ignoreCase = value
@@ -663,7 +663,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.ignoreCase, forKey: .ignoreCase)
       try container.encode(self.headers, forKey: .headers)
@@ -790,7 +790,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceName) {
         self.serviceName = value
@@ -808,7 +808,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.serviceName, forKey: .serviceName)
       try container.encode(self.weight, forKey: .weight)
@@ -914,7 +914,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostRedirect) {
         self.hostRedirect = value
@@ -945,7 +945,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.hostRedirect, forKey: .hostRedirect)
       try container.encode(self.pathRedirect, forKey: .pathRedirect)
@@ -1064,7 +1064,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1082,7 +1082,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("RESPONSE_CODE_UNSPECIFIED")
@@ -1156,7 +1156,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.delay = try container.decodeIfPresent(
         HttpRoute.FaultInjectionPolicy.Delay.self, forKey: .delay)
@@ -1168,7 +1168,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.delay, forKey: .delay)
       try container.encodeIfPresent(self.abort, forKey: .abort)
@@ -1223,7 +1223,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.fixedDelay = try container.decodeIfPresent(
           GoogleWKT.WKTDuration.self, forKey: .fixedDelay)
@@ -1236,7 +1236,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.fixedDelay, forKey: .fixedDelay)
         try container.encode(self.percentage, forKey: .percentage)
@@ -1305,7 +1305,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .httpStatus) {
           self.httpStatus = value
@@ -1319,7 +1319,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.httpStatus, forKey: .httpStatus)
         try container.encode(self.percentage, forKey: .percentage)
@@ -1401,7 +1401,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.cookieTtl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .cookieTtl)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -1410,7 +1410,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.cookieTtl, forKey: .cookieTtl)
       for (key, value) in self._unknownFields.json {
@@ -1481,7 +1481,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .`set`)
@@ -1501,7 +1501,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.`set`, forKey: .`set`)
       try container.encode(self.add, forKey: .add)
@@ -1568,7 +1568,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pathPrefixRewrite) {
         self.pathPrefixRewrite = value
@@ -1582,7 +1582,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.pathPrefixRewrite, forKey: .pathPrefixRewrite)
       try container.encode(self.hostRewrite, forKey: .hostRewrite)
@@ -1672,7 +1672,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .retryConditions) {
         self.retryConditions = value
@@ -1688,7 +1688,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.retryConditions, forKey: .retryConditions)
       try container.encode(self.numRetries, forKey: .numRetries)
@@ -1758,7 +1758,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.destination = try container.decodeIfPresent(
         HttpRoute.Destination.self, forKey: .destination)
@@ -1771,7 +1771,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.destination, forKey: .destination)
       try container.encode(self.mirrorPercent, forKey: .mirrorPercent)
@@ -1874,7 +1874,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowOrigins) {
         self.allowOrigins = value
@@ -1907,7 +1907,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.allowOrigins, forKey: .allowOrigins)
       try container.encode(self.allowOriginRegexes, forKey: .allowOriginRegexes)
@@ -1979,7 +1979,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .status) {
         self.status = value
@@ -2008,7 +2008,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.status, forKey: .status)
 
@@ -2169,7 +2169,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [HttpRoute.Destination].self, forKey: .destinations)
@@ -2204,7 +2204,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.destinations, forKey: .destinations)
       try container.encodeIfPresent(self.redirect, forKey: .redirect)
@@ -2287,7 +2287,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([HttpRoute.RouteMatch].self, forKey: .matches) {
         self.matches = value
@@ -2299,7 +2299,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.matches, forKey: .matches)
       try container.encodeIfPresent(self.action, forKey: .action)

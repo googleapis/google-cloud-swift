@@ -66,7 +66,7 @@ public struct ControlDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.control = try container.decodeIfPresent(Control.self, forKey: .control)
     if let value = try container.decodeIfPresent(ComplianceState.self, forKey: .complianceState) {
@@ -80,7 +80,7 @@ public struct ControlDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.control, forKey: .control)
     try container.encode(self.complianceState, forKey: .complianceState)

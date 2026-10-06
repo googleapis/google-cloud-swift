@@ -69,7 +69,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resumeNasJobId) {
         self.resumeNasJobId = value
@@ -100,7 +100,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.resumeNasJobId, forKey: .resumeNasJobId)
       try container.encode(self.searchSpaceSpec, forKey: .searchSpaceSpec)
@@ -174,7 +174,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           NasJobSpec.MultiTrialAlgorithmSpec.MultiTrialAlgorithm.self, forKey: .multiTrialAlgorithm)
@@ -193,7 +193,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.multiTrialAlgorithm, forKey: .multiTrialAlgorithm)
         try container.encodeIfPresent(self.metric, forKey: .metric)
@@ -248,7 +248,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .metricId) {
             self.metricId = value
@@ -264,7 +264,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.metricId, forKey: .metricId)
           try container.encode(self.goal, forKey: .goal)
@@ -360,7 +360,7 @@
             }
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             if let v = try? container.decode(Int.self) {
               self.init(intValue: v)
@@ -378,7 +378,7 @@
               in: container, debugDescription: "Expected enum value, must be integer or string.")
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
             case .unspecified: return try container.encode("GOAL_TYPE_UNSPECIFIED")
@@ -461,7 +461,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.searchTrialJobSpec = try container.decodeIfPresent(
             CustomJobSpec.self, forKey: .searchTrialJobSpec)
@@ -484,7 +484,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.searchTrialJobSpec, forKey: .searchTrialJobSpec)
           try container.encode(self.maxTrialCount, forKey: .maxTrialCount)
@@ -559,7 +559,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.trainTrialJobSpec = try container.decodeIfPresent(
             CustomJobSpec.self, forKey: .trainTrialJobSpec)
@@ -577,7 +577,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.trainTrialJobSpec, forKey: .trainTrialJobSpec)
           try container.encode(self.maxParallelTrialCount, forKey: .maxParallelTrialCount)
@@ -688,7 +688,7 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -706,7 +706,7 @@
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("MULTI_TRIAL_ALGORITHM_UNSPECIFIED")

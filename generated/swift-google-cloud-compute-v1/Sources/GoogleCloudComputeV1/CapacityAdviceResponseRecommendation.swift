@@ -61,7 +61,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.scores = try container.decodeIfPresent(
         CapacityAdviceResponseRecommendationScores.self, forKey: .scores)
@@ -76,7 +76,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.scores, forKey: .scores)
       try container.encode(self.shards, forKey: .shards)

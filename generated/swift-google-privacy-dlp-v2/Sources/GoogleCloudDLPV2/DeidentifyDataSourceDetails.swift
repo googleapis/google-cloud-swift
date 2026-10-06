@@ -63,7 +63,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.requestedOptions = try container.decodeIfPresent(
       DeidentifyDataSourceDetails.RequestedDeidentifyOptions.self, forKey: .requestedOptions)
@@ -75,7 +75,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.requestedOptions, forKey: .requestedOptions)
     try container.encodeIfPresent(self.deidentifyStats, forKey: .deidentifyStats)
@@ -140,7 +140,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.snapshotDeidentifyTemplate = try container.decodeIfPresent(
         DeidentifyTemplate.self, forKey: .snapshotDeidentifyTemplate)
@@ -154,7 +154,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.snapshotDeidentifyTemplate, forKey: .snapshotDeidentifyTemplate)

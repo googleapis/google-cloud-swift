@@ -53,7 +53,7 @@ public struct IpUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [IpUtilizationInfo.SubnetIpUtilization].self, forKey: .subnetIpUtilization)
@@ -66,7 +66,7 @@ public struct IpUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.subnetIpUtilization, forKey: .subnetIpUtilization)
     for (key, value) in self._unknownFields.json {
@@ -127,7 +127,7 @@ public struct IpUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subnetUri) {
         self.subnetUri = value
@@ -148,7 +148,7 @@ public struct IpUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.subnetUri, forKey: .subnetUri)
       try container.encode(self.secondaryRangeName, forKey: .secondaryRangeName)

@@ -114,7 +114,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([DataQualityRule].self, forKey: .rules) {
       self.rules = value
@@ -144,7 +144,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.rules, forKey: .rules)
     try container.encode(self.samplingPercent, forKey: .samplingPercent)
@@ -203,7 +203,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.bigqueryExport = try container.decodeIfPresent(
         DataQualitySpec.PostScanActions.BigQueryExport.self, forKey: .bigqueryExport)
@@ -215,7 +215,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.bigqueryExport, forKey: .bigqueryExport)
       try container.encodeIfPresent(self.notificationReport, forKey: .notificationReport)
@@ -266,7 +266,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resultsTable) {
           self.resultsTable = value
@@ -277,7 +277,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.resultsTable, forKey: .resultsTable)
         for (key, value) in self._unknownFields.json {
@@ -337,7 +337,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .emails) {
           self.emails = value
@@ -348,7 +348,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.emails, forKey: .emails)
         for (key, value) in self._unknownFields.json {
@@ -407,7 +407,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .scoreThreshold) {
           self.scoreThreshold = value
@@ -418,7 +418,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.scoreThreshold, forKey: .scoreThreshold)
         for (key, value) in self._unknownFields.json {
@@ -470,7 +470,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         static let _knownKeys: Set<Swift.String> = []
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
@@ -478,7 +478,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -529,7 +529,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         static let _knownKeys: Set<Swift.String> = []
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
@@ -537,7 +537,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -609,7 +609,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.recipients = try container.decodeIfPresent(
           DataQualitySpec.PostScanActions.Recipients.self, forKey: .recipients)
@@ -626,7 +626,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.recipients, forKey: .recipients)
         try container.encodeIfPresent(self.scoreThresholdTrigger, forKey: .scoreThresholdTrigger)

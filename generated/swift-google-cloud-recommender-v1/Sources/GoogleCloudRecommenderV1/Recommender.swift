@@ -298,7 +298,7 @@ extension Clients.RecommenderProtocol {
 
   public func listInsightsByItems(
     request: ListInsightsRequest
-  ) -> some AsyncSequence<Insight, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Insight, any Swift.Error> & Sendable {
     self.listInsightsByItems(request: request, options: .init())
   }
 
@@ -308,7 +308,7 @@ extension Clients.RecommenderProtocol {
   /// @Snippet(path: "Recommender_ListInsights")
   public func listInsightsByItems(
     request: ListInsightsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Insight, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Insight, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse
       in
@@ -322,7 +322,7 @@ extension Clients.RecommenderProtocol {
 
   public func listInsightsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Insight, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Insight, any Swift.Error> & Sendable {
     let request = ListInsightsRequest().with {
       $0.parent = parent
     }
@@ -389,7 +389,7 @@ extension Clients.RecommenderProtocol {
 
   public func listRecommendationsByItems(
     request: ListRecommendationsRequest
-  ) -> some AsyncSequence<Recommendation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Recommendation, any Swift.Error> & Sendable {
     self.listRecommendationsByItems(request: request, options: .init())
   }
 
@@ -399,7 +399,7 @@ extension Clients.RecommenderProtocol {
   /// @Snippet(path: "Recommender_ListRecommendations")
   public func listRecommendationsByItems(
     request: ListRecommendationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Recommendation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Recommendation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudRecommenderV1.ListRecommendationsResponse in
@@ -413,7 +413,7 @@ extension Clients.RecommenderProtocol {
 
   public func listRecommendationsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Recommendation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Recommendation, any Swift.Error> & Sendable {
     let request = ListRecommendationsRequest().with {
       $0.parent = parent
     }
@@ -423,7 +423,7 @@ extension Clients.RecommenderProtocol {
   public func listRecommendationsByItems(
     parent: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<Recommendation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Recommendation, any Swift.Error> & Sendable {
     let request = ListRecommendationsRequest().with {
       $0.parent = parent
       $0.filter = filter

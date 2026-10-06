@@ -66,7 +66,7 @@ public struct BucketingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([BucketingConfig.Bucket].self, forKey: .buckets) {
       self.buckets = value
@@ -77,7 +77,7 @@ public struct BucketingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.buckets, forKey: .buckets)
     for (key, value) in self._unknownFields.json {
@@ -134,7 +134,7 @@ public struct BucketingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.min = try container.decodeIfPresent(Value.self, forKey: .min)
       self.max = try container.decodeIfPresent(Value.self, forKey: .max)
@@ -145,7 +145,7 @@ public struct BucketingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.min, forKey: .min)
       try container.encodeIfPresent(self.max, forKey: .max)

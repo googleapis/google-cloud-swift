@@ -26,8 +26,8 @@
   /// @Snippet(path: "globalAddressesQuickstart")
   public final class GlobalAddressesClient: Clients.GlobalAddressesProtocol, Sendable {
     let inner: any Clients.GlobalAddressesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `GlobalAddressesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -455,7 +455,7 @@
 
     public func listByItems(
       request: GlobalAddressesClient.ListRequest
-    ) -> some AsyncSequence<Address, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Address, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -464,7 +464,7 @@
     /// @Snippet(path: "globalAddresses_list")
     public func listByItems(
       request: GlobalAddressesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Address, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Address, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressList in
         var request = request
@@ -477,7 +477,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<Address, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Address, any Swift.Error> & Sendable {
       let request = GlobalAddressesClient.ListRequest().with {
         $0.project = project
       }

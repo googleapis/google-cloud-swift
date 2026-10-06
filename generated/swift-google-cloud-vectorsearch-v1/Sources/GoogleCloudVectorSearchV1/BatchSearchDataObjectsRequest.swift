@@ -66,7 +66,7 @@ public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -82,7 +82,7 @@ public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.searches, forKey: .searches)
@@ -141,7 +141,7 @@ public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ranker = try container.decodeIfPresent(Ranker.self, forKey: .ranker)
       self.outputFields = try container.decodeIfPresent(OutputFields.self, forKey: .outputFields)
@@ -154,7 +154,7 @@ public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ranker, forKey: .ranker)
       try container.encodeIfPresent(self.outputFields, forKey: .outputFields)

@@ -132,7 +132,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.machineSpec = try container.decodeIfPresent(MachineSpec.self, forKey: .machineSpec)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .minReplicaCount) {
@@ -159,7 +159,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.machineSpec, forKey: .machineSpec)
       try container.encode(self.minReplicaCount, forKey: .minReplicaCount)

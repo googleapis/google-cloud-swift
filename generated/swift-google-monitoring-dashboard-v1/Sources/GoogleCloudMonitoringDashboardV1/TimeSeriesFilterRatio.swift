@@ -78,7 +78,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.numerator = try container.decodeIfPresent(
       TimeSeriesFilterRatio.RatioPart.self, forKey: .numerator)
@@ -117,7 +117,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.numerator, forKey: .numerator)
     try container.encodeIfPresent(self.denominator, forKey: .denominator)
@@ -184,7 +184,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
         self.filter = value
@@ -196,7 +196,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.filter, forKey: .filter)
       try container.encodeIfPresent(self.aggregation, forKey: .aggregation)

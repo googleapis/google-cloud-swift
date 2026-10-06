@@ -60,7 +60,7 @@ public struct PythonSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.common = try container.decodeIfPresent(CommonLanguageSettings.self, forKey: .common)
     self.experimentalFeatures = try container.decodeIfPresent(
@@ -71,7 +71,7 @@ public struct PythonSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.common, forKey: .common)
     try container.encodeIfPresent(self.experimentalFeatures, forKey: .experimentalFeatures)
@@ -140,7 +140,7 @@ public struct PythonSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .restAsyncIoEnabled) {
         self.restAsyncIoEnabled = value
@@ -161,7 +161,7 @@ public struct PythonSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.restAsyncIoEnabled, forKey: .restAsyncIoEnabled)
       try container.encode(self.protobufPythonicTypesEnabled, forKey: .protobufPythonicTypesEnabled)

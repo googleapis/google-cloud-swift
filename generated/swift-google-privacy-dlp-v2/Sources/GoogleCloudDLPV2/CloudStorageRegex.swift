@@ -65,7 +65,7 @@ public struct CloudStorageRegex: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectIdRegex) {
       self.projectIdRegex = value
@@ -79,7 +79,7 @@ public struct CloudStorageRegex: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.projectIdRegex, forKey: .projectIdRegex)
     try container.encode(self.bucketNameRegex, forKey: .bucketNameRegex)

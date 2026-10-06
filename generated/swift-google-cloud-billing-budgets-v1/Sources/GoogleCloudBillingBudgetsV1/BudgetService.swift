@@ -217,7 +217,7 @@ extension Clients.BudgetServiceProtocol {
 
   public func listBudgetsByItems(
     request: ListBudgetsRequest
-  ) -> some AsyncSequence<Budget, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Budget, any Swift.Error> & Sendable {
     self.listBudgetsByItems(request: request, options: .init())
   }
 
@@ -231,7 +231,7 @@ extension Clients.BudgetServiceProtocol {
   /// @Snippet(path: "BudgetService_ListBudgets")
   public func listBudgetsByItems(
     request: ListBudgetsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Budget, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Budget, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBillingBudgetsV1.ListBudgetsResponse in
@@ -245,7 +245,7 @@ extension Clients.BudgetServiceProtocol {
 
   public func listBudgetsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Budget, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Budget, any Swift.Error> & Sendable {
     let request = ListBudgetsRequest().with {
       $0.parent = parent
     }

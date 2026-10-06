@@ -64,7 +64,7 @@ public struct TimeSeriesData: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([LabelValue].self, forKey: .labelValues) {
       self.labelValues = value
@@ -80,7 +80,7 @@ public struct TimeSeriesData: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.labelValues, forKey: .labelValues)
     try container.encode(self.pointData, forKey: .pointData)
@@ -134,7 +134,7 @@ public struct TimeSeriesData: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([TypedValue].self, forKey: .values) {
         self.values = value
@@ -146,7 +146,7 @@ public struct TimeSeriesData: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.values, forKey: .values)
       try container.encodeIfPresent(self.timeInterval, forKey: .timeInterval)

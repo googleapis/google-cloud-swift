@@ -28,8 +28,8 @@ import Foundation
 /// @Snippet(path: "AlloyDBAdminQuickstart")
 public final class AlloyDBAdminClient: Clients.AlloyDBAdminProtocol, Sendable {
   let inner: any Clients.AlloyDBAdminStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AlloyDBAdminClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1403,7 +1403,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listClustersByItems(
     request: ListClustersRequest
-  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
     self.listClustersByItems(request: request, options: .init())
   }
 
@@ -1412,7 +1412,7 @@ extension Clients.AlloyDBAdminProtocol {
   /// @Snippet(path: "AlloyDBAdmin_ListClusters")
   public func listClustersByItems(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListClustersResponse in
       var request = request
@@ -1425,7 +1425,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listClustersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, any Swift.Error> & Sendable {
     let request = ListClustersRequest().with {
       $0.parent = parent
     }
@@ -1804,7 +1804,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listInstancesByItems(
     request: ListInstancesRequest
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     self.listInstancesByItems(request: request, options: .init())
   }
 
@@ -1813,7 +1813,7 @@ extension Clients.AlloyDBAdminProtocol {
   /// @Snippet(path: "AlloyDBAdmin_ListInstances")
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListInstancesResponse in
       var request = request
@@ -1826,7 +1826,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listInstancesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
@@ -2158,7 +2158,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listBackupsByItems(
     request: ListBackupsRequest
-  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
     self.listBackupsByItems(request: request, options: .init())
   }
 
@@ -2167,7 +2167,7 @@ extension Clients.AlloyDBAdminProtocol {
   /// @Snippet(path: "AlloyDBAdmin_ListBackups")
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListBackupsResponse in
       var request = request
@@ -2180,7 +2180,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listBackupsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
@@ -2316,7 +2316,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listSupportedDatabaseFlagsByItems(
     request: ListSupportedDatabaseFlagsRequest
-  ) -> some AsyncSequence<SupportedDatabaseFlag, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SupportedDatabaseFlag, any Swift.Error> & Sendable {
     self.listSupportedDatabaseFlagsByItems(request: request, options: .init())
   }
 
@@ -2325,7 +2325,7 @@ extension Clients.AlloyDBAdminProtocol {
   /// @Snippet(path: "AlloyDBAdmin_ListSupportedDatabaseFlags")
   public func listSupportedDatabaseFlagsByItems(
     request: ListSupportedDatabaseFlagsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SupportedDatabaseFlag, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SupportedDatabaseFlag, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudAlloyDBV1.ListSupportedDatabaseFlagsResponse in
@@ -2339,7 +2339,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listSupportedDatabaseFlagsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SupportedDatabaseFlag, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SupportedDatabaseFlag, any Swift.Error> & Sendable {
     let request = ListSupportedDatabaseFlagsRequest().with {
       $0.parent = parent
     }
@@ -2402,7 +2402,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listUsersByItems(
     request: ListUsersRequest
-  ) -> some AsyncSequence<User, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
     self.listUsersByItems(request: request, options: .init())
   }
 
@@ -2411,7 +2411,7 @@ extension Clients.AlloyDBAdminProtocol {
   /// @Snippet(path: "AlloyDBAdmin_ListUsers")
   public func listUsersByItems(
     request: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<User, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListUsersResponse in
       var request = request
@@ -2424,7 +2424,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listUsersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<User, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
     let request = ListUsersRequest().with {
       $0.parent = parent
     }
@@ -2527,7 +2527,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listDatabasesByItems(
     request: ListDatabasesRequest
-  ) -> some AsyncSequence<Database, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Database, any Swift.Error> & Sendable {
     self.listDatabasesByItems(request: request, options: .init())
   }
 
@@ -2536,7 +2536,7 @@ extension Clients.AlloyDBAdminProtocol {
   /// @Snippet(path: "AlloyDBAdmin_ListDatabases")
   public func listDatabasesByItems(
     request: ListDatabasesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Database, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Database, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudAlloyDBV1.ListDatabasesResponse in
       var request = request
@@ -2549,7 +2549,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listDatabasesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Database, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Database, any Swift.Error> & Sendable {
     let request = ListDatabasesRequest().with {
       $0.parent = parent
     }
@@ -2570,7 +2570,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -2579,7 +2579,7 @@ extension Clients.AlloyDBAdminProtocol {
   /// @Snippet(path: "AlloyDBAdmin_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -2616,7 +2616,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -2627,7 +2627,7 @@ extension Clients.AlloyDBAdminProtocol {
   /// @Snippet(path: "AlloyDBAdmin_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -2641,7 +2641,7 @@ extension Clients.AlloyDBAdminProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

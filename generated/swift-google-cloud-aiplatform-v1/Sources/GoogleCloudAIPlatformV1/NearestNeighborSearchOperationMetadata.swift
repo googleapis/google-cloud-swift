@@ -69,7 +69,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [NearestNeighborSearchOperationMetadata.ContentValidationStats].self,
@@ -86,7 +86,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.contentValidationStats, forKey: .contentValidationStats)
       try container.encode(self.dataBytesCount, forKey: .dataBytesCount)
@@ -155,7 +155,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           NearestNeighborSearchOperationMetadata.RecordError.RecordErrorType.self,
@@ -181,7 +181,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.errorType, forKey: .errorType)
         try container.encode(self.errorMessage, forKey: .errorMessage)
@@ -370,7 +370,7 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -388,7 +388,7 @@
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .errorTypeUnspecified: return try container.encode("ERROR_TYPE_UNSPECIFIED")
@@ -491,7 +491,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceGcsUri) {
           self.sourceGcsUri = value
@@ -524,7 +524,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.sourceGcsUri, forKey: .sourceGcsUri)
         try container.encode(self.validRecordCount, forKey: .validRecordCount)

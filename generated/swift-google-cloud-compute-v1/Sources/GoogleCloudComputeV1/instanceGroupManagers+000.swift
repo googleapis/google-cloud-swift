@@ -26,8 +26,8 @@
   /// @Snippet(path: "instanceGroupManagersQuickstart")
   public final class InstanceGroupManagersClient: Clients.InstanceGroupManagersProtocol, Sendable {
     let inner: any Clients.InstanceGroupManagersStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstanceGroupManagersClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1728,7 +1728,8 @@
 
     public func aggregatedListByItems(
       request: InstanceGroupManagersClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, InstanceGroupManagersScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, InstanceGroupManagersScopedList), any Swift.Error>
+      & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
     }
@@ -1741,7 +1742,8 @@
     /// @Snippet(path: "instanceGroupManagers_aggregatedList")
     public func aggregatedListByItems(
       request: InstanceGroupManagersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, InstanceGroupManagersScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, InstanceGroupManagersScopedList), any Swift.Error>
+      & Sendable
     {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
@@ -1756,7 +1758,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, InstanceGroupManagersScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, InstanceGroupManagersScopedList), any Swift.Error>
+      & Sendable
     {
       let request = InstanceGroupManagersClient.AggregatedListRequest().with {
         $0.project = project
@@ -2039,7 +2042,7 @@
 
     public func listByItems(
       request: InstanceGroupManagersClient.ListRequest
-    ) -> some AsyncSequence<InstanceGroupManager, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManager, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -2049,7 +2052,7 @@
     /// @Snippet(path: "instanceGroupManagers_list")
     public func listByItems(
       request: InstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceGroupManager, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManager, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceGroupManagerList in
@@ -2064,7 +2067,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<InstanceGroupManager, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManager, any Swift.Error> & Sendable {
       let request = InstanceGroupManagersClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
@@ -2086,7 +2089,7 @@
 
     public func listErrorsByItems(
       request: InstanceGroupManagersClient.ListErrorsRequest
-    ) -> some AsyncSequence<InstanceManagedByIgmError, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceManagedByIgmError, any Swift.Error> & Sendable {
       self.listErrorsByItems(request: request, options: .init())
     }
 
@@ -2097,7 +2100,7 @@
     /// @Snippet(path: "instanceGroupManagers_listErrors")
     public func listErrorsByItems(
       request: InstanceGroupManagersClient.ListErrorsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceManagedByIgmError, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceManagedByIgmError, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceGroupManagersListErrorsResponse in
@@ -2113,7 +2116,7 @@
       project: Swift.String,
       zone: Swift.String,
       instanceGroupManager: Swift.String,
-    ) -> some AsyncSequence<InstanceManagedByIgmError, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceManagedByIgmError, any Swift.Error> & Sendable {
       let request = InstanceGroupManagersClient.ListErrorsRequest().with {
         $0.project = project
         $0.zone = zone
@@ -2137,7 +2140,7 @@
 
     public func listManagedInstancesByItems(
       request: InstanceGroupManagersClient.ListManagedInstancesRequest
-    ) -> some AsyncSequence<ManagedInstance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ManagedInstance, any Swift.Error> & Sendable {
       self.listManagedInstancesByItems(request: request, options: .init())
     }
 
@@ -2155,7 +2158,7 @@
     public func listManagedInstancesByItems(
       request: InstanceGroupManagersClient.ListManagedInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ManagedInstance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ManagedInstance, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceGroupManagersListManagedInstancesResponse in
@@ -2171,7 +2174,7 @@
       project: Swift.String,
       zone: Swift.String,
       instanceGroupManager: Swift.String,
-    ) -> some AsyncSequence<ManagedInstance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ManagedInstance, any Swift.Error> & Sendable {
       let request = InstanceGroupManagersClient.ListManagedInstancesRequest().with {
         $0.project = project
         $0.zone = zone
@@ -2195,7 +2198,7 @@
 
     public func listPerInstanceConfigsByItems(
       request: InstanceGroupManagersClient.ListPerInstanceConfigsRequest
-    ) -> some AsyncSequence<PerInstanceConfig, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PerInstanceConfig, any Swift.Error> & Sendable {
       self.listPerInstanceConfigsByItems(request: request, options: .init())
     }
 
@@ -2206,7 +2209,7 @@
     public func listPerInstanceConfigsByItems(
       request: InstanceGroupManagersClient.ListPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<PerInstanceConfig, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PerInstanceConfig, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceGroupManagersListPerInstanceConfigsResp in
@@ -2222,7 +2225,7 @@
       project: Swift.String,
       zone: Swift.String,
       instanceGroupManager: Swift.String,
-    ) -> some AsyncSequence<PerInstanceConfig, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PerInstanceConfig, any Swift.Error> & Sendable {
       let request = InstanceGroupManagersClient.ListPerInstanceConfigsRequest().with {
         $0.project = project
         $0.zone = zone

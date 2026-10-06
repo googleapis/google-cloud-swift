@@ -54,7 +54,7 @@ public struct ListFeedsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Feed].self, forKey: .feeds) {
       self.feeds = value
@@ -65,7 +65,7 @@ public struct ListFeedsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.feeds, forKey: .feeds)
     for (key, value) in self._unknownFields.json {

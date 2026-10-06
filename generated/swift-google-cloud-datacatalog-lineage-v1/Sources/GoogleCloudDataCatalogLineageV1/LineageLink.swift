@@ -80,7 +80,7 @@ public struct LineageLink: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.source = try container.decodeIfPresent(EntityReference.self, forKey: .source)
     self.target = try container.decodeIfPresent(EntityReference.self, forKey: .target)
@@ -106,7 +106,7 @@ public struct LineageLink: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.source, forKey: .source)
     try container.encodeIfPresent(self.target, forKey: .target)
@@ -157,7 +157,7 @@ public struct LineageLink: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.process = try container.decodeIfPresent(Process.self, forKey: .process)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -166,7 +166,7 @@ public struct LineageLink: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.process, forKey: .process)
       for (key, value) in self._unknownFields.json {
@@ -223,7 +223,7 @@ public struct LineageLink: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(DependencyType.self, forKey: .dependencyType) {
         self.dependencyType = value
@@ -234,7 +234,7 @@ public struct LineageLink: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dependencyType, forKey: .dependencyType)
       for (key, value) in self._unknownFields.json {

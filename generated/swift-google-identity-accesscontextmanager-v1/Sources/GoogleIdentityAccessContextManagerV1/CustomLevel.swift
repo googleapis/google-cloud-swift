@@ -58,7 +58,7 @@ public struct CustomLevel: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.expr = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .expr)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -67,7 +67,7 @@ public struct CustomLevel: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.expr, forKey: .expr)
     for (key, value) in self._unknownFields.json {

@@ -26,8 +26,8 @@
   /// @Snippet(path: "crossSiteNetworksQuickstart")
   public final class CrossSiteNetworksClient: Clients.CrossSiteNetworksProtocol, Sendable {
     let inner: any Clients.CrossSiteNetworksStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `CrossSiteNetworksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -385,7 +385,7 @@
 
     public func listByItems(
       request: CrossSiteNetworksClient.ListRequest
-    ) -> some AsyncSequence<CrossSiteNetwork, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<CrossSiteNetwork, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -394,7 +394,7 @@
     /// @Snippet(path: "crossSiteNetworks_list")
     public func listByItems(
       request: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<CrossSiteNetwork, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<CrossSiteNetwork, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList in
         var request = request
@@ -407,7 +407,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<CrossSiteNetwork, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<CrossSiteNetwork, any Swift.Error> & Sendable {
       let request = CrossSiteNetworksClient.ListRequest().with {
         $0.project = project
       }

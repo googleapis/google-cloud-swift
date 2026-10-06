@@ -65,7 +65,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.citationThreshold = try container.decodeIfPresent(
         Swift.Double.self, forKey: .citationThreshold)
@@ -77,7 +77,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.citationThreshold, forKey: .citationThreshold)
       try container.encodeIfPresent(self.enableClaimLevelScore, forKey: .enableClaimLevelScore)

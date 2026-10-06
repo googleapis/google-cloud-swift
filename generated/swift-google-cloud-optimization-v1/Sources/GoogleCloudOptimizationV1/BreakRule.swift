@@ -70,7 +70,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [GoogleCloudOptimizationV1.BreakRule.BreakRequest].self, forKey: .breakRequests)
@@ -88,7 +88,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.breakRequests, forKey: .breakRequests)
     try container.encode(self.frequencyConstraints, forKey: .frequencyConstraints)
@@ -149,7 +149,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.earliestStartTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .earliestStartTime)
@@ -163,7 +163,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.earliestStartTime, forKey: .earliestStartTime)
       try container.encodeIfPresent(self.latestStartTime, forKey: .latestStartTime)
@@ -262,7 +262,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.minBreakDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .minBreakDuration)
@@ -274,7 +274,7 @@ public struct BreakRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.minBreakDuration, forKey: .minBreakDuration)
       try container.encodeIfPresent(self.maxInterBreakDuration, forKey: .maxInterBreakDuration)

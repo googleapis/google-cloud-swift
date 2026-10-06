@@ -56,7 +56,7 @@ public struct ManagedMachineLearningDiagnosticsConfig: Codable, Equatable, Googl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -65,7 +65,7 @@ public struct ManagedMachineLearningDiagnosticsConfig: Codable, Equatable, Googl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.enabled, forKey: .enabled)
     for (key, value) in self._unknownFields.json {

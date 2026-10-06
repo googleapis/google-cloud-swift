@@ -55,7 +55,7 @@ public struct BatchCreatePullRequestCommentsResponse: Codable, Equatable, Google
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [PullRequestComment].self, forKey: .pullRequestComments)
@@ -68,7 +68,7 @@ public struct BatchCreatePullRequestCommentsResponse: Codable, Equatable, Google
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.pullRequestComments, forKey: .pullRequestComments)
     for (key, value) in self._unknownFields.json {

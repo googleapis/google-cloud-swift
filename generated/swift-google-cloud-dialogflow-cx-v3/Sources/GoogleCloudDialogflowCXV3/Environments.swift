@@ -32,8 +32,8 @@
   /// @Snippet(path: "EnvironmentsQuickstart")
   public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     let inner: any Clients.EnvironmentsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `EnvironmentsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -534,7 +534,7 @@
 
     public func listEnvironmentsByItems(
       request: ListEnvironmentsRequest
-    ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
       self.listEnvironmentsByItems(request: request, options: .init())
     }
 
@@ -546,7 +546,7 @@
     /// @Snippet(path: "Environments_ListEnvironments")
     public func listEnvironmentsByItems(
       request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.ListEnvironmentsResponse in
@@ -560,7 +560,7 @@
 
     public func listEnvironmentsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
       let request = ListEnvironmentsRequest().with {
         $0.parent = parent
       }
@@ -691,7 +691,7 @@
 
     public func lookupEnvironmentHistoryByItems(
       request: LookupEnvironmentHistoryRequest
-    ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
       self.lookupEnvironmentHistoryByItems(request: request, options: .init())
     }
 
@@ -703,7 +703,7 @@
     /// @Snippet(path: "Environments_LookupEnvironmentHistory")
     public func lookupEnvironmentHistoryByItems(
       request: LookupEnvironmentHistoryRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.LookupEnvironmentHistoryResponse in
@@ -717,7 +717,7 @@
 
     public func lookupEnvironmentHistoryByItems(
       name: Swift.String,
-    ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
       let request = LookupEnvironmentHistoryRequest().with {
         $0.name = name
       }
@@ -762,7 +762,7 @@
 
     public func listContinuousTestResultsByItems(
       request: ListContinuousTestResultsRequest
-    ) -> some AsyncSequence<ContinuousTestResult, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ContinuousTestResult, any Swift.Error> & Sendable {
       self.listContinuousTestResultsByItems(request: request, options: .init())
     }
 
@@ -771,7 +771,7 @@
     /// @Snippet(path: "Environments_ListContinuousTestResults")
     public func listContinuousTestResultsByItems(
       request: ListContinuousTestResultsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ContinuousTestResult, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ContinuousTestResult, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.ListContinuousTestResultsResponse in
@@ -785,7 +785,7 @@
 
     public func listContinuousTestResultsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<ContinuousTestResult, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ContinuousTestResult, any Swift.Error> & Sendable {
       let request = ListContinuousTestResultsRequest().with {
         $0.parent = parent
       }
@@ -828,7 +828,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -854,7 +854,7 @@
     /// @Snippet(path: "Environments_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -891,7 +891,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -902,7 +902,7 @@
     /// @Snippet(path: "Environments_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -916,7 +916,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

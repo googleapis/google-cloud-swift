@@ -72,7 +72,7 @@ public struct InspectJobConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.storageConfig = try container.decodeIfPresent(StorageConfig.self, forKey: .storageConfig)
     self.inspectConfig = try container.decodeIfPresent(InspectConfig.self, forKey: .inspectConfig)
@@ -88,7 +88,7 @@ public struct InspectJobConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.storageConfig, forKey: .storageConfig)
     try container.encodeIfPresent(self.inspectConfig, forKey: .inspectConfig)

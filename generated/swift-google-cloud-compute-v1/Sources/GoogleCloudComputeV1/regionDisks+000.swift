@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionDisksQuickstart")
   public final class RegionDisksClient: Clients.RegionDisksProtocol, Sendable {
     let inner: any Clients.RegionDisksStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionDisksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1213,7 +1213,7 @@
 
     public func listByItems(
       request: RegionDisksClient.ListRequest
-    ) -> some AsyncSequence<Disk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Disk, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1223,7 +1223,7 @@
     /// @Snippet(path: "regionDisks_list")
     public func listByItems(
       request: RegionDisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Disk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Disk, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskList in
         var request = request
@@ -1237,7 +1237,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<Disk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Disk, any Swift.Error> & Sendable {
       let request = RegionDisksClient.ListRequest().with {
         $0.project = project
         $0.region = region

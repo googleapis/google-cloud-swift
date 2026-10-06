@@ -63,7 +63,7 @@ public struct UpdateReservationRequest: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.reservation = try container.decodeIfPresent(Reservation.self, forKey: .reservation)
     self.updateMask = try container.decodeIfPresent(
@@ -74,7 +74,7 @@ public struct UpdateReservationRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.reservation, forKey: .reservation)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

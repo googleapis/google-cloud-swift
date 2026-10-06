@@ -90,7 +90,7 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.services = try container.decodeIfPresent(RunningServiceList.self, forKey: .services)
     self.processes = try container.decodeIfPresent(RunningProcessList.self, forKey: .processes)
@@ -112,7 +112,7 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.services, forKey: .services)
     try container.encodeIfPresent(self.processes, forKey: .processes)

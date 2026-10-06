@@ -64,7 +64,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.content = try container.decodeIfPresent(AssistantContent.self, forKey: .content)
 
@@ -90,7 +90,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.content, forKey: .content)
 
@@ -148,7 +148,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [AssistantGroundedContent.TextGroundingMetadata.Segment].self, forKey: .segments)
@@ -166,7 +166,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.segments, forKey: .segments)
         try container.encode(self.references, forKey: .references)
@@ -235,7 +235,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .startIndex) {
             self.startIndex = value
@@ -260,7 +260,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.startIndex, forKey: .startIndex)
           try container.encode(self.endIndex, forKey: .endIndex)
@@ -328,7 +328,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .content) {
             self.content = value
@@ -342,7 +342,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.content, forKey: .content)
           try container.encodeIfPresent(self.documentMetadata, forKey: .documentMetadata)
@@ -412,7 +412,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.document = try container.decodeIfPresent(Swift.String.self, forKey: .document)
             self.uri = try container.decodeIfPresent(Swift.String.self, forKey: .uri)
@@ -426,7 +426,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.document, forKey: .document)
             try container.encodeIfPresent(self.uri, forKey: .uri)

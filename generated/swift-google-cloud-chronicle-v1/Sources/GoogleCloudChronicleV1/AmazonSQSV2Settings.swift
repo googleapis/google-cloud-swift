@@ -86,7 +86,7 @@ public struct AmazonSQSV2Settings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queue) {
       self.queue = value
@@ -117,7 +117,7 @@ public struct AmazonSQSV2Settings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.queue, forKey: .queue)
     try container.encode(self.s3Uri, forKey: .s3Uri)

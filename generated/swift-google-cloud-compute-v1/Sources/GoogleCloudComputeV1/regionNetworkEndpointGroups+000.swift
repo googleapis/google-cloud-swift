@@ -28,8 +28,8 @@
     Sendable
   {
     let inner: any Clients.RegionNetworkEndpointGroupsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionNetworkEndpointGroupsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -591,7 +591,7 @@
 
     public func listByItems(
       request: RegionNetworkEndpointGroupsClient.ListRequest
-    ) -> some AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointGroup, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -601,7 +601,7 @@
     /// @Snippet(path: "regionNetworkEndpointGroups_list")
     public func listByItems(
       request: RegionNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointGroup, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEndpointGroupList in
@@ -616,7 +616,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointGroup, any Swift.Error> & Sendable {
       let request = RegionNetworkEndpointGroupsClient.ListRequest().with {
         $0.project = project
         $0.region = region
@@ -639,7 +639,7 @@
 
     public func listNetworkEndpointsByItems(
       request: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest
-    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, any Swift.Error> & Sendable {
       self.listNetworkEndpointsByItems(request: request, options: .init())
     }
 
@@ -649,7 +649,7 @@
     public func listNetworkEndpointsByItems(
       request: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints in
@@ -665,7 +665,7 @@
       project: Swift.String,
       region: Swift.String,
       networkEndpointGroup: Swift.String,
-    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, any Swift.Error> & Sendable {
       let request = RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest().with {
         $0.project = project
         $0.region = region

@@ -60,7 +60,7 @@ public struct PercentageAdjustment: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.percentage = try container.decodeIfPresent(GoogleType.Decimal.self, forKey: .percentage)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -69,7 +69,7 @@ public struct PercentageAdjustment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.percentage, forKey: .percentage)
     for (key, value) in self._unknownFields.json {

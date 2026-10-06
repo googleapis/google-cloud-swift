@@ -61,7 +61,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [MaintenanceUpdatePolicy.MaintenanceWindow].self, forKey: .maintenanceWindows)
@@ -79,7 +79,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.maintenanceWindows, forKey: .maintenanceWindows)
     try container.encode(self.denyMaintenancePeriods, forKey: .denyMaintenancePeriods)
@@ -132,7 +132,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(GoogleType.DayOfWeek.self, forKey: .day) {
         self.day = value
@@ -144,7 +144,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.day, forKey: .day)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
@@ -223,7 +223,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .startDate)
       self.endDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .endDate)
@@ -234,7 +234,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.startDate, forKey: .startDate)
       try container.encodeIfPresent(self.endDate, forKey: .endDate)

@@ -82,7 +82,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.type = try container.decodeIfPresent(DataSchemaDetails.DataType.self, forKey: .type)
     self.protoAnyConfig = try container.decodeIfPresent(
@@ -102,7 +102,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.type, forKey: .type)
     try container.encodeIfPresent(self.protoAnyConfig, forKey: .protoAnyConfig)
@@ -153,7 +153,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .typeUri) {
         self.typeUri = value
@@ -164,7 +164,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.typeUri, forKey: .typeUri)
       for (key, value) in self._unknownFields.json {
@@ -221,7 +221,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.valueSchema = try container.decodeIfPresent(
         GoogleWKT.WKTRecursive<DataSchemaDetails>.self, forKey: .valueSchema)
@@ -231,7 +231,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.valueSchema, forKey: .valueSchema)
       for (key, value) in self._unknownFields.json {
@@ -288,7 +288,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [Swift.String: DataSchemaDetails].self, forKey: .fieldSchemas)
@@ -301,7 +301,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fieldSchemas, forKey: .fieldSchemas)
       for (key, value) in self._unknownFields.json {
@@ -371,7 +371,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.searchStrategyType = try container.decodeIfPresent(
         DataSchemaDetails.SearchStrategy.SearchStrategyType.self, forKey: .searchStrategyType)
@@ -384,7 +384,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.searchStrategyType, forKey: .searchStrategyType)
       try container.encodeIfPresent(
@@ -495,7 +495,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldPath) {
           self.fieldPath = value
@@ -509,7 +509,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.fieldPath, forKey: .fieldPath)
         try container.encode(self.threshold, forKey: .threshold)
@@ -619,7 +619,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -637,7 +637,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .noSearch: return try container.encode("NO_SEARCH")
@@ -851,7 +851,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -869,7 +869,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("DATA_TYPE_UNSPECIFIED")
@@ -975,7 +975,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -993,7 +993,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("GRANULARITY_UNSPECIFIED")

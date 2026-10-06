@@ -27,8 +27,8 @@
   /// @Snippet(path: "UserLicenseServiceQuickstart")
   public final class UserLicenseServiceClient: Clients.UserLicenseServiceProtocol, Sendable {
     let inner: any Clients.UserLicenseServiceStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `UserLicenseServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -176,7 +176,7 @@
 
     public func listUserLicensesByItems(
       request: ListUserLicensesRequest
-    ) -> some AsyncSequence<UserLicense, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UserLicense, any Swift.Error> & Sendable {
       self.listUserLicensesByItems(request: request, options: .init())
     }
 
@@ -185,7 +185,7 @@
     /// @Snippet(path: "UserLicenseService_ListUserLicenses")
     public func listUserLicensesByItems(
       request: ListUserLicensesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<UserLicense, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UserLicense, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.ListUserLicensesResponse in
@@ -199,7 +199,7 @@
 
     public func listUserLicensesByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<UserLicense, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UserLicense, any Swift.Error> & Sendable {
       let request = ListUserLicensesRequest().with {
         $0.parent = parent
       }
@@ -245,7 +245,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -256,7 +256,7 @@
     /// @Snippet(path: "UserLicenseService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -270,7 +270,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

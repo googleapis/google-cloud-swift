@@ -27,8 +27,8 @@ import Foundation
 /// @Snippet(path: "ApiKeysQuickstart")
 public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   let inner: any Clients.ApiKeysStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ApiKeysClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -394,7 +394,7 @@ extension Clients.ApiKeysProtocol {
 
   public func listKeysByItems(
     request: ListKeysRequest
-  ) -> some AsyncSequence<Key, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Key, any Swift.Error> & Sendable {
     self.listKeysByItems(request: request, options: .init())
   }
 
@@ -407,7 +407,7 @@ extension Clients.ApiKeysProtocol {
   /// @Snippet(path: "ApiKeys_ListKeys")
   public func listKeysByItems(
     request: ListKeysRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Key, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Key, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleApiApiKeysV1.ListKeysResponse in
       var request = request
@@ -420,7 +420,7 @@ extension Clients.ApiKeysProtocol {
 
   public func listKeysByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Key, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Key, any Swift.Error> & Sendable {
     let request = ListKeysRequest().with {
       $0.parent = parent
     }

@@ -66,7 +66,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [Swift.String: OmnichannelIntegrationConfig.ChannelConfig].self, forKey: .channelConfigs)
@@ -89,7 +89,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.channelConfigs, forKey: .channelConfigs)
     try container.encode(self.subscriberConfigs, forKey: .subscriberConfigs)
@@ -137,7 +137,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var channelConfig: ChannelConfigOneOf? = nil
@@ -162,7 +162,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.channelConfig {
@@ -259,7 +259,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .phoneNumberId) {
         self.phoneNumberId = value
@@ -291,7 +291,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.phoneNumberId, forKey: .phoneNumberId)
       try container.encode(self.phoneNumber, forKey: .phoneNumber)
@@ -353,7 +353,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var subscriberConfig: SubscriberConfigOneOf? = nil
@@ -378,7 +378,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.subscriberConfig {
@@ -448,7 +448,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .app) {
         self.app = value
@@ -459,7 +459,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.app, forKey: .app)
       for (key, value) in self._unknownFields.json {
@@ -516,7 +516,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .subscriberKey) {
         self.subscriberKey = value
@@ -527,7 +527,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.subscriberKey, forKey: .subscriberKey)
       for (key, value) in self._unknownFields.json {

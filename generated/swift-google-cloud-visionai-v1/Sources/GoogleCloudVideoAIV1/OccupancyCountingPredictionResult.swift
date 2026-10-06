@@ -82,7 +82,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.currentTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .currentTime)
@@ -110,7 +110,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.currentTime, forKey: .currentTime)
     try container.encode(self.identifiedBoxes, forKey: .identifiedBoxes)
@@ -166,7 +166,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .labelId) {
         self.labelId = value
@@ -180,7 +180,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.labelId, forKey: .labelId)
       try container.encode(self.labelString, forKey: .labelString)
@@ -260,7 +260,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .boxId) {
         self.boxId = value
@@ -282,7 +282,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.boxId, forKey: .boxId)
       try container.encodeIfPresent(self.normalizedBoundingBox, forKey: .normalizedBoundingBox)
@@ -347,7 +347,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .xmin) {
           self.xmin = value
@@ -367,7 +367,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.xmin, forKey: .xmin)
         try container.encode(self.ymin, forKey: .ymin)
@@ -450,7 +450,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [OccupancyCountingPredictionResult.Stats.ObjectCount].self, forKey: .fullFrameCount)
@@ -474,7 +474,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fullFrameCount, forKey: .fullFrameCount)
       try container.encode(self.crossingLineCounts, forKey: .crossingLineCounts)
@@ -528,7 +528,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.entity = try container.decodeIfPresent(
           OccupancyCountingPredictionResult.Entity.self, forKey: .entity)
@@ -541,7 +541,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.entity, forKey: .entity)
         try container.encode(self.count, forKey: .count)
@@ -606,7 +606,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -618,7 +618,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encodeIfPresent(self.objectCount, forKey: .objectCount)
@@ -701,7 +701,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.annotation = try container.decodeIfPresent(StreamAnnotation.self, forKey: .annotation)
         if let value = try container.decodeIfPresent(
@@ -734,7 +734,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.annotation, forKey: .annotation)
         try container.encode(self.positiveDirectionCounts, forKey: .positiveDirectionCounts)
@@ -803,7 +803,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.annotation = try container.decodeIfPresent(StreamAnnotation.self, forKey: .annotation)
         if let value = try container.decodeIfPresent(
@@ -817,7 +817,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.annotation, forKey: .annotation)
         try container.encode(self.counts, forKey: .counts)
@@ -892,7 +892,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trackId) {
         self.trackId = value
@@ -905,7 +905,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.trackId, forKey: .trackId)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
@@ -979,7 +979,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trackId) {
         self.trackId = value
@@ -997,7 +997,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.trackId, forKey: .trackId)
       try container.encode(self.zoneId, forKey: .zoneId)

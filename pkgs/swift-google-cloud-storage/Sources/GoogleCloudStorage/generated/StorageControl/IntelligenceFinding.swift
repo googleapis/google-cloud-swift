@@ -125,7 +125,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -195,7 +195,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
@@ -279,7 +279,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease) {
         self.percentageIncrease = value
@@ -300,7 +300,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
       try container.encode(self.totalOperationsCount, forKey: .totalOperationsCount)
@@ -366,7 +366,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
           self.bucket = value
@@ -407,7 +407,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.bucket, forKey: .bucket)
         try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -468,7 +468,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [
@@ -484,7 +484,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.topPrefixes, forKey: .topPrefixes)
           for (key, value) in self._unknownFields.json {
@@ -542,7 +542,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
               self.`prefix` = value
@@ -563,7 +563,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.`prefix`, forKey: .`prefix`)
             try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -686,7 +686,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalEgressBytes) {
         self.totalEgressBytes = value
@@ -705,7 +705,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.totalEgressBytes, forKey: .totalEgressBytes)
       try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -773,7 +773,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
           self.bucket = value
@@ -812,7 +812,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.bucket, forKey: .bucket)
         try container.encode(self.totalEgressBytes, forKey: .totalEgressBytes)
@@ -873,7 +873,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [
@@ -889,7 +889,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.topPrefixes, forKey: .topPrefixes)
           for (key, value) in self._unknownFields.json {
@@ -949,7 +949,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
               self.`prefix` = value
@@ -970,7 +970,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.`prefix`, forKey: .`prefix`)
             try container.encode(self.totalEgressBytes, forKey: .totalEgressBytes)
@@ -1091,7 +1091,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .throttledRequests) {
         self.throttledRequests = value
@@ -1110,7 +1110,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.throttledRequests, forKey: .throttledRequests)
       try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -1177,7 +1177,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
           self.bucket = value
@@ -1216,7 +1216,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.bucket, forKey: .bucket)
         try container.encode(self.throttledRequests, forKey: .throttledRequests)
@@ -1277,7 +1277,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [
@@ -1293,7 +1293,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.topPrefixes, forKey: .topPrefixes)
           for (key, value) in self._unknownFields.json {
@@ -1351,7 +1351,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
               self.`prefix` = value
@@ -1372,7 +1372,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.`prefix`, forKey: .`prefix`)
             try container.encode(self.throttledRequests, forKey: .throttledRequests)
@@ -1491,7 +1491,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .totalStorageGrowthBytes)
@@ -1512,7 +1512,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.totalStorageGrowthBytes, forKey: .totalStorageGrowthBytes)
       try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -1576,7 +1576,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
           self.bucket = value
@@ -1611,7 +1611,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.bucket, forKey: .bucket)
         try container.encode(self.totalStorageGrowthBytes, forKey: .totalStorageGrowthBytes)

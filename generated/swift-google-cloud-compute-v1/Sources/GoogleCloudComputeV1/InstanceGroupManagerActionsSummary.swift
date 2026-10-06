@@ -142,7 +142,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.abandoning = try container.decodeIfPresent(Swift.Int32.self, forKey: .abandoning)
       self.creating = try container.decodeIfPresent(Swift.Int32.self, forKey: .creating)
@@ -164,7 +164,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.abandoning, forKey: .abandoning)
       try container.encodeIfPresent(self.creating, forKey: .creating)

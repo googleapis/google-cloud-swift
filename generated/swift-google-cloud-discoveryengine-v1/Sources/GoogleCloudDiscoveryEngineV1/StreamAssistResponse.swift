@@ -89,7 +89,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.answer = try container.decodeIfPresent(AssistAnswer.self, forKey: .answer)
       self.sessionInfo = try container.decodeIfPresent(
@@ -103,7 +103,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.answer, forKey: .answer)
       try container.encodeIfPresent(self.sessionInfo, forKey: .sessionInfo)
@@ -154,7 +154,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .session) {
           self.session = value
@@ -165,7 +165,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.session, forKey: .session)
         for (key, value) in self._unknownFields.json {

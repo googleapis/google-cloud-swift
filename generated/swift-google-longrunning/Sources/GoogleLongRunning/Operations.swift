@@ -148,7 +148,7 @@ extension Clients.OperationsProtocol {
 
   public func listOperationsByItems(
     request: ListOperationsRequest
-  ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -158,7 +158,7 @@ extension Clients.OperationsProtocol {
   /// @Snippet(path: "Operations_ListOperations")
   public func listOperationsByItems(
     request: ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -172,7 +172,7 @@ extension Clients.OperationsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
     let request = ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

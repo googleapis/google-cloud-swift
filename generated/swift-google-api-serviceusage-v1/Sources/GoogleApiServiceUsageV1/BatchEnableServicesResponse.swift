@@ -63,7 +63,7 @@ public struct BatchEnableServicesResponse: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Service].self, forKey: .services) {
       self.services = value
@@ -79,7 +79,7 @@ public struct BatchEnableServicesResponse: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.services, forKey: .services)
     try container.encode(self.failures, forKey: .failures)
@@ -131,7 +131,7 @@ public struct BatchEnableServicesResponse: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceId) {
         self.serviceId = value
@@ -145,7 +145,7 @@ public struct BatchEnableServicesResponse: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.serviceId, forKey: .serviceId)
       try container.encode(self.errorMessage, forKey: .errorMessage)

@@ -102,7 +102,7 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([ShipmentRoute].self, forKey: .routes) {
       self.routes = value
@@ -133,7 +133,7 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.routes, forKey: .routes)
     try container.encode(self.requestLabel, forKey: .requestLabel)
@@ -240,7 +240,7 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.aggregatedRouteMetrics = try container.decodeIfPresent(
         AggregatedMetrics.self, forKey: .aggregatedRouteMetrics)
@@ -270,7 +270,7 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.aggregatedRouteMetrics, forKey: .aggregatedRouteMetrics)
       try container.encode(

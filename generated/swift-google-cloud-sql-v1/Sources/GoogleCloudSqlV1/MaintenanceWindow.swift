@@ -76,7 +76,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.hour = try container.decodeIfPresent(GoogleWKT.WKTInt32Value.self, forKey: .hour)
       self.day = try container.decodeIfPresent(GoogleWKT.WKTInt32Value.self, forKey: .day)
@@ -92,7 +92,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.hour, forKey: .hour)
       try container.encodeIfPresent(self.day, forKey: .day)

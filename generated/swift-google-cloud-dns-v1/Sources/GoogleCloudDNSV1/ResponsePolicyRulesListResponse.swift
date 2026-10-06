@@ -60,7 +60,7 @@ public struct ResponsePolicyRulesListResponse: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.nextPageToken = try container.decodeIfPresent(Swift.String.self, forKey: .nextPageToken)
     if let value = try container.decodeIfPresent(
@@ -74,7 +74,7 @@ public struct ResponsePolicyRulesListResponse: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.nextPageToken, forKey: .nextPageToken)
     try container.encode(self.responsePolicyRules, forKey: .responsePolicyRules)

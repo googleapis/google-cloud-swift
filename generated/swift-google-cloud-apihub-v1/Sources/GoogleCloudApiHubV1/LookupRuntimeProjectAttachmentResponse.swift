@@ -59,7 +59,7 @@ public struct LookupRuntimeProjectAttachmentResponse: Codable, Equatable, Google
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.runtimeProjectAttachment = try container.decodeIfPresent(
       RuntimeProjectAttachment.self, forKey: .runtimeProjectAttachment)
@@ -69,7 +69,7 @@ public struct LookupRuntimeProjectAttachmentResponse: Codable, Equatable, Google
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.runtimeProjectAttachment, forKey: .runtimeProjectAttachment)
     for (key, value) in self._unknownFields.json {

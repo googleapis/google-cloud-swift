@@ -56,7 +56,7 @@ public struct CalculateIssueModelStatsResponse: Codable, Equatable, GoogleWKT._A
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.currentStats = try container.decodeIfPresent(
       IssueModelLabelStats.self, forKey: .currentStats)
@@ -66,7 +66,7 @@ public struct CalculateIssueModelStatsResponse: Codable, Equatable, GoogleWKT._A
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.currentStats, forKey: .currentStats)
     for (key, value) in self._unknownFields.json {

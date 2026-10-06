@@ -84,7 +84,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.displayName = try container.decodeIfPresent(Swift.String.self, forKey: .displayName)
       self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
@@ -106,7 +106,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.displayName, forKey: .displayName)
       try container.encodeIfPresent(self.name, forKey: .name)
@@ -173,13 +173,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .hierarchy: return try container.encode("HIERARCHY")

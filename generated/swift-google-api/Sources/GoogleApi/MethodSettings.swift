@@ -111,7 +111,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selector) {
       self.selector = value
@@ -129,7 +129,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.selector, forKey: .selector)
     try container.encodeIfPresent(self.longRunning, forKey: .longRunning)
@@ -202,7 +202,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.initialPollDelay = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .initialPollDelay)
@@ -219,7 +219,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.initialPollDelay, forKey: .initialPollDelay)
       try container.encode(self.pollDelayMultiplier, forKey: .pollDelayMultiplier)

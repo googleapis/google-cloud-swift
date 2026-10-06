@@ -131,7 +131,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.uriOverride = try container.decodeIfPresent(UriOverride.self, forKey: .uriOverride)
     if let value = try container.decodeIfPresent(HttpMethod.self, forKey: .httpMethod) {
@@ -166,7 +166,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.uriOverride, forKey: .uriOverride)
     try container.encode(self.httpMethod, forKey: .httpMethod)
@@ -228,7 +228,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
         self.key = value
@@ -242,7 +242,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.key, forKey: .key)
       try container.encode(self.value, forKey: .value)
@@ -305,7 +305,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.header = try container.decodeIfPresent(HttpTarget.Header.self, forKey: .header)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -314,7 +314,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.header, forKey: .header)
       for (key, value) in self._unknownFields.json {

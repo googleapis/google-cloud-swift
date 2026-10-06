@@ -58,7 +58,7 @@ public struct UpdateCustomerRepricingConfigRequest: Codable, Equatable, GoogleWK
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.customerRepricingConfig = try container.decodeIfPresent(
       CustomerRepricingConfig.self, forKey: .customerRepricingConfig)
@@ -68,7 +68,7 @@ public struct UpdateCustomerRepricingConfigRequest: Codable, Equatable, GoogleWK
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.customerRepricingConfig, forKey: .customerRepricingConfig)
     for (key, value) in self._unknownFields.json {

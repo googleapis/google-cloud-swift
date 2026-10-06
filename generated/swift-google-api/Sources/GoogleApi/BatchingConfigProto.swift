@@ -60,7 +60,7 @@ public struct BatchingConfigProto: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.thresholds = try container.decodeIfPresent(BatchingSettingsProto.self, forKey: .thresholds)
     self.batchDescriptor = try container.decodeIfPresent(
@@ -71,7 +71,7 @@ public struct BatchingConfigProto: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.thresholds, forKey: .thresholds)
     try container.encodeIfPresent(self.batchDescriptor, forKey: .batchDescriptor)

@@ -26,8 +26,8 @@
   /// @Snippet(path: "reservationSlotsQuickstart")
   public final class ReservationSlotsClient: Clients.ReservationSlotsProtocol, Sendable {
     let inner: any Clients.ReservationSlotsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ReservationSlotsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -394,7 +394,7 @@
 
     public func listByItems(
       request: ReservationSlotsClient.ListRequest
-    ) -> some AsyncSequence<ReservationSlot, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReservationSlot, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -403,7 +403,7 @@
     /// @Snippet(path: "reservationSlots_list")
     public func listByItems(
       request: ReservationSlotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ReservationSlot, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReservationSlot, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.ReservationSlotsListResponse in
@@ -419,7 +419,7 @@
       project: Swift.String,
       zone: Swift.String,
       parentName: Swift.String,
-    ) -> some AsyncSequence<ReservationSlot, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReservationSlot, any Swift.Error> & Sendable {
       let request = ReservationSlotsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

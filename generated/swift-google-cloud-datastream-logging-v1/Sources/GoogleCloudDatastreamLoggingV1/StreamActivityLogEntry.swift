@@ -65,7 +65,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .eventCode) {
       self.eventCode = value
@@ -96,7 +96,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.eventCode, forKey: .eventCode)
     try container.encode(self.eventMessage, forKey: .eventMessage)
@@ -151,7 +151,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         GoogleCloudDatastreamV1.Stream.State.self, forKey: .newState)
@@ -164,7 +164,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.newState, forKey: .newState)
       for (key, value) in self._unknownFields.json {

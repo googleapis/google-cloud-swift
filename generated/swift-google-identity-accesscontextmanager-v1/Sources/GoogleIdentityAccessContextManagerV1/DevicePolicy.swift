@@ -94,7 +94,7 @@ public struct DevicePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .requireScreenlock) {
       self.requireScreenlock = value
@@ -126,7 +126,7 @@ public struct DevicePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.requireScreenlock, forKey: .requireScreenlock)
     try container.encode(self.allowedEncryptionStatuses, forKey: .allowedEncryptionStatuses)

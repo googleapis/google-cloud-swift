@@ -86,7 +86,7 @@ public struct Audience: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .genders) {
       self.genders = value
@@ -100,7 +100,7 @@ public struct Audience: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.genders, forKey: .genders)
     try container.encode(self.ageGroups, forKey: .ageGroups)

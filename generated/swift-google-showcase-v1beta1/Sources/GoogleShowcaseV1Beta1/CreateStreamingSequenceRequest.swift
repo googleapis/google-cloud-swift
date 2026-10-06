@@ -54,7 +54,7 @@ public struct CreateStreamingSequenceRequest: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.streamingSequence = try container.decodeIfPresent(
       StreamingSequence.self, forKey: .streamingSequence)
@@ -64,7 +64,7 @@ public struct CreateStreamingSequenceRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.streamingSequence, forKey: .streamingSequence)
     for (key, value) in self._unknownFields.json {

@@ -26,8 +26,8 @@
   /// @Snippet(path: "instanceSettingsQuickstart")
   public final class InstanceSettingsClient: Clients.InstanceSettingsProtocol, Sendable {
     let inner: any Clients.InstanceSettingsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstanceSettingsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {

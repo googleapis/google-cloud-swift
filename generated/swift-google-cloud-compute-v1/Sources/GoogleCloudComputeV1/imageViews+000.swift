@@ -118,7 +118,7 @@
 
     public func listByItems(
       request: ImageViewsClient.ListRequest
-    ) -> some AsyncSequence<ImageView, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ImageView, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -128,7 +128,7 @@
     /// @Snippet(path: "imageViews_list")
     public func listByItems(
       request: ImageViewsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ImageView, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ImageView, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ImageViewsListResponse
         in
@@ -143,7 +143,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<ImageView, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ImageView, any Swift.Error> & Sendable {
       let request = ImageViewsClient.ListRequest().with {
         $0.project = project
         $0.region = region

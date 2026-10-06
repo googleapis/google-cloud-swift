@@ -56,7 +56,7 @@ public struct SecureSourceManagerInstanceConfig: Codable, Equatable, GoogleWKT._
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
       self.instance = value
@@ -67,7 +67,7 @@ public struct SecureSourceManagerInstanceConfig: Codable, Equatable, GoogleWKT._
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.instance, forKey: .instance)
     for (key, value) in self._unknownFields.json {

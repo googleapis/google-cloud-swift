@@ -71,7 +71,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(AuthType.self, forKey: .authType) {
       self.authType = value
@@ -119,7 +119,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.authType, forKey: .authType)
     try container.encode(self.additionalVariables, forKey: .additionalVariables)
@@ -184,7 +184,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
         self.username = value
@@ -196,7 +196,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.username, forKey: .username)
       try container.encodeIfPresent(self.password, forKey: .password)
@@ -264,7 +264,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientKey = try container.decodeIfPresent(Secret.self, forKey: .clientKey)
       self.jwtClaims = try container.decodeIfPresent(
@@ -275,7 +275,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientKey, forKey: .clientKey)
       try container.encodeIfPresent(self.jwtClaims, forKey: .jwtClaims)
@@ -332,7 +332,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issuer) {
           self.issuer = value
@@ -349,7 +349,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.issuer, forKey: .issuer)
         try container.encode(self.subject, forKey: .subject)
@@ -425,7 +425,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
         self.clientId = value
@@ -437,7 +437,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.clientId, forKey: .clientId)
       try container.encodeIfPresent(self.clientSecret, forKey: .clientSecret)
@@ -510,7 +510,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
         self.username = value
@@ -527,7 +527,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.username, forKey: .username)
       try container.encodeIfPresent(self.sshClientCert, forKey: .sshClientCert)

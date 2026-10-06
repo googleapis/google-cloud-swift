@@ -62,7 +62,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.imageFallbackLocation = try container.decodeIfPresent(
       ProcessingLocation.ImageFallbackLocation.self, forKey: .imageFallbackLocation)
@@ -74,7 +74,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.imageFallbackLocation, forKey: .imageFallbackLocation)
     try container.encodeIfPresent(self.documentFallbackLocation, forKey: .documentFallbackLocation)
@@ -115,7 +115,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -123,7 +123,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -172,7 +172,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -180,7 +180,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -244,7 +244,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.multiRegionProcessing = try container.decodeIfPresent(
         ProcessingLocation.MultiRegionProcessing.self, forKey: .multiRegionProcessing)
@@ -256,7 +256,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.multiRegionProcessing, forKey: .multiRegionProcessing)
       try container.encodeIfPresent(self.globalProcessing, forKey: .globalProcessing)
@@ -322,7 +322,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.multiRegionProcessing = try container.decodeIfPresent(
         ProcessingLocation.MultiRegionProcessing.self, forKey: .multiRegionProcessing)
@@ -334,7 +334,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.multiRegionProcessing, forKey: .multiRegionProcessing)
       try container.encodeIfPresent(self.globalProcessing, forKey: .globalProcessing)

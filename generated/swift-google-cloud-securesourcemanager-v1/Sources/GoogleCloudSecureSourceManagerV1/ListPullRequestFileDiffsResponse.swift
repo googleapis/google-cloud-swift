@@ -62,7 +62,7 @@ public struct ListPullRequestFileDiffsResponse: Codable, Equatable, GoogleWKT._A
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([FileDiff].self, forKey: .fileDiffs) {
       self.fileDiffs = value
@@ -76,7 +76,7 @@ public struct ListPullRequestFileDiffsResponse: Codable, Equatable, GoogleWKT._A
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.fileDiffs, forKey: .fileDiffs)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

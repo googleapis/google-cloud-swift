@@ -34,8 +34,8 @@ import Foundation
 /// @Snippet(path: "FunctionServiceQuickstart")
 public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Sendable {
   let inner: any Clients.FunctionServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `FunctionServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -432,7 +432,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func listFunctionsByItems(
     request: ListFunctionsRequest
-  ) -> some AsyncSequence<Function, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Function, any Swift.Error> & Sendable {
     self.listFunctionsByItems(request: request, options: .init())
   }
 
@@ -441,7 +441,7 @@ extension Clients.FunctionServiceProtocol {
   /// @Snippet(path: "FunctionService_ListFunctions")
   public func listFunctionsByItems(
     request: ListFunctionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Function, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Function, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudFunctionsV2.ListFunctionsResponse
       in
@@ -455,7 +455,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func listFunctionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Function, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Function, any Swift.Error> & Sendable {
     let request = ListFunctionsRequest().with {
       $0.parent = parent
     }
@@ -624,7 +624,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -633,7 +633,7 @@ extension Clients.FunctionServiceProtocol {
   /// @Snippet(path: "FunctionService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -694,7 +694,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -705,7 +705,7 @@ extension Clients.FunctionServiceProtocol {
   /// @Snippet(path: "FunctionService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -719,7 +719,7 @@ extension Clients.FunctionServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -295,7 +295,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .vehicleIndex) {
       self.vehicleIndex = value
@@ -355,7 +355,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.vehicleIndex, forKey: .vehicleIndex)
     try container.encode(self.vehicleLabel, forKey: .vehicleLabel)
@@ -428,7 +428,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -439,7 +439,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.duration, forKey: .duration)
@@ -605,7 +605,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .shipmentIndex) {
         self.shipmentIndex = value
@@ -647,7 +647,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.shipmentIndex, forKey: .shipmentIndex)
       try container.encode(self.isPickup, forKey: .isPickup)
@@ -818,7 +818,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.travelDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .travelDuration)
@@ -859,7 +859,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.travelDuration, forKey: .travelDuration)
       try container.encode(self.travelDistanceMeters, forKey: .travelDistanceMeters)
@@ -934,7 +934,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .amount) {
         self.amount = value
@@ -945,7 +945,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.amount, forKey: .amount)
       for (key, value) in self._unknownFields.json {
@@ -1005,7 +1005,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .points) {
         self.points = value
@@ -1016,7 +1016,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.points, forKey: .points)
       for (key, value) in self._unknownFields.json {
@@ -1078,7 +1078,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -1089,7 +1089,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.duration, forKey: .duration)
@@ -1191,7 +1191,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .distanceMeters) {
@@ -1209,7 +1209,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.duration, forKey: .duration)
       try container.encode(self.distanceMeters, forKey: .distanceMeters)

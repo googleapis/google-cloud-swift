@@ -26,8 +26,8 @@
   /// @Snippet(path: "globalForwardingRulesQuickstart")
   public final class GlobalForwardingRulesClient: Clients.GlobalForwardingRulesProtocol, Sendable {
     let inner: any Clients.GlobalForwardingRulesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `GlobalForwardingRulesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -516,7 +516,7 @@
 
     public func listByItems(
       request: GlobalForwardingRulesClient.ListRequest
-    ) -> some AsyncSequence<ForwardingRule, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ForwardingRule, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -526,7 +526,7 @@
     /// @Snippet(path: "globalForwardingRules_list")
     public func listByItems(
       request: GlobalForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ForwardingRule, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ForwardingRule, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ForwardingRuleList in
         var request = request
@@ -539,7 +539,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<ForwardingRule, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ForwardingRule, any Swift.Error> & Sendable {
       let request = GlobalForwardingRulesClient.ListRequest().with {
         $0.project = project
       }

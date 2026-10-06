@@ -26,8 +26,8 @@
   /// @Snippet(path: "wireGroupsQuickstart")
   public final class WireGroupsClient: Clients.WireGroupsProtocol, Sendable {
     let inner: any Clients.WireGroupsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `WireGroupsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -391,7 +391,7 @@
 
     public func listByItems(
       request: WireGroupsClient.ListRequest
-    ) -> some AsyncSequence<WireGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<WireGroup, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -400,7 +400,7 @@
     /// @Snippet(path: "wireGroups_list")
     public func listByItems(
       request: WireGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<WireGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<WireGroup, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.WireGroupList in
         var request = request
@@ -414,7 +414,7 @@
     public func listByItems(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
-    ) -> some AsyncSequence<WireGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<WireGroup, any Swift.Error> & Sendable {
       let request = WireGroupsClient.ListRequest().with {
         $0.project = project
         $0.crossSiteNetwork = crossSiteNetwork

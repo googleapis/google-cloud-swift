@@ -61,7 +61,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var ccFeature: CcFeatureOneOf? = nil
@@ -96,7 +96,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.ccFeature {
@@ -181,7 +181,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
         self.uuid = value
@@ -212,7 +212,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uuid, forKey: .uuid)
       try container.encode(self.driverVersion, forKey: .driverVersion)
@@ -287,7 +287,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uuid) {
         self.uuid = value
@@ -307,7 +307,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uuid, forKey: .uuid)
       try container.encode(self.attestationCertificateChain, forKey: .attestationCertificateChain)
@@ -367,7 +367,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.gpuQuote = try container.decodeIfPresent(
         NvidiaAttestation.GpuInfo.self, forKey: .gpuQuote)
@@ -377,7 +377,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.gpuQuote, forKey: .gpuQuote)
       for (key, value) in self._unknownFields.json {
@@ -441,7 +441,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [NvidiaAttestation.GpuInfo].self, forKey: .gpuQuotes)
@@ -459,7 +459,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.gpuQuotes, forKey: .gpuQuotes)
       try container.encode(self.switchQuotes, forKey: .switchQuotes)
@@ -519,7 +519,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [NvidiaAttestation.GpuInfo].self, forKey: .gpuQuotes)
@@ -532,7 +532,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.gpuQuotes, forKey: .gpuQuotes)
       for (key, value) in self._unknownFields.json {
@@ -639,7 +639,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -657,7 +657,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("GPU_ARCHITECTURE_TYPE_UNSPECIFIED")

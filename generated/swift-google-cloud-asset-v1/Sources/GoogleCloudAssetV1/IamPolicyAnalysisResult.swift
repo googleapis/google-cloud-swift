@@ -96,7 +96,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .attachedResourceFullName)
@@ -120,7 +120,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.attachedResourceFullName, forKey: .attachedResourceFullName)
     try container.encodeIfPresent(self.iamBinding, forKey: .iamBinding)
@@ -176,7 +176,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
         self.fullResourceName = value
@@ -189,7 +189,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fullResourceName, forKey: .fullResourceName)
       try container.encodeIfPresent(self.analysisState, forKey: .analysisState)
@@ -253,7 +253,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.analysisState = try container.decodeIfPresent(
         IamPolicyAnalysisState.self, forKey: .analysisState)
@@ -281,7 +281,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.analysisState, forKey: .analysisState)
 
@@ -369,7 +369,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -382,7 +382,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encodeIfPresent(self.analysisState, forKey: .analysisState)
@@ -447,7 +447,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sourceNode) {
         self.sourceNode = value
@@ -461,7 +461,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sourceNode, forKey: .sourceNode)
       try container.encode(self.targetNode, forKey: .targetNode)
@@ -562,7 +562,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [IamPolicyAnalysisResult.Resource].self, forKey: .resources)
@@ -587,7 +587,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.resources, forKey: .resources)
       try container.encode(self.accesses, forKey: .accesses)
@@ -668,7 +668,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [IamPolicyAnalysisResult.Identity].self, forKey: .identities)
@@ -686,7 +686,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.identities, forKey: .identities)
       try container.encode(self.groupEdges, forKey: .groupEdges)

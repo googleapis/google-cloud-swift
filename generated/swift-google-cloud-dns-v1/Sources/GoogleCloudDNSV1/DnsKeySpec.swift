@@ -69,7 +69,7 @@ public struct DnsKeySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.algorithm = try container.decodeIfPresent(DnsKeySpec.Algorithm.self, forKey: .algorithm)
     self.keyLength = try container.decodeIfPresent(Swift.UInt32.self, forKey: .keyLength)
@@ -81,7 +81,7 @@ public struct DnsKeySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.algorithm, forKey: .algorithm)
     try container.encodeIfPresent(self.keyLength, forKey: .keyLength)
@@ -141,13 +141,13 @@ public struct DnsKeySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       let s = try container.decode(Swift.String.self)
       self.init(stringValue: s)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .rsasha1: return try container.encode("rsasha1")
@@ -200,13 +200,13 @@ public struct DnsKeySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       let s = try container.decode(Swift.String.self)
       self.init(stringValue: s)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .keySigning: return try container.encode("keySigning")

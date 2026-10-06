@@ -65,7 +65,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.hasStatefulConfig = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .hasStatefulConfig)
@@ -77,7 +77,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.hasStatefulConfig, forKey: .hasStatefulConfig)
       try container.encodeIfPresent(self.perInstanceConfigs, forKey: .perInstanceConfigs)

@@ -55,7 +55,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.allowedPrincipalTags = try container.decodeIfPresent(
       AwsPrincipalTagsOptions.AllowedPrincipalTags.self, forKey: .allowedPrincipalTags)
@@ -65,7 +65,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.allowedPrincipalTags, forKey: .allowedPrincipalTags)
     for (key, value) in self._unknownFields.json {
@@ -113,7 +113,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.containerImageSignatures = try container.decodeIfPresent(
         AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.self,
@@ -124,7 +124,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.containerImageSignatures, forKey: .containerImageSignatures)
@@ -174,7 +174,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .keyIds) {
           self.keyIds = value
@@ -185,7 +185,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.keyIds, forKey: .keyIds)
         for (key, value) in self._unknownFields.json {

@@ -26,8 +26,8 @@
   /// @Snippet(path: "machineImagesQuickstart")
   public final class MachineImagesClient: Clients.MachineImagesProtocol, Sendable {
     let inner: any Clients.MachineImagesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `MachineImagesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -457,7 +457,7 @@
 
     public func listByItems(
       request: MachineImagesClient.ListRequest
-    ) -> some AsyncSequence<MachineImage, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MachineImage, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -467,7 +467,7 @@
     /// @Snippet(path: "machineImages_list")
     public func listByItems(
       request: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<MachineImage, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MachineImage, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.MachineImageList in
         var request = request
@@ -480,7 +480,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<MachineImage, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MachineImage, any Swift.Error> & Sendable {
       let request = MachineImagesClient.ListRequest().with {
         $0.project = project
       }

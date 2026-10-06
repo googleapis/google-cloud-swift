@@ -67,7 +67,7 @@ public struct UpdateQuotaAdjusterSettingsRequest: Codable, Equatable, GoogleWKT.
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.quotaAdjusterSettings = try container.decodeIfPresent(
       QuotaAdjusterSettings.self, forKey: .quotaAdjusterSettings)
@@ -82,7 +82,7 @@ public struct UpdateQuotaAdjusterSettingsRequest: Codable, Equatable, GoogleWKT.
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.quotaAdjusterSettings, forKey: .quotaAdjusterSettings)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

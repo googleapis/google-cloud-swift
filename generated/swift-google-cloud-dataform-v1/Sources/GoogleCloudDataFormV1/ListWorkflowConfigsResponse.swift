@@ -67,7 +67,7 @@ public struct ListWorkflowConfigsResponse: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([WorkflowConfig].self, forKey: .workflowConfigs) {
       self.workflowConfigs = value
@@ -84,7 +84,7 @@ public struct ListWorkflowConfigsResponse: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.workflowConfigs, forKey: .workflowConfigs)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

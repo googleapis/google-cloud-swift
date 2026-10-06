@@ -64,7 +64,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.maxRetentionDays = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .maxRetentionDays)
@@ -77,7 +77,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.maxRetentionDays, forKey: .maxRetentionDays)
       try container.encodeIfPresent(self.onSourceDiskDelete, forKey: .onSourceDiskDelete)
@@ -131,13 +131,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .applyRetentionPolicy: return try container.encode("APPLY_RETENTION_POLICY")

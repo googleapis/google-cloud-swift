@@ -77,7 +77,7 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .createTime)
@@ -94,7 +94,7 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
@@ -162,7 +162,7 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .processedObjectCount)
       {
@@ -186,7 +186,7 @@ public struct IngestConversationsMetadata: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.processedObjectCount, forKey: .processedObjectCount)
       try container.encode(self.duplicatesSkippedCount, forKey: .duplicatesSkippedCount)

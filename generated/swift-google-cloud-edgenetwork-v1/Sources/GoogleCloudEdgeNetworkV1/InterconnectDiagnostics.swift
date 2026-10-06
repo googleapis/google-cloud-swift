@@ -68,7 +68,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .macAddress) {
       self.macAddress = value
@@ -89,7 +89,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.macAddress, forKey: .macAddress)
     try container.encode(self.linkLayerAddresses, forKey: .linkLayerAddresses)
@@ -153,7 +153,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .circuitId) {
         self.circuitId = value
@@ -173,7 +173,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.circuitId, forKey: .circuitId)
       try container.encodeIfPresent(self.lacpStatus, forKey: .lacpStatus)
@@ -261,7 +261,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .inboundUnicast) {
         self.inboundUnicast = value
@@ -287,7 +287,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.inboundUnicast, forKey: .inboundUnicast)
       try container.encode(self.inboundErrors, forKey: .inboundErrors)
@@ -379,7 +379,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         InterconnectDiagnostics.LinkLACPStatus.State.self, forKey: .state)
@@ -407,7 +407,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.state, forKey: .state)
       try container.encode(self.googleSystemId, forKey: .googleSystemId)
@@ -508,7 +508,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -526,7 +526,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unknown: return try container.encode("UNKNOWN")
@@ -616,7 +616,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peerSystemName) {
         self.peerSystemName = value
@@ -644,7 +644,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.peerSystemName, forKey: .peerSystemName)
       try container.encode(self.peerSystemDescription, forKey: .peerSystemDescription)

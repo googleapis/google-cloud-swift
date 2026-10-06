@@ -64,7 +64,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.specialistPool = try container.decodeIfPresent(
         SpecialistPool.self, forKey: .specialistPool)
@@ -76,7 +76,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.specialistPool, forKey: .specialistPool)
       try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

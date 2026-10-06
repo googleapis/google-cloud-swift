@@ -83,7 +83,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ExecuteDashboardQueryResponse.ColumnData].self, forKey: .results)
@@ -111,7 +111,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.results, forKey: .results)
     try container.encode(self.dataSources, forKey: .dataSources)
@@ -185,7 +185,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.metadata = try container.decodeIfPresent(
         ExecuteDashboardQueryResponse.ColumnValue.ValueMetadata.self, forKey: .metadata)
@@ -239,7 +239,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.metadata, forKey: .metadata)
 
@@ -319,7 +319,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([InAppLink].self, forKey: .links) {
           self.links = value
@@ -335,7 +335,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.links, forKey: .links)
         try container.encode(self.fieldPaths, forKey: .fieldPaths)
@@ -431,7 +431,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var type: TypeOneOf? = nil
@@ -461,7 +461,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.type {
@@ -514,7 +514,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [ExecuteDashboardQueryResponse.ColumnValue].self, forKey: .values)
@@ -527,7 +527,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.values, forKey: .values)
         for (key, value) in self._unknownFields.json {
@@ -613,7 +613,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .column) {
         self.column = value
@@ -630,7 +630,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.column, forKey: .column)
       try container.encode(self.values, forKey: .values)

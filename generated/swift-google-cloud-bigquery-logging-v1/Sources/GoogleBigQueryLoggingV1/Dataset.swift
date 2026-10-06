@@ -85,7 +85,7 @@ public struct Dataset: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.datasetName = try container.decodeIfPresent(DatasetName.self, forKey: .datasetName)
     self.info = try container.decodeIfPresent(DatasetInfo.self, forKey: .info)
@@ -102,7 +102,7 @@ public struct Dataset: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.datasetName, forKey: .datasetName)
     try container.encodeIfPresent(self.info, forKey: .info)

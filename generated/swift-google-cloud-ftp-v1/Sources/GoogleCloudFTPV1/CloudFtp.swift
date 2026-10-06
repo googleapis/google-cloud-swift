@@ -28,8 +28,8 @@ import Foundation
 /// @Snippet(path: "CloudFtpQuickstart")
 public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   let inner: any Clients.CloudFtpStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CloudFtpClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -597,7 +597,7 @@ extension Clients.CloudFtpProtocol {
 
   public func listServersByItems(
     request: ListServersRequest
-  ) -> some AsyncSequence<Server, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Server, any Swift.Error> & Sendable {
     self.listServersByItems(request: request, options: .init())
   }
 
@@ -606,7 +606,7 @@ extension Clients.CloudFtpProtocol {
   /// @Snippet(path: "CloudFtp_ListServers")
   public func listServersByItems(
     request: ListServersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Server, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Server, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudFTPV1.ListServersResponse in
       var request = request
@@ -619,7 +619,7 @@ extension Clients.CloudFtpProtocol {
 
   public func listServersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Server, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Server, any Swift.Error> & Sendable {
     let request = ListServersRequest().with {
       $0.parent = parent
     }
@@ -755,7 +755,7 @@ extension Clients.CloudFtpProtocol {
 
   public func listUsersByItems(
     request: ListUsersRequest
-  ) -> some AsyncSequence<User, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
     self.listUsersByItems(request: request, options: .init())
   }
 
@@ -764,7 +764,7 @@ extension Clients.CloudFtpProtocol {
   /// @Snippet(path: "CloudFtp_ListUsers")
   public func listUsersByItems(
     request: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<User, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudFTPV1.ListUsersResponse in
       var request = request
@@ -777,7 +777,7 @@ extension Clients.CloudFtpProtocol {
 
   public func listUsersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<User, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
     let request = ListUsersRequest().with {
       $0.parent = parent
     }
@@ -968,7 +968,7 @@ extension Clients.CloudFtpProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -994,7 +994,7 @@ extension Clients.CloudFtpProtocol {
   /// @Snippet(path: "CloudFtp_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1031,7 +1031,7 @@ extension Clients.CloudFtpProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1042,7 +1042,7 @@ extension Clients.CloudFtpProtocol {
   /// @Snippet(path: "CloudFtp_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1056,7 +1056,7 @@ extension Clients.CloudFtpProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

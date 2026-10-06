@@ -82,7 +82,7 @@ public struct ContactSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(ContactPrivacy.self, forKey: .privacy) {
       self.privacy = value
@@ -99,7 +99,7 @@ public struct ContactSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.privacy, forKey: .privacy)
     try container.encodeIfPresent(self.registrantContact, forKey: .registrantContact)
@@ -165,7 +165,7 @@ public struct ContactSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.postalAddress = try container.decodeIfPresent(
         GoogleType.PostalAddress.self, forKey: .postalAddress)
@@ -184,7 +184,7 @@ public struct ContactSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.postalAddress, forKey: .postalAddress)
       try container.encode(self.email, forKey: .email)

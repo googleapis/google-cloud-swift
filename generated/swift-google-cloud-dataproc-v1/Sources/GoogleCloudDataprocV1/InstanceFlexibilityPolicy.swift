@@ -68,7 +68,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.provisioningModelMix = try container.decodeIfPresent(
       InstanceFlexibilityPolicy.ProvisioningModelMix.self, forKey: .provisioningModelMix)
@@ -88,7 +88,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.provisioningModelMix, forKey: .provisioningModelMix)
     try container.encode(self.instanceSelectionList, forKey: .instanceSelectionList)
@@ -155,7 +155,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.standardCapacityBase = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .standardCapacityBase)
@@ -167,7 +167,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.standardCapacityBase, forKey: .standardCapacityBase)
       try container.encodeIfPresent(
@@ -244,7 +244,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .machineTypes) {
         self.machineTypes = value
@@ -259,7 +259,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.machineTypes, forKey: .machineTypes)
       try container.encode(self.rank, forKey: .rank)
@@ -325,7 +325,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
       self.vmCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .vmCount)
@@ -335,7 +335,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.machineType, forKey: .machineType)
       try container.encodeIfPresent(self.vmCount, forKey: .vmCount)

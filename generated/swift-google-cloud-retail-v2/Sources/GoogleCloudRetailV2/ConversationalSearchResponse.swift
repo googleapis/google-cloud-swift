@@ -112,7 +112,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .userQueryTypes) {
       self.userQueryTypes = value
@@ -146,7 +146,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.userQueryTypes, forKey: .userQueryTypes)
     try container.encode(self.conversationalTextResponse, forKey: .conversationalTextResponse)
@@ -205,7 +205,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .followupQuestion) {
         self.followupQuestion = value
@@ -222,7 +222,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.followupQuestion, forKey: .followupQuestion)
       try container.encode(self.suggestedAnswers, forKey: .suggestedAnswers)
@@ -272,7 +272,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.productAttributeValue = try container.decodeIfPresent(
           ProductAttributeValue.self, forKey: .productAttributeValue)
@@ -282,7 +282,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.productAttributeValue, forKey: .productAttributeValue)
         for (key, value) in self._unknownFields.json {
@@ -354,7 +354,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
         self.query = value
@@ -365,7 +365,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.query, forKey: .query)
       for (key, value) in self._unknownFields.json {
@@ -433,7 +433,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.followupQuestion = try container.decodeIfPresent(
         ConversationalSearchResponse.FollowupQuestion.self, forKey: .followupQuestion)
@@ -446,7 +446,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.followupQuestion, forKey: .followupQuestion)
       try container.encodeIfPresent(self.additionalFilter, forKey: .additionalFilter)
@@ -494,7 +494,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.productAttributeValue = try container.decodeIfPresent(
           ProductAttributeValue.self, forKey: .productAttributeValue)
@@ -504,7 +504,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.productAttributeValue, forKey: .productAttributeValue)
         for (key, value) in self._unknownFields.json {
@@ -623,7 +623,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -641,7 +641,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("STATE_UNSPECIFIED")

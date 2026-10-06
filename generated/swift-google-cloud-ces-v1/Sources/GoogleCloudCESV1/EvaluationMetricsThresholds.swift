@@ -84,7 +84,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.goldenEvaluationMetricsThresholds = try container.decodeIfPresent(
       EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.self,
@@ -116,7 +116,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(
       self.goldenEvaluationMetricsThresholds, forKey: .goldenEvaluationMetricsThresholds)
@@ -185,7 +185,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.turnLevelMetricsThresholds = try container.decodeIfPresent(
         EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.TurnLevelMetricsThresholds
@@ -201,7 +201,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.turnLevelMetricsThresholds, forKey: .turnLevelMetricsThresholds)
@@ -268,7 +268,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.semanticSimilaritySuccessThreshold = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .semanticSimilaritySuccessThreshold)
@@ -286,7 +286,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(
           self.semanticSimilaritySuccessThreshold, forKey: .semanticSimilaritySuccessThreshold)
@@ -386,7 +386,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -404,7 +404,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED")
@@ -468,7 +468,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.toolInvocationParameterCorrectnessThreshold = try container.decodeIfPresent(
           Swift.Float.self, forKey: .toolInvocationParameterCorrectnessThreshold)
@@ -478,7 +478,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(
           self.toolInvocationParameterCorrectnessThreshold,
@@ -553,7 +553,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         EvaluationMetricsThresholds.ToolMatchingSettings.ExtraToolCallBehavior.self,
@@ -567,7 +567,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.extraToolCallBehavior, forKey: .extraToolCallBehavior)
       for (key, value) in self._unknownFields.json {
@@ -664,7 +664,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -682,7 +682,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("EXTRA_TOOL_CALL_BEHAVIOR_UNSPECIFIED")
@@ -795,7 +795,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -813,7 +813,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED")

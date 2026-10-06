@@ -64,7 +64,7 @@ public struct BigQueryKey: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.tableReference = try container.decodeIfPresent(BigQueryTable.self, forKey: .tableReference)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .rowNumber) {
@@ -76,7 +76,7 @@ public struct BigQueryKey: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.tableReference, forKey: .tableReference)
     try container.encode(self.rowNumber, forKey: .rowNumber)

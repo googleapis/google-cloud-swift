@@ -91,7 +91,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`operator`) {
       self.`operator` = value
@@ -124,7 +124,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.`operator`, forKey: .`operator`)
     try container.encode(self.inputArgs, forKey: .inputArgs)
@@ -188,7 +188,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .argument) {
         self.argument = value
@@ -202,7 +202,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.argument, forKey: .argument)
       try container.encode(self.type, forKey: .type)
@@ -275,7 +275,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attribute) {
         self.attribute = value
@@ -290,7 +290,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.attribute, forKey: .attribute)
       try container.encode(self.type, forKey: .type)

@@ -26,8 +26,8 @@
   /// @Snippet(path: "previewFeaturesQuickstart")
   public final class PreviewFeaturesClient: Clients.PreviewFeaturesProtocol, Sendable {
     let inner: any Clients.PreviewFeaturesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `PreviewFeaturesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -189,7 +189,7 @@
 
     public func listByItems(
       request: PreviewFeaturesClient.ListRequest
-    ) -> some AsyncSequence<PreviewFeature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PreviewFeature, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -198,7 +198,7 @@
     /// @Snippet(path: "previewFeatures_list")
     public func listByItems(
       request: PreviewFeaturesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<PreviewFeature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PreviewFeature, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.PreviewFeatureList in
         var request = request
@@ -211,7 +211,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<PreviewFeature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PreviewFeature, any Swift.Error> & Sendable {
       let request = PreviewFeaturesClient.ListRequest().with {
         $0.project = project
       }

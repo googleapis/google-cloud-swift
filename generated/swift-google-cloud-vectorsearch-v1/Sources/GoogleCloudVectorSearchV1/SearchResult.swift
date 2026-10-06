@@ -61,7 +61,7 @@ public struct SearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dataObject = try container.decodeIfPresent(DataObject.self, forKey: .dataObject)
     self.distance = try container.decodeIfPresent(Swift.Double.self, forKey: .distance)
@@ -71,7 +71,7 @@ public struct SearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.dataObject, forKey: .dataObject)
     try container.encodeIfPresent(self.distance, forKey: .distance)

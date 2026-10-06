@@ -87,7 +87,7 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .initialDelaySeconds) {
       self.initialDelaySeconds = value
@@ -128,7 +128,7 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.initialDelaySeconds, forKey: .initialDelaySeconds)
     try container.encode(self.timeoutSeconds, forKey: .timeoutSeconds)

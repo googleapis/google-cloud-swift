@@ -128,7 +128,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.day = try container.decodeIfPresent(Swift.Int32.self, forKey: .day)
       self.hours = try container.decodeIfPresent(Swift.Int32.self, forKey: .hours)
@@ -145,7 +145,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.day, forKey: .day)
       try container.encodeIfPresent(self.hours, forKey: .hours)

@@ -98,7 +98,7 @@ public struct BDRBackupVaultDetailsLog: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.backupVaultName = try container.decodeIfPresent(
       Swift.String.self, forKey: .backupVaultName)
@@ -122,7 +122,7 @@ public struct BDRBackupVaultDetailsLog: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.backupVaultName, forKey: .backupVaultName)
     try container.encodeIfPresent(self.sourceResourceName, forKey: .sourceResourceName)

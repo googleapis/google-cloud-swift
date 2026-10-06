@@ -33,8 +33,8 @@ import Foundation
 /// @Snippet(path: "AnalyticsHubServiceQuickstart")
 public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtocol, Sendable {
   let inner: any Clients.AnalyticsHubServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AnalyticsHubServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -608,7 +608,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listDataExchangesByItems(
     request: ListDataExchangesRequest
-  ) -> some AsyncSequence<DataExchange, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataExchange, any Swift.Error> & Sendable {
     self.listDataExchangesByItems(request: request, options: .init())
   }
 
@@ -617,7 +617,7 @@ extension Clients.AnalyticsHubServiceProtocol {
   /// @Snippet(path: "AnalyticsHubService_ListDataExchanges")
   public func listDataExchangesByItems(
     request: ListDataExchangesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataExchange, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataExchange, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse in
@@ -631,7 +631,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listDataExchangesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DataExchange, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataExchange, any Swift.Error> & Sendable {
     let request = ListDataExchangesRequest().with {
       $0.parent = parent
     }
@@ -652,7 +652,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listOrgDataExchangesByItems(
     request: ListOrgDataExchangesRequest
-  ) -> some AsyncSequence<DataExchange, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataExchange, any Swift.Error> & Sendable {
     self.listOrgDataExchangesByItems(request: request, options: .init())
   }
 
@@ -662,7 +662,7 @@ extension Clients.AnalyticsHubServiceProtocol {
   /// @Snippet(path: "AnalyticsHubService_ListOrgDataExchanges")
   public func listOrgDataExchangesByItems(
     request: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataExchange, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataExchange, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse in
@@ -676,7 +676,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listOrgDataExchangesByItems(
     organization: Swift.String,
-  ) -> some AsyncSequence<DataExchange, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataExchange, any Swift.Error> & Sendable {
     let request = ListOrgDataExchangesRequest().with {
       $0.organization = organization
     }
@@ -783,7 +783,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listListingsByItems(
     request: ListListingsRequest
-  ) -> some AsyncSequence<Listing, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Listing, any Swift.Error> & Sendable {
     self.listListingsByItems(request: request, options: .init())
   }
 
@@ -792,7 +792,7 @@ extension Clients.AnalyticsHubServiceProtocol {
   /// @Snippet(path: "AnalyticsHubService_ListListings")
   public func listListingsByItems(
     request: ListListingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Listing, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Listing, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse in
@@ -806,7 +806,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listListingsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Listing, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Listing, any Swift.Error> & Sendable {
     let request = ListListingsRequest().with {
       $0.parent = parent
     }
@@ -1021,7 +1021,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listSubscriptionsByItems(
     request: ListSubscriptionsRequest
-  ) -> some AsyncSequence<Subscription, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Subscription, any Swift.Error> & Sendable {
     self.listSubscriptionsByItems(request: request, options: .init())
   }
 
@@ -1030,7 +1030,7 @@ extension Clients.AnalyticsHubServiceProtocol {
   /// @Snippet(path: "AnalyticsHubService_ListSubscriptions")
   public func listSubscriptionsByItems(
     request: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Subscription, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Subscription, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse in
@@ -1044,7 +1044,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listSubscriptionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Subscription, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Subscription, any Swift.Error> & Sendable {
     let request = ListSubscriptionsRequest().with {
       $0.parent = parent
     }
@@ -1065,7 +1065,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listSharedResourceSubscriptionsByItems(
     request: ListSharedResourceSubscriptionsRequest
-  ) -> some AsyncSequence<Subscription, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Subscription, any Swift.Error> & Sendable {
     self.listSharedResourceSubscriptionsByItems(request: request, options: .init())
   }
 
@@ -1074,7 +1074,7 @@ extension Clients.AnalyticsHubServiceProtocol {
   /// @Snippet(path: "AnalyticsHubService_ListSharedResourceSubscriptions")
   public func listSharedResourceSubscriptionsByItems(
     request: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Subscription, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Subscription, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse in
@@ -1088,7 +1088,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listSharedResourceSubscriptionsByItems(
     resource: Swift.String,
-  ) -> some AsyncSequence<Subscription, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Subscription, any Swift.Error> & Sendable {
     let request = ListSharedResourceSubscriptionsRequest().with {
       $0.resource = resource
     }
@@ -1243,7 +1243,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listQueryTemplatesByItems(
     request: ListQueryTemplatesRequest
-  ) -> some AsyncSequence<QueryTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QueryTemplate, any Swift.Error> & Sendable {
     self.listQueryTemplatesByItems(request: request, options: .init())
   }
 
@@ -1252,7 +1252,7 @@ extension Clients.AnalyticsHubServiceProtocol {
   /// @Snippet(path: "AnalyticsHubService_ListQueryTemplates")
   public func listQueryTemplatesByItems(
     request: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<QueryTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QueryTemplate, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse in
@@ -1266,7 +1266,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func listQueryTemplatesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<QueryTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QueryTemplate, any Swift.Error> & Sendable {
     let request = ListQueryTemplatesRequest().with {
       $0.parent = parent
     }

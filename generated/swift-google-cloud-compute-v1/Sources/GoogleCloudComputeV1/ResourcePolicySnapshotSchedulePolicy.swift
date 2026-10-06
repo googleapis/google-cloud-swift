@@ -71,7 +71,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.retentionPolicy = try container.decodeIfPresent(
         ResourcePolicySnapshotSchedulePolicyRetentionPolicy.self, forKey: .retentionPolicy)
@@ -85,7 +85,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.retentionPolicy, forKey: .retentionPolicy)
       try container.encodeIfPresent(self.schedule, forKey: .schedule)

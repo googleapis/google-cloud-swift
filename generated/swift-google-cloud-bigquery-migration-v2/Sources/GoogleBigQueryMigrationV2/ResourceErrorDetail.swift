@@ -68,7 +68,7 @@ public struct ResourceErrorDetail: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.resourceInfo = try container.decodeIfPresent(
       GoogleRpc.ResourceInfo.self, forKey: .resourceInfo)
@@ -84,7 +84,7 @@ public struct ResourceErrorDetail: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.resourceInfo, forKey: .resourceInfo)
     try container.encode(self.errorDetails, forKey: .errorDetails)

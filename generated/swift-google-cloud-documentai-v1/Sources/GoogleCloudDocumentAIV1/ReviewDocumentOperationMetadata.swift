@@ -64,7 +64,7 @@ public struct ReviewDocumentOperationMetadata: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.commonMetadata = try container.decodeIfPresent(
       CommonOperationMetadata.self, forKey: .commonMetadata)
@@ -77,7 +77,7 @@ public struct ReviewDocumentOperationMetadata: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.commonMetadata, forKey: .commonMetadata)
     try container.encode(self.questionId, forKey: .questionId)

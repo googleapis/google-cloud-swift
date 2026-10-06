@@ -60,7 +60,7 @@ public struct ProofpointOnDemandSettings: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.authentication = try container.decodeIfPresent(
       HttpHeaderAuth.self, forKey: .authentication)
@@ -73,7 +73,7 @@ public struct ProofpointOnDemandSettings: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
     try container.encode(self.clusterId, forKey: .clusterId)

@@ -55,7 +55,7 @@ public struct SanitizeModelResponseResponse: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.sanitizationResult = try container.decodeIfPresent(
       SanitizationResult.self, forKey: .sanitizationResult)
@@ -65,7 +65,7 @@ public struct SanitizeModelResponseResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.sanitizationResult, forKey: .sanitizationResult)
     for (key, value) in self._unknownFields.json {

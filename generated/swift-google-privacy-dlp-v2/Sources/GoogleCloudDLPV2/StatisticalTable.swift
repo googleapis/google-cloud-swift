@@ -72,7 +72,7 @@ public struct StatisticalTable: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.table = try container.decodeIfPresent(BigQueryTable.self, forKey: .table)
     if let value = try container.decodeIfPresent(
@@ -87,7 +87,7 @@ public struct StatisticalTable: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.table, forKey: .table)
     try container.encode(self.quasiIds, forKey: .quasiIds)
@@ -143,7 +143,7 @@ public struct StatisticalTable: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customTag) {
@@ -155,7 +155,7 @@ public struct StatisticalTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.field, forKey: .field)
       try container.encode(self.customTag, forKey: .customTag)

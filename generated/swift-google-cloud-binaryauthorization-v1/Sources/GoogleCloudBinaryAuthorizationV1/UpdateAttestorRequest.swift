@@ -65,7 +65,7 @@ public struct UpdateAttestorRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.attestor = try container.decodeIfPresent(Attestor.self, forKey: .attestor)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -74,7 +74,7 @@ public struct UpdateAttestorRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.attestor, forKey: .attestor)
     for (key, value) in self._unknownFields.json {

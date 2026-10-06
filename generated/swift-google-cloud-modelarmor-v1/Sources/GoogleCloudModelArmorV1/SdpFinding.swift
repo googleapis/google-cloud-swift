@@ -65,7 +65,7 @@ public struct SdpFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .infoType) {
       self.infoType = value
@@ -81,7 +81,7 @@ public struct SdpFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.infoType, forKey: .infoType)
     try container.encode(self.likelihood, forKey: .likelihood)
@@ -153,7 +153,7 @@ public struct SdpFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.byteRange = try container.decodeIfPresent(RangeInfo.self, forKey: .byteRange)
       self.codepointRange = try container.decodeIfPresent(RangeInfo.self, forKey: .codepointRange)
@@ -168,7 +168,7 @@ public struct SdpFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.byteRange, forKey: .byteRange)
       try container.encodeIfPresent(self.codepointRange, forKey: .codepointRange)

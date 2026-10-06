@@ -86,7 +86,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .crossSiteNetwork) {
           self.crossSiteNetwork = value
@@ -104,7 +104,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.crossSiteNetwork, forKey: .crossSiteNetwork)
         try container.encode(self.project, forKey: .project)
@@ -175,7 +175,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .crossSiteNetwork) {
           self.crossSiteNetwork = value
@@ -192,7 +192,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.crossSiteNetwork, forKey: .crossSiteNetwork)
         try container.encode(self.project, forKey: .project)
@@ -287,7 +287,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .crossSiteNetwork) {
           self.crossSiteNetwork = value
@@ -304,7 +304,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.crossSiteNetwork, forKey: .crossSiteNetwork)
         try container.encode(self.project, forKey: .project)
@@ -464,7 +464,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .crossSiteNetwork) {
           self.crossSiteNetwork = value
@@ -482,7 +482,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.crossSiteNetwork, forKey: .crossSiteNetwork)
         try container.encodeIfPresent(self.filter, forKey: .filter)
@@ -590,7 +590,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .crossSiteNetwork) {
           self.crossSiteNetwork = value
@@ -612,7 +612,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.crossSiteNetwork, forKey: .crossSiteNetwork)
         try container.encode(self.project, forKey: .project)

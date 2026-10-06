@@ -60,7 +60,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.currentTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .currentTime)
@@ -75,7 +75,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.currentTime, forKey: .currentTime)
     try container.encode(self.identifiedBoxes, forKey: .identifiedBoxes)
@@ -127,7 +127,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .labelId) {
         self.labelId = value
@@ -141,7 +141,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.labelId, forKey: .labelId)
       try container.encode(self.labelString, forKey: .labelString)
@@ -215,7 +215,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .boxId) {
         self.boxId = value
@@ -234,7 +234,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.boxId, forKey: .boxId)
       try container.encodeIfPresent(self.normalizedBoundingBox, forKey: .normalizedBoundingBox)
@@ -298,7 +298,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .xmin) {
           self.xmin = value
@@ -318,7 +318,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.xmin, forKey: .xmin)
         try container.encode(self.ymin, forKey: .ymin)

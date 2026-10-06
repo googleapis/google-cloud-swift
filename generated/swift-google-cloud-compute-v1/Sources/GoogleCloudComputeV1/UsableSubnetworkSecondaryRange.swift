@@ -65,7 +65,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ipCidrRange = try container.decodeIfPresent(Swift.String.self, forKey: .ipCidrRange)
       self.rangeName = try container.decodeIfPresent(Swift.String.self, forKey: .rangeName)
@@ -75,7 +75,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ipCidrRange, forKey: .ipCidrRange)
       try container.encodeIfPresent(self.rangeName, forKey: .rangeName)

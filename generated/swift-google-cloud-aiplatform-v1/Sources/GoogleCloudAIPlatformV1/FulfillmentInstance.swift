@@ -61,7 +61,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.prediction = try container.decodeIfPresent(Swift.String.self, forKey: .prediction)
       self.instruction = try container.decodeIfPresent(Swift.String.self, forKey: .instruction)
@@ -71,7 +71,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.prediction, forKey: .prediction)
       try container.encodeIfPresent(self.instruction, forKey: .instruction)

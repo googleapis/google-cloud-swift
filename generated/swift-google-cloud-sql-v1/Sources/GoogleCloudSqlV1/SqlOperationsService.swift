@@ -117,7 +117,7 @@
 
     public func listByItems(
       request: SqlOperationsListRequest
-    ) -> some AsyncSequence<GoogleCloudSqlV1.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudSqlV1.Operation, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -127,7 +127,7 @@
     /// @Snippet(path: "SqlOperationsService_List")
     public func listByItems(
       request: SqlOperationsListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudSqlV1.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudSqlV1.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudSqlV1.OperationsListResponse in
         var request = request

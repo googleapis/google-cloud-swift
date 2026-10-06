@@ -61,7 +61,7 @@ public struct UpdateBlueprintRequest: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.blueprint = try container.decodeIfPresent(Blueprint.self, forKey: .blueprint)
     self.updateMask = try container.decodeIfPresent(
@@ -72,7 +72,7 @@ public struct UpdateBlueprintRequest: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.blueprint, forKey: .blueprint)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

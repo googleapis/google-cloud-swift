@@ -152,7 +152,7 @@
 
     public func aggregatedListByItems(
       request: GlobalOperationsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, OperationsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, OperationsScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -164,7 +164,7 @@
     /// @Snippet(path: "globalOperations_aggregatedList")
     public func aggregatedListByItems(
       request: GlobalOperationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, OperationsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, OperationsScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationAggregatedList
         in
@@ -178,7 +178,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, OperationsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, OperationsScopedList), any Swift.Error> & Sendable {
       let request = GlobalOperationsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -243,7 +243,7 @@
 
     public func listByItems(
       request: GlobalOperationsClient.ListRequest
-    ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -253,7 +253,7 @@
     /// @Snippet(path: "globalOperations_list")
     public func listByItems(
       request: GlobalOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
         var request = request
@@ -266,7 +266,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
       let request = GlobalOperationsClient.ListRequest().with {
         $0.project = project
       }

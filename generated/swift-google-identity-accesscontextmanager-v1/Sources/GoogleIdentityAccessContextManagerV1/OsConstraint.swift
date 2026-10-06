@@ -72,7 +72,7 @@ public struct OsConstraint: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       GoogleIdentityAccessContextManagerType.OsType.self, forKey: .osType)
@@ -92,7 +92,7 @@ public struct OsConstraint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.osType, forKey: .osType)
     try container.encode(self.minimumVersion, forKey: .minimumVersion)

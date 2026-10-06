@@ -60,7 +60,7 @@ public struct BusinessContext: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.entryOverview = try container.decodeIfPresent(EntryOverview.self, forKey: .entryOverview)
     self.contacts = try container.decodeIfPresent(Contacts.self, forKey: .contacts)
@@ -70,7 +70,7 @@ public struct BusinessContext: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.entryOverview, forKey: .entryOverview)
     try container.encodeIfPresent(self.contacts, forKey: .contacts)

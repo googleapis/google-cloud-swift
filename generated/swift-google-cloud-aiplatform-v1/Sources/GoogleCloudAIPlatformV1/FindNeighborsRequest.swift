@@ -84,7 +84,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .indexEndpoint) {
         self.indexEndpoint = value
@@ -106,7 +106,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.indexEndpoint, forKey: .indexEndpoint)
       try container.encode(self.deployedIndexId, forKey: .deployedIndexId)
@@ -196,7 +196,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.datapoint = try container.decodeIfPresent(IndexDatapoint.self, forKey: .datapoint)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .neighborCount) {
@@ -240,7 +240,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.datapoint, forKey: .datapoint)
         try container.encode(self.neighborCount, forKey: .neighborCount)
@@ -301,7 +301,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .alpha) {
             self.alpha = value
@@ -312,7 +312,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.alpha, forKey: .alpha)
           for (key, value) in self._unknownFields.json {

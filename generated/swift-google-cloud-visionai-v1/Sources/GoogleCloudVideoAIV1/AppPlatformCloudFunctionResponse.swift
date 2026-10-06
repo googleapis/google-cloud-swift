@@ -70,7 +70,7 @@ public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleWKT._A
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [AppPlatformCloudFunctionResponse.StructedOutputAnnotation].self, forKey: .annotations)
@@ -89,7 +89,7 @@ public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleWKT._A
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.annotations, forKey: .annotations)
     try container.encode(self.annotationPassthrough, forKey: .annotationPassthrough)
@@ -138,7 +138,7 @@ public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleWKT._A
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.annotation = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .annotation)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -147,7 +147,7 @@ public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleWKT._A
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.annotation, forKey: .annotation)
       for (key, value) in self._unknownFields.json {

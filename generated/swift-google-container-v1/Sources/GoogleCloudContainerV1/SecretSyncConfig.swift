@@ -60,7 +60,7 @@ public struct SecretSyncConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
     self.rotationConfig = try container.decodeIfPresent(
@@ -71,7 +71,7 @@ public struct SecretSyncConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.enabled, forKey: .enabled)
     try container.encodeIfPresent(self.rotationConfig, forKey: .rotationConfig)
@@ -124,7 +124,7 @@ public struct SecretSyncConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
       self.rotationInterval = try container.decodeIfPresent(
@@ -135,7 +135,7 @@ public struct SecretSyncConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.enabled, forKey: .enabled)
       try container.encodeIfPresent(self.rotationInterval, forKey: .rotationInterval)

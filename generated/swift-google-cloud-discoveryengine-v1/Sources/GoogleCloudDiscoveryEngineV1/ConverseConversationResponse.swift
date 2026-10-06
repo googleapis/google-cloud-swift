@@ -70,7 +70,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.reply = try container.decodeIfPresent(
         GoogleCloudDiscoveryEngineV1.Reply.self, forKey: .reply)
@@ -86,7 +86,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.reply, forKey: .reply)
       try container.encodeIfPresent(self.conversation, forKey: .conversation)

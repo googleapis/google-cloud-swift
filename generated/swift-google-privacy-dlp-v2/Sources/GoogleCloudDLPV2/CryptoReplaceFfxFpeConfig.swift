@@ -130,7 +130,7 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.cryptoKey = try container.decodeIfPresent(CryptoKey.self, forKey: .cryptoKey)
     self.context = try container.decodeIfPresent(FieldId.self, forKey: .context)
@@ -167,7 +167,7 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.cryptoKey, forKey: .cryptoKey)
     try container.encodeIfPresent(self.context, forKey: .context)
@@ -289,7 +289,7 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -307,7 +307,7 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleWKT._AnyPacka
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED")

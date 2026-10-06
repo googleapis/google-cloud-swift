@@ -120,7 +120,7 @@ extension Clients.ImageVersionsProtocol {
 
   public func listImageVersionsByItems(
     request: ListImageVersionsRequest
-  ) -> some AsyncSequence<ImageVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ImageVersion, any Swift.Error> & Sendable {
     self.listImageVersionsByItems(request: request, options: .init())
   }
 
@@ -129,7 +129,7 @@ extension Clients.ImageVersionsProtocol {
   /// @Snippet(path: "ImageVersions_ListImageVersions")
   public func listImageVersionsByItems(
     request: ListImageVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ImageVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ImageVersion, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListImageVersionsResponse in
@@ -143,7 +143,7 @@ extension Clients.ImageVersionsProtocol {
 
   public func listImageVersionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ImageVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ImageVersion, any Swift.Error> & Sendable {
     let request = ListImageVersionsRequest().with {
       $0.parent = parent
     }
@@ -164,7 +164,7 @@ extension Clients.ImageVersionsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -175,7 +175,7 @@ extension Clients.ImageVersionsProtocol {
   /// @Snippet(path: "ImageVersions_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -189,7 +189,7 @@ extension Clients.ImageVersionsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

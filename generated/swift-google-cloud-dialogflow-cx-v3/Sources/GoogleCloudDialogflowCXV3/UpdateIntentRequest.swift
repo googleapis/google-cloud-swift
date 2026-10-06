@@ -78,7 +78,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.intent = try container.decodeIfPresent(
         GoogleCloudDialogflowCXV3.Intent.self, forKey: .intent)
@@ -93,7 +93,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.intent, forKey: .intent)
       try container.encode(self.languageCode, forKey: .languageCode)

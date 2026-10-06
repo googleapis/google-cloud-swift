@@ -63,7 +63,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.dnsName = try container.decodeIfPresent(Swift.String.self, forKey: .dnsName)
       self.uniformResourceIdentifier = try container.decodeIfPresent(
@@ -74,7 +74,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.dnsName, forKey: .dnsName)
       try container.encodeIfPresent(

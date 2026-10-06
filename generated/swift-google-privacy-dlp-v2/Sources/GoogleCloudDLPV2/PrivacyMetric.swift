@@ -66,7 +66,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var type: TypeOneOf? = nil
@@ -116,7 +116,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.type {
@@ -180,7 +180,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -189,7 +189,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.field, forKey: .field)
       for (key, value) in self._unknownFields.json {
@@ -250,7 +250,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -259,7 +259,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.field, forKey: .field)
       for (key, value) in self._unknownFields.json {
@@ -334,7 +334,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([FieldId].self, forKey: .quasiIds) {
         self.quasiIds = value
@@ -346,7 +346,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.quasiIds, forKey: .quasiIds)
       try container.encodeIfPresent(self.entityId, forKey: .entityId)
@@ -411,7 +411,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([FieldId].self, forKey: .quasiIds) {
         self.quasiIds = value
@@ -424,7 +424,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.quasiIds, forKey: .quasiIds)
       try container.encodeIfPresent(self.sensitiveAttribute, forKey: .sensitiveAttribute)
@@ -502,7 +502,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [PrivacyMetric.KMapEstimationConfig.TaggedField].self, forKey: .quasiIds)
@@ -523,7 +523,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.quasiIds, forKey: .quasiIds)
       try container.encode(self.regionCode, forKey: .regionCode)
@@ -582,7 +582,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
 
@@ -613,7 +613,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.field, forKey: .field)
 
@@ -718,7 +718,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.table = try container.decodeIfPresent(BigQueryTable.self, forKey: .table)
         if let value = try container.decodeIfPresent(
@@ -734,7 +734,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.table, forKey: .table)
         try container.encode(self.quasiIds, forKey: .quasiIds)
@@ -788,7 +788,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customTag) {
@@ -800,7 +800,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.field, forKey: .field)
           try container.encode(self.customTag, forKey: .customTag)
@@ -900,7 +900,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([QuasiId].self, forKey: .quasiIds) {
         self.quasiIds = value
@@ -919,7 +919,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.quasiIds, forKey: .quasiIds)
       try container.encode(self.regionCode, forKey: .regionCode)

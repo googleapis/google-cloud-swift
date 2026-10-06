@@ -88,7 +88,7 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [Swift.String: AutoscalingSettings.AutoscalingPolicy].self, forKey: .autoscalingPolicies)
@@ -109,7 +109,7 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.autoscalingPolicies, forKey: .autoscalingPolicies)
     try container.encode(self.minClusterNodeCount, forKey: .minClusterNodeCount)
@@ -164,7 +164,7 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .scaleOut) {
         self.scaleOut = value
@@ -178,7 +178,7 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.scaleOut, forKey: .scaleOut)
       try container.encode(self.scaleIn, forKey: .scaleIn)
@@ -271,7 +271,7 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .nodeTypeId) {
         self.nodeTypeId = value
@@ -293,7 +293,7 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.nodeTypeId, forKey: .nodeTypeId)
       try container.encode(self.scaleOutSize, forKey: .scaleOutSize)

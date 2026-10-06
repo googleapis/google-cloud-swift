@@ -83,7 +83,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
       self.description = value
@@ -148,7 +148,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.upstreamCredentials, forKey: .upstreamCredentials)
@@ -215,7 +215,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var credentials: CredentialsOneOf? = nil
@@ -241,7 +241,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.credentials {
@@ -300,7 +300,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
           self.username = value
@@ -316,7 +316,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.username, forKey: .username)
         try container.encode(self.passwordSecretVersion, forKey: .passwordSecretVersion)
@@ -395,7 +395,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var upstream: UpstreamOneOf? = nil
@@ -425,7 +425,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.upstream {
@@ -480,7 +480,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
           self.uri = value
@@ -491,7 +491,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.uri, forKey: .uri)
         for (key, value) in self._unknownFields.json {
@@ -593,7 +593,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -611,7 +611,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("PUBLIC_REPOSITORY_UNSPECIFIED")
@@ -683,7 +683,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var upstream: UpstreamOneOf? = nil
@@ -713,7 +713,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.upstream {
@@ -768,7 +768,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
           self.uri = value
@@ -779,7 +779,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.uri, forKey: .uri)
         for (key, value) in self._unknownFields.json {
@@ -881,7 +881,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -899,7 +899,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("PUBLIC_REPOSITORY_UNSPECIFIED")
@@ -971,7 +971,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var upstream: UpstreamOneOf? = nil
@@ -1001,7 +1001,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.upstream {
@@ -1056,7 +1056,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
           self.uri = value
@@ -1067,7 +1067,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.uri, forKey: .uri)
         for (key, value) in self._unknownFields.json {
@@ -1168,7 +1168,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1186,7 +1186,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("PUBLIC_REPOSITORY_UNSPECIFIED")
@@ -1258,7 +1258,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var upstream: UpstreamOneOf? = nil
@@ -1288,7 +1288,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.upstream {
@@ -1343,7 +1343,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
           self.uri = value
@@ -1354,7 +1354,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.uri, forKey: .uri)
         for (key, value) in self._unknownFields.json {
@@ -1455,7 +1455,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1473,7 +1473,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("PUBLIC_REPOSITORY_UNSPECIFIED")
@@ -1545,7 +1545,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var upstream: UpstreamOneOf? = nil
@@ -1575,7 +1575,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.upstream {
@@ -1637,7 +1637,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           RemoteRepositoryConfig.AptRepository.PublicRepository.RepositoryBase.self,
@@ -1654,7 +1654,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.repositoryBase, forKey: .repositoryBase)
         try container.encode(self.repositoryPath, forKey: .repositoryPath)
@@ -1756,7 +1756,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -1774,7 +1774,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("REPOSITORY_BASE_UNSPECIFIED")
@@ -1838,7 +1838,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
           self.uri = value
@@ -1849,7 +1849,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.uri, forKey: .uri)
         for (key, value) in self._unknownFields.json {
@@ -1930,7 +1930,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var upstream: UpstreamOneOf? = nil
@@ -1960,7 +1960,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.upstream {
@@ -2022,7 +2022,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           RemoteRepositoryConfig.YumRepository.PublicRepository.RepositoryBase.self,
@@ -2039,7 +2039,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.repositoryBase, forKey: .repositoryBase)
         try container.encode(self.repositoryPath, forKey: .repositoryPath)
@@ -2159,7 +2159,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -2177,7 +2177,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("REPOSITORY_BASE_UNSPECIFIED")
@@ -2244,7 +2244,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
           self.uri = value
@@ -2255,7 +2255,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.uri, forKey: .uri)
         for (key, value) in self._unknownFields.json {
@@ -2334,7 +2334,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .uri) {
         self.uri = value
@@ -2345,7 +2345,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uri, forKey: .uri)
       for (key, value) in self._unknownFields.json {

@@ -214,7 +214,7 @@ extension Clients.EssentialContactsServiceProtocol {
 
   public func listContactsByItems(
     request: ListContactsRequest
-  ) -> some AsyncSequence<Contact, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
     self.listContactsByItems(request: request, options: .init())
   }
 
@@ -223,7 +223,7 @@ extension Clients.EssentialContactsServiceProtocol {
   /// @Snippet(path: "EssentialContactsService_ListContacts")
   public func listContactsByItems(
     request: ListContactsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Contact, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudEssentialContactsV1.ListContactsResponse in
@@ -237,7 +237,7 @@ extension Clients.EssentialContactsServiceProtocol {
 
   public func listContactsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Contact, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
     let request = ListContactsRequest().with {
       $0.parent = parent
     }
@@ -298,7 +298,7 @@ extension Clients.EssentialContactsServiceProtocol {
 
   public func computeContactsByItems(
     request: ComputeContactsRequest
-  ) -> some AsyncSequence<Contact, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
     self.computeContactsByItems(request: request, options: .init())
   }
 
@@ -309,7 +309,7 @@ extension Clients.EssentialContactsServiceProtocol {
   /// @Snippet(path: "EssentialContactsService_ComputeContacts")
   public func computeContactsByItems(
     request: ComputeContactsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Contact, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Contact, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudEssentialContactsV1.ComputeContactsResponse in

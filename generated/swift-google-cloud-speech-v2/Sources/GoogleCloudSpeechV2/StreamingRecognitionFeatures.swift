@@ -76,7 +76,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .enableVoiceActivityEvents)
@@ -99,7 +99,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.enableVoiceActivityEvents, forKey: .enableVoiceActivityEvents)
     try container.encode(self.interimResults, forKey: .interimResults)
@@ -157,7 +157,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.speechStartTimeout = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .speechStartTimeout)
@@ -169,7 +169,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.speechStartTimeout, forKey: .speechStartTimeout)
       try container.encodeIfPresent(self.speechEndTimeout, forKey: .speechEndTimeout)
@@ -290,7 +290,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -308,7 +308,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("ENDPOINTING_SENSITIVITY_UNSPECIFIED")

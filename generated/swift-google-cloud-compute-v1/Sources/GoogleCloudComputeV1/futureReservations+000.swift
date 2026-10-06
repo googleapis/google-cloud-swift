@@ -26,8 +26,8 @@
   /// @Snippet(path: "futureReservationsQuickstart")
   public final class FutureReservationsClient: Clients.FutureReservationsProtocol, Sendable {
     let inner: any Clients.FutureReservationsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `FutureReservationsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -367,7 +367,9 @@
 
     public func aggregatedListByItems(
       request: FutureReservationsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), any Swift.Error>
+      & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -379,7 +381,9 @@
     /// @Snippet(path: "futureReservations_aggregatedList")
     public func aggregatedListByItems(
       request: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), any Swift.Error>
+      & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.FutureReservationsAggregatedListResponse in
@@ -393,7 +397,9 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), any Swift.Error>
+      & Sendable
+    {
       let request = FutureReservationsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -550,7 +556,7 @@
 
     public func listByItems(
       request: FutureReservationsClient.ListRequest
-    ) -> some AsyncSequence<FutureReservation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FutureReservation, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -560,7 +566,7 @@
     /// @Snippet(path: "futureReservations_list")
     public func listByItems(
       request: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<FutureReservation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FutureReservation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.FutureReservationsListResponse in
@@ -575,7 +581,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<FutureReservation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FutureReservation, any Swift.Error> & Sendable {
       let request = FutureReservationsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

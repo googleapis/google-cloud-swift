@@ -142,7 +142,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       RestoreConfig.VolumeDataRestorePolicy.self, forKey: .volumeDataRestorePolicy)
@@ -217,7 +217,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.volumeDataRestorePolicy, forKey: .volumeDataRestorePolicy)
     try container.encode(self.clusterResourceConflictPolicy, forKey: .clusterResourceConflictPolicy)
@@ -298,7 +298,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceGroup) {
         self.resourceGroup = value
@@ -312,7 +312,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.resourceGroup, forKey: .resourceGroup)
       try container.encode(self.resourceKind, forKey: .resourceKind)
@@ -412,7 +412,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [RestoreConfig.GroupKind].self, forKey: .selectedGroupKinds)
@@ -436,7 +436,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.selectedGroupKinds, forKey: .selectedGroupKinds)
       try container.encode(self.excludedGroupKinds, forKey: .excludedGroupKinds)
@@ -545,7 +545,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .targetNamespaces) {
         self.targetNamespaces = value
@@ -571,7 +571,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.targetNamespaces, forKey: .targetNamespaces)
       try container.encode(self.targetGroupKinds, forKey: .targetGroupKinds)
@@ -652,7 +652,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         RestoreConfig.TransformationRuleAction.Op.self, forKey: .op)
@@ -674,7 +674,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.op, forKey: .op)
       try container.encode(self.fromPath, forKey: .fromPath)
@@ -808,7 +808,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -826,7 +826,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("OP_UNSPECIFIED")
@@ -915,7 +915,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .namespaces) {
         self.namespaces = value
@@ -934,7 +934,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.namespaces, forKey: .namespaces)
       try container.encode(self.groupKinds, forKey: .groupKinds)
@@ -1012,7 +1012,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [RestoreConfig.TransformationRuleAction].self, forKey: .fieldActions)
@@ -1030,7 +1030,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fieldActions, forKey: .fieldActions)
       try container.encodeIfPresent(self.resourceFilter, forKey: .resourceFilter)
@@ -1095,7 +1095,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         RestoreConfig.VolumeDataRestorePolicy.self, forKey: .policy)
@@ -1125,7 +1125,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.policy, forKey: .policy)
 
@@ -1199,7 +1199,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [RestoreConfig.RestoreOrder.GroupKindDependency].self, forKey: .groupKindDependencies)
@@ -1212,7 +1212,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.groupKindDependencies, forKey: .groupKindDependencies)
       for (key, value) in self._unknownFields.json {
@@ -1265,7 +1265,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.satisfying = try container.decodeIfPresent(
           RestoreConfig.GroupKind.self, forKey: .satisfying)
@@ -1277,7 +1277,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.satisfying, forKey: .satisfying)
         try container.encodeIfPresent(self.requiring, forKey: .requiring)
@@ -1408,7 +1408,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1426,7 +1426,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED")
@@ -1533,7 +1533,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1551,7 +1551,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED")
@@ -1703,7 +1703,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1721,7 +1721,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED")

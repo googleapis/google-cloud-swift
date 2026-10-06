@@ -67,7 +67,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.options = try container.decodeIfPresent(ReconConfig.Options.self, forKey: .options)
     self.modelConfig = try container.decodeIfPresent(
@@ -100,7 +100,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.options, forKey: .options)
     try container.encodeIfPresent(self.modelConfig, forKey: .modelConfig)
@@ -162,7 +162,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableGeocodingSeparation)
@@ -175,7 +175,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enableGeocodingSeparation, forKey: .enableGeocodingSeparation)
       for (key, value) in self._unknownFields.json {
@@ -239,7 +239,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelName) {
         self.modelName = value
@@ -253,7 +253,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.modelName, forKey: .modelName)
       try container.encode(self.versionTag, forKey: .versionTag)

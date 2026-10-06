@@ -68,7 +68,7 @@ public struct ObjectChecksums: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.crc32C = try container.decodeIfPresent(Swift.UInt32.self, forKey: .crc32C)
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .md5Hash) {
@@ -80,7 +80,7 @@ public struct ObjectChecksums: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.crc32C, forKey: .crc32C)
     try container.encode(self.md5Hash, forKey: .md5Hash)

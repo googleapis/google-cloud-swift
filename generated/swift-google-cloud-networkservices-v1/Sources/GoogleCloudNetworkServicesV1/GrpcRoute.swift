@@ -146,7 +146,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -183,7 +183,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.selfLink, forKey: .selfLink)
@@ -258,7 +258,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(GrpcRoute.MethodMatch.Type_.self, forKey: .type)
       {
@@ -277,7 +277,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.type, forKey: .type)
       try container.encode(self.grpcService, forKey: .grpcService)
@@ -376,7 +376,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -394,7 +394,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
@@ -466,7 +466,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(GrpcRoute.HeaderMatch.Type_.self, forKey: .type)
       {
@@ -484,7 +484,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.type, forKey: .type)
       try container.encode(self.key, forKey: .key)
@@ -582,7 +582,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -600,7 +600,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
@@ -668,7 +668,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.method = try container.decodeIfPresent(GrpcRoute.MethodMatch.self, forKey: .method)
       if let value = try container.decodeIfPresent([GrpcRoute.HeaderMatch].self, forKey: .headers) {
@@ -680,7 +680,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.method, forKey: .method)
       try container.encode(self.headers, forKey: .headers)
@@ -756,7 +756,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.weight = try container.decodeIfPresent(Swift.Int32.self, forKey: .weight)
 
@@ -780,7 +780,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.weight, forKey: .weight)
 
@@ -861,7 +861,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.delay = try container.decodeIfPresent(
         GrpcRoute.FaultInjectionPolicy.Delay.self, forKey: .delay)
@@ -873,7 +873,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.delay, forKey: .delay)
       try container.encodeIfPresent(self.abort, forKey: .abort)
@@ -928,7 +928,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.fixedDelay = try container.decodeIfPresent(
           GoogleWKT.WKTDuration.self, forKey: .fixedDelay)
@@ -939,7 +939,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.fixedDelay, forKey: .fixedDelay)
         try container.encodeIfPresent(self.percentage, forKey: .percentage)
@@ -1008,7 +1008,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.httpStatus = try container.decodeIfPresent(Swift.Int32.self, forKey: .httpStatus)
         self.percentage = try container.decodeIfPresent(Swift.Int32.self, forKey: .percentage)
@@ -1018,7 +1018,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.httpStatus, forKey: .httpStatus)
         try container.encodeIfPresent(self.percentage, forKey: .percentage)
@@ -1100,7 +1100,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.cookieTtl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .cookieTtl)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -1109,7 +1109,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.cookieTtl, forKey: .cookieTtl)
       for (key, value) in self._unknownFields.json {
@@ -1190,7 +1190,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .retryConditions) {
         self.retryConditions = value
@@ -1204,7 +1204,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.retryConditions, forKey: .retryConditions)
       try container.encode(self.numRetries, forKey: .numRetries)
@@ -1304,7 +1304,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [GrpcRoute.Destination].self, forKey: .destinations)
@@ -1326,7 +1326,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.destinations, forKey: .destinations)
       try container.encodeIfPresent(self.faultInjectionPolicy, forKey: .faultInjectionPolicy)
@@ -1397,7 +1397,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([GrpcRoute.RouteMatch].self, forKey: .matches) {
         self.matches = value
@@ -1409,7 +1409,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.matches, forKey: .matches)
       try container.encodeIfPresent(self.action, forKey: .action)

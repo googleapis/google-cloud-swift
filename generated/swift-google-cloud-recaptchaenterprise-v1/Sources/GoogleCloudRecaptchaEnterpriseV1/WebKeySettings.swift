@@ -91,7 +91,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .allowAllDomains) {
       self.allowAllDomains = value
@@ -120,7 +120,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.allowAllDomains, forKey: .allowAllDomains)
     try container.encode(self.allowedDomains, forKey: .allowedDomains)
@@ -172,7 +172,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .scoreThreshold) {
         self.scoreThreshold = value
@@ -183,7 +183,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.scoreThreshold, forKey: .scoreThreshold)
       for (key, value) in self._unknownFields.json {
@@ -253,7 +253,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.defaultSettings = try container.decodeIfPresent(
         WebKeySettings.ActionSettings.self, forKey: .defaultSettings)
@@ -268,7 +268,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.defaultSettings, forKey: .defaultSettings)
       try container.encode(self.actionSettings, forKey: .actionSettings)
@@ -395,7 +395,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -413,7 +413,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("INTEGRATION_TYPE_UNSPECIFIED")
@@ -522,7 +522,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -540,7 +540,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED")

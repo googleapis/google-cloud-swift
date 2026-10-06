@@ -76,7 +76,7 @@ public struct ListCertificateRevocationListsResponse: Codable, Equatable, Google
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [CertificateRevocationList].self, forKey: .certificateRevocationLists)
@@ -95,7 +95,7 @@ public struct ListCertificateRevocationListsResponse: Codable, Equatable, Google
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.certificateRevocationLists, forKey: .certificateRevocationLists)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

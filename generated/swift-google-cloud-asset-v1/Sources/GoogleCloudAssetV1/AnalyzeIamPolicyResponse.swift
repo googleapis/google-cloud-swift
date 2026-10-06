@@ -80,7 +80,7 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.mainAnalysis = try container.decodeIfPresent(
       AnalyzeIamPolicyResponse.IamPolicyAnalysis.self, forKey: .mainAnalysis)
@@ -99,7 +99,7 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.mainAnalysis, forKey: .mainAnalysis)
     try container.encode(
@@ -171,7 +171,7 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.analysisQuery = try container.decodeIfPresent(
         IamPolicyAnalysisQuery.self, forKey: .analysisQuery)
@@ -194,7 +194,7 @@ public struct AnalyzeIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.analysisQuery, forKey: .analysisQuery)
       try container.encode(self.analysisResults, forKey: .analysisResults)

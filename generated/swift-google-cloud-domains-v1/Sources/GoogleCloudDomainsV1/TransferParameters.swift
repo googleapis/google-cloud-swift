@@ -83,7 +83,7 @@ public struct TransferParameters: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domainName) {
       self.domainName = value
@@ -108,7 +108,7 @@ public struct TransferParameters: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.domainName, forKey: .domainName)
     try container.encode(self.currentRegistrar, forKey: .currentRegistrar)

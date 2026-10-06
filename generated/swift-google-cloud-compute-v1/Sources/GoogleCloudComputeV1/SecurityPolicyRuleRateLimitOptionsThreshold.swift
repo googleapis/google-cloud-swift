@@ -61,7 +61,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.count = try container.decodeIfPresent(Swift.Int32.self, forKey: .count)
       self.intervalSec = try container.decodeIfPresent(Swift.Int32.self, forKey: .intervalSec)
@@ -71,7 +71,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.count, forKey: .count)
       try container.encodeIfPresent(self.intervalSec, forKey: .intervalSec)

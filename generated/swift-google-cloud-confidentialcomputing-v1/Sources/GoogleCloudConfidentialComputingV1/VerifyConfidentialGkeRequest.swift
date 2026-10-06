@@ -77,7 +77,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .challenge) {
       self.challenge = value
@@ -112,7 +112,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.challenge, forKey: .challenge)
     try container.encodeIfPresent(self.options, forKey: .options)
@@ -181,7 +181,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .audience) {
         self.audience = value
@@ -198,7 +198,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.audience, forKey: .audience)
       try container.encode(self.nonce, forKey: .nonce)
@@ -308,7 +308,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -326,7 +326,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("PLATFORM_TYPE_UNSPECIFIED")

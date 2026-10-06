@@ -91,7 +91,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.autoDelete = try container.decodeIfPresent(Swift.Bool.self, forKey: .autoDelete)
       self.customImage = try container.decodeIfPresent(Swift.String.self, forKey: .customImage)
@@ -104,7 +104,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.autoDelete, forKey: .autoDelete)
       try container.encodeIfPresent(self.customImage, forKey: .customImage)
@@ -193,13 +193,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .attachReadOnly: return try container.encode("ATTACH_READ_ONLY")

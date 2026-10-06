@@ -62,7 +62,7 @@ public struct UpdateRuleRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.rule = try container.decodeIfPresent(Rule.self, forKey: .rule)
     self.updateMask = try container.decodeIfPresent(
@@ -73,7 +73,7 @@ public struct UpdateRuleRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.rule, forKey: .rule)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

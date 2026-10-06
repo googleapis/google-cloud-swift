@@ -85,7 +85,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.color = try container.decodeIfPresent(PreprocessingConfig.Color.self, forKey: .color)
     self.denoise = try container.decodeIfPresent(PreprocessingConfig.Denoise.self, forKey: .denoise)
@@ -101,7 +101,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.color, forKey: .color)
     try container.encodeIfPresent(self.denoise, forKey: .denoise)
@@ -171,7 +171,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .saturation) {
         self.saturation = value
@@ -188,7 +188,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.saturation, forKey: .saturation)
       try container.encode(self.contrast, forKey: .contrast)
@@ -260,7 +260,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .strength) {
         self.strength = value
@@ -274,7 +274,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.strength, forKey: .strength)
       try container.encode(self.tune, forKey: .tune)
@@ -341,7 +341,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .strength) {
         self.strength = value
@@ -355,7 +355,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.strength, forKey: .strength)
       try container.encode(self.enabled, forKey: .enabled)
@@ -437,7 +437,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .lufs) {
         self.lufs = value
@@ -454,7 +454,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.lufs, forKey: .lufs)
       try container.encode(self.highBoost, forKey: .highBoost)
@@ -529,7 +529,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topPixels) {
         self.topPixels = value
@@ -549,7 +549,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.topPixels, forKey: .topPixels)
       try container.encode(self.bottomPixels, forKey: .bottomPixels)
@@ -625,7 +625,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .topPixels) {
         self.topPixels = value
@@ -645,7 +645,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.topPixels, forKey: .topPixels)
       try container.encode(self.bottomPixels, forKey: .bottomPixels)
@@ -707,7 +707,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var deinterlacingFilter: DeinterlacingFilterOneOf? = nil
@@ -737,7 +737,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.deinterlacingFilter {
@@ -819,7 +819,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mode) {
           self.mode = value
@@ -842,7 +842,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.mode, forKey: .mode)
         try container.encode(self.disableSpatialInterlacing, forKey: .disableSpatialInterlacing)
@@ -925,7 +925,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mode) {
           self.mode = value
@@ -943,7 +943,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.mode, forKey: .mode)
         try container.encode(self.parity, forKey: .parity)

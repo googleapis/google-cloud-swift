@@ -164,7 +164,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -294,7 +294,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -383,7 +383,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .projectNumbers) {
         self.projectNumbers = value
@@ -394,7 +394,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.projectNumbers, forKey: .projectNumbers)
       for (key, value) in self._unknownFields.json {
@@ -451,7 +451,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .folderNumbers) {
         self.folderNumbers = value
@@ -462,7 +462,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.folderNumbers, forKey: .folderNumbers)
       for (key, value) in self._unknownFields.json {
@@ -518,7 +518,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
         self.locations = value
@@ -529,7 +529,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.locations, forKey: .locations)
       for (key, value) in self._unknownFields.json {
@@ -586,7 +586,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [DatasetConfig.CloudStorageBuckets.CloudStorageBucket].self, forKey: .cloudStorageBuckets)
@@ -599,7 +599,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.cloudStorageBuckets, forKey: .cloudStorageBuckets)
       for (key, value) in self._unknownFields.json {
@@ -646,7 +646,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var cloudStorageBucket: CloudStorageBucketOneOf? = nil
@@ -674,7 +674,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.cloudStorageBucket {
@@ -764,7 +764,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
         self.dataset = value
@@ -778,7 +778,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataset, forKey: .dataset)
       try container.encode(self.linked, forKey: .linked)
@@ -878,7 +878,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .validatedCount) {
         self.validatedCount = value
@@ -919,7 +919,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.validatedCount, forKey: .validatedCount)
       try container.encode(self.permissionDeniedCount, forKey: .permissionDeniedCount)
@@ -1046,7 +1046,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.validatedCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .validatedCount)
       self.outsideOrgErrorCount = try container.decodeIfPresent(
@@ -1105,7 +1105,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.validatedCount, forKey: .validatedCount)
       try container.encodeIfPresent(self.outsideOrgErrorCount, forKey: .outsideOrgErrorCount)
@@ -1203,7 +1203,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.bucketErrors = try container.decodeIfPresent(
         DatasetConfig.BucketErrors.self, forKey: .bucketErrors)
@@ -1215,7 +1215,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.bucketErrors, forKey: .bucketErrors)
       try container.encodeIfPresent(self.projectErrors, forKey: .projectErrors)
@@ -1337,7 +1337,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1355,7 +1355,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("CONFIG_STATE_UNSPECIFIED")

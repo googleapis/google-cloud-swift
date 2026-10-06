@@ -61,7 +61,7 @@ public struct FilterOperatorAndValues: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(FilterOperator.self, forKey: .filterOperator) {
       self.filterOperator = value
@@ -75,7 +75,7 @@ public struct FilterOperatorAndValues: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.filterOperator, forKey: .filterOperator)
     try container.encode(self.fieldValues, forKey: .fieldValues)

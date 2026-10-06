@@ -46,8 +46,8 @@ import Foundation
 /// @Snippet(path: "GkeHubQuickstart")
 public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   let inner: any Clients.GkeHubStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `GkeHubClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1558,7 +1558,7 @@ extension Clients.GkeHubProtocol {
 
   public func listMembershipsByItems(
     request: ListMembershipsRequest
-  ) -> some AsyncSequence<Membership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
     self.listMembershipsByItems(request: request, options: .init())
   }
 
@@ -1567,7 +1567,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListMemberships")
   public func listMembershipsByItems(
     request: ListMembershipsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Membership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListMembershipsResponse in
       var request = request
@@ -1580,7 +1580,7 @@ extension Clients.GkeHubProtocol {
 
   public func listMembershipsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Membership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
     let request = ListMembershipsRequest().with {
       $0.parent = parent
     }
@@ -1601,7 +1601,7 @@ extension Clients.GkeHubProtocol {
 
   public func listBoundMembershipsByItems(
     request: ListBoundMembershipsRequest
-  ) -> some AsyncSequence<Membership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
     self.listBoundMembershipsByItems(request: request, options: .init())
   }
 
@@ -1611,7 +1611,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListBoundMemberships")
   public func listBoundMembershipsByItems(
     request: ListBoundMembershipsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Membership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudGKEHubV1.ListBoundMembershipsResponse in
@@ -1625,7 +1625,7 @@ extension Clients.GkeHubProtocol {
 
   public func listBoundMembershipsByItems(
     scopeName: Swift.String,
-  ) -> some AsyncSequence<Membership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
     let request = ListBoundMembershipsRequest().with {
       $0.scopeName = scopeName
     }
@@ -1646,7 +1646,7 @@ extension Clients.GkeHubProtocol {
 
   public func listFeaturesByItems(
     request: ListFeaturesRequest
-  ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Feature, any Swift.Error> & Sendable {
     self.listFeaturesByItems(request: request, options: .init())
   }
 
@@ -1655,7 +1655,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListFeatures")
   public func listFeaturesByItems(
     request: ListFeaturesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Feature, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListFeaturesResponse in
       var request = request
@@ -1668,7 +1668,7 @@ extension Clients.GkeHubProtocol {
 
   public func listFeaturesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Feature, any Swift.Error> & Sendable {
     let request = ListFeaturesRequest().with {
       $0.parent = parent
     }
@@ -2057,7 +2057,7 @@ extension Clients.GkeHubProtocol {
 
   public func listFleetsByItems(
     request: ListFleetsRequest
-  ) -> some AsyncSequence<Fleet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Fleet, any Swift.Error> & Sendable {
     self.listFleetsByItems(request: request, options: .init())
   }
 
@@ -2067,7 +2067,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListFleets")
   public func listFleetsByItems(
     request: ListFleetsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Fleet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Fleet, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListFleetsResponse in
       var request = request
@@ -2080,7 +2080,7 @@ extension Clients.GkeHubProtocol {
 
   public func listFleetsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Fleet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Fleet, any Swift.Error> & Sendable {
     let request = ListFleetsRequest().with {
       $0.parent = parent
     }
@@ -2227,7 +2227,7 @@ extension Clients.GkeHubProtocol {
 
   public func listScopeNamespacesByItems(
     request: ListScopeNamespacesRequest
-  ) -> some AsyncSequence<Namespace, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Namespace, any Swift.Error> & Sendable {
     self.listScopeNamespacesByItems(request: request, options: .init())
   }
 
@@ -2236,7 +2236,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListScopeNamespaces")
   public func listScopeNamespacesByItems(
     request: ListScopeNamespacesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Namespace, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Namespace, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudGKEHubV1.ListScopeNamespacesResponse in
@@ -2250,7 +2250,7 @@ extension Clients.GkeHubProtocol {
 
   public func listScopeNamespacesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Namespace, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Namespace, any Swift.Error> & Sendable {
     let request = ListScopeNamespacesRequest().with {
       $0.parent = parent
     }
@@ -2399,7 +2399,7 @@ extension Clients.GkeHubProtocol {
 
   public func listScopeRbacroleBindingsByItems(
     request: ListScopeRBACRoleBindingsRequest
-  ) -> some AsyncSequence<RBACRoleBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
     self.listScopeRbacroleBindingsByItems(request: request, options: .init())
   }
 
@@ -2408,7 +2408,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListScopeRBACRoleBindings")
   public func listScopeRbacroleBindingsByItems(
     request: ListScopeRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<RBACRoleBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudGKEHubV1.ListScopeRBACRoleBindingsResponse in
@@ -2422,7 +2422,7 @@ extension Clients.GkeHubProtocol {
 
   public func listScopeRbacroleBindingsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<RBACRoleBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
     let request = ListScopeRBACRoleBindingsRequest().with {
       $0.parent = parent
     }
@@ -2555,7 +2555,7 @@ extension Clients.GkeHubProtocol {
 
   public func listScopesByItems(
     request: ListScopesRequest
-  ) -> some AsyncSequence<Scope, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
     self.listScopesByItems(request: request, options: .init())
   }
 
@@ -2564,7 +2564,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListScopes")
   public func listScopesByItems(
     request: ListScopesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Scope, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudGKEHubV1.ListScopesResponse in
       var request = request
@@ -2577,7 +2577,7 @@ extension Clients.GkeHubProtocol {
 
   public func listScopesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Scope, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
     let request = ListScopesRequest().with {
       $0.parent = parent
     }
@@ -2598,7 +2598,7 @@ extension Clients.GkeHubProtocol {
 
   public func listPermittedScopesByItems(
     request: ListPermittedScopesRequest
-  ) -> some AsyncSequence<Scope, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
     self.listPermittedScopesByItems(request: request, options: .init())
   }
 
@@ -2607,7 +2607,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListPermittedScopes")
   public func listPermittedScopesByItems(
     request: ListPermittedScopesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Scope, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudGKEHubV1.ListPermittedScopesResponse in
@@ -2621,7 +2621,7 @@ extension Clients.GkeHubProtocol {
 
   public func listPermittedScopesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Scope, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
     let request = ListPermittedScopesRequest().with {
       $0.parent = parent
     }
@@ -2770,7 +2770,7 @@ extension Clients.GkeHubProtocol {
 
   public func listMembershipBindingsByItems(
     request: ListMembershipBindingsRequest
-  ) -> some AsyncSequence<MembershipBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MembershipBinding, any Swift.Error> & Sendable {
     self.listMembershipBindingsByItems(request: request, options: .init())
   }
 
@@ -2779,7 +2779,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListMembershipBindings")
   public func listMembershipBindingsByItems(
     request: ListMembershipBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<MembershipBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MembershipBinding, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudGKEHubV1.ListMembershipBindingsResponse in
@@ -2793,7 +2793,7 @@ extension Clients.GkeHubProtocol {
 
   public func listMembershipBindingsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<MembershipBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MembershipBinding, any Swift.Error> & Sendable {
     let request = ListMembershipBindingsRequest().with {
       $0.parent = parent
     }
@@ -2943,7 +2943,7 @@ extension Clients.GkeHubProtocol {
 
   public func listMembershipRbacroleBindingsByItems(
     request: ListMembershipRBACRoleBindingsRequest
-  ) -> some AsyncSequence<RBACRoleBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
     self.listMembershipRbacroleBindingsByItems(request: request, options: .init())
   }
 
@@ -2952,7 +2952,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListMembershipRBACRoleBindings")
   public func listMembershipRbacroleBindingsByItems(
     request: ListMembershipRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<RBACRoleBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudGKEHubV1.ListMembershipRBACRoleBindingsResponse in
@@ -2966,7 +2966,7 @@ extension Clients.GkeHubProtocol {
 
   public func listMembershipRbacroleBindingsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<RBACRoleBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
     let request = ListMembershipRBACRoleBindingsRequest().with {
       $0.parent = parent
     }
@@ -2999,7 +2999,7 @@ extension Clients.GkeHubProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -3010,7 +3010,7 @@ extension Clients.GkeHubProtocol {
   /// @Snippet(path: "GkeHub_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -3024,7 +3024,7 @@ extension Clients.GkeHubProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

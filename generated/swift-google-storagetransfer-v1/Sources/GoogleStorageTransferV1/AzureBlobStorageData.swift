@@ -123,7 +123,7 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .storageAccount) {
       self.storageAccount = value
@@ -147,7 +147,7 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.storageAccount, forKey: .storageAccount)
     try container.encodeIfPresent(self.azureCredentials, forKey: .azureCredentials)
@@ -214,7 +214,7 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clientId) {
         self.clientId = value
@@ -228,7 +228,7 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.clientId, forKey: .clientId)
       try container.encode(self.tenantId, forKey: .tenantId)

@@ -60,7 +60,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.bigqueryPublishingConfig = try container.decodeIfPresent(
       DataDiscoverySpec.BigQueryPublishingConfig.self, forKey: .bigqueryPublishingConfig)
@@ -87,7 +87,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.bigqueryPublishingConfig, forKey: .bigqueryPublishingConfig)
 
@@ -182,7 +182,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         DataDiscoverySpec.BigQueryPublishingConfig.TableType.self, forKey: .tableType)
@@ -204,7 +204,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.tableType, forKey: .tableType)
       try container.encode(self.connection, forKey: .connection)
@@ -306,7 +306,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -324,7 +324,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("TABLE_TYPE_UNSPECIFIED")
@@ -416,7 +416,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .includePatterns) {
         self.includePatterns = value
@@ -437,7 +437,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.includePatterns, forKey: .includePatterns)
       try container.encode(self.excludePatterns, forKey: .excludePatterns)
@@ -512,7 +512,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .headerRows) {
           self.headerRows = value
@@ -537,7 +537,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.headerRows, forKey: .headerRows)
         try container.encode(self.delimiter, forKey: .delimiter)
@@ -606,7 +606,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .encoding) {
           self.encoding = value
@@ -622,7 +622,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.encoding, forKey: .encoding)
         try container.encode(self.typeInferenceDisabled, forKey: .typeInferenceDisabled)
@@ -682,7 +682,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           Swift.Bool.self, forKey: .semanticInferenceEnabled)
@@ -695,7 +695,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.semanticInferenceEnabled, forKey: .semanticInferenceEnabled)
         for (key, value) in self._unknownFields.json {

@@ -79,7 +79,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.metricPromptTemplate = try container.decodeIfPresent(
         Swift.String.self, forKey: .metricPromptTemplate)
@@ -118,7 +118,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.metricPromptTemplate, forKey: .metricPromptTemplate)
       try container.encodeIfPresent(self.systemInstruction, forKey: .systemInstruction)

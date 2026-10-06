@@ -60,7 +60,7 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.requestedOptions = try container.decodeIfPresent(
       InspectDataSourceDetails.RequestedOptions.self, forKey: .requestedOptions)
@@ -72,7 +72,7 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.requestedOptions, forKey: .requestedOptions)
     try container.encodeIfPresent(self.result, forKey: .result)
@@ -125,7 +125,7 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.snapshotInspectTemplate = try container.decodeIfPresent(
         InspectTemplate.self, forKey: .snapshotInspectTemplate)
@@ -136,7 +136,7 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.snapshotInspectTemplate, forKey: .snapshotInspectTemplate)
       try container.encodeIfPresent(self.jobConfig, forKey: .jobConfig)
@@ -216,7 +216,7 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .processedBytes) {
         self.processedBytes = value
@@ -238,7 +238,7 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.processedBytes, forKey: .processedBytes)
       try container.encode(self.totalEstimatedBytes, forKey: .totalEstimatedBytes)

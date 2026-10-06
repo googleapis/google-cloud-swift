@@ -78,7 +78,7 @@ public struct UsageSignal: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
@@ -99,7 +99,7 @@ public struct UsageSignal: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.usageWithinTimeRange, forKey: .usageWithinTimeRange)

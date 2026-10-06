@@ -26,8 +26,8 @@
   /// @Snippet(path: "instanceTemplatesQuickstart")
   public final class InstanceTemplatesClient: Clients.InstanceTemplatesProtocol, Sendable {
     let inner: any Clients.InstanceTemplatesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstanceTemplatesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -300,7 +300,8 @@
 
     public func aggregatedListByItems(
       request: InstanceTemplatesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -313,7 +314,8 @@
     /// @Snippet(path: "instanceTemplates_aggregatedList")
     public func aggregatedListByItems(
       request: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceTemplateAggregatedList in
@@ -327,7 +329,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), any Swift.Error> & Sendable
+    {
       let request = InstanceTemplatesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -464,7 +467,7 @@
 
     public func listByItems(
       request: InstanceTemplatesClient.ListRequest
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -474,7 +477,7 @@
     /// @Snippet(path: "instanceTemplates_list")
     public func listByItems(
       request: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
         var request = request
@@ -487,7 +490,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       let request = InstanceTemplatesClient.ListRequest().with {
         $0.project = project
       }

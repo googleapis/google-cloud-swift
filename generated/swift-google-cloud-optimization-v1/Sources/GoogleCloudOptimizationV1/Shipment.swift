@@ -220,7 +220,7 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Shipment.VisitRequest].self, forKey: .pickups) {
       self.pickups = value
@@ -274,7 +274,7 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.pickups, forKey: .pickups)
     try container.encode(self.deliveries, forKey: .deliveries)
@@ -453,7 +453,7 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.arrivalLocation = try container.decodeIfPresent(
         GoogleType.LatLng.self, forKey: .arrivalLocation)
@@ -495,7 +495,7 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.arrivalLocation, forKey: .arrivalLocation)
       try container.encodeIfPresent(self.arrivalWaypoint, forKey: .arrivalWaypoint)
@@ -570,7 +570,7 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .amount) {
         self.amount = value
@@ -581,7 +581,7 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.amount, forKey: .amount)
       for (key, value) in self._unknownFields.json {

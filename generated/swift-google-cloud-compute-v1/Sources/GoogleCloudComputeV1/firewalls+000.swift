@@ -26,8 +26,8 @@
   /// @Snippet(path: "firewallsQuickstart")
   public final class FirewallsClient: Clients.FirewallsProtocol, Sendable {
     let inner: any Clients.FirewallsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `FirewallsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -466,7 +466,7 @@
 
     public func listByItems(
       request: FirewallsClient.ListRequest
-    ) -> some AsyncSequence<Firewall, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Firewall, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -476,7 +476,7 @@
     /// @Snippet(path: "firewalls_list")
     public func listByItems(
       request: FirewallsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Firewall, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Firewall, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallList in
         var request = request
@@ -489,7 +489,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<Firewall, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Firewall, any Swift.Error> & Sendable {
       let request = FirewallsClient.ListRequest().with {
         $0.project = project
       }

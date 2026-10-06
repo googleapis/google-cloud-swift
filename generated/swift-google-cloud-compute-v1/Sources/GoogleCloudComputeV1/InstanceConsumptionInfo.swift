@@ -72,7 +72,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.guestCpus = try container.decodeIfPresent(Swift.Int32.self, forKey: .guestCpus)
       self.localSsdGb = try container.decodeIfPresent(Swift.Int32.self, forKey: .localSsdGb)
@@ -84,7 +84,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.guestCpus, forKey: .guestCpus)
       try container.encodeIfPresent(self.localSsdGb, forKey: .localSsdGb)

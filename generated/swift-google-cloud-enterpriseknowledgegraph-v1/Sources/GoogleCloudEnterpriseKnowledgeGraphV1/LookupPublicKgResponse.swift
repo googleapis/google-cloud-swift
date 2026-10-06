@@ -69,7 +69,7 @@ public struct LookupPublicKgResponse: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.context = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .context)
     self.type = try container.decodeIfPresent(GoogleWKT.WKTValue.self, forKey: .type)
@@ -81,7 +81,7 @@ public struct LookupPublicKgResponse: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.context, forKey: .context)
     try container.encodeIfPresent(self.type, forKey: .type)

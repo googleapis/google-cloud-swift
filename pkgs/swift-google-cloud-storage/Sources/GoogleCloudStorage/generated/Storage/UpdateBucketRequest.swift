@@ -96,7 +96,7 @@ public struct UpdateBucketRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.bucket = try container.decodeIfPresent(Bucket.self, forKey: .bucket)
     self.ifMetagenerationMatch = try container.decodeIfPresent(
@@ -119,7 +119,7 @@ public struct UpdateBucketRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.bucket, forKey: .bucket)
     try container.encodeIfPresent(self.ifMetagenerationMatch, forKey: .ifMetagenerationMatch)

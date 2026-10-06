@@ -89,7 +89,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.identity = try container.decodeIfPresent(WindowsUpdate.Identity.self, forKey: .identity)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
@@ -116,7 +116,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.identity, forKey: .identity)
     try container.encode(self.title, forKey: .title)
@@ -173,7 +173,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .updateId) {
         self.updateId = value
@@ -187,7 +187,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.updateId, forKey: .updateId)
       try container.encode(self.revision, forKey: .revision)
@@ -250,7 +250,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .categoryId) {
         self.categoryId = value
@@ -264,7 +264,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.categoryId, forKey: .categoryId)
       try container.encode(self.name, forKey: .name)

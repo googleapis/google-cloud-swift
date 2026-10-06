@@ -110,7 +110,7 @@ public struct OcrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.hints = try container.decodeIfPresent(OcrConfig.Hints.self, forKey: .hints)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableNativePdfParsing) {
@@ -145,7 +145,7 @@ public struct OcrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.hints, forKey: .hints)
     try container.encode(self.enableNativePdfParsing, forKey: .enableNativePdfParsing)
@@ -204,7 +204,7 @@ public struct OcrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .languageHints) {
         self.languageHints = value
@@ -215,7 +215,7 @@ public struct OcrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.languageHints, forKey: .languageHints)
       for (key, value) in self._unknownFields.json {
@@ -284,7 +284,7 @@ public struct OcrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableSelectionMarkDetection)
@@ -303,7 +303,7 @@ public struct OcrConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enableSelectionMarkDetection, forKey: .enableSelectionMarkDetection)
       try container.encode(self.computeStyleInfo, forKey: .computeStyleInfo)

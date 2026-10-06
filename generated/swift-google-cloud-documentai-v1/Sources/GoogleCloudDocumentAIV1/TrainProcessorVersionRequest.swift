@@ -94,7 +94,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -139,7 +139,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encodeIfPresent(self.processorVersion, forKey: .processorVersion)
@@ -206,7 +206,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.trainingDocuments = try container.decodeIfPresent(
         BatchDocumentsInputConfig.self, forKey: .trainingDocuments)
@@ -218,7 +218,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.trainingDocuments, forKey: .trainingDocuments)
       try container.encodeIfPresent(self.testDocuments, forKey: .testDocuments)
@@ -279,7 +279,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod.self,
@@ -293,7 +293,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.trainingMethod, forKey: .trainingMethod)
       for (key, value) in self._unknownFields.json {
@@ -386,7 +386,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -404,7 +404,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("TRAINING_METHOD_UNSPECIFIED")
@@ -474,7 +474,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .trainSteps) {
         self.trainSteps = value
@@ -490,7 +490,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.trainSteps, forKey: .trainSteps)
       try container.encode(self.learningRateMultiplier, forKey: .learningRateMultiplier)

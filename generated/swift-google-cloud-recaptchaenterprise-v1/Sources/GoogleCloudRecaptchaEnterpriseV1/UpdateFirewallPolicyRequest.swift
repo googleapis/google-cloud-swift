@@ -61,7 +61,7 @@ public struct UpdateFirewallPolicyRequest: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.firewallPolicy = try container.decodeIfPresent(
       FirewallPolicy.self, forKey: .firewallPolicy)
@@ -73,7 +73,7 @@ public struct UpdateFirewallPolicyRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.firewallPolicy, forKey: .firewallPolicy)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)

@@ -26,8 +26,8 @@
   /// @Snippet(path: "targetInstancesQuickstart")
   public final class TargetInstancesClient: Clients.TargetInstancesProtocol, Sendable {
     let inner: any Clients.TargetInstancesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `TargetInstancesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -325,7 +325,7 @@
 
     public func aggregatedListByItems(
       request: TargetInstancesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetInstancesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -337,7 +337,7 @@
     /// @Snippet(path: "targetInstances_aggregatedList")
     public func aggregatedListByItems(
       request: TargetInstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetInstancesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.TargetInstanceAggregatedList in
@@ -351,7 +351,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, TargetInstancesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetInstancesScopedList), any Swift.Error> & Sendable {
       let request = TargetInstancesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -471,7 +471,7 @@
 
     public func listByItems(
       request: TargetInstancesClient.ListRequest
-    ) -> some AsyncSequence<TargetInstance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetInstance, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -481,7 +481,7 @@
     /// @Snippet(path: "targetInstances_list")
     public func listByItems(
       request: TargetInstancesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<TargetInstance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetInstance, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetInstanceList in
         var request = request
@@ -495,7 +495,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<TargetInstance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetInstance, any Swift.Error> & Sendable {
       let request = TargetInstancesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

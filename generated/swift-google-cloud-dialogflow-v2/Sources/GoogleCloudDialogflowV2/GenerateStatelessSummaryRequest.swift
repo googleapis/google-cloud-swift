@@ -82,7 +82,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.statelessConversation = try container.decodeIfPresent(
         GenerateStatelessSummaryRequest.MinimalConversation.self, forKey: .statelessConversation)
@@ -100,7 +100,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.statelessConversation, forKey: .statelessConversation)
       try container.encodeIfPresent(self.conversationProfile, forKey: .conversationProfile)
@@ -160,7 +160,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [GoogleCloudDialogflowV2.Message].self, forKey: .messages)
@@ -176,7 +176,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.messages, forKey: .messages)
         try container.encode(self.parent, forKey: .parent)

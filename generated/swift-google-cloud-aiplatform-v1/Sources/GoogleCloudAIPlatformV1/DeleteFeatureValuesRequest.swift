@@ -69,7 +69,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
         self.entityType = value
@@ -103,7 +103,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entityType, forKey: .entityType)
 
@@ -161,7 +161,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.entityIdSelector = try container.decodeIfPresent(
           EntityIdSelector.self, forKey: .entityIdSelector)
@@ -171,7 +171,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.entityIdSelector, forKey: .entityIdSelector)
         for (key, value) in self._unknownFields.json {
@@ -248,7 +248,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.timeRange = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .timeRange)
         self.featureSelector = try container.decodeIfPresent(
@@ -264,7 +264,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.timeRange, forKey: .timeRange)
         try container.encodeIfPresent(self.featureSelector, forKey: .featureSelector)

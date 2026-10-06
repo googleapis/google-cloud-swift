@@ -68,7 +68,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.requestValidForDuration = try container.decodeIfPresent(
         GoogleCloudComputeV1.Duration.self, forKey: .requestValidForDuration)
@@ -83,7 +83,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.requestValidForDuration, forKey: .requestValidForDuration)
       try container.encode(self.resourceManagerTags, forKey: .resourceManagerTags)

@@ -69,7 +69,7 @@ public struct AnnotationMatchingResult: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.criteria = try container.decodeIfPresent(Criteria.self, forKey: .criteria)
     if let value = try container.decodeIfPresent(
@@ -84,7 +84,7 @@ public struct AnnotationMatchingResult: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.criteria, forKey: .criteria)
     try container.encode(self.matchedAnnotations, forKey: .matchedAnnotations)

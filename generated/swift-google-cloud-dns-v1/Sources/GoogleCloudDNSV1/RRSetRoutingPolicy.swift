@@ -71,7 +71,7 @@ public struct RRSetRoutingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.geo = try container.decodeIfPresent(RRSetRoutingPolicyGeoPolicy.self, forKey: .geo)
     self.healthCheck = try container.decodeIfPresent(Swift.String.self, forKey: .healthCheck)
@@ -85,7 +85,7 @@ public struct RRSetRoutingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.geo, forKey: .geo)
     try container.encodeIfPresent(self.healthCheck, forKey: .healthCheck)

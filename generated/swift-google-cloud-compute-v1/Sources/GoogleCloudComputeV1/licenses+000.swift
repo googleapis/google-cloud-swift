@@ -26,8 +26,8 @@
   /// @Snippet(path: "licensesQuickstart")
   public final class LicensesClient: Clients.LicensesProtocol, Sendable {
     let inner: any Clients.LicensesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `LicensesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -482,7 +482,7 @@
 
     public func listByItems(
       request: LicensesClient.ListRequest
-    ) -> some AsyncSequence<License, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<License, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -499,7 +499,7 @@
     /// @Snippet(path: "licenses_list")
     public func listByItems(
       request: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<License, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<License, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.LicensesListResponse in
         var request = request
@@ -512,7 +512,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<License, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<License, any Swift.Error> & Sendable {
       let request = LicensesClient.ListRequest().with {
         $0.project = project
       }

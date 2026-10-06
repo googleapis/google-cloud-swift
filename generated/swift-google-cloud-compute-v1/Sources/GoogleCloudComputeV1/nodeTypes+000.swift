@@ -109,7 +109,7 @@
 
     public func aggregatedListByItems(
       request: NodeTypesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, NodeTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeTypesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -121,7 +121,7 @@
     /// @Snippet(path: "nodeTypes_aggregatedList")
     public func aggregatedListByItems(
       request: NodeTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, NodeTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeTypesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeTypeAggregatedList
         in
@@ -135,7 +135,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, NodeTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeTypesScopedList), any Swift.Error> & Sendable {
       let request = NodeTypesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -181,7 +181,7 @@
 
     public func listByItems(
       request: NodeTypesClient.ListRequest
-    ) -> some AsyncSequence<NodeType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -191,7 +191,7 @@
     /// @Snippet(path: "nodeTypes_list")
     public func listByItems(
       request: NodeTypesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<NodeType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeTypeList in
         var request = request
@@ -205,7 +205,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<NodeType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
       let request = NodeTypesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

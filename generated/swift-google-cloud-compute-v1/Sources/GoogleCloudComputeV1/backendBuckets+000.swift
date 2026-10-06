@@ -26,8 +26,8 @@
   /// @Snippet(path: "backendBucketsQuickstart")
   public final class BackendBucketsClient: Clients.BackendBucketsProtocol, Sendable {
     let inner: any Clients.BackendBucketsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `BackendBucketsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -654,7 +654,7 @@
 
     public func aggregatedListByItems(
       request: BackendBucketsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -667,7 +667,7 @@
     /// @Snippet(path: "backendBuckets_aggregatedList")
     public func aggregatedListByItems(
       request: BackendBucketsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.BackendBucketAggregatedList in
@@ -681,7 +681,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), any Swift.Error> & Sendable {
       let request = BackendBucketsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -855,7 +855,7 @@
 
     public func listByItems(
       request: BackendBucketsClient.ListRequest
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -865,7 +865,7 @@
     /// @Snippet(path: "backendBuckets_list")
     public func listByItems(
       request: BackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
         var request = request
@@ -878,7 +878,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let request = BackendBucketsClient.ListRequest().with {
         $0.project = project
       }
@@ -899,7 +899,7 @@
 
     public func listUsableByItems(
       request: BackendBucketsClient.ListUsableRequest
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       self.listUsableByItems(request: request, options: .init())
     }
 
@@ -908,7 +908,7 @@
     /// @Snippet(path: "backendBuckets_listUsable")
     public func listUsableByItems(
       request: BackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable
         in
@@ -922,7 +922,7 @@
 
     public func listUsableByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let request = BackendBucketsClient.ListUsableRequest().with {
         $0.project = project
       }

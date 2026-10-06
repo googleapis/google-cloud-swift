@@ -489,7 +489,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listKeysByItems(
     request: ListKeysRequest
-  ) -> some AsyncSequence<Key, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Key, any Swift.Error> & Sendable {
     self.listKeysByItems(request: request, options: .init())
   }
 
@@ -498,7 +498,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
   /// @Snippet(path: "RecaptchaEnterpriseService_ListKeys")
   public func listKeysByItems(
     request: ListKeysRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Key, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Key, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.ListKeysResponse in
@@ -512,7 +512,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listKeysByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Key, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Key, any Swift.Error> & Sendable {
     let request = ListKeysRequest().with {
       $0.parent = parent
     }
@@ -673,7 +673,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listIpOverridesByItems(
     request: ListIpOverridesRequest
-  ) -> some AsyncSequence<IpOverrideData, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IpOverrideData, any Swift.Error> & Sendable {
     self.listIpOverridesByItems(request: request, options: .init())
   }
 
@@ -682,7 +682,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
   /// @Snippet(path: "RecaptchaEnterpriseService_ListIpOverrides")
   public func listIpOverridesByItems(
     request: ListIpOverridesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<IpOverrideData, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IpOverrideData, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.ListIpOverridesResponse in
@@ -696,7 +696,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listIpOverridesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<IpOverrideData, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IpOverrideData, any Swift.Error> & Sendable {
     let request = ListIpOverridesRequest().with {
       $0.parent = parent
     }
@@ -805,7 +805,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listFirewallPoliciesByItems(
     request: ListFirewallPoliciesRequest
-  ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
     self.listFirewallPoliciesByItems(request: request, options: .init())
   }
 
@@ -814,7 +814,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
   /// @Snippet(path: "RecaptchaEnterpriseService_ListFirewallPolicies")
   public func listFirewallPoliciesByItems(
     request: ListFirewallPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.ListFirewallPoliciesResponse in
@@ -828,7 +828,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listFirewallPoliciesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
     let request = ListFirewallPoliciesRequest().with {
       $0.parent = parent
     }
@@ -935,7 +935,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listRelatedAccountGroupsByItems(
     request: ListRelatedAccountGroupsRequest
-  ) -> some AsyncSequence<RelatedAccountGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RelatedAccountGroup, any Swift.Error> & Sendable {
     self.listRelatedAccountGroupsByItems(request: request, options: .init())
   }
 
@@ -944,7 +944,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
   /// @Snippet(path: "RecaptchaEnterpriseService_ListRelatedAccountGroups")
   public func listRelatedAccountGroupsByItems(
     request: ListRelatedAccountGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<RelatedAccountGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RelatedAccountGroup, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.ListRelatedAccountGroupsResponse in
@@ -958,7 +958,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listRelatedAccountGroupsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<RelatedAccountGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RelatedAccountGroup, any Swift.Error> & Sendable {
     let request = ListRelatedAccountGroupsRequest().with {
       $0.parent = parent
     }
@@ -979,7 +979,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listRelatedAccountGroupMembershipsByItems(
     request: ListRelatedAccountGroupMembershipsRequest
-  ) -> some AsyncSequence<RelatedAccountGroupMembership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RelatedAccountGroupMembership, any Swift.Error> & Sendable {
     self.listRelatedAccountGroupMembershipsByItems(request: request, options: .init())
   }
 
@@ -988,7 +988,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
   /// @Snippet(path: "RecaptchaEnterpriseService_ListRelatedAccountGroupMemberships")
   public func listRelatedAccountGroupMembershipsByItems(
     request: ListRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<RelatedAccountGroupMembership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RelatedAccountGroupMembership, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.ListRelatedAccountGroupMembershipsResponse in
@@ -1002,7 +1002,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func listRelatedAccountGroupMembershipsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<RelatedAccountGroupMembership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RelatedAccountGroupMembership, any Swift.Error> & Sendable {
     let request = ListRelatedAccountGroupMembershipsRequest().with {
       $0.parent = parent
     }
@@ -1023,7 +1023,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
 
   public func searchRelatedAccountGroupMembershipsByItems(
     request: SearchRelatedAccountGroupMembershipsRequest
-  ) -> some AsyncSequence<RelatedAccountGroupMembership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RelatedAccountGroupMembership, any Swift.Error> & Sendable {
     self.searchRelatedAccountGroupMembershipsByItems(request: request, options: .init())
   }
 
@@ -1035,7 +1035,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
   #endif
   public func searchRelatedAccountGroupMembershipsByItems(
     request: SearchRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<RelatedAccountGroupMembership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RelatedAccountGroupMembership, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudRecaptchaEnterpriseV1.SearchRelatedAccountGroupMembershipsResponse in
@@ -1053,7 +1053,7 @@ extension Clients.RecaptchaEnterpriseServiceProtocol {
   public func searchRelatedAccountGroupMembershipsByItems(
     project: Swift.String,
     hashedAccountId: Foundation.Data,
-  ) -> some AsyncSequence<RelatedAccountGroupMembership, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RelatedAccountGroupMembership, any Swift.Error> & Sendable {
     let request = SearchRelatedAccountGroupMembershipsRequest().with {
       $0.project = project
       $0.hashedAccountId = hashedAccountId

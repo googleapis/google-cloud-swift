@@ -42,8 +42,8 @@ import Foundation
 /// @Snippet(path: "FleetRoutingQuickstart")
 public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
   let inner: any Clients.FleetRoutingStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `FleetRoutingClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

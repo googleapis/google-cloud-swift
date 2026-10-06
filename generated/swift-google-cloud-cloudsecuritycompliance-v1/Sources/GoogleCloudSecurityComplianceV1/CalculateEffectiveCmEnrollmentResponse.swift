@@ -55,7 +55,7 @@ public struct CalculateEffectiveCmEnrollmentResponse: Codable, Equatable, Google
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.cmEnrollment = try container.decodeIfPresent(CmEnrollment.self, forKey: .cmEnrollment)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -64,7 +64,7 @@ public struct CalculateEffectiveCmEnrollmentResponse: Codable, Equatable, Google
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.cmEnrollment, forKey: .cmEnrollment)
     for (key, value) in self._unknownFields.json {

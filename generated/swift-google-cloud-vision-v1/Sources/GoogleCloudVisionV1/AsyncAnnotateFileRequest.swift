@@ -70,7 +70,7 @@ public struct AsyncAnnotateFileRequest: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.inputConfig = try container.decodeIfPresent(InputConfig.self, forKey: .inputConfig)
     if let value = try container.decodeIfPresent([Feature].self, forKey: .features) {
@@ -84,7 +84,7 @@ public struct AsyncAnnotateFileRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.inputConfig, forKey: .inputConfig)
     try container.encode(self.features, forKey: .features)

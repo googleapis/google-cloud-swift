@@ -69,7 +69,7 @@ public struct ModerateTextResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ClassificationCategory].self, forKey: .moderationCategories)
@@ -88,7 +88,7 @@ public struct ModerateTextResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.moderationCategories, forKey: .moderationCategories)
     try container.encode(self.languageCode, forKey: .languageCode)

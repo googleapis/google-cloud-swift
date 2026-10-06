@@ -67,7 +67,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleWK
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy].self, forKey: .policyResults)
@@ -80,7 +80,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleWK
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.policyResults, forKey: .policyResults)
     for (key, value) in self._unknownFields.json {
@@ -163,7 +163,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleWK
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
         self.fullResourceName = value
@@ -179,7 +179,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleWK
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fullResourceName, forKey: .fullResourceName)
       try container.encode(self.policies, forKey: .policies)
@@ -238,7 +238,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleWK
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attachedResource) {
           self.attachedResource = value
@@ -250,7 +250,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleWK
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.attachedResource, forKey: .attachedResource)
         try container.encodeIfPresent(self.policy, forKey: .policy)

@@ -107,7 +107,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -142,7 +142,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
@@ -202,7 +202,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dashboardQuery) {
         self.dashboardQuery = value
@@ -216,7 +216,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dashboardQuery, forKey: .dashboardQuery)
       try container.encode(self.dataSources, forKey: .dataSources)
@@ -337,7 +337,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [DashboardChart.Visualization.Axis].self, forKey: .xAxes)
@@ -394,7 +394,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.xAxes, forKey: .xAxes)
       try container.encode(self.yAxes, forKey: .yAxes)
@@ -467,7 +467,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(AxisType.self, forKey: .axisType) {
           self.axisType = value
@@ -483,7 +483,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.axisType, forKey: .axisType)
         try container.encode(self.displayName, forKey: .displayName)
@@ -615,7 +615,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(SeriesType.self, forKey: .seriesType) {
           self.seriesType = value
@@ -670,7 +670,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.seriesType, forKey: .seriesType)
         try container.encode(self.seriesName, forKey: .seriesName)
@@ -746,7 +746,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .x) {
             self.x = value
@@ -766,7 +766,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.x, forKey: .x)
           try container.encode(self.y, forKey: .y)
@@ -827,7 +827,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .show) {
             self.show = value
@@ -838,7 +838,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.show, forKey: .show)
           for (key, value) in self._unknownFields.json {
@@ -906,7 +906,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .borderWidth) {
             self.borderWidth = value
@@ -923,7 +923,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.borderWidth, forKey: .borderWidth)
           try container.encode(self.borderColor, forKey: .borderColor)
@@ -1013,7 +1013,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
             self.color = value
@@ -1042,7 +1042,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.color, forKey: .color)
           try container.encode(self.origin, forKey: .origin)
@@ -1111,7 +1111,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
             self.color = value
@@ -1125,7 +1125,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.color, forKey: .color)
           try container.encode(self.label, forKey: .label)
@@ -1189,7 +1189,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
             self.key = value
@@ -1202,7 +1202,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.key, forKey: .key)
           try container.encodeIfPresent(self.value, forKey: .value)
@@ -1261,7 +1261,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [DashboardChart.Visualization.Series.ChartSliceColor].self, forKey: .colors)
@@ -1274,7 +1274,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.colors, forKey: .colors)
           for (key, value) in self._unknownFields.json {
@@ -1337,7 +1337,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .value) {
             self.value = value
@@ -1351,7 +1351,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.value, forKey: .value)
           try container.encode(self.color, forKey: .color)
@@ -1420,7 +1420,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.baseValue = try container.decodeIfPresent(
             DashboardChart.Visualization.Series.GaugeValue.self, forKey: .baseValue)
@@ -1437,7 +1437,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.baseValue, forKey: .baseValue)
           try container.encodeIfPresent(self.limitValue, forKey: .limitValue)
@@ -1514,7 +1514,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(MetricFormat.self, forKey: .metricFormat) {
             self.metricFormat = value
@@ -1538,7 +1538,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.metricFormat, forKey: .metricFormat)
           try container.encode(self.showMetricTrend, forKey: .showMetricTrend)
@@ -1612,7 +1612,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .show) {
           self.show = value
@@ -1626,7 +1626,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.show, forKey: .show)
         try container.encode(self.tooltipTrigger, forKey: .tooltipTrigger)
@@ -1722,7 +1722,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
           self.id = value
@@ -1763,7 +1763,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.show, forKey: .show)
@@ -1835,7 +1835,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
           self.field = value
@@ -1849,7 +1849,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.field, forKey: .field)
         try container.encode(self.header, forKey: .header)
@@ -1914,7 +1914,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
           self.field = value
@@ -1928,7 +1928,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.field, forKey: .field)
         try container.encode(self.columnRenderType, forKey: .columnRenderType)
@@ -1997,7 +1997,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
           self.field = value
@@ -2015,7 +2015,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.field, forKey: .field)
         try container.encode(self.headerTooltipText, forKey: .headerTooltipText)
@@ -2086,7 +2086,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTextWrap) {
           self.enableTextWrap = value
@@ -2108,7 +2108,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.enableTextWrap, forKey: .enableTextWrap)
         try container.encode(self.columnRenderTypeSettings, forKey: .columnRenderTypeSettings)
@@ -2184,7 +2184,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.dataSettings = try container.decodeIfPresent(
           DashboardChart.Visualization.GoogleMapsConfig.DataSettings.self, forKey: .dataSettings)
@@ -2201,7 +2201,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.dataSettings, forKey: .dataSettings)
         try container.encode(self.plotMode, forKey: .plotMode)
@@ -2260,7 +2260,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latitudeColumn) {
             self.latitudeColumn = value
@@ -2278,7 +2278,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.latitudeColumn, forKey: .latitudeColumn)
           try container.encode(self.longitudeColumn, forKey: .longitudeColumn)
@@ -2355,7 +2355,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fitData) {
             self.fitData = value
@@ -2375,7 +2375,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.fitData, forKey: .fitData)
           try container.encode(self.latitudeValue, forKey: .latitudeValue)
@@ -2442,7 +2442,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(PointSizeType.self, forKey: .pointSizeType) {
             self.pointSizeType = value
@@ -2456,7 +2456,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.pointSizeType, forKey: .pointSizeType)
           try container.encode(self.color, forKey: .color)
@@ -2534,7 +2534,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(VisualMapType.self, forKey: .visualMapType) {
           self.visualMapType = value
@@ -2550,7 +2550,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.visualMapType, forKey: .visualMapType)
         try container.encode(self.pieces, forKey: .pieces)
@@ -2614,7 +2614,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.min = try container.decodeIfPresent(Swift.Int64.self, forKey: .min)
           self.max = try container.decodeIfPresent(Swift.Int64.self, forKey: .max)
@@ -2630,7 +2630,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.min, forKey: .min)
           try container.encodeIfPresent(self.max, forKey: .max)
@@ -2719,7 +2719,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [DashboardChart.DrillDownConfig.DrillDown].self, forKey: .leftDrillDowns)
@@ -2737,7 +2737,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.leftDrillDowns, forKey: .leftDrillDowns)
       try container.encode(self.rightDrillDowns, forKey: .rightDrillDowns)
@@ -2796,7 +2796,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
           self.id = value
@@ -2834,7 +2834,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.displayName, forKey: .displayName)
@@ -2890,7 +2890,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
             self.enabled = value
@@ -2901,7 +2901,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.enabled, forKey: .enabled)
           for (key, value) in self._unknownFields.json {
@@ -2974,7 +2974,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .newTab) {
             self.newTab = value
@@ -3019,7 +3019,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.newTab, forKey: .newTab)
           try container.encode(self.leftClickColumn, forKey: .leftClickColumn)
@@ -3077,7 +3077,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
               self.query = value
@@ -3088,7 +3088,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.query, forKey: .query)
             for (key, value) in self._unknownFields.json {
@@ -3148,7 +3148,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(
               [
@@ -3164,7 +3164,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.dashboardFilters, forKey: .dashboardFilters)
             for (key, value) in self._unknownFields.json {
@@ -3217,7 +3217,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
               ]
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
               let container = try decoder.container(keyedBy: CodingKeys.self)
               if let value = try container.decodeIfPresent(
                 Swift.String.self, forKey: .dashboardFilterId)
@@ -3235,7 +3235,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
               }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
               var container = encoder.container(keyedBy: CodingKeys.self)
               try container.encode(self.dashboardFilterId, forKey: .dashboardFilterId)
               try container.encode(self.filterOperatorAndValues, forKey: .filterOperatorAndValues)
@@ -3311,7 +3311,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .link) {
               self.link = value
@@ -3325,7 +3325,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.link, forKey: .link)
             try container.encode(self.description, forKey: .description)

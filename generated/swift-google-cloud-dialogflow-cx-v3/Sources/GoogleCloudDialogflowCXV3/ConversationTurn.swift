@@ -63,7 +63,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.userInput = try container.decodeIfPresent(
         ConversationTurn.UserInput.self, forKey: .userInput)
@@ -75,7 +75,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.userInput, forKey: .userInput)
       try container.encodeIfPresent(self.virtualAgentOutput, forKey: .virtualAgentOutput)
@@ -146,7 +146,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.input = try container.decodeIfPresent(QueryInput.self, forKey: .input)
         self.injectedParameters = try container.decodeIfPresent(
@@ -165,7 +165,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.input, forKey: .input)
         try container.encodeIfPresent(self.injectedParameters, forKey: .injectedParameters)
@@ -271,7 +271,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.sessionParameters = try container.decodeIfPresent(
           GoogleWKT.WKTStruct.self, forKey: .sessionParameters)
@@ -296,7 +296,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.sessionParameters, forKey: .sessionParameters)
         try container.encode(self.differences, forKey: .differences)

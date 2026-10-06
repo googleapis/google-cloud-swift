@@ -61,7 +61,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.inputs = try container.decodeIfPresent(
       AutoscalerRecommendation.Inputs.self, forKey: .inputs)
@@ -73,7 +73,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.inputs, forKey: .inputs)
     try container.encodeIfPresent(self.outputs, forKey: .outputs)
@@ -136,7 +136,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .clusterMetrics)
@@ -155,7 +155,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.clusterMetrics, forKey: .clusterMetrics)
       try container.encodeIfPresent(self.currentClusterSize, forKey: .currentClusterSize)
@@ -250,7 +250,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(ScalingDecisionType.self, forKey: .decision) {
         self.decision = value
@@ -281,7 +281,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.decision, forKey: .decision)
       try container.encodeIfPresent(self.recommendedClusterSize, forKey: .recommendedClusterSize)

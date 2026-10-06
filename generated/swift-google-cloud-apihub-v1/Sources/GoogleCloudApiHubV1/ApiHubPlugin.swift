@@ -28,8 +28,8 @@ import Foundation
 /// @Snippet(path: "ApiHubPluginQuickstart")
 public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   let inner: any Clients.ApiHubPluginStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ApiHubPluginClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -664,7 +664,7 @@ extension Clients.ApiHubPluginProtocol {
 
   public func listPluginsByItems(
     request: ListPluginsRequest
-  ) -> some AsyncSequence<Plugin, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Plugin, any Swift.Error> & Sendable {
     self.listPluginsByItems(request: request, options: .init())
   }
 
@@ -673,7 +673,7 @@ extension Clients.ApiHubPluginProtocol {
   /// @Snippet(path: "ApiHubPlugin_ListPlugins")
   public func listPluginsByItems(
     request: ListPluginsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Plugin, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Plugin, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListPluginsResponse in
       var request = request
@@ -686,7 +686,7 @@ extension Clients.ApiHubPluginProtocol {
 
   public func listPluginsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Plugin, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Plugin, any Swift.Error> & Sendable {
     let request = ListPluginsRequest().with {
       $0.parent = parent
     }
@@ -831,7 +831,7 @@ extension Clients.ApiHubPluginProtocol {
 
   public func listPluginInstancesByItems(
     request: ListPluginInstancesRequest
-  ) -> some AsyncSequence<PluginInstance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PluginInstance, any Swift.Error> & Sendable {
     self.listPluginInstancesByItems(request: request, options: .init())
   }
 
@@ -841,7 +841,7 @@ extension Clients.ApiHubPluginProtocol {
   /// @Snippet(path: "ApiHubPlugin_ListPluginInstances")
   public func listPluginInstancesByItems(
     request: ListPluginInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<PluginInstance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PluginInstance, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudApiHubV1.ListPluginInstancesResponse in
@@ -855,7 +855,7 @@ extension Clients.ApiHubPluginProtocol {
 
   public func listPluginInstancesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<PluginInstance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PluginInstance, any Swift.Error> & Sendable {
     let request = ListPluginInstancesRequest().with {
       $0.parent = parent
     }
@@ -1004,7 +1004,7 @@ extension Clients.ApiHubPluginProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1013,7 +1013,7 @@ extension Clients.ApiHubPluginProtocol {
   /// @Snippet(path: "ApiHubPlugin_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1050,7 +1050,7 @@ extension Clients.ApiHubPluginProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1061,7 +1061,7 @@ extension Clients.ApiHubPluginProtocol {
   /// @Snippet(path: "ApiHubPlugin_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1075,7 +1075,7 @@ extension Clients.ApiHubPluginProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

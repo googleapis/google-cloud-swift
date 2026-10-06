@@ -74,7 +74,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [OrgPolicyOverlay.PolicyOverlay].self, forKey: .policies)
@@ -92,7 +92,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.policies, forKey: .policies)
     try container.encode(self.customConstraints, forKey: .customConstraints)
@@ -145,7 +145,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .policyParent) {
         self.policyParent = value
@@ -158,7 +158,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.policyParent, forKey: .policyParent)
       try container.encodeIfPresent(self.policy, forKey: .policy)
@@ -222,7 +222,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .customConstraintParent)
@@ -237,7 +237,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.customConstraintParent, forKey: .customConstraintParent)
       try container.encodeIfPresent(self.customConstraint, forKey: .customConstraint)

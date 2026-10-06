@@ -56,7 +56,7 @@ public struct JobQueryDoneResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.job = try container.decodeIfPresent(Job.self, forKey: .job)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -65,7 +65,7 @@ public struct JobQueryDoneResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.job, forKey: .job)
     for (key, value) in self._unknownFields.json {

@@ -31,8 +31,8 @@ import Foundation
 /// @Snippet(path: "SecureSourceManagerQuickstart")
 public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtocol, Sendable {
   let inner: any Clients.SecureSourceManagerStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `SecureSourceManagerClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1980,7 +1980,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listInstancesByItems(
     request: ListInstancesRequest
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     self.listInstancesByItems(request: request, options: .init())
   }
 
@@ -1989,7 +1989,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListInstances")
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListInstancesResponse in
@@ -2003,7 +2003,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listInstancesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
@@ -2113,7 +2113,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest
-  ) -> some AsyncSequence<Repository, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
     self.listRepositoriesByItems(request: request, options: .init())
   }
 
@@ -2125,7 +2125,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListRepositories")
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Repository, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListRepositoriesResponse in
@@ -2139,7 +2139,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listRepositoriesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Repository, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
     let request = ListRepositoriesRequest().with {
       $0.parent = parent
     }
@@ -2284,7 +2284,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listHooksByItems(
     request: ListHooksRequest
-  ) -> some AsyncSequence<Hook, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Hook, any Swift.Error> & Sendable {
     self.listHooksByItems(request: request, options: .init())
   }
 
@@ -2293,7 +2293,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListHooks")
   public func listHooksByItems(
     request: ListHooksRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Hook, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Hook, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListHooksResponse in
@@ -2307,7 +2307,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listHooksByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Hook, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Hook, any Swift.Error> & Sendable {
     let request = ListHooksRequest().with {
       $0.parent = parent
     }
@@ -2541,7 +2541,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listBranchRulesByItems(
     request: ListBranchRulesRequest
-  ) -> some AsyncSequence<BranchRule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BranchRule, any Swift.Error> & Sendable {
     self.listBranchRulesByItems(request: request, options: .init())
   }
 
@@ -2550,7 +2550,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListBranchRules")
   public func listBranchRulesByItems(
     request: ListBranchRulesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<BranchRule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BranchRule, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListBranchRulesResponse in
@@ -2564,7 +2564,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listBranchRulesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<BranchRule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BranchRule, any Swift.Error> & Sendable {
     let request = ListBranchRulesRequest().with {
       $0.parent = parent
     }
@@ -2728,7 +2728,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listPullRequestsByItems(
     request: ListPullRequestsRequest
-  ) -> some AsyncSequence<PullRequest, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PullRequest, any Swift.Error> & Sendable {
     self.listPullRequestsByItems(request: request, options: .init())
   }
 
@@ -2737,7 +2737,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListPullRequests")
   public func listPullRequestsByItems(
     request: ListPullRequestsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<PullRequest, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PullRequest, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListPullRequestsResponse in
@@ -2751,7 +2751,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listPullRequestsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<PullRequest, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PullRequest, any Swift.Error> & Sendable {
     let request = ListPullRequestsRequest().with {
       $0.parent = parent
     }
@@ -2906,7 +2906,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listPullRequestFileDiffsByItems(
     request: ListPullRequestFileDiffsRequest
-  ) -> some AsyncSequence<FileDiff, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FileDiff, any Swift.Error> & Sendable {
     self.listPullRequestFileDiffsByItems(request: request, options: .init())
   }
 
@@ -2915,7 +2915,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListPullRequestFileDiffs")
   public func listPullRequestFileDiffsByItems(
     request: ListPullRequestFileDiffsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<FileDiff, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FileDiff, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListPullRequestFileDiffsResponse in
@@ -2929,7 +2929,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listPullRequestFileDiffsByItems(
     name: Swift.String,
-  ) -> some AsyncSequence<FileDiff, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FileDiff, any Swift.Error> & Sendable {
     let request = ListPullRequestFileDiffsRequest().with {
       $0.name = name
     }
@@ -2950,7 +2950,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func fetchTreeByItems(
     request: FetchTreeRequest
-  ) -> some AsyncSequence<TreeEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TreeEntry, any Swift.Error> & Sendable {
     self.fetchTreeByItems(request: request, options: .init())
   }
 
@@ -2959,7 +2959,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_FetchTree")
   public func fetchTreeByItems(
     request: FetchTreeRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<TreeEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TreeEntry, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.FetchTreeResponse in
@@ -2997,7 +2997,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func fetchRefsByItems(
     request: FetchRefsRequest
-  ) -> some AsyncSequence<Ref, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Ref, any Swift.Error> & Sendable {
     self.fetchRefsByItems(request: request, options: .init())
   }
 
@@ -3006,7 +3006,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_FetchRefs")
   public func fetchRefsByItems(
     request: FetchRefsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Ref, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Ref, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse in
@@ -3084,7 +3084,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listIssuesByItems(
     request: ListIssuesRequest
-  ) -> some AsyncSequence<Issue, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Issue, any Swift.Error> & Sendable {
     self.listIssuesByItems(request: request, options: .init())
   }
 
@@ -3093,7 +3093,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListIssues")
   public func listIssuesByItems(
     request: ListIssuesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Issue, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Issue, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListIssuesResponse in
@@ -3107,7 +3107,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listIssuesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Issue, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Issue, any Swift.Error> & Sendable {
     let request = ListIssuesRequest().with {
       $0.parent = parent
     }
@@ -3267,7 +3267,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listPullRequestCommentsByItems(
     request: ListPullRequestCommentsRequest
-  ) -> some AsyncSequence<PullRequestComment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PullRequestComment, any Swift.Error> & Sendable {
     self.listPullRequestCommentsByItems(request: request, options: .init())
   }
 
@@ -3276,7 +3276,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListPullRequestComments")
   public func listPullRequestCommentsByItems(
     request: ListPullRequestCommentsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<PullRequestComment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PullRequestComment, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListPullRequestCommentsResponse in
@@ -3290,7 +3290,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listPullRequestCommentsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<PullRequestComment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PullRequestComment, any Swift.Error> & Sendable {
     let request = ListPullRequestCommentsRequest().with {
       $0.parent = parent
     }
@@ -3580,7 +3580,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listIssueCommentsByItems(
     request: ListIssueCommentsRequest
-  ) -> some AsyncSequence<IssueComment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IssueComment, any Swift.Error> & Sendable {
     self.listIssueCommentsByItems(request: request, options: .init())
   }
 
@@ -3589,7 +3589,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListIssueComments")
   public func listIssueCommentsByItems(
     request: ListIssueCommentsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<IssueComment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IssueComment, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecureSourceManagerV1.ListIssueCommentsResponse in
@@ -3603,7 +3603,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listIssueCommentsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<IssueComment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IssueComment, any Swift.Error> & Sendable {
     let request = ListIssueCommentsRequest().with {
       $0.parent = parent
     }
@@ -3690,7 +3690,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -3716,7 +3716,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -3789,7 +3789,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -3800,7 +3800,7 @@ extension Clients.SecureSourceManagerProtocol {
   /// @Snippet(path: "SecureSourceManager_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -3814,7 +3814,7 @@ extension Clients.SecureSourceManagerProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

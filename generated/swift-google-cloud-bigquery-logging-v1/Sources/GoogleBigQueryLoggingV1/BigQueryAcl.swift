@@ -55,7 +55,7 @@ public struct BigQueryAcl: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([BigQueryAcl.Entry].self, forKey: .entries) {
       self.entries = value
@@ -66,7 +66,7 @@ public struct BigQueryAcl: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.entries, forKey: .entries)
     for (key, value) in self._unknownFields.json {
@@ -138,7 +138,7 @@ public struct BigQueryAcl: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .role) {
         self.role = value
@@ -162,7 +162,7 @@ public struct BigQueryAcl: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.role, forKey: .role)
       try container.encode(self.groupEmail, forKey: .groupEmail)

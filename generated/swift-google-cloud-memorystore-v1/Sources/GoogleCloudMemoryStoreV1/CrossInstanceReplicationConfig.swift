@@ -92,7 +92,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       CrossInstanceReplicationConfig.InstanceRole.self, forKey: .instanceRole)
@@ -116,7 +116,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.instanceRole, forKey: .instanceRole)
     try container.encodeIfPresent(self.primaryInstance, forKey: .primaryInstance)
@@ -173,7 +173,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
         self.instance = value
@@ -187,7 +187,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.instance, forKey: .instance)
       try container.encode(self.uid, forKey: .uid)
@@ -254,7 +254,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.primaryInstance = try container.decodeIfPresent(
         CrossInstanceReplicationConfig.RemoteInstance.self, forKey: .primaryInstance)
@@ -269,7 +269,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.primaryInstance, forKey: .primaryInstance)
       try container.encode(self.secondaryInstances, forKey: .secondaryInstances)
@@ -388,7 +388,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -406,7 +406,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("INSTANCE_ROLE_UNSPECIFIED")

@@ -60,7 +60,7 @@ public struct GoogleIamV1AuditLogConfig: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .exemptedMembers) {
       self.exemptedMembers = value
@@ -73,7 +73,7 @@ public struct GoogleIamV1AuditLogConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.exemptedMembers, forKey: .exemptedMembers)
     try container.encodeIfPresent(self.logType, forKey: .logType)
@@ -132,13 +132,13 @@ public struct GoogleIamV1AuditLogConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       let s = try container.decode(Swift.String.self)
       self.init(stringValue: s)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("LOG_TYPE_UNSPECIFIED")

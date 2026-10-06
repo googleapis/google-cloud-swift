@@ -60,7 +60,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
 
@@ -86,7 +86,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
 
@@ -174,7 +174,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([CallAnnotation].self, forKey: .annotations) {
         self.annotations = value
@@ -209,7 +209,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.annotations, forKey: .annotations)
       try container.encode(self.entities, forKey: .entities)

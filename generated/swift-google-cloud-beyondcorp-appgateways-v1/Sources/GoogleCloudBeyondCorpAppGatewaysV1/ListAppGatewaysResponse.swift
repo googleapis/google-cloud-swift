@@ -67,7 +67,7 @@ public struct ListAppGatewaysResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([AppGateway].self, forKey: .appGateways) {
       self.appGateways = value
@@ -84,7 +84,7 @@ public struct ListAppGatewaysResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.appGateways, forKey: .appGateways)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

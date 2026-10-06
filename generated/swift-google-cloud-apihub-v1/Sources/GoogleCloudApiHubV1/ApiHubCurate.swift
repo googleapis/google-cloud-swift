@@ -283,7 +283,7 @@ extension Clients.ApiHubCurateProtocol {
 
   public func listCurationsByItems(
     request: ListCurationsRequest
-  ) -> some AsyncSequence<Curation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Curation, any Swift.Error> & Sendable {
     self.listCurationsByItems(request: request, options: .init())
   }
 
@@ -292,7 +292,7 @@ extension Clients.ApiHubCurateProtocol {
   /// @Snippet(path: "ApiHubCurate_ListCurations")
   public func listCurationsByItems(
     request: ListCurationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Curation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Curation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudApiHubV1.ListCurationsResponse in
       var request = request
@@ -305,7 +305,7 @@ extension Clients.ApiHubCurateProtocol {
 
   public func listCurationsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Curation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Curation, any Swift.Error> & Sendable {
     let request = ListCurationsRequest().with {
       $0.parent = parent
     }
@@ -368,7 +368,7 @@ extension Clients.ApiHubCurateProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -377,7 +377,7 @@ extension Clients.ApiHubCurateProtocol {
   /// @Snippet(path: "ApiHubCurate_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -414,7 +414,7 @@ extension Clients.ApiHubCurateProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -425,7 +425,7 @@ extension Clients.ApiHubCurateProtocol {
   /// @Snippet(path: "ApiHubCurate_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -439,7 +439,7 @@ extension Clients.ApiHubCurateProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

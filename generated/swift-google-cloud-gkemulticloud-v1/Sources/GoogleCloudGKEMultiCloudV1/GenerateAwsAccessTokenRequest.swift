@@ -66,7 +66,7 @@ public struct GenerateAwsAccessTokenRequest: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .awsCluster) {
       self.awsCluster = value
@@ -77,7 +77,7 @@ public struct GenerateAwsAccessTokenRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.awsCluster, forKey: .awsCluster)
     for (key, value) in self._unknownFields.json {

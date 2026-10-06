@@ -63,7 +63,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.nodePoolSoakDuration = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .nodePoolSoakDuration)
@@ -95,7 +95,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.nodePoolSoakDuration, forKey: .nodePoolSoakDuration)
 
@@ -157,7 +157,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.batchSoakDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .batchSoakDuration)
@@ -189,7 +189,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.batchSoakDuration, forKey: .batchSoakDuration)
 
@@ -267,7 +267,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.waitForDrainDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .waitForDrainDuration)
@@ -277,7 +277,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.waitForDrainDuration, forKey: .waitForDrainDuration)
       for (key, value) in self._unknownFields.json {

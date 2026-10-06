@@ -26,8 +26,8 @@
   /// @Snippet(path: "targetGrpcProxiesQuickstart")
   public final class TargetGrpcProxiesClient: Clients.TargetGrpcProxiesProtocol, Sendable {
     let inner: any Clients.TargetGrpcProxiesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `TargetGrpcProxiesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -385,7 +385,7 @@
 
     public func listByItems(
       request: TargetGrpcProxiesClient.ListRequest
-    ) -> some AsyncSequence<TargetGrpcProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetGrpcProxy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -394,7 +394,7 @@
     /// @Snippet(path: "targetGrpcProxies_list")
     public func listByItems(
       request: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<TargetGrpcProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetGrpcProxy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetGrpcProxyList in
         var request = request
@@ -407,7 +407,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<TargetGrpcProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetGrpcProxy, any Swift.Error> & Sendable {
       let request = TargetGrpcProxiesClient.ListRequest().with {
         $0.project = project
       }

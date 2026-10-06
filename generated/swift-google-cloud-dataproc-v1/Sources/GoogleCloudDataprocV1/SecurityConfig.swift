@@ -61,7 +61,7 @@ public struct SecurityConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.kerberosConfig = try container.decodeIfPresent(
       KerberosConfig.self, forKey: .kerberosConfig)
@@ -73,7 +73,7 @@ public struct SecurityConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.kerberosConfig, forKey: .kerberosConfig)
     try container.encodeIfPresent(self.identityConfig, forKey: .identityConfig)

@@ -876,7 +876,7 @@
 
     public func listByItems(
       request: SqlInstancesListRequest
-    ) -> some AsyncSequence<ApiWarning, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ApiWarning, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -885,7 +885,7 @@
     /// @Snippet(path: "SqlInstancesService_List")
     public func listByItems(
       request: SqlInstancesListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ApiWarning, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ApiWarning, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudSqlV1.InstancesListResponse in
         var request = request

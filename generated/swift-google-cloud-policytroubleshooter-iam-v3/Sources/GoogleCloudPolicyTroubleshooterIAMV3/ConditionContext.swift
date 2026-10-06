@@ -76,7 +76,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.resource = try container.decodeIfPresent(ConditionContext.Resource.self, forKey: .resource)
     self.destination = try container.decodeIfPresent(
@@ -93,7 +93,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.resource, forKey: .resource)
     try container.encodeIfPresent(self.destination, forKey: .destination)
@@ -168,7 +168,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
         self.service = value
@@ -185,7 +185,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.service, forKey: .service)
       try container.encode(self.name, forKey: .name)
@@ -253,7 +253,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ip) {
         self.ip = value
@@ -267,7 +267,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.ip, forKey: .ip)
       try container.encode(self.port, forKey: .port)
@@ -328,7 +328,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.receiveTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .receiveTime)
@@ -338,7 +338,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.receiveTime, forKey: .receiveTime)
       for (key, value) in self._unknownFields.json {
@@ -436,7 +436,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tagValue) {
         self.tagValue = value
@@ -462,7 +462,7 @@ public struct ConditionContext: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.tagValue, forKey: .tagValue)
       try container.encode(self.namespacedTagValue, forKey: .namespacedTagValue)

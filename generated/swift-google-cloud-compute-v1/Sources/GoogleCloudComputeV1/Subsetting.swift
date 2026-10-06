@@ -57,7 +57,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.policy = try container.decodeIfPresent(Subsetting.Policy.self, forKey: .policy)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -66,7 +66,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.policy, forKey: .policy)
       for (key, value) in self._unknownFields.json {
@@ -133,13 +133,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .consistentHashSubsetting: return try container.encode("CONSISTENT_HASH_SUBSETTING")

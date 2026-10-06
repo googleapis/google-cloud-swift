@@ -83,7 +83,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.adminEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .adminEnabled)
       if let value = try container.decodeIfPresent([WireEndpoint].self, forKey: .endpoints) {
@@ -98,7 +98,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.adminEnabled, forKey: .adminEnabled)
       try container.encode(self.endpoints, forKey: .endpoints)

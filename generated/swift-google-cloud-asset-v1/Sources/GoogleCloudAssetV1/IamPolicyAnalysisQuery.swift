@@ -91,7 +91,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
       self.scope = value
@@ -112,7 +112,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.scope, forKey: .scope)
     try container.encodeIfPresent(self.resourceSelector, forKey: .resourceSelector)
@@ -168,7 +168,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
         self.fullResourceName = value
@@ -179,7 +179,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fullResourceName, forKey: .fullResourceName)
       for (key, value) in self._unknownFields.json {
@@ -249,7 +249,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .identity) {
         self.identity = value
@@ -260,7 +260,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.identity, forKey: .identity)
       for (key, value) in self._unknownFields.json {
@@ -326,7 +326,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .roles) {
         self.roles = value
@@ -340,7 +340,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.roles, forKey: .roles)
       try container.encode(self.permissions, forKey: .permissions)
@@ -515,7 +515,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .expandGroups) {
         self.expandGroups = value
@@ -543,7 +543,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.expandGroups, forKey: .expandGroups)
       try container.encode(self.expandRoles, forKey: .expandRoles)
@@ -606,7 +606,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var timeContext: TimeContextOneOf? = nil
@@ -631,7 +631,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.timeContext {

@@ -63,7 +63,7 @@ public struct SplitCapacityCommitmentResponse: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.first = try container.decodeIfPresent(CapacityCommitment.self, forKey: .first)
     self.second = try container.decodeIfPresent(CapacityCommitment.self, forKey: .second)
@@ -73,7 +73,7 @@ public struct SplitCapacityCommitmentResponse: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.first, forKey: .first)
     try container.encodeIfPresent(self.second, forKey: .second)

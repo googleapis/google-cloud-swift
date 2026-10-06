@@ -60,7 +60,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dnsEndpointConfig = try container.decodeIfPresent(
       ControlPlaneEndpointsConfig.DNSEndpointConfig.self, forKey: .dnsEndpointConfig)
@@ -72,7 +72,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.dnsEndpointConfig, forKey: .dnsEndpointConfig)
     try container.encodeIfPresent(self.ipEndpointsConfig, forKey: .ipEndpointsConfig)
@@ -141,7 +141,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
         self.endpoint = value
@@ -158,7 +158,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.endpoint, forKey: .endpoint)
       try container.encodeIfPresent(self.allowExternalTraffic, forKey: .allowExternalTraffic)
@@ -267,7 +267,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
       self.enablePublicEndpoint = try container.decodeIfPresent(
@@ -292,7 +292,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.enabled, forKey: .enabled)
       try container.encodeIfPresent(self.enablePublicEndpoint, forKey: .enablePublicEndpoint)

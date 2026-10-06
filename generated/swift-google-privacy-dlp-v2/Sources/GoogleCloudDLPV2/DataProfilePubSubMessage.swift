@@ -71,7 +71,7 @@ public struct DataProfilePubSubMessage: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.profile = try container.decodeIfPresent(TableDataProfile.self, forKey: .profile)
     self.fileStoreProfile = try container.decodeIfPresent(
@@ -85,7 +85,7 @@ public struct DataProfilePubSubMessage: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.profile, forKey: .profile)
     try container.encodeIfPresent(self.fileStoreProfile, forKey: .fileStoreProfile)

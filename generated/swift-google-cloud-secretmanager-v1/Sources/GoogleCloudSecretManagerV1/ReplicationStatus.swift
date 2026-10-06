@@ -63,7 +63,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var replicationStatus: ReplicationStatusOneOf? = nil
@@ -93,7 +93,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.replicationStatus {
@@ -159,7 +159,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.customerManagedEncryption = try container.decodeIfPresent(
         CustomerManagedEncryptionStatus.self, forKey: .customerManagedEncryption)
@@ -169,7 +169,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.customerManagedEncryption, forKey: .customerManagedEncryption)
@@ -238,7 +238,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [ReplicationStatus.UserManagedStatus.ReplicaStatus].self, forKey: .replicas)
@@ -251,7 +251,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.replicas, forKey: .replicas)
       for (key, value) in self._unknownFields.json {
@@ -310,7 +310,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
           self.location = value
@@ -323,7 +323,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.location, forKey: .location)
         try container.encodeIfPresent(

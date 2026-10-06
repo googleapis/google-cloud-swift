@@ -76,7 +76,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.date = try container.decodeIfPresent(GoogleType.Date.self, forKey: .date)
     self.cpu = try container.decodeIfPresent(DailyResourceUsageAggregation.CPU.self, forKey: .cpu)
@@ -92,7 +92,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.date, forKey: .date)
     try container.encodeIfPresent(self.cpu, forKey: .cpu)
@@ -157,7 +157,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .average) {
         self.average = value
@@ -178,7 +178,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.average, forKey: .average)
       try container.encode(self.median, forKey: .median)
@@ -239,7 +239,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.utilizationPercentage = try container.decodeIfPresent(
         DailyResourceUsageAggregation.Stats.self, forKey: .utilizationPercentage)
@@ -249,7 +249,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.utilizationPercentage, forKey: .utilizationPercentage)
       for (key, value) in self._unknownFields.json {
@@ -306,7 +306,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.utilizationPercentage = try container.decodeIfPresent(
         DailyResourceUsageAggregation.Stats.self, forKey: .utilizationPercentage)
@@ -316,7 +316,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.utilizationPercentage, forKey: .utilizationPercentage)
       for (key, value) in self._unknownFields.json {
@@ -379,7 +379,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ingressBps = try container.decodeIfPresent(
         DailyResourceUsageAggregation.Stats.self, forKey: .ingressBps)
@@ -391,7 +391,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ingressBps, forKey: .ingressBps)
       try container.encodeIfPresent(self.egressBps, forKey: .egressBps)
@@ -450,7 +450,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.iops = try container.decodeIfPresent(
         DailyResourceUsageAggregation.Stats.self, forKey: .iops)
@@ -460,7 +460,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.iops, forKey: .iops)
       for (key, value) in self._unknownFields.json {

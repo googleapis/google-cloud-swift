@@ -29,8 +29,8 @@ import Foundation
 /// @Snippet(path: "DepServiceQuickstart")
 public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   let inner: any Clients.DepServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DepServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -888,7 +888,7 @@ extension Clients.DepServiceProtocol {
 
   public func listLbTrafficExtensionsByItems(
     request: ListLbTrafficExtensionsRequest
-  ) -> some AsyncSequence<LbTrafficExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LbTrafficExtension, any Swift.Error> & Sendable {
     self.listLbTrafficExtensionsByItems(request: request, options: .init())
   }
 
@@ -897,7 +897,7 @@ extension Clients.DepServiceProtocol {
   /// @Snippet(path: "DepService_ListLbTrafficExtensions")
   public func listLbTrafficExtensionsByItems(
     request: ListLbTrafficExtensionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<LbTrafficExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LbTrafficExtension, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkServicesV1.ListLbTrafficExtensionsResponse in
@@ -911,7 +911,7 @@ extension Clients.DepServiceProtocol {
 
   public func listLbTrafficExtensionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<LbTrafficExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LbTrafficExtension, any Swift.Error> & Sendable {
     let request = ListLbTrafficExtensionsRequest().with {
       $0.parent = parent
     }
@@ -1060,7 +1060,7 @@ extension Clients.DepServiceProtocol {
 
   public func listLbRouteExtensionsByItems(
     request: ListLbRouteExtensionsRequest
-  ) -> some AsyncSequence<LbRouteExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LbRouteExtension, any Swift.Error> & Sendable {
     self.listLbRouteExtensionsByItems(request: request, options: .init())
   }
 
@@ -1069,7 +1069,7 @@ extension Clients.DepServiceProtocol {
   /// @Snippet(path: "DepService_ListLbRouteExtensions")
   public func listLbRouteExtensionsByItems(
     request: ListLbRouteExtensionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<LbRouteExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LbRouteExtension, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkServicesV1.ListLbRouteExtensionsResponse in
@@ -1083,7 +1083,7 @@ extension Clients.DepServiceProtocol {
 
   public func listLbRouteExtensionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<LbRouteExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LbRouteExtension, any Swift.Error> & Sendable {
     let request = ListLbRouteExtensionsRequest().with {
       $0.parent = parent
     }
@@ -1230,7 +1230,7 @@ extension Clients.DepServiceProtocol {
 
   public func listLbEdgeExtensionsByItems(
     request: ListLbEdgeExtensionsRequest
-  ) -> some AsyncSequence<LbEdgeExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LbEdgeExtension, any Swift.Error> & Sendable {
     self.listLbEdgeExtensionsByItems(request: request, options: .init())
   }
 
@@ -1239,7 +1239,7 @@ extension Clients.DepServiceProtocol {
   /// @Snippet(path: "DepService_ListLbEdgeExtensions")
   public func listLbEdgeExtensionsByItems(
     request: ListLbEdgeExtensionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<LbEdgeExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LbEdgeExtension, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkServicesV1.ListLbEdgeExtensionsResponse in
@@ -1253,7 +1253,7 @@ extension Clients.DepServiceProtocol {
 
   public func listLbEdgeExtensionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<LbEdgeExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LbEdgeExtension, any Swift.Error> & Sendable {
     let request = ListLbEdgeExtensionsRequest().with {
       $0.parent = parent
     }
@@ -1400,7 +1400,7 @@ extension Clients.DepServiceProtocol {
 
   public func listAuthzExtensionsByItems(
     request: ListAuthzExtensionsRequest
-  ) -> some AsyncSequence<AuthzExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthzExtension, any Swift.Error> & Sendable {
     self.listAuthzExtensionsByItems(request: request, options: .init())
   }
 
@@ -1409,7 +1409,7 @@ extension Clients.DepServiceProtocol {
   /// @Snippet(path: "DepService_ListAuthzExtensions")
   public func listAuthzExtensionsByItems(
     request: ListAuthzExtensionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AuthzExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthzExtension, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkServicesV1.ListAuthzExtensionsResponse in
@@ -1423,7 +1423,7 @@ extension Clients.DepServiceProtocol {
 
   public func listAuthzExtensionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<AuthzExtension, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthzExtension, any Swift.Error> & Sendable {
     let request = ListAuthzExtensionsRequest().with {
       $0.parent = parent
     }
@@ -1570,7 +1570,7 @@ extension Clients.DepServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1579,7 +1579,7 @@ extension Clients.DepServiceProtocol {
   /// @Snippet(path: "DepService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1652,7 +1652,7 @@ extension Clients.DepServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1663,7 +1663,7 @@ extension Clients.DepServiceProtocol {
   /// @Snippet(path: "DepService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1677,7 +1677,7 @@ extension Clients.DepServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

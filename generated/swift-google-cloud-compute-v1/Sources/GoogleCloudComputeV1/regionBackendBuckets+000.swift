@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionBackendBucketsQuickstart")
   public final class RegionBackendBucketsClient: Clients.RegionBackendBucketsProtocol, Sendable {
     let inner: any Clients.RegionBackendBucketsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionBackendBucketsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -482,7 +482,7 @@
 
     public func listByItems(
       request: RegionBackendBucketsClient.ListRequest
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -492,7 +492,7 @@
     /// @Snippet(path: "regionBackendBuckets_list")
     public func listByItems(
       request: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
         var request = request
@@ -506,7 +506,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let request = RegionBackendBucketsClient.ListRequest().with {
         $0.project = project
         $0.region = region
@@ -528,7 +528,7 @@
 
     public func listUsableByItems(
       request: RegionBackendBucketsClient.ListUsableRequest
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       self.listUsableByItems(request: request, options: .init())
     }
 
@@ -538,7 +538,7 @@
     /// @Snippet(path: "regionBackendBuckets_listUsable")
     public func listUsableByItems(
       request: RegionBackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable
         in
@@ -553,7 +553,7 @@
     public func listUsableByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let request = RegionBackendBucketsClient.ListUsableRequest().with {
         $0.project = project
         $0.region = region

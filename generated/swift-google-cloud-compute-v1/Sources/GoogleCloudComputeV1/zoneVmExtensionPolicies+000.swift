@@ -28,8 +28,8 @@
     Sendable
   {
     let inner: any Clients.ZoneVmExtensionPoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ZoneVmExtensionPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -389,7 +389,7 @@
 
     public func listByItems(
       request: ZoneVmExtensionPoliciesClient.ListRequest
-    ) -> some AsyncSequence<VmExtensionPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<VmExtensionPolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -398,7 +398,7 @@
     /// @Snippet(path: "zoneVmExtensionPolicies_list")
     public func listByItems(
       request: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<VmExtensionPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<VmExtensionPolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.VmExtensionPolicyList
         in
@@ -413,7 +413,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<VmExtensionPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<VmExtensionPolicy, any Swift.Error> & Sendable {
       let request = ZoneVmExtensionPoliciesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

@@ -60,7 +60,7 @@ public struct ImportAptArtifactsResponse: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([AptArtifact].self, forKey: .aptArtifacts) {
       self.aptArtifacts = value
@@ -76,7 +76,7 @@ public struct ImportAptArtifactsResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.aptArtifacts, forKey: .aptArtifacts)
     try container.encode(self.errors, forKey: .errors)

@@ -62,7 +62,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [LogprobsResult.TopCandidates].self, forKey: .topCandidates)
@@ -80,7 +80,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.topCandidates, forKey: .topCandidates)
       try container.encode(self.chosenCandidates, forKey: .chosenCandidates)
@@ -137,7 +137,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.token = try container.decodeIfPresent(Swift.String.self, forKey: .token)
         self.tokenId = try container.decodeIfPresent(Swift.Int32.self, forKey: .tokenId)
@@ -149,7 +149,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.token, forKey: .token)
         try container.encodeIfPresent(self.tokenId, forKey: .tokenId)
@@ -208,7 +208,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [LogprobsResult.Candidate].self, forKey: .candidates)
@@ -221,7 +221,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.candidates, forKey: .candidates)
         for (key, value) in self._unknownFields.json {

@@ -116,7 +116,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
     self.backupWindow = try container.decodeIfPresent(
@@ -175,7 +175,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.enabled, forKey: .enabled)
     try container.encodeIfPresent(self.backupWindow, forKey: .backupWindow)
@@ -259,7 +259,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([GoogleType.TimeOfDay].self, forKey: .startTimes)
       {
@@ -275,7 +275,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.startTimes, forKey: .startTimes)
       try container.encode(self.daysOfWeek, forKey: .daysOfWeek)
@@ -334,7 +334,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.retentionPeriod = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .retentionPeriod)
@@ -344,7 +344,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.retentionPeriod, forKey: .retentionPeriod)
       for (key, value) in self._unknownFields.json {
@@ -402,7 +402,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .count) {
         self.count = value
@@ -413,7 +413,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.count, forKey: .count)
       for (key, value) in self._unknownFields.json {

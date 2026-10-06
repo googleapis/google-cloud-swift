@@ -56,7 +56,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.summary = try container.decodeIfPresent(SearchResponse.Summary.self, forKey: .summary)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -65,7 +65,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.summary, forKey: .summary)
       for (key, value) in self._unknownFields.json {

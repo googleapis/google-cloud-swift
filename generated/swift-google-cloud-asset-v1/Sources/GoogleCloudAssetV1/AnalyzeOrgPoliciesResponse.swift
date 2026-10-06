@@ -78,7 +78,7 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [AnalyzeOrgPoliciesResponse.OrgPolicyResult].self, forKey: .orgPolicyResults)
@@ -96,7 +96,7 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.orgPolicyResults, forKey: .orgPolicyResults)
     try container.encodeIfPresent(self.constraint, forKey: .constraint)
@@ -183,7 +183,7 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPack
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.consolidatedPolicy = try container.decodeIfPresent(
         AnalyzerOrgPolicy.self, forKey: .consolidatedPolicy)
@@ -206,7 +206,7 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.consolidatedPolicy, forKey: .consolidatedPolicy)
       try container.encode(self.policyBundle, forKey: .policyBundle)

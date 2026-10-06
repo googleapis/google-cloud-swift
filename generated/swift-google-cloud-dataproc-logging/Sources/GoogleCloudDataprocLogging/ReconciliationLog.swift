@@ -60,7 +60,7 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.inputs = try container.decodeIfPresent(ReconciliationLog.Inputs.self, forKey: .inputs)
     self.outputs = try container.decodeIfPresent(ReconciliationLog.Outputs.self, forKey: .outputs)
@@ -70,7 +70,7 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.inputs, forKey: .inputs)
     try container.encodeIfPresent(self.outputs, forKey: .outputs)
@@ -133,7 +133,7 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.idleDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .idleDuration)
@@ -147,7 +147,7 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.idleDuration, forKey: .idleDuration)
       try container.encodeIfPresent(self.idleTtl, forKey: .idleTtl)
@@ -212,7 +212,7 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         ReconciliationDecisionType.self, forKey: .decision)
@@ -228,7 +228,7 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.decision, forKey: .decision)
       try container.encode(self.decisionDetails, forKey: .decisionDetails)

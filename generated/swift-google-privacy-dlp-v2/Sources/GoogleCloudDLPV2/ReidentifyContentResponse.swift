@@ -60,7 +60,7 @@ public struct ReidentifyContentResponse: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.item = try container.decodeIfPresent(ContentItem.self, forKey: .item)
     self.overview = try container.decodeIfPresent(TransformationOverview.self, forKey: .overview)
@@ -70,7 +70,7 @@ public struct ReidentifyContentResponse: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.item, forKey: .item)
     try container.encodeIfPresent(self.overview, forKey: .overview)

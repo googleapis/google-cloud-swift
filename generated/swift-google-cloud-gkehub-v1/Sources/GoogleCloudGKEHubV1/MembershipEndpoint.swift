@@ -79,7 +79,7 @@ public struct MembershipEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.gkeCluster = try container.decodeIfPresent(GkeCluster.self, forKey: .gkeCluster)
     self.kubernetesMetadata = try container.decodeIfPresent(
@@ -95,7 +95,7 @@ public struct MembershipEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.gkeCluster, forKey: .gkeCluster)
     try container.encodeIfPresent(self.kubernetesMetadata, forKey: .kubernetesMetadata)

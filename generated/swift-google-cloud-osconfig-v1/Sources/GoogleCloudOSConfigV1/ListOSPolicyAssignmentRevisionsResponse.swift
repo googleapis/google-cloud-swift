@@ -62,7 +62,7 @@ public struct ListOSPolicyAssignmentRevisionsResponse: Codable, Equatable, Googl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [OSPolicyAssignment].self, forKey: .osPolicyAssignments)
@@ -78,7 +78,7 @@ public struct ListOSPolicyAssignmentRevisionsResponse: Codable, Equatable, Googl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.osPolicyAssignments, forKey: .osPolicyAssignments)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)

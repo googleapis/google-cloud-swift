@@ -61,7 +61,7 @@ public struct WriteLogEntriesPartialErrors: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let stringKeyed = try container.decodeIfPresent(
       [Swift.String: GoogleRpc.Status].self, forKey: .logEntryErrors)
@@ -85,7 +85,7 @@ public struct WriteLogEntriesPartialErrors: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     do {
       let stringKeyed = Dictionary(

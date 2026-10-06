@@ -109,7 +109,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.timeSeriesQuery = try container.decodeIfPresent(
       TimeSeriesQuery.self, forKey: .timeSeriesQuery)
@@ -145,7 +145,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.timeSeriesQuery, forKey: .timeSeriesQuery)
     try container.encode(self.thresholds, forKey: .thresholds)
@@ -212,7 +212,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .lowerBound) {
         self.lowerBound = value
@@ -226,7 +226,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.lowerBound, forKey: .lowerBound)
       try container.encode(self.upperBound, forKey: .upperBound)
@@ -296,7 +296,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(SparkChartType.self, forKey: .sparkChartType) {
         self.sparkChartType = value
@@ -309,7 +309,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sparkChartType, forKey: .sparkChartType)
       try container.encodeIfPresent(self.minAlignmentPeriod, forKey: .minAlignmentPeriod)
