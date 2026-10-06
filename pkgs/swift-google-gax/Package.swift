@@ -49,6 +49,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
     .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
     .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
+    .package(url: "https://github.com/apple/swift-nio-ssl.git", from: "2.37.0"),
     .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.36.0"),
   ],
   targets: [
@@ -66,6 +67,7 @@ let package = Package(
         .product(name: "Logging", package: "swift-log"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "NIOFoundationCompat", package: "swift-nio"),
+        .product(name: "NIOSSL", package: "swift-nio-ssl"),
       ],
       swiftSettings: swiftSettings
     ),

@@ -16,6 +16,8 @@ import class AsyncHTTPClient.HTTPClient
 import struct AsyncHTTPClient.HTTPClientRequest
 import struct AsyncHTTPClient.HTTPClientResponse
 import struct Logging.Logger
+import class NIOSSL.NIOSSLCertificate
+import struct NIOSSL.TLSConfiguration
 
 /// Automatically call shutdown() on a HTTPClient.
 ///
@@ -27,7 +29,19 @@ import struct Logging.Logger
 /// request is in progress. By the time deinit starts, all starting a call requires having a
 /// reference to the object, so shutdown
 final class HTTPClientHolder: _HTTPClientProtocol {
-  let inner = AsyncHTTPClient.HTTPClient()
+  let inner: AsyncHTTPClient.HTTPClient
+
+  init(rootCertificates: String? = nil) throws {
+    var config = AsyncHTTPClient.HTTPClient.Configuration()
+    config.httpVersion = .http1Only
+    if let rootCertificates {
+      let certs = try NIOSSLCertificate.fromPEMBytes(Array(rootCertificates.utf8))
+      var tlsConfiguration = TLSConfiguration.makeClientConfiguration()
+      tlsConfiguration.trustRoots = .certificates(certs)
+      config.tlsConfiguration = tlsConfiguration
+    }
+    self.inner = AsyncHTTPClient.HTTPClient(configuration: config)
+  }
   deinit {
     // Use a background task to shutdown the inner client. In most cases, the application will
     // continue running and the HTTPClient is shutdown "eventually". Except for (maybe) some false

@@ -100,6 +100,11 @@ public struct ClientOptions: Sendable {
   /// [swift-log]: https://swiftpackageindex.com/apple/swift-log/
   public var logger: Logger? = nil
 
+  /// Overrides the root certificates used to verify the server when connecting over TLS.
+  ///
+  /// The value should be a PEM-encoded certificate string containing one or more certificates.
+  public var rootCertificates: String? = nil
+
   /// Configures the client's per-attempt timeout for all requests.
   ///
   /// By default the clients use a per-attempt timeout of 15 seconds (approximately 1/4 of the

@@ -127,12 +127,8 @@ import NIOHTTP1
     #expect(percentEncodedRequest.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
     #expect(percentEncodedRequest.headers["custom-header"] == ["custom-val"])
 
-    guard let components = URLComponents(string: "http://localhost:1234/test") else {
-      Issue.record("failed to create components")
-      return
-    }
     let componentsRequest = try await client.newRequest(
-      urlComponents: components, options: reqOptions
+      uri: "http://localhost:1234/test", options: reqOptions
     )
     #expect(componentsRequest.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
     #expect(componentsRequest.headers["custom-header"] == ["custom-val"])
@@ -472,8 +468,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/v1/projects/p/things"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int"),
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint"),
       URLQueryItem(name: "thingId", value: "test-only-thing-id"),
     ]
     let wantURLString = wantURL.url?.absoluteString
@@ -531,8 +527,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/v1/projects/p/things/test-only-thing-id"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint")
     ]
     let wantURLString = wantURL.url?.absoluteString
     let responseBody = #"{"name":"projects/p/things/test-only-thing-id","value":"test-value"}"#
@@ -584,8 +580,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/v1/projects/p/things/test-only-thing-id"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint")
     ]
     let wantURLString = wantURL.url?.absoluteString
 
@@ -634,8 +630,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/v1/projects/p/things/test-only-thing-id"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint")
     ]
     let wantURLString = wantURL.url?.absoluteString
 
@@ -693,8 +689,8 @@ import NIOHTTP1
     wantURL.scheme = "https"
     wantURL.host = "test-only.googleapis.com"
     wantURL.path = "/invalid/path"
-    wantURL.queryItems = [
-      URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+    wantURL.percentEncodedQueryItems = [
+      URLQueryItem(name: "$alt", value: "json%3Benum-encoding%3Dint")
     ]
     let wantURLString = wantURL.url?.absoluteString
     let responsePayload = "<!DOCTYPE html><html lang=en><title>Error 404</title></html>"
@@ -943,12 +939,71 @@ import NIOHTTP1
     #expect(response.status == .ok)
   }
 
+  @Test("verify query parameters with semicolons are percent-encoded")
+  func percentEncodedQuerySemicolon() async throws {
+    let mock = MockHTTPClient { @Sendable (request, _) in
+      #expect(
+        request.url
+          == "https://test-only.googleapis.com/v1/test?$alt=json%3Benum-encoding%3Dint&filter=a%3Db%3Bc%3Dd"
+      )
+      return HTTPClientResponse(
+        version: .http2,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json; charset=UTF-8")]),
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+    let client = try _HTTPClient(mock, endpoint: "https://test-only.googleapis.com")
+    let query = [
+      URLQueryItem(name: "$alt", value: "json;enum-encoding=int"),
+      URLQueryItem(name: "filter", value: "a=b;c=d"),
+    ]
+    var req = try await client.newRequest(path: "/v1/test", query: query)
+    req.setMethod(.GET)
+    _ = try await req.rpc(GoogleWKT.WKTEmpty.self).get()
+  }
+
+  @Test func rootCertificatesInvalidPEMThrows() {
+    let options = ClientOptions().with {
+      $0.rootCertificates = "not-a-valid-pem"
+    }
+    #expect(throws: (any Error).self) {
+      try _HTTPClient(from: options, withDefaultEndpoint: "https://localhost:1234")
+    }
+  }
+
+  @Test func rootCertificatesValidPEMInitializes() throws {
+    let options = ClientOptions().with {
+      $0.rootCertificates = testCertificatePEM
+    }
+    _ = try _HTTPClient(from: options, withDefaultEndpoint: "https://localhost:1234")
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String
     public let value: String
   }
 }
+
+fileprivate let testCertificatePEM = """
+  -----BEGIN CERTIFICATE-----
+  MIICmDCCAYACCQCPC8JDqMh1zzANBgkqhkiG9w0BAQsFADANMQswCQYDVQQGEwJ1
+  czAgFw0xODEwMzExNTU1MjJaGA8yMTE4MTAwNzE1NTUyMlowDTELMAkGA1UEBhMC
+  dXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDiC+TGmbSP/nWWN1tj
+  yNfnWCU5ATjtIOfdtP6ycx8JSeqkvyNXG21kNUn14jTTU8BglGL2hfVpCbMisUdb
+  d3LpP8unSsvlOWwORFOViSy4YljSNM/FNoMtavuITA/sEELYgjWkz2o/uHPZHud9
+  +JQwGJgqIlMa3mr2IaaUZlWN3D1u88bzJYhpt3YyxRy9+OEoOKy36KdWwhKzV3S8
+  kXb0Y1GbAo68jJ9RfzeLy290mIs9qG2y1CNXWO6sxf6B//LaalizZiCfzYAVKcNR
+  9oNYsEJc5KB/+DsAGTzR7mL+oiU4h/vwVb2GTDat5C+PFGi6j1ujxYTRPO538ljg
+  dslnAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAFYhA7sw8odOsRO8/DUklBOjPnmn
+  a078oSumgPXXw6AgcoAJv/Qthjo6CCEtrjYfcA9jaBw9/Tii7mDmqDRS5c9ZPL8+
+  NEPdHjFCFBOEvlL6uHOgw0Z9Wz+5yCXnJ8oNUEgc3H2NbbzJF6sMBXSPtFS2NOK8
+  OsAI9OodMrDd6+lwljrmFoCCkJHDEfE637IcsbgFKkzhO/oNCRK6OrudG4teDahz
+  Au4LoEYwT730QKC/VQxxEVZobjn9/sTrq9CZlbPYHxX4fz6e00sX7H9i49vk9zQ5
+  5qCm9ljhrQPSa42Q62PPE2BEEGSP2KBm0J+H3vlvCD6+SNc/nMZjrRmgjrI=
+  -----END CERTIFICATE-----
+  """
 
 fileprivate let errorResponseWithDetails = """
   {
