@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import GoogleGax
+import GoogleRpc
 
 /// Evaluates whether an error is considered retryable in Google Cloud Storage.
 ///

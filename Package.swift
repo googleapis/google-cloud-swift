@@ -92,6 +92,7 @@ let baseDependencies: [Package.Dependency] = [
 
 let swiftSettings: [SwiftSetting] = [
   .enableUpcomingFeature("InternalImportsByDefault"),
+  .enableUpcomingFeature("MemberImportVisibility"),
   .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
   .strictMemorySafety(),
 ]
@@ -250,6 +251,7 @@ let package = Package(
       name: "GoogleCloudTestHelpers",
       dependencies: [
         .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "InMemoryLogging", package: "swift-log"),
         .product(name: "NIOConcurrencyHelpers", package: "swift-nio"),
         .product(name: "NIOCore", package: "swift-nio"),
@@ -422,6 +424,7 @@ func generatedPackagesStatic() -> [Generated] {
     .init(name: "swift-google-iam-credentials-v1", module: "GoogleIAMCredentialsV1"),
     .init(name: "swift-google-iam-v1", module: "GoogleIAMV1"),
     .init(name: "swift-google-longrunning", module: "GoogleLongRunning"),
+    .init(name: "swift-google-rpc", module: "GoogleRpc"),
     .init(name: "swift-google-type", module: "GoogleType"),
     .init(
       name: "swift-google-cloud-compute-v1", module: "GoogleCloudComputeV1",

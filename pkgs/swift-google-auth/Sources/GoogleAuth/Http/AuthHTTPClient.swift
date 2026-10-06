@@ -16,8 +16,9 @@ import Foundation
 import AsyncHTTPClient
 import NIOFoundationCompat
 import struct Logging.Logger
-import struct NIOCore.TimeAmount
 import struct NIOCore.ByteBufferAllocator
+import struct NIOCore.TimeAmount
+import NIOHTTP1
 
 /// Internal protocol abstracting an HTTP client to support testing and mocking.
 protocol HTTPClientProtocol: Sendable {

@@ -14,6 +14,7 @@
 
 import Foundation
 public import GoogleGax
+import GoogleRpc
 
 /// Shared RequestOptions for integration tests that retry non-idempotent operations
 /// and enforce a 15-second attempt timeout to prevent premature exhaustion of retry loop budgets.

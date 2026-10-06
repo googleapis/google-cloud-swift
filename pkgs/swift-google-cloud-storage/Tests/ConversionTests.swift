@@ -16,6 +16,7 @@
 import GoogleWKT
 import GoogleType
 import StorageControlProtos
+import SwiftProtobuf
 import Testing
 @testable import GoogleCloudStorage
 

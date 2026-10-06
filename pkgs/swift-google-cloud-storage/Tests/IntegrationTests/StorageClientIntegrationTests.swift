@@ -14,6 +14,7 @@
 
 import Foundation
 import GoogleGax
+import GoogleRpc
 @testable import GoogleCloudStorage
 import NIOCore
 import Testing

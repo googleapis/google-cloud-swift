@@ -14,6 +14,7 @@
 
 import Foundation
 import struct AsyncHTTPClient.HTTPClientResponse
+import NIOHTTP1
 
 /// Represents errors occurring during an HTTP request to an authentication or token endpoint.
 ///

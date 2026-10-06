@@ -2778,7 +2778,7 @@ import Testing
     let bucket = "test-bucket"
     let objectName = "cancelled-resumable-stream"
     let chunk = Data(repeating: 0x42, count: 1024)
-    let sequence = [chunk].async
+    let sequence = makeAsyncStream(chunks: [chunk])
     let source = StreamSource(sequence: sequence)
 
     let client = try makeClient(registry: registry)

@@ -12,8 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
 import struct AsyncHTTPClient.HTTPClientResponse
+import Foundation
+import NIOFoundationCompat
+import NIOHTTP1
 import Testing
 
 @testable import GoogleAuth

@@ -18,6 +18,7 @@ import PackageDescription
 
 let swiftSettings: [SwiftSetting] = [
   .enableUpcomingFeature("InternalImportsByDefault"),
+  .enableUpcomingFeature("MemberImportVisibility"),
   .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
   .strictMemorySafety(),
 ]
@@ -116,9 +117,12 @@ let package = Package(
         "StorageProtos",
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
+        .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
         .product(name: "NIOCore", package: "swift-nio"),
+        .product(name: "NIOFoundationCompat", package: "swift-nio"),
         .product(name: "NIOHTTP1", package: "swift-nio"),
+        .product(name: "SwiftProtobuf", package: "swift-protobuf"),
       ],
       path: "Tests",
       exclude: ["IntegrationTests"],
@@ -130,6 +134,7 @@ let package = Package(
         "GoogleCloudStorage",
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "NIOCore", package: "swift-nio"),
       ],
       path: "Tests/IntegrationTests",

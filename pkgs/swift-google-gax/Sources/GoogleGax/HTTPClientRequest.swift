@@ -18,7 +18,7 @@ import struct AsyncHTTPClient.HTTPClientRequest
 import struct Logging.Logger
 @_spi(GoogleCloudInternal) public import NIOCore
 import NIOFoundationCompat
-@_spi(GoogleCloudInternal) public import NIOHTTP1
+@_exported @_spi(GoogleCloudInternal) public import NIOHTTP1
 
 /// Represents the body of an HTTP request, encapsulating either `NIOCore.ByteBuffer`
 /// or a custom body without premature conversion or copying.

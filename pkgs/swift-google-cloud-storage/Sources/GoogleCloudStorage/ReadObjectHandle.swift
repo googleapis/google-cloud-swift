@@ -16,6 +16,7 @@ import Foundation
 @_spi(GoogleCloudInternal) import GoogleGax
 public import GoogleWKT
 import NIOCore
+import NIOHTTP1
 
 /// A handle to an in-progress or deferred object download returned by ``StorageProtocol/readObject(from:object:options:)``.
 ///

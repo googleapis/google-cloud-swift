@@ -15,6 +15,7 @@
 import Foundation
 @testable import GoogleCloudStorage
 import GoogleGax
+import GoogleRpc
 import Testing
 
 @Suite struct ReadObjectErrorTests {

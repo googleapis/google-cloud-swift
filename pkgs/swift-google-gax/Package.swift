@@ -18,6 +18,7 @@ import PackageDescription
 
 let swiftSettings: [SwiftSetting] = [
   .enableUpcomingFeature("InternalImportsByDefault"),
+  .enableUpcomingFeature("MemberImportVisibility"),
   .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
   .strictMemorySafety(),
 ]
@@ -66,6 +67,7 @@ let package = Package(
         .product(name: "Logging", package: "swift-log"),
         .product(name: "NIOCore", package: "swift-nio"),
         .product(name: "NIOFoundationCompat", package: "swift-nio"),
+        .product(name: "NIOHTTP1", package: "swift-nio"),
       ],
       swiftSettings: swiftSettings
     ),
@@ -76,6 +78,9 @@ let package = Package(
         .product(name: "DequeModule", package: "swift-collections"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "NIOCore", package: "swift-nio"),
+        .product(name: "NIOFoundationCompat", package: "swift-nio"),
+        .product(name: "NIOHTTP1", package: "swift-nio"),
       ],
       path: "Tests",
       swiftSettings: swiftSettings

@@ -21,6 +21,7 @@ import GoogleRpc
 import struct GoogleWKT.WKTEmpty
 import AsyncHTTPClient
 import NIOCore
+import NIOFoundationCompat
 import NIOHTTP1
 
 @Suite struct HTTPClientTests {

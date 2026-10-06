@@ -15,6 +15,7 @@
 import Foundation
 import AsyncHTTPClient
 import NIOCore
+import NIOFoundationCompat
 import NIOHTTP1
 import Testing
 @_spi(GoogleCloudInternal) @testable import GoogleGax

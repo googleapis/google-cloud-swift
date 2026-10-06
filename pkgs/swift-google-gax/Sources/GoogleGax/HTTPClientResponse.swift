@@ -16,6 +16,7 @@ public import Foundation
 @_spi(GoogleCloudInternal) import class GoogleWKT._ProtoJSONDecoder
 @_spi(GoogleCloudInternal) public import AsyncHTTPClient
 import struct NIOCore.ByteBuffer
+import NIOFoundationCompat
 @_spi(GoogleCloudInternal) public import NIOHTTP1
 
 /// Represents an HTTP response.

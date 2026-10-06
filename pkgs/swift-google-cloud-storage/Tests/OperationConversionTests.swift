@@ -14,6 +14,7 @@
 
 @_spi(GoogleCloudInternal) import GoogleGax
 import GoogleLongRunning
+import GoogleWKT
 import StorageControlProtos
 import SwiftProtobuf
 import Testing
