@@ -92,6 +92,7 @@ struct ResumableUploadStream<S: SeekableWriteObjectSource>: AsyncSequence, Senda
     }
 
     mutating func next() async throws -> NIOCore.ByteBuffer? {
+      try Task.checkCancellation()
       guard bytesRead < bytesToRead else { return nil }
       let remaining = bytesToRead - bytesRead
       let toRead = Int(Swift.min(UInt64(chunkSize), remaining))
@@ -110,9 +111,10 @@ struct ResumableUploadStream<S: SeekableWriteObjectSource>: AsyncSequence, Senda
         }
         return nil
       }
-      bytesRead += UInt64(chunk.count)
-      tracker?.update(chunk)
-      return chunk.byteBuffer
+      let effectiveChunk = chunk.count > toRead ? chunk.subdata(in: 0..<toRead) : chunk
+      bytesRead += UInt64(effectiveChunk.count)
+      tracker?.update(effectiveChunk)
+      return effectiveChunk.byteBuffer
     }
   }
 

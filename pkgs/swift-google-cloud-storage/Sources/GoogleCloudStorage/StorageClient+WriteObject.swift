@@ -1075,6 +1075,8 @@ extension StorageClient {
     return request
   }
 
+  private static let defaultStreamChunkSize = 2 * 1024 * 1024
+
   fileprivate static func buildUploadStreamRequest<S: SeekableWriteObjectSource>(
     httpClient: GoogleGax._HTTPClient,
     uploadId: String,
@@ -1103,22 +1105,41 @@ extension StorageClient {
 
     request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
 
-    let end = totalSize - 1
-    let contentLength = Int64(totalSize - offset)
+    let end = totalSize > 0 ? totalSize - 1 : 0
+    let contentLength = Int64(totalSize > offset ? totalSize - offset : 0)
     request.setHeader(name: "Content-Range", value: "bytes \(offset)-\(end)/\(totalSize)")
     request.setHeader(name: "Content-Length", value: String(contentLength))
 
     let trackCrc32c = options.checksums?.crc32c != nil
+    var effectiveSeed = crc32cSeed
+    var streamSource = source
+    if offset > 0 && effectiveSeed == nil && trackCrc32c {
+      try await streamSource.seek(to: 0)
+      var remaining = offset
+      var catchUpCRC = _CRC32C()
+      let bufferSize: UInt64 = 8 * 1024 * 1024
+      while remaining > 0 {
+        let toRead = Int(Swift.min(remaining, bufferSize))
+        guard let chunk = try await streamSource.read(maxBytes: toRead), !chunk.isEmpty else {
+          break
+        }
+        chunk.withUnsafeBytes { catchUpCRC.update($0) }
+        remaining -= UInt64(chunk.count)
+      }
+      effectiveSeed = catchUpCRC.finalize()
+      try await streamSource.seek(to: offset)
+    }
+
     let tracker: UploadChecksumTracker? =
       trackCrc32c
-      ? UploadChecksumTracker(crc32cSeed: crc32cSeed, trackCrc32c: true)
+      ? UploadChecksumTracker(crc32cSeed: effectiveSeed, trackCrc32c: true)
       : nil
 
     let stream = ResumableUploadStream(
-      source: source,
+      source: streamSource,
       rangeStart: offset,
       rangeEnd: end,
-      chunkSize: 2 * 1024 * 1024,
+      chunkSize: defaultStreamChunkSize,
       tracker: tracker
     )
     request.setBody(stream: stream, length: contentLength)
