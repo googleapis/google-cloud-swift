@@ -21,7 +21,6 @@ import Synchronization
 final class UploadChecksumTracker: Sendable {
   struct State: Sendable {
     var crc32c: _CRC32C?
-    var bytesHashed: UInt64 = 0
   }
 
   private let state: Mutex<State>
@@ -39,7 +38,6 @@ final class UploadChecksumTracker: Sendable {
       chunk.withUnsafeBytes { raw in
         s.crc32c?.update(raw)
       }
-      s.bytesHashed += UInt64(chunk.count)
     }
   }
 
