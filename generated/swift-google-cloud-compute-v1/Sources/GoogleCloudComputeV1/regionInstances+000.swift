@@ -54,6 +54,11 @@
     /// Creates multiple instances in a given region. Count specifies the number of
     /// instances to create.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstances_bulkInsert")
     public func bulkInsertPollingUntilDone(
       request: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
@@ -117,6 +122,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstancesClient.bulkInsert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func bulkInsertPollingUntilDone(
         request: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

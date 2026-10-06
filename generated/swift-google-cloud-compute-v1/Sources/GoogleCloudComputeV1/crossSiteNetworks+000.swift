@@ -52,6 +52,11 @@
 
     /// Deletes the specified cross-site network in the given scope.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "crossSiteNetworks_delete")
     public func deletePollingUntilDone(
       request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -112,6 +117,11 @@
 
     /// Creates a cross-site network in the specified project in the given scope
     /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "crossSiteNetworks_insert")
     public func insertPollingUntilDone(
@@ -178,6 +188,11 @@
     /// semantics and uses theJSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "crossSiteNetworks_patch")
     public func patchPollingUntilDone(
       request: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -240,6 +255,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `CrossSiteNetworksClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -255,6 +275,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `CrossSiteNetworksClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -270,6 +295,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `CrossSiteNetworksClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

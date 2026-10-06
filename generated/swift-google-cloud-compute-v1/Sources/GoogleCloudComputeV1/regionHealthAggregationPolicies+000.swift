@@ -70,6 +70,11 @@
 
     /// Deletes the specified HealthAggregationPolicy in the given region.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionHealthAggregationPolicies_delete")
     public func deletePollingUntilDone(
       request: RegionHealthAggregationPoliciesClient.DeleteRequest,
@@ -133,6 +138,11 @@
 
     /// Create a HealthAggregationPolicy in the specified project in the given
     /// region using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_insert")
     public func insertPollingUntilDone(
@@ -200,6 +210,11 @@
     /// resource with the data included in the request. This method supportsPATCH
     /// semantics and uses theJSON merge
     /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_patch")
     public func patchPollingUntilDone(
@@ -281,6 +296,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionHealthAggregationPoliciesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionHealthAggregationPoliciesClient.DeleteRequest,
         options: GoogleGax.RequestOptions
@@ -298,6 +318,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionHealthAggregationPoliciesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionHealthAggregationPoliciesClient.InsertRequest,
         options: GoogleGax.RequestOptions
@@ -316,6 +341,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionHealthAggregationPoliciesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: RegionHealthAggregationPoliciesClient.PatchRequest,
         options: GoogleGax.RequestOptions

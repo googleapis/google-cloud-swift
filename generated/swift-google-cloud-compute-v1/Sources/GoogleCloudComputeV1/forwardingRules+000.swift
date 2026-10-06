@@ -64,6 +64,11 @@
 
     /// Deletes the specified ForwardingRule resource.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "forwardingRules_delete")
     public func deletePollingUntilDone(
       request: ForwardingRulesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -125,6 +130,11 @@
 
     /// Creates a ForwardingRule resource in the specified project and region using
     /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "forwardingRules_insert")
     public func insertPollingUntilDone(
@@ -195,6 +205,11 @@
     /// patch format and processing rules. Currently, you can only
     /// patch the network_tier field.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "forwardingRules_patch")
     public func patchPollingUntilDone(
       request: ForwardingRulesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -250,6 +265,11 @@
     /// read the
     /// Labeling Resources documentation.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "forwardingRules_setLabels")
     public func setLabelsPollingUntilDone(
       request: ForwardingRulesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
@@ -302,6 +322,11 @@
 
     /// Changes target URL for forwarding rule. The new target should be of the
     /// same type as the old target.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "forwardingRules_setTarget")
     public func setTargetPollingUntilDone(
@@ -371,6 +396,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ForwardingRulesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: ForwardingRulesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -386,6 +416,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ForwardingRulesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: ForwardingRulesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -401,6 +436,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ForwardingRulesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: ForwardingRulesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -411,6 +451,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ForwardingRulesClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: ForwardingRulesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -421,6 +466,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ForwardingRulesClient.setTarget`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setTargetPollingUntilDone(
         request: ForwardingRulesClient.SetTargetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

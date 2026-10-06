@@ -64,6 +64,11 @@
 
     /// Deletes the specified TargetInstance resource.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "targetInstances_delete")
     public func deletePollingUntilDone(
       request: TargetInstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -125,6 +130,11 @@
 
     /// Creates a TargetInstance resource in the specified project and zone using
     /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetInstances_insert")
     public func insertPollingUntilDone(
@@ -190,6 +200,11 @@
     /// Sets the Google Cloud Armor security policy for the specified target
     /// instance. For more information, seeGoogle
     /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetInstances_setSecurityPolicy")
     public func setSecurityPolicyPollingUntilDone(
@@ -268,6 +283,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetInstancesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: TargetInstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -283,6 +303,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetInstancesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: TargetInstancesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -298,6 +323,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetInstancesClient.setSecurityPolicy`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setSecurityPolicyPollingUntilDone(
         request: TargetInstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

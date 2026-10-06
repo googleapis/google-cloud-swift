@@ -52,6 +52,11 @@
 
     /// Deletes the specified firewall.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "firewalls_delete")
     public func deletePollingUntilDone(
       request: FirewallsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -112,6 +117,11 @@
 
     /// Creates a firewall rule in the specified project using the data
     /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewalls_insert")
     public func insertPollingUntilDone(
@@ -179,6 +189,11 @@
     /// semantics and uses theJSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "firewalls_patch")
     public func patchPollingUntilDone(
       request: FirewallsClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -244,6 +259,11 @@
     /// Note that all fields will be updated if using PUT, even fields that are not
     /// specified. To update individual fields, please use PATCH instead.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "firewalls_update")
     public func updatePollingUntilDone(
       request: FirewallsClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -306,6 +326,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FirewallsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: FirewallsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -321,6 +346,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FirewallsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: FirewallsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -336,6 +366,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FirewallsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: FirewallsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -351,6 +386,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FirewallsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: FirewallsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

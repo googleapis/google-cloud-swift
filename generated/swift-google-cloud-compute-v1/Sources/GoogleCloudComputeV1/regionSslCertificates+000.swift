@@ -53,6 +53,11 @@
 
     /// Deletes the specified SslCertificate resource in the region.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionSslCertificates_delete")
     public func deletePollingUntilDone(
       request: RegionSslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -116,6 +121,11 @@
 
     /// Creates a SslCertificate resource in the specified project and region using
     /// the data included in the request
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSslCertificates_insert")
     public func insertPollingUntilDone(
@@ -190,6 +200,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionSslCertificatesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionSslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -205,6 +220,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionSslCertificatesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionSslCertificatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

@@ -72,6 +72,11 @@
     /// Patches the given PreviewFeature. This method is used to enable or disable
     /// a PreviewFeature.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "previewFeatures_update")
     public func updatePollingUntilDone(
       request: PreviewFeaturesClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -144,6 +149,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `PreviewFeaturesClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: PreviewFeaturesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

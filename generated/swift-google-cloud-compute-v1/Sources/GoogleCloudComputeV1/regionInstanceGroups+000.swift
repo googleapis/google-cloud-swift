@@ -84,6 +84,11 @@
 
     /// Sets the named ports for the specified regional instance group.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroups_setNamedPorts")
     public func setNamedPortsPollingUntilDone(
       request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
@@ -172,6 +177,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupsClient.setNamedPorts`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setNamedPortsPollingUntilDone(
         request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

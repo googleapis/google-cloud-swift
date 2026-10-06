@@ -75,6 +75,11 @@
     /// Creates a commitment in the specified project using the data
     /// included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionCommitments_insert")
     public func insertPollingUntilDone(
       request: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -139,6 +144,11 @@
     /// Updates the specified commitment with the data included in the request.
     /// Update is performed only on selected fields included as part of
     /// update-mask. Only the following fields can be updated: auto_renew and plan.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionCommitments_update")
     public func updatePollingUntilDone(
@@ -213,6 +223,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionCommitmentsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -228,6 +243,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionCommitmentsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: RegionCommitmentsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

@@ -55,6 +55,11 @@
     /// Create Interconnects with redundancy by creating them in a specified
     /// interconnect group.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "interconnectGroups_createMembers")
     public func createMembersPollingUntilDone(
       request: InterconnectGroupsClient.CreateMembersRequest, options: GoogleGax.RequestOptions
@@ -104,6 +109,11 @@
     }
 
     /// Deletes the specified InterconnectGroup in the given scope
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "interconnectGroups_delete")
     public func deletePollingUntilDone(
@@ -187,6 +197,11 @@
     /// Creates a InterconnectGroup in the specified project in the given scope
     /// using the parameters that are included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "interconnectGroups_insert")
     public func insertPollingUntilDone(
       request: InterconnectGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -251,6 +266,11 @@
     /// the request. This method supports PATCH
     /// semantics and usesJSON merge
     /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "interconnectGroups_patch")
     public func patchPollingUntilDone(
@@ -333,6 +353,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InterconnectGroupsClient.createMembers`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func createMembersPollingUntilDone(
         request: InterconnectGroupsClient.CreateMembersRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -343,6 +368,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InterconnectGroupsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: InterconnectGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -369,6 +399,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InterconnectGroupsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: InterconnectGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -384,6 +419,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InterconnectGroupsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: InterconnectGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

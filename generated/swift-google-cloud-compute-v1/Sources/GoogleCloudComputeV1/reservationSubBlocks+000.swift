@@ -72,6 +72,11 @@
 
     /// Allows customers to get SBOM versions of a reservation subBlock.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "reservationSubBlocks_getVersion")
     public func getVersionPollingUntilDone(
       request: ReservationSubBlocksClient.GetVersionRequest, options: GoogleGax.RequestOptions
@@ -133,6 +138,11 @@
 
     /// Allows customers to perform maintenance on a reservation subBlock
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "reservationSubBlocks_performMaintenance")
     public func performMaintenancePollingUntilDone(
       request: ReservationSubBlocksClient.PerformMaintenanceRequest,
@@ -184,6 +194,11 @@
     }
 
     /// Allows customers to report a faulty subBlock.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "reservationSubBlocks_reportFaulty")
     public func reportFaultyPollingUntilDone(
@@ -278,6 +293,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSubBlocksClient.getVersion`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func getVersionPollingUntilDone(
         request: ReservationSubBlocksClient.GetVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -294,6 +314,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSubBlocksClient.performMaintenance`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func performMaintenancePollingUntilDone(
         request: ReservationSubBlocksClient.PerformMaintenanceRequest,
         options: GoogleGax.RequestOptions
@@ -305,6 +330,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSubBlocksClient.reportFaulty`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func reportFaultyPollingUntilDone(
         request: ReservationSubBlocksClient.ReportFaultyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

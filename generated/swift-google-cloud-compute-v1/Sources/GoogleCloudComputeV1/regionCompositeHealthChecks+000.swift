@@ -69,6 +69,11 @@
 
     /// Deletes the specified CompositeHealthCheck in the given region
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionCompositeHealthChecks_delete")
     public func deletePollingUntilDone(
       request: RegionCompositeHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -141,6 +146,11 @@
     /// Create a CompositeHealthCheck in the specified project in the given region
     /// using the parameters that are included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionCompositeHealthChecks_insert")
     public func insertPollingUntilDone(
       request: RegionCompositeHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -206,6 +216,11 @@
     /// with the data included in the request.  This method supportsPATCH
     /// semantics and uses theJSON merge
     /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_patch")
     public func patchPollingUntilDone(
@@ -286,6 +301,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionCompositeHealthChecksClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionCompositeHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -307,6 +327,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionCompositeHealthChecksClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionCompositeHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -322,6 +347,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionCompositeHealthChecksClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: RegionCompositeHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

@@ -61,6 +61,11 @@
 
     /// Patch Instance settings
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "instanceSettings_patch")
     public func patchPollingUntilDone(
       request: InstanceSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -129,6 +134,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceSettingsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: InstanceSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

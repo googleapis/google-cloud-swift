@@ -69,6 +69,11 @@
 
     /// Deletes the specified service.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "networkEdgeSecurityServices_delete")
     public func deletePollingUntilDone(
       request: NetworkEdgeSecurityServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -131,6 +136,11 @@
     /// Creates a new service in the specified project using the data included in
     /// the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "networkEdgeSecurityServices_insert")
     public func insertPollingUntilDone(
       request: NetworkEdgeSecurityServicesClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -181,6 +191,11 @@
     }
 
     /// Patches the specified policy with the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_patch")
     public func patchPollingUntilDone(
@@ -251,6 +266,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworkEdgeSecurityServicesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: NetworkEdgeSecurityServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -266,6 +286,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworkEdgeSecurityServicesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: NetworkEdgeSecurityServicesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -276,6 +301,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworkEdgeSecurityServicesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: NetworkEdgeSecurityServicesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

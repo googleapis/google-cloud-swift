@@ -66,6 +66,11 @@
 
     /// Deletes the specified ServiceAttachment in the given scope
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "serviceAttachments_delete")
     public func deletePollingUntilDone(
       request: ServiceAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -138,6 +143,11 @@
     /// Creates a ServiceAttachment in the specified project in the given scope
     /// using the parameters that are included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "serviceAttachments_insert")
     public func insertPollingUntilDone(
       request: ServiceAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -203,6 +213,11 @@
     /// the request. This method supports PATCH
     /// semantics and usesJSON merge
     /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "serviceAttachments_patch")
     public func patchPollingUntilDone(
@@ -291,6 +306,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ServiceAttachmentsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: ServiceAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -311,6 +331,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ServiceAttachmentsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: ServiceAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -326,6 +351,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ServiceAttachmentsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: ServiceAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

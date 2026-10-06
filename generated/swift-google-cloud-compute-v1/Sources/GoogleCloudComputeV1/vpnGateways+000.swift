@@ -64,6 +64,11 @@
 
     /// Deletes the specified VPN gateway.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "vpnGateways_delete")
     public func deletePollingUntilDone(
       request: VpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -135,6 +140,11 @@
     /// Creates a VPN gateway in the specified project and region using
     /// the data included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "vpnGateways_insert")
     public func insertPollingUntilDone(
       request: VpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -197,6 +207,11 @@
 
     /// Sets the labels on a VpnGateway. To learn more about labels, read theLabeling
     /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "vpnGateways_setLabels")
     public func setLabelsPollingUntilDone(
@@ -275,6 +290,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `VpnGatewaysClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: VpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -295,6 +315,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `VpnGatewaysClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: VpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -310,6 +335,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `VpnGatewaysClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: VpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

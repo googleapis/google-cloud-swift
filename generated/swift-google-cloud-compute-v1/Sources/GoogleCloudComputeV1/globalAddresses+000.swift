@@ -52,6 +52,11 @@
 
     /// Deletes the specified address resource.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "globalAddresses_delete")
     public func deletePollingUntilDone(
       request: GlobalAddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -113,6 +118,11 @@
     /// Creates an address resource in the specified project by using the data
     /// included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "globalAddresses_insert")
     public func insertPollingUntilDone(
       request: GlobalAddressesClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -172,6 +182,11 @@
 
     /// Moves the specified address resource from one project to another project.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "globalAddresses_move")
     public func movePollingUntilDone(
       request: GlobalAddressesClient.MoveRequest, options: GoogleGax.RequestOptions
@@ -223,6 +238,11 @@
 
     /// Sets the labels on a GlobalAddress. To learn more about labels, read theLabeling
     /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalAddresses_setLabels")
     public func setLabelsPollingUntilDone(
@@ -295,6 +315,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalAddressesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: GlobalAddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -310,6 +335,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalAddressesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: GlobalAddressesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -325,6 +355,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalAddressesClient.move`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func movePollingUntilDone(
         request: GlobalAddressesClient.MoveRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -335,6 +370,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalAddressesClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: GlobalAddressesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

@@ -64,6 +64,11 @@
 
     /// Deletes the specified VpnTunnel resource.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "vpnTunnels_delete")
     public func deletePollingUntilDone(
       request: VpnTunnelsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -125,6 +130,11 @@
 
     /// Creates a VpnTunnel resource in the specified project and region using
     /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "vpnTunnels_insert")
     public func insertPollingUntilDone(
@@ -188,6 +198,11 @@
 
     /// Sets the labels on a VpnTunnel. To learn more about labels, read theLabeling
     /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "vpnTunnels_setLabels")
     public func setLabelsPollingUntilDone(
@@ -257,6 +272,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `VpnTunnelsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: VpnTunnelsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -272,6 +292,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `VpnTunnelsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: VpnTunnelsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -287,6 +312,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `VpnTunnelsClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: VpnTunnelsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

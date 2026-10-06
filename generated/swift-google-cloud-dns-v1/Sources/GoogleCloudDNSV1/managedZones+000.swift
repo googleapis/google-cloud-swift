@@ -96,6 +96,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
 
   /// Applies a partial update to an existing ManagedZone.
   ///
+  /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+  ///   resource, Discovery-based operations return the terminal `Operation`
+  ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+  ///   method once the operation completes.
+  ///
   /// @Snippet(path: "managedZones_patch")
   public func patchPollingUntilDone(
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -161,6 +166,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   }
 
   /// Updates an existing ManagedZone.
+  ///
+  /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+  ///   resource, Discovery-based operations return the terminal `Operation`
+  ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+  ///   method once the operation completes.
   ///
   /// @Snippet(path: "managedZones_update")
   public func updatePollingUntilDone(
@@ -247,6 +257,11 @@ extension Clients {
     ) async throws -> Operation
 
     /// See `ManagedZonesClient.patch`.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     func patchPollingUntilDone(
       request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation
@@ -267,6 +282,11 @@ extension Clients {
     ) async throws -> Operation
 
     /// See `ManagedZonesClient.update`.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     func updatePollingUntilDone(
       request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation

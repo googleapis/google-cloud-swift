@@ -61,6 +61,11 @@
 
     /// Get health info on a reservation slot.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "reservationSlots_getHealth")
     public func getHealthPollingUntilDone(
       request: ReservationSlotsClient.GetHealthRequest, options: GoogleGax.RequestOptions
@@ -111,6 +116,11 @@
     }
 
     /// Allows customers to get SBOM versions of a reservation slot.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "reservationSlots_getVersion")
     public func getVersionPollingUntilDone(
@@ -171,6 +181,11 @@
     }
 
     /// Update a reservation slot in the specified sub-block.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "reservationSlots_update")
     public func updatePollingUntilDone(
@@ -240,6 +255,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSlotsClient.getHealth`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func getHealthPollingUntilDone(
         request: ReservationSlotsClient.GetHealthRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -250,6 +270,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSlotsClient.getVersion`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func getVersionPollingUntilDone(
         request: ReservationSlotsClient.GetVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -265,6 +290,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSlotsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: ReservationSlotsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

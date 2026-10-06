@@ -53,6 +53,11 @@
 
     /// deletes a Zonal InstantSnapshotGroup resource
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "instantSnapshotGroups_delete")
     public func deletePollingUntilDone(
       request: InstantSnapshotGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -122,6 +127,11 @@
     }
 
     /// inserts a Zonal InstantSnapshotGroup resource
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instantSnapshotGroups_insert")
     public func insertPollingUntilDone(
@@ -216,6 +226,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstantSnapshotGroupsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: InstantSnapshotGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -236,6 +251,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstantSnapshotGroupsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: InstantSnapshotGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

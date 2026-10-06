@@ -69,6 +69,11 @@
     /// permanent and cannot be undone. It is not possible to delete templates
     /// that are already in use by a managed instance group.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "instanceTemplates_delete")
     public func deletePollingUntilDone(
       request: InstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -145,6 +150,11 @@
     /// update an existing instance group, your new instance template must use the
     /// same network or, if applicable, the same subnetwork as the original
     /// template.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceTemplates_insert")
     public func insertPollingUntilDone(
@@ -242,6 +252,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceTemplatesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: InstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -262,6 +277,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceTemplatesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: InstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

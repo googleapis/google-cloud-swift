@@ -64,6 +64,11 @@
 
     /// Deletes the specified Router resource.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "routers_delete")
     public func deletePollingUntilDone(
       request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -115,6 +120,11 @@
 
     /// Deletes Named Set
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "routers_deleteNamedSet")
     public func deleteNamedSetPollingUntilDone(
       request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
@@ -165,6 +175,11 @@
     }
 
     /// Deletes Route Policy
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_deleteRoutePolicy")
     public func deleteRoutePolicyPollingUntilDone(
@@ -273,6 +288,11 @@
     /// Creates a Router resource in the specified project and region using
     /// the data included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "routers_insert")
     public func insertPollingUntilDone(
       request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -368,6 +388,11 @@
     /// semantics and usesJSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "routers_patch")
     public func patchPollingUntilDone(
       request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -419,6 +444,11 @@
 
     /// Patches Named Set
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "routers_patchNamedSet")
     public func patchNamedSetPollingUntilDone(
       request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
@@ -469,6 +499,11 @@
     }
 
     /// Patches Route Policy
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_patchRoutePolicy")
     public func patchRoutePolicyPollingUntilDone(
@@ -537,6 +572,11 @@
     /// target resource be created or replaced with the state defined by the
     /// representation enclosed in the request message payload.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "routers_update")
     public func updatePollingUntilDone(
       request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -588,6 +628,11 @@
 
     /// Updates or creates new Named Set
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "routers_updateNamedSet")
     public func updateNamedSetPollingUntilDone(
       request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
@@ -638,6 +683,11 @@
     }
 
     /// Updates or creates new Route Policy
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_updateRoutePolicy")
     public func updateRoutePolicyPollingUntilDone(
@@ -707,6 +757,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -717,6 +772,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.deleteNamedSet`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deleteNamedSetPollingUntilDone(
         request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -727,6 +787,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.deleteRoutePolicy`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deleteRoutePolicyPollingUntilDone(
         request: RoutersClient.DeleteRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -767,6 +832,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -797,6 +867,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -807,6 +882,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.patchNamedSet`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchNamedSetPollingUntilDone(
         request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -817,6 +897,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.patchRoutePolicy`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchRoutePolicyPollingUntilDone(
         request: RoutersClient.PatchRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -832,6 +917,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -842,6 +932,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.updateNamedSet`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updateNamedSetPollingUntilDone(
         request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -852,6 +947,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutersClient.updateRoutePolicy`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updateRoutePolicyPollingUntilDone(
         request: RoutersClient.UpdateRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

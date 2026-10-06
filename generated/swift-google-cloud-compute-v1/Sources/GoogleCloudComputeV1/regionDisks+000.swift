@@ -56,6 +56,11 @@
     /// policy which will be applied to this disk for scheduling snapshot
     /// creation.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionDisks_addResourcePolicies")
     public func addResourcePoliciesPollingUntilDone(
       request: RegionDisksClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
@@ -106,6 +111,11 @@
     }
 
     /// Bulk create a set of disks.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionDisks_bulkInsert")
     public func bulkInsertPollingUntilDone(
@@ -163,6 +173,11 @@
     /// creation, consider using snapshots.insert
     /// instead, as that method supports more features, such as creating snapshots
     /// in a project different from the source disk project.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionDisks_createSnapshot")
     public func createSnapshotPollingUntilDone(
@@ -222,6 +237,11 @@
     /// However, deleting a disk does not delete anysnapshots
     /// previously made from the disk. You must separatelydelete
     /// snapshots.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionDisks_delete")
     public func deletePollingUntilDone(
@@ -295,6 +315,11 @@
     /// Creates a persistent regional disk in the specified project using the data
     /// included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionDisks_insert")
     public func insertPollingUntilDone(
       request: RegionDisksClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -356,6 +381,11 @@
 
     /// Removes resource policies from a regional disk.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionDisks_removeResourcePolicies")
     public func removeResourcePoliciesPollingUntilDone(
       request: RegionDisksClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
@@ -406,6 +436,11 @@
     }
 
     /// Resizes the specified regional persistent disk.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionDisks_resize")
     public func resizePollingUntilDone(
@@ -468,6 +503,11 @@
 
     /// Sets the labels on the target regional disk.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionDisks_setLabels")
     public func setLabelsPollingUntilDone(
       request: RegionDisksClient.SetLabelsRequest, options: GoogleGax.RequestOptions
@@ -520,6 +560,11 @@
 
     /// Starts asynchronous replication.
     /// Must be invoked on the primary disk.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionDisks_startAsyncReplication")
     public func startAsyncReplicationPollingUntilDone(
@@ -574,6 +619,11 @@
     /// Stops asynchronous replication.
     /// Can be invoked either on the primary or on the secondary disk.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionDisks_stopAsyncReplication")
     public func stopAsyncReplicationPollingUntilDone(
       request: RegionDisksClient.StopAsyncReplicationRequest, options: GoogleGax.RequestOptions
@@ -626,6 +676,11 @@
 
     /// Stops asynchronous replication for a consistency group of disks.
     /// Can be invoked either in the primary or secondary scope.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionDisks_stopGroupAsyncReplication")
     public func stopGroupAsyncReplicationPollingUntilDone(
@@ -689,6 +744,11 @@
     /// Update the specified disk with the data included in the request. Update is
     /// performed only on selected fields included as part of update-mask.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionDisks_update")
     public func updatePollingUntilDone(
       request: RegionDisksClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -741,6 +801,11 @@
 
     /// Rotates the customer-managed
     /// encryption key to the latest version for the specified persistent disk.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionDisks_updateKmsKey")
     public func updateKmsKeyPollingUntilDone(
@@ -805,6 +870,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.addResourcePolicies`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func addResourcePoliciesPollingUntilDone(
         request: RegionDisksClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -815,6 +885,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.bulkInsert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func bulkInsertPollingUntilDone(
         request: RegionDisksClient.BulkInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -825,6 +900,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.createSnapshot`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func createSnapshotPollingUntilDone(
         request: RegionDisksClient.CreateSnapshotRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -835,6 +915,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionDisksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -855,6 +940,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionDisksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -870,6 +960,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.removeResourcePolicies`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func removeResourcePoliciesPollingUntilDone(
         request: RegionDisksClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -880,6 +975,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.resize`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func resizePollingUntilDone(
         request: RegionDisksClient.ResizeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -895,6 +995,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: RegionDisksClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -905,6 +1010,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.startAsyncReplication`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func startAsyncReplicationPollingUntilDone(
         request: RegionDisksClient.StartAsyncReplicationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -915,6 +1025,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.stopAsyncReplication`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func stopAsyncReplicationPollingUntilDone(
         request: RegionDisksClient.StopAsyncReplicationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -926,6 +1041,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.stopGroupAsyncReplication`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func stopGroupAsyncReplicationPollingUntilDone(
         request: RegionDisksClient.StopGroupAsyncReplicationRequest,
         options: GoogleGax.RequestOptions
@@ -942,6 +1062,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: RegionDisksClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -952,6 +1077,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionDisksClient.updateKmsKey`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updateKmsKeyPollingUntilDone(
         request: RegionDisksClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

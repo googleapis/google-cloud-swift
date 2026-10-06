@@ -61,6 +61,11 @@
 
     /// Allows customers to get SBOM versions of a host.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "hosts_getVersion")
     public func getVersionPollingUntilDone(
       request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
@@ -138,6 +143,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `HostsClient.getVersion`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func getVersionPollingUntilDone(
         request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

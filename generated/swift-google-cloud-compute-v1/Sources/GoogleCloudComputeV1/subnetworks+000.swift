@@ -64,6 +64,11 @@
 
     /// Deletes the specified subnetwork.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "subnetworks_delete")
     public func deletePollingUntilDone(
       request: SubnetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -114,6 +119,11 @@
     }
 
     /// Expands the IP CIDR range of the subnetwork to a specified value.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "subnetworks_expandIpCidrRange")
     public func expandIpCidrRangePollingUntilDone(
@@ -186,6 +196,11 @@
 
     /// Creates a subnetwork in the specified project using the data
     /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "subnetworks_insert")
     public func insertPollingUntilDone(
@@ -265,6 +280,11 @@
     /// You must specify the current fingerprint of the
     /// subnetwork resource being patched.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "subnetworks_patch")
     public func patchPollingUntilDone(
       request: SubnetworksClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -327,6 +347,11 @@
 
     /// Set whether VMs in this subnet can access Google services without assigning
     /// external IP addresses through Private Google Access.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "subnetworks_setPrivateIpGoogleAccess")
     public func setPrivateIpGoogleAccessPollingUntilDone(
@@ -405,6 +430,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SubnetworksClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: SubnetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -415,6 +445,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SubnetworksClient.expandIpCidrRange`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func expandIpCidrRangePollingUntilDone(
         request: SubnetworksClient.ExpandIpCidrRangeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -435,6 +470,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SubnetworksClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: SubnetworksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -455,6 +495,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SubnetworksClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: SubnetworksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -471,6 +516,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SubnetworksClient.setPrivateIpGoogleAccess`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setPrivateIpGoogleAccessPollingUntilDone(
         request: SubnetworksClient.SetPrivateIpGoogleAccessRequest,
         options: GoogleGax.RequestOptions

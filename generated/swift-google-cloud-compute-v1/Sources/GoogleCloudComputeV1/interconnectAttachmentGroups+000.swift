@@ -55,6 +55,11 @@
 
     /// Deletes the specified InterconnectAttachmentGroup in the given scope
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "interconnectAttachmentGroups_delete")
     public func deletePollingUntilDone(
       request: InterconnectAttachmentGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -140,6 +145,11 @@
     /// Creates a InterconnectAttachmentGroup in the specified project in the given
     /// scope using the parameters that are included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "interconnectAttachmentGroups_insert")
     public func insertPollingUntilDone(
       request: InterconnectAttachmentGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -204,6 +214,11 @@
     /// included in the request. This method supports PATCH
     /// semantics and usesJSON merge
     /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_patch")
     public func patchPollingUntilDone(
@@ -288,6 +303,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InterconnectAttachmentGroupsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: InterconnectAttachmentGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -316,6 +336,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InterconnectAttachmentGroupsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: InterconnectAttachmentGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -331,6 +356,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InterconnectAttachmentGroupsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: InterconnectAttachmentGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

@@ -54,6 +54,11 @@
 
     /// Deletes the specified TargetTcpProxy resource.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionTargetTcpProxies_delete")
     public func deletePollingUntilDone(
       request: RegionTargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -115,6 +120,11 @@
 
     /// Creates a TargetTcpProxy resource in the specified project and region using
     /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_insert")
     public func insertPollingUntilDone(
@@ -189,6 +199,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionTargetTcpProxiesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionTargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -204,6 +219,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionTargetTcpProxiesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionTargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

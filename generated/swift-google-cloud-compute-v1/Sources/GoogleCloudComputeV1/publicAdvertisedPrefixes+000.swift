@@ -55,6 +55,11 @@
 
     /// Announces the specified PublicAdvertisedPrefix
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "publicAdvertisedPrefixes_announce")
     public func announcePollingUntilDone(
       request: PublicAdvertisedPrefixesClient.AnnounceRequest, options: GoogleGax.RequestOptions
@@ -104,6 +109,11 @@
     }
 
     /// Deletes the specified PublicAdvertisedPrefix
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_delete")
     public func deletePollingUntilDone(
@@ -165,6 +175,11 @@
 
     /// Creates a PublicAdvertisedPrefix in the specified project
     /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_insert")
     public func insertPollingUntilDone(
@@ -231,6 +246,11 @@
     /// semantics and usesJSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "publicAdvertisedPrefixes_patch")
     public func patchPollingUntilDone(
       request: PublicAdvertisedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -280,6 +300,11 @@
     }
 
     /// Withdraws the specified PublicAdvertisedPrefix
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "publicAdvertisedPrefixes_withdraw")
     public func withdrawPollingUntilDone(
@@ -343,6 +368,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `PublicAdvertisedPrefixesClient.announce`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func announcePollingUntilDone(
         request: PublicAdvertisedPrefixesClient.AnnounceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -353,6 +383,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `PublicAdvertisedPrefixesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: PublicAdvertisedPrefixesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -368,6 +403,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `PublicAdvertisedPrefixesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: PublicAdvertisedPrefixesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -383,6 +423,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `PublicAdvertisedPrefixesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: PublicAdvertisedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -393,6 +438,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `PublicAdvertisedPrefixesClient.withdraw`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func withdrawPollingUntilDone(
         request: PublicAdvertisedPrefixesClient.WithdrawRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

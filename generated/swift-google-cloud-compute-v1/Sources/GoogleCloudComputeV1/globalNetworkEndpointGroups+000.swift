@@ -56,6 +56,11 @@
 
     /// Attach a network endpoint to the specified network endpoint group.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "globalNetworkEndpointGroups_attachNetworkEndpoints")
     public func attachNetworkEndpointsPollingUntilDone(
       request: GlobalNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
@@ -109,6 +114,11 @@
     /// Deletes the specified network endpoint group.Note that the NEG cannot be
     /// deleted if there are backend services referencing it.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "globalNetworkEndpointGroups_delete")
     public func deletePollingUntilDone(
       request: GlobalNetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -159,6 +169,11 @@
     }
 
     /// Detach the network endpoint from the specified network endpoint group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalNetworkEndpointGroups_detachNetworkEndpoints")
     public func detachNetworkEndpointsPollingUntilDone(
@@ -250,6 +265,11 @@
     ///    To manage NEGs with global scope (such as global internet NEGs):global
     ///    API
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "globalNetworkEndpointGroups_insert")
     public func insertPollingUntilDone(
       request: GlobalNetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -333,6 +353,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalNetworkEndpointGroupsClient.attachNetworkEndpoints`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func attachNetworkEndpointsPollingUntilDone(
         request: GlobalNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
@@ -344,6 +369,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalNetworkEndpointGroupsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: GlobalNetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -355,6 +385,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalNetworkEndpointGroupsClient.detachNetworkEndpoints`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func detachNetworkEndpointsPollingUntilDone(
         request: GlobalNetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
@@ -371,6 +406,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalNetworkEndpointGroupsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: GlobalNetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

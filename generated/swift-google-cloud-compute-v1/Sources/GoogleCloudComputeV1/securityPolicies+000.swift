@@ -52,6 +52,11 @@
 
     /// Inserts a rule into a security policy.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "securityPolicies_addRule")
     public func addRulePollingUntilDone(
       request: SecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
@@ -114,6 +119,11 @@
     }
 
     /// Deletes the specified policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "securityPolicies_delete")
     public func deletePollingUntilDone(
@@ -184,6 +194,11 @@
 
     /// Creates a new policy in the specified project using the data included in
     /// the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "securityPolicies_insert")
     public func insertPollingUntilDone(
@@ -263,6 +278,11 @@
     /// Please use the per rule methods like addRule, patchRule, and removeRule
     /// instead.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "securityPolicies_patch")
     public func patchPollingUntilDone(
       request: SecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -315,6 +335,11 @@
     /// Patches a rule at the specified priority. To clear fields in the rule,
     /// leave the fields empty and specify them in the updateMask.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "securityPolicies_patchRule")
     public func patchRulePollingUntilDone(
       request: SecurityPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
@@ -364,6 +389,11 @@
     }
 
     /// Deletes a rule at the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "securityPolicies_removeRule")
     public func removeRulePollingUntilDone(
@@ -418,6 +448,11 @@
     /// Sets the labels on a security policy. To learn more about labels,
     /// read the Labeling Resources
     /// documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "securityPolicies_setLabels")
     public func setLabelsPollingUntilDone(
@@ -481,6 +516,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SecurityPoliciesClient.addRule`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func addRulePollingUntilDone(
         request: SecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -496,6 +536,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SecurityPoliciesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: SecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -516,6 +561,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SecurityPoliciesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: SecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -537,6 +587,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SecurityPoliciesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: SecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -547,6 +602,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SecurityPoliciesClient.patchRule`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchRulePollingUntilDone(
         request: SecurityPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -557,6 +617,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SecurityPoliciesClient.removeRule`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func removeRulePollingUntilDone(
         request: SecurityPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -567,6 +632,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SecurityPoliciesClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: SecurityPoliciesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

@@ -68,6 +68,11 @@
     /// For more information, seeDeleting
     /// instantSnapshots.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstantSnapshots_delete")
     public func deletePollingUntilDone(
       request: RegionInstantSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -137,6 +142,11 @@
     }
 
     /// Creates an instant snapshot in the specified region.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstantSnapshots_insert")
     public func insertPollingUntilDone(
@@ -213,6 +223,11 @@
     /// about labels, read the Labeling
     /// Resources documentation.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstantSnapshots_setLabels")
     public func setLabelsPollingUntilDone(
       request: RegionInstantSnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
@@ -286,6 +301,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstantSnapshotsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionInstantSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -306,6 +326,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstantSnapshotsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionInstantSnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -326,6 +351,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstantSnapshotsClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: RegionInstantSnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

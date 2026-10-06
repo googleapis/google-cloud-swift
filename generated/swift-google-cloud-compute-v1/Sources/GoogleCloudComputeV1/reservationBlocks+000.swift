@@ -80,6 +80,11 @@
 
     /// Allows customers to perform maintenance on a reservation block
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "reservationBlocks_performMaintenance")
     public func performMaintenancePollingUntilDone(
       request: ReservationBlocksClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
@@ -178,6 +183,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationBlocksClient.performMaintenance`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func performMaintenancePollingUntilDone(
         request: ReservationBlocksClient.PerformMaintenanceRequest,
         options: GoogleGax.RequestOptions

@@ -72,6 +72,11 @@
     /// made from the storagePool. You must separately delete
     /// snapshots.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "storagePools_delete")
     public func deletePollingUntilDone(
       request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -144,6 +149,11 @@
 
     /// Creates a storage pool in the specified project using the data
     /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "storagePools_insert")
     public func insertPollingUntilDone(
@@ -242,6 +252,11 @@
     /// pool_provisioned_capacity_gb, pool_provisioned_iops and
     /// pool_provisioned_throughput.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "storagePools_update")
     public func updatePollingUntilDone(
       request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -310,6 +325,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `StoragePoolsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -330,6 +350,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `StoragePoolsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -360,6 +385,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `StoragePoolsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

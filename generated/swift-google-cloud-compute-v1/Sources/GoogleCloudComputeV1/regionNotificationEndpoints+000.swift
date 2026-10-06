@@ -66,6 +66,11 @@
 
     /// Deletes the specified NotificationEndpoint in the given region
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionNotificationEndpoints_delete")
     public func deletePollingUntilDone(
       request: RegionNotificationEndpointsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -127,6 +132,11 @@
 
     /// Create a NotificationEndpoint in the specified project in the given region
     /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_insert")
     public func insertPollingUntilDone(
@@ -216,6 +226,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionNotificationEndpointsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionNotificationEndpointsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -231,6 +246,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionNotificationEndpointsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionNotificationEndpointsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
