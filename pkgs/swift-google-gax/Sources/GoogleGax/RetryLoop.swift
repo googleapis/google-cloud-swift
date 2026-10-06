@@ -97,10 +97,7 @@ import Foundation
 
       if let prevError = lastError {
         if let remaining = remainingTime, remaining < nextDelay {
-          // In Rust, this returns an "exhausted" error wrapping prevError.
-          // Swift's RequestError doesn't have an exhausted case yet, so we
-          // throw the last error seen.
-          throw prevError
+          throw RequestError.exhausted(.elapsedTime(source: prevError))
         }
         try await sleep(nextDelay)
 
@@ -118,7 +115,7 @@ import Foundation
 
         remainingTime = retryPolicy.remainingTime(state: state)
         if let remaining = remainingTime, remaining <= .zero {
-          throw prevError
+          throw RequestError.exhausted(.elapsedTime(source: prevError))
         }
       }
 

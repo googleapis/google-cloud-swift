@@ -205,32 +205,43 @@ extension RequestError: CustomDebugStringConvertible {
 /// The details for ``RequestError/exhausted(_:)``.
 public enum PolicyExhaustedError: Error, Sendable, CustomStringConvertible {
   /// The retry or polling policy exceeded its maximum elapsed time.
-  case elapsedTime(maximumDuration: Duration, source: RequestError? = nil)
+  case elapsedTime(maximumDuration: Duration? = nil, source: RequestError? = nil)
 
   /// The retry or polling policy exceeded its maximum attempt count.
-  case attemptCount(maximumAttempts: Int)
+  case attemptCount(maximumAttempts: Int, source: RequestError? = nil)
 
   /// The last error before the policy was exhausted, if any.
   public var source: RequestError? {
     switch self {
     case .elapsedTime(_, let source):
       return source
-    case .attemptCount:
-      return nil
+    case .attemptCount(_, let source):
+      return source
     }
   }
 
   public var description: String {
+    formatMessage()
+  }
+
+  private func formatMessage() -> String {
     switch self {
     case .elapsedTime(let maxDuration, let source):
-      if let source = source {
-        return
-          "policy exhausted: elapsed time limit of \(maxDuration) exceeded; last error: \(source)"
-      }
-      return "policy exhausted: elapsed time limit of \(maxDuration) exceeded"
-    case .attemptCount(let maxAttempts):
-      return "policy exhausted: attempt count limit of \(maxAttempts) exceeded"
+      formatElapsedTime(maxDuration, source: source)
+    case .attemptCount(let maxAttempts, let source):
+      formatAttemptCount(maxAttempts, source: source)
     }
+  }
+
+  private func formatElapsedTime(_ maxDuration: Duration?, source: RequestError?) -> String {
+    let limitStr = maxDuration.map { " of \($0)" } ?? ""
+    let sourceStr = source.map { "; last error: \($0)" } ?? ""
+    return "policy exhausted: elapsed time limit\(limitStr) exceeded\(sourceStr)"
+  }
+
+  private func formatAttemptCount(_ maxAttempts: Int, source: RequestError?) -> String {
+    let sourceStr = source.map { "; last error: \($0)" } ?? ""
+    return "policy exhausted: attempt count limit of \(maxAttempts) exceeded\(sourceStr)"
   }
 }
 
@@ -238,12 +249,22 @@ extension PolicyExhaustedError: CustomDebugStringConvertible {
   public var debugDescription: String {
     switch self {
     case .elapsedTime(let maxDuration, let source):
-      if let source {
+      switch (maxDuration, source) {
+      case (.some(let maxDuration), .some(let source)):
         return
           "PolicyExhaustedError.elapsedTime(maximumDuration: \(maxDuration), source: \(String(reflecting: source)))"
+      case (.some(let maxDuration), .none):
+        return "PolicyExhaustedError.elapsedTime(maximumDuration: \(maxDuration))"
+      case (.none, .some(let source)):
+        return "PolicyExhaustedError.elapsedTime(source: \(String(reflecting: source)))"
+      case (.none, .none):
+        return "PolicyExhaustedError.elapsedTime()"
       }
-      return "PolicyExhaustedError.elapsedTime(maximumDuration: \(maxDuration))"
-    case .attemptCount(let maxAttempts):
+    case .attemptCount(let maxAttempts, let source):
+      if let source {
+        return
+          "PolicyExhaustedError.attemptCount(maximumAttempts: \(maxAttempts), source: \(String(reflecting: source)))"
+      }
       return "PolicyExhaustedError.attemptCount(maximumAttempts: \(maxAttempts))"
     }
   }
