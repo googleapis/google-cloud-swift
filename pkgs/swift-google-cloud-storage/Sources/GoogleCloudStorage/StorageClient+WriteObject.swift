@@ -1114,20 +1114,7 @@ extension StorageClient {
     var effectiveSeed = crc32cSeed
     var streamSource = source
     if offset > 0 && effectiveSeed == nil && trackCrc32c {
-      try await streamSource.seek(to: 0)
-      var remaining = offset
-      var catchUpCRC = _CRC32C()
-      let bufferSize: UInt64 = 8 * 1024 * 1024
-      while remaining > 0 {
-        let toRead = Int(Swift.min(remaining, bufferSize))
-        guard let chunk = try await streamSource.read(maxBytes: toRead), !chunk.isEmpty else {
-          break
-        }
-        chunk.withUnsafeBytes { catchUpCRC.update($0) }
-        remaining -= UInt64(chunk.count)
-      }
-      effectiveSeed = catchUpCRC.finalize()
-      try await streamSource.seek(to: offset)
+      effectiveSeed = try await computeCatchUpCRC32C(source: &streamSource, upTo: offset)
     }
 
     let tracker: UploadChecksumTracker? =
@@ -1144,6 +1131,28 @@ extension StorageClient {
     )
     request.setBody(stream: stream, length: contentLength)
     return (request, tracker)
+  }
+
+  /// Calculates CRC32C of bytes from 0 up to `offset` by reading the seekable source,
+  /// restoring the source's seek position to `offset` when done.
+  fileprivate static func computeCatchUpCRC32C<S: SeekableWriteObjectSource>(
+    source: inout S,
+    upTo offset: UInt64
+  ) async throws -> UInt32 {
+    try await source.seek(to: 0)
+    var remaining = offset
+    var catchUpCRC = _CRC32C()
+    let bufferSize: UInt64 = 8 * 1024 * 1024
+    while remaining > 0 {
+      let toRead = Int(Swift.min(remaining, bufferSize))
+      guard let chunk = try await source.read(maxBytes: toRead), !chunk.isEmpty else {
+        break
+      }
+      chunk.withUnsafeBytes { catchUpCRC.update($0) }
+      remaining -= UInt64(chunk.count)
+    }
+    try await source.seek(to: offset)
+    return catchUpCRC.finalize()
   }
 
   internal static func parseResumableUploadQueryStatus(from headers: NIOHTTP1.HTTPHeaders) throws
