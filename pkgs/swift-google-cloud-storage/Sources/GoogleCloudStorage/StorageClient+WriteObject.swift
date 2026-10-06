@@ -436,6 +436,58 @@ extension StorageClient {
     )
   }
 
+  fileprivate static func sendStreamAttempt<S: SeekableWriteObjectSource>(
+    httpClient: GoogleGax._HTTPClient,
+    uploadId: String,
+    source: S,
+    offset: UInt64,
+    totalSize: UInt64,
+    options: WriteObjectOptions,
+    crc32cSeed: UInt32?
+  ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
+    let (streamRequest, tracker) = try await buildUploadStreamRequest(
+      httpClient: httpClient,
+      uploadId: uploadId,
+      source: source,
+      offset: offset,
+      totalSize: totalSize,
+      options: options,
+      crc32cSeed: crc32cSeed
+    )
+
+    let uploadResponse: _HTTPClientResponse
+    do {
+      uploadResponse = try await streamRequest.execute()
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch let uploadError as WriteObjectError {
+      throw uploadError
+    } catch let reqError as RequestError {
+      throw reqError
+    } catch {
+      throw RequestError.io(error)
+    }
+
+    let statusCode = Int(uploadResponse.status.code)
+    if statusCode == 200 || statusCode == 201 {
+      let object = try await handleObjectResponse(response: uploadResponse)
+      try tracker?.validate(object: object)
+      return (.done(object), nil)
+    } else if statusCode == 308 {
+      let queryStatus = try parseResumableUploadQueryStatus(from: uploadResponse.headers)
+      await uploadResponse.drain()
+      return (.inprogress(queryStatus.nextOffset), queryStatus.crc32cSeed)
+    } else if uploadResponse.isError() {
+      throw await uploadResponse.decodeError()
+    } else {
+      let uploadData = try await uploadResponse.data()
+      throw WriteObjectError.unexpectedServerResponse(
+        statusCode: statusCode,
+        message: String(data: uploadData, encoding: .utf8) ?? ""
+      )
+    }
+  }
+
   private struct PendingChunk {
     var data: ByteChunk
     let isLast: Bool
@@ -809,9 +861,10 @@ extension StorageClient {
           options.checksums?.md5 = nil
         }
 
+        uploadStatus = .unknown
+        let uploadResult: (status: ResumableUploadStatus, crc32cSeed: UInt32?)
         if chunkSize == nil, let total = totalSize {
           if committedBytes == total {
-            uploadStatus = .unknown
             var cs = try await prepareChecksummedSource(
               existing: &checksummedSource,
               source: source,
@@ -819,9 +872,8 @@ extension StorageClient {
               crc32cSeed: crc32cSeed,
               committedBytes: committedBytes
             )
-            let emptyResult: (status: ResumableUploadStatus, crc32cSeed: UInt32?)
             do {
-              emptyResult = try await sendChunk(
+              uploadResult = try await sendChunk(
                 httpClient: httpClient,
                 uploadId: activeUploadId,
                 data: ByteChunk(),
@@ -835,69 +887,23 @@ extension StorageClient {
               try await resumeLoop.handleError(state: &resumeState, error: error)
               continue
             }
-            if case .done(let object) = emptyResult.status {
-              return object
-            }
-            uploadStatus = emptyResult.status
-            continue
-          }
-
-          try await source.seek(to: committedBytes)
-          maxBytesSent = max(maxBytesSent, total)
-
-          let (streamRequest, tracker) = try await buildUploadStreamRequest(
-            httpClient: httpClient,
-            uploadId: activeUploadId,
-            source: source,
-            offset: committedBytes,
-            totalSize: total,
-            options: options,
-            crc32cSeed: crc32cSeed
-          )
-
-          uploadStatus = .unknown
-          let uploadResponse: _HTTPClientResponse
-          do {
-            uploadResponse = try await streamRequest.execute()
-          } catch is CancellationError {
-            throw CancellationError()
-          } catch let uploadError as WriteObjectError {
-            throw uploadError
-          } catch let reqError as RequestError {
-            try await resumeLoop.handleError(state: &resumeState, error: reqError)
-            continue
-          } catch {
-            try await resumeLoop.handleError(state: &resumeState, error: RequestError.io(error))
-            continue
-          }
-
-          let statusCode = Int(uploadResponse.status.code)
-          if statusCode == 200 || statusCode == 201 {
-            let object = try await handleObjectResponse(response: uploadResponse)
-            try tracker?.validate(object: object)
-            return object
-          } else if statusCode == 308 {
-            let queryStatus = try parseResumableUploadQueryStatus(from: uploadResponse.headers)
-            await uploadResponse.drain()
-            uploadStatus = .inprogress(queryStatus.nextOffset)
-            if let seed = queryStatus.crc32cSeed {
-              crc32cSeed = seed
-            }
-            lastCommittedBytes = queryStatus.nextOffset
-            if queryStatus.nextOffset > resumeState.details.bytesWritten {
-              resumeState.details.bytesWritten = queryStatus.nextOffset
-              resumeLoop.onProgress(state: &resumeState)
-            }
-          } else if uploadResponse.isError() {
-            let reqError = await uploadResponse.decodeError()
-            try await resumeLoop.handleError(state: &resumeState, error: reqError)
-            continue
           } else {
-            let uploadData = try await uploadResponse.data()
-            throw WriteObjectError.unexpectedServerResponse(
-              statusCode: statusCode,
-              message: String(data: uploadData, encoding: .utf8) ?? ""
-            )
+            try await source.seek(to: committedBytes)
+            maxBytesSent = max(maxBytesSent, total)
+            do {
+              uploadResult = try await sendStreamAttempt(
+                httpClient: httpClient,
+                uploadId: activeUploadId,
+                source: source,
+                offset: committedBytes,
+                totalSize: total,
+                options: options,
+                crc32cSeed: crc32cSeed
+              )
+            } catch {
+              try await resumeLoop.handleError(state: &resumeState, error: error)
+              continue
+            }
           }
         } else {
           let effectiveChunkSize = chunkSize ?? WriteObjectOptions.defaultChunkSize
@@ -908,11 +914,8 @@ extension StorageClient {
             crc32cSeed: crc32cSeed,
             committedBytes: committedBytes
           )
-
-          uploadStatus = .unknown
-          let chunkResult: (status: ResumableUploadStatus, crc32cSeed: UInt32?)
           do {
-            chunkResult = try await sendNextChunk(
+            uploadResult = try await sendNextChunk(
               httpClient: httpClient,
               checksummedSource: &cs,
               uploadId: activeUploadId,
@@ -927,21 +930,21 @@ extension StorageClient {
             try await resumeLoop.handleError(state: &resumeState, error: error)
             continue
           }
+        }
 
-          if case .done(let object) = chunkResult.status {
-            return object
+        if case .done(let object) = uploadResult.status {
+          return object
+        }
+        uploadStatus = uploadResult.status
+        if case .inprogress(let nextBytes) = uploadResult.status {
+          lastCommittedBytes = nextBytes
+          if nextBytes > resumeState.details.bytesWritten {
+            resumeState.details.bytesWritten = nextBytes
+            resumeLoop.onProgress(state: &resumeState)
           }
-          uploadStatus = chunkResult.status
-          if case .inprogress(let nextBytes) = chunkResult.status {
-            lastCommittedBytes = nextBytes
-            if nextBytes > resumeState.details.bytesWritten {
-              resumeState.details.bytesWritten = nextBytes
-              resumeLoop.onProgress(state: &resumeState)
-            }
-          }
-          if let seed = chunkResult.crc32cSeed {
-            crc32cSeed = seed
-          }
+        }
+        if let seed = uploadResult.crc32cSeed {
+          crc32cSeed = seed
         }
       }
     }
