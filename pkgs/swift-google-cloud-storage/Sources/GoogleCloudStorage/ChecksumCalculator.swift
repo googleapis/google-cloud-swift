@@ -55,7 +55,11 @@ struct CRC32CCalculator: ChecksumCalculator {
   }
 
   func finalize() -> String {
-    crc32cBase64(crc32c.finalize())
+    crc32cBase64(finalizeCRC32C())
+  }
+
+  func finalizeCRC32C() -> UInt32 {
+    crc32c.finalize()
   }
 }
 

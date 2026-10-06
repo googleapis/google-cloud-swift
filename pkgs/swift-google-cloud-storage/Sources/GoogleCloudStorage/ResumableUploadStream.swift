@@ -14,79 +14,40 @@
 
 import Foundation
 import GoogleGax
-@_spi(GoogleCloudInternal) import struct GoogleGax._CRC32C
 import NIOCore
-import Synchronization
-
-final class UploadChecksumTracker: Sendable {
-  struct State: Sendable {
-    var crc32c: _CRC32C?
-  }
-
-  private let state: Mutex<State>
-
-  init(crc32cSeed: UInt32? = nil, trackCrc32c: Bool) {
-    var s = State()
-    if trackCrc32c {
-      s.crc32c = crc32cSeed.map { _CRC32C(seed: $0) } ?? _CRC32C()
-    }
-    self.state = Mutex(s)
-  }
-
-  func update(_ chunk: ByteChunk) {
-    state.withLock { s in
-      chunk.withUnsafeBytes { raw in
-        s.crc32c?.update(raw)
-      }
-    }
-  }
-
-  func finalizeCRC32C() -> UInt32? {
-    state.withLock { s in
-      s.crc32c?.finalize()
-    }
-  }
-
-  func validate(object: Object) throws {
-    guard let computed = finalizeCRC32C() else { return }
-    if let serverCRC = object.checksums?.crc32C {
-      if computed != serverCRC {
-        throw WriteObjectError.unexpectedServerResponse(
-          statusCode: 200,
-          message:
-            "Checksum mismatch: calculated CRC32C \(computed) does not match server returned \(serverCRC)"
-        )
-      }
-    }
-  }
-}
 
 struct ResumableUploadStream<S: SeekableWriteObjectSource>: AsyncSequence, Sendable {
   typealias Element = NIOCore.ByteBuffer
 
-  let source: S
-  let rangeStart: UInt64
-  let rangeEnd: UInt64
-  let chunkSize: Int
-  let tracker: UploadChecksumTracker?
+  private let source: ChecksummedSource<S>
+  private let bytesToRead: UInt64
+  private let chunkSize: Int
+
+  init(
+    source: ChecksummedSource<S>,
+    rangeStart: UInt64,
+    rangeEnd: UInt64,
+    chunkSize: Int
+  ) {
+    self.source = source
+    self.bytesToRead = (rangeEnd >= rangeStart) ? (rangeEnd - rangeStart + 1) : 0
+    self.chunkSize = chunkSize
+  }
 
   struct AsyncIterator: AsyncIteratorProtocol {
-    private var source: S
+    private var source: ChecksummedSource<S>
     private let bytesToRead: UInt64
     private let chunkSize: Int
     private var bytesRead: UInt64 = 0
-    private let tracker: UploadChecksumTracker?
 
     init(
-      source: S,
+      source: ChecksummedSource<S>,
       bytesToRead: UInt64,
-      chunkSize: Int,
-      tracker: UploadChecksumTracker?
+      chunkSize: Int
     ) {
       self.source = source
       self.bytesToRead = bytesToRead
       self.chunkSize = chunkSize
-      self.tracker = tracker
     }
 
     mutating func next() async throws -> NIOCore.ByteBuffer? {
@@ -94,15 +55,7 @@ struct ResumableUploadStream<S: SeekableWriteObjectSource>: AsyncSequence, Senda
       guard bytesRead < bytesToRead else { return nil }
       let remaining = bytesToRead - bytesRead
       let toRead = Int(Swift.min(UInt64(chunkSize), remaining))
-      let chunk: ByteChunk?
-      do {
-        chunk = try await source.read(maxBytes: toRead)
-      } catch is CancellationError {
-        throw CancellationError()
-      } catch {
-        throw WriteObjectError.fromSourceError(error)
-      }
-      guard let chunk, !chunk.isEmpty else {
+      guard let chunk = try await source.read(maxBytes: toRead), !chunk.isEmpty else {
         if bytesRead < bytesToRead {
           throw WriteObjectError.sourceError(
             WriteObjectSourceError.offsetOutOfBounds(offset: bytesRead, size: bytesToRead))
@@ -111,18 +64,15 @@ struct ResumableUploadStream<S: SeekableWriteObjectSource>: AsyncSequence, Senda
       }
       let effectiveChunk = chunk.count > toRead ? chunk.subdata(in: 0..<toRead) : chunk
       bytesRead += UInt64(effectiveChunk.count)
-      tracker?.update(effectiveChunk)
       return effectiveChunk.byteBuffer
     }
   }
 
   func makeAsyncIterator() -> AsyncIterator {
-    let bytesToRead = (rangeEnd >= rangeStart) ? (rangeEnd - rangeStart + 1) : 0
-    return AsyncIterator(
+    AsyncIterator(
       source: source,
       bytesToRead: bytesToRead,
-      chunkSize: chunkSize,
-      tracker: tracker
+      chunkSize: chunkSize
     )
   }
 }

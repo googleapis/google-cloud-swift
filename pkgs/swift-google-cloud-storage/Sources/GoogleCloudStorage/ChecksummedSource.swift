@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import Synchronization
 
 struct ChunkInfo: Sendable {
   let data: ByteChunk
@@ -20,24 +21,116 @@ struct ChunkInfo: Sendable {
   let checksum: String?
 }
 
-struct ChecksummedSource<S: WriteObjectSource> {
+/// Thread-safe tracker that manages checksum calculators and validation across chunked and streaming uploads.
+final class ChecksumTracker: Sendable {
+  struct State: Sendable {
+    var calculators: [any ChecksumCalculator]
+    var bytesHashed: UInt64 = 0
+    var finalizedChecksum: String? = nil
+  }
+
+  private let state: Mutex<State>
+
+  init(calculators: [any ChecksumCalculator]) {
+    self.state = Mutex(State(calculators: calculators))
+  }
+
+  var bytesHashed: UInt64 {
+    state.withLock { $0.bytesHashed }
+  }
+
+  var hasCalculators: Bool {
+    state.withLock { !$0.calculators.isEmpty }
+  }
+
+  func update(data: ByteChunk, startOffset: UInt64) {
+    state.withLock { s in
+      guard !s.calculators.isEmpty else { return }
+      let endOffset = startOffset + UInt64(data.count)
+      guard endOffset > s.bytesHashed else { return }
+
+      let unhashedData: ByteChunk
+      if startOffset >= s.bytesHashed {
+        unhashedData = data
+      } else {
+        let offsetInChunk = Int(s.bytesHashed - startOffset)
+        unhashedData = data.subdata(in: offsetInChunk..<data.count)
+      }
+
+      for i in s.calculators.indices {
+        s.calculators[i].update(unhashedData)
+      }
+      s.bytesHashed = endOffset
+    }
+  }
+
+  func seedCRC32C(seed: UInt32, bytesHashed: UInt64) {
+    state.withLock { s in
+      s.bytesHashed = bytesHashed
+      s.calculators = s.calculators.compactMap { calc in
+        if calc is CRC32CCalculator {
+          return CRC32CCalculator(seed: seed)
+        }
+        if calc is ProvidedChecksumCalculator {
+          return calc
+        }
+        return nil
+      }
+    }
+  }
+
+  func finalizeChecksum() -> String? {
+    state.withLock { s in
+      if let existing = s.finalizedChecksum { return existing }
+      guard !s.calculators.isEmpty else { return nil }
+      let result = s.calculators.map { "\($0.algorithmName)=\($0.finalize())" }.joined(
+        separator: ", ")
+      s.finalizedChecksum = result
+      return result
+    }
+  }
+
+  func finalizeCRC32C() -> UInt32? {
+    state.withLock { s in
+      for calc in s.calculators {
+        if let crc = calc as? CRC32CCalculator {
+          return crc.finalizeCRC32C()
+        }
+      }
+      return nil
+    }
+  }
+
+  func validate(object: Object) throws {
+    guard let computed = finalizeCRC32C() else { return }
+    if let serverCRC = object.checksums?.crc32C {
+      if computed != serverCRC {
+        throw WriteObjectError.unexpectedServerResponse(
+          statusCode: 200,
+          message:
+            "Checksum mismatch: calculated CRC32C \(computed) does not match server returned \(serverCRC)"
+        )
+      }
+    }
+  }
+}
+
+struct ChecksummedSource<S: WriteObjectSource>: Sendable where S: Sendable {
   var source: S
   let options: ChecksumOptions
-  private var calculators: [any ChecksumCalculator] = []
+  private let tracker: ChecksumTracker
   private var nextChunk: ByteChunk? = nil
   private var isInitialized = false
-  private var isFinished = false
-  /// The high-water mark of sequentially processed bytes in `calculators`.
-  /// All bytes in `0 ..< bytesHashed` have already been fed into the checksum calculators.
-  /// When seeking backward (`offset < bytesHashed`), `bytesHashed` is not decremented,
-  /// ensuring that re-reading previously hashed bytes will not cause duplicate hashing.
-  private var bytesHashed: UInt64 = 0
   private var nextChunkOffset: UInt64 = 0
 
   init(source: S, options: ChecksumOptions) {
     self.source = source
     self.options = options
-    self.calculators = options.makeUploadCalculators()
+    self.tracker = ChecksumTracker(calculators: options.makeUploadCalculators())
+  }
+
+  var bytesHashed: UInt64 {
+    tracker.bytesHashed
   }
 
   /// Reseeds the CRC32C calculator with a running hash seed provided by GCS.
@@ -46,47 +139,40 @@ struct ChecksummedSource<S: WriteObjectSource> {
   /// intermediate running seeds from GCS, any dynamic non-seedable calculators are discarded
   /// to prevent corruption when `bytesHashed` is rewound.
   mutating func seedCRC32C(seed: UInt32, bytesHashed: UInt64) {
-    self.bytesHashed = bytesHashed
-    self.calculators = self.calculators.compactMap { calc in
-      if calc is CRC32CCalculator {
-        return CRC32CCalculator(seed: seed)
-      }
-      if calc is ProvidedChecksumCalculator {
-        return calc
-      }
-      // Non-seedable dynamic calculators (e.g. MD5) are discarded because their state
-      // cannot be rolled back to `bytesHashed`.
-      return nil
-    }
+    tracker.seedCRC32C(seed: seed, bytesHashed: bytesHashed)
   }
 
-  /// Incrementally feeds new data into the checksum calculators.
-  ///
-  /// To support seeking backward and retrying chunk uploads without corrupting checksums,
-  /// this method skips any prefix of `data` that falls below `bytesHashed` (the high-water mark
-  /// of bytes already fed into `calculators`). Only bytes beyond `bytesHashed` are accumulated.
-  private mutating func updateChecksums(data: ByteChunk, startOffset: UInt64) {
-    guard !calculators.isEmpty else { return }
-
-    let endOffset = startOffset + UInt64(data.count)
-    guard endOffset > bytesHashed else { return }
-
-    let unhashedData: ByteChunk
-    if startOffset >= bytesHashed {
-      unhashedData = data
-    } else {
-      let offsetInChunk = Int(bytesHashed - startOffset)
-      unhashedData = data.subdata(in: offsetInChunk..<data.count)
+  /// Direct read without lookahead: reads from `source`, hashes the chunk, and advances offset.
+  mutating func read(maxBytes: Int) async throws -> ByteChunk? {
+    let chunk: ByteChunk?
+    do {
+      chunk = try await source.read(maxBytes: maxBytes)
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch {
+      throw WriteObjectError.fromSourceError(error)
     }
-
-    for i in calculators.indices {
-      calculators[i].update(unhashedData)
+    guard let chunk, !chunk.isEmpty else {
+      return nil
     }
-
-    bytesHashed = endOffset
+    let offset = nextChunkOffset
+    nextChunkOffset += UInt64(chunk.count)
+    tracker.update(data: chunk, startOffset: offset)
+    return chunk
   }
 
   mutating func readChunk(maxBytes: Int) async throws -> ChunkInfo? {
+    // If the total size of the source is known, detect `isLast` without lookahead.
+    if let total = source.totalSize {
+      guard let currentChunk = try await read(maxBytes: maxBytes), !currentChunk.isEmpty else {
+        return nil
+      }
+      let isLast = nextChunkOffset >= total
+      let checksumStr = isLast ? finalizeChecksum() : nil
+      return ChunkInfo(data: currentChunk, isLast: isLast, checksum: checksumStr)
+    }
+
+    // Fallback lookahead for unknown-size streams.
     if !isInitialized {
       do {
         nextChunk = try await source.read(maxBytes: maxBytes)
@@ -114,26 +200,23 @@ struct ChecksummedSource<S: WriteObjectSource> {
     }
     let isLast = nextChunk == nil || nextChunk!.isEmpty
 
-    updateChecksums(data: currentChunk, startOffset: currentChunkOffset)
+    tracker.update(data: currentChunk, startOffset: currentChunkOffset)
 
-    var checksumStr: String? = nil
-    if isLast {
-      checksumStr = finalizeChecksum()
-    }
-
+    let checksumStr = isLast ? finalizeChecksum() : nil
     return ChunkInfo(data: currentChunk, isLast: isLast, checksum: checksumStr)
   }
 
   mutating func finalizeChecksum() -> String? {
-    guard !isFinished else { return nil }
-    isFinished = true
-    guard !calculators.isEmpty else { return nil }
-    return calculators.map { "\($0.algorithmName)=\($0.finalize())" }.joined(separator: ", ")
+    tracker.finalizeChecksum()
+  }
+
+  func validate(object: Object) throws {
+    try tracker.validate(object: object)
   }
 }
 
 extension ChecksummedSource where S: SeekableWriteObjectSource {
-  /// Repositions the stream offset for subsequent `readChunk` operations.
+  /// Repositions the stream offset for subsequent read operations.
   ///
   /// - If `offset > bytesHashed`, catches up checksum computation by reading and hashing
   ///   all bytes from `bytesHashed` up to `offset`.
@@ -144,10 +227,9 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
   mutating func seek(to offset: UInt64) async throws {
     nextChunk = nil
     isInitialized = false
-    isFinished = false
     nextChunkOffset = offset
 
-    guard offset > bytesHashed && !calculators.isEmpty else {
+    guard offset > tracker.bytesHashed && tracker.hasCalculators else {
       do {
         try await source.seek(to: offset)
       } catch is CancellationError {
@@ -160,14 +242,14 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
 
     // Catch up checksum calculation from `bytesHashed` to `offset`
     do {
-      try await source.seek(to: bytesHashed)
+      try await source.seek(to: tracker.bytesHashed)
     } catch is CancellationError {
       throw CancellationError()
     } catch {
       throw WriteObjectError.fromSourceError(error)
     }
-    var currentSeekOffset = bytesHashed
-    var bytesRemaining = offset - bytesHashed
+    var currentSeekOffset = tracker.bytesHashed
+    var bytesRemaining = offset - tracker.bytesHashed
     let bufferSize: UInt64 = 8 * 1024 * 1024
     while bytesRemaining > 0 {
       let toRead = Int(min(bytesRemaining, bufferSize))
@@ -183,7 +265,7 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
         throw WriteObjectError.sourceError(
           WriteObjectSourceError.offsetOutOfBounds(offset: offset, size: currentSeekOffset))
       }
-      updateChecksums(data: chunk, startOffset: currentSeekOffset)
+      tracker.update(data: chunk, startOffset: currentSeekOffset)
       currentSeekOffset += UInt64(chunk.count)
       bytesRemaining -= UInt64(chunk.count)
     }
