@@ -568,4 +568,57 @@ import Testing
       for try await _ in checksummedSource {}
     }
   }
+
+  /// Tests that ChecksummedSource does not pre-fetch the next chunk or double-read when totalSize is known.
+  @Test func testChecksummedSourceKnownSizeDoesNotPreFetchOrDoubleRead() async throws {
+    final class TrackingSource: SeekableWriteObjectSource, @unchecked Sendable {
+      let data: Data
+      var totalBytesRead = 0
+      private var offset: UInt64 = 0
+
+      init(data: Data) { self.data = data }
+      var totalSize: UInt64? { UInt64(data.count) }
+
+      func read(maxBytes: Int) async throws -> ByteChunk? {
+        guard offset < UInt64(data.count) else { return nil }
+        let toRead = Swift.min(maxBytes, Int(UInt64(data.count) - offset))
+        let chunk = ByteChunk(data.subdata(in: Int(offset)..<Int(offset) + toRead))
+        offset += UInt64(toRead)
+        totalBytesRead += toRead
+        return chunk
+      }
+
+      func seek(to offset: UInt64) async throws {
+        self.offset = offset
+      }
+    }
+
+    let payload = Data(repeating: 0x42, count: 100)
+    let tracking = TrackingSource(data: payload)
+    var checksummed = ChecksummedSource(source: tracking, options: .default)
+
+    // Read chunk 0 (40 bytes)
+    let chunk0 = try await checksummed.readChunk(maxBytes: 40)
+    #expect(chunk0?.data.count == 40)
+    #expect(chunk0?.isLast == false)
+    #expect(tracking.totalBytesRead == 40)  // Chunk 1 was NOT pre-fetched
+
+    // Simulate 308 response: seek to 40
+    try await checksummed.seek(to: 40)
+
+    // Read chunk 1 (40 bytes)
+    let chunk1 = try await checksummed.readChunk(maxBytes: 40)
+    #expect(chunk1?.data.count == 40)
+    #expect(chunk1?.isLast == false)
+    #expect(tracking.totalBytesRead == 80)  // Read exactly 40 more bytes
+
+    // Simulate 308 response: seek to 80
+    try await checksummed.seek(to: 80)
+
+    // Read chunk 2 (final 20 bytes)
+    let chunk2 = try await checksummed.readChunk(maxBytes: 40)
+    #expect(chunk2?.data.count == 20)
+    #expect(chunk2?.isLast == true)
+    #expect(tracking.totalBytesRead == 100)  // Total bytes read equals total size (0 redundant reads)
+  }
 }
