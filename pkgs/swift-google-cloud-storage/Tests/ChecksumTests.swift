@@ -619,6 +619,7 @@ import Testing
     let chunk2 = try await checksummed.readChunk(maxBytes: 40)
     #expect(chunk2?.data.count == 20)
     #expect(chunk2?.isLast == true)
-    #expect(tracking.totalBytesRead == 100)  // Total bytes read equals total size (0 redundant reads)
+    // Total bytes read equals total size (0 redundant reads)
+    #expect(tracking.totalBytesRead == 100)
   }
 }
