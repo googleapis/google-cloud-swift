@@ -141,6 +141,7 @@ let package = Package(
       ],
       swiftSettings: [
         .enableUpcomingFeature("InternalImportsByDefault"),
+        .enableUpcomingFeature("MemberImportVisibility"),
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .strictMemorySafety(),
       ]
