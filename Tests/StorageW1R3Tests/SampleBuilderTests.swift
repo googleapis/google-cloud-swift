@@ -98,4 +98,39 @@ import Testing
     #expect(sample.transferSize == 1024)
     #expect(sample.details == "network dropped")
   }
+
+  @Test func sampleBuilderWithChunkSizeSuccess() {
+    let now = ContinuousClock.now
+    let iterId = IterationId(task: 1, taskStartInstant: now, iteration: 0)
+    let builder = SampleBuilder(
+      iterationId: iterId,
+      op: .resumable,
+      targetSize: 8 * 1024 * 1024,
+      object: "obj-resumable",
+      crc32cEnabled: true,
+      chunkSize: 8 * 1024 * 1024
+    )
+
+    let sample = builder.success()
+    #expect(sample.result == .ok)
+    #expect(sample.details == "chunkSize=8388608")
+    #expect(sample.toRow().contains(",obj-resumable,true,OK,chunkSize=8388608"))
+  }
+
+  @Test func sampleBuilderWithChunkSizeError() {
+    let now = ContinuousClock.now
+    let iterId = IterationId(task: 1, taskStartInstant: now, iteration: 0)
+    let builder = SampleBuilder(
+      iterationId: iterId,
+      op: .resumable,
+      targetSize: 8 * 1024 * 1024,
+      object: "obj-resumable",
+      crc32cEnabled: true,
+      chunkSize: 16 * 1024 * 1024
+    )
+
+    let sample = builder.error(details: "code=503,message=Unavailable")
+    #expect(sample.result == .err)
+    #expect(sample.details == "chunkSize=16777216;code=503;message=Unavailable")
+  }
 }

@@ -25,13 +25,15 @@ public struct SampleBuilder: Sendable {
   public let targetSize: Int
   public let object: String
   public let crc32cEnabled: Bool
+  public let chunkSize: Int?
 
   public init(
     iterationId: IterationId,
     op: Operation,
     targetSize: Int,
     object: String,
-    crc32cEnabled: Bool
+    crc32cEnabled: Bool,
+    chunkSize: Int? = nil
   ) {
     self.task = iterationId.task
     self.clock = ContinuousClock()
@@ -46,12 +48,24 @@ public struct SampleBuilder: Sendable {
     self.targetSize = targetSize
     self.object = object
     self.crc32cEnabled = crc32cEnabled
+    self.chunkSize = chunkSize
   }
 
   private var elapsedMicroseconds: Int64 {
     let duration = startInstant.duration(to: clock.now)
     return duration.components.seconds * 1_000_000 + duration.components.attoseconds
       / 1_000_000_000_000
+  }
+
+  private func formatDetails(_ rawDetails: String) -> String {
+    let sanitized = rawDetails.replacingOccurrences(of: ",", with: ";")
+    if let chunkSize {
+      if sanitized.isEmpty {
+        return "chunkSize=\(chunkSize)"
+      }
+      return "chunkSize=\(chunkSize);\(sanitized)"
+    }
+    return sanitized
   }
 
   public func success(transferSize: Int? = nil) -> Sample {
@@ -66,7 +80,7 @@ public struct SampleBuilder: Sendable {
       object: object,
       crc32cEnabled: crc32cEnabled,
       result: .ok,
-      details: ""
+      details: formatDetails("")
     )
   }
 
@@ -82,7 +96,7 @@ public struct SampleBuilder: Sendable {
       object: object,
       crc32cEnabled: crc32cEnabled,
       result: .err,
-      details: details.replacingOccurrences(of: ",", with: ";")
+      details: formatDetails(details)
     )
   }
 
@@ -98,7 +112,7 @@ public struct SampleBuilder: Sendable {
       object: object,
       crc32cEnabled: crc32cEnabled,
       result: .int,
-      details: details.replacingOccurrences(of: ",", with: ";")
+      details: formatDetails(details)
     )
   }
 }

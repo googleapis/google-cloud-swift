@@ -48,6 +48,23 @@ import Testing
     #expect(benchmark.bucketName == "my-bucket")
   }
 
+  @Test func validChunkSizeConfigurationsPass() throws {
+    let testCases: [[String]] = [
+      ["--chunk-size=32MiB"],
+      ["--chunk-sizes=8MiB,16MiB,32MiB"],
+      ["--min-chunk-size=8MiB", "--max-chunk-size=64MiB", "--chunk-size-quantum=8MiB"],
+      ["--min-chunk-size=256KiB", "--max-chunk-size=256KiB", "--chunk-size-quantum=256KiB"],
+    ]
+    for args in testCases {
+      let parsed = try StorageW1R3.parseAsRoot(["--bucket-name=my-bucket"] + args)
+      guard let benchmark = parsed as? StorageW1R3 else {
+        Issue.record("cannot convert to StorageW1R3")
+        return
+      }
+      try benchmark.validate()
+    }
+  }
+
   @Test(arguments: [
     ["--min-object-size=4KiB", "--max-object-size=1KiB"],
     ["--min-delete-batch=50", "--max-delete-batch=20"],
@@ -58,6 +75,15 @@ import Testing
     ["--client-count=0"],
     ["--control-client-count=-1"],
     ["--control-client-count=0"],
+    ["--chunk-size=100KiB"],
+    ["--chunk-size=0"],
+    ["--chunk-sizes=8MiB,100KiB"],
+    ["--chunk-size=32MiB", "--chunk-sizes=8MiB,16MiB"],
+    ["--chunk-size-quantum=100KiB"],
+    ["--chunk-size-quantum=0"],
+    ["--min-chunk-size=32MiB", "--max-chunk-size=8MiB"],
+    ["--min-chunk-size=512KiB", "--max-chunk-size=16MiB", "--chunk-size-quantum=1MiB"],
+    ["--min-chunk-size=1MiB", "--max-chunk-size=1536KiB", "--chunk-size-quantum=1MiB"],
   ])
   func invalidConfigurationThrows(args: [String]) throws {
     #expect(throws: (any Error).self) {

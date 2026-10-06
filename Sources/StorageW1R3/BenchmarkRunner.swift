@@ -54,6 +54,7 @@ extension StorageW1R3 {
       let objectName = Self.randomObjectName()
       let isResumable = Bool.random()
       let uploadCrc32c = self.pickCrc32c()
+      let uploadChunkSize = isResumable ? self.pickChunkSize() : nil
       let uploadSlice = buffer.subdata(in: 0..<size)
       let iterationId = IterationId(
         task: taskIndex, taskStartInstant: taskStartInstant, iteration: iteration)
@@ -68,6 +69,7 @@ extension StorageW1R3 {
           objectName: objectName,
           buffer: uploadSlice,
           isResumable: isResumable,
+          chunkSize: uploadChunkSize,
           crc32cEnabled: uploadCrc32c)
       else {
         continue
@@ -125,6 +127,7 @@ extension StorageW1R3 {
     objectName: String,
     buffer: ByteChunk,
     isResumable: Bool,
+    chunkSize: Int?,
     crc32cEnabled: Bool
   ) async -> GoogleCloudStorage.Object? {
     let uploadOp: Operation = isResumable ? .resumable : .singleShot
@@ -134,7 +137,8 @@ extension StorageW1R3 {
       op: uploadOp,
       targetSize: buffer.count,
       object: objectName,
-      crc32cEnabled: crc32cEnabled
+      crc32cEnabled: crc32cEnabled,
+      chunkSize: chunkSize
     )
     do {
       let object = try await StorageOperations.upload(
@@ -144,6 +148,7 @@ extension StorageW1R3 {
         objectName: objectName,
         buffer: buffer,
         isResumable: isResumable,
+        chunkSize: chunkSize,
         crc32cEnabled: crc32cEnabled
       )
       let sample = uploadBuilder.success()

@@ -58,6 +58,11 @@ Options:
   --read-count N               Number of reads per uploaded object (default: 3)
   --client-count N             Number of Storage clients (default: 1)
   --crc32c MODE                CRC32C mode: always, random, never (default: always)
+  --chunk-size SIZE            Fixed resumable upload chunk size (e.g. 32MiB)
+  --chunk-sizes SIZES          Candidate chunk sizes, comma-separated (e.g. 8MiB,16MiB,32MiB)
+  --min-chunk-size SIZE        Minimum chunk size for randomized range (default: 8MiB)
+  --max-chunk-size SIZE        Maximum chunk size for randomized range (default: 32MiB)
+  --chunk-size-quantum SIZE    Alignment quantum for randomized chunk sizes (default: 256KiB)
   --extra-args "ARGS"          Extra arguments passed directly to StorageW1R3Benchmark
   --no-wait / --async          Launch the VM and return immediately without tailing logs
   --keep-vm / --no-teardown    Do not delete the VM after the benchmark completes
@@ -101,6 +106,11 @@ MAX_OBJECT_SIZE="128KiB"
 READ_COUNT=3
 CLIENT_COUNT=1
 CRC32C="always"
+CHUNK_SIZE=""
+CHUNK_SIZES=""
+MIN_CHUNK_SIZE=""
+MAX_CHUNK_SIZE=""
+CHUNK_SIZE_QUANTUM=""
 EXTRA_ARGS=""
 WAIT_FOR_COMPLETION=true
 AUTO_TEARDOWN=true
@@ -127,6 +137,11 @@ while [[ $# -gt 0 ]]; do
     --read-count) READ_COUNT="$2"; shift 2 ;;
     --client-count) CLIENT_COUNT="$2"; shift 2 ;;
     --crc32c) CRC32C="$2"; shift 2 ;;
+    --chunk-size) CHUNK_SIZE="$2"; shift 2 ;;
+    --chunk-sizes) CHUNK_SIZES="$2"; shift 2 ;;
+    --min-chunk-size) MIN_CHUNK_SIZE="$2"; shift 2 ;;
+    --max-chunk-size) MAX_CHUNK_SIZE="$2"; shift 2 ;;
+    --chunk-size-quantum) CHUNK_SIZE_QUANTUM="$2"; shift 2 ;;
     --extra-args) EXTRA_ARGS="$2"; shift 2 ;;
     --no-wait|--async) WAIT_FOR_COMPLETION=false; shift 1 ;;
     --keep-vm|--no-teardown) AUTO_TEARDOWN=false; shift 1 ;;
@@ -327,9 +342,28 @@ fi
 
 # 4. Prepare Metadata attributes
 BENCHMARK_ARGS="--task-count ${TASK_COUNT} --iterations ${ITERATIONS} --min-object-size ${MIN_OBJECT_SIZE} --max-object-size ${MAX_OBJECT_SIZE} --read-count ${READ_COUNT} --client-count ${CLIENT_COUNT} --crc32c ${CRC32C}"
+if [[ -n "${CHUNK_SIZE}" ]]; then
+  BENCHMARK_ARGS="${BENCHMARK_ARGS} --chunk-size ${CHUNK_SIZE}"
+fi
+if [[ -n "${CHUNK_SIZES}" ]]; then
+  BENCHMARK_ARGS="${BENCHMARK_ARGS} --chunk-sizes ${CHUNK_SIZES}"
+fi
+if [[ -n "${MIN_CHUNK_SIZE}" ]]; then
+  BENCHMARK_ARGS="${BENCHMARK_ARGS} --min-chunk-size ${MIN_CHUNK_SIZE}"
+fi
+if [[ -n "${MAX_CHUNK_SIZE}" ]]; then
+  BENCHMARK_ARGS="${BENCHMARK_ARGS} --max-chunk-size ${MAX_CHUNK_SIZE}"
+fi
+if [[ -n "${CHUNK_SIZE_QUANTUM}" ]]; then
+  BENCHMARK_ARGS="${BENCHMARK_ARGS} --chunk-size-quantum ${CHUNK_SIZE_QUANTUM}"
+fi
 if [[ -n "${EXTRA_ARGS}" ]]; then
   BENCHMARK_ARGS="${BENCHMARK_ARGS} ${EXTRA_ARGS}"
 fi
+
+BENCHMARK_ARGS_FILE=$(mktemp "${TMPDIR:-/tmp}/w1r3-args-XXXXXX")
+CLEANUP_FILES+=("${BENCHMARK_ARGS_FILE}")
+printf '%s' "${BENCHMARK_ARGS}" > "${BENCHMARK_ARGS_FILE}"
 
 METADATA_ENTRIES=(
   "bucket-name=${BUCKET_NAME}"
@@ -340,7 +374,6 @@ METADATA_ENTRIES=(
   "bq-location=${BQ_LOCATION}"
   "git-repo=${GIT_REPO}"
   "git-ref=${GIT_REF}"
-  "benchmark-args=${BENCHMARK_ARGS}"
   "auto-teardown=${AUTO_TEARDOWN}"
 )
 if [[ -n "${SOURCE_TAR_GCS}" ]]; then
@@ -358,6 +391,11 @@ if [[ ! -f "${STARTUP_SCRIPT}" ]]; then
 fi
 
 echo "Creating GCE VM instance '${INSTANCE_NAME}' in ${ZONE}..."
+BOOT_DISK_TYPE="pd-ssd"
+if [[ "${MACHINE_TYPE}" =~ ^c4-|^c3- ]]; then
+  BOOT_DISK_TYPE="hyperdisk-balanced"
+fi
+
 CREATE_FLAGS=(
   --project="${PROJECT_ID}"
   --zone="${ZONE}"
@@ -368,9 +406,9 @@ CREATE_FLAGS=(
   --image-family=ubuntu-2404-lts-amd64
   --image-project=ubuntu-os-cloud
   --boot-disk-size=50GB
-  --boot-disk-type=pd-ssd
+  --boot-disk-type="${BOOT_DISK_TYPE}"
   --metadata="${METADATA_STR}"
-  --metadata-from-file="startup-script=${STARTUP_SCRIPT}"
+  --metadata-from-file="startup-script=${STARTUP_SCRIPT},benchmark-args=${BENCHMARK_ARGS_FILE}"
   --quiet
 )
 if [[ "${AUTO_TEARDOWN}" == "true" ]]; then
