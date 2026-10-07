@@ -226,7 +226,7 @@ where S: Sendable {
     } catch {
       throw WriteObjectError.fromSourceError(error)
     }
-    let isLast = nextChunk == nil || nextChunk!.isEmpty
+    let isLast = nextChunk?.isEmpty ?? true
 
     tracker.update(data: currentChunk, startOffset: currentChunkOffset)
 
