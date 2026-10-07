@@ -158,10 +158,16 @@ func formatNanos(nanos: Int32) -> String {
 
 // Makes `WKTDuration` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTDuration: _AnyPackable {
+  /// The type URL for `WKTDuration`: `"type.googleapis.com/google.protobuf.Duration"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.Duration"
   }
 
+  /// Initialize an instance of `WKTDuration` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.Duration"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -172,6 +178,7 @@ extension WKTDuration: _AnyPackable {
     self = try Self.fromString(string: v)
   }
 
+  /// Packs this `WKTDuration` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .string(try self.toString())]
   }

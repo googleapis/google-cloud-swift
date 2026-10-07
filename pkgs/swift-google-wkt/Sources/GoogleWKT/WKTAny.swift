@@ -67,9 +67,16 @@ public struct WKTAny: Codable, Equatable, Sendable {
 
 // Makes `WKTAny` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTAny: _AnyPackable {
+  /// The type URL for `WKTAny`: `"type.googleapis.com/google.protobuf.Any"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.Any"
   }
+
+  /// Initialize an instance of `WKTAny` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.Any"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -83,6 +90,8 @@ extension WKTAny: _AnyPackable {
     self._type = _type
     self.fields = fields
   }
+
+  /// Packs this `WKTAny` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     var fields = self.fields
     fields[Self.typeURLField] = .string(self._type)

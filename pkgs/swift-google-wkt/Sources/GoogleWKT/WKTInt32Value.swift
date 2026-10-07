@@ -18,10 +18,16 @@
 public typealias WKTInt32Value = Swift.Int32
 
 extension Swift.Int32: _AnyPackable {
+  /// The type URL for `WKTInt32Value`: `"type.googleapis.com/google.protobuf.Int32Value"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.Int32Value"
   }
 
+  /// Initialize an instance of `WKTInt32Value` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.Int32Value"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -45,6 +51,7 @@ extension Swift.Int32: _AnyPackable {
     }
   }
 
+  /// Packs this `WKTInt32Value` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .number(Double(self))]
   }

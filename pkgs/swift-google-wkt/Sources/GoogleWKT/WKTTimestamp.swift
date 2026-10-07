@@ -338,10 +338,16 @@ private let twoDigitStyle = IntegerFormatStyle<Int>(locale: Locale(identifier: "
 
 // Makes `WKTTimestamp` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTTimestamp: _AnyPackable {
+  /// The type URL for `WKTTimestamp`: `"type.googleapis.com/google.protobuf.Timestamp"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.Timestamp"
   }
 
+  /// Initialize an instance of `WKTTimestamp` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.Timestamp"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -352,6 +358,7 @@ extension WKTTimestamp: _AnyPackable {
     self = try Self(fromString: v)
   }
 
+  /// Packs this `WKTTimestamp` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .string(self.toString())]
   }

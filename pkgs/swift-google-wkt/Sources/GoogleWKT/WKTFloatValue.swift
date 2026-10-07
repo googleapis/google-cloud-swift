@@ -18,10 +18,16 @@
 public typealias WKTFloatValue = Swift.Float
 
 extension Swift.Float: _AnyPackable {
+  /// The type URL for `WKTFloatValue`: `"type.googleapis.com/google.protobuf.FloatValue"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.FloatValue"
   }
 
+  /// Initialize an instance of `WKTFloatValue` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.FloatValue"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -35,6 +41,7 @@ extension Swift.Float: _AnyPackable {
     self = Float(n)
   }
 
+  /// Packs this `WKTFloatValue` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     let rounded = Double(String(self)) ?? Double(self)
     return [WKTAny.valueField: .number(rounded)]

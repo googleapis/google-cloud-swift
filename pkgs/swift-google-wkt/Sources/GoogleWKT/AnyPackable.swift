@@ -22,8 +22,16 @@ import Foundation
 /// For `google-cloud-swift` developers: while it would be desirable to make this type `@_spi()` we
 /// cannot because then normal types like ``WKTApi`` cannot use it.
 public protocol _AnyPackable: Sendable {
+  /// The type URL for this message type when packed into a `WKTAny`.
   static var _anyTypeUrl: String { get }
+
+  /// Unpacks an instance from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match, or if deserialization fails.
   init(fromAny any: WKTAny) throws
+
+  /// Packs this instance into a `WKTStruct` representation.
   func _pack() throws -> WKTStruct
 }
 

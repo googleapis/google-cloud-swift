@@ -75,10 +75,16 @@ extension WKTFieldMask: CustomStringConvertible {
 
 // Makes `WKTFieldMask` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTFieldMask: _AnyPackable {
+  /// The type URL for `WKTFieldMask`: `"type.googleapis.com/google.protobuf.FieldMask"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.FieldMask"
   }
 
+  /// Initialize an instance of `WKTFieldMask` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.FieldMask"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -89,6 +95,7 @@ extension WKTFieldMask: _AnyPackable {
     self.paths = try Self.pathsFromString(string: v)
   }
 
+  /// Packs this `WKTFieldMask` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .string(stringValue)]
   }

@@ -20,10 +20,16 @@ public import Foundation
 public typealias WKTBytesValue = Foundation.Data
 
 extension Foundation.Data: _AnyPackable {
+  /// The type URL for `WKTBytesValue`: `"type.googleapis.com/google.protobuf.BytesValue"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.BytesValue"
   }
 
+  /// Initialize an instance of `WKTBytesValue` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.BytesValue"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -40,6 +46,7 @@ extension Foundation.Data: _AnyPackable {
     self = d
   }
 
+  /// Packs this `WKTBytesValue` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .string(self.base64EncodedString())]
   }

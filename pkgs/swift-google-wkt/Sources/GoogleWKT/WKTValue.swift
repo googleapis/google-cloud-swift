@@ -116,9 +116,16 @@ public enum WKTValue: Codable, Equatable, Sendable {
 
 // Makes `WKTValue` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTValue: _AnyPackable {
+  /// The type URL for `WKTValue`: `"type.googleapis.com/google.protobuf.Value"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.Value"
   }
+
+  /// Initialize an instance of `WKTValue` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.Value"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -128,6 +135,8 @@ extension WKTValue: _AnyPackable {
     }
     self = v
   }
+
+  /// Packs this `WKTValue` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: self]
   }
@@ -147,9 +156,16 @@ public typealias WKTStruct = [String: WKTValue]
 
 // Makes `WKTStruct` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTStruct: _AnyPackable {
+  /// The type URL for `WKTStruct`: `"type.googleapis.com/google.protobuf.Struct"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.Struct"
   }
+
+  /// Initialize an instance of `WKTStruct` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.Struct"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -159,6 +175,8 @@ extension WKTStruct: _AnyPackable {
     }
     self = v
   }
+
+  /// Packs this `WKTStruct` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .object(self)]
   }
@@ -169,9 +187,16 @@ public typealias WKTListValue = [WKTValue]
 
 // Makes `WKTListValue` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTListValue: _AnyPackable {
+  /// The type URL for `WKTListValue`: `"type.googleapis.com/google.protobuf.ListValue"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.ListValue"
   }
+
+  /// Initialize an instance of `WKTListValue` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.ListValue"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -181,6 +206,8 @@ extension WKTListValue: _AnyPackable {
     }
     self = v
   }
+
+  /// Packs this `WKTListValue` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .array(self)]
   }
