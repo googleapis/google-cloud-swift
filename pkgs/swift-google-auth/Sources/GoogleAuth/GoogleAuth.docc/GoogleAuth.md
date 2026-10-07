@@ -89,3 +89,18 @@ For advanced scenarios, ``CredentialsConfiguration`` allows explicit configurati
   Google Cloud access tokens via the Security Token Service ([AIP-4117]).
 - **[API Keys]**: Associate requests with a Google Cloud project for billing and quota
   when accessing APIs that support API key authentication.
+
+### Lifecycle and Reuse
+
+``Credentials`` instances (and the Google Cloud service clients that use them) are thread-safe
+(`Sendable`) and should be initialized once at application startup and reused across requests:
+
+- **Token Caching**: Each `Credentials` instance maintains an in-memory token cache and a
+  proactive background refresh task. Reusing a single instance allows subsequent RPCs to reuse
+  cached access tokens without additional token exchange round-trips.
+- **Filesystem I/O During ADC Resolution**: Resolving `.adc()` in ``Credentials/init(configuration:)``
+  performs synchronous filesystem I/O to read and validate local credential files (such as
+  `GOOGLE_APPLICATION_CREDENTIALS` or the well-known `gcloud` credentials file, which are assumed
+  to be small JSON configuration files). Initializing credentials or clients at startup avoids
+  performing synchronous file I/O on Swift's cooperative thread pool inside asynchronous request
+  handlers.
