@@ -191,12 +191,23 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `OperationError`: `"type.googleapis.com/google.container.v1.DatabaseEncryption.OperationError"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.DatabaseEncryption.OperationError"
     }
+
+    /// Initialize an instance of `OperationError` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.DatabaseEncryption.OperationError"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `OperationError` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -504,12 +515,23 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `DatabaseEncryption`: `"type.googleapis.com/google.container.v1.DatabaseEncryption"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.DatabaseEncryption"
   }
+
+  /// Initialize an instance of `DatabaseEncryption` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.DatabaseEncryption"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DatabaseEncryption` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

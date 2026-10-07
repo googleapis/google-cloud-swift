@@ -120,12 +120,23 @@ public struct ListAppConnectorsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `ListAppConnectorsRequest`: `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ListAppConnectorsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ListAppConnectorsRequest"
   }
+
+  /// Initialize an instance of `ListAppConnectorsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ListAppConnectorsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListAppConnectorsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

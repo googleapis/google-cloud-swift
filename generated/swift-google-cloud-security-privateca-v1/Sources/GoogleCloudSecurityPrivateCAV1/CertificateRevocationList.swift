@@ -277,13 +277,24 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `RevokedCertificate`: `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList.RevokedCertificate"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList.RevokedCertificate"
     }
+
+    /// Initialize an instance of `RevokedCertificate` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList.RevokedCertificate"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RevokedCertificate` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -418,12 +429,23 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
+  /// The type URL for `CertificateRevocationList`: `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList"
   }
+
+  /// Initialize an instance of `CertificateRevocationList` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CertificateRevocationList` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

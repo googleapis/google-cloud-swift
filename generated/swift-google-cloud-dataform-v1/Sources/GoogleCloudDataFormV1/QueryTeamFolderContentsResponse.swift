@@ -177,24 +177,46 @@ public struct QueryTeamFolderContentsResponse: Codable, Equatable, GoogleWKT._An
       indirect case repository(Repository)
     }
 
+    /// The type URL for `TeamFolderContentsEntry`: `"type.googleapis.com/google.cloud.dataform.v1.QueryTeamFolderContentsResponse.TeamFolderContentsEntry"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataform.v1.QueryTeamFolderContentsResponse.TeamFolderContentsEntry"
     }
+
+    /// Initialize an instance of `TeamFolderContentsEntry` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.QueryTeamFolderContentsResponse.TeamFolderContentsEntry"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TeamFolderContentsEntry` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `QueryTeamFolderContentsResponse`: `"type.googleapis.com/google.cloud.dataform.v1.QueryTeamFolderContentsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.QueryTeamFolderContentsResponse"
   }
+
+  /// Initialize an instance of `QueryTeamFolderContentsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.QueryTeamFolderContentsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `QueryTeamFolderContentsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

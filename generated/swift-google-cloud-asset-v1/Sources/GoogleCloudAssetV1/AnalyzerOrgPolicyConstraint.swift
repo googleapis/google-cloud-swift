@@ -305,13 +305,24 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
+      /// The type URL for `ListConstraint`: `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint.ListConstraint"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint.ListConstraint"
       }
+
+      /// Initialize an instance of `ListConstraint` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint.ListConstraint"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ListConstraint` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -367,13 +378,24 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
+      /// The type URL for `BooleanConstraint`: `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint.BooleanConstraint"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint.BooleanConstraint"
       }
+
+      /// Initialize an instance of `BooleanConstraint` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint.BooleanConstraint"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `BooleanConstraint` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -510,12 +532,23 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
       indirect case booleanConstraint(AnalyzerOrgPolicyConstraint.Constraint.BooleanConstraint)
     }
 
+    /// The type URL for `Constraint`: `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint"
     }
+
+    /// Initialize an instance of `Constraint` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Constraint` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -904,13 +937,24 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `CustomConstraint`: `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.CustomConstraint"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.CustomConstraint"
     }
+
+    /// Initialize an instance of `CustomConstraint` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.CustomConstraint"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CustomConstraint` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -923,12 +967,23 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     indirect case customConstraint(AnalyzerOrgPolicyConstraint.CustomConstraint)
   }
 
+  /// The type URL for `AnalyzerOrgPolicyConstraint`: `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint"
   }
+
+  /// Initialize an instance of `AnalyzerOrgPolicyConstraint` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AnalyzerOrgPolicyConstraint` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -91,12 +91,23 @@ public struct ListNotificationChannelDescriptorsResponse: Codable, Equatable, Go
     }
   }
 
+  /// The type URL for `ListNotificationChannelDescriptorsResponse`: `"type.googleapis.com/google.monitoring.v3.ListNotificationChannelDescriptorsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.ListNotificationChannelDescriptorsResponse"
   }
+
+  /// Initialize an instance of `ListNotificationChannelDescriptorsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.ListNotificationChannelDescriptorsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListNotificationChannelDescriptorsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

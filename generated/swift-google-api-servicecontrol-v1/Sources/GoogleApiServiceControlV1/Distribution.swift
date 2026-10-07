@@ -304,12 +304,23 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `LinearBuckets`: `"type.googleapis.com/google.api.servicecontrol.v1.Distribution.LinearBuckets"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.servicecontrol.v1.Distribution.LinearBuckets"
     }
+
+    /// Initialize an instance of `LinearBuckets` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.servicecontrol.v1.Distribution.LinearBuckets"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `LinearBuckets` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -398,12 +409,23 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ExponentialBuckets`: `"type.googleapis.com/google.api.servicecontrol.v1.Distribution.ExponentialBuckets"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.servicecontrol.v1.Distribution.ExponentialBuckets"
     }
+
+    /// Initialize an instance of `ExponentialBuckets` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.servicecontrol.v1.Distribution.ExponentialBuckets"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ExponentialBuckets` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -480,12 +502,23 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ExplicitBuckets`: `"type.googleapis.com/google.api.servicecontrol.v1.Distribution.ExplicitBuckets"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.servicecontrol.v1.Distribution.ExplicitBuckets"
     }
+
+    /// Initialize an instance of `ExplicitBuckets` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.servicecontrol.v1.Distribution.ExplicitBuckets"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ExplicitBuckets` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -523,12 +556,23 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case explicitBuckets(GoogleApiServiceControlV1.Distribution.ExplicitBuckets)
   }
 
+  /// The type URL for `Distribution`: `"type.googleapis.com/google.api.servicecontrol.v1.Distribution"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.servicecontrol.v1.Distribution"
   }
+
+  /// Initialize an instance of `Distribution` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.servicecontrol.v1.Distribution"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Distribution` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

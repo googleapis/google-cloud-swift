@@ -161,12 +161,23 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `SlsaProvenanceV1`: `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.SlsaProvenanceV1"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.SlsaProvenanceV1"
     }
+
+    /// Initialize an instance of `SlsaProvenanceV1` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.SlsaProvenanceV1"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SlsaProvenanceV1` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -251,12 +262,23 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `BuildDefinition`: `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.BuildDefinition"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.BuildDefinition"
     }
+
+    /// Initialize an instance of `BuildDefinition` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.BuildDefinition"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BuildDefinition` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -369,12 +391,23 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `ResourceDescriptor`: `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor"
     }
+
+    /// Initialize an instance of `ResourceDescriptor` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ResourceDescriptor` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -451,12 +484,23 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `RunDetails`: `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.RunDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.RunDetails"
     }
+
+    /// Initialize an instance of `RunDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.RunDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RunDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -537,12 +581,23 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `ProvenanceBuilder`: `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.ProvenanceBuilder"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.ProvenanceBuilder"
     }
+
+    /// Initialize an instance of `ProvenanceBuilder` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.ProvenanceBuilder"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ProvenanceBuilder` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -617,23 +672,45 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `BuildMetadata`: `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.BuildMetadata"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.BuildMetadata"
     }
+
+    /// Initialize an instance of `BuildMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1.BuildMetadata"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BuildMetadata` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `InTotoSlsaProvenanceV1`: `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1"
   }
+
+  /// Initialize an instance of `InTotoSlsaProvenanceV1` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.InTotoSlsaProvenanceV1"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `InTotoSlsaProvenanceV1` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

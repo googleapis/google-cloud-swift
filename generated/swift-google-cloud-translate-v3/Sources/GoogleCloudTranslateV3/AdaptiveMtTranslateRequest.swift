@@ -188,13 +188,24 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `ReferenceSentencePair`: `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePair"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePair"
     }
+
+    /// Initialize an instance of `ReferenceSentencePair` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePair"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ReferenceSentencePair` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -259,13 +270,24 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `ReferenceSentencePairList`: `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePairList"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePairList"
     }
+
+    /// Initialize an instance of `ReferenceSentencePairList` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePairList"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ReferenceSentencePairList` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -353,13 +375,24 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `ReferenceSentenceConfig`: `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig"
     }
+
+    /// Initialize an instance of `ReferenceSentenceConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ReferenceSentenceConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -452,24 +485,46 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `GlossaryConfig`: `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.GlossaryConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.GlossaryConfig"
     }
+
+    /// Initialize an instance of `GlossaryConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.GlossaryConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GlossaryConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `AdaptiveMtTranslateRequest`: `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest"
   }
+
+  /// Initialize an instance of `AdaptiveMtTranslateRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AdaptiveMtTranslateRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

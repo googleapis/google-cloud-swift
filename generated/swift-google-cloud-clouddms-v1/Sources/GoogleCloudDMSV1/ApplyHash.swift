@@ -98,12 +98,23 @@ public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case uuidFromBytes(GoogleWKT.WKTEmpty)
   }
 
+  /// The type URL for `ApplyHash`: `"type.googleapis.com/google.cloud.clouddms.v1.ApplyHash"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ApplyHash"
   }
+
+  /// Initialize an instance of `ApplyHash` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.clouddms.v1.ApplyHash"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ApplyHash` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

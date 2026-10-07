@@ -80,12 +80,23 @@
       }
     }
 
+    /// The type URL for `GetNotebookRuntimeTemplateRequest`: `"type.googleapis.com/google.cloud.aiplatform.v1.GetNotebookRuntimeTemplateRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.GetNotebookRuntimeTemplateRequest"
     }
+
+    /// Initialize an instance of `GetNotebookRuntimeTemplateRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.GetNotebookRuntimeTemplateRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GetNotebookRuntimeTemplateRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

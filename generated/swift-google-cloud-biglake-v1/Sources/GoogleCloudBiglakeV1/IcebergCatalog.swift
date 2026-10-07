@@ -411,12 +411,23 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Replica`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.Replica"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.Replica"
     }
+
+    /// Initialize an instance of `Replica` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.Replica"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Replica` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -488,12 +499,23 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `RestrictedLocationsConfig`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.RestrictedLocationsConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.RestrictedLocationsConfig"
     }
+
+    /// Initialize an instance of `RestrictedLocationsConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.RestrictedLocationsConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RestrictedLocationsConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -718,13 +740,24 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `UnityCatalogInfo`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.UnityCatalogInfo"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.UnityCatalogInfo"
       }
+
+      /// Initialize an instance of `UnityCatalogInfo` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.UnityCatalogInfo"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `UnityCatalogInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -811,13 +844,24 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `GlueCatalogInfo`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.GlueCatalogInfo"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.GlueCatalogInfo"
       }
+
+      /// Initialize an instance of `GlueCatalogInfo` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.GlueCatalogInfo"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GlueCatalogInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -910,13 +954,24 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `SnowflakeCatalogInfo`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.SnowflakeCatalogInfo"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.SnowflakeCatalogInfo"
       }
+
+      /// Initialize an instance of `SnowflakeCatalogInfo` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.SnowflakeCatalogInfo"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SnowflakeCatalogInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -982,13 +1037,24 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `RefreshSchedule`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshSchedule"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshSchedule"
       }
+
+      /// Initialize an instance of `RefreshSchedule` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshSchedule"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `RefreshSchedule` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1057,13 +1123,24 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `RefreshScope`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshScope"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshScope"
       }
+
+      /// Initialize an instance of `RefreshScope` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshScope"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `RefreshScope` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1134,13 +1211,24 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `RefreshOptions`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshOptions"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshOptions"
       }
+
+      /// Initialize an instance of `RefreshOptions` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshOptions"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `RefreshOptions` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1219,13 +1307,24 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `RefreshStatus`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshStatus"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshStatus"
       }
+
+      /// Initialize an instance of `RefreshStatus` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions.RefreshStatus"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `RefreshStatus` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1242,12 +1341,23 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
         IcebergCatalog.FederatedCatalogOptions.SnowflakeCatalogInfo)
     }
 
+    /// The type URL for `FederatedCatalogOptions`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions"
     }
+
+    /// Initialize an instance of `FederatedCatalogOptions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog.FederatedCatalogOptions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FederatedCatalogOptions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1506,12 +1616,23 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `IcebergCatalog`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog"
   }
+
+  /// Initialize an instance of `IcebergCatalog` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergCatalog"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `IcebergCatalog` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

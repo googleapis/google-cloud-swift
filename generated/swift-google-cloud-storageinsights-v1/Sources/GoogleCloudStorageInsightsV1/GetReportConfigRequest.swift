@@ -74,12 +74,23 @@ public struct GetReportConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `GetReportConfigRequest`: `"type.googleapis.com/google.cloud.storageinsights.v1.GetReportConfigRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.storageinsights.v1.GetReportConfigRequest"
   }
+
+  /// Initialize an instance of `GetReportConfigRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.GetReportConfigRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetReportConfigRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

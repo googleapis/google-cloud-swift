@@ -202,12 +202,23 @@ public struct NetworkSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `NetworkSettings`: `"type.googleapis.com/google.appengine.v1.NetworkSettings"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.NetworkSettings"
   }
+
+  /// Initialize an instance of `NetworkSettings` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.appengine.v1.NetworkSettings"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `NetworkSettings` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

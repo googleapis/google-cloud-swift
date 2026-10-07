@@ -499,13 +499,24 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `MavenRepositoryConfig`: `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.MavenRepositoryConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.Repository.MavenRepositoryConfig"
     }
+
+    /// Initialize an instance of `MavenRepositoryConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.MavenRepositoryConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MavenRepositoryConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -572,13 +583,24 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `DockerRepositoryConfig`: `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.DockerRepositoryConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.Repository.DockerRepositoryConfig"
     }
+
+    /// Initialize an instance of `DockerRepositoryConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.DockerRepositoryConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DockerRepositoryConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -922,13 +944,24 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `VulnerabilityScanningConfig`: `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.VulnerabilityScanningConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.Repository.VulnerabilityScanningConfig"
     }
+
+    /// Initialize an instance of `VulnerabilityScanningConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.VulnerabilityScanningConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VulnerabilityScanningConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1251,12 +1284,23 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case remoteRepositoryConfig(RemoteRepositoryConfig)
   }
 
+  /// The type URL for `Repository`: `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.Repository"
   }
+
+  /// Initialize an instance of `Repository` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Repository` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

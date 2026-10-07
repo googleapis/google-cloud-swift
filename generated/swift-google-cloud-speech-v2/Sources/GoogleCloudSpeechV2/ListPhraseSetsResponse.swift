@@ -92,12 +92,23 @@ public struct ListPhraseSetsResponse: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `ListPhraseSetsResponse`: `"type.googleapis.com/google.cloud.speech.v2.ListPhraseSetsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.ListPhraseSetsResponse"
   }
+
+  /// Initialize an instance of `ListPhraseSetsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.speech.v2.ListPhraseSetsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListPhraseSetsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

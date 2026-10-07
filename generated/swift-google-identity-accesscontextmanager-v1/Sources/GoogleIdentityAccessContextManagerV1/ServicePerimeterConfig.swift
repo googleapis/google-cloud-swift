@@ -219,13 +219,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `VpcAccessibleServices`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.VpcAccessibleServices"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.VpcAccessibleServices"
     }
+
+    /// Initialize an instance of `VpcAccessibleServices` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.VpcAccessibleServices"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VpcAccessibleServices` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -328,13 +339,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       case permission(Swift.String)
     }
 
+    /// The type URL for `MethodSelector`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.MethodSelector"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.MethodSelector"
     }
+
+    /// Initialize an instance of `MethodSelector` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.MethodSelector"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MethodSelector` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -419,13 +441,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `ApiOperation`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation"
     }
+
+    /// Initialize an instance of `ApiOperation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ApiOperation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -550,13 +583,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       case resource(Swift.String)
     }
 
+    /// The type URL for `IngressSource`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressSource"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressSource"
     }
+
+    /// Initialize an instance of `IngressSource` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressSource"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IngressSource` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -652,13 +696,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `IngressFrom`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressFrom"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressFrom"
     }
+
+    /// Initialize an instance of `IngressFrom` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressFrom"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IngressFrom` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -752,13 +807,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `IngressTo`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressTo"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressTo"
     }
+
+    /// Initialize an instance of `IngressTo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressTo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IngressTo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -854,13 +920,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `IngressPolicy`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy"
     }
+
+    /// Initialize an instance of `IngressPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IngressPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -949,13 +1026,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `EgressFrom`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressFrom"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressFrom"
     }
+
+    /// Initialize an instance of `EgressFrom` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressFrom"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `EgressFrom` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1070,13 +1158,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `EgressTo`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressTo"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressTo"
     }
+
+    /// Initialize an instance of `EgressTo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressTo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `EgressTo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1179,13 +1278,24 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `EgressPolicy`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressPolicy"
     }
+
+    /// Initialize an instance of `EgressPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `EgressPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1320,12 +1430,23 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `ServicePerimeterConfig`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig"
   }
+
+  /// Initialize an instance of `ServicePerimeterConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ServicePerimeterConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

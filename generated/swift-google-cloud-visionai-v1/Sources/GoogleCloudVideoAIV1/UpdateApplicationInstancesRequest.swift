@@ -194,24 +194,46 @@ public struct UpdateApplicationInstancesRequest: Codable, Equatable, GoogleWKT._
       }
     }
 
+    /// The type URL for `UpdateApplicationInstance`: `"type.googleapis.com/google.cloud.visionai.v1.UpdateApplicationInstancesRequest.UpdateApplicationInstance"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.visionai.v1.UpdateApplicationInstancesRequest.UpdateApplicationInstance"
     }
+
+    /// Initialize an instance of `UpdateApplicationInstance` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.UpdateApplicationInstancesRequest.UpdateApplicationInstance"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UpdateApplicationInstance` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `UpdateApplicationInstancesRequest`: `"type.googleapis.com/google.cloud.visionai.v1.UpdateApplicationInstancesRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.UpdateApplicationInstancesRequest"
   }
+
+  /// Initialize an instance of `UpdateApplicationInstancesRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.UpdateApplicationInstancesRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateApplicationInstancesRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

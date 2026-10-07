@@ -86,12 +86,23 @@ public struct PauseAnywhereCacheRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
+  /// The type URL for `PauseAnywhereCacheRequest`: `"type.googleapis.com/google.storage.control.v2.PauseAnywhereCacheRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.PauseAnywhereCacheRequest"
   }
+
+  /// Initialize an instance of `PauseAnywhereCacheRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.PauseAnywhereCacheRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PauseAnywhereCacheRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

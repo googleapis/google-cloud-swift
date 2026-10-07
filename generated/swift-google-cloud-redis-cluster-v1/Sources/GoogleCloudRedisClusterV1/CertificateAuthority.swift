@@ -220,25 +220,47 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `CertChain`: `"type.googleapis.com/google.cloud.redis.cluster.v1.CertificateAuthority.ManagedCertificateAuthority.CertChain"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.redis.cluster.v1.CertificateAuthority.ManagedCertificateAuthority.CertChain"
       }
+
+      /// Initialize an instance of `CertChain` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.CertificateAuthority.ManagedCertificateAuthority.CertChain"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `CertChain` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `ManagedCertificateAuthority`: `"type.googleapis.com/google.cloud.redis.cluster.v1.CertificateAuthority.ManagedCertificateAuthority"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.redis.cluster.v1.CertificateAuthority.ManagedCertificateAuthority"
     }
+
+    /// Initialize an instance of `ManagedCertificateAuthority` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.CertificateAuthority.ManagedCertificateAuthority"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ManagedCertificateAuthority` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -249,12 +271,23 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case managedServerCa(CertificateAuthority.ManagedCertificateAuthority)
   }
 
+  /// The type URL for `CertificateAuthority`: `"type.googleapis.com/google.cloud.redis.cluster.v1.CertificateAuthority"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.cluster.v1.CertificateAuthority"
   }
+
+  /// Initialize an instance of `CertificateAuthority` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.CertificateAuthority"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CertificateAuthority` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

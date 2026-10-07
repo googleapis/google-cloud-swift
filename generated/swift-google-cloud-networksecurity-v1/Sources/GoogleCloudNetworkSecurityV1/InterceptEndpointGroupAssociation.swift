@@ -391,13 +391,24 @@ public struct InterceptEndpointGroupAssociation: Codable, Equatable, GoogleWKT._
       }
     }
 
+    /// The type URL for `LocationDetails`: `"type.googleapis.com/google.cloud.networksecurity.v1.InterceptEndpointGroupAssociation.LocationDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.InterceptEndpointGroupAssociation.LocationDetails"
     }
+
+    /// Initialize an instance of `LocationDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.InterceptEndpointGroupAssociation.LocationDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `LocationDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -554,12 +565,23 @@ public struct InterceptEndpointGroupAssociation: Codable, Equatable, GoogleWKT._
     }
   }
 
+  /// The type URL for `InterceptEndpointGroupAssociation`: `"type.googleapis.com/google.cloud.networksecurity.v1.InterceptEndpointGroupAssociation"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.InterceptEndpointGroupAssociation"
   }
+
+  /// Initialize an instance of `InterceptEndpointGroupAssociation` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.InterceptEndpointGroupAssociation"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `InterceptEndpointGroupAssociation` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -83,12 +83,23 @@ public struct GetPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `GetPolicyRequest`: `"type.googleapis.com/google.iam.v2.GetPolicyRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.v2.GetPolicyRequest"
   }
+
+  /// Initialize an instance of `GetPolicyRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.iam.v2.GetPolicyRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetPolicyRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

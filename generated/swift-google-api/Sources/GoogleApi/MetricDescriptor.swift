@@ -526,12 +526,23 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `MetricDescriptorMetadata`: `"type.googleapis.com/google.api.MetricDescriptor.MetricDescriptorMetadata"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.MetricDescriptor.MetricDescriptorMetadata"
     }
+
+    /// Initialize an instance of `MetricDescriptorMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.MetricDescriptor.MetricDescriptorMetadata"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MetricDescriptorMetadata` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -816,12 +827,23 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `MetricDescriptor`: `"type.googleapis.com/google.api.MetricDescriptor"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.MetricDescriptor"
   }
+
+  /// Initialize an instance of `MetricDescriptor` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.MetricDescriptor"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MetricDescriptor` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

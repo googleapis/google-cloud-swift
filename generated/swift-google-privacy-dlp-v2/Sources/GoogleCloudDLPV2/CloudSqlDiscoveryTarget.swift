@@ -128,12 +128,23 @@ public struct CloudSqlDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
     indirect case disabled(Disabled)
   }
 
+  /// The type URL for `CloudSqlDiscoveryTarget`: `"type.googleapis.com/google.privacy.dlp.v2.CloudSqlDiscoveryTarget"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.CloudSqlDiscoveryTarget"
   }
+
+  /// Initialize an instance of `CloudSqlDiscoveryTarget` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CloudSqlDiscoveryTarget"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CloudSqlDiscoveryTarget` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -93,12 +93,23 @@ public struct CreatePostureDeploymentRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `CreatePostureDeploymentRequest`: `"type.googleapis.com/google.cloud.securityposture.v1.CreatePostureDeploymentRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securityposture.v1.CreatePostureDeploymentRequest"
   }
+
+  /// Initialize an instance of `CreatePostureDeploymentRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securityposture.v1.CreatePostureDeploymentRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreatePostureDeploymentRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

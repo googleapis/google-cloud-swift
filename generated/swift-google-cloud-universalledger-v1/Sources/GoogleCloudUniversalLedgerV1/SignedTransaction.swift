@@ -152,12 +152,23 @@ public struct SignedTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `SignedTransaction`: `"type.googleapis.com/google.cloud.universalledger.v1.SignedTransaction"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.universalledger.v1.SignedTransaction"
   }
+
+  /// Initialize an instance of `SignedTransaction` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.universalledger.v1.SignedTransaction"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SignedTransaction` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

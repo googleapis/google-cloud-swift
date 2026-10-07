@@ -95,12 +95,23 @@ public struct GetStorageLayoutRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// The type URL for `GetStorageLayoutRequest`: `"type.googleapis.com/google.storage.control.v2.GetStorageLayoutRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.GetStorageLayoutRequest"
   }
+
+  /// Initialize an instance of `GetStorageLayoutRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.GetStorageLayoutRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetStorageLayoutRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

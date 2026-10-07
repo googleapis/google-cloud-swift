@@ -258,12 +258,23 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SessionStateEvent`: `"type.googleapis.com/google.cloud.devicestreaming.v1.DeviceSession.SessionStateEvent"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.devicestreaming.v1.DeviceSession.SessionStateEvent"
     }
+
+    /// Initialize an instance of `SessionStateEvent` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.devicestreaming.v1.DeviceSession.SessionStateEvent"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SessionStateEvent` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -442,12 +453,23 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case expireTime(GoogleWKT.WKTTimestamp)
   }
 
+  /// The type URL for `DeviceSession`: `"type.googleapis.com/google.cloud.devicestreaming.v1.DeviceSession"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.devicestreaming.v1.DeviceSession"
   }
+
+  /// Initialize an instance of `DeviceSession` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.devicestreaming.v1.DeviceSession"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeviceSession` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

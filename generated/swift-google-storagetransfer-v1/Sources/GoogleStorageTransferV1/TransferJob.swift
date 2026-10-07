@@ -373,12 +373,23 @@ public struct TransferJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `TransferJob`: `"type.googleapis.com/google.storagetransfer.v1.TransferJob"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.TransferJob"
   }
+
+  /// Initialize an instance of `TransferJob` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storagetransfer.v1.TransferJob"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TransferJob` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

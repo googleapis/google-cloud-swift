@@ -65,13 +65,24 @@ public struct GcpUserAccessBindingOperationMetadata: Codable, Equatable, GoogleW
     }
   }
 
+  /// The type URL for `GcpUserAccessBindingOperationMetadata`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.GcpUserAccessBindingOperationMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.identity.accesscontextmanager.v1.GcpUserAccessBindingOperationMetadata"
   }
+
+  /// Initialize an instance of `GcpUserAccessBindingOperationMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.GcpUserAccessBindingOperationMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GcpUserAccessBindingOperationMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

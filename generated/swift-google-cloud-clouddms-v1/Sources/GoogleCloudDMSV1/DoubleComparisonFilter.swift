@@ -84,12 +84,23 @@ public struct DoubleComparisonFilter: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `DoubleComparisonFilter`: `"type.googleapis.com/google.cloud.clouddms.v1.DoubleComparisonFilter"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.DoubleComparisonFilter"
   }
+
+  /// Initialize an instance of `DoubleComparisonFilter` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.clouddms.v1.DoubleComparisonFilter"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DoubleComparisonFilter` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

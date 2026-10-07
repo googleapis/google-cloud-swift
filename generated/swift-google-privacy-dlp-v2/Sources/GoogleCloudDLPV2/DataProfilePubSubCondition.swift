@@ -167,12 +167,23 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       case minimumSensitivityScore(DataProfilePubSubCondition.ProfileScoreBucket)
     }
 
+    /// The type URL for `PubSubCondition`: `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubCondition"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubCondition"
     }
+
+    /// Initialize an instance of `PubSubCondition` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubCondition"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PubSubCondition` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -368,13 +379,24 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `PubSubExpressions`: `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubExpressions"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubExpressions"
     }
+
+    /// Initialize an instance of `PubSubExpressions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubExpressions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PubSubExpressions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -497,12 +519,23 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `DataProfilePubSubCondition`: `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition"
   }
+
+  /// Initialize an instance of `DataProfilePubSubCondition` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DataProfilePubSubCondition` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

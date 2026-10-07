@@ -671,12 +671,23 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `UpdateInfo`: `"type.googleapis.com/google.cloud.memorystore.v1.Instance.StateInfo.UpdateInfo"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.memorystore.v1.Instance.StateInfo.UpdateInfo"
       }
+
+      /// Initialize an instance of `UpdateInfo` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.Instance.StateInfo.UpdateInfo"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `UpdateInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -687,12 +698,23 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case updateInfo(Instance.StateInfo.UpdateInfo)
     }
 
+    /// The type URL for `StateInfo`: `"type.googleapis.com/google.cloud.memorystore.v1.Instance.StateInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.memorystore.v1.Instance.StateInfo"
     }
+
+    /// Initialize an instance of `StateInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.Instance.StateInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StateInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -756,12 +778,23 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `GcsBackupSource`: `"type.googleapis.com/google.cloud.memorystore.v1.Instance.GcsBackupSource"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.memorystore.v1.Instance.GcsBackupSource"
     }
+
+    /// Initialize an instance of `GcsBackupSource` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.Instance.GcsBackupSource"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GcsBackupSource` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -829,12 +862,23 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ManagedBackupSource`: `"type.googleapis.com/google.cloud.memorystore.v1.Instance.ManagedBackupSource"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.memorystore.v1.Instance.ManagedBackupSource"
     }
+
+    /// Initialize an instance of `ManagedBackupSource` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.Instance.ManagedBackupSource"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ManagedBackupSource` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -902,12 +946,23 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `InstanceEndpoint`: `"type.googleapis.com/google.cloud.memorystore.v1.Instance.InstanceEndpoint"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.memorystore.v1.Instance.InstanceEndpoint"
     }
+
+    /// Initialize an instance of `InstanceEndpoint` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.Instance.InstanceEndpoint"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InstanceEndpoint` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1012,12 +1067,23 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case pscConnection(PscConnection)
     }
 
+    /// The type URL for `ConnectionDetail`: `"type.googleapis.com/google.cloud.memorystore.v1.Instance.ConnectionDetail"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.memorystore.v1.Instance.ConnectionDetail"
     }
+
+    /// Initialize an instance of `ConnectionDetail` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.Instance.ConnectionDetail"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConnectionDetail` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1854,12 +1920,23 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case managedBackupSource(Instance.ManagedBackupSource)
   }
 
+  /// The type URL for `Instance`: `"type.googleapis.com/google.cloud.memorystore.v1.Instance"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.memorystore.v1.Instance"
   }
+
+  /// Initialize an instance of `Instance` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.Instance"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Instance` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

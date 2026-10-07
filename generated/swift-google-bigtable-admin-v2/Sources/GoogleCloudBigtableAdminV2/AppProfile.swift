@@ -343,13 +343,24 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `RowAffinity`: `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny.RowAffinity"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny.RowAffinity"
       }
+
+      /// Initialize an instance of `RowAffinity` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny.RowAffinity"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `RowAffinity` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -369,12 +380,23 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case rowAffinity(AppProfile.MultiClusterRoutingUseAny.RowAffinity)
     }
 
+    /// The type URL for `MultiClusterRoutingUseAny`: `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny"
     }
+
+    /// Initialize an instance of `MultiClusterRoutingUseAny` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MultiClusterRoutingUseAny` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -452,12 +474,23 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SingleClusterRouting`: `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.SingleClusterRouting"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.AppProfile.SingleClusterRouting"
     }
+
+    /// Initialize an instance of `SingleClusterRouting` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.SingleClusterRouting"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SingleClusterRouting` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -580,24 +613,46 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `MemoryConfig`: `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.StandardIsolation.MemoryConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.bigtable.admin.v2.AppProfile.StandardIsolation.MemoryConfig"
       }
+
+      /// Initialize an instance of `MemoryConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.StandardIsolation.MemoryConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `MemoryConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `StandardIsolation`: `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.StandardIsolation"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.AppProfile.StandardIsolation"
     }
+
+    /// Initialize an instance of `StandardIsolation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.StandardIsolation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StandardIsolation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -777,12 +832,23 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `DataBoostIsolationReadOnly`: `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.DataBoostIsolationReadOnly"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.AppProfile.DataBoostIsolationReadOnly"
     }
+
+    /// Initialize an instance of `DataBoostIsolationReadOnly` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.AppProfile.DataBoostIsolationReadOnly"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DataBoostIsolationReadOnly` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -936,12 +1002,23 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case dataBoostIsolationReadOnly(AppProfile.DataBoostIsolationReadOnly)
   }
 
+  /// The type URL for `AppProfile`: `"type.googleapis.com/google.bigtable.admin.v2.AppProfile"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.AppProfile"
   }
+
+  /// Initialize an instance of `AppProfile` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.AppProfile"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AppProfile` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

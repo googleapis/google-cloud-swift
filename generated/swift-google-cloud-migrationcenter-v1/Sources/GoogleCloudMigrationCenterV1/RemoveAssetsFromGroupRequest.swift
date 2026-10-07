@@ -117,12 +117,23 @@ public struct RemoveAssetsFromGroupRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
+  /// The type URL for `RemoveAssetsFromGroupRequest`: `"type.googleapis.com/google.cloud.migrationcenter.v1.RemoveAssetsFromGroupRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.RemoveAssetsFromGroupRequest"
   }
+
+  /// Initialize an instance of `RemoveAssetsFromGroupRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.RemoveAssetsFromGroupRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RemoveAssetsFromGroupRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

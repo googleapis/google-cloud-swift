@@ -178,13 +178,24 @@
         }
       }
 
+      /// The type URL for `AttributedItem`: `"type.googleapis.com/google.cloud.aiplatform.v1.ErrorAnalysisAnnotation.AttributedItem"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ErrorAnalysisAnnotation.AttributedItem"
       }
+
+      /// Initialize an instance of `AttributedItem` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.ErrorAnalysisAnnotation.AttributedItem"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `AttributedItem` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -314,12 +325,23 @@
       }
     }
 
+    /// The type URL for `ErrorAnalysisAnnotation`: `"type.googleapis.com/google.cloud.aiplatform.v1.ErrorAnalysisAnnotation"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ErrorAnalysisAnnotation"
     }
+
+    /// Initialize an instance of `ErrorAnalysisAnnotation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.ErrorAnalysisAnnotation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ErrorAnalysisAnnotation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

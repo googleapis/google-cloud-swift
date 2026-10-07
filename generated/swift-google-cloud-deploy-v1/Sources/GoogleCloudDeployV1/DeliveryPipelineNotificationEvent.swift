@@ -103,12 +103,23 @@ public struct DeliveryPipelineNotificationEvent: Codable, Equatable, GoogleWKT._
     }
   }
 
+  /// The type URL for `DeliveryPipelineNotificationEvent`: `"type.googleapis.com/google.cloud.deploy.v1.DeliveryPipelineNotificationEvent"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.DeliveryPipelineNotificationEvent"
   }
+
+  /// Initialize an instance of `DeliveryPipelineNotificationEvent` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.deploy.v1.DeliveryPipelineNotificationEvent"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeliveryPipelineNotificationEvent` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

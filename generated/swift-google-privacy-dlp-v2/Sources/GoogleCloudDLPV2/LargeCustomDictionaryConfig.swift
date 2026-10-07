@@ -125,12 +125,23 @@ public struct LargeCustomDictionaryConfig: Codable, Equatable, GoogleWKT._AnyPac
     indirect case bigQueryField(BigQueryField)
   }
 
+  /// The type URL for `LargeCustomDictionaryConfig`: `"type.googleapis.com/google.privacy.dlp.v2.LargeCustomDictionaryConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.LargeCustomDictionaryConfig"
   }
+
+  /// Initialize an instance of `LargeCustomDictionaryConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.LargeCustomDictionaryConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `LargeCustomDictionaryConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

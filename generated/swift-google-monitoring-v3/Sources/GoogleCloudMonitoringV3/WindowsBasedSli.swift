@@ -237,12 +237,23 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case basicSliPerformance(BasicSli)
     }
 
+    /// The type URL for `PerformanceThreshold`: `"type.googleapis.com/google.monitoring.v3.WindowsBasedSli.PerformanceThreshold"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.WindowsBasedSli.PerformanceThreshold"
     }
+
+    /// Initialize an instance of `PerformanceThreshold` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.WindowsBasedSli.PerformanceThreshold"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PerformanceThreshold` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -317,12 +328,23 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `MetricRange`: `"type.googleapis.com/google.monitoring.v3.WindowsBasedSli.MetricRange"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.WindowsBasedSli.MetricRange"
     }
+
+    /// Initialize an instance of `MetricRange` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.WindowsBasedSli.MetricRange"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MetricRange` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -344,12 +366,23 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case metricSumInRange(WindowsBasedSli.MetricRange)
   }
 
+  /// The type URL for `WindowsBasedSli`: `"type.googleapis.com/google.monitoring.v3.WindowsBasedSli"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.WindowsBasedSli"
   }
+
+  /// Initialize an instance of `WindowsBasedSli` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.WindowsBasedSli"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `WindowsBasedSli` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

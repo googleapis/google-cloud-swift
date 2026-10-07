@@ -237,12 +237,23 @@ public struct OrderedJob: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case flinkJob(FlinkJob)
   }
 
+  /// The type URL for `OrderedJob`: `"type.googleapis.com/google.cloud.dataproc.v1.OrderedJob"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.OrderedJob"
   }
+
+  /// Initialize an instance of `OrderedJob` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.OrderedJob"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `OrderedJob` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

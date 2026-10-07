@@ -285,13 +285,24 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `BigQueryExport`: `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.BigQueryExport"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.BigQueryExport"
       }
+
+      /// Initialize an instance of `BigQueryExport` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.BigQueryExport"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `BigQueryExport` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -356,13 +367,24 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Recipients`: `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.Recipients"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.Recipients"
       }
+
+      /// Initialize an instance of `Recipients` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.Recipients"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Recipients` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -426,13 +448,24 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ScoreThresholdTrigger`: `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.ScoreThresholdTrigger"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.ScoreThresholdTrigger"
       }
+
+      /// Initialize an instance of `ScoreThresholdTrigger` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.ScoreThresholdTrigger"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ScoreThresholdTrigger` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -485,13 +518,24 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `JobFailureTrigger`: `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.JobFailureTrigger"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.JobFailureTrigger"
       }
+
+      /// Initialize an instance of `JobFailureTrigger` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.JobFailureTrigger"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `JobFailureTrigger` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -544,13 +588,24 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `JobEndTrigger`: `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.JobEndTrigger"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.JobEndTrigger"
       }
+
+      /// Initialize an instance of `JobEndTrigger` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.JobEndTrigger"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `JobEndTrigger` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -637,35 +692,68 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `NotificationReport`: `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.NotificationReport"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.NotificationReport"
       }
+
+      /// Initialize an instance of `NotificationReport` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.NotificationReport"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `NotificationReport` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `PostScanActions`: `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions"
     }
+
+    /// Initialize an instance of `PostScanActions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec.PostScanActions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PostScanActions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `DataQualitySpec`: `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec"
   }
+
+  /// Initialize an instance of `DataQualitySpec` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataQualitySpec"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DataQualitySpec` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

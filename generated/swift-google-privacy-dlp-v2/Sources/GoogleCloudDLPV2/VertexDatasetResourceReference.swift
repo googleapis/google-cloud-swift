@@ -79,12 +79,23 @@ public struct VertexDatasetResourceReference: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `VertexDatasetResourceReference`: `"type.googleapis.com/google.privacy.dlp.v2.VertexDatasetResourceReference"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.VertexDatasetResourceReference"
   }
+
+  /// Initialize an instance of `VertexDatasetResourceReference` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.VertexDatasetResourceReference"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `VertexDatasetResourceReference` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -207,12 +207,23 @@ public struct AwsS3Data: Codable, Equatable, GoogleWKT._AnyPackable,
     case managedPrivateNetwork(Swift.Bool)
   }
 
+  /// The type URL for `AwsS3Data`: `"type.googleapis.com/google.storagetransfer.v1.AwsS3Data"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.AwsS3Data"
   }
+
+  /// Initialize an instance of `AwsS3Data` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storagetransfer.v1.AwsS3Data"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AwsS3Data` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

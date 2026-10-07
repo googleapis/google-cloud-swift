@@ -92,12 +92,23 @@ public struct OidcToken: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `OidcToken`: `"type.googleapis.com/google.cloud.scheduler.v1.OidcToken"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.scheduler.v1.OidcToken"
   }
+
+  /// Initialize an instance of `OidcToken` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.scheduler.v1.OidcToken"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `OidcToken` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

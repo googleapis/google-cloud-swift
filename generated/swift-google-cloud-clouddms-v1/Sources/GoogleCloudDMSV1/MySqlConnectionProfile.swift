@@ -132,12 +132,23 @@ public struct MySqlConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `MySqlConnectionProfile`: `"type.googleapis.com/google.cloud.clouddms.v1.MySqlConnectionProfile"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.MySqlConnectionProfile"
   }
+
+  /// Initialize an instance of `MySqlConnectionProfile` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.clouddms.v1.MySqlConnectionProfile"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MySqlConnectionProfile` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

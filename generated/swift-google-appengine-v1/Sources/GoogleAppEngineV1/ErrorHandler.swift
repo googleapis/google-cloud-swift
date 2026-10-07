@@ -218,12 +218,23 @@ public struct ErrorHandler: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ErrorHandler`: `"type.googleapis.com/google.appengine.v1.ErrorHandler"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.ErrorHandler"
   }
+
+  /// Initialize an instance of `ErrorHandler` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.appengine.v1.ErrorHandler"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ErrorHandler` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

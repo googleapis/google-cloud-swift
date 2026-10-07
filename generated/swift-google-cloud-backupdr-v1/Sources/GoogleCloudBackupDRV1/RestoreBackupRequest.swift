@@ -222,12 +222,23 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case diskRestoreProperties(DiskRestoreProperties)
   }
 
+  /// The type URL for `RestoreBackupRequest`: `"type.googleapis.com/google.cloud.backupdr.v1.RestoreBackupRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.RestoreBackupRequest"
   }
+
+  /// Initialize an instance of `RestoreBackupRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.backupdr.v1.RestoreBackupRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RestoreBackupRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

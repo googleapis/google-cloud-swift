@@ -182,24 +182,46 @@ public struct TrainProcessorVersionMetadata: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
+    /// The type URL for `DatasetValidation`: `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionMetadata.DatasetValidation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionMetadata.DatasetValidation"
     }
+
+    /// Initialize an instance of `DatasetValidation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionMetadata.DatasetValidation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DatasetValidation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `TrainProcessorVersionMetadata`: `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionMetadata"
   }
+
+  /// Initialize an instance of `TrainProcessorVersionMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TrainProcessorVersionMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

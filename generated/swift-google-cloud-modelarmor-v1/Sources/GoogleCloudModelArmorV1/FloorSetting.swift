@@ -254,24 +254,46 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `MultiLanguageDetection`: `"type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata.MultiLanguageDetection"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata.MultiLanguageDetection"
       }
+
+      /// Initialize an instance of `MultiLanguageDetection` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata.MultiLanguageDetection"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `MultiLanguageDetection` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `FloorSettingMetadata`: `"type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata"
     }
+
+    /// Initialize an instance of `FloorSettingMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FloorSettingMetadata` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -387,12 +409,23 @@ public struct FloorSetting: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `FloorSetting`: `"type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting"
   }
+
+  /// Initialize an instance of `FloorSetting` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `FloorSetting` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

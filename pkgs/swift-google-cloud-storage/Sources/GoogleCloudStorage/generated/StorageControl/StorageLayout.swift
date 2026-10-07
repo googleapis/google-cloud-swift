@@ -179,12 +179,23 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `CustomPlacementConfig`: `"type.googleapis.com/google.storage.control.v2.StorageLayout.CustomPlacementConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.StorageLayout.CustomPlacementConfig"
     }
+
+    /// Initialize an instance of `CustomPlacementConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.StorageLayout.CustomPlacementConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CustomPlacementConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -247,12 +258,23 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `HierarchicalNamespace`: `"type.googleapis.com/google.storage.control.v2.StorageLayout.HierarchicalNamespace"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.StorageLayout.HierarchicalNamespace"
     }
+
+    /// Initialize an instance of `HierarchicalNamespace` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.StorageLayout.HierarchicalNamespace"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HierarchicalNamespace` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -316,23 +338,45 @@ public struct StorageLayout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `RapidCacheInfo`: `"type.googleapis.com/google.storage.control.v2.StorageLayout.RapidCacheInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.StorageLayout.RapidCacheInfo"
     }
+
+    /// Initialize an instance of `RapidCacheInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.StorageLayout.RapidCacheInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RapidCacheInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `StorageLayout`: `"type.googleapis.com/google.storage.control.v2.StorageLayout"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.StorageLayout"
   }
+
+  /// Initialize an instance of `StorageLayout` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.StorageLayout"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `StorageLayout` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -150,12 +150,23 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
       }
     }
 
+    /// The type URL for `Entity`: `"type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.Entity"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.Entity"
     }
+
+    /// Initialize an instance of `Entity` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.Entity"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Entity` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -329,36 +340,69 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
         }
       }
 
+      /// The type URL for `NormalizedBoundingBox`: `"type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox.NormalizedBoundingBox"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox.NormalizedBoundingBox"
       }
+
+      /// Initialize an instance of `NormalizedBoundingBox` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox.NormalizedBoundingBox"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `NormalizedBoundingBox` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `IdentifiedBox`: `"type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox"
     }
+
+    /// Initialize an instance of `IdentifiedBox` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IdentifiedBox` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ObjectDetectionPredictionResult`: `"type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult"
   }
+
+  /// Initialize an instance of `ObjectDetectionPredictionResult` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ObjectDetectionPredictionResult` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

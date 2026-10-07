@@ -74,12 +74,23 @@ public struct CancelImageImportJobRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `CancelImageImportJobRequest`: `"type.googleapis.com/google.cloud.vmmigration.v1.CancelImageImportJobRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.CancelImageImportJobRequest"
   }
+
+  /// Initialize an instance of `CancelImageImportJobRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vmmigration.v1.CancelImageImportJobRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CancelImageImportJobRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

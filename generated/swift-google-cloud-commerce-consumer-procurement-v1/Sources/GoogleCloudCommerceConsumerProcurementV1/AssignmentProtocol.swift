@@ -149,13 +149,24 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ManualAssignmentType`: `"type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol.ManualAssignmentType"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol.ManualAssignmentType"
     }
+
+    /// Initialize an instance of `ManualAssignmentType` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol.ManualAssignmentType"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ManualAssignmentType` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -219,13 +230,24 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `AutoAssignmentType`: `"type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol.AutoAssignmentType"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol.AutoAssignmentType"
     }
+
+    /// Initialize an instance of `AutoAssignmentType` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol.AutoAssignmentType"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AutoAssignmentType` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -239,12 +261,23 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case autoAssignmentType(AssignmentProtocol.AutoAssignmentType)
   }
 
+  /// The type URL for `AssignmentProtocol`: `"type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol"
   }
+
+  /// Initialize an instance of `AssignmentProtocol` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AssignmentProtocol` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

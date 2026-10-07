@@ -85,12 +85,23 @@ public struct QueryGrantableRolesResponse: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `QueryGrantableRolesResponse`: `"type.googleapis.com/google.iam.admin.v1.QueryGrantableRolesResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.admin.v1.QueryGrantableRolesResponse"
   }
+
+  /// Initialize an instance of `QueryGrantableRolesResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.iam.admin.v1.QueryGrantableRolesResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `QueryGrantableRolesResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

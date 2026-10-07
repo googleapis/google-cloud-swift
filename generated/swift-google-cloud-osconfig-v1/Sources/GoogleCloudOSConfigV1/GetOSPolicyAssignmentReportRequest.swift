@@ -82,12 +82,23 @@ public struct GetOSPolicyAssignmentReportRequest: Codable, Equatable, GoogleWKT.
     }
   }
 
+  /// The type URL for `GetOSPolicyAssignmentReportRequest`: `"type.googleapis.com/google.cloud.osconfig.v1.GetOSPolicyAssignmentReportRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.osconfig.v1.GetOSPolicyAssignmentReportRequest"
   }
+
+  /// Initialize an instance of `GetOSPolicyAssignmentReportRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.osconfig.v1.GetOSPolicyAssignmentReportRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetOSPolicyAssignmentReportRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -95,12 +95,23 @@ public struct DeleteInternalRangeRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `DeleteInternalRangeRequest`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.DeleteInternalRangeRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.DeleteInternalRangeRequest"
   }
+
+  /// Initialize an instance of `DeleteInternalRangeRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.DeleteInternalRangeRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeleteInternalRangeRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

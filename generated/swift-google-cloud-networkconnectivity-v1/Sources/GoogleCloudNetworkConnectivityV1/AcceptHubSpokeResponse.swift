@@ -75,12 +75,23 @@ public struct AcceptHubSpokeResponse: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `AcceptHubSpokeResponse`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.AcceptHubSpokeResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.AcceptHubSpokeResponse"
   }
+
+  /// Initialize an instance of `AcceptHubSpokeResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.AcceptHubSpokeResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AcceptHubSpokeResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

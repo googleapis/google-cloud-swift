@@ -66,12 +66,23 @@ public struct AlterMetadataResourceLocationResponse: Codable, Equatable, GoogleW
     }
   }
 
+  /// The type URL for `AlterMetadataResourceLocationResponse`: `"type.googleapis.com/google.cloud.metastore.v1.AlterMetadataResourceLocationResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.metastore.v1.AlterMetadataResourceLocationResponse"
   }
+
+  /// Initialize an instance of `AlterMetadataResourceLocationResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.metastore.v1.AlterMetadataResourceLocationResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AlterMetadataResourceLocationResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

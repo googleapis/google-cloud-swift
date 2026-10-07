@@ -109,13 +109,24 @@ public struct UpdateMulticloudDataTransferConfigRequest: Codable, Equatable, Goo
     }
   }
 
+  /// The type URL for `UpdateMulticloudDataTransferConfigRequest`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.UpdateMulticloudDataTransferConfigRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.networkconnectivity.v1.UpdateMulticloudDataTransferConfigRequest"
   }
+
+  /// Initialize an instance of `UpdateMulticloudDataTransferConfigRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.UpdateMulticloudDataTransferConfigRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateMulticloudDataTransferConfigRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

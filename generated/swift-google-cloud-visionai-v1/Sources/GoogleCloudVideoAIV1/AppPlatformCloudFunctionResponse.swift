@@ -155,24 +155,46 @@ public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleWKT._A
       }
     }
 
+    /// The type URL for `StructedOutputAnnotation`: `"type.googleapis.com/google.cloud.visionai.v1.AppPlatformCloudFunctionResponse.StructedOutputAnnotation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.visionai.v1.AppPlatformCloudFunctionResponse.StructedOutputAnnotation"
     }
+
+    /// Initialize an instance of `StructedOutputAnnotation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.AppPlatformCloudFunctionResponse.StructedOutputAnnotation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StructedOutputAnnotation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `AppPlatformCloudFunctionResponse`: `"type.googleapis.com/google.cloud.visionai.v1.AppPlatformCloudFunctionResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.AppPlatformCloudFunctionResponse"
   }
+
+  /// Initialize an instance of `AppPlatformCloudFunctionResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.AppPlatformCloudFunctionResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AppPlatformCloudFunctionResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

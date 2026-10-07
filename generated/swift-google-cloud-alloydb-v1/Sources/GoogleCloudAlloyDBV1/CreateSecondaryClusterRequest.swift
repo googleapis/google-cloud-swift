@@ -122,12 +122,23 @@ public struct CreateSecondaryClusterRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `CreateSecondaryClusterRequest`: `"type.googleapis.com/google.cloud.alloydb.v1.CreateSecondaryClusterRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.CreateSecondaryClusterRequest"
   }
+
+  /// Initialize an instance of `CreateSecondaryClusterRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.CreateSecondaryClusterRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateSecondaryClusterRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

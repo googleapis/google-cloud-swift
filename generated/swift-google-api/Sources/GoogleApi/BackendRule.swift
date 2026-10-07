@@ -451,12 +451,23 @@ public struct BackendRule: Codable, Equatable, GoogleWKT._AnyPackable,
     case disableAuth(Swift.Bool)
   }
 
+  /// The type URL for `BackendRule`: `"type.googleapis.com/google.api.BackendRule"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.BackendRule"
   }
+
+  /// Initialize an instance of `BackendRule` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.BackendRule"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BackendRule` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

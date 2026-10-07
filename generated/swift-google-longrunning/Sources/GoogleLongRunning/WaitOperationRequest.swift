@@ -86,12 +86,23 @@ public struct WaitOperationRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `WaitOperationRequest`: `"type.googleapis.com/google.longrunning.WaitOperationRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.longrunning.WaitOperationRequest"
   }
+
+  /// Initialize an instance of `WaitOperationRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.longrunning.WaitOperationRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `WaitOperationRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

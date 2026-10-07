@@ -448,36 +448,69 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
         }
       }
 
+      /// The type URL for `Relaxation`: `"type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation"
       }
+
+      /// Initialize an instance of `Relaxation` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Relaxation` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `ConstraintRelaxation`: `"type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation"
     }
+
+    /// Initialize an instance of `ConstraintRelaxation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConstraintRelaxation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `InjectedSolutionConstraint`: `"type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint"
   }
+
+  /// Initialize an instance of `InjectedSolutionConstraint` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `InjectedSolutionConstraint` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

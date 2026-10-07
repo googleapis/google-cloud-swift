@@ -151,12 +151,23 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `BigQueryDestination`: `"type.googleapis.com/google.container.v1.ResourceUsageExportConfig.BigQueryDestination"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ResourceUsageExportConfig.BigQueryDestination"
     }
+
+    /// Initialize an instance of `BigQueryDestination` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ResourceUsageExportConfig.BigQueryDestination"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BigQueryDestination` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -221,24 +232,46 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `ConsumptionMeteringConfig`: `"type.googleapis.com/google.container.v1.ResourceUsageExportConfig.ConsumptionMeteringConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.container.v1.ResourceUsageExportConfig.ConsumptionMeteringConfig"
     }
+
+    /// Initialize an instance of `ConsumptionMeteringConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ResourceUsageExportConfig.ConsumptionMeteringConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConsumptionMeteringConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ResourceUsageExportConfig`: `"type.googleapis.com/google.container.v1.ResourceUsageExportConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.ResourceUsageExportConfig"
   }
+
+  /// Initialize an instance of `ResourceUsageExportConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ResourceUsageExportConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ResourceUsageExportConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

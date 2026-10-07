@@ -166,13 +166,24 @@
         }
       }
 
+      /// The type URL for `LivePersonConfig`: `"type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig.LivePersonConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig.LivePersonConfig"
       }
+
+      /// Initialize an instance of `LivePersonConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig.LivePersonConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `LivePersonConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -265,13 +276,24 @@
         }
       }
 
+      /// The type URL for `SalesforceLiveAgentConfig`: `"type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig.SalesforceLiveAgentConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig.SalesforceLiveAgentConfig"
       }
+
+      /// Initialize an instance of `SalesforceLiveAgentConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig.SalesforceLiveAgentConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SalesforceLiveAgentConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -285,12 +307,23 @@
       indirect case salesforceLiveAgentConfig(HumanAgentHandoffConfig.SalesforceLiveAgentConfig)
     }
 
+    /// The type URL for `HumanAgentHandoffConfig`: `"type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig"
     }
+
+    /// Initialize an instance of `HumanAgentHandoffConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HumanAgentHandoffConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

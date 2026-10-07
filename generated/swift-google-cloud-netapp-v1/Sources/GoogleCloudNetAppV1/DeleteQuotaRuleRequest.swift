@@ -74,12 +74,23 @@ public struct DeleteQuotaRuleRequest: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `DeleteQuotaRuleRequest`: `"type.googleapis.com/google.cloud.netapp.v1.DeleteQuotaRuleRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.DeleteQuotaRuleRequest"
   }
+
+  /// Initialize an instance of `DeleteQuotaRuleRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.netapp.v1.DeleteQuotaRuleRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeleteQuotaRuleRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

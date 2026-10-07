@@ -87,12 +87,23 @@ public struct AwsNodePoolAutoscaling: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `AwsNodePoolAutoscaling`: `"type.googleapis.com/google.cloud.gkemulticloud.v1.AwsNodePoolAutoscaling"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.AwsNodePoolAutoscaling"
   }
+
+  /// Initialize an instance of `AwsNodePoolAutoscaling` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.gkemulticloud.v1.AwsNodePoolAutoscaling"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AwsNodePoolAutoscaling` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

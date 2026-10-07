@@ -93,12 +93,23 @@ public struct KeyAccessJustificationsPolicy: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `KeyAccessJustificationsPolicy`: `"type.googleapis.com/google.cloud.kms.v1.KeyAccessJustificationsPolicy"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.KeyAccessJustificationsPolicy"
   }
+
+  /// Initialize an instance of `KeyAccessJustificationsPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.KeyAccessJustificationsPolicy"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `KeyAccessJustificationsPolicy` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

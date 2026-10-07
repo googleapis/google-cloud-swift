@@ -319,49 +319,93 @@
             }
           }
 
+          /// The type URL for `ErrorDetails`: `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors.errorDetails"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors.errorDetails"
           }
+
+          /// Initialize an instance of `ErrorDetails` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors.errorDetails"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `ErrorDetails` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
 
+        /// The type URL for `Errors`: `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors"
         }
+
+        /// Initialize an instance of `Errors` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `Errors` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `Error`: `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error"
       }
+
+      /// Initialize an instance of `Error` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Error` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck`: `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck"
     }
+
+    /// Initialize an instance of `InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

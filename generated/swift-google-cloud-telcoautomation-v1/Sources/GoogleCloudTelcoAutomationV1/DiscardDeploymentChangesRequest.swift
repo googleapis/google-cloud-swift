@@ -74,12 +74,23 @@ public struct DiscardDeploymentChangesRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `DiscardDeploymentChangesRequest`: `"type.googleapis.com/google.cloud.telcoautomation.v1.DiscardDeploymentChangesRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.telcoautomation.v1.DiscardDeploymentChangesRequest"
   }
+
+  /// Initialize an instance of `DiscardDeploymentChangesRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.telcoautomation.v1.DiscardDeploymentChangesRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DiscardDeploymentChangesRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

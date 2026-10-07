@@ -117,12 +117,23 @@ public struct CreateJobTriggerRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// The type URL for `CreateJobTriggerRequest`: `"type.googleapis.com/google.privacy.dlp.v2.CreateJobTriggerRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.CreateJobTriggerRequest"
   }
+
+  /// Initialize an instance of `CreateJobTriggerRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CreateJobTriggerRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateJobTriggerRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

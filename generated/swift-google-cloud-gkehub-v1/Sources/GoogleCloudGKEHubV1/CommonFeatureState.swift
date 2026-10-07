@@ -108,12 +108,23 @@ public struct CommonFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case rbacrolebindingactuation(GoogleCloudGKEHubRBACRoleBindingActuationV1.FeatureState)
   }
 
+  /// The type URL for `CommonFeatureState`: `"type.googleapis.com/google.cloud.gkehub.v1.CommonFeatureState"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.v1.CommonFeatureState"
   }
+
+  /// Initialize an instance of `CommonFeatureState` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.gkehub.v1.CommonFeatureState"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CommonFeatureState` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

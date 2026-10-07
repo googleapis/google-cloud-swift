@@ -88,12 +88,23 @@ public struct ListMirroringEndpointGroupsResponse: Codable, Equatable, GoogleWKT
     }
   }
 
+  /// The type URL for `ListMirroringEndpointGroupsResponse`: `"type.googleapis.com/google.cloud.networksecurity.v1.ListMirroringEndpointGroupsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.ListMirroringEndpointGroupsResponse"
   }
+
+  /// Initialize an instance of `ListMirroringEndpointGroupsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.ListMirroringEndpointGroupsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListMirroringEndpointGroupsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

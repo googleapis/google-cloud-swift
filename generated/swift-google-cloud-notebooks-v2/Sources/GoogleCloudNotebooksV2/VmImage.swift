@@ -119,12 +119,23 @@ public struct VmImage: Codable, Equatable, GoogleWKT._AnyPackable,
     case family(Swift.String)
   }
 
+  /// The type URL for `VmImage`: `"type.googleapis.com/google.cloud.notebooks.v2.VmImage"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.notebooks.v2.VmImage"
   }
+
+  /// Initialize an instance of `VmImage` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.notebooks.v2.VmImage"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `VmImage` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

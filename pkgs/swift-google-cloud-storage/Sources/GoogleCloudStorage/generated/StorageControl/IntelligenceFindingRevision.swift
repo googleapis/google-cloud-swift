@@ -94,12 +94,23 @@ public struct IntelligenceFindingRevision: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `IntelligenceFindingRevision`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFindingRevision"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.IntelligenceFindingRevision"
   }
+
+  /// Initialize an instance of `IntelligenceFindingRevision` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFindingRevision"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `IntelligenceFindingRevision` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -85,12 +85,23 @@ public struct SpeakerDiarizationConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `SpeakerDiarizationConfig`: `"type.googleapis.com/google.cloud.speech.v2.SpeakerDiarizationConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.SpeakerDiarizationConfig"
   }
+
+  /// Initialize an instance of `SpeakerDiarizationConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.speech.v2.SpeakerDiarizationConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SpeakerDiarizationConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

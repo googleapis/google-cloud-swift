@@ -106,12 +106,23 @@ public struct ListMuteConfigsRequest: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `ListMuteConfigsRequest`: `"type.googleapis.com/google.cloud.securitycenter.v2.ListMuteConfigsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.ListMuteConfigsRequest"
   }
+
+  /// Initialize an instance of `ListMuteConfigsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycenter.v2.ListMuteConfigsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListMuteConfigsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

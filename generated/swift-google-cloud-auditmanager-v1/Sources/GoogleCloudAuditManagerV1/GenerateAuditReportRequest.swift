@@ -288,12 +288,23 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
     case gcsUri(Swift.String)
   }
 
+  /// The type URL for `GenerateAuditReportRequest`: `"type.googleapis.com/google.cloud.auditmanager.v1.GenerateAuditReportRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.auditmanager.v1.GenerateAuditReportRequest"
   }
+
+  /// Initialize an instance of `GenerateAuditReportRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.auditmanager.v1.GenerateAuditReportRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GenerateAuditReportRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

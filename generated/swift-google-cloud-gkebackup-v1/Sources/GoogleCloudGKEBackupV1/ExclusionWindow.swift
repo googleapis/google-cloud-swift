@@ -195,12 +195,23 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `DayOfWeekList`: `"type.googleapis.com/google.cloud.gkebackup.v1.ExclusionWindow.DayOfWeekList"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.v1.ExclusionWindow.DayOfWeekList"
     }
+
+    /// Initialize an instance of `DayOfWeekList` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.gkebackup.v1.ExclusionWindow.DayOfWeekList"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DayOfWeekList` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -219,12 +230,23 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case daysOfWeek(ExclusionWindow.DayOfWeekList)
   }
 
+  /// The type URL for `ExclusionWindow`: `"type.googleapis.com/google.cloud.gkebackup.v1.ExclusionWindow"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.v1.ExclusionWindow"
   }
+
+  /// Initialize an instance of `ExclusionWindow` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.gkebackup.v1.ExclusionWindow"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExclusionWindow` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

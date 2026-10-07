@@ -89,12 +89,23 @@ public struct GetServiceLevelObjectiveRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `GetServiceLevelObjectiveRequest`: `"type.googleapis.com/google.monitoring.v3.GetServiceLevelObjectiveRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.GetServiceLevelObjectiveRequest"
   }
+
+  /// Initialize an instance of `GetServiceLevelObjectiveRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.GetServiceLevelObjectiveRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetServiceLevelObjectiveRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

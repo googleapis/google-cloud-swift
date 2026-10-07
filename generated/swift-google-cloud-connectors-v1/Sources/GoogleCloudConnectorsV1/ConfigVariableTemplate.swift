@@ -431,12 +431,23 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `ConfigVariableTemplate`: `"type.googleapis.com/google.cloud.connectors.v1.ConfigVariableTemplate"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.connectors.v1.ConfigVariableTemplate"
   }
+
+  /// Initialize an instance of `ConfigVariableTemplate` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.connectors.v1.ConfigVariableTemplate"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ConfigVariableTemplate` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

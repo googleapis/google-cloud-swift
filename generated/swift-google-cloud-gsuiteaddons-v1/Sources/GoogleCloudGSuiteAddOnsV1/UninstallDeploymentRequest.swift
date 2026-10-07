@@ -76,12 +76,23 @@ public struct UninstallDeploymentRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `UninstallDeploymentRequest`: `"type.googleapis.com/google.cloud.gsuiteaddons.v1.UninstallDeploymentRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gsuiteaddons.v1.UninstallDeploymentRequest"
   }
+
+  /// Initialize an instance of `UninstallDeploymentRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.gsuiteaddons.v1.UninstallDeploymentRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UninstallDeploymentRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

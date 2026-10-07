@@ -118,12 +118,23 @@ public struct StreamData: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case close(Close)
   }
 
+  /// The type URL for `StreamData`: `"type.googleapis.com/google.cloud.devicestreaming.v1.StreamData"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.devicestreaming.v1.StreamData"
   }
+
+  /// Initialize an instance of `StreamData` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.devicestreaming.v1.StreamData"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `StreamData` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

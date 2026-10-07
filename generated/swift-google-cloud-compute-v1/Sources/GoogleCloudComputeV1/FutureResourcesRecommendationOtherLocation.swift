@@ -168,13 +168,24 @@
       }
     }
 
+    /// The type URL for `FutureResourcesRecommendationOtherLocation`: `"type.googleapis.com/google.cloud.compute.v1.FutureResourcesRecommendationOtherLocation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.compute.v1.FutureResourcesRecommendationOtherLocation"
     }
+
+    /// Initialize an instance of `FutureResourcesRecommendationOtherLocation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.FutureResourcesRecommendationOtherLocation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FutureResourcesRecommendationOtherLocation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

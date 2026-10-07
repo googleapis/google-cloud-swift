@@ -218,12 +218,23 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `UserCredentials`: `"type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile.UserCredentials"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile.UserCredentials"
     }
+
+    /// Initialize an instance of `UserCredentials` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile.UserCredentials"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UserCredentials` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -311,13 +322,24 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Oauth2ClientCredentials`: `"type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile.Oauth2ClientCredentials"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile.Oauth2ClientCredentials"
     }
+
+    /// Initialize an instance of `Oauth2ClientCredentials` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile.Oauth2ClientCredentials"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Oauth2ClientCredentials` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -331,12 +353,23 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case oauth2ClientCredentials(SalesforceProfile.Oauth2ClientCredentials)
   }
 
+  /// The type URL for `SalesforceProfile`: `"type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile"
   }
+
+  /// Initialize an instance of `SalesforceProfile` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SalesforceProfile` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

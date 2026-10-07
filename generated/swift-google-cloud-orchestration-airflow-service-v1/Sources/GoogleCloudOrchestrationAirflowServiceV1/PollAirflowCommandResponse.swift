@@ -160,13 +160,24 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `Line`: `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.Line"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.Line"
     }
+
+    /// Initialize an instance of `Line` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.Line"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Line` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -238,25 +249,47 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `ExitInfo`: `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.ExitInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.ExitInfo"
     }
+
+    /// Initialize an instance of `ExitInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.ExitInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ExitInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `PollAirflowCommandResponse`: `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse"
   }
+
+  /// Initialize an instance of `PollAirflowCommandResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PollAirflowCommandResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

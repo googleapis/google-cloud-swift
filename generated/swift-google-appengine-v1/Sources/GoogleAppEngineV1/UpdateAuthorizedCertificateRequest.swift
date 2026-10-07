@@ -93,12 +93,23 @@ public struct UpdateAuthorizedCertificateRequest: Codable, Equatable, GoogleWKT.
     }
   }
 
+  /// The type URL for `UpdateAuthorizedCertificateRequest`: `"type.googleapis.com/google.appengine.v1.UpdateAuthorizedCertificateRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.UpdateAuthorizedCertificateRequest"
   }
+
+  /// Initialize an instance of `UpdateAuthorizedCertificateRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.appengine.v1.UpdateAuthorizedCertificateRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateAuthorizedCertificateRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -206,13 +206,24 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `CreateEntitlementPurchase`: `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableSkusRequest.CreateEntitlementPurchase"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.channel.v1.ListPurchasableSkusRequest.CreateEntitlementPurchase"
     }
+
+    /// Initialize an instance of `CreateEntitlementPurchase` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableSkusRequest.CreateEntitlementPurchase"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CreateEntitlementPurchase` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -410,13 +421,24 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `ChangeOfferPurchase`: `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableSkusRequest.ChangeOfferPurchase"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.channel.v1.ListPurchasableSkusRequest.ChangeOfferPurchase"
     }
+
+    /// Initialize an instance of `ChangeOfferPurchase` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableSkusRequest.ChangeOfferPurchase"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ChangeOfferPurchase` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -430,12 +452,23 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
     indirect case changeOfferPurchase(ListPurchasableSkusRequest.ChangeOfferPurchase)
   }
 
+  /// The type URL for `ListPurchasableSkusRequest`: `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableSkusRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.ListPurchasableSkusRequest"
   }
+
+  /// Initialize an instance of `ListPurchasableSkusRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableSkusRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListPurchasableSkusRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

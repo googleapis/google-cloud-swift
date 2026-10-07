@@ -102,12 +102,23 @@ public struct ListCertificatesResponse: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `ListCertificatesResponse`: `"type.googleapis.com/google.cloud.security.privateca.v1.ListCertificatesResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.ListCertificatesResponse"
   }
+
+  /// Initialize an instance of `ListCertificatesResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.ListCertificatesResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListCertificatesResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

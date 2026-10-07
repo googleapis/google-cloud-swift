@@ -154,12 +154,23 @@ public struct ExclusionRule: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case excludeByImageFindings(ExcludeByImageFindings)
   }
 
+  /// The type URL for `ExclusionRule`: `"type.googleapis.com/google.privacy.dlp.v2.ExclusionRule"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.ExclusionRule"
   }
+
+  /// Initialize an instance of `ExclusionRule` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.ExclusionRule"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExclusionRule` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

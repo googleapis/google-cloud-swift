@@ -164,24 +164,46 @@ public struct BatchSearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
+    /// The type URL for `CombineResultsOptions`: `"type.googleapis.com/google.cloud.vectorsearch.v1.BatchSearchDataObjectsRequest.CombineResultsOptions"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.vectorsearch.v1.BatchSearchDataObjectsRequest.CombineResultsOptions"
     }
+
+    /// Initialize an instance of `CombineResultsOptions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.BatchSearchDataObjectsRequest.CombineResultsOptions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CombineResultsOptions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `BatchSearchDataObjectsRequest`: `"type.googleapis.com/google.cloud.vectorsearch.v1.BatchSearchDataObjectsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.BatchSearchDataObjectsRequest"
   }
+
+  /// Initialize an instance of `BatchSearchDataObjectsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.BatchSearchDataObjectsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BatchSearchDataObjectsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

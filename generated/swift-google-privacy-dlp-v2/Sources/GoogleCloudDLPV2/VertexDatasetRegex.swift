@@ -75,12 +75,23 @@ public struct VertexDatasetRegex: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `VertexDatasetRegex`: `"type.googleapis.com/google.privacy.dlp.v2.VertexDatasetRegex"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.VertexDatasetRegex"
   }
+
+  /// Initialize an instance of `VertexDatasetRegex` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.VertexDatasetRegex"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `VertexDatasetRegex` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

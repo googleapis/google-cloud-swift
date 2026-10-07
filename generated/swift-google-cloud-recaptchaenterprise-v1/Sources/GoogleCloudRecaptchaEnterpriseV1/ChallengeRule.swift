@@ -174,13 +174,24 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `NoChallengeOutcome`: `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.ChallengeRule.NoChallengeOutcome"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.ChallengeRule.NoChallengeOutcome"
     }
+
+    /// Initialize an instance of `NoChallengeOutcome` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.ChallengeRule.NoChallengeOutcome"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `NoChallengeOutcome` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -248,13 +259,24 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ChallengeOutcome`: `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.ChallengeRule.ChallengeOutcome"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.ChallengeRule.ChallengeOutcome"
     }
+
+    /// Initialize an instance of `ChallengeOutcome` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.ChallengeRule.ChallengeOutcome"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ChallengeOutcome` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -268,12 +290,23 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case challenge(ChallengeRule.ChallengeOutcome)
   }
 
+  /// The type URL for `ChallengeRule`: `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.ChallengeRule"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.ChallengeRule"
   }
+
+  /// Initialize an instance of `ChallengeRule` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.ChallengeRule"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ChallengeRule` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

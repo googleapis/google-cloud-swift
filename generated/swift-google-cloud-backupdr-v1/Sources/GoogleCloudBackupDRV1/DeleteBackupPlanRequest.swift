@@ -97,12 +97,23 @@ public struct DeleteBackupPlanRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// The type URL for `DeleteBackupPlanRequest`: `"type.googleapis.com/google.cloud.backupdr.v1.DeleteBackupPlanRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.DeleteBackupPlanRequest"
   }
+
+  /// Initialize an instance of `DeleteBackupPlanRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.backupdr.v1.DeleteBackupPlanRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeleteBackupPlanRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

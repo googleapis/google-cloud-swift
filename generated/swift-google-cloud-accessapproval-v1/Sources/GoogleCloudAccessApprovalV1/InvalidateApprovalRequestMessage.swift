@@ -74,12 +74,23 @@ public struct InvalidateApprovalRequestMessage: Codable, Equatable, GoogleWKT._A
     }
   }
 
+  /// The type URL for `InvalidateApprovalRequestMessage`: `"type.googleapis.com/google.cloud.accessapproval.v1.InvalidateApprovalRequestMessage"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.accessapproval.v1.InvalidateApprovalRequestMessage"
   }
+
+  /// Initialize an instance of `InvalidateApprovalRequestMessage` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.accessapproval.v1.InvalidateApprovalRequestMessage"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `InvalidateApprovalRequestMessage` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

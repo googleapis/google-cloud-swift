@@ -72,12 +72,23 @@ public struct ExecuteOntapDeleteResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `ExecuteOntapDeleteResponse`: `"type.googleapis.com/google.cloud.netapp.v1.ExecuteOntapDeleteResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.ExecuteOntapDeleteResponse"
   }
+
+  /// Initialize an instance of `ExecuteOntapDeleteResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.netapp.v1.ExecuteOntapDeleteResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExecuteOntapDeleteResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

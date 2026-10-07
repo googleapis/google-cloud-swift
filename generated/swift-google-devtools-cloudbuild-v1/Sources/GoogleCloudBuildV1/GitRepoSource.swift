@@ -168,12 +168,23 @@ public struct GitRepoSource: Codable, Equatable, GoogleWKT._AnyPackable,
     case githubEnterpriseConfig(Swift.String)
   }
 
+  /// The type URL for `GitRepoSource`: `"type.googleapis.com/google.devtools.cloudbuild.v1.GitRepoSource"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.GitRepoSource"
   }
+
+  /// Initialize an instance of `GitRepoSource` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.GitRepoSource"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GitRepoSource` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

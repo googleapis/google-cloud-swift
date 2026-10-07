@@ -156,12 +156,23 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `ThrowError`: `"type.googleapis.com/google.privacy.dlp.v2.TransformationErrorHandling.ThrowError"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.TransformationErrorHandling.ThrowError"
     }
+
+    /// Initialize an instance of `ThrowError` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.TransformationErrorHandling.ThrowError"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ThrowError` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -216,13 +227,24 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `LeaveUntransformed`: `"type.googleapis.com/google.privacy.dlp.v2.TransformationErrorHandling.LeaveUntransformed"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.privacy.dlp.v2.TransformationErrorHandling.LeaveUntransformed"
     }
+
+    /// Initialize an instance of `LeaveUntransformed` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.TransformationErrorHandling.LeaveUntransformed"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `LeaveUntransformed` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -236,12 +258,23 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
     indirect case leaveUntransformed(TransformationErrorHandling.LeaveUntransformed)
   }
 
+  /// The type URL for `TransformationErrorHandling`: `"type.googleapis.com/google.privacy.dlp.v2.TransformationErrorHandling"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.TransformationErrorHandling"
   }
+
+  /// Initialize an instance of `TransformationErrorHandling` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.TransformationErrorHandling"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TransformationErrorHandling` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

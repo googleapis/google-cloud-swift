@@ -166,12 +166,23 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
+    /// The type URL for `Inputs`: `"type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Inputs"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Inputs"
     }
+
+    /// Initialize an instance of `Inputs` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Inputs"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Inputs` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -297,23 +308,45 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
+    /// The type URL for `Outputs`: `"type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Outputs"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Outputs"
     }
+
+    /// Initialize an instance of `Outputs` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Outputs"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Outputs` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `AutoscalerRecommendation`: `"type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation"
   }
+
+  /// Initialize an instance of `AutoscalerRecommendation` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AutoscalerRecommendation` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

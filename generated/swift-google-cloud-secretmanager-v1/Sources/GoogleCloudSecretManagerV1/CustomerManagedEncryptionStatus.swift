@@ -76,12 +76,23 @@ public struct CustomerManagedEncryptionStatus: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `CustomerManagedEncryptionStatus`: `"type.googleapis.com/google.cloud.secretmanager.v1.CustomerManagedEncryptionStatus"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.secretmanager.v1.CustomerManagedEncryptionStatus"
   }
+
+  /// Initialize an instance of `CustomerManagedEncryptionStatus` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.secretmanager.v1.CustomerManagedEncryptionStatus"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CustomerManagedEncryptionStatus` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

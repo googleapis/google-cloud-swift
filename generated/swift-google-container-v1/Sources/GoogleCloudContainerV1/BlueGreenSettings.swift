@@ -215,12 +215,23 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       case batchNodeCount(Swift.Int32)
     }
 
+    /// The type URL for `StandardRolloutPolicy`: `"type.googleapis.com/google.container.v1.BlueGreenSettings.StandardRolloutPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.BlueGreenSettings.StandardRolloutPolicy"
     }
+
+    /// Initialize an instance of `StandardRolloutPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.BlueGreenSettings.StandardRolloutPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StandardRolloutPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -285,12 +296,23 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `AutoscaledRolloutPolicy`: `"type.googleapis.com/google.container.v1.BlueGreenSettings.AutoscaledRolloutPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.BlueGreenSettings.AutoscaledRolloutPolicy"
     }
+
+    /// Initialize an instance of `AutoscaledRolloutPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.BlueGreenSettings.AutoscaledRolloutPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AutoscaledRolloutPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -304,12 +326,23 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case autoscaledRolloutPolicy(BlueGreenSettings.AutoscaledRolloutPolicy)
   }
 
+  /// The type URL for `BlueGreenSettings`: `"type.googleapis.com/google.container.v1.BlueGreenSettings"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.BlueGreenSettings"
   }
+
+  /// Initialize an instance of `BlueGreenSettings` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.BlueGreenSettings"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BlueGreenSettings` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

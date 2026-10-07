@@ -64,12 +64,23 @@ public struct CreateEnvironmentMetadata: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
+  /// The type URL for `CreateEnvironmentMetadata`: `"type.googleapis.com/google.cloud.shell.v1.CreateEnvironmentMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.shell.v1.CreateEnvironmentMetadata"
   }
+
+  /// Initialize an instance of `CreateEnvironmentMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.shell.v1.CreateEnvironmentMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateEnvironmentMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -362,12 +362,23 @@ public struct Collector: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `Collector`: `"type.googleapis.com/google.cloud.rapidmigrationassessment.v1.Collector"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.rapidmigrationassessment.v1.Collector"
   }
+
+  /// Initialize an instance of `Collector` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.rapidmigrationassessment.v1.Collector"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Collector` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -258,13 +258,24 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `ConnectedDeploymentGroup`: `"type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup.ConnectedDeploymentGroup"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup.ConnectedDeploymentGroup"
     }
+
+    /// Initialize an instance of `ConnectedDeploymentGroup` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup.ConnectedDeploymentGroup"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConnectedDeploymentGroup` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -352,13 +363,24 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `AssociationDetails`: `"type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup.AssociationDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup.AssociationDetails"
     }
+
+    /// Initialize an instance of `AssociationDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup.AssociationDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AssociationDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -626,12 +648,23 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `MirroringEndpointGroup`: `"type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup"
   }
+
+  /// Initialize an instance of `MirroringEndpointGroup` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MirroringEndpointGroup` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

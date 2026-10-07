@@ -86,12 +86,23 @@ public struct ListDashboardsResponse: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `ListDashboardsResponse`: `"type.googleapis.com/google.monitoring.dashboard.v1.ListDashboardsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.ListDashboardsResponse"
   }
+
+  /// Initialize an instance of `ListDashboardsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.dashboard.v1.ListDashboardsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListDashboardsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

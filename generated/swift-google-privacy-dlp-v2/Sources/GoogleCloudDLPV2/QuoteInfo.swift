@@ -98,12 +98,23 @@ public struct QuoteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case dateTime(DateTime)
   }
 
+  /// The type URL for `QuoteInfo`: `"type.googleapis.com/google.privacy.dlp.v2.QuoteInfo"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.QuoteInfo"
   }
+
+  /// Initialize an instance of `QuoteInfo` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.QuoteInfo"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `QuoteInfo` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

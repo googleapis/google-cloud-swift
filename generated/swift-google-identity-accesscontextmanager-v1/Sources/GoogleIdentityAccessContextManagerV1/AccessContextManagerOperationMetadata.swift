@@ -63,13 +63,24 @@ public struct AccessContextManagerOperationMetadata: Codable, Equatable, GoogleW
     }
   }
 
+  /// The type URL for `AccessContextManagerOperationMetadata`: `"type.googleapis.com/google.identity.accesscontextmanager.v1.AccessContextManagerOperationMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.identity.accesscontextmanager.v1.AccessContextManagerOperationMetadata"
   }
+
+  /// Initialize an instance of `AccessContextManagerOperationMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.identity.accesscontextmanager.v1.AccessContextManagerOperationMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AccessContextManagerOperationMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

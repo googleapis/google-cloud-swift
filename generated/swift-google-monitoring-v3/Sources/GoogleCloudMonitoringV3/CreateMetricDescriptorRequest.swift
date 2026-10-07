@@ -88,12 +88,23 @@ public struct CreateMetricDescriptorRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `CreateMetricDescriptorRequest`: `"type.googleapis.com/google.monitoring.v3.CreateMetricDescriptorRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.CreateMetricDescriptorRequest"
   }
+
+  /// Initialize an instance of `CreateMetricDescriptorRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.CreateMetricDescriptorRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateMetricDescriptorRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

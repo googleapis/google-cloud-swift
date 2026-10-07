@@ -164,24 +164,46 @@ public struct RemoveApplicationStreamInputRequest: Codable, Equatable, GoogleWKT
       }
     }
 
+    /// The type URL for `TargetStreamInput`: `"type.googleapis.com/google.cloud.visionai.v1.RemoveApplicationStreamInputRequest.TargetStreamInput"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.visionai.v1.RemoveApplicationStreamInputRequest.TargetStreamInput"
     }
+
+    /// Initialize an instance of `TargetStreamInput` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.RemoveApplicationStreamInputRequest.TargetStreamInput"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TargetStreamInput` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `RemoveApplicationStreamInputRequest`: `"type.googleapis.com/google.cloud.visionai.v1.RemoveApplicationStreamInputRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.RemoveApplicationStreamInputRequest"
   }
+
+  /// Initialize an instance of `RemoveApplicationStreamInputRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.RemoveApplicationStreamInputRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RemoveApplicationStreamInputRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

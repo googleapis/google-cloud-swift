@@ -102,12 +102,23 @@ public struct ListNoteOccurrencesRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `ListNoteOccurrencesRequest`: `"type.googleapis.com/grafeas.v1.ListNoteOccurrencesRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.ListNoteOccurrencesRequest"
   }
+
+  /// Initialize an instance of `ListNoteOccurrencesRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.ListNoteOccurrencesRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListNoteOccurrencesRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

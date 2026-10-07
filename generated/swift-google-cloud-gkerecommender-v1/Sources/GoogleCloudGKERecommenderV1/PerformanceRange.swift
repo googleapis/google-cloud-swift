@@ -92,12 +92,23 @@ public struct PerformanceRange: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `PerformanceRange`: `"type.googleapis.com/google.cloud.gkerecommender.v1.PerformanceRange"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkerecommender.v1.PerformanceRange"
   }
+
+  /// Initialize an instance of `PerformanceRange` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.gkerecommender.v1.PerformanceRange"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PerformanceRange` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

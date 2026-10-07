@@ -71,12 +71,23 @@ public struct ResponsePoliciesUpdateResponse: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `ResponsePoliciesUpdateResponse`: `"type.googleapis.com/.ResponsePoliciesUpdateResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.ResponsePoliciesUpdateResponse"
   }
+
+  /// Initialize an instance of `ResponsePoliciesUpdateResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.ResponsePoliciesUpdateResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ResponsePoliciesUpdateResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

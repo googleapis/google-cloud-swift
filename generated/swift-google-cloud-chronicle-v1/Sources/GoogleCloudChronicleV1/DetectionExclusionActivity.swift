@@ -226,24 +226,46 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
       case deletedCuratedRuleSet(Swift.String)
     }
 
+    /// The type URL for `DetectionExclusionDetectorActivity`: `"type.googleapis.com/google.cloud.chronicle.v1.DetectionExclusionActivity.DetectionExclusionDetectorActivity"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.chronicle.v1.DetectionExclusionActivity.DetectionExclusionDetectorActivity"
     }
+
+    /// Initialize an instance of `DetectionExclusionDetectorActivity` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DetectionExclusionActivity.DetectionExclusionDetectorActivity"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DetectionExclusionDetectorActivity` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `DetectionExclusionActivity`: `"type.googleapis.com/google.cloud.chronicle.v1.DetectionExclusionActivity"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.DetectionExclusionActivity"
   }
+
+  /// Initialize an instance of `DetectionExclusionActivity` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DetectionExclusionActivity"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DetectionExclusionActivity` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

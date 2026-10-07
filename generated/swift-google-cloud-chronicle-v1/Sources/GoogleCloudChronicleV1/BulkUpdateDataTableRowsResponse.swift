@@ -74,12 +74,23 @@ public struct BulkUpdateDataTableRowsResponse: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `BulkUpdateDataTableRowsResponse`: `"type.googleapis.com/google.cloud.chronicle.v1.BulkUpdateDataTableRowsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.BulkUpdateDataTableRowsResponse"
   }
+
+  /// Initialize an instance of `BulkUpdateDataTableRowsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.BulkUpdateDataTableRowsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BulkUpdateDataTableRowsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

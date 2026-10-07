@@ -88,12 +88,23 @@ public struct ResourceRecordSetsListResponse: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `ResourceRecordSetsListResponse`: `"type.googleapis.com/.ResourceRecordSetsListResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.ResourceRecordSetsListResponse"
   }
+
+  /// Initialize an instance of `ResourceRecordSetsListResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.ResourceRecordSetsListResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ResourceRecordSetsListResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

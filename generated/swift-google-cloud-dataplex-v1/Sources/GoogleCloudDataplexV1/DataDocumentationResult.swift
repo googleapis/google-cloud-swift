@@ -183,12 +183,23 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `DatasetResult`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.DatasetResult"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.DatasetResult"
     }
+
+    /// Initialize an instance of `DatasetResult` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.DatasetResult"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DatasetResult` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -282,12 +293,23 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `TableResult`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.TableResult"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.TableResult"
     }
+
+    /// Initialize an instance of `TableResult` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.TableResult"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TableResult` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -457,13 +479,24 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
         }
       }
 
+      /// The type URL for `SchemaPaths`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.SchemaRelationship.SchemaPaths"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.SchemaRelationship.SchemaPaths"
       }
+
+      /// Initialize an instance of `SchemaPaths` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.SchemaRelationship.SchemaPaths"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SchemaPaths` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -705,13 +738,24 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `SchemaRelationship`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.SchemaRelationship"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.SchemaRelationship"
     }
+
+    /// Initialize an instance of `SchemaRelationship` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.SchemaRelationship"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SchemaRelationship` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -783,12 +827,23 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `Query`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.Query"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.Query"
     }
+
+    /// Initialize an instance of `Query` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.Query"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Query` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -853,12 +908,23 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `Schema`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.Schema"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.Schema"
     }
+
+    /// Initialize an instance of `Schema` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.Schema"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Schema` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -941,12 +1007,23 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `Field`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.Field"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.Field"
     }
+
+    /// Initialize an instance of `Field` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult.Field"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Field` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -960,12 +1037,23 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     indirect case tableResult(DataDocumentationResult.TableResult)
   }
 
+  /// The type URL for `DataDocumentationResult`: `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult"
   }
+
+  /// Initialize an instance of `DataDocumentationResult` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.DataDocumentationResult"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DataDocumentationResult` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -320,13 +320,24 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `RiskReason`: `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason"
     }
+
+    /// Initialize an instance of `RiskReason` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RiskReason` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -391,13 +402,24 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `StolenInstrumentVerdict`: `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict"
     }
+
+    /// Initialize an instance of `StolenInstrumentVerdict` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StolenInstrumentVerdict` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -462,13 +484,24 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `CardTestingVerdict`: `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict"
     }
+
+    /// Initialize an instance of `CardTestingVerdict` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CardTestingVerdict` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -533,24 +566,46 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `BehavioralTrustVerdict`: `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict"
     }
+
+    /// Initialize an instance of `BehavioralTrustVerdict` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BehavioralTrustVerdict` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `FraudPreventionAssessment`: `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment"
   }
+
+  /// Initialize an instance of `FraudPreventionAssessment` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `FraudPreventionAssessment` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

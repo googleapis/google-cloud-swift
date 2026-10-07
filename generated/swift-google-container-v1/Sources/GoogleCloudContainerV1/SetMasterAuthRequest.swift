@@ -261,12 +261,23 @@ public struct SetMasterAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `SetMasterAuthRequest`: `"type.googleapis.com/google.container.v1.SetMasterAuthRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.SetMasterAuthRequest"
   }
+
+  /// Initialize an instance of `SetMasterAuthRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.SetMasterAuthRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SetMasterAuthRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

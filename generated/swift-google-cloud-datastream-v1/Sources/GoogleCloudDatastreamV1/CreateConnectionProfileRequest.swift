@@ -131,12 +131,23 @@ public struct CreateConnectionProfileRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `CreateConnectionProfileRequest`: `"type.googleapis.com/google.cloud.datastream.v1.CreateConnectionProfileRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.CreateConnectionProfileRequest"
   }
+
+  /// Initialize an instance of `CreateConnectionProfileRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.CreateConnectionProfileRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateConnectionProfileRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

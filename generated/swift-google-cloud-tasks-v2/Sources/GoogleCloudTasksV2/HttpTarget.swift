@@ -251,12 +251,23 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Header`: `"type.googleapis.com/google.cloud.tasks.v2.HttpTarget.Header"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tasks.v2.HttpTarget.Header"
     }
+
+    /// Initialize an instance of `Header` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tasks.v2.HttpTarget.Header"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Header` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -322,12 +333,23 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `HeaderOverride`: `"type.googleapis.com/google.cloud.tasks.v2.HttpTarget.HeaderOverride"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tasks.v2.HttpTarget.HeaderOverride"
     }
+
+    /// Initialize an instance of `HeaderOverride` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tasks.v2.HttpTarget.HeaderOverride"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HeaderOverride` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -363,12 +385,23 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case oidcToken(OidcToken)
   }
 
+  /// The type URL for `HttpTarget`: `"type.googleapis.com/google.cloud.tasks.v2.HttpTarget"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tasks.v2.HttpTarget"
   }
+
+  /// Initialize an instance of `HttpTarget` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tasks.v2.HttpTarget"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `HttpTarget` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

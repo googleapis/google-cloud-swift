@@ -207,12 +207,23 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       case project(Swift.String)
     }
 
+    /// The type URL for `AllowedConsumer`: `"type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig.AllowedConsumer"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig.AllowedConsumer"
     }
+
+    /// Initialize an instance of `AllowedConsumer` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig.AllowedConsumer"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AllowedConsumer` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -301,12 +312,23 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       case project(Swift.String)
     }
 
+    /// The type URL for `DeniedConsumer`: `"type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig.DeniedConsumer"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig.DeniedConsumer"
     }
+
+    /// Initialize an instance of `DeniedConsumer` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig.DeniedConsumer"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DeniedConsumer` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -390,23 +412,45 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `PscEndpoint`: `"type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig.PscEndpoint"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig.PscEndpoint"
     }
+
+    /// Initialize an instance of `PscEndpoint` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig.PscEndpoint"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PscEndpoint` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `InternalServerConfig`: `"type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig"
   }
+
+  /// Initialize an instance of `InternalServerConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ftp.v1.InternalServerConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `InternalServerConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

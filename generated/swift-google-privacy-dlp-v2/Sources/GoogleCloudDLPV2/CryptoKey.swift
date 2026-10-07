@@ -122,12 +122,23 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case kmsWrapped(KmsWrappedCryptoKey)
   }
 
+  /// The type URL for `CryptoKey`: `"type.googleapis.com/google.privacy.dlp.v2.CryptoKey"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.CryptoKey"
   }
+
+  /// Initialize an instance of `CryptoKey` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CryptoKey"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CryptoKey` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

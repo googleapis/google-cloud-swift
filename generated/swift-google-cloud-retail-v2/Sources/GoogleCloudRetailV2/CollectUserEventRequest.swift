@@ -156,12 +156,23 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     case prebuiltRule(Swift.String)
   }
 
+  /// The type URL for `CollectUserEventRequest`: `"type.googleapis.com/google.cloud.retail.v2.CollectUserEventRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.CollectUserEventRequest"
   }
+
+  /// Initialize an instance of `CollectUserEventRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.CollectUserEventRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CollectUserEventRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

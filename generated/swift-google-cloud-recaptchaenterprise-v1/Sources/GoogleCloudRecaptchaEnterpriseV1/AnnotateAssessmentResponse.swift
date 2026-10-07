@@ -63,12 +63,23 @@ public struct AnnotateAssessmentResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `AnnotateAssessmentResponse`: `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.AnnotateAssessmentResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.AnnotateAssessmentResponse"
   }
+
+  /// Initialize an instance of `AnnotateAssessmentResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.recaptchaenterprise.v1.AnnotateAssessmentResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AnnotateAssessmentResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

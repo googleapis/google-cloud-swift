@@ -63,12 +63,23 @@ public struct ImportYumArtifactsMetadata: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `ImportYumArtifactsMetadata`: `"type.googleapis.com/google.devtools.artifactregistry.v1.ImportYumArtifactsMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.ImportYumArtifactsMetadata"
   }
+
+  /// Initialize an instance of `ImportYumArtifactsMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.ImportYumArtifactsMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ImportYumArtifactsMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

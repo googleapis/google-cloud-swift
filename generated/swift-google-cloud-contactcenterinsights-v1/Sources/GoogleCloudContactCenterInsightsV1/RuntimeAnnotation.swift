@@ -384,12 +384,23 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `UserInput`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.RuntimeAnnotation.UserInput"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.RuntimeAnnotation.UserInput"
     }
+
+    /// Initialize an instance of `UserInput` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.RuntimeAnnotation.UserInput"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UserInput` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -411,12 +422,23 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case conversationSummarizationSuggestion(ConversationSummarizationSuggestionData)
   }
 
+  /// The type URL for `RuntimeAnnotation`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.RuntimeAnnotation"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.RuntimeAnnotation"
   }
+
+  /// Initialize an instance of `RuntimeAnnotation` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.RuntimeAnnotation"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RuntimeAnnotation` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

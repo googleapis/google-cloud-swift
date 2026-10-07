@@ -399,13 +399,24 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
       }
     }
 
+    /// The type URL for `GcsDestination`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsRequest.GcsDestination"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsRequest.GcsDestination"
     }
+
+    /// Initialize an instance of `GcsDestination` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsRequest.GcsDestination"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GcsDestination` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -536,13 +547,24 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
     indirect case gcsDestination(BulkDownloadFeedbackLabelsRequest.GcsDestination)
   }
 
+  /// The type URL for `BulkDownloadFeedbackLabelsRequest`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsRequest"
   }
+
+  /// Initialize an instance of `BulkDownloadFeedbackLabelsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BulkDownloadFeedbackLabelsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

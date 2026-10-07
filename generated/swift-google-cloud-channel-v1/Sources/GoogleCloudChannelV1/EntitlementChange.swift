@@ -810,12 +810,23 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
     case otherChangeReason(Swift.String)
   }
 
+  /// The type URL for `EntitlementChange`: `"type.googleapis.com/google.cloud.channel.v1.EntitlementChange"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.EntitlementChange"
   }
+
+  /// Initialize an instance of `EntitlementChange` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.EntitlementChange"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `EntitlementChange` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

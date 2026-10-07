@@ -100,12 +100,23 @@ public struct CreateBucketRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `CreateBucketRequest`: `"type.googleapis.com/google.logging.v2.CreateBucketRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.CreateBucketRequest"
   }
+
+  /// Initialize an instance of `CreateBucketRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.logging.v2.CreateBucketRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateBucketRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

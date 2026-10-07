@@ -135,12 +135,23 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case imageTransformations(ImageTransformations)
   }
 
+  /// The type URL for `DeidentifyConfig`: `"type.googleapis.com/google.privacy.dlp.v2.DeidentifyConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DeidentifyConfig"
   }
+
+  /// Initialize an instance of `DeidentifyConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DeidentifyConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeidentifyConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

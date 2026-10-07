@@ -83,13 +83,24 @@ public struct CreateUserWorkloadsConfigMapRequest: Codable, Equatable, GoogleWKT
     }
   }
 
+  /// The type URL for `CreateUserWorkloadsConfigMapRequest`: `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.CreateUserWorkloadsConfigMapRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.CreateUserWorkloadsConfigMapRequest"
   }
+
+  /// Initialize an instance of `CreateUserWorkloadsConfigMapRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.CreateUserWorkloadsConfigMapRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateUserWorkloadsConfigMapRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

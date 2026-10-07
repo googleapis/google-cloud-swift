@@ -161,13 +161,24 @@
         }
       }
 
+      /// The type URL for `FixedLengthChunking`: `"type.googleapis.com/google.cloud.aiplatform.v1.RagFileChunkingConfig.FixedLengthChunking"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.RagFileChunkingConfig.FixedLengthChunking"
       }
+
+      /// Initialize an instance of `FixedLengthChunking` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.RagFileChunkingConfig.FixedLengthChunking"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `FixedLengthChunking` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -179,12 +190,23 @@
       indirect case fixedLengthChunking(RagFileChunkingConfig.FixedLengthChunking)
     }
 
+    /// The type URL for `RagFileChunkingConfig`: `"type.googleapis.com/google.cloud.aiplatform.v1.RagFileChunkingConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.RagFileChunkingConfig"
     }
+
+    /// Initialize an instance of `RagFileChunkingConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.RagFileChunkingConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RagFileChunkingConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

@@ -126,12 +126,23 @@ public struct ListMigrationJobsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `ListMigrationJobsRequest`: `"type.googleapis.com/google.cloud.clouddms.v1.ListMigrationJobsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ListMigrationJobsRequest"
   }
+
+  /// Initialize an instance of `ListMigrationJobsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.clouddms.v1.ListMigrationJobsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListMigrationJobsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

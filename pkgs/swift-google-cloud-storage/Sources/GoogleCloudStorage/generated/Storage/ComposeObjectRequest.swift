@@ -290,35 +290,68 @@ public struct ComposeObjectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ObjectPreconditions`: `"type.googleapis.com/google.storage.v2.ComposeObjectRequest.SourceObject.ObjectPreconditions"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.storage.v2.ComposeObjectRequest.SourceObject.ObjectPreconditions"
       }
+
+      /// Initialize an instance of `ObjectPreconditions` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.v2.ComposeObjectRequest.SourceObject.ObjectPreconditions"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ObjectPreconditions` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `SourceObject`: `"type.googleapis.com/google.storage.v2.ComposeObjectRequest.SourceObject"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.v2.ComposeObjectRequest.SourceObject"
     }
+
+    /// Initialize an instance of `SourceObject` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.v2.ComposeObjectRequest.SourceObject"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SourceObject` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ComposeObjectRequest`: `"type.googleapis.com/google.storage.v2.ComposeObjectRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.ComposeObjectRequest"
   }
+
+  /// Initialize an instance of `ComposeObjectRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.v2.ComposeObjectRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ComposeObjectRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -74,12 +74,23 @@ public struct GoogleIamV1TestIamPermissionsResponse: Codable, Equatable, GoogleW
     }
   }
 
+  /// The type URL for `GoogleIamV1TestIamPermissionsResponse`: `"type.googleapis.com/.GoogleIamV1TestIamPermissionsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.GoogleIamV1TestIamPermissionsResponse"
   }
+
+  /// Initialize an instance of `GoogleIamV1TestIamPermissionsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.GoogleIamV1TestIamPermissionsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GoogleIamV1TestIamPermissionsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

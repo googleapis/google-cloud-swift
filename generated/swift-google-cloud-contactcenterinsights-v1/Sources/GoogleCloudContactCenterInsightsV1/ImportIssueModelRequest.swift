@@ -170,13 +170,24 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `GcsSource`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.ImportIssueModelRequest.GcsSource"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.ImportIssueModelRequest.GcsSource"
     }
+
+    /// Initialize an instance of `GcsSource` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.ImportIssueModelRequest.GcsSource"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GcsSource` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -187,12 +198,23 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     indirect case gcsSource(ImportIssueModelRequest.GcsSource)
   }
 
+  /// The type URL for `ImportIssueModelRequest`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.ImportIssueModelRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.ImportIssueModelRequest"
   }
+
+  /// Initialize an instance of `ImportIssueModelRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.ImportIssueModelRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ImportIssueModelRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

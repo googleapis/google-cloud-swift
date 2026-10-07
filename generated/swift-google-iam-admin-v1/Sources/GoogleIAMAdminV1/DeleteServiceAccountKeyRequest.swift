@@ -78,12 +78,23 @@ public struct DeleteServiceAccountKeyRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `DeleteServiceAccountKeyRequest`: `"type.googleapis.com/google.iam.admin.v1.DeleteServiceAccountKeyRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.admin.v1.DeleteServiceAccountKeyRequest"
   }
+
+  /// Initialize an instance of `DeleteServiceAccountKeyRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.iam.admin.v1.DeleteServiceAccountKeyRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeleteServiceAccountKeyRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

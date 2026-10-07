@@ -225,13 +225,24 @@
         }
       }
 
+      /// The type URL for `PassThroughField`: `"type.googleapis.com/google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.PassThroughField"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.PassThroughField"
       }
+
+      /// Initialize an instance of `PassThroughField` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.PassThroughField"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `PassThroughField` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -320,13 +331,24 @@
         }
       }
 
+      /// The type URL for `EntityTypeSpec`: `"type.googleapis.com/google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.EntityTypeSpec"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.EntityTypeSpec"
       }
+
+      /// Initialize an instance of `EntityTypeSpec` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.EntityTypeSpec"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `EntityTypeSpec` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -362,12 +384,23 @@
       indirect case bigqueryReadInstances(GoogleCloudAIPlatformV1.BigQuerySource)
     }
 
+    /// The type URL for `BatchReadFeatureValuesRequest`: `"type.googleapis.com/google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest"
     }
+
+    /// Initialize an instance of `BatchReadFeatureValuesRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BatchReadFeatureValuesRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

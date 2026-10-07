@@ -409,13 +409,24 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
       case summarizationModel(AnnotatorSelector.SummarizationConfig.SummarizationModel)
     }
 
+    /// The type URL for `SummarizationConfig`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.SummarizationConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.SummarizationConfig"
     }
+
+    /// Initialize an instance of `SummarizationConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.SummarizationConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SummarizationConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -557,13 +568,24 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ScorecardList`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig.ScorecardList"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig.ScorecardList"
       }
+
+      /// Initialize an instance of `ScorecardList` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig.ScorecardList"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ScorecardList` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -575,23 +597,45 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case scorecardList(AnnotatorSelector.QaConfig.ScorecardList)
     }
 
+    /// The type URL for `QaConfig`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig"
     }
+
+    /// Initialize an instance of `QaConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `QaConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `AnnotatorSelector`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector"
   }
+
+  /// Initialize an instance of `AnnotatorSelector` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AnnotatorSelector` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

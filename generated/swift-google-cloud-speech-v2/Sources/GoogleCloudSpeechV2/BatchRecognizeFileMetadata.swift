@@ -139,12 +139,23 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPack
     case uri(Swift.String)
   }
 
+  /// The type URL for `BatchRecognizeFileMetadata`: `"type.googleapis.com/google.cloud.speech.v2.BatchRecognizeFileMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.BatchRecognizeFileMetadata"
   }
+
+  /// Initialize an instance of `BatchRecognizeFileMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.speech.v2.BatchRecognizeFileMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BatchRecognizeFileMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

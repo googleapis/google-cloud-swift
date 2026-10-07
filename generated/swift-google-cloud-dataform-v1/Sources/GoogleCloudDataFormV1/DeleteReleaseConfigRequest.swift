@@ -74,12 +74,23 @@ public struct DeleteReleaseConfigRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `DeleteReleaseConfigRequest`: `"type.googleapis.com/google.cloud.dataform.v1.DeleteReleaseConfigRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.DeleteReleaseConfigRequest"
   }
+
+  /// Initialize an instance of `DeleteReleaseConfigRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.DeleteReleaseConfigRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeleteReleaseConfigRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

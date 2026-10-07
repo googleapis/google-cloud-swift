@@ -90,12 +90,23 @@ extension ManagedZonesClient {
       }
     }
 
+    /// The type URL for `CreateRequest`: `"type.googleapis.com/.managedZones.createRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.createRequest"
     }
+
+    /// Initialize an instance of `CreateRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.managedZones.createRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CreateRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -175,12 +186,23 @@ extension ManagedZonesClient {
       }
     }
 
+    /// The type URL for `DeleteRequest`: `"type.googleapis.com/.managedZones.deleteRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.deleteRequest"
     }
+
+    /// Initialize an instance of `DeleteRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.managedZones.deleteRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DeleteRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -260,12 +282,23 @@ extension ManagedZonesClient {
       }
     }
 
+    /// The type URL for `GetRequest`: `"type.googleapis.com/.managedZones.getRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.getRequest"
     }
+
+    /// Initialize an instance of `GetRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.managedZones.getRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GetRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -335,12 +368,23 @@ extension ManagedZonesClient {
       }
     }
 
+    /// The type URL for `GetIamPolicyRequest`: `"type.googleapis.com/.managedZones.getIamPolicyRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.getIamPolicyRequest"
     }
+
+    /// Initialize an instance of `GetIamPolicyRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.managedZones.getIamPolicyRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GetIamPolicyRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -424,12 +468,23 @@ extension ManagedZonesClient {
       }
     }
 
+    /// The type URL for `ListRequest`: `"type.googleapis.com/.managedZones.listRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.listRequest"
     }
+
+    /// Initialize an instance of `ListRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.managedZones.listRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ListRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -516,12 +571,23 @@ extension ManagedZonesClient {
       }
     }
 
+    /// The type URL for `PatchRequest`: `"type.googleapis.com/.managedZones.patchRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.patchRequest"
     }
+
+    /// Initialize an instance of `PatchRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.managedZones.patchRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PatchRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -591,12 +657,23 @@ extension ManagedZonesClient {
       }
     }
 
+    /// The type URL for `SetIamPolicyRequest`: `"type.googleapis.com/.managedZones.setIamPolicyRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.setIamPolicyRequest"
     }
+
+    /// Initialize an instance of `SetIamPolicyRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.managedZones.setIamPolicyRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SetIamPolicyRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -667,12 +744,23 @@ extension ManagedZonesClient {
       }
     }
 
+    /// The type URL for `TestIamPermissionsRequest`: `"type.googleapis.com/.managedZones.testIamPermissionsRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.testIamPermissionsRequest"
     }
+
+    /// Initialize an instance of `TestIamPermissionsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.managedZones.testIamPermissionsRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TestIamPermissionsRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -759,12 +847,23 @@ extension ManagedZonesClient {
       }
     }
 
+    /// The type URL for `UpdateRequest`: `"type.googleapis.com/.managedZones.updateRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.updateRequest"
     }
+
+    /// Initialize an instance of `UpdateRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.managedZones.updateRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UpdateRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

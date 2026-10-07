@@ -294,12 +294,23 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
+    /// The type URL for `RDBConfig`: `"type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig.RDBConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig.RDBConfig"
     }
+
+    /// Initialize an instance of `RDBConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig.RDBConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RDBConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -492,12 +503,23 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
+    /// The type URL for `AOFConfig`: `"type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig.AOFConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig.AOFConfig"
     }
+
+    /// Initialize an instance of `AOFConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig.AOFConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AOFConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -627,12 +649,23 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `ClusterPersistenceConfig`: `"type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig"
   }
+
+  /// Initialize an instance of `ClusterPersistenceConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.ClusterPersistenceConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ClusterPersistenceConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

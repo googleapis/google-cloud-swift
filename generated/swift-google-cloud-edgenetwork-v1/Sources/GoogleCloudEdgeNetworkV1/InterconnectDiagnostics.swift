@@ -184,12 +184,23 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `LinkStatus`: `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkStatus"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkStatus"
     }
+
+    /// Initialize an instance of `LinkStatus` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkStatus"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `LinkStatus` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -300,12 +311,23 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `PacketCounts`: `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.PacketCounts"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.PacketCounts"
     }
+
+    /// Initialize an instance of `PacketCounts` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.PacketCounts"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PacketCounts` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -538,13 +560,24 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `LinkLACPStatus`: `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLACPStatus"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLACPStatus"
     }
+
+    /// Initialize an instance of `LinkLACPStatus` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLACPStatus"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `LinkLACPStatus` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -657,24 +690,46 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `LinkLLDPStatus`: `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLLDPStatus"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLLDPStatus"
     }
+
+    /// Initialize an instance of `LinkLLDPStatus` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLLDPStatus"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `LinkLLDPStatus` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `InterconnectDiagnostics`: `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics"
   }
+
+  /// Initialize an instance of `InterconnectDiagnostics` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `InterconnectDiagnostics` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

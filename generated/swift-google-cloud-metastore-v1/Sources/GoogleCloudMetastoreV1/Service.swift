@@ -806,12 +806,23 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case hiveMetastoreConfig(HiveMetastoreConfig)
   }
 
+  /// The type URL for `Service`: `"type.googleapis.com/google.cloud.metastore.v1.Service"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.metastore.v1.Service"
   }
+
+  /// Initialize an instance of `Service` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.metastore.v1.Service"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Service` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

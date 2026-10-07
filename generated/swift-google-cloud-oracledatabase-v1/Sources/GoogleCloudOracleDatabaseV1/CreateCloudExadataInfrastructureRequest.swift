@@ -115,13 +115,24 @@ public struct CreateCloudExadataInfrastructureRequest: Codable, Equatable, Googl
     }
   }
 
+  /// The type URL for `CreateCloudExadataInfrastructureRequest`: `"type.googleapis.com/google.cloud.oracledatabase.v1.CreateCloudExadataInfrastructureRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.oracledatabase.v1.CreateCloudExadataInfrastructureRequest"
   }
+
+  /// Initialize an instance of `CreateCloudExadataInfrastructureRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.oracledatabase.v1.CreateCloudExadataInfrastructureRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateCloudExadataInfrastructureRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

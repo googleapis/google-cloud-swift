@@ -370,13 +370,24 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `JsonFormat`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat.JsonFormat"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat.JsonFormat"
       }
+
+      /// Initialize an instance of `JsonFormat` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat.JsonFormat"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `JsonFormat` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -439,13 +450,24 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ProtobufFormat`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat.ProtobufFormat"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat.ProtobufFormat"
       }
+
+      /// Initialize an instance of `ProtobufFormat` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat.ProtobufFormat"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ProtobufFormat` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -508,13 +530,24 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `AvroFormat`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat.AvroFormat"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat.AvroFormat"
       }
+
+      /// Initialize an instance of `AvroFormat` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat.AvroFormat"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `AvroFormat` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -533,12 +566,23 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case json(Pipeline.MessagePayloadFormat.JsonFormat)
     }
 
+    /// The type URL for `MessagePayloadFormat`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat"
     }
+
+    /// Initialize an instance of `MessagePayloadFormat` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.MessagePayloadFormat"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MessagePayloadFormat` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -735,12 +779,23 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `NetworkConfig`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.NetworkConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.NetworkConfig"
       }
+
+      /// Initialize an instance of `NetworkConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.NetworkConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `NetworkConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -983,12 +1038,23 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `HttpEndpoint`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.HttpEndpoint"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.HttpEndpoint"
       }
+
+      /// Initialize an instance of `HttpEndpoint` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.HttpEndpoint"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `HttpEndpoint` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1157,13 +1223,24 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `OidcToken`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig.OidcToken"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig.OidcToken"
         }
+
+        /// Initialize an instance of `OidcToken` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig.OidcToken"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `OidcToken` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1247,13 +1324,24 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `OAuthToken`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig.OAuthToken"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig.OAuthToken"
         }
+
+        /// Initialize an instance of `OAuthToken` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig.OAuthToken"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `OAuthToken` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1274,13 +1362,24 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         indirect case oauthToken(Pipeline.Destination.AuthenticationConfig.OAuthToken)
       }
 
+      /// The type URL for `AuthenticationConfig`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig"
       }
+
+      /// Initialize an instance of `AuthenticationConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination.AuthenticationConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `AuthenticationConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1310,12 +1409,23 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       case topic(Swift.String)
     }
 
+    /// The type URL for `Destination`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination"
     }
+
+    /// Initialize an instance of `Destination` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Destination"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Destination` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1532,12 +1642,23 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Transformation`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Mediation.Transformation"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Mediation.Transformation"
       }
+
+      /// Initialize an instance of `Transformation` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Mediation.Transformation"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Transformation` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1549,12 +1670,23 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case transformation(Pipeline.Mediation.Transformation)
     }
 
+    /// The type URL for `Mediation`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Mediation"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Mediation"
     }
+
+    /// Initialize an instance of `Mediation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.Mediation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Mediation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1645,23 +1777,45 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `RetryPolicy`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.RetryPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.v1.Pipeline.RetryPolicy"
     }
+
+    /// Initialize an instance of `RetryPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline.RetryPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RetryPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `Pipeline`: `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.v1.Pipeline"
   }
+
+  /// Initialize an instance of `Pipeline` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.Pipeline"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Pipeline` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -111,12 +111,23 @@ public struct ListRuntimeActionSchemasRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `ListRuntimeActionSchemasRequest`: `"type.googleapis.com/google.cloud.connectors.v1.ListRuntimeActionSchemasRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.connectors.v1.ListRuntimeActionSchemasRequest"
   }
+
+  /// Initialize an instance of `ListRuntimeActionSchemasRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.connectors.v1.ListRuntimeActionSchemasRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListRuntimeActionSchemasRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

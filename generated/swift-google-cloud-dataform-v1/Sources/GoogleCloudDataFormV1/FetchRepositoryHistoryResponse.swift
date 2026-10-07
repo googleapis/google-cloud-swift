@@ -85,12 +85,23 @@ public struct FetchRepositoryHistoryResponse: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `FetchRepositoryHistoryResponse`: `"type.googleapis.com/google.cloud.dataform.v1.FetchRepositoryHistoryResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.FetchRepositoryHistoryResponse"
   }
+
+  /// Initialize an instance of `FetchRepositoryHistoryResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.FetchRepositoryHistoryResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `FetchRepositoryHistoryResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

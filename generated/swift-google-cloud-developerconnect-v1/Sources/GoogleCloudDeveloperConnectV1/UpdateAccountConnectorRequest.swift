@@ -123,12 +123,23 @@ public struct UpdateAccountConnectorRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `UpdateAccountConnectorRequest`: `"type.googleapis.com/google.cloud.developerconnect.v1.UpdateAccountConnectorRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.developerconnect.v1.UpdateAccountConnectorRequest"
   }
+
+  /// Initialize an instance of `UpdateAccountConnectorRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.developerconnect.v1.UpdateAccountConnectorRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateAccountConnectorRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

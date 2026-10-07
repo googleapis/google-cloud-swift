@@ -105,12 +105,23 @@ public struct CreateMirroringDeploymentRequest: Codable, Equatable, GoogleWKT._A
     }
   }
 
+  /// The type URL for `CreateMirroringDeploymentRequest`: `"type.googleapis.com/google.cloud.networksecurity.v1.CreateMirroringDeploymentRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.CreateMirroringDeploymentRequest"
   }
+
+  /// Initialize an instance of `CreateMirroringDeploymentRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.CreateMirroringDeploymentRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateMirroringDeploymentRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

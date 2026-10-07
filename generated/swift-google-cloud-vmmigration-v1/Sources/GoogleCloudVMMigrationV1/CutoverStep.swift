@@ -154,12 +154,23 @@ public struct CutoverStep: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case instantiatingMigratedVm(InstantiatingMigratedVMStep)
   }
 
+  /// The type URL for `CutoverStep`: `"type.googleapis.com/google.cloud.vmmigration.v1.CutoverStep"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.CutoverStep"
   }
+
+  /// Initialize an instance of `CutoverStep` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vmmigration.v1.CutoverStep"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CutoverStep` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

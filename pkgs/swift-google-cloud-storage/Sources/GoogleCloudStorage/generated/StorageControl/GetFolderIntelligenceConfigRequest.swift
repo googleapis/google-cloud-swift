@@ -78,12 +78,23 @@ public struct GetFolderIntelligenceConfigRequest: Codable, Equatable, GoogleWKT.
     }
   }
 
+  /// The type URL for `GetFolderIntelligenceConfigRequest`: `"type.googleapis.com/google.storage.control.v2.GetFolderIntelligenceConfigRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.GetFolderIntelligenceConfigRequest"
   }
+
+  /// Initialize an instance of `GetFolderIntelligenceConfigRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.GetFolderIntelligenceConfigRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetFolderIntelligenceConfigRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

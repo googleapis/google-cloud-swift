@@ -83,12 +83,23 @@ public struct MicrosoftOAuthClientCredentials: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `MicrosoftOAuthClientCredentials`: `"type.googleapis.com/google.cloud.chronicle.v1.MicrosoftOAuthClientCredentials"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.MicrosoftOAuthClientCredentials"
   }
+
+  /// Initialize an instance of `MicrosoftOAuthClientCredentials` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.MicrosoftOAuthClientCredentials"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MicrosoftOAuthClientCredentials` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

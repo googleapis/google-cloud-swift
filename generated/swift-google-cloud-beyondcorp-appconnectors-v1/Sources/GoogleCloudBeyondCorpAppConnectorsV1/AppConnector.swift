@@ -282,13 +282,24 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ServiceAccount`: `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnector.PrincipalInfo.ServiceAccount"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnector.PrincipalInfo.ServiceAccount"
       }
+
+      /// Initialize an instance of `ServiceAccount` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnector.PrincipalInfo.ServiceAccount"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ServiceAccount` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -299,13 +310,24 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case serviceAccount(AppConnector.PrincipalInfo.ServiceAccount)
     }
 
+    /// The type URL for `PrincipalInfo`: `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnector.PrincipalInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnector.PrincipalInfo"
     }
+
+    /// Initialize an instance of `PrincipalInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnector.PrincipalInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PrincipalInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -450,12 +472,23 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `AppConnector`: `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnector"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnector"
   }
+
+  /// Initialize an instance of `AppConnector` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnector"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AppConnector` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -167,12 +167,23 @@ public struct RestoreObjectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `RestoreObjectRequest`: `"type.googleapis.com/google.storage.v2.RestoreObjectRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.v2.RestoreObjectRequest"
   }
+
+  /// Initialize an instance of `RestoreObjectRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.v2.RestoreObjectRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RestoreObjectRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -75,12 +75,23 @@ public struct CustomAPIResponseConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// The type URL for `CustomAPIResponseConfig`: `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPIResponseConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.CustomAPIResponseConfig"
   }
+
+  /// Initialize an instance of `CustomAPIResponseConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPIResponseConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CustomAPIResponseConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

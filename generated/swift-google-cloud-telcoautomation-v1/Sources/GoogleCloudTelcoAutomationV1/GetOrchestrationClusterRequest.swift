@@ -74,12 +74,23 @@ public struct GetOrchestrationClusterRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `GetOrchestrationClusterRequest`: `"type.googleapis.com/google.cloud.telcoautomation.v1.GetOrchestrationClusterRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.telcoautomation.v1.GetOrchestrationClusterRequest"
   }
+
+  /// Initialize an instance of `GetOrchestrationClusterRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.telcoautomation.v1.GetOrchestrationClusterRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetOrchestrationClusterRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

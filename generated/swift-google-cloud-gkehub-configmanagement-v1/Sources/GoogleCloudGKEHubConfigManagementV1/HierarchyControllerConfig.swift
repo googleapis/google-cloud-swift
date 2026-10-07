@@ -96,12 +96,23 @@ public struct HierarchyControllerConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
+  /// The type URL for `HierarchyControllerConfig`: `"type.googleapis.com/google.cloud.gkehub.configmanagement.v1.HierarchyControllerConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.configmanagement.v1.HierarchyControllerConfig"
   }
+
+  /// Initialize an instance of `HierarchyControllerConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.gkehub.configmanagement.v1.HierarchyControllerConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `HierarchyControllerConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

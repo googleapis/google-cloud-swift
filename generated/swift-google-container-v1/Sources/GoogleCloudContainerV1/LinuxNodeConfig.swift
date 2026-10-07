@@ -307,12 +307,23 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `HugepagesConfig`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.HugepagesConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.HugepagesConfig"
     }
+
+    /// Initialize an instance of `HugepagesConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.HugepagesConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HugepagesConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -477,23 +488,45 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `InitScript`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.CustomNodeInit.InitScript"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.container.v1.LinuxNodeConfig.CustomNodeInit.InitScript"
       }
+
+      /// Initialize an instance of `InitScript` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.CustomNodeInit.InitScript"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `InitScript` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `CustomNodeInit`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.CustomNodeInit"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.CustomNodeInit"
     }
+
+    /// Initialize an instance of `CustomNodeInit` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.CustomNodeInit"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CustomNodeInit` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -666,12 +699,23 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `EncryptionConfig`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.EncryptionConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.EncryptionConfig"
       }
+
+      /// Initialize an instance of `EncryptionConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.EncryptionConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `EncryptionConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -772,12 +816,23 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         case swapSizePercent(Swift.Int32)
       }
 
+      /// The type URL for `BootDiskProfile`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.BootDiskProfile"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.BootDiskProfile"
       }
+
+      /// Initialize an instance of `BootDiskProfile` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.BootDiskProfile"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `BootDiskProfile` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -876,13 +931,24 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         case swapSizePercent(Swift.Int32)
       }
 
+      /// The type URL for `EphemeralLocalSsdProfile`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.EphemeralLocalSsdProfile"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.EphemeralLocalSsdProfile"
       }
+
+      /// Initialize an instance of `EphemeralLocalSsdProfile` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.EphemeralLocalSsdProfile"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `EphemeralLocalSsdProfile` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -945,13 +1011,24 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `DedicatedLocalSsdProfile`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.DedicatedLocalSsdProfile"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.DedicatedLocalSsdProfile"
       }
+
+      /// Initialize an instance of `DedicatedLocalSsdProfile` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.DedicatedLocalSsdProfile"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `DedicatedLocalSsdProfile` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -968,12 +1045,23 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case dedicatedLocalSsdProfile(LinuxNodeConfig.SwapConfig.DedicatedLocalSsdProfile)
     }
 
+    /// The type URL for `SwapConfig`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig"
     }
+
+    /// Initialize an instance of `SwapConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SwapConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1169,12 +1257,23 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `NodeKernelModuleLoading`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.NodeKernelModuleLoading"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.NodeKernelModuleLoading"
     }
+
+    /// Initialize an instance of `NodeKernelModuleLoading` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.NodeKernelModuleLoading"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `NodeKernelModuleLoading` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1237,12 +1336,23 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `AccurateTimeConfig`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.AccurateTimeConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.AccurateTimeConfig"
     }
+
+    /// Initialize an instance of `AccurateTimeConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.AccurateTimeConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AccurateTimeConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1312,12 +1422,23 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `NodeVfioConfig`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig.NodeVfioConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.NodeVfioConfig"
     }
+
+    /// Initialize an instance of `NodeVfioConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig.NodeVfioConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `NodeVfioConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1719,12 +1840,23 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `LinuxNodeConfig`: `"type.googleapis.com/google.container.v1.LinuxNodeConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.LinuxNodeConfig"
   }
+
+  /// Initialize an instance of `LinuxNodeConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.LinuxNodeConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `LinuxNodeConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

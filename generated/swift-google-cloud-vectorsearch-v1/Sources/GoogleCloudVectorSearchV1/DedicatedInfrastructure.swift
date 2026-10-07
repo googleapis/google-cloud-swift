@@ -152,13 +152,24 @@ public struct DedicatedInfrastructure: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `AutoscalingSpec`: `"type.googleapis.com/google.cloud.vectorsearch.v1.DedicatedInfrastructure.AutoscalingSpec"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.vectorsearch.v1.DedicatedInfrastructure.AutoscalingSpec"
     }
+
+    /// Initialize an instance of `AutoscalingSpec` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.DedicatedInfrastructure.AutoscalingSpec"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AutoscalingSpec` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -281,12 +292,23 @@ public struct DedicatedInfrastructure: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// The type URL for `DedicatedInfrastructure`: `"type.googleapis.com/google.cloud.vectorsearch.v1.DedicatedInfrastructure"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.DedicatedInfrastructure"
   }
+
+  /// Initialize an instance of `DedicatedInfrastructure` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.DedicatedInfrastructure"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DedicatedInfrastructure` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

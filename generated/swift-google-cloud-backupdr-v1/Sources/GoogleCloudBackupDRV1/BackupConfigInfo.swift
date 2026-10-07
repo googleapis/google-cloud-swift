@@ -276,12 +276,23 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case backupApplianceBackupConfig(BackupApplianceBackupConfig)
   }
 
+  /// The type URL for `BackupConfigInfo`: `"type.googleapis.com/google.cloud.backupdr.v1.BackupConfigInfo"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.BackupConfigInfo"
   }
+
+  /// Initialize an instance of `BackupConfigInfo` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.backupdr.v1.BackupConfigInfo"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BackupConfigInfo` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

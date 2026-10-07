@@ -262,12 +262,23 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `DockerBuild`: `"type.googleapis.com/google.cloud.run.v2.SubmitBuildRequest.DockerBuild"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.run.v2.SubmitBuildRequest.DockerBuild"
     }
+
+    /// Initialize an instance of `DockerBuild` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.run.v2.SubmitBuildRequest.DockerBuild"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DockerBuild` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -403,12 +414,23 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `BuildpacksBuild`: `"type.googleapis.com/google.cloud.run.v2.SubmitBuildRequest.BuildpacksBuild"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.run.v2.SubmitBuildRequest.BuildpacksBuild"
     }
+
+    /// Initialize an instance of `BuildpacksBuild` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.run.v2.SubmitBuildRequest.BuildpacksBuild"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BuildpacksBuild` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -428,12 +450,23 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case dockerBuild(SubmitBuildRequest.DockerBuild)
   }
 
+  /// The type URL for `SubmitBuildRequest`: `"type.googleapis.com/google.cloud.run.v2.SubmitBuildRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.SubmitBuildRequest"
   }
+
+  /// Initialize an instance of `SubmitBuildRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.run.v2.SubmitBuildRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SubmitBuildRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

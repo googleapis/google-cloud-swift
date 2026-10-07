@@ -74,12 +74,23 @@ public struct GetCompilationResultRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `GetCompilationResultRequest`: `"type.googleapis.com/google.cloud.dataform.v1.GetCompilationResultRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.GetCompilationResultRequest"
   }
+
+  /// Initialize an instance of `GetCompilationResultRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.GetCompilationResultRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetCompilationResultRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

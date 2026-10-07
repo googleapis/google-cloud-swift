@@ -345,12 +345,23 @@ public struct DlpJob: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case inspectDetails(InspectDataSourceDetails)
   }
 
+  /// The type URL for `DlpJob`: `"type.googleapis.com/google.privacy.dlp.v2.DlpJob"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DlpJob"
   }
+
+  /// Initialize an instance of `DlpJob` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DlpJob"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DlpJob` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

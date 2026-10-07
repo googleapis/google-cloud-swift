@@ -360,23 +360,45 @@ public struct FindingSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       case percentage(Swift.Float)
     }
 
+    /// The type URL for `SummaryDetails`: `"type.googleapis.com/google.storage.control.v2.FindingSummary.SummaryDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.storage.control.v2.FindingSummary.SummaryDetails"
     }
+
+    /// Initialize an instance of `SummaryDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.FindingSummary.SummaryDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SummaryDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `FindingSummary`: `"type.googleapis.com/google.storage.control.v2.FindingSummary"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.FindingSummary"
   }
+
+  /// Initialize an instance of `FindingSummary` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.FindingSummary"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `FindingSummary` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

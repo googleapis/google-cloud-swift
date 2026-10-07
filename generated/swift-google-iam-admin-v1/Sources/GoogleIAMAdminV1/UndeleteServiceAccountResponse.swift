@@ -72,12 +72,23 @@ public struct UndeleteServiceAccountResponse: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `UndeleteServiceAccountResponse`: `"type.googleapis.com/google.iam.admin.v1.UndeleteServiceAccountResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.admin.v1.UndeleteServiceAccountResponse"
   }
+
+  /// Initialize an instance of `UndeleteServiceAccountResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.iam.admin.v1.UndeleteServiceAccountResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UndeleteServiceAccountResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

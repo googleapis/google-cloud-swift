@@ -93,12 +93,23 @@ public struct ConfigureManagementSettingsRequest: Codable, Equatable, GoogleWKT.
     }
   }
 
+  /// The type URL for `ConfigureManagementSettingsRequest`: `"type.googleapis.com/google.cloud.domains.v1.ConfigureManagementSettingsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.domains.v1.ConfigureManagementSettingsRequest"
   }
+
+  /// Initialize an instance of `ConfigureManagementSettingsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.domains.v1.ConfigureManagementSettingsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ConfigureManagementSettingsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

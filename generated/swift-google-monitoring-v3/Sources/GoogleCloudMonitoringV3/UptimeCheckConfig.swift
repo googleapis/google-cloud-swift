@@ -359,12 +359,23 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ResourceGroup`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ResourceGroup"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ResourceGroup"
     }
+
+    /// Initialize an instance of `ResourceGroup` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ResourceGroup"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ResourceGroup` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -429,12 +440,23 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `PingConfig`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.PingConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.PingConfig"
     }
+
+    /// Initialize an instance of `PingConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.PingConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PingConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -762,13 +784,24 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `BasicAuthentication`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication"
       }
+
+      /// Initialize an instance of `BasicAuthentication` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `BasicAuthentication` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1012,13 +1045,24 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         case statusClass(UptimeCheckConfig.HttpCheck.ResponseStatusCode.StatusClass)
       }
 
+      /// The type URL for `ResponseStatusCode`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.ResponseStatusCode"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.ResponseStatusCode"
       }
+
+      /// Initialize an instance of `ResponseStatusCode` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.ResponseStatusCode"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ResponseStatusCode` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1202,13 +1246,24 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ServiceAgentAuthentication`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication"
       }
+
+      /// Initialize an instance of `ServiceAgentAuthentication` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ServiceAgentAuthentication` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1462,12 +1517,23 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication)
     }
 
+    /// The type URL for `HttpCheck`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck"
     }
+
+    /// Initialize an instance of `HttpCheck` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HttpCheck` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1540,12 +1606,23 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `TcpCheck`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.TcpCheck"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.TcpCheck"
     }
+
+    /// Initialize an instance of `TcpCheck` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.TcpCheck"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TcpCheck` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1853,13 +1930,24 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `JsonPathMatcher`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ContentMatcher.JsonPathMatcher"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ContentMatcher.JsonPathMatcher"
       }
+
+      /// Initialize an instance of `JsonPathMatcher` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ContentMatcher.JsonPathMatcher"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `JsonPathMatcher` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -2033,12 +2121,23 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case jsonPathMatcher(UptimeCheckConfig.ContentMatcher.JsonPathMatcher)
     }
 
+    /// The type URL for `ContentMatcher`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ContentMatcher"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ContentMatcher"
     }
+
+    /// Initialize an instance of `ContentMatcher` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ContentMatcher"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ContentMatcher` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -2195,12 +2294,23 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case tcpCheck(UptimeCheckConfig.TcpCheck)
   }
 
+  /// The type URL for `UptimeCheckConfig`: `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig"
   }
+
+  /// Initialize an instance of `UptimeCheckConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UptimeCheckConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UptimeCheckConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

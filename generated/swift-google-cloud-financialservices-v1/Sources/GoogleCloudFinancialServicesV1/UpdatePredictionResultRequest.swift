@@ -107,12 +107,23 @@ public struct UpdatePredictionResultRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `UpdatePredictionResultRequest`: `"type.googleapis.com/google.cloud.financialservices.v1.UpdatePredictionResultRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.financialservices.v1.UpdatePredictionResultRequest"
   }
+
+  /// Initialize an instance of `UpdatePredictionResultRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.financialservices.v1.UpdatePredictionResultRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdatePredictionResultRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

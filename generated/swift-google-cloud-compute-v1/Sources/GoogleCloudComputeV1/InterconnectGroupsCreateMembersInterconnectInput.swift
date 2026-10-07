@@ -398,13 +398,24 @@
       }
     }
 
+    /// The type URL for `InterconnectGroupsCreateMembersInterconnectInput`: `"type.googleapis.com/google.cloud.compute.v1.InterconnectGroupsCreateMembersInterconnectInput"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.compute.v1.InterconnectGroupsCreateMembersInterconnectInput"
     }
+
+    /// Initialize an instance of `InterconnectGroupsCreateMembersInterconnectInput` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InterconnectGroupsCreateMembersInterconnectInput"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InterconnectGroupsCreateMembersInterconnectInput` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

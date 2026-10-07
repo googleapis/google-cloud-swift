@@ -175,23 +175,45 @@ public struct StreamingSequenceReport: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `Attempt`: `"type.googleapis.com/google.showcase.v1beta1.StreamingSequenceReport.Attempt"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.showcase.v1beta1.StreamingSequenceReport.Attempt"
     }
+
+    /// Initialize an instance of `Attempt` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.showcase.v1beta1.StreamingSequenceReport.Attempt"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Attempt` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `StreamingSequenceReport`: `"type.googleapis.com/google.showcase.v1beta1.StreamingSequenceReport"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.StreamingSequenceReport"
   }
+
+  /// Initialize an instance of `StreamingSequenceReport` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.showcase.v1beta1.StreamingSequenceReport"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `StreamingSequenceReport` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

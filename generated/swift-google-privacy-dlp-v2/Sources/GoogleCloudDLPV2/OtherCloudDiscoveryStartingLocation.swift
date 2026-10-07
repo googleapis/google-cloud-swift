@@ -190,13 +190,24 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
       case allAssetInventoryAssets(Swift.Bool)
     }
 
+    /// The type URL for `AwsDiscoveryStartingLocation`: `"type.googleapis.com/google.privacy.dlp.v2.OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.privacy.dlp.v2.OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation"
     }
+
+    /// Initialize an instance of `AwsDiscoveryStartingLocation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AwsDiscoveryStartingLocation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -208,12 +219,23 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
     indirect case awsLocation(OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation)
   }
 
+  /// The type URL for `OtherCloudDiscoveryStartingLocation`: `"type.googleapis.com/google.privacy.dlp.v2.OtherCloudDiscoveryStartingLocation"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.OtherCloudDiscoveryStartingLocation"
   }
+
+  /// Initialize an instance of `OtherCloudDiscoveryStartingLocation` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.OtherCloudDiscoveryStartingLocation"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `OtherCloudDiscoveryStartingLocation` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

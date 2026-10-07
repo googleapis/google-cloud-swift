@@ -81,12 +81,23 @@ public struct GetManagementDnsZoneBindingRequest: Codable, Equatable, GoogleWKT.
     }
   }
 
+  /// The type URL for `GetManagementDnsZoneBindingRequest`: `"type.googleapis.com/google.cloud.vmwareengine.v1.GetManagementDnsZoneBindingRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmwareengine.v1.GetManagementDnsZoneBindingRequest"
   }
+
+  /// Initialize an instance of `GetManagementDnsZoneBindingRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vmwareengine.v1.GetManagementDnsZoneBindingRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetManagementDnsZoneBindingRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

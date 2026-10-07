@@ -509,12 +509,23 @@ public struct GoldengateMysqlConnectionProperties: Codable, Equatable, GoogleWKT
     case passwordSecretVersion(Swift.String)
   }
 
+  /// The type URL for `GoldengateMysqlConnectionProperties`: `"type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateMysqlConnectionProperties"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateMysqlConnectionProperties"
   }
+
+  /// Initialize an instance of `GoldengateMysqlConnectionProperties` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateMysqlConnectionProperties"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GoldengateMysqlConnectionProperties` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

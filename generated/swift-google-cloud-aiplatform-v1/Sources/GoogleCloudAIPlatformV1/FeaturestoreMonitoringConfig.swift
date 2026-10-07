@@ -205,13 +205,24 @@
         }
       }
 
+      /// The type URL for `SnapshotAnalysis`: `"type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.SnapshotAnalysis"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.SnapshotAnalysis"
       }
+
+      /// Initialize an instance of `SnapshotAnalysis` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.SnapshotAnalysis"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SnapshotAnalysis` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -566,13 +577,24 @@
         }
       }
 
+      /// The type URL for `ImportFeaturesAnalysis`: `"type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis"
       }
+
+      /// Initialize an instance of `ImportFeaturesAnalysis` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ImportFeaturesAnalysis` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -663,24 +685,46 @@
         case value(Swift.Double)
       }
 
+      /// The type URL for `ThresholdConfig`: `"type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig"
       }
+
+      /// Initialize an instance of `ThresholdConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ThresholdConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `FeaturestoreMonitoringConfig`: `"type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig"
     }
+
+    /// Initialize an instance of `FeaturestoreMonitoringConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FeaturestoreMonitoringConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

@@ -156,12 +156,23 @@ public struct MaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `WeeklyMaintenanceWindow`: `"type.googleapis.com/google.cloud.lustre.v1.MaintenancePolicy.WeeklyMaintenanceWindow"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.lustre.v1.MaintenancePolicy.WeeklyMaintenanceWindow"
     }
+
+    /// Initialize an instance of `WeeklyMaintenanceWindow` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.lustre.v1.MaintenancePolicy.WeeklyMaintenanceWindow"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `WeeklyMaintenanceWindow` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -245,24 +256,46 @@ public struct MaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `MaintenanceExclusionWindow`: `"type.googleapis.com/google.cloud.lustre.v1.MaintenancePolicy.MaintenanceExclusionWindow"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.lustre.v1.MaintenancePolicy.MaintenanceExclusionWindow"
     }
+
+    /// Initialize an instance of `MaintenanceExclusionWindow` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.lustre.v1.MaintenancePolicy.MaintenanceExclusionWindow"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MaintenanceExclusionWindow` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `MaintenancePolicy`: `"type.googleapis.com/google.cloud.lustre.v1.MaintenancePolicy"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.lustre.v1.MaintenancePolicy"
   }
+
+  /// Initialize an instance of `MaintenancePolicy` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.lustre.v1.MaintenancePolicy"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MaintenancePolicy` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

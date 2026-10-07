@@ -205,12 +205,23 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `UserPassword`: `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.UserPassword"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.connectors.v1.AuthConfig.UserPassword"
     }
+
+    /// Initialize an instance of `UserPassword` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.UserPassword"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UserPassword` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -359,23 +370,45 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `JwtClaims`: `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.Oauth2JwtBearer.JwtClaims"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.connectors.v1.AuthConfig.Oauth2JwtBearer.JwtClaims"
       }
+
+      /// Initialize an instance of `JwtClaims` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.Oauth2JwtBearer.JwtClaims"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `JwtClaims` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `Oauth2JwtBearer`: `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.Oauth2JwtBearer"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.connectors.v1.AuthConfig.Oauth2JwtBearer"
     }
+
+    /// Initialize an instance of `Oauth2JwtBearer` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.Oauth2JwtBearer"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Oauth2JwtBearer` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -446,12 +479,23 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Oauth2ClientCredentials`: `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.Oauth2ClientCredentials"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.connectors.v1.AuthConfig.Oauth2ClientCredentials"
     }
+
+    /// Initialize an instance of `Oauth2ClientCredentials` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.Oauth2ClientCredentials"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Oauth2ClientCredentials` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -538,12 +582,23 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SshPublicKey`: `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.SshPublicKey"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.connectors.v1.AuthConfig.SshPublicKey"
     }
+
+    /// Initialize an instance of `SshPublicKey` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig.SshPublicKey"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SshPublicKey` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -561,12 +616,23 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case sshPublicKey(AuthConfig.SshPublicKey)
   }
 
+  /// The type URL for `AuthConfig`: `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.connectors.v1.AuthConfig"
   }
+
+  /// Initialize an instance of `AuthConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.connectors.v1.AuthConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AuthConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

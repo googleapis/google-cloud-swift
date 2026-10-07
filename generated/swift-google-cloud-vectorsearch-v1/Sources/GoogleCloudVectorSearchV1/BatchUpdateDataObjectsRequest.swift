@@ -91,12 +91,23 @@ public struct BatchUpdateDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `BatchUpdateDataObjectsRequest`: `"type.googleapis.com/google.cloud.vectorsearch.v1.BatchUpdateDataObjectsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.BatchUpdateDataObjectsRequest"
   }
+
+  /// Initialize an instance of `BatchUpdateDataObjectsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.BatchUpdateDataObjectsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BatchUpdateDataObjectsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

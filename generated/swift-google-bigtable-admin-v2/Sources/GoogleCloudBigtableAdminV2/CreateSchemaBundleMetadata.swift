@@ -93,12 +93,23 @@ public struct CreateSchemaBundleMetadata: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `CreateSchemaBundleMetadata`: `"type.googleapis.com/google.bigtable.admin.v2.CreateSchemaBundleMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.CreateSchemaBundleMetadata"
   }
+
+  /// Initialize an instance of `CreateSchemaBundleMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.CreateSchemaBundleMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateSchemaBundleMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

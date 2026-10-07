@@ -101,12 +101,23 @@ public struct ExportErrorsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     case gcsPrefix(Swift.String)
   }
 
+  /// The type URL for `ExportErrorsConfig`: `"type.googleapis.com/google.cloud.retail.v2.ExportErrorsConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ExportErrorsConfig"
   }
+
+  /// Initialize an instance of `ExportErrorsConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ExportErrorsConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExportErrorsConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -356,12 +356,23 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `VideoType`: `"type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.Config.VideoType"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.Config.VideoType"
       }
+
+      /// Initialize an instance of `VideoType` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.Config.VideoType"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `VideoType` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -372,12 +383,23 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case videoType(IngestAssetRequest.Config.VideoType)
     }
 
+    /// The type URL for `Config`: `"type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.Config"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.Config"
     }
+
+    /// Initialize an instance of `Config` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.Config"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Config` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -448,12 +470,23 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `TimeIndexedData`: `"type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.TimeIndexedData"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.TimeIndexedData"
     }
+
+    /// Initialize an instance of `TimeIndexedData` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.TimeIndexedData"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TimeIndexedData` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -468,12 +501,23 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case timeIndexedData(IngestAssetRequest.TimeIndexedData)
   }
 
+  /// The type URL for `IngestAssetRequest`: `"type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest"
   }
+
+  /// Initialize an instance of `IngestAssetRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `IngestAssetRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

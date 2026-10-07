@@ -113,12 +113,23 @@ public struct ListRuleDeploymentsRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `ListRuleDeploymentsRequest`: `"type.googleapis.com/google.cloud.chronicle.v1.ListRuleDeploymentsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.ListRuleDeploymentsRequest"
   }
+
+  /// Initialize an instance of `ListRuleDeploymentsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.ListRuleDeploymentsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListRuleDeploymentsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -225,12 +225,23 @@ public struct HydratedDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `HydratedDeployment`: `"type.googleapis.com/google.cloud.telcoautomation.v1.HydratedDeployment"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.telcoautomation.v1.HydratedDeployment"
   }
+
+  /// Initialize an instance of `HydratedDeployment` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.telcoautomation.v1.HydratedDeployment"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `HydratedDeployment` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

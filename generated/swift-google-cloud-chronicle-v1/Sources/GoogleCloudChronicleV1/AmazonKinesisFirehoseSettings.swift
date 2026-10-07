@@ -63,12 +63,23 @@ public struct AmazonKinesisFirehoseSettings: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `AmazonKinesisFirehoseSettings`: `"type.googleapis.com/google.cloud.chronicle.v1.AmazonKinesisFirehoseSettings"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.AmazonKinesisFirehoseSettings"
   }
+
+  /// Initialize an instance of `AmazonKinesisFirehoseSettings` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.AmazonKinesisFirehoseSettings"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AmazonKinesisFirehoseSettings` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

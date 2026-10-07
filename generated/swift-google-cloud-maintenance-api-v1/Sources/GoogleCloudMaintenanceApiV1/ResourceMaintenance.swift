@@ -318,12 +318,23 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Resource`: `"type.googleapis.com/google.cloud.maintenance.api.v1.ResourceMaintenance.Resource"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.maintenance.api.v1.ResourceMaintenance.Resource"
     }
+
+    /// Initialize an instance of `Resource` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.maintenance.api.v1.ResourceMaintenance.Resource"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Resource` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -414,12 +425,23 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Maintenance`: `"type.googleapis.com/google.cloud.maintenance.api.v1.ResourceMaintenance.Maintenance"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.maintenance.api.v1.ResourceMaintenance.Maintenance"
     }
+
+    /// Initialize an instance of `Maintenance` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.maintenance.api.v1.ResourceMaintenance.Maintenance"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Maintenance` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -559,12 +581,23 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ResourceMaintenance`: `"type.googleapis.com/google.cloud.maintenance.api.v1.ResourceMaintenance"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.maintenance.api.v1.ResourceMaintenance"
   }
+
+  /// Initialize an instance of `ResourceMaintenance` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.maintenance.api.v1.ResourceMaintenance"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ResourceMaintenance` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

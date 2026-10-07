@@ -178,13 +178,24 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
+    /// The type URL for `VoiceActivityTimeout`: `"type.googleapis.com/google.cloud.speech.v2.StreamingRecognitionFeatures.VoiceActivityTimeout"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.speech.v2.StreamingRecognitionFeatures.VoiceActivityTimeout"
     }
+
+    /// Initialize an instance of `VoiceActivityTimeout` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.speech.v2.StreamingRecognitionFeatures.VoiceActivityTimeout"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VoiceActivityTimeout` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -321,12 +332,23 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
+  /// The type URL for `StreamingRecognitionFeatures`: `"type.googleapis.com/google.cloud.speech.v2.StreamingRecognitionFeatures"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.StreamingRecognitionFeatures"
   }
+
+  /// Initialize an instance of `StreamingRecognitionFeatures` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.speech.v2.StreamingRecognitionFeatures"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `StreamingRecognitionFeatures` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

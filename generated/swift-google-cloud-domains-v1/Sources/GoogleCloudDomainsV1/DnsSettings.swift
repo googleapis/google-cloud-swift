@@ -185,12 +185,23 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `CustomDns`: `"type.googleapis.com/google.cloud.domains.v1.DnsSettings.CustomDns"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.domains.v1.DnsSettings.CustomDns"
     }
+
+    /// Initialize an instance of `CustomDns` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.domains.v1.DnsSettings.CustomDns"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CustomDns` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -281,12 +292,23 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `GoogleDomainsDns`: `"type.googleapis.com/google.cloud.domains.v1.DnsSettings.GoogleDomainsDns"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.domains.v1.DnsSettings.GoogleDomainsDns"
     }
+
+    /// Initialize an instance of `GoogleDomainsDns` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.domains.v1.DnsSettings.GoogleDomainsDns"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GoogleDomainsDns` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -737,12 +759,23 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `DsRecord`: `"type.googleapis.com/google.cloud.domains.v1.DnsSettings.DsRecord"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.domains.v1.DnsSettings.DsRecord"
     }
+
+    /// Initialize an instance of `DsRecord` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.domains.v1.DnsSettings.DsRecord"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DsRecord` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -832,12 +865,23 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `GlueRecord`: `"type.googleapis.com/google.cloud.domains.v1.DnsSettings.GlueRecord"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.domains.v1.DnsSettings.GlueRecord"
     }
+
+    /// Initialize an instance of `GlueRecord` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.domains.v1.DnsSettings.GlueRecord"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GlueRecord` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -973,12 +1017,23 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case googleDomainsDns(DnsSettings.GoogleDomainsDns)
   }
 
+  /// The type URL for `DnsSettings`: `"type.googleapis.com/google.cloud.domains.v1.DnsSettings"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.domains.v1.DnsSettings"
   }
+
+  /// Initialize an instance of `DnsSettings` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.domains.v1.DnsSettings"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DnsSettings` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

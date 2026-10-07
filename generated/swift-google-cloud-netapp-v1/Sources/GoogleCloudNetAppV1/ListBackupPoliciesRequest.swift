@@ -111,12 +111,23 @@ public struct ListBackupPoliciesRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
+  /// The type URL for `ListBackupPoliciesRequest`: `"type.googleapis.com/google.cloud.netapp.v1.ListBackupPoliciesRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.ListBackupPoliciesRequest"
   }
+
+  /// Initialize an instance of `ListBackupPoliciesRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.netapp.v1.ListBackupPoliciesRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListBackupPoliciesRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

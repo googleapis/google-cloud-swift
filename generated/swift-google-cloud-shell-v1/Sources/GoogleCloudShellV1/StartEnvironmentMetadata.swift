@@ -222,12 +222,23 @@ public struct StartEnvironmentMetadata: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `StartEnvironmentMetadata`: `"type.googleapis.com/google.cloud.shell.v1.StartEnvironmentMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.shell.v1.StartEnvironmentMetadata"
   }
+
+  /// Initialize an instance of `StartEnvironmentMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.shell.v1.StartEnvironmentMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `StartEnvironmentMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

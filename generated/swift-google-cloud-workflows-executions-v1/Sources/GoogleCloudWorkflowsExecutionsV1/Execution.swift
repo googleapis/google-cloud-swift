@@ -344,24 +344,46 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Position`: `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StackTraceElement.Position"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StackTraceElement.Position"
       }
+
+      /// Initialize an instance of `Position` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StackTraceElement.Position"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Position` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `StackTraceElement`: `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StackTraceElement"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StackTraceElement"
     }
+
+    /// Initialize an instance of `StackTraceElement` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StackTraceElement"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StackTraceElement` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -426,12 +448,23 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `StackTrace`: `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StackTrace"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StackTrace"
     }
+
+    /// Initialize an instance of `StackTrace` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StackTrace"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StackTrace` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -511,12 +544,23 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Error`: `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.Error"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workflows.executions.v1.Execution.Error"
     }
+
+    /// Initialize an instance of `Error` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.Error"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Error` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -653,23 +697,45 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Step`: `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.Status.Step"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.workflows.executions.v1.Execution.Status.Step"
       }
+
+      /// Initialize an instance of `Step` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.Status.Step"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Step` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `Status`: `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.Status"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workflows.executions.v1.Execution.Status"
     }
+
+    /// Initialize an instance of `Status` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.Status"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Status` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -851,12 +917,23 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `StateError`: `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StateError"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StateError"
     }
+
+    /// Initialize an instance of `StateError` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution.StateError"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StateError` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1134,12 +1211,23 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `Execution`: `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workflows.executions.v1.Execution"
   }
+
+  /// Initialize an instance of `Execution` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workflows.executions.v1.Execution"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Execution` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

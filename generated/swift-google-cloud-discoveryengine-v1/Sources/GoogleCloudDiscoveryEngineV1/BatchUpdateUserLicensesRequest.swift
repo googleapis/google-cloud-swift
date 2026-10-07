@@ -193,13 +193,24 @@
         }
       }
 
+      /// The type URL for `InlineSource`: `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest.InlineSource"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest.InlineSource"
       }
+
+      /// Initialize an instance of `InlineSource` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest.InlineSource"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `InlineSource` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -211,12 +222,23 @@
       indirect case inlineSource(BatchUpdateUserLicensesRequest.InlineSource)
     }
 
+    /// The type URL for `BatchUpdateUserLicensesRequest`: `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest"
     }
+
+    /// Initialize an instance of `BatchUpdateUserLicensesRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BatchUpdateUserLicensesRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

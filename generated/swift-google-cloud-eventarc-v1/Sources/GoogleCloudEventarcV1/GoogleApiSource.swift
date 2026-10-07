@@ -278,12 +278,23 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ProjectSubscriptions`: `"type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource.ProjectSubscriptions"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource.ProjectSubscriptions"
     }
+
+    /// Initialize an instance of `ProjectSubscriptions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource.ProjectSubscriptions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ProjectSubscriptions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -346,12 +357,23 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `OrganizationSubscription`: `"type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource.OrganizationSubscription"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource.OrganizationSubscription"
     }
+
+    /// Initialize an instance of `OrganizationSubscription` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource.OrganizationSubscription"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `OrganizationSubscription` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -372,12 +394,23 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case projectSubscriptions(GoogleApiSource.ProjectSubscriptions)
   }
 
+  /// The type URL for `GoogleApiSource`: `"type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource"
   }
+
+  /// Initialize an instance of `GoogleApiSource` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GoogleApiSource` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

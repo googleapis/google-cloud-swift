@@ -94,12 +94,23 @@ public struct ListEngineConfigsResponse: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
+  /// The type URL for `ListEngineConfigsResponse`: `"type.googleapis.com/google.cloud.financialservices.v1.ListEngineConfigsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.financialservices.v1.ListEngineConfigsResponse"
   }
+
+  /// Initialize an instance of `ListEngineConfigsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.financialservices.v1.ListEngineConfigsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListEngineConfigsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

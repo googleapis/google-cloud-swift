@@ -165,12 +165,23 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `CloudFunctionV2Target`: `"type.googleapis.com/google.monitoring.v3.SyntheticMonitorTarget.CloudFunctionV2Target"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.SyntheticMonitorTarget.CloudFunctionV2Target"
     }
+
+    /// Initialize an instance of `CloudFunctionV2Target` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.SyntheticMonitorTarget.CloudFunctionV2Target"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CloudFunctionV2Target` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -182,12 +193,23 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable
     indirect case cloudFunctionV2(SyntheticMonitorTarget.CloudFunctionV2Target)
   }
 
+  /// The type URL for `SyntheticMonitorTarget`: `"type.googleapis.com/google.monitoring.v3.SyntheticMonitorTarget"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.SyntheticMonitorTarget"
   }
+
+  /// Initialize an instance of `SyntheticMonitorTarget` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.SyntheticMonitorTarget"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SyntheticMonitorTarget` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

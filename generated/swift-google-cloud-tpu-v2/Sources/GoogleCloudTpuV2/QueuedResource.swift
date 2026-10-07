@@ -408,13 +408,24 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `MultisliceParams`: `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec.MultisliceParams"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec.MultisliceParams"
         }
+
+        /// Initialize an instance of `MultisliceParams` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec.MultisliceParams"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `MultisliceParams` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -431,23 +442,45 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
         indirect case multisliceParams(QueuedResource.Tpu.NodeSpec.MultisliceParams)
       }
 
+      /// The type URL for `NodeSpec`: `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec"
       }
+
+      /// Initialize an instance of `NodeSpec` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `NodeSpec` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `Tpu`: `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu"
     }
+
+    /// Initialize an instance of `Tpu` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Tpu` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -499,12 +532,23 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Spot`: `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Spot"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Spot"
     }
+
+    /// Initialize an instance of `Spot` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Spot"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Spot` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -568,12 +612,23 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Guaranteed`: `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Guaranteed"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Guaranteed"
     }
+
+    /// Initialize an instance of `Guaranteed` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Guaranteed"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Guaranteed` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -711,12 +766,23 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case validInterval(GoogleType.Interval)
     }
 
+    /// The type URL for `QueueingPolicy`: `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.QueueingPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.QueueingPolicy"
     }
+
+    /// Initialize an instance of `QueueingPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource.QueueingPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `QueueingPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -736,12 +802,23 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case guaranteed(QueuedResource.Guaranteed)
   }
 
+  /// The type URL for `QueuedResource`: `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource"
   }
+
+  /// Initialize an instance of `QueuedResource` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.tpu.v2.QueuedResource"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `QueuedResource` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

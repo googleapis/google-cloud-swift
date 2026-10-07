@@ -293,24 +293,46 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleWKT.
       }
     }
 
+    /// The type URL for `SchemaModifiedCadence`: `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence"
     }
+
+    /// Initialize an instance of `SchemaModifiedCadence` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SchemaModifiedCadence` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `DiscoveryCloudSqlGenerationCadence`: `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence"
   }
+
+  /// Initialize an instance of `DiscoveryCloudSqlGenerationCadence` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DiscoveryCloudSqlGenerationCadence` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

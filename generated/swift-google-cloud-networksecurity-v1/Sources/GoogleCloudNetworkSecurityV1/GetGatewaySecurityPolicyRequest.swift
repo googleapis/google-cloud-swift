@@ -75,12 +75,23 @@ public struct GetGatewaySecurityPolicyRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `GetGatewaySecurityPolicyRequest`: `"type.googleapis.com/google.cloud.networksecurity.v1.GetGatewaySecurityPolicyRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.GetGatewaySecurityPolicyRequest"
   }
+
+  /// Initialize an instance of `GetGatewaySecurityPolicyRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.GetGatewaySecurityPolicyRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GetGatewaySecurityPolicyRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -75,12 +75,23 @@ public struct CalendarExtensionPoint: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `CalendarExtensionPoint`: `"type.googleapis.com/google.apps.script.type.calendar.CalendarExtensionPoint"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.apps.script.type.calendar.CalendarExtensionPoint"
   }
+
+  /// Initialize an instance of `CalendarExtensionPoint` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.apps.script.type.calendar.CalendarExtensionPoint"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CalendarExtensionPoint` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

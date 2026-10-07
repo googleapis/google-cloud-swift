@@ -328,12 +328,23 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `SearchParams`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.SearchParams"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.SearchParams"
     }
+
+    /// Initialize an instance of `SearchParams` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.SearchParams"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SearchParams` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -483,13 +494,24 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
+      /// The type URL for `SelectedAnswer`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer.SelectedAnswer"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer.SelectedAnswer"
       }
+
+      /// Initialize an instance of `SelectedAnswer` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer.SelectedAnswer"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SelectedAnswer` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -506,12 +528,23 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       indirect case selectedAnswer(ConversationalSearchRequest.UserAnswer.SelectedAnswer)
     }
 
+    /// The type URL for `UserAnswer`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer"
     }
+
+    /// Initialize an instance of `UserAnswer` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UserAnswer` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -747,24 +780,46 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `ConversationalFilteringSpec`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.ConversationalFilteringSpec"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.ConversationalFilteringSpec"
     }
+
+    /// Initialize an instance of `ConversationalFilteringSpec` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.ConversationalFilteringSpec"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConversationalFilteringSpec` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ConversationalSearchRequest`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest"
   }
+
+  /// Initialize an instance of `ConversationalSearchRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ConversationalSearchRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

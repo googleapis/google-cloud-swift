@@ -74,12 +74,23 @@ public struct PrivateClusterMasterGlobalAccessConfig: Codable, Equatable, Google
     }
   }
 
+  /// The type URL for `PrivateClusterMasterGlobalAccessConfig`: `"type.googleapis.com/google.container.v1.PrivateClusterMasterGlobalAccessConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.PrivateClusterMasterGlobalAccessConfig"
   }
+
+  /// Initialize an instance of `PrivateClusterMasterGlobalAccessConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.PrivateClusterMasterGlobalAccessConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PrivateClusterMasterGlobalAccessConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

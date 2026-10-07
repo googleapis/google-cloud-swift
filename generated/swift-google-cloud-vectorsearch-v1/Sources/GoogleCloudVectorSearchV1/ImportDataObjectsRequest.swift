@@ -186,13 +186,24 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
+    /// The type URL for `GcsImportConfig`: `"type.googleapis.com/google.cloud.vectorsearch.v1.ImportDataObjectsRequest.GcsImportConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.vectorsearch.v1.ImportDataObjectsRequest.GcsImportConfig"
     }
+
+    /// Initialize an instance of `GcsImportConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.ImportDataObjectsRequest.GcsImportConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GcsImportConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -204,12 +215,23 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     indirect case gcsImport(ImportDataObjectsRequest.GcsImportConfig)
   }
 
+  /// The type URL for `ImportDataObjectsRequest`: `"type.googleapis.com/google.cloud.vectorsearch.v1.ImportDataObjectsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.ImportDataObjectsRequest"
   }
+
+  /// Initialize an instance of `ImportDataObjectsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.ImportDataObjectsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ImportDataObjectsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

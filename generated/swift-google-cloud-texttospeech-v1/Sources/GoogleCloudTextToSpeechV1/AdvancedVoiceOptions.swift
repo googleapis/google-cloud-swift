@@ -182,12 +182,23 @@ public struct AdvancedVoiceOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SafetySetting`: `"type.googleapis.com/google.cloud.texttospeech.v1.AdvancedVoiceOptions.SafetySetting"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.texttospeech.v1.AdvancedVoiceOptions.SafetySetting"
     }
+
+    /// Initialize an instance of `SafetySetting` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.texttospeech.v1.AdvancedVoiceOptions.SafetySetting"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SafetySetting` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -252,12 +263,23 @@ public struct AdvancedVoiceOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SafetySettings`: `"type.googleapis.com/google.cloud.texttospeech.v1.AdvancedVoiceOptions.SafetySettings"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.texttospeech.v1.AdvancedVoiceOptions.SafetySettings"
     }
+
+    /// Initialize an instance of `SafetySettings` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.texttospeech.v1.AdvancedVoiceOptions.SafetySettings"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SafetySettings` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -533,12 +555,23 @@ public struct AdvancedVoiceOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `AdvancedVoiceOptions`: `"type.googleapis.com/google.cloud.texttospeech.v1.AdvancedVoiceOptions"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.texttospeech.v1.AdvancedVoiceOptions"
   }
+
+  /// Initialize an instance of `AdvancedVoiceOptions` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.texttospeech.v1.AdvancedVoiceOptions"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AdvancedVoiceOptions` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

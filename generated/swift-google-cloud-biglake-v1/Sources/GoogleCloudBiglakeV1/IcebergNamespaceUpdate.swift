@@ -85,12 +85,23 @@ public struct IcebergNamespaceUpdate: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `IcebergNamespaceUpdate`: `"type.googleapis.com/google.cloud.biglake.v1.IcebergNamespaceUpdate"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.biglake.v1.IcebergNamespaceUpdate"
   }
+
+  /// Initialize an instance of `IcebergNamespaceUpdate` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.biglake.v1.IcebergNamespaceUpdate"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `IcebergNamespaceUpdate` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

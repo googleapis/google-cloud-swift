@@ -177,13 +177,24 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `ProvisioningModelMix`: `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.ProvisioningModelMix"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.ProvisioningModelMix"
     }
+
+    /// Initialize an instance of `ProvisioningModelMix` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.ProvisioningModelMix"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ProvisioningModelMix` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -269,13 +280,24 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `InstanceSelection`: `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelection"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelection"
     }
+
+    /// Initialize an instance of `InstanceSelection` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelection"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InstanceSelection` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -344,24 +366,46 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `InstanceSelectionResult`: `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelectionResult"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelectionResult"
     }
+
+    /// Initialize an instance of `InstanceSelectionResult` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelectionResult"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InstanceSelectionResult` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `InstanceFlexibilityPolicy`: `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy"
   }
+
+  /// Initialize an instance of `InstanceFlexibilityPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `InstanceFlexibilityPolicy` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

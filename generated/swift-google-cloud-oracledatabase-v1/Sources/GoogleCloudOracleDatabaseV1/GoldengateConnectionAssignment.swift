@@ -121,12 +121,23 @@ public struct GoldengateConnectionAssignment: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `GoldengateConnectionAssignment`: `"type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateConnectionAssignment"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateConnectionAssignment"
   }
+
+  /// Initialize an instance of `GoldengateConnectionAssignment` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateConnectionAssignment"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GoldengateConnectionAssignment` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

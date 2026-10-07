@@ -151,13 +151,24 @@
         }
       }
 
+      /// The type URL for `UrisMatcher`: `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.UrisMatcher"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.UrisMatcher"
       }
+
+      /// Initialize an instance of `UrisMatcher` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.UrisMatcher"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `UrisMatcher` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -225,13 +236,24 @@
         }
       }
 
+      /// The type URL for `FhirMatcher`: `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.FhirMatcher"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.FhirMatcher"
       }
+
+      /// Initialize an instance of `FhirMatcher` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.FhirMatcher"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `FhirMatcher` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -338,24 +360,46 @@
         indirect case fhirMatcher(BatchGetDocumentsMetadataRequest.FhirMatcher)
       }
 
+      /// The type URL for `Matcher`: `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.Matcher"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.Matcher"
       }
+
+      /// Initialize an instance of `Matcher` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.Matcher"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Matcher` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `BatchGetDocumentsMetadataRequest`: `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest"
     }
+
+    /// Initialize an instance of `BatchGetDocumentsMetadataRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BatchGetDocumentsMetadataRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

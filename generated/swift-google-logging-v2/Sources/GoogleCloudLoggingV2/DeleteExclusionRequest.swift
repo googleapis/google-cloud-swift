@@ -83,12 +83,23 @@ public struct DeleteExclusionRequest: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `DeleteExclusionRequest`: `"type.googleapis.com/google.logging.v2.DeleteExclusionRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.DeleteExclusionRequest"
   }
+
+  /// Initialize an instance of `DeleteExclusionRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.logging.v2.DeleteExclusionRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeleteExclusionRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

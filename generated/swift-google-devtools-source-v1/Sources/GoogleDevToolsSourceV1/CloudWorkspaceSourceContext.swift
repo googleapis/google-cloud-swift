@@ -82,12 +82,23 @@ public struct CloudWorkspaceSourceContext: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `CloudWorkspaceSourceContext`: `"type.googleapis.com/google.devtools.source.v1.CloudWorkspaceSourceContext"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.source.v1.CloudWorkspaceSourceContext"
   }
+
+  /// Initialize an instance of `CloudWorkspaceSourceContext` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.source.v1.CloudWorkspaceSourceContext"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CloudWorkspaceSourceContext` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -317,25 +317,47 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `EndpointInfo`: `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.ConnectionInfo.EndpointInfo"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.ConnectionInfo.EndpointInfo"
       }
+
+      /// Initialize an instance of `EndpointInfo` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.ConnectionInfo.EndpointInfo"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `EndpointInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `ConnectionInfo`: `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.ConnectionInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.ConnectionInfo"
     }
+
+    /// Initialize an instance of `ConnectionInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.ConnectionInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConnectionInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -670,13 +692,24 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `GethDetails`: `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails.GethDetails"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails.GethDetails"
       }
+
+      /// Initialize an instance of `GethDetails` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails.GethDetails"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GethDetails` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -771,13 +804,24 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `EthereumEndpoints`: `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails.EthereumEndpoints"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails.EthereumEndpoints"
       }
+
+      /// Initialize an instance of `EthereumEndpoints` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails.EthereumEndpoints"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `EthereumEndpoints` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -878,13 +922,24 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ValidatorConfig`: `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails.ValidatorConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails.ValidatorConfig"
       }
+
+      /// Initialize an instance of `ValidatorConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails.ValidatorConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ValidatorConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1418,13 +1473,24 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case gethDetails(BlockchainNode.EthereumDetails.GethDetails)
     }
 
+    /// The type URL for `EthereumDetails`: `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails"
     }
+
+    /// Initialize an instance of `EthereumDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode.EthereumDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `EthereumDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1706,12 +1772,23 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case ethereumDetails(BlockchainNode.EthereumDetails)
   }
 
+  /// The type URL for `BlockchainNode`: `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode"
   }
+
+  /// Initialize an instance of `BlockchainNode` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.BlockchainNode"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BlockchainNode` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
