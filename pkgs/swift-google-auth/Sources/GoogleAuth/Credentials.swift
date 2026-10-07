@@ -403,12 +403,12 @@ protocol CredentialsProvider: Sendable {
 /// latency on the fast path.
 ///
 /// ### Lifecycle and Reuse
-/// `Credentials` instances are thread-safe (`Sendable`) and designed to be initialized once at
+/// ``Credentials`` instances are thread-safe (`Sendable`) and designed to be initialized once at
 /// application startup and shared across requests or clients.
 ///
-/// Initializing `Credentials` with `.adc()` performs synchronous filesystem I/O to read and parse local
+/// Initializing ``Credentials`` with `.adc()` performs synchronous filesystem I/O to read and parse local
 /// credential files (assuming small JSON configuration files) and starts an in-memory token cache with
-/// a background refresh loop. Avoid creating new `Credentials` (or service client) instances inside
+/// a background refresh loop. Avoid creating new ``Credentials`` (or service client) instances inside
 /// asynchronous request handlers on the hot path, as doing so performs synchronous file I/O on Swift's
 /// cooperative thread pool and discards cached access tokens.
 ///
@@ -431,7 +431,7 @@ public struct Credentials: Sendable {
   /// When `configuration` is `.adc()`, this initializer performs synchronous filesystem I/O to locate,
   /// read, and parse local credential files (such as `GOOGLE_APPLICATION_CREDENTIALS` or the well-known
   /// `gcloud` credentials file, which are assumed to be small JSON configuration files). Prefer
-  /// initializing `Credentials` at application startup and reusing the instance rather than calling
+  /// initializing ``Credentials`` at application startup and reusing the instance rather than calling
   /// this initializer repeatedly inside asynchronous request handlers.
   ///
   /// - Parameter configuration: The configuration describing the credential source and parameters.

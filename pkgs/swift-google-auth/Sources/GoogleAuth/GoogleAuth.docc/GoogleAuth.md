@@ -96,7 +96,7 @@ For advanced scenarios, ``CredentialsConfiguration`` allows explicit configurati
 (`Sendable`). It is recommended to initialize them once at application startup and reuse them
 across requests:
 
-- **Token Caching**: Each `Credentials` instance maintains an in-memory token cache and a
+- **Token Caching**: Each ``Credentials`` instance maintains an in-memory token cache and a
   proactive background refresh task. Reusing a single instance allows subsequent RPCs to reuse
   cached access tokens without additional token exchange round-trips.
 - **Filesystem I/O During ADC Resolution**: Resolving `.adc()` in ``Credentials/init(configuration:)``

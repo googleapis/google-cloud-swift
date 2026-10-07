@@ -20,7 +20,7 @@ import GoogleAuth
 ///
 /// Use this client to write (upload) and read (download) objects in the Cloud Storage service.
 ///
-/// `StorageClient` is thread-safe (`Sendable`). It is recommended to initialize it at application
+/// ``StorageClient`` is thread-safe (`Sendable`). It is recommended to initialize it at application
 /// startup and reuse it across requests.
 ///
 /// [Cloud Storage]: https://docs.cloud.google.com/storage
@@ -30,7 +30,7 @@ public final class StorageClient: StorageProtocol, Sendable {
   let inner: GoogleGax._HTTPClient
   let options: StorageClientOptions
 
-  /// Creates a new `StorageClient` instance.
+  /// Creates a new ``StorageClient`` instance.
   ///
   /// When ``StorageClientOptions/client`` does not specify custom credentials, this initializer
   /// resolves Application Default Credentials synchronously (including reading local credential
