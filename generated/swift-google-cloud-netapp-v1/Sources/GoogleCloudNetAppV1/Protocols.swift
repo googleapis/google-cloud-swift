@@ -34,6 +34,8 @@ public enum Protocols: Codable, Equatable, Hashable, Sendable {
   case smb
   /// ISCSI protocol
   case iscsi
+  /// NVMe protocol
+  case nvme
   /// Encodes an unknown integer value.
   ///
   /// The most common cause for an unknown value is for the service to send
@@ -67,6 +69,7 @@ public enum Protocols: Codable, Equatable, Hashable, Sendable {
     case .nfsv4: return 2
     case .smb: return 3
     case .iscsi: return 4
+    case .nvme: return 5
     case .unknownIntValue(let v): return v
     case .unknownStringValue: return nil
     }
@@ -82,6 +85,7 @@ public enum Protocols: Codable, Equatable, Hashable, Sendable {
     case .nfsv4: return "NFSV4"
     case .smb: return "SMB"
     case .iscsi: return "ISCSI"
+    case .nvme: return "NVME"
     case .unknownIntValue: return nil
     case .unknownStringValue(let v): return v
     }
@@ -97,6 +101,7 @@ public enum Protocols: Codable, Equatable, Hashable, Sendable {
     case "NFSV4": self = .nfsv4
     case "SMB": self = .smb
     case "ISCSI": self = .iscsi
+    case "NVME": self = .nvme
     default: self = .unknownStringValue(stringValue)
     }
   }
@@ -111,6 +116,7 @@ public enum Protocols: Codable, Equatable, Hashable, Sendable {
     case 2: self = .nfsv4
     case 3: self = .smb
     case 4: self = .iscsi
+    case 5: self = .nvme
     default: self = .unknownIntValue(intValue)
     }
   }
@@ -141,6 +147,7 @@ public enum Protocols: Codable, Equatable, Hashable, Sendable {
     case .nfsv4: return try container.encode("NFSV4")
     case .smb: return try container.encode("SMB")
     case .iscsi: return try container.encode("ISCSI")
+    case .nvme: return try container.encode("NVME")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

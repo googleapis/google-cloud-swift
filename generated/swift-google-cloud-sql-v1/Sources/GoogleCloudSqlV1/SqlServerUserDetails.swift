@@ -22,10 +22,10 @@
   public struct SqlServerUserDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// If the user has been disabled
+    /// Indicates if the user has been disabled.
     public var disabled: Swift.Bool = Swift.Bool()
 
-    /// The server roles for this user
+    /// Indicates the server roles for this user.
     public var serverRoles: [Swift.String] = []
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

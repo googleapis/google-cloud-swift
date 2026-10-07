@@ -63,6 +63,16 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
     try await self.inner.getSchema(request: request, options: options)
   }
 
+  /// Explores the topology schema starting from given node types or label names
+  /// up to a specified hop depth.
+  ///
+  /// @Snippet(path: "AppTopology_ExploreSchema")
+  public func exploreSchema(
+    request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse {
+    try await self.inner.exploreSchema(request: request, options: options)
+  }
+
   /// Retrieves the specified topology domain.
   ///
   /// @Snippet(path: "AppTopology_GetDomain")
@@ -179,6 +189,11 @@ extension Clients {
       request: GetSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppTopologyV1.Schema
 
+    /// See `AppTopologyClient.exploreSchema`.
+    func exploreSchema(
+      request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse
+
     /// See `AppTopologyClient.getDomain`.
     func getDomain(
       request: GetDomainRequest, options: GoogleGax.RequestOptions
@@ -258,6 +273,51 @@ extension Clients.AppTopologyProtocol {
       $0.name = name
     }
     return try await self.getSchema(request: request)
+  }
+
+  public func exploreSchema(request: ExploreSchemaRequest) async throws
+    -> GoogleCloudAppTopologyV1.ExploreSchemaResponse
+  {
+    try await self.exploreSchema(request: request, options: .init())
+  }
+
+  public func exploreSchema(
+    request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func exploreSchemaByItems(
+    request: ExploreSchemaRequest
+  ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
+    self.exploreSchemaByItems(request: request, options: .init())
+  }
+
+  /// Explores the topology schema starting from given node types or label names
+  /// up to a specified hop depth.
+  ///
+  /// @Snippet(path: "AppTopology_ExploreSchema")
+  public func exploreSchemaByItems(
+    request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse
+      in
+      var request = request
+      request.pageToken = token
+      return try await self.exploreSchema(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func exploreSchemaByItems(
+    name: Swift.String,
+  ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
+    let request = ExploreSchemaRequest().with {
+      $0.name = name
+    }
+    return self.exploreSchemaByItems(request: request)
   }
 
   public func getDomain(request: GetDomainRequest) async throws -> GoogleCloudAppTopologyV1.Domain {

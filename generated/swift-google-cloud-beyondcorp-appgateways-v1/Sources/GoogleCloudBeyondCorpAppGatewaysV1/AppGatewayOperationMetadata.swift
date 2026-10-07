@@ -38,9 +38,13 @@ public struct AppGatewayOperationMetadata: Codable, Equatable, GoogleWKT._AnyPac
 
   /// Output only. Identifies whether the user has requested cancellation
   /// of the operation. Operations that have successfully been cancelled
-  /// have [Operation.error][] value with a
-  /// [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-  /// `Code.CANCELLED`.
+  /// have
+  /// [google.longrunning.Operation.error][google.longrunning.Operation.error]
+  /// value with a [google.rpc.Status.code][google.rpc.Status.code] of `1`,
+  /// corresponding to `Code.CANCELLED`.
+  ///
+  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/error(_:)
+  /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
   public var requestedCancellation: Swift.Bool = Swift.Bool()
 
   /// Output only. API version used to start the operation.

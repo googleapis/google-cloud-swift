@@ -39,7 +39,12 @@ import Foundation
 /// The AppConnectionsService service provides methods to manage
 /// (create/read/update/delete) BeyondCorp AppConnections.
 ///
+///
+/// Deprecated: App Connector is deprecated and creation of new App Connector
+/// resources is no longer permitted. Use Security Gateway instead.
+///
 /// @Snippet(path: "AppConnectionsServiceQuickstart")
+@available(*, deprecated)
 public final class AppConnectionsServiceClient: Clients.AppConnectionsServiceProtocol, Sendable {
   let inner: any Clients.AppConnectionsServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -61,6 +66,7 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// Lists AppConnections in a given project and location.
   ///
   /// @Snippet(path: "AppConnectionsService_ListAppConnections")
+  @available(*, deprecated)
   public func listAppConnections(
     request: ListAppConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.ListAppConnectionsResponse {
@@ -70,6 +76,7 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// Gets details of a single AppConnection.
   ///
   /// @Snippet(path: "AppConnectionsService_GetAppConnection")
+  @available(*, deprecated)
   public func getAppConnection(
     request: GetAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.AppConnection {
@@ -79,6 +86,7 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// Creates a new AppConnection in a given project and location.
   ///
   /// @Snippet(path: "AppConnectionsService_CreateAppConnection")
+  @available(*, deprecated)
   public func createAppConnection(
     request: CreateAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -88,6 +96,7 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// Creates a new AppConnection in a given project and location.
   ///
   /// @Snippet(path: "AppConnectionsService_CreateAppConnection")
+  @available(*, deprecated)
   public func createAppConnectionPollingUntilDone(
     request: CreateAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> AppConnection {
@@ -116,6 +125,7 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// Updates the parameters of a single AppConnection.
   ///
   /// @Snippet(path: "AppConnectionsService_UpdateAppConnection")
+  @available(*, deprecated)
   public func updateAppConnection(
     request: UpdateAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -125,6 +135,7 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// Updates the parameters of a single AppConnection.
   ///
   /// @Snippet(path: "AppConnectionsService_UpdateAppConnection")
+  @available(*, deprecated)
   public func updateAppConnectionPollingUntilDone(
     request: UpdateAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> AppConnection {
@@ -153,6 +164,7 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// Deletes a single AppConnection.
   ///
   /// @Snippet(path: "AppConnectionsService_DeleteAppConnection")
+  @available(*, deprecated)
   public func deleteAppConnection(
     request: DeleteAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -162,6 +174,7 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// Deletes a single AppConnection.
   ///
   /// @Snippet(path: "AppConnectionsService_DeleteAppConnection")
+  @available(*, deprecated)
   public func deleteAppConnectionPollingUntilDone(
     request: DeleteAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -191,6 +204,7 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// to.
   ///
   /// @Snippet(path: "AppConnectionsService_ResolveAppConnections")
+  @available(*, deprecated)
   public func resolveAppConnections(
     request: ResolveAppConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.ResolveAppConnectionsResponse {
@@ -198,6 +212,23 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   }
 
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppConnectionsService_ListLocations")
   public func listLocations(
@@ -304,48 +335,58 @@ extension Clients {
   /// To mock `AppConnectionsServiceClient` change your functions to receive
   /// `some AppConnectionsServiceProtocol` or `any AppConnectionsServiceProtocol`
   /// and pass a mock implementation in your tests.
+  @available(*, deprecated)
   public protocol AppConnectionsServiceProtocol: Sendable {
     /// See `AppConnectionsServiceClient.listAppConnections`.
+    @available(*, deprecated)
     func listAppConnections(
       request: ListAppConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.ListAppConnectionsResponse
 
     /// See `AppConnectionsServiceClient.getAppConnection`.
+    @available(*, deprecated)
     func getAppConnection(
       request: GetAppConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.AppConnection
 
     /// See `AppConnectionsServiceClient.createAppConnection`.
+    @available(*, deprecated)
     func createAppConnection(
       request: CreateAppConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppConnectionsServiceClient.createAppConnection`.
+    @available(*, deprecated)
     func createAppConnectionPollingUntilDone(
       request: CreateAppConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> AppConnection
 
     /// See `AppConnectionsServiceClient.updateAppConnection`.
+    @available(*, deprecated)
     func updateAppConnection(
       request: UpdateAppConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppConnectionsServiceClient.updateAppConnection`.
+    @available(*, deprecated)
     func updateAppConnectionPollingUntilDone(
       request: UpdateAppConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> AppConnection
 
     /// See `AppConnectionsServiceClient.deleteAppConnection`.
+    @available(*, deprecated)
     func deleteAppConnection(
       request: DeleteAppConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppConnectionsServiceClient.deleteAppConnection`.
+    @available(*, deprecated)
     func deleteAppConnectionPollingUntilDone(
       request: DeleteAppConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws
 
     /// See `AppConnectionsServiceClient.resolveAppConnections`.
+    @available(*, deprecated)
     func resolveAppConnections(
       request: ResolveAppConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.ResolveAppConnectionsResponse
@@ -393,19 +434,23 @@ extension Clients {
 }
 
 // Default implementations
+@available(*, deprecated)
 extension Clients.AppConnectionsServiceProtocol {
+  @available(*, deprecated)
   public func listAppConnections(request: ListAppConnectionsRequest) async throws
     -> GoogleCloudBeyondCorpAppConnectionsV1.ListAppConnectionsResponse
   {
     try await self.listAppConnections(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func listAppConnections(
     request: ListAppConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.ListAppConnectionsResponse {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func listAppConnectionsByItems(
     request: ListAppConnectionsRequest
   ) -> some AsyncSequence<AppConnection, any Swift.Error> & Sendable {
@@ -415,6 +460,7 @@ extension Clients.AppConnectionsServiceProtocol {
   /// Lists AppConnections in a given project and location.
   ///
   /// @Snippet(path: "AppConnectionsService_ListAppConnections")
+  @available(*, deprecated)
   public func listAppConnectionsByItems(
     request: ListAppConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AppConnection, any Swift.Error> & Sendable {
@@ -429,6 +475,7 @@ extension Clients.AppConnectionsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  @available(*, deprecated)
   public func listAppConnectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AppConnection, any Swift.Error> & Sendable {
@@ -438,18 +485,21 @@ extension Clients.AppConnectionsServiceProtocol {
     return self.listAppConnectionsByItems(request: request)
   }
 
+  @available(*, deprecated)
   public func getAppConnection(request: GetAppConnectionRequest) async throws
     -> GoogleCloudBeyondCorpAppConnectionsV1.AppConnection
   {
     try await self.getAppConnection(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func getAppConnection(
     request: GetAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.AppConnection {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func getAppConnection(
     name: Swift.String,
   ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.AppConnection {
@@ -459,30 +509,35 @@ extension Clients.AppConnectionsServiceProtocol {
     return try await self.getAppConnection(request: request)
   }
 
+  @available(*, deprecated)
   public func createAppConnection(request: CreateAppConnectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
     try await self.createAppConnection(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func createAppConnection(
     request: CreateAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createAppConnectionPollingUntilDone(request: CreateAppConnectionRequest) async throws
     -> AppConnection
   {
     return try await self.createAppConnectionPollingUntilDone(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func createAppConnectionPollingUntilDone(
     request: CreateAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> AppConnection {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createAppConnectionPollingUntilDone(
     parent: Swift.String,
     appConnection: AppConnection?,
@@ -496,30 +551,35 @@ extension Clients.AppConnectionsServiceProtocol {
     return try await self.createAppConnectionPollingUntilDone(request: request)
   }
 
+  @available(*, deprecated)
   public func updateAppConnection(request: UpdateAppConnectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
     try await self.updateAppConnection(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func updateAppConnection(
     request: UpdateAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func updateAppConnectionPollingUntilDone(request: UpdateAppConnectionRequest) async throws
     -> AppConnection
   {
     return try await self.updateAppConnectionPollingUntilDone(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func updateAppConnectionPollingUntilDone(
     request: UpdateAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> AppConnection {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func updateAppConnectionPollingUntilDone(
     appConnection: AppConnection?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -531,29 +591,34 @@ extension Clients.AppConnectionsServiceProtocol {
     return try await self.updateAppConnectionPollingUntilDone(request: request)
   }
 
+  @available(*, deprecated)
   public func deleteAppConnection(request: DeleteAppConnectionRequest) async throws
     -> GoogleLongRunning.Operation
   {
     try await self.deleteAppConnection(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func deleteAppConnection(
     request: DeleteAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func deleteAppConnectionPollingUntilDone(request: DeleteAppConnectionRequest) async throws
   {
     try await self.deleteAppConnectionPollingUntilDone(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func deleteAppConnectionPollingUntilDone(
     request: DeleteAppConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func deleteAppConnectionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -563,18 +628,21 @@ extension Clients.AppConnectionsServiceProtocol {
     try await self.deleteAppConnectionPollingUntilDone(request: request)
   }
 
+  @available(*, deprecated)
   public func resolveAppConnections(request: ResolveAppConnectionsRequest) async throws
     -> GoogleCloudBeyondCorpAppConnectionsV1.ResolveAppConnectionsResponse
   {
     try await self.resolveAppConnections(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func resolveAppConnections(
     request: ResolveAppConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppConnectionsV1.ResolveAppConnectionsResponse {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func resolveAppConnectionsByItems(
     request: ResolveAppConnectionsRequest
   ) -> some AsyncSequence<ResolveAppConnectionsResponse.AppConnectionDetails, any Swift.Error>
@@ -588,6 +656,7 @@ extension Clients.AppConnectionsServiceProtocol {
   /// to.
   ///
   /// @Snippet(path: "AppConnectionsService_ResolveAppConnections")
+  @available(*, deprecated)
   public func resolveAppConnectionsByItems(
     request: ResolveAppConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ResolveAppConnectionsResponse.AppConnectionDetails, any Swift.Error>
@@ -604,6 +673,7 @@ extension Clients.AppConnectionsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  @available(*, deprecated)
   public func resolveAppConnectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ResolveAppConnectionsResponse.AppConnectionDetails, any Swift.Error>
@@ -634,6 +704,23 @@ extension Clients.AppConnectionsServiceProtocol {
   }
 
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppConnectionsService_ListLocations")
   public func listLocationsByItems(

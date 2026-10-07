@@ -132,6 +132,22 @@ extension Clients {
       request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func getBoundary(
+      request: GetBoundaryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.Boundary
+
+    func updateBoundary(
+      request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getExtendedMetadataSchema(
+      request: GetExtendedMetadataSchemaRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.ExtendedMetadataSchema
+
+    func listExtendedMetadataSchemas(
+      request: ListExtendedMetadataSchemasRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse
+
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse

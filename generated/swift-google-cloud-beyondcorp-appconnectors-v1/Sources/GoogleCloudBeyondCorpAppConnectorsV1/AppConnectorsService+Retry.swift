@@ -127,6 +127,21 @@ extension Clients {
         })
     }
 
+    public func resolveInstanceConfig(
+      request: ResolveInstanceConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBeyondCorpAppConnectorsV1.ResolveInstanceConfigResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ResolveInstanceConfigRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudBeyondCorpAppConnectorsV1.ResolveInstanceConfigResponse
+          in
+          return try await self.inner.resolveInstanceConfig(request: r, options: o)
+        })
+    }
+
     public func reportStatus(
       request: ReportStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

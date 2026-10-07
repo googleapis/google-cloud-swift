@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService
+#if BlueGreenDeploymentsService || SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService || SqlWorkloadCapturesService
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
@@ -90,6 +90,27 @@
     /// and the results of the check (including any warnings or errors found).
     public var preCheckMajorVersionUpgradeContext: PreCheckMajorVersionUpgradeContext? = nil
 
+    /// The context for the `StartWorkloadCapture` operation, which contains
+    /// details to start recording the workload (SQL queries) on a Cloud SQL
+    /// instance.
+    public var startWorkloadCaptureContext: StartWorkloadCaptureContext? = nil
+
+    /// The context for the `StopWorkloadCapture` operation, which contains
+    /// details to stop recording the workload (SQL queries) on a Cloud SQL
+    /// instance.
+    public var stopWorkloadCaptureContext: StopWorkloadCaptureContext? = nil
+
+    /// The context for the `StartWorkloadReplay` operation, which contains details
+    /// about starting the execution of a captured workload (recorded read and
+    /// write SQL queries) on a replay instance (the Cloud SQL
+    /// instance where the recorded SQL queries are executed).
+    public var startWorkloadReplayContext: StartWorkloadReplayContext? = nil
+
+    /// The context for the `StopWorkloadReplay` operation, which contains details
+    /// about stopping the execution of a captured workload (recorded read and
+    /// write SQL queries) on a replay instance.
+    public var stopWorkloadReplayContext: StopWorkloadReplayContext? = nil
+
     /// An identifier that uniquely identifies the operation. You can use this
     /// identifier to retrieve the Operations resource that has information about
     /// the operation.
@@ -149,6 +170,11 @@
       static let backupContext = CodingKeys(stringValue: "backupContext")
       static let preCheckMajorVersionUpgradeContext = CodingKeys(
         stringValue: "preCheckMajorVersionUpgradeContext")
+      static let startWorkloadCaptureContext = CodingKeys(
+        stringValue: "startWorkloadCaptureContext")
+      static let stopWorkloadCaptureContext = CodingKeys(stringValue: "stopWorkloadCaptureContext")
+      static let startWorkloadReplayContext = CodingKeys(stringValue: "startWorkloadReplayContext")
+      static let stopWorkloadReplayContext = CodingKeys(stringValue: "stopWorkloadReplayContext")
       static let name = CodingKeys(stringValue: "name")
       static let targetId = CodingKeys(stringValue: "targetId")
       static let selfLink = CodingKeys(stringValue: "selfLink")
@@ -171,6 +197,10 @@
         "exportContext",
         "backupContext",
         "preCheckMajorVersionUpgradeContext",
+        "startWorkloadCaptureContext",
+        "stopWorkloadCaptureContext",
+        "startWorkloadReplayContext",
+        "stopWorkloadReplayContext",
         "name",
         "targetId",
         "selfLink",
@@ -213,6 +243,14 @@
       self.backupContext = try container.decodeIfPresent(BackupContext.self, forKey: .backupContext)
       self.preCheckMajorVersionUpgradeContext = try container.decodeIfPresent(
         PreCheckMajorVersionUpgradeContext.self, forKey: .preCheckMajorVersionUpgradeContext)
+      self.startWorkloadCaptureContext = try container.decodeIfPresent(
+        StartWorkloadCaptureContext.self, forKey: .startWorkloadCaptureContext)
+      self.stopWorkloadCaptureContext = try container.decodeIfPresent(
+        StopWorkloadCaptureContext.self, forKey: .stopWorkloadCaptureContext)
+      self.startWorkloadReplayContext = try container.decodeIfPresent(
+        StartWorkloadReplayContext.self, forKey: .startWorkloadReplayContext)
+      self.stopWorkloadReplayContext = try container.decodeIfPresent(
+        StopWorkloadReplayContext.self, forKey: .stopWorkloadReplayContext)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
       }
@@ -252,6 +290,14 @@
       try container.encodeIfPresent(self.backupContext, forKey: .backupContext)
       try container.encodeIfPresent(
         self.preCheckMajorVersionUpgradeContext, forKey: .preCheckMajorVersionUpgradeContext)
+      try container.encodeIfPresent(
+        self.startWorkloadCaptureContext, forKey: .startWorkloadCaptureContext)
+      try container.encodeIfPresent(
+        self.stopWorkloadCaptureContext, forKey: .stopWorkloadCaptureContext)
+      try container.encodeIfPresent(
+        self.startWorkloadReplayContext, forKey: .startWorkloadReplayContext)
+      try container.encodeIfPresent(
+        self.stopWorkloadReplayContext, forKey: .stopWorkloadReplayContext)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.targetId, forKey: .targetId)
       try container.encode(self.selfLink, forKey: .selfLink)
@@ -404,6 +450,12 @@
       /// migration workflow: including configuration, replication,
       /// switchover/back, and data reseeding, as defined by operation's intent.
       case setupMigration
+      /// Creates a new Blue-Green deployment.
+      case createBlueGreenDeployment
+      /// Switches over a Blue-Green deployment.
+      case switchoverBlueGreenDeployment
+      /// Deletes a Blue-Green deployment.
+      case deleteBlueGreenDeployment
       /// Encodes an unknown integer value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -486,6 +538,9 @@
         case .createReadPool: return 53
         case .preCheckMajorVersionUpgrade: return 54
         case .setupMigration: return 55
+        case .createBlueGreenDeployment: return 56
+        case .switchoverBlueGreenDeployment: return 57
+        case .deleteBlueGreenDeployment: return 58
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -550,6 +605,9 @@
         case .createReadPool: return "CREATE_READ_POOL"
         case .preCheckMajorVersionUpgrade: return "PRE_CHECK_MAJOR_VERSION_UPGRADE"
         case .setupMigration: return "SETUP_MIGRATION"
+        case .createBlueGreenDeployment: return "CREATE_BLUE_GREEN_DEPLOYMENT"
+        case .switchoverBlueGreenDeployment: return "SWITCHOVER_BLUE_GREEN_DEPLOYMENT"
+        case .deleteBlueGreenDeployment: return "DELETE_BLUE_GREEN_DEPLOYMENT"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
@@ -617,6 +675,9 @@
         case "CREATE_READ_POOL": self = .createReadPool
         case "PRE_CHECK_MAJOR_VERSION_UPGRADE": self = .preCheckMajorVersionUpgrade
         case "SETUP_MIGRATION": self = .setupMigration
+        case "CREATE_BLUE_GREEN_DEPLOYMENT": self = .createBlueGreenDeployment
+        case "SWITCHOVER_BLUE_GREEN_DEPLOYMENT": self = .switchoverBlueGreenDeployment
+        case "DELETE_BLUE_GREEN_DEPLOYMENT": self = .deleteBlueGreenDeployment
         default: self = .unknownStringValue(stringValue)
         }
       }
@@ -683,6 +744,9 @@
         case 53: self = .createReadPool
         case 54: self = .preCheckMajorVersionUpgrade
         case 55: self = .setupMigration
+        case 56: self = .createBlueGreenDeployment
+        case 57: self = .switchoverBlueGreenDeployment
+        case 58: self = .deleteBlueGreenDeployment
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -763,6 +827,10 @@
         case .preCheckMajorVersionUpgrade:
           return try container.encode("PRE_CHECK_MAJOR_VERSION_UPGRADE")
         case .setupMigration: return try container.encode("SETUP_MIGRATION")
+        case .createBlueGreenDeployment: return try container.encode("CREATE_BLUE_GREEN_DEPLOYMENT")
+        case .switchoverBlueGreenDeployment:
+          return try container.encode("SWITCHOVER_BLUE_GREEN_DEPLOYMENT")
+        case .deleteBlueGreenDeployment: return try container.encode("DELETE_BLUE_GREEN_DEPLOYMENT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

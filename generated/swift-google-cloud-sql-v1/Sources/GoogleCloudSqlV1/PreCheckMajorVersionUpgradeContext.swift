@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService
+#if BlueGreenDeploymentsService || SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService || SqlWorkloadCapturesService
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
@@ -30,6 +30,9 @@
 
     /// Optional. This is always `sql#preCheckMajorVersionUpgradeContext`.
     public var kind: Swift.String = Swift.String()
+
+    /// Optional. The maximum allowed runtime for the precheck operation.
+    public var maxRuntime: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,11 +61,13 @@
       static let targetDatabaseVersion = CodingKeys(stringValue: "targetDatabaseVersion")
       static let preCheckResponse = CodingKeys(stringValue: "preCheckResponse")
       static let kind = CodingKeys(stringValue: "kind")
+      static let maxRuntime = CodingKeys(stringValue: "maxRuntime")
 
       static let _knownKeys: Set<Swift.String> = [
         "targetDatabaseVersion",
         "preCheckResponse",
         "kind",
+        "maxRuntime",
       ]
     }
 
@@ -81,6 +86,8 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
         self.kind = value
       }
+      self.maxRuntime = try container.decodeIfPresent(
+        GoogleWKT.WKTDuration.self, forKey: .maxRuntime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -92,6 +99,7 @@
       try container.encode(self.targetDatabaseVersion, forKey: .targetDatabaseVersion)
       try container.encode(self.preCheckResponse, forKey: .preCheckResponse)
       try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.maxRuntime, forKey: .maxRuntime)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

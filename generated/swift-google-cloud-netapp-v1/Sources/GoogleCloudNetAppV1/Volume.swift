@@ -492,6 +492,9 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
     /// based on size of source snapshot.
     public var sharedSpaceGib: Swift.Int64 = Swift.Int64()
 
+    /// Output only. The current state of the clone split operation.
+    public var splitState: SplitState = SplitState()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `CloneDetails`.
@@ -519,11 +522,13 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
       static let sourceSnapshot = CodingKeys(stringValue: "sourceSnapshot")
       static let sourceVolume = CodingKeys(stringValue: "sourceVolume")
       static let sharedSpaceGib = CodingKeys(stringValue: "sharedSpaceGib")
+      static let splitState = CodingKeys(stringValue: "splitState")
 
       static let _knownKeys: Set<Swift.String> = [
         "sourceSnapshot",
         "sourceVolume",
         "sharedSpaceGib",
+        "splitState",
       ]
     }
 
@@ -538,6 +543,9 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .sharedSpaceGib) {
         self.sharedSpaceGib = value
       }
+      if let value = try container.decodeIfPresent(SplitState.self, forKey: .splitState) {
+        self.splitState = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -549,6 +557,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.sourceSnapshot, forKey: .sourceSnapshot)
       try container.encode(self.sourceVolume, forKey: .sourceVolume)
       try container.encode(self.sharedSpaceGib, forKey: .sharedSpaceGib)
+      try container.encode(self.splitState, forKey: .splitState)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

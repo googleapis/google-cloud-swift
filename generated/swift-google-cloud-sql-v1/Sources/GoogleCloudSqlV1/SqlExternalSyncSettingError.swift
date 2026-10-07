@@ -256,6 +256,13 @@
       /// The replication user is missing specific privileges to setup DDL
       /// replication. (e.g. CREATE EVENT TRIGGER, CREATE SCHEMA) for PostgreSQL.
       case pgDdlReplicationInsufficientPrivilege
+      /// Read replicas of the Writable Destination instance will be recreated
+      /// after external synchronization is complete, causing downtime on read
+      /// replicas.
+      case writableDestinationReplicaRecreationDowntime
+      /// A warning that disk storage auto increase is disabled on the destination
+      /// instance for a Writable Destination migration.
+      case writableDestinationStorageAutoIncreaseDisabled
       /// Encodes an unknown integer value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -343,6 +350,8 @@
         case .promptDeleteExisting: return 56
         case .willDeleteExisting: return 57
         case .pgDdlReplicationInsufficientPrivilege: return 58
+        case .writableDestinationReplicaRecreationDowntime: return 59
+        case .writableDestinationStorageAutoIncreaseDisabled: return 60
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -417,6 +426,10 @@
         case .willDeleteExisting: return "WILL_DELETE_EXISTING"
         case .pgDdlReplicationInsufficientPrivilege:
           return "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE"
+        case .writableDestinationReplicaRecreationDowntime:
+          return "WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME"
+        case .writableDestinationStorageAutoIncreaseDisabled:
+          return "WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
@@ -491,6 +504,10 @@
         case "WILL_DELETE_EXISTING": self = .willDeleteExisting
         case "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE":
           self = .pgDdlReplicationInsufficientPrivilege
+        case "WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME":
+          self = .writableDestinationReplicaRecreationDowntime
+        case "WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED":
+          self = .writableDestinationStorageAutoIncreaseDisabled
         default: self = .unknownStringValue(stringValue)
         }
       }
@@ -559,6 +576,8 @@
         case 56: self = .promptDeleteExisting
         case 57: self = .willDeleteExisting
         case 58: self = .pgDdlReplicationInsufficientPrivilege
+        case 59: self = .writableDestinationReplicaRecreationDowntime
+        case 60: self = .writableDestinationStorageAutoIncreaseDisabled
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -665,6 +684,10 @@
         case .willDeleteExisting: return try container.encode("WILL_DELETE_EXISTING")
         case .pgDdlReplicationInsufficientPrivilege:
           return try container.encode("PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE")
+        case .writableDestinationReplicaRecreationDowntime:
+          return try container.encode("WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME")
+        case .writableDestinationStorageAutoIncreaseDisabled:
+          return try container.encode("WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

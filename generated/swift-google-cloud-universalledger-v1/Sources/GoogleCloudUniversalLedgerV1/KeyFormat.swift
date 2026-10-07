@@ -28,8 +28,10 @@ public enum KeyFormat: Codable, Equatable, Hashable, Sendable {
   /// The key format is unspecified. This value is invalid and should not be
   /// used.
   case unspecified
+  /// Deprecated: Use `KEY_FORMAT_PEM_EC_P256_SHA256` instead.
   /// A binary serialized keyset in [Tink wire
   /// format](https://developers.google.com/tink/wire-format#keyset_serialization).
+  @available(*, deprecated)
   case tinkWireFormat
   /// A PEM-encoded elliptic curve signing key using the P-256 curve with
   /// SHA256 digest. Signatures must be provided in DER format.
@@ -86,6 +88,9 @@ public enum KeyFormat: Codable, Equatable, Hashable, Sendable {
   /// Initialize from a string value.
   ///
   /// If the value is unknown, this initializes to [`unknownStringValue`](doc:KeyFormat/unknownStringValue(_:)).
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(stringValue: Swift.String) {
     switch stringValue {
     case "KEY_FORMAT_UNSPECIFIED": self = .unspecified
@@ -98,6 +103,9 @@ public enum KeyFormat: Codable, Equatable, Hashable, Sendable {
   /// Initialize from an integer value.
   ///
   /// If the value is unknown, this initializes to [`unknownIntValue`](doc:KeyFormat/unknownIntValue(_:)).
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(intValue: Int) {
     switch intValue {
     case 0: self = .unspecified

@@ -42,7 +42,7 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Default is IN_REGION.
   public var backupVaultType: BackupVault.BackupVaultType = BackupVault.BackupVaultType()
 
-  /// Output only. Region in which the backup vault is created.
+  /// Optional. Region in which the backup vault is created.
   /// Format: `projects/{project_id}/locations/{location}`
   public var sourceRegion: Swift.String = Swift.String()
 

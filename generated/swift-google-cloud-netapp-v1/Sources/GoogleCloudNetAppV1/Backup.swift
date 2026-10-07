@@ -42,10 +42,9 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// policy.
   public var backupType: Backup.Type_ = Backup.Type_()
 
-  /// Volume full name of this backup belongs to.
-  /// Either source_volume or ontap_source should be provided.
-  /// Format:
-  /// `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
+  /// The resource name of the volume that this backup belongs to. You must
+  /// provide either `source_volume` or `ontap_source`. Format:
+  /// `projects/{project_id}/locations/{location}/volumes/{volume_id}`
   public var sourceVolume: Swift.String = Swift.String()
 
   /// If specified, backup will be created from the given snapshot.
@@ -80,6 +79,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The time until which the backup is not deletable.
   public var enforcedRetentionEndTime: GoogleWKT.WKTTimestamp? = nil
+
+  /// Optional. Represents source details for ONTAP backups.
+  /// Either source_volume or ontap_source should be provided.
+  public var ontapSource: OntapSource? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -120,6 +123,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     static let volumeRegion = CodingKeys(stringValue: "volumeRegion")
     static let backupRegion = CodingKeys(stringValue: "backupRegion")
     static let enforcedRetentionEndTime = CodingKeys(stringValue: "enforcedRetentionEndTime")
+    static let ontapSource = CodingKeys(stringValue: "ontapSource")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -137,6 +141,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       "volumeRegion",
       "backupRegion",
       "enforcedRetentionEndTime",
+      "ontapSource",
     ]
   }
 
@@ -184,6 +189,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.enforcedRetentionEndTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .enforcedRetentionEndTime)
+    self.ontapSource = try container.decodeIfPresent(OntapSource.self, forKey: .ontapSource)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -207,6 +213,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.volumeRegion, forKey: .volumeRegion)
     try container.encode(self.backupRegion, forKey: .backupRegion)
     try container.encodeIfPresent(self.enforcedRetentionEndTime, forKey: .enforcedRetentionEndTime)
+    try container.encodeIfPresent(self.ontapSource, forKey: .ontapSource)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

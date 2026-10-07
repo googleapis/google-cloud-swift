@@ -22,11 +22,13 @@ public struct ImageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The initial image the remote agent will attempt to run for the control
-  /// plane.
+  /// plane. Format would be a gcr image path, e.g.:
+  /// gcr.io/PROJECT-ID/my-image:tag1
   public var targetImage: Swift.String = Swift.String()
 
   /// The stable image that the remote agent will fallback to if the target image
-  /// fails.
+  /// fails. Format would be a gcr image path, e.g.:
+  /// gcr.io/PROJECT-ID/my-image:tag1
   public var stableImage: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

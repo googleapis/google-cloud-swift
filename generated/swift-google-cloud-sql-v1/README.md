@@ -15,6 +15,7 @@ to learn about this library.
 - `SqlAvailableDatabaseVersionsServiceClient`: Service that exposes Cloud SQL database versions information. (enabled by the `SqlAvailableDatabaseVersionsService` trait)
 - `SqlBackupRunsServiceClient`: Service for managing database backups. (enabled by the `SqlBackupRunsService` trait)
 - `SqlBackupsServiceClient`: Client for the SqlBackupsService. (enabled by the `SqlBackupsService` trait)
+- `BlueGreenDeploymentsServiceClient`: Service for managing blue-green deployments. (enabled by the `BlueGreenDeploymentsService` trait)
 - `SqlConnectServiceClient`: Cloud SQL connect service. (enabled by the `SqlConnectService` trait)
 - `SqlDatabasesServiceClient`: Service to manage databases. (enabled by the `SqlDatabasesService` trait)
 - `SqlEventsServiceClient`: Service that exposes Cloud SQL event information. (enabled by the `SqlEventsService` trait)
@@ -28,6 +29,7 @@ to learn about this library.
 - `SqlSslCertsServiceClient`: Service to manage SSL certs for Cloud SQL instances. (enabled by the `SqlSslCertsService` trait)
 - `SqlTiersServiceClient`: Service for providing machine types (tiers) for Cloud SQL instances. (enabled by the `SqlTiersService` trait)
 - `SqlUsersServiceClient`: Cloud SQL users service. (enabled by the `SqlUsersService` trait)
+- `SqlWorkloadCapturesServiceClient`: Cloud SQL Workload Captures service. (enabled by the `SqlWorkloadCapturesService` trait)
 
 ## Quickstart
 
@@ -81,6 +83,7 @@ No traits are enabled by default. Specify the traits you need in `Package.swift`
 
 | Trait | Default | Enabled Client |
 |---|:---:|---|
+| `BlueGreenDeploymentsService` | No | `BlueGreenDeploymentsServiceClient` |
 | `SqlAvailableDatabaseVersionsService` | No | `SqlAvailableDatabaseVersionsServiceClient` |
 | `SqlBackupRunsService` | No | `SqlBackupRunsServiceClient` |
 | `SqlBackupsService` | No | `SqlBackupsServiceClient` |
@@ -97,6 +100,7 @@ No traits are enabled by default. Specify the traits you need in `Package.swift`
 | `SqlSslCertsService` | No | `SqlSslCertsServiceClient` |
 | `SqlTiersService` | No | `SqlTiersServiceClient` |
 | `SqlUsersService` | No | `SqlUsersServiceClient` |
+| `SqlWorkloadCapturesService` | No | `SqlWorkloadCapturesServiceClient` |
 
 ## Troubleshooting
 

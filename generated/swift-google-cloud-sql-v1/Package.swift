@@ -25,6 +25,9 @@ let package = Package(
   ],
   traits: [
     .trait(
+      name: "BlueGreenDeploymentsService",
+    ),
+    .trait(
       name: "SqlAvailableDatabaseVersionsService",
     ),
     .trait(
@@ -71,6 +74,9 @@ let package = Package(
     ),
     .trait(
       name: "SqlUsersService",
+    ),
+    .trait(
+      name: "SqlWorkloadCapturesService",
     ),
     .default(enabledTraits: []),
   ],

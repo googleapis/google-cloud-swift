@@ -216,6 +216,10 @@
     /// instance is initiated.
     public var includeReplicasForMajorVersionUpgrade: GoogleWKT.WKTBoolValue? = nil
 
+    /// Optional. Input only. Determines whether the precheck step is skipped
+    /// during a major version upgrade.
+    public var skipPrecheck: GoogleWKT.WKTBoolValue? = nil
+
     /// Optional. Input only. Immutable. Tag keys and tag values that are bound to
     /// this instance. You must represent each item in the map as:
     /// `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
@@ -239,6 +243,10 @@
 
     /// Output only. The list of DNS names used by this instance.
     public var dnsNames: [DnsNameMapping] = []
+
+    /// Output only. Deployment info for the instance. This is set if the instance
+    /// is currently part of any blue-green setup.
+    public var deploymentInfo: BlueGreenDeploymentInfo? = nil
 
     /// Optional. If true, instance metadata is sent to the Database Center. If
     /// false, instance metadata is not sent to the Database Center.
@@ -323,10 +331,12 @@
         stringValue: "switchTransactionLogsToCloudStorageEnabled")
       static let includeReplicasForMajorVersionUpgrade = CodingKeys(
         stringValue: "includeReplicasForMajorVersionUpgrade")
+      static let skipPrecheck = CodingKeys(stringValue: "skipPrecheck")
       static let tags = CodingKeys(stringValue: "tags")
       static let nodeCount = CodingKeys(stringValue: "nodeCount")
       static let nodes = CodingKeys(stringValue: "nodes")
       static let dnsNames = CodingKeys(stringValue: "dnsNames")
+      static let deploymentInfo = CodingKeys(stringValue: "deploymentInfo")
       static let databaseCenterIntegrationEnabled = CodingKeys(
         stringValue: "databaseCenterIntegrationEnabled")
       static let databaseCenterIntegration = CodingKeys(stringValue: "databaseCenterIntegration")
@@ -379,10 +389,12 @@
         "satisfiesPzi",
         "switchTransactionLogsToCloudStorageEnabled",
         "includeReplicasForMajorVersionUpgrade",
+        "skipPrecheck",
         "tags",
         "nodeCount",
         "nodes",
         "dnsNames",
+        "deploymentInfo",
         "databaseCenterIntegrationEnabled",
         "databaseCenterIntegration",
       ]
@@ -521,6 +533,8 @@
         GoogleWKT.WKTBoolValue.self, forKey: .switchTransactionLogsToCloudStorageEnabled)
       self.includeReplicasForMajorVersionUpgrade = try container.decodeIfPresent(
         GoogleWKT.WKTBoolValue.self, forKey: .includeReplicasForMajorVersionUpgrade)
+      self.skipPrecheck = try container.decodeIfPresent(
+        GoogleWKT.WKTBoolValue.self, forKey: .skipPrecheck)
       if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags)
       {
         self.tags = value
@@ -534,6 +548,8 @@
       if let value = try container.decodeIfPresent([DnsNameMapping].self, forKey: .dnsNames) {
         self.dnsNames = value
       }
+      self.deploymentInfo = try container.decodeIfPresent(
+        BlueGreenDeploymentInfo.self, forKey: .deploymentInfo)
       self.databaseCenterIntegrationEnabled = try container.decodeIfPresent(
         GoogleWKT.WKTBoolValue.self, forKey: .databaseCenterIntegrationEnabled)
       self.databaseCenterIntegration = try container.decodeIfPresent(
@@ -601,10 +617,12 @@
         forKey: .switchTransactionLogsToCloudStorageEnabled)
       try container.encodeIfPresent(
         self.includeReplicasForMajorVersionUpgrade, forKey: .includeReplicasForMajorVersionUpgrade)
+      try container.encodeIfPresent(self.skipPrecheck, forKey: .skipPrecheck)
       try container.encode(self.tags, forKey: .tags)
       try container.encodeIfPresent(self.nodeCount, forKey: .nodeCount)
       try container.encode(self.nodes, forKey: .nodes)
       try container.encode(self.dnsNames, forKey: .dnsNames)
+      try container.encodeIfPresent(self.deploymentInfo, forKey: .deploymentInfo)
       try container.encodeIfPresent(
         self.databaseCenterIntegrationEnabled, forKey: .databaseCenterIntegrationEnabled)
       try container.encodeIfPresent(

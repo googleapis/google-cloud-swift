@@ -139,8 +139,8 @@ public struct StoragePool: Codable, Equatable, GoogleWKT._AnyPackable,
   public var type: StoragePoolType? = nil
 
   /// Optional. Mode of the storage pool. This field is used to control whether
-  /// the user can perform the ONTAP operations on the storage pool using the
-  /// GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
+  /// the user can perform ONTAP operations on the storage pool using the GCNV
+  /// ONTAP Mode APIs. If not specified during creation, it defaults to
   /// `DEFAULT`.
   public var mode: Mode? = nil
 

@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if SqlBackupsService || SqlConnectService || SqlInstancesService
+#if BlueGreenDeploymentsService || SqlBackupsService || SqlConnectService || SqlInstancesService
   import Foundation
 
   /// - Note: Adding cases to this enumeration is not considered a breaking change.

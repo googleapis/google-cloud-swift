@@ -80,6 +80,21 @@ extension Clients {
         })
     }
 
+    public func exploreSchema(
+      request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: ExploreSchemaRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudAppTopologyV1.ExploreSchemaResponse
+          in
+          return try await self.inner.exploreSchema(request: r, options: o)
+        })
+    }
+
     public func getDomain(
       request: GetDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppTopologyV1.Domain {

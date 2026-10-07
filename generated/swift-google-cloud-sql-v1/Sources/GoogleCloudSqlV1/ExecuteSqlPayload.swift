@@ -32,6 +32,7 @@
     public var sqlStatement: Swift.String = Swift.String()
 
     /// Optional. Name of the database on which the statement will be executed.
+    /// For Postgres and SQL Server it's required, for MySQL it's optional.
     public var database: Swift.String = Swift.String()
 
     /// Optional. The maximum number of rows returned per SQL statement.

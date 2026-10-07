@@ -5,10 +5,12 @@
 [![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-cloud-beyondcorp-appgateways-v1%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/googleapis/swift-google-cloud-beyondcorp-appgateways-v1)
 [![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-cloud-beyondcorp-appgateways-v1%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/googleapis/swift-google-cloud-beyondcorp-appgateways-v1)
 
-Beyondcorp Enterprise provides identity and context aware access controls
-for enterprise resources and enables zero-trust access. Using the
-Beyondcorp Enterprise APIs, enterprises can set up multi-cloud and on-prem
-connectivity using the App Connector hybrid connectivity solution.
+Chrome Enterprise Premium is a secure enterprise browsing solution that
+provides secure access to applications and resources, and offers
+integrated threat and data protection. It adds an extra layer of security
+to safeguard your Chrome browser environment, including Data Loss
+Prevention (DLP), real-time URL and file scanning, and Context-Aware
+Access for SaaS and web apps.
 
 ## Overview
 
@@ -28,6 +30,9 @@ import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
 
+#if hasAttribute(diagnose)
+@diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleCloudBeyondCorpAppGatewaysV1.AppGatewaysServiceClient()
   let items = client.listAppGatewaysByItems(

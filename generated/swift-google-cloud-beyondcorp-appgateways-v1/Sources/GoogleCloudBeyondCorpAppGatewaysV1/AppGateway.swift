@@ -60,6 +60,12 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The type of hosting used by the AppGateway.
   public var hostType: AppGateway.HostType = AppGateway.HostType()
 
+  /// Output only. Reserved for future use.
+  public var satisfiesPzs: Swift.Bool? = nil
+
+  /// Output only. Reserved for future use.
+  public var satisfiesPzi: Swift.Bool? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `AppGateway`.
@@ -95,6 +101,8 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     static let uri = CodingKeys(stringValue: "uri")
     static let allocatedConnections = CodingKeys(stringValue: "allocatedConnections")
     static let hostType = CodingKeys(stringValue: "hostType")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -108,6 +116,8 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
       "uri",
       "allocatedConnections",
       "hostType",
+      "satisfiesPzs",
+      "satisfiesPzi",
     ]
   }
 
@@ -147,6 +157,8 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(AppGateway.HostType.self, forKey: .hostType) {
       self.hostType = value
     }
+    self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
+    self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -166,6 +178,8 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.uri, forKey: .uri)
     try container.encode(self.allocatedConnections, forKey: .allocatedConnections)
     try container.encode(self.hostType, forKey: .hostType)
+    try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

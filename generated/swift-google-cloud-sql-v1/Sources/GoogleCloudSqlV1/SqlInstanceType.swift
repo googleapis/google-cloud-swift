@@ -35,6 +35,9 @@
     case readReplicaInstance
     /// A Cloud SQL read pool.
     case readPoolInstance
+    /// A Cloud SQL instance acting as a Blue-Green deployment target primary.
+    /// (MySQL only)
+    case greenInstance
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown value is for the service to send
@@ -68,6 +71,7 @@
       case .onPremisesInstance: return 2
       case .readReplicaInstance: return 3
       case .readPoolInstance: return 5
+      case .greenInstance: return 7
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -83,6 +87,7 @@
       case .onPremisesInstance: return "ON_PREMISES_INSTANCE"
       case .readReplicaInstance: return "READ_REPLICA_INSTANCE"
       case .readPoolInstance: return "READ_POOL_INSTANCE"
+      case .greenInstance: return "GREEN_INSTANCE"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -98,6 +103,7 @@
       case "ON_PREMISES_INSTANCE": self = .onPremisesInstance
       case "READ_REPLICA_INSTANCE": self = .readReplicaInstance
       case "READ_POOL_INSTANCE": self = .readPoolInstance
+      case "GREEN_INSTANCE": self = .greenInstance
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -112,6 +118,7 @@
       case 2: self = .onPremisesInstance
       case 3: self = .readReplicaInstance
       case 5: self = .readPoolInstance
+      case 7: self = .greenInstance
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -142,6 +149,7 @@
       case .onPremisesInstance: return try container.encode("ON_PREMISES_INSTANCE")
       case .readReplicaInstance: return try container.encode("READ_REPLICA_INSTANCE")
       case .readPoolInstance: return try container.encode("READ_POOL_INSTANCE")
+      case .greenInstance: return try container.encode("GREEN_INSTANCE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

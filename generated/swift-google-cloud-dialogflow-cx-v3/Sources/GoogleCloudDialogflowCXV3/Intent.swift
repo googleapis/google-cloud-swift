@@ -82,7 +82,7 @@
     public var labels: [Swift.String: Swift.String] = [:]
 
     /// Human readable description for better understanding an intent like its
-    /// scope, content, result etc. Maximum character limit: 140 characters.
+    /// scope, content, result etc. Maximum character limit: 1000 characters.
     public var description: Swift.String = Swift.String()
 
     /// Optional. Matching DTMF pattern for the intent.

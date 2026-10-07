@@ -61,6 +61,12 @@ public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Maximum allowed number of networks per response policy.
   public var networksPerResponsePolicy: Swift.Int32? = nil
 
+  /// Maximum allowed number of outbound endpoints per managed zone.
+  public var outboundEndpointsPerManagedZone: Swift.Int32? = nil
+
+  /// Maximum allowed number of outbound endpoints per policy.
+  public var outboundEndpointsPerPolicy: Swift.Int32? = nil
+
   /// Maximum allowed number of consumer peering zones per target network owned by this producer project
   public var peeringZonesPerTargetNetwork: Swift.Int32? = nil
 
@@ -137,6 +143,9 @@ public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,
     static let networksPerManagedZone = CodingKeys(stringValue: "networksPerManagedZone")
     static let networksPerPolicy = CodingKeys(stringValue: "networksPerPolicy")
     static let networksPerResponsePolicy = CodingKeys(stringValue: "networksPerResponsePolicy")
+    static let outboundEndpointsPerManagedZone = CodingKeys(
+      stringValue: "outboundEndpointsPerManagedZone")
+    static let outboundEndpointsPerPolicy = CodingKeys(stringValue: "outboundEndpointsPerPolicy")
     static let peeringZonesPerTargetNetwork = CodingKeys(
       stringValue: "peeringZonesPerTargetNetwork")
     static let policies = CodingKeys(stringValue: "policies")
@@ -168,6 +177,8 @@ public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,
       "networksPerManagedZone",
       "networksPerPolicy",
       "networksPerResponsePolicy",
+      "outboundEndpointsPerManagedZone",
+      "outboundEndpointsPerPolicy",
       "peeringZonesPerTargetNetwork",
       "policies",
       "resourceRecordsPerRrset",
@@ -211,6 +222,10 @@ public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,
       Swift.Int32.self, forKey: .networksPerPolicy)
     self.networksPerResponsePolicy = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .networksPerResponsePolicy)
+    self.outboundEndpointsPerManagedZone = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .outboundEndpointsPerManagedZone)
+    self.outboundEndpointsPerPolicy = try container.decodeIfPresent(
+      Swift.Int32.self, forKey: .outboundEndpointsPerPolicy)
     self.peeringZonesPerTargetNetwork = try container.decodeIfPresent(
       Swift.Int32.self, forKey: .peeringZonesPerTargetNetwork)
     self.policies = try container.decodeIfPresent(Swift.Int32.self, forKey: .policies)
@@ -262,6 +277,10 @@ public struct Quota: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.networksPerPolicy, forKey: .networksPerPolicy)
     try container.encodeIfPresent(
       self.networksPerResponsePolicy, forKey: .networksPerResponsePolicy)
+    try container.encodeIfPresent(
+      self.outboundEndpointsPerManagedZone, forKey: .outboundEndpointsPerManagedZone)
+    try container.encodeIfPresent(
+      self.outboundEndpointsPerPolicy, forKey: .outboundEndpointsPerPolicy)
     try container.encodeIfPresent(
       self.peeringZonesPerTargetNetwork, forKey: .peeringZonesPerTargetNetwork)
     try container.encodeIfPresent(self.policies, forKey: .policies)

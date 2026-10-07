@@ -21,7 +21,7 @@ import Foundation
 public struct KmsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Identifier. Name of the KmsConfig.
+  /// Identifier. Name of the `KmsConfig`.
   /// Format: `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`
   public var name: Swift.String = Swift.String()
 

@@ -23,6 +23,9 @@ import GoogleIAMV1
 import GoogleLongRunning
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: AppConnectorsServiceClient, projectId: String, locationId: String) async throws
 {
   let response = try await client.createAppConnectorPollingUntilDone(
@@ -38,6 +41,9 @@ func sample(client: AppConnectorsServiceClient, projectId: String, locationId: S
 
 @main
 struct SnippetRunner {
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   static func main() async throws {
     do {
       let client = try GoogleCloudBeyondCorpAppConnectorsV1.AppConnectorsServiceClient()

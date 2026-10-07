@@ -49,6 +49,11 @@
     /// With the difference that these fields are cleared in the settings.
     public var restoreInstanceClearOverridesFieldNames: [Swift.String] = []
 
+    /// Optional. If true, the restore operation proceeds even if the target
+    /// instance's maintenance version is older than the source instance's
+    /// maintenance version.
+    public var ignoreMaintenanceVersion: Swift.Bool = Swift.Bool()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `InstancesRestoreBackupRequest`.
@@ -79,6 +84,7 @@
       static let restoreInstanceSettings = CodingKeys(stringValue: "restoreInstanceSettings")
       static let restoreInstanceClearOverridesFieldNames = CodingKeys(
         stringValue: "restoreInstanceClearOverridesFieldNames")
+      static let ignoreMaintenanceVersion = CodingKeys(stringValue: "ignoreMaintenanceVersion")
 
       static let _knownKeys: Set<Swift.String> = [
         "restoreBackupContext",
@@ -86,6 +92,7 @@
         "backupdrBackup",
         "restoreInstanceSettings",
         "restoreInstanceClearOverridesFieldNames",
+        "ignoreMaintenanceVersion",
       ]
     }
 
@@ -106,6 +113,11 @@
       {
         self.restoreInstanceClearOverridesFieldNames = value
       }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .ignoreMaintenanceVersion)
+      {
+        self.ignoreMaintenanceVersion = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -121,6 +133,7 @@
       try container.encode(
         self.restoreInstanceClearOverridesFieldNames,
         forKey: .restoreInstanceClearOverridesFieldNames)
+      try container.encode(self.ignoreMaintenanceVersion, forKey: .ignoreMaintenanceVersion)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

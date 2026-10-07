@@ -19,7 +19,6 @@
   public import GoogleRpc
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
-  /// Execute SQL statements response.
   public struct SqlInstancesExecuteSqlResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {

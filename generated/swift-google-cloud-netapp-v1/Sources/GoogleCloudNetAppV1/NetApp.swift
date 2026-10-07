@@ -411,6 +411,59 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
     return try await poller.wait()
   }
 
+  /// Splits a clone volume from its source volume.
+  /// This operation will only work for volumes which have clone_details
+  /// set(clones).
+  /// For volumes that are not clones, this operation will return an error.
+  ///
+  /// @Snippet(path: "NetApp_StartSplit")
+  public func startSplit(
+    request: StartSplitRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.startSplit(request: request, options: options)
+  }
+
+  /// Splits a clone volume from its source volume.
+  /// This operation will only work for volumes which have clone_details
+  /// set(clones).
+  /// For volumes that are not clones, this operation will return an error.
+  ///
+  /// @Snippet(path: "NetApp_StartSplit")
+  public func startSplitPollingUntilDone(
+    request: StartSplitRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Volume {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Volume>.State in
+      return try op._extractStatus(Volume.self)
+    }
+    let rawOp = try await self.startSplit(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Volume>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Retrieves the current state, progress, and details of a split operation for
+  /// a volume. This method is relevant when the volume is a clone. For volumes
+  /// that are not clones, this method will return an error.
+  ///
+  /// @Snippet(path: "NetApp_GetSplitStatus")
+  public func getSplitStatus(
+    request: GetSplitStatusRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudNetAppV1.SplitStatus {
+    try await self.inner.getSplitStatus(request: request, options: options)
+  }
+
   /// Establish volume peering. This is used to establish cluster and svm
   /// peerings between the GCNV and OnPrem clusters.
   ///
@@ -1865,7 +1918,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
     try await poller.wait()
   }
 
-  /// `ExecuteOntapPost` dispatches the ONTAP `POST` request to the
+  /// `ExecuteOntapPost` sends the ONTAP `POST` request to the
   /// `StoragePool` cluster.
   ///
   /// @Snippet(path: "NetApp_ExecuteOntapPost")
@@ -1875,7 +1928,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
     try await self.inner.executeOntapPost(request: request, options: options)
   }
 
-  /// `ExecuteOntapGet` dispatches the ONTAP `GET` request to the
+  /// `ExecuteOntapGet` sends the ONTAP `GET` request to the
   /// `StoragePool` cluster.
   ///
   /// @Snippet(path: "NetApp_ExecuteOntapGet")
@@ -1885,7 +1938,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
     try await self.inner.executeOntapGet(request: request, options: options)
   }
 
-  /// `ExecuteOntapDelete` dispatches the ONTAP `DELETE` request to the
+  /// `ExecuteOntapDelete` sends the ONTAP `DELETE` request to the
   /// `StoragePool` cluster.
   ///
   /// @Snippet(path: "NetApp_ExecuteOntapDelete")
@@ -1895,7 +1948,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
     try await self.inner.executeOntapDelete(request: request, options: options)
   }
 
-  /// `ExecuteOntapPatch` dispatches the ONTAP `PATCH` request to the
+  /// `ExecuteOntapPatch` sends the ONTAP `PATCH` request to the
   /// `StoragePool` cluster.
   ///
   /// @Snippet(path: "NetApp_ExecuteOntapPatch")
@@ -1903,6 +1956,90 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
     request: ExecuteOntapPatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ExecuteOntapPatchResponse {
     try await self.inner.executeOntapPatch(request: request, options: options)
+  }
+
+  /// Restores a backup to an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_RestoreVolume")
+  public func restoreVolume(
+    request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.restoreVolume(request: request, options: options)
+  }
+
+  /// Restores a backup to an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_RestoreVolume")
+  public func restoreVolumePollingUntilDone(
+    request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreVolumeResponse {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RestoreVolumeResponse>.State in
+      return try op._extractStatus(RestoreVolumeResponse.self)
+    }
+    let rawOp = try await self.restoreVolume(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreVolumeResponse>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupConfigs")
+  public func listBackupConfigs(
+    request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudNetAppV1.ListBackupConfigsResponse {
+    try await self.inner.listBackupConfigs(request: request, options: options)
+  }
+
+  /// Updates the backup configuration for an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupConfig")
+  public func updateBackupConfig(
+    request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateBackupConfig(request: request, options: options)
+  }
+
+  /// Updates the backup configuration for an ONTAP-mode volume.
+  ///
+  /// @Snippet(path: "NetApp_UpdateBackupConfig")
+  public func updateBackupConfigPollingUntilDone(
+    request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> UpdateBackupConfigResponse {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<UpdateBackupConfigResponse>.State in
+      return try op._extractStatus(UpdateBackupConfigResponse.self)
+    }
+    let rawOp = try await self.updateBackupConfig(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<UpdateBackupConfigResponse>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -2101,6 +2238,21 @@ extension Clients {
     func revertVolumePollingUntilDone(
       request: RevertVolumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> Volume
+
+    /// See `NetAppClient.startSplit`.
+    func startSplit(
+      request: StartSplitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `NetAppClient.startSplit`.
+    func startSplitPollingUntilDone(
+      request: StartSplitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> Volume
+
+    /// See `NetAppClient.getSplitStatus`.
+    func getSplitStatus(
+      request: GetSplitStatusRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudNetAppV1.SplitStatus
 
     /// See `NetAppClient.establishVolumePeering`.
     func establishVolumePeering(
@@ -2567,6 +2719,31 @@ extension Clients {
       request: ExecuteOntapPatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetAppV1.ExecuteOntapPatchResponse
 
+    /// See `NetAppClient.restoreVolume`.
+    func restoreVolume(
+      request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `NetAppClient.restoreVolume`.
+    func restoreVolumePollingUntilDone(
+      request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
+    ) async throws -> RestoreVolumeResponse
+
+    /// See `NetAppClient.listBackupConfigs`.
+    func listBackupConfigs(
+      request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudNetAppV1.ListBackupConfigsResponse
+
+    /// See `NetAppClient.updateBackupConfig`.
+    func updateBackupConfig(
+      request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `NetAppClient.updateBackupConfig`.
+    func updateBackupConfigPollingUntilDone(
+      request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> UpdateBackupConfigResponse
+
     /// See `NetAppClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
@@ -2990,6 +3167,56 @@ extension Clients.NetAppProtocol {
     request: RevertVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
     throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func startSplit(request: StartSplitRequest) async throws -> GoogleLongRunning.Operation {
+    try await self.startSplit(request: request, options: .init())
+  }
+
+  public func startSplit(
+    request: StartSplitRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func startSplitPollingUntilDone(request: StartSplitRequest) async throws -> Volume {
+    return try await self.startSplitPollingUntilDone(request: request, options: .init())
+  }
+
+  public func startSplitPollingUntilDone(
+    request: StartSplitRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Volume {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func startSplitPollingUntilDone(
+    name: Swift.String,
+  ) async throws -> Volume {
+    let request = StartSplitRequest().with {
+      $0.name = name
+    }
+    return try await self.startSplitPollingUntilDone(request: request)
+  }
+
+  public func getSplitStatus(request: GetSplitStatusRequest) async throws
+    -> GoogleCloudNetAppV1.SplitStatus
+  {
+    try await self.getSplitStatus(request: request, options: .init())
+  }
+
+  public func getSplitStatus(
+    request: GetSplitStatusRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudNetAppV1.SplitStatus {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getSplitStatus(
+    name: Swift.String,
+  ) async throws -> GoogleCloudNetAppV1.SplitStatus {
+    let request = GetSplitStatusRequest().with {
+      $0.name = name
+    }
+    return try await self.getSplitStatus(request: request)
   }
 
   public func establishVolumePeering(request: EstablishVolumePeeringRequest) async throws
@@ -4743,6 +4970,126 @@ extension Clients.NetAppProtocol {
     request: ExecuteOntapPatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ExecuteOntapPatchResponse {
     throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func restoreVolume(request: RestoreVolumeRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.restoreVolume(request: request, options: .init())
+  }
+
+  public func restoreVolume(
+    request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func restoreVolumePollingUntilDone(request: RestoreVolumeRequest) async throws
+    -> RestoreVolumeResponse
+  {
+    return try await self.restoreVolumePollingUntilDone(request: request, options: .init())
+  }
+
+  public func restoreVolumePollingUntilDone(
+    request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
+  ) async throws -> RestoreVolumeResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func restoreVolumePollingUntilDone(
+    name: Swift.String,
+    backupSource: BackupSource,
+    ontapVolumeTarget: OntapVolumeTarget,
+  ) async throws -> RestoreVolumeResponse {
+    let request = RestoreVolumeRequest().with {
+      $0.name = name
+      $0.source = .backupSource(backupSource)
+      $0.target = .ontapVolumeTarget(ontapVolumeTarget)
+    }
+    return try await self.restoreVolumePollingUntilDone(request: request)
+  }
+
+  public func listBackupConfigs(request: ListBackupConfigsRequest) async throws
+    -> GoogleCloudNetAppV1.ListBackupConfigsResponse
+  {
+    try await self.listBackupConfigs(request: request, options: .init())
+  }
+
+  public func listBackupConfigs(
+    request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudNetAppV1.ListBackupConfigsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listBackupConfigsByItems(
+    request: ListBackupConfigsRequest
+  ) -> some AsyncSequence<VolumeBackupConfig, any Swift.Error> & Sendable {
+    self.listBackupConfigsByItems(request: request, options: .init())
+  }
+
+  /// Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.
+  ///
+  /// @Snippet(path: "NetApp_ListBackupConfigs")
+  public func listBackupConfigsByItems(
+    request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<VolumeBackupConfig, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudNetAppV1.ListBackupConfigsResponse
+      in
+      var request = request
+      request.pageToken = token
+      return try await self.listBackupConfigs(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listBackupConfigsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<VolumeBackupConfig, any Swift.Error> & Sendable {
+    let request = ListBackupConfigsRequest().with {
+      $0.parent = parent
+    }
+    return self.listBackupConfigsByItems(request: request)
+  }
+
+  public func updateBackupConfig(request: UpdateBackupConfigRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateBackupConfig(request: request, options: .init())
+  }
+
+  public func updateBackupConfig(
+    request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateBackupConfigPollingUntilDone(request: UpdateBackupConfigRequest) async throws
+    -> UpdateBackupConfigResponse
+  {
+    return try await self.updateBackupConfigPollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateBackupConfigPollingUntilDone(
+    request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
+  ) async throws -> UpdateBackupConfigResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateBackupConfigPollingUntilDone(
+    name: Swift.String,
+    volumeUuid: Swift.String,
+    backupConfig: BackupConfig?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> UpdateBackupConfigResponse {
+    let request = UpdateBackupConfigRequest().with {
+      $0.name = name
+      $0.volumeUuid = volumeUuid
+      $0.backupConfig = backupConfig
+      $0.updateMask = updateMask
+    }
+    return try await self.updateBackupConfigPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

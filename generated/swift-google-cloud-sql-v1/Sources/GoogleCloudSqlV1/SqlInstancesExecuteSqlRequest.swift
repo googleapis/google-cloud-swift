@@ -18,7 +18,6 @@
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
-  /// Execute SQL statements request.
   public struct SqlInstancesExecuteSqlRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {

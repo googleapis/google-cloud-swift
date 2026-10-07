@@ -21,7 +21,7 @@ import Foundation
 public struct UpdateApplicationRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Required. Field mask is used to specify the fields to be overwritten in the
+  /// Optional. Field mask is used to specify the fields to be overwritten in the
   /// Application resource by the update.
   /// The fields specified in the update_mask are relative to the resource, not
   /// the full request.

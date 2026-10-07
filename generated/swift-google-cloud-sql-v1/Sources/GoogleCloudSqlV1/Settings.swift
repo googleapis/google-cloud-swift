@@ -131,7 +131,8 @@
     /// Insights configuration, for now relevant only for Postgres.
     public var insightsConfig: InsightsConfig? = nil
 
-    /// The local user password validation policy of the instance.
+    /// The local user password validation policy of the instance for PostgreSQL
+    /// and MySQL.
     public var passwordValidationPolicy: PasswordValidationPolicy? = nil
 
     /// SQL Server specific audit configuration.

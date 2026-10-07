@@ -250,8 +250,8 @@
       /// Read-only. Login for a service account that belongs to the
       /// Cloud IAM group.
       case cloudIamGroupServiceAccount
-      /// Cloud IAM workforce identity user managed via workforce identity
-      /// federation.
+      /// Cloud IAM workforce identity managed by Workforce Identity
+      /// Federation.
       case cloudIamWorkforceIdentity
       /// Microsoft Entra ID user.
       case entraidUser

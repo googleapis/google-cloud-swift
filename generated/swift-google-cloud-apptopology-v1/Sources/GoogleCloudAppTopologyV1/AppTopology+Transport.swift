@@ -141,6 +141,60 @@ extension Clients {
     }
 
     @concurrent
+    public func exploreSchema(
+      request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse {
+      let (path, query, configure, omitted) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/domains/"), .singleWildcard, .literal("/schema"),
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):explore"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/domains/"), .singleWildcard, .literal("/schema"),
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/domains/*/schema"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      try req.setBody(json: request, omitting: omitted)
+      return try await req.rpc(
+        GoogleCloudAppTopologyV1.ExploreSchemaResponse.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
     public func getDomain(
       request: GetDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppTopologyV1.Domain {

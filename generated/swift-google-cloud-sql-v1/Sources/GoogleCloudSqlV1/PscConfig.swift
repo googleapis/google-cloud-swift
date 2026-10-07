@@ -39,7 +39,7 @@
 
     /// Optional. The network attachment of the consumer network that the
     /// Private Service Connect enabled Cloud SQL instance is
-    /// authorized to connect via PSC interface.
+    /// authorized to connect using the PSC interface.
     /// format: projects/PROJECT/regions/REGION/networkAttachments/ID
     public var networkAttachmentUri: Swift.String = Swift.String()
 

@@ -13,6 +13,7 @@ No traits are enabled by default. Specify the traits you need in `Package.swift`
 
 | Trait | Default | Enabled Client |
 |---|:---:|---|
+| `BlueGreenDeploymentsService` | No | ``BlueGreenDeploymentsServiceClient`` |
 | `SqlAvailableDatabaseVersionsService` | No | ``SqlAvailableDatabaseVersionsServiceClient`` |
 | `SqlBackupRunsService` | No | ``SqlBackupRunsServiceClient`` |
 | `SqlBackupsService` | No | ``SqlBackupsServiceClient`` |
@@ -29,3 +30,4 @@ No traits are enabled by default. Specify the traits you need in `Package.swift`
 | `SqlSslCertsService` | No | ``SqlSslCertsServiceClient`` |
 | `SqlTiersService` | No | ``SqlTiersServiceClient`` |
 | `SqlUsersService` | No | ``SqlUsersServiceClient`` |
+| `SqlWorkloadCapturesService` | No | ``SqlWorkloadCapturesServiceClient`` |

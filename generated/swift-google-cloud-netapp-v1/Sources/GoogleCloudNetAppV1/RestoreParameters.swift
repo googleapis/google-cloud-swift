@@ -109,7 +109,7 @@ public struct RestoreParameters: Codable, Equatable, GoogleWKT._AnyPackable,
     case sourceSnapshot(Swift.String)
     /// Full name of the backup resource.
     /// Format for standard backup:
-    /// projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
+    /// projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}.
     /// Format for BackupDR backup:
     /// projects/{project}/locations/{location}/backupVaults/{backup_vault}/dataSources/{data_source}/backups/{backup}
     case sourceBackup(Swift.String)

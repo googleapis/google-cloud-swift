@@ -72,6 +72,11 @@
     /// [google.cloud.dialogflow.cx.v3.WebhookRequest]: <doc:WebhookRequest>
     public var tag: Swift.String = Swift.String()
 
+    /// Optional. The name of the code block function to execute, if this is a code
+    /// block fulfillment. The code block itself is implied by the fulfillment's
+    /// parent, e.g. a playbook.
+    public var codeBlockFunction: Swift.String = Swift.String()
+
     /// Set parameter values before executing the webhook.
     public var setParameterActions: [Fulfillment.SetParameterAction] = []
 
@@ -122,6 +127,7 @@
       static let webhook = CodingKeys(stringValue: "webhook")
       static let returnPartialResponses = CodingKeys(stringValue: "returnPartialResponses")
       static let tag = CodingKeys(stringValue: "tag")
+      static let codeBlockFunction = CodingKeys(stringValue: "codeBlockFunction")
       static let setParameterActions = CodingKeys(stringValue: "setParameterActions")
       static let conditionalCases = CodingKeys(stringValue: "conditionalCases")
       static let advancedSettings = CodingKeys(stringValue: "advancedSettings")
@@ -133,6 +139,7 @@
         "webhook",
         "returnPartialResponses",
         "tag",
+        "codeBlockFunction",
         "setParameterActions",
         "conditionalCases",
         "advancedSettings",
@@ -155,6 +162,9 @@
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
         self.tag = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .codeBlockFunction) {
+        self.codeBlockFunction = value
       }
       if let value = try container.decodeIfPresent(
         [Fulfillment.SetParameterAction].self, forKey: .setParameterActions)
@@ -190,6 +200,7 @@
       try container.encode(self.webhook, forKey: .webhook)
       try container.encode(self.returnPartialResponses, forKey: .returnPartialResponses)
       try container.encode(self.tag, forKey: .tag)
+      try container.encode(self.codeBlockFunction, forKey: .codeBlockFunction)
       try container.encode(self.setParameterActions, forKey: .setParameterActions)
       try container.encode(self.conditionalCases, forKey: .conditionalCases)
       try container.encodeIfPresent(self.advancedSettings, forKey: .advancedSettings)

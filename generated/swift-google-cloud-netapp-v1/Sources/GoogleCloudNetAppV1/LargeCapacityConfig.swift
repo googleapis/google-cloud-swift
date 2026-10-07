@@ -18,7 +18,7 @@ import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
 /// Configuration for a Large Capacity Volume. A Large Capacity Volume
-/// supports sizes ranging from 4.8 TiB to 20 PiB, it is composed of multiple
+/// supports sizes ranging from 4.8 TiB to 20 PiB; it is composed of multiple
 /// internal constituents, and must be created in a large capacity pool.
 public struct LargeCapacityConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable

@@ -36,6 +36,10 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Indicates if the location has ONTAP Proxy support.
   public var hasOntapProxy: Swift.Bool = Swift.Bool()
 
+  /// Output only. Indicates the flex performance tier of this location.
+  public var flexPerformanceTier: LocationMetadata.FlexPerformanceTier =
+    LocationMetadata.FlexPerformanceTier()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `LocationMetadata`.
@@ -64,12 +68,14 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     static let supportedFlexPerformance = CodingKeys(stringValue: "supportedFlexPerformance")
     static let hasVcp = CodingKeys(stringValue: "hasVcp")
     static let hasOntapProxy = CodingKeys(stringValue: "hasOntapProxy")
+    static let flexPerformanceTier = CodingKeys(stringValue: "flexPerformanceTier")
 
     static let _knownKeys: Set<Swift.String> = [
       "supportedServiceLevels",
       "supportedFlexPerformance",
       "hasVcp",
       "hasOntapProxy",
+      "flexPerformanceTier",
     ]
   }
 
@@ -91,6 +97,11 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .hasOntapProxy) {
       self.hasOntapProxy = value
     }
+    if let value = try container.decodeIfPresent(
+      LocationMetadata.FlexPerformanceTier.self, forKey: .flexPerformanceTier)
+    {
+      self.flexPerformanceTier = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -103,8 +114,119 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.supportedFlexPerformance, forKey: .supportedFlexPerformance)
     try container.encode(self.hasVcp, forKey: .hasVcp)
     try container.encode(self.hasOntapProxy, forKey: .hasOntapProxy)
+    try container.encode(self.flexPerformanceTier, forKey: .flexPerformanceTier)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
+  /// The flex performance tier of this location.
+  ///
+  /// - Note: Adding cases to this enumeration is not considered a breaking change.
+  ///   Always include an `@unknown default:` case when switching over this type.
+  ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+  ///   expecting specific values to remain unparsed; future releases may promote
+  ///   them to named cases.
+  public enum FlexPerformanceTier: Codable, Equatable, Hashable, Sendable {
+    /// Unspecified flex performance tier.
+    case unspecified
+    /// Flex performance tier is limited.
+    case limited
+    /// Encodes an unknown integer value.
+    ///
+    /// The most common cause for an unknown value is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific integer values in this case;
+    ///   future releases may promote them to named enum cases.
+    case unknownIntValue(Int)
+    /// Encodes an unknown string value.
+    ///
+    /// The most common cause for an unknown value is for the service to send
+    /// a value unknown to the library. We recommend you update your library to
+    /// the latest version.
+    ///
+    /// - Warning: Do not pattern-match specific string literals in this case;
+    ///   future releases may promote them to named enum cases.
+    case unknownStringValue(String)
+
+    public init() {
+      self = .unspecified
+    }
+
+    /// Returns the integer value associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+    public var intValue: Int? {
+      switch self {
+      case .unspecified: return 0
+      case .limited: return 1
+      case .unknownIntValue(let v): return v
+      case .unknownStringValue: return nil
+      }
+    }
+
+    /// Returns the string value (or name) associated with the enumeration.
+    ///
+    /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+    public var stringValue: Swift.String? {
+      switch self {
+      case .unspecified: return "FLEX_PERFORMANCE_TIER_UNSPECIFIED"
+      case .limited: return "LIMITED"
+      case .unknownIntValue: return nil
+      case .unknownStringValue(let v): return v
+      }
+    }
+
+    /// Initialize from a string value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:FlexPerformanceTier/unknownStringValue(_:)).
+    public init(stringValue: Swift.String) {
+      switch stringValue {
+      case "FLEX_PERFORMANCE_TIER_UNSPECIFIED": self = .unspecified
+      case "LIMITED": self = .limited
+      default: self = .unknownStringValue(stringValue)
+      }
+    }
+
+    /// Initialize from an integer value.
+    ///
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:FlexPerformanceTier/unknownIntValue(_:)).
+    public init(intValue: Int) {
+      switch intValue {
+      case 0: self = .unspecified
+      case 1: self = .limited
+      default: self = .unknownIntValue(intValue)
+      }
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.singleValueContainer()
+      if let v = try? container.decode(Int.self) {
+        self.init(intValue: v)
+        return
+      }
+      if let s = try? container.decode(String.self) {
+        if let v = Int(s) {
+          self.init(intValue: v)
+        } else {
+          self.init(stringValue: s)
+        }
+        return
+      }
+      throw DecodingError.dataCorruptedError(
+        in: container, debugDescription: "Expected enum value, must be integer or string.")
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.singleValueContainer()
+      switch self {
+      case .unspecified: return try container.encode("FLEX_PERFORMANCE_TIER_UNSPECIFIED")
+      case .limited: return try container.encode("LIMITED")
+      case .unknownIntValue(let v): return try container.encode(v)
+      case .unknownStringValue(let v): return try container.encode(v)
+      }
     }
   }
 

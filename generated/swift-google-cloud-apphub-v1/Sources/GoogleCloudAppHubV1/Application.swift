@@ -56,6 +56,13 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Application state.
   public var state: Application.State = Application.State()
 
+  /// Output only. Properties of an underlying cloud resource that can comprise
+  /// an Application.
+  public var applicationProperties: ApplicationProperties? = nil
+
+  /// Output only. Application type.
+  public var applicationType: ApplicationType? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `Application`.
@@ -89,6 +96,8 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     static let scope = CodingKeys(stringValue: "scope")
     static let uid = CodingKeys(stringValue: "uid")
     static let state = CodingKeys(stringValue: "state")
+    static let applicationProperties = CodingKeys(stringValue: "applicationProperties")
+    static let applicationType = CodingKeys(stringValue: "applicationType")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -100,6 +109,8 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
       "scope",
       "uid",
       "state",
+      "applicationProperties",
+      "applicationType",
     ]
   }
 
@@ -126,6 +137,10 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Application.State.self, forKey: .state) {
       self.state = value
     }
+    self.applicationProperties = try container.decodeIfPresent(
+      ApplicationProperties.self, forKey: .applicationProperties)
+    self.applicationType = try container.decodeIfPresent(
+      ApplicationType.self, forKey: .applicationType)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -143,6 +158,8 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.scope, forKey: .scope)
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.state, forKey: .state)
+    try container.encodeIfPresent(self.applicationProperties, forKey: .applicationProperties)
+    try container.encodeIfPresent(self.applicationType, forKey: .applicationType)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

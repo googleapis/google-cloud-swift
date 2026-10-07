@@ -33,6 +33,21 @@ public struct ServiceProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   /// zonal, for example, us-west1-a).
   public var zone: Swift.String = Swift.String()
 
+  /// Output only. The type of the service.
+  public var functionalType: FunctionalType? = nil
+
+  /// Output only. The registration type of the service.
+  public var registrationType: RegistrationType? = nil
+
+  /// Output only. Additional metadata specific to the resource type.
+  /// The key is a string that identifies the type of metadata and the value is
+  /// the metadata contents specific to that type.
+  /// Key format: `apphub.googleapis.com/{metadataType}`
+  public var extendedMetadata: [Swift.String: ExtendedMetadata] = [:]
+
+  /// Output only. The identity associated with the service.
+  public var identity: Identity? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `ServiceProperties`.
@@ -60,11 +75,19 @@ public struct ServiceProperties: Codable, Equatable, GoogleWKT._AnyPackable,
     static let gcpProject = CodingKeys(stringValue: "gcpProject")
     static let location = CodingKeys(stringValue: "location")
     static let zone = CodingKeys(stringValue: "zone")
+    static let functionalType = CodingKeys(stringValue: "functionalType")
+    static let registrationType = CodingKeys(stringValue: "registrationType")
+    static let extendedMetadata = CodingKeys(stringValue: "extendedMetadata")
+    static let identity = CodingKeys(stringValue: "identity")
 
     static let _knownKeys: Set<Swift.String> = [
       "gcpProject",
       "location",
       "zone",
+      "functionalType",
+      "registrationType",
+      "extendedMetadata",
+      "identity",
     ]
   }
 
@@ -79,6 +102,16 @@ public struct ServiceProperties: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zone) {
       self.zone = value
     }
+    self.functionalType = try container.decodeIfPresent(
+      FunctionalType.self, forKey: .functionalType)
+    self.registrationType = try container.decodeIfPresent(
+      RegistrationType.self, forKey: .registrationType)
+    if let value = try container.decodeIfPresent(
+      [Swift.String: ExtendedMetadata].self, forKey: .extendedMetadata)
+    {
+      self.extendedMetadata = value
+    }
+    self.identity = try container.decodeIfPresent(Identity.self, forKey: .identity)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -90,6 +123,10 @@ public struct ServiceProperties: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.gcpProject, forKey: .gcpProject)
     try container.encode(self.location, forKey: .location)
     try container.encode(self.zone, forKey: .zone)
+    try container.encodeIfPresent(self.functionalType, forKey: .functionalType)
+    try container.encodeIfPresent(self.registrationType, forKey: .registrationType)
+    try container.encode(self.extendedMetadata, forKey: .extendedMetadata)
+    try container.encodeIfPresent(self.identity, forKey: .identity)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

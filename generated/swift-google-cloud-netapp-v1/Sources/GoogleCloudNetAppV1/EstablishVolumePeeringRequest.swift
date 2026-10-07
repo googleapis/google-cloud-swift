@@ -34,7 +34,7 @@ public struct EstablishVolumePeeringRequest: Codable, Equatable, GoogleWKT._AnyP
   /// destination vserver svm.
   public var peerSvmName: Swift.String = Swift.String()
 
-  /// Optional. List of IPv4 ip addresses to be used for peering.
+  /// Optional. List of IPv4 IP addresses to be used for peering.
   public var peerIpAddresses: [Swift.String] = []
 
   /// Required. Name of the user's local source volume to be peered with the

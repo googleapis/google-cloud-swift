@@ -5,7 +5,7 @@
 [![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-cloud-dns-v1%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/googleapis/swift-google-cloud-dns-v1)
 [![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fgoogleapis%2Fswift-google-cloud-dns-v1%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/googleapis/swift-google-cloud-dns-v1)
 
-This client library was generated from the "20260915" revision of the API.
+This client library was generated from the "20261002" revision of the API.
 
 ## Overview
 
@@ -14,8 +14,11 @@ to learn about this library.
 
 - `ChangesClient`: Service for the changes resource.
 - `DnsKeysClient`: Service for the dnsKeys resource.
+- `LocationsClient`: Service for the locations resource.
 - `ManagedZoneOperationsClient`: Service for the managedZoneOperations resource.
 - `ManagedZonesClient`: Service for the managedZones resource.
+- `OperationsClient`: Service for the operations resource.
+- `OutboundEndpointsClient`: Service for the outboundEndpoints resource.
 - `PoliciesClient`: Service for the policies resource.
 - `ProjectsClient`: Service for the projects resource.
 - `ResourceRecordSetsClient`: Service for the resourceRecordSets resource.

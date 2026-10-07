@@ -17,16 +17,11 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// ResourceInfo represents the information/status of an app connector resource.
-/// Such as:
-/// - remote_agent
-///   - container
-///     - runtime
-///     - appgateway
-///       - appconnector
-///         - appconnection
-///           - tunnel
-///       - logagent
+/// ResourceInfo represents the information or status of an app connector
+/// resource component that's used to report on various parts of the system. For
+/// example, ResourceInfo can be used to convey the status of a remote_agent,
+/// including the status of an appgateway for an runtime environment in a
+/// container instance.
 public struct ResourceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
