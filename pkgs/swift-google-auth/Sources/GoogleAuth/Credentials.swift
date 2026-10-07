@@ -89,8 +89,8 @@ public enum CredentialsConfiguration: Sendable {
   /// 3. The link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview) (MDS) on
   ///    Google Cloud runtime environments (Google Compute Engine, GKE, Cloud Run).
   ///
-  /// When resolving `.adc`, ``Credentials/init(configuration:)`` performs synchronous filesystem I/O to read and parse
-  /// local credential files (assuming small JSON configuration files). Avoid resolving `.adc` repeatedly on the
+  /// When resolving `.adc()`, ``Credentials/init(configuration:)`` performs synchronous filesystem I/O to read and parse
+  /// local credential files (assuming small JSON configuration files). Avoid resolving `.adc()` repeatedly on the
   /// hot path inside asynchronous request handlers; instead, initialize ``Credentials`` (or your service client) once
   /// at application startup and reuse the instance across requests.
   ///
@@ -428,7 +428,7 @@ public struct Credentials: Sendable {
 
   /// Initializes credentials using a specific configuration (defaults to automatic ADC resolution).
   ///
-  /// When `configuration` is `.adc`, this initializer performs synchronous filesystem I/O to locate,
+  /// When `configuration` is `.adc()`, this initializer performs synchronous filesystem I/O to locate,
   /// read, and parse local credential files (such as `GOOGLE_APPLICATION_CREDENTIALS` or the well-known
   /// `gcloud` credentials file, which are assumed to be small JSON configuration files). Prefer
   /// initializing `Credentials` at application startup and reusing the instance rather than calling

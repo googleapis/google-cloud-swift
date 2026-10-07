@@ -20,8 +20,8 @@ import GoogleAuth
 ///
 /// Use this client to write (upload) and read (download) objects in the Cloud Storage service.
 ///
-/// `StorageClient` is thread-safe (`Sendable`) and should be initialized at application startup
-/// and reused across requests.
+/// `StorageClient` is thread-safe (`Sendable`). It is recommended to initialize it at application
+/// startup and reuse it across requests.
 ///
 /// [Cloud Storage]: https://docs.cloud.google.com/storage
 public final class StorageClient: StorageProtocol, Sendable {

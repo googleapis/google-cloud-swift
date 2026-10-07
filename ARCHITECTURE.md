@@ -114,7 +114,7 @@ to be initialized at application startup and reused across requests:
   thread pool during asynchronous request handling.
 - **Amortized caching and transport state:** Each client and `Credentials`
   instance owns an in-memory `TokenCache` actor (with a proactive background
-  refresh `Task`), transport connection pools (`_HTTPClientHolder` or
+  refresh `Task`), transport connection pools (`HTTPClientHolder` or
   `_GRPCClient`), and adaptive retry throttling state (`AdaptiveThrottler`).
   Creating a new client per request discards these caches and connections.
 
@@ -285,7 +285,7 @@ transport layer.
 ### Hidden HTTP client
 
 The HTTP transport in `GoogleGax` uses `AsyncHTTPClient` (from the Swift on
-Server ecosystem) internally via `_HTTPClientHolder`. However, this dependency
+Server ecosystem) internally via `HTTPClientHolder`. However, this dependency
 is entirely encapsulated and never exposed in public APIs:
 
 - The client manages connection lifecycle and background shutdown automatically

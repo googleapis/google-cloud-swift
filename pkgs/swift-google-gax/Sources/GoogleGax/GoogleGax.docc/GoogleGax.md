@@ -15,11 +15,11 @@ The main type to configure clients is ``ClientOptions``. Use this type to
 override the default endpoint, the default credentials, the default retry loop
 policies, or to enable request and response logging.
 
-Clients are thread-safe (`Sendable`) and should be initialized at application
-startup and reused across requests. Initializing a client resolves default
-credentials (which may read local configuration files synchronously), sets up
-transport connections, and initializes in-memory token caching and retry
-throttling state.
+Clients are thread-safe (`Sendable`). It is recommended to initialize them at
+application startup and reuse them across requests. Initializing a client
+resolves default credentials (which may read local configuration files
+synchronously), sets up transport connections, and initializes in-memory token
+caching and retry throttling state.
 
 ## Request options
 

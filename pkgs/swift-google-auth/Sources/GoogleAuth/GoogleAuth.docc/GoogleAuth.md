@@ -93,7 +93,8 @@ For advanced scenarios, ``CredentialsConfiguration`` allows explicit configurati
 ### Lifecycle and Reuse
 
 ``Credentials`` instances (and the Google Cloud service clients that use them) are thread-safe
-(`Sendable`) and should be initialized once at application startup and reused across requests:
+(`Sendable`). It is recommended to initialize them once at application startup and reuse them
+across requests:
 
 - **Token Caching**: Each `Credentials` instance maintains an in-memory token cache and a
   proactive background refresh task. Reusing a single instance allows subsequent RPCs to reuse
