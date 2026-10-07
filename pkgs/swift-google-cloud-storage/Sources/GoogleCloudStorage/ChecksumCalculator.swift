@@ -77,7 +77,11 @@ struct MD5Calculator: ChecksumCalculator {
   }
 
   func finalize() -> String {
-    Data(md5.finalize()).base64EncodedString()
+    finalizeMD5().base64EncodedString()
+  }
+
+  func finalizeMD5() -> Data {
+    Data(md5.finalize())
   }
 }
 

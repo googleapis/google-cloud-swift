@@ -3296,6 +3296,44 @@ import Testing
       try await client.writeObject(source, to: bucket, as: objectName)
     }
   }
+
+  /// Tests resumable upload streaming mode detects MD5 mismatch against server returned metadata.
+  @Test func resumableUploadStreamingMD5Mismatch() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "streaming-md5-mismatch-object"
+    let dataSize = 10 * 1024 * 1024
+    let data = Data((0..<dataSize).map { UInt8($0 % 251) })
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=streaming-md5-mismatch-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+    // Server returns mismatched MD5 in metadata
+    let mismatchedMD5 = Data(repeating: 0xAA, count: 16).base64EncodedString()
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(
+          name: objectName, bucket: bucket, size: dataSize, md5Hash: mismatchedMD5),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(registry: registry)
+    let uploadOptions = WriteObjectOptions().with {
+      $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
+    }
+    await #expect(throws: WriteObjectError.self) {
+      try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
+    }
+  }
 }
 
 // MARK: - Test Helper Sources

@@ -102,14 +102,35 @@ final class ChecksumTracker: Sendable {
     }
   }
 
+  func finalizeMD5() -> Data? {
+    state.withLock { s in
+      for calc in s.calculators {
+        if let md5 = calc as? MD5Calculator {
+          return md5.finalizeMD5()
+        }
+      }
+      return nil
+    }
+  }
+
   func validate(object: Object) throws {
-    guard let computed = finalizeCRC32C() else { return }
-    if let serverCRC = object.checksums?.crc32C {
-      if computed != serverCRC {
+    if let computedCRC = finalizeCRC32C(), let serverCRC = object.checksums?.crc32C {
+      if computedCRC != serverCRC {
         throw WriteObjectError.unexpectedServerResponse(
           statusCode: 200,
           message:
-            "Checksum mismatch: calculated CRC32C \(computed) does not match server returned \(serverCRC)"
+            "Checksum mismatch: calculated CRC32C \(computedCRC) does not match server returned \(serverCRC)"
+        )
+      }
+    }
+    if let computedMD5 = finalizeMD5(),
+      let serverMD5 = object.checksums?.md5Hash, !serverMD5.isEmpty
+    {
+      if computedMD5 != serverMD5 {
+        throw WriteObjectError.unexpectedServerResponse(
+          statusCode: 200,
+          message:
+            "Checksum mismatch: calculated MD5 \(computedMD5.base64EncodedString()) does not match server returned \(serverMD5.base64EncodedString())"
         )
       }
     }
