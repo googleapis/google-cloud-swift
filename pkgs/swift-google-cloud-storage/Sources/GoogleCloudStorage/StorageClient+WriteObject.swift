@@ -799,9 +799,7 @@ extension StorageClient {
           let queryResult = try await queryUploadStatus(
             httpClient: httpClient, uploadId: activeUploadId, options: options)
           uploadStatus = queryResult.status
-          if let seed = queryResult.crc32cSeed {
-            crc32cSeed = seed
-          }
+          crc32cSeed = queryResult.crc32cSeed
           if case .inprogress(let committedBytes) = uploadStatus {
             if isResumedSession {
               maxBytesSent = committedBytes
@@ -911,9 +909,7 @@ extension StorageClient {
             resumeLoop.onProgress(state: &resumeState)
           }
         }
-        if let seed = uploadResult.crc32cSeed {
-          crc32cSeed = seed
-        }
+        crc32cSeed = uploadResult.crc32cSeed
       }
     }
   }
