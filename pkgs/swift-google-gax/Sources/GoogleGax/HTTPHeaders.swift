@@ -95,7 +95,7 @@ public struct HTTPHeaders: Sendable, Equatable {
   ///
   /// Folds ASCII case only. `lowercased()` and `caseInsensitiveCompare` apply Unicode case
   /// folding, which would match "İ" (U+0130) against "i".
-  private static func namesMatch(_ lhs: String, _ rhs: String) -> Bool {
+  static func namesMatch(_ lhs: String, _ rhs: String) -> Bool {
     guard lhs.utf8.count == rhs.utf8.count else { return false }
     return lhs.utf8.elementsEqual(rhs.utf8) { toASCIILower($0) == toASCIILower($1) }
   }

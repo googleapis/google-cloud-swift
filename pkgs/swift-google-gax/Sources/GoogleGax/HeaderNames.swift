@@ -48,8 +48,7 @@ public func _sanitizeCustomHeaders(
 ) -> HTTPHeaders {
   HTTPHeaders(
     headers.filter { name, _ in
-      let lower = name.lowercased()
-      if _HeaderNames.reservedCustomHeaders.contains(lower) {
+      if _HeaderNames.reservedCustomHeaders.contains(where: { HTTPHeaders.namesMatch($0, name) }) {
         return false
       }
       if let authHeaders, authHeaders.contains(name: name) {
