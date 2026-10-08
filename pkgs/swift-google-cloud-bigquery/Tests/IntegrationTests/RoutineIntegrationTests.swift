@@ -169,8 +169,14 @@ struct RoutineIntegrationTests {
   @Test(
     .enabled(if: ProcessInfo.processInfo.environment["BIGQUERY_TEST_CONNECTION_ID"] != nil))
   func createsRemoteFunction() async throws {
-    let connection = try #require(
+    // `location.connection`, as in the table integration tests. Remote functions need the
+    // connection's resource name.
+    let connectionID = try #require(
       ProcessInfo.processInfo.environment["BIGQUERY_TEST_CONNECTION_ID"])
+    let parts = connectionID.split(separator: ".", maxSplits: 1)
+    try #require(parts.count == 2)
+    let connection =
+      "projects/\(self.client.projectID)/locations/\(parts[0])/connections/\(parts[1])"
     try await self.withDataset { dataset in
       let options = Routine.RemoteFunctionOptions(
         endpoint: "https://aaabbbccc-uc.a.run.app", connection: connection,
