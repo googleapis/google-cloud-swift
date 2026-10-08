@@ -56,14 +56,25 @@ struct CloudStorage {
   private static func segment(_ value: String) -> String { HTTPRequest.encode(segment: value) }
 
   /// Creates a bucket in the `US` multi-region.
+  ///
+  /// Cloud Storage rate-limits bucket creation per project, and parallel tests exceed it. A 429
+  /// means the bucket was not created, so the request is retried with exponential backoff.
   func createBucket(_ name: String, projectID: String, labels: [String: String]) async throws {
     let body = try JSONEncoder().encode(Bucket(name: name, labels: labels, location: "US"))
-    _ = try await self.transport.send(
-      HTTPRequest(
-        method: .post, path: "/storage/v1/b",
-        query: [URLQueryItem(name: "project", value: projectID)],
-        headers: ["content-type": "application/json"], body: body),
-      idempotent: false)
+    let request = HTTPRequest(
+      method: .post, path: "/storage/v1/b",
+      query: [URLQueryItem(name: "project", value: projectID)],
+      headers: ["content-type": "application/json"], body: body)
+    var delay: Duration = .seconds(2)
+    for attempt in 1... {
+      do {
+        _ = try await self.transport.send(request, idempotent: false)
+        return
+      } catch let error as BigQueryError where error.httpStatusCode == 429 && attempt < 8 {
+        try await Task.sleep(for: delay)
+        delay = min(delay * 2, .seconds(30))
+      }
+    }
   }
 
   /// Returns the names of the buckets in `projectID` that start with `prefix`.
