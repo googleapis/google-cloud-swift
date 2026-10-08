@@ -37,9 +37,6 @@ you iterate. Errors from the service or from a failed job are thrown as
 The following example creates a dataset and a table, streams rows into the table,
 and queries it:
 
-<!-- TODO(slice 4): `query` is on the bq-jobs branch. Re-check this example after it
-merges. -->
-
 ```swift
 import GoogleCloudBigQuery
 
@@ -53,7 +50,7 @@ public func quickstart(datasetID: String) async throws {
 
   // Create a dataset and a table.
   let dataset = DatasetID(datasetID: datasetID)
-  _ = try await client.createDataset(Dataset(id: dataset, location: "US"))
+  try await client.createDataset(Dataset(id: dataset, location: "US"))
   let tableID = dataset.table("people")
   try await client.createTable(
     Table(
@@ -83,6 +80,9 @@ public func quickstart(datasetID: String) async throws {
   for try await person in people.rows.decode(Person.self) {
     print("\(person.name) is \(person.age)")
   }
+
+  // Delete the dataset and its tables.
+  _ = try await client.deleteDataset(dataset, deleteContents: true)
 }
 ```
 
@@ -96,10 +96,8 @@ section in the `google-cloud-swift` repository.
 
 Add `swift-google-cloud-bigquery` as a package dependency:
 
-<!-- TODO: set the version once the first release is published. -->
-
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-bigquery.git --from 0.1.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-bigquery.git --from 0.3.0
 ```
 
 Then add `GoogleCloudBigQuery` to your target's dependencies:
