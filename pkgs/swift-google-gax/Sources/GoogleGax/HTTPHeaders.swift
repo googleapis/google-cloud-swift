@@ -21,9 +21,7 @@
 /// and values exactly. Equality is case-sensitive even though HTTP field names are not, because
 /// the value carries the exact bytes received from the wire. Use ``subscript(_:)``,
 /// ``values(for:)``, or ``contains(name:)`` to look a field up by name case-insensitively.
-public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral,
-  ExpressibleByDictionaryLiteral
-{
+public struct HTTPHeaders: Sendable, Equatable {
   /// A single header field, as a name-value pair.
   public typealias Element = (name: String, value: String)
 
@@ -45,20 +43,6 @@ public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral,
   /// - Parameter headers: The header fields, in wire order.
   public init(_ headers: [Element]) {
     self.storage = headers
-  }
-
-  /// Creates a collection from an array literal of header fields.
-  ///
-  /// - Parameter elements: The header fields, in wire order.
-  public init(arrayLiteral elements: Element...) {
-    self.storage = elements
-  }
-
-  /// Creates a collection from a dictionary literal of header fields.
-  ///
-  /// - Parameter elements: The header fields, in wire order.
-  public init(dictionaryLiteral elements: (String, String)...) {
-    self.storage = elements.map { (name: $0.0, value: $0.1) }
   }
 
   /// Appends a header field, preserving any existing field with the same name.
@@ -142,6 +126,24 @@ public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral,
   public static func == (lhs: HTTPHeaders, rhs: HTTPHeaders) -> Bool {
     guard lhs.storage.count == rhs.storage.count else { return false }
     return lhs.storage.elementsEqual(rhs.storage, by: ==)
+  }
+}
+
+extension HTTPHeaders: ExpressibleByArrayLiteral {
+  /// Creates a collection from an array literal of header fields.
+  ///
+  /// - Parameter elements: The header fields, in wire order.
+  public init(arrayLiteral elements: Element...) {
+    self.storage = elements
+  }
+}
+
+extension HTTPHeaders: ExpressibleByDictionaryLiteral {
+  /// Creates a collection from a dictionary literal of header fields.
+  ///
+  /// - Parameter elements: The header fields, in wire order.
+  public init(dictionaryLiteral elements: (String, String)...) {
+    self.storage = elements.map { (name: $0.0, value: $0.1) }
   }
 }
 
