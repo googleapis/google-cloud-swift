@@ -21,25 +21,24 @@ The client uses Application Default Credentials and finds its project from
 Resource IDs without a project, such as `TableID(datasetID: "d", tableID: "t")`, refer to
 the client's project.
 
-Read the rows of a table as an `AsyncSequence`. The first page is fetched before
-``BigQueryClient/listRows(in:schema:selectedFields:startIndex:pageSize:pageToken:options:)``
-returns, and later pages are fetched as you iterate:
+Read the rows of a table or a query result as an `AsyncSequence`, or decode them into a
+`Decodable` type with ``RowSequence/decode(_:)``:
 
 ```swift
-let rows = try await client.listRows(in: TableID(datasetID: "d", tableID: "t"))
-for try await row in rows {
+let result = try await client.query(
+  "SELECT name, age FROM `d.people` WHERE age >= @age",
+  parameters: .named(["age": .int64(18)]))
+for try await row in result.rows {
   if let name = try row["name"]?.stringValue {
     print(name)
   }
 }
 ```
 
-Use ``Row/decode(_:)`` or ``RowSequence/decode(_:)`` to decode rows into your own
-`Decodable` types, and
+Use ``BigQueryClient/listRows(in:schema:selectedFields:startIndex:pageSize:pageToken:options:)``
+to read a table directly without running a query, and
 ``BigQueryClient/insertAll(_:into:skipInvalidRows:ignoreUnknownValues:templateSuffix:insertIDs:options:)``
 to stream rows into a table.
-
-<!-- TODO(slice 4): add the query example from README.md once bq-jobs merges. -->
 
 Get operations return `nil` when the resource does not exist, and delete operations return
 `false`. Other failures reported by the service, or by a job, are thrown as
@@ -131,16 +130,56 @@ see ``BigQueryRetryPolicy``.
 
 ### Queries
 
+- ``QueryJobConfiguration``
+- ``QueryResult``
+- ``QueryDryRunResult``
 - ``QueryParameters``
 - ``QueryParameterValue``
 - ``QueryParameterType``
 - ``QueryParameterConvertible``
+- ``QueryPriority``
 - ``JobCreationMode``
+- ``ConnectionProperty``
+- ``ScriptOptions``
+- ``KeyResultStatementKind``
 
-<!-- TODO(slice 4): add QueryJobConfiguration, QueryResult, QueryDryRunResult, and the
-query option types. Add a "Jobs" group with Job, JobStatus, JobStatistics,
-JobConfiguration, LoadJobConfiguration, CopyJobConfiguration, ExtractJobConfiguration,
-and UploadSource. -->
+### Jobs
+
+- ``Job``
+- ``JobState``
+- ``JobStatus``
+- ``JobConfiguration``
+- ``LoadJobConfiguration``
+- ``UploadSource``
+- ``CopyJobConfiguration``
+- ``CopyOperationType``
+- ``ExtractJobConfiguration``
+- ``ExtractCompression``
+- ``CreateDisposition``
+- ``WriteDisposition``
+- ``SchemaUpdateOption``
+- ``ColumnNameCharacterMap``
+- ``JSONExtension``
+
+### Job statistics
+
+- ``JobStatistics``
+- ``QueryStatistics``
+- ``StatementType``
+- ``QueryStage``
+- ``TimelineSample``
+- ``DMLStats``
+- ``ExportDataStatistics``
+- ``SearchStatistics``
+- ``MetadataCacheStatistics``
+- ``TableMetadataCacheUsage``
+- ``UndeclaredQueryParameter``
+- ``ScriptStatistics``
+- ``TransactionInfo``
+- ``SessionInfo``
+- ``LoadStatistics``
+- ``CopyStatistics``
+- ``ExtractStatistics``
 
 ### Datasets
 
