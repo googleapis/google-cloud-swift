@@ -122,6 +122,44 @@ struct TableIntegrationTests {
     }
   }
 
+  // Baseline: IT-025
+  @Test func createTableWithDefaultValueExpression() async throws {
+    let client = try IntegrationTest.makeClient()
+    try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice) { dataset in
+      var stringField = Field(
+        "s", .string, mode: .nullable, description: "String field with default value expression")
+      stringField.defaultValueExpression = "'FOO'"
+      stringField.maxLength = 150
+      var timestampField = Field(
+        "ts", .timestamp, mode: .nullable,
+        description: "Timestamp field with default value expression")
+      timestampField.defaultValueExpression = "CURRENT_TIMESTAMP"
+      let schema = Schema([stringField, timestampField])
+      let table = Table(id: Self.tableID(dataset, "default_"), schema: schema)
+      _ = try await client.createTable(table)
+
+      let got = try #require(try await client.getTable(table.id))
+      #expect(got.schema == schema)
+      #expect(got.schema?["s"]?.defaultValueExpression == "'FOO'")
+      #expect(got.schema?["s"]?.maxLength == 150)
+      #expect(got.schema?["ts"]?.defaultValueExpression == "CURRENT_TIMESTAMP")
+
+      let inserted = try await client.insertAll(
+        [
+          InsertRow(["ts": "2022-08-22 00:45:12 UTC"], insertID: "rowId1"),
+          InsertRow(["ts": "2022-08-23 00:44:33 UTC"], insertID: "rowId2"),
+        ],
+        into: table.id)
+      #expect(inserted.rowErrors.isEmpty)
+
+      let rows = try await client.listRows(in: table.id, schema: schema).collect()
+      #expect(rows.count == 2)
+      for row in rows {
+        #expect(try row["s"]?.stringValue == "FOO")
+      }
+    }
+  }
+
   // Baseline: IT-012, IT-027, IT-039, IT-040, IT-041
   @Test func listTablesSurfacesPartitioning() async throws {
     let client = try IntegrationTest.makeClient()
@@ -205,6 +243,13 @@ struct TableIntegrationTests {
     try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice) { dataset in
       let base = Table(id: Self.tableID(dataset, "base_"), schema: Self.schema)
       _ = try await client.createTable(base)
+      let inserted = try await client.insertAll(
+        [
+          InsertRow(["ts": "2014-08-19 12:41:35.220000 UTC", "name": "a", "n": 1]),
+          InsertRow(["ts": "2014-08-19 12:41:35.220000 UTC", "name": "b", "n": 2]),
+        ],
+        into: base.id)
+      #expect(inserted.rowErrors.isEmpty)
       let baseName = "`\(dataset.projectID!).\(dataset.datasetID).\(base.id.tableID)`"
 
       var view = Table(id: Self.tableID(dataset, "view_"))
@@ -215,6 +260,17 @@ struct TableIntegrationTests {
       #expect(gotView.view?.query == "SELECT name, n FROM \(baseName)")
       #expect(gotView.view?.useLegacySQL == false)
       #expect(gotView.schema?.fields.map(\.name) == ["name", "n"])
+
+      var viewQuery = QueryJobConfiguration("SELECT * FROM `\(view.id.tableID)` ORDER BY n")
+      viewQuery.defaultDataset = dataset
+      let viewResult = try await client.query(viewQuery)
+      #expect(viewResult.jobID != nil)
+      let viewRows = try await viewResult.rows.collect()
+      #expect(viewRows.count == 2)
+      #expect(try viewRows[0]["name"]?.stringValue == "a")
+      #expect(try viewRows[0]["n"]?.int64Value == 1)
+      #expect(try viewRows[1]["name"]?.stringValue == "b")
+      #expect(try viewRows[1]["n"]?.int64Value == 2)
 
       var materialized = Table(id: Self.tableID(dataset, "mv_"))
       materialized.materializedView = MaterializedViewDefinition(
@@ -253,6 +309,18 @@ struct TableIntegrationTests {
         #expect(config.ignoreUnknownValues == true)
         #expect(config.maxBadRecords == 3)
         #expect(config.metadataCacheMode == nil)
+
+        let job = try await client.createJob(
+          .query(
+            QueryJobConfiguration(
+              "SELECT * FROM `\(dataset.projectID!).\(dataset.datasetID).\(table.id.tableID)`")))
+        let finished = try await client.waitForJob(job.id)
+        #expect(finished.status.errorResult == nil)
+        let queryJob = try #require(try await client.getJob(job.id))
+        let usage = try #require(
+          queryJob.statistics?.query?.metadataCacheStatistics?.tableMetadataCacheUsage)
+        #expect(usage.count == 1)
+        #expect(usage.first?.unusedReason == .metadataCachingNotEnabled)
       }
     }
   }
@@ -366,6 +434,58 @@ struct TableIntegrationTests {
     }
   }
 
+  // Baseline: IT-076, IT-077
+  @Test func queryExternalHivePartitioningAutoAndCustomLayout() async throws {
+    let client = try IntegrationTest.makeClient()
+    try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice, location: "US") {
+      dataset in
+      let parquet = ParquetOptions(enableListInference: true, enumAsString: true)
+
+      var autoTable = Table(id: Self.tableID(dataset, "hive_auto_"))
+      var autoExternal = ExternalDataConfiguration(
+        sourceURIs: ["\(Self.samples)/hive-partitioning-samples/autolayout/*"], format: .parquet)
+      autoExternal.autodetect = true
+      autoExternal.parquetOptions = parquet
+      autoExternal.hivePartitioningOptions = HivePartitioningOptions(
+        mode: "AUTO",
+        sourceURIPrefix: "\(Self.samples)/hive-partitioning-samples/autolayout/",
+        requirePartitionFilter: true)
+      autoTable.externalDataConfiguration = autoExternal
+      _ = try await client.createTable(autoTable)
+
+      var autoQuery = QueryJobConfiguration(
+        "SELECT COUNT(*) AS ct FROM `\(autoTable.id.tableID)` WHERE dt = \"2020-11-15\"")
+      autoQuery.defaultDataset = dataset
+      let autoResult = try await client.query(autoQuery)
+      #expect(autoResult.jobID != nil)
+      #expect(autoResult.totalRows == 1)
+      let autoRows = try await autoResult.rows.collect()
+      #expect(try autoRows.first?["ct"]?.int64Value == 50)
+
+      var customTable = Table(id: Self.tableID(dataset, "hive_custom_"))
+      var customExternal = ExternalDataConfiguration(
+        sourceURIs: ["\(Self.samples)/hive-partitioning-samples/customlayout/*"], format: .parquet)
+      customExternal.autodetect = true
+      customExternal.parquetOptions = parquet
+      customExternal.hivePartitioningOptions = HivePartitioningOptions(
+        mode: "CUSTOM",
+        sourceURIPrefix:
+          "\(Self.samples)/hive-partitioning-samples/customlayout/{pkey:STRING}/",
+        requirePartitionFilter: true)
+      customTable.externalDataConfiguration = customExternal
+      _ = try await client.createTable(customTable)
+
+      var customQuery = QueryJobConfiguration(
+        "SELECT COUNT(*) AS ct FROM `\(customTable.id.tableID)` WHERE pkey = \"foo\"")
+      customQuery.defaultDataset = dataset
+      let customResult = try await client.query(customQuery)
+      #expect(customResult.jobID != nil)
+      #expect(customResult.totalRows == 1)
+      let customRows = try await customResult.rows.collect()
+      #expect(try customRows.first?["ct"]?.int64Value == 50)
+    }
+  }
+
   // Baseline: IT-016, IT-165, IT-166, IT-167, IT-168
   @Test func primaryAndForeignKeys() async throws {
     let client = try IntegrationTest.makeClient()
@@ -417,7 +537,7 @@ struct TableIntegrationTests {
     }
   }
 
-  // Baseline: IT-042 (partial)
+  // Baseline: IT-042
   @Test func listPartitionsOfPublicTable() async throws {
     let client = try IntegrationTest.makeClient()
     let partitions = try await client.listPartitions(
@@ -425,6 +545,85 @@ struct TableIntegrationTests {
         projectID: "bigquery-public-data", datasetID: "google_trends", tableID: "top_terms"))
     #expect(!partitions.isEmpty)
     #expect(partitions.allSatisfy { $0.count == 8 && $0.allSatisfy(\.isNumber) })
+
+    try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice) { dataset in
+      var table = Table(id: Self.tableID(dataset, "part_"), schema: Self.schema)
+      table.timePartitioning = TimePartitioning(type: .day, field: "ts")
+      _ = try await client.createTable(table)
+
+      _ = try await client.query(
+        "INSERT INTO `\(dataset.projectID!).\(dataset.datasetID).\(table.id.tableID)` (ts, name) VALUES ('2024-01-02 03:04:05 UTC', 'v')"
+      )
+
+      let tablePartitions = try await client.listPartitions(of: table.id)
+      #expect(tablePartitions == ["20240102"])
+    }
+  }
+
+  // Baseline: IT-051
+  @Test func listAllTableDataAcrossFieldTypes() async throws {
+    let client = try IntegrationTest.makeClient()
+    try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice) { dataset in
+      let recordSubfields = [
+        Field("TimestampField", .timestamp),
+        Field("StringField", .string),
+        Field("IntegerArrayField", .int64, mode: .repeated),
+        Field("BooleanField", .bool),
+      ]
+      let allTypesSchema = Schema([
+        Field("TimestampField", .timestamp),
+        Field("StringField", .string),
+        Field("IntegerArrayField", .int64, mode: .repeated),
+        Field("BooleanField", .bool),
+        Field("BytesField", .bytes),
+        Field("RecordField", .struct, fields: recordSubfields),
+        Field("IntegerField", .int64),
+        Field("FloatField", .float64),
+        Field("GeographyField", .geography),
+        Field("NumericField", .numeric),
+      ])
+      let table = Table(id: Self.tableID(dataset, "all_types_"), schema: allTypesSchema)
+      _ = try await client.createTable(table)
+
+      let rowToInsert = InsertRow([
+        "TimestampField": "2014-08-19 12:41:35.220000 UTC",
+        "StringField": "stringValue",
+        "IntegerArrayField": [0, 1],
+        "BooleanField": false,
+        "BytesField": .bytes(Data([1, 2, 3])),
+        "RecordField": [
+          "TimestampField": "1969-07-20 20:18:04.000000 UTC",
+          "StringField": nil,
+          "IntegerArrayField": [1, 0],
+          "BooleanField": true,
+        ],
+        "IntegerField": 3,
+        "FloatField": 1.2,
+        "GeographyField": "POINT(-122.35022 47.649154)",
+        "NumericField": .numeric(Decimal(string: "123456.789012345")!),
+      ])
+      let inserted = try await client.insertAll([rowToInsert, rowToInsert], into: table.id)
+      #expect(inserted.rowErrors.isEmpty)
+
+      let rows = try await client.listRows(in: table.id).collect()
+      #expect(rows.count == 2)
+      for row in rows {
+        #expect(try row["TimestampField"]?.timestampMicros == 1_408_452_095_220_000)
+        #expect(try row["StringField"]?.stringValue == "stringValue")
+        #expect(try row["IntegerArrayField"]?.arrayValue?.map { try $0.int64Value } == [0, 1])
+        #expect(try row["BooleanField"]?.boolValue == false)
+        #expect(try row["BytesField"]?.bytesValue == Data([1, 2, 3]))
+        let record = try #require(try row["RecordField"]?.recordValue)
+        #expect(try record["TimestampField"]?.timestampMicros == -14_182_916_000_000)
+        #expect(record["StringField"]?.isNull == true)
+        #expect(try record["IntegerArrayField"]?.arrayValue?.map { try $0.int64Value } == [1, 0])
+        #expect(try record["BooleanField"]?.boolValue == true)
+        #expect(try row["IntegerField"]?.int64Value == 3)
+        #expect(try row["FloatField"]?.doubleValue == 1.2)
+        #expect(try row["GeographyField"]?.geographyValue == "POINT(-122.35022 47.649154)")
+        #expect(try row["NumericField"]?.numericValue == Decimal(string: "123456.789012345"))
+      }
+    }
   }
 
   // Baseline: IT-052
@@ -505,6 +704,15 @@ struct TableIntegrationTests {
       let got = try #require(try await client.getTable(table.id))
       #expect(got.externalDataConfiguration?.objectMetadata == .simple)
       #expect(got.schema?["uri"] != nil)
+
+      let job = try await client.createJob(
+        .query(
+          QueryJobConfiguration(
+            "SELECT * FROM `\(dataset.projectID!).\(dataset.datasetID).\(table.id.tableID)`")))
+      let finished = try await client.waitForJob(job.id)
+      #expect(finished.status.errorResult == nil)
+      let queryJob = try #require(try await client.getJob(job.id))
+      #expect((queryJob.statistics?.query?.totalBytesProcessed ?? 0) > 0)
     }
   }
 }
