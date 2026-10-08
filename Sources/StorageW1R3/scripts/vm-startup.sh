@@ -457,11 +457,9 @@ run_single_execution() {
 
     set +e
     (
-      cd "${workspace_dir}"
-      bash -c "${rendered_cmd}"
-    ) 2> >(tee -a "${run_log}" /root/benchmark.log) > "${raw_csv}"
-    BENCHMARK_EXIT_CODE=$?
-    wait
+      cd "${workspace_dir}" && bash -c "${rendered_cmd}" > "${raw_csv}"
+    ) 2>&1 | tee -a "${run_log}" /root/benchmark.log
+    BENCHMARK_EXIT_CODE=${PIPESTATUS[0]}
     set -e
   else
     local cmd=("${bin_path}")
@@ -478,15 +476,12 @@ run_single_execution() {
     echo "=== [${variant_label}] Round ${round_num}/${ROUNDS} ($(date -u +"%Y-%m-%dT%H:%M:%SZ")) ===" >> /root/benchmark.log
 
     set +e
-    # Run benchmark, redirect stdout to raw_csv and stderr to run_log, benchmark.log, and console.
-    # In Bash, redirections are evaluated left to right; placing 2> before > ensures tee inherits
-    # the console/startup log stdout rather than raw_csv.
+    # Run benchmark, redirecting stdout to raw_csv and piping stderr to tee so tee flushes
+    # synchronously before the pipeline returns (without waiting on the top-level startup log tee).
     (
-      cd "${workspace_dir}"
-      "${cmd[@]}"
-    ) 2> >(tee -a "${run_log}" /root/benchmark.log) > "${raw_csv}"
-    BENCHMARK_EXIT_CODE=$?
-    wait
+      cd "${workspace_dir}" && "${cmd[@]}" > "${raw_csv}"
+    ) 2>&1 | tee -a "${run_log}" /root/benchmark.log
+    BENCHMARK_EXIT_CODE=${PIPESTATUS[0]}
     set -e
   fi
 
