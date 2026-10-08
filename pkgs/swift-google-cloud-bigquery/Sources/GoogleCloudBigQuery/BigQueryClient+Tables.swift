@@ -28,6 +28,7 @@ extension BigQueryClient {
   ///     returned. `nil` returns every field.
   ///   - options: per-call options.
   /// - Returns: the created table, as returned by the service.
+  @discardableResult
   public func createTable(
     _ table: Table, selectedFields: [String]? = nil, options: RequestOptions = .init()
   ) async throws -> Table {
