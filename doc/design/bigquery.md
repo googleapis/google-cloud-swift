@@ -105,35 +105,44 @@ These results are from the spike, committed as `bb524d2c7e`.
 
 ```
 pkgs/swift-google-cloud-bigquery/
-  Package.swift                     deps: auth, gax, wkt, bigquery-v2, iam-v1, swift-log, NIOCore;
+  Package.swift                     deps: auth, gax, wkt, bigquery-v2, iam-v1 (internal wire only),
+                                    swift-log, NIOCore, NIOHTTP1;
                                     IT target also: swift-google-cloud-storage (test-only)
   Sources/GoogleCloudBigQuery/
     # ---- core (architect) ----
     BigQueryClient.swift            client class, init, project/location resolution
     BigQueryClientOptions.swift
     BigQueryError.swift
-    DatasetID.swift TableID.swift JobID.swift RoutineID.swift ModelID.swift
-    PagedSequence.swift             generic lazy pagination (+ Page)
+    BigQueryRetryPolicy.swift       public, mirrors StorageBaseRetryPolicy
+    ResourceIDs.swift               DatasetID, TableID, RoutineID, ModelID
+    JobID.swift
+    PagedSequence.swift             generic lazy pagination (+ Page, PagedSequence.Pages)
     RowSequence.swift               rows AsyncSequence (+ schema, totalRows)
-    Schema.swift Field.swift FieldType.swift
-    Row.swift FieldValue.swift      lossless cell model + f/v parsing
+    Schema.swift                    Schema, Field, FieldType
+    Row.swift                       Row, FieldValue (lossless cell model + f/v parsing)
     SharedConfigurations.swift      EncryptionConfiguration, TimePartitioning,
                                     RangePartitioning, Clustering, JobCreationMode
     DataFormat.swift                DataFormat, CSVOptions, ParquetOptions, AvroOptions,
                                     HivePartitioningOptions (shared by tables + load jobs)
-    QueryParameter.swift            public shell of QueryParameter / QueryParameterValue
+    QueryParameter.swift            shell of QueryParameters / QueryParameterValue (slice 2 grows it)
     Internal/
       HTTPTransport.swift           HTTPRequest/HTTPResponse + protocol (test seam)
       GaxHTTPTransport.swift        production implementation over _HTTPClient
       BigQueryTransport.swift       retry loop, error mapping, JSON decode, 404→nil, 204
-      BigQueryRetryPolicy.swift     (public, mirrors StorageBaseRetryPolicy)
       RequestBody.swift             proto-JSON body + explicit-null overrides (PATCH)
       ProjectDiscovery.swift
-      Wire+Core.swift               IDs/Schema/Error <-> GoogleCloudBigQueryV2
+      Wire+Core.swift               IDs/Schema/configs <-> GoogleCloudBigQueryV2
     # ---- slice files: see §10 ----
   Tests/                            unit tests (Swift Testing), Support/FakeHTTPTransport.swift
   Tests/IntegrationTests/           live tests, Support/IntegrationTestSupport.swift
 ```
+
+**Public dependencies.** The public API exposes only `GoogleGax`
+(`ClientOptions`, `RequestOptions`, `RetryPolicy`) via `public import`, as
+storage does. `GoogleCloudBigQueryV2`, `GoogleIAMV1`, and `GoogleWKT` are
+plain internal imports. No generated type appears in the public API. Table
+IAM uses the veneer's own `IAMPolicy` (§4.7), so generated-package churn
+cannot break callers.
 
 ## 4. Public API sketch
 
@@ -165,6 +174,9 @@ public struct BigQueryClientOptions: Sendable {
 Every RPC method ends with `options: GoogleGax.RequestOptions = .init()`. This
 lets a caller override retry, timeout, idempotency, or headers per call, the
 same way storage and the generated clients do.
+
+`BigQueryClientOptions()` defaults `client.attemptTimeout` to 60 s (Java's
+read timeout; the gax default is 15 s).
 
 ### 4.2 IDs (core)
 
@@ -217,6 +229,12 @@ public struct BigQueryError: Error, Sendable, Hashable, CustomStringConvertible 
   `.exhausted`, `.malformedResponse`). Cancellation surfaces as
   `CancellationError`. This matches storage, so a caller can still catch
   network failures generically.
+- **Exhaustion is unwrapped.** A persistent HTTP error surfaces as
+  `BigQueryError(.service)` whichever limit stops the retry loop. When the
+  attempt limit trips, gax rethrows the last `.http` error; when the
+  elapsed-time limit trips, it wraps it as
+  `.exhausted(.elapsedTime(source: .http))`. `BigQueryTransport` unwraps both
+  to `BigQueryError(.service)`. A unit test pins this.
 
 ### 4.4 Pagination and rows (core)
 
@@ -225,19 +243,32 @@ public struct Page<Element: Sendable>: Sendable { public var items: [Element]; p
 public struct PagedSequence<Element: Sendable>: AsyncSequence, Sendable {
   public init(fetch: @escaping @Sendable (_ pageToken: String?) async throws -> Page<Element>)
   public init(firstPage: Page<Element>, fetch: ...)     // first page already fetched
-  public var pages: PageSequence<Element> { get }        // AsyncSequence of Page, for resumable paging
+  public init(_ items: [Element])                        // test doubles
+  public var pages: Pages { get }                        // AsyncSequence of Page<Element>
+  public struct Pages: AsyncSequence, Sendable { … }
   public func collect() async throws -> [Element]
 }
 public struct RowSequence: AsyncSequence, Sendable {     // Element == Row
-  public let schema: Schema
+  public let schema: Schema              // empty when the result has no schema
   public let totalRows: UInt64?          // nil when the server did not say
-  public var pages: PageSequence<Row> { get }
-  public init(schema: Schema, totalRows: UInt64?, pages: PagedSequence<Row>)
+  public var pages: PagedSequence<Row>.Pages { get }
+  public init(schema: Schema, totalRows: UInt64?, rows: PagedSequence<Row>)
   public init(schema: Schema, rows: [Row])               // test doubles
   public func collect() async throws -> [Row]
   // slice 2 adds: func decode<T: Decodable>(_: T.Type) -> some AsyncSequence<T, any Error>
 }
 ```
+
+**Why not reuse gax's `PaginatedResponseSequence`?** It is
+`@_spi(GoogleCloudInternal)`, so it cannot appear in a public signature
+without making callers import SPI. It also requires the response type to
+conform to the SPI `_PaginatedResponse`, and it cannot start from an
+already-fetched first page (the fast-path query response). The behavior is
+the same: empty intermediate pages are skipped (AIP-158) and an empty token
+ends the sequence.
+
+Every list method also takes `pageToken: String? = nil`, so a caller can
+resume from `Page.nextPageToken`.
 
 An empty `nextPageToken` (`""`, the proto3 default) means there are no more
 pages. Each page fetch goes through the retry loop.
@@ -263,7 +294,8 @@ public struct FieldType: RawRepresentable, Sendable, Hashable {   // normalised 
 }
 public struct Row: Sendable, Equatable {
   public let schema: Schema; public let values: [FieldValue]
-  public subscript(index: Int) -> FieldValue; public subscript(name: String) -> FieldValue?
+  public subscript(index: Int) -> FieldValue
+  public subscript(name: String) -> FieldValue?   // exact match first, then case-insensitive (U.FieldList.01)
 }
 public enum FieldValue: Sendable, Equatable { case null, scalar(String), array([FieldValue]), record(Row) }
 // slice 2: typed accessors (nil for NULL, throw on mismatch), e.g.
@@ -315,41 +347,60 @@ public struct HivePartitioningOptions { mode: String?; sourceURIPrefix: String?;
 
 ### 4.7 Resources and methods (slices)
 
-The `selectedFields:` parameters take BigQuery field-selector names. The
-client always adds the required fields from B§4 "Common rules".
+**Signature rules for every slice:**
+
+- Every RPC method ends with `options: RequestOptions = .init()`. Other
+  inputs are labeled parameters with defaults; there are no options structs
+  for per-call flags.
+- `get*` and `list*` methods take `selectedFields: [String]? = nil`, a list
+  of BigQuery field-selector names. The client always adds the required
+  fields from B§4 "Common rules".
+- `list*` methods take `pageSize: Int? = nil, pageToken: String? = nil` and
+  return `PagedSequence`.
+- Every enum-like value from the server is an extensible
+  `RawRepresentable` struct with static constants, so an unknown wire value
+  degrades gracefully. This covers JobState, TableType, Priority,
+  dispositions, DatasetView, TableMetadataView, DatasetUpdateMode, DataFormat,
+  and similar.
+- The only public `enum`s are closed shapes that cannot grow:
+  `FieldValue` (the four wire cell shapes), `QueryParameters` (named or
+  positional), and `JobConfiguration` (the four job types).
+  `Job.configuration` is `nil` for a job type the client does not know.
 
 ```swift
 // ---- slice 1: datasets, routines, models, table IAM, service account ----
 public struct Dataset { id: DatasetID; friendlyName, description, location: String?; labels: [String: String]?;
   defaultTableExpiration, defaultPartitionExpiration: Duration?; access: [Acl]?; defaultEncryption…;
   defaultCollation; maxTimeTravel; storageBillingModel; isCaseInsensitive; tags; externalDatasetReference…;
-  /* output */ etag, creationTime, lastModifiedTime, selfLink: …? ; enum Field (clearable fields) }
+  /* output */ etag, creationTime, lastModifiedTime, selfLink: …? ; struct Field (clearable fields) }
 func createDataset(_ dataset: Dataset, accessPolicyVersion: Int32? = nil, options:) async throws -> Dataset
 func getDataset(_ id: DatasetID, view: DatasetView? = nil, accessPolicyVersion: Int32? = nil,
                 selectedFields: [String]? = nil, options:) async throws -> Dataset?          // nil on 404
 func listDatasets(projectID: String? = nil, all: Bool = false, filter: String? = nil,
-                  pageSize: Int? = nil, options:) -> PagedSequence<Dataset>
+                  pageSize: Int? = nil, pageToken: String? = nil, options:) -> PagedSequence<Dataset>
 func updateDataset(_ dataset: Dataset, clearing: Set<Dataset.Field> = [], updateMode: DatasetUpdateMode? = nil,
                    ifMatch etag: String? = nil, options:) async throws -> Dataset            // PATCH
 @discardableResult func deleteDataset(_ id: DatasetID, deleteContents: Bool = false, options:) async throws -> Bool
 // Routine: create/get/list/update(PUT)/delete; Model: get/list/update(PATCH, clearing:)/delete (no create)
-func getIAMPolicy(for table: TableID, requestedPolicyVersion: Int32? = nil, options:) async throws -> GoogleIAMV1.Policy
-func setIAMPolicy(_ policy: GoogleIAMV1.Policy, for table: TableID, options:) async throws -> GoogleIAMV1.Policy
+public struct IAMPolicy { version: Int32?; bindings: [Binding { role, members: [String], condition: Expr? }];
+                          etag: Data? }
+func getIAMPolicy(for table: TableID, requestedPolicyVersion: Int32? = nil, options:) async throws -> IAMPolicy
+func setIAMPolicy(_ policy: IAMPolicy, for table: TableID, options:) async throws -> IAMPolicy
 func testIAMPermissions(_ permissions: [String], for table: TableID, options:) async throws -> [String]
 func getServiceAccount(projectID: String? = nil, options:) async throws -> String              // P1
 
 // ---- slice 2: values, parameters, insertAll ----
-public struct QueryParameter { name: String?; value: QueryParameterValue }
+public enum QueryParameters { case named([String: QueryParameterValue]), positional([QueryParameterValue]) }
 public struct QueryParameterValue { static func string/int64/float64/bool/bytes/numeric/bigNumeric/timestamp/
   date/time/dateTime/json/geography/interval/range/array/struct…; static func null(_ type: FieldType) }
 public protocol QueryParameterConvertible { var queryParameterValue: QueryParameterValue { get } }
 public struct InsertRow { insertID: String?; init<T: Encodable>(_ value: T, insertID: String? = nil) throws;
                           init(_ values: [String: InsertValue], insertID: String? = nil) }
-public struct InsertAllOptions { skipInvalidRows, ignoreUnknownValues: Bool; templateSuffix: String?;
-                                 insertIDs: InsertIDPolicy (.generateMissing default, .none) }
+public struct InsertIDPolicy: RawRepresentable { generateMissing (default), none }
 public struct InsertAllResponse { rowErrors: [Int: [BigQueryError.Detail]]; var hasErrors: Bool }
-func insertAll(_ rows: [InsertRow], into table: TableID, options insertOptions: InsertAllOptions = .init(),
-               requestOptions: RequestOptions = .init()) async throws -> InsertAllResponse
+func insertAll(_ rows: [InsertRow], into table: TableID, skipInvalidRows: Bool = false,
+               ignoreUnknownValues: Bool = false, templateSuffix: String? = nil,
+               insertIDs: InsertIDPolicy = .generateMissing, options:) async throws -> InsertAllResponse
 // value types: BigNumeric, BigQueryDate, BigQueryTime, BigQueryDateTime, Interval, BigQueryRange
 
 // ---- slice 3: tables, table data ----
@@ -359,15 +410,17 @@ public struct Table { id: TableID; friendlyName, description: String?; labels; e
   externalDataConfiguration: ExternalDataConfiguration?; snapshotDefinition; cloneDefinition;
   tableConstraints; defaultCollation; resourceTags; biglakeConfiguration…;
   /* output */ type: TableType?, etag, numBytes, numRows, numLongTermBytes, creationTime, lastModifiedTime,
-  location, streamingBuffer…; enum Field (clearable) }
+  location, streamingBuffer…; struct Field (clearable) }
 func createTable(_ table: Table, options:) async throws -> Table
 func getTable(_ id: TableID, view: TableMetadataView? = nil, selectedFields: [String]? = nil, options:) async throws -> Table?
-func listTables(in dataset: DatasetID, pageSize: Int? = nil, options:) -> PagedSequence<Table>
+func listTables(in dataset: DatasetID, pageSize: Int? = nil, pageToken: String? = nil, options:) -> PagedSequence<Table>
 func updateTable(_ table: Table, clearing: Set<Table.Field> = [], autodetectSchema: Bool = false,
                  ifMatch etag: String? = nil, options:) async throws -> Table
 @discardableResult func deleteTable(_ id: TableID, options:) async throws -> Bool
 func listRows(in table: TableID, schema: Schema? = nil, selectedFields: [String]? = nil,
-              startIndex: UInt64? = nil, pageSize: Int? = nil, options:) async throws -> RowSequence
+              startIndex: UInt64? = nil, pageSize: Int? = nil, pageToken: String? = nil,
+              options:) async throws -> RowSequence
+//   schema == nil → one extra tables.get(selectedFields: schema) first (Δ, see §7)
 func listPartitions(of table: TableID, options:) async throws -> [String]
 
 // ---- slice 4: jobs, query, load/extract/copy, upload ----
@@ -375,31 +428,80 @@ public enum JobConfiguration { case query(QueryJobConfiguration), load(LoadJobCo
                                extract(ExtractJobConfiguration), copy(CopyJobConfiguration) }
 public struct Job { id: JobID; configuration: JobConfiguration?; status: JobStatus; statistics: JobStatistics?;
                     userEmail, etag, selfLink: String? }
-func createJob(_ configuration: JobConfiguration, id: JobID? = nil, options:) async throws -> Job
-func getJob(_ id: JobID, options:) async throws -> Job?
+func createJob(_ configuration: JobConfiguration, id: JobID? = nil, selectedFields: [String]? = nil,
+               options:) async throws -> Job
+func getJob(_ id: JobID, selectedFields: [String]? = nil, options:) async throws -> Job?   // failed job is returned, not thrown
 func listJobs(projectID: String? = nil, allUsers: Bool = false, stateFilter: Set<JobState> = [],
               parentJob: JobID? = nil, minCreationTime: Date? = nil, maxCreationTime: Date? = nil,
-              pageSize: Int? = nil, options:) -> PagedSequence<Job>
+              selectedFields: [String]? = nil, pageSize: Int? = nil, pageToken: String? = nil,
+              options:) -> PagedSequence<Job>
 @discardableResult func cancelJob(_ id: JobID, options:) async throws -> Bool
 @discardableResult func deleteJob(_ id: JobID, options:) async throws -> Bool
-func waitForJob(_ id: JobID, options:) async throws -> Job          // throws .job on errorResult
-func query(_ configuration: QueryJobConfiguration, jobID: JobID? = nil, options:) async throws -> QueryResult
-func query(_ sql: String, parameters: [QueryParameter] = [], options:) async throws -> QueryResult
+func waitForJob(_ id: JobID, timeout: Duration? = nil, options:) async throws -> Job
+//   throws .job on errorResult; timeout only stops waiting (never cancels the job)
+func query(_ configuration: QueryJobConfiguration, jobID: JobID? = nil, projectID: String? = nil,
+           location: String? = nil, timeout: Duration? = nil, options:) async throws -> QueryResult
+//   jobID given → slow path with exactly that ID; otherwise projectID/location override the client
+//   defaults for both paths (Java's "JobId without a job name")
+func query(_ sql: String, parameters: QueryParameters? = nil, options:) async throws -> QueryResult
 func getQueryResults(_ job: JobID, startIndex: UInt64? = nil, pageSize: Int? = nil, options:) async throws -> QueryResult
-func dryRun(_ configuration: QueryJobConfiguration, options:) async throws -> QueryDryRunResult
+func dryRun(_ configuration: QueryJobConfiguration, projectID: String? = nil, location: String? = nil,
+            options:) async throws -> QueryDryRunResult       // statistics + schema + referenced tables
 func load(_ source: UploadSource, configuration: LoadJobConfiguration, jobID: JobID? = nil,
           chunkSize: Int = 15 << 20, options:) async throws -> Job      // resumable upload (Java writer)
-public struct QueryResult { schema: Schema; totalRows: UInt64?; jobID: JobID?; queryID: String?;
-                            statistics: QueryStatistics?; rows: RowSequence }
+public struct QueryResult {
+  schema: Schema?                 // nil iff the final response has no schema (DDL, some scripts)
+  totalRows: UInt64?              // rows in the result set only; never DML counts (Δ)
+  numDMLAffectedRows: Int64?; dmlStats: DMLStats?
+  jobID: JobID?; queryID: String?; location: String?
+  cacheHit: Bool?; statementType: String?; jobCreationReason: String?
+  totalBytesProcessed: Int64?; totalBytesBilled: Int64?; totalSlotMs: Int64?
+  sessionInfo: SessionInfo?; creationTime, startTime, endTime: Date?
+  rows: RowSequence               // empty when schema == nil
+}
 ```
+
+**insertAll JSON encoding** (`InsertRow(_ value: some Encodable)`, slice 2):
+
+The row is encoded to a JSON object with a dedicated encoder. A plain
+`JSONEncoder` is not used, because its default `Date` encoding (seconds since
+2001) is wrong for BigQuery.
+
+| Swift value | JSON |
+| ----------- | ---- |
+| `Date` | an RFC 3339 UTC string with microseconds (`2024-01-02T03:04:05.123456Z`) |
+| `Data` | base64 |
+| `Decimal`, `BigNumeric` | an exact decimal string |
+| Integers | a JSON number when \|v\| ≤ 2^53, otherwise a decimal string |
+| `Double` / `Float` | a number. `NaN` and `±Infinity` become the strings `"NaN"`, `"Infinity"`, `"-Infinity"` |
+| `Bool` | a boolean |
+| Civil types and `Interval` | their canonical BigQuery string |
+| Nested `Encodable` | a JSON object (STRUCT) |
+| Arrays | JSON arrays |
+| `nil` | the key is omitted, never `null` |
+
+The `[String: InsertValue]` initializer follows the same rules.
 
 ### 4.8 Mock seam
 
-At the integration step, after all slices merge, the architect adds a
-`public protocol BigQueryProtocol: Sendable`. It lists every public method,
-and each method has a default implementation that throws
-`RequestError.unimplemented`, as `StorageProtocol` does. `BigQueryClient`
-conforms to it. Slices do not touch it.
+The protocol shape is decided now, so the slices can freeze their
+signatures. At the integration step, the architect adds
+`public protocol BigQueryProtocol: Sendable` and `BigQueryClient` conforms to
+it. Slices do not touch it. It follows the `StorageProtocol` pattern:
+
+- Each protocol requirement lists the **full** parameter list, with no
+  defaults (protocols cannot have them).
+- An `extension BigQueryProtocol` provides:
+  - a default implementation of each requirement that throws
+    `RequestError.unimplemented`, so a test double implements only what it
+    needs;
+  - forwarding overloads that carry the default arguments, so
+    `any BigQueryProtocol` reads the same as the concrete client.
+- `BigQueryClient`'s own methods keep their default arguments. On the
+  concrete type they are preferred over the extension overloads.
+
+Slices must therefore avoid generic methods (use `InsertRow` and
+`UploadSource` instead) and variadic parameters on `BigQueryClient`.
 
 ### 4.9 Project and location resolution
 
@@ -451,7 +553,7 @@ flowchart LR
   - Decodes 2xx bodies with `_ProtoJSONDecoder`. A `204` or empty body is
     never decoded.
   - Exposes `json(_:)`, `jsonOrNil(_:)` (404 → `nil`), `send(_:)` (raw
-    response), and `delete(_:) -> Bool` (404 → `false`).
+    response), and `deleteOrFalse(_:) -> Bool` (404 → `false`).
 
 ### 5.2 Retry policy
 
@@ -490,15 +592,33 @@ An error is **retryable** when:
 | `getIamPolicy`, `testIamPermissions` | Yes |
 | Upload chunk PUTs | Not retried by the loop; the upload handles resume itself (slice 4) |
 
-**Job-level retry.** A 200 response whose job or query result carries
-`rateLimitExceeded` or `jobRateLimitExceeded` is converted, inside the
-attempt, into a retryable `.http` error with status 429. Only `jobs.query`
-(which carries a `requestId`) does this. Java does the same by message
-(B§2).
+**Job-level retry.** Sometimes a 200 response's job or query result carries
+`rateLimitExceeded` or `jobRateLimitExceeded` (Java: `BigQueryRetryAlgorithm`,
+by message). Handling depends on the call:
 
-**409 on `jobs.insert`.** If a job with a client-generated ID already exists
-(a retry after a lost success), the client fetches it with `getJob` and
-returns it (B§2 "create-job recovery").
+- **`jobs.query`:** the attempt throws a retryable `.http` error with status
+  429. The retry uses a **fresh** `requestId`, because the server's
+  `requestId` deduplication could otherwise replay the failed response.
+  Transport-level retries keep the same `requestId`.
+- **`jobs.insert` with a client-generated ID:** the failed job definitely
+  exists, so the retry uses a **fresh** `JobID`. Reusing the ID would get
+  409 and "recover" the failed job.
+- **`jobs.insert` with a caller-supplied ID:** no retry. The `Job` is
+  returned as-is (status `errorResult`). `waitForJob` and `query` then throw
+  `.job`.
+
+**409 on `jobs.insert`.** The client recovers with `getJob(id)` **only if an
+earlier attempt with the same ID was sent in this call**: a retry after a
+lost success. A 409 on the first attempt means the caller's ID collides with
+an existing job, and it throws `.service`. This is an **intentional
+difference**. Java regenerates a UUID on every transport retry (which can
+create duplicate jobs after a lost success). For caller IDs, Java returns any
+existing job younger than 24 h (Impl:L978-1021), which can be an unrelated
+job.
+
+**Lost-success DELETE.** A retried DELETE whose first attempt succeeded but
+lost its response gets 404, so the method returns `false`. This is
+documented on each `delete*` method.
 
 ### 5.3 404 contract
 
@@ -566,13 +686,37 @@ Overrides also cover the rare case where an empty string is meaningful
      `getQueryResults`, with no extra `getJob` (Java makes an extra call;
      B§5).
    - If `jobComplete` is false, poll `getQueryResults(timeoutMs=10s)`.
+   - If it has `jobComplete` but **no schema** and a `jobReference` (DDL,
+     scripts), call `getQueryResults` once, as Java does (Impl:L2459). If
+     there is still no schema, `QueryResult.schema` is `nil` and `rows` is
+     empty.
    - A stateless response (`jobReference == nil`) uses its `queryId`. It
      cannot page beyond the first response unless `pageToken` is set, in
      which case the server returns a `jobReference`.
 4. Otherwise, use the slow path: `jobs.insert` with a client-generated
    `JobID`. Wait using `getQueryResults` long-polling. If `totalRows == 0`
-   (DDL/DML), skip `tabledata.list`. Then page rows with `getQueryResults`.
+   (DDL/DML), skip fetching rows. Then page rows with `getQueryResults`.
 5. `errors` or `errorResult` throws `BigQueryError(kind: .job, jobID:)`.
+
+**Project and location.** `query(_:jobID:projectID:location:)` works as
+follows:
+
+- An explicit `jobID` forces the slow path with exactly that ID.
+- Otherwise, `projectID` and `location` override the client defaults for the
+  `jobs.query` request and for the generated slow-path ID. Java does this
+  with a `JobId` that has no job name.
+
+**`QueryResult` metadata:**
+
+- **Fast path:** `cacheHit`, `totalBytesProcessed`, `totalBytesBilled`,
+  `totalSlotMs`, `numDmlAffectedRows`, `dmlStats`, `sessionInfo`,
+  `jobCreationReason`, `queryId`, `location`, and the creation, start, and
+  end times all come from `QueryResponse`. `statementType` is `nil` (the
+  response doesn't carry it).
+- **Slow path:** the same fields come from `Job.statistics.query`.
+- **DML counts:** `totalRows` is never overloaded with the DML count. Java
+  sets `totalRows = numDmlAffectedRows ?? totalRows ?? 0`. Swift exposes
+  `numDMLAffectedRows` separately (**Δ**).
 
 ### 6.2 Fast-path allowlist
 
@@ -592,8 +736,9 @@ script options.
 
 ### 6.3 Waiting
 
-- `waitForJob` polls `jobs.get` using `ClientOptions.pollingBackoffPolicy`
-  and has no deadline; callers cancel the `Task` instead (#8-Q3).
+- `waitForJob` polls `jobs.get` using `ClientOptions.pollingBackoffPolicy`.
+  By default there is no deadline; `timeout:` stops waiting and throws, but
+  never cancels the job (#8-Q3). Java's default deadline is 12 h.
 - Query waits use the server's long-poll `getQueryResults(timeoutMs:)`.
 - Java's inverted wait settings (B§5) are not copied.
 
@@ -628,8 +773,16 @@ Each row is either "same" or an intentional difference (**Δ**).
 | `throwNotFound` option (§1) | Not offered: `get*` returns an optional. **Δ**: one behavior. |
 | Retry on message regex (§2) | **Δ**: reason + status (§5.2). |
 | Default retry: 6 attempts, 50 s (§1) | Same limits. |
-| Job ID generation + 409 recovery (§2) | Same. |
-| `requestId` stable across retries (§2) | Same. |
+| Job ID generation + 409 recovery (§2) | **Δ**: one stable ID across transport retries. 409 is recovered only after an earlier attempt in the same call was sent. A fresh ID is used only after a job-level rate-limit failure (§5.2). |
+| `requestId` stable across retries (§2) | Same for transport retries. A fresh `requestId` after a job-level rate-limit failure. |
+| Which RPCs retry (§2): Java retries `createRoutine` on 5xx; does not retry deletes, `jobs.insert`, or `jobs.query` on 5xx in production; and has no 429 handling | **Δ**: every idempotent call is retried on 429/500/502/503/504 or a retryable reason (§5.2). That covers deletes, `jobs.insert` (stable ID), and `jobs.query` (`requestId`). Non-idempotent inserts (`createRoutine`, `createTable`, `createDataset`) are **not** retried. |
+| Universe-domain check, 401 on mismatch (§1; IT-182/183) | Not implemented. Requests go to `ClientOptions.endpoint`, and gax has no credential-universe check. Follow-up (§13); IT-182/183 are DEFERRED. |
+| 60 s HTTP read timeout (§1) | Same. `BigQueryClientOptions` defaults `client.attemptTimeout` to 60 s; the gax default is 15 s. |
+| User-Agent / `x-goog-api-client: gccl` (§1) | gax sets the auth headers only. A `gccl` `x-goog-api-client` needs a package-version constant from the release tooling. Follow-up (§13). |
+| `Job.reload()` / `getJob` on a failed job (§3) | `getJob` returns the failed `Job` (inspect `status.errorResult`). Only `waitForJob` and `query` throw `.job`. |
+| Slow-path rows from `tabledata.list` on the destination table (§5) | **Δ**: rows come from `getQueryResults`, which also works for scripts and for queries without an accessible destination table. |
+| `listTableData` without a schema (§4) | **Δ**: `listRows(schema: nil)` first makes one `tables.get` (selecting only `schema`), so rows always have names and types. Pass a schema to skip it. |
+| `JobOption.fields` / `JobListOption.fields` (§4) | Same, via `selectedFields:` on `createJob`, `getJob`, and `listJobs`. |
 | 404 semantics (§3) | §5.3. **Δ**: `deleteJob`, wait. |
 | `BigQueryException` code, reason, location, message, errors (§3) | `BigQueryError` (§4.3). |
 | `JobException` on failed job (§3) | `BigQueryError(kind: .job)`. |
@@ -713,7 +866,7 @@ Each row is either "same" or an intentional difference (**Δ**).
 
 ```
 env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift test -Xswiftc -warnings-as-errors --package-path pkgs/swift-google-cloud-bigquery
-swift format lint -r --strict pkgs/swift-google-cloud-bigquery
+(cd pkgs/swift-google-cloud-bigquery && swift format lint --strict -r Sources Tests)   # as ci/lint.sh
 ```
 
 The slice's live ITs must also pass.
@@ -727,15 +880,16 @@ a core file, it asks @architect on the board.
 | Slice | Owns (Sources/GoogleCloudBigQuery/…) | Tests | Depends on |
 | ----- | ------------------------------------ | ----- | ---------- |
 | **Core** (architect, landed first) | everything in §3 "core", `Package.swift` | `Tests/Core*Tests.swift`, `Tests/Support/*`, `Tests/IntegrationTests/Support/*` | — |
-| **1. Resources** | `Dataset*.swift`, `Acl.swift`, `BigQueryClient+Datasets.swift`, `Routine*.swift`, `BigQueryClient+Routines.swift`, `Model*.swift`, `BigQueryClient+Models.swift`, `BigQueryClient+IAM.swift`, `BigQueryClient+Projects.swift` | `Dataset*`, `Routine*`, `Model*`, `IAM*` | core |
-| **2. Values** | `FieldValue+Accessors.swift`, `RowDecoder.swift`, `RowSequence+Decode.swift`, `QueryParameter.swift` (takes over the core shell), `QueryParameterValue*.swift`, `BigNumeric.swift`, `CivilTypes.swift`, `Interval.swift`, `BigQueryRange.swift`, `InsertRow.swift`, `InsertAll*.swift`, `BigQueryClient+InsertAll.swift` | `FieldValue*`, `QueryParameter*`, `InsertAll*`, `RowDecoder*` | core |
+| **1. Resources** | `Dataset*.swift`, `Acl.swift`, `BigQueryClient+Datasets.swift`, `Routine*.swift`, `BigQueryClient+Routines.swift`, `Model*.swift`, `BigQueryClient+Models.swift`, `IAMPolicy.swift`, `BigQueryClient+IAM.swift`, `BigQueryClient+Projects.swift` | `Dataset*`, `Routine*`, `Model*`, `IAM*` | core |
+| **2. Values** | `FieldValue+Accessors.swift`, `RowDecoder.swift`, `RowSequence+Decode.swift`, `QueryParameter.swift` (takes over the core shell), `QueryParameterValue*.swift`, `BigNumeric.swift`, `CivilTypes.swift`, `Interval.swift`, `BigQueryRange.swift`, `InsertRow.swift`, `InsertRowEncoder.swift`, `InsertAll*.swift`, `BigQueryClient+InsertAll.swift` | `FieldValue*`, `QueryParameter*`, `InsertAll*`, `RowDecoder*` | core |
 | **3. Tables** | `Table.swift`, `TableDefinitions.swift` (view/MV/snapshot/clone), `ExternalDataConfiguration.swift` (+ Bigtable/Sheets/etc. options), `TableConstraints.swift`, `BigQueryClient+Tables.swift`, `BigQueryClient+TableData.swift` | `Table*`, `TableData*`, `External*` | core |
-| **4. Jobs** | `Job.swift`, `JobStatus.swift`, `JobStatistics.swift`, `JobConfiguration.swift`, `QueryJobConfiguration.swift`, `LoadJobConfiguration.swift`, `ExtractJobConfiguration.swift`, `CopyJobConfiguration.swift`, `QueryResult.swift`, `BigQueryClient+Jobs.swift`, `BigQueryClient+Query.swift`, `BigQueryClient+Upload.swift`, `UploadSource.swift` | `Job*`, `Query*` (not `QueryParameter*`), `Load*`, `Upload*` | core; slice 2 (`QueryParameter.wire`), slice 3 (`ExternalDataConfiguration` for `tableDefinitions`) |
+| **4. Jobs** | `Job.swift`, `JobStatus.swift`, `JobStatistics.swift`, `JobConfiguration.swift`, `QueryJobConfiguration.swift`, `LoadJobConfiguration.swift`, `ExtractJobConfiguration.swift`, `CopyJobConfiguration.swift`, `QueryResult.swift`, `BigQueryClient+Jobs.swift`, `BigQueryClient+Query.swift`, `BigQueryClient+Upload.swift`, `UploadSource.swift` | `Job*`, `Query*` (not `QueryParameter*`), `Load*`, `Upload*` | core; slice 2 (more `QueryParameterValue` constructors, for tests only), slice 3 (`ExternalDataConfiguration` for `tableDefinitions`) |
 
 **Interfaces each slice can rely on from core:**
 
 - `BigQueryClient.transport: BigQueryTransport`, `projectID`, `location`,
-  and `resolve(_ id:)` helpers that fill a `nil` project or location.
+  `defaultJobCreationMode`, and `resolve(_ id:)` helpers that fill a `nil`
+  project (and, for `JobID`, a `nil` location).
 - `BigQueryTransport`:
   - `json<R: Decodable>(_ type: R.Type, _ request: HTTPRequest, idempotent: Bool) async throws -> R`;
   - `jsonOrNil` (404 → `nil`);
@@ -746,7 +900,7 @@ a core file, it asks @architect on the board.
   `HTTPRequest.encode(segment:)`.
 - `RequestBody.json(_:setting:omitting:)` and `JSONOverride`.
 - `PagedSequence(fetch:)`, `PagedSequence(firstPage:fetch:)`, and
-  `RowSequence(schema:totalRows:pages:)`.
+  `RowSequence(schema:totalRows:rows:)`.
 - `Row.rows(from: [WKTStruct], schema: Schema) throws -> [Row]`.
 - Wire conversions:
   - `Schema(wire:)` / `schema.wire`;
@@ -759,15 +913,20 @@ a core file, it asks @architect on the board.
   own wire conversion: CSV options are nested for external tables and
   flattened for load jobs.
 
-**Cross-slice contract** for `QueryParameter`:
+**Cross-slice contract** for query parameters:
 
-- Core lands `QueryParameter { name, value }`, plus a `QueryParameterValue`
-  struct that holds an internal wire type and value.
-- It also provides `internal var wire: GoogleCloudBigQueryV2.QueryParameter`
-  and two seed constructors (`.string`, `.int64`), so slice 4 compiles and
-  can be tested before slice 2 lands.
-- Slice 2 adds every other constructor and the reverse parsing. It must not
-  change `wire`.
+- Core lands `public enum QueryParameters { case named([String:
+  QueryParameterValue]), positional([QueryParameterValue]) }` and
+  `QueryParameterValue`, a struct holding an internal wire type and value.
+- It provides two internal accessors that slice 4 calls and slice 2 must not
+  change:
+  - `QueryParameters.wire: [GoogleCloudBigQueryV2.QueryParameter]` (named
+    parameters sorted by name, for deterministic bodies);
+  - `QueryParameters.wireMode: String` (`"NAMED"` / `"POSITIONAL"`).
+- It also provides seed constructors `.string`, `.int64`, `.bool`, and
+  `.float64`, so slice 4 compiles and can be tested before slice 2 lands.
+- Slice 2 adds every other constructor, `QueryParameterConvertible`, and the
+  reverse parsing.
 
 **Merge order:** core → 1, 2, 3 (any order) → 4. Slice 4 starts at once and
 adds `tableDefinitions` after slice 3 merges.
@@ -781,7 +940,7 @@ adds `tableDefinitions` after slice 3 merges.
 | create/get/list/update/delete Routine | `createRoutine` … | 1 | P0 |
 | get/list/update/delete Model | `getModel` … | 1 | P0 |
 | create/get/list/cancel/delete Job | `createJob` … `deleteJob` | 4 | P0 |
-| `query` (fast path + slow path), `queryWithTimeout` | `query(_:)` (+ `timeout` P1) | 4 | P0 |
+| `query` (fast path + slow path), `queryWithTimeout` | `query(_:…timeout:)` | 4 | P0 |
 | Stateless query (`JOB_CREATION_OPTIONAL`) | `jobCreationMode` | 4 | P0 |
 | `getQueryResults` | `getQueryResults` | 4 | P0 |
 | `insertAll` | `insertAll` | 2 | P0 |
@@ -801,6 +960,8 @@ adds `tableDefinitions` after slice 3 merges.
 | `listProjects` | — | — | P1 (not in Java) |
 | Row access policies | — | — | P1 (not in Java) |
 | `BIGQUERY_EMULATOR_HOST` | endpoint override only | core | P1 |
+| High-precision timestamps (`timestampPrecision` 12, `ISO8601_STRING`) | — | — | **DEFERRED**: new service feature; int64 micros cannot carry picoseconds (§13) |
+| Universe-domain credential check | — | — | **DEFERRED**: belongs in gax/auth (§13) |
 
 ## 12. Documentation and samples
 
@@ -834,3 +995,11 @@ Per #12, these are not filed externally.
    hand-written routes exist.
 7. **This package:** consider whole-query retry (Python-style) and
    `Schema(inferredFrom:)` after P0.
+8. **This package:** high-precision (picosecond) timestamps. This covers
+   `timestampPrecision` 12, `ISO8601_STRING` output, and
+   `ITHighPrecisionTimestamp`.
+9. **gax/auth:** universe-domain validation of credentials against the
+   endpoint (Java returns 401 on mismatch; IT-182/183).
+10. **Release tooling:** a package-version constant, so the veneer can send
+    `x-goog-api-client: … gccl/<version>` (gax
+    `_veneerApiClientHeader`).
