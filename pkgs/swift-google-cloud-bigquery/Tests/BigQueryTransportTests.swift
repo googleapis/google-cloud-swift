@@ -160,6 +160,22 @@ import Testing
     #expect(fake.requests.first?.query.isEmpty == true)
   }
 
+  // Design: §7 (x-goog-api-client)
+  @Test func sendsVeneerApiClientHeader() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(json: "{}")
+    fake.enqueue(status: 200, json: "")
+    _ = try await fake.transport().send(self.get(), idempotent: true)
+    _ = try await fake.transport().send(
+      HTTPRequest(method: .put, url: "https://upload.example.com/session"), idempotent: false)
+    #expect(fake.requests.count == 2)
+    for request in fake.requests {
+      let header = try #require(request.headers["x-goog-api-client"])
+      #expect(header.hasPrefix("gl-swift/"))
+      #expect(header.hasSuffix(" gccl/\(PackageVersion.version)"))
+    }
+  }
+
   // Baseline: U.BigQueryException.01, U.BigQueryImpl.15
   @Test func retriesIdempotentRequestUntilSuccess() async throws {
     let fake = FakeHTTPTransport()

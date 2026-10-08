@@ -378,6 +378,16 @@ libraries:
   - name: google-cloud-biglake-v1
     version: 0.4.0
     copyright_year: "2026"
+  - name: google-cloud-bigquery
+    version: 0.3.0
+    copyright_year: "2026"
+    output: pkgs/swift-google-cloud-bigquery/Sources/GoogleCloudBigQuery/generated
+    swift:
+      library_name_override: GoogleCloudBigQuery
+      modules:
+        - output: pkgs/swift-google-cloud-bigquery/Sources/GoogleCloudBigQuery/generated
+          api_path: ""
+          module_type: package-version
   - name: google-cloud-bigquery-analyticshub-v1
     version: 0.4.0
     copyright_year: "2026"

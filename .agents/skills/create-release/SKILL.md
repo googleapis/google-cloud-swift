@@ -85,6 +85,7 @@ If any core or shared packages were bumped in `librarian.yaml`, update their `fr
 - [`pkgs/swift-google-gax-grpc/Package.swift`](../../../pkgs/swift-google-gax-grpc/Package.swift)
 - [`pkgs/swift-google-wkt-convert/Package.swift`](../../../pkgs/swift-google-wkt-convert/Package.swift)
 - [`pkgs/swift-google-cloud-storage/Package.swift`](../../../pkgs/swift-google-cloud-storage/Package.swift)
+- [`pkgs/swift-google-cloud-bigquery/Package.swift`](../../../pkgs/swift-google-cloud-bigquery/Package.swift)
 - [`guide/Package.swift`](../../../guide/Package.swift)
 
 ### Step 4: Tidy and Regenerate All Libraries
@@ -164,6 +165,7 @@ sed -i -E "s/from: \"0\.[01]\.0-preview\"/from: \"${TARGET_VERSION}\"/g" \
   pkgs/swift-google-gax-grpc/Package.swift \
   pkgs/swift-google-wkt-convert/Package.swift \
   pkgs/swift-google-cloud-storage/Package.swift \
+  pkgs/swift-google-cloud-bigquery/Package.swift \
   guide/Package.swift
 ```
 

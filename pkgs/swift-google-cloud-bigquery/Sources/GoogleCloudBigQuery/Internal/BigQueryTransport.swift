@@ -155,13 +155,18 @@ struct BigQueryTransport: Sendable {
     }
   }
 
-  /// Adds the query parameters common to every BigQuery API request.
+  /// The `x-goog-api-client` value sent with every request.
+  static let clientHeader = GoogleGax._veneerApiClientHeader(
+    packageVersion: PackageVersion.version)
+
+  /// Adds the header and query parameters common to every BigQuery API request.
   static func prepare(_ request: HTTPRequest) -> HTTPRequest {
+    var request = request
+    request.headers[_HeaderNames.apiClient] = Self.clientHeader
     guard case .path = request.target, !request.query.contains(where: { $0.name == "prettyPrint" })
     else {
       return request
     }
-    var request = request
     request.query.append(URLQueryItem(name: "prettyPrint", value: "false"))
     return request
   }

@@ -778,7 +778,7 @@ Each row is either "same" or an intentional difference (**Δ**).
 | Which RPCs retry (§2): Java retries `createRoutine` on 5xx; does not retry deletes, `jobs.insert`, or `jobs.query` on 5xx in production; and has no 429 handling | **Δ**: every idempotent call is retried on 429/500/502/503/504 or a retryable reason (§5.2). That covers deletes, `jobs.insert` (stable ID), and `jobs.query` (`requestId`). Non-idempotent inserts (`createRoutine`, `createTable`, `createDataset`) are **not** retried. |
 | Universe-domain check, 401 on mismatch (§1; IT-182/183) | Not implemented. Requests go to `ClientOptions.endpoint`, and gax has no credential-universe check. Follow-up (§13); IT-182/183 are DEFERRED. |
 | 60 s HTTP read timeout (§1) | Same. `BigQueryClientOptions` defaults `client.attemptTimeout` to 60 s; the gax default is 15 s. |
-| User-Agent / `x-goog-api-client: gccl` (§1) | gax sets the auth headers only. A `gccl` `x-goog-api-client` needs a package-version constant from the release tooling. Follow-up (§13). |
+| User-Agent / `x-goog-api-client: gccl` (§1) | Same header: `BigQueryTransport.prepare` adds `x-goog-api-client: gl-swift/… gccl/<PackageVersion>` to every request. |
 | `Job.reload()` / `getJob` on a failed job (§3) | `getJob` returns the failed `Job` (inspect `status.errorResult`). Only `waitForJob` and `query` throw `.job`. |
 | Slow-path rows from `tabledata.list` on the destination table (§5) | **Δ**: rows come from `getQueryResults`, which also works for scripts and for queries without an accessible destination table. |
 | `listTableData` without a schema (§4) | **Δ**: `listRows(schema: nil)` first makes one `tables.get` (selecting only `schema`), so rows always have names and types. Pass a schema to skip it. |
@@ -1022,6 +1022,13 @@ Per #12, these are not filed externally.
    `ITHighPrecisionTimestamp`.
 9. **gax/auth:** universe-domain validation of credentials against the
    endpoint (Java returns 401 on mismatch; IT-182/183).
-10. **Release tooling:** a package-version constant, so the veneer can send
-    `x-goog-api-client: … gccl/<version>` (gax
-    `_veneerApiClientHeader`).
+10. **Release tooling (done):** the `google-cloud-bigquery` entry in
+    `librarian.yaml` generates `PackageVersion`, so every request sends
+    `x-goog-api-client: … gccl/<version>` (gax `_veneerApiClientHeader`).
+    Its version starts at 0.3.0 to match `google-cloud-bigquery-v2`; the
+    package's `Package.swift` is in the create-release skill's list of
+    hand-written manifests.
+11. **Before the first release:** publish (or split) the
+    `swift-google-cloud-bigquery-v2` repository. Its remote URL returns 404
+    today, so this package resolves only with
+    `GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true`.
