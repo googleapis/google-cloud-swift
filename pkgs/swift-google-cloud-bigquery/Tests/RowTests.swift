@@ -146,7 +146,7 @@ import Testing
     #expect(schema["r"]?.fields.first?.name == "x")
   }
 
-  // Baseline: U.Schema.01, U.FieldList.04, U.Field.01, U.PolicyTags.01
+  // Baseline: U.Schema.01, U.FieldList.04, U.Field.01, U.Field.02, U.PolicyTags.01
   @Test func wireRoundTripPreservesEveryField() throws {
     let json = #"""
       {"fields": [
