@@ -30,6 +30,7 @@ extension BigQueryClient {
   ///     always returned.
   ///   - options: per-call options.
   /// - Returns: the created dataset, as returned by the service.
+  @discardableResult
   public func createDataset(
     _ dataset: Dataset,
     accessPolicyVersion: Int32? = nil,
