@@ -29,8 +29,8 @@ public struct ExternalDataConfiguration: Sendable, Hashable {
   /// The fully-qualified URIs that point to the data, for example
   /// `gs://bucket/path/*.csv`.
   public var sourceURIs: [String]
-  /// The format of the data.
-  public var format: DataFormat
+  /// The format of the data. `nil` for an object table (see ``objectMetadata``).
+  public var format: DataFormat?
   /// The schema of the data. Required for CSV and JSON data unless
   /// ``autodetect`` is set; not allowed for Avro, Parquet, ORC, Bigtable, and
   /// Datastore backups.
@@ -85,7 +85,7 @@ public struct ExternalDataConfiguration: Sendable, Hashable {
   public var timestampFormat: String?
 
   /// Creates a configuration for the data at `sourceURIs`.
-  public init(sourceURIs: [String], format: DataFormat, schema: Schema? = nil) {
+  public init(sourceURIs: [String], format: DataFormat?, schema: Schema? = nil) {
     self.sourceURIs = sourceURIs
     self.format = format
     self.schema = schema
@@ -298,7 +298,8 @@ public struct MetadataCacheMode: RawRepresentable, Sendable, Hashable {
 extension ExternalDataConfiguration {
   init(wire: GoogleCloudBigQueryV2.ExternalDataConfiguration) {
     self.init(
-      sourceURIs: wire.sourceUris, format: DataFormat(rawValue: wire.sourceFormat),
+      sourceURIs: wire.sourceUris,
+      format: wire.sourceFormat.nonEmpty.map(DataFormat.init(rawValue:)),
       schema: wire.schema.map(Schema.init(wire:)))
     autodetect = wire.autodetect
     compression = wire.compression.nonEmpty
@@ -332,7 +333,7 @@ extension ExternalDataConfiguration {
   var wire: GoogleCloudBigQueryV2.ExternalDataConfiguration {
     .init().with {
       $0.sourceUris = sourceURIs
-      $0.sourceFormat = format.rawValue
+      $0.sourceFormat = format?.rawValue ?? ""
       $0.schema = schema?.wire
       $0.autodetect = autodetect
       $0.compression = compression ?? ""

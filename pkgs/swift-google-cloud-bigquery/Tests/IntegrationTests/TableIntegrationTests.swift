@@ -152,6 +152,8 @@ struct TableIntegrationTests {
       var table = Table(
         id: Self.tableID(dataset), schema: Self.schema, labels: ["a": "1", "b": "2"])
       table.timePartitioning = TimePartitioning(type: .day, field: "ts")
+      table.defaultCollation = "und:ci"
+      table.defaultRoundingMode = .roundHalfEven
       let created = try await client.createTable(table)
       #expect(created.timePartitioning?.expiration == nil)
 
@@ -163,6 +165,9 @@ struct TableIntegrationTests {
       #expect(updated.labels == ["b": "2", "c": "3"])
       #expect(updated.timePartitioning?.expiration == .seconds(42))
       #expect(updated.timePartitioning?.field == "ts")
+      // Properties the update did not set are unchanged (design §5, proto3 defaults).
+      #expect(updated.defaultCollation == "und:ci")
+      #expect(updated.defaultRoundingMode == .roundHalfEven)
 
       let cleared = try await client.updateTable(
         Table(id: table.id), clearing: [.partitionExpiration, .description, .labels])
@@ -417,38 +422,79 @@ struct TableIntegrationTests {
     let client = try IntegrationTest.makeClient()
     let table = TableID(
       projectID: "bigquery-public-data", datasetID: "census_bureau_international",
-      tableID: "population_by_country")
-    let rows = try await client.listRows(in: table, startIndex: 2, pageSize: 2)
-    #expect((rows.totalRows ?? 0) > 2)
+      tableID: "midyear_population_agespecific")
+    let numRows = try #require(try await client.getTable(table)?.numRows)
+
+    // Start 5 rows before the end and read them in pages of 3.
+    let rows = try await client.listRows(in: table, startIndex: numRows - 5, pageSize: 3)
+    #expect(rows.totalRows == numRows)
     var pages = rows.pages.makeAsyncIterator()
     let first = try #require(try await pages.next())
-    #expect(first.items.count == 2)
+    #expect(first.items.count == 3)
     #expect(first.nextPageToken != nil)
     #expect(first.items.first?["country_name"] != nil)
+    let second = try #require(try await pages.next())
+    #expect(second.items.count == 2)
+    #expect(second.nextPageToken == nil)
+    #expect(try await pages.next() == nil)
 
+    // Selected columns come back in table order.
     let selected = try await client.listRows(
       in: table, selectedFields: ["year", "country_code"], startIndex: 2, pageSize: 2)
     #expect(selected.schema.fields.map(\.name) == ["country_code", "year"])
+    var selectedPages = selected.pages.makeAsyncIterator()
+    let row = try #require(try await selectedPages.next()?.items.first)
+    #expect(row.values.count == 2)
   }
 
-  // Baseline: IT-051
-  @Test func listRowsOfLoadedTable() async throws {
+  /// The BigQuery connection for BigLake and object tables, `{location}.{connection}`, from
+  /// `BIGQUERY_TEST_CONNECTION_ID`.
+  static var connection: String? {
+    ProcessInfo.processInfo.environment["BIGQUERY_TEST_CONNECTION_ID"].flatMap {
+      $0.isEmpty ? nil : $0
+    }
+  }
+
+  // Baseline: IT-034
+  @Test(.enabled(if: connection != nil))
+  func createExternalTableWithConnectionAndSchema() async throws {
     let client = try IntegrationTest.makeClient()
-    try await IntegrationTest.withTemporaryBucket(slice: Self.slice) { bucket in
-      try await CloudStorage().upload(
-        bucket: bucket, name: "data.json", data: Data(Self.jsonRows.utf8),
-        contentType: "application/json")
-      try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice) { dataset in
-        // Read through an external table, so the test does not depend on load jobs.
-        var table = Table(id: Self.tableID(dataset, "ext_"))
-        table.externalDataConfiguration = ExternalDataConfiguration(
-          sourceURIs: ["gs://\(bucket)/data.json"], format: .json, schema: Self.schema)
-        _ = try await client.createTable(table)
-        // tabledata.list does not read external tables.
-        await #expect(throws: BigQueryError.self) {
-          _ = try await client.listRows(in: table.id).collect()
-        }
-      }
+    try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice, location: "US") {
+      dataset in
+      let connection = "\(client.projectID).\(Self.connection!)"
+      var table = Table(id: Self.tableID(dataset, "biglake_"))
+      var external = ExternalDataConfiguration(
+        sourceURIs: ["\(Self.samples)/us-states/us-states.json"], format: .json,
+        schema: Schema([Field("name", .string), Field("post_abbr", .string)]))
+      external.connectionID = connection
+      table.externalDataConfiguration = external
+      let created = try await client.createTable(table)
+      #expect(created.id == table.id)
+
+      let got = try #require(try await client.getTable(table.id))
+      #expect(got.schema?.fields.map(\.name) == ["name", "post_abbr"])
+      #expect(got.externalDataConfiguration?.connectionID != nil)
+      #expect(try await client.deleteTable(table.id))
+    }
+  }
+
+  // Baseline: IT-187
+  @Test(.enabled(if: connection != nil))
+  func createObjectTable() async throws {
+    let client = try IntegrationTest.makeClient()
+    try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice, location: "US") {
+      dataset in
+      var table = Table(id: Self.tableID(dataset, "objects_"))
+      var external = ExternalDataConfiguration(
+        sourceURIs: ["\(Self.samples)/us-states/*"], format: nil)
+      external.connectionID = "\(client.projectID).\(Self.connection!)"
+      external.objectMetadata = .simple
+      table.externalDataConfiguration = external
+      _ = try await client.createTable(table)
+
+      let got = try #require(try await client.getTable(table.id))
+      #expect(got.externalDataConfiguration?.objectMetadata == .simple)
+      #expect(got.schema?["uri"] != nil)
     }
   }
 }

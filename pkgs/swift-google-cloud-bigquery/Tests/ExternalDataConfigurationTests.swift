@@ -179,6 +179,7 @@ private typealias ExternalDataConfiguration = GoogleCloudBigQuery.ExternalDataCo
       {"sourceUris": ["gs://b/*"], "sourceFormat": "", "objectMetadata": "SIMPLE",
        "connectionId": "projects/p/locations/us/connections/c", "metadataCacheMode": "AUTOMATIC"}
       """#)
+    #expect(value.format == nil)
     #expect(value.objectMetadata == .simple)
     #expect(value.metadataCacheMode == .automatic)
   }
