@@ -25,7 +25,8 @@ extension Model {
       description: wire.description.nonEmpty,
       labels: wire.labels.isEmpty ? nil : wire.labels,
       expirationTime: Date(millisecondsSinceEpoch: wire.expirationTime),
-      encryptionConfiguration: wire.encryptionConfiguration.map(EncryptionConfiguration.init(wire:)))
+      encryptionConfiguration: wire.encryptionConfiguration.map(EncryptionConfiguration.init(wire:))
+    )
     self.etag = wire.etag.nonEmpty
     if wire.modelType != .unspecified {
       self.modelType = wire.modelType.stringValue.map(ModelType.init(rawValue:))

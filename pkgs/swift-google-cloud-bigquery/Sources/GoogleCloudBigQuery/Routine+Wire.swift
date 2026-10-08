@@ -90,7 +90,8 @@ extension Routine {
 
 extension Routine.Argument {
   init(wire: GoogleCloudBigQueryV2.Routine.Argument) {
-    self.init(name: wire.name.nonEmpty, dataType: wire.dataType.map(StandardSQLDataType.init(wire:)))
+    self.init(
+      name: wire.name.nonEmpty, dataType: wire.dataType.map(StandardSQLDataType.init(wire:)))
     if wire.argumentKind != .unspecified {
       self.kind = wire.argumentKind.stringValue.map(Kind.init(rawValue:))
     }

@@ -37,7 +37,8 @@ extension BigQueryClient {
       }
     }
     let policy: Policy = try await self.transport.json(
-      self.iamRequest(table, "getIamPolicy", body: RequestBody.json(wire, omitting: ["resource"]),
+      self.iamRequest(
+        table, "getIamPolicy", body: RequestBody.json(wire, omitting: ["resource"]),
         options: options),
       idempotent: true)
     return IAMPolicy(wire: policy)

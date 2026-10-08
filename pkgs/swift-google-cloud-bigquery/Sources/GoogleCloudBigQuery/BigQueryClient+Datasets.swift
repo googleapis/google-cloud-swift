@@ -102,7 +102,8 @@ extension BigQueryClient {
     pageToken: String? = nil,
     options: RequestOptions = .init()
   ) -> PagedSequence<Dataset> {
-    let path = "/bigquery/v2/projects/\(HTTPRequest.encode(segment: projectID ?? self.projectID))/datasets"
+    let path =
+      "/bigquery/v2/projects/\(HTTPRequest.encode(segment: projectID ?? self.projectID))/datasets"
     var query: [URLQueryItem] = []
     if all { query.append(URLQueryItem(name: "all", value: "true")) }
     if let filter { query.append(URLQueryItem(name: "filter", value: filter)) }
