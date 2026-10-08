@@ -133,43 +133,43 @@ test over a fake HTTP transport:
 | U.BigQueryImpl.29 | tabledata.list (dataset/table, TableId, other project) | `testListTableData` L1773-L1784; `testListTableDataFromTableId` L1786-L1797; `testListTableDataFromTableIdWithProject` L1799-L1812 | PORT |  | `TableDataTests.listRowsReadsSchemaThenRows`, `TableDataTests.listRowsWithSchemaInOtherProjectSkipsTablesGet`, `TableDataTests.listRowsOfMissingTableThrows` |
 | U.BigQueryImpl.30 | tabledata.list options maxResults/pageToken/startIndex | `testListTableDataWithOptions` L1814-L1831 | PORT |  | `TableDataTests.listRowsSendsPagingOptions` |
 | U.BigQueryImpl.31 | tabledata.list next page reuses pageToken and resets startIndex to 0 | `testListTableDataWithNextPage` L1833-L1869 | ADAPT | Row AsyncSequence must follow the same token/startIndex rule. | `TableDataTests.nextPageUsesTokenWithoutStartIndex` |
-| U.BigQueryImpl.32 | jobs.insert sends caller JobId in jobReference | `testCreateJobSuccess` L1879-L1894 | PORT |  | |
-| U.BigQueryImpl.33 | jobs.insert retries transport errors (UnknownHost, Connect) | `testCreateJobFailureShouldRetryExceptionHandlerExceptions` L1896-L1914 | PORT | Swift: URLError equivalents. | |
-| U.BigQueryImpl.34 | jobs.insert retries 500/502/503 and rate-limit message even on 400/200 | `testCreateJobFailureShouldRetry` L1916-L1939 | PORT |  | |
-| U.BigQueryImpl.35 | Per-call BigQueryRetryConfig (retry on message / regex) honoured or not | `testCreateJobWithBigQueryRetryConfigFailureShouldRetry` L1941-L1972; `testCreateJobWithBigQueryRetryConfigFailureShouldNotRetry` L1974-L2011 | ADAPT | Swift: per-call retry policy option. | |
-| U.BigQueryImpl.36 | Per-call RetryOptions maxAttempts honoured (4 vs 1) | `testCreateJobWithRetryOptionsFailureShouldRetry` L2013-L2036; `testCreateJobWithRetryOptionsFailureShouldNotRetry` L2038-L2070 | ADAPT | Swift: per-call retry policy option. | |
-| U.BigQueryImpl.37 | jobs.insert `fields` mask always adds jobReference,configuration; job routed to its own project | `testCreateJobWithSelectedFields` L2072-L2091; `testCreateJobWithProjectId` L2174-L2195 | PORT |  | |
-| U.BigQueryImpl.38 | 409 on jobs.insert with caller JobId surfaces error (no lookup) | `testCreateJobNoGet` L2093-L2111 | PORT |  | |
-| U.BigQueryImpl.39 | 409 on jobs.insert with generated JobId -> jobs.get returns existing job | `testCreateJobTryGet` L2113-L2140 | PORT |  | |
-| U.BigQueryImpl.40 | 409 'Already Exists: Job' with caller JobId -> jobs.get(fields=statistics) recovers | `testCreateJobTryGetNotRandom` L2142-L2172 | PORT |  | |
-| U.BigQueryImpl.41 | jobs.delete with location | `testDeleteJob` L2197-L2205 | PORT |  | |
-| U.BigQueryImpl.42 | jobs.get with location from JobId or client default; project variants | `testGetJob` L2207-L2215; `testGetJobWithLocation` L2217-L2227; `testGetJobFromJobId` L2254-L2262; `testGetJobFromJobIdWithLocation` L2264-L2274; `testGetJobFromJobIdWithProject` L2276-L2288; `testGetJobFromJobIdWithProjectWithLocation` L2290-L2303 | PORT |  | |
-| U.BigQueryImpl.43 | jobs.list paging + options | `testListJobs` L2305-L2329; `testListJobsWithOptions` L2331-L2357 | ADAPT | AsyncSequence. | |
-| U.BigQueryImpl.44 | jobs.list `fields` mask wraps as `nextPageToken,jobs(...)` incl. jobReference,configuration,statistics,state,errorResult | `testListJobsWithSelectedFields` L2359-L2393 | PORT |  | |
-| U.BigQueryImpl.45 | jobs.cancel (JobId/project variants) | `testCancelJob` L2395-L2401; `testCancelJobFromJobId` L2403-L2409; `testCancelJobFromJobIdWithProject` L2411-L2418 | PORT |  | |
-| U.BigQueryImpl.46 | query() with explicit JobId: jobs.insert -> getQueryResults wait -> tabledata.list on destination table | `testQueryRequestCompleted` L2420-L2473 | PORT |  | |
-| U.BigQueryImpl.47 | query() without JobId uses jobs.query fast path; request carries query/defaultDataset/useQueryCache, no location | `testFastQueryRequestCompleted` L2475-L2513 | PORT |  | |
-| U.BigQueryImpl.48 | Fast path forwards jobTimeoutMs | `testFastQueryRequestCompletedWithTimeout` L2515-L2556 | PORT |  | |
-| U.BigQueryImpl.49 | JOB_CREATION_REQUIRED still uses jobs.query, returns jobId, never jobs.insert | `testQueryRequestRequiredJobCreationCompleted` L2558-L2606 | PORT |  | |
-| U.BigQueryImpl.50 | Client default location sent on jobs.query; result exposes totalBytesProcessed/cacheHit | `testFastQueryRequestCompletedWithLocation` L2608-L2649 | PORT |  | |
-| U.BigQueryImpl.51 | Fast path with pageToken: later pages via jobs.get + tabledata.list | `testFastQueryMultiplePages` L2651-L2705 | PORT |  | |
-| U.BigQueryImpl.52 | Fast path jobComplete=false falls back to polling getQueryResults then reading results | `testFastQuerySlowDdl` L2707-L2771 | PORT |  | |
-| U.BigQueryImpl.53 | Job.getQueryResults pageSize forwarded to tabledata.list | `testQueryRequestCompletedOptions` L2773-L2829 | PORT |  | |
-| U.BigQueryImpl.54 | getQueryResults polled until jobComplete=true | `testQueryRequestCompletedOnSecondAttempt` L2831-L2894 | PORT |  | |
-| U.BigQueryImpl.55 | queryWithTimeout returns TableResult (stats: statementType, bytes billed/processed, slotMs, DML rows, sessionInfo) and sends timeoutMs | `testQueryWithTimeoutSetsTimeout` L2896-L2930 | ADAPT | Java returns Object (TableResult\|Job); Swift: enum result. | |
+| U.BigQueryImpl.32 | jobs.insert sends caller JobId in jobReference | `testCreateJobSuccess` L1879-L1894 | PORT |  | `BigQueryClientJobTests.createJobSendsCallerJobID` |
+| U.BigQueryImpl.33 | jobs.insert retries transport errors (UnknownHost, Connect) | `testCreateJobFailureShouldRetryExceptionHandlerExceptions` L1896-L1914 | PORT | Swift: URLError equivalents. | `BigQueryClientJobTests.createJobRetriesTransportErrorsWithTheSameID` |
+| U.BigQueryImpl.34 | jobs.insert retries 500/502/503 and rate-limit message even on 400/200 | `testCreateJobFailureShouldRetry` L1916-L1939 | PORT |  | `BigQueryClientJobTests.createJobRetriesTransientStatusesAndRateLimitReasons` |
+| U.BigQueryImpl.35 | Per-call BigQueryRetryConfig (retry on message / regex) honoured or not | `testCreateJobWithBigQueryRetryConfigFailureShouldRetry` L1941-L1972; `testCreateJobWithBigQueryRetryConfigFailureShouldNotRetry` L1974-L2011 | ADAPT | Swift: per-call retry policy option. | `BigQueryClientJobTests.createJobHonorsPerCallRetryPolicy` |
+| U.BigQueryImpl.36 | Per-call RetryOptions maxAttempts honoured (4 vs 1) | `testCreateJobWithRetryOptionsFailureShouldRetry` L2013-L2036; `testCreateJobWithRetryOptionsFailureShouldNotRetry` L2038-L2070 | ADAPT | Swift: per-call retry policy option. | `BigQueryClientJobTests.createJobHonorsPerCallRetryPolicy` |
+| U.BigQueryImpl.37 | jobs.insert `fields` mask always adds jobReference,configuration; job routed to its own project | `testCreateJobWithSelectedFields` L2072-L2091; `testCreateJobWithProjectId` L2174-L2195 | PORT |  | `BigQueryClientJobTests.createJobAddsRequiredFieldsAndUsesTheJobProject` |
+| U.BigQueryImpl.38 | 409 on jobs.insert with caller JobId surfaces error (no lookup) | `testCreateJobNoGet` L2093-L2111 | PORT |  | `BigQueryClientJobTests.conflictOnFirstAttemptIsAnError` |
+| U.BigQueryImpl.39 | 409 on jobs.insert with generated JobId -> jobs.get returns existing job | `testCreateJobTryGet` L2113-L2140 | PORT |  | `BigQueryClientJobTests.conflictAfterRetryRecoversTheGeneratedJob` |
+| U.BigQueryImpl.40 | 409 'Already Exists: Job' with caller JobId -> jobs.get(fields=statistics) recovers | `testCreateJobTryGetNotRandom` L2142-L2172 | PORT |  | `BigQueryClientJobTests.conflictAfterRetryRecoversTheCallerJob` |
+| U.BigQueryImpl.41 | jobs.delete with location | `testDeleteJob` L2197-L2205 | PORT |  | `BigQueryClientJobTests.deleteJobSendsLocationAndMapsNotFound` |
+| U.BigQueryImpl.42 | jobs.get with location from JobId or client default; project variants | `testGetJob` L2207-L2215; `testGetJobWithLocation` L2217-L2227; `testGetJobFromJobId` L2254-L2262; `testGetJobFromJobIdWithLocation` L2264-L2274; `testGetJobFromJobIdWithProject` L2276-L2288; `testGetJobFromJobIdWithProjectWithLocation` L2290-L2303 | PORT |  | `BigQueryClientJobTests.getJobUsesTheJobOrClientLocationAndProject` |
+| U.BigQueryImpl.43 | jobs.list paging + options | `testListJobs` L2305-L2329; `testListJobsWithOptions` L2331-L2357 | ADAPT | AsyncSequence. | `BigQueryClientJobTests.listJobsPagesAndSendsOptions` |
+| U.BigQueryImpl.44 | jobs.list `fields` mask wraps as `nextPageToken,jobs(...)` incl. jobReference,configuration,statistics,state,errorResult | `testListJobsWithSelectedFields` L2359-L2393 | PORT |  | `BigQueryClientJobTests.listJobsFieldsMaskWrapsJobs` |
+| U.BigQueryImpl.45 | jobs.cancel (JobId/project variants) | `testCancelJob` L2395-L2401; `testCancelJobFromJobId` L2403-L2409; `testCancelJobFromJobIdWithProject` L2411-L2418 | PORT |  | `BigQueryClientJobTests.cancelJobPostsToTheJobAndMapsNotFound` |
+| U.BigQueryImpl.46 | query() with explicit JobId: jobs.insert -> getQueryResults wait -> tabledata.list on destination table | `testQueryRequestCompleted` L2420-L2473 | PORT |  | `BigQueryClientQueryTests.queryWithJobIDInsertsWaitsAndReadsRows` |
+| U.BigQueryImpl.47 | query() without JobId uses jobs.query fast path; request carries query/defaultDataset/useQueryCache, no location | `testFastQueryRequestCompleted` L2475-L2513 | PORT |  | `BigQueryClientQueryTests.fastPathSendsQueryRequest` |
+| U.BigQueryImpl.48 | Fast path forwards jobTimeoutMs | `testFastQueryRequestCompletedWithTimeout` L2515-L2556 | PORT |  | `BigQueryClientQueryTests.fastPathForwardsJobTimeout` |
+| U.BigQueryImpl.49 | JOB_CREATION_REQUIRED still uses jobs.query, returns jobId, never jobs.insert | `testQueryRequestRequiredJobCreationCompleted` L2558-L2606 | PORT |  | `BigQueryClientQueryTests.requiredJobCreationStillUsesJobsQuery` |
+| U.BigQueryImpl.50 | Client default location sent on jobs.query; result exposes totalBytesProcessed/cacheHit | `testFastQueryRequestCompletedWithLocation` L2608-L2649 | PORT |  | `BigQueryClientQueryTests.fastPathSendsClientLocationAndExposesStatistics` |
+| U.BigQueryImpl.51 | Fast path with pageToken: later pages via jobs.get + tabledata.list | `testFastQueryMultiplePages` L2651-L2705 | PORT |  | `BigQueryClientQueryTests.fastPathReadsLaterPagesFromGetQueryResults` |
+| U.BigQueryImpl.52 | Fast path jobComplete=false falls back to polling getQueryResults then reading results | `testFastQuerySlowDdl` L2707-L2771 | PORT |  | `BigQueryClientQueryTests.incompleteFastPathPollsGetQueryResults` |
+| U.BigQueryImpl.53 | Job.getQueryResults pageSize forwarded to tabledata.list | `testQueryRequestCompletedOptions` L2773-L2829 | PORT |  | `BigQueryClientQueryTests.getQueryResultsForwardsPageSizeAndStartIndex` |
+| U.BigQueryImpl.54 | getQueryResults polled until jobComplete=true | `testQueryRequestCompletedOnSecondAttempt` L2831-L2894 | PORT |  | `BigQueryClientQueryTests.incompleteFastPathPollsGetQueryResults` |
+| U.BigQueryImpl.55 | queryWithTimeout returns TableResult (stats: statementType, bytes billed/processed, slotMs, DML rows, sessionInfo) and sends timeoutMs | `testQueryWithTimeoutSetsTimeout` L2896-L2930 | ADAPT | Java returns Object (TableResult\|Job); Swift: enum result. | `BigQueryClientQueryTests.queryTimeoutIsSentAndStatisticsAreExposed` |
 | U.BigQueryImpl.56 | Arrow results format / queryArrow fast+slow path, paging, page fetcher, missing schema, incomplete job | 12 tests in L2932-L3703 (`testQueryArrowDefaultsToJobCreationOptional, testQueryArrowDefaultsToUSLocationWhenUnspecified, testQueryWithArrowFormatSlowPathFallback, testQueryWithArrowFormatFastPath, testQueryWithArrowFormatMultiplePages, testQueryWithArrowFormatMultiplePagesWithMaxResults, testArrowQueryPageFetcherSerialization, testQueryWithArrowFormatMissingSerializedSchema, testQueryWithArrowFormatIncompleteJob, testQueryWithArrowFormatIncompleteJobMissingJobReference, testQueryWithArrowFormatIncompleteJobJobNotFound, testQueryWithArrowFormatOpaquePageToken`) | DEFERRED | Arrow / Storage Read API deferred. | |
-| U.BigQueryImpl.57 | jobs.getQueryResults (default/other project; timeoutMs/startIndex/maxResults/pageToken options) | `testGetQueryResults` L3705-L3727; `testGetQueryResultsWithProject` L3773-L3795; `testGetQueryResultsWithOptions` L3797-L3824 | PORT |  | |
-| U.BigQueryImpl.58 | getQueryResults retried on 500/502/503/504 + rateLimitExceeded | `testGetQueryResultsRetry` L3729-L3771 | PORT |  | |
+| U.BigQueryImpl.57 | jobs.getQueryResults (default/other project; timeoutMs/startIndex/maxResults/pageToken options) | `testGetQueryResults` L3705-L3727; `testGetQueryResultsWithProject` L3773-L3795; `testGetQueryResultsWithOptions` L3797-L3824 | PORT |  | `BigQueryClientQueryTests.getQueryResultsUsesTheJobProjectAndLocation` |
+| U.BigQueryImpl.58 | getQueryResults retried on 500/502/503/504 + rateLimitExceeded | `testGetQueryResultsRetry` L3729-L3771 | PORT |  | `BigQueryClientQueryTests.getQueryResultsRetriesTransientErrors` |
 | U.BigQueryImpl.59 | 500 on datasets.get retried; 501 not retried and message preserved | `testGetDatasetRetryableException` L3826-L3841; `testNonRetryableException` L3843-L3858 | PORT |  | `BigQueryClientDatasetTests.getRetries500AndKeepsMessageOf501` |
-| U.BigQueryImpl.60 | Unexpected runtime error wrapped into BigQueryException keeping message | `testRuntimeException` L3860-L3874 | ADAPT | Swift: unknown errors wrapped/propagated in the single error type. | |
-| U.BigQueryImpl.61 | query() with dryRun=true is rejected (UnsupportedOperationException) | `testQueryDryRun` L3876-L3889 | ADAPT | Swift may instead return dry-run statistics; document choice. | |
-| U.BigQueryImpl.62 | jobs.query retried on 5xx reusing the SAME requestId (SELECT/DML/DDL) | `testFastQuerySQLShouldRetry` L3891-L3930; `testFastQueryDMLShouldRetry` L3932-L3971; `testFastQueryDDLShouldRetry` L4046-L4084 | PORT | Idempotency. | |
-| U.BigQueryImpl.63 | jobs.query retried on rate-limit message, same requestId | `testFastQueryRateLimitIdempotency` L3973-L4019 | PORT |  | |
-| U.BigQueryImpl.64 | Rate-limit regex matches 'exceeded rate limits' but not quota-for-table-update messages | `testRateLimitRegEx` L4021-L4044 | PORT |  | |
-| U.BigQueryImpl.65 | jobs.query 200 response with `errors` -> exception carrying all BigQueryErrors | `testFastQueryBigQueryException` L4086-L4121 | PORT |  | |
+| U.BigQueryImpl.60 | Unexpected runtime error wrapped into BigQueryException keeping message | `testRuntimeException` L3860-L3874 | ADAPT | Swift: unknown errors wrapped/propagated in the single error type. | `BigQueryTransportTests.malformedBodyIsMalformedResponse` |
+| U.BigQueryImpl.61 | query() with dryRun=true is rejected (UnsupportedOperationException) | `testQueryDryRun` L3876-L3889 | ADAPT | Swift may instead return dry-run statistics; document choice. | `BigQueryClientQueryTests.queryRejectsDryRun`, `BigQueryClientQueryTests.dryRunReturnsStatistics`, `BigQueryClientQueryTests.sqlDryRunConvenienceSendsDryRunWithParameters` |
+| U.BigQueryImpl.62 | jobs.query retried on 5xx reusing the SAME requestId (SELECT/DML/DDL) | `testFastQuerySQLShouldRetry` L3891-L3930; `testFastQueryDMLShouldRetry` L3932-L3971; `testFastQueryDDLShouldRetry` L4046-L4084 | PORT | Idempotency. | `BigQueryClientQueryTests.fastPathRetriesReuseTheRequestID` |
+| U.BigQueryImpl.63 | jobs.query retried on rate-limit message, same requestId | `testFastQueryRateLimitIdempotency` L3973-L4019 | PORT |  | `BigQueryClientQueryTests.fastPathRateLimitErrorStatusReusesTheRequestID` |
+| U.BigQueryImpl.64 | Rate-limit regex matches 'exceeded rate limits' but not quota-for-table-update messages | `testRateLimitRegEx` L4021-L4044 | PORT |  | `BigQueryClientQueryTests.jobRateLimitIsRecognizedByReason` |
+| U.BigQueryImpl.65 | jobs.query 200 response with `errors` -> exception carrying all BigQueryErrors | `testFastQueryBigQueryException` L4086-L4121 | PORT |  | `BigQueryClientQueryTests.fastPathErrorsInASuccessfulResponseAreAJobError` |
 | U.BigQueryImpl.66 | routines.insert/get/update(PUT)/delete | `testCreateRoutine` L4123-L4134; `testGetRoutine` L4136-L4146; `testGetRoutineWithRountineId` L4148-L4158; `testUpdateRoutine` L4174-L4190; `testDeleteRoutine` L4224-L4231 | PORT |  | `BigQueryClientRoutineTests.createPostsWithClientProject`, `BigQueryClientRoutineTests.getUsesClientOrExplicitProject`, `BigQueryClientRoutineTests.updatePutsFullRoutine`, `BigQueryClientRoutineTests.deleteReturnsTrueOrFalseOnNotFound` |
 | U.BigQueryImpl.67 | routines.list paging (dataset name / DatasetId) | `testListRoutines` L4192-L4206; `testListRoutinesWithDatasetId` L4208-L4222 | ADAPT | AsyncSequence. | `BigQueryClientRoutineTests.listFollowsPageTokens`, `BigQueryClientRoutineTests.listWithExplicitProjectAndPageToken` |
-| U.BigQueryImpl.68 | writer(): opens resumable load upload with job config; close returns Job | `testWriteWithJob` L4233-L4257; `testWriteChannel` L4259-L4283 | ADAPT | Swift: async upload API instead of WriteChannel. | |
+| U.BigQueryImpl.68 | writer(): opens resumable load upload with job config; close returns Job | `testWriteWithJob` L4233-L4257; `testWriteChannel` L4259-L4283 | ADAPT | Swift: async upload API instead of WriteChannel. | `BigQueryClientUploadTests.loadOpensASessionWithTheJobConfiguration`, `BigQueryClientUploadTests.loadGeneratesAJobIDWhenNoneIsGiven` |
 | U.BigQueryImpl.69 | tables getIamPolicy / setIamPolicy / testIamPermissions on `projects/p/datasets/d/tables/t` | `testGetIamPolicy` L4285-L4297; `testSetIamPolicy` L4299-L4313; `testTestIamPermissions` L4315-L4333 | PORT |  | `BigQueryClientIAMTests.getPostsRequestedPolicyVersion`, `BigQueryClientIAMTests.setPostsPolicy`, `BigQueryClientIAMTests.testPermissionsPostsAndReturnsGranted` |
 | U.BigQueryImpl.70 | testIamPermissions with null permissions -> empty list | `testTestIamPermissionsWhenNoPermissionsGranted` L4335-L4353 | PORT |  | `BigQueryClientIAMTests.testPermissionsWithNoneGrantedIsEmpty` |
 | U.BigQueryImpl.71 | close() lifecycle of BigQueryReadClient(s) (idempotent, try-with-resources, regional clients) | `testCloseClosesBigQueryReadClient` L4355-L4365; `testCloseIsIdempotent` L4367-L4378; `testCloseWithoutReadClientDoesNotThrow` L4380-L4384; `testTryWithResources` L4386-L4395; `testGetBigQueryReadClientAfterCloseThrows` L4397-L4403; `testCloseClosesAllRegionalBigQueryReadClients` L4405-L4419 | DEFERRED | Storage Read API client deferred. | |
@@ -187,12 +187,12 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.TableDataWriteChannel.01 | Opening the resumable load session (jobs.insert upload) returns upload id | `testCreate` L103-L118 | PORT |  | |
-| U.TableDataWriteChannel.02 | Open retried on retryable error; non-retryable surfaces | `testCreateRetryableErrors` L120-L138; `testCreateNonRetryableError` L140-L160 | PORT |  | |
-| U.TableDataWriteChannel.03 | Buffers writes until a full chunk then uploads (min chunk 256 KiB, default 60x = 15 MiB, custom chunk size) | `testWriteWithoutFlush` L162-L177; `testWriteWithFlush` L179-L213 | ADAPT | Swift async upload API; keep chunk granularity. | |
-| U.TableDataWriteChannel.04 | Chunk upload retried on retryable error; non-retryable surfaces | `testWritesAndFlushRetryableErrors` L215-L259; `testWritesAndFlushNonRetryableError` L261-L301 | PORT |  | |
-| U.TableDataWriteChannel.05 | close() uploads final chunk (last=true) and yields the load Job | `testCloseWithoutFlush` L303-L327; `testCloseWithFlush` L329-L356 | PORT |  | |
-| U.TableDataWriteChannel.06 | Write after close fails | `testWriteClosed` L358-L380 | ADAPT | API shape may make this unrepresentable. | |
+| U.TableDataWriteChannel.01 | Opening the resumable load session (jobs.insert upload) returns upload id | `testCreate` L103-L118 | PORT |  | `BigQueryClientUploadTests.loadOpensASessionWithTheJobConfiguration` |
+| U.TableDataWriteChannel.02 | Open retried on retryable error; non-retryable surfaces | `testCreateRetryableErrors` L120-L138; `testCreateNonRetryableError` L140-L160 | PORT |  | `BigQueryClientUploadTests.sessionOpenRetriesTransientErrors`, `BigQueryClientUploadTests.sessionOpenSurfacesNonRetryableErrors` |
+| U.TableDataWriteChannel.03 | Buffers writes until a full chunk then uploads (min chunk 256 KiB, default 60x = 15 MiB, custom chunk size) | `testWriteWithoutFlush` L162-L177; `testWriteWithFlush` L179-L213 | ADAPT | Swift async upload API; keep chunk granularity. | `BigQueryClientUploadTests.chunksAreRoundedDownToMultiplesOf256KiB`, `BigQueryClientUploadTests.chunkSizeIsAtLeast256KiB` |
+| U.TableDataWriteChannel.04 | Chunk upload retried on retryable error; non-retryable surfaces | `testWritesAndFlushRetryableErrors` L215-L259; `testWritesAndFlushNonRetryableError` L261-L301 | PORT |  | `BigQueryClientUploadTests.retryableChunkErrorQueriesStatusAndResumes`, `BigQueryClientUploadTests.ioErrorQueriesStatusOfAnUnfinishedChunk`, `BigQueryClientUploadTests.statusQueryThatFinishesTheUploadReturnsTheJob`, `BigQueryClientUploadTests.nonRetryableChunkErrorSurfaces` |
+| U.TableDataWriteChannel.05 | close() uploads final chunk (last=true) and yields the load Job | `testCloseWithoutFlush` L303-L327; `testCloseWithFlush` L329-L356 | PORT |  | `BigQueryClientUploadTests.chunksAreRoundedDownToMultiplesOf256KiB`, `BigQueryClientUploadTests.exactMultipleSendsTheTotalWithTheLastChunk` |
+| U.TableDataWriteChannel.06 | Write after close fails | `testWriteClosed` L358-L380 | ADAPT | API shape may make this unrepresentable. | `UploadSourceTests.streamSourceConcatenatesPiecesAndSkipsEmptyOnes` |
 | U.TableDataWriteChannel.07 | RestorableState capture/restore/equality | `testSaveAndRestore` L382-L422; `testSaveAndRestoreClosed` L424-L456; `testStateEquals` L458-L480 | N/A | Java RestorableState mechanism. | |
 
 #### `BigQueryErrorTest` — [BigQueryErrorTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/BigQueryErrorTest.java) (2 tests; PORT 2 / ADAPT 0 / N/A 0 / DEFERRED 0)
@@ -216,8 +216,8 @@ test over a fake HTTP transport:
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.BigQueryOptions.01 | Only HTTP transport accepted | `testInvalidTransport` L34-L43 | N/A | Java transport option. | |
-| U.BigQueryOptions.02 | Default DataFormatOptions: useInt64Timestamp=false, timestamp output format unspecified | `dataFormatOptions_createdByDefault` L45-L54 | ADAPT | Swift has no DataFormatOptions; one fixed read format (ISO8601_STRING per #105, never with useInt64Timestamp). Assert the read requests carry it. | |
-| U.BigQueryOptions.03 | Legacy setUseInt64Timestamps vs DataFormatOptions precedence | `nonBuilderSetUseInt64Timestamp_capturedInDataFormatOptions` L56-L66; `nonBuilderSetUseInt64Timestamp_overridesEverything` L68-L74; `noDataFormatOptions_capturesUseInt64TimestampSetInBuilder` L76-L82; `dataFormatOptionsSetterHasPrecedence` L84-L94 | ADAPT | Java dual legacy setter collapses to one Swift value, but the wire outcome matters (survey #7): assert jobs.query/getQueryResults/tabledata.list always request the fixed format (`timestampOutputFormat=ISO8601_STRING` per #105; was `useInt64Timestamp=true`). | |
+| U.BigQueryOptions.02 | Default DataFormatOptions: useInt64Timestamp=false, timestamp output format unspecified | `dataFormatOptions_createdByDefault` L45-L54 | ADAPT | Swift has no DataFormatOptions; one fixed read format (ISO8601_STRING per #105, never with useInt64Timestamp). Assert the read requests carry it. | `BigQueryClientQueryTests.everyQueryRequestAsksForISO8601Timestamps` |
+| U.BigQueryOptions.03 | Legacy setUseInt64Timestamps vs DataFormatOptions precedence | `nonBuilderSetUseInt64Timestamp_capturedInDataFormatOptions` L56-L66; `nonBuilderSetUseInt64Timestamp_overridesEverything` L68-L74; `noDataFormatOptions_capturesUseInt64TimestampSetInBuilder` L76-L82; `dataFormatOptionsSetterHasPrecedence` L84-L94 | ADAPT | Java dual legacy setter collapses to one Swift value, but the wire outcome matters (survey #7): assert jobs.query/getQueryResults/tabledata.list always request the fixed format (`timestampOutputFormat=ISO8601_STRING` per #105; was `useInt64Timestamp=true`). | `BigQueryClientQueryTests.everyQueryRequestAsksForISO8601Timestamps` |
 | U.BigQueryOptions.04 | useJwtAccessWithScope defaults false | `testUseJwtAccessWithScope_defaultsToFalse` L96-L101 | N/A | Java auth library detail. | |
 
 #### `OptionTest` — [OptionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/OptionTest.java) (3 tests; PORT 0 / ADAPT 0 / N/A 1 / DEFERRED 0)
@@ -243,7 +243,7 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.RemoteBigQueryHelper.01 | forceDelete deletes dataset with contents | `testForceDelete` L68-L75 | ADAPT | Becomes a Swift IT helper (cleanup), not public API. | |
+| U.RemoteBigQueryHelper.01 | forceDelete deletes dataset with contents | `testForceDelete` L68-L75 | ADAPT | Becomes a Swift IT helper (cleanup), not public API. | `CoreIntegrationTests.temporaryDatasetIsCreatedAndDeleted` |
 | U.RemoteBigQueryHelper.02 | Helper from credentials stream | `testCreateFromStream` L77-L88 | N/A | Java test helper. | |
 
 #### `BigQueryTelemetryTracerTest` — [telemetry/BigQueryTelemetryTracerTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/telemetry/BigQueryTelemetryTracerTest.java) (10 tests; PORT 0 / ADAPT 0 / N/A 0 / DEFERRED 1)
@@ -265,16 +265,16 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.QueryRequestInfo.01 | Fast-path eligibility (isFastQuerySupported) incl. timeout and JOB_CREATION_REQUIRED configs | `testIsFastQuerySupported` L176-L182 | PORT | Core of query() routing. | |
-| U.QueryRequestInfo.02 | QueryRequest body built from config (jobTimeoutMs etc.) | `testToPb` L184-L190 | PORT |  | |
-| U.QueryRequestInfo.03 | formatOptions.useInt64Timestamp follows DataFormatOptions | `testInt64Timestamp` L211-L224 | ADAPT | Swift: jobs.query always carries the fixed formatOptions (ISO8601_STRING per #105). | |
+| U.QueryRequestInfo.01 | Fast-path eligibility (isFastQuerySupported) incl. timeout and JOB_CREATION_REQUIRED configs | `testIsFastQuerySupported` L176-L182 | PORT | Core of query() routing. | `BigQueryClientQueryTests.fastPathEligibility` |
+| U.QueryRequestInfo.02 | QueryRequest body built from config (jobTimeoutMs etc.) | `testToPb` L184-L190 | PORT |  | `BigQueryClientQueryTests.queryRequestCarriesTheConfiguration` |
+| U.QueryRequestInfo.03 | formatOptions.useInt64Timestamp follows DataFormatOptions | `testInt64Timestamp` L211-L224 | ADAPT | Swift: jobs.query always carries the fixed formatOptions (ISO8601_STRING per #105). | `BigQueryClientQueryTests.everyQueryRequestAsksForISO8601Timestamps` |
 | U.QueryRequestInfo.04 | Equality of request infos | `equalTo` L192-L209 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ConnectionPropertyTest` — [ConnectionPropertyTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ConnectionPropertyTest.java) (4 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ConnectionProperty.01 | ConnectionProperty (key/value) JSON round trip | `testToAndFromPb` L51-L55 | PORT | Used by QueryJobConfiguration.connectionProperties (sessions, time_zone). | |
+| U.ConnectionProperty.01 | ConnectionProperty (key/value) JSON round trip | `testToAndFromPb` L51-L55 | PORT | Used by QueryJobConfiguration.connectionProperties (sessions, time_zone). | `ConnectionPropertyTests.roundTrips` |
 | U.ConnectionProperty.02 | Builder mechanics | `testToBuilder` L30-L37; `testToBuilderIncomplete` L39-L43; `testBuilder` L45-L49 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ArrowDeserializerTest` — [ArrowDeserializerTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ArrowDeserializerTest.java) (20 tests; PORT 0 / ADAPT 0 / N/A 0 / DEFERRED 1)
@@ -327,23 +327,23 @@ test over a fake HTTP transport:
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.Job.01 | Builder / toBuilder / bigquery accessor | `testBuilder` L108-L130; `testToBuilder` L132-L135; `testBigQuery` L597-L600 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
-| U.Job.02 | exists() true/false via jobs.get | `testExists_True` L137-L143; `testExists_False` L145-L151 | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | |
-| U.Job.03 | isDone(): DONE -> true, RUNNING -> false, job vanished -> true (fields=status) | `testIsDone_True` L153-L158; `testIsDone_False` L160-L167; `testIsDone_NotExists` L169-L177 | PORT |  | |
-| U.Job.04 | waitFor polls jobs.get until DONE (with checking period) | `testWaitFor` L179-L194; `testWaitForWithCheckingPeriod` L353-L373 | PORT |  | |
-| U.Job.05 | waitFor on query job polls getQueryResults then jobs.get; empty results (with/without schema) handled | `testWaitForAndGetQueryResultsEmpty` L196-L238; `testWaitForAndGetQueryResultsEmptyWithSchema` L240-L283; `testWaitForAndGetQueryResults` L285-L335 | PORT |  | |
-| U.Job.06 | getQueryResults on non-query job is unsupported | `testWaitForAndGetQueryResults_Unsupported` L337-L342 | PORT |  | |
-| U.Job.07 | waitFor returns null when job disappears | `testWaitFor_Null` L344-L351; `testWaitForWithCheckingPeriod_Null` L375-L386 | ADAPT | Swift: nil or notFound error. | |
-| U.Job.08 | waitFor total timeout -> error | `testWaitForWithTimeout` L388-L405 | PORT | Swift: Duration timeout + Task cancellation. | |
-| U.Job.09 | waitFor with BigQueryRetryConfig retries rate-limit errors from getQueryResults, not others | `testWaitForWithBigQueryRetryConfig` L407-L447; `testWaitForWithBigQueryRetryConfigShouldRetry` L449-L498; `testWaitForWithBigQueryRetryConfigErrorShouldNotRetry` L500-L547 | ADAPT | Swift per-call retry policy. | |
-| U.Job.10 | reload / cancel delegate to client; reload propagates errors and null | `testReload` L549-L557; `testReloadJobException` L559-L571; `testReloadNull` L573-L578; `testReloadWithOptions` L580-L588; `testCancel` L590-L595 | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | |
-| U.Job.11 | Job JSON round trip incl. job without configuration | `testToAndFromPb` L602-L605; `testToAndFromPbWithoutConfiguration` L607-L611 | PORT |  | |
+| U.Job.02 | exists() true/false via jobs.get | `testExists_True` L137-L143; `testExists_False` L145-L151 | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | `BigQueryClientJobTests.getJobUsesTheJobOrClientLocationAndProject` |
+| U.Job.03 | isDone(): DONE -> true, RUNNING -> false, job vanished -> true (fields=status) | `testIsDone_True` L153-L158; `testIsDone_False` L160-L167; `testIsDone_NotExists` L169-L177 | PORT |  | `BigQueryClientJobTests.getJobReportsStateWithSelectedFields` |
+| U.Job.04 | waitFor polls jobs.get until DONE (with checking period) | `testWaitFor` L179-L194; `testWaitForWithCheckingPeriod` L353-L373 | PORT |  | `BigQueryClientJobTests.waitForJobPollsUntilDone` |
+| U.Job.05 | waitFor on query job polls getQueryResults then jobs.get; empty results (with/without schema) handled | `testWaitForAndGetQueryResultsEmpty` L196-L238; `testWaitForAndGetQueryResultsEmptyWithSchema` L240-L283; `testWaitForAndGetQueryResults` L285-L335 | PORT |  | `BigQueryClientQueryTests.slowPathResultsCarryJobStatistics`, `BigQueryClientQueryTests.slowPathEmptyResultWithoutSchema` |
+| U.Job.06 | getQueryResults on non-query job is unsupported | `testWaitForAndGetQueryResults_Unsupported` L337-L342 | PORT |  | `BigQueryClientQueryTests.getQueryResultsOfANonQueryJobIsAServiceError` |
+| U.Job.07 | waitFor returns null when job disappears | `testWaitFor_Null` L344-L351; `testWaitForWithCheckingPeriod_Null` L375-L386 | ADAPT | Swift: nil or notFound error. | `BigQueryClientJobTests.waitForJobThrowsNotFoundWhenTheJobDisappears` |
+| U.Job.08 | waitFor total timeout -> error | `testWaitForWithTimeout` L388-L405 | PORT | Swift: Duration timeout + Task cancellation. | `BigQueryClientJobTests.waitForJobTimesOutWithoutCancelling` |
+| U.Job.09 | waitFor with BigQueryRetryConfig retries rate-limit errors from getQueryResults, not others | `testWaitForWithBigQueryRetryConfig` L407-L447; `testWaitForWithBigQueryRetryConfigShouldRetry` L449-L498; `testWaitForWithBigQueryRetryConfigErrorShouldNotRetry` L500-L547 | ADAPT | Swift per-call retry policy. | `BigQueryClientQueryTests.getQueryResultsRetriesTransientErrors`, `BigQueryClientQueryTests.failedQueryReportsTheJobError` |
+| U.Job.10 | reload / cancel delegate to client; reload propagates errors and null | `testReload` L549-L557; `testReloadJobException` L559-L571; `testReloadNull` L573-L578; `testReloadWithOptions` L580-L588; `testCancel` L590-L595 | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | `BigQueryClientJobTests.cancelJobPostsToTheJobAndMapsNotFound`, `BigQueryClientJobTests.waitForJobThrowsTheJobError` |
+| U.Job.11 | Job JSON round trip incl. job without configuration | `testToAndFromPb` L602-L605; `testToAndFromPbWithoutConfiguration` L607-L611 | PORT |  | `JobTests.decodesEveryField`, `JobTests.jobWithoutConfigurationDecodes` |
 
 #### `JobInfoTest` — [JobInfoTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/JobInfoTest.java) (6 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.JobInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L299-L334 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.JobInfo.02 | setProjectId propagates project to JobId and configuration table references | `testSetProjectId` L336-L358 | PORT |  | |
+| U.JobInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L299-L334 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `JobTests.decodesEveryField` |
+| U.JobInfo.02 | setProjectId propagates project to JobId and configuration table references | `testSetProjectId` L336-L358 | PORT |  | `BigQueryClientJobTests.createJobAddsRequiredFieldsAndUsesTheJobProject`, `QueryJobConfigurationTests.defaultProjectFillsOnlyMissingProjects` |
 | U.JobInfo.03 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L206-L228; `testOf` L230-L252; `testToBuilderIncomplete` L254-L258; `testBuilder` L260-L297 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `JobIdTest` — [JobIdTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/JobIdTest.java) (4 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
@@ -359,51 +359,51 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.JobStatus.01 | JobStatus state + errorResult + executionErrors | `testConstructor` L38-L51 | PORT |  | |
-| U.JobStatus.02 | JobStatus JSON round trip | `testToPbAndFromPb` L53-L58 | PORT |  | |
+| U.JobStatus.01 | JobStatus state + errorResult + executionErrors | `testConstructor` L38-L51 | PORT |  | `JobStatusTests.decodesStateErrorResultAndErrors` |
+| U.JobStatus.02 | JobStatus JSON round trip | `testToPbAndFromPb` L53-L58 | PORT |  | `JobStatusTests.decodesStateErrorResultAndErrors` |
 
 #### `JobStatisticsTest` — [JobStatisticsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/JobStatisticsTest.java) (3 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.JobStatistics.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L360-L386 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.JobStatistics.02 | Partial/incomplete statistics parse without failure | `testIncomplete` L388-L422 | PORT |  | |
+| U.JobStatistics.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L360-L386 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `JobStatisticsTests.decodesEveryField` |
+| U.JobStatistics.02 | Partial/incomplete statistics parse without failure | `testIncomplete` L388-L422 | PORT |  | `JobStatisticsTests.partialStatisticsDecode` |
 | U.JobStatistics.03 | Builder / toBuilder / equals / factory mechanics | `testBuilder` L274-L358 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `CopyJobConfigurationTest` — [CopyJobConfigurationTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/CopyJobConfigurationTest.java) (8 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.CopyJobConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L112-L133 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.CopyJobConfiguration.02 | setProjectId fills project on table refs but never overrides an explicit one | `testSetProjectId` L135-L143; `testSetProjectIdDoNotOverride` L145-L165 | PORT |  | |
-| U.CopyJobConfiguration.03 | Configuration type discriminator | `testGetType` L167-L171 | PORT | Swift: enum case. | |
+| U.CopyJobConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L112-L133 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `CopyJobConfigurationTests.roundTripsEveryField` |
+| U.CopyJobConfiguration.02 | setProjectId fills project on table refs but never overrides an explicit one | `testSetProjectId` L135-L143; `testSetProjectIdDoNotOverride` L145-L165 | PORT |  | `CopyJobConfigurationTests.defaultProjectFillsOnlyMissingProjects` |
+| U.CopyJobConfiguration.03 | Configuration type discriminator | `testGetType` L167-L171 | PORT | Swift: enum case. | `CopyJobConfigurationTests.roundTripsEveryField` |
 | U.CopyJobConfiguration.04 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L66-L79; `testOf` L81-L89; `testToBuilderIncomplete` L91-L96; `testBuilder` L98-L110 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ExtractJobConfigurationTest` — [ExtractJobConfigurationTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ExtractJobConfigurationTest.java) (8 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ExtractJobConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L196-L216 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.ExtractJobConfiguration.02 | setProjectId fills project on table refs but never overrides an explicit one | `testSetProjectId` L218-L225; `testSetProjectIdDoNotOverride` L227-L241 | PORT |  | |
-| U.ExtractJobConfiguration.03 | Configuration type discriminator | `testGetType` L243-L249 | PORT | Swift: enum case. | |
+| U.ExtractJobConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L196-L216 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ExtractJobConfigurationTests.roundTripsTableExtract`, `ExtractJobConfigurationTests.roundTripsModelExtract` |
+| U.ExtractJobConfiguration.02 | setProjectId fills project on table refs but never overrides an explicit one | `testSetProjectId` L218-L225; `testSetProjectIdDoNotOverride` L227-L241 | PORT |  | `ExtractJobConfigurationTests.defaultProjectFillsOnlyMissingProjects` |
+| U.ExtractJobConfiguration.03 | Configuration type discriminator | `testGetType` L243-L249 | PORT | Swift: enum case. | `ExtractJobConfigurationTests.roundTripsTableExtract` |
 | U.ExtractJobConfiguration.04 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L90-L115; `testOf` L117-L147; `testToBuilderIncomplete` L149-L155; `testBuilder` L157-L194 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `LoadJobConfigurationTest` — [LoadJobConfigurationTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/LoadJobConfigurationTest.java) (7 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.LoadJobConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L228-L234 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.LoadJobConfiguration.02 | setProjectId fills project on table refs but never overrides an explicit one | `testSetProjectId` L236-L240; `testSetProjectIdDoNotOverride` L242-L250 | PORT |  | |
-| U.LoadJobConfiguration.03 | Configuration type discriminator | `testGetType` L252-L255 | PORT | Swift: enum case. | |
+| U.LoadJobConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L228-L234 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `LoadJobConfigurationTests.roundTripsEveryField` |
+| U.LoadJobConfiguration.02 | setProjectId fills project on table refs but never overrides an explicit one | `testSetProjectId` L236-L240; `testSetProjectIdDoNotOverride` L242-L250 | PORT |  | `LoadJobConfigurationTests.defaultProjectFillsOnlyMissingProjects` |
+| U.LoadJobConfiguration.03 | Configuration type discriminator | `testGetType` L252-L255 | PORT | Swift: enum case. | `LoadJobConfigurationTests.roundTripsEveryField` |
 | U.LoadJobConfiguration.04 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L170-L200; `testOf` L202-L220; `testToBuilderIncomplete` L222-L226 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `QueryJobConfigurationTest` — [QueryJobConfigurationTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/QueryJobConfigurationTest.java) (15 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 1)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.QueryJobConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L182-L199 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.QueryJobConfiguration.02 | setProjectId fills project on table refs but never overrides an explicit one | `testSetProjectId` L201-L206; `testSetProjectIdDoNotOverride` L208-L217 | PORT |  | |
-| U.QueryJobConfiguration.03 | Configuration type discriminator | `testGetType` L219-L222 | PORT | Swift: enum case. | |
+| U.QueryJobConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L182-L199 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `QueryJobConfigurationTests.roundTripsEveryField`, `QueryIntegrationTests.tableDefinitionsQueryATemporaryExternalTable` |
+| U.QueryJobConfiguration.02 | setProjectId fills project on table refs but never overrides an explicit one | `testSetProjectId` L201-L206; `testSetProjectIdDoNotOverride` L208-L217 | PORT |  | `QueryJobConfigurationTests.defaultProjectFillsOnlyMissingProjects` |
+| U.QueryJobConfiguration.03 | Configuration type discriminator | `testGetType` L219-L222 | PORT | Swift: enum case. | `QueryJobConfigurationTests.roundTripsEveryField` |
 | U.QueryJobConfiguration.04 | Arrow results format / serialization options defaults and null checks | `testArrowConfigurations` L245-L272; `testArrowSerializationOptionsNullChecks` L274-L291; `testQueryJobConfigurationDefaults` L293-L305; `testArrowFormatWithNullSerializationOptions` L307-L321; `testQueryJobConfigurationArrowNullChecks` L323-L334 | DEFERRED | Arrow deferred (default STRUCT_ENCODING noted). | |
 | U.QueryJobConfiguration.05 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L159-L168; `testOf` L170-L174; `testToBuilderIncomplete` L176-L180; `testPositionalParameter` L224-L229; `testNamedParameter` L231-L236; `testJobCreationMode` L238-L243 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
@@ -411,15 +411,15 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.WriteChannelConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L204-L211 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.WriteChannelConfiguration.02 | setProjectId never overrides explicit destination project | `testSetProjectIdDoNotOverride` L213-L219 | PORT |  | |
+| U.WriteChannelConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L204-L211 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `LoadJobConfigurationTests.uploadConfigurationRoundTripsWithoutSourceURIs`, `BigQueryClientUploadTests.loadOpensASessionWithTheJobConfiguration` |
+| U.WriteChannelConfiguration.02 | setProjectId never overrides explicit destination project | `testSetProjectIdDoNotOverride` L213-L219 | PORT |  | `LoadJobConfigurationTests.defaultProjectFillsOnlyMissingProjects` |
 | U.WriteChannelConfiguration.03 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L123-L142; `testOf` L144-L152; `testToBuilderIncomplete` L154-L158; `testBuilder` L160-L202 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `QueryStageTest` — [QueryStageTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/QueryStageTest.java) (5 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.QueryStage.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L140-L149 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.QueryStage.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L140-L149 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `QueryStageTests.decodesEveryField` |
 | U.QueryStage.02 | Builder / toBuilder / equals / factory mechanics | `testQueryStepConstructor` L98-L104; `testBuilder` L106-L138; `testEquals` L151-L156; `testNotEquals` L158-L162 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `TimelineSampleTest` — [TimelineSampleTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/TimelineSampleTest.java) (3 tests; PORT 0 / ADAPT 0 / N/A 1 / DEFERRED 0)
@@ -432,16 +432,16 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.DmlStats.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L42-L45 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.DmlStats.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L42-L45 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `DMLStatsTests.decodesEveryField` |
 | U.DmlStats.02 | Builder / toBuilder / equals / factory mechanics | `testBuilder` L35-L40 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `TableResultTest` — [TableResultTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/TableResultTest.java) (5 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.TableResult.01 | Rows without schema accessible by index only | `testNullSchema` L66-L93 | PORT |  | |
-| U.TableResult.02 | Rows with schema accessible by name; totalRows/schema exposed | `testSchema` L95-L129 | PORT |  | `TableDataTests.listRowsReadsSchemaThenRows` |
-| U.TableResult.03 | statementType and execution stats exposed on result | `testStatementTypeAndExecutionStats` L131-L176 | PORT |  | |
+| U.TableResult.01 | Rows without schema accessible by index only | `testNullSchema` L66-L93 | PORT |  | `BigQueryClientQueryTests.resultWithoutSchemaHasNoRows` |
+| U.TableResult.02 | Rows with schema accessible by name; totalRows/schema exposed | `testSchema` L95-L129 | PORT |  | `BigQueryClientQueryTests.resultRowsAreAccessibleByNameAndIndex`, `TableDataTests.listRowsReadsSchemaThenRows` |
+| U.TableResult.03 | statementType and execution stats exposed on result | `testStatementTypeAndExecutionStats` L131-L176 | PORT |  | `BigQueryClientQueryTests.slowPathResultsCarryJobStatistics` |
 | U.TableResult.04 | Builder / equals / hashCode | `testToBuilder` L178-L206; `testEqualsAndHashCode` L208-L262 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 ### 2.4 Values, schema, parameters, insertAll
@@ -462,15 +462,15 @@ test over a fake HTTP transport:
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.FieldValueList.01 | Row parsing against schema | `testFromPb` L141-L152 | PORT |  | `Person.decodesEveryColumnType`, `RowTests.parsesRowAgainstSchema` |
-| U.FieldValueList.02 | Access by index and by field name | `testGetByIndex` L154-L174; `testGetByName` L176-L196 | PORT |  | `Person.decodesEveryColumnType`, `Person.keysMatchColumnsCaseInsensitively`, `RowTests.accessByIndexAndName`, `Record.insertAllRoundTripsEveryType` |
-| U.FieldValueList.03 | Name access without schema fails; unknown field fails | `testNullSchema` L198-L220; `testGetNonExistentField` L222-L227 | PORT | Swift: throws / nil. | `FieldValueTests.wrongShapeThrowsTypeMismatch`, `Raw.missingColumnThrowsKeyNotFound`, `RowTests.unknownNameIsNil` |
+| U.FieldValueList.02 | Access by index and by field name | `testGetByIndex` L154-L174; `testGetByName` L176-L196 | PORT |  | `Person.decodesEveryColumnType`, `Event.keysMatchColumnsCaseInsensitively`, `RowTests.accessByIndexAndName`, `Record.insertAllRoundTripsEveryType` |
+| U.FieldValueList.03 | Name access without schema fails; unknown field fails | `testNullSchema` L198-L220; `testGetNonExistentField` L222-L227 | PORT | Swift: throws / nil. | `FieldValueTests.wrongShapeThrowsTypeMismatchFromParsingAccessors`, `Raw.missingColumnThrowsKeyNotFound`, `RowTests.unknownNameIsNil` |
 
 #### `FieldTest` — [FieldTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/FieldTest.java) (12 tests; PORT 1 / ADAPT 1 / N/A 2 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.Field.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L181-L188; `testToAndFromPbWithStandardSQLTypeName` L190-L199 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `SchemaTests.wireRoundTripPreservesEveryField` |
-| U.Field.02 | timestampPrecision only accepts 6 or 12 | `setTimestampPrecisionValues` L217-L229 | ADAPT | Swift has no client-side 6/12 check; the server validates (#102.4). Test Field.timestampPrecision wire round trip. | |
+| U.Field.02 | timestampPrecision only accepts 6 or 12 | `setTimestampPrecisionValues` L217-L229 | ADAPT | Swift has no client-side 6/12 check; the server validates (#102.4). Test Field.timestampPrecision wire round trip. | `SchemaTests.wireRoundTripPreservesEveryField` |
 | U.Field.03 | RECORD type survives Java deserialization clone | `testSubFieldWithClonedType` L201-L215 | N/A | Java Serializable. | |
 | U.Field.04 | Builder / toBuilder / equals / factory mechanics | 8 tests in L90-L179 (`testToBuilder, testToBuilderWithStandardSQLTypeName, testToBuilderIncomplete, testToBuilderIncompleteWithStandardSQLTypeName, testToBuilderIncompleteStandard, testToBuilderIncompleteStandardWithStandardSQLTypeName, testBuilder, testBuilderWithStandardSQLTypeName`) | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
@@ -520,7 +520,7 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.FieldElementType.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testFromAndPb` L37-L45 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.FieldElementType.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testFromAndPb` L37-L45 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `SchemaTests.wireRoundTripPreservesEveryField` |
 | U.FieldElementType.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L27-L30; `testBuilder` L32-L35 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `StandardSQLDataTypeTest` — [StandardSQLDataTypeTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/StandardSQLDataTypeTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
@@ -778,7 +778,7 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.TableMetadataCacheUsage.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L53-L58 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.TableMetadataCacheUsage.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L53-L58 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `MetadataCacheStatisticsTests.decodesEveryField` |
 
 #### `AvroOptionsTest` — [AvroOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/AvroOptionsTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
@@ -876,7 +876,7 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.MetadataCacheStats.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L46-L51 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.MetadataCacheStats.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L46-L51 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `MetadataCacheStatisticsTests.decodesEveryField` |
 
 ## 3. Integration test baseline
 
@@ -887,7 +887,7 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 
 | ID | Test (lines) | Feature exercised | Resources / fixtures | Class | Notes | Swift test |
 |---|---|---|---|---|---|---|
-| IT-001 | `testLosslessMaxTimestampIntegration` (L1236-L1284) | Max TIMESTAMP 9999-12-31 round-trips losslessly with int64 timestamps | none (literal SQL) | ADAPT | Swift has one fixed read format (ISO8601_STRING after #105; int64 micros before): pin exact 9999-12-31T23:59:59.999999 via timestampMicros and the ISO part. The float-seconds and int64 client variants have no Swift equivalent. | `Typed.timestampsAreLossless` |
+| IT-001 | `testLosslessMaxTimestampIntegration` (L1236-L1284) | Max TIMESTAMP 9999-12-31 round-trips losslessly with int64 timestamps | none (literal SQL) | ADAPT | Swift has one fixed read format (ISO8601_STRING after #105; int64 micros before): pin exact 9999-12-31T23:59:59.999999 via timestampMicros and the ISO part. The float-seconds and int64 client variants have no Swift equivalent. | `QueryIntegrationTests.maximumTimestampIsLossless`, `Typed.timestampsAreLossless` |
 | IT-002 | `testListDatasets` (L1286-L1302) | datasets.list on another project returns names + locations | PUB (project listing), G | PORT | Read-only public project; works from any project. | `DatasetIntegrationTests.listsDatasetsOfAnotherProject` |
 | IT-003 | `testListDatasetsWithFilter` (L1304-L1319) | datasets.list labelFilter | D (labels) | PORT |  | `DatasetIntegrationTests.listsDatasetsWithLabelFilter` |
 | IT-004 | `testGetDataset` (L1321-L1333) | datasets.get fields (description, labels, etag, times, location) | D | PORT |  | `DatasetIntegrationTests.getsDatasetFields` |
@@ -897,12 +897,12 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-008 | `testUpdateDataset` (L1416-L1456) | datasets.patch description/labels/storageBillingModel/maxTimeTravelHours; setting labels to null clears them | NEWDS | PORT | Pins clearing labels via JSON null. | `DatasetIntegrationTests.patchesDatasetAndClearsLabels` |
 | IT-009 | `testUpdateDatasetWithSelectedFields` (L1458-L1488) | datasets.patch with field mask | NEWDS | PORT |  | `DatasetIntegrationTests.patchesDatasetWithSelectedFields` |
 | IT-010 | `testUpdateDatasetWithAccessPolicyVersion` (L1490-L1541) | datasets.patch with accessPolicyVersion + conditional ACL | NEWDS; IAM condition on caller | ADAPT | As above. | `DatasetIntegrationTests.patchesConditionalAccessWithPolicyVersion3` |
-| IT-011 | `testGetNonExistingTable` (L1543-L1546) | tables.get missing -> null | D | PORT | Swift: nil/notFound per design. | |
-| IT-012 | `testCreateTableWithRangePartitioning` (L1548-L1570) | Create table with RANGE partitioning | D | PORT |  | |
+| IT-011 | `testGetNonExistingTable` (L1543-L1546) | tables.get missing -> null | D | PORT | Swift: nil/notFound per design. | `TableIntegrationTests.createGetAndDeleteTable` |
+| IT-012 | `testCreateTableWithRangePartitioning` (L1548-L1570) | Create table with RANGE partitioning | D | PORT |  | `TableIntegrationTests.listTablesSurfacesPartitioning` |
 | IT-013 | `testJsonType` (L1573-L1679) | JSON column: insertAll, query, JSON query params, invalid JSON error | D (per-test table) | PORT |  | `Record.insertAllRoundTripsEveryType`, `Record.jsonIntervalAndRangeColumns` |
 | IT-014 | `testIntervalType` (L1682-L1755) | INTERVAL column: DML insert, insertAll, list/query values | D (per-test table) | PORT |  | `Record.insertAllRoundTripsEveryType`, `Record.jsonIntervalAndRangeColumns` |
 | IT-015 | `testRangeType` (L1757-L1832) | RANGE<DATE/DATETIME/TIMESTAMP> column: insertAll, list, query params | D (per-test table) | PORT |  | `Record.insertAllRoundTripsEveryType`, `Record.jsonIntervalAndRangeColumns` |
-| IT-016 | `testCreateTableWithConstraints` (L1834-L1876) | Table with primary/foreign key constraints | D | PORT |  | |
+| IT-016 | `testCreateTableWithConstraints` (L1834-L1876) | Table with primary/foreign key constraints | D | PORT |  | `TableIntegrationTests.primaryAndForeignKeys` |
 | IT-017 | `testCreateDatasetWithSpecifiedStorageBillingModel` (L1878-L1893) | Dataset storageBillingModel=LOGICAL | NEWDS | PORT |  | `DatasetIntegrationTests.createsDatasetWithStorageBillingModel` |
 | IT-018 | `testCreateDatasetWithSpecificMaxTimeTravelHours` (L1895-L1910) | Dataset maxTimeTravelHours=120 | NEWDS | PORT |  | `DatasetIntegrationTests.createsDatasetWithMaxTimeTravelHours` |
 | IT-019 | `testCreateDatasetWithDefaultMaxTimeTravelHours` (L1912-L1927) | Dataset default maxTimeTravelHours=168 | NEWDS | PORT |  | `DatasetIntegrationTests.createsDatasetWithDefaultMaxTimeTravelHours` |
@@ -911,7 +911,7 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-022 | `testCreateDatasetWithInvalidAccessPolicyVersion` (L1983-L2007) | Invalid accessPolicyVersion -> 400 error surfaced | NEWDS | PORT |  | `DatasetIntegrationTests.rejectsInvalidAccessPolicyVersion` |
 | IT-023 | `testCreateTableWithDefaultCollation` (L2009-L2045) | Table defaultCollation propagates to STRING fields | D | PORT |  | `TableIntegrationTests.defaultCollationAppliesToNewStringFields` |
 | IT-024 | `testCreateFieldWithDefaultCollation` (L2047-L2082) | Field-level collation | D | PORT |  | `TableIntegrationTests.defaultCollationAppliesToNewStringFields` |
-| IT-025 | `testCreateTableWithDefaultValueExpression` (L2084-L2144) | Field defaultValueExpression applied on insert | D (DML/insert + list) | PORT |  | |
+| IT-025 | `testCreateTableWithDefaultValueExpression` (L2084-L2144) | Field defaultValueExpression applied on insert | D (DML/insert + list) | PORT |  | `TableIntegrationTests.createTableWithDefaultValueExpression` |
 | IT-026 | `testCreateAndGetTable` (L2146-L2182) | tables.insert + get round trip (schema, partitioning, stats) | D | PORT |  | `TableIntegrationTests.createGetAndDeleteTable` |
 | IT-027 | `testCreateAndListTable` (L2184-L2217) | tables.insert + list finds table | D | PORT |  | `TableIntegrationTests.listTablesSurfacesPartitioning` |
 | IT-028 | `testCreateAndGetTableWithBasicTableMetadataView` (L2219-L2249) | tables.get view=BASIC omits storage stats | D | PORT |  | `TableIntegrationTests.createGetAndDeleteTable` |
@@ -933,11 +933,11 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-044 | `testUpdateTimePartitioning` (L2766-L2807) | Update/remove partition expiration (null expiration) | D | PORT | Pins explicit-null patching. | `TableIntegrationTests.updateTableSetsAndClearsProperties` |
 | IT-045 | `testUpdateNonExistingTable` (L2839-L2854) | tables.patch missing table -> 404 error (notFound) | D | PORT |  | `TableIntegrationTests.updateNonExistingTableFails` |
 | IT-046 | `testDeleteNonExistingTable` (L2856-L2859) | tables.delete missing -> false | none | PORT |  | `TableIntegrationTests.createGetAndDeleteTable` |
-| IT-047 | `testDeleteJob` (L2861-L2873) | jobs.delete with location us-east1; get after delete -> null | G; job in us-east1 | PORT |  | |
+| IT-047 | `testDeleteJob` (L2861-L2873) | jobs.delete with location us-east1; get after delete -> null | G; job in us-east1 | PORT |  | `JobIntegrationTests.deleteJobRemovesItsMetadata` |
 | IT-048 | `testInsertAll` (L2875-L2934) | insertAll all types incl. nested/repeated, no errors | D (per-test table) | PORT |  | `Record.insertAllRoundTripsEveryType` |
 | IT-049 | `testInsertAllWithSuffix` (L2936-L3004) | insertAll templateSuffix creates suffixed table | D | PORT | Template tables can take time to appear; poll. | `Record.insertAllWithTemplateSuffixCreatesTable` |
 | IT-050 | `testInsertAllWithErrors` (L3006-L3075) | insertAll per-row errors with skipInvalidRows/ignoreUnknownValues | D | PORT |  | `Record.insertAllReportsPerRowErrors` |
-| IT-051 | `testListAllTableData` (L3078-L3121) | tabledata.list full table + field types | T | PORT |  | |
+| IT-051 | `testListAllTableData` (L3078-L3121) | tabledata.list full table + field types | T | PORT |  | `TableIntegrationTests.listAllTableDataAcrossFieldTypes` |
 | IT-052 | `testListPageWithStartIndex` (L3123-L3140) | tabledata.list startIndex/maxResults on public table | PUB census_bureau_international; G | PORT | Read-only public data. | `TableIntegrationTests.listRowsOfPublicTableWithStartIndex` |
 | IT-053 | `testModelLifecycle` (L3142-L3199) | CREATE MODEL via query, get/list/update/delete model | MD | PORT | BQML training (cost/time). | `ModelIntegrationTests.modelLifecycle` |
 | IT-054 | `testEmptyListModels` (L3201-L3210) | models.list on empty dataset -> no page token | per-test dataset | PORT |  | `ModelIntegrationTests.emptyDatasetHasNoModels` |
@@ -949,21 +949,21 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-060 | `testRoutineDataGovernanceType` (L3345-L3370) | routines.insert dataGovernanceType=DATA_MASKING | RD | PORT |  | `RoutineIntegrationTests.createsDataMaskingFunction` |
 | IT-061 | `testAuthorizeRoutine` (L3372-L3396) | Authorized routine ACL entry on dataset | RD | PORT |  | `RoutineIntegrationTests.authorizesRoutine` |
 | IT-062 | `testAuthorizeDataset` (L3398-L3440) | Authorized dataset ACL entry | 2x NEWDS | PORT |  | `DatasetIntegrationTests.authorizesDataset` |
-| IT-063 | `testSingleStatementsQueryException` (L3443-L3457) | Failing DML job: error in job status | D, T | PORT |  | |
-| IT-064 | `testMultipleStatementsQueryException` (L3460-L3476) | Failing script job: error surfaced | D, T | PORT |  | |
-| IT-065 | `testTimestamp` (L3478-L3494) | TIMESTAMP literal query value (micros) | D | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
-| IT-066 | `testLosslessTimestamp` (L3496-L3533) | useInt64Timestamp client option: lossless micros | D | PORT |  | `Typed.timestampsAreLossless` |
-| IT-067 | `testQuery` (L3536-L3575) | query() over table, iterate rows, jobId present | D, T | PORT |  | |
-| IT-068 | `testQueryStatistics` (L3577-L3592) | Query job statistics: queryPlan, totalSlotMs | D | PORT |  | |
+| IT-063 | `testSingleStatementsQueryException` (L3443-L3457) | Failing DML job: error in job status | D, T | PORT |  | `QueryIntegrationTests.failingJobsReportTheJobError` |
+| IT-064 | `testMultipleStatementsQueryException` (L3460-L3476) | Failing script job: error surfaced | D, T | PORT |  | `QueryIntegrationTests.failingJobsReportTheJobError` |
+| IT-065 | `testTimestamp` (L3478-L3494) | TIMESTAMP literal query value (micros) | D | PORT |  | `QueryIntegrationTests.timestampsAreMicrosecondsSinceTheEpoch`, `PicoRow.positionalParametersOfEveryScalarType` |
+| IT-066 | `testLosslessTimestamp` (L3496-L3533) | useInt64Timestamp client option: lossless micros | D | PORT |  | `QueryIntegrationTests.maximumTimestampIsLossless`, `Typed.timestampsAreLossless` |
+| IT-067 | `testQuery` (L3536-L3575) | query() over table, iterate rows, jobId present | D, T | PORT |  | `QueryIntegrationTests.fastQueryReturnsRowsAndDistinctJobs` |
+| IT-068 | `testQueryStatistics` (L3577-L3592) | Query job statistics: queryPlan, totalSlotMs | D | PORT |  | `QueryIntegrationTests.queryWithJobIDExposesStatistics` |
 | IT-069 | `testExecuteSelectDefaultConnectionSettings` (L3594-L3602) | Connection API executeSelect | PUB samples.shakespeare; G | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
 | IT-070 | `testExecuteSelectWithReadApi` (L3604-L3632) | executeSelect with Read API | PUB new_york_taxi_trips; G | DEFERRED | Connection API (createConnection/executeSelect) deferred. Storage Read API deferred. | |
 | IT-071 | `testExecuteSelectWithFastQueryReadApi` (L3634-L3659) | executeSelect fast query + Read API | PUB new_york_taxi_trips; G | DEFERRED | Connection API (createConnection/executeSelect) deferred. Storage Read API deferred. | |
 | IT-072 | `testExecuteSelectReadApiEmptyResultSet` (L3661-L3677) | Read API empty result | none | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
 | IT-073 | `testExecuteSelectWithCredentials` (L3679-L3720) | executeSelect with explicit credentials | D, TL | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
-| IT-074 | `testQueryTimeStamp` (L3723-L3757) | TIMESTAMP query value formats | D | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
-| IT-075 | `testQueryCaseInsensitiveSchemaFieldByGetName` (L3760-L3787) | Row access by field name is case-insensitive | D, T | PORT |  | |
-| IT-076 | `testQueryExternalHivePartitioningOptionAutoLayout` (L3790-L3823) | External table hive partitioning AUTO + query | D; CSD hive-partitioning-samples/autolayout | PORT | Public bucket readable. | |
-| IT-077 | `testQueryExternalHivePartitioningOptionCustomLayout` (L3826-L3860) | External table hive partitioning CUSTOM + query | D; CSD hive-partitioning-samples/customlayout | PORT |  | |
+| IT-074 | `testQueryTimeStamp` (L3723-L3757) | TIMESTAMP query value formats | D | PORT |  | `PicoRow.positionalParametersOfEveryScalarType` |
+| IT-075 | `testQueryCaseInsensitiveSchemaFieldByGetName` (L3760-L3787) | Row access by field name is case-insensitive | D, T | PORT |  | `QueryIntegrationTests.fastQueryReturnsRowsAndDistinctJobs` |
+| IT-076 | `testQueryExternalHivePartitioningOptionAutoLayout` (L3790-L3823) | External table hive partitioning AUTO + query | D; CSD hive-partitioning-samples/autolayout | PORT | Public bucket readable. | `TableIntegrationTests.queryExternalHivePartitioningAutoAndCustomLayout` |
+| IT-077 | `testQueryExternalHivePartitioningOptionCustomLayout` (L3826-L3860) | External table hive partitioning CUSTOM + query | D; CSD hive-partitioning-samples/customlayout | PORT |  | `TableIntegrationTests.queryExternalHivePartitioningAutoAndCustomLayout` |
 | IT-078 | `testConnectionImplDryRun` (L3862-L3888) | Connection dryRun | D, TRS | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
 | IT-079 | `testConnectionImplDryRunNoQueryParameters` (L3890-L3916) | Connection dryRun w/o params | D, TRS | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
 | IT-080 | `testBQResultSetMultiThreadedOrder` (L3918-L3945) | Connection ResultSet ordering | D, TL | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
@@ -984,27 +984,27 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-095 | `testExecuteSelectStructSubField` (L4513-L4537) | Connection STRUCT subfield | D | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
 | IT-096 | `testExecuteSelectArray` (L4539-L4560) | Connection ARRAY values | D | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
 | IT-097 | `testExecuteSelectArrayOfStruct` (L4562-L4600) | Connection ARRAY<STRUCT> | D | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
-| IT-098 | `testFastQueryMultipleRuns` (L4603-L4637) | Repeated fast queries: same results, distinct jobIds | D, TFQ | PORT |  | |
-| IT-099 | `testFastQuerySinglePageDuplicateRequestIds` (L4640-L4670) | Back-to-back single-page fast queries each return complete results (no requestId collision) | D, TFQ | PORT |  | |
-| IT-100 | `testFastSQLQuery` (L4673-L4701) | Fast path SELECT: schema, rows, totalRows, no next page | D, TFQ | PORT |  | |
-| IT-101 | `testProjectIDFastSQLQueryWithJobId` (L4703-L4718) | query() with JobId carrying project | D, TFQ | PORT |  | |
-| IT-102 | `testLocationFastSQLQueryWithJobId` (L4720-L4787) | query() with JobId location in EU against EU dataset; wrong location fails | UKD (EU) created per test; G | PORT | Multi-region EU dataset creation allowed in test project. | |
-| IT-103 | `testFastSQLQueryMultiPage` (L4790-L4821) | Fast path multi-page results (pageSize) | D, TL | PORT |  | |
-| IT-104 | `testFastDMLQuery` (L4823-L4854) | Fast path DML: numDmlAffectedRows, empty schema | D, TS | PORT |  | |
-| IT-105 | `testFastDDLQuery` (L4856-L4893) | Fast path DDL CREATE OR REPLACE TABLE | D, TS | PORT |  | |
-| IT-106 | `testFastQuerySlowDDL` (L4895-L4932) | Slow DDL on fast path falls back to job polling | PUB new_york.311_service_requests; temp US dataset; G | PORT | Scans public data (cost). | |
-| IT-107 | `testFastQueryHTTPException` (L4935-L4967) | Invalid query / missing table -> errors reason invalidQuery / notFound | D, TFQ | PORT |  | |
-| IT-108 | `testQuerySessionSupport` (L4969-L5000) | createSession=true returns sessionId; reuse via connectionProperties session_id | D | PORT |  | |
-| IT-109 | `testLoadSessionSupportWriteChannelConfiguration` (L5002-L5074) | Writer (resumable upload) load into _SESSION temp table | G; US session; local CSV | PORT |  | |
-| IT-110 | `testLoadSessionSupport` (L5076-L5125) | GCS load job into session temp table | B (load.csv) | PORT |  | |
+| IT-098 | `testFastQueryMultipleRuns` (L4603-L4637) | Repeated fast queries: same results, distinct jobIds | D, TFQ | PORT |  | `QueryIntegrationTests.fastQueryReturnsRowsAndDistinctJobs` |
+| IT-099 | `testFastQuerySinglePageDuplicateRequestIds` (L4640-L4670) | Back-to-back single-page fast queries each return complete results (no requestId collision) | D, TFQ | PORT |  | `QueryIntegrationTests.fastQueryReturnsRowsAndDistinctJobs` |
+| IT-100 | `testFastSQLQuery` (L4673-L4701) | Fast path SELECT: schema, rows, totalRows, no next page | D, TFQ | PORT |  | `QueryIntegrationTests.fastQueryReturnsRowsAndDistinctJobs` |
+| IT-101 | `testProjectIDFastSQLQueryWithJobId` (L4703-L4718) | query() with JobId carrying project | D, TFQ | PORT |  | `QueryIntegrationTests.queryWithJobIDExposesStatistics` |
+| IT-102 | `testLocationFastSQLQueryWithJobId` (L4720-L4787) | query() with JobId location in EU against EU dataset; wrong location fails | UKD (EU) created per test; G | PORT | Multi-region EU dataset creation allowed in test project. | `QueryIntegrationTests.euLocationIsHonored` |
+| IT-103 | `testFastSQLQueryMultiPage` (L4790-L4821) | Fast path multi-page results (pageSize) | D, TL | PORT |  | `QueryIntegrationTests.multiPageResultsAreFetchedLazily` |
+| IT-104 | `testFastDMLQuery` (L4823-L4854) | Fast path DML: numDmlAffectedRows, empty schema | D, TS | PORT |  | `QueryIntegrationTests.dmlReportsAffectedRows` |
+| IT-105 | `testFastDDLQuery` (L4856-L4893) | Fast path DDL CREATE OR REPLACE TABLE | D, TS | PORT |  | `QueryIntegrationTests.ddlCreatesATable` |
+| IT-106 | `testFastQuerySlowDDL` (L4895-L4932) | Slow DDL on fast path falls back to job polling | PUB new_york.311_service_requests; temp US dataset; G | PORT | Scans public data (cost). | `QueryIntegrationTests.slowDDLFallsBackToPolling` |
+| IT-107 | `testFastQueryHTTPException` (L4935-L4967) | Invalid query / missing table -> errors reason invalidQuery / notFound | D, TFQ | PORT |  | `QueryIntegrationTests.invalidQueriesSurfaceServiceReasons` |
+| IT-108 | `testQuerySessionSupport` (L4969-L5000) | createSession=true returns sessionId; reuse via connectionProperties session_id | D | PORT |  | `QueryIntegrationTests.sessionsCarryTemporaryTables` |
+| IT-109 | `testLoadSessionSupportWriteChannelConfiguration` (L5002-L5074) | Writer (resumable upload) load into _SESSION temp table | G; US session; local CSV | PORT |  | `UploadIntegrationTests.uploadIntoASessionTable` |
+| IT-110 | `testLoadSessionSupport` (L5076-L5125) | GCS load job into session temp table | B (load.csv) | PORT |  | `LoadIntegrationTests.loadIntoASessionTable` |
 | IT-111 | `testExecuteSelectSessionSupport` (L5139-L5151) | Connection API session | D | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
-| IT-112 | `testDmlStatistics` (L5153-L5188) | DML job statistics (inserted/updated/deleted rows) | D, TS | PORT |  | |
-| IT-113 | `testTransactionInfo` (L5191-L5226) | Multi-statement transaction: transactionInfo on child jobs | D, TS | PORT |  | |
-| IT-114 | `testScriptStatistics` (L5229-L5280) | Script: numChildJobs, child scriptStatistics (evaluationKind, stack frames), jobs.list by parentJobId | PUB usa_names.usa_1910_current; G | PORT |  | |
-| IT-115 | `testQueryParameterModeWithDryRun` (L5282-L5310) | Dry run reports queryParameters (7) and totalBytesProcessed | D, T | PORT |  | |
-| IT-116 | `testPositionalQueryParameters` (L5312-L5387) | Positional params of every scalar type incl. BIGNUMERIC/NUMERIC/TIMESTAMP | D, T | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
+| IT-112 | `testDmlStatistics` (L5153-L5188) | DML job statistics (inserted/updated/deleted rows) | D, TS | PORT |  | `QueryIntegrationTests.dmlReportsAffectedRows` |
+| IT-113 | `testTransactionInfo` (L5191-L5226) | Multi-statement transaction: transactionInfo on child jobs | D, TS | PORT |  | `QueryIntegrationTests.transactionsReportTransactionInfo` |
+| IT-114 | `testScriptStatistics` (L5229-L5280) | Script: numChildJobs, child scriptStatistics (evaluationKind, stack frames), jobs.list by parentJobId | PUB usa_names.usa_1910_current; G | PORT |  | `QueryIntegrationTests.scriptsReportChildJobsAndStatistics` |
+| IT-115 | `testQueryParameterModeWithDryRun` (L5282-L5310) | Dry run reports queryParameters (7) and totalBytesProcessed | D, T | PORT |  | `QueryIntegrationTests.dryRunReportsParametersAndBytes` |
+| IT-116 | `testPositionalQueryParameters` (L5312-L5387) | Positional params of every scalar type incl. BIGNUMERIC/NUMERIC/TIMESTAMP | D, T | PORT |  | `PicoRow.positionalParametersOfEveryScalarType` |
 | IT-117 | `testExecuteSelectWithPositionalQueryParameters` (L5390-L5408) | Connection positional params | D, T | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
-| IT-118 | `testNamedQueryParameters` (L5410-L5431) | Named params (STRING, INT64, ARRAY) | D, T | PORT |  | `Typed.namedParametersIncludingArrays` |
+| IT-118 | `testNamedQueryParameters` (L5410-L5431) | Named params (STRING, INT64, ARRAY) | D, T | PORT |  | `PicoRow.namedParametersIncludingArrays` |
 | IT-119 | `testExecuteSelectWithNamedQueryParameters` (L5433-L5454) | Connection named params | D, T | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
 | IT-120 | `testStructNamedQueryParameters` (L5457-L5482) | STRUCT named param round trip | D | PORT |  | `Result.structParametersRoundTrip` |
 | IT-121 | `testRepeatedRecordNamedQueryParameters` (L5484-L5523) | ARRAY<STRUCT> named param round trip | D | PORT |  | `Result.arrayOfStructParameters` |
@@ -1013,53 +1013,53 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-124 | `testEmptyRepeatedRecordNamedQueryParameters` (L5671-L5691) | Empty ARRAY<STRUCT> param -> BigQueryException | D | PORT |  | `Result.emptyArrayOfFieldlessStructParameterIsRejected` |
 | IT-125 | `testStructQuery` (L5693-L5711) | Query RECORD column values | D, T | PORT |  | `Result.structParametersRoundTrip` |
 | IT-126 | `testNestedStructNamedQueryParameters` (L5721-L5760) | Nested STRUCT param | D | PORT |  | `Result.structParametersRoundTrip` |
-| IT-127 | `testBytesParameter` (L5763-L5782) | BYTES param | D | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
-| IT-128 | `testGeographyParameter` (L5784-L5806) | GEOGRAPHY param | D | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
-| IT-129 | `testListJobs` (L5808-L5818) | jobs.list | none | PORT |  | |
-| IT-130 | `testListJobsWithSelectedFields` (L5820-L5830) | jobs.list field mask | none | PORT |  | |
-| IT-131 | `testListJobsWithCreationBounding` (L5832-L5853) | jobs.list min/maxCreationTime | none | PORT |  | |
-| IT-132 | `testCreateAndGetJob` (L5855-L5892) | Copy job create + get | D (per-test tables) | PORT |  | |
-| IT-133 | `testCreateJobAndWaitForWithRetryOptions` (L5894-L5911) | jobs.insert + waitFor with BigQueryRetryConfig and RetryOptions(maxAttempts=1), happy path | D | ADAPT | Swift per-call retry/polling options. | |
-| IT-134 | `testCreateAndGetJobWithSelectedFields` (L5913-L5961) | jobs.insert/get field masks | D | PORT |  | |
-| IT-135 | `testCopyJob` (L5963-L5993) | Copy job | D | PORT |  | |
-| IT-136 | `testCopyJobStatistics` (L5995-L6024) | Copy job statistics (copiedRows/bytes) | D | PORT |  | |
-| IT-137 | `testSnapshotTableCopyJob` (L6026-L6102) | Snapshot via copy (operationType SNAPSHOT) + restore | D, TS | PORT |  | |
-| IT-138 | `testCopyJobWithLabelsAndExpTime` (L6104-L6132) | Copy job labels + destinationExpirationTime | D | PORT |  | |
-| IT-139 | `testQueryJob` (L6135-L6178) | Query job with destination table | D, T | PORT |  | |
-| IT-140 | `testQueryJobWithConnectionProperties` (L6181-L6198) | Query job connectionProperties (time_zone) | D, T | PORT |  | |
-| IT-141 | `testQueryJobWithLabels` (L6201-L6222) | Query job labels | D, T | PORT |  | |
-| IT-142 | `testQueryJobWithSearchReturnsSearchStatisticsUnused` (L6224-L6249) | SEARCH() query -> searchStatistics UNUSED | D, T | PORT |  | |
-| IT-143 | `testQueryJobWithRangePartitioning` (L6252-L6275) | Query job destination rangePartitioning | D, T | PORT |  | |
-| IT-144 | `testLoadJobWithRangePartitioning` (L6277-L6299) | Load job rangePartitioning from GCS | D, B | PORT |  | |
-| IT-145 | `testLoadJobWithDecimalTargetTypes` (L6301-L6327) | Load parquet with decimalTargetTypes | D; CSD bigquery/numeric/numeric_38_12.parquet | PORT |  | |
+| IT-127 | `testBytesParameter` (L5763-L5782) | BYTES param | D | PORT |  | `PicoRow.positionalParametersOfEveryScalarType` |
+| IT-128 | `testGeographyParameter` (L5784-L5806) | GEOGRAPHY param | D | PORT |  | `PicoRow.positionalParametersOfEveryScalarType` |
+| IT-129 | `testListJobs` (L5808-L5818) | jobs.list | none | PORT |  | `JobIntegrationTests.listJobsHonorsFieldsAndCreationBounds` |
+| IT-130 | `testListJobsWithSelectedFields` (L5820-L5830) | jobs.list field mask | none | PORT |  | `JobIntegrationTests.listJobsHonorsFieldsAndCreationBounds` |
+| IT-131 | `testListJobsWithCreationBounding` (L5832-L5853) | jobs.list min/maxCreationTime | none | PORT |  | `JobIntegrationTests.listJobsHonorsFieldsAndCreationBounds` |
+| IT-132 | `testCreateAndGetJob` (L5855-L5892) | Copy job create + get | D (per-test tables) | PORT |  | `JobIntegrationTests.copyJobCopiesRowsWithLabelsAndExpiration` |
+| IT-133 | `testCreateJobAndWaitForWithRetryOptions` (L5894-L5911) | jobs.insert + waitFor with BigQueryRetryConfig and RetryOptions(maxAttempts=1), happy path | D | ADAPT | Swift per-call retry/polling options. | `JobIntegrationTests.waitForJobWithPerCallOptions` |
+| IT-134 | `testCreateAndGetJobWithSelectedFields` (L5913-L5961) | jobs.insert/get field masks | D | PORT |  | `JobIntegrationTests.selectedFieldsLimitTheReturnedJob` |
+| IT-135 | `testCopyJob` (L5963-L5993) | Copy job | D | PORT |  | `JobIntegrationTests.copyJobCopiesRowsWithLabelsAndExpiration` |
+| IT-136 | `testCopyJobStatistics` (L5995-L6024) | Copy job statistics (copiedRows/bytes) | D | PORT |  | `JobIntegrationTests.copyJobCopiesRowsWithLabelsAndExpiration` |
+| IT-137 | `testSnapshotTableCopyJob` (L6026-L6102) | Snapshot via copy (operationType SNAPSHOT) + restore | D, TS | PORT |  | `JobIntegrationTests.snapshotAndCloneThroughCopyJobs` |
+| IT-138 | `testCopyJobWithLabelsAndExpTime` (L6104-L6132) | Copy job labels + destinationExpirationTime | D | PORT |  | `JobIntegrationTests.copyJobCopiesRowsWithLabelsAndExpiration` |
+| IT-139 | `testQueryJob` (L6135-L6178) | Query job with destination table | D, T | PORT |  | `JobIntegrationTests.queryJobWritesADestinationTable` |
+| IT-140 | `testQueryJobWithConnectionProperties` (L6181-L6198) | Query job connectionProperties (time_zone) | D, T | PORT |  | `JobIntegrationTests.queryJobWritesADestinationTable` |
+| IT-141 | `testQueryJobWithLabels` (L6201-L6222) | Query job labels | D, T | PORT |  | `JobIntegrationTests.queryJobWritesADestinationTable` |
+| IT-142 | `testQueryJobWithSearchReturnsSearchStatisticsUnused` (L6224-L6249) | SEARCH() query -> searchStatistics UNUSED | D, T | PORT |  | `QueryIntegrationTests.searchQueriesReportSearchStatistics` |
+| IT-143 | `testQueryJobWithRangePartitioning` (L6252-L6275) | Query job destination rangePartitioning | D, T | PORT |  | `JobIntegrationTests.queryJobWritesADestinationTable` |
+| IT-144 | `testLoadJobWithRangePartitioning` (L6277-L6299) | Load job rangePartitioning from GCS | D, B | PORT |  | `LoadIntegrationTests.csvLoadFromABucket` |
+| IT-145 | `testLoadJobWithDecimalTargetTypes` (L6301-L6327) | Load parquet with decimalTargetTypes | D; CSD bigquery/numeric/numeric_38_12.parquet | PORT |  | `LoadIntegrationTests.parquetLoadWithDecimalTargetTypes` |
 | IT-146 | `testExternalTableWithDecimalTargetTypes` (L6329-L6347) | External parquet table decimalTargetTypes | D; CSD numeric_38_12.parquet | PORT |  | `TableIntegrationTests.externalParquetTableWithDecimalTargetTypes` |
-| IT-147 | `testQueryJobWithDryRun` (L6349-L6365) | Query job dryRun stats | D, T | PORT |  | |
-| IT-148 | `testExtractJob` (L6367-L6405) | Extract table to GCS CSV, read back | D, B (write); storage read | PORT | Needs writable bucket. | |
-| IT-149 | `testExtractJobWithModel` (L6407-L6442) | Extract BQML model to GCS | MD, B | PORT | BQML (cost/time). | |
-| IT-150 | `testExtractJobWithLabels` (L6444-L6468) | Extract job labels | D, B | PORT |  | |
-| IT-151 | `testCancelJob` (L6470-L6482) | jobs.cancel running query | D, T | PORT |  | |
-| IT-152 | `testCancelNonExistingJob` (L6484-L6487) | cancel missing job -> false | G | PORT |  | |
-| IT-153 | `testInsertFromFile` (L6489-L6560) | Writer (resumable upload) load from local data, then list rows | D | PORT |  | |
-| IT-154 | `testInsertFromFileWithLabels` (L6562-L6590) | Writer load with job labels | D | PORT |  | |
-| IT-155 | `testInsertWithDecimalTargetTypes` (L6592-L6618) | Writer load with decimalTargetTypes | D | PORT |  | |
-| IT-156 | `testLocation` (L6620-L6724) | Location handling: EU dataset; jobs created/fetched/cancelled/queried/written with right vs wrong location | per-test EU dataset; G (OTel-enabled client, incidental) | PORT | Ignore the OTel client wiring. | |
-| IT-157 | `testWriteChannelPreserveAsciiControlCharacters` (L6726-L6752) | Writer CSV preserveAsciiControlCharacters | D | PORT |  | |
-| IT-158 | `testLoadJobPreserveAsciiControlCharacters` (L6754-L6773) | GCS load preserveAsciiControlCharacters | D, B (load_null.csv) | PORT |  | |
-| IT-159 | `testReferenceFileSchemaUriForAvro` (L6775-L6832) | Load AVRO with referenceFileSchemaUri | D; CSD federated-formats-reference-file-schema/*.avro | PORT |  | |
-| IT-160 | `testReferenceFileSchemaUriForParquet` (L6834-L6890) | Load PARQUET with referenceFileSchemaUri | D; CSD federated-formats-reference-file-schema/*.parquet | PORT |  | |
+| IT-147 | `testQueryJobWithDryRun` (L6349-L6365) | Query job dryRun stats | D, T | PORT |  | `QueryIntegrationTests.dryRunReportsParametersAndBytes` |
+| IT-148 | `testExtractJob` (L6367-L6405) | Extract table to GCS CSV, read back | D, B (write); storage read | PORT | Needs writable bucket. | `JobIntegrationTests.extractJobWritesCSVToCloudStorage` |
+| IT-149 | `testExtractJobWithModel` (L6407-L6442) | Extract BQML model to GCS | MD, B | PORT | BQML (cost/time). | `JobIntegrationTests.extractJobExportsAModel` |
+| IT-150 | `testExtractJobWithLabels` (L6444-L6468) | Extract job labels | D, B | PORT |  | `JobIntegrationTests.extractJobWritesCSVToCloudStorage` |
+| IT-151 | `testCancelJob` (L6470-L6482) | jobs.cancel running query | D, T | PORT |  | `JobIntegrationTests.cancelReportsWhetherTheJobExists` |
+| IT-152 | `testCancelNonExistingJob` (L6484-L6487) | cancel missing job -> false | G | PORT |  | `JobIntegrationTests.cancelReportsWhetherTheJobExists` |
+| IT-153 | `testInsertFromFile` (L6489-L6560) | Writer (resumable upload) load from local data, then list rows | D | PORT |  | `UploadIntegrationTests.uploadFromAFileWithLabels` |
+| IT-154 | `testInsertFromFileWithLabels` (L6562-L6590) | Writer load with job labels | D | PORT |  | `UploadIntegrationTests.uploadFromAFileWithLabels` |
+| IT-155 | `testInsertWithDecimalTargetTypes` (L6592-L6618) | Writer load with decimalTargetTypes | D | PORT |  | `UploadIntegrationTests.uploadWithDecimalTargetTypes` |
+| IT-156 | `testLocation` (L6620-L6724) | Location handling: EU dataset; jobs created/fetched/cancelled/queried/written with right vs wrong location | per-test EU dataset; G (OTel-enabled client, incidental) | PORT | Ignore the OTel client wiring. | `QueryIntegrationTests.euLocationIsHonored` |
+| IT-157 | `testWriteChannelPreserveAsciiControlCharacters` (L6726-L6752) | Writer CSV preserveAsciiControlCharacters | D | PORT |  | `UploadIntegrationTests.uploadPreservesASCIIControlCharacters` |
+| IT-158 | `testLoadJobPreserveAsciiControlCharacters` (L6754-L6773) | GCS load preserveAsciiControlCharacters | D, B (load_null.csv) | PORT |  | `LoadIntegrationTests.csvLoadFromABucket` |
+| IT-159 | `testReferenceFileSchemaUriForAvro` (L6775-L6832) | Load AVRO with referenceFileSchemaUri | D; CSD federated-formats-reference-file-schema/*.avro | PORT |  | `LoadIntegrationTests.referenceFileSchemaSelectsTheSchema` |
+| IT-160 | `testReferenceFileSchemaUriForParquet` (L6834-L6890) | Load PARQUET with referenceFileSchemaUri | D; CSD federated-formats-reference-file-schema/*.parquet | PORT |  | `LoadIntegrationTests.referenceFileSchemaSelectsTheSchema` |
 | IT-161 | `testCreateExternalTableWithReferenceFileSchemaAvro` (L6892-L6930) | External AVRO table referenceFileSchemaUri | D; CSD (hard-coded cloud-samples-data) | PORT |  | `TableIntegrationTests.externalTableWithReferenceFileSchema` |
 | IT-162 | `testCreateExternalTableWithReferenceFileSchemaParquet` (L6932-L6972) | External PARQUET table referenceFileSchemaUri | D; CSD (hard-coded) | PORT |  | `TableIntegrationTests.externalTableWithReferenceFileSchema` |
-| IT-163 | `testCloneTableCopyJob` (L6974-L7025) | Clone via copy (operationType CLONE), cloneDefinition | D, TS | PORT |  | |
+| IT-163 | `testCloneTableCopyJob` (L6974-L7025) | Clone via copy (operationType CLONE), cloneDefinition | D, TS | PORT |  | `JobIntegrationTests.snapshotAndCloneThroughCopyJobs` |
 | IT-164 | `testHivePartitioningOptionsFieldsFieldExistence` (L7027-L7069) | HivePartitioningOptions.fields populated on get | D, B (writes key=foo/data.json) | PORT |  | `TableIntegrationTests.hivePartitioningFieldsArePopulated` |
 | IT-165 | `testPrimaryKey` (L7071-L7094) | Create table with primary key | D | PORT |  | `TableIntegrationTests.primaryAndForeignKeys` |
 | IT-166 | `testPrimaryKeyUpdate` (L7096-L7123) | Add primary key via update | D | PORT |  | `TableIntegrationTests.primaryAndForeignKeys` |
 | IT-167 | `testForeignKeys` (L7125-L7173) | Create tables with foreign keys | D | PORT |  | `TableIntegrationTests.primaryAndForeignKeys` |
 | IT-168 | `testForeignKeysUpdate` (L7175-L7271) | Add/replace foreign keys via update | D | PORT |  | `TableIntegrationTests.primaryAndForeignKeys` |
-| IT-169 | `testAlreadyExistJobExceptionHandling` (L7273-L7298) | query() with existing JobId recovers from 409 Already Exists | D, T | PORT |  | |
-| IT-170 | `testStatelessQueries` (L7300-L7325) | JOB_CREATION_OPTIONAL: queryId set, jobId null for short queries | own client | PORT |  | |
-| IT-171 | `testTableResultJobIdAndQueryId` (L7333-L7384) | TableResult jobId/queryId/jobCreationReason across modes | own client | PORT |  | |
-| IT-172 | `testStatelessQueriesWithLocation` (L7386-L7435) | Stateless query with EU location; wrong location fails | per-test EU dataset; G | PORT |  | |
-| IT-173 | `testQueryWithTimeout` (L7437-L7503) | queryWithTimeout returns TableResult or Job (long query) | own client | ADAPT | Swift: enum result; long-running CROSS JOIN query. | |
+| IT-169 | `testAlreadyExistJobExceptionHandling` (L7273-L7298) | query() with existing JobId recovers from 409 Already Exists | D, T | PORT |  | `QueryIntegrationTests.reusedJobIDIsReportedAsDuplicate` |
+| IT-170 | `testStatelessQueries` (L7300-L7325) | JOB_CREATION_OPTIONAL: queryId set, jobId null for short queries | own client | PORT |  | `QueryIntegrationTests.statelessQueriesHaveAQueryIDAndNoJob` |
+| IT-171 | `testTableResultJobIdAndQueryId` (L7333-L7384) | TableResult jobId/queryId/jobCreationReason across modes | own client | PORT |  | `QueryIntegrationTests.statelessQueriesHaveAQueryIDAndNoJob` |
+| IT-172 | `testStatelessQueriesWithLocation` (L7386-L7435) | Stateless query with EU location; wrong location fails | per-test EU dataset; G | PORT |  | `QueryIntegrationTests.euLocationIsHonored` |
+| IT-173 | `testQueryWithTimeout` (L7437-L7503) | queryWithTimeout returns TableResult or Job (long query) | own client | ADAPT | Swift: enum result; long-running CROSS JOIN query. | `QueryIntegrationTests.timeoutReportsTheRunningJob` |
 | IT-174 | `testQueryResultsFormatArrow` (L7505-L7525) | queryArrow | none | DEFERRED | Arrow results format deferred. | |
 | IT-175 | `testQueryResultsFormatArrowMultiPage` (L7527-L7550) | queryArrow multi-page | none | DEFERRED | Arrow results format deferred. | |
 | IT-176 | `testQueryRowBasedWithArrowFormat` (L7552-L7569) | Row API over Arrow format | none | DEFERRED | Arrow results format deferred. | |
@@ -1074,9 +1074,9 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-185 | `testExternalTableMetadataCachingNotEnable` (L7775-L7814) | External table metadataCacheMode unset -> query works | D, B | PORT |  | `TableIntegrationTests.createExternalJSONTable` |
 | IT-186 | `testExternalMetadataCacheModeFailForNonBiglake` (L7816-L7841) | metadataCacheMode on non-BigLake table -> error | D, B | PORT |  | `TableIntegrationTests.metadataCacheModeIsRejectedForNonBigLakeTables` |
 | IT-187 | `testObjectTable` (L7843-L7890) | Object table (objectMetadata) over GCS via connection | G; B; connection DEVREL_TEST_CONNECTION (java-docs-samples-testing); US dataset | ADAPT | Gate on BIGQUERY_TEST_CONNECTION_ID; connection SA needs GCS read on the temp bucket. | `TableIntegrationTests.createObjectTable` |
-| IT-188 | `testQueryExportStatistics` (L7892-L7914) | EXPORT DATA to GCS -> exportDataStatistics fileCount/rowCount | D, B (write) | PORT |  | |
-| IT-189 | `testLoadConfigurationFlexibleColumnName` (L7916-L7970) | Load CSV with autodetect + columnNameCharacterMap V1/V2 (flexible column names) | D, B (load_flexible_column_name.csv) | PORT |  | |
-| IT-190 | `testStatementType` (L7972-L7992) | TableResult.statementType for CREATE MATERIALIZED VIEW | D, T | PORT |  | |
+| IT-188 | `testQueryExportStatistics` (L7892-L7914) | EXPORT DATA to GCS -> exportDataStatistics fileCount/rowCount | D, B (write) | PORT |  | `JobIntegrationTests.exportDataReportsExportStatistics` |
+| IT-189 | `testLoadConfigurationFlexibleColumnName` (L7916-L7970) | Load CSV with autodetect + columnNameCharacterMap V1/V2 (flexible column names) | D, B (load_flexible_column_name.csv) | PORT |  | `LoadIntegrationTests.flexibleColumnNames` |
+| IT-190 | `testStatementType` (L7972-L7992) | TableResult.statementType for CREATE MATERIALIZED VIEW | D, T | PORT |  | `QueryIntegrationTests.ddlCreatesATable` |
 | IT-191 | `testOpenTelemetryTracingDatasets` (L7994-L8081) | OTel spans for dataset ops | NEWDS; OTel SDK | DEFERRED | OpenTelemetry tracing: DEFERRED per D4 (#4) unless time permits; Swift would use swift-distributed-tracing. | |
 | IT-192 | `testOpenTelemetryTracingTables` (L8083-L8131) | OTel spans for table ops | D; OTel SDK | DEFERRED | OpenTelemetry tracing: DEFERRED per D4 (#4) unless time permits; Swift would use swift-distributed-tracing. | |
 | IT-193 | `testOpenTelemetryTracingQuery` (L8133-L8184) | OTel spans for query | D, T; OTel SDK | DEFERRED | OpenTelemetry tracing: DEFERRED per D4 (#4) unless time permits; Swift would use swift-distributed-tracing. | |
@@ -1085,14 +1085,14 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 
 | ID | Test (lines) | Feature exercised | Resources / fixtures | Class | Notes | Swift test |
 |---|---|---|---|---|---|---|
-| IT-194 | `query_highPrecisionTimestamp` (L126-L144) | Picosecond TIMESTAMP(12) column read with ISO8601_STRING output format | own DATASET + table (timestampPrecision=12) seeded via insertAll | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
-| IT-195 | `insert_highPrecisionTimestamp_ISOValidFormat` (L146-L163) | insertAll ISO strings with 12 fractional digits | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
-| IT-196 | `insert_highPrecisionTimestamp_invalidFormats` (L165-L204) | insertAll invalid high-precision formats -> row errors | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
-| IT-197 | `queryNamedParameter_highPrecisionTimestamp` (L206-L232) | Named TIMESTAMP param with picos (CAST) | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
-| IT-198 | `queryPositionalParameter_highPrecisionTimestamp` (L234-L259) | Positional TIMESTAMP param with picos | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
-| IT-199 | `queryNamedParameter_highPrecisionTimestamp_microsLong` (L261-L290) | Param from micros long | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
-| IT-200 | `queryNamedParameter_highPrecisionTimestamp_microsISOString` (L292-L317) | Param from micros ISO string | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
-| IT-201 | `queryNamedParameter_highPrecisionTimestamp_noExplicitCastInQuery_fails` (L319-L338) | Picos param without CAST -> error | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
+| IT-194 | `query_highPrecisionTimestamp` (L126-L144) | Picosecond TIMESTAMP(12) column read with ISO8601_STRING output format | own DATASET + table (timestampPrecision=12) seeded via insertAll | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | `Typed.highPrecisionTimestamps` |
+| IT-195 | `insert_highPrecisionTimestamp_ISOValidFormat` (L146-L163) | insertAll ISO strings with 12 fractional digits | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | `Typed.highPrecisionTimestamps` |
+| IT-196 | `insert_highPrecisionTimestamp_invalidFormats` (L165-L204) | insertAll invalid high-precision formats -> row errors | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | `Typed.highPrecisionTimestamps` |
+| IT-197 | `queryNamedParameter_highPrecisionTimestamp` (L206-L232) | Named TIMESTAMP param with picos (CAST) | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | `Typed.highPrecisionTimestamps` |
+| IT-198 | `queryPositionalParameter_highPrecisionTimestamp` (L234-L259) | Positional TIMESTAMP param with picos | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | `Typed.highPrecisionTimestamps` |
+| IT-199 | `queryNamedParameter_highPrecisionTimestamp_microsLong` (L261-L290) | Param from micros long | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | `Typed.highPrecisionTimestamps` |
+| IT-200 | `queryNamedParameter_highPrecisionTimestamp_microsISOString` (L292-L317) | Param from micros ISO string | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | `Typed.highPrecisionTimestamps` |
+| IT-201 | `queryNamedParameter_highPrecisionTimestamp_noExplicitCastInQuery_fails` (L319-L338) | Picos param without CAST -> error | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | `Typed.highPrecisionTimestamps` |
 
 ### 3.3 `ITNightlyBigQueryTest` — [it/ITNightlyBigQueryTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/it/ITNightlyBigQueryTest.java) (7 tests; PORT 0 / ADAPT 0 / N/A 0 / DEFERRED 7)
 
@@ -1138,7 +1138,7 @@ checked access from this workstation on 2026-10-08 with `bq` and
 | TL | `TABLE_ID_LARGE` `L1192`, CSV from `src/test/resources/QueryTestData.csv` (12 MB) | Large multi-page table | Yes | Do **not** vendor the 12 MB CSV. Generate rows with `CREATE TABLE ... AS SELECT ... FROM UNNEST(GENERATE_ARRAY(1, N))`. |
 | MD / RD | `MODEL_DATASET`, `ROUTINE_DATASET` `L224-L225` | Datasets for BQML models and routines | Yes (BQML enabled) | Suite fixture. Model tests are slow and cost money; tag them `.timeLimit` and allow skipping. |
 | UKD / EU | `UK_DATASET` `L222`, `"EU"` datasets in IT-102, IT-156, IT-172 | Cross-location datasets | Yes (EU multi-region) | Create per test and delete in `defer`. |
-| B | `BUCKET = RemoteStorageHelper.generateBucketName()` `L619`, objects `L1101-L1131`, deleted `L1216` | Temp GCS bucket with `load.csv`, `load_null.csv`, `load_flexible_column_name.csv`, `load.json`, `load_simple.json`, `load_large.csv`, `load_bq_resultset.json`; also receives extract and EXPORT DATA output and hive `key=foo/data.json` | Yes. The project has buckets, for example `lawrence-test-project-2-test-bucket`, and the caller can create buckets. | **Decided (#17):** a test-only dependency on `swift-google-cloud-storage`, used only by the IntegrationTests target. The ITs create their own bucket `swift-bq-it-<date>-<hex>` and delete it, with its objects, afterwards. |
+| B | `BUCKET = RemoteStorageHelper.generateBucketName()` `L619`, objects `L1101-L1131`, deleted `L1216` | Temp GCS bucket with `load.csv`, `load_null.csv`, `load_flexible_column_name.csv`, `load.json`, `load_simple.json`, `load_large.csv`, `load_bq_resultset.json`; also receives extract and EXPORT DATA output and hive `key=foo/data.json` | Yes. The project has buckets, for example `lawrence-test-project-2-test-bucket`, and the caller can create buckets. | **Decided (#17, updated #49):** a small test-only `CloudStorage` helper (GCS JSON API over our transport, avoiding a gRPC dependency). The ITs create their own bucket `swift-bq-it-<date>-<hex>` via `withTemporaryBucket` and delete it, with its objects, afterwards. |
 | CSD | `CLOUD_SAMPLES_DATA` `L236-L237` (env `CLOUD_SAMPLES_DATA_BUCKET`, default `cloud-samples-data`) | `bigquery/hive-partitioning-samples/{autolayout,customlayout}/`, `bigquery/numeric/numeric_38_12.parquet`, `bigquery/federated-formats-reference-file-schema/{a,b,c}-twitter.{avro,parquet}` | Yes. All listed objects are publicly readable (verified). | Use as is, with the same env override. |
 | PUB | `PUBLIC_PROJECT`/`PUBLIC_DATASET` `L805-L806`, literals | `bigquery-public-data`: `census_bureau_international`, `samples.shakespeare`, `new_york_taxi_trips.tlc_yellow_trips_2017`, `new_york.311_service_requests`, `usa_names.usa_1910_current`. Nightly test only: `bigquery-samples.wikipedia_benchmark.Wiki10B` | Yes (public; query bytes billed to the project). `samples.shakespeare` verified. | Use as is. Only IT-106 scans much data. |
 | G | `globalBigQuery` `L1094-L1099` | Second client pinned to the global endpoint, for public data and cross-region work | Yes | Not needed unless the suite targets a regional endpoint. Use one client. |
