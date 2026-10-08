@@ -103,6 +103,12 @@ import Testing
     #expect(TimePartitioning(type: .day).wire.expirationMs == nil)
   }
 
+  // Baseline: U.BigQueryImpl.18
+  @Test func timePartitioningWithoutTypeIsDay() throws {
+    let wire: GoogleCloudBigQueryV2.TimePartitioning = try WireJSON.decode(#"{"field": "ts"}"#)
+    #expect(TimePartitioning(wire: wire).type == .day)
+  }
+
   // Design: §4.6
   @Test func rangePartitioningWireRoundTrip() throws {
     let wire: GoogleCloudBigQueryV2.RangePartitioning = try WireJSON.decode(

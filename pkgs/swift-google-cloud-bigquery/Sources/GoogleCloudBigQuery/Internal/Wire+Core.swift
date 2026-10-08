@@ -158,9 +158,10 @@ extension EncryptionConfiguration {
 }
 
 extension TimePartitioning {
+  /// A missing `type` means `DAY`, as in Java (`TimePartitioning.fromPb`).
   init(wire: GoogleCloudBigQueryV2.TimePartitioning) {
     self.init(
-      type: PartitionType(rawValue: wire.type), field: wire.field,
+      type: wire.type.isEmpty ? .day : PartitionType(rawValue: wire.type), field: wire.field,
       expiration: wire.expirationMs.map { .milliseconds($0) })
   }
 
