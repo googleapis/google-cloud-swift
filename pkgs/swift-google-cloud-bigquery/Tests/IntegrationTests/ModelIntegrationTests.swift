@@ -13,15 +13,11 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudBigQueryV2
 import Testing
 
 @testable import GoogleCloudBigQuery
 
-typealias Model = GoogleCloudBigQuery.Model
-
-/// Live tests of models. Models are created with `CREATE MODEL` through the raw transport, so
-/// these tests do not depend on the query API.
+/// Live tests of models. Models are created with `CREATE MODEL`.
 @Suite(.enabled(if: integrationTestsEnabled()))
 struct ModelIntegrationTests {
   let client: BigQueryClient
@@ -45,8 +41,7 @@ struct ModelIntegrationTests {
   @Test func modelLifecycle() async throws {
     try await IntegrationTest.withTemporaryDataset(self.client, slice: "resources") { dataset in
       let id = ModelID(datasetID: dataset.datasetID, modelID: "resources_model")
-      try await ResourceQuery.run(
-        self.client,
+      _ = try await self.client.query(
         """
         CREATE MODEL `\(dataset.datasetID).\(id.modelID)`
         OPTIONS (model_type='linear_reg', max_iterations=1, learn_rate=0.4,
@@ -95,29 +90,5 @@ struct ModelIntegrationTests {
       #expect(try await self.client.getModel(id) == nil)
       #expect(try await self.client.deleteModel(id) == false)
     }
-  }
-}
-
-/// Runs DDL through the raw `jobs.query` endpoint and waits for it to finish.
-enum ResourceQuery {
-  static func run(_ client: BigQueryClient, _ sql: String) async throws {
-    let base = "/bigquery/v2/projects/\(client.projectID)/queries"
-    let body = try JSONSerialization.data(withJSONObject: [
-      "query": sql, "useLegacySql": false, "timeoutMs": 60_000,
-    ])
-    var response: GetQueryResultsResponse = try await client.transport.json(
-      HTTPRequest(method: .post, path: base, body: body), idempotent: false)
-    while response.jobComplete != true {
-      let job = try #require(response.jobReference)
-      response = try await client.transport.json(
-        HTTPRequest(
-          method: .get, path: "\(base)/\(job.jobId)",
-          query: [
-            URLQueryItem(name: "location", value: job.location),
-            URLQueryItem(name: "timeoutMs", value: "60000"),
-          ]),
-        idempotent: true)
-    }
-    #expect(response.errors.isEmpty)
   }
 }

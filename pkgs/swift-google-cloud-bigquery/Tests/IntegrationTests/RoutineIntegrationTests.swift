@@ -44,8 +44,7 @@ struct RoutineIntegrationTests {
   @Test func routineLifecycle() async throws {
     try await self.withDataset { dataset in
       let id = RoutineID(datasetID: dataset.datasetID, routineID: "add_one")
-      try await ResourceQuery.run(
-        self.client,
+      _ = try await self.client.query(
         "CREATE FUNCTION `\(dataset.datasetID).add_one`(x INT64) AS (x + 1)")
 
       let routine = try #require(try await self.client.getRoutine(id))
