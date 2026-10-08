@@ -35,15 +35,15 @@ integration tests must cover every `PORT`/`ADAPT` IT row.
 | `PORT` | The Swift port must have an equivalent test for this behavior (wire format, request construction, defaults, retries, error mapping, 404 semantics, paging, query routing, value parsing). |
 | `ADAPT` | Port the behavior with a Swift-idiomatic shape; the Notes column says how (for example builders to struct initializers, Mockito RPC mocks to a fake HTTP transport, `Page` to `AsyncSequence`, varargs options to an options struct, live-object methods to client methods). |
 | `N/A` | Java-specific mechanics with no Swift equivalent: `Serializable`, builder/`toBuilder`/`equals`/`hashCode` identity (Swift value types synthesize these), null-argument checks the type system enforces, legacy dual setters, Java test helpers. |
-| `DEFERRED` | Depends on a feature the port defers (D4): BigQuery Storage Read API and Arrow (`useReadAPI`, `queryArrow`, `QueryResultsFormat.ARROW`); the beta `Connection` API (`createConnection`, `executeSelect*`, `BigQueryResult*`, `ConnectionSettings`); and OpenTelemetry tracing (deferred unless time permits). `ConnectionProperty` (session/time zone properties on `QueryJobConfiguration`) and `QueryRequestInfo` (the `jobs.query` fast-path builder) are core and are **not** deferred. |
+| `DEFERRED` | Depends on a feature the port defers (D4): BigQuery Storage Read API and Arrow (`useReadAPI`, `queryArrow`, `QueryResultsFormat.ARROW`); the beta `Connection` API (`createConnection`, `executeSelect*`, `BigQueryResult*`, `ConnectionSettings`); OpenTelemetry tracing (deferred unless time permits); picosecond timestamps (`timestampPrecision=12`, `ISO8601_STRING`); and the universe-domain credential check (gax/auth follow-up). `ConnectionProperty` (session/time zone properties on `QueryJobConfiguration`) and `QueryRequestInfo` (the `jobs.query` fast-path builder) are core and are **not** deferred. |
 
 ### 1.3 Summary
 
 | Scope | Java tests | Rows | PORT | ADAPT | N/A | DEFERRED |
 |---|---|---|---|---|---|---|
-| Unit (by behavior row) | 800 in 90 classes | 315 | 198 | 30 | 74 | 13 |
-| Unit (by Java test method) | 800 | — | 338 | 112 | 185 | 165 |
-| Integration | 214 | 214 | 151 | 12 | 0 | 51 |
+| Unit (by behavior row) | 800 in 90 classes | 315 | 196 | 31 | 74 | 14 |
+| Unit (by Java test method) | 800 | — | 336 | 113 | 185 | 166 |
+| Integration | 214 | 214 | 141 | 11 | 0 | 62 |
 
 ### 1.4 Not counted (inactive or inherited)
 
@@ -82,7 +82,7 @@ test over a fake HTTP transport:
    `delete(JobId)` throws on 404, and `Job.isDone()` is true for a missing
    job. The design must accept or reject these quirks explicitly.
 6. Value decoding: `FieldValue` and `FieldValueList` for every type,
-   timestamps (float seconds, int64 micros, picosecond ISO strings),
+   timestamps (float seconds, int64 micros; picosecond ISO strings are DEFERRED),
    canonical INTERVAL, RANGE, and case-insensitive name lookup
    (`U.FieldValue.*`, `U.FieldValueList.*`, U.FieldList.01).
 7. Query parameter encoding for all scalar, array, struct, and range types,
@@ -211,12 +211,12 @@ test over a fake HTTP transport:
 | U.BigQueryException.03 | Default handler retries SocketException up to 6 attempts total | `testDefaultExceptionHandler` L170-L198 | PORT | Pins default max attempts. | |
 | U.BigQueryException.04 | Custom exception handler retryOn/abortOn | `testCustomExceptionHandler` L200-L251 | ADAPT | Swift: custom retry policy. | |
 
-#### `BigQueryOptionsTest` — [BigQueryOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/BigQueryOptionsTest.java) (7 tests; PORT 1 / ADAPT 1 / N/A 2 / DEFERRED 0)
+#### `BigQueryOptionsTest` — [BigQueryOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/BigQueryOptionsTest.java) (7 tests; PORT 0 / ADAPT 2 / N/A 2 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.BigQueryOptions.01 | Only HTTP transport accepted | `testInvalidTransport` L34-L43 | N/A | Java transport option. | |
-| U.BigQueryOptions.02 | Default DataFormatOptions: useInt64Timestamp=false, timestamp output format unspecified | `dataFormatOptions_createdByDefault` L45-L54 | PORT |  | |
+| U.BigQueryOptions.02 | Default DataFormatOptions: useInt64Timestamp=false, timestamp output format unspecified | `dataFormatOptions_createdByDefault` L45-L54 | ADAPT | Swift always sends useInt64Timestamp=true (survey #7); timestamp output format is DEFERRED with picosecond timestamps. | |
 | U.BigQueryOptions.03 | Legacy setUseInt64Timestamps vs DataFormatOptions precedence | `nonBuilderSetUseInt64Timestamp_capturedInDataFormatOptions` L56-L66; `nonBuilderSetUseInt64Timestamp_overridesEverything` L68-L74; `noDataFormatOptions_capturesUseInt64TimestampSetInBuilder` L76-L82; `dataFormatOptionsSetterHasPrecedence` L84-L94 | ADAPT | Java dual legacy setter collapses to one Swift value, but the wire outcome matters (survey #7): assert jobs.query/tabledata.list always request int64 timestamps (`formatOptions.useInt64Timestamp=true`). | |
 | U.BigQueryOptions.04 | useJwtAccessWithScope defaults false | `testUseJwtAccessWithScope_defaultsToFalse` L96-L101 | N/A | Java auth library detail. | |
 
@@ -465,12 +465,12 @@ test over a fake HTTP transport:
 | U.FieldValueList.02 | Access by index and by field name | `testGetByIndex` L154-L174; `testGetByName` L176-L196 | PORT |  | |
 | U.FieldValueList.03 | Name access without schema fails; unknown field fails | `testNullSchema` L198-L220; `testGetNonExistentField` L222-L227 | PORT | Swift: throws / nil. | |
 
-#### `FieldTest` — [FieldTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/FieldTest.java) (12 tests; PORT 2 / ADAPT 0 / N/A 2 / DEFERRED 0)
+#### `FieldTest` — [FieldTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/FieldTest.java) (12 tests; PORT 1 / ADAPT 0 / N/A 2 / DEFERRED 1)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.Field.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L181-L188; `testToAndFromPbWithStandardSQLTypeName` L190-L199 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.Field.02 | timestampPrecision only accepts 6 or 12 | `setTimestampPrecisionValues` L217-L229 | PORT |  | |
+| U.Field.02 | timestampPrecision only accepts 6 or 12 | `setTimestampPrecisionValues` L217-L229 | DEFERRED | Picosecond timestamps (timestampPrecision) DEFERRED (bigquery.md §11/§13). | |
 | U.Field.03 | RECORD type survives Java deserialization clone | `testSubFieldWithClonedType` L201-L215 | N/A | Java Serializable. | |
 | U.Field.04 | Builder / toBuilder / equals / factory mechanics | 8 tests in L90-L179 (`testToBuilder, testToBuilderWithStandardSQLTypeName, testToBuilderIncomplete, testToBuilderIncompleteWithStandardSQLTypeName, testToBuilderIncompleteStandard, testToBuilderIncompleteStandardWithStandardSQLTypeName, testBuilder, testBuilderWithStandardSQLTypeName`) | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
@@ -501,8 +501,8 @@ test over a fake HTTP transport:
 | U.QueryParameterValue.04 | JSON param (string / object) | `testJson` L182-L198 | PORT |  | |
 | U.QueryParameterValue.05 | INTERVAL param from canonical string / ISO / PeriodDuration | `testInterval` L200-L216 | PORT | Swift: own interval type or string. | |
 | U.QueryParameterValue.06 | ARRAY params of each scalar type; empty array keeps element type | 8 tests in L227-L512 (`testBoolArray, testInt64Array, testInt64ArrayFromIntegers, testFloat64Array, testFloat64ArrayFromFloats, testNumericArray, testStringArray, testFromEmptyArray`) | PORT |  | |
-| U.QueryParameterValue.07 | TIMESTAMP param from micros/strings/formatters -> 'yyyy-MM-dd HH:mm:ss.SSSSSSZZ' | `testTimestampFromLong` L301-L306; `testTimestampWithFormatter` L308-L317; `testTimestampFromString` L319-L346; `testTimestampWithDateTimeFormatterBuilder` L348-L359 | ADAPT | Swift: from Date/micros/string; same canonical output. | |
-| U.QueryParameterValue.08 | Invalid TIMESTAMP strings rejected | `testInvalidTimestampStringValues` L361-L386 | PORT |  | |
+| U.QueryParameterValue.07 | TIMESTAMP param from micros/strings/formatters -> 'yyyy-MM-dd HH:mm:ss.SSSSSSZZ' | `testTimestampFromLong` L301-L306; `testTimestampWithFormatter` L308-L317; `testTimestampFromString` L319-L346; `testTimestampWithDateTimeFormatterBuilder` L348-L359 | ADAPT | Swift: from Date/micros/string; same canonical output. The >9-fractional-digit (picosecond) cases in testTimestampFromString are DEFERRED. | |
+| U.QueryParameterValue.08 | Invalid TIMESTAMP strings rejected | `testInvalidTimestampStringValues` L361-L386 | PORT | The picosecond-length fraction cases follow the picosecond deferral. | |
 | U.QueryParameterValue.09 | DATE/TIME/DATETIME params (incl. java.util.Date) and invalid values rejected | 7 tests in L388-L446 (`testDate, testStandardDate, testInvalidDate, testTime, testInvalidTime, testDateTime, testInvalidDateTime`) | PORT |  | |
 | U.QueryParameterValue.10 | TIMESTAMP array params | `testTimestampArrayFromLongs` L448-L460; `testTimestampArray` L462-L475; `testTimestampArrayWithDateTimeFormatterBuilder` L477-L498 | PORT |  | |
 | U.QueryParameterValue.11 | STRUCT, nested STRUCT, ARRAY<STRUCT> params (type + value JSON) | `testStruct` L514-L538; `testNestedStruct` L540-L574; `testStructArray` L576-L616 | PORT |  | |
@@ -883,11 +883,11 @@ test over a fake HTTP transport:
 Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 
 
-### 3.1 `ITBigQueryTest` — [it/ITBigQueryTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/it/ITBigQueryTest.java) (193 tests; PORT 143 / ADAPT 11 / N/A 0 / DEFERRED 39)
+### 3.1 `ITBigQueryTest` — [it/ITBigQueryTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/it/ITBigQueryTest.java) (193 tests; PORT 141 / ADAPT 10 / N/A 0 / DEFERRED 42)
 
 | ID | Test (lines) | Feature exercised | Resources / fixtures | Class | Notes | Swift test |
 |---|---|---|---|---|---|---|
-| IT-001 | `testLosslessMaxTimestampIntegration` (L1236-L1284) | Max TIMESTAMP 9999-12-31 round-trips losslessly with int64 timestamps | none (literal SQL) | PORT |  | |
+| IT-001 | `testLosslessMaxTimestampIntegration` (L1236-L1284) | Max TIMESTAMP 9999-12-31 round-trips losslessly with int64 timestamps | none (literal SQL) | ADAPT | Swift always requests int64 micros (survey #7): pin the lossless part. The float-seconds client variant has no Swift equivalent; the ISO8601_STRING part is DEFERRED with picosecond timestamps. | |
 | IT-002 | `testListDatasets` (L1286-L1302) | datasets.list on another project returns names + locations | PUB (project listing), G | PORT | Read-only public project; works from any project. | |
 | IT-003 | `testListDatasetsWithFilter` (L1304-L1319) | datasets.list labelFilter | D (labels) | PORT |  | |
 | IT-004 | `testGetDataset` (L1321-L1333) | datasets.get fields (description, labels, etag, times, location) | D | PORT |  | |
@@ -1068,9 +1068,9 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-179 | `testQueryRowBasedWithArrowFormatFallback` (L7628-L7648) | Arrow fallback (row API) | none | DEFERRED | Arrow results format deferred. | |
 | IT-180 | `testQueryResultsFormatArrowFallbackMultiPage` (L7650-L7673) | Arrow fallback multi-page | none | DEFERRED | Arrow results format deferred. | |
 | IT-181 | `testQueryRowBasedWithArrowFormatFallbackMultiPage` (L7675-L7704) | Arrow fallback multi-page (row API) | none | DEFERRED | Arrow results format deferred. | |
-| IT-182 | `testUniverseDomainWithInvalidUniverseDomain` (L7706-L7727) | Invalid universe domain -> 401 | fake JSON creds; PUB | ADAPT | Map to Swift auth/universe-domain validation (may fail before RPC). | |
-| IT-183 | `testInvalidUniverseDomainWithMismatchCredentials` (L7729-L7749) | Credentials universe mismatch -> error | fake JSON creds | ADAPT | As above. | |
-| IT-184 | `testUniverseDomainWithMatchingDomain` (L7751-L7773) | Explicit googleapis.com universe works | PUB; G | PORT |  | |
+| IT-182 | `testUniverseDomainWithInvalidUniverseDomain` (L7706-L7727) | Invalid universe domain -> 401 | fake JSON creds; PUB | DEFERRED | Universe-domain credential check DEFERRED to gax/auth (bigquery.md §7/§13, #24). | |
+| IT-183 | `testInvalidUniverseDomainWithMismatchCredentials` (L7729-L7749) | Credentials universe mismatch -> error | fake JSON creds | DEFERRED | Universe-domain credential check DEFERRED to gax/auth (bigquery.md §7/§13, #24). | |
+| IT-184 | `testUniverseDomainWithMatchingDomain` (L7751-L7773) | Explicit googleapis.com universe works | PUB; G | DEFERRED | Universe-domain credential check DEFERRED to gax/auth (bigquery.md §7/§13, #24). Swift has no universe-domain option; the default endpoint is covered by every other IT. | |
 | IT-185 | `testExternalTableMetadataCachingNotEnable` (L7775-L7814) | External table metadataCacheMode unset -> query works | D, B | PORT |  | |
 | IT-186 | `testExternalMetadataCacheModeFailForNonBiglake` (L7816-L7841) | metadataCacheMode on non-BigLake table -> error | D, B | PORT |  | |
 | IT-187 | `testObjectTable` (L7843-L7890) | Object table (objectMetadata) over GCS via connection | G; B; connection DEVREL_TEST_CONNECTION (java-docs-samples-testing); US dataset | ADAPT | Gate on BIGQUERY_TEST_CONNECTION_ID; connection SA needs GCS read on the temp bucket. | |
@@ -1081,18 +1081,18 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-192 | `testOpenTelemetryTracingTables` (L8083-L8131) | OTel spans for table ops | D; OTel SDK | DEFERRED | OpenTelemetry tracing: DEFERRED per D4 (#4) unless time permits; Swift would use swift-distributed-tracing. | |
 | IT-193 | `testOpenTelemetryTracingQuery` (L8133-L8184) | OTel spans for query | D, T; OTel SDK | DEFERRED | OpenTelemetry tracing: DEFERRED per D4 (#4) unless time permits; Swift would use swift-distributed-tracing. | |
 
-### 3.2 `ITHighPrecisionTimestamp` — [it/ITHighPrecisionTimestamp.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/it/ITHighPrecisionTimestamp.java) (8 tests; PORT 8 / ADAPT 0 / N/A 0 / DEFERRED 0)
+### 3.2 `ITHighPrecisionTimestamp` — [it/ITHighPrecisionTimestamp.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/it/ITHighPrecisionTimestamp.java) (8 tests; PORT 0 / ADAPT 0 / N/A 0 / DEFERRED 8)
 
 | ID | Test (lines) | Feature exercised | Resources / fixtures | Class | Notes | Swift test |
 |---|---|---|---|---|---|---|
-| IT-194 | `query_highPrecisionTimestamp` (L126-L144) | Picosecond TIMESTAMP(12) column read with ISO8601_STRING output format | own DATASET + table (timestampPrecision=12) seeded via insertAll | PORT |  | |
-| IT-195 | `insert_highPrecisionTimestamp_ISOValidFormat` (L146-L163) | insertAll ISO strings with 12 fractional digits | same | PORT |  | |
-| IT-196 | `insert_highPrecisionTimestamp_invalidFormats` (L165-L204) | insertAll invalid high-precision formats -> row errors | same | PORT |  | |
-| IT-197 | `queryNamedParameter_highPrecisionTimestamp` (L206-L232) | Named TIMESTAMP param with picos (CAST) | same | PORT |  | |
-| IT-198 | `queryPositionalParameter_highPrecisionTimestamp` (L234-L259) | Positional TIMESTAMP param with picos | same | PORT |  | |
-| IT-199 | `queryNamedParameter_highPrecisionTimestamp_microsLong` (L261-L290) | Param from micros long | same | PORT |  | |
-| IT-200 | `queryNamedParameter_highPrecisionTimestamp_microsISOString` (L292-L317) | Param from micros ISO string | same | PORT |  | |
-| IT-201 | `queryNamedParameter_highPrecisionTimestamp_noExplicitCastInQuery_fails` (L319-L338) | Picos param without CAST -> error | same | PORT |  | |
+| IT-194 | `query_highPrecisionTimestamp` (L126-L144) | Picosecond TIMESTAMP(12) column read with ISO8601_STRING output format | own DATASET + table (timestampPrecision=12) seeded via insertAll | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
+| IT-195 | `insert_highPrecisionTimestamp_ISOValidFormat` (L146-L163) | insertAll ISO strings with 12 fractional digits | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
+| IT-196 | `insert_highPrecisionTimestamp_invalidFormats` (L165-L204) | insertAll invalid high-precision formats -> row errors | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
+| IT-197 | `queryNamedParameter_highPrecisionTimestamp` (L206-L232) | Named TIMESTAMP param with picos (CAST) | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
+| IT-198 | `queryPositionalParameter_highPrecisionTimestamp` (L234-L259) | Positional TIMESTAMP param with picos | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
+| IT-199 | `queryNamedParameter_highPrecisionTimestamp_microsLong` (L261-L290) | Param from micros long | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
+| IT-200 | `queryNamedParameter_highPrecisionTimestamp_microsISOString` (L292-L317) | Param from micros ISO string | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
+| IT-201 | `queryNamedParameter_highPrecisionTimestamp_noExplicitCastInQuery_fails` (L319-L338) | Picos param without CAST -> error | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
 
 ### 3.3 `ITNightlyBigQueryTest` — [it/ITNightlyBigQueryTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/it/ITNightlyBigQueryTest.java) (7 tests; PORT 0 / ADAPT 0 / N/A 0 / DEFERRED 7)
 
@@ -1144,9 +1144,9 @@ checked access from this workstation on 2026-10-08 with `bq` and
 | G | `globalBigQuery` `L1094-L1099` | Second client pinned to the global endpoint, for public data and cross-region work | Yes | Not needed unless the suite targets a regional endpoint. Use one client. |
 | CONN | `projects/java-docs-samples-testing/locations/us/connections/DEVREL_TEST_CONNECTION` (`L2456`, `L7855`) | Cloud-resource connection for BigLake and object tables (IT-034, IT-187) | **No** (foreign project). The project does have `492781389931.us.test-connection-id-ace13f7e` (CLOUD_RESOURCE, SA `bqcx-492781389931-m93p@gcp-sa-bigquery-condel.iam.gserviceaccount.com`). It is probably left over from a Java `ITRemoteUDFTest` run. | **Decided (#17):** gate on env `BIGQUERY_TEST_CONNECTION_ID`; our runs use `us.test-connection-id-ace13f7e`. The connection SA needs `roles/storage.objectViewer` on the temp bucket. Skip when the variable is unset. |
 | IAM | IT-005, IT-007, IT-010, IT-021, IT-038, IT-061, IT-062 | Dataset ACL and table IAM edits, including `allUsers` and IAM conditions on the caller's email | Partly. `allUsers` grants may be blocked by an org policy (domain-restricted sharing). | Use the caller's own principal or a group. Treat `403 constraints/iam.allowedPolicyMemberDomains` as a skip. |
-| CREDS | `FAKE_JSON_CRED_WITH_GOOGLE_DOMAIN` / `..._INVALID_DOMAIN` `L808`, `L846` | Inline fake service-account JSON for the universe-domain tests | Yes (no live credential) | Port as inline fixtures (ADAPT; depends on `swift-google-auth` universe-domain support). |
+| CREDS | `FAKE_JSON_CRED_WITH_GOOGLE_DOMAIN` / `..._INVALID_DOMAIN` `L808`, `L846` | Inline fake service-account JSON for the universe-domain tests | Yes (no live credential) | Not needed now: the universe-domain tests are DEFERRED to gax/auth (bigquery.md §13). |
 | Session CSV | `src/test/resources/sessionTest.csv` (2.7 KB) | Writer load into `_SESSION` (IT-109) | Yes | Small enough to inline or vendor. |
-| HPT | `ITHighPrecisionTimestamp.java:L60-L124` | Own dataset and table with a `TIMESTAMP` field `timestampPrecision=12`, seeded by `insertAll`. The client uses `TimestampFormatOptions.ISO8601_STRING`. | Yes, if the feature is enabled for the project. Verify on the first run. | Own suite fixture. |
+| HPT | `ITHighPrecisionTimestamp.java:L60-L124` | Own dataset and table with a `TIMESTAMP` field `timestampPrecision=12`, seeded by `insertAll`. The client uses `TimestampFormatOptions.ISO8601_STRING`. | Yes, if the feature is enabled for the project. Verify on the first run. | DEFERRED with picosecond timestamps (bigquery.md §11/§13). |
 | Nightly | `ITNightlyBigQueryTest` | Large generated table for Connection/Read API | n/a | DEFERRED with the Connection API. |
 
 ### 4.2 Unique names and cleanup (proposal for Swift ITs)

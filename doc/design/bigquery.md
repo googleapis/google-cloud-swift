@@ -59,7 +59,7 @@ the open questions in #8 and #17. Each is recorded here with its rationale.
 | S§3 #13 | Waiting for a job throws when the job failed. | Go's footgun (S§3). |
 | S§3 #14 | `BIGNUMERIC` uses a string-backed `BigNumeric` type. | Foundation `Decimal` has 38 digits; BIGNUMERIC needs 76.76. |
 | #12 | No GitHub issues are filed. Upstream bugs go in §13. The `qualifier_encoded` skip lives in `librarian.yaml` (config only). | Coordinator. |
-| #17 | ITs create and delete their own GCS bucket, with the test-only dependency on `swift-google-cloud-storage` used only by the IT target. Connection and remote-UDF ITs are gated on `BIGQUERY_TEST_CONNECTION_ID`. Resource names follow `swift_bq_it_<date>_<hex>`. The janitor may only delete `swift_bq_it_*` resources older than 24 h. Test rows are generated with SQL; the 12 MB CSV is not vendored. | Coordinator. |
+| #17 | ITs create and delete their own GCS bucket. *Changed by the architect:* the bucket helper (`Tests/IntegrationTests/Support/CloudStorage.swift`) calls the GCS JSON API through the client's own transport instead of depending on `swift-google-cloud-storage`, because that package pulls gRPC into every `swift test` build of this package. Connection and remote-UDF ITs are gated on `BIGQUERY_TEST_CONNECTION_ID`. Resource names follow `swift_bq_it_<date>_<hex>`. The janitor may only delete `swift_bq_it_*` resources older than 24 h. Test rows are generated with SQL; the 12 MB CSV is not vendored. | Coordinator. |
 
 ### 2.1 D2 spike evidence
 
@@ -107,7 +107,6 @@ These results are from the spike, committed as `bb524d2c7e`.
 pkgs/swift-google-cloud-bigquery/
   Package.swift                     deps: auth, gax, wkt, bigquery-v2, iam-v1 (internal wire only),
                                     swift-log, NIOCore, NIOHTTP1;
-                                    IT target also: swift-google-cloud-storage (test-only)
   Sources/GoogleCloudBigQuery/
     # ---- core (architect) ----
     BigQueryClient.swift            client class, init, project/location resolution
@@ -202,7 +201,7 @@ public struct JobID     { projectID?, jobID: String, location: String?
 
 ```swift
 public struct BigQueryError: Error, Sendable, Hashable, CustomStringConvertible {
-  public struct Kind: Sendable, Hashable { service, job, invalidArgument }   // extensible
+  public struct Kind: Sendable, Hashable { service, job, invalidArgument, timeout }   // extensible
   public struct Detail: Sendable, Hashable { reason, location, message, debugInfo: String? }
   public var kind: Kind
   public var message: String
@@ -727,7 +726,8 @@ list:
   `maximumBytesBilled`;
 - `labels`, `parameters` (named or positional);
 - `connectionProperties`, `createSession`;
-- `jobCreationMode`, `location`, `maxResults`.
+- `jobCreationMode`, `location`, `maxResults`;
+- `jobTimeout`, `reservation` (`QueryRequest` carries both; U.BigQueryImpl.48).
 
 The caller must also not supply an explicit `jobID`. Anything else uses the
 slow path. Examples: destination table, dispositions, priority BATCH, table
@@ -793,7 +793,7 @@ Each row is either "same" or an intentional difference (**Δ**).
 | Labels three-way (§4) | `labels` merges keys; `.label(k)` / `.labels` clear. |
 | No etag on update (§4) | **Δ (additive)**: `ifMatch:`. |
 | `tables.get` defaults `view=STORAGE_STATS` (§4) | Same default when `view` is `nil`. |
-| Table create clears `type`; external schema overwrite (§4) | `type` is output-only and never sent. **Δ**: the external schema is moved into `externalDataConfiguration.schema` only when that schema is set. Java nulls `table.schema` even when it isn't. |
+| Table create clears `type`; external schema overwrite (§4) | `type` is output-only and never sent. When `externalDataConfiguration.schema` is set, it is sent as `table.schema` and dropped from the external configuration, as in Java (Impl:L822-830). **Δ**: when it is not set, `table.schema` is kept; Java nulls it. |
 | Dataset and table list return partial items (§4) | Same. The docs say which fields are populated. |
 | `routines.update` is PUT (§4) | Same. |
 | `jobs.list` uses the options project and `projection=full` (§4) | Same, plus an optional `projectID`. |
@@ -829,9 +829,12 @@ Each row is either "same" or an intentional difference (**Δ**).
 **Unit tests** (`Tests/`, Swift Testing):
 
 - Use one `@Suite struct` per type under test.
-- Each `@Test` display name starts with its baseline ID, for example
-  `@Test("U.FieldValue.01 parses scalar cells")`. @baseline fills the Swift
-  column of T§2 from those names.
+- Do not pass string descriptions to `@Test` or `@Suite` (Swift style guide,
+  storage precedent). Use descriptive function names. Put a
+  `// Baseline: U.FieldValue.01, IT-104` comment directly above each `@Test`
+  that covers baseline rows (IDs comma-separated, T§1.1). Tests that pin a
+  Swift-only behavior use `// Design: §5.2` instead. @baseline fills the
+  Swift column of T§2 from those comments.
 - Behavior tests go through `FakeHTTPTransport` and assert on:
   - the exact method, path, query, headers, and JSON body sent;
   - the retry classification;
@@ -853,7 +856,8 @@ Each row is either "same" or an intentional difference (**Δ**).
   - `uniqueName()` → `swift_bq_it_<yyyymmdd>_<hex>`;
   - the label `swift-bq-it=true`;
   - `withTemporaryDataset { }`;
-  - `withTemporaryBucket { }` (using swift-google-cloud-storage);
+  - `withTemporaryBucket { }` and `CloudStorage` (GCS JSON API over the
+    client transport: upload, download, list, delete);
   - a janitor that deletes `swift_bq_it_*` datasets and buckets older than
     24 h, and nothing else.
 - Connection and remote-UDF tests are also gated on
@@ -879,7 +883,7 @@ a core file, it asks @architect on the board.
 
 | Slice | Owns (Sources/GoogleCloudBigQuery/…) | Tests | Depends on |
 | ----- | ------------------------------------ | ----- | ---------- |
-| **Core** (architect, landed first) | everything in §3 "core", `Package.swift` | `Tests/Core*Tests.swift`, `Tests/Support/*`, `Tests/IntegrationTests/Support/*` | — |
+| **Core** (architect, landed first) | everything in §3 "core", `Package.swift` | `BigQueryClientTests`, `BigQueryTransportTests`, `ResourceIDsTests`, `RowTests`, `PagedSequenceTests`, `CoreHelpersTests`, `Tests/Support/*`, `Tests/IntegrationTests/Support/*`, `Tests/IntegrationTests/CoreIntegrationTests.swift` | — |
 | **1. Resources** | `Dataset*.swift`, `Acl.swift`, `BigQueryClient+Datasets.swift`, `Routine*.swift`, `BigQueryClient+Routines.swift`, `Model*.swift`, `BigQueryClient+Models.swift`, `IAMPolicy.swift`, `BigQueryClient+IAM.swift`, `BigQueryClient+Projects.swift` | `Dataset*`, `Routine*`, `Model*`, `IAM*` | core |
 | **2. Values** | `FieldValue+Accessors.swift`, `RowDecoder.swift`, `RowSequence+Decode.swift`, `QueryParameter.swift` (takes over the core shell), `QueryParameterValue*.swift`, `BigNumeric.swift`, `CivilTypes.swift`, `Interval.swift`, `BigQueryRange.swift`, `InsertRow.swift`, `InsertRowEncoder.swift`, `InsertAll*.swift`, `BigQueryClient+InsertAll.swift` | `FieldValue*`, `QueryParameter*`, `InsertAll*`, `RowDecoder*` | core |
 | **3. Tables** | `Table.swift`, `TableDefinitions.swift` (view/MV/snapshot/clone), `ExternalDataConfiguration.swift` (+ Bigtable/Sheets/etc. options), `TableConstraints.swift`, `BigQueryClient+Tables.swift`, `BigQueryClient+TableData.swift` | `Table*`, `TableData*`, `External*` | core |
@@ -891,10 +895,21 @@ a core file, it asks @architect on the board.
   `defaultJobCreationMode`, and `resolve(_ id:)` helpers that fill a `nil`
   project (and, for `JobID`, a `nil` location).
 - `BigQueryTransport`:
-  - `json<R: Decodable>(_ type: R.Type, _ request: HTTPRequest, idempotent: Bool) async throws -> R`;
-  - `jsonOrNil` (404 → `nil`);
-  - `deleteOrFalse` (404 → `false`);
-  - `send(_:idempotent:) -> HTTPResponse`.
+  - `json<R: Decodable>(_ request: HTTPRequest, idempotent: Bool) async throws -> R`
+    (`R` inferred from the result type);
+  - `jsonOrNil(_:as:idempotent: = true) -> R?` (404 → `nil`; the type is
+    explicit because inference from an optional result picks `Optional<R>`);
+  - `deleteOrFalse(_:idempotent: = true) -> Bool` (404 → `false`);
+  - `send(_:idempotent:) -> HTTPResponse` (2xx only);
+  - `json(idempotent:options:request: (attempt) throws -> HTTPRequest,
+    validate: (R) throws -> Void)`: builds the request per attempt (attempts
+    count from 1) and validates each decoded response inside the retry loop
+    (fresh `requestId` / `JobID` after a job-level rate limit, 409 recovery);
+  - `RequestError.jobRateLimited(_ errors: [ErrorProto])`: a retryable 429
+    that surfaces as `BigQueryError(.service)` with the original details;
+  - `sendOnce(_:) -> HTTPResponse`: one attempt, any status (upload chunks);
+  - `clientOptions` (for example `pollingBackoffPolicy`).
+- `BigQueryError.Kind.timeout` for wait deadlines (with `jobID`).
 - `HTTPRequest(method:path:query:headers:body:options:)` and
   `HTTPRequest(method:url:…)`. Path segments are percent-encoded with
   `HTTPRequest.encode(segment:)`.
@@ -906,9 +921,16 @@ a core file, it asks @architect on the board.
   - `Schema(wire:)` / `schema.wire`;
   - `DatasetID(wire:)` / `.wire`, and the same for `TableID`, `JobID`,
     `RoutineID`, and `ModelID`;
-  - `EncryptionConfiguration`, `TimePartitioning`, `RangePartitioning`, and
-    `Clustering` `(wire:)` / `.wire`;
+  - `EncryptionConfiguration`, `TimePartitioning`, `RangePartitioning`,
+    `Clustering`, and `UserDefinedFunction` `(wire:)` / `.wire`;
+  - `Duration.wholeMilliseconds`;
   - `BigQueryError(job: errorResult:errors:jobID:)`.
+- Tests: `FakeHTTPTransport` (`enqueue`, `enqueueError`, `requests`,
+  `client()`, `transport()`), `HTTPRequest.queryValue(_:)` / `jsonBody()`,
+  and `WireJSON.decode` / `object` for fixtures. ITs:
+  `integrationTestsEnabled()`, `IntegrationTest.makeClient()`,
+  `uniqueName(slice)`, `withTemporaryDataset(client, slice:)`,
+  `withTemporaryBucket(slice:)`, and `CloudStorage`.
 - The format option types in `DataFormat.swift`. Each consumer writes its
   own wire conversion: CSV options are nested for external tables and
   flattened for load jobs.
@@ -957,7 +979,7 @@ adds `tableDefinitions` after slice 3 merges.
 | Dry run | `dryRun(_:)` | 4 | P0 |
 | Sessions, connection properties | `QueryJobConfiguration.createSession`, `connectionProperties` | 4 | P0 |
 | Project service account | `getServiceAccount` | 1 | P1 |
-| `listProjects` | — | — | P1 (not in Java) |
+| `listProjects` (BigQuery.java:L979) | `listProjects(pageSize:)` → `PagedSequence<Project>` | 1 | P0 |
 | Row access policies | — | — | P1 (not in Java) |
 | `BIGQUERY_EMULATOR_HOST` | endpoint override only | core | P1 |
 | High-precision timestamps (`timestampPrecision` 12, `ISO8601_STRING`) | — | — | **DEFERRED**: new service feature; int64 micros cannot carry picoseconds (§13) |
