@@ -343,4 +343,33 @@ import Testing
     #expect(error?.jobID == JobID(projectID: "test-project", jobID: "j"))
     #expect(fake.requests.allSatisfy { $0.method == .get })
   }
+
+  // Design: §10
+  @Test func runJobCreatesAndWaitsUntilDone() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(json: JobFixtures.job(id: "j", state: "RUNNING"))
+    fake.enqueue(json: JobFixtures.job(id: "j", state: "RUNNING"))
+    fake.enqueue(json: JobFixtures.job(id: "j", state: "DONE"))
+    fake.enqueue(
+      json: JobFixtures.job(id: "j", state: "DONE", statistics: #"{"totalSlotMs": "42"}"#))
+    let job = try await fake.client().runJob(
+      .query(QueryJobConfiguration("SELECT 1")), id: JobID(jobID: "j"))
+    #expect(job.id == JobID(projectID: "test-project", jobID: "j"))
+    #expect(job.status.state == .done)
+    #expect(job.statistics?.totalSlotMs == 42)
+    #expect(fake.requests.map(\.method) == [.post, .get, .get, .get])
+  }
+
+  // Design: §10
+  @Test func runJobThrowsWhenCreatedJobAlreadyFailed() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(json: JobFixtures.job(id: "j", state: "DONE", errorReason: "invalid"))
+    let error = await #expect(throws: BigQueryError.self) {
+      try await fake.client().runJob(
+        .query(QueryJobConfiguration("SELECT 1")), id: JobID(jobID: "j"))
+    }
+    #expect(error?.kind == .job)
+    #expect(error?.reason == "invalid")
+    #expect(fake.requests.count == 1)
+  }
 }

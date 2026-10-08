@@ -191,6 +191,8 @@ public struct StatementType: RawRepresentable, Sendable, Hashable, CustomStringC
   public static let createTableAsSelect = StatementType(rawValue: "CREATE_TABLE_AS_SELECT")
   /// A `CREATE VIEW` statement.
   public static let createView = StatementType(rawValue: "CREATE_VIEW")
+  /// A `CREATE MATERIALIZED VIEW` statement.
+  public static let createMaterializedView = StatementType(rawValue: "CREATE_MATERIALIZED_VIEW")
   /// A `CREATE MODEL` statement.
   public static let createModel = StatementType(rawValue: "CREATE_MODEL")
   /// A `CREATE FUNCTION` statement.

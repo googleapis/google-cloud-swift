@@ -184,6 +184,7 @@ extension BigQueryClient {
   /// - Throws: ``BigQueryError`` with kind ``BigQueryError/Kind-swift.struct/job`` if the job
   ///   failed, ``BigQueryError/Kind-swift.struct/timeout`` if `timeout` expired first, or a
   ///   service error with ``BigQueryError/isNotFound`` if the job does not exist.
+  @discardableResult
   public func waitForJob(
     _ id: JobID,
     timeout: Duration? = nil,
@@ -214,6 +215,42 @@ extension BigQueryClient {
       }
       try await self.transport.sleep(delay)
     }
+  }
+
+  /// Creates a job, waits for it to finish, and returns the completed job.
+  ///
+  /// ```swift
+  /// let extract = ExtractJobConfiguration(
+  ///   source: .table(TableID(datasetID: "d", tableID: "people")),
+  ///   destinationURIs: ["gs://bucket/people-*.csv"])
+  /// let job = try await client.runJob(.extract(extract))
+  /// ```
+  ///
+  /// This is equivalent to calling ``createJob(_:id:selectedFields:options:)`` followed by
+  /// ``waitForJob(_:timeout:options:)``. For queries, prefer
+  /// ``query(_:jobID:projectID:location:timeout:options:)``, which returns the result rows and can
+  /// use the `jobs.query` fast path.
+  ///
+  /// - Parameters:
+  ///   - configuration: what the job does. Tables and datasets without a project use the job's
+  ///     project.
+  ///   - id: the job ID, or `nil` to generate one. A `nil` project or location uses the client's.
+  ///   - timeout: how long to wait after the job is created, or `nil` to wait as long as it
+  ///     runs. The job is not cancelled when the timeout expires.
+  ///   - options: per-call options.
+  /// - Throws: ``BigQueryError`` with kind ``BigQueryError/Kind-swift.struct/job`` if the job
+  ///   failed, ``BigQueryError/Kind-swift.struct/timeout`` if `timeout` expired first, or HTTP
+  ///   status 409 if a job with the caller-supplied `id` already exists.
+  @discardableResult
+  public func runJob(
+    _ configuration: JobConfiguration,
+    id: JobID? = nil,
+    timeout: Duration? = nil,
+    options: RequestOptions = .init()
+  ) async throws -> Job {
+    let job = try await self.createJob(configuration, id: id, options: options)
+    if let failure = job.failure { throw failure }
+    return try await self.waitForJob(job.id, timeout: timeout, options: options)
   }
 }
 

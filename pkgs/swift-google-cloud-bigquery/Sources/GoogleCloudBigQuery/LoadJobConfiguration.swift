@@ -57,6 +57,7 @@ public struct JSONExtension: RawRepresentable, Sendable, Hashable, CustomStringC
 /// The configuration of a load job.
 ///
 /// The same configuration loads from Cloud Storage (``sourceURIs``, with
+/// ``BigQueryClient/runJob(_:id:timeout:options:)`` or
 /// ``BigQueryClient/createJob(_:id:selectedFields:options:)``) and from local data (with
 /// ``BigQueryClient/load(_:configuration:jobID:chunkSize:options:)``, which ignores
 /// ``sourceURIs``).

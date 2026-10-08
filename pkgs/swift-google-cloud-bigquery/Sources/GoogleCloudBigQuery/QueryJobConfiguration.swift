@@ -151,8 +151,10 @@ public struct QueryJobConfiguration: Sendable, Equatable {
   ///
   /// This is a property of the request, not of the job: it is not stored on the job.
   public var jobCreationMode: JobCreationMode?
-  /// The maximum number of rows in each page of results when the query runs through
-  /// `jobs.query`.
+  /// The maximum number of rows in each page of ``QueryResult/rows`` (the page size).
+  ///
+  /// Note that this bounds the size of each page fetched from the service, not the total number
+  /// of rows the query produces; use a SQL `LIMIT` clause to bound the result set itself.
   public var maxResults: Int64?
 
   /// Creates a query configuration.
