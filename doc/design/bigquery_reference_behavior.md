@@ -331,7 +331,7 @@ pins them down.
 
 | Op | HTTP | Behavior |
 | -- | ---- | -------- |
-| create | `POST /projects/{p}/datasets/{d}/tables` (`Rpc:L369-411`) | Clears the output-only `type` (`Rpc:L372-373`). Whenever `externalDataConfiguration` is non-null, `table.schema` is overwritten with `externalDataConfiguration.schema`, even when that schema is null (`Impl:L822-830`). |
+| create | `POST /projects/{p}/datasets/{d}/tables` (`Rpc:L369-411`) | Clears the output-only `type` (`Rpc:L372-373`). Whenever `externalDataConfiguration` is non-null, `table.schema` is overwritten with `externalDataConfiguration.schema`, even when that schema is null. `externalDataConfiguration.schema` is then cleared (`Impl:L822-830`). |
 | get | `GET .../tables/{t}` (`Rpc:L744-785`) | `view` defaults to **`STORAGE_STATS`** (`Rpc:L787-792`). Option: `fields`. |
 | list | `GET .../tables` (`Rpc:L805-868`) | Items are partial tables with friendlyName, id, kind, reference, type, creationTime, timePartitioning, rangePartitioning, clustering, and labels (`Rpc:L851-866`). Project default at `Impl:L1763`. String overload at `Impl:L1752-1753`. |
 | update | `PATCH .../tables/{t}` (`Rpc:L683-727`) | Clears `type`. Options: `fields`, `autodetectSchema`. Same external-schema move as create. |
