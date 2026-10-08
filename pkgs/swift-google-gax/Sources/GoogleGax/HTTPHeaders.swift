@@ -64,7 +64,15 @@ public struct HTTPHeaders: Sendable, Equatable {
       }
       if let firstIndex = self.storage.firstIndex(where: { Self.namesMatch($0.name, name) }) {
         self.storage[firstIndex] = (name: name, value: newValue)
-        self.storage[(firstIndex + 1)...].removeAll { Self.namesMatch($0.name, name) }
+        var seenFirst = false
+        self.storage.removeAll { element in
+          guard Self.namesMatch(element.name, name) else { return false }
+          if !seenFirst {
+            seenFirst = true
+            return false
+          }
+          return true
+        }
       } else {
         self.storage.append((name: name, value: newValue))
       }
