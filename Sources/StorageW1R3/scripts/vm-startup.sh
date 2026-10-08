@@ -356,12 +356,8 @@ build_benchmark() {
   local out_bin_var="$5"
 
   echo "--- [${label}] Building ${product} in release mode ---"
-  local build_flags=(-c release --product "${product}" -Xswiftc -warnings-as-errors)
-  if [[ -n "${pkg_path}" ]]; then
-    build_flags+=(--package-path "${workspace_dir}/${pkg_path}")
-  else
-    build_flags+=(--package-path "${workspace_dir}")
-  fi
+  local pkg_dir="${workspace_dir}${pkg_path:+/${pkg_path}}"
+  local build_flags=(-c release --product "${product}" --package-path "${pkg_dir}" -Xswiftc -warnings-as-errors)
 
   if [[ -f "${workspace_dir}/ci/swift-version.sh" ]]; then
     # shellcheck source=/dev/null
@@ -374,7 +370,7 @@ build_benchmark() {
   swift build "${build_flags[@]}"
 
   local bin_dir
-  bin_dir=$(swift build "${build_flags[@]}" --show-bin-path 2>/dev/null || echo "${workspace_dir}/.build/$(uname -m)-unknown-linux-gnu/release")
+  bin_dir=$(swift build "${build_flags[@]}" --show-bin-path 2>/dev/null || echo "${pkg_dir}/.build/$(uname -m)-unknown-linux-gnu/release")
   local bin_path="${bin_dir}/${product}"
   if [[ ! -x "${bin_path}" ]]; then
     echo "ERROR: [${label}] Benchmark binary not found at ${bin_path}"
@@ -451,6 +447,7 @@ run_single_execution() {
   if [[ -n "${BENCHMARK_COMMAND}" ]]; then
     local rendered_cmd="${BENCHMARK_COMMAND//\{BIN\}/${bin_path}}"
     rendered_cmd="${rendered_cmd//\{BUCKET\}/${BUCKET_NAME}}"
+    rendered_cmd="${rendered_cmd//\{PROJECT\}/${PROJECT_ID}}"
     if [[ -n "${args}" ]]; then
       rendered_cmd="${rendered_cmd} ${args}"
     fi
@@ -464,6 +461,7 @@ run_single_execution() {
       bash -c "${rendered_cmd}"
     ) 2> >(tee -a "${run_log}" /root/benchmark.log) > "${raw_csv}"
     BENCHMARK_EXIT_CODE=$?
+    wait
     set -e
   else
     local cmd=("${bin_path}")
@@ -472,7 +470,7 @@ run_single_execution() {
     fi
     if [[ -n "${args}" ]]; then
       local extra_arr=()
-      mapfile -t extra_arr < <(xargs -n 1 <<< "${args}")
+      mapfile -t extra_arr < <(xargs -n 1 printf '%s\n' <<< "${args}")
       cmd+=("${extra_arr[@]}")
     fi
     echo "Command: ${cmd[*]}"
@@ -488,6 +486,7 @@ run_single_execution() {
       "${cmd[@]}"
     ) 2> >(tee -a "${run_log}" /root/benchmark.log) > "${raw_csv}"
     BENCHMARK_EXIT_CODE=$?
+    wait
     set -e
   fi
 
