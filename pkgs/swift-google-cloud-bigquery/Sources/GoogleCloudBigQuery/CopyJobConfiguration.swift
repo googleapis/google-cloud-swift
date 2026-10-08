@@ -18,8 +18,10 @@ import GoogleCloudBigQueryV2
 
 /// What a copy job does.
 public struct CopyOperationType: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
@@ -33,6 +35,7 @@ public struct CopyOperationType: RawRepresentable, Sendable, Hashable, CustomStr
   /// Creates a table clone.
   public static let clone = CopyOperationType(rawValue: "CLONE")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 

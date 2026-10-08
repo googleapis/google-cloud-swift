@@ -120,6 +120,24 @@ private func roundTrip(_ json: String) throws -> GoogleCloudBigQuery.JobConfigur
   }
 }
 
+extension QueryJobConfigurationTests {
+  // Design: §6.1 — a parameter the library can't read must not fail getJob or listJobs.
+  @Test func unreadableParametersDecodeAsNil() throws {
+    let wire = try WireJSON.decode(
+      #"""
+      {"query": {"query": "SELECT @a", "parameterMode": "NAMED",
+        "queryParameters": [{"name": "a", "parameterValue": {"value": "1"}}]}}
+      """#, as: GoogleCloudBigQueryV2.JobConfiguration.self)
+    let converted: GoogleCloudBigQuery.JobConfiguration? = .init(wire: wire)
+    guard case .query(let query) = converted else {
+      Issue.record("expected a query configuration")
+      return
+    }
+    #expect(query.query == "SELECT @a")
+    #expect(query.parameters == nil)
+  }
+}
+
 @Suite struct LoadJobConfigurationTests {
   // Baseline: U.LoadJobConfiguration.01, U.LoadJobConfiguration.03
   @Test func roundTripsEveryField() throws {

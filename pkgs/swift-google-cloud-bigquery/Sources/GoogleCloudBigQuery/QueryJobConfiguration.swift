@@ -16,8 +16,10 @@ import GoogleCloudBigQueryV2
 
 /// The priority of a query job.
 public struct QueryPriority: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
@@ -27,6 +29,7 @@ public struct QueryPriority: RawRepresentable, Sendable, Hashable, CustomStringC
   /// Queue the query until idle resources are available.
   public static let batch = QueryPriority(rawValue: "BATCH")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 
@@ -34,8 +37,10 @@ public struct QueryPriority: RawRepresentable, Sendable, Hashable, CustomStringC
 public struct KeyResultStatementKind: RawRepresentable, Sendable, Hashable,
   CustomStringConvertible
 {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
@@ -45,6 +50,7 @@ public struct KeyResultStatementKind: RawRepresentable, Sendable, Hashable,
   /// The first `SELECT` statement.
   public static let firstSelect = KeyResultStatementKind(rawValue: "FIRST_SELECT")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 
@@ -233,7 +239,12 @@ extension QueryJobConfiguration {
   ) {
     self.init(wire.query)
     if !wire.queryParameters.isEmpty || !wire.parameterMode.isEmpty {
-      self.parameters = Self.parameters(fromWire: wire.queryParameters, mode: wire.parameterMode)
+      // Without a mode, unnamed parameters can only be positional. A parameter the library
+      // can't read leaves `parameters` nil rather than failing the whole job.
+      let unnamed = wire.queryParameters.allSatisfy { $0.name.isEmpty }
+      self.parameters = try? QueryParameters(
+        wire: wire.queryParameters,
+        mode: wire.parameterMode.nonEmpty ?? (unnamed ? "POSITIONAL" : "NAMED"))
     }
     self.defaultDataset = wire.defaultDataset.map(DatasetID.init(wire:))
     self.destinationTable = wire.destinationTable.map(TableID.init(wire:))
@@ -296,21 +307,6 @@ extension QueryJobConfiguration {
 
   /// Converts wire parameters. The wire type and value are kept as they are, so every
   /// parameter type round-trips.
-  private static func parameters(
-    fromWire wire: [GoogleCloudBigQueryV2.QueryParameter], mode: String
-  ) -> QueryParameters {
-    let values = wire.map {
-      QueryParameterValue(
-        type: $0.parameterType ?? GoogleCloudBigQueryV2.QueryParameterType(),
-        value: $0.parameterValue ?? GoogleCloudBigQueryV2.QueryParameterValue())
-    }
-    if mode == "POSITIONAL" || (mode.isEmpty && wire.allSatisfy { $0.name.isEmpty }) {
-      return .positional(values)
-    }
-    return .named(
-      Dictionary(zip(wire.map(\.name), values), uniquingKeysWith: { first, _ in first }))
-  }
-
   func withDefaultProject(_ projectID: String) -> QueryJobConfiguration {
     var copy = self
     copy.defaultDataset = copy.defaultDataset?.withDefaultProject(projectID)

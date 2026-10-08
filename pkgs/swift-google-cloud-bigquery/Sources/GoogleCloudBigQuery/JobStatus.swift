@@ -16,8 +16,10 @@ import GoogleCloudBigQueryV2
 
 /// The lifecycle state of a job.
 public struct JobState: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
@@ -29,6 +31,7 @@ public struct JobState: RawRepresentable, Sendable, Hashable, CustomStringConver
   /// The job finished, successfully or not. Check ``JobStatus/errorResult``.
   public static let done = JobState(rawValue: "DONE")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 

@@ -31,8 +31,10 @@ public enum JobConfiguration: Sendable, Equatable {
 
 /// Whether a job may create its destination table.
 public struct CreateDisposition: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
@@ -42,13 +44,16 @@ public struct CreateDisposition: RawRepresentable, Sendable, Hashable, CustomStr
   /// Fail if the table does not exist.
   public static let createNever = CreateDisposition(rawValue: "CREATE_NEVER")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 
 /// What a job does when its destination table already has data.
 public struct WriteDisposition: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
@@ -62,13 +67,16 @@ public struct WriteDisposition: RawRepresentable, Sendable, Hashable, CustomStri
   /// Fail if the table has data.
   public static let writeEmpty = WriteDisposition(rawValue: "WRITE_EMPTY")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 
 /// A schema change that a load or query job may make to its destination table.
 public struct SchemaUpdateOption: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
@@ -78,6 +86,7 @@ public struct SchemaUpdateOption: RawRepresentable, Sendable, Hashable, CustomSt
   /// Allow relaxing a required field to nullable.
   public static let allowFieldRelaxation = SchemaUpdateOption(rawValue: "ALLOW_FIELD_RELAXATION")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 

@@ -32,8 +32,9 @@ extension BigQueryClient {
   ///   - sql: the GoogleSQL query text.
   ///   - parameters: the query parameters, if any.
   ///   - options: per-call options.
-  /// - Throws: ``BigQueryError`` with kind ``BigQueryError/Kind-swift.struct/job`` if the query
-  ///   fails.
+  /// - Throws: ``BigQueryError`` with kind ``BigQueryError/Kind-swift.struct/job`` if the service
+  ///   rejects the query or the query fails; see
+  ///   ``query(_:jobID:projectID:location:timeout:options:)``.
   public func query(
     _ sql: String,
     parameters: QueryParameters? = nil,
@@ -61,7 +62,13 @@ extension BigQueryClient {
   ///   - options: per-call options.
   /// - Throws: ``BigQueryError`` with kind ``BigQueryError/Kind-swift.struct/job`` if the query
   ///   fails, ``BigQueryError/Kind-swift.struct/timeout`` if `timeout` expires first, or
-  ///   ``BigQueryError/Kind-swift.struct/invalidArgument`` for a dry run.
+  ///   ``BigQueryError/Kind-swift.struct/invalidArgument`` for a dry run. A query fails when the
+  ///   service rejects it, for example for a syntax error or a missing table (HTTP 400, 403, 404
+  ///   or 409, with ``BigQueryError/httpStatusCode`` set), or when its job fails, for example
+  ///   with a runtime `ERROR()`. Either way the kind is the same, whether or not a job ran, so
+  ///   match on ``BigQueryError/reason`` or ``BigQueryError/isNotFound`` for the cause.
+  ///   Authentication failures (401) and exhausted retries keep kind
+  ///   ``BigQueryError/Kind-swift.struct/service``.
   public func query(
     _ configuration: QueryJobConfiguration,
     jobID: JobID? = nil,
@@ -79,10 +86,15 @@ extension BigQueryClient {
         configuration, projectID: projectID ?? self.projectID, location: location ?? self.location,
         timeout: timeout, deadline: deadline, options: options)
     }
-    let job = try await self.insertJob(
-      .query(configuration),
-      id: self.resolve(jobID ?? JobID.random(projectID: projectID, location: location)),
-      generatedID: jobID == nil, selectedFields: nil, options: options)
+    let id = self.resolve(jobID ?? JobID.random(projectID: projectID, location: location))
+    let job: Job
+    do {
+      job = try await self.insertJob(
+        .query(configuration), id: id, generatedID: jobID == nil, selectedFields: nil,
+        options: options)
+    } catch let error as BigQueryError {
+      throw Self.queryFailure(error, job: id)
+    }
     if let failure = job.failure { throw failure }
     return try await self.completedQuery(
       job.id, pageSize: configuration.maxResults, startIndex: nil, deadline: deadline,
@@ -153,6 +165,26 @@ extension BigQueryClient {
   /// How long each `getQueryResults` call asks the service to wait for the query to complete.
   static let queryPollInterval: Duration = .seconds(10)
 
+  /// The HTTP statuses of a `jobs.query` or `jobs.insert` response that reject the query itself.
+  static let queryRejectionStatusCodes: Set<Int> = [400, 403, 404, 409]
+
+  /// Reports `error`, thrown by the `jobs.query` or `jobs.insert` request of a query, as a
+  /// ``BigQueryError/Kind-swift.struct/job`` error if the service rejected the query, so that
+  /// the kind does not depend on whether the query ran as a job. Transport failures, such as
+  /// exhausted retries, are returned unchanged.
+  static func queryFailure(_ error: BigQueryError, job: JobID?) -> BigQueryError {
+    guard error.kind == .service,
+      let status = error.httpStatusCode, Self.queryRejectionStatusCodes.contains(status),
+      !error.errors.contains(where: {
+        $0.reason.map(BigQueryRetryErrors.retryableReasons.contains) ?? false
+      })
+    else { return error }
+    var failure = error
+    failure.kind = .job
+    failure.jobID = error.jobID ?? job
+    return failure
+  }
+
   /// Runs a query through `jobs.query` (design §6.1).
   private func fastQuery(
     _ configuration: QueryJobConfiguration,
@@ -164,23 +196,28 @@ extension BigQueryClient {
   ) async throws -> QueryResult {
     var requestID = UUID().uuidString
     let jobCreationMode = configuration.jobCreationMode ?? self.defaultJobCreationMode
-    let response: GoogleCloudBigQueryV2.QueryResponse = try await self.transport.json(
-      idempotent: true, options: options,
-      request: { _ in
-        let body = configuration.queryRequest(
-          requestID: requestID, location: location, jobCreationMode: jobCreationMode,
-          timeout: timeout, defaultProject: projectID)
-        return HTTPRequest(
-          method: .post,
-          path: "/bigquery/v2/projects/\(HTTPRequest.encode(segment: projectID))/queries",
-          body: try RequestBody.json(body), options: options)
-      },
-      validate: { (response: GoogleCloudBigQueryV2.QueryResponse) in
-        guard response.errors.contains(where: Self.isJobRateLimit) else { return }
-        // The service deduplicates on `requestId`, so a retry must use a new one.
-        requestID = UUID().uuidString
-        throw RequestError.jobRateLimited(response.errors)
-      })
+    let response: GoogleCloudBigQueryV2.QueryResponse
+    do {
+      response = try await self.transport.json(
+        idempotent: true, options: options,
+        request: { _ in
+          let body = configuration.queryRequest(
+            requestID: requestID, location: location, jobCreationMode: jobCreationMode,
+            timeout: timeout, defaultProject: projectID)
+          return HTTPRequest(
+            method: .post,
+            path: "/bigquery/v2/projects/\(HTTPRequest.encode(segment: projectID))/queries",
+            body: try RequestBody.json(body), options: options)
+        },
+        validate: { (response: GoogleCloudBigQueryV2.QueryResponse) in
+          guard response.errors.contains(where: Self.isJobRateLimit) else { return }
+          // The service deduplicates on `requestId`, so a retry must use a new one.
+          requestID = UUID().uuidString
+          throw RequestError.jobRateLimited(response.errors)
+        })
+    } catch let error as BigQueryError {
+      throw Self.queryFailure(error, job: nil)
+    }
     let jobID = response.jobReference.map(JobID.init(wire:))
     if let failure = BigQueryError(job: jobID, errorResult: nil, errors: response.errors) {
       throw failure
@@ -328,15 +365,21 @@ extension BigQueryClient {
 
   /// The rows of a result, starting with `first`. Later pages come from `getQueryResults` on
   /// `jobID`; a `nil` `jobID` means there are no later pages.
+  ///
+  /// - Throws: `RequestError.malformedResponse` if `first` has more pages but there is no job to
+  ///   read them from. The service creates a job for results larger than one page.
   private func rowSequence(
     _ first: QueryPage, jobID: JobID?, pageSize: Int64?, options: RequestOptions
   ) throws -> RowSequence {
     guard let schema = first.schema else {
       return RowSequence(schema: Schema([]), totalRows: first.totalRows, rows: PagedSequence([]))
     }
+    if jobID == nil && first.pageToken != nil {
+      throw RequestError.malformedResponse("query results have more pages but no job reference")
+    }
     let firstPage = Page(
       items: try Row.rows(from: first.rows, schema: schema),
-      nextPageToken: jobID == nil ? nil : first.pageToken)
+      nextPageToken: first.pageToken)
     return RowSequence(
       schema: schema, totalRows: first.totalRows,
       rows: PagedSequence(firstPage: firstPage) { token in

@@ -16,18 +16,26 @@ import GoogleCloudBigQueryV2
 
 /// The compression of extracted files.
 public struct ExtractCompression: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
 
+  /// No compression.
   public static let none = ExtractCompression(rawValue: "NONE")
+  /// GZIP compression.
   public static let gzip = ExtractCompression(rawValue: "GZIP")
+  /// DEFLATE compression (Avro only).
   public static let deflate = ExtractCompression(rawValue: "DEFLATE")
+  /// Snappy compression (Avro and Parquet only).
   public static let snappy = ExtractCompression(rawValue: "SNAPPY")
+  /// Zstandard compression (Parquet only).
   public static let zstd = ExtractCompression(rawValue: "ZSTD")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 

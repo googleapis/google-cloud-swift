@@ -18,8 +18,10 @@ import GoogleCloudBigQueryV2
 public struct ColumnNameCharacterMap: RawRepresentable, Sendable, Hashable,
   CustomStringConvertible
 {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
@@ -31,13 +33,16 @@ public struct ColumnNameCharacterMap: RawRepresentable, Sendable, Hashable,
   /// Flexible column names; more characters are allowed than with ``v1``.
   public static let v2 = ColumnNameCharacterMap(rawValue: "V2")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 
 /// A JSON variant for load jobs.
 public struct JSONExtension: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
@@ -45,6 +50,7 @@ public struct JSONExtension: RawRepresentable, Sendable, Hashable, CustomStringC
   /// Newline-delimited GeoJSON.
   public static let geoJSON = JSONExtension(rawValue: "GEOJSON")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 

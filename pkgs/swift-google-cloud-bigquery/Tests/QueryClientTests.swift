@@ -366,6 +366,19 @@ import Testing
   }
 
   // Design: §6.1
+  @Test func statelessResultWithMorePagesIsMalformed() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(
+      json: JobFixtures.queryResults(
+        id: nil, rows: ["a"], pageToken: "next", extra: #""queryId": "qid""#))
+    var configuration = QueryJobConfiguration("SELECT name FROM t")
+    configuration.jobCreationMode = .optional
+    await #expect(throws: RequestError.self) {
+      try await fake.client().query(configuration)
+    }
+  }
+
+  // Design: §6.1
   @Test func clientDefaultJobCreationModeApplies() async throws {
     let fake = FakeHTTPTransport()
     fake.enqueue(json: JobFixtures.queryResults(id: nil))
@@ -559,5 +572,73 @@ import Testing
     }
     #expect(error?.kind == .job)
     #expect(error?.reason == "resourcesExceeded")
+  }
+
+  // Design: §4.3
+  @Test(arguments: [(400, "invalidQuery"), (403, "accessDenied"), (404, "notFound")])
+  func fastPathRejectedQueryIsAJobError(status: Int, reason: String) async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueueError(status: status, reasons: [reason], message: "rejected")
+    let error = await #expect(throws: BigQueryError.self) {
+      _ = try await fake.client().query("SELECT name FROM t")
+    }
+    #expect(error?.kind == .job)
+    #expect(error?.httpStatusCode == status)
+    #expect(error?.reason == reason)
+    #expect(error?.isNotFound == (reason == "notFound"))
+    #expect(error?.jobID == nil)
+    #expect(fake.requests.count == 1)
+  }
+
+  // Design: §4.3
+  @Test(arguments: [(400, "invalidQuery"), (404, "notFound"), (409, "duplicate")])
+  func slowPathRejectedQueryIsAJobError(status: Int, reason: String) async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueueError(status: status, reasons: [reason], message: "rejected")
+    let error = await #expect(throws: BigQueryError.self) {
+      _ = try await fake.client().query(
+        QueryJobConfiguration("SELECT name FROM t"), jobID: JobID(jobID: "mine"))
+    }
+    #expect(error?.kind == .job)
+    #expect(error?.httpStatusCode == status)
+    #expect(error?.reason == reason)
+    #expect(error?.isNotFound == (reason == "notFound"))
+    #expect(error?.jobID?.jobID == "mine")
+    #expect(fake.requests.count == 1)
+  }
+
+  // Design: §4.3
+  @Test func slowPathMissingTableIsNotFound() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(json: JobFixtures.job(errorReason: "notFound"))
+    let error = await #expect(throws: BigQueryError.self) {
+      _ = try await fake.client().query(self.slowConfiguration())
+    }
+    #expect(error?.kind == .job)
+    #expect(error?.isNotFound == true)
+  }
+
+  // Design: §4.3
+  @Test func authenticationFailureStaysAServiceError() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueueError(status: 401, reasons: ["authError"])
+    fake.enqueueError(status: 401, reasons: ["authError"])
+    for configuration in [QueryJobConfiguration("SELECT 1"), self.slowConfiguration()] {
+      let error = await #expect(throws: BigQueryError.self) {
+        _ = try await fake.client().query(configuration)
+      }
+      #expect(error?.kind == .service)
+      #expect(error?.httpStatusCode == 401)
+    }
+  }
+
+  // Design: §4.3
+  @Test func exhaustedRetriesStayAServiceError() {
+    let rateLimited = BigQueryError(
+      kind: .service, message: "Exceeded rate limits", httpStatusCode: 403,
+      errors: [BigQueryError.Detail(reason: "rateLimitExceeded")])
+    #expect(BigQueryClient.queryFailure(rateLimited, job: nil) == rateLimited)
+    let unavailable = BigQueryError(kind: .service, message: "down", httpStatusCode: 503)
+    #expect(BigQueryClient.queryFailure(unavailable, job: nil) == unavailable)
   }
 }

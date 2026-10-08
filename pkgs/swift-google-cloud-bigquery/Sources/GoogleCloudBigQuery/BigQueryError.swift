@@ -34,7 +34,11 @@ public struct BigQueryError: Error, Sendable, Hashable, CustomStringConvertible 
     /// The service returned an HTTP error status.
     public static let service = Kind(name: "service")
 
-    /// A job or query completed with an error.
+    /// A job or query failed.
+    ///
+    /// This covers a job that completed with an error and a query that the service rejected
+    /// before it ran, for example for a syntax error or a missing table. In the latter case
+    /// ``BigQueryError/httpStatusCode`` is set.
     public static let job = Kind(name: "job")
 
     /// The client rejected an argument before sending a request.

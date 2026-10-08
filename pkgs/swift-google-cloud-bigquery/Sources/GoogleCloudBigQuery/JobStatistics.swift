@@ -107,8 +107,10 @@ public struct TransactionInfo: Sendable, Hashable {
 public struct ScriptStatistics: Sendable, Hashable {
   /// What kind of script element a child job evaluated.
   public struct EvaluationKind: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+    /// The wire value.
     public var rawValue: String
 
+    /// Creates a value from its wire representation.
     public init(rawValue: String) {
       self.rawValue = rawValue
     }
@@ -118,6 +120,7 @@ public struct ScriptStatistics: Sendable, Hashable {
     /// The child job evaluated an expression.
     public static let expression = EvaluationKind(rawValue: "EXPRESSION")
 
+    /// The wire value.
     public var description: String { self.rawValue }
   }
 
@@ -164,27 +167,44 @@ public struct ScriptStatistics: Sendable, Hashable {
 
 /// The type of a query statement, for example `SELECT` or `CREATE_TABLE`.
 public struct StatementType: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+  /// The wire value.
   public var rawValue: String
 
+  /// Creates a value from its wire representation.
   public init(rawValue: String) {
     self.rawValue = rawValue
   }
 
+  /// A `SELECT` query.
   public static let select = StatementType(rawValue: "SELECT")
+  /// An `INSERT` DML statement.
   public static let insert = StatementType(rawValue: "INSERT")
+  /// An `UPDATE` DML statement.
   public static let update = StatementType(rawValue: "UPDATE")
+  /// A `DELETE` DML statement.
   public static let delete = StatementType(rawValue: "DELETE")
+  /// A `MERGE` DML statement.
   public static let merge = StatementType(rawValue: "MERGE")
+  /// A `CREATE TABLE` statement.
   public static let createTable = StatementType(rawValue: "CREATE_TABLE")
+  /// A `CREATE TABLE … AS SELECT` statement.
   public static let createTableAsSelect = StatementType(rawValue: "CREATE_TABLE_AS_SELECT")
+  /// A `CREATE VIEW` statement.
   public static let createView = StatementType(rawValue: "CREATE_VIEW")
+  /// A `CREATE MODEL` statement.
   public static let createModel = StatementType(rawValue: "CREATE_MODEL")
+  /// A `CREATE FUNCTION` statement.
   public static let createFunction = StatementType(rawValue: "CREATE_FUNCTION")
+  /// A `DROP TABLE` statement.
   public static let dropTable = StatementType(rawValue: "DROP_TABLE")
+  /// A `DROP VIEW` statement.
   public static let dropView = StatementType(rawValue: "DROP_VIEW")
+  /// An `ALTER TABLE` statement.
   public static let alterTable = StatementType(rawValue: "ALTER_TABLE")
+  /// A multi-statement script.
   public static let script = StatementType(rawValue: "SCRIPT")
 
+  /// The wire value.
   public var description: String { self.rawValue }
 }
 
@@ -369,23 +389,37 @@ public struct QueryStage: Sendable, Hashable {
   public var shuffleOutputBytesSpilled: Int64?
   /// Slot-milliseconds consumed by the stage.
   public var slotMs: Int64?
-  /// Average and maximum time spent waiting, reading, computing, and writing, in
-  /// milliseconds and as a ratio to the slowest stage.
+  /// Average time any worker spent waiting to be scheduled, in milliseconds.
   public var waitMsAvg: Int64?
+  /// Maximum time any worker spent waiting to be scheduled, in milliseconds.
   public var waitMsMax: Int64?
+  /// Average time spent waiting to be scheduled, as a ratio of the longest phase time.
   public var waitRatioAvg: Double?
+  /// Maximum time spent waiting to be scheduled, as a ratio of the longest phase time.
   public var waitRatioMax: Double?
+  /// Average time any worker spent reading input, in milliseconds.
   public var readMsAvg: Int64?
+  /// Maximum time any worker spent reading input, in milliseconds.
   public var readMsMax: Int64?
+  /// Average time spent reading input, as a ratio of the longest phase time.
   public var readRatioAvg: Double?
+  /// Maximum time spent reading input, as a ratio of the longest phase time.
   public var readRatioMax: Double?
+  /// Average time any worker spent computing, in milliseconds.
   public var computeMsAvg: Int64?
+  /// Maximum time any worker spent computing, in milliseconds.
   public var computeMsMax: Int64?
+  /// Average time spent computing, as a ratio of the longest phase time.
   public var computeRatioAvg: Double?
+  /// Maximum time spent computing, as a ratio of the longest phase time.
   public var computeRatioMax: Double?
+  /// Average time any worker spent writing output, in milliseconds.
   public var writeMsAvg: Int64?
+  /// Maximum time any worker spent writing output, in milliseconds.
   public var writeMsMax: Int64?
+  /// Average time spent writing output, as a ratio of the longest phase time.
   public var writeRatioAvg: Double?
+  /// Maximum time spent writing output, as a ratio of the longest phase time.
   public var writeRatioMax: Double?
 
   /// Creates a query stage.
@@ -430,8 +464,10 @@ public struct TimelineSample: Sendable, Hashable {
 public struct SearchStatistics: Sendable, Hashable {
   /// How a search index was used.
   public struct IndexUsageMode: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+    /// The wire value.
     public var rawValue: String
 
+    /// Creates a value from its wire representation.
     public init(rawValue: String) {
       self.rawValue = rawValue
     }
@@ -443,6 +479,7 @@ public struct SearchStatistics: Sendable, Hashable {
     /// Indexes were used for the whole search.
     public static let fullyUsed = IndexUsageMode(rawValue: "FULLY_USED")
 
+    /// The wire value.
     public var description: String { self.rawValue }
   }
 
@@ -496,8 +533,10 @@ public struct MetadataCacheStatistics: Sendable, Hashable {
 public struct TableMetadataCacheUsage: Sendable, Hashable {
   /// Why the metadata cache was not used.
   public struct UnusedReason: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
+    /// The wire value.
     public var rawValue: String
 
+    /// Creates a value from its wire representation.
     public init(rawValue: String) {
       self.rawValue = rawValue
     }
@@ -510,6 +549,7 @@ public struct TableMetadataCacheUsage: Sendable, Hashable {
     /// Another reason.
     public static let otherReason = UnusedReason(rawValue: "OTHER_REASON")
 
+    /// The wire value.
     public var description: String { self.rawValue }
   }
 

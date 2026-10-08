@@ -127,6 +127,27 @@ struct QueryIntegrationTests {
     #expect(missing?.isNotFound == true)
   }
 
+  // Design: §4.3 — a failing query has the same kind and reason on the fast and slow paths.
+  @Test(arguments: [
+    "SELECT * FROM",
+    "SELECT ERROR('swift runtime failure')",
+    "SELECT * FROM `swift_bq_it_missing_jobs.t`",
+  ])
+  func queryFailuresMatchOnBothPaths(sql: String) async throws {
+    let client = try IntegrationTest.makeClient()
+    let fast = await #expect(throws: BigQueryError.self) {
+      try await client.query(sql)
+    }
+    let slow = await #expect(throws: BigQueryError.self) {
+      try await client.query(QueryJobConfiguration(sql), jobID: JobsIT.jobID())
+    }
+    #expect(fast?.kind == .job)
+    #expect(slow?.kind == .job)
+    #expect(fast?.reason == slow?.reason)
+    #expect(fast?.isNotFound == slow?.isNotFound)
+    #expect(slow?.jobID != nil)
+  }
+
   // Baseline: IT-063, IT-064
   @Test func failingJobsReportTheJobError() async throws {
     let client = try IntegrationTest.makeClient()
@@ -138,7 +159,7 @@ struct QueryIntegrationTests {
             "INSERT INTO \(JobsIT.sql(table)) (name, n) VALUES ('x', CAST('nan' AS INT64))"),
           jobID: JobsIT.jobID())
       }
-      #expect(dml?.kind == .job || dml?.kind == .service)
+      #expect(dml?.kind == .job)
       #expect(dml?.reason == "invalidQuery")
 
       let script = await #expect(throws: BigQueryError.self) {
