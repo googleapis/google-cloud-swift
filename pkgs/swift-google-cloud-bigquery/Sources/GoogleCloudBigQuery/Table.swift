@@ -146,42 +146,38 @@ extension Table {
   ///
   /// Clearing sends an explicit JSON `null` for the property.
   public struct Field: Sendable, Hashable {
-    /// The dot-separated JSON path of the property.
-    let path: String
+    /// The JSON path of the property, one element per object key.
+    let path: [String]
 
     /// ``Table/friendlyName``.
-    public static let friendlyName = Field(path: "friendlyName")
+    public static let friendlyName = Field(path: ["friendlyName"])
     /// ``Table/description``.
-    public static let description = Field(path: "description")
+    public static let description = Field(path: ["description"])
     /// ``Table/expirationTime``: the table no longer expires.
-    public static let expirationTime = Field(path: "expirationTime")
+    public static let expirationTime = Field(path: ["expirationTime"])
     /// All of ``Table/labels``.
-    public static let labels = Field(path: "labels")
+    public static let labels = Field(path: ["labels"])
     /// ``Table/timePartitioning``'s expiration: partitions no longer expire.
-    public static let partitionExpiration = Field(path: "timePartitioning.expirationMs")
+    public static let partitionExpiration = Field(path: ["timePartitioning", "expirationMs"])
     /// ``Table/clustering``: the table is no longer clustered.
-    public static let clustering = Field(path: "clustering")
+    public static let clustering = Field(path: ["clustering"])
     /// ``Table/defaultCollation``.
-    public static let defaultCollation = Field(path: "defaultCollation")
+    public static let defaultCollation = Field(path: ["defaultCollation"])
     /// ``Table/tableConstraints``: removes all keys.
-    public static let tableConstraints = Field(path: "tableConstraints")
+    public static let tableConstraints = Field(path: ["tableConstraints"])
     /// The primary key in ``Table/tableConstraints``.
-    public static let primaryKey = Field(path: "tableConstraints.primaryKey")
+    public static let primaryKey = Field(path: ["tableConstraints", "primaryKey"])
     /// All of ``Table/resourceTags``.
-    public static let resourceTags = Field(path: "resourceTags")
+    public static let resourceTags = Field(path: ["resourceTags"])
 
     /// One key of ``Table/labels``.
     public static func label(_ key: String) -> Field {
-      Field(path: "labels.\(key)")
+      Field(path: ["labels", key])
     }
 
     /// One key of ``Table/resourceTags``.
-    ///
-    /// The key must not contain `.`, which separates JSON path components: for a tag key
-    /// whose parent is a domain-scoped project (`example.com:p/env`), clear all
-    /// ``resourceTags`` and set the others again instead.
     public static func resourceTag(_ key: String) -> Field {
-      Field(path: "resourceTags.\(key)")
+      Field(path: ["resourceTags", key])
     }
   }
 }
@@ -310,7 +306,7 @@ extension Table {
     if defaultRoundingMode == nil { omitting.append("defaultRoundingMode") }
     return try RequestBody.json(
       wire,
-      setting: Dictionary(uniqueKeysWithValues: clearing.map { ($0.path, JSONOverride.null) }),
+      settingPaths: Dictionary(uniqueKeysWithValues: clearing.map { ($0.path, JSONOverride.null) }),
       omitting: omitting)
   }
 

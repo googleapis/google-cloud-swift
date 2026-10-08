@@ -363,11 +363,18 @@ private typealias ExternalDataConfiguration = GoogleCloudBigQuery.ExternalDataCo
   }
 
   // Design: §4 (Table.Field)
-  @Test func clearableFieldsUseJSONPaths() {
-    #expect(Table.Field.friendlyName.path == "friendlyName")
-    #expect(Table.Field.partitionExpiration.path == "timePartitioning.expirationMs")
-    #expect(Table.Field.label("env").path == "labels.env")
-    #expect(Table.Field.resourceTag("123/env").path == "resourceTags.123/env")
-    #expect(Table.Field.primaryKey.path == "tableConstraints.primaryKey")
+  @Test func clearableFieldsUseJSONPaths() throws {
+    #expect(Table.Field.friendlyName.path == ["friendlyName"])
+    #expect(Table.Field.partitionExpiration.path == ["timePartitioning", "expirationMs"])
+    #expect(Table.Field.label("env").path == ["labels", "env"])
+    #expect(Table.Field.primaryKey.path == ["tableConstraints", "primaryKey"])
+
+    // A tag key of a domain-scoped project contains `.` and stays one JSON key.
+    let table = Table(id: TableID(projectID: "p", datasetID: "d", tableID: "t"))
+    let body =
+      try JSONSerialization.jsonObject(
+        with: try table.requestBody(clearing: [.resourceTag("example.com:p/env")])) as? NSDictionary
+    let tags = try #require(body?["resourceTags"] as? NSDictionary)
+    #expect(tags["example.com:p/env"] is NSNull)
   }
 }
