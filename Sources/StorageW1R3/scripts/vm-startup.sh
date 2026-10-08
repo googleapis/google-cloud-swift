@@ -29,8 +29,7 @@ get_attribute() {
   local key="$1"
   local default_val="${2:-}"
   local val
-  val=$(curl -s -f --retry 3 --retry-connrefused --connect-timeout 2 -H "Metadata-Flavor: Google" "http://metadata.google.internal/computeMetadata/v1/instance/attributes/${key}" 2>/dev/null || true)
-  if [[ -n "${val}" ]]; then
+  if val=$(curl -s -f --retry 3 --retry-connrefused --connect-timeout 2 -H "Metadata-Flavor: Google" "http://metadata.google.internal/computeMetadata/v1/instance/attributes/${key}" 2>/dev/null); then
     echo "${val}"
   else
     echo "${default_val}"
@@ -82,7 +81,10 @@ if [[ "${COMPARE_ENABLED}" == "true" || "${ROUNDS}" -gt 1 ]]; then
   MULTI_RUN_SCHEMA=true
 fi
 
-if [[ -z "${BQ_SCHEMA}" && "${BENCHMARK_PRODUCT}" == "StorageW1R3Benchmark" && -z "${BENCHMARK_COMMAND}" ]]; then
+if [[ "${BQ_SCHEMA}" == "none" ]]; then
+  BQ_DATASET=""
+  BQ_SCHEMA=""
+elif [[ -n "${BQ_DATASET}" && -z "${BQ_SCHEMA}" && "${BENCHMARK_PRODUCT}" == "StorageW1R3Benchmark" && -z "${BENCHMARK_COMMAND}" ]]; then
   if [[ "${MULTI_RUN_SCHEMA}" == "true" ]]; then
     BQ_SCHEMA="Variant:STRING,Round:INT64,${DEFAULT_W1R3_SCHEMA}"
   else
