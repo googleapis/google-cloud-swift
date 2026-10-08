@@ -377,7 +377,7 @@ public struct Dataset { id: DatasetID; friendlyName, description, location: Stri
   defaultTableExpiration, defaultPartitionExpiration: Duration?; access: [Acl]?; defaultEncryption…;
   defaultCollation; maxTimeTravel; storageBillingModel; isCaseInsensitive; tags; externalDatasetReference…;
   /* output */ etag, creationTime, lastModifiedTime, selfLink: …? ; struct Field (clearable fields) }
-func createDataset(_ dataset: Dataset, accessPolicyVersion: Int32? = nil, options:) async throws -> Dataset
+@discardableResult func createDataset(_ dataset: Dataset, accessPolicyVersion: Int32? = nil, options:) async throws -> Dataset
 func getDataset(_ id: DatasetID, view: DatasetView? = nil, accessPolicyVersion: Int32? = nil,
                 selectedFields: [String]? = nil, options:) async throws -> Dataset?          // nil on 404
 func listDatasets(projectID: String? = nil, all: Bool = false, filter: String? = nil,
@@ -385,7 +385,7 @@ func listDatasets(projectID: String? = nil, all: Bool = false, filter: String? =
 func updateDataset(_ dataset: Dataset, clearing: Set<Dataset.Field> = [], updateMode: DatasetUpdateMode? = nil,
                    ifMatch etag: String? = nil, options:) async throws -> Dataset            // PATCH
 @discardableResult func deleteDataset(_ id: DatasetID, deleteContents: Bool = false, options:) async throws -> Bool
-// Routine: create/get/list/update(PUT)/delete; Model: get/list/update(PATCH, clearing:)/delete (no create)
+// Routine: @discardableResult create / get / list / update(PUT) / delete; Model: get / list / update(PATCH, clearing:) / delete (no create)
 public struct IAMPolicy { version: Int32?; bindings: [Binding { role, members: [String], condition: Expr? }];
                           etag: Data? }
 func getIAMPolicy(for table: TableID, requestedPolicyVersion: Int32? = nil, options:) async throws -> IAMPolicy
@@ -415,7 +415,7 @@ public struct Table { id: TableID; friendlyName, description: String?; labels; e
   tableConstraints; defaultCollation; resourceTags; biglakeConfiguration…;
   /* output */ type: TableType?, etag, numBytes, numRows, numLongTermBytes, creationTime, lastModifiedTime,
   location, streamingBuffer…; struct Field (clearable) }
-func createTable(_ table: Table, options:) async throws -> Table
+@discardableResult func createTable(_ table: Table, options:) async throws -> Table
 func getTable(_ id: TableID, view: TableMetadataView? = nil, selectedFields: [String]? = nil, options:) async throws -> Table?
 func listTables(in dataset: DatasetID, pageSize: Int? = nil, pageToken: String? = nil, options:) -> PagedSequence<Table>
 func updateTable(_ table: Table, clearing: Set<Table.Field> = [], autodetectSchema: Bool = false,
@@ -434,6 +434,8 @@ public struct Job { id: JobID; configuration: JobConfiguration?; status: JobStat
                     userEmail, etag, selfLink: String? }
 func createJob(_ configuration: JobConfiguration, id: JobID? = nil, selectedFields: [String]? = nil,
                options:) async throws -> Job
+@discardableResult func runJob(_ configuration: JobConfiguration, id: JobID? = nil, timeout: Duration? = nil,
+                               options:) async throws -> Job     // createJob + waitForJob
 func getJob(_ id: JobID, selectedFields: [String]? = nil, options:) async throws -> Job?   // failed job is returned, not thrown
 func listJobs(projectID: String? = nil, allUsers: Bool = false, stateFilter: Set<JobState> = [],
               parentJob: JobID? = nil, minCreationTime: Date? = nil, maxCreationTime: Date? = nil,
@@ -441,16 +443,18 @@ func listJobs(projectID: String? = nil, allUsers: Bool = false, stateFilter: Set
               options:) -> PagedSequence<Job>
 @discardableResult func cancelJob(_ id: JobID, options:) async throws -> Bool
 @discardableResult func deleteJob(_ id: JobID, options:) async throws -> Bool
-func waitForJob(_ id: JobID, timeout: Duration? = nil, options:) async throws -> Job
+@discardableResult func waitForJob(_ id: JobID, timeout: Duration? = nil, options:) async throws -> Job
 //   throws .job on errorResult; timeout only stops waiting (never cancels the job)
 func query(_ configuration: QueryJobConfiguration, jobID: JobID? = nil, projectID: String? = nil,
            location: String? = nil, timeout: Duration? = nil, options:) async throws -> QueryResult
 //   jobID given → slow path with exactly that ID; otherwise projectID/location override the client
 //   defaults for both paths (Java's "JobId without a job name")
-func query(_ sql: String, parameters: QueryParameters? = nil, options:) async throws -> QueryResult
+func query(_ sql: String, parameters: QueryParameters? = nil, pageSize: Int? = nil,
+           options:) async throws -> QueryResult
 func getQueryResults(_ job: JobID, startIndex: UInt64? = nil, pageSize: Int? = nil, options:) async throws -> QueryResult
 func dryRun(_ configuration: QueryJobConfiguration, projectID: String? = nil, location: String? = nil,
             options:) async throws -> QueryDryRunResult       // statistics + schema + referenced tables
+func dryRun(_ sql: String, parameters: QueryParameters? = nil, options:) async throws -> QueryDryRunResult
 func load(_ source: UploadSource, configuration: LoadJobConfiguration, jobID: JobID? = nil,
           chunkSize: Int = 15 << 20, options:) async throws -> Job      // resumable upload (Java writer)
 public struct QueryResult {
