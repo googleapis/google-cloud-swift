@@ -112,8 +112,8 @@ enum IntegrationTest {
 
   /// Deletes test datasets and buckets older than ``staleAge``, left behind by crashed runs.
   ///
-  /// Only resources whose name starts with the test prefix, whose name carries a parseable
-  /// date, and which carry ``label`` are deleted.
+  /// Only datasets that carry ``label`` and buckets whose name starts with ``bucketPrefix`` are
+  /// considered, and only when the name carries a parseable date before yesterday (UTC).
   static func cleanUpStaleResources(_ client: BigQueryClient) async throws {
     let cutoff = Self.dateStamp(Date().addingTimeInterval(-24 * 60 * 60))
     let projectID = client.projectID

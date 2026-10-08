@@ -39,6 +39,8 @@ public struct Row: Sendable, Equatable {
   }
 
   /// The cell at `index`.
+  ///
+  /// - Precondition: `index` is less than `values.count`.
   public subscript(index: Int) -> FieldValue {
     self.values[index]
   }
@@ -82,11 +84,14 @@ extension Row {
   }
 
   /// Converts one row in the BigQuery `{"f": [{"v": ...}]}` format.
+  ///
+  /// `schema` must describe exactly the returned columns, in order. When a request selects a
+  /// subset of the columns (`selectedFields`), pass the schema projected to that subset.
   init(wire: WKTStruct, schema: Schema) throws {
     guard case .array(let cells) = wire["f"] ?? .array([]) else {
       throw malformedRow("row without an \"f\" array")
     }
-    guard cells.count <= schema.fields.count else {
+    guard cells.count == schema.fields.count else {
       throw malformedRow("row has \(cells.count) cells but the schema has \(schema.fields.count)")
     }
     let values = try zip(cells, schema.fields).map { cell, field in

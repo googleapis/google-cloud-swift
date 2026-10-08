@@ -46,7 +46,7 @@ public final class BigQueryClient: Sendable {
 
   /// Creates a client.
   ///
-  /// - Throws: ``BigQueryError`` with kind ``BigQueryError/Kind/invalidArgument`` if no project
+  /// - Throws: ``BigQueryError`` with kind ``BigQueryError/Kind-swift.struct/invalidArgument`` if no project
   ///   can be determined, or an error if the endpoint or credentials are invalid.
   public convenience init(_ options: BigQueryClientOptions = .init()) throws {
     let projectID = try ProjectDiscovery.resolve(

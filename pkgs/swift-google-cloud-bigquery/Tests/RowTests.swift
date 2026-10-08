@@ -101,6 +101,8 @@ import Testing
   // Design: §4.5
   @Test func rejectsMalformedRows() throws {
     #expect(throws: RequestError.self) { try self.row(#"{"f": "x"}"#) }
+    // Fewer cells than columns means the caller passed an unprojected schema.
+    #expect(throws: RequestError.self) { try self.row(#"{"f": [{"v": "a"}]}"#) }
     #expect(throws: RequestError.self) {
       try self.row(
         #"{"f": [{"v": "a"}, {"v": "b"}, {"v": "c"}, {"v": "d"}, {"v": "e"}, {"v": "f"}]}"#)

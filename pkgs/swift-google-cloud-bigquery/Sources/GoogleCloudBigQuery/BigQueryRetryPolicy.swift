@@ -27,7 +27,8 @@ public import GoogleGax
 public struct BigQueryRetryPolicy: Sendable, Equatable {
   let inner: StrictIdempotency<ContinueOnIO<BigQueryRetryErrors>>
 
-  /// Creates a policy without attempt or time limits.
+  /// Creates a policy without attempt or time limits. Same as ``unbounded()``, which mirrors
+  /// `StorageBaseRetryPolicy`.
   public init() {
     self.inner = BigQueryRetryErrors().retryOnIO().strictIdempotency()
   }

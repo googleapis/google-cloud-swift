@@ -28,7 +28,9 @@ public struct BigQueryClientOptions: Sendable {
   ///
   /// Use this to override the endpoint, credentials, retry and backoff policies, or the logger.
   /// If `client.retryPolicy` is `nil` the client uses ``BigQueryRetryPolicy/defaultPolicy``.
-  /// The default `client.attemptTimeout` is 60 seconds.
+  /// The default `client.attemptTimeout` is 60 seconds. Assigning a new `ClientOptions()`
+  /// resets it to the `GoogleGax` default (15 seconds); modify the existing value instead, for
+  /// example `$0.client.endpoint = ...`.
   public var client: GoogleGax.ClientOptions = GoogleGax.ClientOptions().with {
     $0.attemptTimeout = .seconds(60)
   }

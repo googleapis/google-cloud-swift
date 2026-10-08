@@ -23,8 +23,9 @@ import GoogleCloudBigQueryV2
 /// - The client rejects an argument before sending anything
 ///   (``Kind-swift.struct/invalidArgument``).
 ///
-/// Transport, authentication, and retry-exhaustion failures are reported as
-/// `GoogleGax.RequestError`, and cancellation as `CancellationError`.
+/// An HTTP error status is reported as a service error whichever retry limit stopped the retry
+/// loop. Transport and authentication failures, and retry exhaustion after I/O errors, are
+/// reported as `GoogleGax.RequestError`, and cancellation as `CancellationError`.
 public struct BigQueryError: Error, Sendable, Hashable, CustomStringConvertible {
   /// The category of a ``BigQueryError``.
   public struct Kind: Sendable, Hashable, CustomStringConvertible {
@@ -119,7 +120,10 @@ public struct BigQueryError: Error, Sendable, Hashable, CustomStringConvertible 
   /// The location of the first reported error.
   public var location: String? { self.errors.first?.location }
 
-  /// `true` if the error means the resource does not exist.
+  /// `true` if the error means a resource does not exist.
+  ///
+  /// This is `true` for HTTP 404 service errors and for any error whose first reason is
+  /// `notFound`, including job errors such as a query that references a missing table.
   public var isNotFound: Bool { self.httpStatusCode == 404 || self.reason == "notFound" }
 
   public var description: String {

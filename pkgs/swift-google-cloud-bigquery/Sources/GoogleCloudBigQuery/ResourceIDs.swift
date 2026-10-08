@@ -172,30 +172,24 @@ public struct ModelID: Sendable, Hashable, CustomStringConvertible {
 /// Splits `string` into an optional project and `count` trailing components.
 ///
 /// Components are split on `.` from the right, so domain-scoped projects such as
-/// `example.com:project` work. The legacy form `project:dataset[.table]` is also accepted.
+/// `example.com:project` work. The legacy form `project:dataset[.table]` is also accepted,
+/// including with a domain-scoped project (`example.com:project:dataset`).
 func parseResourcePath(_ string: String, count: Int, kind: String) throws -> (String?, [String]) {
-  var components = string.split(separator: ".", omittingEmptySubsequences: false).map(String.init)
-  if components.count == count, let colon = components[0].lastIndex(of: ":") {
-    // Legacy `project:dataset[.table]`.
-    let project = String(components[0][..<colon])
-    components[0] = String(components[0][components[0].index(after: colon)...])
-    components.insert(project, at: 0)
+  let invalid = BigQueryError.invalidArgument("invalid \(kind) ID: \"\(string)\"")
+  if let colon = string.lastIndex(of: ":") {
+    // Legacy `project:dataset[.table]`: exactly `count` components follow the last colon.
+    let rest = string[string.index(after: colon)...]
+      .split(separator: ".", omittingEmptySubsequences: false).map(String.init)
+    if rest.count == count {
+      let project = String(string[..<colon])
+      if project.isEmpty || rest.contains(where: \.isEmpty) { throw invalid }
+      return (project, rest)
+    }
   }
-  if components.contains(where: \.isEmpty) {
-    throw BigQueryError.invalidArgument("invalid \(kind) ID: \"\(string)\"")
-  }
-  let project: String?
-  let parts: [String]
-  if components.count == count {
-    project = nil
-    parts = components
-  } else if components.count > count {
-    project = components.dropLast(count).joined(separator: ".")
-    parts = Array(components.suffix(count))
-  } else {
-    throw BigQueryError.invalidArgument("invalid \(kind) ID: \"\(string)\"")
-  }
-  return (project, parts)
+  let components = string.split(separator: ".", omittingEmptySubsequences: false).map(String.init)
+  if components.count < count || components.contains(where: \.isEmpty) { throw invalid }
+  if components.count == count { return (nil, components) }
+  return (components.dropLast(count).joined(separator: "."), Array(components.suffix(count)))
 }
 
 func joinResourcePath(_ project: String?, _ parts: [String]) -> String {

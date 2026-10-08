@@ -64,6 +64,12 @@ import Testing
       try TableID("example.com:p.d.t")
         == TableID(projectID: "example.com:p", datasetID: "d", tableID: "t"))
     #expect(try TableID("d.t$20240101").tableID == "t$20240101")
+    #expect(
+      try TableID("example.com:p:d.t")
+        == TableID(projectID: "example.com:p", datasetID: "d", tableID: "t"))
+    #expect(
+      try DatasetID("example.com:p:d") == DatasetID(projectID: "example.com:p", datasetID: "d"))
+    #expect(throws: BigQueryError.self) { try TableID(":d.t") }
     #expect(TableID(projectID: "p", datasetID: "d", tableID: "t").description == "p.d.t")
     #expect(
       TableID(dataset: DatasetID(projectID: "p", datasetID: "d"), tableID: "t").dataset
