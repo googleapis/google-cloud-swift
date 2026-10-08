@@ -60,6 +60,7 @@ public struct InsertRow: Sendable, Equatable {
   ///   - insertID: the ID used to drop duplicate rows.
   /// - Throws: `EncodingError` if `value` does not encode to an object, or any error thrown by
   ///   its `encode(to:)` method.
+  @_disfavoredOverload
   public init<T: Encodable>(_ value: T, insertID: String? = nil) throws {
     guard case .object(let json) = try InsertRowEncoder.encode(value) else {
       throw EncodingError.invalidValue(

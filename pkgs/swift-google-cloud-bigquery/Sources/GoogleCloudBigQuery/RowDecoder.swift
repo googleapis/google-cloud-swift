@@ -55,6 +55,8 @@ extension Row {
 extension FieldValue: Decodable {
   /// Decodes the unconverted cell value of a property in ``Row/decode(_:)``.
   ///
+  /// Only supported inside `Row.decode`.
+  ///
   /// - Throws: `DecodingError.typeMismatch` with any decoder other than ``Row/decode(_:)``'s.
   public init(from decoder: any Decoder) throws {
     guard let decoder = decoder as? RowDecoder else {
@@ -70,6 +72,8 @@ extension FieldValue: Decodable {
 
 extension Row: Decodable {
   /// Decodes a `STRUCT` property in ``Row/decode(_:)`` without converting its values.
+  ///
+  /// Only supported inside `Row.decode`.
   ///
   /// - Throws: `DecodingError.typeMismatch` with any decoder other than ``Row/decode(_:)``'s,
   ///   or if the value is not a `STRUCT`.

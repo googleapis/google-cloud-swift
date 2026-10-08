@@ -23,7 +23,9 @@ extension RowSequence {
   /// ```
   ///
   /// Each row is decoded with ``Row/decode(_:)``. Iteration throws the first `DecodingError`.
-  public func decode<T: Decodable>(_ type: T.Type = T.self) -> some AsyncSequence<T, any Error> {
+  public func decode<T: Decodable>(
+    _ type: T.Type = T.self
+  ) -> some AsyncSequence<T, any Error> & Sendable {
     DecodedRowSequence<T>(rows: self)
   }
 }
@@ -32,7 +34,7 @@ extension RowSequence {
 ///
 /// A dedicated sequence rather than `map`, so that no closure captures the metatype of `T`,
 /// which need not be `Sendable`.
-struct DecodedRowSequence<T: Decodable>: AsyncSequence {
+struct DecodedRowSequence<T: Decodable>: AsyncSequence, Sendable {
   let rows: RowSequence
 
   func makeAsyncIterator() -> Iterator {

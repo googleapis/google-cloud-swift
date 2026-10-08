@@ -99,7 +99,7 @@ struct ValuesIntegrationTests {
     tags: ["a", "b"], address: Address(city: "Paris", zip: nil),
     visits: [Address(city: "Oslo", zip: "0150"), Address(city: "Rome", zip: nil)])
 
-  // Baseline: IT-048, IT-123, U.FieldValueList.02
+  // Baseline: IT-048, IT-123, IT-013 (partial), IT-014 (partial), IT-015 (partial), U.FieldValueList.02
   @Test func insertAllRoundTripsEveryType() async throws {
     let client = try IntegrationTest.makeClient()
     try await IntegrationTest.withTemporaryDataset(client, slice: "values") { dataset in
@@ -190,9 +190,9 @@ struct ValuesIntegrationTests {
       )
       let rows = [
         InsertRow(["name": "ok", "n": 1]),
-        try InsertRow(["name": "bad", "n": "not a number"]),
+        InsertRow(["name": "bad", "n": "not a number"]),
         InsertRow(["name": "unknown", "extra": true]),
-        try InsertRow(["n": 2]),
+        InsertRow(["n": 2]),
       ]
       let strict = try await client.insertAll(rows, into: table)
       #expect(Set(strict.rowErrors.keys) == [0, 1, 2, 3])
@@ -204,6 +204,118 @@ struct ValuesIntegrationTests {
       #expect(Set(lenient.rowErrors.keys) == [1, 3])
       #expect(lenient.rowErrors[3]?.first?.reason == "invalid")
     }
+  }
+
+  // Baseline: IT-013, IT-014 (partial), IT-015
+  @Test func jsonIntervalAndRangeColumns() async throws {
+    let client = try IntegrationTest.makeClient()
+    try await IntegrationTest.withTemporaryDataset(client, slice: "values") { dataset in
+      let table = try await Self.createTable(
+        client, dataset, "typed",
+        schema: #"""
+          {"fields": [
+            {"name": "name", "type": "STRING"},
+            {"name": "j", "type": "JSON"},
+            {"name": "iv", "type": "INTERVAL"},
+            {"name": "d", "type": "RANGE", "rangeElementType": {"type": "DATE"}},
+            {"name": "dt", "type": "RANGE", "rangeElementType": {"type": "DATETIME"}},
+            {"name": "ts", "type": "RANGE", "rangeElementType": {"type": "TIMESTAMP"}}
+          ]}
+          """#)
+      let dates = BigQueryRange.date(
+        from: BigQueryDate(year: 2020, month: 1, day: 1),
+        to: BigQueryDate(year: 2020, month: 12, day: 31))
+      let dateTimes = BigQueryRange.dateTime(
+        from: BigQueryDateTime("2020-01-01 12:00:00"), to: BigQueryDateTime("2020-12-31 12:00:00"))
+      let timestamps = BigQueryRange.timestamp(
+        from: Date(timeIntervalSince1970: 1_577_880_000),
+        to: Date(timeIntervalSince1970: 1_609_416_000.5))
+      let response = try await client.insertAll(
+        [
+          InsertRow([
+            "name": "bounded", "j": #"{"class": "student"}"#, "iv": "123-7 -19 0:24:12.000006",
+            "d": .range(dates), "dt": .range(dateTimes), "ts": .range(timestamps),
+          ]),
+          InsertRow([
+            "name": "unbounded", "iv": "P123Y7M-19DT0H24M12.000006S",
+            "d": .range(BigQueryRange(start: nil, end: nil)),
+            "dt": .range(BigQueryRange(start: nil, end: nil)),
+            "ts": .range(BigQueryRange(start: "2020-01-01 00:00:00", end: nil)),
+          ]),
+        ], into: table)
+      try #require(response.rowErrors == [:], "\(response.rowErrors)")
+
+      let bad = try await client.insertAll(
+        [InsertRow(["name": "bad", "j": #"{"class": "#])], into: table)
+      #expect(bad.rowErrors[0]?.first?.reason == "invalid")
+
+      let fqn = "`\(dataset.projectID!).\(dataset.datasetID).typed`"
+      struct Typed: Decodable {
+        var name: String
+        var j: String?
+        var iv: Interval
+        var d: BigQueryRange
+        var dt: BigQueryRange
+        var ts: BigQueryRange
+      }
+      let rows = try await Self.query(client, "SELECT * FROM \(fqn) ORDER BY name").map {
+        try $0.decode(Typed.self)
+      }
+      try #require(rows.count == 2)
+      let interval = Interval(
+        years: 123, months: 7, days: -19, minutes: 24, seconds: 12, nanoseconds: 6000)
+      #expect(rows[0].j == #"{"class":"student"}"#)
+      #expect(rows[0].iv == interval)
+      #expect(rows[0].d == dates)
+      #expect(
+        rows[0].dt
+          == BigQueryRange(
+            start: "2020-01-01T12:00:00", end: "2020-12-31T12:00:00", elementType: .dateTime))
+      #expect(rows[0].ts.elementType == .timestamp)
+      #expect(
+        try rows[0].ts.startValue.timestampValue == Date(timeIntervalSince1970: 1_577_880_000))
+      #expect(
+        try rows[0].ts.endValue.timestampValue == Date(timeIntervalSince1970: 1_609_416_000.5))
+      #expect(rows[1].j == nil)
+      #expect(rows[1].iv == interval)
+      #expect(rows[1].d == BigQueryRange(start: nil, end: nil, elementType: .date))
+      #expect(try rows[1].ts.startValue.timestampMicros == 1_577_836_800_000_000)
+      #expect(rows[1].ts.end == nil)
+
+      // RANGE, INTERVAL and JSON parameters filter the table.
+      let filtered = try await Self.query(
+        client,
+        "SELECT name, JSON_VALUE(j, '$.class') AS class FROM \(fqn)"
+          + " WHERE d = @d AND dt = @dt AND ts = @ts AND iv = @iv"
+          + " AND JSON_VALUE(j, '$.class') = JSON_VALUE(@j, '$.class')",
+        parameters: .named([
+          "d": .range(dates), "dt": .range(dateTimes), "ts": .range(timestamps),
+          "iv": try .interval("P123Y7M-19DT0H24M12.000006S"), "j": .json(#"{"class": "student"}"#),
+        ]))
+      #expect(try filtered.map { try $0["class"]?.stringValue } == ["student"])
+
+      await #expect {
+        _ = try await Self.query(
+          client, "SELECT ? AS j", parameters: .positional([.json(#"{"class" : {"student" : [}"#)]))
+      } throws: { error in
+        (error as? BigQueryError)?.reason == "invalidQuery"
+      }
+    }
+  }
+
+  // Baseline: IT-001, IT-066
+  @Test func timestampsAreLossless() async throws {
+    let client = try IntegrationTest.makeClient()
+    let rows = try await Self.query(
+      client,
+      "SELECT TIMESTAMP '9999-12-31 23:59:59.999999 UTC' AS max,"
+        + " TIMESTAMP '2024-01-02 03:04:05.123456 UTC' AS t, TIMESTAMP '1900-01-01 00:00:00.000001 UTC' AS old"
+    )
+    let row = try #require(rows.first)
+    #expect(try row["max"]?.timestampMicros == 253_402_300_799_999_999)
+    #expect(try row["t"]?.timestampMicros == 1_704_164_645_123_456)
+    #expect(try row["t"]?.timestampValue == Date(timeIntervalSince1970: 1_704_164_645.123456))
+    #expect(try row["old"]?.timestampMicros == -2_208_988_799_999_999)
   }
 
   // MARK: - Query parameters

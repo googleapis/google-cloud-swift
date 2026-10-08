@@ -202,7 +202,7 @@ import Testing
     }
   }
 
-  // Design: §4.5
+  // Design: §4.5, §8
   @Test func rowSequenceDecodesLazily() async throws {
     struct Name: Decodable { var name: String }
     let schema: Schema = [Field("name", .string)]
@@ -212,10 +212,15 @@ import Testing
         Row(schema: schema, values: [.scalar("a")]),
         Row(schema: schema, values: [.scalar("b")]),
       ])
-    var names: [String] = []
-    for try await item in rows.decode(Name.self) {
-      names.append(item.name)
-    }
+    // The decoded sequence is Sendable, so it can cross into a task.
+    let decoded = rows.decode(Name.self)
+    let names = try await Task {
+      var names: [String] = []
+      for try await item in decoded {
+        names.append(item.name)
+      }
+      return names
+    }.value
     #expect(names == ["a", "b"])
   }
 }
