@@ -200,6 +200,13 @@ import Testing
     let res = DeleteObjectRequest().with { $0.ifGenerationMatch = 1 }
       .resolveIdempotency(options: options)
     #expect(res.headers[idempotencyToken] == existingToken)
+
+    let mixedCaseOptions = RequestOptions().with {
+      $0.headers["X-Goog-GCS-Idempotency-Token"] = existingToken
+    }
+    let mixedCaseRes = DeleteObjectRequest().with { $0.ifGenerationMatch = 1 }
+      .resolveIdempotency(options: mixedCaseOptions)
+    #expect(mixedCaseRes.headers.values(for: idempotencyToken) == [existingToken])
   }
 
   @Test func retryStubSharesSameTokenAcrossRetries() async throws {

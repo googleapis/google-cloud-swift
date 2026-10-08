@@ -119,7 +119,7 @@ public final class _GRPCClient: Sendable {
     let authHeaders = try await self.credentials.headers()
     let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
     for (key, value) in customHeaders {
-      metadata.replaceOrAddString(value, forKey: key)
+      metadata.addString(value, forKey: key)
     }
 
     for (key, value) in authHeaders {

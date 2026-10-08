@@ -466,7 +466,9 @@ import Testing
 
       let requestOptions = RequestOptions().with {
         $0.headers["x-goog-gcs-idempotency-token"] = "token-12345"
+        $0.headers["X-Custom-Header"] = "overridden-val"
         $0.headers["x-custom-header"] = "custom-val"
+        $0.headers.append(name: "x-custom-header", value: "custom-val-2")
         $0.headers["authorization"] = "Bearer bad-token"
         $0.headers["x-goog-api-key"] = "bad-key"
         $0.headers["x-goog-user-project"] = "bad-project"
@@ -481,7 +483,7 @@ import Testing
         routingParams: ["foo=bar"]
       )
       #expect(await collector.idempotencyTokens == ["token-12345"])
-      #expect(await collector.customHeaders == ["custom-val"])
+      #expect(await collector.customHeaders == ["custom-val", "custom-val-2"])
       #expect(await collector.authorizations.isEmpty)
       #expect(await collector.apiKeys.isEmpty)
       #expect(await collector.userProjects.isEmpty)

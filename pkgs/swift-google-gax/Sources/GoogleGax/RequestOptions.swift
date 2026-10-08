@@ -114,5 +114,5 @@ public struct RequestOptions: Sendable {
   /// `x-goog-request-params`) and authentication headers (such as `authorization` and `x-goog-api-key`,
   /// or any header returned by the client's credentials) take precedence and cannot be overridden via
   /// `headers`.
-  public var headers: [String: String] = [:]
+  public var headers: HTTPHeaders = HTTPHeaders()
 }

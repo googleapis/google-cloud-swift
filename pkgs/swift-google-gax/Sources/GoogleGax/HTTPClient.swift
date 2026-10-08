@@ -85,7 +85,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
     let authHeaders = try await self.credentials.headers()
     let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
     for (key, value) in customHeaders {
-      request.setHeader(name: key, value: value)
+      request.addHeader(name: key, value: value)
     }
     for (key, value) in authHeaders {
       request.addHeader(name: key, value: value)

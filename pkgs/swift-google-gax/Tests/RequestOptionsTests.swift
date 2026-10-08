@@ -64,13 +64,24 @@ import GoogleAuth
 
   @Test func headers() {
     let got = RequestOptions().with {
+      $0.headers["X-Custom-Header"] = "initial-value"
       $0.headers["x-custom-header"] = "custom-value"
+      $0.headers.append(name: "x-multi-header", value: "val-1")
+      $0.headers.append(name: "x-multi-header", value: "val-2")
     }
     #expect(got.headers["x-custom-header"] == "custom-value")
+    #expect(got.headers["X-CUSTOM-HEADER"] == "custom-value")
+    #expect(got.headers.values(for: "x-custom-header") == ["custom-value"])
+    #expect(got.headers.values(for: "x-multi-header") == ["val-1", "val-2"])
+
+    let fromLiteral = RequestOptions().with {
+      $0.headers = ["x-literal-header": "literal-value"]
+    }
+    #expect(fromLiteral.headers["X-Literal-Header"] == "literal-value")
   }
 
   @Test func sanitizeCustomHeadersStripsReserved() {
-    let input: [String: String] = [
+    let input: HTTPHeaders = [
       "authorization": "Bearer bad",
       "AUTHORIZATION": "Bearer bad-upper",
       "Authorization": "Bearer bad-title",
@@ -94,7 +105,7 @@ import GoogleAuth
   }
 
   @Test func sanitizeCustomHeadersExcludesAuthHeaders() {
-    let input: [String: String] = [
+    let input: HTTPHeaders = [
       "x-custom-future-auth": "custom-value",
       "X-Another-Future-Auth": "another-value",
       "x-legitimate-custom": "legit-val",

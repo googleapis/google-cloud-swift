@@ -128,4 +128,69 @@ import Testing
     let dashed: HTTPHeaders = [("x-a", "1")]
     #expect(dashed["x\ra"] == nil)
   }
+
+  @Test func emptyDictionaryLiteralMatchesDefault() {
+    let headers: HTTPHeaders = [:]
+    #expect(headers.isEmpty)
+    #expect(headers == HTTPHeaders())
+  }
+
+  @Test func dictionaryLiteralPreservesOrder() {
+    let headers: HTTPHeaders = [
+      "Content-Type": "application/json",
+      "X-Request-Id": "abc-123",
+    ]
+    #expect(headers.count == 2)
+    #expect(headers == [("Content-Type", "application/json"), ("X-Request-Id", "abc-123")])
+  }
+
+  @Test func subscriptSetterAppendsAndReplacesCaseInsensitively() {
+    var headers = HTTPHeaders()
+    headers["X-Goog-Custom"] = "first"
+    headers["X-Other"] = "other"
+    #expect(headers == [("X-Goog-Custom", "first"), ("X-Other", "other")])
+
+    headers["x-goog-custom"] = "second"
+    #expect(headers == [("x-goog-custom", "second"), ("X-Other", "other")])
+    #expect(headers["X-GOOG-CUSTOM"] == "second")
+  }
+
+  @Test func subscriptSetterCollapsesDuplicates() {
+    var headers: HTTPHeaders = [
+      ("x-goog-ext", "first"),
+      ("X-Other", "keep"),
+      ("X-Goog-Ext", "second"),
+    ]
+    headers["X-GOOG-EXT"] = "replaced"
+    #expect(headers == [("X-GOOG-EXT", "replaced"), ("X-Other", "keep")])
+  }
+
+  @Test func subscriptSetterNilRemovesAllMatchingCaseInsensitively() {
+    var headers: HTTPHeaders = [
+      ("x-goog-ext", "first"),
+      ("X-Other", "keep"),
+      ("X-Goog-Ext", "second"),
+    ]
+    headers["X-GOOG-EXT"] = nil
+    #expect(headers == [("X-Other", "keep")])
+    #expect(headers["x-goog-ext"] == nil)
+  }
+
+  @Test func appendPreservesDuplicates() {
+    var headers = HTTPHeaders()
+    headers.append(name: "x-goog-ext", value: "first")
+    headers.append(name: "X-Goog-Ext", value: "second")
+    #expect(headers == [("x-goog-ext", "first"), ("X-Goog-Ext", "second")])
+    #expect(headers.values(for: "x-goog-ext") == ["first", "second"])
+  }
+
+  @Test func removeRemovesAllMatchingCaseInsensitively() {
+    var headers: HTTPHeaders = [
+      ("x-goog-ext", "first"),
+      ("X-Other", "keep"),
+      ("X-Goog-Ext", "second"),
+    ]
+    headers.remove(name: "X-GOOG-EXT")
+    #expect(headers == [("X-Other", "keep")])
+  }
 }

@@ -21,11 +21,13 @@
 /// and values exactly. Equality is case-sensitive even though HTTP field names are not, because
 /// the value carries the exact bytes received from the wire. Use ``subscript(_:)``,
 /// ``values(for:)``, or ``contains(name:)`` to look a field up by name case-insensitively.
-public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
+public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral,
+  ExpressibleByDictionaryLiteral
+{
   /// A single header field, as a name-value pair.
   public typealias Element = (name: String, value: String)
 
-  private let storage: [Element]
+  private var storage: [Element]
 
   /// The number of header fields in the collection.
   public var count: Int { self.storage.count }
@@ -52,12 +54,56 @@ public struct HTTPHeaders: Sendable, Equatable, ExpressibleByArrayLiteral {
     self.storage = elements
   }
 
+  /// Creates a collection from a dictionary literal of header fields.
+  ///
+  /// - Parameter elements: The header fields, in wire order.
+  public init(dictionaryLiteral elements: (String, String)...) {
+    self.storage = elements.map { (name: $0.0, value: $0.1) }
+  }
+
+  /// Appends a header field, preserving any existing field with the same name.
+  ///
+  /// - Parameters:
+  ///   - name: The header field name.
+  ///   - value: The header field value.
+  public mutating func append(name: String, value: String) {
+    self.storage.append((name: name, value: value))
+  }
+
+  /// Removes all header fields whose name matches `name`, ignoring case.
+  ///
+  /// - Parameter name: The header field name to remove.
+  public mutating func remove(name: String) {
+    self.storage.removeAll { Self.namesMatch($0.name, name) }
+  }
+
   /// The value of the first field whose name matches `name`, ignoring case.
   ///
-  /// - Parameter name: The header field name to look up.
+  /// Setting a value replaces the first matching field in-place and removes any subsequent fields
+  /// with the same name (ignoring case), or appends a new field if no match exists. Setting `nil`
+  /// removes all matching fields.
+  ///
+  /// - Parameter name: The header field name to look up or set.
   /// - Returns: The matching value, or `nil` when no field has that name.
   public subscript(name: String) -> String? {
-    self.storage.first { Self.namesMatch($0.name, name) }?.value
+    get {
+      self.storage.first { Self.namesMatch($0.name, name) }?.value
+    }
+    set {
+      guard let newValue else {
+        self.remove(name: name)
+        return
+      }
+      if let firstIndex = self.storage.firstIndex(where: { Self.namesMatch($0.name, name) }) {
+        self.storage[firstIndex] = (name: name, value: newValue)
+        for index in self.storage.indices.dropFirst(firstIndex + 1).reversed()
+        where Self.namesMatch(self.storage[index].name, name) {
+          self.storage.remove(at: index)
+        }
+      } else {
+        self.storage.append((name: name, value: newValue))
+      }
+    }
   }
 
   /// The values of every field whose name matches `name`, ignoring case, in order.
