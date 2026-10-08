@@ -48,7 +48,8 @@ import Testing
     let dataRequest = fake.requests[1]
     #expect(dataRequest.method == .get)
     #expect(dataRequest.path == "\(Self.tablePath)/data")
-    #expect(dataRequest.queryValue("formatOptions.useInt64Timestamp") == "true")
+    #expect(dataRequest.queryValue("formatOptions.timestampOutputFormat") == "ISO8601_STRING")
+    #expect(dataRequest.queryValue("formatOptions.useInt64Timestamp") == nil)
     #expect(dataRequest.queryValue("startIndex") == nil)
     #expect(dataRequest.queryValue("maxResults") == nil)
     #expect(fake.requests.count == 2)
@@ -103,7 +104,7 @@ import Testing
     #expect(next.queryValue("startIndex") == nil)
     #expect(next.queryValue("maxResults") == "2")
     #expect(next.queryValue("selectedFields") == "name")
-    #expect(next.queryValue("formatOptions.useInt64Timestamp") == "true")
+    #expect(next.queryValue("formatOptions.timestampOutputFormat") == "ISO8601_STRING")
   }
 
   // Design: §7(g)

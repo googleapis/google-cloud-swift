@@ -376,7 +376,7 @@ extension BigQueryClient {
     options: RequestOptions
   ) async throws -> GoogleCloudBigQueryV2.GetQueryResultsResponse {
     var query = Self.locationQuery(id)
-    query.append(URLQueryItem(name: "formatOptions.useInt64Timestamp", value: "true"))
+    query.append(RowFormat.queryItem)
     if let pageToken { query.append(URLQueryItem(name: "pageToken", value: pageToken)) }
     if let startIndex { query.append(URLQueryItem(name: "startIndex", value: String(startIndex))) }
     if let pageSize { query.append(URLQueryItem(name: "maxResults", value: String(pageSize))) }
