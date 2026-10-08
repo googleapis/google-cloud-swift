@@ -84,7 +84,8 @@ Generic Target / Custom Benchmark Options:
   --product NAME               Swift executable product to build and run (default: StorageW1R3Benchmark)
   --package-path PATH          Relative package path within the repository if building a subpackage
   --command "CMD"              Custom command template to run per execution. Supports placeholders:
-                               {BIN} (path to built executable) and {BUCKET} (GCS test bucket name).
+                               {BIN} (path to built executable), {BUCKET} (GCS test bucket name),
+                               and {PROJECT} (GCP project ID).
                                Extra arguments (--extra-args / --compare-extra-args) are appended.
 
 Execution Lifecycle Options:
@@ -710,6 +711,10 @@ if [[ -n "${BQ_DATASET}" && -n "${EFFECTIVE_BQ_SCHEMA}" ]]; then
   if [[ "${BENCHMARK_PRODUCT}" == "StorageW1R3Benchmark" && -z "${BENCHMARK_COMMAND}" ]]; then
     echo ""
     if [[ "${COMPARE_ENABLED}" == "true" ]]; then
+      BASELINE_SQL_ALIAS="${BASELINE_LABEL//[^A-Za-z0-9_]/_}"
+      [[ "${BASELINE_SQL_ALIAS}" =~ ^[0-9] ]] && BASELINE_SQL_ALIAS="_${BASELINE_SQL_ALIAS}"
+      COMPARE_SQL_ALIAS="${COMPARE_LABEL//[^A-Za-z0-9_]/_}"
+      [[ "${COMPARE_SQL_ALIAS}" =~ ^[0-9] ]] && COMPARE_SQL_ALIAS="_${COMPARE_SQL_ALIAS}"
       echo "Sample BigQuery A/B Comparison Query:"
       cat <<EOF
 WITH stats AS (
@@ -717,7 +722,7 @@ WITH stats AS (
     Operation,
     Variant,
     COUNT(*) AS sample_count,
-    AVG((TransferSize * 8.0) / ElapsedMicroseconds) AS avg_mbps,
+    AVG(SAFE_DIVIDE(TransferSize * 8.0, ElapsedMicroseconds)) AS avg_mbps,
     APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(50)] AS p50_ms,
     APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(90)] AS p90_ms,
     APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(99)] AS p99_ms
@@ -727,16 +732,16 @@ WITH stats AS (
 )
 SELECT
   a.Operation,
-  a.sample_count AS ${BASELINE_LABEL}_samples,
-  b.sample_count AS ${COMPARE_LABEL}_samples,
-  ROUND(a.avg_mbps, 2) AS ${BASELINE_LABEL}_mbps,
-  ROUND(b.avg_mbps, 2) AS ${COMPARE_LABEL}_mbps,
+  a.sample_count AS ${BASELINE_SQL_ALIAS}_samples,
+  b.sample_count AS ${COMPARE_SQL_ALIAS}_samples,
+  ROUND(a.avg_mbps, 2) AS ${BASELINE_SQL_ALIAS}_mbps,
+  ROUND(b.avg_mbps, 2) AS ${COMPARE_SQL_ALIAS}_mbps,
   ROUND(((b.avg_mbps - a.avg_mbps) / NULLIF(a.avg_mbps, 0)) * 100, 2) AS mbps_diff_pct,
-  ROUND(a.p50_ms, 2) AS ${BASELINE_LABEL}_p50_ms,
-  ROUND(b.p50_ms, 2) AS ${COMPARE_LABEL}_p50_ms,
+  ROUND(a.p50_ms, 2) AS ${BASELINE_SQL_ALIAS}_p50_ms,
+  ROUND(b.p50_ms, 2) AS ${COMPARE_SQL_ALIAS}_p50_ms,
   ROUND(((b.p50_ms - a.p50_ms) / NULLIF(a.p50_ms, 0)) * 100, 2) AS p50_diff_pct,
-  ROUND(a.p99_ms, 2) AS ${BASELINE_LABEL}_p99_ms,
-  ROUND(b.p99_ms, 2) AS ${COMPARE_LABEL}_p99_ms,
+  ROUND(a.p99_ms, 2) AS ${BASELINE_SQL_ALIAS}_p99_ms,
+  ROUND(b.p99_ms, 2) AS ${COMPARE_SQL_ALIAS}_p99_ms,
   ROUND(((b.p99_ms - a.p99_ms) / NULLIF(a.p99_ms, 0)) * 100, 2) AS p99_diff_pct
 FROM stats a
 JOIN stats b
@@ -752,7 +757,7 @@ SELECT
   Operation,
   COUNT(*) as sample_count,
   ROUND(AVG(TransferSize / (1024 * 1024)), 2) as avg_size_mib,
-  ROUND(AVG((TransferSize * 8.0) / (ElapsedMicroseconds)), 2) as avg_throughput_mbps,
+  ROUND(AVG(SAFE_DIVIDE(TransferSize * 8.0, ElapsedMicroseconds)), 2) as avg_throughput_mbps,
   APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(50)] as p50_ms,
   APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(90)] as p90_ms,
   APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(99)] as p99_ms

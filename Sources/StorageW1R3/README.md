@@ -125,7 +125,7 @@ You can use the same GCE provisioning and A/B comparison workflow for targets ot
 ```shell
 ./Sources/StorageW1R3/scripts/run-w1r3-gce.sh \
     --product EnduranceRunner \
-    --command "{BIN} --project-id ${GOOGLE_CLOUD_PROJECT}" \
+    --command "{BIN} --project-id {PROJECT}" \
     --no-bq \
     --compare-ref my-optimization-branch \
     --rounds 2
@@ -167,7 +167,7 @@ You can use the same GCE provisioning and A/B comparison workflow for targets ot
 | `--rounds` | `1` (`3` in compare mode) | Number of interleaved execution rounds per variant |
 | `--product` | `StorageW1R3Benchmark` | Swift executable product to build and run |
 | `--package-path` | `""` (root package) | Relative package path if building a subpackage |
-| `--command` | `""` | Custom command template (`{BIN}` and `{BUCKET}` placeholders supported) |
+| `--command` | `""` | Custom command template (`{BIN}`, `{BUCKET}`, and `{PROJECT}` placeholders supported) |
 | `--no-wait` / `--async` | `false` | Launch VM and exit without tailing output |
 | `--keep-vm` / `--no-teardown` | `false` | Prevent VM deletion after benchmark completion |
 
@@ -203,7 +203,7 @@ WITH stats AS (
     Operation,
     Variant,
     COUNT(*) AS sample_count,
-    AVG((TransferSize * 8.0) / ElapsedMicroseconds) AS avg_mbps,
+    AVG(SAFE_DIVIDE(TransferSize * 8.0, ElapsedMicroseconds)) AS avg_mbps,
     APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(50)] AS p50_ms,
     APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(90)] AS p90_ms,
     APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(99)] AS p99_ms
@@ -239,7 +239,7 @@ SELECT
   Operation,
   COUNT(*) as sample_count,
   ROUND(AVG(TransferSize / (1024 * 1024)), 2) as avg_size_mib,
-  ROUND(AVG((TransferSize * 8.0) / ElapsedMicroseconds), 2) as avg_throughput_mbps,
+  ROUND(AVG(SAFE_DIVIDE(TransferSize * 8.0, ElapsedMicroseconds)), 2) as avg_throughput_mbps,
   ROUND(APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(50)], 2) as p50_latency_ms,
   ROUND(APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(90)], 2) as p90_latency_ms,
   ROUND(APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(99)], 2) as p99_latency_ms
@@ -261,7 +261,7 @@ SELECT
     ELSE '>= 8MiB'
   END AS size_bucket,
   COUNT(*) as count,
-  ROUND(AVG((TransferSize * 8.0) / ElapsedMicroseconds), 2) as avg_mbps
+  ROUND(AVG(SAFE_DIVIDE(TransferSize * 8.0, ElapsedMicroseconds)), 2) as avg_mbps
 FROM `<PROJECT_ID>.w1r3.<TABLE_NAME>`
 WHERE Result = 'OK'
 GROUP BY Operation, size_bucket
