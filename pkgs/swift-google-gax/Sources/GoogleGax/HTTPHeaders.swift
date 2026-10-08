@@ -19,7 +19,7 @@
 ///
 /// Two collections are equal when they hold the same fields in the same order, comparing names
 /// and values exactly. Equality is case-sensitive even though HTTP field names are not, because
-/// the value carries the exact bytes received from the wire. Use ``subscript(_:)``,
+/// the value carries the exact bytes sent on or received from the wire. Use ``subscript(_:)``,
 /// ``values(for:)``, or ``contains(name:)`` to look a field up by name case-insensitively.
 public struct HTTPHeaders: Sendable, Equatable {
   /// A single header field, as a name-value pair.
@@ -121,6 +121,8 @@ extension HTTPHeaders: ExpressibleByArrayLiteral {
 
 extension HTTPHeaders: ExpressibleByDictionaryLiteral {
   /// Creates a collection from a dictionary literal of header fields.
+  ///
+  /// Repeated field names (including names that differ only in case) are preserved in wire order.
   ///
   /// - Parameter elements: The header fields, in wire order.
   public init(dictionaryLiteral elements: (String, String)...) {
