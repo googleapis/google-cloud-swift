@@ -423,6 +423,13 @@ libraries:
     copyright_year: "2026"
     swift:
       library_name_override: GoogleBigQueryReservationV1
+  - name: google-cloud-bigquery-v2
+    version: 0.3.0
+    copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudBigQueryV2
+      skipped_ids:
+        - .google.cloud.bigquery.v2.BigtableColumn.qualifier_encoded
   - name: google-cloud-billing-budgets-v1
     version: 0.4.0
     copyright_year: "2026"

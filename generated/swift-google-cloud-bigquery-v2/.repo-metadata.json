@@ -1,0 +1,13 @@
+{
+    "api_description": "A data platform for customers to create, manage, share and query data.",
+    "api_id": "bigquery.googleapis.com",
+    "api_shortname": "bigquery",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-v2/0.3.0/documentation",
+    "distribution_name": "swift-google-cloud-bigquery-v2",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "bigquery",
+    "name_pretty": "BigQuery",
+    "release_level": "preview",
+    "repo": "googleapis/swift-google-cloud-bigquery-v2"
+}

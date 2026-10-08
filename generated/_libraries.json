@@ -395,6 +395,15 @@
       "Product": "BigQuery Reservation API"
     }
   ],
+  "swift-google-cloud-bigquery-v2": [
+    {
+      "PkgName": "swift-google-cloud-bigquery-v2",
+      "Language": "Swift",
+      "DocsURL": "https://swiftpackageindex.com/googleapis/swift-google-cloud-bigquery-v2/0.3.0/documentation",
+      "APIShortname": "bigquery",
+      "Product": "BigQuery API"
+    }
+  ],
   "swift-google-cloud-billing-budgets-v1": [
     {
       "PkgName": "swift-google-cloud-billing-budgets-v1",
