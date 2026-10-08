@@ -133,29 +133,35 @@ public struct Dataset: Sendable, Hashable {
   /// try await client.updateDataset(dataset, clearing: [.description, .label("env")])
   /// ```
   public struct Field: Sendable, Hashable {
-    /// The `.`-separated JSON path of the property in the request body.
-    let path: String
+    /// The segments of the property's JSON path in the request body. A segment may contain
+    /// `.`, for example a resource tag key.
+    let path: [String]
 
     /// ``Dataset/friendlyName``.
-    public static let friendlyName = Field(path: "friendlyName")
+    public static let friendlyName = Field(path: ["friendlyName"])
     /// ``Dataset/description``.
-    public static let description = Field(path: "description")
+    public static let description = Field(path: ["description"])
     /// ``Dataset/defaultTableExpiration``.
-    public static let defaultTableExpiration = Field(path: "defaultTableExpirationMs")
+    public static let defaultTableExpiration = Field(path: ["defaultTableExpirationMs"])
     /// ``Dataset/defaultPartitionExpiration``.
-    public static let defaultPartitionExpiration = Field(path: "defaultPartitionExpirationMs")
+    public static let defaultPartitionExpiration = Field(path: ["defaultPartitionExpirationMs"])
     /// ``Dataset/defaultEncryptionConfiguration``.
     public static let defaultEncryptionConfiguration = Field(
-      path: "defaultEncryptionConfiguration")
+      path: ["defaultEncryptionConfiguration"])
     /// ``Dataset/defaultCollation``.
-    public static let defaultCollation = Field(path: "defaultCollation")
+    public static let defaultCollation = Field(path: ["defaultCollation"])
     /// All of ``Dataset/labels``.
-    public static let labels = Field(path: "labels")
+    public static let labels = Field(path: ["labels"])
     /// All of ``Dataset/resourceTags``.
-    public static let resourceTags = Field(path: "resourceTags")
+    public static let resourceTags = Field(path: ["resourceTags"])
 
     /// One label, by key.
-    public static func label(_ key: String) -> Field { Field(path: "labels.\(key)") }
+    public static func label(_ key: String) -> Field { Field(path: ["labels", key]) }
+
+    /// One resource tag, by namespaced tag key, for example `12345/environment`.
+    public static func resourceTag(_ key: String) -> Field {
+      Field(path: ["resourceTags", key])
+    }
   }
 
   /// How a dataset's storage is billed.

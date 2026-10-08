@@ -72,7 +72,9 @@ public struct Acl: Sendable, Hashable {
   /// Who or what is granted access.
   ///
   /// Use the static factories to create an entity, and the optional accessors to inspect one.
-  /// Exactly one accessor returns a value.
+  /// Exactly one accessor returns a value, except for an entry of a kind that this version of
+  /// the library does not know. Such an entry is read without its entity and cannot be written
+  /// back, so remove it from ``Dataset/access`` before passing the list to an update.
   public struct Entity: Sendable, Hashable {
     enum Value: Sendable, Hashable {
       case user(String)

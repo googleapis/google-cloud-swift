@@ -71,7 +71,7 @@ import Testing
     #expect(self.fake.requests.first?.queryValue("accessPolicyVersion") == "3")
   }
 
-  // Baseline: U.BigQueryImpl.05
+  // Baseline: U.BigQueryImpl.05, U.Dataset.02
   @Test func getFillsMissingProjectAndKeepsExplicitProject() async throws {
     let client = self.fake.client()
     self.fake.enqueue(json: self.datasetJSON)
@@ -97,7 +97,7 @@ import Testing
     #expect(request.queryValue("accessPolicyVersion") == "3")
   }
 
-  // Baseline: U.BigQueryImpl.06 (datasets); Design: §5.3
+  // Baseline: U.BigQueryImpl.06 (datasets), U.Dataset.02; Design: §5.3
   @Test func getReturnsNilOnNotFound() async throws {
     self.fake.enqueueError(status: 404, reasons: ["notFound"])
     #expect(try await self.fake.client().getDataset(DatasetID(datasetID: "d")) == nil)
@@ -164,7 +164,7 @@ import Testing
     #expect(count == 0)
   }
 
-  // Baseline: U.BigQueryImpl.09
+  // Baseline: U.BigQueryImpl.09, U.Dataset.02
   @Test func deleteReturnsTrue() async throws {
     let client = self.fake.client()
     self.fake.enqueue(status: 204, json: "")
@@ -179,7 +179,7 @@ import Testing
     #expect(self.fake.requests.first?.queryValue("deleteContents") == nil)
   }
 
-  // Design: §5.3
+  // Baseline: U.Dataset.02; Design: §5.3
   @Test func deleteReturnsFalseOnNotFound() async throws {
     self.fake.enqueueError(status: 404, reasons: ["notFound"])
     #expect(try await self.fake.client().deleteDataset(DatasetID(datasetID: "d")) == false)
@@ -192,7 +192,7 @@ import Testing
     #expect(self.fake.requests.first?.queryValue("deleteContents") == "true")
   }
 
-  // Baseline: U.BigQueryImpl.11
+  // Baseline: U.BigQueryImpl.11, U.Dataset.02
   @Test func updatePatchesWithClientProject() async throws {
     self.fake.enqueue(json: self.datasetJSON)
     _ = try await self.fake.client().updateDataset(
@@ -279,5 +279,43 @@ import Testing
     self.fake.enqueue(status: 204, json: "")
     #expect(try await client.deleteDataset(DatasetID(datasetID: "d")))
     #expect(self.fake.requests.count == 6)
+  }
+
+  // Baseline: U.BigQueryImpl.59
+  @Test func getRetries500AndKeepsMessageOf501() async throws {
+    let client = self.fake.client()
+    self.fake.enqueueError(status: 500, message: "internal")
+    self.fake.enqueue(json: self.datasetJSON)
+    #expect(try await client.getDataset(DatasetID(datasetID: "d")) != nil)
+    #expect(self.fake.requests.count == 2)
+
+    self.fake.enqueueError(status: 501, message: "not implemented")
+    let error = await #expect(throws: BigQueryError.self) {
+      try await client.getDataset(DatasetID(datasetID: "d"))
+    }
+    #expect(self.fake.requests.count == 3)
+    #expect(error?.httpStatusCode == 501)
+    #expect(error?.message == "not implemented")
+  }
+
+  // Baseline: U.Dataset.03
+  @Test func tableOfDatasetInAnotherProjectUsesThatProject() async throws {
+    let dataset = DatasetID(projectID: "other", datasetID: "d")
+    self.fake.enqueue(
+      json: #"{"tableReference": {"projectId": "other", "datasetId": "d", "tableId": "t"}}"#)
+    let table = try await self.fake.client().getTable(
+      TableID(projectID: dataset.projectID, datasetID: dataset.datasetID, tableID: "t"))
+    #expect(self.fake.requests.first?.path == "/bigquery/v2/projects/other/datasets/d/tables/t")
+    #expect(table?.id == TableID(projectID: "other", datasetID: "d", tableID: "t"))
+  }
+
+  // Design: §5.4
+  @Test func clearingResourceTagKeepsDotsInKey() async throws {
+    self.fake.enqueue(json: self.datasetJSON)
+    _ = try await self.fake.client().updateDataset(
+      Dataset(id: DatasetID(datasetID: "d")),
+      clearing: [.resourceTag("example.com:project/env")])
+    let tags = try self.fake.requests[0].jsonBody()["resourceTags"] as? [String: Any]
+    #expect(tags?["example.com:project/env"] is NSNull)
   }
 }

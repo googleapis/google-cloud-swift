@@ -99,7 +99,9 @@ extension BigQueryClient {
   ///
   /// Unlike the other updates, this is a full replacement: properties that are `nil` in
   /// `routine` are removed. Start from the routine returned by
-  /// ``getRoutine(_:selectedFields:options:)`` and change what you need.
+  /// ``getRoutine(_:selectedFields:options:)`` and change what you need. Routine settings
+  /// that ``Routine`` does not model (for example `securityMode`, `strictMode`, Spark or
+  /// Python options) are not sent either, so the update resets them.
   ///
   /// The request is retried only when `etag` is given, because a retried PUT could otherwise
   /// overwrite a concurrent change.
