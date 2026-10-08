@@ -38,7 +38,7 @@ struct TableIntegrationTests {
       tableID: "\(suffix)\(IntegrationTest.randomHex())")
   }
 
-  // Baseline: IT-026, IT-028, IT-029, IT-030, IT-031, IT-046
+  // Baseline: IT-011, IT-026, IT-028, IT-029, IT-030, IT-031, IT-046
   @Test func createGetAndDeleteTable() async throws {
     let client = try IntegrationTest.makeClient()
     try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice) { dataset in
@@ -122,7 +122,7 @@ struct TableIntegrationTests {
     }
   }
 
-  // Baseline: IT-027, IT-039, IT-040, IT-041
+  // Baseline: IT-012, IT-027, IT-039, IT-040, IT-041
   @Test func listTablesSurfacesPartitioning() async throws {
     let client = try IntegrationTest.makeClient()
     try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice) { dataset in
@@ -366,7 +366,7 @@ struct TableIntegrationTests {
     }
   }
 
-  // Baseline: IT-165, IT-166, IT-167, IT-168
+  // Baseline: IT-016, IT-165, IT-166, IT-167, IT-168
   @Test func primaryAndForeignKeys() async throws {
     let client = try IntegrationTest.makeClient()
     try await IntegrationTest.withTemporaryDataset(client, slice: Self.slice) { dataset in
