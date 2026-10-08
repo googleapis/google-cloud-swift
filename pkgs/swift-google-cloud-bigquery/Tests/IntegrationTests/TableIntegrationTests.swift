@@ -155,7 +155,7 @@ struct TableIntegrationTests {
       let rows = try await client.listRows(in: table.id, schema: schema).collect()
       #expect(rows.count == 2)
       for row in rows {
-        #expect(try row["s"]?.stringValue == "FOO")
+        #expect(row["s"]?.stringValue == "FOO")
       }
     }
   }
@@ -267,9 +267,9 @@ struct TableIntegrationTests {
       #expect(viewResult.jobID != nil)
       let viewRows = try await viewResult.rows.collect()
       #expect(viewRows.count == 2)
-      #expect(try viewRows[0]["name"]?.stringValue == "a")
+      #expect(viewRows[0]["name"]?.stringValue == "a")
       #expect(try viewRows[0]["n"]?.int64Value == 1)
-      #expect(try viewRows[1]["name"]?.stringValue == "b")
+      #expect(viewRows[1]["name"]?.stringValue == "b")
       #expect(try viewRows[1]["n"]?.int64Value == 2)
 
       var materialized = Table(id: Self.tableID(dataset, "mv_"))
@@ -609,18 +609,18 @@ struct TableIntegrationTests {
       #expect(rows.count == 2)
       for row in rows {
         #expect(try row["TimestampField"]?.timestampMicros == 1_408_452_095_220_000)
-        #expect(try row["StringField"]?.stringValue == "stringValue")
+        #expect(row["StringField"]?.stringValue == "stringValue")
         #expect(try row["IntegerArrayField"]?.arrayValue?.map { try $0.int64Value } == [0, 1])
         #expect(try row["BooleanField"]?.boolValue == false)
         #expect(try row["BytesField"]?.bytesValue == Data([1, 2, 3]))
-        let record = try #require(try row["RecordField"]?.recordValue)
+        let record = try #require(row["RecordField"]?.recordValue)
         #expect(try record["TimestampField"]?.timestampMicros == -14_182_916_000_000)
         #expect(record["StringField"]?.isNull == true)
         #expect(try record["IntegerArrayField"]?.arrayValue?.map { try $0.int64Value } == [1, 0])
         #expect(try record["BooleanField"]?.boolValue == true)
         #expect(try row["IntegerField"]?.int64Value == 3)
         #expect(try row["FloatField"]?.doubleValue == 1.2)
-        #expect(try row["GeographyField"]?.geographyValue == "POINT(-122.35022 47.649154)")
+        #expect(row["GeographyField"]?.geographyValue == "POINT(-122.35022 47.649154)")
         #expect(try row["NumericField"]?.numericValue == Decimal(string: "123456.789012345"))
       }
     }

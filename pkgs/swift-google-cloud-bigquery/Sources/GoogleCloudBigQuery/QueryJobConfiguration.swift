@@ -205,9 +205,7 @@ extension QueryJobConfiguration {
       $0.query = self.query
       $0.requestId = requestID
       $0.useLegacySql = false
-      $0.formatOptions = GoogleCloudBigQueryV2.DataFormatOptions().with {
-        $0.useInt64Timestamp = true
-      }
+      $0.formatOptions = RowFormat.formatOptions
       $0.location = location ?? ""
       if let jobCreationMode {
         $0.jobCreationMode = .init(stringValue: jobCreationMode.rawValue)

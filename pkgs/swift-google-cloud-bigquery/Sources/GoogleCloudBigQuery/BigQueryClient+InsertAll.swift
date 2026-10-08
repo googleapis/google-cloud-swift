@@ -78,4 +78,45 @@ extension BigQueryClient {
       request, idempotent: wireRows.allSatisfy { $0.insertId != nil })
     return InsertAllResponse(wire: response)
   }
+
+  /// Streams `Encodable` values into a table (`tabledata.insertAll`), one row per value.
+  ///
+  /// ```swift
+  /// struct Person: Encodable { var name: String; var age: Int }
+  /// let response = try await client.insertAll(
+  ///   [Person(name: "Ana", age: 31), Person(name: "Bo", age: 27)],
+  ///   into: TableID(datasetID: "people", tableID: "members"))
+  /// ```
+  ///
+  /// Each value is converted as `InsertRow(_:)` does for `Encodable` values, without an insert
+  /// ID. Otherwise this is the same as inserting `[InsertRow]`.
+  ///
+  /// - Parameters:
+  ///   - values: the rows to insert, each encoding to an object whose keys are column names.
+  ///   - table: the destination table. A table without a project uses the client project.
+  ///   - skipInvalidRows: insert the valid rows even if some rows are invalid. When `false`,
+  ///     one invalid row fails the whole request.
+  ///   - ignoreUnknownValues: accept rows with values for columns that are not in the schema,
+  ///     dropping those values. When `false`, such rows are invalid.
+  ///   - templateSuffix: if set, insert into the table named `table.tableID + templateSuffix`,
+  ///     creating it with `table`'s schema if it does not exist.
+  ///   - insertIDs: whether to generate insert IDs for the rows.
+  ///   - options: per-request options.
+  /// - Returns: the errors of the rows that failed.
+  /// - Throws: `EncodingError` if a value cannot be converted, before sending anything;
+  ///   ``BigQueryError`` if the request fails.
+  public func insertAll<T: Encodable>(
+    _ values: some Sequence<T>,
+    into table: TableID,
+    skipInvalidRows: Bool = false,
+    ignoreUnknownValues: Bool = false,
+    templateSuffix: String? = nil,
+    insertIDs: InsertIDPolicy = .generateMissing,
+    options: RequestOptions = .init()
+  ) async throws -> InsertAllResponse {
+    try await self.insertAll(
+      values.map { try InsertRow($0) }, into: table, skipInvalidRows: skipInvalidRows,
+      ignoreUnknownValues: ignoreUnknownValues, templateSuffix: templateSuffix,
+      insertIDs: insertIDs, options: options)
+  }
 }

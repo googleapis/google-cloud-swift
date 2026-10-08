@@ -53,6 +53,16 @@ extension QueryParameterValue {
       scalar: .timestamp, Timestamp.format(micros: micros, separator: " ", suffix: "+00:00"))
   }
 
+  /// A `TIMESTAMP` value.
+  ///
+  /// > Note: BigQuery truncates `TIMESTAMP` query parameters to microseconds on the server. When
+  /// > comparing against a `TIMESTAMP(12)` column, either cast the parameter in SQL with
+  /// > `CAST(@param AS TIMESTAMP(12))` (which preserves microseconds) or pass `value.description`
+  /// > as a `.string(...)` parameter with `CAST(@param AS TIMESTAMP(12))` to preserve picoseconds.
+  public static func timestamp(_ value: BigQueryTimestamp) -> QueryParameterValue {
+    QueryParameterValue(scalar: .timestamp, value.format(separator: " ", suffix: "+00:00"))
+  }
+
   /// A `TIMESTAMP` value from a timestamp literal, sent unchanged.
   ///
   /// The text must have the form `YYYY-MM-DD HH:MM[:SS[.F]][zone]`, with up to 12 fractional

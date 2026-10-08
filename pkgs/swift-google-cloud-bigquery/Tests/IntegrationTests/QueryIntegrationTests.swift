@@ -178,17 +178,21 @@ struct QueryIntegrationTests {
   // Baseline: IT-065
   @Test func timestampsAreMicrosecondsSinceTheEpoch() async throws {
     let client = try IntegrationTest.makeClient()
-    let values = try await JobsIT.column(
-      client, "SELECT TIMESTAMP '2024-01-01 00:00:00.123456 UTC' AS ts", "ts")
-    #expect(values == ["1704067200123456"])
+    let rows = try await client.query("SELECT TIMESTAMP '2024-01-01 00:00:00.123456 UTC' AS ts")
+      .rows.collect()
+    let row = try #require(rows.first)
+    #expect(row["ts"]?.stringValue == "2024-01-01T00:00:00.123456Z")
+    #expect(try row["ts"]?.timestampMicros == 1_704_067_200_123_456)
   }
 
   // Baseline: IT-001, IT-066
   @Test func maximumTimestampIsLossless() async throws {
     let client = try IntegrationTest.makeClient()
-    let values = try await JobsIT.column(
-      client, "SELECT TIMESTAMP '9999-12-31 23:59:59.999999 UTC' AS ts", "ts")
-    #expect(values == ["253402300799999999"])
+    let rows = try await client.query("SELECT TIMESTAMP '9999-12-31 23:59:59.999999 UTC' AS ts")
+      .rows.collect()
+    let row = try #require(rows.first)
+    #expect(row["ts"]?.stringValue == "9999-12-31T23:59:59.999999Z")
+    #expect(try row["ts"]?.timestampMicros == 253_402_300_799_999_999)
   }
 
   // Baseline: IT-106

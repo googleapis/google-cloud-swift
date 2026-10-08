@@ -476,16 +476,20 @@ import Testing
     #expect(request.useLegacySql == false)
   }
 
-  // Baseline: U.QueryRequestInfo.03, U.BigQueryOptions.03
-  @Test func everyQueryRequestAsksForInt64Timestamps() async throws {
+  // Baseline: U.QueryRequestInfo.03, U.BigQueryOptions.02, U.BigQueryOptions.03
+  @Test func everyQueryRequestAsksForISO8601Timestamps() async throws {
     let fake = FakeHTTPTransport()
     fake.enqueue(json: JobFixtures.queryResults(rows: ["a"], pageToken: "t"))
     fake.enqueue(json: JobFixtures.queryResults(rows: ["b"]))
     let result = try await fake.client().query("SELECT name FROM t")
     _ = try await result.rows.collect()
     let body = try fake.requests[0].jsonBody()
-    #expect((body["formatOptions"] as? [String: Any])?["useInt64Timestamp"] as? Bool == true)
-    #expect(fake.requests[1].queryValue("formatOptions.useInt64Timestamp") == "true")
+    let formatOptions = body["formatOptions"] as? [String: Any]
+    #expect(formatOptions?["timestampOutputFormat"] as? String == "ISO8601_STRING")
+    #expect(formatOptions?["useInt64Timestamp"] as? Bool == false)
+    #expect(
+      fake.requests[1].queryValue("formatOptions.timestampOutputFormat") == "ISO8601_STRING")
+    #expect(fake.requests[1].queryValue("formatOptions.useInt64Timestamp") == nil)
   }
 
   // Baseline: U.TableResult.01

@@ -59,7 +59,7 @@ extension BigQueryClient {
     let transport = self.transport
     let path = Self.tableResourcePath(id) + "/data"
     let fetch = { @Sendable (token: String?, startIndex: UInt64?) async throws -> TableDataList in
-      var query = [URLQueryItem(name: "formatOptions.useInt64Timestamp", value: "true")]
+      var query = [RowFormat.queryItem]
       if let pageSize { query.append(URLQueryItem(name: "maxResults", value: String(pageSize))) }
       if let token { query.append(URLQueryItem(name: "pageToken", value: token)) }
       if let startIndex {

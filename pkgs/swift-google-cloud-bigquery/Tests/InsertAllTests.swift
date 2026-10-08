@@ -132,6 +132,7 @@ private func jsonText(_ row: InsertRow) throws -> String {
             time: BigQueryTime(hour: 1, minute: 2, second: 3))),
         "interval": .interval(Interval(months: 1, days: 0, time: .zero)),
         "range": .range(.date(from: BigQueryDate(year: 2024, month: 1, day: 1), to: nil)),
+        "picos": .timestamp(BigQueryTimestamp("2025-01-01T12:34:56.123456789123Z")!),
         "nan": .float64(.nan),
       ])
     #expect(row.insertID == nil)
@@ -139,8 +140,15 @@ private func jsonText(_ row: InsertRow) throws -> String {
       try jsonText(row)
         == #"{"array":[1,2],"bigNumeric":"2.5","bool":false,"bytes":"AQM=","date":"2024-01-02","#
         + #""dateTime":"2024-01-02 01:02:03","double":1.5,"int":42,"interval":"0-1 0 0:0:0","nan":"NaN","#
-        + #""numeric":"1.25","range":{"start":"2024-01-01"},"record":{"nested":"n"},"string":"s","#
-        + #""time":"01:02:03","timestamp":"1970-01-01T00:00:00.000001Z"}"#)
+        + #""numeric":"1.25","picos":"2025-01-01T12:34:56.123456789123Z","range":{"start":"2024-01-01"},"#
+        + #""record":{"nested":"n"},"string":"s","time":"01:02:03","timestamp":"1970-01-01T00:00:00.000001Z"}"#
+    )
+    struct Event: Encodable {
+      var ts: BigQueryTimestamp
+    }
+    let encodedRow = try InsertRow(
+      Event(ts: BigQueryTimestamp("2025-01-01T12:34:56.123456789123Z")!))
+    #expect(try jsonText(encodedRow) == #"{"ts":"2025-01-01T12:34:56.123456789123Z"}"#)
   }
 }
 
@@ -263,5 +271,38 @@ private func jsonText(_ row: InsertRow) throws -> String {
     let rows = try fake.requests[0].jsonBody()["rows"] as? [[String: Any]] ?? []
     #expect(rows.count == 2)
     #expect(rows[1]["insertId"] == nil)
+  }
+
+  // Design: §4.7
+  @Test func encodableValuesAreSentAsRowsWithGeneratedInsertIDs() async throws {
+    struct Person: Encodable {
+      var name: String
+      var age: Int?
+    }
+    let fake = FakeHTTPTransport()
+    fake.enqueue(json: "{}")
+    _ = try await fake.client().insertAll(
+      [Person(name: "Ana", age: 31), Person(name: "Bo", age: nil)], into: self.table,
+      skipInvalidRows: true)
+    let body = try #require(fake.requests.first).jsonBody()
+    #expect(body["skipInvalidRows"] as? Bool == true)
+    let rows = try #require(body["rows"] as? [[String: Any]])
+    #expect(rows.count == 2)
+    let first = try #require(rows[0]["json"] as? [String: Any])
+    #expect(first["name"] as? String == "Ana")
+    #expect(first["age"] as? Int == 31)
+    let second = try #require(rows[1]["json"] as? [String: Any])
+    #expect(second["name"] as? String == "Bo")
+    #expect(second["age"] == nil)
+    #expect(rows.allSatisfy { UUID(uuidString: $0["insertId"] as? String ?? "") != nil })
+  }
+
+  // Design: §4.7
+  @Test func encodableValuesThatAreNotObjectsFailBeforeSending() async throws {
+    let fake = FakeHTTPTransport()
+    await #expect(throws: EncodingError.self) {
+      try await fake.client().insertAll(["not an object"], into: self.table)
+    }
+    #expect(fake.requests.isEmpty)
   }
 }
