@@ -26,9 +26,9 @@ public import Foundation
 /// try await client.createRoutine(routine)
 /// ```
 ///
-/// ``BigQueryClient/updateRoutine(_:ifMatch:options:)`` replaces the whole routine, so pass
-/// every property you want to keep. The output-only properties (``etag``, ``creationTime``,
-/// and ``lastModifiedTime``) are ignored on create and update.
+/// ``BigQueryClient/updateRoutine(_:selectedFields:ifMatch:options:)`` replaces the whole
+/// routine, so pass every property you want to keep. The output-only properties (``etag``,
+/// ``creationTime``, and ``lastModifiedTime``) are ignored on create and update.
 public struct Routine: Sendable, Hashable {
   /// The routine ID. A `nil` project means the client's project.
   public var id: RoutineID
