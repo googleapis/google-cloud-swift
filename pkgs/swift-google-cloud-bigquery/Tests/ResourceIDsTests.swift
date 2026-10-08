@@ -146,14 +146,14 @@ import Testing
     #expect(JobID(jobID: "j").description == "j")
   }
 
-  // Design: §4.9
+  // Baseline: U.JobId.01, U.JobId.02
   @Test func wireRoundTripKeepsLocation() {
     let id = JobID(projectID: "p", jobID: "j", location: "EU")
     #expect(id.wire.location == "EU")
     #expect(JobID(wire: id.wire) == id)
   }
 
-  // Design: §4.9
+  // Baseline: U.JobId.03
   @Test func clientFillsMissingProjectAndLocation() {
     let client = FakeHTTPTransport().client(projectID: "p", location: "asia-northeast1")
     #expect(

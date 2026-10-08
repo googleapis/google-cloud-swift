@@ -160,7 +160,7 @@ import Testing
     #expect(fake.requests.first?.query.isEmpty == true)
   }
 
-  // Baseline: U.BigQueryException.01
+  // Baseline: U.BigQueryException.01, U.BigQueryImpl.15
   @Test func retriesIdempotentRequestUntilSuccess() async throws {
     let fake = FakeHTTPTransport()
     fake.enqueueError(status: 503)
