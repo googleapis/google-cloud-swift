@@ -120,13 +120,17 @@ import Testing
 
   @Test func lookupFoldsOnlyASCIICase() {
     // Unicode case folding maps "İ" (U+0130) toward "i"; ASCII folding must keep them distinct.
-    let headers: HTTPHeaders = [("i", "1")]
+    var headers: HTTPHeaders = [("i", "1")]
     #expect(headers["İ"] == nil)
+    headers["İ"] = "2"
+    #expect(headers == [("i", "1"), ("İ", "2")])
 
     // "-" (0x2D) and a carriage return (0x0D) differ only in the bit that distinguishes ASCII
     // letter case, so they must not be folded together either.
-    let dashed: HTTPHeaders = [("x-a", "1")]
+    var dashed: HTTPHeaders = [("x-a", "1")]
     #expect(dashed["x\ra"] == nil)
+    dashed["x\ra"] = "2"
+    #expect(dashed == [("x-a", "1"), ("x\ra", "2")])
   }
 
   @Test func emptyDictionaryLiteralMatchesDefault() {
@@ -135,13 +139,21 @@ import Testing
     #expect(headers == HTTPHeaders())
   }
 
-  @Test func dictionaryLiteralPreservesOrder() {
+  @Test func dictionaryLiteralPreservesOrderAndDuplicates() {
     let headers: HTTPHeaders = [
       "Content-Type": "application/json",
       "X-Request-Id": "abc-123",
+      "x-request-id": "def-456",
     ]
-    #expect(headers.count == 2)
-    #expect(headers == [("Content-Type", "application/json"), ("X-Request-Id", "abc-123")])
+    #expect(headers.count == 3)
+    #expect(
+      headers == [
+        ("Content-Type", "application/json"),
+        ("X-Request-Id", "abc-123"),
+        ("x-request-id", "def-456"),
+      ]
+    )
+    #expect(headers.values(for: "x-request-id") == ["abc-123", "def-456"])
   }
 
   @Test func subscriptSetterAppendsAndReplacesCaseInsensitively() {
