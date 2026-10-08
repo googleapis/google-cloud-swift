@@ -144,6 +144,12 @@ pins them down.
     `retryOnMessage` entry matches if it is a substring (`contains`). A
     `retryOnRegEx` entry must match the whole lowercased message
     (`Pattern.matches`, no DOTALL) (`L143-146`).
+  - **(inferred)** On the `*SkipExceptionTranslation` paths the throwable is
+    a raw `GoogleJsonResponseException`. Its message spans several lines
+    (`"403 Forbidden\nPOST ...\n{json}"`). Because the regex has no DOTALL
+    and must match the whole message, it effectively never matches there.
+    Only the substring messages do. This argues for reason-based detection
+    in Swift.
   - It also inspects **successful responses**. If a 200 response is a `Job`
     whose `status.errorResult.message` matches the config, the call is
     retried (`L219-231`).
@@ -287,6 +293,30 @@ pins them down.
   - Table, model, and routine create/update/get/delete fill the project when
     it is null or empty.
 
+### Update (PATCH) semantics: unset, clear, or value
+
+- **Null setters clear fields.** A builder turns a `null` setter value into
+  an explicit JSON `null`, which clears the field on PATCH:
+
+  | Builder | Fields | Source |
+  | ------- | ------ | ------ |
+  | TableInfo | description, expirationTime, friendlyName | `J/TableInfo.java:L287-305` |
+  | DatasetInfo | defaultTableLifetime, description, friendlyName, location | `J/DatasetInfo.java:L313-349` |
+  | RoutineInfo | description | `J/RoutineInfo.java:L270` |
+  | Field | description | `J/Field.java:L214` |
+
+- **TimePartitioning** always sends `expirationMs`. When it is unset, the
+  value is `Data.NULL_LONG` (a JSON null) (`J/TimePartitioning.java:L131`).
+- **Labels** (`J/Annotations.java:L40-60`):
+  - A null map is sent as JSON `null`, which clears all labels.
+  - An empty map is omitted from the request.
+  - A null value for a key deletes that key.
+- The Swift update API needs this three-way distinction between unset,
+  clear, and value.
+- **No optimistic concurrency.** Java never sends an `etag` or `If-Match` on
+  any patch or update. `Rpc` has no etag handling, so updates are
+  last-writer-wins.
+
 ### Datasets
 
 | Op | HTTP | Behavior |
@@ -301,7 +331,7 @@ pins them down.
 
 | Op | HTTP | Behavior |
 | -- | ---- | -------- |
-| create | `POST /projects/{p}/datasets/{d}/tables` (`Rpc:L369-411`) | Clears the output-only `type` (`Rpc:L372-373`). If `externalDataConfiguration.schema` is set, it moves to `table.schema` (`Impl:L822-830`). |
+| create | `POST /projects/{p}/datasets/{d}/tables` (`Rpc:L369-411`) | Clears the output-only `type` (`Rpc:L372-373`). Whenever `externalDataConfiguration` is non-null, `table.schema` is overwritten with `externalDataConfiguration.schema`, even when that schema is null (`Impl:L822-830`). |
 | get | `GET .../tables/{t}` (`Rpc:L744-785`) | `view` defaults to **`STORAGE_STATS`** (`Rpc:L787-792`). Option: `fields`. |
 | list | `GET .../tables` (`Rpc:L805-868`) | Items are partial tables with friendlyName, id, kind, reference, type, creationTime, timePartitioning, rangePartitioning, clustering, and labels (`Rpc:L851-866`). Project default at `Impl:L1763`. String overload at `Impl:L1752-1753`. |
 | update | `PATCH .../tables/{t}` (`Rpc:L683-727`) | Clears `type`. Options: `fields`, `autodetectSchema`. Same external-schema move as create. |
@@ -375,7 +405,9 @@ The resource name is `projects/{p}/datasets/{d}/tables/{t}`
   - Request: `POST {root}/upload/bigquery/v2/projects/{options project}/jobs?uploadType=resumable`
     with the Job JSON body, which contains the load configuration and
     `jobReference` (`J/TableDataWriteChannel.java:L100-141`).
-  - Header: `X-Upload-Content-Value: application/octet-stream`.
+  - Header: `X-Upload-Content-Value: application/octet-stream`
+    (`Rpc:L1980`). This is a Java typo for `X-Upload-Content-Type`. **Do not
+    copy it.**
   - Returns the `Location` header as the upload URL.
 - **Write** (`Rpc:L2002-2044`):
   - Request: `PUT {uploadUrl}` with
@@ -383,7 +415,9 @@ The resource name is `projects/{p}/datasets/{d}/tables/{t}`
   - A non-final chunk expects status **308**.
   - The final chunk expects **200 or 201** and parses the `Job` from the
     body.
-  - A zero-length non-final write sends no request.
+  - **Any** zero-length write returns `null` without sending a request, even
+    when `last=true` (`Rpc:L2005-2007`). A zero-byte final chunk therefore
+    never finalizes the upload.
 - **Chunk size:** the default is 15 MiB (60 × 256 KiB) and the minimum is
   256 KiB (`C/BaseWriteChannel.java:L39-40`).
 - After `close()`, `getJob()` returns the created load job
@@ -413,13 +447,17 @@ The resource name is `projects/{p}/datasets/{d}/tables/{t}`
 2. **Creation mode:** a null `JobCreationMode` takes
    `options.defaultJobCreationMode` (`Impl:L2724-2729`).
 3. **Fast path (`jobs.query`):** taken iff
-   `QueryRequestInfo.isFastQuerySupported(jobId)` and (`jobId == null` or
-   `jobId.job == null`) (`Impl:L2751`). When taken:
+   `QueryRequestInfo.isFastQuerySupported()` (no arguments) and
+   (`jobId == null` or `jobId.job == null`). The job ID check is inline at
+   `Impl:L2751`. When taken:
    - Project is `jobId.project`, otherwise the options project
      (`Impl:L2756-2759`).
    - Location is `jobId.location`, otherwise `options.location`
      (`Impl:L2766-2770`).
-   - `timeoutMs` is set (`Impl:L2771-2773`).
+   - `timeoutMs` is sent only when `queryWithTimeout` receives a non-null
+     timeout (`Impl:L2771-2773`). Plain `query()` passes `null`
+     (`Impl:L2710`), so it sends no `timeoutMs` and the server default
+     applies.
    - The ARROW format branches off (`Impl:L2775-2782`).
 4. **Slow path:** `create(JobInfo.of(jobId, config))`, then
    `job.getQueryResults()` (`Impl:L2708-2715`).
@@ -486,6 +524,9 @@ The resource name is `projects/{p}/datasets/{d}/tables/{t}`
   **every 5 s until DONE**, then calls `tabledata.list` on the destination
   table with the page token. With no page token the result is a single page
   (`Impl:L2496-2510`).
+- The `QueryPageFetcher` constructor calls `getJob` immediately
+  (`Impl:L260-271`). That adds an extra RPC whenever the first fast-path
+  page has a `pageToken`.
 - **Result metadata:** `TableResult` carries queryId, jobCreationReason,
   statementType, totalBytesProcessed, totalSlotMs, numDmlAffectedRows,
   sessionInfo, and cacheHit (`Impl:L2513-2534`).
@@ -558,6 +599,16 @@ The resource name is `projects/{p}/datasets/{d}/tables/{t}`
 
 The four attributes are PRIMITIVE, REPEATED, RECORD, and RANGE
 (`J/FieldValue.java:L57-76`).
+
+**Quirk: REPEATED elements lose the schema.** REPEATED cells are parsed with
+a `null` schema (`J/FieldValue.java:L401-405`, `J/FieldValueList.java:L118-131`).
+As a result:
+
+- Elements of an `ARRAY<STRUCT>` have no schema, so `get(name)` on them
+  throws `UnsupportedOperationException`.
+- Elements of an `ARRAY<RANGE>` come back as PRIMITIVE strings, not RANGE.
+
+Swift should fix this and record it as an intentional difference.
 
 ### Getters (`J/FieldValue.java`)
 
