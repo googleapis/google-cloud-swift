@@ -321,6 +321,9 @@ if [[ -z "${GIT_REF}" ]]; then
 fi
 
 if [[ "${COMPARE_ENABLED}" == "true" ]]; then
+  if [[ "${STAGE_LOCAL}" == "true" && -z "${COMPARE_REF}" && -z "${COMPARE_REPO}" ]]; then
+    COMPARE_STAGE_LOCAL=true
+  fi
   if [[ -z "${COMPARE_REPO}" ]]; then
     COMPARE_REPO="${GIT_REPO}"
   fi
