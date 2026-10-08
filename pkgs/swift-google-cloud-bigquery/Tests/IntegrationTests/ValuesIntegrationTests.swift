@@ -128,7 +128,7 @@ struct ValuesIntegrationTests {
       expected.period.elementType = .date
       #expect(ana == expected)
       // NUMERIC and ARRAY<STRUCT> elements read back by name.
-      #expect(try rows[0]["visits"]?.arrayValue?[0].recordValue?["city"]?.stringValue == "Oslo")
+      #expect(rows[0]["visits"]?.arrayValue?[0].recordValue?["city"]?.stringValue == "Oslo")
 
       let bo = rows[1]
       #expect(try bo["age"]?.int64Value == 1 << 60)
@@ -139,9 +139,9 @@ struct ValuesIntegrationTests {
       #expect(try bo["alarm"]?.timeValue?.nanosecond == 999_999_000)
       #expect(try bo["wait"]?.intervalValue == Interval(days: 1))
       #expect(try bo["period"]?.rangeValue == BigQueryRange(start: nil, end: "2024-02-01"))
-      #expect(try bo["tags"]?.arrayValue == [])
-      #expect(try bo["visits"]?.arrayValue == [])
-      #expect(try bo["address"]?.recordValue?["zip"]?.isNull == true)
+      #expect(bo["tags"]?.arrayValue == [])
+      #expect(bo["visits"]?.arrayValue == [])
+      #expect(bo["address"]?.recordValue?["zip"]?.isNull == true)
 
       // An ARRAY<STRUCT> parameter filters the table data.
       let people = QueryParameterValue.array(
@@ -152,7 +152,7 @@ struct ValuesIntegrationTests {
         "SELECT r.name FROM `\(dataset.projectID!).\(dataset.datasetID).records` AS r,"
           + " UNNEST(@people) AS p WHERE r.name = p.name",
         parameters: .named(["people": people]))
-      #expect(try filtered.map { try $0["name"]?.stringValue } == ["Bo"])
+      #expect(filtered.map { $0["name"]?.stringValue } == ["Bo"])
     }
   }
 
@@ -292,7 +292,7 @@ struct ValuesIntegrationTests {
           "d": .range(dates), "dt": .range(dateTimes), "ts": .range(timestamps),
           "iv": try .interval("P123Y7M-19DT0H24M12.000006S"), "j": .json(#"{"class": "student"}"#),
         ]))
-      #expect(try filtered.map { try $0["class"]?.stringValue } == ["student"])
+      #expect(filtered.map { $0["class"]?.stringValue } == ["student"])
 
       await #expect {
         _ = try await Self.query(
@@ -339,7 +339,7 @@ struct ValuesIntegrationTests {
     let select = values.indices.map { "? AS c\($0)" }.joined(separator: ", ")
     let rows = try await Self.query(client, "SELECT \(select)", parameters: .positional(values))
     let row = try #require(rows.first)
-    #expect(try row["c0"]?.stringValue == "s")
+    #expect(row["c0"]?.stringValue == "s")
     #expect(try row["c1"]?.int64Value == Int64.max)
     #expect(try row["c2"]?.doubleValue == 1.5)
     #expect(try row["c3"]?.boolValue == true)
@@ -354,8 +354,8 @@ struct ValuesIntegrationTests {
       try row["c11"]?.timeValue
         == BigQueryTime(hour: 5, minute: 41, second: 35, nanosecond: 220_000_000))
     #expect(try row["c12"]?.dateTimeValue == BigQueryDateTime("2014-08-19 05:41:35.22"))
-    #expect(try row["c13"]?.geographyValue == "POINT(-122.35022 47.649154)")
-    #expect(try row["c14"]?.jsonValue == #"{"a":1}"#)
+    #expect(row["c13"]?.geographyValue == "POINT(-122.35022 47.649154)")
+    #expect(row["c14"]?.jsonValue == #"{"a":1}"#)
     #expect(try row["c15"]?.intervalValue == Interval(years: 1, days: 2, hours: 3))
   }
 

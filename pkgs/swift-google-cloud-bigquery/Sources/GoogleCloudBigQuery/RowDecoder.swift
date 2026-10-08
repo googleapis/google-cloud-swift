@@ -111,7 +111,7 @@ struct RowDecoder: Decoder {
     }
     switch type {
     case is FieldValue.Type: return value as! T
-    case is Row.Type: return try required { try value.recordValue }
+    case is Row.Type: return try required { try value.checkedRecord() }
     case is Date.Type: return try required { try value.timestampValue }
     case is Data.Type: return try required { try value.bytesValue }
     case is Decimal.Type: return try required { try value.numericValue }
@@ -195,7 +195,9 @@ private struct RowSingleValueContainer: SingleValueDecodingContainer {
   func decodeNil() -> Bool { self.decoder.value == .null }
 
   func decode(_ type: Bool.Type) throws -> Bool { try self.read { try $0.boolValue } }
-  func decode(_ type: String.Type) throws -> String { try self.read { try $0.stringValue } }
+  func decode(_ type: String.Type) throws -> String {
+    try self.read { try $0.checkedText(as: String.self) }
+  }
   func decode(_ type: Double.Type) throws -> Double { try self.read { try $0.doubleValue } }
   func decode(_ type: Float.Type) throws -> Float { try self.number(Float.init) }
   func decode(_ type: Int.Type) throws -> Int { try self.integer() }
@@ -224,7 +226,7 @@ private struct RowSingleValueContainer: SingleValueDecodingContainer {
   }
 
   private func number<T>(_ convert: (String) -> T?) throws -> T {
-    let text = try self.read { try $0.stringValue }
+    let text = try self.read { try $0.checkedText(as: T.self) }
     guard let value = convert(text) else {
       throw DecodingError.dataCorrupted(
         DecodingError.Context(

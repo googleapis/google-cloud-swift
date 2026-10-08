@@ -16,12 +16,16 @@ public import Foundation
 
 /// Typed access to cell values.
 ///
-/// Each accessor returns `nil` for `NULL` and throws `DecodingError` if the cell cannot be read
-/// as the requested type, for example `int64Value` on `"abc"` or on an array:
+/// Every accessor returns `nil` for `NULL`. The accessors that only unwrap a shape
+/// (``stringValue``, ``jsonValue``, ``geographyValue``, ``arrayValue``, ``recordValue``) never
+/// throw; they also return `nil` when the value has another shape. The accessors that parse
+/// the cell text throw `DecodingError` if it cannot be read as the requested type, for example
+/// `int64Value` on `"abc"` or on an array:
 ///
 /// ```swift
+/// let name = row["name"]?.stringValue
 /// let id = try row["id"]?.int64Value
-/// let tags = try row["tags"]?.arrayValue?.map { try $0.stringValue }
+/// let tags = row["tags"]?.arrayValue?.compactMap(\.stringValue)
 /// ```
 ///
 /// Accessors read the cell text; they do not check the column type. Use the accessor that
@@ -32,15 +36,10 @@ extension FieldValue {
 
   /// The text of a scalar value. Works for every scalar type, including `DATE`, `TIME`,
   /// `DATETIME`, `GEOGRAPHY` (as WKT), `JSON` (as JSON text), and `INTERVAL`.
+  ///
+  /// `nil` for `NULL`, an array, or a struct.
   public var stringValue: String? {
-    get throws {
-      switch self {
-      case .null: return nil
-      case .scalar(let text): return text
-      case .array: throw Self.mismatch(String.self, "an array")
-      case .record: throw Self.mismatch(String.self, "a struct")
-      }
-    }
+    if case .scalar(let text) = self { text } else { nil }
   }
 
   /// An `INT64` value.
@@ -134,44 +133,51 @@ extension FieldValue {
     get throws { try self.parse("RANGE") { BigQueryRange($0) } }
   }
 
-  /// A `JSON` value, as JSON text.
-  public var jsonValue: String? {
-    get throws { try self.stringValue }
-  }
+  /// A `JSON` value, as JSON text. `nil` for `NULL`, an array, or a struct.
+  public var jsonValue: String? { self.stringValue }
 
-  /// A `GEOGRAPHY` value, as Well-Known Text (WKT).
-  public var geographyValue: String? {
-    get throws { try self.stringValue }
-  }
+  /// A `GEOGRAPHY` value, as Well-Known Text (WKT). `nil` for `NULL`, an array, or a struct.
+  public var geographyValue: String? { self.stringValue }
 
   /// The elements of an array. Arrays are never `NULL` in BigQuery, so a `REPEATED` column
-  /// returns `[]` rather than `nil`; `nil` is returned only for a `.null` value.
+  /// returns `[]` rather than `nil`; `nil` is returned for `NULL`, a scalar, or a struct.
   public var arrayValue: [FieldValue]? {
-    get throws {
-      switch self {
-      case .null: return nil
-      case .array(let elements): return elements
-      case .scalar: throw Self.mismatch([FieldValue].self, "a scalar")
-      case .record: throw Self.mismatch([FieldValue].self, "a struct")
-      }
+    if case .array(let elements) = self { elements } else { nil }
+  }
+
+  /// The fields of a `STRUCT` value, as a row with the struct's schema. `nil` for `NULL`, a
+  /// scalar, or an array.
+  public var recordValue: Row? {
+    if case .record(let row) = self { row } else { nil }
+  }
+
+  /// The text of a scalar value, or `nil` for `NULL`.
+  ///
+  /// - Throws: `DecodingError.typeMismatch` naming `type` for an array or a struct.
+  func checkedText(as type: Any.Type) throws -> String? {
+    switch self {
+    case .null: return nil
+    case .scalar(let text): return text
+    case .array: throw Self.mismatch(type, "an array")
+    case .record: throw Self.mismatch(type, "a struct")
     }
   }
 
-  /// The fields of a `STRUCT` value, as a row with the struct's schema.
-  public var recordValue: Row? {
-    get throws {
-      switch self {
-      case .null: return nil
-      case .record(let row): return row
-      case .scalar: throw Self.mismatch(Row.self, "a scalar")
-      case .array: throw Self.mismatch(Row.self, "an array")
-      }
+  /// The fields of a `STRUCT` value, or `nil` for `NULL`.
+  ///
+  /// - Throws: `DecodingError.typeMismatch` for a scalar or an array.
+  func checkedRecord() throws -> Row? {
+    switch self {
+    case .null: return nil
+    case .record(let row): return row
+    case .scalar: throw Self.mismatch(Row.self, "a scalar")
+    case .array: throw Self.mismatch(Row.self, "an array")
     }
   }
 
   /// Converts the text of a scalar value, throwing if it is not a scalar or `convert` fails.
   private func parse<T>(_ typeName: String, _ convert: (String) -> T?) throws -> T? {
-    guard let text = try self.stringValue else { return nil }
+    guard let text = try self.checkedText(as: T.self) else { return nil }
     guard let value = convert(text) else {
       throw DecodingError.dataCorrupted(
         DecodingError.Context(

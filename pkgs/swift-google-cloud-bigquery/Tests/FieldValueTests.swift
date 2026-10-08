@@ -25,16 +25,16 @@ import Testing
     #expect(try FieldValue.scalar("1").int64Value == 1)
     #expect(try FieldValue.scalar("1.5").doubleValue == 1.5)
     #expect(
-      try FieldValue.scalar("POINT(-122.350220 47.649154)").geographyValue
+      FieldValue.scalar("POINT(-122.350220 47.649154)").geographyValue
         == "POINT(-122.350220 47.649154)")
     #expect(
       try FieldValue.scalar("123456789.123456789").numericValue
         == Decimal(string: "123456789.123456789"))
-    #expect(try FieldValue.scalar("string").stringValue == "string")
+    #expect(FieldValue.scalar("string").stringValue == "string")
     #expect(
       try FieldValue.scalar(Data([0xD, 0xE, 0xA, 0xD]).base64EncodedString()).bytesValue
         == Data([0xD, 0xE, 0xA, 0xD]))
-    #expect(try FieldValue.scalar(#"{"a": 1}"#).jsonValue == #"{"a": 1}"#)
+    #expect(FieldValue.scalar(#"{"a": 1}"#).jsonValue == #"{"a": 1}"#)
     #expect(try FieldValue.scalar("NaN").doubleValue?.isNaN == true)
     #expect(try FieldValue.scalar("-Infinity").doubleValue == -.infinity)
   }
@@ -52,14 +52,14 @@ import Testing
       years: 3, months: 2, days: 1, hours: 12, minutes: 34, seconds: 56, nanoseconds: 789_000_000)
     #expect(try FieldValue.scalar("P3Y2M1DT12H34M56.789S").intervalValue == expected)
     #expect(try FieldValue.scalar("3-2 1 12:34:56.789").intervalValue == expected)
-    #expect(try FieldValue.scalar("3-2 1 12:34:56.789").stringValue == "3-2 1 12:34:56.789")
+    #expect(FieldValue.scalar("3-2 1 12:34:56.789").stringValue == "3-2 1 12:34:56.789")
   }
 
   // Baseline: U.FieldValue.01
   @Test func nullReadsAsNilFromEveryAccessor() throws {
     let value = FieldValue.null
     #expect(value.isNull)
-    #expect(try value.stringValue == nil)
+    #expect(value.stringValue == nil)
     #expect(try value.int64Value == nil)
     #expect(try value.doubleValue == nil)
     #expect(try value.boolValue == nil)
@@ -72,18 +72,18 @@ import Testing
     #expect(try value.dateTimeValue == nil)
     #expect(try value.intervalValue == nil)
     #expect(try value.rangeValue == nil)
-    #expect(try value.arrayValue == nil)
-    #expect(try value.recordValue == nil)
+    #expect(value.arrayValue == nil)
+    #expect(value.recordValue == nil)
   }
 
   // Baseline: U.FieldValue.01
   @Test func repeatedAndRecordAccessorsReturnNestedValues() throws {
     let repeated = FieldValue.array([.scalar("1"), .scalar("1")])
-    #expect(try repeated.arrayValue == [.scalar("1"), .scalar("1")])
+    #expect(repeated.arrayValue == [.scalar("1"), .scalar("1")])
     let row = Row(
       schema: [Field("f", .float64), Field("t", .timestamp)],
       values: [.scalar("1.5"), .scalar("42")])
-    #expect(try FieldValue.record(row).recordValue == row)
+    #expect(FieldValue.record(row).recordValue == row)
   }
 
   // Baseline: U.FieldValue.01, U.Range.01
@@ -141,10 +141,22 @@ import Testing
   }
 
   // Baseline: U.FieldValueList.03
-  @Test func wrongShapeThrowsTypeMismatch() {
-    #expect(throws: DecodingError.self) { try FieldValue.array([]).stringValue }
-    #expect(throws: DecodingError.self) { try FieldValue.scalar("1").arrayValue }
-    #expect(throws: DecodingError.self) { try FieldValue.scalar("1").recordValue }
+  @Test func wrongShapeThrowsTypeMismatchFromParsingAccessors() {
+    let row = Row(schema: [Field("a", .string)], values: [.scalar("x")])
+    #expect(throws: DecodingError.self) { try FieldValue.array([]).int64Value }
+    #expect(throws: DecodingError.self) { try FieldValue.record(row).timestampMicros }
+  }
+
+  // Design: §4.5
+  @Test func wrongShapeIsNilFromShapeAccessors() {
+    let row = Row(schema: [Field("a", .string)], values: [.scalar("x")])
+    #expect(FieldValue.array([]).stringValue == nil)
+    #expect(FieldValue.record(row).jsonValue == nil)
+    #expect(FieldValue.array([.null]).geographyValue == nil)
+    #expect(FieldValue.scalar("1").arrayValue == nil)
+    #expect(FieldValue.record(row).arrayValue == nil)
+    #expect(FieldValue.scalar("1").recordValue == nil)
+    #expect(FieldValue.array([]).recordValue == nil)
   }
 }
 

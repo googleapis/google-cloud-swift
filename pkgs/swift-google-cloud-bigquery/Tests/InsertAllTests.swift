@@ -264,4 +264,37 @@ private func jsonText(_ row: InsertRow) throws -> String {
     #expect(rows.count == 2)
     #expect(rows[1]["insertId"] == nil)
   }
+
+  // Design: §4.7
+  @Test func encodableValuesAreSentAsRowsWithGeneratedInsertIDs() async throws {
+    struct Person: Encodable {
+      var name: String
+      var age: Int?
+    }
+    let fake = FakeHTTPTransport()
+    fake.enqueue(json: "{}")
+    _ = try await fake.client().insertAll(
+      [Person(name: "Ana", age: 31), Person(name: "Bo", age: nil)], into: self.table,
+      skipInvalidRows: true)
+    let body = try #require(fake.requests.first).jsonBody()
+    #expect(body["skipInvalidRows"] as? Bool == true)
+    let rows = try #require(body["rows"] as? [[String: Any]])
+    #expect(rows.count == 2)
+    let first = try #require(rows[0]["json"] as? [String: Any])
+    #expect(first["name"] as? String == "Ana")
+    #expect(first["age"] as? Int == 31)
+    let second = try #require(rows[1]["json"] as? [String: Any])
+    #expect(second["name"] as? String == "Bo")
+    #expect(second["age"] == nil)
+    #expect(rows.allSatisfy { UUID(uuidString: $0["insertId"] as? String ?? "") != nil })
+  }
+
+  // Design: §4.7
+  @Test func encodableValuesThatAreNotObjectsFailBeforeSending() async throws {
+    let fake = FakeHTTPTransport()
+    await #expect(throws: EncodingError.self) {
+      try await fake.client().insertAll(["not an object"], into: self.table)
+    }
+    #expect(fake.requests.isEmpty)
+  }
 }
