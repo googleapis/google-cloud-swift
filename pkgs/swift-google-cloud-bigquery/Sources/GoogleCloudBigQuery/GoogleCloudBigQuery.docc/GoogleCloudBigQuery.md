@@ -49,6 +49,7 @@ see ``BigQueryRetryPolicy``.
 ### Essentials
 
 - ``BigQueryClient``
+- ``BigQueryProtocol``
 - ``BigQueryClientOptions``
 - ``BigQueryError``
 - ``BigQueryRetryPolicy``

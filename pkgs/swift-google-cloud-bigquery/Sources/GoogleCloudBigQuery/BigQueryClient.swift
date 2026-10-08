@@ -28,7 +28,7 @@ import Foundation
 /// The client is safe to share across tasks. Create one client and reuse it.
 ///
 /// [BigQuery]: https://cloud.google.com/bigquery
-public final class BigQueryClient: Sendable {
+public final class BigQueryClient: BigQueryProtocol, Sendable {
   /// The default service endpoint.
   public static let defaultEndpoint = "https://bigquery.googleapis.com"
 

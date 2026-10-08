@@ -56,4 +56,63 @@ import Testing
     #expect(job.location == "US")
     #expect(client.resolve(JobID(jobID: "j", location: "EU")).location == "EU")
   }
+
+  // Design: §4.8
+  @Test func protocolDefaultWitnessesThrowUnimplementedAndForwardConvenienceCalls() async throws {
+    struct EmptyMock: BigQueryProtocol {}
+    let empty: any BigQueryProtocol = EmptyMock()
+    #expect(empty.projectID == "")
+    #expect(empty.location == nil)
+    let getError = await #expect(throws: RequestError.self) {
+      _ = try await empty.getDataset(DatasetID(datasetID: "d"))
+    }
+    if case .unimplemented = getError {
+    } else {
+      Issue.record("Expected .unimplemented, got \(String(describing: getError))")
+    }
+    let listError = await #expect(throws: RequestError.self) {
+      _ = try await empty.listDatasets().collect()
+    }
+    if case .unimplemented = listError {
+    } else {
+      Issue.record("Expected .unimplemented, got \(String(describing: listError))")
+    }
+
+    struct QueryAndDatasetMock: BigQueryProtocol {
+      func getDataset(
+        _ id: DatasetID,
+        view: DatasetView?,
+        accessPolicyVersion: Int32?,
+        selectedFields: [String]?,
+        options: RequestOptions
+      ) async throws -> Dataset? {
+        Dataset(id: id, friendlyName: view?.rawValue ?? "mock")
+      }
+
+      func query(
+        _ configuration: QueryJobConfiguration,
+        jobID: JobID?,
+        projectID: String?,
+        location: String?,
+        timeout: Duration?,
+        options: RequestOptions
+      ) async throws -> QueryResult {
+        let schema = Schema([Field("sql", .string)])
+        let row = Row(schema: schema, values: [.scalar(configuration.query)])
+        return QueryResult(
+          schema: schema, totalRows: 1, totalBytesProcessed: configuration.maxResults,
+          rows: RowSequence(schema: schema, rows: [row]))
+      }
+    }
+
+    let mock: any BigQueryProtocol = QueryAndDatasetMock()
+    let dataset = try await mock.getDataset(DatasetID(datasetID: "d"), view: .metadata)
+    #expect(dataset?.id.datasetID == "d")
+    #expect(dataset?.friendlyName == "METADATA")
+
+    let result = try await mock.query("SELECT 42", pageSize: 10)
+    #expect(result.totalBytesProcessed == 10)
+    let rows = try await result.rows.collect()
+    #expect(rows.first?["sql"]?.stringValue == "SELECT 42")
+  }
 }

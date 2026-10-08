@@ -51,7 +51,7 @@ the open questions in #8 and #17. Each is recorded here with its rationale.
 | #8-Q2 | `insertAll` generates a UUID `insertId` for every row that lacks one. Callers can supply their own IDs or opt out with `InsertAllOptions.insertIDs = .none`; opting out also disables retries. | Retries without insert IDs can duplicate rows. Go, Python, and Node all do this. **Intentional difference from Java**, which sends no IDs. |
 | #8-Q3 | Cancelling the Swift `Task` only stops waiting or paging. It never sends `jobs.cancel`; server-side cancel is the explicit `cancelJob(_:)`. | A client-side task lifetime should not have server-side side effects. |
 | S§3 #1 | Every query sends `useLegacySql=false`, including view definitions. When a value read back from the server is absent, it means legacy SQL (`true`). | The server default is legacy SQL. Java's builders also default to standard SQL. |
-| S§3 #2 | Every `jobs.query`, `getQueryResults`, and `tabledata.list` request sets `formatOptions.useInt64Timestamp=true`. | Without it, timestamps come back as float seconds and lose precision. The spike confirmed this (`"1.704164645123456E9"`). |
+| S§3 #2 | Every `jobs.query`, `getQueryResults`, and `tabledata.list` request sets `formatOptions.timestampOutputFormat=ISO8601_STRING` (`Internal/RowFormat.swift`). | Without `formatOptions`, timestamps come back as float seconds and lose precision; `useInt64Timestamp=true` truncates picoseconds on `TIMESTAMP(12)` columns. `ISO8601_STRING` preserves full microsecond and picosecond precision. |
 | S§3 #3 | Every `jobs.query` request carries a `requestId`. Job IDs are always generated client-side. | Makes the create calls idempotent, so they are safe to retry (B§2 "Idempotency and job IDs"). |
 | S§3 #4 | The fast-path decision uses an **allowlist** (§6.2). | Java uses a denylist, so any new configuration field it doesn't know about silently takes the fast path. |
 | S§3 #5 | Retries follow §5.2. | Reason-based classification is more robust than Java's message regex (B§2, and verifier #13 item 7). |
@@ -110,6 +110,7 @@ pkgs/swift-google-cloud-bigquery/
   Sources/GoogleCloudBigQuery/
     # ---- core (architect) ----
     BigQueryClient.swift            client class, init, project/location resolution
+    BigQueryProtocol.swift          protocol seam + default witnesses + convenience overloads
     BigQueryClientOptions.swift
     BigQueryError.swift
     BigQueryRetryPolicy.swift       public, mirrors StorageBaseRetryPolicy
@@ -130,6 +131,7 @@ pkgs/swift-google-cloud-bigquery/
       BigQueryTransport.swift       retry loop, error mapping, JSON decode, 404→nil, 204
       RequestBody.swift             proto-JSON body + explicit-null overrides (PATCH)
       ProjectDiscovery.swift
+      RowFormat.swift               shared formatOptions.timestampOutputFormat=ISO8601_STRING
       Wire+Core.swift               IDs/Schema/configs <-> GoogleCloudBigQueryV2
     # ---- slice files: see §10 ----
   Tests/                            unit tests (Swift Testing), Support/FakeHTTPTransport.swift
@@ -302,11 +304,15 @@ public struct Row: Sendable, Equatable {
   public subscript(name: String) -> FieldValue?   // exact match first, then case-insensitive (U.FieldList.01)
 }
 public enum FieldValue: Sendable, Equatable { case null, scalar(String), array([FieldValue]), record(Row) }
-// slice 2: typed accessors (nil for NULL, throw on mismatch), e.g.
-//   var stringValue: String? { get throws }, int64Value, doubleValue, boolValue, bytesValue,
-//   numericValue: Decimal?, bigNumericValue: BigNumeric?, timestampValue: Date?, timestampMicros,
+// slice 2: non-throwing shape-unwrapping accessors (nil for NULL or non-matching shape):
+//   var stringValue: String?, jsonValue: String?, geographyValue: String?,
+//   arrayValue: [FieldValue]?, recordValue: Row?
+// slice 2: parsed accessors (nil for NULL, throw on parse/shape mismatch), e.g.
+//   var int64Value: Int64? { get throws }, doubleValue, boolValue, bytesValue,
+//   numericValue: Decimal?, bigNumericValue: BigNumeric?,
+//   timestampValue: Date?, timestampMicros: Int64?, preciseTimestampValue: BigQueryTimestamp?,
 //   dateValue: BigQueryDate?, timeValue: BigQueryTime?, dateTimeValue: BigQueryDateTime?,
-//   intervalValue: Interval?, rangeValue: BigQueryRange?, jsonValue, arrayValue, recordValue
+//   intervalValue: Interval?, rangeValue: BigQueryRange?
 // slice 2: Row.decode<T: Decodable>(_:) throws -> T
 ```
 
@@ -405,7 +411,11 @@ public struct InsertAllResponse { rowErrors: [Int: [BigQueryError.Detail]]; var 
 func insertAll(_ rows: [InsertRow], into table: TableID, skipInvalidRows: Bool = false,
                ignoreUnknownValues: Bool = false, templateSuffix: String? = nil,
                insertIDs: InsertIDPolicy = .generateMissing, options:) async throws -> InsertAllResponse
-// value types: BigNumeric, BigQueryDate, BigQueryTime, BigQueryDateTime, Interval, BigQueryRange
+func insertAll<T: Encodable>(_ values: some Sequence<T>, into table: TableID, skipInvalidRows: Bool = false,
+                             ignoreUnknownValues: Bool = false, templateSuffix: String? = nil,
+                             insertIDs: InsertIDPolicy = .generateMissing,
+                             options:) async throws -> InsertAllResponse
+// value types: BigNumeric, BigQueryTimestamp, BigQueryDate, BigQueryTime, BigQueryDateTime, Interval, BigQueryRange
 
 // ---- slice 3: tables, table data ----
 public struct Table { id: TableID; friendlyName, description: String?; labels; expirationTime: Date?;
@@ -477,7 +487,7 @@ The row is encoded to a JSON object with a dedicated encoder. A plain
 
 | Swift value | JSON |
 | ----------- | ---- |
-| `Date` | an RFC 3339 UTC string with microseconds (`2024-01-02T03:04:05.123456Z`) |
+| `Date`, `BigQueryTimestamp` | an RFC 3339 UTC string (`Date` with microseconds; `BigQueryTimestamp` with up to 12 fractional digits) |
 | `Data` | base64 |
 | `Decimal`, `BigNumeric` | an exact decimal string |
 | Integers | a JSON number when \|v\| ≤ 2^53, otherwise a decimal string |
@@ -508,8 +518,11 @@ it. Slices do not touch it. It follows the `StorageProtocol` pattern:
 - `BigQueryClient`'s own methods keep their default arguments. On the
   concrete type they are preferred over the extension overloads.
 
-Slices must therefore avoid generic methods (use `InsertRow` and
-`UploadSource` instead) and variadic parameters on `BigQueryClient`.
+The protocol requirements use non-generic value types (`[InsertRow]` and
+`UploadSource`) and avoid variadic parameters; the generic
+`insertAll<T: Encodable>(_ values: some Sequence<T>, ...)` convenience on
+`BigQueryClient` maps elements through `InsertRow(_:)` and forwards to the
+`[InsertRow]` method.
 
 ### 4.9 Project and location resolution
 
@@ -560,8 +573,8 @@ flowchart LR
   - After the loop, maps an `.http` error to `BigQueryError(kind: .service)`.
   - Decodes 2xx bodies with `_ProtoJSONDecoder`. A `204` or empty body is
     never decoded.
-  - Exposes `json(_:)`, `jsonOrNil(_:)` (404 → `nil`), `send(_:)` (raw
-    response), and `deleteOrFalse(_:) -> Bool` (404 → `false`).
+  - Exposes `json(_:)`, `jsonOrNil(_:)` (404 → `nil`), `send(_:)` (2xx only),
+    and `deleteOrFalse(_:) -> Bool` (404 → `false`).
 
 ### 5.2 Retry policy
 
@@ -685,7 +698,7 @@ Overrides also cover the rare case where an empty string is meaningful
    /projects/{p}/queries` with:
    - `requestId` = a new UUID;
    - `useLegacySql=false`;
-   - `formatOptions.useInt64Timestamp=true`;
+   - `formatOptions.timestampOutputFormat=ISO8601_STRING`;
    - `location`, `jobCreationMode` (when set), `timeoutMs` (only when the
      caller asked for a wait timeout, as in Java), and `maxResults`.
 3. The response is handled as follows:
@@ -822,7 +835,7 @@ Each row is either "same" or an intentional difference (**Δ**).
 | `totalRows == 0` skips `tabledata.list` (§5) | Same. `totalRows == nil` does **not** skip. |
 | REPEATED cells lose their schema (§6) | **Δ**: fixed (§4.5). |
 | Getters throw on NULL (§6) | **Δ**: accessors return `nil` for NULL and throw on a type mismatch. |
-| Timestamp micros vs float seconds (§6) | Always requests int64 micros. The parser also accepts float seconds. |
+| Timestamp micros vs float seconds vs picoseconds (§6) | Always requests `formatOptions.timestampOutputFormat=ISO8601_STRING` on `jobs.query`, `getQueryResults`, and `tabledata.list`. The parser accepts ISO 8601 strings (up to 12 fractional digits via `BigQueryTimestamp`), int64 micros, and float seconds. |
 | `QueryParameterValue` serialization (§6) | Same wire format. Built from typed static constructors. |
 | insertAll `{insertId?, json}` (§6) | Same. **Δ**: generated IDs. |
 | Legacy SQL type names (§6) | **Δ**: normalized to Standard SQL (§4.5). |
@@ -896,9 +909,9 @@ a core file, it asks @architect on the board.
 
 | Slice | Owns (Sources/GoogleCloudBigQuery/…) | Tests | Depends on |
 | ----- | ------------------------------------ | ----- | ---------- |
-| **Core** (architect, landed first) | everything in §3 "core", `Package.swift` | `BigQueryClientTests`, `BigQueryTransportTests`, `ResourceIDsTests`, `RowTests`, `PagedSequenceTests`, `CoreHelpersTests`, `Tests/Support/*`, `Tests/IntegrationTests/Support/*`, `Tests/IntegrationTests/CoreIntegrationTests.swift` | — |
+| **Core** (architect, landed first) | everything in §3 "core", `BigQueryProtocol.swift`, `Package.swift` | `BigQueryClientTests`, `BigQueryTransportTests`, `ResourceIDsTests`, `RowTests`, `PagedSequenceTests`, `CoreHelpersTests`, `Tests/Support/*`, `Tests/IntegrationTests/Support/*`, `Tests/IntegrationTests/CoreIntegrationTests.swift` | — |
 | **1. Resources** | `Dataset*.swift`, `Acl.swift`, `BigQueryClient+Datasets.swift`, `Routine*.swift`, `BigQueryClient+Routines.swift`, `Model*.swift`, `BigQueryClient+Models.swift`, `IAMPolicy.swift`, `BigQueryClient+IAM.swift`, `BigQueryClient+Projects.swift` | `Dataset*`, `Routine*`, `Model*`, `IAM*` | core |
-| **2. Values** | `FieldValue+Accessors.swift`, `RowDecoder.swift`, `RowSequence+Decode.swift`, `QueryParameter.swift` (takes over the core shell), `QueryParameterValue*.swift`, `BigNumeric.swift`, `CivilTypes.swift`, `Interval.swift`, `BigQueryRange.swift`, `InsertRow.swift`, `InsertRowEncoder.swift`, `InsertAll*.swift`, `BigQueryClient+InsertAll.swift` | `FieldValue*`, `QueryParameter*`, `InsertAll*`, `RowDecoder*` | core |
+| **2. Values** | `FieldValue+Accessors.swift`, `RowDecoder.swift`, `RowSequence+Decode.swift`, `QueryParameter.swift` (takes over the core shell), `QueryParameterValue*.swift`, `BigNumeric.swift`, `BigQueryTimestamp.swift`, `CivilTypes.swift`, `Interval.swift`, `BigQueryRange.swift`, `InsertRow.swift`, `InsertRowEncoder.swift`, `InsertAll*.swift`, `BigQueryClient+InsertAll.swift`, `Internal/RowFormat.swift` | `FieldValue*`, `QueryParameter*`, `InsertAll*`, `RowDecoder*` | core |
 | **3. Tables** | `Table.swift`, `TableDefinitions.swift` (view/MV/snapshot/clone), `ExternalDataConfiguration.swift` (+ Bigtable/Sheets/etc. options), `TableConstraints.swift`, `BigQueryClient+Tables.swift`, `BigQueryClient+TableData.swift` | `Table*`, `TableData*`, `External*` | core |
 | **4. Jobs** | `Job.swift`, `JobStatus.swift`, `JobStatistics.swift`, `JobConfiguration.swift`, `QueryJobConfiguration.swift`, `LoadJobConfiguration.swift`, `ExtractJobConfiguration.swift`, `CopyJobConfiguration.swift`, `QueryResult.swift`, `BigQueryClient+Jobs.swift`, `BigQueryClient+Query.swift`, `BigQueryClient+Upload.swift`, `UploadSource.swift` | `Job*`, `Query*` (not `QueryParameter*`), `Load*`, `Upload*` | core; slice 2 (more `QueryParameterValue` constructors, for tests only), slice 3 (`ExternalDataConfiguration` for `tableDefinitions`) |
 
@@ -988,14 +1001,14 @@ adds `tableDefinitions` after slice 3 merges.
 | Arrow (`ArrowVectorReader`) | — | — | **DEFERRED**: no Swift Arrow dependency |
 | OpenTelemetry tracing | — | — | **DEFERRED**: no tracing convention in sibling Swift packages (D4) |
 | `BigQueryOptions.throwNotFound` | — | — | Not applicable: optionals (§7) |
-| `BigQueryOptions.useInt64Timestamps` / `DataFormatOptions` | always int64 | core | Fixed behavior |
+| `BigQueryOptions.useInt64Timestamps` / `DataFormatOptions` | always `ISO8601_STRING` | 2 / 3 / 4 | Fixed lossless behavior |
 | Dry run | `dryRun(_:)` | 4 | P0 |
 | Sessions, connection properties | `QueryJobConfiguration.createSession`, `connectionProperties` | 4 | P0 |
 | Project service account | `getServiceAccount` | 1 | P1 |
 | `listProjects` (BigQuery.java:L979) | `listProjects(pageSize:)` → `PagedSequence<Project>` | 1 | P0 |
 | Row access policies | — | — | P1 (not in Java) |
 | `BIGQUERY_EMULATOR_HOST` | endpoint override only | core | P1 |
-| High-precision timestamps (`timestampPrecision` 12, `ISO8601_STRING`) | — | — | **DEFERRED**: new service feature; int64 micros cannot carry picoseconds (§13) |
+| High-precision timestamps (`timestampPrecision` 12, `ISO8601_STRING`) | `Field.timestampPrecision`, `BigQueryTimestamp`, `FieldValue.preciseTimestampValue` | 2 | P0 |
 | Universe-domain credential check | — | — | **DEFERRED**: belongs in gax/auth (§13) |
 
 ## 12. Documentation and samples
@@ -1030,9 +1043,9 @@ Per #12, these are not filed externally.
    hand-written routes exist.
 7. **This package:** consider whole-query retry (Python-style) and
    `Schema(inferredFrom:)` after P0.
-8. **This package:** high-precision (picosecond) timestamps. This covers
-   `timestampPrecision` 12, `ISO8601_STRING` output, and
-   `ITHighPrecisionTimestamp`.
+8. **This package (done):** high-precision (picosecond) timestamps
+   (`Field.timestampPrecision`, `BigQueryTimestamp`, `ISO8601_STRING` output
+   on all read paths, and `IT-194..201`).
 9. **gax/auth:** universe-domain validation of credentials against the
    endpoint (Java returns 401 on mismatch; IT-182/183).
 10. **Release tooling (done):** the `google-cloud-bigquery` entry in
