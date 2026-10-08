@@ -290,6 +290,7 @@ import Testing
     #expect(reference.datasetId == "")
   }
 
+  // Baseline: U.BigQueryImpl.60
   // Design: §5.1
   @Test func malformedBodyIsMalformedResponse() async throws {
     let fake = FakeHTTPTransport()

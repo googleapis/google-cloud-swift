@@ -21,6 +21,7 @@ import Testing
 /// Live checks of the core transport and of the integration test helpers themselves.
 @Suite(.enabled(if: integrationTestsEnabled()))
 struct CoreIntegrationTests {
+  // Baseline: U.RemoteBigQueryHelper.01
   // Design: §9
   @Test func temporaryDatasetIsCreatedAndDeleted() async throws {
     let client = try IntegrationTest.makeClient()

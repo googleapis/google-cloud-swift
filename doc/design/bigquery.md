@@ -206,7 +206,7 @@ public struct BigQueryError: Error, Sendable, Hashable, CustomStringConvertible 
   public struct Detail: Sendable, Hashable { reason, location, message, debugInfo: String? }
   public var kind: Kind
   public var message: String
-  public var httpStatusCode: Int?       // kind == .service
+  public var httpStatusCode: Int?       // HTTP status when the error came from a response
   public var status: String?            // e.g. "NOT_FOUND"
   public var errors: [Detail]           // every entry of error.errors[] / job errors[]
   public var jobID: JobID?              // kind == .job (and service errors about a job)
@@ -219,9 +219,13 @@ public struct BigQueryError: Error, Sendable, Hashable, CustomStringConvertible 
 
 - **`.service`:** the server returned a non-2xx status. The error body is
   parsed as `{"error":{"code","message","status","errors":[...]}}`.
-- **`.job`:** a job or query finished with `status.errorResult` (or `errors`
-  in a `jobs.query` or `getQueryResults` response). `errors` holds the
-  `errorResult` first, followed by `status.errors`. `jobID` is set.
+- **`.job`:** a job or query failed — either with `status.errorResult` (or
+  `errors` in a `jobs.query` or `getQueryResults` response), or with an HTTP
+  400/403/404/409 rejection from `jobs.query` or `jobs.insert` inside
+  `query(_:)`, so `query(_:)` surfaces the same error kind on both the fast
+  and slow paths. `errors` holds `errorResult` first, followed by
+  `status.errors` (or the HTTP `error.errors[]`). `jobID` is set when a job ID
+  is known.
 - **`.invalidArgument`:** client-side validation. Examples: no project could
   be resolved, `dryRun` was passed to `query`, or an invalid ID string.
 - **Other errors propagate unchanged:** transport, authentication, and retry
@@ -282,7 +286,7 @@ public struct Field: Sendable, Hashable {
   public var name: String; public var type: FieldType; public var mode: Mode?   // nil = NULLABLE
   public var fields: [Field]            // STRUCT subfields
   public var description, collation, defaultValueExpression: String?
-  public var maxLength, precision, scale: Int64?; public var roundingMode: RoundingMode?
+  public var maxLength, precision, scale, timestampPrecision: Int64?; public var roundingMode: RoundingMode?
   public var rangeElementType: FieldType?; public var policyTags: [String]?
   public init(_ name: String, _ type: FieldType, mode: Mode? = nil, fields: [Field] = [], description: String? = nil)
   public struct Mode: RawRepresentable, Sendable, Hashable { nullable, required, repeated }
@@ -454,7 +458,7 @@ public struct QueryResult {
   totalRows: UInt64?              // rows in the result set only; never DML counts (Δ)
   numDMLAffectedRows: Int64?; dmlStats: DMLStats?
   jobID: JobID?; queryID: String?; location: String?
-  cacheHit: Bool?; statementType: String?; jobCreationReason: String?
+  cacheHit: Bool?; statementType: StatementType?; jobCreationReason: String?
   totalBytesProcessed: Int64?; totalBytesBilled: Int64?; totalSlotMs: Int64?
   sessionInfo: SessionInfo?; creationTime, startTime, endTime: Date?
   rows: RowSequence               // empty when schema == nil
@@ -690,13 +694,18 @@ Overrides also cover the rare case where an empty string is meaningful
      scripts), call `getQueryResults` once, as Java does (Impl:L2459). If
      there is still no schema, `QueryResult.schema` is `nil` and `rows` is
      empty.
-   - A stateless response (`jobReference == nil`) uses its `queryId`. It
-     cannot page beyond the first response unless `pageToken` is set, in
-     which case the server returns a `jobReference`.
+    - A stateless response (`jobReference == nil`) uses its `queryId`. If it
+      carries a `pageToken` without a `jobReference`, the client throws
+      `RequestError.malformedResponse` rather than silently dropping later
+      pages.
 4. Otherwise, use the slow path: `jobs.insert` with a client-generated
-   `JobID`. Wait using `getQueryResults` long-polling. If `totalRows == 0`
-   (DDL/DML), skip fetching rows. Then page rows with `getQueryResults`.
-5. `errors` or `errorResult` throws `BigQueryError(kind: .job, jobID:)`.
+   `JobID`. Wait using `getQueryResults` long-polling. The final poll
+   response provides the first page of rows when `totalRows != 0` (DDL/DML
+   with `totalRows == 0` has an empty `rows` sequence), and later pages come
+   from `getQueryResults`.
+5. `errors`, `errorResult`, or an HTTP 400/403/404/409 rejection from
+   `jobs.query` or `jobs.insert` throws `BigQueryError(kind: .job, jobID:)`,
+   so `query(_:)` has the same error kind on both paths.
 
 **Project and location.** `query(_:jobID:projectID:location:)` works as
 follows:
@@ -708,11 +717,10 @@ follows:
 
 **`QueryResult` metadata:**
 
-- **Fast path:** `cacheHit`, `totalBytesProcessed`, `totalBytesBilled`,
-  `totalSlotMs`, `numDmlAffectedRows`, `dmlStats`, `sessionInfo`,
-  `jobCreationReason`, `queryId`, `location`, and the creation, start, and
-  end times all come from `QueryResponse`. `statementType` is `nil` (the
-  response doesn't carry it).
+- **Fast path:** `cacheHit`, `statementType`, `totalBytesProcessed`,
+  `totalBytesBilled`, `totalSlotMs`, `numDmlAffectedRows`, `dmlStats`,
+  `sessionInfo`, `jobCreationReason`, `queryId`, `location`, and the
+  creation, start, and end times all come from `QueryResponse`.
 - **Slow path:** the same fields come from `Job.statistics.query`.
 - **DML counts:** `totalRows` is never overloaded with the DML count. Java
   sets `totalRows = numDmlAffectedRows ?? totalRows ?? 0`. Swift exposes
@@ -757,8 +765,8 @@ The upload is a resumable session:
 4. A zero-byte upload sends a single finalizing
    `PUT … Content-Range: bytes */0`. This is an **intentional difference**:
    Java never finalizes a zero-byte upload (B§4).
-5. On an I/O error, query the session status (`Content-Range: bytes */*`)
-   and resume.
+5. On an I/O error, 408, 429, or 5xx, query the session status
+   (`Content-Range: bytes */N`) and resume, up to 6 attempts.
 
 `UploadSource` accepts `Data`, a file `URL`, or an `AsyncSequence` of
 `Data`.
@@ -786,7 +794,7 @@ Each row is either "same" or an intentional difference (**Δ**).
 | `JobOption.fields` / `JobListOption.fields` (§4) | Same, via `selectedFields:` on `createJob`, `getJob`, and `listJobs`. |
 | 404 semantics (§3) | §5.3. **Δ**: `deleteJob`, wait. |
 | `BigQueryException` code, reason, location, message, errors (§3) | `BigQueryError` (§4.3). |
-| `JobException` on failed job (§3) | `BigQueryError(kind: .job)`. |
+| `JobException` on failed job (§3) | `BigQueryError(kind: .job)` — also thrown for 400/403/404/409 query rejections in `query(_:)` on both paths (**Δ**). |
 | Duplicate options throw (§4) | Not applicable: parameters are labeled arguments. |
 | Field masks add required fields (§4) | Same, via `selectedFields`. |
 | Null setter → JSON null on PATCH (§4) | **Δ**: explicit `clearing:` set (§5.4). `nil` means unchanged. |
