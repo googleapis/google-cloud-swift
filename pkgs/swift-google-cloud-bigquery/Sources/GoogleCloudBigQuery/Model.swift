@@ -21,8 +21,8 @@ public import Foundation
 ///
 /// Only ``friendlyName``, ``description``, ``labels``, ``expirationTime``, and
 /// ``encryptionConfiguration`` can be changed with
-/// ``BigQueryClient/updateModel(_:clearing:ifMatch:options:)``; a `nil` property is left
-/// unchanged. The other properties are output only.
+/// ``BigQueryClient/updateModel(_:clearing:selectedFields:ifMatch:options:)``; a `nil`
+/// property is left unchanged. The other properties are output only.
 public struct Model: Sendable, Hashable {
   /// The model ID. A `nil` project means the client's project.
   public var id: ModelID
@@ -68,7 +68,7 @@ public struct Model: Sendable, Hashable {
   public var labelColumns: [StandardSQLField]
 
   /// Creates a model description, for example to pass to
-  /// ``BigQueryClient/updateModel(_:clearing:ifMatch:options:)``.
+  /// ``BigQueryClient/updateModel(_:clearing:selectedFields:ifMatch:options:)``.
   public init(
     id: ModelID,
     friendlyName: String? = nil,

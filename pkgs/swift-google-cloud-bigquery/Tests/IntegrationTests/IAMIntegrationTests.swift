@@ -17,8 +17,7 @@ import Testing
 
 @testable import GoogleCloudBigQuery
 
-/// Live tests of table IAM. The table is created with DDL through the raw transport, so these
-/// tests do not depend on the table API.
+/// Live tests of table IAM.
 @Suite(.enabled(if: integrationTestsEnabled()))
 struct IAMIntegrationTests {
   let client: BigQueryClient
@@ -31,8 +30,7 @@ struct IAMIntegrationTests {
   @Test func tableIAMPolicyLifecycle() async throws {
     try await IntegrationTest.withTemporaryDataset(self.client, slice: "resources") { dataset in
       let table = TableID(datasetID: dataset.datasetID, tableID: "iam_table")
-      try await ResourceQuery.run(
-        self.client, "CREATE TABLE `\(dataset.datasetID).iam_table` (a STRING)")
+      _ = try await self.client.query("CREATE TABLE `\(dataset.datasetID).iam_table` (a STRING)")
 
       let permissions = ["bigquery.tables.get", "bigquery.tables.getIamPolicy"]
       #expect(

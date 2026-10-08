@@ -27,6 +27,7 @@ extension BigQueryClient {
   ///     returned.
   ///   - options: per-call options.
   /// - Returns: the created routine, as returned by the service.
+  @discardableResult
   public func createRoutine(
     _ routine: Routine,
     selectedFields: [String]? = nil,
