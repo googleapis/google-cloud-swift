@@ -64,10 +64,7 @@ public struct HTTPHeaders: Sendable, Equatable {
       }
       if let firstIndex = self.storage.firstIndex(where: { Self.namesMatch($0.name, name) }) {
         self.storage[firstIndex] = (name: name, value: newValue)
-        for index in self.storage.indices.dropFirst(firstIndex + 1).reversed()
-        where Self.namesMatch(self.storage[index].name, name) {
-          self.storage.remove(at: index)
-        }
+        self.storage[(firstIndex + 1)...].removeAll { Self.namesMatch($0.name, name) }
       } else {
         self.storage.append((name: name, value: newValue))
       }
