@@ -74,6 +74,15 @@ swift package add-target-dependency GoogleCloudStorage <target-name> --package s
 
 ## Troubleshooting
 
+Object download (`readObject`) and upload (`writeObject`) operations throw
+`ReadObjectError` and `WriteObjectError` respectively, while control-plane
+operations on `StorageControlClient` throw `RequestError`.
+
+For detailed guidance on handling checksum mismatches, resuming interrupted
+downloads and uploads, choosing between `SeekableWriteObjectSource` and
+`WriteObjectSource`, and using preconditions for idempotent retries, see the
+[Troubleshooting Guide](Sources/GoogleCloudStorage/GoogleCloudStorage.docc/Troubleshooting.md).
+
 For questions, bug reports, or feature requests, please open an issue in the
 [google-cloud-swift](https://github.com/googleapis/google-cloud-swift/issues) repository.
 
