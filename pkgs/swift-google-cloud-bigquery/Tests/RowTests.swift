@@ -157,15 +157,17 @@ import Testing
          "defaultValueExpression": "'x'", "policyTags": {"names": ["projects/p/tag"]}},
         {"name": "span", "type": "RANGE", "rangeElementType": {"type": "DATE"}},
         {"name": "rec", "type": "RECORD", "mode": "REPEATED",
-         "fields": [{"name": "leaf", "type": "BOOLEAN"}]}
+         "fields": [{"name": "leaf", "type": "BOOLEAN"}]},
+        {"name": "ts", "type": "TIMESTAMP", "timestampPrecision": "12"}
       ]}
       """#
     let wire: GoogleCloudBigQueryV2.TableSchema = try WireJSON.decode(json)
     let schema = Schema(wire: wire)
-    #expect(schema.fields.count == 5)
+    #expect(schema.fields.count == 6)
     let id = schema.fields[0]
     #expect(id.mode == .required)
     #expect(id.description == "key")
+    #expect(id.timestampPrecision == nil)
     let price = schema.fields[1]
     #expect(price.precision == 10)
     #expect(price.scale == 2)
@@ -182,6 +184,7 @@ import Testing
     let rec = schema.fields[4]
     #expect(rec.type == .struct)
     #expect(rec.fields.first?.type == .bool)
+    #expect(schema.fields[5].timestampPrecision == 12)
     #expect(Schema(wire: schema.wire) == schema)
   }
 

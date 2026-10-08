@@ -108,6 +108,7 @@ extension Field {
     self.maxLength = wire.maxLength == 0 ? nil : wire.maxLength
     self.precision = wire.precision == 0 ? nil : wire.precision
     self.scale = wire.scale == 0 ? nil : wire.scale
+    self.timestampPrecision = wire.timestampPrecision
     if wire.roundingMode != .unspecified, let name = wire.roundingMode.stringValue {
       self.roundingMode = RoundingMode(rawValue: name)
     }
@@ -127,6 +128,7 @@ extension Field {
       $0.maxLength = self.maxLength ?? 0
       $0.precision = self.precision ?? 0
       $0.scale = self.scale ?? 0
+      $0.timestampPrecision = self.timestampPrecision
       if let roundingMode = self.roundingMode {
         $0.roundingMode = GoogleCloudBigQueryV2.TableFieldSchema.RoundingMode(
           stringValue: roundingMode.rawValue)

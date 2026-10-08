@@ -68,6 +68,10 @@ public struct Field: Sendable, Hashable {
   /// The scale of a `NUMERIC` or `BIGNUMERIC` column.
   public var scale: Int64?
 
+  /// The fractional-second digits of a `TIMESTAMP` column: `6` (the default) or `12`
+  /// (picoseconds). The service validates the value.
+  public var timestampPrecision: Int64?
+
   /// How values are rounded when written to a `NUMERIC` or `BIGNUMERIC` column.
   public var roundingMode: RoundingMode?
 
