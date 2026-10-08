@@ -52,6 +52,15 @@ import Testing
     let text = String(decoding: data, as: UTF8.self)
     #expect(text.contains(#""description":null"#))
   }
+
+  // Design: §5.4
+  @Test func pathSegmentsMayContainDots() throws {
+    let data = try RequestBody.json(
+      self.dataset, settingPaths: [["resourceTags", "example.com:p/env"]: .null])
+    let body = try self.parse(data)
+    let tags = try #require(body["resourceTags"] as? NSDictionary)
+    #expect(tags["example.com:p/env"] is NSNull)
+  }
 }
 
 @Suite struct ProjectDiscoveryTests {

@@ -37,17 +37,32 @@ enum RequestBody {
   static func json(
     _ wire: some Encodable, setting: [String: JSONOverride] = [:], omitting: [String] = []
   ) throws -> Data {
+    try Self.json(
+      wire,
+      settingPaths: Dictionary(
+        setting.map { ($0.key.split(separator: ".").map(String.init), $0.value) },
+        uniquingKeysWith: { _, last in last }),
+      omitting: omitting)
+  }
+
+  /// Like ``json(_:setting:omitting:)``, but each override path is given as its segments.
+  ///
+  /// Use this when a segment may contain `.`, for example a resource tag key such as
+  /// `["resourceTags", "example.com:project/env"]`.
+  static func json(
+    _ wire: some Encodable, settingPaths: [[String]: JSONOverride], omitting: [String] = []
+  ) throws -> Data {
     let encoder = _ProtoJSONEncoder()
     let encoded = try encoder.encode(wire, omitting: omitting)
-    if setting.isEmpty { return encoded }
+    if settingPaths.isEmpty { return encoded }
     var object = try JSONDecoder().decode(WKTStruct.self, from: encoded)
-    for (path, override) in setting {
+    for (path, override) in settingPaths {
       let value: WKTValue
       switch override {
       case .null: value = .null(WKTNullValue())
       case .value(let v): value = v
       }
-      Self.set(value, at: path.split(separator: ".").map(String.init)[...], in: &object)
+      Self.set(value, at: path[...], in: &object)
     }
     let output = JSONEncoder()
     output.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
