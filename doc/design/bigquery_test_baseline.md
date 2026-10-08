@@ -35,15 +35,15 @@ integration tests must cover every `PORT`/`ADAPT` IT row.
 | `PORT` | The Swift port must have an equivalent test for this behavior (wire format, request construction, defaults, retries, error mapping, 404 semantics, paging, query routing, value parsing). |
 | `ADAPT` | Port the behavior with a Swift-idiomatic shape; the Notes column says how (for example builders to struct initializers, Mockito RPC mocks to a fake HTTP transport, `Page` to `AsyncSequence`, varargs options to an options struct, live-object methods to client methods). |
 | `N/A` | Java-specific mechanics with no Swift equivalent: `Serializable`, builder/`toBuilder`/`equals`/`hashCode` identity (Swift value types synthesize these), null-argument checks the type system enforces, legacy dual setters, Java test helpers. |
-| `DEFERRED` | Depends on a feature the port defers (D4): BigQuery Storage Read API and Arrow (`useReadAPI`, `queryArrow`, `QueryResultsFormat.ARROW`); the beta `Connection` API (`createConnection`, `executeSelect*`, `BigQueryResult*`, `ConnectionSettings`); OpenTelemetry tracing (deferred unless time permits); picosecond timestamps (`timestampPrecision=12`, `ISO8601_STRING`); and the universe-domain credential check (gax/auth follow-up). `ConnectionProperty` (session/time zone properties on `QueryJobConfiguration`) and `QueryRequestInfo` (the `jobs.query` fast-path builder) are core and are **not** deferred. |
+| `DEFERRED` | Depends on a feature the port defers (D4): BigQuery Storage Read API and Arrow (`useReadAPI`, `queryArrow`, `QueryResultsFormat.ARROW`); the beta `Connection` API (`createConnection`, `executeSelect*`, `BigQueryResult*`, `ConnectionSettings`); OpenTelemetry tracing (deferred unless time permits); and the universe-domain credential check (gax/auth follow-up). `ConnectionProperty` (session/time zone properties on `QueryJobConfiguration`) and `QueryRequestInfo` (the `jobs.query` fast-path builder) are core and are **not** deferred. |
 
 ### 1.3 Summary
 
 | Scope | Java tests | Rows | PORT | ADAPT | N/A | DEFERRED |
 |---|---|---|---|---|---|---|
-| Unit (by behavior row) | 800 in 90 classes | 315 | 196 | 31 | 74 | 14 |
-| Unit (by Java test method) | 800 | — | 336 | 113 | 185 | 166 |
-| Integration | 214 | 214 | 141 | 11 | 0 | 62 |
+| Unit (by behavior row) | 800 in 90 classes | 315 | 194 | 34 | 74 | 13 |
+| Unit (by Java test method) | 800 | — | 334 | 116 | 185 | 165 |
+| Integration | 214 | 214 | 149 | 11 | 0 | 54 |
 
 ### 1.4 Not counted (inactive or inherited)
 
@@ -82,7 +82,7 @@ test over a fake HTTP transport:
    `delete(JobId)` throws on 404, and `Job.isDone()` is true for a missing
    job. The design must accept or reject these quirks explicitly.
 6. Value decoding: `FieldValue` and `FieldValueList` for every type,
-   timestamps (float seconds, int64 micros; picosecond ISO strings are DEFERRED),
+   timestamps (float seconds, int64 micros, picosecond ISO strings),
    canonical INTERVAL, RANGE, and case-insensitive name lookup
    (`U.FieldValue.*`, `U.FieldValueList.*`, U.FieldList.01).
 7. Query parameter encoding for all scalar, array, struct, and range types,
@@ -103,36 +103,36 @@ test over a fake HTTP transport:
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.BigQueryImpl.01 | Options accessor returns configured options | `testGetOptions` L619-L623 | N/A | Java ServiceOptions accessor. | |
-| U.BigQueryImpl.02 | datasets.insert: POST with project defaulted from client options | `testCreateDataset` L625-L636 | PORT |  | |
-| U.BigQueryImpl.03 | Dataset create/get/update `fields` mask always adds required `datasetReference` (+access, etag) | `testCreateDatasetWithSelectedFields` L638-L655; `testGetDatasetWithSelectedFields` L736-L752; `testUpdateDatasetWithSelectedFields` L927-L948 | PORT |  | |
-| U.BigQueryImpl.04 | datasets.insert passes `accessPolicyVersion` query param | `testCreateDatasetWithAccessPolicy` L657-L671 | PORT |  | |
-| U.BigQueryImpl.05 | datasets.get by name or DatasetId; missing project filled from client, explicit project kept | `testGetDataset` L673-L682; `testGetDatasetFromDatasetId` L711-L720; `testGetDatasetFromDatasetIdWithProject` L722-L734 | PORT |  | |
-| U.BigQueryImpl.06 | 404 on get returns null by default; throws when `throwNotFound` enabled (datasets, tables, models, jobs, routines) | 8 tests in L684-L4172 (`testGetDatasetNotFoundWhenThrowIsDisabled, testGetDatasetNotFoundWhenThrowIsEnabled, testGetTableNotFoundWhenThrowIsDisabled, testGetTableNotFoundWhenThrowIsEnabled, testGetModelNotFoundWhenThrowIsEnabled, testGetJobNotFoundWhenThrowIsDisabled, testGetJobNotFoundWhenThrowIsEnabled, testGetRoutineWithEnabledThrowNotFoundException`) | ADAPT | Swift: pick one documented 404 contract (e.g. `get` returns nil / throws `.notFound`) and test both paths. | |
-| U.BigQueryImpl.07 | datasets.list paging (default/explicit project, empty, all/labelFilter/pageSize/pageToken options) | `testListDatasets` L754-L770; `testListDatasetsWithProjects` L772-L788; `testListEmptyDatasets` L790-L803; `testListDatasetsWithOptions` L805-L822 | ADAPT | Java Page -> Swift AsyncSequence + per-page API; test token propagation and options. | |
-| U.BigQueryImpl.08 | projects.list maps id/numericId/projectReference/friendlyName; empty list | `testListProjects` L824-L852; `testListEmptyProjects` L854-L866 | PORT |  | |
-| U.BigQueryImpl.09 | datasets.delete returns true; DatasetId/project variants | `testDeleteDataset` L868-L876; `testDeleteDatasetFromDatasetId` L878-L886; `testDeleteDatasetFromDatasetIdWithProject` L888-L898 | PORT | 404 -> false covered by IT-046. | |
-| U.BigQueryImpl.10 | datasets.delete `deleteContents=true` option | `testDeleteDatasetWithOptions` L900-L909 | PORT |  | |
-| U.BigQueryImpl.11 | datasets.patch sends updated resource with client project filled | `testUpdateDataset` L911-L925 | PORT |  | |
-| U.BigQueryImpl.12 | tables.insert (standard, external, empty project replaced by client project) | `testCreateTable` L950-L961; `tesCreateExternalTable` L963-L980; `testCreateTableWithoutProject` L982-L994 | PORT |  | |
-| U.BigQueryImpl.13 | Table create/get/update `fields` mask always adds required `tableReference` (+schema, etag) | `testCreateTableWithSelectedFields` L996-L1012; `testGetTableWithSelectedFields` L1223-L1239; `testUpdateTableWithSelectedFields` L1529-L1549 | PORT |  | |
-| U.BigQueryImpl.14 | tables.get by (dataset, table) / TableId with/without project | `testGetTable` L1014-L1024; `testGetTableFromTableId` L1180-L1190; `testGetTableFromTableIdWithProject` L1192-L1206; `testGetTableFromTableIdWithoutProject` L1208-L1221 | PORT |  | |
-| U.BigQueryImpl.15 | 503 `backendError` on tables.get is retried, then succeeds (2 calls) | `testGetTableFailureShouldRetryServerErrors` L1026-L1051 | PORT |  | |
-| U.BigQueryImpl.16 | Custom retry algorithm that refuses retry -> single attempt, error surfaced | `testGetTableFailureWithCustomRetryAlgorithmShouldNotRetry` L1053-L1097 | ADAPT | Swift: injectable retry policy (gax RetryPolicy) instead of ResultRetryAlgorithm. | |
-| U.BigQueryImpl.17 | tables.list paging + options (DatasetId/project variants, pageSize/pageToken) | `testListTables` L1241-L1257; `testListTablesFromDatasetId` L1310-L1325; `testListTablesFromDatasetIdWithProject` L1327-L1343; `testListTablesWithOptions` L1362-L1378 | ADAPT | AsyncSequence. | |
-| U.BigQueryImpl.18 | tables.list item mapping keeps timePartitioning (incl. null type), rangePartitioning, labels | `testListTablesReturnedParameters` L1259-L1274; `testListTablesReturnedParametersNullType` L1276-L1291; `testListTablesWithRangePartitioning` L1293-L1308; `testListTablesWithLabels` L1345-L1360 | PORT |  | |
-| U.BigQueryImpl.19 | listPartitions reads `$__PARTITIONS_SUMMARY__` meta-table and returns partition ids | `testListPartition` L1132-L1148 | PORT |  | |
-| U.BigQueryImpl.20 | tables.delete returns true (TableId/project variants) | `testDeleteTable` L1414-L1421; `testDeleteTableFromTableId` L1423-L1430; `testDeleteTableFromTableIdWithProject` L1432-L1442; `testDeleteTableFromTableIdWithoutProject` L1444-L1453 | PORT |  | |
-| U.BigQueryImpl.21 | tables.patch (project defaulting) | `testUpdateTable` L1481-L1494; `testUpdateTableWithoutProject` L1515-L1527 | PORT |  | |
-| U.BigQueryImpl.22 | Updating external table sends schema at table level and nulls externalDataConfiguration.schema | `testUpdateExternalTableWithNewSchema` L1496-L1513 | PORT | Wire quirk. | |
-| U.BigQueryImpl.23 | tables.patch `autodetect_schema=true` option | `testUpdateTableWithAutoDetectSchema` L1551-L1569 | PORT |  | |
-| U.BigQueryImpl.24 | models.get / patch / delete | `testGetModel` L1103-L1113; `testUpdateModel` L1464-L1479; `testDeleteModel` L1455-L1462 | PORT |  | |
-| U.BigQueryImpl.25 | models.list paging (dataset name / DatasetId) | `testListModels` L1380-L1395; `testListModelsWithModelId` L1397-L1412 | ADAPT | AsyncSequence. | |
-| U.BigQueryImpl.26 | insertAll WITH insertIds retried on 500 (idempotent); per-row errors mapped by index | `testInsertAllWithRowIdShouldRetry` L1571-L1622 | PORT | Key idempotency rule. | |
-| U.BigQueryImpl.27 | insertAll WITHOUT insertIds is NOT retried | `testInsertAllWithoutRowIdShouldNotRetry` L1624-L1666 | PORT | Key idempotency rule. Swift auto-generates insertIds (#8), so this applies to the opt-out path. | |
-| U.BigQueryImpl.28 | insertAll body (insertId, json, skipInvalidRows, ignoreUnknownValues, templateSuffix) routed to table's project | `testInsertAllWithProject` L1668-L1718; `testInsertAllWithProjectInTable` L1720-L1771 | PORT |  | |
-| U.BigQueryImpl.29 | tabledata.list (dataset/table, TableId, other project) | `testListTableData` L1773-L1784; `testListTableDataFromTableId` L1786-L1797; `testListTableDataFromTableIdWithProject` L1799-L1812 | PORT |  | |
-| U.BigQueryImpl.30 | tabledata.list options maxResults/pageToken/startIndex | `testListTableDataWithOptions` L1814-L1831 | PORT |  | |
-| U.BigQueryImpl.31 | tabledata.list next page reuses pageToken and resets startIndex to 0 | `testListTableDataWithNextPage` L1833-L1869 | ADAPT | Row AsyncSequence must follow the same token/startIndex rule. | |
+| U.BigQueryImpl.02 | datasets.insert: POST with project defaulted from client options | `testCreateDataset` L625-L636 | PORT |  | `BigQueryClientDatasetTests.createPostsToClientProject`, `BigQueryClientDatasetTests.createUsesProjectOfDatasetID` |
+| U.BigQueryImpl.03 | Dataset create/get/update `fields` mask always adds required `datasetReference` (+access, etag) | `testCreateDatasetWithSelectedFields` L638-L655; `testGetDatasetWithSelectedFields` L736-L752; `testUpdateDatasetWithSelectedFields` L927-L948 | PORT |  | `BigQueryClientDatasetTests.selectedFieldsAlwaysIncludeReference` |
+| U.BigQueryImpl.04 | datasets.insert passes `accessPolicyVersion` query param | `testCreateDatasetWithAccessPolicy` L657-L671 | PORT |  | `BigQueryClientDatasetTests.createPassesAccessPolicyVersion` |
+| U.BigQueryImpl.05 | datasets.get by name or DatasetId; missing project filled from client, explicit project kept | `testGetDataset` L673-L682; `testGetDatasetFromDatasetId` L711-L720; `testGetDatasetFromDatasetIdWithProject` L722-L734 | PORT |  | `BigQueryClientDatasetTests.getFillsMissingProjectAndKeepsExplicitProject` |
+| U.BigQueryImpl.06 | 404 on get returns null by default; throws when `throwNotFound` enabled (datasets, tables, models, jobs, routines) | 8 tests in L684-L4172 (`testGetDatasetNotFoundWhenThrowIsDisabled, testGetDatasetNotFoundWhenThrowIsEnabled, testGetTableNotFoundWhenThrowIsDisabled, testGetTableNotFoundWhenThrowIsEnabled, testGetModelNotFoundWhenThrowIsEnabled, testGetJobNotFoundWhenThrowIsDisabled, testGetJobNotFoundWhenThrowIsEnabled, testGetRoutineWithEnabledThrowNotFoundException`) | ADAPT | Swift: pick one documented 404 contract (e.g. `get` returns nil / throws `.notFound`) and test both paths. | `BigQueryClientDatasetTests.getReturnsNilOnNotFound`, `BigQueryClientModelTests.getReturnsNilOnNotFound`, `BigQueryClientRoutineTests.getReturnsNilOnNotFound`, `TableOperationsTests.getMissingTableReturnsNil` |
+| U.BigQueryImpl.07 | datasets.list paging (default/explicit project, empty, all/labelFilter/pageSize/pageToken options) | `testListDatasets` L754-L770; `testListDatasetsWithProjects` L772-L788; `testListEmptyDatasets` L790-L803; `testListDatasetsWithOptions` L805-L822 | ADAPT | Java Page -> Swift AsyncSequence + per-page API; test token propagation and options. | `BigQueryClientDatasetTests.listFollowsPageTokens`, `BigQueryClientDatasetTests.listPassesProjectAndOptions`, `BigQueryClientDatasetTests.listOfEmptyProjectHasNoItems` |
+| U.BigQueryImpl.08 | projects.list maps id/numericId/projectReference/friendlyName; empty list | `testListProjects` L824-L852; `testListEmptyProjects` L854-L866 | PORT |  | `BigQueryClientIAMTests.listProjectsMapsEntries`, `BigQueryClientIAMTests.listProjectsEmpty` |
+| U.BigQueryImpl.09 | datasets.delete returns true; DatasetId/project variants | `testDeleteDataset` L868-L876; `testDeleteDatasetFromDatasetId` L878-L886; `testDeleteDatasetFromDatasetIdWithProject` L888-L898 | PORT | 404 -> false covered by IT-046. | `BigQueryClientDatasetTests.deleteReturnsTrue` |
+| U.BigQueryImpl.10 | datasets.delete `deleteContents=true` option | `testDeleteDatasetWithOptions` L900-L909 | PORT |  | `BigQueryClientDatasetTests.deletePassesDeleteContents` |
+| U.BigQueryImpl.11 | datasets.patch sends updated resource with client project filled | `testUpdateDataset` L911-L925 | PORT |  | `BigQueryClientDatasetTests.updatePatchesWithClientProject` |
+| U.BigQueryImpl.12 | tables.insert (standard, external, empty project replaced by client project) | `testCreateTable` L950-L961; `tesCreateExternalTable` L963-L980; `testCreateTableWithoutProject` L982-L994 | PORT |  | `TableOperationsTests.createTablePostsWithClientProject`, `TableOperationsTests.createExternalTableSendsSchemaAtTableLevel`, `TableOperationsTests.createTableIsNotRetried` |
+| U.BigQueryImpl.13 | Table create/get/update `fields` mask always adds required `tableReference` (+schema, etag) | `testCreateTableWithSelectedFields` L996-L1012; `testGetTableWithSelectedFields` L1223-L1239; `testUpdateTableWithSelectedFields` L1529-L1549 | PORT |  | `TableOperationsTests.selectedFieldsAlwaysIncludeRequiredFields` |
+| U.BigQueryImpl.14 | tables.get by (dataset, table) / TableId with/without project | `testGetTable` L1014-L1024; `testGetTableFromTableId` L1180-L1190; `testGetTableFromTableIdWithProject` L1192-L1206; `testGetTableFromTableIdWithoutProject` L1208-L1221 | PORT |  | `TableOperationsTests.getTableUsesStorageStatsViewByDefault` |
+| U.BigQueryImpl.15 | 503 `backendError` on tables.get is retried, then succeeds (2 calls) | `testGetTableFailureShouldRetryServerErrors` L1026-L1051 | PORT |  | `BigQueryTransportTests.retriesIdempotentRequestUntilSuccess`, `TableOperationsTests.getTableRetriesBackendError` |
+| U.BigQueryImpl.16 | Custom retry algorithm that refuses retry -> single attempt, error surfaced | `testGetTableFailureWithCustomRetryAlgorithmShouldNotRetry` L1053-L1097 | ADAPT | Swift: injectable retry policy (gax RetryPolicy) instead of ResultRetryAlgorithm. | `TableOperationsTests.getTableWithRefusingRetryPolicyMakesOneAttempt` |
+| U.BigQueryImpl.17 | tables.list paging + options (DatasetId/project variants, pageSize/pageToken) | `testListTables` L1241-L1257; `testListTablesFromDatasetId` L1310-L1325; `testListTablesFromDatasetIdWithProject` L1327-L1343; `testListTablesWithOptions` L1362-L1378 | ADAPT | AsyncSequence. | `TableOperationsTests.listTablesFollowsPageTokens`, `TableOperationsTests.listTablesInOtherProject` |
+| U.BigQueryImpl.18 | tables.list item mapping keeps timePartitioning (incl. null type), rangePartitioning, labels | `testListTablesReturnedParameters` L1259-L1274; `testListTablesReturnedParametersNullType` L1276-L1291; `testListTablesWithRangePartitioning` L1293-L1308; `testListTablesWithLabels` L1345-L1360 | PORT |  | `SharedConfigurationsTests.timePartitioningWithoutTypeIsDay`, `TableOperationsTests.listTablesKeepsPartitioningAndLabels` |
+| U.BigQueryImpl.19 | listPartitions reads `$__PARTITIONS_SUMMARY__` meta-table and returns partition ids | `testListPartition` L1132-L1148 | PORT |  | `TableOperationsTests.listPartitionsReadsPartitionsSummary` |
+| U.BigQueryImpl.20 | tables.delete returns true (TableId/project variants) | `testDeleteTable` L1414-L1421; `testDeleteTableFromTableId` L1423-L1430; `testDeleteTableFromTableIdWithProject` L1432-L1442; `testDeleteTableFromTableIdWithoutProject` L1444-L1453 | PORT |  | `TableOperationsTests.deleteTableReturnsWhetherItExisted` |
+| U.BigQueryImpl.21 | tables.patch (project defaulting) | `testUpdateTable` L1481-L1494; `testUpdateTableWithoutProject` L1515-L1527 | PORT |  | `TableOperationsTests.updateTablePatchesWithClientProject`, `TableOperationsTests.updateTableRetriesOnlyWithETag` |
+| U.BigQueryImpl.22 | Updating external table sends schema at table level and nulls externalDataConfiguration.schema | `testUpdateExternalTableWithNewSchema` L1496-L1513 | PORT | Wire quirk. | `TableOperationsTests.updateExternalTableSendsSchemaAtTableLevel`, `TableTests.externalSchemaIsSentAsTableSchema` |
+| U.BigQueryImpl.23 | tables.patch `autodetect_schema=true` option | `testUpdateTableWithAutoDetectSchema` L1551-L1569 | PORT |  | `TableOperationsTests.updateTableWithAutodetectSchema` |
+| U.BigQueryImpl.24 | models.get / patch / delete | `testGetModel` L1103-L1113; `testUpdateModel` L1464-L1479; `testDeleteModel` L1455-L1462 | PORT |  | `BigQueryClientModelTests.getUsesClientProjectAndSelectedFields`, `BigQueryClientModelTests.updatePatchesWithClientProject`, `BigQueryClientModelTests.deleteReturnsTrueOrFalseOnNotFound` |
+| U.BigQueryImpl.25 | models.list paging (dataset name / DatasetId) | `testListModels` L1380-L1395; `testListModelsWithModelId` L1397-L1412 | ADAPT | AsyncSequence. | `BigQueryClientModelTests.listFollowsPageTokens`, `BigQueryClientModelTests.listWithExplicitProjectAndOptions` |
+| U.BigQueryImpl.26 | insertAll WITH insertIds retried on 500 (idempotent); per-row errors mapped by index | `testInsertAllWithRowIdShouldRetry` L1571-L1622 | PORT | Key idempotency rule. | `BigQueryClientInsertAllTests.rowsWithInsertIDsAreRetriedAndErrorsMappedByIndex` |
+| U.BigQueryImpl.27 | insertAll WITHOUT insertIds is NOT retried | `testInsertAllWithoutRowIdShouldNotRetry` L1624-L1666 | PORT | Key idempotency rule. Swift auto-generates insertIds (#8), so this applies to the opt-out path. | `BigQueryClientInsertAllTests.rowsWithoutInsertIDsAreNotRetried` |
+| U.BigQueryImpl.28 | insertAll body (insertId, json, skipInvalidRows, ignoreUnknownValues, templateSuffix) routed to table's project | `testInsertAllWithProject` L1668-L1718; `testInsertAllWithProjectInTable` L1720-L1771 | PORT |  | `BigQueryClientInsertAllTests.sendsRowsAndOptionsToTheTableProject`, `BigQueryClientInsertAllTests.usesTheClientProjectAndDefaultOptions` |
+| U.BigQueryImpl.29 | tabledata.list (dataset/table, TableId, other project) | `testListTableData` L1773-L1784; `testListTableDataFromTableId` L1786-L1797; `testListTableDataFromTableIdWithProject` L1799-L1812 | PORT |  | `TableDataTests.listRowsReadsSchemaThenRows`, `TableDataTests.listRowsWithSchemaInOtherProjectSkipsTablesGet`, `TableDataTests.listRowsOfMissingTableThrows` |
+| U.BigQueryImpl.30 | tabledata.list options maxResults/pageToken/startIndex | `testListTableDataWithOptions` L1814-L1831 | PORT |  | `TableDataTests.listRowsSendsPagingOptions` |
+| U.BigQueryImpl.31 | tabledata.list next page reuses pageToken and resets startIndex to 0 | `testListTableDataWithNextPage` L1833-L1869 | ADAPT | Row AsyncSequence must follow the same token/startIndex rule. | `TableDataTests.nextPageUsesTokenWithoutStartIndex` |
 | U.BigQueryImpl.32 | jobs.insert sends caller JobId in jobReference | `testCreateJobSuccess` L1879-L1894 | PORT |  | |
 | U.BigQueryImpl.33 | jobs.insert retries transport errors (UnknownHost, Connect) | `testCreateJobFailureShouldRetryExceptionHandlerExceptions` L1896-L1914 | PORT | Swift: URLError equivalents. | |
 | U.BigQueryImpl.34 | jobs.insert retries 500/502/503 and rate-limit message even on 400/200 | `testCreateJobFailureShouldRetry` L1916-L1939 | PORT |  | |
@@ -160,27 +160,27 @@ test over a fake HTTP transport:
 | U.BigQueryImpl.56 | Arrow results format / queryArrow fast+slow path, paging, page fetcher, missing schema, incomplete job | 12 tests in L2932-L3703 (`testQueryArrowDefaultsToJobCreationOptional, testQueryArrowDefaultsToUSLocationWhenUnspecified, testQueryWithArrowFormatSlowPathFallback, testQueryWithArrowFormatFastPath, testQueryWithArrowFormatMultiplePages, testQueryWithArrowFormatMultiplePagesWithMaxResults, testArrowQueryPageFetcherSerialization, testQueryWithArrowFormatMissingSerializedSchema, testQueryWithArrowFormatIncompleteJob, testQueryWithArrowFormatIncompleteJobMissingJobReference, testQueryWithArrowFormatIncompleteJobJobNotFound, testQueryWithArrowFormatOpaquePageToken`) | DEFERRED | Arrow / Storage Read API deferred. | |
 | U.BigQueryImpl.57 | jobs.getQueryResults (default/other project; timeoutMs/startIndex/maxResults/pageToken options) | `testGetQueryResults` L3705-L3727; `testGetQueryResultsWithProject` L3773-L3795; `testGetQueryResultsWithOptions` L3797-L3824 | PORT |  | |
 | U.BigQueryImpl.58 | getQueryResults retried on 500/502/503/504 + rateLimitExceeded | `testGetQueryResultsRetry` L3729-L3771 | PORT |  | |
-| U.BigQueryImpl.59 | 500 on datasets.get retried; 501 not retried and message preserved | `testGetDatasetRetryableException` L3826-L3841; `testNonRetryableException` L3843-L3858 | PORT |  | |
+| U.BigQueryImpl.59 | 500 on datasets.get retried; 501 not retried and message preserved | `testGetDatasetRetryableException` L3826-L3841; `testNonRetryableException` L3843-L3858 | PORT |  | `BigQueryClientDatasetTests.getRetries500AndKeepsMessageOf501` |
 | U.BigQueryImpl.60 | Unexpected runtime error wrapped into BigQueryException keeping message | `testRuntimeException` L3860-L3874 | ADAPT | Swift: unknown errors wrapped/propagated in the single error type. | |
 | U.BigQueryImpl.61 | query() with dryRun=true is rejected (UnsupportedOperationException) | `testQueryDryRun` L3876-L3889 | ADAPT | Swift may instead return dry-run statistics; document choice. | |
 | U.BigQueryImpl.62 | jobs.query retried on 5xx reusing the SAME requestId (SELECT/DML/DDL) | `testFastQuerySQLShouldRetry` L3891-L3930; `testFastQueryDMLShouldRetry` L3932-L3971; `testFastQueryDDLShouldRetry` L4046-L4084 | PORT | Idempotency. | |
 | U.BigQueryImpl.63 | jobs.query retried on rate-limit message, same requestId | `testFastQueryRateLimitIdempotency` L3973-L4019 | PORT |  | |
 | U.BigQueryImpl.64 | Rate-limit regex matches 'exceeded rate limits' but not quota-for-table-update messages | `testRateLimitRegEx` L4021-L4044 | PORT |  | |
 | U.BigQueryImpl.65 | jobs.query 200 response with `errors` -> exception carrying all BigQueryErrors | `testFastQueryBigQueryException` L4086-L4121 | PORT |  | |
-| U.BigQueryImpl.66 | routines.insert/get/update(PUT)/delete | `testCreateRoutine` L4123-L4134; `testGetRoutine` L4136-L4146; `testGetRoutineWithRountineId` L4148-L4158; `testUpdateRoutine` L4174-L4190; `testDeleteRoutine` L4224-L4231 | PORT |  | |
-| U.BigQueryImpl.67 | routines.list paging (dataset name / DatasetId) | `testListRoutines` L4192-L4206; `testListRoutinesWithDatasetId` L4208-L4222 | ADAPT | AsyncSequence. | |
+| U.BigQueryImpl.66 | routines.insert/get/update(PUT)/delete | `testCreateRoutine` L4123-L4134; `testGetRoutine` L4136-L4146; `testGetRoutineWithRountineId` L4148-L4158; `testUpdateRoutine` L4174-L4190; `testDeleteRoutine` L4224-L4231 | PORT |  | `BigQueryClientRoutineTests.createPostsWithClientProject`, `BigQueryClientRoutineTests.getUsesClientOrExplicitProject`, `BigQueryClientRoutineTests.updatePutsFullRoutine`, `BigQueryClientRoutineTests.deleteReturnsTrueOrFalseOnNotFound` |
+| U.BigQueryImpl.67 | routines.list paging (dataset name / DatasetId) | `testListRoutines` L4192-L4206; `testListRoutinesWithDatasetId` L4208-L4222 | ADAPT | AsyncSequence. | `BigQueryClientRoutineTests.listFollowsPageTokens`, `BigQueryClientRoutineTests.listWithExplicitProjectAndPageToken` |
 | U.BigQueryImpl.68 | writer(): opens resumable load upload with job config; close returns Job | `testWriteWithJob` L4233-L4257; `testWriteChannel` L4259-L4283 | ADAPT | Swift: async upload API instead of WriteChannel. | |
-| U.BigQueryImpl.69 | tables getIamPolicy / setIamPolicy / testIamPermissions on `projects/p/datasets/d/tables/t` | `testGetIamPolicy` L4285-L4297; `testSetIamPolicy` L4299-L4313; `testTestIamPermissions` L4315-L4333 | PORT |  | |
-| U.BigQueryImpl.70 | testIamPermissions with null permissions -> empty list | `testTestIamPermissionsWhenNoPermissionsGranted` L4335-L4353 | PORT |  | |
+| U.BigQueryImpl.69 | tables getIamPolicy / setIamPolicy / testIamPermissions on `projects/p/datasets/d/tables/t` | `testGetIamPolicy` L4285-L4297; `testSetIamPolicy` L4299-L4313; `testTestIamPermissions` L4315-L4333 | PORT |  | `BigQueryClientIAMTests.getPostsRequestedPolicyVersion`, `BigQueryClientIAMTests.setPostsPolicy`, `BigQueryClientIAMTests.testPermissionsPostsAndReturnsGranted` |
+| U.BigQueryImpl.70 | testIamPermissions with null permissions -> empty list | `testTestIamPermissionsWhenNoPermissionsGranted` L4335-L4353 | PORT |  | `BigQueryClientIAMTests.testPermissionsWithNoneGrantedIsEmpty` |
 | U.BigQueryImpl.71 | close() lifecycle of BigQueryReadClient(s) (idempotent, try-with-resources, regional clients) | `testCloseClosesBigQueryReadClient` L4355-L4365; `testCloseIsIdempotent` L4367-L4378; `testCloseWithoutReadClientDoesNotThrow` L4380-L4384; `testTryWithResources` L4386-L4395; `testGetBigQueryReadClientAfterCloseThrows` L4397-L4403; `testCloseClosesAllRegionalBigQueryReadClients` L4405-L4419 | DEFERRED | Storage Read API client deferred. | |
 
 #### `HttpBigQueryRpcTest` — [spi/v2/HttpBigQueryRpcTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/spi/v2/HttpBigQueryRpcTest.java) (81 tests; PORT 3 / ADAPT 0 / N/A 0 / DEFERRED 1)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.HttpBigQueryRpc.01 | datasets.list item -> Dataset mapping keeps kind/id/friendlyName/reference/labels/location | `testListToDataset` L194-L215 | PORT |  | |
-| U.HttpBigQueryRpc.02 | projects.list request | `testListProjects` L283-L305 | PORT |  | |
-| U.HttpBigQueryRpc.03 | REST route table: HTTP method + path for every RPC (datasets/tables/models/routines CRUD, PUT routines, insertAll, tabledata, jobs get/list/insert/cancel/delete, queries get/post, IAM `:getIamPolicy/:setIamPolicy/:testIamPermissions`) | 35 tests in L1233-L1770 | PORT | Swift: one parameterized @Test over a route table with a capture transport. | |
+| U.HttpBigQueryRpc.01 | datasets.list item -> Dataset mapping keeps kind/id/friendlyName/reference/labels/location | `testListToDataset` L194-L215 | PORT |  | `DatasetTests.listItemKeepsReferenceNameLabelsAndLocation` |
+| U.HttpBigQueryRpc.02 | projects.list request | `testListProjects` L283-L305 | PORT |  | `BigQueryClientIAMTests.listProjectsMapsEntries` |
+| U.HttpBigQueryRpc.03 | REST route table: HTTP method + path for every RPC (datasets/tables/models/routines CRUD, PUT routines, insertAll, tabledata, jobs get/list/insert/cancel/delete, queries get/post, IAM `:getIamPolicy/:setIamPolicy/:testIamPermissions`) | 35 tests in L1233-L1770 | PORT | Swift: one parameterized @Test over a route table with a capture transport. | `ResourceRouteTests.routesToMethodAndPath`, `TableOperationsTests.routes` |
 | U.HttpBigQueryRpc.04 | OpenTelemetry spans/attributes per RPC (incl. url.domain default/override, error attributes, uri template) | 44 tests in L227-L1785 | DEFERRED | OpenTelemetry: DEFERRED per D4 (#4); Swift would use swift-distributed-tracing. | |
 
 #### `TableDataWriteChannelTest` — [TableDataWriteChannelTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/TableDataWriteChannelTest.java) (13 tests; PORT 4 / ADAPT 2 / N/A 1 / DEFERRED 0)
@@ -199,25 +199,25 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.BigQueryError.01 | BigQueryError carries reason/location/message/debugInfo | `testConstructor` L34-L44 | PORT |  | |
-| U.BigQueryError.02 | ErrorProto JSON round trip | `testToAndFromPb` L46-L50 | PORT |  | |
+| U.BigQueryError.01 | BigQueryError carries reason/location/message/debugInfo | `testConstructor` L34-L44 | PORT |  | `BigQueryErrorTests.parsesServiceErrorBody` |
+| U.BigQueryError.02 | ErrorProto JSON round trip | `testToAndFromPb` L46-L50 | PORT |  | `BigQueryErrorTests.jobErrorPutsErrorResultFirstAndDeduplicates` |
 
 #### `BigQueryExceptionTest` — [BigQueryExceptionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/BigQueryExceptionTest.java) (4 tests; PORT 2 / ADAPT 1 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.BigQueryException.01 | Retryable classification: 500/502/503/504 and IO (socket timeout) retryable, 400/404 not; reason taken from BigQueryError | `testBigQueryException` L50-L137 | PORT |  | |
+| U.BigQueryException.01 | Retryable classification: 500/502/503/504 and IO (socket timeout) retryable, 400/404 not; reason taken from BigQueryError | `testBigQueryException` L50-L137 | PORT |  | `BigQueryRetryPolicyTests.retriesTransientStatusCodes`, `BigQueryRetryPolicyTests.doesNotRetryPermanentStatusCodes`, `BigQueryTransportTests.retriesIdempotentRequestUntilSuccess` |
 | U.BigQueryException.02 | RetryHelperException unwrapping | `testTranslateAndThrow` L139-L168 | N/A | Java RetryHelper mechanics. | |
-| U.BigQueryException.03 | Default handler retries SocketException up to 6 attempts total | `testDefaultExceptionHandler` L170-L198 | PORT | Pins default max attempts. | |
-| U.BigQueryException.04 | Custom exception handler retryOn/abortOn | `testCustomExceptionHandler` L200-L251 | ADAPT | Swift: custom retry policy. | |
+| U.BigQueryException.03 | Default handler retries SocketException up to 6 attempts total | `testDefaultExceptionHandler` L170-L198 | PORT | Pins default max attempts. | `BigQueryTransportTests.defaultPolicyStopsAfterSixAttempts` |
+| U.BigQueryException.04 | Custom exception handler retryOn/abortOn | `testCustomExceptionHandler` L200-L251 | ADAPT | Swift: custom retry policy. | `BigQueryTransportTests.perCallRetryPolicyOverridesClientDefault` |
 
 #### `BigQueryOptionsTest` — [BigQueryOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/BigQueryOptionsTest.java) (7 tests; PORT 0 / ADAPT 2 / N/A 2 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.BigQueryOptions.01 | Only HTTP transport accepted | `testInvalidTransport` L34-L43 | N/A | Java transport option. | |
-| U.BigQueryOptions.02 | Default DataFormatOptions: useInt64Timestamp=false, timestamp output format unspecified | `dataFormatOptions_createdByDefault` L45-L54 | ADAPT | Swift always sends useInt64Timestamp=true (survey #7); timestamp output format is DEFERRED with picosecond timestamps. | |
-| U.BigQueryOptions.03 | Legacy setUseInt64Timestamps vs DataFormatOptions precedence | `nonBuilderSetUseInt64Timestamp_capturedInDataFormatOptions` L56-L66; `nonBuilderSetUseInt64Timestamp_overridesEverything` L68-L74; `noDataFormatOptions_capturesUseInt64TimestampSetInBuilder` L76-L82; `dataFormatOptionsSetterHasPrecedence` L84-L94 | ADAPT | Java dual legacy setter collapses to one Swift value, but the wire outcome matters (survey #7): assert jobs.query/tabledata.list always request int64 timestamps (`formatOptions.useInt64Timestamp=true`). | |
+| U.BigQueryOptions.02 | Default DataFormatOptions: useInt64Timestamp=false, timestamp output format unspecified | `dataFormatOptions_createdByDefault` L45-L54 | ADAPT | Swift has no DataFormatOptions; one fixed read format (ISO8601_STRING per #105, never with useInt64Timestamp). Assert the read requests carry it. | |
+| U.BigQueryOptions.03 | Legacy setUseInt64Timestamps vs DataFormatOptions precedence | `nonBuilderSetUseInt64Timestamp_capturedInDataFormatOptions` L56-L66; `nonBuilderSetUseInt64Timestamp_overridesEverything` L68-L74; `noDataFormatOptions_capturesUseInt64TimestampSetInBuilder` L76-L82; `dataFormatOptionsSetterHasPrecedence` L84-L94 | ADAPT | Java dual legacy setter collapses to one Swift value, but the wire outcome matters (survey #7): assert jobs.query/getQueryResults/tabledata.list always request the fixed format (`timestampOutputFormat=ISO8601_STRING` per #105; was `useInt64Timestamp=true`). | |
 | U.BigQueryOptions.04 | useJwtAccessWithScope defaults false | `testUseJwtAccessWithScope_defaultsToFalse` L96-L101 | N/A | Java auth library detail. | |
 
 #### `OptionTest` — [OptionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/OptionTest.java) (3 tests; PORT 0 / ADAPT 0 / N/A 1 / DEFERRED 0)
@@ -230,13 +230,13 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.PolicyHelper.01 | IAM Policy <-> REST Policy conversion with and without bindings | `testConversionWithBindings` L60-L68; `testConversionNoBindings` L70-L80 | PORT |  | |
+| U.PolicyHelper.01 | IAM Policy <-> REST Policy conversion with and without bindings | `testConversionWithBindings` L60-L68; `testConversionNoBindings` L70-L80 | PORT |  | `IAMPolicyTests.convertsPolicyWithBindings`, `IAMPolicyTests.convertsPolicyWithoutBindings` |
 
 #### `AnnotationsTest` — [AnnotationsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/AnnotationsTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.Annotations.01 | Labels map: null/empty handling and JSON-null values (label deletion) survive round trip | `testFromUser` L29-L43; `testFromToPb` L45-L60 | PORT | Swift: patch must be able to send `"label": null`. | |
+| U.Annotations.01 | Labels map: null/empty handling and JSON-null values (label deletion) survive round trip | `testFromUser` L29-L43; `testFromToPb` L45-L60 | PORT | Swift: patch must be able to send `"label": null`. | `BigQueryClientDatasetTests.updateClearingSendsJSONNull`, `BigQueryClientDatasetTests.updateWithEmptyLabelsOmitsThem` |
 | U.Annotations.02 | Null label key rejected | `testNullKey` L62-L71 | N/A | Type system forbids nil keys. | |
 
 #### `RemoteBigQueryHelperTest` — [testing/RemoteBigQueryHelperTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/testing/RemoteBigQueryHelperTest.java) (2 tests; PORT 0 / ADAPT 1 / N/A 1 / DEFERRED 0)
@@ -261,13 +261,13 @@ test over a fake HTTP transport:
 ### 2.2 Query fast path, Connection API and Arrow
 
 
-#### `QueryRequestInfoTest` — [QueryRequestInfoTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/QueryRequestInfoTest.java) (4 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
+#### `QueryRequestInfoTest` — [QueryRequestInfoTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/QueryRequestInfoTest.java) (4 tests; PORT 2 / ADAPT 1 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.QueryRequestInfo.01 | Fast-path eligibility (isFastQuerySupported) incl. timeout and JOB_CREATION_REQUIRED configs | `testIsFastQuerySupported` L176-L182 | PORT | Core of query() routing. | |
 | U.QueryRequestInfo.02 | QueryRequest body built from config (jobTimeoutMs etc.) | `testToPb` L184-L190 | PORT |  | |
-| U.QueryRequestInfo.03 | formatOptions.useInt64Timestamp follows DataFormatOptions | `testInt64Timestamp` L211-L224 | PORT |  | |
+| U.QueryRequestInfo.03 | formatOptions.useInt64Timestamp follows DataFormatOptions | `testInt64Timestamp` L211-L224 | ADAPT | Swift: jobs.query always carries the fixed formatOptions (ISO8601_STRING per #105). | |
 | U.QueryRequestInfo.04 | Equality of request infos | `equalTo` L192-L209 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ConnectionPropertyTest` — [ConnectionPropertyTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ConnectionPropertyTest.java) (4 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
@@ -350,9 +350,9 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.JobId.01 | JobId of(project, job, location) | `testOf` L28-L34 | PORT |  | |
-| U.JobId.02 | JobReference JSON round trip | `testToPbAndFromPb` L42-L46 | PORT |  | |
-| U.JobId.03 | setProjectId fills missing project | `testSetProjectId` L48-L51 | PORT |  | |
+| U.JobId.01 | JobId of(project, job, location) | `testOf` L28-L34 | PORT |  | `JobIDTests.wireRoundTripKeepsLocation` |
+| U.JobId.02 | JobReference JSON round trip | `testToPbAndFromPb` L42-L46 | PORT |  | `JobIDTests.wireRoundTripKeepsLocation` |
+| U.JobId.03 | setProjectId fills missing project | `testSetProjectId` L48-L51 | PORT |  | `JobIDTests.clientFillsMissingProjectAndLocation` |
 | U.JobId.04 | equals/hashCode | `testEquals` L36-L40 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `JobStatusTest` — [JobStatusTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/JobStatusTest.java) (2 tests; PORT 2 / ADAPT 0 / N/A 0 / DEFERRED 0)
@@ -440,7 +440,7 @@ test over a fake HTTP transport:
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.TableResult.01 | Rows without schema accessible by index only | `testNullSchema` L66-L93 | PORT |  | |
-| U.TableResult.02 | Rows with schema accessible by name; totalRows/schema exposed | `testSchema` L95-L129 | PORT |  | |
+| U.TableResult.02 | Rows with schema accessible by name; totalRows/schema exposed | `testSchema` L95-L129 | PORT |  | `TableDataTests.listRowsReadsSchemaThenRows` |
 | U.TableResult.03 | statementType and execution stats exposed on result | `testStatementTypeAndExecutionStats` L131-L176 | PORT |  | |
 | U.TableResult.04 | Builder / equals / hashCode | `testToBuilder` L178-L206; `testEqualsAndHashCode` L208-L262 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
@@ -451,26 +451,26 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.FieldValue.01 | Cell parsing: BOOL, INT64 (string), FLOAT, GEOGRAPHY, NUMERIC, STRING, TIMESTAMP (seconds->micros), INTERVAL (ISO & canonical), BYTES (base64), RANGE, null, REPEATED, RECORD | `testFromPb` L67-L125 | PORT |  | |
-| U.FieldValue.02 | Float-seconds timestamp string (incl. negative/exponent) -> micros | `testTimestamp` L127-L133 | PORT |  | |
-| U.FieldValue.03 | useInt64Timestamp lossless micros equals lossy parse; max timestamp 9999-12-31 exact | `testInt64Timestamp` L135-L152; `testLosslessMaxTimestamp` L154-L164 | PORT |  | |
-| U.FieldValue.04 | Canonical INTERVAL 'Y-M D H:M:S.f' parsing incl. negatives and extremes | `testParseCanonicalInterval` L220-L236 | PORT |  | |
+| U.FieldValue.01 | Cell parsing: BOOL, INT64 (string), FLOAT, GEOGRAPHY, NUMERIC, STRING, TIMESTAMP (seconds->micros), INTERVAL (ISO & canonical), BYTES (base64), RANGE, null, REPEATED, RECORD | `testFromPb` L67-L125 | PORT |  | `FieldValueTests.scalarAccessorsConvertCellText`, `FieldValueTests.integerTimestampTextIsMicroseconds`, `FieldValueTests.intervalAccessorParsesBothForms`, `FieldValueTests.nullReadsAsNilFromEveryAccessor`, `FieldValueTests.repeatedAndRecordAccessorsReturnNestedValues`, `FieldValueTests.rangeAccessorParsesBounds` |
+| U.FieldValue.02 | Float-seconds timestamp string (incl. negative/exponent) -> micros | `testTimestamp` L127-L133 | PORT |  | `FieldValueTests.floatSecondsTimestampConvertsToMicros` |
+| U.FieldValue.03 | useInt64Timestamp lossless micros equals lossy parse; max timestamp 9999-12-31 exact | `testInt64Timestamp` L135-L152; `testLosslessMaxTimestamp` L154-L164 | PORT |  | `FieldValueTests.int64TimestampIsLossless` |
+| U.FieldValue.04 | Canonical INTERVAL 'Y-M D H:M:S.f' parsing incl. negatives and extremes | `testParseCanonicalInterval` L220-L236 | PORT |  | `IntervalTests.parsesCanonicalForm` |
 | U.FieldValue.05 | equals/hashCode | `testEquals` L166-L218 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `FieldValueListTest` — [FieldValueListTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/FieldValueListTest.java) (5 tests; PORT 3 / ADAPT 0 / N/A 0 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.FieldValueList.01 | Row parsing against schema | `testFromPb` L141-L152 | PORT |  | |
-| U.FieldValueList.02 | Access by index and by field name | `testGetByIndex` L154-L174; `testGetByName` L176-L196 | PORT |  | |
-| U.FieldValueList.03 | Name access without schema fails; unknown field fails | `testNullSchema` L198-L220; `testGetNonExistentField` L222-L227 | PORT | Swift: throws / nil. | |
+| U.FieldValueList.01 | Row parsing against schema | `testFromPb` L141-L152 | PORT |  | `Person.decodesEveryColumnType`, `RowTests.parsesRowAgainstSchema` |
+| U.FieldValueList.02 | Access by index and by field name | `testGetByIndex` L154-L174; `testGetByName` L176-L196 | PORT |  | `Person.decodesEveryColumnType`, `Person.keysMatchColumnsCaseInsensitively`, `RowTests.accessByIndexAndName`, `Record.insertAllRoundTripsEveryType` |
+| U.FieldValueList.03 | Name access without schema fails; unknown field fails | `testNullSchema` L198-L220; `testGetNonExistentField` L222-L227 | PORT | Swift: throws / nil. | `FieldValueTests.wrongShapeThrowsTypeMismatch`, `Raw.missingColumnThrowsKeyNotFound`, `RowTests.unknownNameIsNil` |
 
-#### `FieldTest` — [FieldTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/FieldTest.java) (12 tests; PORT 1 / ADAPT 0 / N/A 2 / DEFERRED 1)
+#### `FieldTest` — [FieldTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/FieldTest.java) (12 tests; PORT 1 / ADAPT 1 / N/A 2 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.Field.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L181-L188; `testToAndFromPbWithStandardSQLTypeName` L190-L199 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.Field.02 | timestampPrecision only accepts 6 or 12 | `setTimestampPrecisionValues` L217-L229 | DEFERRED | Picosecond timestamps (timestampPrecision) DEFERRED (bigquery.md §11/§13). | |
+| U.Field.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L181-L188; `testToAndFromPbWithStandardSQLTypeName` L190-L199 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `SchemaTests.wireRoundTripPreservesEveryField` |
+| U.Field.02 | timestampPrecision only accepts 6 or 12 | `setTimestampPrecisionValues` L217-L229 | ADAPT | Swift has no client-side 6/12 check; the server validates (#102.4). Test Field.timestampPrecision wire round trip. | |
 | U.Field.03 | RECORD type survives Java deserialization clone | `testSubFieldWithClonedType` L201-L215 | N/A | Java Serializable. | |
 | U.Field.04 | Builder / toBuilder / equals / factory mechanics | 8 tests in L90-L179 (`testToBuilder, testToBuilderWithStandardSQLTypeName, testToBuilderIncomplete, testToBuilderIncompleteWithStandardSQLTypeName, testToBuilderIncompleteStandard, testToBuilderIncompleteStandardWithStandardSQLTypeName, testBuilder, testBuilderWithStandardSQLTypeName`) | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
@@ -478,17 +478,17 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.FieldList.01 | Field lookup by name is case-insensitive; unknown name fails | `testGetByName` L66-L83 | PORT |  | |
-| U.FieldList.02 | Field lookup by index | `testGetByIndex` L85-L96 | PORT |  | |
-| U.FieldList.03 | Nested RECORD sub-schema access | `testGetRecordSchema` L98-L115 | PORT |  | |
-| U.FieldList.04 | JSON round trip | `testToAndFromPb` L117-L123 | PORT |  | |
+| U.FieldList.01 | Field lookup by name is case-insensitive; unknown name fails | `testGetByName` L66-L83 | PORT |  | `SchemaTests.lookupByNameIsCaseInsensitiveAfterExactMatch` |
+| U.FieldList.02 | Field lookup by index | `testGetByIndex` L85-L96 | PORT |  | `SchemaTests.lookupByIndex` |
+| U.FieldList.03 | Nested RECORD sub-schema access | `testGetRecordSchema` L98-L115 | PORT |  | `SchemaTests.nestedRecordSchema` |
+| U.FieldList.04 | JSON round trip | `testToAndFromPb` L117-L123 | PORT |  | `SchemaTests.wireRoundTripPreservesEveryField` |
 
 #### `SchemaTest` — [SchemaTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/SchemaTest.java) (3 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.Schema.01 | TableSchema JSON round trip | `testToAndFromPb` L60-L63 | PORT |  | |
-| U.Schema.02 | Empty TableSchema -> zero fields | `testEmptySchema` L70-L75 | PORT |  | |
+| U.Schema.01 | TableSchema JSON round trip | `testToAndFromPb` L60-L63 | PORT |  | `SchemaTests.wireRoundTripPreservesEveryField` |
+| U.Schema.02 | Empty TableSchema -> zero fields | `testEmptySchema` L70-L75 | PORT |  | `SchemaTests.emptySchemaHasNoFields` |
 | U.Schema.03 | Factory | `testOf` L55-L58 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `QueryParameterValueTest` — [QueryParameterValueTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/QueryParameterValueTest.java) (41 tests; PORT 10 / ADAPT 1 / N/A 1 / DEFERRED 0)
@@ -496,24 +496,24 @@ test over a fake HTTP transport:
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.QueryParameterValue.01 | Builder / required type | `testBuilder` L46-L56; `testTypeNullPointerException` L58-L65 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
-| U.QueryParameterValue.02 | Scalar params: BOOL, INT64 (from long/int), FLOAT64 (double/float), NUMERIC, STRING, GEOGRAPHY, BYTES (base64) value+type | 9 tests in L67-L225 (`testBool, testInt64, testInt64FromInteger, testFloat64, testFloat64FromFloat, testNumeric, testString, testGeography, testBytes`) | PORT |  | |
-| U.QueryParameterValue.03 | BIGNUMERIC string formatting (38 digits, scientific for tiny/huge) | `testBigNumeric` L121-L162 | PORT |  | |
-| U.QueryParameterValue.04 | JSON param (string / object) | `testJson` L182-L198 | PORT |  | |
-| U.QueryParameterValue.05 | INTERVAL param from canonical string / ISO / PeriodDuration | `testInterval` L200-L216 | PORT | Swift: own interval type or string. | |
-| U.QueryParameterValue.06 | ARRAY params of each scalar type; empty array keeps element type | 8 tests in L227-L512 (`testBoolArray, testInt64Array, testInt64ArrayFromIntegers, testFloat64Array, testFloat64ArrayFromFloats, testNumericArray, testStringArray, testFromEmptyArray`) | PORT |  | |
-| U.QueryParameterValue.07 | TIMESTAMP param from micros/strings/formatters -> 'yyyy-MM-dd HH:mm:ss.SSSSSSZZ' | `testTimestampFromLong` L301-L306; `testTimestampWithFormatter` L308-L317; `testTimestampFromString` L319-L346; `testTimestampWithDateTimeFormatterBuilder` L348-L359 | ADAPT | Swift: from Date/micros/string; same canonical output. The >9-fractional-digit (picosecond) cases in testTimestampFromString are DEFERRED. | |
-| U.QueryParameterValue.08 | Invalid TIMESTAMP strings rejected | `testInvalidTimestampStringValues` L361-L386 | PORT | The picosecond-length fraction cases follow the picosecond deferral. | |
-| U.QueryParameterValue.09 | DATE/TIME/DATETIME params (incl. java.util.Date) and invalid values rejected | 7 tests in L388-L446 (`testDate, testStandardDate, testInvalidDate, testTime, testInvalidTime, testDateTime, testInvalidDateTime`) | PORT |  | |
-| U.QueryParameterValue.10 | TIMESTAMP array params | `testTimestampArrayFromLongs` L448-L460; `testTimestampArray` L462-L475; `testTimestampArrayWithDateTimeFormatterBuilder` L477-L498 | PORT |  | |
-| U.QueryParameterValue.11 | STRUCT, nested STRUCT, ARRAY<STRUCT> params (type + value JSON) | `testStruct` L514-L538; `testNestedStruct` L540-L574; `testStructArray` L576-L616 | PORT |  | |
-| U.QueryParameterValue.12 | RANGE<DATE\|DATETIME\|TIMESTAMP> param | `testRange` L632-L667 | PORT |  | |
+| U.QueryParameterValue.02 | Scalar params: BOOL, INT64 (from long/int), FLOAT64 (double/float), NUMERIC, STRING, GEOGRAPHY, BYTES (base64) value+type | 9 tests in L67-L225 (`testBool, testInt64, testInt64FromInteger, testFloat64, testFloat64FromFloat, testNumeric, testString, testGeography, testBytes`) | PORT |  | `QueryParameterValueTests.scalarFactoriesSetTypeAndText` |
+| U.QueryParameterValue.03 | BIGNUMERIC string formatting (38 digits, scientific for tiny/huge) | `testBigNumeric` L121-L162 | PORT |  | `BigNumericTests.keepsDecimalTextVerbatim`, `QueryParameterValueTests.bigNumericSendsTextVerbatim` |
+| U.QueryParameterValue.04 | JSON param (string / object) | `testJson` L182-L198 | PORT |  | `QueryParameterValueTests.jsonSendsText` |
+| U.QueryParameterValue.05 | INTERVAL param from canonical string / ISO / PeriodDuration | `testInterval` L200-L216 | PORT | Swift: own interval type or string. | `IntervalTests.parsesISO8601Form`, `QueryParameterValueTests.intervalFromTextOrValue` |
+| U.QueryParameterValue.06 | ARRAY params of each scalar type; empty array keeps element type | 8 tests in L227-L512 (`testBoolArray, testInt64Array, testInt64ArrayFromIntegers, testFloat64Array, testFloat64ArrayFromFloats, testNumericArray, testStringArray, testFromEmptyArray`) | PORT |  | `QueryParameterValueTests.arraysOfSwiftValuesInferTheElementType`, `QueryParameterValueTests.emptyArrayFromServerKeepsElementType` |
+| U.QueryParameterValue.07 | TIMESTAMP param from micros/strings/formatters -> 'yyyy-MM-dd HH:mm:ss.SSSSSSZZ' | `testTimestampFromLong` L301-L306; `testTimestampWithFormatter` L308-L317; `testTimestampFromString` L319-L346; `testTimestampWithDateTimeFormatterBuilder` L348-L359 | ADAPT | Swift: from Date/micros/string; same canonical output. Includes the 10-12 digit (picosecond) cases; >12 digits rejected (#102.5). | `QueryParameterValueTests.timestampFromMicrosAndDateUsesCanonicalFormat`, `QueryParameterValueTests.timestampFromValidTextIsSentUnchanged` |
+| U.QueryParameterValue.08 | Invalid TIMESTAMP strings rejected | `testInvalidTimestampStringValues` L361-L386 | PORT | Includes picosecond-length fraction cases. | `QueryParameterValueTests.timestampFromInvalidTextThrows` |
+| U.QueryParameterValue.09 | DATE/TIME/DATETIME params (incl. java.util.Date) and invalid values rejected | 7 tests in L388-L446 (`testDate, testStandardDate, testInvalidDate, testTime, testInvalidTime, testDateTime, testInvalidDateTime`) | PORT |  | `CivilTypesTests.dateParsesAndPrints`, `CivilTypesTests.dateFromFoundationDateUsesTimeZone`, `CivilTypesTests.timeParsesAndPrints`, `CivilTypesTests.dateTimeParsesAndPrints`, `QueryParameterValueTests.civilFactoriesValidateText` |
+| U.QueryParameterValue.10 | TIMESTAMP array params | `testTimestampArrayFromLongs` L448-L460; `testTimestampArray` L462-L475; `testTimestampArrayWithDateTimeFormatterBuilder` L477-L498 | PORT |  | `QueryParameterValueTests.timestampArrays` |
+| U.QueryParameterValue.11 | STRUCT, nested STRUCT, ARRAY<STRUCT> params (type + value JSON) | `testStruct` L514-L538; `testNestedStruct` L540-L574; `testStructArray` L576-L616 | PORT |  | `QueryParameterValueTests.structKeepsFieldOrderAndRoundTrips`, `QueryParameterValueTests.nestedStructRoundTrips`, `QueryParameterValueTests.arrayOfStructsRoundTrips` |
+| U.QueryParameterValue.12 | RANGE<DATE\|DATETIME\|TIMESTAMP> param | `testRange` L632-L667 | PORT |  | `QueryParameterValueTests.rangeRoundTripsWithEveryBoundCombination`, `Result.rangeParametersRoundTrip` |
 
 #### `RangeTest` — [RangeTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/RangeTest.java) (4 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.Range.01 | Range.of parses '[start, end)' incl. UNBOUNDED/NULL bounds | `testOf` L46-L55 | PORT |  | |
-| U.Range.02 | getValues exposes start/end | `testGetValues` L81-L90 | PORT |  | |
+| U.Range.01 | Range.of parses '[start, end)' incl. UNBOUNDED/NULL bounds | `testOf` L46-L55 | PORT |  | `FieldValueTests.rangeAccessorParsesBounds`, `BigQueryRangeTests.parsesBoundsIncludingUnboundedAndNull`, `BigQueryRangeTests.typedFactoriesSetElementType` |
+| U.Range.02 | getValues exposes start/end | `testGetValues` L81-L90 | PORT |  | `BigQueryRangeTests.boundValuesAreFieldValues` |
 | U.Range.03 | Builder mechanics | `testBuilder` L57-L72; `testToBuilder` L74-L79 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `FieldElementTypeTest` — [FieldElementTypeTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/FieldElementTypeTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
@@ -527,59 +527,59 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.StandardSQLDataType.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L60-L64 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.StandardSQLDataType.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L60-L64 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `StandardSQLDataTypeTests.roundTripsScalarArrayStructAndRange`, `StandardSQLDataTypeTests.accessorsExposeSubTypes` |
 | U.StandardSQLDataType.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L44-L50; `testBuilder` L52-L58 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `StandardSQLFieldTest` — [StandardSQLFieldTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/StandardSQLFieldTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.StandardSQLField.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L47-L51 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.StandardSQLField.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L47-L51 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `StandardSQLFieldTests.roundTrips` |
 | U.StandardSQLField.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L34-L38; `testBuilder` L40-L45 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `StandardSQLStructTypeTest` — [StandardSQLStructTypeTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/StandardSQLStructTypeTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.StandardSQLStructType.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L48-L51 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.StandardSQLStructType.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L48-L51 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `StandardSQLStructTypeTests.roundTrips` |
 | U.StandardSQLStructType.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L37-L40; `testBuilder` L42-L46 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `StandardSQLTableTypeTest` — [StandardSQLTableTypeTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/StandardSQLTableTypeTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.StandardSQLTableType.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L49-L52 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.StandardSQLTableType.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L49-L52 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `StandardSQLTableTypeTests.roundTrips` |
 | U.StandardSQLTableType.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L38-L41; `testBuilder` L43-L47 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `InsertAllRequestTest` — [InsertAllRequestTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/InsertAllRequestTest.java) (5 tests; PORT 1 / ADAPT 1 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.InsertAllRequest.01 | Request carries rows (with/without insertId), skipInvalidRows, ignoreUnknownValues, templateSuffix | `testBuilder` L120-L177; `testOf` L179-L203 | ADAPT | Builder/factories -> Swift struct init; test resulting JSON. | |
-| U.InsertAllRequest.02 | Row content may contain null values | `testNullOK` L225-L230 | PORT |  | |
+| U.InsertAllRequest.01 | Request carries rows (with/without insertId), skipInvalidRows, ignoreUnknownValues, templateSuffix | `testBuilder` L120-L177; `testOf` L179-L203 | ADAPT | Builder/factories -> Swift struct init; test resulting JSON. | `Explicit.valueLiteralsAndFactories`, `BigQueryClientInsertAllTests.sendsRowsAndOptionsToTheTableProject` |
+| U.InsertAllRequest.02 | Row content may contain null values | `testNullOK` L225-L230 | PORT |  | `Person.nilValuesAreAcceptedAndOmitted` |
 | U.InsertAllRequest.03 | equals / immutability | `testEquals` L205-L216; `testImmutable` L218-L223 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `InsertAllResponseTest` — [InsertAllResponseTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/InsertAllResponseTest.java) (4 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.InsertAllResponse.01 | errorsFor(index) and hasErrors | `testErrorsFor` L50-L56; `testHasErrors` L58-L62 | PORT |  | |
-| U.InsertAllResponse.02 | insertErrors JSON round trip | `testToPbAndFromPb` L64-L70 | PORT |  | |
+| U.InsertAllResponse.01 | errorsFor(index) and hasErrors | `testErrorsFor` L50-L56; `testHasErrors` L58-L62 | PORT |  | `InsertAllResponseTests.errorsAreKeyedByRowIndex` |
+| U.InsertAllResponse.02 | insertErrors JSON round trip | `testToPbAndFromPb` L64-L70 | PORT |  | `InsertAllResponseTests.decodesInsertErrors` |
 | U.InsertAllResponse.03 | Constructor | `testConstructor` L45-L48 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `PolicyTagsTest` — [PolicyTagsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/PolicyTagsTest.java) (5 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.PolicyTags.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testFromAndPb` L57-L60 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.PolicyTags.02 | policyTags without names decodes to nil | `testWithoutNames` L50-L55 | PORT |  | |
+| U.PolicyTags.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testFromAndPb` L57-L60 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `SchemaTests.wireRoundTripPreservesEveryField` |
+| U.PolicyTags.02 | policyTags without names decodes to nil | `testWithoutNames` L50-L55 | PORT |  | `SchemaTests.policyTagsWithoutNamesAreEmpty` |
 | U.PolicyTags.03 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L32-L35; `testToBuilderIncomplete` L37-L42; `testBuilder` L44-L48 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `UserDefinedFunctionTest` — [UserDefinedFunctionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/UserDefinedFunctionTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.UserDefinedFunction.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L45-L49 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.UserDefinedFunction.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L45-L49 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `SharedConfigurationsTests.userDefinedFunctionWireRoundTrip` |
 | U.UserDefinedFunction.02 | Builder / toBuilder / equals / factory mechanics | `testConstructor` L31-L37; `testFactoryMethod` L39-L43 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 ### 2.5 Resources: datasets, tables, models, routines, ACL, IDs
@@ -589,51 +589,51 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.Acl.01 | ACL entity kinds map to/from JSON: dataset, domain, group, specialGroup, user, view, routine, iamMember | 8 tests in L38-L122 (`testDatasetEntity, testDomainEntity, testGroupEntity, testSpecialGroupEntity, testUserEntity, testViewEntity, testRoutineEntity, testIamMemberEntity`) | PORT | Swift: enum with associated values. | |
-| U.Acl.02 | Acl(entity, role) and conditional ACL (IAM condition) | `testOf` L124-L139; `testOfWithCondition` L141-L148 | PORT |  | |
+| U.Acl.01 | ACL entity kinds map to/from JSON: dataset, domain, group, specialGroup, user, view, routine, iamMember | 8 tests in L38-L122 (`testDatasetEntity, testDomainEntity, testGroupEntity, testSpecialGroupEntity, testUserEntity, testViewEntity, testRoutineEntity, testIamMemberEntity`) | PORT | Swift: enum with associated values. | `AclTests.entityMapsToAndFromJSON`, `AclTests.entityAccessorsReturnTheirValue` |
+| U.Acl.02 | Acl(entity, role) and conditional ACL (IAM condition) | `testOf` L124-L139; `testOfWithCondition` L141-L148 | PORT |  | `AclTests.roleAndConditionRoundTrip` |
 
 #### `DatasetIdTest` — [DatasetIdTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/DatasetIdTest.java) (4 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.DatasetId.01 | ID factory with/without project | `testOf` L28-L34 | PORT |  | |
-| U.DatasetId.02 | Reference JSON round trip | `testToPbAndFromPb` L42-L46 | PORT |  | |
-| U.DatasetId.03 | setProjectId fills missing project | `testSetProjectId` L48-L51 | PORT |  | |
+| U.DatasetId.01 | ID factory with/without project | `testOf` L28-L34 | PORT |  | `DatasetIDTests.parsesWithAndWithoutProject` |
+| U.DatasetId.02 | Reference JSON round trip | `testToPbAndFromPb` L42-L46 | PORT |  | `DatasetIDTests.wireRoundTrip` |
+| U.DatasetId.03 | setProjectId fills missing project | `testSetProjectId` L48-L51 | PORT |  | `DatasetIDTests.clientFillsMissingProject` |
 | U.DatasetId.04 | equals/hashCode | `testEquals` L36-L40 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `DatasetInfoTest` — [DatasetInfoTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/DatasetInfoTest.java) (8 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.DatasetInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L232-L240; `testToBuilderWithExternalDatasetReference` L130-L149 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.DatasetInfo.02 | setProjectId propagates project into dataset reference and ACL entity references | `testSetProjectId` L242-L245 | PORT |  | |
-| U.DatasetInfo.03 | maxTimeTravelHours settable/serialized | `testSetMaxTimeTravelHours` L247-L255 | PORT |  | |
+| U.DatasetInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L232-L240; `testToBuilderWithExternalDatasetReference` L130-L149 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `DatasetTests.decodesEveryField`, `DatasetTests.roundTripsThroughRequestBody` |
+| U.DatasetInfo.02 | setProjectId propagates project into dataset reference and ACL entity references | `testSetProjectId` L242-L245 | PORT |  | `DatasetTests.resolvingFillsProjectInIDAndAccessEntries` |
+| U.DatasetInfo.03 | maxTimeTravelHours settable/serialized | `testSetMaxTimeTravelHours` L247-L255 | PORT |  | `DatasetTests.serializesMaxTimeTravelHours` |
 | U.DatasetInfo.04 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L106-L122; `testToBuilderIncomplete` L124-L128; `testBuilder` L151-L189; `testOf` L191-L230 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
-#### `DatasetTest` — [DatasetTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/DatasetTest.java) (22 tests; PORT 2 / ADAPT 1 / N/A 1 / DEFERRED 0)
+#### `DatasetTest` — [DatasetTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/DatasetTest.java) (22 tests; PORT 1 / ADAPT 2 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.Dataset.01 | Builder / toBuilder / bigquery accessor | `testBuilder` L110-L144; `testToBuilder` L146-L149; `testBigQuery` L325-L328 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
-| U.Dataset.02 | Live-object ops: exists, reload, update, delete, list tables, get table, create table (with options) | 16 tests in L151-L323 (`testExists_True, testExists_False, testReload, testReloadNull, testReloadWithOptions, testUpdate, testUpdateWithOptions, testDeleteTrue, testDeleteFalse, testList, testListWithOptions, testGet, testGetNull, testGetWithOptions, testCreateTable, testCreateTableWithOptions`) | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | |
-| U.Dataset.03 | Getting a table from a dataset in another project uses the dataset's project | `testGetTableWithNewProjectId` L277-L285 | PORT |  | |
-| U.Dataset.04 | Dataset JSON round trip incl. externalDatasetReference | `testToAndFromPb` L330-L333; `testExternalDatasetReference` L335-L361 | PORT |  | |
+| U.Dataset.02 | Live-object ops: exists, reload, update, delete, list tables, get table, create table (with options) | 16 tests in L151-L323 (`testExists_True, testExists_False, testReload, testReloadNull, testReloadWithOptions, testUpdate, testUpdateWithOptions, testDeleteTrue, testDeleteFalse, testList, testListWithOptions, testGet, testGetNull, testGetWithOptions, testCreateTable, testCreateTableWithOptions`) | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | `BigQueryClientDatasetTests.getFillsMissingProjectAndKeepsExplicitProject`, `BigQueryClientDatasetTests.getReturnsNilOnNotFound`, `BigQueryClientDatasetTests.deleteReturnsTrue`, `BigQueryClientDatasetTests.deleteReturnsFalseOnNotFound`, `BigQueryClientDatasetTests.updatePatchesWithClientProject` |
+| U.Dataset.03 | Getting a table from a dataset in another project uses the dataset's project | `testGetTableWithNewProjectId` L277-L285 | ADAPT | Swift has no live Dataset object. Equivalent: getTable with a TableID whose explicit project differs from the client project keeps that project. Cite the tables.get explicit-project test (same as U.BigQueryImpl.14 / U.TableId.03). | `BigQueryClientDatasetTests.tableOfDatasetInAnotherProjectUsesThatProject` |
+| U.Dataset.04 | Dataset JSON round trip incl. externalDatasetReference | `testToAndFromPb` L330-L333; `testExternalDatasetReference` L335-L361 | PORT |  | `DatasetTests.decodesEveryField`, `DatasetTests.roundTripsThroughRequestBody` |
 
 #### `TableIdTest` — [TableIdTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/TableIdTest.java) (4 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.TableId.01 | ID factory with/without project | `testOf` L30-L39 | PORT |  | |
-| U.TableId.02 | Reference JSON round trip | `testToPbAndFromPb` L47-L51 | PORT |  | |
-| U.TableId.03 | setProjectId fills missing project | `testSetProjectId` L53-L57 | PORT |  | |
+| U.TableId.01 | ID factory with/without project | `testOf` L30-L39 | PORT |  | `TableIDTests.parsesWithAndWithoutProject` |
+| U.TableId.02 | Reference JSON round trip | `testToPbAndFromPb` L47-L51 | PORT |  | `TableIDTests.wireRoundTrip` |
+| U.TableId.03 | setProjectId fills missing project | `testSetProjectId` L53-L57 | PORT |  | `TableIDTests.clientFillsMissingProject` |
 | U.TableId.04 | equals/hashCode | `testEquals` L41-L45 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `TableInfoTest` — [TableInfoTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/TableInfoTest.java) (7 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.TableInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L268-L273 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.TableInfo.02 | setProjectId fills project but never overrides an explicit one | `testSetProjectId` L275-L280; `testSetProjectIdDoNotOverride` L282-L287 | PORT |  | |
+| U.TableInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L268-L273 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.tableRoundTripsEveryField`, `TableTests.rangePartitionedTableRoundTrips`, `TableTests.tableTypesUseWireNames` |
+| U.TableInfo.02 | setProjectId fills project but never overrides an explicit one | `testSetProjectId` L275-L280; `testSetProjectIdDoNotOverride` L282-L287 | PORT |  | `TableTests.resolvedFillsMissingProjectsOnly` |
 | U.TableInfo.03 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L155-L164; `testToBuilderIncomplete` L166-L174; `testBuilder` L176-L223; `testOf` L225-L266 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `TableTest` — [TableTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/TableTest.java) (23 tests; PORT 1 / ADAPT 1 / N/A 1 / DEFERRED 0)
@@ -641,24 +641,24 @@ test over a fake HTTP transport:
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.Table.01 | Builder / toBuilder / bigquery accessor | `testBuilder` L112-L144; `testToBuilder` L146-L149; `testBigQuery` L347-L350 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
-| U.Table.02 | Live-object ops: exists, reload, update, delete, insert rows, list rows, copy, load, extract | 19 tests in L151-L345 | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. Copy/load/extract build the right job configuration. | |
-| U.Table.03 | Table JSON round trip | `testToAndFromPb` L352-L355 | PORT |  | |
+| U.Table.02 | Live-object ops: exists, reload, update, delete, insert rows, list rows, copy, load, extract | 19 tests in L151-L345 | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. Copy/load/extract build the right job configuration. | `TableDataTests.listRowsReadsSchemaThenRows`, `TableOperationsTests.createTablePostsWithClientProject`, `TableOperationsTests.getTableUsesStorageStatsViewByDefault`, `TableOperationsTests.listTablesFollowsPageTokens`, `TableOperationsTests.deleteTableReturnsWhetherItExisted`, `TableOperationsTests.updateTablePatchesWithClientProject` |
+| U.Table.03 | Table JSON round trip | `testToAndFromPb` L352-L355 | PORT |  | `TableTests.tableRoundTripsEveryField` |
 
 #### `ModelIdTest` — [ModelIdTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ModelIdTest.java) (4 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ModelId.01 | ID factory with/without project | `testOf` L28-L37 | PORT |  | |
-| U.ModelId.02 | Reference JSON round trip | `testToPbAndFromPb` L45-L49 | PORT |  | |
-| U.ModelId.03 | setProjectId fills missing project | `testSetProjectId` L51-L55 | PORT |  | |
+| U.ModelId.01 | ID factory with/without project | `testOf` L28-L37 | PORT |  | `ModelIDTests.parsesWithAndWithoutProject` |
+| U.ModelId.02 | Reference JSON round trip | `testToPbAndFromPb` L45-L49 | PORT |  | `ModelIDTests.wireRoundTrip` |
+| U.ModelId.03 | setProjectId fills missing project | `testSetProjectId` L51-L55 | PORT |  | `ModelIDTests.clientFillsMissingProject` |
 | U.ModelId.04 | equals/hashCode | `testEquals` L39-L43 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ModelInfoTest` — [ModelInfoTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ModelInfoTest.java) (6 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ModelInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L100-L103 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.ModelInfo.02 | setProjectId fills model reference project | `testSetProjectId` L105-L108 | PORT |  | |
+| U.ModelInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L100-L103 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ModelTests.decodesEveryField`, `ModelTests.requestBodyHasOnlyMutableFields`, `ModelTests.unsetTrainingOptionsAreNil` |
+| U.ModelInfo.02 | setProjectId fills model reference project | `testSetProjectId` L105-L108 | PORT |  | `BigQueryClientModelTests.updatePatchesWithClientProject` |
 | U.ModelInfo.03 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L59-L62; `testToBuilderIncomplete` L64-L68; `testBuilder` L70-L81; `testOf` L83-L98 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ModelTest` — [ModelTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ModelTest.java) (10 tests; PORT 0 / ADAPT 1 / N/A 1 / DEFERRED 0)
@@ -666,23 +666,23 @@ test over a fake HTTP transport:
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.Model.01 | Builder / toBuilder | `testBuilder` L69-L82; `testToBuilder` L84-L87 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
-| U.Model.02 | Live-object ops: exists, reload, update, delete | 8 tests in L89-L153 (`testExists_True, testExists_False, testReload, testReloadNull, testUpdate, testUpdateWithOptions, testDeleteTrue, testDeleteFalse`) | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | |
+| U.Model.02 | Live-object ops: exists, reload, update, delete | 8 tests in L89-L153 (`testExists_True, testExists_False, testReload, testReloadNull, testUpdate, testUpdateWithOptions, testDeleteTrue, testDeleteFalse`) | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | `BigQueryClientModelTests.getUsesClientProjectAndSelectedFields`, `BigQueryClientModelTests.getReturnsNilOnNotFound`, `BigQueryClientModelTests.updatePatchesWithClientProject`, `BigQueryClientModelTests.deleteReturnsTrueOrFalseOnNotFound` |
 
 #### `RoutineIdTest` — [RoutineIdTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/RoutineIdTest.java) (4 tests; PORT 3 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.RoutineId.01 | ID factory with/without project | `testOf` L27-L36 | PORT |  | |
-| U.RoutineId.02 | Reference JSON round trip | `testToPbAndFromPb` L44-L48 | PORT |  | |
-| U.RoutineId.03 | setProjectId fills missing project | `testSetProjectId` L50-L54 | PORT |  | |
+| U.RoutineId.01 | ID factory with/without project | `testOf` L27-L36 | PORT |  | `RoutineIDTests.parsesWithAndWithoutProject` |
+| U.RoutineId.02 | Reference JSON round trip | `testToPbAndFromPb` L44-L48 | PORT |  | `RoutineIDTests.wireRoundTrip` |
+| U.RoutineId.03 | setProjectId fills missing project | `testSetProjectId` L50-L54 | PORT |  | `RoutineIDTests.clientFillsMissingProject` |
 | U.RoutineId.04 | equals/hashCode | `testEquals` L38-L42 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `RoutineInfoTest` — [RoutineInfoTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/RoutineInfoTest.java) (6 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.RoutineInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L116-L119 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.RoutineInfo.02 | setProjectId fills routine reference project | `testSetProjectId` L121-L124 | PORT |  | |
+| U.RoutineInfo.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L116-L119 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `RoutineTests.decodesEveryField`, `RoutineTests.roundTripsThroughRequestBody` |
+| U.RoutineInfo.02 | setProjectId fills routine reference project | `testSetProjectId` L121-L124 | PORT |  | `BigQueryClientRoutineTests.createPostsWithClientProject` |
 | U.RoutineInfo.03 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L70-L73; `testBuilderIncomplete` L75-L79; `testBuilder` L81-L96; `testOf` L98-L114 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `RoutineTest` — [RoutineTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/RoutineTest.java) (10 tests; PORT 0 / ADAPT 1 / N/A 1 / DEFERRED 0)
@@ -690,27 +690,27 @@ test over a fake HTTP transport:
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
 | U.Routine.01 | Builder / toBuilder | `testBuilder` L133-L153; `testToBuilder` L155-L159 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
-| U.Routine.02 | Live-object ops: exists, reload, update, delete | 8 tests in L161-L226 (`testExists_True, testExists_False, testReload, testReload_Null, testUpdate, testUpdateWithOptions, testDeleteTrue, testDeleteFalse`) | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | |
+| U.Routine.02 | Live-object ops: exists, reload, update, delete | 8 tests in L161-L226 (`testExists_True, testExists_False, testReload, testReload_Null, testUpdate, testUpdateWithOptions, testDeleteTrue, testDeleteFalse`) | ADAPT | Java 'live object' convenience method delegating to BigQuery; Swift exposes the operation on the client (or a thin wrapper) - test the client call. | `BigQueryClientRoutineTests.getUsesClientOrExplicitProject`, `BigQueryClientRoutineTests.getReturnsNilOnNotFound`, `BigQueryClientRoutineTests.updatePutsFullRoutine`, `BigQueryClientRoutineTests.deleteReturnsTrueOrFalseOnNotFound` |
 
 #### `RoutineArgumentTest` — [RoutineArgumentTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/RoutineArgumentTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.RoutineArgument.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L50-L53 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.RoutineArgument.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPbAndFromPb` L50-L53 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `RoutineTests.argumentRoundTrips` |
 | U.RoutineArgument.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L37-L40; `testBuilder` L42-L48 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `RemoteFunctionOptionsTest` — [RemoteFunctionOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/RemoteFunctionOptionsTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.RemoteFunctionOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L59-L63 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.RemoteFunctionOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L59-L63 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `RoutineTests.remoteFunctionOptionsRoundTrip` |
 | U.RemoteFunctionOptions.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L45-L49; `testBuilder` L51-L57 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ExternalDatasetReferenceTest` — [ExternalDatasetReferenceTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ExternalDatasetReferenceTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ExternalDatasetReference.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L54-L63 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.ExternalDatasetReference.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L54-L63 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `DatasetTests.roundTripsExternalDatasetReference` |
 | U.ExternalDatasetReference.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L33-L40; `testBuilder` L42-L52 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 ### 2.6 Table definitions, external formats, constraints, partitioning
@@ -720,58 +720,58 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.StandardTableDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L161-L170 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.StandardTableDefinition.02 | Unknown timePartitioning.type is rejected with descriptive error | `testFromPbWithUnexpectedTimePartitioningTypeRaisesInvalidArgumentException` L172-L190 | ADAPT | Swift should prefer tolerant decoding (unknown enum value preserved); document divergence. | |
-| U.StandardTableDefinition.03 | streamingBuffer with null estimatedRows/Bytes/oldestEntryTime decodes and encodes | `testFromPbWithNullEstimatedRowsAndBytes` L192-L196; `testStreamingBufferWithNullFieldsToPb` L198-L201 | PORT |  | |
+| U.StandardTableDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L161-L170 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.tableRoundTripsEveryField` |
+| U.StandardTableDefinition.02 | Unknown timePartitioning.type is rejected with descriptive error | `testFromPbWithUnexpectedTimePartitioningTypeRaisesInvalidArgumentException` L172-L190 | ADAPT | Swift should prefer tolerant decoding (unknown enum value preserved); document divergence. | `TableTests.unknownPartitionTypeIsPreserved` |
+| U.StandardTableDefinition.03 | streamingBuffer with null estimatedRows/Bytes/oldestEntryTime decodes and encodes | `testFromPbWithNullEstimatedRowsAndBytes` L192-L196; `testStreamingBufferWithNullFieldsToPb` L198-L201 | PORT |  | `TableTests.streamingBufferWithoutFieldsDecodes` |
 | U.StandardTableDefinition.04 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L95-L103; `testToBuilderIncomplete` L105-L109; `testBuilder` L111-L130; `testTypeNullPointerException` L132-L138; `testOf` L140-L159 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ExternalTableDefinitionTest` — [ExternalTableDefinitionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ExternalTableDefinitionTest.java) (6 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ExternalTableDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L156-L165; `testToAndFromPbParquet` L167-L176 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.ExternalTableDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L156-L165; `testToAndFromPbParquet` L167-L176 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ExternalDataConfigurationTests.csvConfigurationRoundTrips`, `ExternalDataConfigurationTests.parquetConfigurationRoundTrips`, `ExternalDataConfigurationTests.objectTableRoundTrips`, `ExternalDataConfigurationTests.absentFieldsDecodeToServerDefaults` |
 | U.ExternalTableDefinition.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L99-L116; `testToBuilderIncomplete` L118-L123; `testTypeNullPointerException` L125-L130; `testBuilder` L132-L154 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `MaterializedViewDefinitionTest` — [MaterializedViewDefinitionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/MaterializedViewDefinitionTest.java) (4 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.MaterializedViewDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L84-L94 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.MaterializedViewDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L84-L94 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.materializedViewDefinitionRoundTrips` |
 | U.MaterializedViewDefinition.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L47-L57; `testToBuilderIncomplete` L59-L64; `testBuilder` L66-L82 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ViewDefinitionTest` — [ViewDefinitionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ViewDefinitionTest.java) (5 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ViewDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L105-L111 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.ViewDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L105-L111 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.viewDefinitionRoundTrips` |
 | U.ViewDefinition.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L38-L49; `testTypeNullPointerException` L51-L57; `testToBuilderIncomplete` L59-L63; `testBuilder` L65-L103 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `SnapshotTableDefinitionTest` — [SnapshotTableDefinitionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/SnapshotTableDefinitionTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.SnapshotTableDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L56-L64 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.SnapshotTableDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L56-L64 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.snapshotDefinitionDecodesAndIsNotSent` |
 | U.SnapshotTableDefinition.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L34-L41; `testBuilder` L43-L54 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `CloneDefinitionTest` — [CloneDefinitionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/CloneDefinitionTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.CloneDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L47-L52 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.CloneDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L47-L52 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.cloneDefinitionDecodesAndIsNotSent` |
 | U.CloneDefinition.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L30-L36; `testBuilder` L38-L45 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ModelTableDefinitionTest` — [ModelTableDefinitionTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ModelTableDefinitionTest.java) (7 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ModelTableDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L74-L78 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.ModelTableDefinition.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L74-L78 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.modelTypeDecodes` |
 | U.ModelTableDefinition.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L54-L57; `testTypeNullPointerException` L59-L66; `testToBuilderIncomplete` L68-L72; `testBuilder` L80-L86; `testEquals` L88-L91; `testNotEquals` L93-L96 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `TableConstraintsTest` — [TableConstraintsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/TableConstraintsTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.TableConstraints.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L105-L111 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.TableConstraints.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L105-L111 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.tableConstraintsRoundTrip` |
 | U.TableConstraints.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L52-L90; `testBuilder` L92-L103 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `TableMetadataCacheUsageTest` — [TableMetadataCacheUsageTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/TableMetadataCacheUsageTest.java) (1 tests; PORT 1 / ADAPT 0 / N/A 0 / DEFERRED 0)
@@ -784,21 +784,21 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.AvroOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L44-L50 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.AvroOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L44-L50 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ExternalDataConfigurationTests.avroConfigurationRoundTrips` |
 | U.AvroOptions.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L29-L36; `testBuilder` L38-L42 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `BigtableOptionsTest` — [BigtableOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/BigtableOptionsTest.java) (5 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.BigtableOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L120-L125 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.BigtableOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L120-L125 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ExternalDataConfigurationTests.bigtableConfigurationRoundTrips` |
 | U.BigtableOptions.02 | Builder / toBuilder / equals / factory mechanics | `testConstructors` L57-L80; `testNullPointerException` L82-L109; `testIllegalStateException` L111-L118; `testEquals` L127-L136 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `CsvOptionsTest` — [CsvOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/CsvOptionsTest.java) (4 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.CsvOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L77-L82 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.CsvOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L77-L82 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ExternalDataConfigurationTests.csvConfigurationRoundTrips`, `ExternalDataConfigurationTests.emptyQuoteIsSentAndKept` |
 | U.CsvOptions.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L48-L55; `testToBuilderIncomplete` L57-L61; `testBuilder` L63-L75 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `DatastoreBackupOptionsTest` — [DatastoreBackupOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/DatastoreBackupOptionsTest.java) (3 tests; PORT 0 / ADAPT 0 / N/A 1 / DEFERRED 0)
@@ -811,65 +811,65 @@ test over a fake HTTP transport:
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.FormatOptions.01 | Source format strings and factories (csv, json=NEWLINE_DELIMITED_JSON, datastoreBackup, avro, googleSheets, iceberg, ...) | `testConstructor` L25-L35; `testFactoryMethods` L37-L45 | PORT | Swift: enum raw values. | |
+| U.FormatOptions.01 | Source format strings and factories (csv, json=NEWLINE_DELIMITED_JSON, datastoreBackup, avro, googleSheets, iceberg, ...) | `testConstructor` L25-L35; `testFactoryMethods` L37-L45 | PORT | Swift: enum raw values. | `ExternalDataConfigurationTests.dataFormatsUseWireNames` |
 | U.FormatOptions.02 | equals | `testEquals` L47-L58 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `GoogleSheetsOptionsTest` — [GoogleSheetsOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/GoogleSheetsOptionsTest.java) (4 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.GoogleSheetsOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L76-L89 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.GoogleSheetsOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L76-L89 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ExternalDataConfigurationTests.googleSheetsConfigurationRoundTrips` |
 | U.GoogleSheetsOptions.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L35-L59; `testToBuilderIncomplete` L61-L65; `testBuilder` L67-L74 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `HivePartitioningOptionsTest` — [HivePartitioningOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/HivePartitioningOptionsTest.java) (4 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.HivePartitioningOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L63-L68 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.HivePartitioningOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L63-L68 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ExternalDataConfigurationTests.hivePartitioningRoundTrips` |
 | U.HivePartitioningOptions.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L39-L47; `testToBuilderIncomplete` L49-L53; `testBuilder` L55-L61 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ParquetOptionsTest` — [ParquetOptionsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ParquetOptionsTest.java) (4 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ParquetOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L61-L67 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.ParquetOptions.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L61-L67 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ExternalDataConfigurationTests.parquetConfigurationRoundTrips` |
 | U.ParquetOptions.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L33-L44; `testToBuilderIncomplete` L46-L51; `testBuilder` L53-L59 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `BigLakeConfigurationTest` — [BigLakeConfigurationTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/BigLakeConfigurationTest.java) (5 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.BigLakeConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPb` L54-L57; `testFromPb` L59-L63 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.BigLakeConfiguration.02 | Null fields encode/decode as absent | `testNullFields` L65-L72; `testFromPbWithNullFields` L74-L83 | PORT |  | |
+| U.BigLakeConfiguration.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToPb` L54-L57; `testFromPb` L59-L63 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `ExternalDataConfigurationTests.bigLakeConfigurationRoundTrips` |
+| U.BigLakeConfiguration.02 | Null fields encode/decode as absent | `testNullFields` L65-L72; `testFromPbWithNullFields` L74-L83 | PORT |  | `ExternalDataConfigurationTests.bigLakeConfigurationWithoutFieldsDecodes` |
 | U.BigLakeConfiguration.03 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L46-L52 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ColumnReferenceTest` — [ColumnReferenceTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ColumnReferenceTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ColumnReference.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L56-L62 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.ColumnReference.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L56-L62 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.tableConstraintsRoundTrip` |
 | U.ColumnReference.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L31-L41; `testBuilder` L43-L54 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `ForeignKeyTest` — [ForeignKeyTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/ForeignKeyTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.ForeignKey.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L82-L87 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.ForeignKey.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L82-L87 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.tableConstraintsRoundTrip` |
 | U.ForeignKey.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L41-L65; `testBuilder` L67-L80 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `PrimaryKeyTest` — [PrimaryKeyTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/PrimaryKeyTest.java) (3 tests; PORT 1 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.PrimaryKey.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L45-L50 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
+| U.PrimaryKey.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L45-L50 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `TableTests.tableConstraintsRoundTrip` |
 | U.PrimaryKey.02 | Builder / toBuilder / equals / factory mechanics | `testToBuilder` L30-L36; `testBuilder` L38-L43 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `TimePartitioningTest` — [TimePartitioningTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/TimePartitioningTest.java) (5 tests; PORT 2 / ADAPT 0 / N/A 1 / DEFERRED 0)
 
 | ID | Behavior pinned down | Java test(s) & lines | Class | Notes | Swift test |
 |---|---|---|---|---|---|
-| U.TimePartitioning.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L106-L112 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | |
-| U.TimePartitioning.02 | TimePartitioning.of(type[, expirationMs]) for DAY/HOUR/MONTH/YEAR | `testOf` L62-L74 | PORT |  | |
+| U.TimePartitioning.01 | REST JSON round trip preserves every field (toPb/fromPb) | `testToAndFromPb` L106-L112 | PORT | Swift: Codable encode/decode round trip against JSON fixture. | `SharedConfigurationsTests.timePartitioningWireRoundTrip`, `TableTests.timePartitioningRoundTrips` |
+| U.TimePartitioning.02 | TimePartitioning.of(type[, expirationMs]) for DAY/HOUR/MONTH/YEAR | `testOf` L62-L74 | PORT |  | `SharedConfigurationsTests.timePartitioningWireRoundTrip`, `TableTests.timePartitioningRoundTrips` |
 | U.TimePartitioning.03 | Builder / toBuilder / equals / factory mechanics | `testBuilder` L76-L90; `testTypeOf_Npe` L92-L97; `testTypeAndExpirationOf_Npe` L99-L104 | N/A | Java builder/toBuilder/equals mechanics; Swift value types with memberwise init + synthesized Equatable. | |
 
 #### `MetadataCacheStatsTest` — [MetadataCacheStatsTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/MetadataCacheStatsTest.java) (1 tests; PORT 1 / ADAPT 0 / N/A 0 / DEFERRED 0)
@@ -887,72 +887,72 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 
 | ID | Test (lines) | Feature exercised | Resources / fixtures | Class | Notes | Swift test |
 |---|---|---|---|---|---|---|
-| IT-001 | `testLosslessMaxTimestampIntegration` (L1236-L1284) | Max TIMESTAMP 9999-12-31 round-trips losslessly with int64 timestamps | none (literal SQL) | ADAPT | Swift always requests int64 micros (survey #7): pin the lossless part. The float-seconds client variant has no Swift equivalent; the ISO8601_STRING part is DEFERRED with picosecond timestamps. | |
-| IT-002 | `testListDatasets` (L1286-L1302) | datasets.list on another project returns names + locations | PUB (project listing), G | PORT | Read-only public project; works from any project. | |
-| IT-003 | `testListDatasetsWithFilter` (L1304-L1319) | datasets.list labelFilter | D (labels) | PORT |  | |
-| IT-004 | `testGetDataset` (L1321-L1333) | datasets.get fields (description, labels, etag, times, location) | D | PORT |  | |
-| IT-005 | `testDatasetUpdateAccess` (L1335-L1348) | Dataset ACL update (group/user/iamMember allUsers) | D; caller's service-account email | ADAPT | Needs SA client email; allUsers READER may be blocked by org policy (domain-restricted sharing) - use a group or skip-if-forbidden. | |
-| IT-006 | `testGetDatasetWithSelectedFields` (L1350-L1370) | datasets.get with field mask -> unselected fields null | D | PORT |  | |
-| IT-007 | `testGetDatasetWithAccessPolicyVersion` (L1372-L1414) | datasets.get accessPolicyVersion=3 returns conditional ACL | NEWDS; IAM condition on caller | ADAPT | Conditional ACL requires principal email; parameterize. | |
-| IT-008 | `testUpdateDataset` (L1416-L1456) | datasets.patch description/labels/storageBillingModel/maxTimeTravelHours; setting labels to null clears them | NEWDS | PORT | Pins clearing labels via JSON null. | |
-| IT-009 | `testUpdateDatasetWithSelectedFields` (L1458-L1488) | datasets.patch with field mask | NEWDS | PORT |  | |
-| IT-010 | `testUpdateDatasetWithAccessPolicyVersion` (L1490-L1541) | datasets.patch with accessPolicyVersion + conditional ACL | NEWDS; IAM condition on caller | ADAPT | As above. | |
+| IT-001 | `testLosslessMaxTimestampIntegration` (L1236-L1284) | Max TIMESTAMP 9999-12-31 round-trips losslessly with int64 timestamps | none (literal SQL) | ADAPT | Swift has one fixed read format (ISO8601_STRING after #105; int64 micros before): pin exact 9999-12-31T23:59:59.999999 via timestampMicros and the ISO part. The float-seconds and int64 client variants have no Swift equivalent. | `Typed.timestampsAreLossless` |
+| IT-002 | `testListDatasets` (L1286-L1302) | datasets.list on another project returns names + locations | PUB (project listing), G | PORT | Read-only public project; works from any project. | `DatasetIntegrationTests.listsDatasetsOfAnotherProject` |
+| IT-003 | `testListDatasetsWithFilter` (L1304-L1319) | datasets.list labelFilter | D (labels) | PORT |  | `DatasetIntegrationTests.listsDatasetsWithLabelFilter` |
+| IT-004 | `testGetDataset` (L1321-L1333) | datasets.get fields (description, labels, etag, times, location) | D | PORT |  | `DatasetIntegrationTests.getsDatasetFields` |
+| IT-005 | `testDatasetUpdateAccess` (L1335-L1348) | Dataset ACL update (group/user/iamMember allUsers) | D; caller's service-account email | ADAPT | Needs SA client email; allUsers READER may be blocked by org policy (domain-restricted sharing) - use a group or skip-if-forbidden. | `DatasetIntegrationTests.updatesAccessList` |
+| IT-006 | `testGetDatasetWithSelectedFields` (L1350-L1370) | datasets.get with field mask -> unselected fields null | D | PORT |  | `DatasetIntegrationTests.getsDatasetWithSelectedFields` |
+| IT-007 | `testGetDatasetWithAccessPolicyVersion` (L1372-L1414) | datasets.get accessPolicyVersion=3 returns conditional ACL | NEWDS; IAM condition on caller | ADAPT | Conditional ACL requires principal email; parameterize. | `DatasetIntegrationTests.createsAndGetsConditionalAccessWithPolicyVersion3` |
+| IT-008 | `testUpdateDataset` (L1416-L1456) | datasets.patch description/labels/storageBillingModel/maxTimeTravelHours; setting labels to null clears them | NEWDS | PORT | Pins clearing labels via JSON null. | `DatasetIntegrationTests.patchesDatasetAndClearsLabels` |
+| IT-009 | `testUpdateDatasetWithSelectedFields` (L1458-L1488) | datasets.patch with field mask | NEWDS | PORT |  | `DatasetIntegrationTests.patchesDatasetWithSelectedFields` |
+| IT-010 | `testUpdateDatasetWithAccessPolicyVersion` (L1490-L1541) | datasets.patch with accessPolicyVersion + conditional ACL | NEWDS; IAM condition on caller | ADAPT | As above. | `DatasetIntegrationTests.patchesConditionalAccessWithPolicyVersion3` |
 | IT-011 | `testGetNonExistingTable` (L1543-L1546) | tables.get missing -> null | D | PORT | Swift: nil/notFound per design. | |
 | IT-012 | `testCreateTableWithRangePartitioning` (L1548-L1570) | Create table with RANGE partitioning | D | PORT |  | |
-| IT-013 | `testJsonType` (L1573-L1679) | JSON column: insertAll, query, JSON query params, invalid JSON error | D (per-test table) | PORT |  | |
-| IT-014 | `testIntervalType` (L1682-L1755) | INTERVAL column: DML insert, insertAll, list/query values | D (per-test table) | PORT |  | |
-| IT-015 | `testRangeType` (L1757-L1832) | RANGE<DATE/DATETIME/TIMESTAMP> column: insertAll, list, query params | D (per-test table) | PORT |  | |
+| IT-013 | `testJsonType` (L1573-L1679) | JSON column: insertAll, query, JSON query params, invalid JSON error | D (per-test table) | PORT |  | `Record.insertAllRoundTripsEveryType`, `Record.jsonIntervalAndRangeColumns` |
+| IT-014 | `testIntervalType` (L1682-L1755) | INTERVAL column: DML insert, insertAll, list/query values | D (per-test table) | PORT |  | `Record.insertAllRoundTripsEveryType`, `Record.jsonIntervalAndRangeColumns` |
+| IT-015 | `testRangeType` (L1757-L1832) | RANGE<DATE/DATETIME/TIMESTAMP> column: insertAll, list, query params | D (per-test table) | PORT |  | `Record.insertAllRoundTripsEveryType`, `Record.jsonIntervalAndRangeColumns` |
 | IT-016 | `testCreateTableWithConstraints` (L1834-L1876) | Table with primary/foreign key constraints | D | PORT |  | |
-| IT-017 | `testCreateDatasetWithSpecifiedStorageBillingModel` (L1878-L1893) | Dataset storageBillingModel=LOGICAL | NEWDS | PORT |  | |
-| IT-018 | `testCreateDatasetWithSpecificMaxTimeTravelHours` (L1895-L1910) | Dataset maxTimeTravelHours=120 | NEWDS | PORT |  | |
-| IT-019 | `testCreateDatasetWithDefaultMaxTimeTravelHours` (L1912-L1927) | Dataset default maxTimeTravelHours=168 | NEWDS | PORT |  | |
-| IT-020 | `testCreateDatasetWithDefaultCollation` (L1929-L1944) | Dataset defaultCollation | NEWDS | PORT |  | |
-| IT-021 | `testCreateDatasetWithAccessPolicyVersion` (L1946-L1981) | datasets.insert with accessPolicyVersion + conditional ACL | NEWDS; IAM condition on caller | ADAPT | Parameterize principal. | |
-| IT-022 | `testCreateDatasetWithInvalidAccessPolicyVersion` (L1983-L2007) | Invalid accessPolicyVersion -> 400 error surfaced | NEWDS | PORT |  | |
-| IT-023 | `testCreateTableWithDefaultCollation` (L2009-L2045) | Table defaultCollation propagates to STRING fields | D | PORT |  | |
-| IT-024 | `testCreateFieldWithDefaultCollation` (L2047-L2082) | Field-level collation | D | PORT |  | |
+| IT-017 | `testCreateDatasetWithSpecifiedStorageBillingModel` (L1878-L1893) | Dataset storageBillingModel=LOGICAL | NEWDS | PORT |  | `DatasetIntegrationTests.createsDatasetWithStorageBillingModel` |
+| IT-018 | `testCreateDatasetWithSpecificMaxTimeTravelHours` (L1895-L1910) | Dataset maxTimeTravelHours=120 | NEWDS | PORT |  | `DatasetIntegrationTests.createsDatasetWithMaxTimeTravelHours` |
+| IT-019 | `testCreateDatasetWithDefaultMaxTimeTravelHours` (L1912-L1927) | Dataset default maxTimeTravelHours=168 | NEWDS | PORT |  | `DatasetIntegrationTests.createsDatasetWithDefaultMaxTimeTravelHours` |
+| IT-020 | `testCreateDatasetWithDefaultCollation` (L1929-L1944) | Dataset defaultCollation | NEWDS | PORT |  | `DatasetIntegrationTests.createsDatasetWithDefaultCollation` |
+| IT-021 | `testCreateDatasetWithAccessPolicyVersion` (L1946-L1981) | datasets.insert with accessPolicyVersion + conditional ACL | NEWDS; IAM condition on caller | ADAPT | Parameterize principal. | `DatasetIntegrationTests.createsAndGetsConditionalAccessWithPolicyVersion3` |
+| IT-022 | `testCreateDatasetWithInvalidAccessPolicyVersion` (L1983-L2007) | Invalid accessPolicyVersion -> 400 error surfaced | NEWDS | PORT |  | `DatasetIntegrationTests.rejectsInvalidAccessPolicyVersion` |
+| IT-023 | `testCreateTableWithDefaultCollation` (L2009-L2045) | Table defaultCollation propagates to STRING fields | D | PORT |  | `TableIntegrationTests.defaultCollationAppliesToNewStringFields` |
+| IT-024 | `testCreateFieldWithDefaultCollation` (L2047-L2082) | Field-level collation | D | PORT |  | `TableIntegrationTests.defaultCollationAppliesToNewStringFields` |
 | IT-025 | `testCreateTableWithDefaultValueExpression` (L2084-L2144) | Field defaultValueExpression applied on insert | D (DML/insert + list) | PORT |  | |
-| IT-026 | `testCreateAndGetTable` (L2146-L2182) | tables.insert + get round trip (schema, partitioning, stats) | D | PORT |  | |
-| IT-027 | `testCreateAndListTable` (L2184-L2217) | tables.insert + list finds table | D | PORT |  | |
-| IT-028 | `testCreateAndGetTableWithBasicTableMetadataView` (L2219-L2249) | tables.get view=BASIC omits storage stats | D | PORT |  | |
-| IT-029 | `testCreateAndGetTableWithFullTableMetadataView` (L2251-L2280) | tables.get view=FULL | D | PORT |  | |
-| IT-030 | `testCreateAndGetTableWithStorageStatsTableMetadataView` (L2282-L2312) | tables.get view=STORAGE_STATS | D | PORT |  | |
-| IT-031 | `testCreateAndGetTableWithUnspecifiedTableMetadataView` (L2314-L2344) | tables.get view=TABLE_METADATA_VIEW_UNSPECIFIED | D | PORT |  | |
-| IT-032 | `testCreateAndGetTableWithSelectedField` (L2346-L2384) | tables.get field mask | D | PORT |  | |
-| IT-033 | `testCreateExternalTable` (L2386-L2442) | External JSON table over GCS + query it | D, B (load.json) | PORT | Uses the temp bucket (§4.1 B). | |
-| IT-034 | `testSetPermExternalTableSchema` (L2444-L2470) | External table with BigLake connection + explicit schema | G; B; connection projects/java-docs-samples-testing/locations/us/connections/DEVREL_TEST_CONNECTION; US dataset | ADAPT | Foreign-project connection: gate on env BIGQUERY_TEST_CONNECTION_ID (our runs: us.test-connection-id-ace13f7e; its SA needs GCS read on the temp bucket); skip when unset. | |
-| IT-035 | `testUpdatePermExternableTableWithAutodetectSchemaUpdatesSchema` (L2472-L2505) | tables.patch autodetect_schema=true updates external table schema | D, B | PORT |  | |
-| IT-036 | `testCreateViewTable` (L2507-L2553) | Create logical view + query it | D, T | PORT |  | |
-| IT-037 | `testCreateMaterializedViewTable` (L2555-L2578) | Create materialized view | D, T | PORT |  | |
-| IT-038 | `testTableIAM` (L2580-L2607) | tables testIamPermissions/getIamPolicy/setIamPolicy | D (per-test table); setIamPolicy permission | ADAPT | Uses allUsers dataViewer - may violate org policy; use a group/SA member. | |
-| IT-039 | `testListTables` (L2609-L2626) | tables.list | D | PORT |  | |
-| IT-040 | `testListTablesWithPartitioning` (L2628-L2669) | tables.list surfaces timePartitioning | D | PORT |  | |
-| IT-041 | `testListTablesWithRangePartitioning` (L2671-L2708) | tables.list surfaces rangePartitioning | D | PORT |  | |
-| IT-042 | `testListPartitions` (L2710-L2734) | listPartitions on DAY-partitioned table after DML | D | PORT |  | |
-| IT-043 | `testUpdateTable` (L2736-L2764) | tables.patch description/labels | D | PORT |  | |
-| IT-044 | `testUpdateTimePartitioning` (L2766-L2807) | Update/remove partition expiration (null expiration) | D | PORT | Pins explicit-null patching. | |
-| IT-045 | `testUpdateNonExistingTable` (L2839-L2854) | tables.patch missing table -> 404 error (notFound) | D | PORT |  | |
-| IT-046 | `testDeleteNonExistingTable` (L2856-L2859) | tables.delete missing -> false | none | PORT |  | |
+| IT-026 | `testCreateAndGetTable` (L2146-L2182) | tables.insert + get round trip (schema, partitioning, stats) | D | PORT |  | `TableIntegrationTests.createGetAndDeleteTable` |
+| IT-027 | `testCreateAndListTable` (L2184-L2217) | tables.insert + list finds table | D | PORT |  | `TableIntegrationTests.listTablesSurfacesPartitioning` |
+| IT-028 | `testCreateAndGetTableWithBasicTableMetadataView` (L2219-L2249) | tables.get view=BASIC omits storage stats | D | PORT |  | `TableIntegrationTests.createGetAndDeleteTable` |
+| IT-029 | `testCreateAndGetTableWithFullTableMetadataView` (L2251-L2280) | tables.get view=FULL | D | PORT |  | `TableIntegrationTests.createGetAndDeleteTable` |
+| IT-030 | `testCreateAndGetTableWithStorageStatsTableMetadataView` (L2282-L2312) | tables.get view=STORAGE_STATS | D | PORT |  | `TableIntegrationTests.createGetAndDeleteTable` |
+| IT-031 | `testCreateAndGetTableWithUnspecifiedTableMetadataView` (L2314-L2344) | tables.get view=TABLE_METADATA_VIEW_UNSPECIFIED | D | PORT |  | `TableIntegrationTests.createGetAndDeleteTable` |
+| IT-032 | `testCreateAndGetTableWithSelectedField` (L2346-L2384) | tables.get field mask | D | PORT |  | `TableIntegrationTests.getTableWithSelectedFields` |
+| IT-033 | `testCreateExternalTable` (L2386-L2442) | External JSON table over GCS + query it | D, B (load.json) | PORT | Uses the temp bucket (§4.1 B). | `TableIntegrationTests.createExternalJSONTable` |
+| IT-034 | `testSetPermExternalTableSchema` (L2444-L2470) | External table with BigLake connection + explicit schema | G; B; connection projects/java-docs-samples-testing/locations/us/connections/DEVREL_TEST_CONNECTION; US dataset | ADAPT | Foreign-project connection: gate on env BIGQUERY_TEST_CONNECTION_ID (our runs: us.test-connection-id-ace13f7e; its SA needs GCS read on the temp bucket); skip when unset. | `TableIntegrationTests.createExternalTableWithConnectionAndSchema` |
+| IT-035 | `testUpdatePermExternableTableWithAutodetectSchemaUpdatesSchema` (L2472-L2505) | tables.patch autodetect_schema=true updates external table schema | D, B | PORT |  | `TableIntegrationTests.updateExternalTableWithAutodetectSchema` |
+| IT-036 | `testCreateViewTable` (L2507-L2553) | Create logical view + query it | D, T | PORT |  | `TableIntegrationTests.createViewAndMaterializedView` |
+| IT-037 | `testCreateMaterializedViewTable` (L2555-L2578) | Create materialized view | D, T | PORT |  | `TableIntegrationTests.createViewAndMaterializedView` |
+| IT-038 | `testTableIAM` (L2580-L2607) | tables testIamPermissions/getIamPolicy/setIamPolicy | D (per-test table); setIamPolicy permission | ADAPT | Uses allUsers dataViewer - may violate org policy; use a group/SA member. | `IAMIntegrationTests.tableIAMPolicyLifecycle` |
+| IT-039 | `testListTables` (L2609-L2626) | tables.list | D | PORT |  | `TableIntegrationTests.listTablesSurfacesPartitioning` |
+| IT-040 | `testListTablesWithPartitioning` (L2628-L2669) | tables.list surfaces timePartitioning | D | PORT |  | `TableIntegrationTests.listTablesSurfacesPartitioning` |
+| IT-041 | `testListTablesWithRangePartitioning` (L2671-L2708) | tables.list surfaces rangePartitioning | D | PORT |  | `TableIntegrationTests.listTablesSurfacesPartitioning` |
+| IT-042 | `testListPartitions` (L2710-L2734) | listPartitions on DAY-partitioned table after DML | D | PORT |  | `TableIntegrationTests.listPartitionsOfPublicTable` |
+| IT-043 | `testUpdateTable` (L2736-L2764) | tables.patch description/labels | D | PORT |  | `TableIntegrationTests.updateTableSetsAndClearsProperties` |
+| IT-044 | `testUpdateTimePartitioning` (L2766-L2807) | Update/remove partition expiration (null expiration) | D | PORT | Pins explicit-null patching. | `TableIntegrationTests.updateTableSetsAndClearsProperties` |
+| IT-045 | `testUpdateNonExistingTable` (L2839-L2854) | tables.patch missing table -> 404 error (notFound) | D | PORT |  | `TableIntegrationTests.updateNonExistingTableFails` |
+| IT-046 | `testDeleteNonExistingTable` (L2856-L2859) | tables.delete missing -> false | none | PORT |  | `TableIntegrationTests.createGetAndDeleteTable` |
 | IT-047 | `testDeleteJob` (L2861-L2873) | jobs.delete with location us-east1; get after delete -> null | G; job in us-east1 | PORT |  | |
-| IT-048 | `testInsertAll` (L2875-L2934) | insertAll all types incl. nested/repeated, no errors | D (per-test table) | PORT |  | |
-| IT-049 | `testInsertAllWithSuffix` (L2936-L3004) | insertAll templateSuffix creates suffixed table | D | PORT | Template tables can take time to appear; poll. | |
-| IT-050 | `testInsertAllWithErrors` (L3006-L3075) | insertAll per-row errors with skipInvalidRows/ignoreUnknownValues | D | PORT |  | |
+| IT-048 | `testInsertAll` (L2875-L2934) | insertAll all types incl. nested/repeated, no errors | D (per-test table) | PORT |  | `Record.insertAllRoundTripsEveryType` |
+| IT-049 | `testInsertAllWithSuffix` (L2936-L3004) | insertAll templateSuffix creates suffixed table | D | PORT | Template tables can take time to appear; poll. | `Record.insertAllWithTemplateSuffixCreatesTable` |
+| IT-050 | `testInsertAllWithErrors` (L3006-L3075) | insertAll per-row errors with skipInvalidRows/ignoreUnknownValues | D | PORT |  | `Record.insertAllReportsPerRowErrors` |
 | IT-051 | `testListAllTableData` (L3078-L3121) | tabledata.list full table + field types | T | PORT |  | |
-| IT-052 | `testListPageWithStartIndex` (L3123-L3140) | tabledata.list startIndex/maxResults on public table | PUB census_bureau_international; G | PORT | Read-only public data. | |
-| IT-053 | `testModelLifecycle` (L3142-L3199) | CREATE MODEL via query, get/list/update/delete model | MD | PORT | BQML training (cost/time). | |
-| IT-054 | `testEmptyListModels` (L3201-L3210) | models.list on empty dataset -> no page token | per-test dataset | PORT |  | |
-| IT-055 | `testEmptyListRoutines` (L3212-L3222) | routines.list on empty dataset -> no page token | per-test dataset | PORT |  | |
-| IT-056 | `testRoutineLifecycle` (L3224-L3265) | CREATE FUNCTION via query, get/list/update/delete routine | RD | PORT |  | |
-| IT-057 | `testRoutineAPICreation` (L3267-L3287) | routines.insert SQL scalar function | RD | PORT |  | |
-| IT-058 | `testRoutineAPICreationJavascriptUDF` (L3289-L3315) | routines.insert JavaScript UDF | RD | PORT |  | |
-| IT-059 | `testRoutineAPICreationTVF` (L3317-L3343) | routines.insert table-valued function with returnTableType | RD | PORT |  | |
-| IT-060 | `testRoutineDataGovernanceType` (L3345-L3370) | routines.insert dataGovernanceType=DATA_MASKING | RD | PORT |  | |
-| IT-061 | `testAuthorizeRoutine` (L3372-L3396) | Authorized routine ACL entry on dataset | RD | PORT |  | |
-| IT-062 | `testAuthorizeDataset` (L3398-L3440) | Authorized dataset ACL entry | 2x NEWDS | PORT |  | |
+| IT-052 | `testListPageWithStartIndex` (L3123-L3140) | tabledata.list startIndex/maxResults on public table | PUB census_bureau_international; G | PORT | Read-only public data. | `TableIntegrationTests.listRowsOfPublicTableWithStartIndex` |
+| IT-053 | `testModelLifecycle` (L3142-L3199) | CREATE MODEL via query, get/list/update/delete model | MD | PORT | BQML training (cost/time). | `ModelIntegrationTests.modelLifecycle` |
+| IT-054 | `testEmptyListModels` (L3201-L3210) | models.list on empty dataset -> no page token | per-test dataset | PORT |  | `ModelIntegrationTests.emptyDatasetHasNoModels` |
+| IT-055 | `testEmptyListRoutines` (L3212-L3222) | routines.list on empty dataset -> no page token | per-test dataset | PORT |  | `RoutineIntegrationTests.emptyDatasetHasNoRoutines` |
+| IT-056 | `testRoutineLifecycle` (L3224-L3265) | CREATE FUNCTION via query, get/list/update/delete routine | RD | PORT |  | `RoutineIntegrationTests.routineLifecycle` |
+| IT-057 | `testRoutineAPICreation` (L3267-L3287) | routines.insert SQL scalar function | RD | PORT |  | `RoutineIntegrationTests.createsSQLScalarFunction` |
+| IT-058 | `testRoutineAPICreationJavascriptUDF` (L3289-L3315) | routines.insert JavaScript UDF | RD | PORT |  | `RoutineIntegrationTests.createsJavaScriptFunction` |
+| IT-059 | `testRoutineAPICreationTVF` (L3317-L3343) | routines.insert table-valued function with returnTableType | RD | PORT |  | `RoutineIntegrationTests.createsTableValuedFunction` |
+| IT-060 | `testRoutineDataGovernanceType` (L3345-L3370) | routines.insert dataGovernanceType=DATA_MASKING | RD | PORT |  | `RoutineIntegrationTests.createsDataMaskingFunction` |
+| IT-061 | `testAuthorizeRoutine` (L3372-L3396) | Authorized routine ACL entry on dataset | RD | PORT |  | `RoutineIntegrationTests.authorizesRoutine` |
+| IT-062 | `testAuthorizeDataset` (L3398-L3440) | Authorized dataset ACL entry | 2x NEWDS | PORT |  | `DatasetIntegrationTests.authorizesDataset` |
 | IT-063 | `testSingleStatementsQueryException` (L3443-L3457) | Failing DML job: error in job status | D, T | PORT |  | |
 | IT-064 | `testMultipleStatementsQueryException` (L3460-L3476) | Failing script job: error surfaced | D, T | PORT |  | |
-| IT-065 | `testTimestamp` (L3478-L3494) | TIMESTAMP literal query value (micros) | D | PORT |  | |
-| IT-066 | `testLosslessTimestamp` (L3496-L3533) | useInt64Timestamp client option: lossless micros | D | PORT |  | |
+| IT-065 | `testTimestamp` (L3478-L3494) | TIMESTAMP literal query value (micros) | D | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
+| IT-066 | `testLosslessTimestamp` (L3496-L3533) | useInt64Timestamp client option: lossless micros | D | PORT |  | `Typed.timestampsAreLossless` |
 | IT-067 | `testQuery` (L3536-L3575) | query() over table, iterate rows, jobId present | D, T | PORT |  | |
 | IT-068 | `testQueryStatistics` (L3577-L3592) | Query job statistics: queryPlan, totalSlotMs | D | PORT |  | |
 | IT-069 | `testExecuteSelectDefaultConnectionSettings` (L3594-L3602) | Connection API executeSelect | PUB samples.shakespeare; G | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
@@ -960,7 +960,7 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-071 | `testExecuteSelectWithFastQueryReadApi` (L3634-L3659) | executeSelect fast query + Read API | PUB new_york_taxi_trips; G | DEFERRED | Connection API (createConnection/executeSelect) deferred. Storage Read API deferred. | |
 | IT-072 | `testExecuteSelectReadApiEmptyResultSet` (L3661-L3677) | Read API empty result | none | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
 | IT-073 | `testExecuteSelectWithCredentials` (L3679-L3720) | executeSelect with explicit credentials | D, TL | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
-| IT-074 | `testQueryTimeStamp` (L3723-L3757) | TIMESTAMP query value formats | D | PORT |  | |
+| IT-074 | `testQueryTimeStamp` (L3723-L3757) | TIMESTAMP query value formats | D | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
 | IT-075 | `testQueryCaseInsensitiveSchemaFieldByGetName` (L3760-L3787) | Row access by field name is case-insensitive | D, T | PORT |  | |
 | IT-076 | `testQueryExternalHivePartitioningOptionAutoLayout` (L3790-L3823) | External table hive partitioning AUTO + query | D; CSD hive-partitioning-samples/autolayout | PORT | Public bucket readable. | |
 | IT-077 | `testQueryExternalHivePartitioningOptionCustomLayout` (L3826-L3860) | External table hive partitioning CUSTOM + query | D; CSD hive-partitioning-samples/customlayout | PORT |  | |
@@ -1002,19 +1002,19 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-113 | `testTransactionInfo` (L5191-L5226) | Multi-statement transaction: transactionInfo on child jobs | D, TS | PORT |  | |
 | IT-114 | `testScriptStatistics` (L5229-L5280) | Script: numChildJobs, child scriptStatistics (evaluationKind, stack frames), jobs.list by parentJobId | PUB usa_names.usa_1910_current; G | PORT |  | |
 | IT-115 | `testQueryParameterModeWithDryRun` (L5282-L5310) | Dry run reports queryParameters (7) and totalBytesProcessed | D, T | PORT |  | |
-| IT-116 | `testPositionalQueryParameters` (L5312-L5387) | Positional params of every scalar type incl. BIGNUMERIC/NUMERIC/TIMESTAMP | D, T | PORT |  | |
+| IT-116 | `testPositionalQueryParameters` (L5312-L5387) | Positional params of every scalar type incl. BIGNUMERIC/NUMERIC/TIMESTAMP | D, T | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
 | IT-117 | `testExecuteSelectWithPositionalQueryParameters` (L5390-L5408) | Connection positional params | D, T | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
-| IT-118 | `testNamedQueryParameters` (L5410-L5431) | Named params (STRING, INT64, ARRAY) | D, T | PORT |  | |
+| IT-118 | `testNamedQueryParameters` (L5410-L5431) | Named params (STRING, INT64, ARRAY) | D, T | PORT |  | `Typed.namedParametersIncludingArrays` |
 | IT-119 | `testExecuteSelectWithNamedQueryParameters` (L5433-L5454) | Connection named params | D, T | DEFERRED | Connection API (createConnection/executeSelect) deferred. | |
-| IT-120 | `testStructNamedQueryParameters` (L5457-L5482) | STRUCT named param round trip | D | PORT |  | |
-| IT-121 | `testRepeatedRecordNamedQueryParameters` (L5484-L5523) | ARRAY<STRUCT> named param round trip | D | PORT |  | |
-| IT-122 | `testUnnestRepeatedRecordNamedQueryParameter` (L5525-L5563) | UNNEST ARRAY<STRUCT> param filter | D | PORT |  | |
-| IT-123 | `testUnnestRepeatedRecordNamedQueryParameterFromDataset` (L5565-L5609) | UNNEST ARRAY<STRUCT> param against table data | D (per-test table) | PORT |  | |
-| IT-124 | `testEmptyRepeatedRecordNamedQueryParameters` (L5671-L5691) | Empty ARRAY<STRUCT> param -> BigQueryException | D | PORT |  | |
-| IT-125 | `testStructQuery` (L5693-L5711) | Query RECORD column values | D, T | PORT |  | |
-| IT-126 | `testNestedStructNamedQueryParameters` (L5721-L5760) | Nested STRUCT param | D | PORT |  | |
-| IT-127 | `testBytesParameter` (L5763-L5782) | BYTES param | D | PORT |  | |
-| IT-128 | `testGeographyParameter` (L5784-L5806) | GEOGRAPHY param | D | PORT |  | |
+| IT-120 | `testStructNamedQueryParameters` (L5457-L5482) | STRUCT named param round trip | D | PORT |  | `Result.structParametersRoundTrip` |
+| IT-121 | `testRepeatedRecordNamedQueryParameters` (L5484-L5523) | ARRAY<STRUCT> named param round trip | D | PORT |  | `Result.arrayOfStructParameters` |
+| IT-122 | `testUnnestRepeatedRecordNamedQueryParameter` (L5525-L5563) | UNNEST ARRAY<STRUCT> param filter | D | PORT |  | `Result.arrayOfStructParameters` |
+| IT-123 | `testUnnestRepeatedRecordNamedQueryParameterFromDataset` (L5565-L5609) | UNNEST ARRAY<STRUCT> param against table data | D (per-test table) | PORT |  | `Record.insertAllRoundTripsEveryType` |
+| IT-124 | `testEmptyRepeatedRecordNamedQueryParameters` (L5671-L5691) | Empty ARRAY<STRUCT> param -> BigQueryException | D | PORT |  | `Result.emptyArrayOfFieldlessStructParameterIsRejected` |
+| IT-125 | `testStructQuery` (L5693-L5711) | Query RECORD column values | D, T | PORT |  | `Result.structParametersRoundTrip` |
+| IT-126 | `testNestedStructNamedQueryParameters` (L5721-L5760) | Nested STRUCT param | D | PORT |  | `Result.structParametersRoundTrip` |
+| IT-127 | `testBytesParameter` (L5763-L5782) | BYTES param | D | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
+| IT-128 | `testGeographyParameter` (L5784-L5806) | GEOGRAPHY param | D | PORT |  | `Typed.positionalParametersOfEveryScalarType` |
 | IT-129 | `testListJobs` (L5808-L5818) | jobs.list | none | PORT |  | |
 | IT-130 | `testListJobsWithSelectedFields` (L5820-L5830) | jobs.list field mask | none | PORT |  | |
 | IT-131 | `testListJobsWithCreationBounding` (L5832-L5853) | jobs.list min/maxCreationTime | none | PORT |  | |
@@ -1032,7 +1032,7 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-143 | `testQueryJobWithRangePartitioning` (L6252-L6275) | Query job destination rangePartitioning | D, T | PORT |  | |
 | IT-144 | `testLoadJobWithRangePartitioning` (L6277-L6299) | Load job rangePartitioning from GCS | D, B | PORT |  | |
 | IT-145 | `testLoadJobWithDecimalTargetTypes` (L6301-L6327) | Load parquet with decimalTargetTypes | D; CSD bigquery/numeric/numeric_38_12.parquet | PORT |  | |
-| IT-146 | `testExternalTableWithDecimalTargetTypes` (L6329-L6347) | External parquet table decimalTargetTypes | D; CSD numeric_38_12.parquet | PORT |  | |
+| IT-146 | `testExternalTableWithDecimalTargetTypes` (L6329-L6347) | External parquet table decimalTargetTypes | D; CSD numeric_38_12.parquet | PORT |  | `TableIntegrationTests.externalParquetTableWithDecimalTargetTypes` |
 | IT-147 | `testQueryJobWithDryRun` (L6349-L6365) | Query job dryRun stats | D, T | PORT |  | |
 | IT-148 | `testExtractJob` (L6367-L6405) | Extract table to GCS CSV, read back | D, B (write); storage read | PORT | Needs writable bucket. | |
 | IT-149 | `testExtractJobWithModel` (L6407-L6442) | Extract BQML model to GCS | MD, B | PORT | BQML (cost/time). | |
@@ -1047,14 +1047,14 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-158 | `testLoadJobPreserveAsciiControlCharacters` (L6754-L6773) | GCS load preserveAsciiControlCharacters | D, B (load_null.csv) | PORT |  | |
 | IT-159 | `testReferenceFileSchemaUriForAvro` (L6775-L6832) | Load AVRO with referenceFileSchemaUri | D; CSD federated-formats-reference-file-schema/*.avro | PORT |  | |
 | IT-160 | `testReferenceFileSchemaUriForParquet` (L6834-L6890) | Load PARQUET with referenceFileSchemaUri | D; CSD federated-formats-reference-file-schema/*.parquet | PORT |  | |
-| IT-161 | `testCreateExternalTableWithReferenceFileSchemaAvro` (L6892-L6930) | External AVRO table referenceFileSchemaUri | D; CSD (hard-coded cloud-samples-data) | PORT |  | |
-| IT-162 | `testCreateExternalTableWithReferenceFileSchemaParquet` (L6932-L6972) | External PARQUET table referenceFileSchemaUri | D; CSD (hard-coded) | PORT |  | |
+| IT-161 | `testCreateExternalTableWithReferenceFileSchemaAvro` (L6892-L6930) | External AVRO table referenceFileSchemaUri | D; CSD (hard-coded cloud-samples-data) | PORT |  | `TableIntegrationTests.externalTableWithReferenceFileSchema` |
+| IT-162 | `testCreateExternalTableWithReferenceFileSchemaParquet` (L6932-L6972) | External PARQUET table referenceFileSchemaUri | D; CSD (hard-coded) | PORT |  | `TableIntegrationTests.externalTableWithReferenceFileSchema` |
 | IT-163 | `testCloneTableCopyJob` (L6974-L7025) | Clone via copy (operationType CLONE), cloneDefinition | D, TS | PORT |  | |
-| IT-164 | `testHivePartitioningOptionsFieldsFieldExistence` (L7027-L7069) | HivePartitioningOptions.fields populated on get | D, B (writes key=foo/data.json) | PORT |  | |
-| IT-165 | `testPrimaryKey` (L7071-L7094) | Create table with primary key | D | PORT |  | |
-| IT-166 | `testPrimaryKeyUpdate` (L7096-L7123) | Add primary key via update | D | PORT |  | |
-| IT-167 | `testForeignKeys` (L7125-L7173) | Create tables with foreign keys | D | PORT |  | |
-| IT-168 | `testForeignKeysUpdate` (L7175-L7271) | Add/replace foreign keys via update | D | PORT |  | |
+| IT-164 | `testHivePartitioningOptionsFieldsFieldExistence` (L7027-L7069) | HivePartitioningOptions.fields populated on get | D, B (writes key=foo/data.json) | PORT |  | `TableIntegrationTests.hivePartitioningFieldsArePopulated` |
+| IT-165 | `testPrimaryKey` (L7071-L7094) | Create table with primary key | D | PORT |  | `TableIntegrationTests.primaryAndForeignKeys` |
+| IT-166 | `testPrimaryKeyUpdate` (L7096-L7123) | Add primary key via update | D | PORT |  | `TableIntegrationTests.primaryAndForeignKeys` |
+| IT-167 | `testForeignKeys` (L7125-L7173) | Create tables with foreign keys | D | PORT |  | `TableIntegrationTests.primaryAndForeignKeys` |
+| IT-168 | `testForeignKeysUpdate` (L7175-L7271) | Add/replace foreign keys via update | D | PORT |  | `TableIntegrationTests.primaryAndForeignKeys` |
 | IT-169 | `testAlreadyExistJobExceptionHandling` (L7273-L7298) | query() with existing JobId recovers from 409 Already Exists | D, T | PORT |  | |
 | IT-170 | `testStatelessQueries` (L7300-L7325) | JOB_CREATION_OPTIONAL: queryId set, jobId null for short queries | own client | PORT |  | |
 | IT-171 | `testTableResultJobIdAndQueryId` (L7333-L7384) | TableResult jobId/queryId/jobCreationReason across modes | own client | PORT |  | |
@@ -1071,9 +1071,9 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-182 | `testUniverseDomainWithInvalidUniverseDomain` (L7706-L7727) | Invalid universe domain -> 401 | fake JSON creds; PUB | DEFERRED | Universe-domain credential check DEFERRED to gax/auth (bigquery.md §7/§13, #24). | |
 | IT-183 | `testInvalidUniverseDomainWithMismatchCredentials` (L7729-L7749) | Credentials universe mismatch -> error | fake JSON creds | DEFERRED | Universe-domain credential check DEFERRED to gax/auth (bigquery.md §7/§13, #24). | |
 | IT-184 | `testUniverseDomainWithMatchingDomain` (L7751-L7773) | Explicit googleapis.com universe works | PUB; G | DEFERRED | Universe-domain credential check DEFERRED to gax/auth (bigquery.md §7/§13, #24). Swift has no universe-domain option; the default endpoint is covered by every other IT. | |
-| IT-185 | `testExternalTableMetadataCachingNotEnable` (L7775-L7814) | External table metadataCacheMode unset -> query works | D, B | PORT |  | |
-| IT-186 | `testExternalMetadataCacheModeFailForNonBiglake` (L7816-L7841) | metadataCacheMode on non-BigLake table -> error | D, B | PORT |  | |
-| IT-187 | `testObjectTable` (L7843-L7890) | Object table (objectMetadata) over GCS via connection | G; B; connection DEVREL_TEST_CONNECTION (java-docs-samples-testing); US dataset | ADAPT | Gate on BIGQUERY_TEST_CONNECTION_ID; connection SA needs GCS read on the temp bucket. | |
+| IT-185 | `testExternalTableMetadataCachingNotEnable` (L7775-L7814) | External table metadataCacheMode unset -> query works | D, B | PORT |  | `TableIntegrationTests.createExternalJSONTable` |
+| IT-186 | `testExternalMetadataCacheModeFailForNonBiglake` (L7816-L7841) | metadataCacheMode on non-BigLake table -> error | D, B | PORT |  | `TableIntegrationTests.metadataCacheModeIsRejectedForNonBigLakeTables` |
+| IT-187 | `testObjectTable` (L7843-L7890) | Object table (objectMetadata) over GCS via connection | G; B; connection DEVREL_TEST_CONNECTION (java-docs-samples-testing); US dataset | ADAPT | Gate on BIGQUERY_TEST_CONNECTION_ID; connection SA needs GCS read on the temp bucket. | `TableIntegrationTests.createObjectTable` |
 | IT-188 | `testQueryExportStatistics` (L7892-L7914) | EXPORT DATA to GCS -> exportDataStatistics fileCount/rowCount | D, B (write) | PORT |  | |
 | IT-189 | `testLoadConfigurationFlexibleColumnName` (L7916-L7970) | Load CSV with autodetect + columnNameCharacterMap V1/V2 (flexible column names) | D, B (load_flexible_column_name.csv) | PORT |  | |
 | IT-190 | `testStatementType` (L7972-L7992) | TableResult.statementType for CREATE MATERIALIZED VIEW | D, T | PORT |  | |
@@ -1081,18 +1081,18 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 | IT-192 | `testOpenTelemetryTracingTables` (L8083-L8131) | OTel spans for table ops | D; OTel SDK | DEFERRED | OpenTelemetry tracing: DEFERRED per D4 (#4) unless time permits; Swift would use swift-distributed-tracing. | |
 | IT-193 | `testOpenTelemetryTracingQuery` (L8133-L8184) | OTel spans for query | D, T; OTel SDK | DEFERRED | OpenTelemetry tracing: DEFERRED per D4 (#4) unless time permits; Swift would use swift-distributed-tracing. | |
 
-### 3.2 `ITHighPrecisionTimestamp` — [it/ITHighPrecisionTimestamp.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/it/ITHighPrecisionTimestamp.java) (8 tests; PORT 0 / ADAPT 0 / N/A 0 / DEFERRED 8)
+### 3.2 `ITHighPrecisionTimestamp` — [it/ITHighPrecisionTimestamp.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/it/ITHighPrecisionTimestamp.java) (8 tests; PORT 8 / ADAPT 0 / N/A 0 / DEFERRED 0)
 
 | ID | Test (lines) | Feature exercised | Resources / fixtures | Class | Notes | Swift test |
 |---|---|---|---|---|---|---|
-| IT-194 | `query_highPrecisionTimestamp` (L126-L144) | Picosecond TIMESTAMP(12) column read with ISO8601_STRING output format | own DATASET + table (timestampPrecision=12) seeded via insertAll | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
-| IT-195 | `insert_highPrecisionTimestamp_ISOValidFormat` (L146-L163) | insertAll ISO strings with 12 fractional digits | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
-| IT-196 | `insert_highPrecisionTimestamp_invalidFormats` (L165-L204) | insertAll invalid high-precision formats -> row errors | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
-| IT-197 | `queryNamedParameter_highPrecisionTimestamp` (L206-L232) | Named TIMESTAMP param with picos (CAST) | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
-| IT-198 | `queryPositionalParameter_highPrecisionTimestamp` (L234-L259) | Positional TIMESTAMP param with picos | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
-| IT-199 | `queryNamedParameter_highPrecisionTimestamp_microsLong` (L261-L290) | Param from micros long | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
-| IT-200 | `queryNamedParameter_highPrecisionTimestamp_microsISOString` (L292-L317) | Param from micros ISO string | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
-| IT-201 | `queryNamedParameter_highPrecisionTimestamp_noExplicitCastInQuery_fails` (L319-L338) | Picos param without CAST -> error | same | DEFERRED | Picosecond timestamps (timestampPrecision=12, ISO8601_STRING output) DEFERRED (bigquery.md §11/§13, #24). | |
+| IT-194 | `query_highPrecisionTimestamp` (L126-L144) | Picosecond TIMESTAMP(12) column read with ISO8601_STRING output format | own DATASET + table (timestampPrecision=12) seeded via insertAll | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
+| IT-195 | `insert_highPrecisionTimestamp_ISOValidFormat` (L146-L163) | insertAll ISO strings with 12 fractional digits | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
+| IT-196 | `insert_highPrecisionTimestamp_invalidFormats` (L165-L204) | insertAll invalid high-precision formats -> row errors | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
+| IT-197 | `queryNamedParameter_highPrecisionTimestamp` (L206-L232) | Named TIMESTAMP param with picos (CAST) | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
+| IT-198 | `queryPositionalParameter_highPrecisionTimestamp` (L234-L259) | Positional TIMESTAMP param with picos | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
+| IT-199 | `queryNamedParameter_highPrecisionTimestamp_microsLong` (L261-L290) | Param from micros long | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
+| IT-200 | `queryNamedParameter_highPrecisionTimestamp_microsISOString` (L292-L317) | Param from micros ISO string | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
+| IT-201 | `queryNamedParameter_highPrecisionTimestamp_noExplicitCastInQuery_fails` (L319-L338) | Picos param without CAST -> error | same | PORT | Un-deferred (#97/#102/#105): Swift reads all TIMESTAMPs via ISO8601_STRING and exposes BigQueryTimestamp. | |
 
 ### 3.3 `ITNightlyBigQueryTest` — [it/ITNightlyBigQueryTest.java](file:///usr/local/google/home/lawrenceqiu/IdeaProjects/google-cloud-java/java-bigquery/google-cloud-bigquery/src/test/java/com/google/cloud/bigquery/it/ITNightlyBigQueryTest.java) (7 tests; PORT 0 / ADAPT 0 / N/A 0 / DEFERRED 7)
 
@@ -1120,7 +1120,7 @@ Fixture abbreviations are defined in [§4](#4-fixtures-and-the-test-project).
 
 | ID | Test (lines) | Feature exercised | Resources / fixtures | Class | Notes | Swift test |
 |---|---|---|---|---|---|---|
-| IT-214 | `testRoutineRemoteUDF` (L98-L135) | routines.insert remote function (remoteFunctionOptions endpoint/connection/maxBatchingRows/userDefinedContext) | own ROUTINE dataset; BigQuery Connection created via ConnectionServiceClient (US, CLOUD_RESOURCE) | ADAPT | @Disabled in Java (issue 4103). Swift: gate on BIGQUERY_TEST_CONNECTION_ID (existing connection); no Connection API client needed. | |
+| IT-214 | `testRoutineRemoteUDF` (L98-L135) | routines.insert remote function (remoteFunctionOptions endpoint/connection/maxBatchingRows/userDefinedContext) | own ROUTINE dataset; BigQuery Connection created via ConnectionServiceClient (US, CLOUD_RESOURCE) | ADAPT | @Disabled in Java (issue 4103). Swift: gate on BIGQUERY_TEST_CONNECTION_ID (existing connection); no Connection API client needed. | `RoutineIntegrationTests.createsRemoteFunction` |
 
 ## 4. Fixtures and the test project
 
@@ -1146,7 +1146,7 @@ checked access from this workstation on 2026-10-08 with `bq` and
 | IAM | IT-005, IT-007, IT-010, IT-021, IT-038, IT-061, IT-062 | Dataset ACL and table IAM edits, including `allUsers` and IAM conditions on the caller's email | Partly. `allUsers` grants may be blocked by an org policy (domain-restricted sharing). | Use the caller's own principal or a group. Treat `403 constraints/iam.allowedPolicyMemberDomains` as a skip. |
 | CREDS | `FAKE_JSON_CRED_WITH_GOOGLE_DOMAIN` / `..._INVALID_DOMAIN` `L808`, `L846` | Inline fake service-account JSON for the universe-domain tests | Yes (no live credential) | Not needed now: the universe-domain tests are DEFERRED to gax/auth (bigquery.md §13). |
 | Session CSV | `src/test/resources/sessionTest.csv` (2.7 KB) | Writer load into `_SESSION` (IT-109) | Yes | Small enough to inline or vendor. |
-| HPT | `ITHighPrecisionTimestamp.java:L60-L124` | Own dataset and table with a `TIMESTAMP` field `timestampPrecision=12`, seeded by `insertAll`. The client uses `TimestampFormatOptions.ISO8601_STRING`. | Yes, if the feature is enabled for the project. Verify on the first run. | DEFERRED with picosecond timestamps (bigquery.md §11/§13). |
+| HPT | `ITHighPrecisionTimestamp.java:L60-L124` | Own dataset and table with a `TIMESTAMP` field `timestampPrecision=12`, seeded by `insertAll`. The client uses `TimestampFormatOptions.ISO8601_STRING`. | Yes, if the feature is enabled for the project. Verify on the first run. | Own suite fixture (un-deferred, #97/#105). |
 | Nightly | `ITNightlyBigQueryTest` | Large generated table for Connection/Read API | n/a | DEFERRED with the Connection API. |
 
 ### 4.2 Unique names and cleanup (proposal for Swift ITs)
