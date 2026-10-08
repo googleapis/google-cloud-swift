@@ -70,6 +70,7 @@ let package = Package(
         .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(name: "Logging", package: "swift-log"),
         .product(name: "NIOCore", package: "swift-nio"),
+        .product(name: "NIOHTTP1", package: "swift-nio"),
       ],
       path: "Sources/GoogleCloudBigQuery",
       swiftSettings: swiftSettings
