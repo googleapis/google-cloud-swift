@@ -10,10 +10,11 @@ The easiest way to deploy and run the benchmark is using the turnkey deployment 
 This script automates:
 1. **Infrastructure setup**: Creating a regional GCS bucket with optimal configuration (hierarchical namespace, uniform bucket-level access, auto-deletion lifecycle rule).
 2. **VM provisioning**: Launching a [Compute-Optimized][compute-optimized] GCE VM (e.g. `c2d-standard-8`) with high [network bandwidth][network bandwidth].
-3. **Environment & compilation**: Automatically installing dependencies and building `StorageW1R3Benchmark` in release mode.
-4. **Execution & metrics collection**: Running the benchmark, streaming live logs to your console, and uploading CSV results and logs to Cloud Storage.
-5. **BigQuery ingestion**: Automatically loading results into a BigQuery dataset for immediate query and analysis.
-6. **Teardown**: Automatically shutting down and deleting the GCE VM upon completion to prevent unnecessary compute charges.
+3. **Environment & compilation**: Automatically installing dependencies and building `StorageW1R3Benchmark` (or a custom `--product`) in release mode.
+4. **A/B comparison & multi-round execution**: Optionally building and interleaving two branches, commits, or runtime flag configurations across multiple rounds on the exact same GCE VM hardware.
+5. **Execution & metrics collection**: Running the benchmark, streaming live logs to your console, and uploading CSV results and logs to Cloud Storage.
+6. **BigQuery ingestion**: Automatically loading results into a BigQuery dataset for immediate query and side-by-side comparison.
+7. **Teardown**: Automatically shutting down and deleting the GCE VM upon completion to prevent unnecessary compute charges.
 
 ### Prerequisites
 
@@ -73,6 +74,65 @@ You can view execution anytime by running:
 gcloud compute instances tail-serial-port-output <INSTANCE_NAME> --zone=<ZONE>
 ```
 
+---
+
+## A/B Testing & Comparing Branches or Configurations
+
+Because cloud VM hardware and network conditions can vary across separate GCE instances or times of day, `run-w1r3-gce.sh` supports running **interleaved A/B comparisons on the same GCE instance**.
+
+In comparison mode, the VM builds both Variant A (`baseline`) and Variant B (`experiment`) up front, and then alternates running `baseline` and `experiment` for `--rounds N` rounds (default: `3` rounds in comparison mode). All samples are tagged with `Variant` and `Round` and loaded into a single BigQuery table, along with a ready-to-run side-by-side comparison SQL query.
+
+### 1. Compare Two Git Branches or Commits
+Compare a feature branch or commit against `main` across 3 interleaved rounds:
+
+```shell
+./Sources/StorageW1R3/scripts/run-w1r3-gce.sh \
+    --git-ref main \
+    --compare-ref my-feature-branch \
+    --rounds 3 \
+    --task-count 8 \
+    --iterations 200
+```
+
+### 2. Compare Uncommitted Local Changes Against `main`
+Use `--compare-stage-local` to stage your local working tree as the `experiment` variant while automatically building `main` (or `--git-ref`) as the `baseline` variant:
+
+```shell
+./Sources/StorageW1R3/scripts/run-w1r3-gce.sh \
+    --compare-stage-local \
+    --rounds 3 \
+    --task-count 8 \
+    --iterations 200
+```
+
+### 3. Compare Two Runtime Flag Configurations on the Same Binary
+If you specify `--compare-extra-args` without changing the git ref, the VM compiles the binary once and interleaves runs with the two sets of arguments:
+
+```shell
+./Sources/StorageW1R3/scripts/run-w1r3-gce.sh \
+    --baseline-label streaming \
+    --extra-args "--resumable-mode streaming" \
+    --compare-label chunked \
+    --compare-extra-args "--resumable-mode chunked" \
+    --rounds 3 \
+    --min-object-size 32MiB \
+    --max-object-size 64MiB
+```
+
+### 4. Run Other Benchmark Targets or Custom Commands
+You can use the same GCE provisioning and A/B comparison workflow for targets other than `StorageW1R3Benchmark` using `--product`, `--package-path`, `--command`, and `--bq-schema` (or `--no-bq`):
+
+```shell
+./Sources/StorageW1R3/scripts/run-w1r3-gce.sh \
+    --product EnduranceRunner \
+    --command "{BIN} --project-id ${GOOGLE_CLOUD_PROJECT}" \
+    --no-bq \
+    --compare-ref my-optimization-branch \
+    --rounds 2
+```
+
+---
+
 ### Deployment Script Options
 
 | Option | Default | Description |
@@ -85,9 +145,11 @@ gcloud compute instances tail-serial-port-output <INSTANCE_NAME> --zone=<ZONE>
 | `--results-bucket` | `w1r3-results-<PROJECT>-<REGION>` | Cloud Storage bucket for persistent CSV results and logs |
 | `--bq-dataset` | `w1r3` | BigQuery dataset name |
 | `--bq-table` | `swift_<RUN_ID>` | BigQuery table name |
-| `--git-repo` | Current git origin | Git repository URL |
-| `--git-ref` | Current git commit | Git branch, commit, or tag |
-| `--stage-local` | `false` | Tar and stage local working tree to GCS |
+| `--bq-schema` | W1R3 schema | Custom BigQuery CSV schema (or `none` to skip BigQuery load) |
+| `--no-bq` | `false` | Disable BigQuery ingestion |
+| `--git-repo` | Current git origin | Git repository URL for baseline |
+| `--git-ref` | Current git commit | Git branch, commit, or tag for baseline (`main` when `--compare-stage-local` is set) |
+| `--stage-local` | `false` | Tar and stage local working tree to GCS for baseline |
 | `--task-count` | `4` | Number of concurrent worker tasks |
 | `--iterations` | `100` | Number of iterations per worker |
 | `--min-object-size` | `0` | Minimum object size (e.g. `0`, `128KiB`, `1MiB`) |
@@ -95,18 +157,30 @@ gcloud compute instances tail-serial-port-output <INSTANCE_NAME> --zone=<ZONE>
 | `--read-count` | `3` | Number of read operations per object |
 | `--client-count` | `1` | Number of `StorageClient` instances |
 | `--crc32c` | `always` | Checksum mode: `always`, `random`, or `never` |
-| `--extra-args` | `""` | Additional CLI flags passed to `StorageW1R3Benchmark` |
+| `--extra-args` | `""` | Additional CLI flags passed to baseline benchmark |
+| `--compare-ref` | `""` | Git branch, commit, or tag for comparison (`experiment`) variant |
+| `--compare-repo` | Same as `--git-repo` | Git repository URL for comparison variant |
+| `--compare-stage-local` | `false` | Tar and stage local working tree as comparison (`experiment`) variant |
+| `--compare-extra-args` | Same as `--extra-args` | Additional CLI flags passed to comparison variant |
+| `--baseline-label` | `baseline` | Label for Variant A in CSV/BigQuery results |
+| `--compare-label` | `experiment` | Label for Variant B in CSV/BigQuery results |
+| `--rounds` | `1` (`3` in compare mode) | Number of interleaved execution rounds per variant |
+| `--product` | `StorageW1R3Benchmark` | Swift executable product to build and run |
+| `--package-path` | `""` (root package) | Relative package path if building a subpackage |
+| `--command` | `""` | Custom command template (`{BIN}` and `{BUCKET}` placeholders supported) |
 | `--no-wait` / `--async` | `false` | Launch VM and exit without tailing output |
-| `--keep-vm` | `false` | Prevent VM deletion after benchmark completion |
+| `--keep-vm` / `--no-teardown` | `false` | Prevent VM deletion after benchmark completion |
 
 ---
 
 ## Analyzing Benchmark Results in BigQuery
 
-Results are loaded into BigQuery with the following schema:
+Results are loaded into BigQuery with the following schema (in comparison or multi-round mode, `Variant` and `Round` are prepended):
 
 | Column | Type | Description |
 |---|---|---|
+| `Variant` | `STRING` | *(Compare / multi-round mode only)* Configuration label (e.g. `baseline`, `experiment`) |
+| `Round` | `INT64` | *(Compare / multi-round mode only)* Interleaved round number (`1..N`) |
 | `Task` | `INT64` | Worker task index (0-based) |
 | `Iteration` | `INT64` | Iteration number for the task |
 | `IterationStart` | `INT64` | Microseconds since task start |
@@ -121,7 +195,44 @@ Results are loaded into BigQuery with the following schema:
 
 ### Sample Analysis Queries
 
-#### Throughput and Latency Percentiles by Operation
+#### 1. A/B Comparison: Throughput and Latency Deltas by Operation
+
+```sql
+WITH stats AS (
+  SELECT
+    Operation,
+    Variant,
+    COUNT(*) AS sample_count,
+    AVG((TransferSize * 8.0) / ElapsedMicroseconds) AS avg_mbps,
+    APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(50)] AS p50_ms,
+    APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(90)] AS p90_ms,
+    APPROX_QUANTILES(ElapsedMicroseconds / 1000.0, 100)[OFFSET(99)] AS p99_ms
+  FROM `<PROJECT_ID>.w1r3.<TABLE_NAME>`
+  WHERE Result = 'OK'
+  GROUP BY Operation, Variant
+)
+SELECT
+  a.Operation,
+  a.sample_count AS baseline_samples,
+  b.sample_count AS experiment_samples,
+  ROUND(a.avg_mbps, 2) AS baseline_mbps,
+  ROUND(b.avg_mbps, 2) AS experiment_mbps,
+  ROUND(((b.avg_mbps - a.avg_mbps) / NULLIF(a.avg_mbps, 0)) * 100, 2) AS mbps_diff_pct,
+  ROUND(a.p50_ms, 2) AS baseline_p50_ms,
+  ROUND(b.p50_ms, 2) AS experiment_p50_ms,
+  ROUND(((b.p50_ms - a.p50_ms) / NULLIF(a.p50_ms, 0)) * 100, 2) AS p50_diff_pct,
+  ROUND(a.p99_ms, 2) AS baseline_p99_ms,
+  ROUND(b.p99_ms, 2) AS experiment_p99_ms,
+  ROUND(((b.p99_ms - a.p99_ms) / NULLIF(a.p99_ms, 0)) * 100, 2) AS p99_diff_pct
+FROM stats a
+JOIN stats b
+  ON a.Operation = b.Operation
+WHERE a.Variant = 'baseline'
+  AND b.Variant = 'experiment'
+ORDER BY a.Operation;
+```
+
+#### 2. Single-Run Throughput and Latency Percentiles by Operation
 
 ```sql
 SELECT
@@ -138,7 +249,7 @@ GROUP BY Operation
 ORDER BY Operation;
 ```
 
-#### Upload vs. Read Bandwidth by Object Size Bucket
+#### 3. Upload vs. Read Bandwidth by Object Size Bucket
 
 ```sql
 SELECT
