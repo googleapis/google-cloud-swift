@@ -74,6 +74,7 @@ COMPARE_BENCHMARK_ARGS=$(get_attribute "compare-benchmark-args" "${BENCHMARK_ARG
 BASELINE_LABEL=$(get_attribute "baseline-label" "baseline")
 COMPARE_LABEL=$(get_attribute "compare-label" "experiment")
 ROUNDS=$(get_attribute "rounds" "1")
+[[ "${ROUNDS}" =~ ^[1-9][0-9]*$ ]] || ROUNDS=1
 AUTO_TEARDOWN=$(get_attribute "auto-teardown" "true")
 
 MULTI_RUN_SCHEMA=false
@@ -112,6 +113,7 @@ mkdir -p /root/runs
 # Teardown trap handler
 cleanup_and_teardown() {
   local exit_code=$?
+  set +e
   local end_time
   end_time="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
@@ -203,7 +205,7 @@ cleanup_and_teardown() {
           end_time: $end_time,
           status: $status,
           exit_code: $exit_code
-        }' > /root/metadata.json
+        }' > /root/metadata.json || true
     else
       cat <<EOF > /root/metadata.json
 {
@@ -216,10 +218,13 @@ cleanup_and_teardown() {
   "results_bucket": "${RESULTS_BUCKET}",
   "bq_dataset": "${BQ_DATASET}",
   "bq_table": "${BQ_TABLE}",
+  "bq_schema": "${BQ_SCHEMA}",
   "git_repo": "${GIT_REPO}",
   "git_ref": "${GIT_REF}",
   "benchmark_args": "${BENCHMARK_ARGS}",
   "benchmark_product": "${BENCHMARK_PRODUCT}",
+  "benchmark_package_path": "${BENCHMARK_PACKAGE_PATH}",
+  "benchmark_command": "${BENCHMARK_COMMAND}",
   "compare_enabled": ${COMPARE_ENABLED},
   "compare_repo": "${COMPARE_REPO}",
   "compare_ref": "${COMPARE_REF}",
