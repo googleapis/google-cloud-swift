@@ -52,6 +52,15 @@ import Testing
     let client = FakeHTTPTransport().client(projectID: "p")
     #expect(client.resolve(DatasetID(datasetID: "d")) == DatasetID(projectID: "p", datasetID: "d"))
   }
+
+  // Design: §4.2
+  @Test func makesChildIDsInTheSameProject() {
+    let dataset = DatasetID(projectID: "p", datasetID: "d")
+    #expect(dataset.table("t") == TableID(projectID: "p", datasetID: "d", tableID: "t"))
+    #expect(dataset.routine("r") == RoutineID(projectID: "p", datasetID: "d", routineID: "r"))
+    #expect(dataset.model("m") == ModelID(projectID: "p", datasetID: "d", modelID: "m"))
+    #expect(DatasetID(datasetID: "d").table("t").projectID == nil)
+  }
 }
 
 @Suite struct TableIDTests {

@@ -185,6 +185,7 @@ public struct DatasetID: Sendable, Hashable, CustomStringConvertible {
   public var datasetID: String
   public init(projectID: String? = nil, datasetID: String)
   public init(_ string: String) throws  // "dataset" or "project.dataset" or "project:dataset"
+  public func table(_:) -> TableID; func routine(_:) -> RoutineID; func model(_:) -> ModelID
 }
 public struct TableID  { projectID?, datasetID, tableID; init(projectID:datasetID:tableID:),
                          init(dataset: DatasetID, tableID:), init(_ "p.d.t" | "d.t") throws,

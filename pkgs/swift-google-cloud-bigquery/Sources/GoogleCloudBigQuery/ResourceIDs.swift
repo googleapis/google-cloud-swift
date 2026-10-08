@@ -38,6 +38,21 @@ public struct DatasetID: Sendable, Hashable, CustomStringConvertible {
 
   /// The Standard SQL form, `project.dataset`, or `dataset` if there is no project.
   public var description: String { joinResourcePath(self.projectID, [self.datasetID]) }
+
+  /// Returns the ID of the table `tableID` in this dataset.
+  public func table(_ tableID: String) -> TableID {
+    TableID(dataset: self, tableID: tableID)
+  }
+
+  /// Returns the ID of the routine `routineID` in this dataset.
+  public func routine(_ routineID: String) -> RoutineID {
+    RoutineID(dataset: self, routineID: routineID)
+  }
+
+  /// Returns the ID of the model `modelID` in this dataset.
+  public func model(_ modelID: String) -> ModelID {
+    ModelID(dataset: self, modelID: modelID)
+  }
 }
 
 /// Identifies a table, view, materialized view, or snapshot.
