@@ -641,4 +641,31 @@ import Testing
     let unavailable = BigQueryError(kind: .service, message: "down", httpStatusCode: 503)
     #expect(BigQueryClient.queryFailure(unavailable, job: nil) == unavailable)
   }
+
+  // Design: §6.1
+  @Test func sqlQueryConvenienceForwardsPageSize() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(json: JobFixtures.queryResults(rows: ["a"]))
+    _ = try await fake.client().query("SELECT name FROM t", pageSize: 25)
+    let body = try fake.requests[0].jsonBody()
+    #expect(body["maxResults"] as? NSNumber == 25)
+  }
+
+  // Baseline: U.BigQueryImpl.61
+  @Test func sqlDryRunConvenienceSendsDryRunWithParameters() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(
+      json: JobFixtures.job(
+        statistics: #"{"query": {"totalBytesProcessed": "99", "statementType": "SELECT"}}"#))
+    let estimate = try await fake.client().dryRun(
+      "SELECT @x", parameters: .named(["x": .int64(7)]))
+    #expect(estimate.totalBytesProcessed == 99)
+    #expect(estimate.statementType == .select)
+    let body = try fake.requests[0].jsonBody()
+    let configuration = body["configuration"] as? [String: Any]
+    let query = configuration?["query"] as? [String: Any]
+    #expect(configuration?["dryRun"] as? Bool == true)
+    #expect(query?["query"] as? String == "SELECT @x")
+    #expect((query?["queryParameters"] as? [[String: Any]])?.first?["name"] as? String == "x")
+  }
 }

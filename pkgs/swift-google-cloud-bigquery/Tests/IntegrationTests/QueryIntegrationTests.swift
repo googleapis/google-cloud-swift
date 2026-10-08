@@ -20,7 +20,7 @@ import Testing
 /// Live tests of `query()`, its fast and slow paths, and query results.
 @Suite(.enabled(if: integrationTestsEnabled()))
 struct QueryIntegrationTests {
-  // Baseline: IT-067, IT-098, IT-099, IT-100
+  // Baseline: IT-067, IT-075, IT-098, IT-099, IT-100
   @Test func fastQueryReturnsRowsAndDistinctJobs() async throws {
     let client = try IntegrationTest.makeClient()
     try await IntegrationTest.withTemporaryDataset(client, slice: JobsIT.slice) { dataset in
@@ -33,6 +33,7 @@ struct QueryIntegrationTests {
         #expect(result.totalRows == 3)
         let rows = try await result.rows.collect()
         #expect(JobsIT.scalars(rows, "name") == ["a", "b", "c"])
+        #expect(JobsIT.scalars(rows, "NAME") == ["a", "b", "c"])
         #expect(JobsIT.scalars(rows, "n") == ["1", "2", "3"])
         #expect(result.statementType == .select)
       }
@@ -100,15 +101,20 @@ struct QueryIntegrationTests {
     }
   }
 
-  // Baseline: IT-105
+  // Baseline: IT-105, IT-190
   @Test func ddlCreatesATable() async throws {
     let client = try IntegrationTest.makeClient()
     try await IntegrationTest.withTemporaryDataset(client, slice: JobsIT.slice) { dataset in
       let table = JobsIT.table(dataset)
       let result = try await client.query(
         "CREATE OR REPLACE TABLE \(JobsIT.sql(table)) AS SELECT 17 AS v")
+      #expect(result.statementType == .createTableAsSelect)
       #expect(try await result.rows.collect().isEmpty)
       #expect(try await JobsIT.column(client, "SELECT v FROM \(JobsIT.sql(table))", "v") == ["17"])
+      let mv = JobsIT.table(dataset, "mv")
+      let mvResult = try await client.query(
+        "CREATE MATERIALIZED VIEW \(JobsIT.sql(mv)) AS SELECT v FROM \(JobsIT.sql(table))")
+      #expect(mvResult.statementType == .createMaterializedView)
     }
   }
 

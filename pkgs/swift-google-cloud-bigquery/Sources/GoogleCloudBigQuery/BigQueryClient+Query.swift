@@ -31,6 +31,8 @@ extension BigQueryClient {
   /// - Parameters:
   ///   - sql: the GoogleSQL query text.
   ///   - parameters: the query parameters, if any.
+  ///   - pageSize: the maximum number of rows in each page of ``QueryResult/rows``, or `nil` for
+  ///     the service default. Sets ``QueryJobConfiguration/maxResults``.
   ///   - options: per-call options.
   /// - Throws: ``BigQueryError`` with kind ``BigQueryError/Kind-swift.struct/job`` if the service
   ///   rejects the query or the query fails; see
@@ -38,9 +40,12 @@ extension BigQueryClient {
   public func query(
     _ sql: String,
     parameters: QueryParameters? = nil,
+    pageSize: Int? = nil,
     options: RequestOptions = .init()
   ) async throws -> QueryResult {
-    try await self.query(QueryJobConfiguration(sql, parameters: parameters), options: options)
+    var configuration = QueryJobConfiguration(sql, parameters: parameters)
+    configuration.maxResults = pageSize.map(Int64.init)
+    return try await self.query(configuration, options: options)
   }
 
   /// Runs a query and returns its result once it completes.
@@ -119,6 +124,28 @@ extension BigQueryClient {
     try await self.completedQuery(
       self.resolve(job), pageSize: pageSize.map(Int64.init), startIndex: startIndex, deadline: nil,
       options: options)
+  }
+
+  /// Validates a query and estimates its cost without running it.
+  ///
+  /// ```swift
+  /// let estimate = try await client.dryRun(
+  ///   "SELECT * FROM dataset.people WHERE age > @age", parameters: .named(["age": .int64(21)]))
+  /// print(estimate.totalBytesProcessed ?? 0)
+  /// ```
+  ///
+  /// - Parameters:
+  ///   - sql: the GoogleSQL query text.
+  ///   - parameters: the query parameters, if any.
+  ///   - options: per-call options.
+  /// - Throws: ``BigQueryError`` with kind ``BigQueryError/Kind-swift.struct/service`` if the
+  ///   query is invalid.
+  public func dryRun(
+    _ sql: String,
+    parameters: QueryParameters? = nil,
+    options: RequestOptions = .init()
+  ) async throws -> QueryDryRunResult {
+    try await self.dryRun(QueryJobConfiguration(sql, parameters: parameters), options: options)
   }
 
   /// Validates a query and estimates its cost without running it.

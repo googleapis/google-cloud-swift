@@ -21,6 +21,7 @@ public import Foundation
 ///   .data(Data("1,alice\n2,bob\n".utf8)),
 ///   configuration: LoadJobConfiguration(
 ///     destinationTable: TableID(datasetID: "d", tableID: "people"), format: .csv))
+/// try await client.waitForJob(job.id)
 /// ```
 public struct UploadSource: Sendable {
   enum Storage: Sendable {
