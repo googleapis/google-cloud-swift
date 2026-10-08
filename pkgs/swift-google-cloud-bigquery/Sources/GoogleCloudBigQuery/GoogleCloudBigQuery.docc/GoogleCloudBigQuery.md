@@ -29,15 +29,14 @@ let result = try await client.query(
   "SELECT name, age FROM `d.people` WHERE age >= @age",
   parameters: .named(["age": .int64(18)]))
 for try await row in result.rows {
-  if let name = try row["name"]?.stringValue {
+  if let name = row["name"]?.stringValue {
     print(name)
   }
 }
 ```
 
 Use ``BigQueryClient/listRows(in:schema:selectedFields:startIndex:pageSize:pageToken:options:)``
-to read a table directly without running a query, and
-``BigQueryClient/insertAll(_:into:skipInvalidRows:ignoreUnknownValues:templateSuffix:insertIDs:options:)``
+to read a table directly without running a query, and ``InsertRow`` with `insertAll(_:into:)`
 to stream rows into a table.
 
 Get operations return `nil` when the resource does not exist, and delete operations return
@@ -115,6 +114,7 @@ see ``BigQueryRetryPolicy``.
 ### Values
 
 - ``BigNumeric``
+- ``BigQueryTimestamp``
 - ``BigQueryDate``
 - ``BigQueryTime``
 - ``BigQueryDateTime``

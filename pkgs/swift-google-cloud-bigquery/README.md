@@ -59,7 +59,7 @@ public func quickstart(datasetID: String) async throws {
 
   // Stream rows into it.
   let response = try await client.insertAll(
-    [try InsertRow(Person(name: "Ana", age: 31)), try InsertRow(Person(name: "Ben", age: 17))],
+    [Person(name: "Ana", age: 31), Person(name: "Ben", age: 17)],
     into: tableID)
   for (index, errors) in response.rowErrors {
     print("row \(index) failed: \(errors)")
@@ -70,7 +70,7 @@ public func quickstart(datasetID: String) async throws {
     "SELECT name, age FROM `\(datasetID).people` WHERE age >= @age",
     parameters: .named(["age": .int64(18)]))
   for try await row in result.rows {
-    if let name = try row["name"]?.stringValue {
+    if let name = row["name"]?.stringValue {
       print(name)
     }
   }

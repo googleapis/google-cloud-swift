@@ -13,19 +13,11 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudBigQueryV2
-import GoogleWKT
 import Testing
 
 @testable import GoogleCloudBigQuery
 
-// The generated module declares types with the same names.
-private typealias QueryParameterValue = GoogleCloudBigQuery.QueryParameterValue
-
 /// Live checks of insertAll, query parameters, and row decoding (slice 2).
-///
-/// Tables are created and queried through the raw transport until the tables and jobs slices
-/// land.
 @Suite(.enabled(if: integrationTestsEnabled()))
 struct ValuesIntegrationTests {
   // MARK: - insertAll
@@ -56,30 +48,37 @@ struct ValuesIntegrationTests {
     var visits: [Address]
   }
 
-  private static let recordSchema = #"""
-    {"fields": [
-      {"name": "name", "type": "STRING", "mode": "REQUIRED"},
-      {"name": "age", "type": "INT64"},
-      {"name": "score", "type": "FLOAT64"},
-      {"name": "active", "type": "BOOL"},
-      {"name": "joined", "type": "TIMESTAMP"},
-      {"name": "photo", "type": "BYTES"},
-      {"name": "price", "type": "NUMERIC"},
-      {"name": "exact", "type": "BIGNUMERIC"},
-      {"name": "birthday", "type": "DATE"},
-      {"name": "alarm", "type": "TIME"},
-      {"name": "meeting", "type": "DATETIME"},
-      {"name": "wait", "type": "INTERVAL"},
-      {"name": "place", "type": "GEOGRAPHY"},
-      {"name": "payload", "type": "JSON"},
-      {"name": "period", "type": "RANGE", "rangeElementType": {"type": "DATE"}},
-      {"name": "tags", "type": "STRING", "mode": "REPEATED"},
-      {"name": "address", "type": "RECORD", "fields": [
-        {"name": "city", "type": "STRING"}, {"name": "zip", "type": "STRING"}]},
-      {"name": "visits", "type": "RECORD", "mode": "REPEATED", "fields": [
-        {"name": "city", "type": "STRING"}, {"name": "zip", "type": "STRING"}]}
-    ]}
-    """#
+  private static let addressFields: [Field] = [
+    Field("city", .string),
+    Field("zip", .string),
+  ]
+
+  private static func rangeField(_ name: String, _ elementType: FieldType) -> Field {
+    var field = Field(name, .range)
+    field.rangeElementType = elementType
+    return field
+  }
+
+  private static let recordSchema = Schema([
+    Field("name", .string, mode: .required),
+    Field("age", .int64),
+    Field("score", .float64),
+    Field("active", .bool),
+    Field("joined", .timestamp),
+    Field("photo", .bytes),
+    Field("price", .numeric),
+    Field("exact", .bigNumeric),
+    Field("birthday", .date),
+    Field("alarm", .time),
+    Field("meeting", .dateTime),
+    Field("wait", .interval),
+    Field("place", .geography),
+    Field("payload", .json),
+    rangeField("period", .date),
+    Field("tags", .string, mode: .repeated),
+    Field("address", .struct, fields: addressFields),
+    Field("visits", .struct, mode: .repeated, fields: addressFields),
+  ])
 
   private static let sample = Record(
     name: "Ana", age: nil, score: 9.5, active: true,
@@ -161,17 +160,16 @@ struct ValuesIntegrationTests {
     let client = try IntegrationTest.makeClient()
     try await IntegrationTest.withTemporaryDataset(client, slice: "values") { dataset in
       let table = try await Self.createTable(
-        client, dataset, "template", schema: #"{"fields": [{"name": "name", "type": "STRING"}]}"#)
+        client, dataset, "template", schema: Schema([Field("name", .string)]))
       let response = try await client.insertAll(
         [InsertRow(["name": "a"]), InsertRow(["name": "b"])], into: table, templateSuffix: "_suffix"
       )
       #expect(!response.hasErrors)
-      let path =
-        "/bigquery/v2/projects/\(dataset.projectID!)/datasets/\(dataset.datasetID)/tables/template_suffix"
-      var created: GoogleCloudBigQueryV2.Table? = nil
+      let suffixed = TableID(
+        projectID: dataset.projectID, datasetID: dataset.datasetID, tableID: "template_suffix")
+      var created: Table? = nil
       for _ in 0..<30 {
-        created = try await client.transport.jsonOrNil(
-          HTTPRequest(method: .get, path: path), as: GoogleCloudBigQueryV2.Table.self)
+        created = try await client.getTable(suffixed)
         if created != nil { break }
         try await Task.sleep(for: .seconds(2))
       }
@@ -185,8 +183,10 @@ struct ValuesIntegrationTests {
     try await IntegrationTest.withTemporaryDataset(client, slice: "values") { dataset in
       let table = try await Self.createTable(
         client, dataset, "errors",
-        schema:
-          #"{"fields": [{"name": "name", "type": "STRING", "mode": "REQUIRED"}, {"name": "n", "type": "INT64"}]}"#
+        schema: Schema([
+          Field("name", .string, mode: .required),
+          Field("n", .int64),
+        ])
       )
       let rows = [
         InsertRow(["name": "ok", "n": 1]),
@@ -212,16 +212,14 @@ struct ValuesIntegrationTests {
     try await IntegrationTest.withTemporaryDataset(client, slice: "values") { dataset in
       let table = try await Self.createTable(
         client, dataset, "typed",
-        schema: #"""
-          {"fields": [
-            {"name": "name", "type": "STRING"},
-            {"name": "j", "type": "JSON"},
-            {"name": "iv", "type": "INTERVAL"},
-            {"name": "d", "type": "RANGE", "rangeElementType": {"type": "DATE"}},
-            {"name": "dt", "type": "RANGE", "rangeElementType": {"type": "DATETIME"}},
-            {"name": "ts", "type": "RANGE", "rangeElementType": {"type": "TIMESTAMP"}}
-          ]}
-          """#)
+        schema: Schema([
+          Field("name", .string),
+          Field("j", .json),
+          Field("iv", .interval),
+          Self.rangeField("d", .date),
+          Self.rangeField("dt", .dateTime),
+          Self.rangeField("ts", .timestamp),
+        ]))
       let dates = BigQueryRange.date(
         from: BigQueryDate(year: 2020, month: 1, day: 1),
         to: BigQueryDate(year: 2020, month: 12, day: 31))
@@ -312,10 +310,113 @@ struct ValuesIntegrationTests {
         + " TIMESTAMP '2024-01-02 03:04:05.123456 UTC' AS t, TIMESTAMP '1900-01-01 00:00:00.000001 UTC' AS old"
     )
     let row = try #require(rows.first)
+    #expect(row["max"]?.stringValue == "9999-12-31T23:59:59.999999Z")
     #expect(try row["max"]?.timestampMicros == 253_402_300_799_999_999)
+    #expect(
+      try row["max"]?.preciseTimestampValue == BigQueryTimestamp("9999-12-31T23:59:59.999999Z"))
     #expect(try row["t"]?.timestampMicros == 1_704_164_645_123_456)
     #expect(try row["t"]?.timestampValue == Date(timeIntervalSince1970: 1_704_164_645.123456))
     #expect(try row["old"]?.timestampMicros == -2_208_988_799_999_999)
+  }
+
+  // Baseline: IT-194, IT-195, IT-196, IT-197, IT-198, IT-199, IT-200, IT-201
+  @Test func highPrecisionTimestamps() async throws {
+    let client = try IntegrationTest.makeClient()
+    try await IntegrationTest.withTemporaryDataset(client, slice: "values") { dataset in
+      var field = Field("timestampHighPrecisionField", .timestamp)
+      field.timestampPrecision = 12
+      let table = try await Self.createTable(client, dataset, "picos", schema: Schema([field]))
+      let fqn = "`\(dataset.projectID!).\(dataset.datasetID).picos`"
+
+      let ts1 = "2025-01-01T12:34:56.123456789123Z"
+      let ts2 = "1970-01-01T12:34:56.123456789123Z"
+      let ts3 = "2000-01-01T12:34:56.123456789123Z"
+      struct PicoRow: Codable, Equatable {
+        var timestampHighPrecisionField: BigQueryTimestamp
+      }
+      let seed = try await client.insertAll(
+        [ts1, ts2, ts3].map { PicoRow(timestampHighPrecisionField: BigQueryTimestamp($0)!) },
+        into: table)
+      try #require(!seed.hasErrors, "\(seed.rowErrors)")
+
+      // IT-194: Querying a TIMESTAMP(12) column returns all 12 fractional digits.
+      let allRows = try await Self.query(
+        client, "SELECT timestampHighPrecisionField FROM \(fqn) ORDER BY 1")
+      #expect(
+        allRows.compactMap { $0["timestampHighPrecisionField"]?.stringValue } == [ts2, ts3, ts1])
+      #expect(
+        try allRows.map { try $0.decode(PicoRow.self).timestampHighPrecisionField }
+          == [BigQueryTimestamp(ts2)!, BigQueryTimestamp(ts3)!, BigQueryTimestamp(ts1)!])
+
+      // IT-195: Streaming insert of a valid 12-digit ISO-8601 string into a second table succeeds.
+      let extraTable = try await Self.createTable(
+        client, dataset, "picos_valid", schema: Schema([field]))
+      let validInsert = try await client.insertAll(
+        [InsertRow(["timestampHighPrecisionField": .string(ts1)])], into: extraTable)
+      #expect(!validInsert.hasErrors)
+
+      // IT-196: Numeric or numeric-string formats are rejected for TIMESTAMP(12) columns.
+      for badValue: InsertValue in [
+        .int64(123_456), .string("123456"), .int64(-123_456), .float64(1000.0),
+      ] {
+        let bad = try await client.insertAll(
+          [InsertRow(["timestampHighPrecisionField": badValue])], into: extraTable)
+        #expect(bad.hasErrors)
+      }
+
+      // IT-197: Named TIMESTAMP parameter with CAST(@timestampParam AS TIMESTAMP(12)).
+      // BigQuery truncates TIMESTAMP query parameters to microseconds on the server, so
+      // 2000-01-01 12:34:56.123456000000Z < ts3 and only ts2 matches.
+      let namedCastSQL =
+        "SELECT timestampHighPrecisionField FROM \(fqn)"
+        + " WHERE timestampHighPrecisionField < CAST(@timestampParam AS TIMESTAMP(12))"
+      let namedHigh = try await Self.query(
+        client, namedCastSQL,
+        parameters: .named([
+          "timestampParam": .timestamp(
+            BigQueryTimestamp("2000-01-01 12:34:56.123456789123Z")!)
+        ]))
+      #expect(namedHigh.compactMap { $0[0].stringValue } == [ts2])
+
+      // IT-198: Positional TIMESTAMP parameter with CAST(? AS TIMESTAMP(12)).
+      let posHigh = try await Self.query(
+        client,
+        "SELECT timestampHighPrecisionField FROM \(fqn)"
+          + " WHERE timestampHighPrecisionField < CAST(? AS TIMESTAMP(12))",
+        parameters: .positional([
+          .timestamp(BigQueryTimestamp("2000-01-01 12:34:56.123456789123Z")!)
+        ]))
+      #expect(posHigh.compactMap { $0[0].stringValue } == [ts2])
+
+      // IT-199: Named TIMESTAMP parameter constructed from microseconds (946_730_096_123_456).
+      let namedMicros = try await Self.query(
+        client, namedCastSQL,
+        parameters: .named(["timestampParam": .timestamp(micros: 946_730_096_123_456)]))
+      #expect(namedMicros.compactMap { $0[0].stringValue } == [ts2])
+
+      // IT-200: Named TIMESTAMP parameter constructed from a microsecond string.
+      let namedString = try await Self.query(
+        client, namedCastSQL,
+        parameters: .named([
+          "timestampParam": try .timestamp("2000-01-01 12:34:56.123456Z")
+        ]))
+      #expect(namedString.compactMap { $0[0].stringValue } == [ts2])
+
+      // IT-201: Comparing TIMESTAMP(12) directly against a TIMESTAMP parameter without CAST fails.
+      await #expect {
+        _ = try await Self.query(
+          client,
+          "SELECT timestampHighPrecisionField FROM \(fqn)"
+            + " WHERE timestampHighPrecisionField < @timestampParam",
+          parameters: .named([
+            "timestampParam": .timestamp(
+              BigQueryTimestamp("2000-01-01 12:34:56.123456789123Z")!)
+          ]))
+      } throws: { error in
+        guard let bqError = error as? BigQueryError else { return false }
+        return bqError.message.contains("Invalid argument type passed to a function")
+      }
+    }
   }
 
   // MARK: - Query parameters
@@ -481,47 +582,17 @@ struct ValuesIntegrationTests {
 
   // MARK: - Helpers
 
-  /// Creates a table from a schema in JSON form.
   private static func createTable(
-    _ client: BigQueryClient, _ dataset: DatasetID, _ name: String, schema: String
+    _ client: BigQueryClient, _ dataset: DatasetID, _ name: String, schema: Schema
   ) async throws -> TableID {
     let id = TableID(projectID: dataset.projectID, datasetID: dataset.datasetID, tableID: name)
-    let body =
-      #"{"tableReference": {"projectId": "\#(id.projectID!)", "datasetId": "\#(id.datasetID)", "tableId": "\#(name)"}, "schema": \#(schema)}"#
-    let _: GoogleCloudBigQueryV2.Table = try await client.transport.json(
-      HTTPRequest(
-        method: .post,
-        path: "/bigquery/v2/projects/\(id.projectID!)/datasets/\(id.datasetID)/tables",
-        body: Data(body.utf8)),
-      idempotent: false)
+    _ = try await client.createTable(Table(id: id, schema: schema))
     return id
   }
 
-  /// Runs a query with `jobs.query` and returns its rows. The query must finish within the
-  /// request timeout.
   private static func query(
     _ client: BigQueryClient, _ sql: String, parameters: QueryParameters? = nil
   ) async throws -> [Row] {
-    let request = GoogleCloudBigQueryV2.QueryRequest().with {
-      $0.query = sql
-      $0.useLegacySql = WKTBoolValue(false)
-      $0.timeoutMs = WKTUInt32Value(60_000)
-      $0.formatOptions = GoogleCloudBigQueryV2.DataFormatOptions().with {
-        $0.useInt64Timestamp = true
-      }
-      if let parameters {
-        $0.parameterMode = parameters.wireMode
-        $0.queryParameters = parameters.wire
-      }
-    }
-    let response: GoogleCloudBigQueryV2.QueryResponse = try await client.transport.json(
-      HTTPRequest(
-        method: .post, path: "/bigquery/v2/projects/\(client.projectID)/queries",
-        body: try RequestBody.json(request)),
-      idempotent: false)
-    guard response.jobComplete == true, let schema = response.schema else {
-      throw BigQueryError.invalidArgument("the query did not finish in time")
-    }
-    return try Row.rows(from: response.rows, schema: Schema(wire: schema))
+    try await client.query(sql, parameters: parameters).rows.collect()
   }
 }
