@@ -138,4 +138,24 @@ import Testing
     #expect(Duration.milliseconds(1500).wholeMilliseconds == 1500)
     #expect(Duration.microseconds(1999).wholeMilliseconds == 1)
   }
+
+  // Design: §3
+  @Test func millisecondsSinceEpochConversions() {
+    #expect(Date(millisecondsSinceEpoch: 0) == nil)
+    let date = Date(millisecondsSinceEpoch: 1_700_000_000_123)
+    #expect(date?.millisecondsSinceEpoch == 1_700_000_000_123)
+    #expect(Date(millisecondsSinceEpoch: -1500)?.millisecondsSinceEpoch == -1500)
+  }
+
+  // Design: §3
+  @Test func timestampConversions() throws {
+    let date = Date(timeIntervalSince1970: 1_700_000_000.250_001)
+    let timestamp = try WKTTimestamp(date: date)
+    #expect(timestamp.seconds == 1_700_000_000)
+    #expect(timestamp.nanos == 250_001_000)
+    #expect(abs(Date(wire: timestamp).timeIntervalSince(date)) < 0.000_001)
+    let before = try WKTTimestamp(date: Date(timeIntervalSince1970: -1.5))
+    #expect(before.seconds == -2)
+    #expect(before.nanos == 500_000_000)
+  }
 }
