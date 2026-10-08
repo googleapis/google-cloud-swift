@@ -232,7 +232,148 @@ func decodeLosslessString<T: LosslessStringConvertible>(
 
 // MARK: - Timestamps
 
-/// Timestamp conversions. BigQuery timestamps are microseconds since the Unix epoch, in UTC.
+/// A `TIMESTAMP` value with picosecond precision, as an offset from `1970-01-01T00:00:00Z`.
+///
+/// Use `BigQueryTimestamp` when reading or writing `TIMESTAMP(12)` columns, or when `Date`
+/// cannot represent an instant losslessly:
+///
+/// ```swift
+/// let timestamp = BigQueryTimestamp("2025-01-01T12:34:56.123456789123Z")!
+/// print(timestamp.seconds)      // 1735734896
+/// print(timestamp.picoseconds)  // 123456789123
+/// ```
+public struct BigQueryTimestamp: Sendable, Hashable, Comparable, Codable,
+  LosslessStringConvertible
+{
+  static let picosecondsPerSecond: Int64 = 1_000_000_000_000
+  static let picosecondsPerMicrosecond: Int64 = 1_000_000
+
+  /// Whole seconds since the Unix epoch (`1970-01-01T00:00:00Z`), rounded toward negative
+  /// infinity for instants before 1970.
+  public let seconds: Int64
+
+  /// The fraction of the second, in picoseconds (`0..<1_000_000_000_000`).
+  public let picoseconds: Int64
+
+  /// Creates a timestamp from `seconds` and `picoseconds` since the Unix epoch, normalizing
+  /// `picoseconds` into `0..<1_000_000_000_000`.
+  public init(seconds: Int64, picoseconds: Int64 = 0) {
+    let carry = picoseconds.floorDivided(by: Self.picosecondsPerSecond)
+    self.seconds = seconds + carry
+    self.picoseconds = picoseconds - carry * Self.picosecondsPerSecond
+  }
+
+  /// Creates a timestamp from microseconds since the Unix epoch.
+  public init(micros: Int64) {
+    let seconds = micros.floorDivided(by: 1_000_000)
+    let remainingMicros = micros - seconds * 1_000_000
+    self.init(seconds: seconds, picoseconds: remainingMicros * Self.picosecondsPerMicrosecond)
+  }
+
+  /// Creates a timestamp from `date`, rounded to the nearest microsecond.
+  public init(_ date: Date) {
+    self.init(micros: Timestamp.micros(from: date))
+  }
+
+  /// Parses an ISO 8601 / RFC 3339 timestamp (`YYYY-[M]M-[D]D(T| )[H]H:[M]M:[S]S[.F][zone]`),
+  /// with up to 12 fractional digits.
+  ///
+  /// Returns `nil` if the text is not a valid timestamp. When the time zone is omitted, UTC is
+  /// assumed.
+  public init?(_ description: String) {
+    var scanner = TextScanner(description)
+    guard let date = scanner.date(),
+      scanner.skip("T") || scanner.skip("t") || scanner.skip(" "),
+      let hour = scanner.integer(digits: 1...2), hour < 24, scanner.skip(":"),
+      let minute = scanner.integer(digits: 1...2), minute < 60, scanner.skip(":"),
+      let second = scanner.integer(digits: 1...2), second < 60
+    else { return nil }
+    var picoseconds: Int64 = 0
+    if scanner.skip(".") {
+      guard let fraction = scanner.digits(1...12) else { return nil }
+      picoseconds = (fraction + [UInt8](repeating: 0, count: 12 - fraction.count))
+        .reduce(Int64(0)) { $0 * 10 + Int64($1) }
+    }
+    var offsetSeconds: Int64 = 0
+    if scanner.skip("Z") || scanner.skip("z") || scanner.skip(" UTC") || scanner.skip("UTC") {
+      guard scanner.isAtEnd else { return nil }
+    } else if !scanner.isAtEnd {
+      let sign: Int64
+      if scanner.skip("+") {
+        sign = 1
+      } else if scanner.skip("-") {
+        sign = -1
+      } else {
+        return nil
+      }
+      guard let zone = scanner.digits(2...4), zone.count != 3 else { return nil }
+      let zoneHours = Int(zone[0]) * 10 + Int(zone[1])
+      guard zoneHours < 24 else { return nil }
+      var zoneMinutes = 0
+      if zone.count == 4 {
+        zoneMinutes = Int(zone[2]) * 10 + Int(zone[3])
+        guard zoneMinutes < 60 else { return nil }
+      } else if scanner.skip(":") {
+        guard let minutes = scanner.integer(digits: 2...2), minutes < 60 else { return nil }
+        zoneMinutes = minutes
+      }
+      guard scanner.isAtEnd else { return nil }
+      offsetSeconds = sign * Int64(zoneHours * 3600 + zoneMinutes * 60)
+    }
+    let localSeconds =
+      Int64(date.daysSinceEpoch) * 86_400 + Int64(hour * 3600 + minute * 60 + second)
+    self.init(seconds: localSeconds - offsetSeconds, picoseconds: picoseconds)
+  }
+
+  /// Microseconds since the Unix epoch, rounded toward negative infinity (floor).
+  public var micros: Int64 {
+    self.seconds * 1_000_000 + self.picoseconds / Self.picosecondsPerMicrosecond
+  }
+
+  /// The value as a `Date`. `Date` cannot represent picoseconds or every microsecond far from
+  /// 1970.
+  public var date: Date {
+    Date(
+      timeIntervalSince1970: Double(self.seconds)
+        + Double(self.picoseconds) / Double(Self.picosecondsPerSecond))
+  }
+
+  /// Formats the timestamp as `YYYY-MM-DD<separator>HH:MM:SS.ffffff[ffffff]<suffix>` in UTC,
+  /// writing 12 fractional digits when the sub-microsecond part is non-zero and 6 otherwise.
+  func format(separator: String, suffix: String) -> String {
+    let days = Int(self.seconds.floorDivided(by: 86_400))
+    let secondOfDay = Int(self.seconds - Int64(days) * 86_400)
+    let date = BigQueryDate(daysSinceEpoch: days)
+    let micros = Int(self.picoseconds / Self.picosecondsPerMicrosecond)
+    let subMicros = Int(self.picoseconds % Self.picosecondsPerMicrosecond)
+    let fraction = subMicros == 0 ? pad(micros, 6) : pad(micros, 6) + pad(subMicros, 6)
+    return "\(date)\(separator)\(pad(secondOfDay / 3600, 2)):\(pad(secondOfDay / 60 % 60, 2)):"
+      + "\(pad(secondOfDay % 60, 2)).\(fraction)\(suffix)"
+  }
+
+  /// The timestamp in RFC 3339 UTC form, `YYYY-MM-DDTHH:MM:SS.ffffff[ffffff]Z`, with 12
+  /// fractional digits when the sub-microsecond part is non-zero and 6 otherwise.
+  public var description: String {
+    self.format(separator: "T", suffix: "Z")
+  }
+
+  public static func < (lhs: BigQueryTimestamp, rhs: BigQueryTimestamp) -> Bool {
+    (lhs.seconds, lhs.picoseconds) < (rhs.seconds, rhs.picoseconds)
+  }
+
+  /// Decodes a timestamp from its ISO 8601 / RFC 3339 string form.
+  public init(from decoder: any Decoder) throws {
+    self = try decodeLosslessString(Self.self, from: decoder, typeName: "TIMESTAMP")
+  }
+
+  /// Encodes the timestamp in its RFC 3339 UTC string form.
+  public func encode(to encoder: any Encoder) throws {
+    var container = encoder.singleValueContainer()
+    try container.encode(self.description)
+  }
+}
+
+/// Timestamp conversions.
 enum Timestamp {
   /// The microseconds since the epoch nearest to `date`.
   static func micros(from date: Date) -> Int64 {
@@ -248,13 +389,18 @@ enum Timestamp {
 
   /// Formats `micros` as `YYYY-MM-DD<separator>HH:MM:SS.FFFFFF<suffix>` in UTC.
   static func format(micros: Int64, separator: String, suffix: String) -> String {
-    let seconds = micros.floorDivided(by: 1_000_000)
-    let fraction = Int(micros - seconds * 1_000_000)
-    let days = Int(seconds.floorDivided(by: 86_400))
-    let secondOfDay = Int(seconds - Int64(days) * 86_400)
-    let date = BigQueryDate(daysSinceEpoch: days)
-    return "\(date)\(separator)\(pad(secondOfDay / 3600, 2)):\(pad(secondOfDay / 60 % 60, 2)):"
-      + "\(pad(secondOfDay % 60, 2)).\(pad(fraction, 6))\(suffix)"
+    BigQueryTimestamp(micros: micros).format(separator: separator, suffix: suffix)
+  }
+
+  /// Parses a `TIMESTAMP` cell value from ISO 8601 text, integer microseconds, or floating-point
+  /// seconds (rounded half away from zero to the nearest microsecond).
+  static func parseCell(_ text: String) -> BigQueryTimestamp? {
+    if let timestamp = BigQueryTimestamp(text) { return timestamp }
+    if let micros = Int64(text) { return BigQueryTimestamp(micros: micros) }
+    if let micros = DecimalText(text)?.roundedInteger(shiftedBy: 6) {
+      return BigQueryTimestamp(micros: micros)
+    }
+    return nil
   }
 
   /// `true` if `text` is a timestamp literal BigQuery accepts as a query parameter:

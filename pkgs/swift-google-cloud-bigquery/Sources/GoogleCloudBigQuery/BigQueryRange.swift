@@ -83,6 +83,17 @@ public struct BigQueryRange: Sendable, Hashable, CustomStringConvertible {
     return BigQueryRange(start: text(start), end: text(end), elementType: .timestamp)
   }
 
+  /// A range of timestamps.
+  @_disfavoredOverload
+  public static func timestamp(
+    from start: BigQueryTimestamp?, to end: BigQueryTimestamp?
+  ) -> BigQueryRange {
+    func text(_ timestamp: BigQueryTimestamp?) -> String? {
+      timestamp?.format(separator: " ", suffix: "+00:00")
+    }
+    return BigQueryRange(start: text(start), end: text(end), elementType: .timestamp)
+  }
+
   /// The lower bound as a ``FieldValue``: `.null` if unbounded, otherwise `.scalar`.
   public var startValue: FieldValue { self.start.map(FieldValue.scalar) ?? .null }
 

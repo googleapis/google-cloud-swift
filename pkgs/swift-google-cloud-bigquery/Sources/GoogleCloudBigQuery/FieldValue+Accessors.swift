@@ -88,24 +88,29 @@ extension FieldValue {
 
   /// A `TIMESTAMP` value in microseconds since the Unix epoch.
   ///
-  /// The client asks BigQuery for integer microseconds. Values in floating-point seconds (for
-  /// example `"1.408452095220E9"`) are also accepted and rounded half away from zero to the
-  /// nearest microsecond. An integer is always read as microseconds.
+  /// ISO 8601 strings (including picosecond `TIMESTAMP(12)` values) are floored to microseconds;
+  /// integer strings are read as microseconds; floating-point seconds (for example
+  /// `"1.408452095220E9"`) are rounded half away from zero to the nearest microsecond. Use
+  /// ``preciseTimestampValue`` when picoseconds matter.
   public var timestampMicros: Int64? {
     get throws {
-      try self.parse("TIMESTAMP") { text in
-        if let micros = Int64(text) { return micros }
-        return DecimalText(text)?.roundedInteger(shiftedBy: 6)
-      }
+      try self.parse("TIMESTAMP") { Timestamp.parseCell($0)?.micros }
     }
   }
 
   /// A `TIMESTAMP` value.
   ///
-  /// `Date` cannot represent every microsecond far from 1970; use ``timestampMicros`` when
-  /// exact microseconds matter.
+  /// `Date` cannot represent picoseconds or every microsecond far from 1970; use
+  /// ``preciseTimestampValue`` or ``timestampMicros`` when exact sub-second values matter.
   public var timestampValue: Date? {
     get throws { try self.timestampMicros.map(Timestamp.date(fromMicros:)) }
+  }
+
+  /// A `TIMESTAMP` value with picosecond precision (`TIMESTAMP` or `TIMESTAMP(12)`).
+  public var preciseTimestampValue: BigQueryTimestamp? {
+    get throws {
+      try self.parse("TIMESTAMP") { Timestamp.parseCell($0) }
+    }
   }
 
   /// A `DATE` value.

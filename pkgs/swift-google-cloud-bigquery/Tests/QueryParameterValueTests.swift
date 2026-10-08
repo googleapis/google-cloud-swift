@@ -122,7 +122,7 @@ private typealias QueryParameterType = GoogleCloudBigQuery.QueryParameterType
   }
 
   // Baseline: U.QueryParameterValue.07
-  @Test func timestampFromMicrosAndDateUsesCanonicalFormat() {
+  @Test func timestampFromMicrosAndDateUsesCanonicalFormat() throws {
     self.expectScalar(
       .timestamp(micros: 1_408_452_095_220_000), .timestamp, "2014-08-19 12:41:35.220000+00:00")
     self.expectScalar(
@@ -131,6 +131,10 @@ private typealias QueryParameterType = GoogleCloudBigQuery.QueryParameterType
       .timestamp(Date(timeIntervalSince1970: 1_408_452_095.22)), .timestamp,
       "2014-08-19 12:41:35.220000+00:00")
     self.expectScalar(.timestamp(micros: -1), .timestamp, "1969-12-31 23:59:59.999999+00:00")
+    let picos = try #require(BigQueryTimestamp("2025-12-08T12:34:56.123456789123Z"))
+    self.expectScalar(.timestamp(picos), .timestamp, "2025-12-08 12:34:56.123456789123+00:00")
+    self.expectScalar(
+      picos.queryParameterValue, .timestamp, "2025-12-08 12:34:56.123456789123+00:00")
   }
 
   // Baseline: U.QueryParameterValue.07

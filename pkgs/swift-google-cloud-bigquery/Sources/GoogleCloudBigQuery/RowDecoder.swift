@@ -35,7 +35,7 @@ extension Row {
   /// | `String` | any scalar, as text |
   /// | `Bool`, integers, `Double`, `Float` | `BOOL`, `INT64`, `FLOAT64` |
   /// | `Decimal`, ``BigNumeric`` | `NUMERIC`, `BIGNUMERIC` |
-  /// | `Date` | `TIMESTAMP` |
+  /// | `Date`, ``BigQueryTimestamp`` | `TIMESTAMP`, `TIMESTAMP(12)` |
   /// | `Data` | `BYTES` |
   /// | ``BigQueryDate``, ``BigQueryTime``, ``BigQueryDateTime`` | `DATE`, `TIME`, `DATETIME` |
   /// | ``Interval``, ``BigQueryRange`` | `INTERVAL`, `RANGE` (with its element type) |
@@ -113,6 +113,7 @@ struct RowDecoder: Decoder {
     case is FieldValue.Type: return value as! T
     case is Row.Type: return try required { try value.checkedRecord() }
     case is Date.Type: return try required { try value.timestampValue }
+    case is BigQueryTimestamp.Type: return try required { try value.preciseTimestampValue }
     case is Data.Type: return try required { try value.bytesValue }
     case is Decimal.Type: return try required { try value.numericValue }
     case is BigQueryRange.Type:

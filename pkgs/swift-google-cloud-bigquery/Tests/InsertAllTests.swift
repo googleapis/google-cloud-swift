@@ -132,6 +132,7 @@ private func jsonText(_ row: InsertRow) throws -> String {
             time: BigQueryTime(hour: 1, minute: 2, second: 3))),
         "interval": .interval(Interval(months: 1, days: 0, time: .zero)),
         "range": .range(.date(from: BigQueryDate(year: 2024, month: 1, day: 1), to: nil)),
+        "picos": .timestamp(BigQueryTimestamp("2025-01-01T12:34:56.123456789123Z")!),
         "nan": .float64(.nan),
       ])
     #expect(row.insertID == nil)
@@ -139,8 +140,15 @@ private func jsonText(_ row: InsertRow) throws -> String {
       try jsonText(row)
         == #"{"array":[1,2],"bigNumeric":"2.5","bool":false,"bytes":"AQM=","date":"2024-01-02","#
         + #""dateTime":"2024-01-02 01:02:03","double":1.5,"int":42,"interval":"0-1 0 0:0:0","nan":"NaN","#
-        + #""numeric":"1.25","range":{"start":"2024-01-01"},"record":{"nested":"n"},"string":"s","#
-        + #""time":"01:02:03","timestamp":"1970-01-01T00:00:00.000001Z"}"#)
+        + #""numeric":"1.25","picos":"2025-01-01T12:34:56.123456789123Z","range":{"start":"2024-01-01"},"#
+        + #""record":{"nested":"n"},"string":"s","time":"01:02:03","timestamp":"1970-01-01T00:00:00.000001Z"}"#
+    )
+    struct Event: Encodable {
+      var ts: BigQueryTimestamp
+    }
+    let encodedRow = try InsertRow(
+      Event(ts: BigQueryTimestamp("2025-01-01T12:34:56.123456789123Z")!))
+    #expect(try jsonText(encodedRow) == #"{"ts":"2025-01-01T12:34:56.123456789123Z"}"#)
   }
 }
 

@@ -106,6 +106,13 @@ extension Date: QueryParameterConvertible {
   public var queryParameterValue: QueryParameterValue { .timestamp(self) }
 }
 
+extension BigQueryTimestamp: QueryParameterConvertible {
+  /// `TIMESTAMP`.
+  public static var queryParameterType: QueryParameterType { .timestamp }
+  /// The value as a `TIMESTAMP` parameter.
+  public var queryParameterValue: QueryParameterValue { .timestamp(self) }
+}
+
 extension BigQueryDate: QueryParameterConvertible {
   /// `DATE`.
   public static var queryParameterType: QueryParameterType { .date }

@@ -32,7 +32,7 @@ import GoogleWKT
 ///
 /// | Swift value | JSON |
 /// | ----------- | ---- |
-/// | `Date` | an RFC 3339 UTC string with microseconds (`2024-01-02T03:04:05.123456Z`) |
+/// | `Date`, ``BigQueryTimestamp`` | an RFC 3339 UTC string with microsecond or picosecond precision |
 /// | `Data` | base64 |
 /// | `Decimal`, ``BigNumeric`` | an exact decimal string |
 /// | Integers | a number when the magnitude is at most 2^53, otherwise a decimal string |
@@ -135,6 +135,11 @@ public struct InsertValue: Sendable, Equatable {
   /// A `TIMESTAMP` value, sent as an RFC 3339 UTC string with microseconds.
   public static func timestamp(_ value: Date) -> InsertValue {
     InsertValue(json: .string(InsertJSON.timestamp(value)))
+  }
+
+  /// A `TIMESTAMP` or `TIMESTAMP(12)` value, sent as an RFC 3339 UTC string.
+  public static func timestamp(_ value: BigQueryTimestamp) -> InsertValue {
+    InsertValue(json: .string(value.description))
   }
 
   /// A `DATE` value.

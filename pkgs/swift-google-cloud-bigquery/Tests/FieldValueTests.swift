@@ -110,6 +110,26 @@ import Testing
   }
 
   // Design: §4.5
+  @Test func iso8601AndPicosecondTimestampsParseLosslessly() throws {
+    let picos = FieldValue.scalar("2025-01-01T12:34:56.123456789123Z")
+    #expect(
+      try picos.preciseTimestampValue
+        == BigQueryTimestamp(seconds: 1_735_734_896, picoseconds: 123_456_789_123))
+    #expect(try picos.timestampMicros == 1_735_734_896_123_456)
+    #expect(
+      try FieldValue.scalar("9999-12-31T23:59:59.999999Z").timestampMicros
+        == 253_402_300_799_999_999)
+    #expect(
+      try FieldValue.scalar("0001-01-01T00:00:00.000000Z").timestampMicros
+        == -62_135_596_800_000_000)
+    #expect(
+      try FieldValue.scalar("1969-12-31T23:59:59.999999999999Z").timestampMicros == -1)
+    #expect(
+      try FieldValue.scalar("1969-12-31T23:59:59.000000000001Z").timestampMicros == -1_000_000)
+    #expect(try FieldValue.null.preciseTimestampValue == nil)
+  }
+
+  // Design: §4.5
   @Test func civilAccessorsParseCanonicalText() throws {
     #expect(
       try FieldValue.scalar("2024-02-29").dateValue == BigQueryDate(year: 2024, month: 2, day: 29))
@@ -325,6 +345,47 @@ import Testing
         == #"{"date":"2024-01-02","dateTime":"2024-01-02 03:04:05","time":"03:04:05"}"#)
     #expect(try JSONDecoder().decode(Values.self, from: data) == values)
   }
+
+  // Design: §4.5
+  @Test func timestampParsesPrintsAndNormalizesPicoseconds() throws {
+    let picos = try #require(BigQueryTimestamp("2025-01-01T12:34:56.123456789123Z"))
+    #expect(picos.seconds == 1_735_734_896)
+    #expect(picos.picoseconds == 123_456_789_123)
+    #expect(picos.micros == 1_735_734_896_123_456)
+    #expect(picos.description == "2025-01-01T12:34:56.123456789123Z")
+
+    let microsOnly = try #require(BigQueryTimestamp("2024-01-02 05:04:05.123456+02:00"))
+    #expect(microsOnly.description == "2024-01-02T03:04:05.123456Z")
+    #expect(BigQueryTimestamp("1774-09-24T00:00:00")?.description == "1774-09-24T00:00:00.000000Z")
+    #expect(BigQueryTimestamp("2025-01-01T12:34:56.1234567891234Z") == nil)
+
+    // Negative epochs and out-of-range picoseconds normalize into 0..<10^12.
+    let beforeEpoch = BigQueryTimestamp(seconds: 0, picoseconds: -1)
+    #expect(beforeEpoch.seconds == -1)
+    #expect(beforeEpoch.picoseconds == 999_999_999_999)
+    #expect(beforeEpoch.micros == -1)
+    #expect(beforeEpoch.description == "1969-12-31T23:59:59.999999999999Z")
+    #expect(beforeEpoch == BigQueryTimestamp("1969-12-31T23:59:59.999999999999Z"))
+    #expect(
+      Set([
+        beforeEpoch,
+        BigQueryTimestamp(seconds: -2, picoseconds: 1_999_999_999_999),
+        BigQueryTimestamp("1969-12-31T23:59:59.999999999999Z")!,
+      ]).count == 1)
+
+    let earlier = BigQueryTimestamp(seconds: -1, picoseconds: 1)
+    let epoch = BigQueryTimestamp(seconds: 0, picoseconds: 0)
+    #expect(earlier < beforeEpoch)
+    #expect(beforeEpoch < epoch)
+    #expect(earlier.micros == -1_000_000)
+
+    let encoded = try JSONEncoder().encode([picos, microsOnly])
+    #expect(
+      String(decoding: encoded, as: UTF8.self)
+        == #"["2025-01-01T12:34:56.123456789123Z","2024-01-02T03:04:05.123456Z"]"#)
+    #expect(
+      try JSONDecoder().decode([BigQueryTimestamp].self, from: encoded) == [picos, microsOnly])
+  }
 }
 
 @Suite struct BigQueryRangeTests {
@@ -364,5 +425,8 @@ import Testing
     #expect(timestamps.elementType == .timestamp)
     #expect(timestamps.start == nil)
     #expect(timestamps.end == "2014-08-19 12:41:35.220000+00:00")
+    let precise = BigQueryRange.timestamp(
+      from: BigQueryTimestamp("2025-01-01T12:34:56.123456789123Z"), to: nil)
+    #expect(precise.start == "2025-01-01 12:34:56.123456789123+00:00")
   }
 }

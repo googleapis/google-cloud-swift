@@ -121,6 +121,23 @@ import Testing
   }
 
   // Design: §4.5
+  @Test func decodesPicosecondAndISOTimestamps() throws {
+    struct Event: Decodable, Equatable {
+      var ts: BigQueryTimestamp
+      var when: Date
+    }
+    let row = Row(
+      schema: [Field("ts", .timestamp), Field("when", .timestamp)],
+      values: [
+        .scalar("2025-01-01T12:34:56.123456789123Z"),
+        .scalar("2014-08-19T12:41:35.220000Z"),
+      ])
+    let event = try row.decode(Event.self)
+    #expect(event.ts == BigQueryTimestamp("2025-01-01T12:34:56.123456789123Z"))
+    #expect(event.when == Date(timeIntervalSince1970: 1_408_452_095.22))
+  }
+
+  // Design: §4.5
   @Test func arrayOfStructElementsDecodeByFieldName() throws {
     // Java parses REPEATED cells without a schema, so name access fails on ARRAY<STRUCT>.
     let person = try self.sample.decode(Person.self)
