@@ -115,11 +115,13 @@ import NIOHTTP1
     let options = ClientOptions().with { $0.credentials = credentials }
     let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
     let reqOptions = RequestOptions().with {
+      $0.headers = [
+        ("x-multi-header", "first"),
+        ("x-multi-header", "second"),
+      ]
       $0.headers["x-goog-gcs-idempotency-token"] = "test-token"
       $0.headers["Custom-Header"] = "overridden-val"
       $0.headers["custom-header"] = "custom-val"
-      $0.headers.append(name: "x-multi-header", value: "first")
-      $0.headers.append(name: "x-multi-header", value: "second")
     }
     let request = try await client.newRequest(path: "/test", query: [], options: reqOptions)
     #expect(request.headers["x-goog-gcs-idempotency-token"] == ["test-token"])

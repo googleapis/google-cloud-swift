@@ -175,22 +175,4 @@ import Testing
     #expect(headers == [("X-Other", "keep")])
     #expect(headers["x-goog-ext"] == nil)
   }
-
-  @Test func appendPreservesDuplicates() {
-    var headers = HTTPHeaders()
-    headers.append(name: "x-goog-ext", value: "first")
-    headers.append(name: "X-Goog-Ext", value: "second")
-    #expect(headers == [("x-goog-ext", "first"), ("X-Goog-Ext", "second")])
-    #expect(headers.values(for: "x-goog-ext") == ["first", "second"])
-  }
-
-  @Test func removeRemovesAllMatchingCaseInsensitively() {
-    var headers: HTTPHeaders = [
-      ("x-goog-ext", "first"),
-      ("X-Other", "keep"),
-      ("X-Goog-Ext", "second"),
-    ]
-    headers.remove(name: "X-GOOG-EXT")
-    #expect(headers == [("X-Other", "keep")])
-  }
 }

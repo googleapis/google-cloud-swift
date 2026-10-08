@@ -64,10 +64,12 @@ import GoogleAuth
 
   @Test func headers() {
     let got = RequestOptions().with {
+      $0.headers = [
+        ("x-multi-header", "val-1"),
+        ("x-multi-header", "val-2"),
+      ]
       $0.headers["X-Custom-Header"] = "initial-value"
       $0.headers["x-custom-header"] = "custom-value"
-      $0.headers.append(name: "x-multi-header", value: "val-1")
-      $0.headers.append(name: "x-multi-header", value: "val-2")
     }
     #expect(got.headers["x-custom-header"] == "custom-value")
     #expect(got.headers["X-CUSTOM-HEADER"] == "custom-value")

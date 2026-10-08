@@ -45,22 +45,6 @@ public struct HTTPHeaders: Sendable, Equatable {
     self.storage = headers
   }
 
-  /// Appends a header field, preserving any existing field with the same name.
-  ///
-  /// - Parameters:
-  ///   - name: The header field name.
-  ///   - value: The header field value.
-  public mutating func append(name: String, value: String) {
-    self.storage.append((name: name, value: value))
-  }
-
-  /// Removes all header fields whose name matches `name`, ignoring case.
-  ///
-  /// - Parameter name: The header field name to remove.
-  public mutating func remove(name: String) {
-    self.storage.removeAll { Self.namesMatch($0.name, name) }
-  }
-
   /// The value of the first field whose name matches `name`, ignoring case.
   ///
   /// Setting a value replaces the first matching field in-place and removes any subsequent fields
@@ -75,7 +59,7 @@ public struct HTTPHeaders: Sendable, Equatable {
     }
     set {
       guard let newValue else {
-        self.remove(name: name)
+        self.storage.removeAll { Self.namesMatch($0.name, name) }
         return
       }
       if let firstIndex = self.storage.firstIndex(where: { Self.namesMatch($0.name, name) }) {
