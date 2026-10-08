@@ -519,7 +519,7 @@ if [[ -n "${COMPARE_EXTRA_ARGS}" ]]; then
   COMPARE_BENCHMARK_ARGS="${COMPARE_BENCHMARK_ARGS:+${COMPARE_BENCHMARK_ARGS} }${COMPARE_EXTRA_ARGS}"
 fi
 
-# Use custom delimiter ^~^ for gcloud --metadata so values containing commas (like bq-schema) are preserved safely
+# Use custom multi-character delimiter for gcloud --metadata so values containing commas or tildes (e.g. HEAD~1) are preserved safely
 METADATA_ENTRIES=(
   "bucket-name=${BUCKET_NAME}"
   "results-bucket=${RESULTS_BUCKET}"
@@ -550,8 +550,9 @@ if [[ -n "${COMPARE_SOURCE_TAR_GCS}" ]]; then
   METADATA_ENTRIES+=("compare-source-tar-gcs=${COMPARE_SOURCE_TAR_GCS}")
 fi
 
-METADATA_STR="^~^$(printf "%s~" "${METADATA_ENTRIES[@]}")"
-METADATA_STR="${METADATA_STR%~}"
+METADATA_DELIM="##W1R3_META##"
+METADATA_STR="^${METADATA_DELIM}^$(printf "%s${METADATA_DELIM}" "${METADATA_ENTRIES[@]}")"
+METADATA_STR="${METADATA_STR%"${METADATA_DELIM}"}"
 
 # 5. Launch GCE Instance
 STARTUP_SCRIPT="${SCRIPT_DIR}/vm-startup.sh"
