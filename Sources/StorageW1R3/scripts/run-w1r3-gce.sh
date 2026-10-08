@@ -305,10 +305,10 @@ fi
 # Detect Git repo and ref if not specified
 if [[ -z "${GIT_REPO}" ]]; then
   GIT_REPO=$(git config --get remote.origin.url 2>/dev/null || echo "https://github.com/googleapis/google-cloud-swift.git")
-  # Convert git@github.com:org/repo.git to https://github.com/org/repo.git for VM access
-  if [[ "${GIT_REPO}" =~ ^git@github\.com:(.*)$ ]]; then
-    GIT_REPO="https://github.com/${BASH_REMATCH[1]}"
-  fi
+fi
+# Convert git@github.com:org/repo.git to https://github.com/org/repo.git for VM access
+if [[ "${GIT_REPO}" =~ ^git@github\.com:(.*)$ ]]; then
+  GIT_REPO="https://github.com/${BASH_REMATCH[1]}"
 fi
 
 if [[ -z "${GIT_REF}" ]]; then
@@ -323,7 +323,8 @@ fi
 if [[ "${COMPARE_ENABLED}" == "true" ]]; then
   if [[ -z "${COMPARE_REPO}" ]]; then
     COMPARE_REPO="${GIT_REPO}"
-  elif [[ "${COMPARE_REPO}" =~ ^git@github\.com:(.*)$ ]]; then
+  fi
+  if [[ "${COMPARE_REPO}" =~ ^git@github\.com:(.*)$ ]]; then
     COMPARE_REPO="https://github.com/${BASH_REMATCH[1]}"
   fi
   if [[ -z "${COMPARE_REF}" ]]; then

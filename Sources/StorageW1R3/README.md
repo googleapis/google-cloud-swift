@@ -286,7 +286,7 @@ If you prefer to configure and run the benchmark manually on an existing VM:
 2. **Build and run `StorageW1R3Benchmark`**:
    ```shell
    TS=$(date +%s)
-   GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=1 swift run -c release StorageW1R3Benchmark \
+   GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift run -c release StorageW1R3Benchmark \
      --bucket-name "${BUCKET_NAME}" \
      --max-object-size 128KiB \
      --task-count 4 \

@@ -132,11 +132,12 @@ cleanup_and_teardown() {
       gcloud storage cp /root/benchmark.log "${GCS_OUTPUT_DIR}/benchmark.log" || true
     fi
     if [[ -d "/root/runs" ]]; then
-      for run_artifact in /root/runs/*; do
-        if [[ -f "${run_artifact}" ]]; then
-          gcloud storage cp "${run_artifact}" "${GCS_OUTPUT_DIR}/$(basename "${run_artifact}")" || true
-        fi
-      done
+      shopt -s nullglob
+      local run_artifacts=(/root/runs/*)
+      shopt -u nullglob
+      if [[ ${#run_artifacts[@]} -gt 0 ]]; then
+        gcloud storage cp "${run_artifacts[@]}" "${GCS_OUTPUT_DIR}/" || true
+      fi
     fi
     if [[ -f "/var/log/w1r3-startup.log" ]]; then
       gcloud storage cp /var/log/w1r3-startup.log "${GCS_OUTPUT_DIR}/startup.log" || true
@@ -317,7 +318,7 @@ fi
 echo "Swift version:"
 swift --version
 
-export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=1
+export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true
 
 prepare_workspace() {
   local workspace_dir="$1"
@@ -463,8 +464,8 @@ run_single_execution() {
       cmd+=(--bucket-name "${BUCKET_NAME}")
     fi
     if [[ -n "${args}" ]]; then
-      # shellcheck disable=SC2206
-      local extra_arr=(${args})
+      local extra_arr=()
+      mapfile -t extra_arr < <(xargs -n 1 <<< "${args}")
       cmd+=("${extra_arr[@]}")
     fi
     echo "Command: ${cmd[*]}"
