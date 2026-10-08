@@ -284,4 +284,32 @@ import Testing
     }
     #expect(UInt64(collected.readableBytes) == stream.bodyLength)
   }
+
+  /// Tests that MultipartUploadStream defaults to a 2 MiB chunk size.
+  @Test func multipartUploadStreamDefaultChunkSize() async throws {
+    #expect(MultipartUploadStream.defaultChunkSize == 2 * 1024 * 1024)
+
+    let payload = Data("Hello, World!".utf8)
+    let source = BytesSource(data: payload)
+
+    let stream = MultipartUploadStream(
+      source: source,
+      boundary: "BoundaryDefault",
+      metadataJson: Data("{}".utf8),
+      contentType: "text/plain",
+      totalSize: UInt64(payload.count)
+    )
+    #expect(stream.chunkSize == 2 * 1024 * 1024)
+
+    let prepared = try await MultipartUploadStream.prepare(
+      source: source,
+      boundary: "BoundaryDefault",
+      metadataJson: Data("{}".utf8),
+      contentType: "text/plain",
+      totalSize: UInt64(payload.count),
+      options: .default
+    )
+    #expect(prepared.stream.chunkSize == 2 * 1024 * 1024)
+    #expect(prepared.checksum == "crc32c=TVUQaA==")
+  }
 }
