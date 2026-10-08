@@ -176,6 +176,10 @@ extension Table {
     }
 
     /// One key of ``Table/resourceTags``.
+    ///
+    /// The key must not contain `.`, which separates JSON path components: for a tag key
+    /// whose parent is a domain-scoped project (`example.com:p/env`), clear all
+    /// ``resourceTags`` and set the others again instead.
     public static func resourceTag(_ key: String) -> Field {
       Field(path: "resourceTags.\(key)")
     }

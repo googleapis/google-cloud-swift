@@ -185,7 +185,7 @@ private typealias ExternalDataConfiguration = GoogleCloudBigQuery.ExternalDataCo
   }
 
   // Baseline: U.ExternalTableDefinition.01
-  @Test func unsetFieldsStayUnset() throws {
+  @Test func absentFieldsDecodeToServerDefaults() throws {
     let value = try roundTrip(
       #"{"sourceUris": ["gs://b/a.json"], "sourceFormat": "NEWLINE_DELIMITED_JSON"}"#)
     var expected = ExternalDataConfiguration(sourceURIs: ["gs://b/a.json"], format: .json)

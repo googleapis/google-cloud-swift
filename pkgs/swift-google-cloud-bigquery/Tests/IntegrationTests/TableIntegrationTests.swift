@@ -417,6 +417,16 @@ struct TableIntegrationTests {
     }
   }
 
+  // Baseline: IT-042 (partial)
+  @Test func listPartitionsOfPublicTable() async throws {
+    let client = try IntegrationTest.makeClient()
+    let partitions = try await client.listPartitions(
+      of: TableID(
+        projectID: "bigquery-public-data", datasetID: "google_trends", tableID: "top_terms"))
+    #expect(!partitions.isEmpty)
+    #expect(partitions.allSatisfy { $0.count == 8 && $0.allSatisfy(\.isNumber) })
+  }
+
   // Baseline: IT-052
   @Test func listRowsOfPublicTableWithStartIndex() async throws {
     let client = try IntegrationTest.makeClient()
