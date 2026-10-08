@@ -98,6 +98,9 @@ public struct QueryJobConfiguration: Sendable, Equatable {
   public var schemaUpdateOptions: [SchemaUpdateOption]
   /// User-defined function resources for the query.
   public var userDefinedFunctions: [UserDefinedFunction]
+  /// External tables the query can reference by name, as if they were tables in the default
+  /// dataset. They exist only for this job.
+  public var tableDefinitions: [String: ExternalDataConfiguration]
   /// The priority of the job.
   public var priority: QueryPriority?
   /// Whether results may be larger than the maximum response size. Applies only to queries
@@ -152,6 +155,7 @@ public struct QueryJobConfiguration: Sendable, Equatable {
     self.parameters = parameters
     self.schemaUpdateOptions = []
     self.userDefinedFunctions = []
+    self.tableDefinitions = [:]
     self.connectionProperties = []
     self.dryRun = false
     self.labels = [:]
@@ -170,13 +174,18 @@ extension QueryJobConfiguration {
   /// This is an allowlist: a configuration that sets anything `jobs.query` does not accept
   /// runs through `jobs.insert` instead, so new fields never silently take the fast path.
   var isFastPathEligible: Bool {
-    self.destinationTable == nil && self.createDisposition == nil
-      && self.writeDisposition == nil && self.schemaUpdateOptions.isEmpty
-      && self.userDefinedFunctions.isEmpty && self.priority == nil
-      && self.allowLargeResults == nil && self.flattenResults == nil
-      && self.destinationEncryption == nil && self.timePartitioning == nil
-      && self.rangePartitioning == nil && self.clustering == nil && self.scriptOptions == nil
-      && !self.dryRun
+    var allowed = QueryJobConfiguration(self.query, parameters: self.parameters)
+    allowed.defaultDataset = self.defaultDataset
+    allowed.useQueryCache = self.useQueryCache
+    allowed.maximumBytesBilled = self.maximumBytesBilled
+    allowed.connectionProperties = self.connectionProperties
+    allowed.createSession = self.createSession
+    allowed.labels = self.labels
+    allowed.jobTimeout = self.jobTimeout
+    allowed.reservation = self.reservation
+    allowed.jobCreationMode = self.jobCreationMode
+    allowed.maxResults = self.maxResults
+    return allowed == self
   }
 
   /// The `jobs.query` request for this configuration.
@@ -233,6 +242,8 @@ extension QueryJobConfiguration {
     self.schemaUpdateOptions = wire.schemaUpdateOptions.map(SchemaUpdateOption.init(rawValue:))
     self.userDefinedFunctions = wire.userDefinedFunctionResources.compactMap(
       UserDefinedFunction.init(wire:))
+    self.tableDefinitions = wire.externalTableDefinitions.mapValues(
+      ExternalDataConfiguration.init(wire:))
     self.priority = wire.priority.nonEmpty.map(QueryPriority.init(rawValue:))
     self.allowLargeResults = wire.allowLargeResults
     self.flattenResults = wire.flattenResults
@@ -267,6 +278,7 @@ extension QueryJobConfiguration {
       $0.writeDisposition = self.writeDisposition?.rawValue ?? ""
       $0.schemaUpdateOptions = self.schemaUpdateOptions.map(\.rawValue)
       $0.userDefinedFunctionResources = self.userDefinedFunctions.map(\.wire)
+      $0.externalTableDefinitions = self.tableDefinitions.mapValues(\.wire)
       $0.priority = self.priority?.rawValue ?? ""
       $0.allowLargeResults = self.allowLargeResults
       $0.flattenResults = self.flattenResults

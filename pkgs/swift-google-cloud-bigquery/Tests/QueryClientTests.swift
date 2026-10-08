@@ -408,6 +408,11 @@ import Testing
       { $0.writeDisposition = .writeAppend },
       { $0.schemaUpdateOptions = [.allowFieldAddition] },
       { $0.userDefinedFunctions = [.inline("x")] },
+      {
+        $0.tableDefinitions = [
+          "ext": ExternalDataConfiguration(sourceURIs: ["gs://b/f.csv"], format: .csv)
+        ]
+      },
       { $0.priority = .batch },
       { $0.allowLargeResults = true },
       { $0.flattenResults = false },

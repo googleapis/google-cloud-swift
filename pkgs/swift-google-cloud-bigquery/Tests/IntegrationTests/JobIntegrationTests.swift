@@ -265,6 +265,35 @@ struct JobIntegrationTests {
     }
   }
 
+  // Baseline: IT-149
+  @Test func extractJobExportsAModel() async throws {
+    let client = try IntegrationTest.makeClient()
+    try await IntegrationTest.withTemporaryDataset(client, slice: JobsIT.slice) { dataset in
+      let model = ModelID(dataset: dataset, modelID: "model_\(IntegrationTest.randomHex())")
+      _ = try await client.query(
+        """
+        CREATE MODEL `\(model.projectID!).\(model.datasetID).\(model.modelID)`
+        OPTIONS (model_type = 'linear_reg', max_iterations = 1, learn_rate = 0.4,
+                 learn_rate_strategy = 'constant')
+        AS SELECT 'a' AS f1, 2.0 AS label UNION ALL SELECT 'b' AS f1, 3.8 AS label
+        """)
+      try await IntegrationTest.withTemporaryBucket(slice: JobsIT.slice) { bucket in
+        let job = try await client.createJob(
+          .extract(
+            ExtractJobConfiguration(
+              source: .model(model), destinationURIs: ["gs://\(bucket)/model"])))
+        let done = try await client.waitForJob(job.id, timeout: .seconds(300))
+        #expect(done.status.errorResult == nil)
+        guard case .extract(let fetched) = done.configuration else {
+          Issue.record("expected an extract configuration")
+          return
+        }
+        #expect(fetched.source.model == model)
+        #expect(!(try await CloudStorage().listObjects(bucket: bucket, prefix: "model/")).isEmpty)
+      }
+    }
+  }
+
   // Baseline: IT-188
   @Test func exportDataReportsExportStatistics() async throws {
     let client = try IntegrationTest.makeClient()
@@ -277,7 +306,7 @@ struct JobIntegrationTests {
             EXPORT DATA OPTIONS (uri = 'gs://\(bucket)/export/*.csv', format = 'CSV', overwrite = true)
             AS SELECT * FROM \(JobsIT.sql(table))
             """), jobID: JobsIT.jobID())
-        let job = try #require(try await client.getJob(try #require(result.jobID)))
+        let job = try await JobsIT.job(client, result.jobID)
         let statistics = try #require(job.statistics?.query?.exportDataStatistics)
         #expect(statistics.rowCount == 3)
         #expect((statistics.fileCount ?? 0) >= 1)

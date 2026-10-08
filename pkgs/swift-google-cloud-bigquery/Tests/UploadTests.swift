@@ -348,6 +348,8 @@ private func uploads(_ fake: FakeHTTPTransport) -> [HTTPRequest] {
     #expect(fake.requests.isEmpty)
   }
 
+  // Baseline: U.TableDataWriteChannel.06 (ADAPT: write-after-close is unrepresentable, because
+  // `load` consumes the whole source in one call and there is no channel to write to later.)
   // Design: §6.4
   @Test func streamSourceConcatenatesPiecesAndSkipsEmptyOnes() async throws {
     let pieces = [Data("ab".utf8), Data(), Data("cd".utf8)]

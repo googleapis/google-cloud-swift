@@ -45,6 +45,8 @@ private func roundTrip(_ json: String) throws -> GoogleCloudBigQuery.JobConfigur
          "createDisposition": "CREATE_NEVER", "writeDisposition": "WRITE_APPEND",
          "schemaUpdateOptions": ["ALLOW_FIELD_ADDITION"],
          "userDefinedFunctionResources": [{"inlineCode": "f"}, {"resourceUri": "gs://b/f.js"}],
+         "tableDefinitions": {"ext": {"sourceUris": ["gs://b/f.csv"], "sourceFormat": "CSV",
+                                      "schema": {"fields": [{"name": "c", "type": "STRING"}]}}},
          "priority": "BATCH", "allowLargeResults": true, "flattenResults": false,
          "useQueryCache": false, "maximumBytesBilled": "100",
          "destinationEncryptionConfiguration": {"kmsKeyName": "k"},
@@ -67,6 +69,10 @@ private func roundTrip(_ json: String) throws -> GoogleCloudBigQuery.JobConfigur
     #expect(query.writeDisposition == .writeAppend)
     #expect(query.schemaUpdateOptions == [.allowFieldAddition])
     #expect(query.userDefinedFunctions == [.inline("f"), .fromURI("gs://b/f.js")])
+    let external = try #require(query.tableDefinitions["ext"])
+    #expect(external.sourceURIs == ["gs://b/f.csv"])
+    #expect(external.format == .csv)
+    #expect(external.schema == Schema([Field("c", .string)]))
     #expect(query.priority == .batch)
     #expect(query.allowLargeResults == true)
     #expect(query.flattenResults == false)

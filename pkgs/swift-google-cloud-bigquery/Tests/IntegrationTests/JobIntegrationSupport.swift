@@ -52,6 +52,13 @@ enum JobsIT {
     return table
   }
 
+  /// Fetches the job `id`, failing the test if `id` is `nil` or the job does not exist.
+  static func job(_ client: BigQueryClient, _ id: JobID?) async throws -> Job {
+    let id = try #require(id)
+    let job = try await client.getJob(id)
+    return try #require(job)
+  }
+
   /// The values of `column` in `rows`, as BigQuery strings (`nil` for NULL).
   static func scalars(_ rows: [Row], _ column: String) -> [String?] {
     rows.map { row in

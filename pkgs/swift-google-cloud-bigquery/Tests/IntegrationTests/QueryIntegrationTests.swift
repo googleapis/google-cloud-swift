@@ -41,6 +41,25 @@ struct QueryIntegrationTests {
     }
   }
 
+  // Baseline: U.QueryJobConfiguration.01 (tableDefinitions)
+  // Design: §6.2 — tableDefinitions is not allowlisted, so this runs through jobs.insert.
+  @Test func tableDefinitionsQueryATemporaryExternalTable() async throws {
+    let client = try IntegrationTest.makeClient()
+    try await IntegrationTest.withTemporaryBucket(slice: JobsIT.slice) { bucket in
+      try await CloudStorage().upload(
+        bucket: bucket, name: "ext.csv", data: Data("x,1\ny,2\n".utf8), contentType: "text/csv")
+      var configuration = QueryJobConfiguration("SELECT name FROM ext ORDER BY n")
+      configuration.tableDefinitions = [
+        "ext": ExternalDataConfiguration(
+          sourceURIs: ["gs://\(bucket)/ext.csv"], format: .csv,
+          schema: Schema([Field("name", .string), Field("n", .int64)]))
+      ]
+      let result = try await client.query(configuration)
+      #expect(result.jobID != nil)
+      #expect(JobsIT.scalars(try await result.rows.collect(), "name") == ["x", "y"])
+    }
+  }
+
   // Baseline: IT-103
   @Test func multiPageResultsAreFetchedLazily() async throws {
     let client = try IntegrationTest.makeClient()
@@ -137,6 +156,37 @@ struct QueryIntegrationTests {
     #expect(values == ["1704067200123456"])
   }
 
+  // Baseline: IT-001, IT-066
+  @Test func maximumTimestampIsLossless() async throws {
+    let client = try IntegrationTest.makeClient()
+    let values = try await JobsIT.column(
+      client, "SELECT TIMESTAMP '9999-12-31 23:59:59.999999 UTC' AS ts", "ts")
+    #expect(values == ["253402300799999999"])
+  }
+
+  // Baseline: IT-106
+  @Test func slowDDLFallsBackToPolling() async throws {
+    let client = try IntegrationTest.makeClient()
+    try await IntegrationTest.withTemporaryDataset(client, slice: JobsIT.slice, location: "US") {
+      dataset in
+      let table = JobsIT.table(dataset, "slow_ddl")
+      var ddl = QueryJobConfiguration(
+        """
+        CREATE OR REPLACE TABLE \(table.tableID) AS
+        SELECT unique_key, agency, complaint_type
+        FROM `bigquery-public-data.new_york.311_service_requests`
+        """)
+      ddl.defaultDataset = dataset
+      let result = try await client.query(ddl)
+      #expect(result.jobID != nil)
+      #expect(try await result.rows.collect().isEmpty)
+
+      let rows = try await client.query("SELECT * FROM \(JobsIT.sql(table)) LIMIT 5").rows.collect()
+      #expect(rows.count == 5)
+      #expect(rows.allSatisfy { $0[0] == $0["unique_key"] && $0[1] == $0["agency"] })
+    }
+  }
+
   // Baseline: IT-068, IT-101
   @Test func queryWithJobIDExposesStatistics() async throws {
     let client = try IntegrationTest.makeClient()
@@ -148,7 +198,7 @@ struct QueryIntegrationTests {
     #expect(result.jobID?.jobID == id.jobID)
     #expect(result.jobID?.projectID == client.projectID)
     #expect(JobsIT.scalars(try await result.rows.collect(), "c") == ["1000"])
-    let job = try #require(try await client.getJob(try #require(result.jobID)))
+    let job = try await JobsIT.job(client, result.jobID)
     let statistics = try #require(job.statistics?.query)
     #expect(!statistics.queryPlan.isEmpty)
     #expect(statistics.totalSlotMs != nil)
@@ -207,16 +257,29 @@ struct QueryIntegrationTests {
     let stateless = try await client.query(optional)
     #expect(stateless.queryID?.isEmpty == false)
     #expect(JobsIT.scalars(try await stateless.rows.collect(), "one") == ["1"])
-    if stateless.jobID != nil {
-      // The service may still create a job; it then says why.
-      #expect(stateless.jobCreationReason != nil)
+    if stateless.jobCreationReason != nil {
+      // The service may still create a job; its ID is then the query ID.
+      #expect(stateless.jobID?.jobID == stateless.queryID)
     }
+
+    // A configuration outside the jobs.query allowlist creates a job, and has no query ID.
+    var slow = QueryJobConfiguration("SELECT 1 AS one")
+    slow.priority = .interactive
+    let slowResult = try await client.query(slow)
+    #expect(slowResult.jobID != nil)
+    #expect(slowResult.queryID == nil)
+
+    // Results of an explicitly created job have no query ID.
+    let job = try await client.createJob(.query(QueryJobConfiguration("SELECT 1 AS one")))
+    let explicit = try await client.getQueryResults(job.id)
+    #expect(explicit.jobID?.jobID == job.id.jobID)
+    #expect(explicit.queryID == nil)
 
     var required = QueryJobConfiguration("SELECT 1 AS one")
     required.jobCreationMode = .required
     let stateful = try await client.query(required)
     #expect(stateful.jobID != nil)
-    #expect(stateful.jobCreationReason == nil)
+    #expect(stateful.queryID != nil)
   }
 
   // Baseline: IT-102, IT-156, IT-172
@@ -322,7 +385,7 @@ struct QueryIntegrationTests {
     var children: [Job] = []
     for try await job in client.listJobs(parentJob: id) { children.append(job) }
     #expect(children.count == Int(parent.statistics?.numChildJobs ?? -1))
-    let child = try #require(try await client.getJob(try #require(children.first).id))
+    let child = try await JobsIT.job(client, children.first?.id)
     #expect(child.statistics?.parentJobID == id.jobID)
     let script = try #require(child.statistics?.scriptStatistics)
     #expect(script.evaluationKind != nil)
@@ -337,7 +400,7 @@ struct QueryIntegrationTests {
       let result = try await client.query(
         QueryJobConfiguration("SELECT * FROM \(JobsIT.sql(table)) AS t WHERE SEARCH(t, 'a')"),
         jobID: JobsIT.jobID())
-      let job = try #require(try await client.getJob(try #require(result.jobID)))
+      let job = try await JobsIT.job(client, result.jobID)
       #expect(job.statistics?.query?.searchStatistics?.indexUsageMode == .unused)
     }
   }

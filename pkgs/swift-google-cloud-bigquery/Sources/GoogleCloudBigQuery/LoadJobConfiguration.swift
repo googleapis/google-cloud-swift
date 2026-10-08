@@ -14,21 +14,6 @@
 
 import GoogleCloudBigQueryV2
 
-/// The type a load job uses for decimal source values, in order of preference.
-public struct DecimalTargetType: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
-  public var rawValue: String
-
-  public init(rawValue: String) {
-    self.rawValue = rawValue
-  }
-
-  public static let numeric = DecimalTargetType(rawValue: "NUMERIC")
-  public static let bigNumeric = DecimalTargetType(rawValue: "BIGNUMERIC")
-  public static let string = DecimalTargetType(rawValue: "STRING")
-
-  public var description: String { self.rawValue }
-}
-
 /// How a load job maps source column names to BigQuery column names.
 public struct ColumnNameCharacterMap: RawRepresentable, Sendable, Hashable,
   CustomStringConvertible
@@ -45,24 +30,6 @@ public struct ColumnNameCharacterMap: RawRepresentable, Sendable, Hashable,
   public static let v1 = ColumnNameCharacterMap(rawValue: "V1")
   /// Flexible column names; more characters are allowed than with ``v1``.
   public static let v2 = ColumnNameCharacterMap(rawValue: "V2")
-
-  public var description: String { self.rawValue }
-}
-
-/// How a load job interprets its source URIs.
-public struct FileSetSpecType: RawRepresentable, Sendable, Hashable, CustomStringConvertible {
-  public var rawValue: String
-
-  public init(rawValue: String) {
-    self.rawValue = rawValue
-  }
-
-  /// Each URI names files directly, with wildcards. The service default.
-  public static let fileSystemMatch = FileSetSpecType(
-    rawValue: "FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH")
-  /// Each URI names a newline-delimited manifest of files.
-  public static let newLineDelimitedManifest = FileSetSpecType(
-    rawValue: "FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST")
 
   public var description: String { self.rawValue }
 }
@@ -195,13 +162,9 @@ extension LoadJobConfiguration {
       preserveASCIIControlCharacters: wire.preserveAsciiControlCharacters,
       sourceColumnMatch: specifiedEnumValue(wire.sourceColumnMatch.stringValue))
     self.csvOptions = csv == CSVOptions() ? nil : csv
-    self.parquetOptions = wire.parquetOptions.map {
-      ParquetOptions(
-        enableListInference: $0.enableListInference, enumAsString: $0.enumAsString,
-        mapTargetType: specifiedEnumValue($0.mapTargetType.stringValue))
-    }
+    self.parquetOptions = wire.parquetOptions.map(ParquetOptions.init(wire:))
     self.avroOptions = wire.useAvroLogicalTypes.map { AvroOptions(useAvroLogicalTypes: $0) }
-    self.hivePartitioning = wire.hivePartitioningOptions.map(hivePartitioningOptions(fromWire:))
+    self.hivePartitioning = wire.hivePartitioningOptions.map(HivePartitioningOptions.init(wire:))
     self.schema = wire.schema.map(Schema.init(wire:))
     self.autodetect = wire.autodetect
     self.createDisposition = wire.createDisposition.nonEmpty.map(CreateDisposition.init)
@@ -259,17 +222,9 @@ extension LoadJobConfiguration {
           $0.sourceColumnMatch = .init(stringValue: match)
         }
       }
-      if let parquet = self.parquetOptions {
-        $0.parquetOptions = GoogleCloudBigQueryV2.ParquetOptions().with {
-          $0.enableListInference = parquet.enableListInference
-          $0.enumAsString = parquet.enumAsString
-          if let mapTargetType = parquet.mapTargetType {
-            $0.mapTargetType = .init(stringValue: mapTargetType)
-          }
-        }
-      }
+      $0.parquetOptions = self.parquetOptions?.wire
       $0.useAvroLogicalTypes = self.avroOptions?.useAvroLogicalTypes
-      $0.hivePartitioningOptions = self.hivePartitioning.map(wireHivePartitioningOptions)
+      $0.hivePartitioningOptions = self.hivePartitioning?.wire
       $0.schema = self.schema?.wire
       $0.autodetect = self.autodetect
       $0.createDisposition = self.createDisposition?.rawValue ?? ""
@@ -307,24 +262,5 @@ extension LoadJobConfiguration {
     var copy = self
     copy.destinationTable = copy.destinationTable.withDefaultProject(projectID)
     return copy
-  }
-}
-
-private func hivePartitioningOptions(
-  fromWire wire: GoogleCloudBigQueryV2.HivePartitioningOptions
-) -> HivePartitioningOptions {
-  HivePartitioningOptions(
-    mode: wire.mode.nonEmpty, sourceURIPrefix: wire.sourceUriPrefix.nonEmpty,
-    requirePartitionFilter: wire.requirePartitionFilter,
-    fields: wire.fields.isEmpty ? nil : wire.fields)
-}
-
-private func wireHivePartitioningOptions(
-  _ options: HivePartitioningOptions
-) -> GoogleCloudBigQueryV2.HivePartitioningOptions {
-  GoogleCloudBigQueryV2.HivePartitioningOptions().with {
-    $0.mode = options.mode ?? ""
-    $0.sourceUriPrefix = options.sourceURIPrefix ?? ""
-    $0.requirePartitionFilter = options.requirePartitionFilter
   }
 }
