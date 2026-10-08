@@ -36,27 +36,27 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-auth",
       path: "pkgs/swift-google-auth",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-gax",
       path: "pkgs/swift-google-gax",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt-convert",
       path: "pkgs/swift-google-wkt-convert",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-rpc",
       path: "generated/swift-google-rpc",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.28.2"),
     .package(url: "https://github.com/grpc/grpc-swift-2.git", from: "2.3.0"),

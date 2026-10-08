@@ -82,7 +82,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-aiplatform-v1` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-aiplatform-v1.git --from 0.4.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-aiplatform-v1.git --from 0.5.0
 ```
 
 Then add `GoogleCloudAIPlatformV1` to your target's dependencies:
@@ -103,7 +103,7 @@ The following traits are enabled by default:
 To enable additional traits alongside the defaults, specify them in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/googleapis/swift-google-cloud-aiplatform-v1.git", from: "0.4.0", traits: [".defaults", "<TraitName>"])
+.package(url: "https://github.com/googleapis/swift-google-cloud-aiplatform-v1.git", from: "0.5.0", traits: [".defaults", "<TraitName>"])
 ```
 
 | Trait | Default | Enabled Client |

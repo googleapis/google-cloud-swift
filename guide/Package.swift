@@ -28,37 +28,37 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-auth",
       path: "pkgs/swift-google-auth",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-gax",
       path: "pkgs/swift-google-gax",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-secretmanager-v1",
       path: "generated/swift-google-cloud-secretmanager-v1",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-language-v2",
       path: "generated/swift-google-cloud-language-v2",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-workflows-v1",
       path: "generated/swift-google-cloud-workflows-v1",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-aiplatform-v1",
       path: "generated/swift-google-cloud-aiplatform-v1",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
     .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.0.0"),

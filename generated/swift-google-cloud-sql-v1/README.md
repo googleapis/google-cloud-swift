@@ -60,7 +60,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-sql-v1` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-sql-v1.git --from 0.4.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-sql-v1.git --from 0.5.0
 ```
 
 Then add `GoogleCloudSqlV1` to your target's dependencies:
@@ -78,7 +78,7 @@ client and all the request, response, and model types needed to use that client.
 No traits are enabled by default. Specify the traits you need in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/googleapis/swift-google-cloud-sql-v1.git", from: "0.4.0", traits: ["<TraitName>"])
+.package(url: "https://github.com/googleapis/swift-google-cloud-sql-v1.git", from: "0.5.0", traits: ["<TraitName>"])
 ```
 
 | Trait | Default | Enabled Client |

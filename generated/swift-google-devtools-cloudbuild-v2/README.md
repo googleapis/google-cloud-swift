@@ -50,7 +50,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-devtools-cloudbuild-v2` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-devtools-cloudbuild-v2.git --from 0.4.0
+swift package add-dependency https://github.com/googleapis/swift-google-devtools-cloudbuild-v2.git --from 0.5.0
 ```
 
 Then add `GoogleCloudBuildV2` to your target's dependencies:

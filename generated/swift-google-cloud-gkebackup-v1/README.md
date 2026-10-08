@@ -52,7 +52,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-gkebackup-v1` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-gkebackup-v1.git --from 0.4.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-gkebackup-v1.git --from 0.5.0
 ```
 
 Then add `GoogleCloudGKEBackupV1` to your target's dependencies:
