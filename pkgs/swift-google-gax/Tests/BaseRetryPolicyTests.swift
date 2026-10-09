@@ -63,6 +63,7 @@ import Testing
       $0.attemptCount = 9
     }
     #expect(p.onError(state: attempt9, error: e) == .retry(e))
+    #expect(p.onThrottle(state: attempt9, error: e) == .retry(e))
     #expect(p.remainingTime(state: attempt9) != nil)
 
     let attempt10 = RetryState(idempotent: true).with {
@@ -70,12 +71,16 @@ import Testing
       $0.attemptCount = 10
     }
     #expect(p.onError(state: attempt10, error: e) == .exhausted(e))
+    #expect(p.onThrottle(state: attempt10, error: e) == .exhausted(e))
 
     let expired = RetryState(idempotent: true).with {
       $0.start = start - .seconds(61)
       $0.attemptCount = 1
     }
     #expect(p.onError(state: expired, error: e) == .exhausted(e))
+    #expect(
+      p.onThrottle(state: expired, error: e)
+        == .exhausted(.exhausted(.elapsedTime(maximumDuration: .seconds(60), source: e))))
   }
 
   @Test func equatable() {
