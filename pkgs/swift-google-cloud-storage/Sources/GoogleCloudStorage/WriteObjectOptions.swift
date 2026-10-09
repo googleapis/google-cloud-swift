@@ -132,13 +132,6 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
     self.key = key
   }
 
-  /// Creates a `CustomerEncryptionKeyOptions` from Apple CryptoKit / Swift Crypto `SymmetricKey`.
-  public init(symmetricKey: SymmetricKey, algorithm: CustomerEncryptionAlgorithm = .aes256)
-    throws
-  {
-    try self.init(key: symmetricKey, algorithm: algorithm)
-  }
-
   /// Creates a `CustomerEncryptionKeyOptions` from raw key bytes (`Data`).
   ///
   /// For the default `.aes256` algorithm, the key must be exactly 32 bytes (256 bits).

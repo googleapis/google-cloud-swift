@@ -256,7 +256,6 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
     public var keyHashBase64: String { get }
 
     public init(key: SymmetricKey, algorithm: CustomerEncryptionAlgorithm = .aes256) throws
-    public init(symmetricKey: SymmetricKey, algorithm: CustomerEncryptionAlgorithm = .aes256) throws
     public init(key: Data, algorithm: CustomerEncryptionAlgorithm = .aes256) throws
     public init(keyBytes: [UInt8], algorithm: CustomerEncryptionAlgorithm = .aes256) throws
     public init(keyBase64: String, algorithm: CustomerEncryptionAlgorithm = .aes256) throws

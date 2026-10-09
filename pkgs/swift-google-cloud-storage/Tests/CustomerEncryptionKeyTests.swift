@@ -58,7 +58,7 @@ import Testing
   @Test func createFromSymmetricKey() throws {
     let sample = sampleKey()
     let symKey = SymmetricKey(data: sample.data)
-    let csek = try CustomerEncryptionKeyOptions(symmetricKey: symKey)
+    let csek = try CustomerEncryptionKeyOptions(key: symKey)
 
     #expect(csek.algorithm == .aes256)
     #expect(csek.keyBase64 == sample.keyBase64)
@@ -83,7 +83,7 @@ import Testing
       try CustomerEncryptionKeyOptions(keyBytes: Array(shortKey))
     }
     #expect(throws: CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32)) {
-      try CustomerEncryptionKeyOptions(symmetricKey: SymmetricKey(data: shortKey))
+      try CustomerEncryptionKeyOptions(key: SymmetricKey(data: shortKey))
     }
     #expect(throws: CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32)) {
       try CustomerEncryptionKeyOptions(keyBase64: shortKey.base64EncodedString())
