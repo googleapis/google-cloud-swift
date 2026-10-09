@@ -41,6 +41,9 @@ public protocol ReadObjectHandleProtocol: Sendable {
   var metadata: ReadObjectMetadata { get async throws }
 
   /// Asynchronous sequence yielding chunks of binary data payload.
+  ///
+  /// - Important: This sequence is single-pass and can only be iterated once. Creating a second
+  ///   iterator and advancing it throws a ``ReadObjectError``.
   var body: any AsyncSequence<ByteChunk, any Error> & Sendable { get }
 
   /// Cancels the ongoing download.
@@ -158,6 +161,12 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   }
 }
 
+struct ReadObjectBodyAlreadyConsumedError: Error, Sendable, CustomStringConvertible {
+  var description: String {
+    "ReadObjectHandle.body is a single-pass stream and cannot be iterated more than once."
+  }
+}
+
 /// An asynchronous sequence of `ByteChunk` chunks representing an object payload being downloaded.
 struct ReadObjectSequence: AsyncSequence, Sendable {
   typealias Element = ByteChunk
@@ -173,20 +182,25 @@ struct ReadObjectSequence: AsyncSequence, Sendable {
     typealias Element = ByteChunk
 
     private let coordinator: ReadObjectCoordinator
+    private let isOwner: Bool
 
-    init(coordinator: ReadObjectCoordinator) {
+    init(coordinator: ReadObjectCoordinator, isOwner: Bool) {
       self.coordinator = coordinator
+      self.isOwner = isOwner
     }
 
     /// Advances to the next `ByteChunk` chunk in the downloaded object payload stream.
     mutating func next() async throws -> ByteChunk? {
-      try await coordinator.nextChunk()
+      guard isOwner else {
+        throw ReadObjectError.requestError(.io(ReadObjectBodyAlreadyConsumedError()))
+      }
+      return try await coordinator.nextChunk()
     }
   }
 
   /// Creates an asynchronous iterator for iterating over object payload chunks.
   func makeAsyncIterator() -> AsyncIterator {
-    AsyncIterator(coordinator: coordinator)
+    AsyncIterator(coordinator: coordinator, isOwner: coordinator.claimIterator())
   }
 }
 
@@ -198,21 +212,37 @@ final class ReadObjectCoordinator: @unchecked Sendable {
   let httpClient: GoogleGax._HTTPClient
   let resumeLoop: _ResumeLoop<ReadObjectDetails>
 
+  private struct State {
+    var hasCreatedIterator: Bool = false
+    var isReading: Bool = false
+    var isInitialFetched: Bool = false
+    var initialFetchTask: Task<ReadObjectMetadata, any Error>?
+    var metadata: ReadObjectMetadata?
+    var expectedCrc32c: String?
+    var expectedMd5: String?
+    var bodyIterator: _HTTPResponseBody.AsyncIterator?
+    var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, any Error>.AsyncIterator?
+    var bytesReceived: UInt64 = 0
+    var resumeState: ResumeState<ReadObjectDetails>
+    var isFinished: Bool = false
+    var isCancelled: Bool = false
+    var crc32cCalculator: CRC32CCalculator?
+    var md5Calculator: MD5Calculator?
+    var hasValidatedChecksums: Bool = false
+
+    init(options: ReadObjectOptions) {
+      self.resumeState = ResumeState(details: ReadObjectDetails())
+      if options.checksums?.crc32c != nil {
+        self.crc32cCalculator = CRC32CCalculator()
+      }
+      if options.checksums?.md5 != nil {
+        self.md5Calculator = MD5Calculator()
+      }
+    }
+  }
+
   private let lock = NSLock()
-  private var isInitialFetched: Bool = false
-  private var initialFetchTask: Task<ReadObjectMetadata, any Error>?
-  private var metadata: ReadObjectMetadata?
-  private var expectedCrc32c: String?
-  private var expectedMd5: String?
-  private var bodyIterator: _HTTPResponseBody.AsyncIterator?
-  private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, any Error>.AsyncIterator?
-  private var bytesReceived: UInt64 = 0
-  private var resumeState: ResumeState<ReadObjectDetails>
-  private var isFinished: Bool = false
-  private var isCancelled: Bool = false
-  private var crc32cCalculator: CRC32CCalculator?
-  private var md5Calculator: MD5Calculator?
-  private var hasValidatedChecksums: Bool = false
+  private var state: State
 
   init(
     bucket: String,
@@ -226,27 +256,30 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     self.options = options
     self.httpClient = httpClient
     self.resumeLoop = resumeLoop
-    self.resumeState = ResumeState(details: ReadObjectDetails())
-    if options.checksums?.crc32c != nil {
-      self.crc32cCalculator = CRC32CCalculator()
-    }
-    if options.checksums?.md5 != nil {
-      self.md5Calculator = MD5Calculator()
+    self.state = State(options: options)
+  }
+
+  func claimIterator() -> Bool {
+    lock.withLock {
+      guard !state.hasCreatedIterator else { return false }
+      state.hasCreatedIterator = true
+      return true
     }
   }
 
   private var cancelled: Bool {
-    lock.withLock { isCancelled }
+    lock.withLock { state.isCancelled }
   }
 
   private func ensureInitialFetch() async throws -> ReadObjectMetadata {
     let task = lock.withLock { () -> Task<ReadObjectMetadata, any Error>? in
-      if self.isCancelled {
+      if self.state.isCancelled {
         return nil
       }
-      if let existing = self.initialFetchTask {
+      if let existing = self.state.initialFetchTask {
         return existing
       }
+      let initialResumeState = self.state.resumeState
       let newTask = Task { () throws -> ReadObjectMetadata in
         let (response, metadata) = try await Self.fetchInitial(
           httpClient: self.httpClient,
@@ -254,22 +287,22 @@ final class ReadObjectCoordinator: @unchecked Sendable {
           object: self.object,
           options: self.options,
           resumeLoop: self.resumeLoop,
-          resumeState: self.resumeState
+          resumeState: initialResumeState
         )
         let (rawCrc, rawMd5) = StorageClient.extractExpectedChecksums(from: response.headers)
         try self.lock.withLock {
-          if self.isCancelled {
+          if self.state.isCancelled {
             throw CancellationError()
           }
-          self.metadata = metadata
-          self.expectedCrc32c = rawCrc
-          self.expectedMd5 = rawMd5
-          self.bodyIterator = response.body.makeAsyncIterator()
-          self.isInitialFetched = true
+          self.state.metadata = metadata
+          self.state.expectedCrc32c = rawCrc
+          self.state.expectedMd5 = rawMd5
+          self.state.bodyIterator = response.body.makeAsyncIterator()
+          self.state.isInitialFetched = true
         }
         return metadata
       }
-      self.initialFetchTask = newTask
+      self.state.initialFetchTask = newTask
       return newTask
     }
     guard let task else {
@@ -301,38 +334,52 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     if cancelled || Task.isCancelled {
       throw CancellationError()
     }
-    guard !lock.withLock({ isFinished }) else { return nil }
-
-    if options.range?.isZeroBytes == true {
-      lock.withLock { isFinished = true }
-      return nil
+    let canStartRead = lock.withLock { () -> Bool? in
+      guard !state.isReading else { return nil }
+      guard !state.isFinished else { return false }
+      if options.range?.isZeroBytes == true {
+        state.isFinished = true
+        return false
+      }
+      state.isReading = true
+      return true
+    }
+    guard let canStartRead else {
+      throw ReadObjectError.requestError(.io(ReadObjectBodyAlreadyConsumedError()))
+    }
+    guard canStartRead else { return nil }
+    defer {
+      lock.withLock { state.isReading = false }
     }
 
     _ = try await ensureInitialFetch()
 
-    while !lock.withLock({ isFinished }) {
+    while !lock.withLock({ state.isFinished }) {
       if cancelled || Task.isCancelled {
         throw CancellationError()
       }
       do {
-        let nextStreamIt = lock.withLock { self.streamIterator }
-        let nextBodyIt = lock.withLock { self.bodyIterator }
+        let (nextStreamIt, nextBodyIt) = lock.withLock {
+          (self.state.streamIterator, self.state.bodyIterator)
+        }
         if var it = nextStreamIt {
           let chunk = try await it.next()
           if cancelled || Task.isCancelled {
             throw CancellationError()
           }
-          lock.withLock { self.streamIterator = it }
           if let chunk {
             let storage = ByteChunk(chunk)
-            bytesReceived += UInt64(storage.count)
-            resumeState.details.bytesRead = bytesReceived
-            resumeLoop.onProgress(state: &resumeState)
-            updateChecksums(with: storage)
+            lock.withLock {
+              self.state.streamIterator = it
+              recordReceivedChunkLocked(storage)
+            }
             return storage
           } else {
-            try validateChecksumsAtEOF()
-            lock.withLock { isFinished = true }
+            try lock.withLock {
+              self.state.streamIterator = it
+              try validateChecksumsAtEOFLocked()
+              self.state.isFinished = true
+            }
             return nil
           }
         } else if var it = nextBodyIt {
@@ -340,48 +387,61 @@ final class ReadObjectCoordinator: @unchecked Sendable {
           if cancelled || Task.isCancelled {
             throw CancellationError()
           }
-          lock.withLock { self.bodyIterator = it }
           if let chunk {
             let storage = ByteChunk(chunk)
-            bytesReceived += UInt64(storage.count)
-            resumeState.details.bytesRead = bytesReceived
-            resumeLoop.onProgress(state: &resumeState)
-            updateChecksums(with: storage)
+            lock.withLock {
+              self.state.bodyIterator = it
+              recordReceivedChunkLocked(storage)
+            }
             return storage
           } else {
-            try validateChecksumsAtEOF()
-            lock.withLock { isFinished = true }
+            try lock.withLock {
+              self.state.bodyIterator = it
+              try validateChecksumsAtEOFLocked()
+              self.state.isFinished = true
+            }
             return nil
           }
         } else {
-          try validateChecksumsAtEOF()
-          lock.withLock { isFinished = true }
+          try lock.withLock {
+            try validateChecksumsAtEOFLocked()
+            self.state.isFinished = true
+          }
           return nil
         }
       } catch {
         if error is CancellationError || cancelled || Task.isCancelled {
-          lock.withLock { isFinished = true }
+          lock.withLock { state.isFinished = true }
           throw CancellationError()
         }
         if error is ReadObjectError {
-          lock.withLock { isFinished = true }
+          lock.withLock { state.isFinished = true }
           throw error
         }
 
         let reqError = (error as? RequestError) ?? .io(error)
+        var localResumeState = lock.withLock { state.resumeState }
         do {
-          try await resumeLoop.handleError(state: &resumeState, error: reqError)
+          try await resumeLoop.handleError(state: &localResumeState, error: reqError)
+          lock.withLock { state.resumeState = localResumeState }
         } catch let err as RequestError {
-          lock.withLock { isFinished = true }
+          let received = lock.withLock { () -> UInt64 in
+            state.resumeState = localResumeState
+            state.isFinished = true
+            return state.bytesReceived
+          }
           if case .http = err {
             throw ReadObjectError.requestError(err)
           } else if case .service = err {
             throw ReadObjectError.requestError(err)
           }
           throw ReadObjectError.resumeFailed(
-            bytesReceived: bytesReceived, underlyingError: err)
+            bytesReceived: received, underlyingError: err)
         } catch {
-          lock.withLock { isFinished = true }
+          lock.withLock {
+            state.resumeState = localResumeState
+            state.isFinished = true
+          }
           throw error
         }
 
@@ -395,23 +455,26 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     return nil
   }
 
-  private func updateChecksums(with chunk: ByteChunk) {
-    crc32cCalculator?.update(chunk)
-    md5Calculator?.update(chunk)
+  private func recordReceivedChunkLocked(_ chunk: ByteChunk) {
+    state.bytesReceived += UInt64(chunk.count)
+    state.resumeState.details.bytesRead = state.bytesReceived
+    resumeLoop.onProgress(state: &state.resumeState)
+    state.crc32cCalculator?.update(chunk)
+    state.md5Calculator?.update(chunk)
   }
 
-  private func validateChecksumsAtEOF() throws {
-    guard !hasValidatedChecksums else { return }
-    hasValidatedChecksums = true
+  private func validateChecksumsAtEOFLocked() throws {
+    guard !state.hasValidatedChecksums else { return }
+    state.hasValidatedChecksums = true
 
-    let (currentMetadata, rawCrc, rawMd5) = lock.withLock {
-      (self.metadata ?? ReadObjectMetadata(), self.expectedCrc32c, self.expectedMd5)
-    }
+    let currentMetadata = state.metadata ?? ReadObjectMetadata()
+    let rawCrc = state.expectedCrc32c
+    let rawMd5 = state.expectedMd5
     let isRangedRead = (options.range ?? .entire) != .entire
     let isDecompressedTranscoding =
       (currentMetadata.storedContentLength != nil && currentMetadata.contentEncoding == nil)
 
-    if let crcOption = options.checksums?.crc32c, let calc = crc32cCalculator {
+    if let crcOption = options.checksums?.crc32c, let calc = state.crc32cCalculator {
       let actual = calc.finalize()
       switch crcOption {
       case .auto:
@@ -437,7 +500,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
       }
     }
 
-    if let md5Option = options.checksums?.md5, let calc = md5Calculator {
+    if let md5Option = options.checksums?.md5, let calc = state.md5Calculator {
       let actual = calc.finalize()
       switch md5Option {
       case .auto:
@@ -467,15 +530,20 @@ final class ReadObjectCoordinator: @unchecked Sendable {
   }
 
   private func resumeDownload(underlyingError: any Error) async throws {
-    let currentMetadata = lock.withLock { self.metadata } ?? ReadObjectMetadata()
+    let (currentMetadata, currentBytesReceived, initialResumeState) = lock.withLock {
+      (
+        self.state.metadata ?? ReadObjectMetadata(), self.state.bytesReceived,
+        self.state.resumeState
+      )
+    }
     guard
       let resumeRange = calculateResumeRange(
         originalRange: options.range ?? .entire,
-        bytesReceived: bytesReceived,
+        bytesReceived: currentBytesReceived,
         totalSize: currentMetadata.size > 0 ? currentMetadata.size : nil
       )
     else {
-      lock.withLock { isFinished = true }
+      lock.withLock { state.isFinished = true }
       return
     }
 
@@ -488,9 +556,10 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     let httpClient = self.httpClient
     let bucket = self.bucket
     let object = self.object
+    var localResumeState = initialResumeState
 
     do {
-      let response = try await resumeLoop.run(state: &resumeState) { _ in
+      let response = try await resumeLoop.run(state: &localResumeState) { _ in
         let request = try await httpClient.buildReadObjectRequest(
           bucket: bucket, object: object, options: resumeOptions)
         let resp: _HTTPClientResponse
@@ -518,14 +587,19 @@ final class ReadObjectCoordinator: @unchecked Sendable {
           statusCode: statusCode, message: message)
       }
       try lock.withLock {
-        if self.isCancelled {
+        self.state.resumeState = localResumeState
+        if self.state.isCancelled {
           throw CancellationError()
         }
-        self.bodyIterator = response.body.makeAsyncIterator()
-        self.streamIterator = nil
+        self.state.bodyIterator = response.body.makeAsyncIterator()
+        self.state.streamIterator = nil
       }
     } catch {
-      lock.withLock { isFinished = true }
+      let received = lock.withLock { () -> UInt64 in
+        self.state.resumeState = localResumeState
+        self.state.isFinished = true
+        return self.state.bytesReceived
+      }
       if error is CancellationError || cancelled || Task.isCancelled {
         throw CancellationError()
       }
@@ -539,17 +613,17 @@ final class ReadObjectCoordinator: @unchecked Sendable {
         throw ReadObjectError.requestError(reqError)
       }
       throw ReadObjectError.resumeFailed(
-        bytesReceived: bytesReceived, underlyingError: reqError)
+        bytesReceived: received, underlyingError: reqError)
     }
   }
 
   func cancel() {
     let taskToCancel = lock.withLock { () -> Task<ReadObjectMetadata, any Error>? in
-      isCancelled = true
-      isFinished = true
-      bodyIterator = nil
-      streamIterator = nil
-      return initialFetchTask
+      state.isCancelled = true
+      state.isFinished = true
+      state.bodyIterator = nil
+      state.streamIterator = nil
+      return state.initialFetchTask
     }
     taskToCancel?.cancel()
   }
