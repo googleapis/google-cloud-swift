@@ -1591,4 +1591,120 @@ import Testing
     #expect(req?.value(forHTTPHeaderField: "Range") == "bytes=0-9")
     #expect(req?.value(forHTTPHeaderField: "Accept-Encoding") == "gzip")
   }
+
+  @Test func downloadObjectSecondBodyIterationThrows() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "single-pass.txt"
+    let payload = Data("Single pass payload".utf8)
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: payload,
+        headers: ["Content-Length": String(payload.count)]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let download = client.readObject(from: bucket, object: objectName)
+    let sequence = download.body
+
+    var firstRead = Data()
+    for try await chunk in sequence {
+      firstRead.append(contentsOf: chunk)
+    }
+    #expect(firstRead == payload)
+
+    // Iterating the same sequence a second time must throw instead of silently returning 0 bytes
+    let err1 = await expectError(ReadObjectError.self) { () -> Void in
+      for try await _ in sequence {}
+    }
+    if case .requestError(.io(let underlying)) = err1 {
+      #expect(
+        String(describing: underlying)
+          == "ReadObjectHandle.body is a single-pass stream and cannot be iterated more than once."
+      )
+    } else {
+      Issue.record("Expected ReadObjectError.requestError(.io), got \(String(describing: err1))")
+    }
+
+    // Accessing `download.body` again to create another sequence also throws on iteration
+    let err2 = await expectError(ReadObjectError.self) { () -> Void in
+      for try await _ in download.body {}
+    }
+    if case .requestError(.io(let underlying)) = err2 {
+      #expect(underlying is ReadObjectBodyAlreadyConsumedError)
+    } else {
+      Issue.record("Expected ReadObjectError.requestError(.io), got \(String(describing: err2))")
+    }
+  }
+
+  @Test func downloadObjectConcurrentIteratorsPreserveOwnerAndRejectSecond() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "concurrent-iterators.bin"
+    let chunk1 = Data("Chunk-1-".utf8)
+    let chunk2 = Data("Chunk-2-".utf8)
+    let chunk3 = Data("Chunk-3".utf8)
+    let fullPayload = chunk1 + chunk2 + chunk3
+    let computedCrc = _CRC32C.compute(fullPayload)
+    let crcBase64 = crc32cBase64(computedCrc)
+
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1, chunk2, chunk3],
+        headers: [
+          "Content-Length": String(fullPayload.count),
+          "x-goog-hash": "crc32c=\(crcBase64)",
+        ]
+      ),
+      for: downloadUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let download = client.readObject(from: bucket, object: objectName)
+
+    await withTaskGroup(of: Result<Data, any Error>.self) { group in
+      for _ in 0..<4 {
+        group.addTask {
+          do {
+            var data = Data()
+            for try await chunk in download.body {
+              data.append(contentsOf: chunk)
+            }
+            return .success(data)
+          } catch {
+            return .failure(error)
+          }
+        }
+      }
+
+      var successes: [Data] = []
+      var failures: [any Error] = []
+      for await res in group {
+        switch res {
+        case .success(let data):
+          successes.append(data)
+        case .failure(let error):
+          failures.append(error)
+        }
+      }
+
+      #expect(successes.count == 1)
+      #expect(successes.first == fullPayload)
+      #expect(failures.count == 3)
+      for failure in failures {
+        if case ReadObjectError.requestError(.io(let underlying)) = failure {
+          #expect(underlying is ReadObjectBodyAlreadyConsumedError)
+        } else {
+          Issue.record("Expected ReadObjectBodyAlreadyConsumedError, got \(failure)")
+        }
+      }
+    }
+  }
 }
