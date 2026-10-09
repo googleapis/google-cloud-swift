@@ -90,6 +90,21 @@ import Testing
     #expect(headers.map(\.name) == ["a", "b", "c"])
   }
 
+  @Test func makeIteratorReturnsDedicatedIteratorType() {
+    let headers: HTTPHeaders = [("a", "1"), ("b", "2")]
+    var iterator: HTTPHeaders.Iterator = headers.makeIterator()
+
+    let first = iterator.next()
+    #expect(first?.name == "a")
+    #expect(first?.value == "1")
+
+    let second = iterator.next()
+    #expect(second?.name == "b")
+    #expect(second?.value == "2")
+
+    #expect(iterator.next() == nil)
+  }
+
   @Test func lookupIgnoresNameCase() {
     let headers: HTTPHeaders = [
       ("Retry-After", "120"),

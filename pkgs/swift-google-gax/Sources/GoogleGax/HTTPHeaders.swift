@@ -139,7 +139,20 @@ extension HTTPHeaders: ExpressibleByDictionaryLiteral {
 }
 
 extension HTTPHeaders: Sequence {
-  public func makeIterator() -> IndexingIterator<[Element]> {
-    self.storage.makeIterator()
+  /// An iterator over the header fields in the collection.
+  public struct Iterator: IteratorProtocol, Sendable {
+    private var base: [Element].Iterator
+
+    init(_ base: [Element].Iterator) {
+      self.base = base
+    }
+
+    public mutating func next() -> Element? {
+      self.base.next()
+    }
+  }
+
+  public func makeIterator() -> Iterator {
+    Iterator(self.storage.makeIterator())
   }
 }
