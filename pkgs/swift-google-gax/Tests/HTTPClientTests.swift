@@ -472,6 +472,51 @@ import NIOHTTP1
     #expect(httpError.statusCode == 404)
   }
 
+  @Test func getHttp300Error() async throws {
+    let endpoint = "http://localhost:8080"
+    let path = "/v1/projects/my-project/secrets"
+    let url = "\(endpoint)\(path)?$alt=json"
+
+    let mock = MockHTTPClient { (request, _) in
+      #expect(request.method == .GET)
+      #expect(request.url == url)
+
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .multipleChoices,
+        headers: .init([("Content-Type", "text/html; charset=UTF-8")]),
+        body: .bytes(
+          .init(string: "<!DOCTYPE html><html lang=en><title>300 Multiple Choices</title></html>"))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: endpoint)
+    let request = try await client.newRequest(
+      path: path, query: [URLQueryItem(name: "$alt", value: "json")])
+
+    let response = await request.rpc(ResponseType.self)
+    guard case let .failure(.http(httpError)) = response else {
+      Issue.record("expected an http error response, got=\(response)")
+      return
+    }
+    #expect(httpError.statusCode == 300)
+  }
+
+  @Test(arguments: [
+    (code: UInt(199), wantIsError: true),
+    (code: UInt(200), wantIsError: false),
+    (code: UInt(299), wantIsError: false),
+    (code: UInt(300), wantIsError: true),
+  ]) func responseIsErrorBoundary(code: UInt, wantIsError: Bool) {
+    let rawResponse = HTTPClientResponse(
+      version: .http1_1,
+      status: HTTPResponseStatus(statusCode: Int(code)),
+      body: .bytes(.init(string: "{}"))
+    )
+    let response = _HTTPClientResponse(rawResponse)
+    #expect(response.isError() == wantIsError)
+  }
+
   @Test("verify the client when used as GAPICs do for Create-like operations")
   func useAsGAPICCreate() async throws {
     let clientHeader = GoogleGax._gapicApiClientHeader(packageVersion: "1.2.3")

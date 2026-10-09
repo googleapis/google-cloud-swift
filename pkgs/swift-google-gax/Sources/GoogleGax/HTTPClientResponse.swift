@@ -66,7 +66,7 @@ import NIOFoundationCompat
   }
 
   public func isError() -> Bool {
-    !(200...300).contains(self.response.status.code)
+    !(200..<300).contains(self.response.status.code)
   }
 
   @concurrent
