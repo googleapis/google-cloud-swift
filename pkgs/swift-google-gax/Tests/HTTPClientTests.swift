@@ -503,14 +503,14 @@ import NIOHTTP1
   }
 
   @Test(arguments: [
-    (code: UInt(199), wantIsError: true),
-    (code: UInt(200), wantIsError: false),
-    (code: UInt(299), wantIsError: false),
-    (code: UInt(300), wantIsError: true),
-  ]) func responseIsErrorBoundary(code: UInt, wantIsError: Bool) {
+    (code: 199, wantIsError: true),
+    (code: 200, wantIsError: false),
+    (code: 299, wantIsError: false),
+    (code: 300, wantIsError: true),
+  ]) func responseIsErrorBoundary(code: Int, wantIsError: Bool) {
     let rawResponse = HTTPClientResponse(
       version: .http1_1,
-      status: HTTPResponseStatus(statusCode: Int(code)),
+      status: HTTPResponseStatus(statusCode: code),
       body: .bytes(.init(string: "{}"))
     )
     let response = _HTTPClientResponse(rawResponse)
