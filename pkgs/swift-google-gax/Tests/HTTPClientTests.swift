@@ -281,6 +281,24 @@ import NIOHTTP1
     #expect(data == .init("{}".utf8))
   }
 
+  @Test(
+    arguments: [
+      (.GET, .GET),
+      (.PUT, .PUT),
+      (.POST, .POST),
+      (.DELETE, .DELETE),
+      (.PATCH, .PATCH),
+      (.HEAD, .HEAD),
+      (.OPTIONS, .OPTIONS),
+    ] as [(_HTTPClientRequest.Method, NIOHTTP1.HTTPMethod)]
+  )
+  func setMethodMappings(
+    _ method: _HTTPClientRequest.Method,
+    _ want: NIOHTTP1.HTTPMethod
+  ) {
+    #expect(method.nioMethod == want)
+  }
+
   @Test func postRequestBodyJSON() async throws {
     struct TestPayload: Encodable {
       var name: String
