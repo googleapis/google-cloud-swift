@@ -105,17 +105,17 @@ let options = ReadObjectOptions().with {
 }
 ```
 
-You can also manually resume from `bytesReceived` by requesting a ``ReadObjectRange`` starting at that offset and pinning the object's generation from the initial metadata:
+You can also manually resume from `bytesReceived` (`UInt64`) by passing it to the failable initializer ``ReadObjectRange/init(fromOffset:)`` and pinning the object's generation from the initial metadata:
 
 ```swift
 if let resumeRange = ReadObjectRange(fromOffset: bytesReceived) {
   let resumeOptions = ReadObjectOptions().with {
     $0.range = resumeRange
-    $0.generation = initialMetadata.generation
+    $0.generation = metadata.generation
   }
   let resumedDownload = client.readObject(from: bucket, object: object, options: resumeOptions)
   for try await chunk in resumedDownload.body {
-    // Append remaining chunks...
+    chunks.append(chunk)
   }
 }
 ```

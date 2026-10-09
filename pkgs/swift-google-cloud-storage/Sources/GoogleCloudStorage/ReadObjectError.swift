@@ -62,10 +62,11 @@ public enum ReadObjectError: Error, Sendable, CustomStringConvertible,
   /// To recover:
   /// - Increase the resume limits on ``ReadObjectOptions/resumePolicy`` (such as
   ///   `StorageResumePolicy<ReadObjectDetails>.unbounded().stopOnConsecutiveErrors(5)`).
-  /// - Manually resume the download from `bytesReceived` using
-  ///   `ReadObjectRange(fromOffset: bytesReceived)` and pinning ``ReadObjectOptions/generation``
-  ///   to the generation from ``ReadObjectHandleProtocol/metadata`` so you continue reading the
-  ///   exact same object revision.
+  /// - Manually resume the download from `bytesReceived` (`UInt64`) using
+  ///   ``ReadObjectRange/init(fromOffset:)`` (`ReadObjectRange(fromOffset: bytesReceived)`) and
+  ///   pinning ``ReadObjectOptions/generation`` to the generation from
+  ///   ``ReadObjectHandleProtocol/metadata`` so you continue reading the exact same object
+  ///   revision.
   case resumeFailed(bytesReceived: UInt64, underlyingError: RequestError)
 
   /// Cloud Storage returned an unexpected HTTP status code or error response during download.
