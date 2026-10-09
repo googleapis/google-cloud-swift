@@ -128,7 +128,11 @@ public struct WKTDuration: Codable, Comparable, Equatable, Hashable, Sendable {
 
     var nanos: Int32 = 0
     if parts.count == 2 {
-      let nanosStr = String(parts[1]).padding(toLength: 9, withPad: "0", startingAt: 0)
+      let frac = parts[1]
+      guard !frac.isEmpty && frac.count <= 9 else {
+        throw WKTDurationError.invalidFormat
+      }
+      let nanosStr = String(frac).padding(toLength: 9, withPad: "0", startingAt: 0)
       guard let pNanos = Int32(nanosStr) else {
         throw WKTDurationError.invalidFormat
       }
