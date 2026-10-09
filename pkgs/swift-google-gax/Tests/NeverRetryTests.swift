@@ -21,18 +21,18 @@ import Testing
     let p = NeverRetry()
 
     #expect(
-      p.onError(state: idempotentState(), error: httpUnavailable()) == .exhausted(httpUnavailable())
+      p.onError(state: idempotentState(), error: httpUnavailable()) == .permanent(httpUnavailable())
     )
     #expect(
       p.onError(state: nonIdempotentState(), error: httpUnavailable())
-        == .exhausted(httpUnavailable()))
+        == .permanent(httpUnavailable()))
 
     #expect(
       p.onError(state: idempotentState(), error: httpPermissionDenied())
-        == .exhausted(httpPermissionDenied()))
+        == .permanent(httpPermissionDenied()))
     #expect(
       p.onError(state: nonIdempotentState(), error: httpPermissionDenied())
-        == .exhausted(httpPermissionDenied()))
+        == .permanent(httpPermissionDenied()))
 
     #expect(p.remainingTime(state: idempotentState()) == nil)
 
@@ -49,8 +49,8 @@ import Testing
 
     #expect(
       p.onError(state: state, error: .binding(BindingError()))
-        == .exhausted(.binding(BindingError())))
-    #expect(p.onError(state: state, error: httpUnavailable()) == .exhausted(httpUnavailable()))
+        == .permanent(.binding(BindingError())))
+    #expect(p.onError(state: state, error: httpUnavailable()) == .permanent(httpUnavailable()))
   }
 
   @Test func equatable() {

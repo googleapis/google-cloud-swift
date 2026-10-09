@@ -386,6 +386,37 @@ import Testing
     }
   }
 
+  @Test func neverRetryDoesNotPenalizeThrottlers() async throws {
+    let error = transient()
+    let circuitBreaker = try CircuitBreaker(tokens: 100, minTokens: 50, errorCost: 10)
+    let adaptiveThrottler = try AdaptiveThrottler(factor: 2.0)
+
+    let cbLoop = _RetryLoop(
+      retryPolicy: NeverRetry(),
+      backoffPolicy: MockBackoff(),
+      retryThrottler: circuitBreaker,
+      idempotent: true
+    )
+    let adaptiveLoop = _RetryLoop(
+      retryPolicy: NeverRetry(),
+      backoffPolicy: MockBackoff(),
+      retryThrottler: adaptiveThrottler,
+      idempotent: true
+    )
+
+    for _ in 0..<10 {
+      await #expect(throws: RequestError.self) {
+        try await cbLoop.run(inner: { _ in throw error }, sleep: { _ in })
+      }
+      await #expect(throws: RequestError.self) {
+        try await adaptiveLoop.run(inner: { _ in throw error }, sleep: { _ in })
+      }
+    }
+
+    #expect(!circuitBreaker.throttleRetryAttempt())
+    #expect(!adaptiveThrottler.throttleRetryAttemptImpl(gen: { 0.0 }))
+  }
+
   struct CustomDomainError: Error, Equatable {}
 
   @Test func nonRequestErrorThrownDirectly() async throws {
