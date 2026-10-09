@@ -29,8 +29,7 @@ import Foundation
 /// - `rest`: REST/HTTP transport version.
 /// - `pb`: Swift Protobuf runtime version.
 ///
-/// See [System Parameters](https://docs.cloud.google.com/apis/docs/system-parameters)
-/// and [go/cloud-api-headers](https://docs.google.com/document/d/1Afm2EGsYRlrk4-YBoEOHIIB-0X-CSkfqUT5xEXNozls).
+/// See [System Parameters](https://docs.cloud.google.com/apis/docs/system-parameters).
 struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
   enum Token: Hashable, Sendable {
     case swiftLanguage
@@ -87,11 +86,12 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
   /// The standard HTTP header name (`x-goog-api-client`).
   static let headerName = _HeaderNames.apiClient
 
-  /// Creates a header populated with default environment tokens (`gl-swift` and `gax`).
+  /// Creates a header populated with default environment tokens (`gl-swift`, `gax`, and `rest`).
   init() {
     self.tokens = [
       .swiftLanguage: swiftRuntimeVersion(),
       .gax: gaxVersion(),
+      .rest: gaxVersion(),
     ]
   }
 
@@ -123,7 +123,6 @@ extension _ApiClientHeader.Token: Comparable {
 @_spi(GoogleCloudInternal)
 public func _gapicApiClientHeader(packageVersion: String) -> String {
   var header = _ApiClientHeader()
-  header.setToken(.rest, version: gaxVersion())
   header.setToken(.gapic, version: packageVersion)
   return header.build()
 }
@@ -131,7 +130,6 @@ public func _gapicApiClientHeader(packageVersion: String) -> String {
 @_spi(GoogleCloudInternal)
 public func _veneerApiClientHeader(packageVersion: String) -> String {
   var header = _ApiClientHeader()
-  header.setToken(.rest, version: gaxVersion())
   header.setToken(.gccl, version: packageVersion)
   return header.build()
 }
