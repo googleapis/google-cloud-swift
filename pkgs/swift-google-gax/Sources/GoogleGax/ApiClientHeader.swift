@@ -30,8 +30,9 @@ import Foundation
 /// - `pb`: Swift Protobuf runtime version.
 ///
 /// See [System Parameters](https://docs.cloud.google.com/apis/docs/system-parameters).
-struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
-  enum Token: Hashable, Sendable {
+@_spi(GoogleCloudInternal)
+public struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
+  public enum Token: Hashable, Sendable {
     case swiftLanguage
     case gccl
     case gapic
@@ -41,7 +42,7 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
     case protobuf
     case custom(String)
 
-    var name: String {
+    public var name: String {
       switch self {
       case .swiftLanguage: return "gl-swift"
       case .gccl: return "gccl"
@@ -54,7 +55,7 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
       }
     }
 
-    var normalized: Token {
+    public var normalized: Token {
       guard case .custom(let name) = self else { return self }
       switch name {
       case "gl-swift": return .swiftLanguage
@@ -84,35 +85,67 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
   private var tokens: [Token: String]
 
   /// The standard HTTP header name (`x-goog-api-client`).
-  static let headerName = _HeaderNames.apiClient
+  public static let headerName = _HeaderNames.apiClient
 
-  /// Creates a header populated with default environment tokens (`gl-swift`, `gax`, and `rest`).
-  init() {
+  /// Creates a header populated with default environment tokens (`gl-swift` and `gax`).
+  public init() {
     self.tokens = [
       .swiftLanguage: swiftRuntimeVersion(),
       .gax: gaxVersion(),
-      .rest: gaxVersion(),
     ]
   }
 
   /// Sets or updates a token.
-  mutating func setToken(_ token: Token, version: String) {
+  public mutating func setToken(_ token: Token, version: String) {
     self.tokens[token.normalized] = version
   }
 
+  /// Removes a token.
+  public mutating func removeToken(_ token: Token) {
+    self.tokens.removeValue(forKey: token.normalized)
+  }
+
+  /// Accesses the version string associated with the given token.
+  public subscript(token: Token) -> String? {
+    get {
+      self.tokens[token.normalized]
+    }
+    set {
+      if let newValue {
+        self.tokens[token.normalized] = newValue
+      } else {
+        self.tokens.removeValue(forKey: token.normalized)
+      }
+    }
+  }
+
   /// Formats the header into its canonical space-separated string representation.
-  func build() -> String {
+  public func build() -> String {
     self.tokens
       .sorted { $0.key < $1.key }
       .map { "\($0.key.name)/\($0.value)" }
       .joined(separator: " ")
   }
 
-  var description: String { self.build() }
+  public var description: String { self.build() }
+
+  /// Creates a header configured with the generated GAPIC client package version.
+  public static func gapic(packageVersion: String) -> _ApiClientHeader {
+    var header = _ApiClientHeader()
+    header.setToken(.gapic, version: packageVersion)
+    return header
+  }
+
+  /// Creates a header configured with the handwritten veneer client package version.
+  public static func veneer(packageVersion: String) -> _ApiClientHeader {
+    var header = _ApiClientHeader()
+    header.setToken(.gccl, version: packageVersion)
+    return header
+  }
 }
 
 extension _ApiClientHeader.Token: Comparable {
-  static func < (lhs: Self, rhs: Self) -> Bool {
+  public static func < (lhs: Self, rhs: Self) -> Bool {
     if lhs.sortRank != rhs.sortRank {
       return lhs.sortRank < rhs.sortRank
     }
@@ -122,15 +155,15 @@ extension _ApiClientHeader.Token: Comparable {
 
 @_spi(GoogleCloudInternal)
 public func _gapicApiClientHeader(packageVersion: String) -> String {
-  var header = _ApiClientHeader()
-  header.setToken(.gapic, version: packageVersion)
+  var header = _ApiClientHeader.gapic(packageVersion: packageVersion)
+  header.setToken(.rest, version: gaxVersion())
   return header.build()
 }
 
 @_spi(GoogleCloudInternal)
 public func _veneerApiClientHeader(packageVersion: String) -> String {
-  var header = _ApiClientHeader()
-  header.setToken(.gccl, version: packageVersion)
+  var header = _ApiClientHeader.veneer(packageVersion: packageVersion)
+  header.setToken(.rest, version: gaxVersion())
   return header.build()
 }
 

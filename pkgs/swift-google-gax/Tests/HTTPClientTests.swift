@@ -166,7 +166,7 @@ import NIOHTTP1
     #expect(request.headers["authorization"].isEmpty)
     #expect(request.headers["x-goog-api-key"].isEmpty)
     #expect(request.headers["x-goog-user-project"].isEmpty)
-    #expect(request.headers["x-goog-api-client"].isEmpty)
+    #expect(request.headers["x-goog-api-client"] == [client.clientHeader.build()])
     #expect(request.headers["x-goog-request-params"].isEmpty)
     #expect(request.headers["user-agent"].isEmpty)
     #expect(request.headers["Host"] == ["localhost"])
@@ -1063,6 +1063,45 @@ import NIOHTTP1
     var req = try await client.newRequest(path: "/v1/test", query: query)
     req.setMethod(.GET)
     _ = try await req.rpc(GoogleWKT.WKTEmpty.self).get()
+  }
+
+  @Test func clientHeaderDefault() async throws {
+    let endpoint = "http://localhost:1234"
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    let request = try await client.newRequest(path: "/test", query: [])
+    let header = request.headers[_HeaderNames.apiClient].first
+    #expect(header != nil)
+    #expect(header?.contains("gl-swift/") == true)
+    #expect(header?.contains("gax/") == true)
+    #expect(header?.contains("rest/") == true)
+    #expect(header?.contains("grpc/") == false)
+  }
+
+  @Test func clientHeaderCustom() async throws {
+    let endpoint = "http://localhost:1234"
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let customHeader = _ApiClientHeader.gapic(packageVersion: "1.2.3")
+    let client = try _HTTPClient(
+      from: options, withDefaultEndpoint: endpoint, clientHeader: customHeader
+    )
+    let request = try await client.newRequest(path: "/test", query: [])
+    let header = request.headers[_HeaderNames.apiClient].first
+    #expect(header?.contains("gapic/1.2.3") == true)
+    #expect(header?.contains("rest/") == true)
+    #expect(header?.contains("gl-swift/") == true)
+  }
+
+  @Test func clientHeaderAddHeaderReplaces() async throws {
+    let endpoint = "http://localhost:1234"
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    var request = try await client.newRequest(path: "/test", query: [])
+    request.addHeader(name: _HeaderNames.apiClient, value: "legacy/1.0.0")
+    #expect(request.headers[_HeaderNames.apiClient] == ["legacy/1.0.0"])
   }
 
   /// A test response type.

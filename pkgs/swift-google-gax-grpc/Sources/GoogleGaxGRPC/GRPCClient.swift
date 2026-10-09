@@ -42,10 +42,20 @@ public final class _GRPCClient: Sendable {
   let connectionTask: Task<Void, any Error>
   let credentials: GoogleAuth.Credentials
   let quotaProject: String?
+  public let clientHeader: _ApiClientHeader
 
-  public init(from options: ClientOptions, withDefaultEndpoint defaultEndpoint: String) throws {
+  public init(
+    from options: ClientOptions,
+    withDefaultEndpoint defaultEndpoint: String,
+    clientHeader: _ApiClientHeader = .init()
+  ) throws {
     self.credentials = try options.credentials ?? GoogleAuth.Credentials()
     self.quotaProject = options.quotaProject
+    var header = clientHeader
+    header.removeToken(.rest)
+    header.setToken(.grpc, version: PackageVersion.version)
+    header.setToken(.protobuf, version: SwiftProtobuf.Version.versionString)
+    self.clientHeader = header
 
     let rawEndpoint = options.endpoint ?? defaultEndpoint
     let endpointWithScheme = rawEndpoint.contains("://") ? rawEndpoint : "https://\(rawEndpoint)"
@@ -99,7 +109,7 @@ public final class _GRPCClient: Sendable {
   ///   - path: The gRPC method path (e.g. `"/google.storage.control.v2.StorageControl/CreateFolder"`).
   ///   - request: The protobuf request message.
   ///   - options: Request-level options (such as attempt timeout).
-  ///   - clientHeader: The `x-goog-api-client` header value.
+  ///   - clientHeader: The `x-goog-api-client` header value. If omitted, uses the client's configured `clientHeader`.
   ///   - routingParams: A list of `key=value` routing parameters (per AIP-4222) to send in the `x-goog-request-params` header. The parameters must already be percent-encoded by the caller.
   /// - Returns: The protobuf response message.
   @concurrent
@@ -107,7 +117,7 @@ public final class _GRPCClient: Sendable {
     path: String,
     request: Req,
     options: RequestOptions,
-    clientHeader: String,
+    clientHeader: String? = nil,
     routingParams: [String] = []
   ) async throws -> Resp {
     var callOptions = CallOptions.defaults
@@ -133,7 +143,8 @@ public final class _GRPCClient: Sendable {
       metadata.replaceOrAddString(effectiveQuotaProject, forKey: _HeaderNames.userProject)
     }
 
-    metadata.replaceOrAddString(clientHeader, forKey: GoogleGax._HeaderNames.apiClient)
+    let effectiveClientHeader = clientHeader ?? self.clientHeader.build()
+    metadata.replaceOrAddString(effectiveClientHeader, forKey: GoogleGax._HeaderNames.apiClient)
     if !routingParams.isEmpty {
       metadata.replaceOrAddString(
         routingParams.joined(separator: "&"),

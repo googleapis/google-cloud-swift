@@ -27,9 +27,14 @@ import struct AsyncHTTPClient.HTTPClientResponse
   let quotaProject: String?
   let inner: any _HTTPClientProtocol
   let hostHeader: String
+  public let clientHeader: _ApiClientHeader
 
   // Creates a new client.
-  public init(from: ClientOptions, withDefaultEndpoint: String) throws {
+  public init(
+    from: ClientOptions,
+    withDefaultEndpoint: String,
+    clientHeader: _ApiClientHeader = .init()
+  ) throws {
     self.credentials = try from.credentials ?? GoogleAuth.Credentials()
     self.logger = from.logger
     self.quotaProject = from.quotaProject
@@ -40,6 +45,11 @@ import struct AsyncHTTPClient.HTTPClientResponse
       defaultEndpoint: withDefaultEndpoint
     )
     self.inner = HTTPClientHolder()
+    var header = clientHeader
+    if header[.rest] == nil && header[.grpc] == nil {
+      header.setToken(.rest, version: gaxVersion())
+    }
+    self.clientHeader = header
   }
 
   // Creates a new testing client.
@@ -48,7 +58,8 @@ import struct AsyncHTTPClient.HTTPClientResponse
     credentials: (any _CredentialsProtocol)? = nil,
     logger: Logging.Logger? = nil,
     quotaProject: String? = nil,
-    defaultEndpoint: String? = nil
+    defaultEndpoint: String? = nil,
+    clientHeader: _ApiClientHeader = .init()
   ) throws {
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.credentials = try credentials ?? GoogleAuth.Credentials(configuration: .anonymous)
@@ -59,6 +70,11 @@ import struct AsyncHTTPClient.HTTPClientResponse
       endpoint: endpoint,
       defaultEndpoint: defaultEndpoint ?? endpoint
     )
+    var header = clientHeader
+    if header[.rest] == nil && header[.grpc] == nil {
+      header.setToken(.rest, version: gaxVersion())
+    }
+    self.clientHeader = header
   }
 
   @_spi(GoogleCloudInternal) public static func validateEndpoint(_ endpoint: String) throws
@@ -94,6 +110,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
     request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
+    request.setHeader(name: _HeaderNames.apiClient, value: self.clientHeader.build())
   }
 
   public func newRequest(

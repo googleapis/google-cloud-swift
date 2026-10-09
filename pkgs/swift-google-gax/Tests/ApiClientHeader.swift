@@ -41,11 +41,40 @@ import Testing
     let built = header.build()
     #expect(built.contains("gl-swift/"))
     #expect(built.contains("gax/"))
-    #expect(built.contains("rest/"))
+    #expect(!built.contains("rest/"))
     #expect(!built.contains("grpc/"))
     #expect(!built.contains("gapic/"))
     #expect(!built.contains("pb/"))
     #expect(header.description == built)
+  }
+
+  @Test func removeToken() {
+    var header = _ApiClientHeader()
+    header.setToken(.rest, version: "1.0.0")
+    #expect(header.build().contains("rest/1.0.0"))
+    header.removeToken(.rest)
+    #expect(!header.build().contains("rest/"))
+  }
+
+  @Test func subscriptAccess() {
+    var header = _ApiClientHeader()
+    #expect(header[.rest] == nil)
+    header[.rest] = "1.0.0"
+    #expect(header[.rest] == "1.0.0")
+    header[.rest] = nil
+    #expect(header[.rest] == nil)
+  }
+
+  @Test func factoryMethods() {
+    let gapicHeader = _ApiClientHeader.gapic(packageVersion: "0.5.0")
+    #expect(gapicHeader[.gapic] == "0.5.0")
+    #expect(gapicHeader[.rest] == nil)
+    #expect(gapicHeader[.grpc] == nil)
+
+    let veneerHeader = _ApiClientHeader.veneer(packageVersion: "1.0.0")
+    #expect(veneerHeader[.gccl] == "1.0.0")
+    #expect(veneerHeader[.rest] == nil)
+    #expect(veneerHeader[.grpc] == nil)
   }
 
   @Test func customTokens() {

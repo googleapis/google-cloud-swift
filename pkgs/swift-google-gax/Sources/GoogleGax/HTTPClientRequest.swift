@@ -77,7 +77,11 @@ enum _RequestBody: Sendable {
   }
 
   public mutating func addHeader(name: String, value: String) {
-    self.headers.add(name: name, value: value)
+    if name.caseInsensitiveCompare(_HeaderNames.apiClient) == .orderedSame {
+      self.headers.replaceOrAdd(name: name, value: value)
+    } else {
+      self.headers.add(name: name, value: value)
+    }
   }
 
   public mutating func setHeader(name: String, value: String) {
