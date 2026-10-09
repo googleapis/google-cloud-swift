@@ -23,6 +23,7 @@ import Testing
     #expect(got.contains("gl-swift/"), "got=\(got)")
     #expect(got.contains("gapic/\(version)"), "got=\(got)")
     #expect(got.contains("gax/"), "got=\(got)")
+    #expect(got.contains("rest/"), "got=\(got)")
   }
 
   @Test(arguments: ["1.2.3", "2.3.4", "0.0.0-preview"])
@@ -31,14 +32,17 @@ import Testing
     #expect(got.contains("gl-swift/"), "got=\(got)")
     #expect(got.contains("gccl/\(version)"), "got=\(got)")
     #expect(got.contains("gax/"), "got=\(got)")
+    #expect(got.contains("rest/"), "got=\(got)")
   }
 
   @Test func defaultHeader() {
+    #expect(_ApiClientHeader.headerName == "x-goog-api-client")
     let header = _ApiClientHeader()
     let built = header.build()
     #expect(built.contains("gl-swift/"))
     #expect(built.contains("gax/"))
     #expect(!built.contains("grpc/"))
+    #expect(!built.contains("rest/"))
     #expect(!built.contains("gapic/"))
     #expect(!built.contains("pb/"))
     #expect(header.description == built)
@@ -47,6 +51,7 @@ import Testing
   @Test func customTokens() {
     var header = _ApiClientHeader()
     header.setToken(.grpc, version: "1.2.3")
+    header.setToken(.rest, version: "0.5.0")
     header.setToken(.protobuf, version: "1.28.2")
     header.setToken(.custom("auth"), version: "0.5.0")
     header.setToken(.custom("cred-type"), version: "sa")
@@ -54,6 +59,7 @@ import Testing
 
     let str = header.build()
     #expect(str.contains("grpc/1.2.3"))
+    #expect(str.contains("rest/0.5.0"))
     #expect(str.contains("pb/1.28.2"))
     #expect(str.contains("auth/0.5.0"))
     #expect(str.contains("cred-type/sa"))
@@ -72,10 +78,14 @@ import Testing
     var header = _ApiClientHeader()
     header.setToken(.custom("gl-swift"), version: "6.3.0")
     header.setToken(.custom("gax"), version: "9.9.9")
+    header.setToken(.custom("rest"), version: "1.0.0")
     header.setToken(.custom("pb"), version: "1.28.2")
     let built = header.build()
+    let tokens = built.split(separator: " ")
+    #expect(tokens.count == 4)
     #expect(built.contains("gl-swift/6.3.0"))
     #expect(built.contains("gax/9.9.9"))
+    #expect(built.contains("rest/1.0.0"))
     #expect(built.contains("pb/1.28.2"))
   }
 
@@ -96,6 +106,7 @@ import Testing
     header.setToken(.custom("custom"), version: "1.0.0")
     header.setToken(.custom("auth"), version: "0.5.0")
     header.setToken(.protobuf, version: "1.28.2")
+    header.setToken(.rest, version: "0.5.0")
     header.setToken(.grpc, version: "1.60.0")
     header.setToken(.gapic, version: "1.0.0")
     header.setToken(.gccl, version: "2.0.0")
@@ -109,6 +120,7 @@ import Testing
         "gapic",
         "gax",
         "grpc",
+        "rest",
         "pb",
         "auth",
         "custom",

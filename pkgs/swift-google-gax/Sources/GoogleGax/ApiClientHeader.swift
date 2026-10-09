@@ -26,6 +26,7 @@ import Foundation
 /// - `gapic`: Generated GAPIC client library version.
 /// - `gax`: Google API Extensions (GAX) version.
 /// - `grpc`: gRPC transport version.
+/// - `rest`: REST/HTTP transport version.
 /// - `pb`: Swift Protobuf runtime version.
 ///
 /// See [System Parameters](https://docs.cloud.google.com/apis/docs/system-parameters)
@@ -37,6 +38,7 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
     case gapic
     case gax
     case grpc
+    case rest
     case protobuf
     case custom(String)
 
@@ -47,8 +49,23 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
       case .gapic: return "gapic"
       case .gax: return "gax"
       case .grpc: return "grpc"
+      case .rest: return "rest"
       case .protobuf: return "pb"
       case .custom(let name): return name
+      }
+    }
+
+    var normalized: Token {
+      guard case .custom(let name) = self else { return self }
+      switch name {
+      case "gl-swift": return .swiftLanguage
+      case "gccl": return .gccl
+      case "gapic": return .gapic
+      case "gax": return .gax
+      case "grpc": return .grpc
+      case "rest": return .rest
+      case "pb": return .protobuf
+      default: return self
       }
     }
 
@@ -58,7 +75,7 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
       case .gccl: return 1
       case .gapic: return 2
       case .gax: return 3
-      case .grpc: return 4
+      case .grpc, .rest: return 4
       case .protobuf: return 5
       case .custom: return 10
       }
@@ -80,31 +97,13 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
 
   /// Sets or updates a token.
   mutating func setToken(_ token: Token, version: String) {
-    switch token {
-    case .custom(let name):
-      switch name {
-      case "gl-swift": self.tokens[.swiftLanguage] = version
-      case "gccl": self.tokens[.gccl] = version
-      case "gapic": self.tokens[.gapic] = version
-      case "gax": self.tokens[.gax] = version
-      case "grpc": self.tokens[.grpc] = version
-      case "pb": self.tokens[.protobuf] = version
-      default: self.tokens[token] = version
-      }
-    default:
-      self.tokens[token] = version
-    }
+    self.tokens[token.normalized] = version
   }
 
   /// Formats the header into its canonical space-separated string representation.
   func build() -> String {
     self.tokens
-      .sorted { lhs, rhs in
-        if lhs.key.sortRank != rhs.key.sortRank {
-          return lhs.key.sortRank < rhs.key.sortRank
-        }
-        return lhs.key.name < rhs.key.name
-      }
+      .sorted { $0.key < $1.key }
       .map { "\($0.key.name)/\($0.value)" }
       .joined(separator: " ")
   }
@@ -112,9 +111,19 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
   var description: String { self.build() }
 }
 
+extension _ApiClientHeader.Token: Comparable {
+  static func < (lhs: Self, rhs: Self) -> Bool {
+    if lhs.sortRank != rhs.sortRank {
+      return lhs.sortRank < rhs.sortRank
+    }
+    return lhs.name < rhs.name
+  }
+}
+
 @_spi(GoogleCloudInternal)
 public func _gapicApiClientHeader(packageVersion: String) -> String {
   var header = _ApiClientHeader()
+  header.setToken(.rest, version: gaxVersion())
   header.setToken(.gapic, version: packageVersion)
   return header.build()
 }
@@ -122,6 +131,7 @@ public func _gapicApiClientHeader(packageVersion: String) -> String {
 @_spi(GoogleCloudInternal)
 public func _veneerApiClientHeader(packageVersion: String) -> String {
   var header = _ApiClientHeader()
+  header.setToken(.rest, version: gaxVersion())
   header.setToken(.gccl, version: packageVersion)
   return header.build()
 }
