@@ -33,13 +33,6 @@ import Testing
     #expect(got.contains("gax/"), "got=\(got)")
   }
 
-  @Test func apiClientHeaderHelper() {
-    let got = _apiClientHeader(packageVersion: "1.0.0", libraryType: "custom-lib")
-    #expect(got.contains("gl-swift/"))
-    #expect(got.contains("gax/"))
-    #expect(got.contains("custom-lib/1.0.0"))
-  }
-
   @Test func defaultHeader() {
     let header = _ApiClientHeader()
     let built = header.build()

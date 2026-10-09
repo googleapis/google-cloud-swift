@@ -112,21 +112,18 @@ struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
   var description: String { self.build() }
 }
 
-func _apiClientHeader(packageVersion: String, libraryType: String) -> String {
+@_spi(GoogleCloudInternal)
+public func _gapicApiClientHeader(packageVersion: String) -> String {
   var header = _ApiClientHeader()
-  header.setToken(.custom(libraryType), version: packageVersion)
+  header.setToken(.gapic, version: packageVersion)
   return header.build()
 }
 
 @_spi(GoogleCloudInternal)
-public func _gapicApiClientHeader(packageVersion: String) -> String {
-  _apiClientHeader(packageVersion: packageVersion, libraryType: "gapic")
-}
-
-@_spi(GoogleCloudInternal)
 public func _veneerApiClientHeader(packageVersion: String) -> String {
-  // gccl == Google Cloud Client Library
-  _apiClientHeader(packageVersion: packageVersion, libraryType: "gccl")
+  var header = _ApiClientHeader()
+  header.setToken(.gccl, version: packageVersion)
+  return header.build()
 }
 
 // `_SwiftStdlibVersion` was introduced in Swift 5.6. Because this project only
