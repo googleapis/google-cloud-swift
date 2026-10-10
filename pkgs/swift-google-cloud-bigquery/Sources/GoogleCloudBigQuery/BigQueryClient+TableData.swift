@@ -15,7 +15,6 @@
 import Foundation
 import GoogleCloudBigQueryV2
 public import GoogleGax
-import GoogleWKT
 
 extension BigQueryClient {
   /// Reads the rows of a table.
@@ -108,7 +107,7 @@ struct TableDataList: Decodable, Sendable {
   /// The token of the next page; absent or empty on the last page.
   var pageToken: String?
   /// The rows in the `{"f": [{"v": ...}]}` format.
-  var rows: [WKTStruct]?
+  var rows: [WireRow]?
 
   func page(schema: Schema) throws -> Page<Row> {
     Page(

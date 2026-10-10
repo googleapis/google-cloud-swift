@@ -94,20 +94,22 @@ public struct Model: Sendable, Hashable {
   /// try await client.updateModel(Model(id: id), clearing: [.expirationTime, .label("env")])
   /// ```
   public struct Field: Sendable, Hashable {
-    /// The `.`-separated JSON path of the property in the request body.
-    let path: String
+    /// The JSON path of the property in the request body.
+    let path: [String]
 
     /// ``Model/friendlyName``.
-    public static let friendlyName = Field(path: "friendlyName")
+    public static let friendlyName = Field(path: ["friendlyName"])
     /// ``Model/description``.
-    public static let description = Field(path: "description")
+    public static let description = Field(path: ["description"])
     /// ``Model/expirationTime``: the model no longer expires.
-    public static let expirationTime = Field(path: "expirationTime")
+    public static let expirationTime = Field(path: ["expirationTime"])
+    /// ``Model/encryptionConfiguration``.
+    public static let encryptionConfiguration = Field(path: ["encryptionConfiguration"])
     /// All of ``Model/labels``.
-    public static let labels = Field(path: "labels")
+    public static let labels = Field(path: ["labels"])
 
     /// One label, by key.
-    public static func label(_ key: String) -> Field { Field(path: "labels.\(key)") }
+    public static func label(_ key: String) -> Field { Field(path: ["labels", key]) }
   }
 
   /// The kind of a model, for example ``linearRegression``.

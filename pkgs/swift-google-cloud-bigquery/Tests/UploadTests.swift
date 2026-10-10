@@ -314,6 +314,35 @@ private func uploads(_ fake: FakeHTTPTransport) -> [HTTPRequest] {
         chunkSize: quantum)
     }
   }
+
+  // Baseline: U.TableDataWriteChannel.04
+  @Test func rateLimitReasonOnChunkErrorQueriesStatusAndResumes() async throws {
+    let fake = FakeHTTPTransport()
+    enqueueSession(fake)
+    fake.enqueueError(status: 400, reasons: ["rateLimitExceeded"])
+    enqueueIncomplete(fake, received: 4)
+    enqueueJob(fake)
+    let data = bytes(10)
+    let job = try await fake.client().load(
+      .data(data), configuration: LoadJobConfiguration(destinationTable: destination))
+    #expect(job.id.jobID == "upload-job")
+    #expect(
+      uploads(fake).map { $0.headers["content-range"] } == [
+        "bytes 0-9/10", "bytes */10", "bytes 4-9/10",
+      ])
+  }
+
+  // Design: §6.4
+  @Test func finalChunkReturning308WithAllBytesCommittedIsMalformed() async throws {
+    let fake = FakeHTTPTransport()
+    enqueueSession(fake)
+    enqueueIncomplete(fake, received: 10)
+    await #expect(throws: (any Error).self) {
+      try await fake.client().load(
+        .data(bytes(10)), configuration: LoadJobConfiguration(destinationTable: destination))
+    }
+    #expect(uploads(fake).count == 1)
+  }
 }
 
 @Suite struct UploadSourceTests {

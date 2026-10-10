@@ -124,6 +124,8 @@ private let fullDatasetJSON = #"""
       access: [
         Acl(.view(TableID(datasetID: "d2", tableID: "v"))),
         Acl(.routine(RoutineID(datasetID: "d2", routineID: "r"))),
+        Acl(.dataset(DatasetID(datasetID: "d4"), targetTypes: [.views])),
+        Acl(.dataset(DatasetID(projectID: "other", datasetID: "d5"), targetTypes: [.views])),
         Acl(.view(TableID(projectID: "other", datasetID: "d3", tableID: "v"))),
         Acl(.user("u@example.com"), role: .reader),
       ])
@@ -133,6 +135,10 @@ private let fullDatasetJSON = #"""
       resolved.access == [
         Acl(.view(TableID(projectID: "client-project", datasetID: "d2", tableID: "v"))),
         Acl(.routine(RoutineID(projectID: "client-project", datasetID: "d2", routineID: "r"))),
+        Acl(
+          .dataset(
+            DatasetID(projectID: "client-project", datasetID: "d4"), targetTypes: [.views])),
+        Acl(.dataset(DatasetID(projectID: "other", datasetID: "d5"), targetTypes: [.views])),
         Acl(.view(TableID(projectID: "other", datasetID: "d3", tableID: "v"))),
         Acl(.user("u@example.com"), role: .reader),
       ])

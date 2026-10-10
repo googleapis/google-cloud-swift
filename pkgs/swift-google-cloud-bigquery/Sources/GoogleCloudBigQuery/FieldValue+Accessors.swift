@@ -76,7 +76,7 @@ extension FieldValue {
     get throws {
       try self.parse("NUMERIC") { text in
         guard let number = DecimalText(text) else { return nil }
-        return Decimal(string: number.plainText, locale: Locale(identifier: "en_US_POSIX"))
+        return Decimal(string: number.plainText, locale: DecimalText.posixLocale)
       }
     }
   }

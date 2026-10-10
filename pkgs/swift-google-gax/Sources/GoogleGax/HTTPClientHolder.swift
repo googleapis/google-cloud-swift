@@ -27,7 +27,8 @@ import struct Logging.Logger
 /// request is in progress. By the time deinit starts, all starting a call requires having a
 /// reference to the object, so shutdown
 final class HTTPClientHolder: _HTTPClientProtocol {
-  let inner = AsyncHTTPClient.HTTPClient()
+  let inner = AsyncHTTPClient.HTTPClient(
+    configuration: .init(decompression: .enabled(limit: .none)))
   deinit {
     // Use a background task to shutdown the inner client. In most cases, the application will
     // continue running and the HTTPClient is shutdown "eventually". Except for (maybe) some false

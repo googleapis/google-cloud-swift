@@ -57,7 +57,7 @@ public struct BigNumeric: Sendable, Hashable, Codable, LosslessStringConvertible
 
   /// The value as a `Decimal`, rounded to the 38 significant digits that `Decimal` can hold.
   public var decimalValue: Decimal {
-    Decimal(string: self.number.plainText, locale: Locale(identifier: "en_US_POSIX")) ?? 0
+    Decimal(string: self.number.plainText, locale: DecimalText.posixLocale) ?? 0
   }
 
   public static func == (lhs: BigNumeric, rhs: BigNumeric) -> Bool {
@@ -91,6 +91,8 @@ public struct BigNumeric: Sendable, Hashable, Codable, LosslessStringConvertible
 /// The value is `(negative ? -1 : 1) × digits × 10^exponent`. `digits` has no leading or
 /// trailing zeros; zero has no digits, `exponent == 0`, and `negative == false`.
 struct DecimalText: Hashable {
+  static let posixLocale = Locale(identifier: "en_US_POSIX")
+
   var negative: Bool
   var digits: [UInt8]
   var exponent: Int

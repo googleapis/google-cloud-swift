@@ -15,15 +15,46 @@
 /// The schema of a table or query result.
 public struct Schema: Sendable, Hashable, ExpressibleByArrayLiteral {
   /// The top-level columns, in order.
-  public var fields: [Field]
+  public var fields: [Field] {
+    didSet {
+      self.rebuildIndex()
+    }
+  }
+
+  private var exactIndex: [String: Int] = [:]
+  private var lowercaseIndex: [String: Int] = [:]
+  private(set) var childSchemas: [Schema?] = []
 
   /// Creates a schema with `fields`.
   public init(_ fields: [Field]) {
     self.fields = fields
+    self.rebuildIndex()
   }
 
   public init(arrayLiteral elements: Field...) {
     self.init(elements)
+  }
+
+  private mutating func rebuildIndex() {
+    var exact: [String: Int] = [:]
+    var lower: [String: Int] = [:]
+    var children: [Schema?] = []
+    exact.reserveCapacity(self.fields.count)
+    lower.reserveCapacity(self.fields.count)
+    children.reserveCapacity(self.fields.count)
+    for (index, field) in self.fields.enumerated() {
+      if exact[field.name] == nil {
+        exact[field.name] = index
+      }
+      let lowerName = field.name.lowercased()
+      if lower[lowerName] == nil {
+        lower[lowerName] = index
+      }
+      children.append(field.fields.isEmpty ? nil : Schema(field.fields))
+    }
+    self.exactIndex = exact
+    self.lowercaseIndex = lower
+    self.childSchemas = children
   }
 
   /// The position of the column named `name`, or `nil` if there is none.
@@ -31,14 +62,21 @@ public struct Schema: Sendable, Hashable, ExpressibleByArrayLiteral {
   /// Names are matched exactly first, then case-insensitively, because BigQuery column names are
   /// case-insensitive.
   public func index(of name: String) -> Int? {
-    if let index = self.fields.firstIndex(where: { $0.name == name }) { return index }
-    let lowercased = name.lowercased()
-    return self.fields.firstIndex { $0.name.lowercased() == lowercased }
+    if let index = self.exactIndex[name] { return index }
+    return self.lowercaseIndex[name.lowercased()]
   }
 
   /// The column named `name`, or `nil` if there is none.
   public subscript(name: String) -> Field? {
     self.index(of: name).map { self.fields[$0] }
+  }
+
+  public static func == (lhs: Schema, rhs: Schema) -> Bool {
+    lhs.fields == rhs.fields
+  }
+
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(self.fields)
   }
 }
 

@@ -93,8 +93,8 @@ extension Dataset {
     return paths
   }
 
-  /// Returns the dataset with the project filled in, in its ID and in the authorized views
-  /// and routines of its access list.
+  /// Returns the dataset with the project filled in, in its ID and in the authorized views,
+  /// routines, and datasets of its access list.
   func resolved(by client: BigQueryClient) -> Dataset {
     var dataset = self
     dataset.id = client.resolve(self.id)
@@ -108,6 +108,9 @@ extension Dataset {
       case .routine(var routine) where routine.projectID?.isEmpty ?? true:
         routine.projectID = project
         acl.entity = .routine(routine)
+      case .dataset(var authorized, let targetTypes) where authorized.projectID?.isEmpty ?? true:
+        authorized.projectID = project
+        acl.entity = .dataset(authorized, targetTypes: targetTypes)
       default:
         break
       }

@@ -97,6 +97,12 @@ struct UploadReader {
   ///
   /// - Returns: the chunk, and whether no bytes follow it.
   mutating func nextChunk(size: Int) async throws -> (data: Data, isLast: Bool) {
+    if case .data(let data, let offset) = self.input {
+      let end = min(data.count, offset + size)
+      self.input = .data(data, offset: end)
+      let chunk = data.subdata(in: (data.startIndex + offset)..<(data.startIndex + end))
+      return (chunk, end == data.count)
+    }
     // Read one byte more than the chunk so the last chunk is recognized as such.
     while !self.atEnd && self.buffer.count <= size {
       if let more = try await self.read(max: size + 1 - self.buffer.count) {

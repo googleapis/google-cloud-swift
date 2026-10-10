@@ -137,7 +137,7 @@ extension BigQueryClient {
         if let job = try Self.finishedUpload(response) { return job }
         try Self.checkUploadStatus(response)
         committed = try Self.committedBytes(response, chunkStart: offset, chunkEnd: end)
-        if committed == end && !isLast { return nil }
+        if committed == end { return nil }
         // The service kept only part of the chunk: send the rest.
       } catch {
         failures += 1
@@ -189,7 +189,12 @@ extension BigQueryClient {
     case RequestError.io:
       return true
     case let error as UploadStatusError:
-      return [408, 429, 500, 502, 503, 504].contains(error.error.httpStatusCode ?? 0)
+      if [408, 429, 500, 502, 503, 504].contains(error.error.httpStatusCode ?? 0) {
+        return true
+      }
+      return error.error.errors.contains {
+        $0.reason.map(BigQueryRetryErrors.retryableReasons.contains) ?? false
+      }
     default:
       return false
     }

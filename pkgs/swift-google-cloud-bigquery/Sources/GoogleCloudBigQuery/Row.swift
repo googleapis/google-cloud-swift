@@ -77,10 +77,88 @@ public enum FieldValue: Sendable, Equatable {
   case record(Row)
 }
 
+/// One row in the BigQuery REST `{"f": [{"v": ...}]}` format.
+struct WireRow: Decodable, Sendable, Equatable {
+  var f: [WireCell] = []
+
+  private enum CodingKeys: String, CodingKey {
+    case f
+  }
+
+  init(f: [WireCell] = []) {
+    self.f = f
+  }
+
+  init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.f = try container.decodeIfPresent([WireCell].self, forKey: .f) ?? []
+  }
+}
+
+/// One cell `{"v": ...}` in a ``WireRow``.
+struct WireCell: Decodable, Sendable, Equatable {
+  enum Value: Sendable, Equatable {
+    case null
+    case scalar(String)
+    case array([WireCell])
+    case record(WireRow)
+  }
+
+  var v: Value
+
+  private enum CodingKeys: String, CodingKey {
+    case v
+  }
+
+  init(v: Value = .null) {
+    self.v = v
+  }
+
+  init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    guard container.contains(.v), !(try container.decodeNil(forKey: .v)) else {
+      self.v = .null
+      return
+    }
+    if let text = try? container.decode(String.self, forKey: .v) {
+      self.v = .scalar(text)
+    } else if let elements = try? container.decode([WireCell].self, forKey: .v) {
+      self.v = .array(elements)
+    } else if let row = try? container.decode(WireRow.self, forKey: .v) {
+      self.v = .record(row)
+    } else if let bool = try? container.decode(Bool.self, forKey: .v) {
+      self.v = .scalar(bool ? "true" : "false")
+    } else if let number = try? container.decode(Double.self, forKey: .v) {
+      self.v = .scalar(String(number))
+    } else {
+      throw DecodingError.dataCorruptedError(
+        forKey: .v, in: container, debugDescription: "unexpected BigQuery cell value")
+    }
+  }
+}
+
 extension Row {
   /// Converts rows in the BigQuery `{"f": [{"v": ...}]}` format.
-  static func rows(from wire: [WKTStruct], schema: Schema) throws -> [Row] {
+  static func rows(from wire: [WireRow], schema: Schema) throws -> [Row] {
     try wire.map { try Row(wire: $0, schema: schema) }
+  }
+
+  /// Converts one row in the BigQuery `{"f": [{"v": ...}]}` format.
+  init(wire: WireRow, schema: Schema) throws {
+    let cells = wire.f
+    guard cells.count == schema.fields.count else {
+      throw malformedRow("row has \(cells.count) cells but the schema has \(schema.fields.count)")
+    }
+    var values: [FieldValue] = []
+    values.reserveCapacity(cells.count)
+    for index in cells.indices {
+      values.append(
+        try FieldValue(
+          wire: cells[index].v,
+          field: schema.fields[index],
+          childSchema: schema.childSchemas[index]))
+    }
+    self.init(schema: schema, values: values)
   }
 
   /// Converts one row in the BigQuery `{"f": [{"v": ...}]}` format.
@@ -94,19 +172,27 @@ extension Row {
     guard cells.count == schema.fields.count else {
       throw malformedRow("row has \(cells.count) cells but the schema has \(schema.fields.count)")
     }
-    let values = try zip(cells, schema.fields).map { cell, field in
+    var values: [FieldValue] = []
+    values.reserveCapacity(cells.count)
+    for index in cells.indices {
+      let cell = cells[index]
+      let field = schema.fields[index]
       guard case .object(let object) = cell else {
         throw malformedRow("cell for \"\(field.name)\" is not an object")
       }
-      return try FieldValue(wire: object["v"] ?? .null(WKTNullValue()), field: field)
+      values.append(
+        try FieldValue(
+          wire: object["v"] ?? .null(WKTNullValue()),
+          field: field,
+          childSchema: schema.childSchemas[index]))
     }
     self.init(schema: schema, values: values)
   }
 }
 
 extension FieldValue {
-  /// Converts the `v` member of a cell, using `field` to interpret arrays and structs.
-  init(wire: WKTValue, field: Field) throws {
+  /// Converts the `v` member of a ``WireCell``, using `field` to interpret arrays and structs.
+  init(wire: WireCell.Value, field: Field, childSchema: Schema? = nil) throws {
     if field.mode == .repeated {
       switch wire {
       case .null:
@@ -115,12 +201,52 @@ extension FieldValue {
       case .array(let elements):
         var element = field
         element.mode = .nullable
+        let nestedSchema = childSchema ?? (field.fields.isEmpty ? nil : Schema(field.fields))
+        self = .array(
+          try elements.map { item in
+            try FieldValue(wire: item.v, field: element, childSchema: nestedSchema)
+          })
+      default:
+        throw malformedRow("value of repeated field \"\(field.name)\" is not an array")
+      }
+      return
+    }
+    switch wire {
+    case .null:
+      self = .null
+    case .scalar(let value):
+      self = .scalar(value)
+    case .record(let object):
+      guard field.type == .struct else {
+        throw malformedRow("value of \"\(field.name)\" is an object but its type is \(field.type)")
+      }
+      self = .record(
+        try Row(wire: object, schema: childSchema ?? Schema(field.fields)))
+    case .array:
+      throw malformedRow("value of non-repeated field \"\(field.name)\" is an array")
+    }
+  }
+
+  /// Converts the `v` member of a cell, using `field` to interpret arrays and structs.
+  init(wire: WKTValue, field: Field, childSchema: Schema? = nil) throws {
+    if field.mode == .repeated {
+      switch wire {
+      case .null:
+        // BigQuery represents a NULL array as an empty array.
+        self = .array([])
+      case .array(let elements):
+        var element = field
+        element.mode = .nullable
+        let nestedSchema = childSchema ?? (field.fields.isEmpty ? nil : Schema(field.fields))
         self = .array(
           try elements.map { item in
             guard case .object(let object) = item else {
               throw malformedRow("array element of \"\(field.name)\" is not an object")
             }
-            return try FieldValue(wire: object["v"] ?? .null(WKTNullValue()), field: element)
+            return try FieldValue(
+              wire: object["v"] ?? .null(WKTNullValue()),
+              field: element,
+              childSchema: nestedSchema)
           })
       default:
         throw malformedRow("value of repeated field \"\(field.name)\" is not an array")
@@ -140,7 +266,7 @@ extension FieldValue {
       guard field.type == .struct else {
         throw malformedRow("value of \"\(field.name)\" is an object but its type is \(field.type)")
       }
-      self = .record(try Row(wire: object, schema: Schema(field.fields)))
+      self = .record(try Row(wire: object, schema: childSchema ?? Schema(field.fields)))
     case .array:
       throw malformedRow("value of non-repeated field \"\(field.name)\" is an array")
     }

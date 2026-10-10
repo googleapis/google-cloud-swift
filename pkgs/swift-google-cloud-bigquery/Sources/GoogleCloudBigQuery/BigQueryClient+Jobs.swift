@@ -250,6 +250,7 @@ extension BigQueryClient {
   ) async throws -> Job {
     let job = try await self.createJob(configuration, id: id, options: options)
     if let failure = job.failure { throw failure }
+    if job.status.isDone { return job }
     return try await self.waitForJob(job.id, timeout: timeout, options: options)
   }
 }

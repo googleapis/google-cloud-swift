@@ -361,6 +361,19 @@ import Testing
   }
 
   // Design: §10
+  @Test func runJobReturnsImmediatelyWhenCreatedJobIsAlreadyDone() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(
+      json: JobFixtures.job(id: "j", state: "DONE", statistics: #"{"totalSlotMs": "42"}"#))
+    let job = try await fake.client().runJob(
+      .query(QueryJobConfiguration("SELECT 1")), id: JobID(jobID: "j"))
+    #expect(job.id == JobID(projectID: "test-project", jobID: "j"))
+    #expect(job.status.state == .done)
+    #expect(job.statistics?.totalSlotMs == 42)
+    #expect(fake.requests.count == 1)
+  }
+
+  // Design: §10
   @Test func runJobThrowsWhenCreatedJobAlreadyFailed() async throws {
     let fake = FakeHTTPTransport()
     fake.enqueue(json: JobFixtures.job(id: "j", state: "DONE", errorReason: "invalid"))

@@ -15,7 +15,6 @@
 import Foundation
 import GoogleCloudBigQueryV2
 public import GoogleGax
-import GoogleWKT
 
 extension BigQueryClient {
   /// Runs a query and returns its result once it completes.
@@ -223,7 +222,7 @@ extension BigQueryClient {
   ) async throws -> QueryResult {
     var requestID = UUID().uuidString
     let jobCreationMode = configuration.jobCreationMode ?? self.defaultJobCreationMode
-    let response: GoogleCloudBigQueryV2.QueryResponse
+    let response: WireQueryResponse
     do {
       response = try await self.transport.json(
         idempotent: true, options: options,
@@ -236,17 +235,18 @@ extension BigQueryClient {
             path: "/bigquery/v2/projects/\(HTTPRequest.encode(segment: projectID))/queries",
             body: try RequestBody.json(body), options: options)
         },
-        validate: { (response: GoogleCloudBigQueryV2.QueryResponse) in
-          guard response.errors.contains(where: Self.isJobRateLimit) else { return }
+        validate: { (response: WireQueryResponse) in
+          let errors = response.errors ?? []
+          guard errors.contains(where: Self.isJobRateLimit) else { return }
           // The service deduplicates on `requestId`, so a retry must use a new one.
           requestID = UUID().uuidString
-          throw RequestError.jobRateLimited(response.errors)
+          throw RequestError.jobRateLimited(errors)
         })
     } catch let error as BigQueryError {
       throw Self.queryFailure(error, job: nil)
     }
     let jobID = response.jobReference.map(JobID.init(wire:))
-    if let failure = BigQueryError(job: jobID, errorResult: nil, errors: response.errors) {
+    if let failure = BigQueryError(job: jobID, errorResult: nil, errors: response.errors ?? []) {
       throw failure
     }
     if response.jobComplete != true {
@@ -276,10 +276,10 @@ extension BigQueryClient {
       numDMLAffectedRows: response.numDmlAffectedRows,
       dmlStats: response.dmlStats.map(DMLStats.init(wire:)),
       jobID: jobID,
-      queryID: response.queryId.nonEmpty,
-      location: response.location.nonEmpty ?? jobID?.location,
+      queryID: response.queryId?.nonEmpty,
+      location: response.location?.nonEmpty ?? jobID?.location,
       cacheHit: response.cacheHit,
-      statementType: response.statementType.nonEmpty.map(StatementType.init(rawValue:)),
+      statementType: response.statementType?.nonEmpty.map(StatementType.init(rawValue:)),
       jobCreationReason: response.jobCreationReason.flatMap {
         specifiedEnumValue($0.code.stringValue)
       },
@@ -339,7 +339,7 @@ extension BigQueryClient {
     startIndex: UInt64?,
     deadline: ContinuousClock.Instant?,
     options: RequestOptions
-  ) async throws -> GoogleCloudBigQueryV2.GetQueryResultsResponse {
+  ) async throws -> WireGetQueryResultsResponse {
     while true {
       var wait = Self.queryPollInterval
       if let deadline {
@@ -347,7 +347,7 @@ extension BigQueryClient {
         guard remaining > .zero else { throw Self.waitTimeout(id) }
         wait = min(wait, remaining)
       }
-      let response: GoogleCloudBigQueryV2.GetQueryResultsResponse
+      let response: WireGetQueryResultsResponse
       do {
         response = try await self.queryResultsPage(
           id, pageToken: nil, startIndex: startIndex, pageSize: pageSize, timeout: wait,
@@ -359,7 +359,7 @@ extension BigQueryClient {
         }
         throw error
       }
-      if let failure = BigQueryError(job: id, errorResult: nil, errors: response.errors) {
+      if let failure = BigQueryError(job: id, errorResult: nil, errors: response.errors ?? []) {
         throw failure
       }
       if response.jobComplete == true { return response }
@@ -374,7 +374,7 @@ extension BigQueryClient {
     pageSize: Int64?,
     timeout: Duration?,
     options: RequestOptions
-  ) async throws -> GoogleCloudBigQueryV2.GetQueryResultsResponse {
+  ) async throws -> WireGetQueryResultsResponse {
     var query = Self.locationQuery(id)
     query.append(RowFormat.queryItem)
     if let pageToken { query.append(URLQueryItem(name: "pageToken", value: pageToken)) }
@@ -415,35 +415,76 @@ extension BigQueryClient {
           jobID, pageToken: token, startIndex: nil, pageSize: pageSize, timeout: nil,
           options: options)
         return Page(
-          items: try Row.rows(from: response.rows, schema: schema),
-          nextPageToken: response.pageToken.nonEmpty)
+          items: try Row.rows(from: response.rows ?? [], schema: schema),
+          nextPageToken: response.pageToken?.nonEmpty)
       })
   }
+}
+
+/// Wire representation of `jobs.query` that decodes `rows` directly as `[WireRow]` instead of
+/// `[GoogleWKT.WKTStruct]`.
+private struct WireQueryResponse: Decodable, Sendable {
+  var schema: GoogleCloudBigQueryV2.TableSchema?
+  var jobReference: GoogleCloudBigQueryV2.JobReference?
+  var jobCreationReason: GoogleCloudBigQueryV2.JobCreationReason?
+  var queryId: String?
+  var location: String?
+  var totalRows: UInt64?
+  var pageToken: String?
+  var rows: [WireRow]?
+  var totalBytesProcessed: Int64?
+  var totalBytesBilled: Int64?
+  var totalSlotMs: Int64?
+  var jobComplete: Bool?
+  var errors: [GoogleCloudBigQueryV2.ErrorProto]?
+  var cacheHit: Bool?
+  var numDmlAffectedRows: Int64?
+  var sessionInfo: GoogleCloudBigQueryV2.SessionInfo?
+  var dmlStats: GoogleCloudBigQueryV2.DmlStats?
+  var creationTime: Int64?
+  var startTime: Int64?
+  var endTime: Int64?
+  var statementType: String?
+}
+
+/// Wire representation of `jobs.getQueryResults` that decodes `rows` directly as `[WireRow]`
+/// instead of `[GoogleWKT.WKTStruct]`.
+private struct WireGetQueryResultsResponse: Decodable, Sendable {
+  var schema: GoogleCloudBigQueryV2.TableSchema?
+  var jobReference: GoogleCloudBigQueryV2.JobReference?
+  var totalRows: UInt64?
+  var pageToken: String?
+  var rows: [WireRow]?
+  var totalBytesProcessed: Int64?
+  var jobComplete: Bool?
+  var errors: [GoogleCloudBigQueryV2.ErrorProto]?
+  var cacheHit: Bool?
+  var numDmlAffectedRows: Int64?
 }
 
 /// The parts of a `jobs.query` or `getQueryResults` response that describe a page of results.
 private struct QueryPage {
   var schema: Schema?
   var totalRows: UInt64?
-  var rows: [GoogleWKT.WKTStruct]
+  var rows: [WireRow]
   var pageToken: String?
   var numDMLAffectedRows: Int64?
   var cacheHit: Bool?
 
-  init(_ response: GoogleCloudBigQueryV2.QueryResponse) {
+  init(_ response: WireQueryResponse) {
     self.schema = response.schema.map(Schema.init(wire:))
     self.totalRows = response.totalRows
-    self.rows = response.rows
-    self.pageToken = response.pageToken.nonEmpty
+    self.rows = response.rows ?? []
+    self.pageToken = response.pageToken?.nonEmpty
     self.numDMLAffectedRows = response.numDmlAffectedRows
     self.cacheHit = response.cacheHit
   }
 
-  init(_ response: GoogleCloudBigQueryV2.GetQueryResultsResponse) {
+  init(_ response: WireGetQueryResultsResponse) {
     self.schema = response.schema.map(Schema.init(wire:))
     self.totalRows = response.totalRows
-    self.rows = response.rows
-    self.pageToken = response.pageToken.nonEmpty
+    self.rows = response.rows ?? []
+    self.pageToken = response.pageToken?.nonEmpty
     self.numDMLAffectedRows = response.numDmlAffectedRows
     self.cacheHit = response.cacheHit
   }

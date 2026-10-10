@@ -156,6 +156,9 @@ fileprivate struct InternalKeyedContainer<K: CodingKey> {
       let decoder = DecodeToDefault()
       return try T(from: decoder)
     }
+    if type == String.self {
+      return try self.impl.decode(String.self, forKey: key) as! T
+    }
     if type == Data.self {
       // Data is encoded as a base64 string. It seems odd, but this is how one specializes
       // the decoding of an specific type. For an example see:
@@ -205,8 +208,32 @@ extension InternalKeyedContainer: KeyedDecodingContainerProtocol {
     return try self.impl.superDecoder(forKey: key)
   }
 
+  func decode(_ type: String.Type, forKey key: Self.Key) throws -> String {
+    if !self.impl.contains(key) {
+      return ""
+    }
+    return try self.impl.decode(String.self, forKey: key)
+  }
+
   func decode<T: Decodable>(_ type: T.Type, forKey key: Self.Key) throws -> T {
     return try decodeGeneric(type, forKey: key)
+  }
+
+  func decodeIfPresent(_ type: String.Type, forKey key: Self.Key) throws -> String? {
+    return try self.impl.decodeIfPresent(String.self, forKey: key)
+  }
+
+  func decodeIfPresent<T: Decodable>(_ type: T.Type, forKey key: Self.Key) throws -> T? {
+    guard self.impl.contains(key), !(try self.impl.decodeNil(forKey: key)) else {
+      return nil
+    }
+    if type == String.self {
+      return try self.impl.decode(String.self, forKey: key) as? T
+    }
+    if type == Data.self {
+      return try decodeData(forKey: key) as? T
+    }
+    return try self.impl.decode(Interceptor<T>.self, forKey: key).inner
   }
 
   func decodeNil(forKey key: K) throws -> Bool {
@@ -239,7 +266,12 @@ extension InternalUnkeyedDecodingContainer: UnkeyedDecodingContainer {
     return try self.impl.decodeNil()
   }
 
+  mutating func decode(_ type: String.Type) throws -> String {
+    return try self.impl.decode(String.self)
+  }
+
   mutating func decode<T: Decodable>(_ type: T.Type) throws -> T {
+    if type == String.self { return try self.impl.decode(String.self) as! T }
     if type == Data.self { return try self.decodeData() as! T }
     return try self.impl.decode(Interceptor<T>.self).inner
   }

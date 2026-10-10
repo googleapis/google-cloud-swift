@@ -100,7 +100,7 @@ extension BigQueryClient {
     if let etag { headers["If-Match"] = etag }
     let body = try RequestBody.json(
       model.wire,
-      setting: Dictionary(uniqueKeysWithValues: clearing.map { ($0.path, .null) }),
+      settingPaths: Dictionary(uniqueKeysWithValues: clearing.map { ($0.path, .null) }),
       omitting: model.omittedWireDefaults)
     let request = HTTPRequest(
       method: .patch, path: model.id.resourcePath,

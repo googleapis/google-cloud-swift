@@ -128,7 +128,7 @@ private let fullModelJSON = #"""
     self.fake.enqueue(json: self.modelJSON)
     _ = try await self.fake.client().updateModel(
       Model(id: self.id, description: "new", labels: ["a": "1"]),
-      clearing: [.expirationTime, .label("b")])
+      clearing: [.expirationTime, .encryptionConfiguration, .label("b.c")])
     let request = try #require(self.fake.requests.first)
     #expect(request.method == .patch)
     #expect(request.path == self.path)
@@ -140,8 +140,9 @@ private let fullModelJSON = #"""
       ])
     #expect(body["description"] as? String == "new")
     #expect(body["expirationTime"] is NSNull)
+    #expect(body["encryptionConfiguration"] is NSNull)
     #expect((body["labels"] as? [String: Any])?["a"] as? String == "1")
-    #expect((body["labels"] as? [String: Any])?["b"] is NSNull)
+    #expect((body["labels"] as? [String: Any])?["b.c"] is NSNull)
     #expect(body["friendlyName"] == nil)
   }
 

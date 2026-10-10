@@ -91,6 +91,7 @@ public struct PagedSequence<Element: Sendable>: AsyncSequence, Sendable {
 
     public mutating func next() async throws -> Element? {
       while self.index >= self.buffer.count {
+        self.buffer = []
         guard let page = try await self.pages.next() else { return nil }
         self.buffer = page.items
         self.index = 0
@@ -117,18 +118,17 @@ extension PagedSequence {
     /// Iterates over the pages of a ``PagedSequence``.
     public struct AsyncIterator: AsyncIteratorProtocol {
       enum State {
-        case start
+        case start(Page<Item>?)
         case next(String)
         case done
       }
 
-      let firstPage: Page<Item>?
       let fetch: PagedSequence<Item>.Fetch
-      var state = State.start
+      var state: State
 
       init(firstPage: Page<Item>?, fetch: @escaping PagedSequence<Item>.Fetch) {
-        self.firstPage = firstPage
         self.fetch = fetch
+        self.state = .start(firstPage)
       }
 
       public mutating func next() async throws -> Page<Item>? {
@@ -136,8 +136,9 @@ extension PagedSequence {
         switch self.state {
         case .done:
           return nil
-        case .start:
-          if let firstPage = self.firstPage {
+        case .start(let firstPage):
+          self.state = .done
+          if let firstPage {
             page = firstPage
           } else {
             page = try await self.fetch(nil)
