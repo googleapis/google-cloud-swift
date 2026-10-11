@@ -26,6 +26,15 @@ enum RowFormat {
   static let queryItem = URLQueryItem(
     name: "formatOptions.timestampOutputFormat", value: "ISO8601_STRING")
 
+  /// The `formatOptions` query items for a known `schema`.
+  ///
+  /// When `schema` is known and contains no `TIMESTAMP` columns, omitting
+  /// `formatOptions.timestampOutputFormat=ISO8601_STRING` avoids server-side formatting overhead on
+  /// large result sets.
+  static func queryItems(for schema: Schema?) -> [URLQueryItem] {
+    schema?.hasTimestamp == false ? [] : [Self.queryItem]
+  }
+
   /// The `formatOptions` field for `jobs.query`.
   static let formatOptions = GoogleCloudBigQueryV2.DataFormatOptions().with {
     $0.timestampOutputFormat = .iso8601String

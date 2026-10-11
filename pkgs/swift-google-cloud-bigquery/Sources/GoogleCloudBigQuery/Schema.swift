@@ -24,6 +24,7 @@ public struct Schema: Sendable, Hashable, ExpressibleByArrayLiteral {
   private var exactIndex: [String: Int] = [:]
   private var lowercaseIndex: [String: Int] = [:]
   private(set) var childSchemas: [Schema?] = []
+  private(set) var hasTimestamp: Bool = false
 
   /// Creates a schema with `fields`.
   public init(_ fields: [Field]) {
@@ -39,6 +40,7 @@ public struct Schema: Sendable, Hashable, ExpressibleByArrayLiteral {
     var exact: [String: Int] = [:]
     var lower: [String: Int] = [:]
     var children: [Schema?] = []
+    var containsTimestamp = false
     exact.reserveCapacity(self.fields.count)
     lower.reserveCapacity(self.fields.count)
     children.reserveCapacity(self.fields.count)
@@ -50,11 +52,20 @@ public struct Schema: Sendable, Hashable, ExpressibleByArrayLiteral {
       if lower[lowerName] == nil {
         lower[lowerName] = index
       }
-      children.append(field.fields.isEmpty ? nil : Schema(field.fields))
+      let child = field.fields.isEmpty ? nil : Schema(field.fields)
+      children.append(child)
+      if field.type == .timestamp
+        || (field.type == .range
+          && (field.rangeElementType == .timestamp || field.rangeElementType == nil))
+        || (child?.hasTimestamp == true)
+      {
+        containsTimestamp = true
+      }
     }
     self.exactIndex = exact
     self.lowercaseIndex = lower
     self.childSchemas = children
+    self.hasTimestamp = containsTimestamp
   }
 
   /// The position of the column named `name`, or `nil` if there is none.

@@ -30,11 +30,20 @@ public import Foundation
 /// Unfortunately the system types conforming to the `Decoder` protocol are not public, they cannot be named to implement
 /// any wrapper types. The approach is to use an `Interceptor<T>` type that implements `Decodable` and wraps the `any Decoder`
 /// it receives.
+/// Marker protocol for `Decodable` types that use standard JSON encoding and do not require
+/// `ProtoJSON` key/type interception. `_ProtoJSONDecoder` decodes conforming types directly
+/// through the underlying `Foundation.JSONDecoder` container without per-element `Interceptor`
+/// wrapping.
+@_spi(GoogleCloudInternal) public protocol _RawJSONDecodable: Decodable {}
+
 @_spi(GoogleCloudInternal) final public class _ProtoJSONDecoder {
   public init() {}
 
   public func decode<T>(_ type: T.Type, from: Data) throws -> T where T: Decodable {
     let decoder = JSONDecoder()
+    if T.self is any _RawJSONDecodable.Type {
+      return try decoder.decode(T.self, from: from)
+    }
     let proto = try decoder.decode(Interceptor<T>.self, from: from)
     return proto.inner
   }
@@ -165,6 +174,9 @@ fileprivate struct InternalKeyedContainer<K: CodingKey> {
       //    https://github.com/swiftlang/swift-foundation/blob/3ab2e47da6a290dbdaefd07429b7a9645c5e592f/Sources/FoundationEssentials/JSON/JSONDecoder.swift#L644-L646    let string = try self.decode(String.self)
       return try decodeData(forKey: key) as! T
     }
+    if T.self is any _RawJSONDecodable.Type {
+      return try self.impl.decode(T.self, forKey: key)
+    }
     return try self.impl.decode(Interceptor<T>.self, forKey: key).inner
   }
 
@@ -233,6 +245,9 @@ extension InternalKeyedContainer: KeyedDecodingContainerProtocol {
     if type == Data.self {
       return try decodeData(forKey: key) as? T
     }
+    if T.self is any _RawJSONDecodable.Type {
+      return try self.impl.decode(T.self, forKey: key)
+    }
     return try self.impl.decode(Interceptor<T>.self, forKey: key).inner
   }
 
@@ -273,6 +288,9 @@ extension InternalUnkeyedDecodingContainer: UnkeyedDecodingContainer {
   mutating func decode<T: Decodable>(_ type: T.Type) throws -> T {
     if type == String.self { return try self.impl.decode(String.self) as! T }
     if type == Data.self { return try self.decodeData() as! T }
+    if T.self is any _RawJSONDecodable.Type {
+      return try self.impl.decode(T.self)
+    }
     return try self.impl.decode(Interceptor<T>.self).inner
   }
 

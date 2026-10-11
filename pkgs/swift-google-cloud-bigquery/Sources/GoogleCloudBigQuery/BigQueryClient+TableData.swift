@@ -15,6 +15,7 @@
 import Foundation
 import GoogleCloudBigQueryV2
 public import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleWKT
 
 extension BigQueryClient {
   /// Reads the rows of a table.
@@ -57,8 +58,9 @@ extension BigQueryClient {
     }
     let transport = self.transport
     let path = Self.tableResourcePath(id) + "/data"
+    let formatQuery = RowFormat.queryItems(for: rowSchema)
     let fetch = { @Sendable (token: String?, startIndex: UInt64?) async throws -> TableDataList in
-      var query = [RowFormat.queryItem]
+      var query = formatQuery
       if let pageSize { query.append(URLQueryItem(name: "maxResults", value: String(pageSize))) }
       if let token { query.append(URLQueryItem(name: "pageToken", value: token)) }
       if let startIndex {
@@ -101,7 +103,7 @@ extension BigQueryClient {
 }
 
 /// The response of `tabledata.list`, which the generated protos do not define (design §13).
-struct TableDataList: Decodable, Sendable {
+struct TableDataList: _RawJSONDecodable, Sendable {
   /// The total number of rows in the table, as a decimal string.
   var totalRows: String?
   /// The token of the next page; absent or empty on the last page.

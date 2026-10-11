@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import GoogleGax
-import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKT
 
 /// One row of a table or query result.
 ///
@@ -78,7 +78,7 @@ public enum FieldValue: Sendable, Equatable {
 }
 
 /// One row in the BigQuery REST `{"f": [{"v": ...}]}` format.
-struct WireRow: Decodable, Sendable, Equatable {
+struct WireRow: _RawJSONDecodable, Sendable, Equatable {
   var f: [WireCell] = []
 
   private enum CodingKeys: String, CodingKey {
@@ -96,7 +96,7 @@ struct WireRow: Decodable, Sendable, Equatable {
 }
 
 /// One cell `{"v": ...}` in a ``WireRow``.
-struct WireCell: Decodable, Sendable, Equatable {
+struct WireCell: _RawJSONDecodable, Sendable, Equatable {
   enum Value: Sendable, Equatable {
     case null
     case scalar(String)
@@ -116,12 +116,10 @@ struct WireCell: Decodable, Sendable, Equatable {
 
   init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    guard container.contains(.v), !(try container.decodeNil(forKey: .v)) else {
-      self.v = .null
-      return
-    }
     if let text = try? container.decode(String.self, forKey: .v) {
       self.v = .scalar(text)
+    } else if (try? container.decodeNil(forKey: .v)) != false {
+      self.v = .null
     } else if let elements = try? container.decode([WireCell].self, forKey: .v) {
       self.v = .array(elements)
     } else if let row = try? container.decode(WireRow.self, forKey: .v) {

@@ -487,9 +487,27 @@ import Testing
     let formatOptions = body["formatOptions"] as? [String: Any]
     #expect(formatOptions?["timestampOutputFormat"] as? String == "ISO8601_STRING")
     #expect(formatOptions?["useInt64Timestamp"] as? Bool == false)
-    #expect(
-      fake.requests[1].queryValue("formatOptions.timestampOutputFormat") == "ISO8601_STRING")
+    #expect(fake.requests[1].queryValue("formatOptions.timestampOutputFormat") == nil)
     #expect(fake.requests[1].queryValue("formatOptions.useInt64Timestamp") == nil)
+
+    let timestampFake = FakeHTTPTransport()
+    timestampFake.enqueue(
+      json: #"""
+        {"jobComplete": true, "jobReference": {"projectId": "test-project", "jobId": "j"},
+         "schema": {"fields": [{"name": "ts", "type": "TIMESTAMP"}]}, "totalRows": "2",
+         "pageToken": "t", "rows": [{"f": [{"v": "2026-01-01T00:00:00Z"}]}]}
+        """#)
+    timestampFake.enqueue(
+      json: #"""
+        {"jobComplete": true, "jobReference": {"projectId": "test-project", "jobId": "j"},
+         "schema": {"fields": [{"name": "ts", "type": "TIMESTAMP"}]}, "totalRows": "2",
+         "rows": [{"f": [{"v": "2026-01-02T00:00:00Z"}]}]}
+        """#)
+    let tsResult = try await timestampFake.client().query("SELECT ts FROM t")
+    _ = try await tsResult.rows.collect()
+    #expect(
+      timestampFake.requests[1].queryValue("formatOptions.timestampOutputFormat")
+        == "ISO8601_STRING")
   }
 
   // Baseline: U.TableResult.01
@@ -540,6 +558,41 @@ import Testing
     #expect(result.schema?.fields.map(\.name) == ["name"])
     #expect(result.totalRows == 0)
     #expect(try await result.rows.collect().isEmpty)
+  }
+
+  @Test func slowPathPollsWithZeroMaxResultsAndReadsDestinationTable() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(json: JobFixtures.job(id: "q", state: "RUNNING"))
+    fake.enqueue(json: JobFixtures.queryResults(id: "q", rows: [], totalRows: 2))
+    fake.enqueue(
+      json: JobFixtures.job(
+        id: "q",
+        configuration: #"""
+          {"query": {"query": "SELECT name FROM t",
+                     "destinationTable": {"projectId": "test-project", "datasetId": "_anon", "tableId": "dest"}}}
+          """#,
+        statistics: #"{"query": {"statementType": "SELECT"}}"#))
+    fake.enqueue(
+      json: #"{"totalRows": "2", "pageToken": "p2", "rows": [{"f": [{"v": "a"}]}]}"#)
+    fake.enqueue(
+      json: #"{"totalRows": "2", "rows": [{"f": [{"v": "b"}]}]}"#)
+    var configuration = self.slowConfiguration()
+    configuration.maxResults = 1
+    let result = try await fake.client().query(configuration)
+    #expect(try await self.names(result) == ["a", "b"])
+    #expect(result.totalRows == 2)
+    #expect(fake.requests.count == 5)
+    #expect(fake.requests[1].path == "/bigquery/v2/projects/test-project/queries/q")
+    #expect(fake.requests[1].queryValue("maxResults") == "0")
+    #expect(
+      fake.requests[3].path
+        == "/bigquery/v2/projects/test-project/datasets/_anon/tables/dest/data")
+    #expect(fake.requests[3].queryValue("maxResults") == "1")
+    #expect(
+      fake.requests[4].path
+        == "/bigquery/v2/projects/test-project/datasets/_anon/tables/dest/data")
+    #expect(fake.requests[4].queryValue("pageToken") == "p2")
+    #expect(fake.requests[4].queryValue("maxResults") == "1")
   }
 
   // Baseline: U.Job.05

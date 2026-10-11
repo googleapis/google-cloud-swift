@@ -48,7 +48,7 @@ import Testing
     let dataRequest = fake.requests[1]
     #expect(dataRequest.method == .get)
     #expect(dataRequest.path == "\(Self.tablePath)/data")
-    #expect(dataRequest.queryValue("formatOptions.timestampOutputFormat") == "ISO8601_STRING")
+    #expect(dataRequest.queryValue("formatOptions.timestampOutputFormat") == nil)
     #expect(dataRequest.queryValue("formatOptions.useInt64Timestamp") == nil)
     #expect(dataRequest.queryValue("startIndex") == nil)
     #expect(dataRequest.queryValue("maxResults") == nil)
@@ -104,7 +104,30 @@ import Testing
     #expect(next.queryValue("startIndex") == nil)
     #expect(next.queryValue("maxResults") == "2")
     #expect(next.queryValue("selectedFields") == "name")
-    #expect(next.queryValue("formatOptions.timestampOutputFormat") == "ISO8601_STRING")
+    #expect(next.queryValue("formatOptions.timestampOutputFormat") == nil)
+  }
+
+  @Test func listRowsRequestsISO8601TimestampsWhenSchemaHasTimestamp() async throws {
+    let fake = FakeHTTPTransport()
+    fake.enqueue(
+      json:
+        #"{"totalRows": "2", "pageToken": "p2", "rows": [{"f": [{"v": {"f": [{"v": "2026-01-01T00:00:00Z"}]}}]}]}"#
+    )
+    fake.enqueue(
+      json:
+        #"{"totalRows": "2", "rows": [{"f": [{"v": {"f": [{"v": "2026-01-02T00:00:00Z"}]}}]}]}"#
+    )
+    let schema = Schema([
+      Field("event", .struct, fields: [Field("ts", .timestamp)])
+    ])
+    let rows = try await fake.client().listRows(
+      in: TableID(datasetID: "d", tableID: "t"), schema: schema)
+    _ = try await rows.collect()
+    #expect(fake.requests.count == 2)
+    #expect(
+      fake.requests[0].queryValue("formatOptions.timestampOutputFormat") == "ISO8601_STRING")
+    #expect(
+      fake.requests[1].queryValue("formatOptions.timestampOutputFormat") == "ISO8601_STRING")
   }
 
   // Design: §7(g)
