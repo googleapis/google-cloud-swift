@@ -55,7 +55,7 @@ public struct RequestOptions: Sendable {
   /// idempotency depends on the request parameters. And in some services, `POST` or `DELETE`
   /// requests are idempotent though in general they might not be. Use this setting to override the
   /// default.
-  public var idempotency: Bool? = nil
+  public var idempotent: Bool? = nil
 
   /// Overrides the default retry policy.
   ///

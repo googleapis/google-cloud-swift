@@ -53,7 +53,7 @@ func sample(projectId: String) async throws {
   // snippet.idempotency [START swift_override_retry_policy_idempotency]
   let retried = RequestOptions().with {
     $0.retryPolicy = BaseRetryPolicy.unbounded().withTimeLimit(.seconds(30))
-    $0.idempotency = true
+    $0.idempotent = true
   }
   try await slowerClient.deleteSecret(
     request: DeleteSecretRequest().with {

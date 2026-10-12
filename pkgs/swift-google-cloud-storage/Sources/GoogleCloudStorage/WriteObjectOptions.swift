@@ -538,7 +538,7 @@ public struct WriteObjectOptions: Sendable {
   ///
   /// Set this property to `true` to force single-shot uploads without preconditions to be
   /// retried on transient errors, or `false` to suppress retries even when preconditions are present.
-  public var idempotency: Bool? = nil
+  public var idempotent: Bool? = nil
 
   public static var `default`: WriteObjectOptions { WriteObjectOptions() }
 
@@ -567,7 +567,7 @@ extension WriteObjectOptions {
     copy.resumePolicy = self.resumePolicy ?? defaults.resumePolicy
     copy.backoffPolicy = self.backoffPolicy ?? defaults.backoffPolicy
     copy.quotaProject = self.quotaProject ?? defaults.quotaProject
-    copy.idempotency = self.idempotency ?? defaults.idempotency
+    copy.idempotent = self.idempotent ?? defaults.idempotent
     return copy
   }
 

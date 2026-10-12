@@ -34,7 +34,7 @@ import Testing
     #expect(options.resumePolicy == nil)
     #expect(options.backoffPolicy == nil)
     #expect(options.quotaProject == nil)
-    #expect(options.idempotency == nil)
+    #expect(options.idempotent == nil)
 
     let effectiveOptions = options.withDefaults(.default)
     #expect(
@@ -93,7 +93,7 @@ import Testing
       $0.resumePolicy = NeverResume<WriteObjectDetails>()
       $0.backoffPolicy = ExponentialBackoff()
       $0.quotaProject = "default-upload-quota"
-      $0.idempotency = true
+      $0.idempotent = true
     }
 
     let resolved = WriteObjectOptions().withDefaults(defaults)
@@ -109,7 +109,7 @@ import Testing
     #expect(resolved.backoffPolicy is ExponentialBackoff)
     #expect(resolved.quotaProject == "default-upload-quota")
     #expect(resolved.requestOptions.quotaProject == "default-upload-quota")
-    #expect(resolved.idempotency == true)
+    #expect(resolved.idempotent == true)
   }
 
   @Test func writeObjectOptionsWithDefaultsOverridesAllProperties() throws {
@@ -127,7 +127,7 @@ import Testing
       $0.resumePolicy = NeverResume<WriteObjectDetails>()
       $0.backoffPolicy = ExponentialBackoff()
       $0.quotaProject = "default-upload-quota"
-      $0.idempotency = true
+      $0.idempotent = true
     }
 
     let options = WriteObjectOptions().with {
@@ -141,7 +141,7 @@ import Testing
       $0.predefinedAcl = .publicRead
       $0.resumePolicy = AlwaysResume<WriteObjectDetails>.unbounded()
       $0.quotaProject = "override-upload-quota"
-      $0.idempotency = false
+      $0.idempotent = false
     }
 
     let resolved = options.withDefaults(defaults)
@@ -157,6 +157,6 @@ import Testing
     #expect(resolved.backoffPolicy is ExponentialBackoff)
     #expect(resolved.quotaProject == "override-upload-quota")
     #expect(resolved.requestOptions.quotaProject == "override-upload-quota")
-    #expect(resolved.idempotency == false)
+    #expect(resolved.idempotent == false)
   }
 }

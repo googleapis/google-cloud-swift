@@ -77,7 +77,7 @@ apply to that request only, and take precedence over the client configuration.
 Because the idempotency heuristic is conservative, some requests are never
 retried even though the service documents them as safe to repeat. A delete
 request guarded by an etag is one example: repeating it cannot delete a
-different version of the resource. Use `idempotency` to tell the library the
+different version of the resource. Use `idempotent` to tell the library the
 request is safe to retry:
 
 @Snippet(path: "OverrideRetryPolicy", slice: "idempotency")

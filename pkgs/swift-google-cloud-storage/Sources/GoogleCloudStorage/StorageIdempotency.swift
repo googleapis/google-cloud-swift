@@ -23,8 +23,8 @@ func resolveStorageIdempotency(
   options: GoogleGax.RequestOptions
 ) -> GoogleGax.RequestOptions {
   var options = options
-  let effectiveIdempotency = options.idempotency ?? isIdempotent
-  options.idempotency = effectiveIdempotency
+  let effectiveIdempotency = options.idempotent ?? isIdempotent
+  options.idempotent = effectiveIdempotency
   if isMutating && effectiveIdempotency {
     if options.headers[idempotencyToken] == nil {
       options.headers[idempotencyToken] = UUID().uuidString

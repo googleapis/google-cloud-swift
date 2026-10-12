@@ -85,7 +85,7 @@ import Testing
   ])
   func idempotencyInitialization(override: Bool?, heuristic: Bool, want: Bool) {
     let defaultOptions = ClientOptions()
-    let requestOptions = RequestOptions().with { $0.idempotency = override }
+    let requestOptions = RequestOptions().with { $0.idempotent = override }
     let loop = _RetryLoop(
       options: requestOptions, withDefault: defaultOptions, idempotent: heuristic)
     #expect(loop.idempotent == want)

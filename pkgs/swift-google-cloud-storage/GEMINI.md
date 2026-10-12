@@ -102,8 +102,8 @@ func resolveStorageIdempotency(
   options: GoogleGax.RequestOptions
 ) -> GoogleGax.RequestOptions {
   var options = options
-  let effectiveIdempotency = options.idempotency ?? isIdempotent
-  options.idempotency = effectiveIdempotency
+  let effectiveIdempotency = options.idempotent ?? isIdempotent
+  options.idempotent = effectiveIdempotency
   if isMutating && effectiveIdempotency {
     if options.headers[idempotencyToken] == nil {
       options.headers[idempotencyToken] = UUID().uuidString
@@ -114,7 +114,7 @@ func resolveStorageIdempotency(
 ```
 
 Key behaviors:
-- **Caller Overrides**: If the caller explicitly sets `options.idempotency`, that choice takes precedence over the default rule.
+- **Caller Overrides**: If the caller explicitly sets `options.idempotent`, that choice takes precedence over the default rule.
 - **Token Injection**: Mutating requests that evaluate to idempotent automatically receive a unique idempotency token header (`x-goog-gcs-idempotency-token`) if not already present. This ensures the Storage service can join retries to the original request across network attempts.
 
 ---
@@ -123,7 +123,7 @@ Key behaviors:
 
 All idempotency hooks must be verified with unit tests in `Tests/StorageIdempotencyTests.swift`:
 
-- Test default / unconditioned requests (verifying `idempotency == false` and token header is absent for non-idempotent operations).
-- Test conditioned requests (verifying `idempotency == true` and token header is present when preconditions are met).
-- Test explicit caller overrides via `RequestOptions.with { $0.idempotency = ... }`.
+- Test default / unconditioned requests (verifying `idempotent == false` and token header is absent for non-idempotent operations).
+- Test conditioned requests (verifying `idempotent == true` and token header is present when preconditions are met).
+- Test explicit caller overrides via `RequestOptions.with { $0.idempotent = ... }`.
 - Test that caller-supplied idempotency tokens are preserved and not overwritten.

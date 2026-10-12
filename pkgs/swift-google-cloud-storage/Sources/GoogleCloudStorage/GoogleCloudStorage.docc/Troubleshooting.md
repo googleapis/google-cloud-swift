@@ -235,10 +235,10 @@ To make single-shot uploads safe to retry automatically:
   }
   ```
 - Set `ifGenerationMatch = existingObject.generation` when updating a known object revision.
-- Or, if overwriting without preconditions is acceptable for your workload, explicitly opt into retries by setting ``WriteObjectOptions/idempotency`` to `true`:
+- Or, if overwriting without preconditions is acceptable for your workload, explicitly opt into retries by setting ``WriteObjectOptions/idempotent`` to `true`:
   ```swift
   let options = WriteObjectOptions().with {
-    $0.idempotency = true
+    $0.idempotent = true
   }
   ```
 

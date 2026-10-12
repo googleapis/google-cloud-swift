@@ -213,7 +213,7 @@ extension StorageClient {
     let checksum = prepared.checksum
 
     let isIdempotent =
-      options.idempotency
+      options.idempotent
       ?? (options.preconditions?.ifGenerationMatch != nil
         || options.preconditions?.ifMetagenerationMatch != nil)
     let resumeState = ResumeState(

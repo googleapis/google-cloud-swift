@@ -27,9 +27,11 @@ import GoogleAuth
   @Test func then() {
     let got = RequestOptions().with {
       $0.attemptTimeout = .seconds(3)
+      $0.idempotent = true
       $0.quotaProject = "my-quota-project"
     }
     #expect(got.attemptTimeout == .seconds(3))
+    #expect(got.idempotent == true)
     #expect(got.quotaProject == "my-quota-project")
   }
 
@@ -57,6 +59,7 @@ import GoogleAuth
   @Test func defaults() {
     let got = RequestOptions()
     #expect(got.attemptTimeout == nil)
+    #expect(got.idempotent == nil)
     #expect(got.quotaProject == nil)
     #expect(got.pollingBackoffPolicy == nil)
     #expect(got.headers.isEmpty)

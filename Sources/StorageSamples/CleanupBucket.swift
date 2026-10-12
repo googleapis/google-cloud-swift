@@ -75,7 +75,7 @@ func markTestBuckets(client: StorageControlClient, bucketNames: [String]) async 
         $0.billing = .init().with { $0.requesterPays = false }
       }
       let options = RequestOptions().with {
-        $0.idempotency = true
+        $0.idempotent = true
       }
       let _ = try await client.updateBucket(
         request: .init().with {
@@ -101,7 +101,7 @@ func clearRequesterFlags(client: StorageControlClient, bucketNames: [String]) as
         $0.billing = .init().with { $0.requesterPays = false }
       }
       let options = RequestOptions().with {
-        $0.idempotency = true
+        $0.idempotent = true
       }
       let _ = try await client.updateBucket(
         request: .init().with {
@@ -138,7 +138,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
             $0.bucket = o.bucket
             $0.object = o.name
             $0.generation = o.generation
-          }, options: .init().with { $0.idempotency = true })
+          }, options: .init().with { $0.idempotent = true })
       }
 
       let caches = client.listAnywhereCachesByItems(
@@ -146,7 +146,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
       for try await c in caches {
         let _ = try await client.disableAnywhereCache(
           request: .init().with { $0.name = c.name },
-          options: .init().with { $0.idempotency = true })
+          options: .init().with { $0.idempotent = true })
       }
 
       guard let enabled = bucket.hierarchicalNamespace?.enabled, enabled else {
@@ -159,7 +159,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
       for try await f in folders {
         try await client.deleteFolder(
           request: .init().with { $0.name = f.name },
-          options: .init().with { $0.idempotency = true })
+          options: .init().with { $0.idempotent = true })
       }
     } catch {
       print("ERROR sweeping bucket \(name): \(error)")

@@ -102,7 +102,7 @@ enum StorageOperations {
             try await client.deleteObject(
               request: deleteReq,
               options: .init().with {
-                $0.idempotency = true
+                $0.idempotent = true
                 $0.retryPolicy = StorageBaseRetryPolicy.unbounded()
                   .withTimeLimit(.seconds(30))
                   .countedAndLogged(
