@@ -16,15 +16,17 @@ import Foundation
 
 /// A policy decorator that limits the number of attempts.
 ///
-/// This policy decorates an inner policy and limits the total number of attempts. Note that
-/// `onError()` is not called before the initial (non-retry) attempt. Therefore, setting the maximum
-/// number of attempts to 0 or 1 results in no retry attempts.
+/// This policy decorates an inner policy and limits the total number of attempts, including both
+/// executed and throttled retry attempts. Note that `onError()` is not called before the initial
+/// (non-retry) attempt. Therefore, setting the maximum number of attempts to 0 or 1 results in no
+/// retry attempts.
 ///
 /// The policy passes through the results from the inner policy as long as
 /// `attemptCount < maximumAttempts`.
 ///
 /// Once the maximum number of attempts is reached, the policy replaces any
-/// [.retry](``RetryResult/retry(_:)``) result with [.exhausted](``RetryResult/exhausted(_:)``).
+/// [.retry](``RetryResult/retry(_:)``) or [.retry](``ThrottleResult/retry(_:)``) result with
+/// [.exhausted](``RetryResult/exhausted(_:)``) or [.exhausted](``ThrottleResult/exhausted(_:)``).
 public struct LimitedAttemptCount<P: Sendable>: Sendable {
   let inner: P
   let maximumAttempts: Int

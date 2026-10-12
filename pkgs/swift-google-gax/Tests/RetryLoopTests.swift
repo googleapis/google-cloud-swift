@@ -574,11 +574,13 @@ import Testing
     let transientError = transient()
     var innerAttempts = 0
     var sleeps = 0
-    let throttler = MockThrottler(shouldThrottle: [true, true, true])
+    // After the first attempt fails (cost 10), currentTokens drops to 0 (< minTokens 10),
+    // causing throttleRetryAttempt() to return true unconditionally on all subsequent attempts.
+    let circuitBreaker = try CircuitBreaker(tokens: 10, minTokens: 10, errorCost: 10)
     let loop = _RetryLoop(
       retryPolicy: AlwaysRetry.unbounded().withAttemptLimit(3),
       backoffPolicy: MockBackoff(),
-      retryThrottler: throttler,
+      retryThrottler: circuitBreaker,
       idempotent: true
     )
 
