@@ -80,7 +80,7 @@ public enum WriteObjectError: Error, Sendable, CustomStringConvertible,
   ///   ``WriteObjectOptions/resumableUploadThreshold`` (8 MB by default) use single-shot multipart
   ///   uploads. Without preconditions (`ifGenerationMatch` or `ifMetagenerationMatch`), single-shot
   ///   uploads are treated as non-idempotent and are not automatically retried on transient errors.
-  ///   Supply ``StoragePreconditions`` or set ``WriteObjectOptions/idempotency`` to `true` to
+  ///   Supply ``StoragePreconditions`` or set ``WriteObjectOptions/idempotent`` to `true` to
   ///   enable automatic retries.
   /// - `.exhausted(let exhaustedError)`: The configured ``WriteObjectOptions/resumePolicy`` was
   ///   exhausted before the upload could finish.
