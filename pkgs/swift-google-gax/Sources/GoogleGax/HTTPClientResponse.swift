@@ -105,7 +105,11 @@ import NIOFoundationCompat
     // so `Data` references `buffer`'s underlying storage without copying.
     let data = Data(buffer: buffer, byteTransferStrategy: .noCopy)
     let decoder = _ProtoJSONDecoder()
-    let payload = try decoder.decode(type, from: data)
-    return .success(payload)
+    do {
+      let payload = try decoder.decode(type, from: data)
+      return .success(payload)
+    } catch {
+      return .failure(.malformedResponse("Failed to decode \(type): \(error)"))
+    }
   }
 }

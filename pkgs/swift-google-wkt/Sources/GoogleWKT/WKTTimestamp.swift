@@ -144,7 +144,7 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
     var baseSeconds = daysInSeconds + timeInSeconds
 
     var pos = fromString.index(fromString.startIndex, offsetBy: rfc3339DateTimeLength)
-    let nanos = Self.parseNanosSegment(fromString, at: &pos)
+    let nanos = try Self.parseNanosSegment(fromString, at: &pos)
     let offsetSeconds = try Self.parseTimezoneOffset(fromString, at: pos)
 
     baseSeconds -= offsetSeconds
@@ -238,7 +238,9 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
     return Int64(hour) * secondsPerHour + Int64(minute) * secondsPerMinute + Int64(second)
   }
 
-  private static func parseNanosSegment(_ rfc3339: String, at pos: inout String.Index) -> Int32 {
+  private static func parseNanosSegment(_ rfc3339: String, at pos: inout String.Index) throws
+    -> Int32
+  {
     guard pos < rfc3339.endIndex && rfc3339[pos] == "." else {
       return 0
     }
@@ -247,12 +249,10 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
     while pos < rfc3339.endIndex && rfc3339[pos].isNumber {
       pos = rfc3339.index(after: pos)
     }
-    let fracStr = String(rfc3339[fracStart..<pos])
-    if fracStr.isEmpty {
-      return 0
+    guard let nanos = parseNanos(from: rfc3339[fracStart..<pos]) else {
+      throw WKTTimestampError.invalidFormat
     }
-    let paddedFrac = fracStr.padding(toLength: 9, withPad: "0", startingAt: 0).prefix(9)
-    return Int32(paddedFrac) ?? 0
+    return nanos
   }
 
   private static func parseTimezoneOffset(_ rfc3339: String, at pos: String.Index) throws -> Int64 {

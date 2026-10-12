@@ -281,6 +281,24 @@ import NIOHTTP1
     #expect(data == .init("{}".utf8))
   }
 
+  @Test(
+    arguments: [
+      (.GET, .GET),
+      (.PUT, .PUT),
+      (.POST, .POST),
+      (.DELETE, .DELETE),
+      (.PATCH, .PATCH),
+      (.HEAD, .HEAD),
+      (.OPTIONS, .OPTIONS),
+    ] as [(_HTTPClientRequest.Method, NIOHTTP1.HTTPMethod)]
+  )
+  func setMethodMappings(
+    _ method: _HTTPClientRequest.Method,
+    _ want: NIOHTTP1.HTTPMethod
+  ) {
+    #expect(method.nioMethod == want)
+  }
+
   @Test func postRequestBodyJSON() async throws {
     struct TestPayload: Encodable {
       var name: String
@@ -411,6 +429,34 @@ import NIOHTTP1
       return
     }
     #expect(response == ResponseType(name: "test-name", value: "test-value"))
+  }
+
+  @Test(arguments: [
+    "",
+    "not valid json",
+    #"{"name": 123, "value": "test-value"}"#,
+    #"[]"#,
+  ]) func rpcMalformedResponse(body: String) async throws {
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json; charset=UTF-8")]),
+        body: .bytes(.init(string: body))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
+    let request = try await client.newRequest(
+      path: "/v1/projects/my-project/secrets",
+      query: [URLQueryItem(name: "$alt", value: "json")]
+    )
+    let result = await request.rpc(ResponseType.self, timeout: .seconds(1))
+    guard case .failure(.malformedResponse(let message)) = result else {
+      Issue.record("expected .failure(.malformedResponse), got=\(result)")
+      return
+    }
+    #expect(message.contains("ResponseType"))
   }
 
   @Test func getErrorDetails() async throws {

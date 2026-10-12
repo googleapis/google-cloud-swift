@@ -18,7 +18,7 @@ import struct AsyncHTTPClient.HTTPClientRequest
 import struct Logging.Logger
 @_spi(GoogleCloudInternal) public import NIOCore
 import NIOFoundationCompat
-@_exported @_spi(GoogleCloudInternal) public import NIOHTTP1
+import NIOHTTP1
 
 /// Represents the body of an HTTP request, encapsulating either `NIOCore.ByteBuffer`
 /// or a custom body without premature conversion or copying.
@@ -32,6 +32,30 @@ enum _RequestBody: Sendable {
 /// The generated code uses this type directly. It exposes the methods we
 /// need, and nothing else.
 @_spi(GoogleCloudInternal) public struct _HTTPClientRequest {
+  /// The HTTP method for a request.
+  // swift-format-ignore: AlwaysUseLowerCamelCase
+  public enum Method: Sendable {
+    case GET
+    case PUT
+    case POST
+    case DELETE
+    case PATCH
+    case HEAD
+    case OPTIONS
+
+    var nioMethod: NIOHTTP1.HTTPMethod {
+      switch self {
+      case .GET: .GET
+      case .PUT: .PUT
+      case .POST: .POST
+      case .DELETE: .DELETE
+      case .PATCH: .PATCH
+      case .HEAD: .HEAD
+      case .OPTIONS: .OPTIONS
+      }
+    }
+  }
+
   let client: any _HTTPClientProtocol
   var components: URLComponents
   var headers: NIOHTTP1.HTTPHeaders
@@ -48,8 +72,8 @@ enum _RequestBody: Sendable {
     self.headers = NIOHTTP1.HTTPHeaders()
   }
 
-  public mutating func setMethod(_ method: NIOHTTP1.HTTPMethod) {
-    self.method = method
+  public mutating func setMethod(_ method: Method) {
+    self.method = method.nioMethod
   }
 
   public mutating func addHeader(name: String, value: String) {

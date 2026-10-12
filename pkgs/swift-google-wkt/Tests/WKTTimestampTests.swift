@@ -165,6 +165,9 @@ import Testing
       "2024-09-31T00:00:00Z",  // Sept 31
       "2024-11-31T00:00:00Z",  // Nov 31
       "2024-02-30T00:00:00Z",  // Feb 30
+      "2026-01-01T00:00:00.1234567899Z",  // >9 fractional digits
+      "1970-01-01T00:00:00.0000000000Z",  // 10 fractional digits
+      "2026-01-01T00:00:00.Z",  // Empty fractional segment
     ]
   )
   func invalidFormat(_ input: String) throws {

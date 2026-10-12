@@ -128,8 +128,7 @@ public struct WKTDuration: Codable, Comparable, Equatable, Hashable, Sendable {
 
     var nanos: Int32 = 0
     if parts.count == 2 {
-      let nanosStr = String(parts[1]).padding(toLength: 9, withPad: "0", startingAt: 0)
-      guard let pNanos = Int32(nanosStr) else {
+      guard let pNanos = parseNanos(from: parts[1]) else {
         throw WKTDurationError.invalidFormat
       }
       nanos = pNanos
@@ -154,6 +153,14 @@ func formatNanos(nanos: Int32) -> String {
     result.removeLast(3)
   }
   return result
+}
+
+func parseNanos(from frac: Substring) -> Int32? {
+  guard !frac.isEmpty && frac.count <= 9 else {
+    return nil
+  }
+  let padded = frac.padding(toLength: 9, withPad: "0", startingAt: 0)
+  return Int32(padded)
 }
 
 // Makes `WKTDuration` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.

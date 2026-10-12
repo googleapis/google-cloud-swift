@@ -50,12 +50,13 @@ public final class _GRPCClient: Sendable {
     let rawEndpoint = options.endpoint ?? defaultEndpoint
     let endpointWithScheme = rawEndpoint.contains("://") ? rawEndpoint : "https://\(rawEndpoint)"
     guard let components = URLComponents(string: endpointWithScheme),
+      let scheme = components.scheme?.lowercased(), scheme == "http" || scheme == "https",
       let host = components.host, !host.isEmpty
     else {
       throw ClientError.invalidEndpoint(rawEndpoint)
     }
 
-    let isSecure = components.scheme == "https"
+    let isSecure = scheme == "https"
     let port = components.port ?? (isSecure ? 443 : 80)
     let transportSecurity: HTTP2ClientTransport.Posix.TransportSecurity =
       isSecure ? .tls : .plaintext
