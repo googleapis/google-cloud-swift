@@ -68,9 +68,12 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
       throw CredentialsError.parseError(
         "Failed to parse Service Account key JSON: \(error.localizedDescription)")
     }
-    let provider = ServiceAccountTokenProvider(key: key, accessSpecifier: accessSpecifier)
+    let provider = try ServiceAccountTokenProvider(key: key, accessSpecifier: accessSpecifier)
 
-    self.tokenProvider = TokenCache(provider: provider)
+    self.tokenProvider = TokenCache(
+      provider: provider,
+      isRetryable: ServiceAccountTokenProvider.isRetryable
+    )
     self.quotaProjectID = quotaProjectID
     _ = universeDomain
   }
