@@ -167,6 +167,9 @@ let package = Package(
     .testTarget(
       name: "AnyTests",
       dependencies: [
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
+        .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
         .product(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
