@@ -123,14 +123,13 @@ import Testing
         "client_email": "test@gserviceaccount.com"
       }
       """
-    let error = #expect(throws: CredentialsError.self) {
+    #expect {
       _ = try Credentials(
         configuration: .serviceAccount(keyJSON: Data(mockJSON.utf8))
       )
-    }
-    guard case .parseError = error else {
-      Issue.record("Expected parseError, got \(String(describing: error))")
-      return
+    } throws: { error in
+      guard case CredentialsError.parseError = error else { return false }
+      return true
     }
   }
 
