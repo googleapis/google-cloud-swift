@@ -44,7 +44,15 @@ public import Foundation
 fileprivate struct Interceptor<T: Decodable>: Decodable {
   let inner: T
 
-  init(from: any Decoder) throws { self.inner = try T(from: InternalDecoder(impl: from)) }
+  init(from: any Decoder) throws {
+    let decoder = InternalDecoder(impl: from)
+    if T.self == Data.self {
+      let container = try decoder.singleValueContainer()
+      self.inner = try container.decode(Data.self) as! T
+    } else {
+      self.inner = try T(from: decoder)
+    }
+  }
 }
 
 /// Implements the `Decoder` protocol for ProtoJSON.

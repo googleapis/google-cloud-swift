@@ -128,6 +128,11 @@ fileprivate struct Interceptor<T: Encodable>: Encodable {
   var omitEmptyCollections: Bool = true
 
   func encode(to encoder: any Encoder) throws {
+    if let d = self.inner as? Data {
+      var container = encoder.singleValueContainer()
+      try container.encode(d.base64EncodedString())
+      return
+    }
     try self.inner.encode(
       to: InternalEncoder(
         impl: encoder, omit: self.omit, omitEmptyCollections: self.omitEmptyCollections))
@@ -314,7 +319,7 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
     } else if let v = value as? UInt32 {
       try self.impl.encode(v, forKey: key)
     } else if let v = value as? Data {
-      try self.impl.encode(v, forKey: key)
+      try self.impl.encode(v.base64EncodedString(), forKey: key)
     } else {
       try self.impl.encode(
         Interceptor(
@@ -343,6 +348,8 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
         try self.impl.encode(String(v), forKey: key)
       } else if let v = unwrapped as? UInt64 {
         try self.impl.encode(String(v), forKey: key)
+      } else if let v = unwrapped as? Data {
+        try self.impl.encode(v.base64EncodedString(), forKey: key)
       } else {
         try self.impl.encode(
           Interceptor(
@@ -378,7 +385,7 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
     } else if let v = value as? UInt32 {
       try self.impl.encode(v, forKey: key)
     } else if let v = value as? Data {
-      try self.impl.encode(v, forKey: key)
+      try self.impl.encode(v.base64EncodedString(), forKey: key)
     } else {
       try self.impl.encode(
         Interceptor(
@@ -501,6 +508,8 @@ fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
         try self.impl.encode(String(v))
       } else if let v = unwrapped as? UInt64 {
         try self.impl.encode(String(v))
+      } else if let v = unwrapped as? Data {
+        try self.impl.encode(v.base64EncodedString())
       } else {
         try self.impl.encode(
           Interceptor(inner: value, omitEmptyCollections: self.omitEmptyCollections))
@@ -534,7 +543,7 @@ fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
     } else if let v = value as? UInt32 {
       try self.impl.encode(v)
     } else if let v = value as? Data {
-      try self.impl.encode(v)
+      try self.impl.encode(v.base64EncodedString())
     } else {
       try self.impl.encode(
         Interceptor(inner: value, omitEmptyCollections: self.omitEmptyCollections))
@@ -646,6 +655,8 @@ fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingCont
         try self.impl.encode(String(v))
       } else if let v = unwrapped as? UInt64 {
         try self.impl.encode(String(v))
+      } else if let v = unwrapped as? Data {
+        try self.impl.encode(v.base64EncodedString())
       } else {
         try self.impl.encode(
           Interceptor(inner: value, omitEmptyCollections: self.omitEmptyCollections))
@@ -679,7 +690,7 @@ fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingCont
     } else if let v = value as? UInt32 {
       try self.impl.encode(v)
     } else if let v = value as? Data {
-      try self.impl.encode(v)
+      try self.impl.encode(v.base64EncodedString())
     } else {
       try self.impl.encode(
         Interceptor(inner: value, omitEmptyCollections: self.omitEmptyCollections))
