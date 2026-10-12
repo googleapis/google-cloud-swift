@@ -38,7 +38,7 @@ import Testing
     #expect(listObjects.headers[idempotencyToken] == nil)
   }
 
-  @Test func createBucketIsNotIdempotent() {
+  @Test func createBucketIsIdempotent() {
     let options = CreateBucketRequest().resolveIdempotency(options: RequestOptions())
     #expect(options.idempotent == true)
     #expect(options.headers[idempotencyToken] != nil)

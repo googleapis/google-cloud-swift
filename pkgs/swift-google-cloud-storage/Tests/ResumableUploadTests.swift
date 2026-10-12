@@ -2258,7 +2258,7 @@ import Testing
   }
 
   /// Tests that resumable uploads are always idempotent and retry transient failures even if `options.idempotent = false`.
-  @Test func resumableUploadIgnoresIdempotencyFalseAndRetries() async throws {
+  @Test func resumableUploadIgnoresIdempotentFalseAndRetries() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-resumable-idempotency-false"

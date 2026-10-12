@@ -516,7 +516,7 @@ import Testing
   }
 
   /// Tests that a single-shot upload with `options.idempotent = true` retries without preconditions.
-  @Test func simpleUploadExplicitIdempotencyTrueRetriesWithoutPreconditions() async throws {
+  @Test func simpleUploadExplicitIdempotentTrueRetriesWithoutPreconditions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-override-idempotency-true"
@@ -548,7 +548,7 @@ import Testing
   }
 
   /// Tests that a single-shot upload with preconditions but `options.idempotent = false` fails immediately without retry.
-  @Test func simpleUploadExplicitIdempotencyFalseSuppressesRetryWithPreconditions() async throws {
+  @Test func simpleUploadExplicitIdempotentFalseSuppressesRetryWithPreconditions() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-override-idempotency-false"
