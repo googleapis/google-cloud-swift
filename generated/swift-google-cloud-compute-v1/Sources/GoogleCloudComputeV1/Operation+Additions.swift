@@ -42,13 +42,86 @@
           code = .unknown
           httpStatusCode = nil
         }
+
+        let message: Swift.String
+        if let httpMessage = self.httpErrorMessage, !httpMessage.isEmpty {
+          message = httpMessage
+        } else if let errors = self.error?.errors {
+          let formatted = errors.compactMap { entry -> Swift.String? in
+            let entryCode = (entry.code?.isEmpty == false) ? entry.code : nil
+            let entryMessage = (entry.message?.isEmpty == false) ? entry.message : nil
+            switch (entryCode, entryMessage) {
+            case (let c?, let m?):
+              return "\(c): \(m)"
+            case (nil, let m?):
+              return m
+            case (let c?, nil):
+              return c
+            case (nil, nil):
+              return nil
+            }
+          }.joined(separator: ", ")
+          message = formatted.isEmpty ? "Operation failed" : formatted
+        } else {
+          message = "Operation failed"
+        }
+
+        var details: [GoogleGax.StatusDetail] = []
+        if let errors = self.error?.errors {
+          for entry in errors {
+            for detail in entry.errorDetails {
+              if let info = detail.errorInfo {
+                details.append(
+                  .errorInfo(
+                    GoogleRpc.ErrorInfo().with {
+                      $0.reason = info.reason ?? ""
+                      $0.domain = info.domain ?? ""
+                      $0.metadata = info.metadatas
+                    }
+                  )
+                )
+              }
+              if let help = detail.help {
+                details.append(
+                  .help(
+                    GoogleRpc.Help().with {
+                      $0.links = help.links.map { link in
+                        GoogleRpc.Help.Link().with {
+                          $0.description = link.description ?? ""
+                          $0.url = link.url ?? ""
+                        }
+                      }
+                    }
+                  )
+                )
+              }
+              if let localized = detail.localizedMessage {
+                details.append(
+                  .localizedMessage(
+                    GoogleRpc.LocalizedMessage().with {
+                      $0.locale = localized.locale ?? ""
+                      $0.message = localized.message ?? ""
+                    }
+                  )
+                )
+              }
+              if let quota = detail.quotaInfo,
+                let packedQuota = try? GoogleWKT.WKTAny(fromMessage: quota)
+              {
+                details.append(.other(packedQuota))
+              }
+            }
+            if let packedEntry = try? GoogleWKT.WKTAny(fromMessage: entry) {
+              details.append(.other(packedEntry))
+            }
+          }
+        }
+
         throw GoogleGax.RequestError.service(
           GoogleGax.ServiceError(
             code: code,
-            message: self.httpErrorMessage ?? "Operation failed",
-            details: self.error?.errors.compactMap { try? GoogleWKT.WKTAny(fromMessage: $0) }.map {
-              .other($0)
-            } ?? [],
+            message: message,
+            details: details,
             httpStatusCode: httpStatusCode
           )
         )
