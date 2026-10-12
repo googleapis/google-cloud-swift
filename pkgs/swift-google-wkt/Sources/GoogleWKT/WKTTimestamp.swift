@@ -249,12 +249,7 @@ public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
     while pos < rfc3339.endIndex && rfc3339[pos].isNumber {
       pos = rfc3339.index(after: pos)
     }
-    let fracStr = rfc3339[fracStart..<pos]
-    guard !fracStr.isEmpty && fracStr.count <= 9 else {
-      throw WKTTimestampError.invalidFormat
-    }
-    let paddedFrac = fracStr.padding(toLength: 9, withPad: "0", startingAt: 0)
-    guard let nanos = Int32(paddedFrac) else {
+    guard let nanos = parseNanos(from: rfc3339[fracStart..<pos]) else {
       throw WKTTimestampError.invalidFormat
     }
     return nanos
