@@ -24,7 +24,7 @@ import Foundation
 /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
-public enum WKTValue: Codable, Equatable, Sendable {
+public enum WKTValue: Codable, Equatable, Hashable, Sendable {
   /// Represents a JSON `null`.
   case null(WKTNullValue)
 
@@ -214,7 +214,7 @@ extension WKTListValue: _AnyPackable {
 }
 
 /// Represents a JSON null.
-public struct WKTNullValue: Codable, Equatable, Sendable {
+public struct WKTNullValue: Codable, Equatable, Hashable, Sendable {
   /// Default initializer.
   public init() {}
 

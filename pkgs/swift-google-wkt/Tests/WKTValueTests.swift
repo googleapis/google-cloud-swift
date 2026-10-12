@@ -17,7 +17,7 @@ import Foundation
 import Testing
 
 @Suite struct WKTValueTests {
-  struct WrappedValue: Codable {
+  struct WrappedValue: Codable, Hashable {
     let value: WKTValue
   }
 
@@ -73,11 +73,11 @@ import Testing
     #expect(got.value == expected)
   }
 
-  struct WrappedStruct: Codable, Equatable {
+  struct WrappedStruct: Codable, Equatable, Hashable {
     let object: WKTStruct
   }
 
-  struct WrappedList: Codable, Equatable {
+  struct WrappedList: Codable, Equatable, Hashable {
     let list: WKTListValue
   }
 
@@ -322,7 +322,7 @@ import Testing
     #expect(got == want)
   }
 
-  struct WrappedNull: Codable {
+  struct WrappedNull: Codable, Hashable {
     let value: WKTNullValue
   }
 
@@ -384,5 +384,69 @@ import Testing
     #expect(throws: EncodingError.self) {
       _ = try encoder.encode(arrayValue)
     }
+  }
+
+  @Test(
+    "Value Hashable equality and Set deduplication across variants",
+    arguments: [
+      (WKTValue.null(WKTNullValue()), WKTValue.null(WKTNullValue())),
+      (WKTValue.number(123.45), WKTValue.number(123.45)),
+      (WKTValue.string("foo"), WKTValue.string("foo")),
+      (WKTValue.bool(true), WKTValue.bool(true)),
+      (WKTValue.bool(false), WKTValue.bool(false)),
+      (
+        WKTValue.object(["a": .string("b"), "c": .number(1)]),
+        WKTValue.object(["c": .number(1), "a": .string("b")])
+      ),
+      (
+        WKTValue.array([.null(WKTNullValue()), .number(1), .string("a"), .bool(true)]),
+        WKTValue.array([.null(WKTNullValue()), .number(1), .string("a"), .bool(true)])
+      ),
+    ])
+  func valueHashableEquality(lhs: WKTValue, rhs: WKTValue) {
+    #expect(lhs == rhs)
+    #expect(lhs.hashValue == rhs.hashValue)
+    let set: Set<WKTValue> = [lhs, rhs]
+    #expect(set.count == 1)
+    #expect(set.contains(lhs))
+    #expect(set.contains(rhs))
+  }
+
+  @Test("Value Hashable in Set and Dictionary across distinct variants")
+  func valueHashableDistinctVariants() {
+    let variants: [WKTValue] = [
+      .null(WKTNullValue()),
+      .number(0),
+      .number(42.5),
+      .string(""),
+      .string("hello"),
+      .bool(false),
+      .bool(true),
+      .object([:]),
+      .object(["key": .string("value")]),
+      .array([]),
+      .array([.number(1), .bool(false)]),
+    ]
+
+    let set = Set(variants)
+    #expect(set.count == variants.count)
+
+    var dict: [WKTValue: Int] = [:]
+    for (index, value) in variants.enumerated() {
+      dict[value] = index
+    }
+    #expect(dict.count == variants.count)
+    for (index, value) in variants.enumerated() {
+      #expect(dict[value] == index)
+    }
+  }
+
+  @Test("NullValue Hashable")
+  func nullValueHashable() {
+    let a = WKTNullValue()
+    let b = WKTNullValue()
+    #expect(a.hashValue == b.hashValue)
+    let set: Set<WKTNullValue> = [a, b]
+    #expect(set.count == 1)
   }
 }
