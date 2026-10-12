@@ -121,6 +121,68 @@ import Testing
       schema: [Field("n", .int64)])
     #expect(rows.map { $0[0] } == [.scalar("1"), .scalar("2")])
   }
+
+  @Test func scannerDecodesPageAndEscapedValues() throws {
+    let payload = Data(
+      #"""
+      {
+        "kind": "bigquery#tableDataList",
+        "totalRows": "2",
+        "pageToken": "next-token",
+        "rows": [
+          {"f": [
+            {"v": "line1\n\"quoted\"\u0041\uD83D\uDE00"},
+            {"v": 36},
+            {"v": [{"v": "a"}, {"v": null}]},
+            {"v": {"f": [{"v": "London"}, {"v": null}]}},
+            {"v": [{"v": {"f": [{"v": "2024-01-01"}, {"v": "3"}]}}]}
+          ]},
+          {"f": [
+            {"v": null},
+            {"v": true},
+            {"v": null},
+            {"v": null},
+            {"v": []}
+          ]}
+        ]
+      }
+      """#.utf8)
+    #expect(RowJSONScanner.peekPageToken(from: Array(payload)) == "next-token")
+    let decoded = try RowJSONScanner.decodePage(from: payload, schema: self.schema)
+    #expect(decoded.totalRows == 2)
+    #expect(decoded.page.nextPageToken == "next-token")
+    #expect(decoded.page.items.count == 2)
+    let first = decoded.page.items[0]
+    #expect(first["name"] == .scalar("line1\n\"quoted\"A😀"))
+    #expect(first["age"] == .scalar("36.0"))
+    #expect(first["tags"] == .array([.scalar("a"), .null]))
+    guard case .record(let address) = first["address"] else {
+      Issue.record("address is not a record")
+      return
+    }
+    #expect(address["city"] == .scalar("London"))
+    #expect(address["zip"] == .null)
+    let second = decoded.page.items[1]
+    #expect(second["name"] == .null)
+    #expect(second["age"] == .scalar("true"))
+    #expect(second["tags"] == .array([]))
+    #expect(second["visits"] == .array([]))
+  }
+
+  @Test func scannerRejectsMalformedRows() {
+    let badPayloads = [
+      #"{"f": "x"}"#,
+      #"{"f": [{"v": "a"}]}"#,
+      #"{"f": [{"v": "a"}, {"v": "b"}, {"v": "c"}, {"v": "d"}, {"v": "e"}, {"v": "f"}]}"#,
+      #"{"f": [{"v": ["a"]}, {"v": null}, {"v": null}, {"v": null}, {"v": null}]}"#,
+      #"{"f": [{"v": null}, {"v": null}, {"v": "not-an-array"}, {"v": null}, {"v": null}]}"#,
+    ]
+    for bad in badPayloads {
+      #expect(throws: RequestError.self) {
+        try RowJSONScanner.decodeRow(from: Data(bad.utf8), schema: self.schema)
+      }
+    }
+  }
 }
 
 @Suite struct SchemaTests {

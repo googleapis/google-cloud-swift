@@ -44,11 +44,13 @@ public struct PagedSequence<Element: Sendable>: AsyncSequence, Sendable {
   public typealias Fetch = @Sendable (_ pageToken: String?) async throws -> Page<Element>
 
   let firstPage: Page<Element>?
+  let onFirstPageToken: (@Sendable (String) -> Void)?
   let fetch: Fetch
 
   /// Creates a sequence that fetches every page, including the first, with `fetch`.
   public init(fetch: @escaping Fetch) {
     self.firstPage = nil
+    self.onFirstPageToken = nil
     self.fetch = fetch
   }
 
@@ -57,6 +59,17 @@ public struct PagedSequence<Element: Sendable>: AsyncSequence, Sendable {
   /// `fetch` is called only for later pages.
   public init(firstPage: Page<Element>, fetch: @escaping Fetch) {
     self.firstPage = firstPage
+    self.onFirstPageToken = nil
+    self.fetch = fetch
+  }
+
+  init(
+    firstPage: Page<Element>,
+    onFirstPageToken: (@Sendable (String) -> Void)?,
+    fetch: @escaping Fetch
+  ) {
+    self.firstPage = firstPage
+    self.onFirstPageToken = onFirstPageToken
     self.fetch = fetch
   }
 
@@ -67,7 +80,8 @@ public struct PagedSequence<Element: Sendable>: AsyncSequence, Sendable {
 
   /// The pages of this sequence.
   public var pages: Pages {
-    Pages(firstPage: self.firstPage, fetch: self.fetch)
+    Pages(
+      firstPage: self.firstPage, onFirstPageToken: self.onFirstPageToken, fetch: self.fetch)
   }
 
   /// Fetches every remaining page and returns all the items.
@@ -109,10 +123,12 @@ extension PagedSequence {
   /// The pages of a ``PagedSequence``.
   public struct Pages: AsyncSequence, Sendable {
     let firstPage: Page<Item>?
+    let onFirstPageToken: (@Sendable (String) -> Void)?
     let fetch: PagedSequence<Item>.Fetch
 
     public func makeAsyncIterator() -> AsyncIterator {
-      AsyncIterator(firstPage: self.firstPage, fetch: self.fetch)
+      AsyncIterator(
+        firstPage: self.firstPage, onFirstPageToken: self.onFirstPageToken, fetch: self.fetch)
     }
 
     /// Iterates over the pages of a ``PagedSequence``.
@@ -123,10 +139,16 @@ extension PagedSequence {
         case done
       }
 
+      let onFirstPageToken: (@Sendable (String) -> Void)?
       let fetch: PagedSequence<Item>.Fetch
       var state: State
 
-      init(firstPage: Page<Item>?, fetch: @escaping PagedSequence<Item>.Fetch) {
+      init(
+        firstPage: Page<Item>?,
+        onFirstPageToken: (@Sendable (String) -> Void)? = nil,
+        fetch: @escaping PagedSequence<Item>.Fetch
+      ) {
+        self.onFirstPageToken = onFirstPageToken
         self.fetch = fetch
         self.state = .start(firstPage)
       }
@@ -140,6 +162,9 @@ extension PagedSequence {
           self.state = .done
           if let firstPage {
             page = firstPage
+            if let token = page.nextPageToken, !token.isEmpty {
+              self.onFirstPageToken?(token)
+            }
           } else {
             page = try await self.fetch(nil)
           }

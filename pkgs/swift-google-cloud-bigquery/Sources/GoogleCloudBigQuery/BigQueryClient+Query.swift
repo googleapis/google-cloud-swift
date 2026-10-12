@@ -222,26 +222,28 @@ extension BigQueryClient {
   ) async throws -> QueryResult {
     var requestID = UUID().uuidString
     let jobCreationMode = configuration.jobCreationMode ?? self.defaultJobCreationMode
-    let response: WireQueryResponse
+    let (response, responseBody): (WireQueryResponse, Data)
     do {
-      response = try await self.transport.json(
-        idempotent: true, options: options,
-        request: { _ in
-          let body = configuration.queryRequest(
-            requestID: requestID, location: location, jobCreationMode: jobCreationMode,
-            timeout: timeout, defaultProject: projectID)
-          return HTTPRequest(
+      (response, responseBody) = try await self.transport.run(idempotent: true, options: options) {
+        _, attemptTimeout in
+        let body = configuration.queryRequest(
+          requestID: requestID, location: location, jobCreationMode: jobCreationMode,
+          timeout: timeout, defaultProject: projectID)
+        let httpResponse = try await self.transport.attempt(
+          HTTPRequest(
             method: .post,
             path: "/bigquery/v2/projects/\(HTTPRequest.encode(segment: projectID))/queries",
-            body: try RequestBody.json(body), options: options)
-        },
-        validate: { (response: WireQueryResponse) in
-          let errors = response.errors ?? []
-          guard errors.contains(where: Self.isJobRateLimit) else { return }
+            body: try RequestBody.json(body), options: options),
+          timeout: attemptTimeout)
+        let decoded: WireQueryResponse = try BigQueryTransport.decode(httpResponse.body)
+        let errors = decoded.errors ?? []
+        if errors.contains(where: Self.isJobRateLimit) {
           // The service deduplicates on `requestId`, so a retry must use a new one.
           requestID = UUID().uuidString
           throw RequestError.jobRateLimited(errors)
-        })
+        }
+        return (decoded, httpResponse.body)
+      }
     } catch let error as BigQueryError {
       throw Self.queryFailure(error, job: nil)
     }
@@ -262,13 +264,13 @@ extension BigQueryClient {
       }
       return result
     }
-    var final = QueryPage(response)
+    var final = try QueryPage(response, body: responseBody)
     if response.schema == nil, let jobID {
       // DDL statements and some scripts: the result set, if any, comes from getQueryResults.
-      final = QueryPage(
-        try await self.queryResultsPage(
-          jobID, pageToken: nil, startIndex: nil, pageSize: configuration.maxResults,
-          schema: nil, timeout: nil, options: options))
+      let (resultsResponse, resultsBody) = try await self.queryResultsPage(
+        jobID, pageToken: nil, startIndex: nil, pageSize: configuration.maxResults,
+        schema: nil, timeout: nil, options: options)
+      final = try QueryPage(resultsResponse, body: resultsBody)
     }
     return QueryResult(
       schema: final.schema,
@@ -305,17 +307,17 @@ extension BigQueryClient {
     deadline: ContinuousClock.Instant?,
     options: RequestOptions
   ) async throws -> QueryResult {
-    let page = QueryPage(
-      try await self.waitForQueryResults(
-        id, pageSize: pollZeroRows ? 0 : pageSize, startIndex: pollZeroRows ? nil : startIndex,
-        deadline: deadline, options: options))
+    let (waitResponse, waitBody) = try await self.waitForQueryResults(
+      id, pageSize: pollZeroRows ? 0 : pageSize, startIndex: pollZeroRows ? nil : startIndex,
+      deadline: deadline, options: options)
     guard let job = try await self.getJob(id, options: options) else {
       throw Self.jobNotFound(id)
     }
     if let failure = job.failure { throw failure }
     let statistics = job.statistics
     let query = statistics?.query
-    let resultSchema = page.schema ?? query?.schema
+    let page = try QueryPage(waitResponse, body: waitBody, fallbackSchema: query?.schema)
+    let resultSchema = page.schema
     let destinationTable: TableID? =
       if case .query(let queryConfig) = job.configuration {
         queryConfig.destinationTable
@@ -337,10 +339,10 @@ extension BigQueryClient {
     } else {
       var initialPage = page
       if pollZeroRows, initialPage.rows.isEmpty, (initialPage.totalRows ?? 0) > 0 {
-        initialPage = QueryPage(
-          try await self.queryResultsPage(
-            id, pageToken: nil, startIndex: startIndex, pageSize: pageSize,
-            schema: resultSchema, timeout: nil, options: options))
+        let (firstResponse, firstBody) = try await self.queryResultsPage(
+          id, pageToken: nil, startIndex: startIndex, pageSize: pageSize,
+          schema: resultSchema, timeout: nil, options: options)
+        initialPage = try QueryPage(firstResponse, body: firstBody, fallbackSchema: resultSchema)
       }
       rows = try self.rowSequence(
         initialPage, jobID: id, destinationTable: destinationTable, pageSize: pageSize,
@@ -372,7 +374,7 @@ extension BigQueryClient {
     startIndex: UInt64?,
     deadline: ContinuousClock.Instant?,
     options: RequestOptions
-  ) async throws -> WireGetQueryResultsResponse {
+  ) async throws -> (WireGetQueryResultsResponse, Data) {
     while true {
       var wait = Self.queryPollInterval
       if let deadline {
@@ -381,8 +383,9 @@ extension BigQueryClient {
         wait = min(wait, remaining)
       }
       let response: WireGetQueryResultsResponse
+      let body: Data
       do {
-        response = try await self.queryResultsPage(
+        (response, body) = try await self.queryResultsPage(
           id, pageToken: nil, startIndex: startIndex, pageSize: pageSize, schema: nil,
           timeout: wait, options: options)
       } catch let error as BigQueryError where error.kind == .service {
@@ -395,11 +398,11 @@ extension BigQueryClient {
       if let failure = BigQueryError(job: id, errorResult: nil, errors: response.errors ?? []) {
         throw failure
       }
-      if response.jobComplete == true { return response }
+      if response.jobComplete == true { return (response, body) }
     }
   }
 
-  /// Sends one `getQueryResults` request.
+  /// Sends one `getQueryResults` request and decodes its metadata.
   private func queryResultsPage(
     _ id: JobID,
     pageToken: String?,
@@ -408,7 +411,24 @@ extension BigQueryClient {
     schema: Schema?,
     timeout: Duration?,
     options: RequestOptions
-  ) async throws -> WireGetQueryResultsResponse {
+  ) async throws -> (WireGetQueryResultsResponse, Data) {
+    let response = try await self.sendQueryResultsRequest(
+      id, pageToken: pageToken, startIndex: startIndex, pageSize: pageSize, schema: schema,
+      timeout: timeout, options: options)
+    let decoded: WireGetQueryResultsResponse = try BigQueryTransport.decode(response.body)
+    return (decoded, response.body)
+  }
+
+  /// Sends one raw `getQueryResults` HTTP request.
+  private func sendQueryResultsRequest(
+    _ id: JobID,
+    pageToken: String?,
+    startIndex: UInt64?,
+    pageSize: Int64?,
+    schema: Schema?,
+    timeout: Duration?,
+    options: RequestOptions
+  ) async throws -> HTTPResponse {
     var query = Self.locationQuery(id)
     query.append(contentsOf: RowFormat.queryItems(for: schema))
     if let pageToken { query.append(URLQueryItem(name: "pageToken", value: pageToken)) }
@@ -420,7 +440,7 @@ extension BigQueryClient {
     let path =
       "/bigquery/v2/projects/\(HTTPRequest.encode(segment: id.projectID ?? self.projectID))"
       + "/queries/\(HTTPRequest.encode(segment: id.jobID))"
-    return try await self.transport.json(
+    return try await self.transport.send(
       HTTPRequest(method: .get, path: path, query: query, options: options), idempotent: true)
   }
 
@@ -440,41 +460,52 @@ extension BigQueryClient {
     if jobID == nil && first.pageToken != nil {
       throw RequestError.malformedResponse("query results have more pages but no job reference")
     }
-    let firstPage = Page(
-      items: try Row.rows(from: first.rows, schema: schema),
-      nextPageToken: first.pageToken)
+    let firstPage = Page(items: first.rows, nextPageToken: first.pageToken)
     let tablePath = destinationTable.map {
       Self.tableResourcePath($0.withDefaultProject(jobID?.projectID ?? self.projectID)) + "/data"
     }
     let transport = self.transport
     let formatQuery = RowFormat.queryItems(for: schema)
+    let defaultProjectID = self.projectID
+    let prefetcher = HTTPPagePrefetcher { token in
+      guard let jobID else { return HTTPResponse(statusCode: 200, headers: [:], body: Data()) }
+      if let tablePath {
+        var query = formatQuery
+        if let pageSize {
+          query.append(URLQueryItem(name: "maxResults", value: String(pageSize)))
+        }
+        query.append(URLQueryItem(name: "pageToken", value: token))
+        return try await transport.send(
+          HTTPRequest(method: .get, path: tablePath, query: query, options: options),
+          idempotent: true)
+      }
+      var query = Self.locationQuery(jobID)
+      query.append(contentsOf: formatQuery)
+      query.append(URLQueryItem(name: "pageToken", value: token))
+      if let pageSize {
+        query.append(URLQueryItem(name: "maxResults", value: String(pageSize)))
+      }
+      let path =
+        "/bigquery/v2/projects/\(HTTPRequest.encode(segment: jobID.projectID ?? defaultProjectID))"
+        + "/queries/\(HTTPRequest.encode(segment: jobID.jobID))"
+      return try await transport.send(
+        HTTPRequest(method: .get, path: path, query: query, options: options), idempotent: true)
+    }
     return RowSequence(
       schema: schema, totalRows: first.totalRows,
-      rows: PagedSequence(firstPage: firstPage) { token in
-        guard let jobID, let token else { return Page(items: []) }
-        if let tablePath {
-          var query = formatQuery
-          if let pageSize {
-            query.append(URLQueryItem(name: "maxResults", value: String(pageSize)))
-          }
-          query.append(URLQueryItem(name: "pageToken", value: token))
-          let response: TableDataList = try await transport.json(
-            HTTPRequest(method: .get, path: tablePath, query: query, options: options),
-            idempotent: true)
-          return try response.page(schema: schema)
-        }
-        let response = try await self.queryResultsPage(
-          jobID, pageToken: token, startIndex: nil, pageSize: pageSize, schema: schema,
-          timeout: nil, options: options)
-        return Page(
-          items: try Row.rows(from: response.rows ?? [], schema: schema),
-          nextPageToken: response.pageToken?.nonEmpty)
-      })
+      rows: PagedSequence(
+        firstPage: firstPage,
+        onFirstPageToken: { token in
+          if jobID != nil { prefetcher.prefetch(token) }
+        },
+        fetch: { token in
+          guard jobID != nil, let token else { return Page(items: []) }
+          return try await prefetcher.fetchPage(token, schema: schema)
+        }))
   }
 }
 
-/// Wire representation of `jobs.query` that decodes `rows` directly as `[WireRow]` instead of
-/// `[GoogleWKT.WKTStruct]`.
+/// Wire metadata of `jobs.query`; `rows` is decoded directly via ``RowJSONScanner``.
 private struct WireQueryResponse: Decodable, Sendable {
   var schema: GoogleCloudBigQueryV2.TableSchema?
   var jobReference: GoogleCloudBigQueryV2.JobReference?
@@ -483,7 +514,6 @@ private struct WireQueryResponse: Decodable, Sendable {
   var location: String?
   var totalRows: UInt64?
   var pageToken: String?
-  var rows: [WireRow]?
   var totalBytesProcessed: Int64?
   var totalBytesBilled: Int64?
   var totalSlotMs: Int64?
@@ -499,14 +529,12 @@ private struct WireQueryResponse: Decodable, Sendable {
   var statementType: String?
 }
 
-/// Wire representation of `jobs.getQueryResults` that decodes `rows` directly as `[WireRow]`
-/// instead of `[GoogleWKT.WKTStruct]`.
+/// Wire metadata of `jobs.getQueryResults`; `rows` is decoded directly via ``RowJSONScanner``.
 private struct WireGetQueryResultsResponse: Decodable, Sendable {
   var schema: GoogleCloudBigQueryV2.TableSchema?
   var jobReference: GoogleCloudBigQueryV2.JobReference?
   var totalRows: UInt64?
   var pageToken: String?
-  var rows: [WireRow]?
   var totalBytesProcessed: Int64?
   var jobComplete: Bool?
   var errors: [GoogleCloudBigQueryV2.ErrorProto]?
@@ -518,24 +546,38 @@ private struct WireGetQueryResultsResponse: Decodable, Sendable {
 private struct QueryPage {
   var schema: Schema?
   var totalRows: UInt64?
-  var rows: [WireRow]
+  var rows: [Row]
   var pageToken: String?
   var numDMLAffectedRows: Int64?
   var cacheHit: Bool?
 
-  init(_ response: WireQueryResponse) {
-    self.schema = response.schema.map(Schema.init(wire:))
+  init(_ response: WireQueryResponse, body: Data) throws {
+    let schema = response.schema.map(Schema.init(wire:))
+    self.schema = schema
     self.totalRows = response.totalRows
-    self.rows = response.rows ?? []
+    self.rows =
+      if let schema {
+        try RowJSONScanner.decodeRows(from: body, schema: schema)
+      } else {
+        []
+      }
     self.pageToken = response.pageToken?.nonEmpty
     self.numDMLAffectedRows = response.numDmlAffectedRows
     self.cacheHit = response.cacheHit
   }
 
-  init(_ response: WireGetQueryResultsResponse) {
-    self.schema = response.schema.map(Schema.init(wire:))
+  init(
+    _ response: WireGetQueryResultsResponse, body: Data, fallbackSchema: Schema? = nil
+  ) throws {
+    let schema = response.schema.map(Schema.init(wire:)) ?? fallbackSchema
+    self.schema = schema
     self.totalRows = response.totalRows
-    self.rows = response.rows ?? []
+    self.rows =
+      if let schema {
+        try RowJSONScanner.decodeRows(from: body, schema: schema)
+      } else {
+        []
+      }
     self.pageToken = response.pageToken?.nonEmpty
     self.numDMLAffectedRows = response.numDmlAffectedRows
     self.cacheHit = response.cacheHit

@@ -15,7 +15,7 @@
 import Foundation
 import GoogleCloudBigQueryV2
 public import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleWKT
+import Synchronization
 
 extension BigQueryClient {
   /// Reads the rows of a table.
@@ -59,7 +59,7 @@ extension BigQueryClient {
     let transport = self.transport
     let path = Self.tableResourcePath(id) + "/data"
     let formatQuery = RowFormat.queryItems(for: rowSchema)
-    let fetch = { @Sendable (token: String?, startIndex: UInt64?) async throws -> TableDataList in
+    let send = { @Sendable (token: String?, startIndex: UInt64?) async throws -> HTTPResponse in
       var query = formatQuery
       if let pageSize { query.append(URLQueryItem(name: "maxResults", value: String(pageSize))) }
       if let token { query.append(URLQueryItem(name: "pageToken", value: token)) }
@@ -70,17 +70,24 @@ extension BigQueryClient {
         query.append(
           URLQueryItem(name: "selectedFields", value: selectedFields.joined(separator: ",")))
       }
-      return try await transport.json(
+      return try await transport.send(
         HTTPRequest(method: .get, path: path, query: query, options: options), idempotent: true)
     }
-    let first = try await fetch(pageToken, startIndex)
-    let rows = PagedSequence(firstPage: try first.page(schema: rowSchema)) { token in
+    let firstResponse = try await send(pageToken, startIndex)
+    let first = try RowJSONScanner.decodePage(from: firstResponse.body, schema: rowSchema)
+    let prefetcher = HTTPPagePrefetcher { token in
       // The page token carries the position, so later pages do not resend `startIndex`
       // (Java resets it to 0; U.BigQueryImpl.31).
-      try await fetch(token, nil).page(schema: rowSchema)
+      try await send(token, nil)
     }
-    return RowSequence(
-      schema: rowSchema, totalRows: first.totalRows.flatMap(UInt64.init), rows: rows)
+    let rows = PagedSequence(
+      firstPage: first.page,
+      onFirstPageToken: { prefetcher.prefetch($0) },
+      fetch: { token in
+        guard let token else { return Page(items: []) }
+        return try await prefetcher.fetchPage(token, schema: rowSchema)
+      })
+    return RowSequence(schema: rowSchema, totalRows: first.totalRows, rows: rows)
   }
 
   /// Reads the schema of `id`, restricted to `selectedFields` when set.
@@ -102,19 +109,58 @@ extension BigQueryClient {
   }
 }
 
-/// The response of `tabledata.list`, which the generated protos do not define (design §13).
-struct TableDataList: _RawJSONDecodable, Sendable {
-  /// The total number of rows in the table, as a decimal string.
-  var totalRows: String?
-  /// The token of the next page; absent or empty on the last page.
-  var pageToken: String?
-  /// The rows in the `{"f": [{"v": ...}]}` format.
-  var rows: [WireRow]?
+/// Prefetches at most one subsequent page of rows in the background while the caller decodes or
+/// consumes the current page.
+final class HTTPPagePrefetcher: Sendable {
+  private struct State: Sendable {
+    var token: String?
+    var task: Task<[UInt8], any Error>?
+  }
 
-  func page(schema: Schema) throws -> Page<Row> {
-    Page(
-      items: try Row.rows(from: self.rows ?? [], schema: schema),
-      nextPageToken: self.pageToken?.nonEmpty)
+  private let sendRequest: @Sendable (String) async throws -> HTTPResponse
+  private let state = Mutex(State())
+
+  init(sendRequest: @escaping @Sendable (String) async throws -> HTTPResponse) {
+    self.sendRequest = sendRequest
+  }
+
+  deinit {
+    self.state.withLock { $0.task?.cancel() }
+  }
+
+  func prefetch(_ token: String) {
+    guard !token.isEmpty else { return }
+    let sendRequest = self.sendRequest
+    self.state.withLock { state in
+      if state.token == token, state.task != nil { return }
+      state.task?.cancel()
+      state.token = token
+      state.task = Task {
+        let response = try await sendRequest(token)
+        return Array(response.body)
+      }
+    }
+  }
+
+  func fetchPage(_ token: String, schema: Schema) async throws -> Page<Row> {
+    let existingTask = self.state.withLock { state -> Task<[UInt8], any Error>? in
+      guard state.token == token else { return nil }
+      let task = state.task
+      state.token = nil
+      state.task = nil
+      return task
+    }
+    let bytes: [UInt8]
+    if let existingTask {
+      bytes = try await existingTask.value
+    } else {
+      let response = try await self.sendRequest(token)
+      bytes = Array(response.body)
+    }
+    if let nextToken = RowJSONScanner.peekPageToken(from: bytes) {
+      self.prefetch(nextToken)
+    }
+    return try RowJSONScanner.decodePage(from: bytes, schema: schema).page
   }
 }
 
