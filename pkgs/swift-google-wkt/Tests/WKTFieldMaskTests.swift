@@ -135,4 +135,26 @@ import Testing
     #expect(fieldMask.description == expected)
     #expect("\(fieldMask)" == expected)
   }
+
+  @Test func withHelperInitAndCopyMutation() {
+    let base = WKTFieldMask().with {
+      $0.paths = ["user.display_name", "photo"]
+    }
+    #expect(base.paths == ["user.display_name", "photo"])
+
+    let extended = base.with {
+      $0.paths.append("email")
+    }
+    #expect(base.paths == ["user.display_name", "photo"])
+    #expect(extended.paths == ["user.display_name", "photo", "email"])
+  }
+
+  @Test func withHelperRethrows() {
+    struct TestError: Error, Equatable {}
+    #expect(throws: TestError()) {
+      _ = try WKTFieldMask().with { _ in
+        throw TestError()
+      }
+    }
+  }
 }
