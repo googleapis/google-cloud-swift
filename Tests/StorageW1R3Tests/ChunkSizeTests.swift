@@ -73,12 +73,12 @@ import Testing
   @Test func pickChunkSizeRangeMode() throws {
     let minSize = 8 * 1024 * 1024
     let maxSize = 32 * 1024 * 1024
-    let quantum = 8 * 1024 * 1024
+    let interval = 8 * 1024 * 1024
     let parsed = try StorageW1R3.parseAsRoot([
       "--bucket-name=my-bucket",
       "--min-chunk-size=8MiB",
       "--max-chunk-size=32MiB",
-      "--chunk-size-quantum=8MiB",
+      "--chunk-size-interval=8MiB",
     ])
     guard let benchmark = parsed as? StorageW1R3 else {
       Issue.record("cannot convert to StorageW1R3")
@@ -89,7 +89,7 @@ import Testing
       let picked = benchmark.pickChunkSize()
       #expect(picked >= minSize)
       #expect(picked <= maxSize)
-      #expect(picked % quantum == 0)
+      #expect(picked % interval == 0)
       seen.insert(picked)
     }
     #expect(seen.count > 1)
@@ -101,7 +101,7 @@ import Testing
       "--bucket-name=my-bucket",
       "--min-chunk-size=16MiB",
       "--max-chunk-size=16MiB",
-      "--chunk-size-quantum=8MiB",
+      "--chunk-size-interval=8MiB",
     ])
     guard let benchmark = parsed as? StorageW1R3 else {
       Issue.record("cannot convert to StorageW1R3")

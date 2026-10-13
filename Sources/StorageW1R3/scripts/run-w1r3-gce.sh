@@ -70,7 +70,7 @@ Options:
   --chunk-sizes SIZES          Candidate chunk sizes, comma-separated (e.g. 8MiB,16MiB,32MiB)
   --min-chunk-size SIZE        Minimum chunk size for randomized range (default: 8MiB)
   --max-chunk-size SIZE        Maximum chunk size for randomized range (default: 32MiB)
-  --chunk-size-quantum SIZE    Alignment quantum for randomized chunk sizes (default: 256KiB)
+  --chunk-size-interval SIZE   Alignment interval for randomized chunk sizes (default: 256KiB)
   --extra-args "ARGS"          Extra arguments passed to the benchmark (or baseline in comparison mode)
 
 A/B Comparison & Multi-Round Options:
@@ -151,7 +151,7 @@ CHUNK_SIZE=""
 CHUNK_SIZES=""
 MIN_CHUNK_SIZE=""
 MAX_CHUNK_SIZE=""
-CHUNK_SIZE_QUANTUM=""
+CHUNK_SIZE_INTERVAL=""
 EXTRA_ARGS=""
 COMPARE_REF=""
 COMPARE_REPO=""
@@ -195,7 +195,7 @@ while [[ $# -gt 0 ]]; do
     --chunk-sizes) CHUNK_SIZES="$2"; shift 2 ;;
     --min-chunk-size) MIN_CHUNK_SIZE="$2"; shift 2 ;;
     --max-chunk-size) MAX_CHUNK_SIZE="$2"; shift 2 ;;
-    --chunk-size-quantum) CHUNK_SIZE_QUANTUM="$2"; shift 2 ;;
+    --chunk-size-interval) CHUNK_SIZE_INTERVAL="$2"; shift 2 ;;
     --extra-args) EXTRA_ARGS="$2"; shift 2 ;;
     --compare-ref) COMPARE_REF="$2"; shift 2 ;;
     --compare-repo) COMPARE_REPO="$2"; shift 2 ;;
@@ -533,8 +533,8 @@ if [[ "${BENCHMARK_PRODUCT}" == "StorageW1R3Benchmark" && -z "${BENCHMARK_COMMAN
   if [[ -n "${MAX_CHUNK_SIZE}" ]]; then
     BASE_FLAGS="${BASE_FLAGS} --max-chunk-size ${MAX_CHUNK_SIZE}"
   fi
-  if [[ -n "${CHUNK_SIZE_QUANTUM}" ]]; then
-    BASE_FLAGS="${BASE_FLAGS} --chunk-size-quantum ${CHUNK_SIZE_QUANTUM}"
+  if [[ -n "${CHUNK_SIZE_INTERVAL}" ]]; then
+    BASE_FLAGS="${BASE_FLAGS} --chunk-size-interval ${CHUNK_SIZE_INTERVAL}"
   fi
 else
   BASE_FLAGS=""

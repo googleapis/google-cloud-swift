@@ -214,11 +214,11 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
   var maxChunkSize: Int = 32 * 1024 * 1024
 
   @Option(
-    name: .customLong("chunk-size-quantum"),
-    help: "The alignment quantum for chunk sizes (default 256KiB, must be a multiple of 256KiB).",
+    name: .customLong("chunk-size-interval"),
+    help: "The alignment interval for chunk sizes (default 256KiB, must be a multiple of 256KiB).",
     transform: SizeParser.parse
   )
-  var chunkSizeQuantum: Int = 256 * 1024
+  var chunkSizeInterval: Int = 256 * 1024
 
   @Option(
     name: .customLong("chunk-sizes"),
@@ -257,11 +257,11 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
     if !chunkSizes.isEmpty {
       return chunkSizes.randomElement()!
     }
-    let quantum = chunkSizeQuantum
-    let minSteps = minChunkSize / quantum
-    let maxSteps = maxChunkSize / quantum
+    let interval = chunkSizeInterval
+    let minSteps = minChunkSize / interval
+    let maxSteps = maxChunkSize / interval
     let selectedSteps = Int.random(in: minSteps...maxSteps)
-    return selectedSteps * quantum
+    return selectedSteps * interval
   }
 
   func pickCrc32c() -> Bool {
@@ -310,12 +310,12 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
     guard controlClientCount >= 1 else {
       throw ValidationError("control-client-count must be at least 1")
     }
-    guard chunkSizeQuantum > 0 else {
-      throw ValidationError("chunk-size-quantum must be positive")
+    guard chunkSizeInterval > 0 else {
+      throw ValidationError("chunk-size-interval must be positive")
     }
-    guard chunkSizeQuantum % Self.resumableChunkAlignment == 0 else {
+    guard chunkSizeInterval % Self.resumableChunkAlignment == 0 else {
       throw ValidationError(
-        "chunk-size-quantum (\(chunkSizeQuantum)) must be a multiple of 256KiB (\(Self.resumableChunkAlignment))"
+        "chunk-size-interval (\(chunkSizeInterval)) must be a multiple of 256KiB (\(Self.resumableChunkAlignment))"
       )
     }
     if let chunkSize {
@@ -351,14 +351,14 @@ public struct StorageW1R3: AsyncParsableCommand, Sendable {
         throw ValidationError(
           "Invalid chunk size range: min (\(minChunkSize)) > max (\(maxChunkSize))")
       }
-      guard minChunkSize % chunkSizeQuantum == 0 else {
+      guard minChunkSize % chunkSizeInterval == 0 else {
         throw ValidationError(
-          "min-chunk-size (\(minChunkSize)) must be a multiple of chunk-size-quantum (\(chunkSizeQuantum))"
+          "min-chunk-size (\(minChunkSize)) must be a multiple of chunk-size-interval (\(chunkSizeInterval))"
         )
       }
-      guard maxChunkSize % chunkSizeQuantum == 0 else {
+      guard maxChunkSize % chunkSizeInterval == 0 else {
         throw ValidationError(
-          "max-chunk-size (\(maxChunkSize)) must be a multiple of chunk-size-quantum (\(chunkSizeQuantum))"
+          "max-chunk-size (\(maxChunkSize)) must be a multiple of chunk-size-interval (\(chunkSizeInterval))"
         )
       }
     }
