@@ -39,6 +39,7 @@ public struct UpdateFeedbackLabelRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = UpdateFeedbackLabelRequest().with { $0.feedbackLabel = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

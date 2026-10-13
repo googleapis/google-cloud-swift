@@ -48,6 +48,7 @@ public struct TimestampMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TimestampMetadata().with { $0.timeFormat = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

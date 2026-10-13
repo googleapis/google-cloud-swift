@@ -50,6 +50,7 @@ public struct TranslateTextGlossaryConfig: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = TranslateTextGlossaryConfig().with { $0.glossary = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

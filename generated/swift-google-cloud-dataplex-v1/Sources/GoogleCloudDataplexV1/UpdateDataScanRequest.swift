@@ -45,6 +45,7 @@ public struct UpdateDataScanRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UpdateDataScanRequest().with { $0.dataScan = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -53,6 +53,7 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WorkloadsConfig().with { $0.scheduler = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -140,6 +141,7 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SchedulerResource().with { $0.cpu = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -244,6 +246,7 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WebServerResource().with { $0.cpu = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -350,6 +353,7 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WorkerResource().with { $0.cpu = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -461,6 +465,7 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TriggererResource().with { $0.count = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -569,6 +574,7 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DagProcessorResource().with { $0.cpu = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

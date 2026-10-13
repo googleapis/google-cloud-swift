@@ -48,6 +48,7 @@
       /// ```
       /// let value = CalendarModeRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -147,6 +148,7 @@
       /// ```
       /// let value = CapacityRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -246,6 +248,7 @@
       /// ```
       /// let value = CapacityHistoryRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

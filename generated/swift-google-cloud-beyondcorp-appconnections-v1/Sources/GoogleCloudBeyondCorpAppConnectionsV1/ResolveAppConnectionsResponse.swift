@@ -44,6 +44,7 @@ public struct ResolveAppConnectionsResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ResolveAppConnectionsResponse().with { $0.appConnectionDetails = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -119,6 +120,7 @@ public struct ResolveAppConnectionsResponse: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = AppConnectionDetails().with { $0.appConnection = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -35,6 +35,7 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FieldType().with { $0.primitiveType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -126,6 +127,7 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EnumType().with { $0.allowedValues = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -189,6 +191,7 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = EnumValue().with { $0.displayName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

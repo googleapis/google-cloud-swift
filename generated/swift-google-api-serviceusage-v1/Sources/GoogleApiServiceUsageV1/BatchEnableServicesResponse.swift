@@ -42,6 +42,7 @@ public struct BatchEnableServicesResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = BatchEnableServicesResponse().with { $0.services = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -110,6 +111,7 @@ public struct BatchEnableServicesResponse: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = EnableFailure().with { $0.serviceId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

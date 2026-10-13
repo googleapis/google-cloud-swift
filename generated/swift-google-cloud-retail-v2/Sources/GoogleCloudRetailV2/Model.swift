@@ -159,6 +159,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Model().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -305,6 +306,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ServingConfigList().with { $0.servingConfigIds = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -389,6 +391,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FrequentlyBoughtTogetherFeaturesConfig().with { $0.contextProductsType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -470,6 +473,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ModelFeaturesConfig().with { $0.frequentlyBoughtTogetherConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -60,6 +60,7 @@
     /// ```
     /// let value = NotificationEndpointGrpcSettings().with { $0.authority = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -37,6 +37,7 @@ public struct GkeAutoUpgradeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GkeAutoUpgradeConfig().with { $0.patchMode = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -80,6 +80,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Asset().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -211,6 +212,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SecurityStatus().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -450,6 +452,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DiscoverySpec().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -565,6 +568,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CsvOptions().with { $0.headerRows = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -668,6 +672,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = JsonOptions().with { $0.encoding = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -801,6 +806,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceSpec().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1138,6 +1144,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceStatus().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1369,6 +1376,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DiscoveryStatus().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1461,6 +1469,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Stats().with { $0.dataItems = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

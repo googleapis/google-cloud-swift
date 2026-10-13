@@ -77,6 +77,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = ServicePerimeterConfig().with { $0.resources = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -175,6 +176,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = VpcAccessibleServices().with { $0.enableRestriction = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -262,6 +264,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = MethodSelector().with { $0.method = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -395,6 +398,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = ApiOperation().with { $0.serviceName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -487,6 +491,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = IngressSource().with { $0.accessLevel = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -642,6 +647,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = IngressFrom().with { $0.sources = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -761,6 +767,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = IngressTo().with { $0.operations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -878,6 +885,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = IngressPolicy().with { $0.ingressFrom = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -980,6 +988,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = EgressFrom().with { $0.identities = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1105,6 +1114,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = EgressTo().with { $0.resources = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1236,6 +1246,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = EgressPolicy().with { $0.egressFrom = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

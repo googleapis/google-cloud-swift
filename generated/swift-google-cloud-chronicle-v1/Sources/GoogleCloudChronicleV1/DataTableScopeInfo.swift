@@ -39,6 +39,7 @@ public struct DataTableScopeInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataTableScopeInfo().with { $0.dataAccessScopes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

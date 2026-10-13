@@ -48,6 +48,7 @@ public struct TextDetectionParams: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TextDetectionParams().with { $0.enableTextDetectionConfidenceScore = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

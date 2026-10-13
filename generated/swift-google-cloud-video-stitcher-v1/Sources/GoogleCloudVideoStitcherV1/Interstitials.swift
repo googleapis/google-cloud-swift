@@ -39,6 +39,7 @@ public struct Interstitials: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Interstitials().with { $0.adBreaks = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

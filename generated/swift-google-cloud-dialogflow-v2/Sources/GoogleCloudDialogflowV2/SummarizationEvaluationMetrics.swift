@@ -54,6 +54,7 @@
     /// ```
     /// let value = SummarizationEvaluationMetrics().with { $0.summarizationEvaluationResults = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -157,6 +158,7 @@
       /// ```
       /// let value = AccuracyDecomposition().with { $0.point = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -255,6 +257,7 @@
       /// ```
       /// let value = AdherenceDecomposition().with { $0.point = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -357,6 +360,7 @@
       /// ```
       /// let value = AdherenceRubric().with { $0.question = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -452,6 +456,7 @@
       /// ```
       /// let value = CompletenessRubric().with { $0.question = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -537,6 +542,7 @@
       /// ```
       /// let value = Decomposition().with { $0.accuracyDecomposition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -656,6 +662,7 @@
       /// ```
       /// let value = EvaluationResult().with { $0.accuracyDecomposition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -804,6 +811,7 @@
       /// ```
       /// let value = SummarizationEvaluationResult().with { $0.sessionId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -932,6 +940,7 @@
       /// ```
       /// let value = OverallScoresByMetric().with { $0.metric = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1015,6 +1024,7 @@
       /// ```
       /// let value = SectionToken().with { $0.section = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1114,6 +1124,7 @@
       /// ```
       /// let value = ConversationDetail().with { $0.messageEntries = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1205,6 +1216,7 @@
         /// ```
         /// let value = MetricDetail().with { $0.metric = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1286,6 +1298,7 @@
           /// ```
           /// let value = SectionDetail().with { $0.section = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)

@@ -104,6 +104,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = HttpTarget().with { $0.uriOverride = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -207,6 +208,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Header().with { $0.key = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -297,6 +299,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HeaderOverride().with { $0.header = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

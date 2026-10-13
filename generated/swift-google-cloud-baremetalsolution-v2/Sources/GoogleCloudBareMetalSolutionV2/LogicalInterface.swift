@@ -49,6 +49,7 @@ public struct LogicalInterface: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LogicalInterface().with { $0.logicalNetworkInterfaces = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -140,6 +141,7 @@ public struct LogicalInterface: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LogicalNetworkInterface().with { $0.network = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

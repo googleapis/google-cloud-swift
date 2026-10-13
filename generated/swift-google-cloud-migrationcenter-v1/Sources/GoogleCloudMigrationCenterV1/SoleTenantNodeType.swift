@@ -37,6 +37,7 @@ public struct SoleTenantNodeType: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SoleTenantNodeType().with { $0.nodeName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

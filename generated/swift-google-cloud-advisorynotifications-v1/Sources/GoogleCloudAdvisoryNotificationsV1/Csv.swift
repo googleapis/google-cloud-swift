@@ -41,6 +41,7 @@ public struct Csv: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Csv().with { $0.headers = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -105,6 +106,7 @@ public struct Csv: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CsvRow().with { $0.entries = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

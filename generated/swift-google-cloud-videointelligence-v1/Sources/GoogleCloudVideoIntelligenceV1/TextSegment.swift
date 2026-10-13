@@ -43,6 +43,7 @@ public struct TextSegment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TextSegment().with { $0.segment = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

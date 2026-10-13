@@ -42,6 +42,7 @@ public struct ListScopeRBACRoleBindingsResponse: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = ListScopeRBACRoleBindingsResponse().with { $0.rbacrolebindings = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

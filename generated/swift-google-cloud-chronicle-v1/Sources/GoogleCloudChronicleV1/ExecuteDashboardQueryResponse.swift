@@ -53,6 +53,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ExecuteDashboardQueryResponse().with { $0.results = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -146,6 +147,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = ColumnValue().with { $0.nullVal = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -296,6 +298,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       /// ```
       /// let value = ValueMetadata().with { $0.links = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -432,6 +435,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = ColumnType().with { $0.value = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -517,6 +521,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       /// ```
       /// let value = List().with { $0.values = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -634,6 +639,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = ColumnData().with { $0.column = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

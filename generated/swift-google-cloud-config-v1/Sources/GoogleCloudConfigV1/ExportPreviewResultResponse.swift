@@ -36,6 +36,7 @@ public struct ExportPreviewResultResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ExportPreviewResultResponse().with { $0.result = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

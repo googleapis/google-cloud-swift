@@ -53,6 +53,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = EvaluationMetricsThresholds().with { $0.goldenEvaluationMetricsThresholds = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -161,6 +162,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = GoldenEvaluationMetricsThresholds().with { $0.turnLevelMetricsThresholds = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -243,6 +245,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       /// ```
       /// let value = TurnLevelMetricsThresholds().with { $0.semanticSimilaritySuccessThreshold = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -459,6 +462,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       /// ```
       /// let value = ExpectationLevelMetricsThresholds().with { $0.toolInvocationParameterCorrectnessThreshold = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -567,6 +571,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = ToolMatchingSettings().with { $0.extraToolCallBehavior = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

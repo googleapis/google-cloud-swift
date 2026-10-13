@@ -106,6 +106,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Pipeline().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -248,6 +249,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MessagePayloadFormat().with { $0.protobuf = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -340,6 +342,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = JsonFormat().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -412,6 +415,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ProtobufFormat().with { $0.schemaDefinition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -492,6 +496,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AvroFormat().with { $0.schemaDefinition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -624,6 +629,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Destination().with { $0.networkConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -740,6 +746,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = NetworkConfig().with { $0.networkAttachment = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -992,6 +999,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = HttpEndpoint().with { $0.uri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1079,6 +1087,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AuthenticationConfig().with { $0.googleOidc = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1179,6 +1188,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = OidcToken().with { $0.serviceAccount = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1280,6 +1290,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = OAuthToken().with { $0.serviceAccount = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1450,6 +1461,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Mediation().with { $0.transformation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1602,6 +1614,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Transformation().with { $0.transformationTemplate = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1729,6 +1742,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RetryPolicy().with { $0.maxAttempts = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

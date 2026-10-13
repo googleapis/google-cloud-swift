@@ -37,6 +37,7 @@ public struct FetchFileGitStatusesResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = FetchFileGitStatusesResponse().with { $0.uncommittedFileChanges = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -100,6 +101,7 @@ public struct FetchFileGitStatusesResponse: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = UncommittedFileChange().with { $0.path = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

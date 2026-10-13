@@ -139,6 +139,7 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleWK
   /// ```
   /// let value = CloudExadataInfrastructureProperties().with { $0.ocid = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

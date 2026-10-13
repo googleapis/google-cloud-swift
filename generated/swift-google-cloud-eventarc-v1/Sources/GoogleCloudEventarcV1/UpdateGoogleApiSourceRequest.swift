@@ -50,6 +50,7 @@ public struct UpdateGoogleApiSourceRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = UpdateGoogleApiSourceRequest().with { $0.googleApiSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -37,6 +37,7 @@ public struct GenerateMembershipRBACRoleBindingYAMLResponse: Codable, Equatable,
   /// ```
   /// let value = GenerateMembershipRBACRoleBindingYAMLResponse().with { $0.roleBindingsYaml = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

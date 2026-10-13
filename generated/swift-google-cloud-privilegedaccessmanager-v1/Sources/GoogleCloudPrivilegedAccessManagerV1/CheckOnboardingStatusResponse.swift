@@ -41,6 +41,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = CheckOnboardingStatusResponse().with { $0.serviceAccount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -106,6 +107,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = Finding().with { $0.iamAccessDenied = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -186,6 +188,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
       /// ```
       /// let value = IAMAccessDenied().with { $0.missingPermissions = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

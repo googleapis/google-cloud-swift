@@ -48,6 +48,7 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = QueryRuntimeError().with { $0.errorTitle = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -138,6 +139,7 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QueryRuntimeErrorMetadata().with { $0.key = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -40,6 +40,7 @@ public struct ExtendedSourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExtendedSourceContext().with { $0.context = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

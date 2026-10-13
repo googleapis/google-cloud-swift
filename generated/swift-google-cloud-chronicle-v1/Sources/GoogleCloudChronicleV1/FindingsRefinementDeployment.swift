@@ -56,6 +56,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = FindingsRefinementDeployment().with { $0.detectionExclusionApplication = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

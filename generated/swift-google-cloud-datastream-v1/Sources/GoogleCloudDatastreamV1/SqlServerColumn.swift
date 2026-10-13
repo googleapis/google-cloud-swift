@@ -57,6 +57,7 @@ public struct SqlServerColumn: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SqlServerColumn().with { $0.column = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

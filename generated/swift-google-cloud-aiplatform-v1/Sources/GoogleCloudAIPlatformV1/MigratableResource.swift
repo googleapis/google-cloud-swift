@@ -45,6 +45,7 @@
     /// ```
     /// let value = MigratableResource().with { $0.mlEngineModelVersion = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -170,6 +171,7 @@
       /// ```
       /// let value = MlEngineModelVersion().with { $0.endpoint = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -261,6 +263,7 @@
       /// ```
       /// let value = AutomlModel().with { $0.model = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -351,6 +354,7 @@
       /// ```
       /// let value = AutomlDataset().with { $0.dataset = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -447,6 +451,7 @@
       /// ```
       /// let value = DataLabelingDataset().with { $0.dataset = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -527,6 +532,7 @@
         /// ```
         /// let value = DataLabelingAnnotatedDataset().with { $0.annotatedDataset = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

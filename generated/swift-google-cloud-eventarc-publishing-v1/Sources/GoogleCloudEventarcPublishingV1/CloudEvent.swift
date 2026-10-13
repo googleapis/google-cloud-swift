@@ -59,6 +59,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CloudEvent().with { $0.id = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -180,6 +181,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudEventAttributeValue().with { $0.ceBoolean = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

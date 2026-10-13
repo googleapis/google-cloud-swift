@@ -37,6 +37,7 @@ public struct ToolCalls: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ToolCalls().with { $0.toolCalls = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

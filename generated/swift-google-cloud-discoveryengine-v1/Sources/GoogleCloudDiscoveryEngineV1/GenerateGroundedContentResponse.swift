@@ -37,6 +37,7 @@
     /// ```
     /// let value = GenerateGroundedContentResponse().with { $0.candidates = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -106,6 +107,7 @@
       /// ```
       /// let value = Candidate().with { $0.index = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -204,6 +206,7 @@
         /// ```
         /// let value = GroundingMetadata().with { $0.retrievalMetadata = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -309,6 +312,7 @@
           /// ```
           /// let value = RetrievalMetadata().with { $0.source = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -533,6 +537,7 @@
           /// ```
           /// let value = DynamicRetrievalMetadata().with { $0.predictorMetadata = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -623,6 +628,7 @@
           /// ```
           /// let value = DynamicRetrievalPredictorMetadata().with { $0.version = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -825,6 +831,7 @@
           /// ```
           /// let value = SearchEntryPoint().with { $0.renderedContent = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -925,6 +932,7 @@
           /// ```
           /// let value = GroundingSupport().with { $0.claimText = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1028,6 +1036,7 @@
           /// ```
           /// let value = ImageMetadata().with { $0.image = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1100,6 +1109,7 @@
             /// ```
             /// let value = WebsiteInfo().with { $0.uri = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)
@@ -1192,6 +1202,7 @@
             /// ```
             /// let value = Image().with { $0.uri = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)

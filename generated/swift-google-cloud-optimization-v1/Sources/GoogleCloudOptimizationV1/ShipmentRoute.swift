@@ -243,6 +243,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ShipmentRoute().with { $0.vehicleIndex = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -407,6 +408,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Delay().with { $0.startTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -574,6 +576,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Visit().with { $0.shipmentIndex = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -798,6 +801,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Transition().with { $0.travelDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -948,6 +952,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VehicleLoad().with { $0.amount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1030,6 +1035,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EncodedPolyline().with { $0.points = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1112,6 +1118,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Break().with { $0.startTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1232,6 +1239,7 @@ public struct ShipmentRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TravelStep().with { $0.duration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

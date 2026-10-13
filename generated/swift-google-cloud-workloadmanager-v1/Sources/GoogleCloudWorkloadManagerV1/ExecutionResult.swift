@@ -57,6 +57,7 @@ public struct ExecutionResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExecutionResult().with { $0.violationMessage = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

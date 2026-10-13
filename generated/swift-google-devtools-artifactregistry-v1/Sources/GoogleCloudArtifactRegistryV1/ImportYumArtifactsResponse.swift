@@ -39,6 +39,7 @@ public struct ImportYumArtifactsResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ImportYumArtifactsResponse().with { $0.yumArtifacts = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

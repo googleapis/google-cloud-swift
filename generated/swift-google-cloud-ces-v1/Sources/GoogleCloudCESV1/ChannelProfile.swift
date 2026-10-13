@@ -65,6 +65,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ChannelProfile().with { $0.profileId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -170,6 +171,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PersonaProperty().with { $0.persona = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -378,6 +380,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WebWidgetConfig().with { $0.modality = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -475,6 +478,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SecuritySettings().with { $0.enablePublicAccess = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -858,6 +862,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WhatsAppConfig().with { $0.wabaId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -976,6 +981,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstagramConfig().with { $0.instagramAccountId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

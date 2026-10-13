@@ -46,6 +46,7 @@ public struct AutomationRolloutMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = AutomationRolloutMetadata().with { $0.promoteAutomationRun = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -71,6 +71,7 @@ public struct GoldengateMicrosoftSqlserverConnectionProperties: Codable, Equatab
   /// ```
   /// let value = GoldengateMicrosoftSqlserverConnectionProperties().with { $0.password = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

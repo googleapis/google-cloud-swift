@@ -36,6 +36,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = SharingEnvironmentConfig().with { $0.defaultExchangeConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -119,6 +120,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = DefaultExchangeConfig().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -203,6 +205,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = DcrExchangeConfig().with { $0.singleSelectedResourceSharingRestriction = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

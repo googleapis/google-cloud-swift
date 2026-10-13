@@ -44,6 +44,7 @@
     /// ```
     /// let value = InstanceGroupManagerStatusBulkInstanceOperation().with { $0.inProgress = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

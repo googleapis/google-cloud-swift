@@ -89,6 +89,7 @@ public struct AudioStream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AudioStream().with { $0.codec = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -220,6 +221,7 @@ public struct AudioStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AudioMapping().with { $0.atomKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

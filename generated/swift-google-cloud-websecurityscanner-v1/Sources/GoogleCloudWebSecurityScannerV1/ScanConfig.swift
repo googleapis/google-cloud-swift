@@ -83,6 +83,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ScanConfig().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -213,6 +214,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Authentication().with { $0.googleAccount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -319,6 +321,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GoogleAccount().with { $0.username = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -412,6 +415,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CustomAccount().with { $0.username = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -504,6 +508,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = IapCredential().with { $0.iapTestServiceAccountInfo = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -584,6 +589,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = IapTestServiceAccountInfo().with { $0.targetAudienceClientId = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -737,6 +743,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Schedule().with { $0.scheduleTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

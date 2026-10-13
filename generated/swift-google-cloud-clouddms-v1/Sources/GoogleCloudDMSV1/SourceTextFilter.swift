@@ -41,6 +41,7 @@ public struct SourceTextFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SourceTextFilter().with { $0.sourceMinLengthFilter = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

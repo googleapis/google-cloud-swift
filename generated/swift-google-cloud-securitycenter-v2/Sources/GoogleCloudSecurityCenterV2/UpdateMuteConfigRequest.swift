@@ -40,6 +40,7 @@ public struct UpdateMuteConfigRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = UpdateMuteConfigRequest().with { $0.muteConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

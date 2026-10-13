@@ -53,6 +53,7 @@ public struct LogsPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LogsPolicy().with { $0.destination = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -130,6 +131,7 @@ public struct LogsPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudLoggingOption().with { $0.useGenericTaskMonitoredResource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

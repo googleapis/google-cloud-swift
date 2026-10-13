@@ -43,6 +43,7 @@ public struct ComputeDeploymentStatusResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = ComputeDeploymentStatusResponse().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

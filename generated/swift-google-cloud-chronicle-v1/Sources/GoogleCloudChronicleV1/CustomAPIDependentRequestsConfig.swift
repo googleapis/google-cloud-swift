@@ -46,6 +46,7 @@ public struct CustomAPIDependentRequestsConfig: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = CustomAPIDependentRequestsConfig().with { $0.itemIdJsonPath = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

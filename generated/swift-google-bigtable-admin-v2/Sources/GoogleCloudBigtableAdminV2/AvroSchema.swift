@@ -40,6 +40,7 @@ public struct AvroSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AvroSchema().with { $0.jsonSchemas = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

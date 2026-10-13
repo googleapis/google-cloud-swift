@@ -51,6 +51,7 @@ public struct ComputeEngineShapeDescriptor: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ComputeEngineShapeDescriptor().with { $0.memoryMb = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

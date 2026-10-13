@@ -57,6 +57,7 @@ public struct ContactSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ContactSettings().with { $0.privacy = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -140,6 +141,7 @@ public struct ContactSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Contact().with { $0.postalAddress = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

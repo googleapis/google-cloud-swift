@@ -47,6 +47,7 @@ public struct CloudResourceProperties: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = CloudResourceProperties().with { $0.serviceAccountId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

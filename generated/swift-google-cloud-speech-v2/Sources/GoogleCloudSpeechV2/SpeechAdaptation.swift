@@ -42,6 +42,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SpeechAdaptation().with { $0.phraseSets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -107,6 +108,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AdaptationPhraseSet().with { $0.phraseSet = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

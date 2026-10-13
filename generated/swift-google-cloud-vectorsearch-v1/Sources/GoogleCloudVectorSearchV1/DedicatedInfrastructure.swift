@@ -39,6 +39,7 @@ public struct DedicatedInfrastructure: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = DedicatedInfrastructure().with { $0.mode = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -108,6 +109,7 @@ public struct DedicatedInfrastructure: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = AutoscalingSpec().with { $0.minReplicaCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

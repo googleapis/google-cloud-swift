@@ -42,6 +42,7 @@ public struct ListAdaptiveMtDatasetsResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = ListAdaptiveMtDatasetsResponse().with { $0.adaptiveMtDatasets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

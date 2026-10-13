@@ -85,6 +85,7 @@
     /// ```
     /// let value = Control().with { $0.boostAction = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -257,6 +258,7 @@
       /// ```
       /// let value = BoostAction().with { $0.fixedBoost = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -386,6 +388,7 @@
         /// ```
         /// let value = InterpolationBoostSpec().with { $0.fieldName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -479,6 +482,7 @@
           /// ```
           /// let value = ControlPoint().with { $0.attributeValue = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -871,6 +875,7 @@
       /// ```
       /// let value = FilterAction().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -960,6 +965,7 @@
       /// ```
       /// let value = RedirectAction().with { $0.redirectUri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1045,6 +1051,7 @@
       /// ```
       /// let value = SynonymsAction().with { $0.synonyms = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1130,6 +1137,7 @@
       /// ```
       /// let value = PromoteAction().with { $0.dataStore = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

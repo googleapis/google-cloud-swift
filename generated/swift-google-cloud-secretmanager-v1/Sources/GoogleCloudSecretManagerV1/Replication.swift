@@ -36,6 +36,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Replication().with { $0.automatic = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -136,6 +137,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Automatic().with { $0.customerManagedEncryption = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -226,6 +228,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UserManaged().with { $0.replicas = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -304,6 +307,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Replica().with { $0.location = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

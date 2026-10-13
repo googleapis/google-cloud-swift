@@ -51,6 +51,7 @@ public struct CloudDlpInspection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CloudDlpInspection().with { $0.inspectJob = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

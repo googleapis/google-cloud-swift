@@ -36,6 +36,7 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = WebServerNetworkAccessControl().with { $0.allowedIpRanges = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -106,6 +107,7 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = AllowedIpRange().with { $0.value = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

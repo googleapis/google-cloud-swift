@@ -40,6 +40,7 @@ public struct Trend: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Trend().with { $0.duration = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

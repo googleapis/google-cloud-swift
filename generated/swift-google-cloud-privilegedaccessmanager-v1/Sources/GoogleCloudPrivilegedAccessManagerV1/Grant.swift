@@ -86,6 +86,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Grant().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -204,6 +205,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Timeline().with { $0.events = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -263,6 +265,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Event().with { $0.requested = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -436,6 +439,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Requested().with { $0.expireTime = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -519,6 +523,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Approved().with { $0.reason = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -609,6 +614,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Denied().with { $0.reason = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -698,6 +704,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Revoked().with { $0.reason = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -781,6 +788,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Withdrawn().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -854,6 +862,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Scheduled().with { $0.scheduledActivationTime = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -932,6 +941,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Activated().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1004,6 +1014,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ActivationFailed().with { $0.error = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1079,6 +1090,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Expired().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1148,6 +1160,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Ended().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1218,6 +1231,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ExternallyModified().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1367,6 +1381,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AuditTrail().with { $0.accessGrantTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

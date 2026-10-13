@@ -48,6 +48,7 @@
     /// ```
     /// let value = ListTransitionRouteGroupsResponse().with { $0.transitionRouteGroups = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

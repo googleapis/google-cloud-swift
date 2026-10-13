@@ -58,6 +58,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WindowsUpdate().with { $0.identity = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -152,6 +153,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Identity().with { $0.updateId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -240,6 +242,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Category().with { $0.categoryId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

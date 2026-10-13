@@ -37,6 +37,7 @@ public struct ColumnLayout: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ColumnLayout().with { $0.columns = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -100,6 +101,7 @@ public struct ColumnLayout: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Column().with { $0.weight = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -51,6 +51,7 @@ public struct LineageLink: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LineageLink().with { $0.source = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -138,6 +139,7 @@ public struct LineageLink: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LineageProcess().with { $0.process = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -215,6 +217,7 @@ public struct LineageLink: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DependencyInfo().with { $0.dependencyType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

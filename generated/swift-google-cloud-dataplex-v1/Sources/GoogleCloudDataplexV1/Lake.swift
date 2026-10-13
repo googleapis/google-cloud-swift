@@ -81,6 +81,7 @@ public struct Lake: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Lake().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -201,6 +202,7 @@ public struct Lake: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Metastore().with { $0.service = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -289,6 +291,7 @@ public struct Lake: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MetastoreStatus().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

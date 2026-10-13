@@ -51,6 +51,7 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GitHubEventsConfig().with { $0.installationId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

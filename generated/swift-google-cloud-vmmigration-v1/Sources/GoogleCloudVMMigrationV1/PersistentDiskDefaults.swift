@@ -52,6 +52,7 @@ public struct PersistentDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = PersistentDiskDefaults().with { $0.sourceDiskNumber = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

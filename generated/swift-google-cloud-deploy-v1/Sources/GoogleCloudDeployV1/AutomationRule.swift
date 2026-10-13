@@ -36,6 +36,7 @@ public struct AutomationRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AutomationRule().with { $0.promoteReleaseRule = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

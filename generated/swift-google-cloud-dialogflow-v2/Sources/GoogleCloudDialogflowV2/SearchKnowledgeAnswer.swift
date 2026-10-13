@@ -49,6 +49,7 @@
     /// ```
     /// let value = SearchKnowledgeAnswer().with { $0.answer = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -137,6 +138,7 @@
       /// ```
       /// let value = AnswerSource().with { $0.title = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

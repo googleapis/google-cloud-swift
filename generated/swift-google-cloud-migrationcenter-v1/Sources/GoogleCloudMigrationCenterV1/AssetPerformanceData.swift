@@ -38,6 +38,7 @@ public struct AssetPerformanceData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AssetPerformanceData().with { $0.dailyResourceUsageAggregations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

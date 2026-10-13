@@ -87,6 +87,7 @@ public struct TransactionData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TransactionData().with { $0.transactionId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -228,6 +229,7 @@ public struct TransactionData: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Address().with { $0.recipient = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -356,6 +358,7 @@ public struct TransactionData: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = User().with { $0.accountId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -476,6 +479,7 @@ public struct TransactionData: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Item().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -585,6 +589,7 @@ public struct TransactionData: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GatewayInfo().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

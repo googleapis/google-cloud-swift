@@ -49,6 +49,7 @@
     /// ```
     /// let value = HumanAgentAssistantConfig().with { $0.notificationConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -125,6 +126,7 @@
       /// ```
       /// let value = SuggestionTriggerSettings().with { $0.noSmalltalk = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -282,6 +284,7 @@
       /// ```
       /// let value = SuggestionFeatureConfig().with { $0.suggestionFeature = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -514,6 +517,7 @@
       /// ```
       /// let value = SuggestionConfig().with { $0.featureConfigs = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -699,6 +703,7 @@
       /// ```
       /// let value = SuggestionQueryConfig().with { $0.knowledgeBaseQuerySource = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -832,6 +837,7 @@
         /// ```
         /// let value = KnowledgeBaseQuerySource().with { $0.knowledgeBases = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -918,6 +924,7 @@
         /// ```
         /// let value = DocumentQuerySource().with { $0.documents = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1008,6 +1015,7 @@
         /// ```
         /// let value = DialogflowQuerySource().with { $0.agent = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1074,6 +1082,7 @@
           /// ```
           /// let value = HumanAgentSideConfig().with { $0.agent = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1185,6 +1194,7 @@
         /// ```
         /// let value = ContextFilterSettings().with { $0.dropHandoffMessages = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1289,6 +1299,7 @@
         /// ```
         /// let value = Sections().with { $0.sectionTypes = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1583,6 +1594,7 @@
       /// ```
       /// let value = ConversationModelConfig().with { $0.model = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1672,6 +1684,7 @@
       /// ```
       /// let value = ConversationProcessConfig().with { $0.recentSentencesCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1819,6 +1832,7 @@
       /// ```
       /// let value = MessageAnalysisConfig().with { $0.enableEntityExtraction = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

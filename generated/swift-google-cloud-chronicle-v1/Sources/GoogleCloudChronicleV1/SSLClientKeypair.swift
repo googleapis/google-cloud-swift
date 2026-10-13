@@ -56,6 +56,7 @@ public struct SSLClientKeypair: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SSLClientKeypair().with { $0.encodedPrivateKey = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

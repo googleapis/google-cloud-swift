@@ -45,6 +45,7 @@ public struct Message: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Message().with { $0.body = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -116,6 +117,7 @@ public struct Message: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Body().with { $0.text = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

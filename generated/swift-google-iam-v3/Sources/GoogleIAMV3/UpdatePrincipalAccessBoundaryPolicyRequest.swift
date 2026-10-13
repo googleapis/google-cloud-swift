@@ -47,6 +47,7 @@ public struct UpdatePrincipalAccessBoundaryPolicyRequest: Codable, Equatable, Go
   /// ```
   /// let value = UpdatePrincipalAccessBoundaryPolicyRequest().with { $0.principalAccessBoundaryPolicy = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

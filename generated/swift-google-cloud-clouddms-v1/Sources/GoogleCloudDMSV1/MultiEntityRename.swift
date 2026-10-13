@@ -52,6 +52,7 @@ public struct MultiEntityRename: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MultiEntityRename().with { $0.newNamePattern = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

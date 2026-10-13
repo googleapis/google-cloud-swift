@@ -38,6 +38,7 @@ public struct ResourcePath: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ResourcePath().with { $0.nodes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -104,6 +105,7 @@ public struct ResourcePath: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourcePathNode().with { $0.nodeType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

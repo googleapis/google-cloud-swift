@@ -41,6 +41,7 @@ public struct ListDataScanJobsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = ListDataScanJobsResponse().with { $0.dataScanJobs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

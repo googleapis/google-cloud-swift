@@ -45,6 +45,7 @@ public struct TestGoldengateConnectionAssignmentResponse: Codable, Equatable, Go
   /// ```
   /// let value = TestGoldengateConnectionAssignmentResponse().with { $0.resultType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

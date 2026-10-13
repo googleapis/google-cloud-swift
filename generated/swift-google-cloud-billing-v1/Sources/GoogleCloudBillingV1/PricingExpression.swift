@@ -81,6 +81,7 @@ public struct PricingExpression: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PricingExpression().with { $0.usageUnit = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -184,6 +185,7 @@ public struct PricingExpression: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TierRate().with { $0.startUsageAmount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

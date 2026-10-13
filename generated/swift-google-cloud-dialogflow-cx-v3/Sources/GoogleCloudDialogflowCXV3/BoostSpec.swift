@@ -43,6 +43,7 @@
     /// ```
     /// let value = BoostSpec().with { $0.conditionBoostSpecs = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -132,6 +133,7 @@
       /// ```
       /// let value = ConditionBoostSpec().with { $0.condition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -222,6 +224,7 @@
         /// ```
         /// let value = BoostControlSpec().with { $0.fieldName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -316,6 +319,7 @@
           /// ```
           /// let value = ControlPoint().with { $0.attributeValue = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)

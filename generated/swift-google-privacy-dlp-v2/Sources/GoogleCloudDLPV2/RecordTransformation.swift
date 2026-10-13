@@ -42,6 +42,7 @@ public struct RecordTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RecordTransformation().with { $0.fieldId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

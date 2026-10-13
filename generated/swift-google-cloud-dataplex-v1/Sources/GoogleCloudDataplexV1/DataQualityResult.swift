@@ -74,6 +74,7 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataQualityResult().with { $0.passed = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -185,6 +186,7 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PostScanActionsResult().with { $0.bigqueryExportResult = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -247,6 +249,7 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BigQueryExportResult().with { $0.state = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -503,6 +506,7 @@ public struct DataQualityResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnomalyDetectionGeneratedAssets().with { $0.resultTable = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

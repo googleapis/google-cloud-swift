@@ -93,6 +93,7 @@ public struct BindingExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BindingExplanation().with { $0.access = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -194,6 +195,7 @@ public struct BindingExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnnotatedMembership().with { $0.membership = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

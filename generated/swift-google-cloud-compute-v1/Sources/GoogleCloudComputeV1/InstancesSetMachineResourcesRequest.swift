@@ -36,6 +36,7 @@
     /// ```
     /// let value = InstancesSetMachineResourcesRequest().with { $0.guestAccelerators = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -42,6 +42,7 @@ public struct ListMirroringDeploymentGroupsResponse: Codable, Equatable, GoogleW
   /// ```
   /// let value = ListMirroringDeploymentGroupsResponse().with { $0.mirroringDeploymentGroups = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -80,6 +80,7 @@ public struct HttpData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = HttpData().with { $0.listUrl = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

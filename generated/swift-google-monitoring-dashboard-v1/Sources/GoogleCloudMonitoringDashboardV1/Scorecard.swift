@@ -82,6 +82,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Scorecard().with { $0.timeSeriesQuery = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -191,6 +192,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GaugeView().with { $0.lowerBound = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -286,6 +288,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SparkChartView().with { $0.sparkChartType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

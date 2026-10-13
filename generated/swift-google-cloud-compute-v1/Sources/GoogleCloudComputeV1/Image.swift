@@ -249,6 +249,7 @@
     /// ```
     /// let value = Image().with { $0.architecture = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -511,6 +512,7 @@
       /// ```
       /// let value = RawDisk().with { $0.containerType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -40,6 +40,7 @@ public struct TransformationLocation: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = TransformationLocation().with { $0.findingId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

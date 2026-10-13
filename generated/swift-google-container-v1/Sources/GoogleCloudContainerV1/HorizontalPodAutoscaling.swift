@@ -40,6 +40,7 @@ public struct HorizontalPodAutoscaling: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = HorizontalPodAutoscaling().with { $0.disabled = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

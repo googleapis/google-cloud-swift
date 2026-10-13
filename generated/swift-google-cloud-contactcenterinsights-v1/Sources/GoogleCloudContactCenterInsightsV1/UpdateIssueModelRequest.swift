@@ -39,6 +39,7 @@ public struct UpdateIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = UpdateIssueModelRequest().with { $0.issueModel = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

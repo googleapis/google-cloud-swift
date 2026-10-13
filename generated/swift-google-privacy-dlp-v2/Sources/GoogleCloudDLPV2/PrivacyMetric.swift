@@ -36,6 +36,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PrivacyMetric().with { $0.numericalStatsConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -161,6 +162,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NumericalStatsConfig().with { $0.field = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -242,6 +244,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CategoricalStatsConfig().with { $0.field = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -335,6 +338,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = KAnonymityConfig().with { $0.quasiIds = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -423,6 +427,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LDiversityConfig().with { $0.quasiIds = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -523,6 +528,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = KMapEstimationConfig().with { $0.quasiIds = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -601,6 +607,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TaggedField().with { $0.field = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -750,6 +757,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AuxiliaryTable().with { $0.table = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -822,6 +830,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = QuasiIdField().with { $0.field = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -965,6 +974,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DeltaPresenceEstimationConfig().with { $0.quasiIds = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

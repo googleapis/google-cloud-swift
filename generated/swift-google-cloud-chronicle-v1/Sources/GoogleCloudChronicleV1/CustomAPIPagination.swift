@@ -36,6 +36,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CustomAPIPagination().with { $0.`none` = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -146,6 +147,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NonePagination().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -222,6 +224,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TokenPagination().with { $0.nextPageTokenJsonPath = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -310,6 +313,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LinkPagination().with { $0.nextPageLinkJsonPath = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -390,6 +394,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OffsetPagination().with { $0.offsetQueryParam = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -470,6 +475,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PageNumberPagination().with { $0.pageNumberQueryParam = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

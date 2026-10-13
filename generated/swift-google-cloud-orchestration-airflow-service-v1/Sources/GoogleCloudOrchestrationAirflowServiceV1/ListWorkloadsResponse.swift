@@ -40,6 +40,7 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListWorkloadsResponse().with { $0.workloads = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -112,6 +113,7 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ComposerWorkload().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -212,6 +214,7 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ComposerWorkloadStatus().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -42,6 +42,7 @@
     /// ```
     /// let value = EntityIdSelector().with { $0.csvSource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

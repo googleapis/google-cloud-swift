@@ -46,6 +46,7 @@ public struct TargetArtifact: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TargetArtifact().with { $0.artifactUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -149,6 +150,7 @@ public struct TargetArtifact: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PhaseArtifact().with { $0.skaffoldConfigPath = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

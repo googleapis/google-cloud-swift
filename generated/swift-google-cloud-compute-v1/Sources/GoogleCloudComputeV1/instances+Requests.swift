@@ -69,6 +69,7 @@
       /// ```
       /// let value = AddAccessConfigRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -203,6 +204,7 @@
       /// ```
       /// let value = AddNetworkInterfaceRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -330,6 +332,7 @@
       /// ```
       /// let value = AddResourcePoliciesRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -530,6 +533,7 @@
       /// ```
       /// let value = AggregatedListRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -668,6 +672,7 @@
       /// ```
       /// let value = AttachDiskRequest().with { $0.forceAttach = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -796,6 +801,7 @@
       /// ```
       /// let value = BulkInsertRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -915,6 +921,7 @@
       /// ```
       /// let value = DeleteRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1044,6 +1051,7 @@
       /// ```
       /// let value = DeleteAccessConfigRequest().with { $0.accessConfig = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1178,6 +1186,7 @@
       /// ```
       /// let value = DeleteNetworkInterfaceRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1308,6 +1317,7 @@
       /// ```
       /// let value = DetachDiskRequest().with { $0.deviceName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1417,6 +1427,7 @@
       /// ```
       /// let value = GetRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1519,6 +1530,7 @@
       /// ```
       /// let value = GetEffectiveFirewallsRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1630,6 +1642,7 @@
       /// ```
       /// let value = GetGuestAttributesRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1740,6 +1753,7 @@
       /// ```
       /// let value = GetIamPolicyRequest().with { $0.optionsRequestedPolicyVersion = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1846,6 +1860,7 @@
       /// ```
       /// let value = GetScreenshotRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1967,6 +1982,7 @@
       /// ```
       /// let value = GetSerialPortOutputRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2074,6 +2090,7 @@
       /// ```
       /// let value = GetShieldedInstanceIdentityRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2213,6 +2230,7 @@
       /// ```
       /// let value = InsertRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2406,6 +2424,7 @@
       /// ```
       /// let value = ListRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2601,6 +2620,7 @@
       /// ```
       /// let value = ListReferrersRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2731,6 +2751,7 @@
       /// ```
       /// let value = PerformMaintenanceRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2854,6 +2875,7 @@
       /// ```
       /// let value = RemoveResourcePoliciesRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2982,6 +3004,7 @@
       /// ```
       /// let value = ReportHostAsFaultyRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3105,6 +3128,7 @@
       /// ```
       /// let value = ResetRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3223,6 +3247,7 @@
       /// ```
       /// let value = ResumeRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3326,6 +3351,7 @@
       /// ```
       /// let value = SendDiagnosticInterruptRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3444,6 +3470,7 @@
       /// ```
       /// let value = SetDeletionProtectionRequest().with { $0.deletionProtection = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3574,6 +3601,7 @@
       /// ```
       /// let value = SetDiskAutoDeleteRequest().with { $0.autoDelete = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3694,6 +3722,7 @@
       /// ```
       /// let value = SetIamPolicyRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3817,6 +3846,7 @@
       /// ```
       /// let value = SetLabelsRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3944,6 +3974,7 @@
       /// ```
       /// let value = SetMachineResourcesRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4072,6 +4103,7 @@
       /// ```
       /// let value = SetMachineTypeRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4200,6 +4232,7 @@
       /// ```
       /// let value = SetMetadataRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4327,6 +4360,7 @@
       /// ```
       /// let value = SetMinCpuPlatformRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4455,6 +4489,7 @@
       /// ```
       /// let value = SetNameRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4582,6 +4617,7 @@
       /// ```
       /// let value = SetSchedulingRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4710,6 +4746,7 @@
       /// ```
       /// let value = SetSecurityPolicyRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4838,6 +4875,7 @@
       /// ```
       /// let value = SetServiceAccountRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4967,6 +5005,7 @@
       /// ```
       /// let value = SetShieldedInstanceIntegrityPolicyRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5096,6 +5135,7 @@
       /// ```
       /// let value = SetTagsRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5222,6 +5262,7 @@
       /// ```
       /// let value = SimulateMaintenanceEventRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5347,6 +5388,7 @@
       /// ```
       /// let value = StartRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5470,6 +5512,7 @@
       /// ```
       /// let value = StartWithEncryptionKeyRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5601,6 +5644,7 @@
       /// ```
       /// let value = StopRequest().with { $0.discardLocalSsd = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5734,6 +5778,7 @@
       /// ```
       /// let value = SuspendRequest().with { $0.discardLocalSsd = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5847,6 +5892,7 @@
       /// ```
       /// let value = TestIamPermissionsRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5988,6 +6034,7 @@
       /// ```
       /// let value = UpdateRequest().with { $0.discardLocalSsd = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -6274,6 +6321,7 @@
       /// ```
       /// let value = UpdateAccessConfigRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -6407,6 +6455,7 @@
       /// ```
       /// let value = UpdateDisplayDeviceRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -6537,6 +6586,7 @@
       /// ```
       /// let value = UpdateNetworkInterfaceRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -6670,6 +6720,7 @@
       /// ```
       /// let value = UpdateShieldedInstanceConfigRequest().with { $0.instance = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

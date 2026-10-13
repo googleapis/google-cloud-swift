@@ -44,6 +44,7 @@ public struct ListAuthTokensResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = ListAuthTokensResponse().with { $0.authTokens = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

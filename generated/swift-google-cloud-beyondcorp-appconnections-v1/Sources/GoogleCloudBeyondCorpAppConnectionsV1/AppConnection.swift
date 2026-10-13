@@ -80,6 +80,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AppConnection().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -204,6 +205,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ApplicationEndpoint().with { $0.host = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -305,6 +307,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Gateway().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -43,6 +43,7 @@ public struct AttackPath: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AttackPath().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -133,6 +134,7 @@ public struct AttackPath: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AttackPathNode().with { $0.resource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -231,6 +233,7 @@ public struct AttackPath: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = PathNodeAssociatedFinding().with { $0.canonicalFinding = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -335,6 +338,7 @@ public struct AttackPath: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AttackStepNode().with { $0.uuid = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -600,6 +604,7 @@ public struct AttackPath: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AttackPathEdge().with { $0.source = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

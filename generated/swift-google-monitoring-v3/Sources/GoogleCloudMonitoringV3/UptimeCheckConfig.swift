@@ -109,6 +109,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UptimeCheckConfig().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -315,6 +316,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceGroup().with { $0.groupId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -402,6 +404,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PingConfig().with { $0.pingsCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -571,6 +574,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HttpCheck().with { $0.requestMethod = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -740,6 +744,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BasicAuthentication().with { $0.username = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -827,6 +832,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ResponseStatusCode().with { $0.statusValue = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1094,6 +1100,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ServiceAgentAuthentication().with { $0.type = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1563,6 +1570,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TcpCheck().with { $0.port = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1662,6 +1670,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ContentMatcher().with { $0.content = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1762,6 +1771,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = JsonPathMatcher().with { $0.jsonPath = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

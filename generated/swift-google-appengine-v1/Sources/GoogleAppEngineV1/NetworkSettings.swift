@@ -38,6 +38,7 @@ public struct NetworkSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NetworkSettings().with { $0.ingressTrafficAllowed = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

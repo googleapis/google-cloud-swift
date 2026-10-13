@@ -38,6 +38,7 @@
     /// ```
     /// let value = PointwiseMetricInstance().with { $0.jsonInstance = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

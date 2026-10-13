@@ -53,6 +53,7 @@ public struct ModifyOrderRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ModifyOrderRequest().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -148,6 +149,7 @@ public struct ModifyOrderRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Modification().with { $0.lineItemId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

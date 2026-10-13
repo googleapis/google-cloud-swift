@@ -36,6 +36,7 @@ public struct ExecuteOntapDeleteResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ExecuteOntapDeleteResponse().with { $0.body = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -70,6 +70,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DashboardChart().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -181,6 +182,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ChartDatasource().with { $0.dashboardQuery = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -303,6 +305,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Visualization().with { $0.xAxes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -453,6 +456,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Axis().with { $0.axisType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -586,6 +590,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Series().with { $0.seriesType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -743,6 +748,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Encode().with { $0.x = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -841,6 +847,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = DataLabel().with { $0.show = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -927,6 +934,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ItemStyle().with { $0.borderWidth = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1037,6 +1045,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = AreaStyle().with { $0.color = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1156,6 +1165,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = UserSelectedValues().with { $0.color = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1245,6 +1255,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ChartSliceColor().with { $0.key = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1330,6 +1341,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ItemColors().with { $0.colors = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1415,6 +1427,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = GaugeValue().with { $0.value = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1507,6 +1520,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = GaugeConfig().with { $0.baseValue = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1610,6 +1624,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = MetricTrendConfig().with { $0.metricFormat = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1734,6 +1749,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Tooltip().with { $0.show = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1837,6 +1853,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Legend().with { $0.id = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1979,6 +1996,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ColumnDef().with { $0.field = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2069,6 +2087,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ColumnRenderTypeSettings().with { $0.field = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2161,6 +2180,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ColumnTooltipSettings().with { $0.field = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2261,6 +2281,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TableConfig().with { $0.enableTextWrap = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2368,6 +2389,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GoogleMapsConfig().with { $0.dataSettings = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2446,6 +2468,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = DataSettings().with { $0.latitudeColumn = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2550,6 +2573,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = MapPosition().with { $0.fitData = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2652,6 +2676,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = PointSettings().with { $0.pointSizeType = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2766,6 +2791,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = VisualMap().with { $0.visualMapType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2842,6 +2868,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = VisualMapPiece().with { $0.min = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2984,6 +3011,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DrillDownConfig().with { $0.leftDrillDowns = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -3057,6 +3085,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = DrillDown().with { $0.defaultSettings = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3157,6 +3186,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = DefaultDrillDownSettings().with { $0.enabled = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -3244,6 +3274,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = CustomDrillDownSettings().with { $0.query = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -3355,6 +3386,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = DrillDownQuery().with { $0.query = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -3437,6 +3469,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = DrillDownFilter().with { $0.dashboardFilters = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -3503,6 +3536,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             /// ```
             /// let value = DrillDownDashboardFilter().with { $0.dashboardFilterId = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)
@@ -3620,6 +3654,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = DrillDownExternalLink().with { $0.link = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)

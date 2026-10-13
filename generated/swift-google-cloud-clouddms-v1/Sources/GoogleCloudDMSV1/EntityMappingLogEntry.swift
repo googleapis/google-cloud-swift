@@ -42,6 +42,7 @@ public struct EntityMappingLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EntityMappingLogEntry().with { $0.ruleId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

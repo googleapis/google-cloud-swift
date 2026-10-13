@@ -66,6 +66,7 @@ public struct UpdateAutomationRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = UpdateAutomationRequest().with { $0.updateMask = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

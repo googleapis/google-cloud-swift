@@ -44,6 +44,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = JobConfiguration().with { $0.query = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -185,6 +186,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Query().with { $0.query = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -331,6 +333,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Load().with { $0.sourceUris = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -443,6 +446,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Extract().with { $0.destinationUris = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -541,6 +545,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TableCopy().with { $0.sourceTables = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

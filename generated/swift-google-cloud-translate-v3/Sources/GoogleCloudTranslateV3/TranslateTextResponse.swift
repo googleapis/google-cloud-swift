@@ -49,6 +49,7 @@ public struct TranslateTextResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TranslateTextResponse().with { $0.translations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

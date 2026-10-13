@@ -92,6 +92,7 @@ public struct PatchJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PatchJob().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -270,6 +271,7 @@ public struct PatchJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstanceDetailsSummary().with { $0.pendingInstanceCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

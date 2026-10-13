@@ -42,6 +42,7 @@
     /// ```
     /// let value = ConversationTurn().with { $0.userInput = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -121,6 +122,7 @@
       /// ```
       /// let value = UserInput().with { $0.input = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -251,6 +253,7 @@
       /// ```
       /// let value = VirtualAgentOutput().with { $0.sessionParameters = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

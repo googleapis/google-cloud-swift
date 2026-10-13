@@ -42,6 +42,7 @@ public struct AzureV2WorkloadIdentityFederation: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = AzureV2WorkloadIdentityFederation().with { $0.clientId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

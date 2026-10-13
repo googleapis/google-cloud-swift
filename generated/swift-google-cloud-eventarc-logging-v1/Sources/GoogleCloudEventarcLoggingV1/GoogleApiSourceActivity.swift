@@ -49,6 +49,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = GoogleApiSourceActivity().with { $0.messageUid = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -155,6 +156,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Published().with { $0.messageBus = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

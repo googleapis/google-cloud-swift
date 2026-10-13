@@ -36,6 +36,7 @@ public struct StreamAnnotations: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = StreamAnnotations().with { $0.streamAnnotations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

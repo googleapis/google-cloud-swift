@@ -44,6 +44,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = MigrationProgressEvent().with { $0.step = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -138,6 +139,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = PrepareStepDetails().with { $0.concurrencyMode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -221,6 +223,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = RedirectWritesStepDetails().with { $0.concurrencyMode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

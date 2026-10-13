@@ -55,6 +55,7 @@ public struct SubjectAltNames: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SubjectAltNames().with { $0.dnsNames = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

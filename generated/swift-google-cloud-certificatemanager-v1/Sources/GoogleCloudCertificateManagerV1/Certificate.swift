@@ -66,6 +66,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Certificate().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -210,6 +211,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SelfManagedCertificate().with { $0.pemCertificate = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -327,6 +329,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ManagedCertificate().with { $0.domains = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -425,6 +428,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ProvisioningIssue().with { $0.reason = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -650,6 +654,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AuthorizationAttemptInfo().with { $0.domain = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -61,6 +61,7 @@
     /// ```
     /// let value = RouterStatus().with { $0.bestRoutes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

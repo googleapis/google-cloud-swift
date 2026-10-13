@@ -68,6 +68,7 @@ public struct SetLoggingServiceRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = SetLoggingServiceRequest().with { $0.projectId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

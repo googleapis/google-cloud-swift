@@ -40,6 +40,7 @@ public struct ListConnectorsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = ListConnectorsResponse().with { $0.connectors = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

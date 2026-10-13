@@ -36,6 +36,7 @@ public struct OperationProgress: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OperationProgress().with { $0.steps = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -50,6 +50,7 @@ public struct ListTagBindingsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ListTagBindingsResponse().with { $0.tagBindings = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

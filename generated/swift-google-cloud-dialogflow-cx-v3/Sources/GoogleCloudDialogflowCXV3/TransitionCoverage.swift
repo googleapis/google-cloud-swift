@@ -42,6 +42,7 @@
     /// ```
     /// let value = TransitionCoverage().with { $0.transitions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -107,6 +108,7 @@
       /// ```
       /// let value = TransitionNode().with { $0.page = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -238,6 +240,7 @@
       /// ```
       /// let value = Transition().with { $0.source = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

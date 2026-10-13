@@ -36,6 +36,7 @@ public struct Frames: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Frames().with { $0.framesData = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

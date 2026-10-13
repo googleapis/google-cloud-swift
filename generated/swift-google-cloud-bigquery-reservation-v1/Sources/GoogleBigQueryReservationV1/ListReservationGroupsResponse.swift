@@ -44,6 +44,7 @@ public struct ListReservationGroupsResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListReservationGroupsResponse().with { $0.reservationGroups = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

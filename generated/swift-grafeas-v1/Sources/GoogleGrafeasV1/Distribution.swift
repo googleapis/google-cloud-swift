@@ -54,6 +54,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Distribution().with { $0.cpeUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -39,6 +39,7 @@ public struct CheckAutopilotCompatibilityResponse: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = CheckAutopilotCompatibilityResponse().with { $0.issues = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

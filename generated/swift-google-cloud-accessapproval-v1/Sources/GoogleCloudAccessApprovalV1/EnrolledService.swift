@@ -100,6 +100,7 @@ public struct EnrolledService: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EnrolledService().with { $0.cloudProduct = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

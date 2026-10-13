@@ -37,6 +37,7 @@ public struct TagParsingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TagParsingConfig().with { $0.entityParsingConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -104,6 +105,7 @@ public struct TagParsingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EntityParsingConfig().with { $0.entityClass = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

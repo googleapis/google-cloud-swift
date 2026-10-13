@@ -109,6 +109,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Conversation().with { $0.callMetadata = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -329,6 +330,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CallMetadata().with { $0.customerChannel = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -423,6 +425,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QualityMetadata().with { $0.customerSatisfactionRating = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -514,6 +517,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AgentInfo().with { $0.agentId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -643,6 +647,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Transcript().with { $0.transcriptSegments = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -733,6 +738,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TranscriptSegment().with { $0.messageTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -849,6 +855,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = WordInfo().with { $0.startOffset = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -946,6 +953,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = DialogflowSegmentMetadata().with { $0.smartReplyAllowlistCovered = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

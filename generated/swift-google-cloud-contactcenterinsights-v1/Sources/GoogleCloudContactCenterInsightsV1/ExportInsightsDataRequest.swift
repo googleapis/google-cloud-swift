@@ -52,6 +52,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = ExportInsightsDataRequest().with { $0.bigQueryDestination = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -167,6 +168,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = BigQueryDestination().with { $0.projectId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

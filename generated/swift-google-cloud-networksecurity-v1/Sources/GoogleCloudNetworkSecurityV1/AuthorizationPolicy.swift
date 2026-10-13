@@ -64,6 +64,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AuthorizationPolicy().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -166,6 +167,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Rule().with { $0.sources = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -245,6 +247,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Source().with { $0.principals = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -348,6 +351,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Destination().with { $0.hosts = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -427,6 +431,7 @@ public struct AuthorizationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = HttpHeaderMatch().with { $0.regexMatch = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

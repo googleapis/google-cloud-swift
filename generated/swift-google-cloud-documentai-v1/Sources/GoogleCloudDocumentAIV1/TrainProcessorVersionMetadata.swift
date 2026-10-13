@@ -43,6 +43,7 @@ public struct TrainProcessorVersionMetadata: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = TrainProcessorVersionMetadata().with { $0.commonMetadata = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -124,6 +125,7 @@ public struct TrainProcessorVersionMetadata: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = DatasetValidation().with { $0.documentErrorCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

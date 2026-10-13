@@ -44,6 +44,7 @@ public struct ListUsableSubnetworksResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListUsableSubnetworksResponse().with { $0.subnetworks = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

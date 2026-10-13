@@ -52,6 +52,7 @@ public struct DeploymentOperationSummary: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = DeploymentOperationSummary().with { $0.deploymentStep = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

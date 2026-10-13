@@ -44,6 +44,7 @@ public struct ScheduledOperationDetails: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = ScheduledOperationDetails().with { $0.dayOfWeek = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

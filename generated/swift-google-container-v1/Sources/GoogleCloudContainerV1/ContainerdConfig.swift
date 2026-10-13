@@ -46,6 +46,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ContainerdConfig().with { $0.privateRegistryAccessConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -121,6 +122,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PrivateRegistryAccessConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -199,6 +201,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CertificateAuthorityDomainConfig().with { $0.fqdns = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -288,6 +291,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = GCPSecretManagerCertificateConfig().with { $0.secretUri = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -422,6 +426,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WritableCgroups().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -516,6 +521,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RegistryHostConfig().with { $0.server = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -581,6 +587,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CertificateConfig().with { $0.gcpSecretManagerSecretUri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -697,6 +704,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CertificateConfigPair().with { $0.cert = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -784,6 +792,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RegistryHeader().with { $0.key = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -906,6 +915,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = HostConfig().with { $0.host = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

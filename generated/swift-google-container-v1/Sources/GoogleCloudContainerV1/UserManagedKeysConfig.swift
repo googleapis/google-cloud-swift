@@ -76,6 +76,7 @@ public struct UserManagedKeysConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UserManagedKeysConfig().with { $0.clusterCa = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

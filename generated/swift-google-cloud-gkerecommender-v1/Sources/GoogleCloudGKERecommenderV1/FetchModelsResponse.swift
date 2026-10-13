@@ -47,6 +47,7 @@ public struct FetchModelsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FetchModelsResponse().with { $0.models = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

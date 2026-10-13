@@ -44,6 +44,7 @@ public struct UpdateDataTableRequest: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = UpdateDataTableRequest().with { $0.dataTable = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

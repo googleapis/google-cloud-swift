@@ -106,6 +106,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Repository().with { $0.mavenConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -332,6 +333,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MavenRepositoryConfig().with { $0.allowSnapshotOverwrites = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -545,6 +547,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DockerRepositoryConfig().with { $0.immutableTags = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -639,6 +642,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VulnerabilityScanningConfig().with { $0.enablementConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

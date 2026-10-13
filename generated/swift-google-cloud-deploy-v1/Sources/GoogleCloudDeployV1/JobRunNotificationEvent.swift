@@ -62,6 +62,7 @@ public struct JobRunNotificationEvent: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = JobRunNotificationEvent().with { $0.message = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -37,6 +37,7 @@
     /// ```
     /// let value = GoogleDriveSource().with { $0.resourceIds = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -100,6 +101,7 @@
       /// ```
       /// let value = ResourceId().with { $0.resourceType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

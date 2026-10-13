@@ -96,6 +96,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataQualityRule().with { $0.rangeExpectation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -336,6 +337,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RangeExpectation().with { $0.minValue = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -430,6 +432,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NonNullExpectation().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -501,6 +504,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SetExpectation().with { $0.values = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -580,6 +584,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RegexExpectation().with { $0.regex = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -656,6 +661,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UniquenessExpectation().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -753,6 +759,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StatisticRangeExpectation().with { $0.statistic = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -989,6 +996,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RowConditionExpectation().with { $0.sqlExpression = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1074,6 +1082,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TableConditionExpectation().with { $0.sqlExpression = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1167,6 +1176,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SqlAssertion().with { $0.sqlStatement = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1265,6 +1275,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TemplateReference().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1341,6 +1352,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ParameterValue().with { $0.value = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1445,6 +1457,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RuleSource().with { $0.rulePathElements = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1508,6 +1521,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RulePathElement().with { $0.entrySource = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1603,6 +1617,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = EntrySource().with { $0.entryType = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1702,6 +1717,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = EntryLinkSource().with { $0.entryLinkType = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1867,6 +1883,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DebugQuery().with { $0.description = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

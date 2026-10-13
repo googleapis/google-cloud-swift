@@ -91,6 +91,7 @@ public struct BackupDisasterRecovery: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = BackupDisasterRecovery().with { $0.backupTemplate = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

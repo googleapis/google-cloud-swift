@@ -37,6 +37,7 @@ public struct GCS: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GCS().with { $0.remotePath = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

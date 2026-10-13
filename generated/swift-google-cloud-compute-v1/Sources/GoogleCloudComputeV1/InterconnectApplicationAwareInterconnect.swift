@@ -52,6 +52,7 @@
     /// ```
     /// let value = InterconnectApplicationAwareInterconnect().with { $0.bandwidthPercentagePolicy = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

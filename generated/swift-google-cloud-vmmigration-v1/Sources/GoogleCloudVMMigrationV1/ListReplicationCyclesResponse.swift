@@ -44,6 +44,7 @@ public struct ListReplicationCyclesResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListReplicationCyclesResponse().with { $0.replicationCycles = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

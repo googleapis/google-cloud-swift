@@ -39,6 +39,7 @@ public struct InvalidRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InvalidRule().with { $0.rule = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

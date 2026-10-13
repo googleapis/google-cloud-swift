@@ -36,6 +36,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = AwsPrincipalTagsOptions().with { $0.allowedPrincipalTags = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -94,6 +95,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = AllowedPrincipalTags().with { $0.containerImageSignatures = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -155,6 +157,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
       /// ```
       /// let value = ContainerImageSignatures().with { $0.keyIds = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

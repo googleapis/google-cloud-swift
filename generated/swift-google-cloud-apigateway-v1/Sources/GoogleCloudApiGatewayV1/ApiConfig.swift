@@ -90,6 +90,7 @@ public struct ApiConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ApiConfig().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -217,6 +218,7 @@ public struct ApiConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = File().with { $0.path = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -302,6 +304,7 @@ public struct ApiConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OpenApiDocument().with { $0.document = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -391,6 +394,7 @@ public struct ApiConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GrpcServiceDefinition().with { $0.fileDescriptorSet = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

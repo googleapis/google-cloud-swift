@@ -53,6 +53,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = ExportDataObjectsRequest().with { $0.gcsDestination = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -146,6 +147,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = GcsExportDestination().with { $0.exportUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -344,6 +346,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = FieldFilter().with { $0.includedFields = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -433,6 +436,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       /// ```
       /// let value = FieldList().with { $0.fields = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

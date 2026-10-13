@@ -126,6 +126,7 @@
     /// ```
     /// let value = AnswerQueryRequest().with { $0.servingConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -264,6 +265,7 @@
       /// ```
       /// let value = SafetySpec().with { $0.enable = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -333,6 +335,7 @@
         /// ```
         /// let value = SafetySetting().with { $0.category = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -581,6 +584,7 @@
       /// ```
       /// let value = RelatedQuestionsSpec().with { $0.enable = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -670,6 +674,7 @@
       /// ```
       /// let value = GroundingSpec().with { $0.includeGroundingSupports = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -931,6 +936,7 @@
       /// ```
       /// let value = AnswerGenerationSpec().with { $0.modelSpec = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1037,6 +1043,7 @@
         /// ```
         /// let value = ModelSpec().with { $0.modelVersion = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1117,6 +1124,7 @@
         /// ```
         /// let value = PromptSpec().with { $0.preamble = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1221,6 +1229,7 @@
       /// ```
       /// let value = SearchSpec().with { $0.searchParams = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1356,6 +1365,7 @@
         /// ```
         /// let value = SearchParams().with { $0.maxReturnResults = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1470,6 +1480,7 @@
         /// ```
         /// let value = SearchResultList().with { $0.searchResults = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1530,6 +1541,7 @@
           /// ```
           /// let value = SearchResult().with { $0.unstructuredDocumentInfo = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1646,6 +1658,7 @@
             /// ```
             /// let value = UnstructuredDocumentInfo().with { $0.document = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)
@@ -1758,6 +1771,7 @@
               /// ```
               /// let value = DocumentContext().with { $0.pageIdentifier = ... }
               /// ```
+              @inlinable
               public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
                 var copy = self
                 try config(&copy)
@@ -1854,6 +1868,7 @@
               /// ```
               /// let value = ExtractiveSegment().with { $0.pageIdentifier = ... }
               /// ```
+              @inlinable
               public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
                 var copy = self
                 try config(&copy)
@@ -1948,6 +1963,7 @@
               /// ```
               /// let value = ExtractiveAnswer().with { $0.pageIdentifier = ... }
               /// ```
+              @inlinable
               public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
                 var copy = self
                 try config(&copy)
@@ -2068,6 +2084,7 @@
             /// ```
             /// let value = ChunkInfo().with { $0.chunk = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)
@@ -2142,6 +2159,7 @@
               /// ```
               /// let value = DocumentMetadata().with { $0.uri = ... }
               /// ```
+              @inlinable
               public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
                 var copy = self
                 try config(&copy)
@@ -2348,6 +2366,7 @@
       /// ```
       /// let value = QueryUnderstandingSpec().with { $0.queryClassificationSpec = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2421,6 +2440,7 @@
         /// ```
         /// let value = QueryClassificationSpec().with { $0.types = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2653,6 +2673,7 @@
         /// ```
         /// let value = QueryRephraserSpec().with { $0.disable = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2726,6 +2747,7 @@
           /// ```
           /// let value = ModelSpec().with { $0.modelType = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -2974,6 +2996,7 @@
       /// ```
       /// let value = EndUserSpec().with { $0.endUserMetadata = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3033,6 +3056,7 @@
         /// ```
         /// let value = EndUserMetaData().with { $0.chunkInfo = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -3114,6 +3138,7 @@
           /// ```
           /// let value = ChunkInfo().with { $0.content = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -3178,6 +3203,7 @@
             /// ```
             /// let value = DocumentMetadata().with { $0.title = ... }
             /// ```
+            @inlinable
             public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
               var copy = self
               try config(&copy)

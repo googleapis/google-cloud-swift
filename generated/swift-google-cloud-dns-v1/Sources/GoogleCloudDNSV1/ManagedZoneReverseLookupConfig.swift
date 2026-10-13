@@ -34,6 +34,7 @@ public struct ManagedZoneReverseLookupConfig: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = ManagedZoneReverseLookupConfig().with { $0.kind = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

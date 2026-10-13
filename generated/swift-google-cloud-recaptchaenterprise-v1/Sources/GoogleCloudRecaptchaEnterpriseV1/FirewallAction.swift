@@ -36,6 +36,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FirewallAction().with { $0.allow = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -151,6 +152,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AllowAction().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -220,6 +222,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BlockAction().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -292,6 +295,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IncludeRecaptchaScriptAction().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -362,6 +366,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RedirectAction().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -435,6 +440,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SubstituteAction().with { $0.path = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -520,6 +526,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SetHeaderAction().with { $0.key = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

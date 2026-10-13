@@ -37,6 +37,7 @@ public struct OnDeployUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OnDeployUpdatePolicy().with { $0.runtimeVersion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

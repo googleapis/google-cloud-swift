@@ -46,6 +46,7 @@
     /// ```
     /// let value = NasJobSpec().with { $0.multiTrialAlgorithmSpec = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -149,6 +150,7 @@
       /// ```
       /// let value = MultiTrialAlgorithmSpec().with { $0.multiTrialAlgorithm = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -227,6 +229,7 @@
         /// ```
         /// let value = MetricSpec().with { $0.metricId = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -447,6 +450,7 @@
         /// ```
         /// let value = SearchTrialSpec().with { $0.searchTrialJobSpec = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -558,6 +562,7 @@
         /// ```
         /// let value = TrainTrialSpec().with { $0.trainTrialJobSpec = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

@@ -43,6 +43,7 @@
     /// ```
     /// let value = RagRetrievalConfig().with { $0.topK = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -113,6 +114,7 @@
       /// ```
       /// let value = Filter().with { $0.vectorDistanceThreshold = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -238,6 +240,7 @@
       /// ```
       /// let value = Ranking().with { $0.rankService = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -325,6 +328,7 @@
         /// ```
         /// let value = RankService().with { $0.modelName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -404,6 +408,7 @@
         /// ```
         /// let value = LlmRanker().with { $0.modelName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

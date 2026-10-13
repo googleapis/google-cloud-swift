@@ -53,6 +53,7 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CloudSqlProperties().with { $0.instanceId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

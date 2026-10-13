@@ -53,6 +53,7 @@ public struct Cost: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Cost().with { $0.costPerMillionOutputTokens = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

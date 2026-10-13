@@ -41,6 +41,7 @@ public struct ListWorkerPoolsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ListWorkerPoolsResponse().with { $0.workerPools = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

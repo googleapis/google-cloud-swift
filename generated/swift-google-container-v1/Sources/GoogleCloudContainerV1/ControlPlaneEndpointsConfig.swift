@@ -39,6 +39,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ControlPlaneEndpointsConfig().with { $0.dnsEndpointConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -116,6 +117,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = DNSEndpointConfig().with { $0.endpoint = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -247,6 +249,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = IPEndpointsConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

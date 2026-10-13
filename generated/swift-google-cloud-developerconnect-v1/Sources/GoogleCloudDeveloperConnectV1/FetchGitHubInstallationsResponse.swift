@@ -37,6 +37,7 @@ public struct FetchGitHubInstallationsResponse: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = FetchGitHubInstallationsResponse().with { $0.installations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -102,6 +103,7 @@ public struct FetchGitHubInstallationsResponse: Codable, Equatable, GoogleWKT._A
     /// ```
     /// let value = Installation().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

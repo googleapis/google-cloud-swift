@@ -47,6 +47,7 @@ public struct ConversationParticipant: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ConversationParticipant().with { $0.dialogflowParticipantName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

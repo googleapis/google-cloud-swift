@@ -75,6 +75,7 @@
     /// ```
     /// let value = ReasoningEngineSpec().with { $0.sourceCodeSpec = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -215,6 +216,7 @@
       /// ```
       /// let value = PackageSpec().with { $0.pickleObjectGcsUri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -353,6 +355,7 @@
       /// ```
       /// let value = DeploymentSpec().with { $0.env = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -468,6 +471,7 @@
       /// ```
       /// let value = SourceCodeSpec().with { $0.inlineSource = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -591,6 +595,7 @@
         /// ```
         /// let value = InlineSource().with { $0.sourceArchive = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -674,6 +679,7 @@
         /// ```
         /// let value = ImageSpec().with { $0.buildArgs = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -767,6 +773,7 @@
         /// ```
         /// let value = DeveloperConnectConfig().with { $0.gitRepositoryLink = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -864,6 +871,7 @@
         /// ```
         /// let value = DeveloperConnectSource().with { $0.config = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -962,6 +970,7 @@
         /// ```
         /// let value = PythonSpec().with { $0.version = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1105,6 +1114,7 @@
       /// ```
       /// let value = ContainerSpec().with { $0.imageUri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1197,6 +1207,7 @@
       /// ```
       /// let value = BuildSpec().with { $0.workerPool = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

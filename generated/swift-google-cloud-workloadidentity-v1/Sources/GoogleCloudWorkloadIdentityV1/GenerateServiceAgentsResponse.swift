@@ -37,6 +37,7 @@ public struct GenerateServiceAgentsResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = GenerateServiceAgentsResponse().with { $0.serviceAgents = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

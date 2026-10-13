@@ -236,6 +236,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WorkstationConfig().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -449,6 +450,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Host().with { $0.gceInstance = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -663,6 +665,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GceInstance().with { $0.machineType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -839,6 +842,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = GceShieldedInstanceConfig().with { $0.enableSecureBoot = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -934,6 +938,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = GceConfidentialInstanceConfig().with { $0.enableConfidentialCompute = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1022,6 +1027,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Accelerator().with { $0.type = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1163,6 +1169,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = BoostConfig().with { $0.id = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1333,6 +1340,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PersistentDirectory().with { $0.gcePd = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1495,6 +1503,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GceRegionalPersistentDisk().with { $0.sizeGb = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1773,6 +1782,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GceHyperdiskBalancedHighAvailability().with { $0.sizeGb = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2035,6 +2045,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EphemeralDirectory().with { $0.gcePd = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2167,6 +2178,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GcePersistentDisk().with { $0.diskType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2324,6 +2336,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Container().with { $0.image = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2450,6 +2463,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomerEncryptionKey().with { $0.kmsKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2540,6 +2554,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReadinessCheck().with { $0.path = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -2640,6 +2655,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PortRange().with { $0.first = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

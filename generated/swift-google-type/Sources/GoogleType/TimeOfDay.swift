@@ -56,6 +56,7 @@ public struct TimeOfDay: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TimeOfDay().with { $0.hours = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

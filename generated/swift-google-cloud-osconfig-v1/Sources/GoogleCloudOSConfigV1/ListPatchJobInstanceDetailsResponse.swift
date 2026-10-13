@@ -40,6 +40,7 @@ public struct ListPatchJobInstanceDetailsResponse: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = ListPatchJobInstanceDetailsResponse().with { $0.patchJobInstanceDetails = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

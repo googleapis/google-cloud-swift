@@ -80,6 +80,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ConversationalSearchResponse().with { $0.userQueryTypes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -184,6 +185,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = FollowupQuestion().with { $0.followupQuestion = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -253,6 +255,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       /// ```
       /// let value = SuggestedAnswer().with { $0.productAttributeValue = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -357,6 +360,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = RefinedSearch().with { $0.query = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -445,6 +449,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = ConversationalFilteringResult().with { $0.followupQuestion = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -508,6 +513,7 @@ public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPa
       /// ```
       /// let value = AdditionalFilter().with { $0.productAttributeValue = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

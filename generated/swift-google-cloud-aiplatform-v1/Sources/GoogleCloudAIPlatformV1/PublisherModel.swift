@@ -71,6 +71,7 @@
     /// ```
     /// let value = PublisherModel().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -181,6 +182,7 @@
       /// ```
       /// let value = ResourceReference().with { $0.uri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -325,6 +327,7 @@
       /// ```
       /// let value = Documentation().with { $0.title = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -450,6 +453,7 @@
       /// ```
       /// let value = CallToAction().with { $0.viewRestApi = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -586,6 +590,7 @@
         /// ```
         /// let value = RegionalResourceReferences().with { $0.references = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -692,6 +697,7 @@
         /// ```
         /// let value = ViewRestApi().with { $0.documentations = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -780,6 +786,7 @@
         /// ```
         /// let value = OpenNotebooks().with { $0.notebooks = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -863,6 +870,7 @@
         /// ```
         /// let value = OpenFineTuningPipelines().with { $0.fineTuningPipelines = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -977,6 +985,7 @@
         /// ```
         /// let value = Deploy().with { $0.dedicatedResources = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1124,6 +1133,7 @@
           /// ```
           /// let value = DeployMetadata().with { $0.labels = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1250,6 +1260,7 @@
         /// ```
         /// let value = DeployGke().with { $0.gkeYamlConfigs = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

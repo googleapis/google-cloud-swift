@@ -58,6 +58,7 @@
     /// ```
     /// let value = MetadataStore().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -146,6 +147,7 @@
       /// ```
       /// let value = MetadataStoreState().with { $0.diskUtilizationBytes = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -228,6 +230,7 @@
       /// ```
       /// let value = DataplexConfig().with { $0.enabledPipelinesLineage = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

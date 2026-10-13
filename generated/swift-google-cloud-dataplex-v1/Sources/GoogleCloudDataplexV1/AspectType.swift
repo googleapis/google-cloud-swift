@@ -75,6 +75,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AspectType().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -199,6 +200,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Authorization().with { $0.alternateUsePermission = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -346,6 +348,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MetadataTemplate().with { $0.index = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -471,6 +474,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = EnumValue().with { $0.index = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -562,6 +566,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Constraints().with { $0.`required` = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -665,6 +670,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Annotations().with { $0.deprecated = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

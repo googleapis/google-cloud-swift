@@ -37,6 +37,7 @@ public struct CreateStorageBucket: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CreateStorageBucket().with { $0.bucket = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

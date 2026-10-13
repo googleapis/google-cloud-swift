@@ -46,6 +46,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = KeyOperationAttestation().with { $0.format = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -124,6 +125,7 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = CertificateChains().with { $0.caviumCerts = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

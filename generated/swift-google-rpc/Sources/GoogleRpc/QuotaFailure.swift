@@ -46,6 +46,7 @@ public struct QuotaFailure: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = QuotaFailure().with { $0.violations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -181,6 +182,7 @@ public struct QuotaFailure: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Violation().with { $0.subject = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

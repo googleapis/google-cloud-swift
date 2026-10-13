@@ -39,6 +39,7 @@ public struct ProjectTeam: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProjectTeam().with { $0.projectNumber = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

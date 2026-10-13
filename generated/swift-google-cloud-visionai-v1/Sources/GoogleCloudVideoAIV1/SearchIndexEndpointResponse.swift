@@ -41,6 +41,7 @@ public struct SearchIndexEndpointResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = SearchIndexEndpointResponse().with { $0.searchResultItems = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

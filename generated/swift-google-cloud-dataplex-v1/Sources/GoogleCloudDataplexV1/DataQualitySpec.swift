@@ -83,6 +83,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataQualitySpec().with { $0.rules = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -182,6 +183,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PostScanActions().with { $0.bigqueryExport = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -247,6 +249,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BigQueryExport().with { $0.resultsTable = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -329,6 +332,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Recipients().with { $0.emails = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -410,6 +414,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ScoreThresholdTrigger().with { $0.scoreThreshold = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -488,6 +493,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = JobFailureTrigger().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -558,6 +564,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = JobEndTrigger().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -639,6 +646,7 @@ public struct DataQualitySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = NotificationReport().with { $0.recipients = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -43,6 +43,7 @@ public struct ListAccountConnectorsResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListAccountConnectorsResponse().with { $0.accountConnectors = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -40,6 +40,7 @@ public struct ListPostureRevisionsResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ListPostureRevisionsResponse().with { $0.revisions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

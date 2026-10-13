@@ -36,6 +36,7 @@ public struct GlueIcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GlueIcebergCatalog().with { $0.glueId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

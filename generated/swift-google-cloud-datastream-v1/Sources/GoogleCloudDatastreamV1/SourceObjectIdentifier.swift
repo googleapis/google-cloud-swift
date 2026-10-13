@@ -36,6 +36,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = SourceObjectIdentifier().with { $0.oracleIdentifier = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -161,6 +162,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = OracleObjectIdentifier().with { $0.schema = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -250,6 +252,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = PostgresqlObjectIdentifier().with { $0.schema = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -339,6 +342,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = MysqlObjectIdentifier().with { $0.database = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -428,6 +432,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = SqlServerObjectIdentifier().with { $0.schema = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -514,6 +519,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = SalesforceObjectIdentifier().with { $0.objectName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -597,6 +603,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = MongodbObjectIdentifier().with { $0.database = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

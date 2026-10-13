@@ -47,6 +47,7 @@ public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = AppPlatformCloudFunctionResponse().with { $0.annotations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -119,6 +120,7 @@ public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleWKT._A
     /// ```
     /// let value = StructedOutputAnnotation().with { $0.annotation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -178,6 +178,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Instance().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -413,6 +414,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MachineConfig().with { $0.cpuCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -513,6 +515,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Node().with { $0.zoneId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -624,6 +627,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QueryInsightsInstanceConfig().with { $0.recordApplicationTags = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -750,6 +754,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ObservabilityInstanceConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -862,6 +867,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReadPoolConfig().with { $0.nodeCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -945,6 +951,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ClientConnectionConfig().with { $0.requireConnectors = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1032,6 +1039,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PscInterfaceConfig().with { $0.networkAttachmentResource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1154,6 +1162,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PscAutoConnectionConfig().with { $0.consumerProject = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1280,6 +1289,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PscInstanceConfig().with { $0.serviceAttachmentLink = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1414,6 +1424,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstanceNetworkConfig().with { $0.authorizedExternalNetworks = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1500,6 +1511,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = AuthorizedNetwork().with { $0.cidrRange = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1608,6 +1620,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConnectionPoolConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

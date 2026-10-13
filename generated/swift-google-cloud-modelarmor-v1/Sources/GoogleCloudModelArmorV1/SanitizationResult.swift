@@ -56,6 +56,7 @@ public struct SanitizationResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SanitizationResult().with { $0.filterMatchState = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -142,6 +143,7 @@ public struct SanitizationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SanitizationMetadata().with { $0.errorCode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

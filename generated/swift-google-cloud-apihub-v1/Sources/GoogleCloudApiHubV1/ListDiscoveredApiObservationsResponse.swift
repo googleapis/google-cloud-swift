@@ -41,6 +41,7 @@ public struct ListDiscoveredApiObservationsResponse: Codable, Equatable, GoogleW
   /// ```
   /// let value = ListDiscoveredApiObservationsResponse().with { $0.discoveredApiObservations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

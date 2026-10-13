@@ -63,6 +63,7 @@ public struct Rating: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Rating().with { $0.ratingCount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

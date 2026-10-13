@@ -41,6 +41,7 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = DiscoveryBigQueryFilter().with { $0.tables = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -133,6 +134,7 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = AllOtherBigQueryTables().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

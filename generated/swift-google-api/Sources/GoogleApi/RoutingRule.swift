@@ -403,6 +403,7 @@ public struct RoutingRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RoutingRule().with { $0.routingParameters = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

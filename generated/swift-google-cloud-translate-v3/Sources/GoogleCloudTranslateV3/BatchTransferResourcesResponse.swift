@@ -37,6 +37,7 @@ public struct BatchTransferResourcesResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = BatchTransferResourcesResponse().with { $0.responses = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -103,6 +104,7 @@ public struct BatchTransferResourcesResponse: Codable, Equatable, GoogleWKT._Any
     /// ```
     /// let value = TransferResourceResponse().with { $0.source = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -36,6 +36,7 @@ public struct ConversationLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ConversationLocation().with { $0.messageIndex = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -118,6 +119,7 @@ public struct ConversationLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AllMessages().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

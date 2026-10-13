@@ -41,6 +41,7 @@ public struct Progress: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Progress().with { $0.workCompleted = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

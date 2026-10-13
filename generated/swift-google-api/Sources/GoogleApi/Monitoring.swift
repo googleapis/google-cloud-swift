@@ -100,6 +100,7 @@ public struct Monitoring: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Monitoring().with { $0.producerDestinations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -179,6 +180,7 @@ public struct Monitoring: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MonitoringDestination().with { $0.monitoredResource = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

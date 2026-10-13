@@ -55,6 +55,7 @@
     /// ```
     /// let value = ImageConfig().with { $0.imageOutputOptions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -127,6 +128,7 @@
       /// ```
       /// let value = ImageOutputOptions().with { $0.mimeType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

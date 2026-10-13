@@ -40,6 +40,7 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AttributeValues().with { $0.enumValues = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -150,6 +151,7 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EnumAttributeValues().with { $0.values = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -230,6 +232,7 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StringAttributeValues().with { $0.values = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

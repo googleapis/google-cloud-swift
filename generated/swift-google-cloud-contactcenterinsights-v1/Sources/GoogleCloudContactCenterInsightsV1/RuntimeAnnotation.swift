@@ -56,6 +56,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RuntimeAnnotation().with { $0.articleSuggestion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -214,6 +215,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UserInput().with { $0.query = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

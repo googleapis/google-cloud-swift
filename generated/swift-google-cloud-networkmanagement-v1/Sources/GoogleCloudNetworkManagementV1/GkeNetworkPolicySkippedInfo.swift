@@ -37,6 +37,7 @@ public struct GkeNetworkPolicySkippedInfo: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = GkeNetworkPolicySkippedInfo().with { $0.reason = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

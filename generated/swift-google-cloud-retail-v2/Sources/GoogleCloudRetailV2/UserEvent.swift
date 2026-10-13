@@ -296,6 +296,7 @@ public struct UserEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UserEvent().with { $0.eventType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

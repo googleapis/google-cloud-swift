@@ -39,6 +39,7 @@ public struct InterceptLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InterceptLocation().with { $0.location = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

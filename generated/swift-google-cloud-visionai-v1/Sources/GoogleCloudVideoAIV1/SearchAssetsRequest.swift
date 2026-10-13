@@ -74,6 +74,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SearchAssetsRequest().with { $0.schemaKeySortingStrategy = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

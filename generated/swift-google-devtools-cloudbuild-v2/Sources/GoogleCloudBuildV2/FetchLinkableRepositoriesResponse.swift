@@ -40,6 +40,7 @@ public struct FetchLinkableRepositoriesResponse: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = FetchLinkableRepositoriesResponse().with { $0.repositories = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

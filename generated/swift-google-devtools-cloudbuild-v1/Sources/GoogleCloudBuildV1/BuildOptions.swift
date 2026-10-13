@@ -121,6 +121,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BuildOptions().with { $0.sourceProvenanceHash = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -293,6 +294,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PoolOption().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

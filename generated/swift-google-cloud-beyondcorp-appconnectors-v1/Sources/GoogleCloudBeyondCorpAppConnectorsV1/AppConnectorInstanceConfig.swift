@@ -49,6 +49,7 @@ public struct AppConnectorInstanceConfig: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = AppConnectorInstanceConfig().with { $0.sequenceNumber = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

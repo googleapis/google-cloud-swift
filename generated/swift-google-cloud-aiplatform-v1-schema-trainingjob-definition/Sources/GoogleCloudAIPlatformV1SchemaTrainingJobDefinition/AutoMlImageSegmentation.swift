@@ -39,6 +39,7 @@ public struct AutoMlImageSegmentation: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = AutoMlImageSegmentation().with { $0.inputs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

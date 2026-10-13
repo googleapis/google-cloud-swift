@@ -98,6 +98,7 @@
     /// ```
     /// let value = Tool().with { $0.functionDeclarations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -209,6 +210,7 @@
       /// ```
       /// let value = GoogleSearch().with { $0.excludeDomains = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -324,6 +326,7 @@
       /// ```
       /// let value = ParallelAiSearch().with { $0.apiKey = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -421,6 +424,7 @@
       /// ```
       /// let value = ExaAiSearch().with { $0.apiKey = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -506,6 +510,7 @@
       /// ```
       /// let value = CodeExecution().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -585,6 +590,7 @@
       /// ```
       /// let value = ComputerUse().with { $0.environment = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

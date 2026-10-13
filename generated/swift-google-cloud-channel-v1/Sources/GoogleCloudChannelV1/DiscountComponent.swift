@@ -41,6 +41,7 @@ public struct DiscountComponent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DiscountComponent().with { $0.discountPercentage = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

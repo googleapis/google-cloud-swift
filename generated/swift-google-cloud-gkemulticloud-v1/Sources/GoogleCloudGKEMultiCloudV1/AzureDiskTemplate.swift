@@ -40,6 +40,7 @@ public struct AzureDiskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AzureDiskTemplate().with { $0.sizeGib = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

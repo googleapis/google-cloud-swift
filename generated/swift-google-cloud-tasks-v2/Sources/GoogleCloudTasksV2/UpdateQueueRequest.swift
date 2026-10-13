@@ -52,6 +52,7 @@ public struct UpdateQueueRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UpdateQueueRequest().with { $0.queue = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

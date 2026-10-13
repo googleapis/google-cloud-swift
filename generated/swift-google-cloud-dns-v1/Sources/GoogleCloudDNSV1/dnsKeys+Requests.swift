@@ -49,6 +49,7 @@ extension DnsKeysClient {
     /// ```
     /// let value = GetRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -161,6 +162,7 @@ extension DnsKeysClient {
     /// ```
     /// let value = ListRequest().with { $0.digestType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -60,6 +60,7 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = IngestConversationsRequest().with { $0.gcsSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -206,6 +207,7 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = GcsSource().with { $0.bucketUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -421,6 +423,7 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = TranscriptObjectConfig().with { $0.medium = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -514,6 +517,7 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = ConversationConfig().with { $0.agentId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

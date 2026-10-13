@@ -48,6 +48,7 @@ public struct ProcessorInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProcessorInfo().with { $0.processorName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

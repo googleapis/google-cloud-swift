@@ -45,6 +45,7 @@ public struct ListTablesResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListTablesResponse().with { $0.tables = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

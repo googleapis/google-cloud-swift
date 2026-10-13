@@ -41,6 +41,7 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = SearchTeamFoldersResponse().with { $0.results = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -106,6 +107,7 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = TeamFolderSearchResult().with { $0.teamFolder = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

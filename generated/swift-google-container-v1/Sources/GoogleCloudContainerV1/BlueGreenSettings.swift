@@ -40,6 +40,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BlueGreenSettings().with { $0.standardRolloutPolicy = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -134,6 +135,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StandardRolloutPolicy().with { $0.batchPercentage = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -259,6 +261,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AutoscaledRolloutPolicy().with { $0.waitForDrainDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

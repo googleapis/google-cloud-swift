@@ -153,6 +153,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Cluster().with { $0.gcsSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -417,6 +418,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StateInfo().with { $0.updateInfo = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -497,6 +499,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = UpdateInfo().with { $0.targetShardCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -609,6 +612,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GcsBackupSource().with { $0.uris = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -693,6 +697,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ManagedBackupSource().with { $0.backup = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

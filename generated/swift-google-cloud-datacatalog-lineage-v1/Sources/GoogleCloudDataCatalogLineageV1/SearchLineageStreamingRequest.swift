@@ -54,6 +54,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = SearchLineageStreamingRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -151,6 +152,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = SearchFilters().with { $0.dependencyTypes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -256,6 +258,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = SearchLimits().with { $0.maxDepth = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -348,6 +351,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = RootCriteria().with { $0.entities = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

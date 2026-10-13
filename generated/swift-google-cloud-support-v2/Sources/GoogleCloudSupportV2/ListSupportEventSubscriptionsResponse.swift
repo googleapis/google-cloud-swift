@@ -41,6 +41,7 @@ public struct ListSupportEventSubscriptionsResponse: Codable, Equatable, GoogleW
   /// ```
   /// let value = ListSupportEventSubscriptionsResponse().with { $0.supportEventSubscriptions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

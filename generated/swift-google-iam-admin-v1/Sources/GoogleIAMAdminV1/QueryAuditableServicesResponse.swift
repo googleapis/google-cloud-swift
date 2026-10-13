@@ -36,6 +36,7 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = QueryAuditableServicesResponse().with { $0.services = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -96,6 +97,7 @@ public struct QueryAuditableServicesResponse: Codable, Equatable, GoogleWKT._Any
     /// ```
     /// let value = AuditableService().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

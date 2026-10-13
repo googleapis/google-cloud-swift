@@ -39,6 +39,7 @@ public struct Form: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Form().with { $0.actionUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

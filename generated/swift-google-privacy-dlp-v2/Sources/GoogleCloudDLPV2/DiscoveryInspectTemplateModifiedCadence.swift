@@ -38,6 +38,7 @@ public struct DiscoveryInspectTemplateModifiedCadence: Codable, Equatable, Googl
   /// ```
   /// let value = DiscoveryInspectTemplateModifiedCadence().with { $0.frequency = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

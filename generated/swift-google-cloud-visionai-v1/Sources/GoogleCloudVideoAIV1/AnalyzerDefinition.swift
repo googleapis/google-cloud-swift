@@ -63,6 +63,7 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AnalyzerDefinition().with { $0.analyzer = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -169,6 +170,7 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StreamInput().with { $0.input = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -248,6 +250,7 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DebugOptions().with { $0.environmentVariables = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -332,6 +335,7 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OperatorOption().with { $0.tag = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

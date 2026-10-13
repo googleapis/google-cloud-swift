@@ -67,6 +67,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CustomInfoType().with { $0.infoType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -238,6 +239,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Dictionary().with { $0.wordList = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -326,6 +328,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = WordList().with { $0.words = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -442,6 +445,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Regex().with { $0.pattern = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -531,6 +535,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SurrogateType().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -607,6 +612,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MetadataKeyValueExpression().with { $0.keyRegex = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -692,6 +698,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FileLabelInfoType().with { $0.sensitivityLabel = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -778,6 +785,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SensitivityLabel().with { $0.guid = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -864,6 +872,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GoogleDriveLabel().with { $0.labelId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -933,6 +942,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = LabelField().with { $0.id = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1075,6 +1085,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DetectionRule().with { $0.hotwordRule = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1160,6 +1171,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Proximity().with { $0.windowBefore = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1246,6 +1258,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = LikelihoodAdjustment().with { $0.fixedLikelihood = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1389,6 +1402,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = HotwordRule().with { $0.hotwordRegex = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

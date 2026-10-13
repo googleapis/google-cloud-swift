@@ -50,6 +50,7 @@
     /// ```
     /// let value = ModelMonitoringAlertConfig().with { $0.emailAlertConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -141,6 +142,7 @@
       /// ```
       /// let value = EmailAlertConfig().with { $0.userEmails = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

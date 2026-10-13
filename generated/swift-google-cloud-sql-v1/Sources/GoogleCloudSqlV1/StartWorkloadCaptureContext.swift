@@ -53,6 +53,7 @@
     /// ```
     /// let value = StartWorkloadCaptureContext().with { $0.enableLiveReplay = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -408,6 +408,7 @@ public struct ClusterUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ClusterUpdate().with { $0.desiredNodeVersion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

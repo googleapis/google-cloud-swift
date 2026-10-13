@@ -44,6 +44,7 @@ public struct ListCloudExadataInfrastructuresResponse: Codable, Equatable, Googl
   /// ```
   /// let value = ListCloudExadataInfrastructuresResponse().with { $0.cloudExadataInfrastructures = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

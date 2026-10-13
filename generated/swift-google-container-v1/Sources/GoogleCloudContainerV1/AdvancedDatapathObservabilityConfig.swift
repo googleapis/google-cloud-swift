@@ -44,6 +44,7 @@ public struct AdvancedDatapathObservabilityConfig: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = AdvancedDatapathObservabilityConfig().with { $0.enableMetrics = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

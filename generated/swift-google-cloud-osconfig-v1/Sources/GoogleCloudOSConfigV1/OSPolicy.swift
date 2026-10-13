@@ -65,6 +65,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OSPolicy().with { $0.id = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -159,6 +160,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InventoryFilter().with { $0.osShortName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -258,6 +260,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Resource().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -375,6 +378,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = File().with { $0.remote = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -476,6 +480,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Remote().with { $0.uri = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -567,6 +572,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Gcs().with { $0.bucket = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -694,6 +700,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = PackageResource().with { $0.desiredState = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -839,6 +846,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Deb().with { $0.source = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -925,6 +933,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = APT().with { $0.name = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1011,6 +1020,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = RPM().with { $0.source = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1097,6 +1107,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = YUM().with { $0.name = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1179,6 +1190,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Zypper().with { $0.name = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1261,6 +1273,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = GooGet().with { $0.name = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1347,6 +1360,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = MSI().with { $0.source = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1589,6 +1603,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RepositoryResource().with { $0.apt = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1710,6 +1725,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = AptRepository().with { $0.archiveType = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1948,6 +1964,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = YumRepository().with { $0.id = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2060,6 +2077,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ZypperRepository().with { $0.id = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2163,6 +2181,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = GooRepository().with { $0.name = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2316,6 +2335,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ExecResource().with { $0.validate = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2392,6 +2412,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Exec().with { $0.file = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2698,6 +2719,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = FileResource().with { $0.file = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3013,6 +3035,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceGroup().with { $0.inventoryFilters = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

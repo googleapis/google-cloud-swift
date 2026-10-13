@@ -65,6 +65,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = CrossInstanceReplicationConfig().with { $0.instanceRole = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -152,6 +153,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
     /// ```
     /// let value = RemoteInstance().with { $0.instance = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -244,6 +246,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
     /// ```
     /// let value = Membership().with { $0.primaryInstance = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -188,6 +188,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CertificateAuthority().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -367,6 +368,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AccessUrls().with { $0.caCertificateAccessUrl = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -458,6 +460,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = KeyVersionSpec().with { $0.cloudKmsKeyVersion = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -600,6 +603,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UserDefinedAccessUrls().with { $0.aiaIssuingCertificateUrls = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -57,6 +57,7 @@ public struct ClusterUpgradeInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ClusterUpgradeInfo().with { $0.minorTargetVersion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

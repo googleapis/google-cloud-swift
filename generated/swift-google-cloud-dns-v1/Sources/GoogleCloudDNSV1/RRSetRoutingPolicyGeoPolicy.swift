@@ -41,6 +41,7 @@ public struct RRSetRoutingPolicyGeoPolicy: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = RRSetRoutingPolicyGeoPolicy().with { $0.enableFencing = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

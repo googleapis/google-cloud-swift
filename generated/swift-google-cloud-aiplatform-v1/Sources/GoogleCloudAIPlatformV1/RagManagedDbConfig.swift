@@ -37,6 +37,7 @@
     /// ```
     /// let value = RagManagedDbConfig().with { $0.scaled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -128,6 +129,7 @@
       /// ```
       /// let value = Scaled().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -203,6 +205,7 @@
       /// ```
       /// let value = Basic().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -276,6 +279,7 @@
       /// ```
       /// let value = Unprovisioned().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

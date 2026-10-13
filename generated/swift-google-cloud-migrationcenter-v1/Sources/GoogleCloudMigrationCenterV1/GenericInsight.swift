@@ -47,6 +47,7 @@ public struct GenericInsight: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GenericInsight().with { $0.messageId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

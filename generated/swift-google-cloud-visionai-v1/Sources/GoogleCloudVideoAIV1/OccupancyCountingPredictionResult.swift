@@ -53,6 +53,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = OccupancyCountingPredictionResult().with { $0.currentTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -145,6 +146,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     /// ```
     /// let value = Entity().with { $0.labelId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -244,6 +246,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     /// ```
     /// let value = IdentifiedBox().with { $0.boxId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -333,6 +336,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       /// ```
       /// let value = NormalizedBoundingBox().with { $0.xmin = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -460,6 +464,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     /// ```
     /// let value = Stats().with { $0.fullFrameCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -540,6 +545,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       /// ```
       /// let value = ObjectCount().with { $0.entity = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -629,6 +635,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       /// ```
       /// let value = AccumulatedObjectCount().with { $0.startTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -727,6 +734,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       /// ```
       /// let value = CrossingLineCount().with { $0.annotation = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -848,6 +856,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       /// ```
       /// let value = ActiveZoneCount().with { $0.annotation = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -959,6 +968,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     /// ```
     /// let value = TrackInfo().with { $0.trackId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1053,6 +1063,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     /// ```
     /// let value = DwellTimeInfo().with { $0.trackId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

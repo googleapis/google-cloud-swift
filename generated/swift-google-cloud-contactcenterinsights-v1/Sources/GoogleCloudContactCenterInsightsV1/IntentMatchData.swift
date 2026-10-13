@@ -40,6 +40,7 @@ public struct IntentMatchData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = IntentMatchData().with { $0.intentUniqueId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

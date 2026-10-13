@@ -79,6 +79,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = IntelligenceFinding().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -256,6 +257,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ColdlineAndArchivalStorageOperationsSpike().with { $0.percentageIncrease = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -339,6 +341,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BucketContribution().with { $0.bucket = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -449,6 +452,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Contribution().with { $0.topPrefixes = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -519,6 +523,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = PrefixContribution().with { $0.`prefix` = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -707,6 +712,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CrossRegionEgressSpike().with { $0.totalEgressBytes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -790,6 +796,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BucketContribution().with { $0.bucket = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -898,6 +905,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Contribution().with { $0.topPrefixes = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -970,6 +978,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = PrefixContribution().with { $0.`prefix` = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1156,6 +1165,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ThrottledRequestSpike().with { $0.throttledRequests = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1238,6 +1248,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BucketContribution().with { $0.bucket = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1346,6 +1357,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = Contribution().with { $0.topPrefixes = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1416,6 +1428,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = PrefixContribution().with { $0.`prefix` = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1600,6 +1613,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StorageGrowthAboveTrend().with { $0.totalStorageGrowthBytes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1683,6 +1697,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BucketContribution().with { $0.bucket = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

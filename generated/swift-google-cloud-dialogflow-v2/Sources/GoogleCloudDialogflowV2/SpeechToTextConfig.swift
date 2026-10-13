@@ -125,6 +125,7 @@
     /// ```
     /// let value = SpeechToTextConfig().with { $0.speechModelVariant = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -259,6 +260,7 @@
       /// ```
       /// let value = GeminiAsrConfig().with { $0.modelId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

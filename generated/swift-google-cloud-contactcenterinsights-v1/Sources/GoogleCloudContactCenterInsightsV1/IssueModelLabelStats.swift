@@ -43,6 +43,7 @@ public struct IssueModelLabelStats: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = IssueModelLabelStats().with { $0.analyzedConversationsCount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -128,6 +129,7 @@ public struct IssueModelLabelStats: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IssueStats().with { $0.issue = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

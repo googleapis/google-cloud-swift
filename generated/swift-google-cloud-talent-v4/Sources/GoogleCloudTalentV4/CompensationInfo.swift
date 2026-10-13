@@ -73,6 +73,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CompensationInfo().with { $0.entries = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -201,6 +202,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CompensationEntry().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -354,6 +356,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CompensationRange().with { $0.maxCompensation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

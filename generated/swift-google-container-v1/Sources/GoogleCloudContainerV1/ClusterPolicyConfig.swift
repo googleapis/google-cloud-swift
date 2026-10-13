@@ -47,6 +47,7 @@ public struct ClusterPolicyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ClusterPolicyConfig().with { $0.noSystemMutation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

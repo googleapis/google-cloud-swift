@@ -67,6 +67,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = CalculateStatsResponse().with { $0.averageDuration = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -184,6 +185,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = TimeSeries().with { $0.intervalDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -251,6 +253,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       /// ```
       /// let value = Interval().with { $0.startTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

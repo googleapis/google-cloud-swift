@@ -43,6 +43,7 @@ public struct SearchEntriesResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SearchEntriesResult().with { $0.linkedResource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -118,6 +119,7 @@ public struct SearchEntriesResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Snippets().with { $0.dataplexEntry = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

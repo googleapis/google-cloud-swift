@@ -42,6 +42,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WindowsBasedSli().with { $0.goodBadMetricFilter = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -156,6 +157,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PerformanceThreshold().with { $0.performance = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -286,6 +288,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MetricRange().with { $0.timeSeries = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

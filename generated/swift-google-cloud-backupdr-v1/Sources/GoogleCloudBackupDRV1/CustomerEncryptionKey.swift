@@ -41,6 +41,7 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CustomerEncryptionKey().with { $0.rawKey = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

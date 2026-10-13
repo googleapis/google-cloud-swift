@@ -42,6 +42,7 @@ public struct UpdateLiveConfigRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = UpdateLiveConfigRequest().with { $0.liveConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

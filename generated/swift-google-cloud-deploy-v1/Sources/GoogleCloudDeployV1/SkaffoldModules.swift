@@ -39,6 +39,7 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SkaffoldModules().with { $0.configs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -145,6 +146,7 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SkaffoldGitSource().with { $0.repo = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -241,6 +243,7 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SkaffoldGCSSource().with { $0.source = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -335,6 +338,7 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SkaffoldGCBRepoSource().with { $0.repository = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

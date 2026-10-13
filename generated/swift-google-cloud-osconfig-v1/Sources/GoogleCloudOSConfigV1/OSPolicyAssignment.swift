@@ -106,6 +106,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OSPolicyAssignment().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -243,6 +244,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LabelSet().with { $0.labels = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -346,6 +348,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstanceFilter().with { $0.all = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -436,6 +439,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Inventory().with { $0.osShortName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -553,6 +557,7 @@ public struct OSPolicyAssignment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Rollout().with { $0.disruptionBudget = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

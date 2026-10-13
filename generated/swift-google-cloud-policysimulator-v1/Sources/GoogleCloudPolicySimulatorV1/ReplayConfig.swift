@@ -61,6 +61,7 @@ public struct ReplayConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReplayConfig().with { $0.policyOverlay = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

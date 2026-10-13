@@ -36,6 +36,7 @@ public struct GitConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GitConfig().with { $0.http = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -95,6 +96,7 @@ public struct GitConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HttpConfig().with { $0.proxySecretVersionName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

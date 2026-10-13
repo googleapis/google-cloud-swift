@@ -39,6 +39,7 @@ public struct GenerateAzureClusterAgentTokenResponse: Codable, Equatable, Google
   /// ```
   /// let value = GenerateAzureClusterAgentTokenResponse().with { $0.accessToken = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

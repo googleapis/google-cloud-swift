@@ -61,6 +61,7 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UpgradeHistoryEntry().with { $0.snapshot = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

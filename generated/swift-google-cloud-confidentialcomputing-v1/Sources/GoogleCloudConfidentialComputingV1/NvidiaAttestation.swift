@@ -38,6 +38,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NvidiaAttestation().with { $0.spt = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -151,6 +152,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GpuInfo().with { $0.uuid = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -274,6 +276,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SwitchInfo().with { $0.uuid = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -370,6 +373,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SinglePassthroughAttestation().with { $0.gpuQuote = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -453,6 +457,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ProtectedPcieAttestation().with { $0.gpuQuotes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -544,6 +549,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MultiGpuSecurePassthroughAttestation().with { $0.gpuQuotes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -58,6 +58,7 @@ public struct ProcessorType: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProcessorType().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -154,6 +155,7 @@ public struct ProcessorType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LocationInfo().with { $0.locationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

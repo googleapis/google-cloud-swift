@@ -61,6 +61,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ComputeThreatListDiffResponse().with { $0.responseType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -145,6 +146,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = Checksum().with { $0.sha256 = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

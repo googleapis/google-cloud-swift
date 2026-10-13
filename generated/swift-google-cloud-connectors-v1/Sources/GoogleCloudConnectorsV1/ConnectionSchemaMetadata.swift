@@ -56,6 +56,7 @@ public struct ConnectionSchemaMetadata: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = ConnectionSchemaMetadata().with { $0.entities = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

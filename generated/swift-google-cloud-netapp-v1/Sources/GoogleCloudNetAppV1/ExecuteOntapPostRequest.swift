@@ -53,6 +53,7 @@ public struct ExecuteOntapPostRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ExecuteOntapPostRequest().with { $0.body = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

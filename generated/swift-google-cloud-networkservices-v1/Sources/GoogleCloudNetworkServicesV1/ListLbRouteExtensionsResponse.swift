@@ -43,6 +43,7 @@ public struct ListLbRouteExtensionsResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListLbRouteExtensionsResponse().with { $0.lbRouteExtensions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

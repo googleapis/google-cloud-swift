@@ -122,6 +122,7 @@ public struct AccessPolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AccessPolicyRule().with { $0.description = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -221,6 +222,7 @@ public struct AccessPolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Operation().with { $0.permissions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

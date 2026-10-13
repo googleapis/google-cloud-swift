@@ -74,6 +74,7 @@
     /// ```
     /// let value = PageInfo().with { $0.pageviewId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -45,6 +45,7 @@ public struct ErrorResource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ErrorResource().with { $0.sourcePath = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

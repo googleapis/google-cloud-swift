@@ -45,6 +45,7 @@ public struct MessageTransform: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MessageTransform().with { $0.javascriptUdf = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

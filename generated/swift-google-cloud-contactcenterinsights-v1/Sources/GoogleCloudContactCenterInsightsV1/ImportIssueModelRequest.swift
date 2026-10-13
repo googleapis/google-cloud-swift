@@ -43,6 +43,7 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ImportIssueModelRequest().with { $0.gcsSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -132,6 +133,7 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = GcsSource().with { $0.objectUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

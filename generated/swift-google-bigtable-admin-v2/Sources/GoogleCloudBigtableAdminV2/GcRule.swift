@@ -36,6 +36,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GcRule().with { $0.maxNumVersions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -135,6 +136,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Intersection().with { $0.rules = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -214,6 +216,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Union().with { $0.rules = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

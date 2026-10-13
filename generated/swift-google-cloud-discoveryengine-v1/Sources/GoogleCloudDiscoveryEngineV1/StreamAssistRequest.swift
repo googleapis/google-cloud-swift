@@ -72,6 +72,7 @@
     /// ```
     /// let value = StreamAssistRequest().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -159,6 +160,7 @@
       /// ```
       /// let value = AgentsSpec().with { $0.agentSpecs = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -222,6 +224,7 @@
         /// ```
         /// let value = AgentSpec().with { $0.agentId = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -337,6 +340,7 @@
       /// ```
       /// let value = ToolsSpec().with { $0.vertexAiSearchSpec = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -432,6 +436,7 @@
         /// ```
         /// let value = VertexAiSearchSpec().with { $0.dataStoreSpecs = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -517,6 +522,7 @@
         /// ```
         /// let value = WebGroundingSpec().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -586,6 +592,7 @@
         /// ```
         /// let value = ImageGenerationSpec().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -655,6 +662,7 @@
         /// ```
         /// let value = VideoGenerationSpec().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -752,6 +760,7 @@
       /// ```
       /// let value = GenerationSpec().with { $0.modelId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

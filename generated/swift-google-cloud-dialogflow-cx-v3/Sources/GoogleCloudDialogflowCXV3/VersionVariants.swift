@@ -37,6 +37,7 @@
     /// ```
     /// let value = VersionVariants().with { $0.variants = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -105,6 +106,7 @@
       /// ```
       /// let value = Variant().with { $0.version = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

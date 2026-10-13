@@ -77,6 +77,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RestoreConfig().with { $0.volumeDataRestorePolicy = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -242,6 +243,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GroupKind().with { $0.resourceGroup = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -362,6 +364,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ClusterResourceRestoreScope().with { $0.selectedGroupKinds = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -504,6 +507,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SubstitutionRule().with { $0.targetNamespaces = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -624,6 +628,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TransformationRuleAction().with { $0.op = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -901,6 +906,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceFilter().with { $0.namespaces = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1009,6 +1015,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TransformationRule().with { $0.fieldActions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -58,6 +58,7 @@ public struct MembershipSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MembershipSpec().with { $0.configSync = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -37,6 +37,7 @@ public struct SerialPipeline: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SerialPipeline().with { $0.stages = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

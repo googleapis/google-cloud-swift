@@ -37,6 +37,7 @@ public struct TranslationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TranslationConfig().with { $0.targetLanguage = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

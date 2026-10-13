@@ -55,6 +55,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataStoreTool().with { $0.dataStoreSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -183,6 +184,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RewriterConfig().with { $0.modelSettings = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -278,6 +280,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SummarizationConfig().with { $0.modelSettings = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -377,6 +380,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GroundingConfig().with { $0.groundingLevel = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -467,6 +471,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DataStoreSource().with { $0.filter = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -563,6 +568,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EngineSource().with { $0.engine = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -663,6 +669,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BoostSpecs().with { $0.dataStores = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -748,6 +755,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BoostSpec().with { $0.conditionBoostSpecs = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -828,6 +836,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ConditionBoostSpec().with { $0.condition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -922,6 +931,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = BoostControlSpec().with { $0.fieldName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -1017,6 +1027,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = ControlPoint().with { $0.attributeValue = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -1420,6 +1431,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ModalityConfig().with { $0.modalityType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

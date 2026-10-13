@@ -54,6 +54,7 @@ public struct AuditContext: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AuditContext().with { $0.auditLog = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

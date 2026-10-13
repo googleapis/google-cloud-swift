@@ -46,6 +46,7 @@ public struct DistributionCut: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DistributionCut().with { $0.distributionFilter = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

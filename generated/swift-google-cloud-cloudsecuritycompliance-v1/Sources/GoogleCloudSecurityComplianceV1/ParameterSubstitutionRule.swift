@@ -36,6 +36,7 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = ParameterSubstitutionRule().with { $0.placeholderSubstitutionRule = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

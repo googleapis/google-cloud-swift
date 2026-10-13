@@ -38,6 +38,7 @@ public struct CreateFilestoreInstance: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = CreateFilestoreInstance().with { $0.filestore = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -36,6 +36,7 @@ public struct ExperimentConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExperimentConfig().with { $0.versionRelease = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -95,6 +96,7 @@ public struct ExperimentConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VersionRelease().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -170,6 +172,7 @@ public struct ExperimentConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TrafficAllocation().with { $0.id = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

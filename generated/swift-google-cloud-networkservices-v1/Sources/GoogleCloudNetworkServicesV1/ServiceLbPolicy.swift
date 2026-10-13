@@ -67,6 +67,7 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ServiceLbPolicy().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -175,6 +176,7 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AutoCapacityDrain().with { $0.enable = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -260,6 +262,7 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FailoverConfig().with { $0.failoverHealthThreshold = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -346,6 +349,7 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IsolationConfig().with { $0.isolationGranularity = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

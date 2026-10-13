@@ -51,6 +51,7 @@ public struct DataplexExternalTable: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataplexExternalTable().with { $0.system = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -60,6 +60,7 @@ public struct CreateBackupPlanAssociationRequest: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = CreateBackupPlanAssociationRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -70,6 +70,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SupportedDatabaseFlag().with { $0.stringRestrictions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -238,6 +239,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StringRestrictions().with { $0.allowedValues = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -320,6 +322,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IntegerRestrictions().with { $0.minValue = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

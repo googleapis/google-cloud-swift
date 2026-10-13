@@ -40,6 +40,7 @@ public struct UpdateOSPolicyAssignmentRequest: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = UpdateOSPolicyAssignmentRequest().with { $0.osPolicyAssignment = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

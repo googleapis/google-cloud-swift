@@ -68,6 +68,7 @@ public struct UpdateCompletionConfigRequest: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = UpdateCompletionConfigRequest().with { $0.completionConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

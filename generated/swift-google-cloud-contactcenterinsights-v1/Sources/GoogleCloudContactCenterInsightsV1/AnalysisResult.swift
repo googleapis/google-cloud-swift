@@ -39,6 +39,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AnalysisResult().with { $0.callAnalysisMetadata = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -141,6 +142,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CallAnalysisMetadata().with { $0.annotations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

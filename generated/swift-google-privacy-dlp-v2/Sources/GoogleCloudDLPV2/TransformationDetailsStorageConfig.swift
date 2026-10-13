@@ -36,6 +36,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = TransformationDetailsStorageConfig().with { $0.table = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -74,6 +74,7 @@ public struct ProbingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProbingDetails().with { $0.result = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -191,6 +192,7 @@ public struct ProbingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EdgeLocation().with { $0.metropolitanArea = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -292,6 +294,7 @@ public struct ProbingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SingleEdgeResponse().with { $0.result = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

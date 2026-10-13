@@ -55,6 +55,7 @@ public struct WebDetection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WebDetection().with { $0.webEntities = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -161,6 +162,7 @@ public struct WebDetection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WebEntity().with { $0.entityId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -255,6 +257,7 @@ public struct WebDetection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WebImage().with { $0.url = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -356,6 +359,7 @@ public struct WebDetection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WebPage().with { $0.url = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -468,6 +472,7 @@ public struct WebDetection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WebLabel().with { $0.label = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

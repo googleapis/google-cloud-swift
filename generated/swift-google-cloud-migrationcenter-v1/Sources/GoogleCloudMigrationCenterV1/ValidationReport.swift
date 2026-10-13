@@ -39,6 +39,7 @@ public struct ValidationReport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ValidationReport().with { $0.fileValidations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

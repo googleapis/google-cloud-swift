@@ -43,6 +43,7 @@
     /// ```
     /// let value = BatchGetDocumentsMetadataResponse().with { $0.documentsMetadata = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -129,6 +130,7 @@
       /// ```
       /// let value = DocumentMetadata().with { $0.matcherValue = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -213,6 +215,7 @@
         /// ```
         /// let value = MatcherValue().with { $0.uri = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

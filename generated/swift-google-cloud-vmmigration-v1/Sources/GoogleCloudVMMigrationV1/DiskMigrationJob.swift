@@ -60,6 +60,7 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DiskMigrationJob().with { $0.awsSourceDiskDetails = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

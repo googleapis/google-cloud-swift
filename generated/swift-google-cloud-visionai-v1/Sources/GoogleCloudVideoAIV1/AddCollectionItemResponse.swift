@@ -36,6 +36,7 @@ public struct AddCollectionItemResponse: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = AddCollectionItemResponse().with { $0.item = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

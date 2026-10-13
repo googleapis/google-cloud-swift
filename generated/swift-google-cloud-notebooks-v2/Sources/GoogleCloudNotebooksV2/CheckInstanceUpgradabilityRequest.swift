@@ -37,6 +37,7 @@ public struct CheckInstanceUpgradabilityRequest: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = CheckInstanceUpgradabilityRequest().with { $0.notebookInstance = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

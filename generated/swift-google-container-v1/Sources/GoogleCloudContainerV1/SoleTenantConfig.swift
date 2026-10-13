@@ -42,6 +42,7 @@ public struct SoleTenantConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SoleTenantConfig().with { $0.nodeAffinities = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -114,6 +115,7 @@ public struct SoleTenantConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NodeAffinity().with { $0.key = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

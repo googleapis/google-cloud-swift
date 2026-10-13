@@ -48,6 +48,7 @@ public struct ListToolsetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListToolsetsResponse().with { $0.toolsets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

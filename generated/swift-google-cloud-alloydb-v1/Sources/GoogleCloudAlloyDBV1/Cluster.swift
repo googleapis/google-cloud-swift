@@ -177,6 +177,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Cluster().with { $0.backupSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -464,6 +465,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NetworkConfig().with { $0.network = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -551,6 +553,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SecondaryConfig().with { $0.primaryClusterName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -633,6 +636,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PrimaryConfig().with { $0.secondaryClusterNames = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -719,6 +723,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PscConfig().with { $0.pscEnabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -815,6 +820,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TrialMetadata().with { $0.startTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -909,6 +915,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DataplexConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

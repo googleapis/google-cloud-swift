@@ -101,6 +101,7 @@ public struct TraceSpan: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TraceSpan().with { $0.spanId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

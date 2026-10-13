@@ -40,6 +40,7 @@ public struct ListServiceRolloutsResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListServiceRolloutsResponse().with { $0.rollouts = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

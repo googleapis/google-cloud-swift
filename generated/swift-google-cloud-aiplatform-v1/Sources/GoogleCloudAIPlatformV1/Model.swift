@@ -369,6 +369,7 @@
     /// ```
     /// let value = Model().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -659,6 +660,7 @@
       /// ```
       /// let value = ExportFormat().with { $0.id = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -898,6 +900,7 @@
       /// ```
       /// let value = DataStats().with { $0.trainingDataItemsCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1021,6 +1024,7 @@
       /// ```
       /// let value = OriginalModelInfo().with { $0.model = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1100,6 +1104,7 @@
       /// ```
       /// let value = BaseModelSource().with { $0.modelGardenSource = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

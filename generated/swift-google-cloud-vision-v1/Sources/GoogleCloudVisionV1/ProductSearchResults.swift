@@ -47,6 +47,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProductSearchResults().with { $0.indexTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -126,6 +127,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Result().with { $0.product = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -226,6 +228,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ObjectAnnotation().with { $0.mid = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -330,6 +333,7 @@ public struct ProductSearchResults: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GroupedResult().with { $0.boundingPoly = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

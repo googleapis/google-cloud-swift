@@ -43,6 +43,7 @@
     /// ```
     /// let value = AssistantGroundedContent().with { $0.textGroundingMetadata = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -127,6 +128,7 @@
       /// ```
       /// let value = TextGroundingMetadata().with { $0.segments = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -208,6 +210,7 @@
         /// ```
         /// let value = Segment().with { $0.startIndex = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -318,6 +321,7 @@
         /// ```
         /// let value = Reference().with { $0.content = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -396,6 +400,7 @@
           /// ```
           /// let value = DocumentMetadata().with { $0.document = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)

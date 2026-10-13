@@ -51,6 +51,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = StreamingRecognitionFeatures().with { $0.enableVoiceActivityEvents = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -136,6 +137,7 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = VoiceActivityTimeout().with { $0.speechStartTimeout = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

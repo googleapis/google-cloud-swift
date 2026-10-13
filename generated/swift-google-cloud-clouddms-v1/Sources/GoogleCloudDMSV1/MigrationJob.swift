@@ -130,6 +130,7 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MigrationJob().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -340,6 +341,7 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DumpFlag().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -425,6 +427,7 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DumpFlags().with { $0.dumpFlags = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -506,6 +509,7 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PerformanceConfig().with { $0.dumpParallelLevel = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

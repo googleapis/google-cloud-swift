@@ -36,6 +36,7 @@ public struct UpdateUserWorkloadsConfigMapRequest: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = UpdateUserWorkloadsConfigMapRequest().with { $0.userWorkloadsConfigMap = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

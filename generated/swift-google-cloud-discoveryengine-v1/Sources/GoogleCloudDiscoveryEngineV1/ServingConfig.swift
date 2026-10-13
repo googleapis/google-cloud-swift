@@ -212,6 +212,7 @@
     /// ```
     /// let value = ServingConfig().with { $0.mediaConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -447,6 +448,7 @@
       /// ```
       /// let value = MediaConfig().with { $0.contentWatchedPercentageThreshold = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -600,6 +602,7 @@
       /// ```
       /// let value = GenericConfig().with { $0.contentSearchSpec = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

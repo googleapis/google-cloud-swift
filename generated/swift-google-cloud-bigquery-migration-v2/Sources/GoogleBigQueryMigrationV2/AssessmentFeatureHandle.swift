@@ -37,6 +37,7 @@ public struct AssessmentFeatureHandle: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = AssessmentFeatureHandle().with { $0.addShareableDataset = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

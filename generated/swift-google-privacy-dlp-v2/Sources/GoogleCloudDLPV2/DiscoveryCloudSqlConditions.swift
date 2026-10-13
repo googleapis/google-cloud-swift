@@ -43,6 +43,7 @@ public struct DiscoveryCloudSqlConditions: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = DiscoveryCloudSqlConditions().with { $0.databaseEngines = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -50,6 +50,7 @@
     /// ```
     /// let value = ModelMonitoringObjectiveConfig().with { $0.trainingDataset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -148,6 +149,7 @@
       /// ```
       /// let value = TrainingDataset().with { $0.dataset = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -306,6 +308,7 @@
       /// ```
       /// let value = TrainingPredictionSkewDetectionConfig().with { $0.skewThresholds = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -417,6 +420,7 @@
       /// ```
       /// let value = PredictionDriftDetectionConfig().with { $0.driftThresholds = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -522,6 +526,7 @@
       /// ```
       /// let value = ExplanationConfig().with { $0.enableFeatureAttributes = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -598,6 +603,7 @@
         /// ```
         /// let value = ExplanationBaseline().with { $0.gcs = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

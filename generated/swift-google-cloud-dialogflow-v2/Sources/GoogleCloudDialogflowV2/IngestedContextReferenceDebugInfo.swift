@@ -45,6 +45,7 @@
     /// ```
     /// let value = IngestedContextReferenceDebugInfo().with { $0.projectNotAllowlisted = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -126,6 +127,7 @@
       /// ```
       /// let value = IngestedParameterDebugInfo().with { $0.parameter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

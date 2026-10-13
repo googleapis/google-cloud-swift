@@ -58,6 +58,7 @@
     /// ```
     /// let value = Condition().with { $0.queryTerms = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -139,6 +140,7 @@
       /// ```
       /// let value = QueryTerm().with { $0.value = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -232,6 +234,7 @@
       /// ```
       /// let value = TimeRange().with { $0.startTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

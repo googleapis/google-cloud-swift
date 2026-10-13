@@ -45,6 +45,7 @@
     /// ```
     /// let value = ListSipTrunksResponse().with { $0.sipTrunks = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

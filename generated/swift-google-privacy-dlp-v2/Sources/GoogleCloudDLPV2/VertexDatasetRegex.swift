@@ -37,6 +37,7 @@ public struct VertexDatasetRegex: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = VertexDatasetRegex().with { $0.projectIdRegex = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -40,6 +40,7 @@ public struct ListDbSystemInitialStorageSizesResponse: Codable, Equatable, Googl
   /// ```
   /// let value = ListDbSystemInitialStorageSizesResponse().with { $0.dbSystemInitialStorageSizes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

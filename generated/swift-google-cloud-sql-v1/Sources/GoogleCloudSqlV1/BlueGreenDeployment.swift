@@ -80,6 +80,7 @@
     /// ```
     /// let value = BlueGreenDeployment().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -194,6 +195,7 @@
       /// ```
       /// let value = RequestedConfig().with { $0.databaseVersion = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -274,6 +276,7 @@
       /// ```
       /// let value = DeploymentTasks().with { $0.task = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -369,6 +372,7 @@
       /// ```
       /// let value = SourceTargetPairedNode().with { $0.source = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -454,6 +458,7 @@
         /// ```
         /// let value = ConfigDiff().with { $0.field = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -556,6 +561,7 @@
         /// ```
         /// let value = NodeInfo().with { $0.instance = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -669,6 +675,7 @@
         /// ```
         /// let value = DeploymentTask().with { $0.type = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

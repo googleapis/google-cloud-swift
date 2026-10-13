@@ -74,6 +74,7 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = CertificateDescription().with { $0.subjectDescription = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -196,6 +197,7 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = SubjectDescription().with { $0.subject = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -301,6 +303,7 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = KeyId().with { $0.keyId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -380,6 +383,7 @@ public struct CertificateDescription: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = CertificateFingerprint().with { $0.sha256Hash = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

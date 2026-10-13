@@ -92,6 +92,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Execution().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -217,6 +218,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StackTraceElement().with { $0.step = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -294,6 +296,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Position().with { $0.line = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -408,6 +411,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StackTrace().with { $0.elements = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -495,6 +499,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Error().with { $0.payload = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -591,6 +596,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Status().with { $0.currentSteps = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -653,6 +659,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Step().with { $0.routine = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -763,6 +770,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StateError().with { $0.details = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

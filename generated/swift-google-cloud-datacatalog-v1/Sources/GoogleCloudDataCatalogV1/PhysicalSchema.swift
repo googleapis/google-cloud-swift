@@ -36,6 +36,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PhysicalSchema().with { $0.avro = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -151,6 +152,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AvroSchema().with { $0.text = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -230,6 +232,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ThriftSchema().with { $0.text = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -309,6 +312,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ProtobufSchema().with { $0.text = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -385,6 +389,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ParquetSchema().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -453,6 +458,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = OrcSchema().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -521,6 +527,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CsvSchema().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

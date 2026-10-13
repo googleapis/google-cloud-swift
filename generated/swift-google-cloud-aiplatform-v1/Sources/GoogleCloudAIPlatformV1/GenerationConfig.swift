@@ -156,6 +156,7 @@
     /// ```
     /// let value = GenerationConfig().with { $0.temperature = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -307,6 +308,7 @@
       /// ```
       /// let value = RoutingConfig().with { $0.autoMode = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -396,6 +398,7 @@
         /// ```
         /// let value = AutoRoutingMode().with { $0.modelRoutingPreference = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -602,6 +605,7 @@
         /// ```
         /// let value = ManualRoutingMode().with { $0.modelName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -718,6 +722,7 @@
       /// ```
       /// let value = ThinkingConfig().with { $0.includeThoughts = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -63,6 +63,7 @@ public struct ListSingleTenantHsmInstanceProposalsResponse: Codable, Equatable, 
   /// ```
   /// let value = ListSingleTenantHsmInstanceProposalsResponse().with { $0.singleTenantHsmInstanceProposals = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

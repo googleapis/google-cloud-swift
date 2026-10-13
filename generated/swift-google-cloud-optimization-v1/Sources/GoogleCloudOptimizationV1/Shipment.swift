@@ -170,6 +170,7 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Shipment().with { $0.pickups = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -409,6 +410,7 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VisitRequest().with { $0.arrivalLocation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -562,6 +564,7 @@ public struct Shipment: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Load().with { $0.amount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

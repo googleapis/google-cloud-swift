@@ -75,6 +75,7 @@ public struct VpnConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = VpnConnection().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -207,6 +208,7 @@ public struct VpnConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VpcProject().with { $0.projectId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -307,6 +309,7 @@ public struct VpnConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Details().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -384,6 +387,7 @@ public struct VpnConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CloudRouter().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -463,6 +467,7 @@ public struct VpnConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CloudVpn().with { $0.gateway = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -268,6 +268,7 @@
     /// ```
     /// let value = DatabaseInstance().with { $0.kind = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -657,6 +658,7 @@
       /// ```
       /// let value = SqlFailoverReplica().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -750,6 +752,7 @@
       /// ```
       /// let value = SqlScheduledMaintenance().with { $0.startTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -863,6 +866,7 @@
       /// ```
       /// let value = SqlOutOfDiskReport().with { $0.sqlOutOfDiskState = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1092,6 +1096,7 @@
       /// ```
       /// let value = PoolNodeConfig().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

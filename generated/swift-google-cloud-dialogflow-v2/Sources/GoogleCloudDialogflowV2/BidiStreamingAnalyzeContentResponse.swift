@@ -38,6 +38,7 @@
     /// ```
     /// let value = BidiStreamingAnalyzeContentResponse().with { $0.recognitionResult = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -139,6 +140,7 @@
       /// ```
       /// let value = BargeInSignal().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -208,6 +210,7 @@
       /// ```
       /// let value = TurnComplete().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

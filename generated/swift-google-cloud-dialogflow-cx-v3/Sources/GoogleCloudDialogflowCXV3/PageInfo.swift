@@ -62,6 +62,7 @@
     /// ```
     /// let value = PageInfo().with { $0.currentPage = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -136,6 +137,7 @@
       /// ```
       /// let value = FormInfo().with { $0.parameterInfo = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -249,6 +251,7 @@
         /// ```
         /// let value = ParameterInfo().with { $0.displayName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

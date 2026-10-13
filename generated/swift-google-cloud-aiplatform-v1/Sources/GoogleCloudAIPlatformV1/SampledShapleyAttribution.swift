@@ -42,6 +42,7 @@
     /// ```
     /// let value = SampledShapleyAttribution().with { $0.pathCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

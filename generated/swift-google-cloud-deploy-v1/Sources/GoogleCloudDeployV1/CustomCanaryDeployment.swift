@@ -38,6 +38,7 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = CustomCanaryDeployment().with { $0.phaseConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -122,6 +123,7 @@ public struct CustomCanaryDeployment: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = PhaseConfig().with { $0.phaseId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

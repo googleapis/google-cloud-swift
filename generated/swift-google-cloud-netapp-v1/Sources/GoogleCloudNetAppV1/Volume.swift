@@ -187,6 +187,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Volume().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -507,6 +508,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloneDetails().with { $0.sourceSnapshot = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

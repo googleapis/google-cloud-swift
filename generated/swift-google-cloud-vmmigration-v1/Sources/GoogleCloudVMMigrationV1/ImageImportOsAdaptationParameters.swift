@@ -53,6 +53,7 @@ public struct ImageImportOsAdaptationParameters: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = ImageImportOsAdaptationParameters().with { $0.generalize = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

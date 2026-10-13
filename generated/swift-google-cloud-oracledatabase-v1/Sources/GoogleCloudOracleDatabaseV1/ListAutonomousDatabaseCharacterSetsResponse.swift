@@ -41,6 +41,7 @@ public struct ListAutonomousDatabaseCharacterSetsResponse: Codable, Equatable, G
   /// ```
   /// let value = ListAutonomousDatabaseCharacterSetsResponse().with { $0.autonomousDatabaseCharacterSets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

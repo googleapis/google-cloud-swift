@@ -47,6 +47,7 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExportClusterRequest().with { $0.gcsDestination = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -187,6 +188,7 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CsvExportOptions().with { $0.selectQuery = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -295,6 +297,7 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SqlExportOptions().with { $0.tables = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

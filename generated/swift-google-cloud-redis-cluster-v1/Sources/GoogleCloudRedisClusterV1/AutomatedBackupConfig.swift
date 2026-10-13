@@ -47,6 +47,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AutomatedBackupConfig().with { $0.fixedFrequencySchedule = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -138,6 +139,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FixedFrequencySchedule().with { $0.startTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -39,6 +39,7 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SalesforceProfile().with { $0.domain = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -149,6 +150,7 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UserCredentials().with { $0.username = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -268,6 +270,7 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Oauth2ClientCredentials().with { $0.clientId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

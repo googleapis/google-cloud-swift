@@ -61,6 +61,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = TrainProcessorVersionRequest().with { $0.customDocumentExtractionOptions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -185,6 +186,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = InputData().with { $0.trainingDocuments = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -271,6 +273,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = CustomDocumentExtractionOptions().with { $0.trainingMethod = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -475,6 +478,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = FoundationModelTuningOptions().with { $0.trainSteps = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

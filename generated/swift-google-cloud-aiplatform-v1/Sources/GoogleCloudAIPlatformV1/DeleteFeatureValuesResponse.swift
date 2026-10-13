@@ -41,6 +41,7 @@
     /// ```
     /// let value = DeleteFeatureValuesResponse().with { $0.selectEntity = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -134,6 +135,7 @@
       /// ```
       /// let value = SelectEntity().with { $0.offlineStorageDeletedEntityRowCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -242,6 +244,7 @@
       /// ```
       /// let value = SelectTimeRangeAndFeature().with { $0.impactedFeatureCount = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

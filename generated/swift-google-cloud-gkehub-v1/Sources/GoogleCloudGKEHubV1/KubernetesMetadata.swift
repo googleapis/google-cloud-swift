@@ -59,6 +59,7 @@ public struct KubernetesMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = KubernetesMetadata().with { $0.kubernetesApiServerVersion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

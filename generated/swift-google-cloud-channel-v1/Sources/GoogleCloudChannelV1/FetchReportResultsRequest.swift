@@ -68,6 +68,7 @@ public struct FetchReportResultsRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = FetchReportResultsRequest().with { $0.reportJob = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

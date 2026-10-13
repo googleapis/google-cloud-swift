@@ -41,6 +41,7 @@ public struct QueryRepositoryDirectoryContentsResponse: Codable, Equatable, Goog
   /// ```
   /// let value = QueryRepositoryDirectoryContentsResponse().with { $0.directoryEntries = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

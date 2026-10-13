@@ -53,6 +53,7 @@
     /// ```
     /// let value = GenerativeSettings().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -142,6 +143,7 @@
       /// ```
       /// let value = FallbackSettings().with { $0.selectedPrompt = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -216,6 +218,7 @@
         /// ```
         /// let value = PromptTemplate().with { $0.displayName = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -354,6 +357,7 @@
       /// ```
       /// let value = KnowledgeConnectorSettings().with { $0.business = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -47,6 +47,7 @@ public struct InspectJobConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InspectJobConfig().with { $0.storageConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -61,6 +61,7 @@ public struct OperationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OperationInfo().with { $0.responseType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

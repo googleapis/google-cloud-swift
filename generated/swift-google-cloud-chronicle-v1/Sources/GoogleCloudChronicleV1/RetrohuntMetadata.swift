@@ -46,6 +46,7 @@ public struct RetrohuntMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RetrohuntMetadata().with { $0.retrohunt = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

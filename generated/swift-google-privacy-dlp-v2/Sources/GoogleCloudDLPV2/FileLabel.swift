@@ -36,6 +36,7 @@ public struct FileLabel: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FileLabel().with { $0.sensitivityLabel = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -122,6 +123,7 @@ public struct FileLabel: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SensitivityLabelMetadata().with { $0.guid = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -206,6 +208,7 @@ public struct FileLabel: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GoogleDriveLabelMetadata().with { $0.labelId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -274,6 +277,7 @@ public struct FileLabel: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = LabelFieldMetadata().with { $0.id = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

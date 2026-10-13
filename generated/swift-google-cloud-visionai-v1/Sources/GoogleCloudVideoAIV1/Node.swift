@@ -52,6 +52,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Node().with { $0.outputAllOutputChannelsToStream = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -167,6 +168,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InputEdge().with { $0.parentNode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

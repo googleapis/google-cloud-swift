@@ -55,6 +55,7 @@ public struct AmazonSQSV2Settings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AmazonSQSV2Settings().with { $0.queue = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

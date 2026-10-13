@@ -41,6 +41,7 @@ public struct ListDockerImagesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = ListDockerImagesResponse().with { $0.dockerImages = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

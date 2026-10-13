@@ -44,6 +44,7 @@ public struct ListGoldengateConnectionTypesResponse: Codable, Equatable, GoogleW
   /// ```
   /// let value = ListGoldengateConnectionTypesResponse().with { $0.goldengateConnectionTypes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

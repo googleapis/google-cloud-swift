@@ -46,6 +46,7 @@ public struct ListMeshRouteViewsResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListMeshRouteViewsResponse().with { $0.meshRouteViews = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

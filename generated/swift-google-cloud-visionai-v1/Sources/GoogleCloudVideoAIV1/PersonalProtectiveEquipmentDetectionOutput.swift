@@ -40,6 +40,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
   /// ```
   /// let value = PersonalProtectiveEquipmentDetectionOutput().with { $0.currentTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -104,6 +105,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
     /// ```
     /// let value = PersonEntity().with { $0.personEntityId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -194,6 +196,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
     /// ```
     /// let value = PPEEntity().with { $0.ppeLabelId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -304,6 +307,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
     /// ```
     /// let value = NormalizedBoundingBox().with { $0.xmin = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -413,6 +417,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
     /// ```
     /// let value = PersonIdentifiedBox().with { $0.boxId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -520,6 +525,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
     /// ```
     /// let value = PPEIdentifiedBox().with { $0.boxId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -645,6 +651,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
     /// ```
     /// let value = DetectedPerson().with { $0.personId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

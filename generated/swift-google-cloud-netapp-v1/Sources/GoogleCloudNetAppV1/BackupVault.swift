@@ -88,6 +88,7 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BackupVault().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -250,6 +251,7 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BackupRetentionPolicy().with { $0.backupMinimumEnforcedRetentionDays = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

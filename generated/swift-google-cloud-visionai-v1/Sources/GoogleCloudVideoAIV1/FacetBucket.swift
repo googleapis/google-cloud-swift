@@ -42,6 +42,7 @@ public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FacetBucket().with { $0.value = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -133,6 +134,7 @@ public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Range().with { $0.start = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

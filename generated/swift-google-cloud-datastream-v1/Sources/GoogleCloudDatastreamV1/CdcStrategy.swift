@@ -38,6 +38,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CdcStrategy().with { $0.mostRecentStartPosition = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -131,6 +132,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MostRecentStartPosition().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -200,6 +202,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NextAvailableStartPosition().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -270,6 +273,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SpecificStartPosition().with { $0.mysqlLogPosition = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

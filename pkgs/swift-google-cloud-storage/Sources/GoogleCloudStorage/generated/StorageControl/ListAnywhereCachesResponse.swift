@@ -41,6 +41,7 @@ public struct ListAnywhereCachesResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListAnywhereCachesResponse().with { $0.anywhereCaches = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

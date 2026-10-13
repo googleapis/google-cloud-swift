@@ -121,6 +121,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Document().with { $0.uri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -320,6 +321,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ShardInfo().with { $0.shardIndex = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -442,6 +444,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Style().with { $0.textAnchor = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -538,6 +541,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = FontSize().with { $0.size = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -715,6 +719,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Page().with { $0.pageNumber = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -883,6 +888,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Dimension().with { $0.width = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -985,6 +991,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Image().with { $0.content = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1095,6 +1102,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Matrix().with { $0.rows = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1216,6 +1224,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Layout().with { $0.textAnchor = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1458,6 +1467,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Block().with { $0.layout = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1565,6 +1575,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Paragraph().with { $0.layout = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1673,6 +1684,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Line().with { $0.layout = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1789,6 +1801,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Token().with { $0.layout = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1877,6 +1890,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = DetectedBreak().with { $0.type = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2133,6 +2147,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = StyleInfo().with { $0.fontSize = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2322,6 +2337,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Symbol().with { $0.layout = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2421,6 +2437,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = VisualElement().with { $0.layout = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2529,6 +2546,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Table().with { $0.layout = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -2619,6 +2637,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = TableRow().with { $0.cells = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2713,6 +2732,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = TableCell().with { $0.layout = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -2871,6 +2891,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = FormField().with { $0.fieldName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3004,6 +3025,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = DetectedBarcode().with { $0.layout = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3090,6 +3112,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = DetectedLanguage().with { $0.languageCode = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3178,6 +3201,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ImageQualityScores().with { $0.qualityScore = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3256,6 +3280,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = DetectedDefect().with { $0.type = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -3433,6 +3458,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Entity().with { $0.textAnchor = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -3565,6 +3591,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = NormalizedValue().with { $0.moneyValue = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -3906,6 +3933,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EntityRelation().with { $0.subjectId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -4008,6 +4036,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TextAnchor().with { $0.textSegments = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -4093,6 +4122,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TextSegment().with { $0.startIndex = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4205,6 +4235,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PageAnchor().with { $0.pageRefs = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -4293,6 +4324,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = PageRef().with { $0.page = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -4616,6 +4648,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Provenance().with { $0.revision = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -4710,6 +4743,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Parent().with { $0.revision = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5018,6 +5052,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Revision().with { $0.agent = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -5138,6 +5173,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = HumanReview().with { $0.state = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5269,6 +5305,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TextChange().with { $0.textAnchor = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -5365,6 +5402,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Annotations().with { $0.description = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -5445,6 +5483,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DocumentLayout().with { $0.blocks = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -5513,6 +5552,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = DocumentLayoutBlock().with { $0.textBlock = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -5635,6 +5675,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = LayoutPageSpan().with { $0.pageStart = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -5733,6 +5774,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = LayoutTextBlock().with { $0.text = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -5841,6 +5883,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = LayoutTableBlock().with { $0.headerRows = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -5942,6 +5985,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = LayoutTableRow().with { $0.cells = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -6031,6 +6075,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = LayoutTableCell().with { $0.blocks = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -6129,6 +6174,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = LayoutListBlock().with { $0.listEntries = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -6218,6 +6264,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = LayoutListEntry().with { $0.blocks = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -6311,6 +6358,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = LayoutImageBlock().with { $0.blobAssetId = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -6513,6 +6561,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ChunkedDocument().with { $0.chunks = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -6590,6 +6639,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Chunk().with { $0.chunkId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -6691,6 +6741,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ChunkPageSpan().with { $0.pageStart = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -6780,6 +6831,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ChunkPageHeader().with { $0.text = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -6868,6 +6920,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ChunkPageFooter().with { $0.text = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -6956,6 +7009,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ImageChunkField().with { $0.blobAssetId = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -7090,6 +7144,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = TableChunkField().with { $0.annotations = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -7170,6 +7225,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ChunkField().with { $0.imageChunkField = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -7341,6 +7397,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BlobAsset().with { $0.assetId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -7436,6 +7493,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EntityValidationOutput().with { $0.validationResults = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -7513,6 +7571,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ValidationResult().with { $0.ruleName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -7774,6 +7833,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EntitiesRevision().with { $0.revisionId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

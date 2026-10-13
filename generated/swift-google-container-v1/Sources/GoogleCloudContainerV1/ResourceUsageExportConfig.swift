@@ -43,6 +43,7 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = ResourceUsageExportConfig().with { $0.bigqueryDestination = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -113,6 +114,7 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = BigQueryDestination().with { $0.datasetId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -194,6 +196,7 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = ConsumptionMeteringConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

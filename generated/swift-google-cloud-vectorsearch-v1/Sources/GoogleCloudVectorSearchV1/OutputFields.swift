@@ -42,6 +42,7 @@ public struct OutputFields: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OutputFields().with { $0.dataFields = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

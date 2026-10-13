@@ -36,6 +36,7 @@ public struct SdpImageFindingLocation: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = SdpImageFindingLocation().with { $0.boundingBoxes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -104,6 +105,7 @@ public struct SdpImageFindingLocation: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = SdpBoundingBox().with { $0.top = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

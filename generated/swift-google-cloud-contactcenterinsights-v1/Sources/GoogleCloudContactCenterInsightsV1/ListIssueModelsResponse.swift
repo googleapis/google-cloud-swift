@@ -36,6 +36,7 @@ public struct ListIssueModelsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ListIssueModelsResponse().with { $0.issueModels = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

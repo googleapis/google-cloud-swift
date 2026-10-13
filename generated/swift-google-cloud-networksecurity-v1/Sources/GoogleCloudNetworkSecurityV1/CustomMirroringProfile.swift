@@ -39,6 +39,7 @@ public struct CustomMirroringProfile: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = CustomMirroringProfile().with { $0.mirroringEndpointGroup = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

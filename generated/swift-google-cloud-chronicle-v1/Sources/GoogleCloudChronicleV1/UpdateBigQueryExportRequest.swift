@@ -41,6 +41,7 @@ public struct UpdateBigQueryExportRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = UpdateBigQueryExportRequest().with { $0.bigQueryExport = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

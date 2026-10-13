@@ -68,6 +68,7 @@ public struct CreateAzureClientRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = CreateAzureClientRequest().with { $0.parent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -62,6 +62,7 @@ public struct LogTypeSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LogTypeSchema().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -164,6 +165,7 @@ public struct LogTypeSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DetailsFieldSchemaAlternative().with { $0.detailsFieldSchemaSets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -252,6 +254,7 @@ public struct LogTypeSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DetailsFieldSchemaSet().with { $0.displayName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -369,6 +372,7 @@ public struct LogTypeSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DetailsFieldSchema().with { $0.fieldPath = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -499,6 +503,7 @@ public struct LogTypeSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EnumFieldSchema().with { $0.value = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

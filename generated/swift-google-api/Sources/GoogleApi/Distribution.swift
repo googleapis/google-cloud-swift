@@ -94,6 +94,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Distribution().with { $0.count = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -188,6 +189,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Range().with { $0.min = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -287,6 +289,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BucketOptions().with { $0.linearBuckets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -397,6 +400,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Linear().with { $0.numFiniteBuckets = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -503,6 +507,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Exponential().with { $0.numFiniteBuckets = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -604,6 +609,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Explicit().with { $0.bounds = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -736,6 +742,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Exemplar().with { $0.value = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -45,6 +45,7 @@ public struct ListAuthorizedViewsResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListAuthorizedViewsResponse().with { $0.authorizedViews = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

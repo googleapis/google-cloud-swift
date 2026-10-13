@@ -80,6 +80,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Policy().with { $0.version = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -329,6 +330,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ListPolicy().with { $0.allowedValues = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -603,6 +605,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BooleanPolicy().with { $0.enforced = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -690,6 +693,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RestoreDefault().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

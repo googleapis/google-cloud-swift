@@ -39,6 +39,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataDiscoveryResult().with { $0.bigqueryPublishing = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -103,6 +104,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BigQueryPublishing().with { $0.dataset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -212,6 +214,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ScanStatistics().with { $0.scannedFileCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

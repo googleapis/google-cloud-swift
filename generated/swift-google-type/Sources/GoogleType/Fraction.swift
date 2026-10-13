@@ -40,6 +40,7 @@ public struct Fraction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Fraction().with { $0.numerator = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

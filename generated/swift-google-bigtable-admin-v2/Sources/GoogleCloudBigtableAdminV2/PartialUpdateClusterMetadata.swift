@@ -42,6 +42,7 @@ public struct PartialUpdateClusterMetadata: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = PartialUpdateClusterMetadata().with { $0.requestTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

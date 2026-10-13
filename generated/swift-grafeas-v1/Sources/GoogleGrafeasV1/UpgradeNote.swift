@@ -49,6 +49,7 @@ public struct UpgradeNote: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UpgradeNote().with { $0.`package` = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

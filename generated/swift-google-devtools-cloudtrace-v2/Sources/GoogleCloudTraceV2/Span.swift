@@ -113,6 +113,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Span().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -241,6 +242,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Attributes().with { $0.attributeMap = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -334,6 +336,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TimeEvent().with { $0.time = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -429,6 +432,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Annotation().with { $0.description = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -524,6 +528,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MessageEvent().with { $0.type = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -784,6 +789,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TimeEvents().with { $0.timeEvent = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -892,6 +898,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Link().with { $0.traceId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1110,6 +1117,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Links().with { $0.link = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

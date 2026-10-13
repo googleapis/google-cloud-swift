@@ -39,6 +39,7 @@ public struct ExportPredictionResultMetadataRequest: Codable, Equatable, GoogleW
   /// ```
   /// let value = ExportPredictionResultMetadataRequest().with { $0.predictionResult = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

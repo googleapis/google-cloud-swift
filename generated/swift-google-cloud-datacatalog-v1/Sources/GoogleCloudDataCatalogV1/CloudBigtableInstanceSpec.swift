@@ -38,6 +38,7 @@ public struct CloudBigtableInstanceSpec: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = CloudBigtableInstanceSpec().with { $0.cloudBigtableClusterSpecs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -106,6 +107,7 @@ public struct CloudBigtableInstanceSpec: Codable, Equatable, GoogleWKT._AnyPacka
     /// ```
     /// let value = CloudBigtableClusterSpec().with { $0.displayName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

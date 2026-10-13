@@ -129,6 +129,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ConversationalSearchRequest().with { $0.placement = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -273,6 +274,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = SearchParams().with { $0.filter = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -371,6 +373,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = UserAnswer().with { $0.textAnswer = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -457,6 +460,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       /// ```
       /// let value = SelectedAnswer().with { $0.productAttributeValue = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -590,6 +594,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     /// ```
     /// let value = ConversationalFilteringSpec().with { $0.enableConversationalFiltering = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

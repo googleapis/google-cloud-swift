@@ -99,6 +99,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Repository().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -268,6 +269,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GitRemoteSettings().with { $0.url = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -379,6 +381,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SshAuthenticationConfig().with { $0.userPrivateKeySecretVersion = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -622,6 +625,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WorkspaceCompilationOverrides().with { $0.defaultDatabase = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -713,6 +717,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EndUserAuthConfig().with { $0.oauthConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

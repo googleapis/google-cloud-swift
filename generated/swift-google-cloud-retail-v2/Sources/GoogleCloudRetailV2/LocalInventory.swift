@@ -87,6 +87,7 @@ public struct LocalInventory: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LocalInventory().with { $0.placeId = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

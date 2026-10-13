@@ -50,6 +50,7 @@ public struct AndroidKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AndroidKeySettings().with { $0.allowAllPackageNames = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

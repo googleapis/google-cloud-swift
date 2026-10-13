@@ -45,6 +45,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = InterconnectDiagnostics().with { $0.macAddress = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -128,6 +129,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = LinkStatus().with { $0.circuitId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -243,6 +245,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = PacketCounts().with { $0.inboundUnicast = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -372,6 +375,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = LinkLACPStatus().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -620,6 +624,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = LinkLLDPStatus().with { $0.peerSystemName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

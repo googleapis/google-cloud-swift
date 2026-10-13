@@ -62,6 +62,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProcessOptions().with { $0.individualPageSelector = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -180,6 +181,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LayoutConfig().with { $0.chunkingConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -266,6 +268,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ChunkingConfig().with { $0.chunkSize = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -376,6 +379,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IndividualPageSelector().with { $0.pages = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

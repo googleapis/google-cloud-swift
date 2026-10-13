@@ -55,6 +55,7 @@ public struct Profile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Profile().with { $0.modelServerInfo = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

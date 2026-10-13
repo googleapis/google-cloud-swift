@@ -74,6 +74,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Execution().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -215,6 +216,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ExternalDataSources().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -424,6 +426,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Notice().with { $0.message = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -509,6 +512,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Summary().with { $0.failures = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

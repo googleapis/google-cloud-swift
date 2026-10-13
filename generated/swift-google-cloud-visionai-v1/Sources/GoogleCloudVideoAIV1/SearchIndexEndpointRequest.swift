@@ -59,6 +59,7 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = SearchIndexEndpointRequest().with { $0.imageQuery = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -111,6 +111,7 @@
     /// ```
     /// let value = Fulfillment().with { $0.messages = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -233,6 +234,7 @@
       /// ```
       /// let value = SetParameterAction().with { $0.parameter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -317,6 +319,7 @@
       /// ```
       /// let value = ConditionalCases().with { $0.cases = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -389,6 +392,7 @@
         /// ```
         /// let value = Case().with { $0.condition = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -454,6 +458,7 @@
           /// ```
           /// let value = CaseContent().with { $0.message = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -633,6 +638,7 @@
       /// ```
       /// let value = GeneratorSettings().with { $0.generator = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

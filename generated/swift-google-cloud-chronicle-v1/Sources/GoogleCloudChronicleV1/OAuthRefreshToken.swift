@@ -45,6 +45,7 @@ public struct OAuthRefreshToken: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OAuthRefreshToken().with { $0.tokenEndpoint = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

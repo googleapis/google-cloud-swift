@@ -36,6 +36,7 @@ public struct DenseScannIndex: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DenseScannIndex().with { $0.featureNormType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -101,6 +101,7 @@ public struct AllowBindingExplanation: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = AllowBindingExplanation().with { $0.allowAccessState = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -212,6 +213,7 @@ public struct AllowBindingExplanation: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = AnnotatedAllowMembership().with { $0.membership = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -43,6 +43,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Partition().with { $0.temporalPartition = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -114,6 +115,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TemporalPartition().with { $0.startTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -205,6 +207,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SpatialPartition().with { $0.xMin = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -298,6 +301,7 @@ public struct Partition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RelativeTemporalPartition().with { $0.startOffset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

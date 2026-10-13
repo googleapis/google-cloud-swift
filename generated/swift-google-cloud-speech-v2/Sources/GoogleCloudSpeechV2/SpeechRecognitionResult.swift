@@ -53,6 +53,7 @@ public struct SpeechRecognitionResult: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = SpeechRecognitionResult().with { $0.alternatives = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

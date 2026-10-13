@@ -49,6 +49,7 @@
     /// ```
     /// let value = RetrieveContextsRequest().with { $0.vertexRagStore = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -144,6 +145,7 @@
       /// ```
       /// let value = VertexRagStore().with { $0.ragResources = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -221,6 +223,7 @@
         /// ```
         /// let value = RagResource().with { $0.ragCorpus = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

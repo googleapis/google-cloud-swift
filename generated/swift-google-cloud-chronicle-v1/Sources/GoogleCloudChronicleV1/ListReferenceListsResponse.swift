@@ -42,6 +42,7 @@ public struct ListReferenceListsResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListReferenceListsResponse().with { $0.referenceLists = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

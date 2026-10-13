@@ -47,6 +47,7 @@
     /// ```
     /// let value = ImportIntentsResponse().with { $0.intents = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -114,6 +115,7 @@
       /// ```
       /// let value = ConflictingResources().with { $0.intentDisplayNames = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

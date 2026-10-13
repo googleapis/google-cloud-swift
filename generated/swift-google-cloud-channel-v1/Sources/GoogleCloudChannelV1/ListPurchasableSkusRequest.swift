@@ -53,6 +53,7 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListPurchasableSkusRequest().with { $0.createEntitlementPurchase = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -168,6 +169,7 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = CreateEntitlementPurchase().with { $0.product = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -258,6 +260,7 @@ public struct ListPurchasableSkusRequest: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = ChangeOfferPurchase().with { $0.entitlement = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

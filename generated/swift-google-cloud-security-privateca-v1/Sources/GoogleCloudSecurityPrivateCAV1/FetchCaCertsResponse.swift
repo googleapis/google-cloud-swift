@@ -43,6 +43,7 @@ public struct FetchCaCertsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FetchCaCertsResponse().with { $0.caCerts = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -101,6 +102,7 @@ public struct FetchCaCertsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CertChain().with { $0.certificates = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

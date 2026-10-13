@@ -42,6 +42,7 @@ public struct TranscriptNormalization: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = TranscriptNormalization().with { $0.entries = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -107,6 +108,7 @@ public struct TranscriptNormalization: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = Entry().with { $0.search = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -78,6 +78,7 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AppGateway().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -207,6 +208,7 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AllocatedConnection().with { $0.pscUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

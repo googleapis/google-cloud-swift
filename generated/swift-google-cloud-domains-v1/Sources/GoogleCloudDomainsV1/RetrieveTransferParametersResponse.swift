@@ -36,6 +36,7 @@ public struct RetrieveTransferParametersResponse: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = RetrieveTransferParametersResponse().with { $0.transferParameters = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

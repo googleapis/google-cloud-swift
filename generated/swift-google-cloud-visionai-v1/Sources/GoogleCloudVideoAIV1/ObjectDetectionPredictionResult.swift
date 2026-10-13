@@ -39,6 +39,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = ObjectDetectionPredictionResult().with { $0.currentTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -106,6 +107,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = Entity().with { $0.labelId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -201,6 +203,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = IdentifiedBox().with { $0.boxId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -284,6 +287,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleWKT._An
       /// ```
       /// let value = NormalizedBoundingBox().with { $0.xmin = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

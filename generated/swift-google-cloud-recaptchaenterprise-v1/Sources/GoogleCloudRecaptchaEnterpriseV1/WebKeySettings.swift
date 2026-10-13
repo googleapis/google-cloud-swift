@@ -62,6 +62,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WebKeySettings().with { $0.allowAllDomains = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -153,6 +154,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ActionSettings().with { $0.scoreThreshold = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -243,6 +245,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ChallengeSettings().with { $0.defaultSettings = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

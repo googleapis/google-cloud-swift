@@ -67,6 +67,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Watchlist().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -169,6 +170,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EntityPopulationMechanism().with { $0.manual = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -243,6 +245,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Manual().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -347,6 +350,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EntityCount().with { $0.user = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

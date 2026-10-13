@@ -150,6 +150,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Table().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -297,6 +298,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ClusterState().with { $0.replicationState = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -556,6 +558,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AutomatedBackupPolicy().with { $0.retentionPeriod = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

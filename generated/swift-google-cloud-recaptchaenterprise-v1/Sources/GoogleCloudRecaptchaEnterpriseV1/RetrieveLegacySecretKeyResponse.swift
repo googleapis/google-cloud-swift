@@ -40,6 +40,7 @@ public struct RetrieveLegacySecretKeyResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = RetrieveLegacySecretKeyResponse().with { $0.legacySecretKey = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

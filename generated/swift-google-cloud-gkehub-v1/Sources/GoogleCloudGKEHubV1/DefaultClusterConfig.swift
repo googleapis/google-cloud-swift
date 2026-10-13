@@ -45,6 +45,7 @@ public struct DefaultClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DefaultClusterConfig().with { $0.securityPostureConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

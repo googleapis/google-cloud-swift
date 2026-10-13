@@ -47,6 +47,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = StackTrace().with { $0.stackFrames = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -133,6 +134,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StackFrame().with { $0.functionName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -246,6 +248,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StackFrames().with { $0.frame = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

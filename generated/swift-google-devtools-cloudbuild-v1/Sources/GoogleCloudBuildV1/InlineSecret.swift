@@ -46,6 +46,7 @@ public struct InlineSecret: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = InlineSecret().with { $0.kmsKeyName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

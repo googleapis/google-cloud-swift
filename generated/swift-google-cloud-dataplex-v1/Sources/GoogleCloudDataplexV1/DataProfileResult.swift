@@ -51,6 +51,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataProfileResult().with { $0.rowCount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -129,6 +130,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Profile().with { $0.fields = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -206,6 +208,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Field().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -299,6 +302,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = ProfileInfo().with { $0.nullRatio = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -424,6 +428,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = StringFieldInfo().with { $0.minLength = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -544,6 +549,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = IntegerFieldInfo().with { $0.average = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -677,6 +683,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = DoubleFieldInfo().with { $0.average = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -790,6 +797,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = TopNValue().with { $0.value = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -964,6 +972,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PostScanActionsResult().with { $0.bigqueryExportResult = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1026,6 +1035,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BigQueryExportResult().with { $0.state = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

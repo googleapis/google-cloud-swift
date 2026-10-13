@@ -58,6 +58,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = ClientConnectorService().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -147,6 +148,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = Ingress().with { $0.config = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -229,6 +231,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
       /// ```
       /// let value = Config().with { $0.transportProtocol = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -303,6 +306,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
         /// ```
         /// let value = DestinationRoute().with { $0.address = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -549,6 +553,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = Egress().with { $0.peeredVpc = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -626,6 +631,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
       /// ```
       /// let value = PeeredVpc().with { $0.networkVpc = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

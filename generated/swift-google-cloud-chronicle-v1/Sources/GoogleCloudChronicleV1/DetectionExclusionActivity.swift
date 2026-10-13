@@ -38,6 +38,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = DetectionExclusionActivity().with { $0.detectionExclusionDetectorActivities = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -108,6 +109,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
     /// ```
     /// let value = DetectionExclusionDetectorActivity().with { $0.curatedRule = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

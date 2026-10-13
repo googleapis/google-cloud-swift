@@ -45,6 +45,7 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GlossaryEntry().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -146,6 +147,7 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GlossaryTermsPair().with { $0.sourceTerm = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -230,6 +232,7 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GlossaryTermsSet().with { $0.terms = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

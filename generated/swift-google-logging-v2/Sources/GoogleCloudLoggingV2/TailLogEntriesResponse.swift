@@ -45,6 +45,7 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = TailLogEntriesResponse().with { $0.entries = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -114,6 +115,7 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = SuppressionInfo().with { $0.reason = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

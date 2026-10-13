@@ -47,6 +47,7 @@ public struct ListExascaleDbStorageVaultsResponse: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = ListExascaleDbStorageVaultsResponse().with { $0.exascaleDbStorageVaults = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

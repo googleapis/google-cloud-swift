@@ -45,6 +45,7 @@ public struct UpdateFindingsRefinementDeploymentRequest: Codable, Equatable, Goo
   /// ```
   /// let value = UpdateFindingsRefinementDeploymentRequest().with { $0.findingsRefinementDeployment = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

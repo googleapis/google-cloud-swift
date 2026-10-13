@@ -43,6 +43,7 @@ public struct ManagedZoneDnsSecConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = ManagedZoneDnsSecConfig().with { $0.defaultKeySpecs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

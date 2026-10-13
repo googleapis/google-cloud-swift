@@ -43,6 +43,7 @@ public struct UpdateSecurityMarksRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = UpdateSecurityMarksRequest().with { $0.securityMarks = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

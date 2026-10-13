@@ -43,6 +43,7 @@ public struct ListSpecsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListSpecsResponse().with { $0.specs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

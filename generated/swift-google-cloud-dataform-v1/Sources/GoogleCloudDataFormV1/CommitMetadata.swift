@@ -39,6 +39,7 @@ public struct CommitMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CommitMetadata().with { $0.author = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

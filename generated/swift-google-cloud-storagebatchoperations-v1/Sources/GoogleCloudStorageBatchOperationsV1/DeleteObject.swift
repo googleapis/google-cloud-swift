@@ -44,6 +44,7 @@ public struct DeleteObject: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DeleteObject().with { $0.permanentObjectDeletionEnabled = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -40,6 +40,7 @@ public struct PacketType: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PacketType().with { $0.typeClass = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -117,6 +118,7 @@ public struct PacketType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TypeDescriptor().with { $0.gstreamerBufferDescriptor = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

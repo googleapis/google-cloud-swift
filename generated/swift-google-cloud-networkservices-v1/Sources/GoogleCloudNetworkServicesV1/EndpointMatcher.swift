@@ -37,6 +37,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EndpointMatcher().with { $0.metadataLabelMatcher = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -148,6 +149,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MetadataLabelMatcher().with { $0.metadataLabelMatchCriteria = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -220,6 +222,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MetadataLabels().with { $0.labelName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

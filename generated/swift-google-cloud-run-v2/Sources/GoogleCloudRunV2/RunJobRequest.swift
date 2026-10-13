@@ -50,6 +50,7 @@ public struct RunJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RunJobRequest().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -132,6 +133,7 @@ public struct RunJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Overrides().with { $0.containerOverrides = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -212,6 +214,7 @@ public struct RunJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ContainerOverride().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

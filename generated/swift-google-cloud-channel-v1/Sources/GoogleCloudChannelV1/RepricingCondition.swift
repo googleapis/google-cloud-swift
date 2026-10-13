@@ -37,6 +37,7 @@ public struct RepricingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RepricingCondition().with { $0.skuGroupCondition = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

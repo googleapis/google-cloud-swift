@@ -40,6 +40,7 @@ public struct VertexDatasetSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = VertexDatasetSpec().with { $0.dataItemCount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -48,6 +48,7 @@ public struct OAuthToken: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OAuthToken().with { $0.serviceAccountEmail = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

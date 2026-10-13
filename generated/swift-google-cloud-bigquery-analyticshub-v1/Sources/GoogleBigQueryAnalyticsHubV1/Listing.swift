@@ -113,6 +113,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Listing().with { $0.bigqueryDataset = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -323,6 +324,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BigQueryDatasetSource().with { $0.dataset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -406,6 +408,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = SelectedResource().with { $0.table = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -533,6 +536,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RestrictedExportPolicy().with { $0.enabled = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -635,6 +639,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Replica().with { $0.location = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -985,6 +990,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PubSubTopicSource().with { $0.topic = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1081,6 +1087,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RestrictedExportConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1177,6 +1184,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CommercialInfo().with { $0.cloudMarketplace = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1239,6 +1247,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GoogleCloudMarketplaceInfo().with { $0.service = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

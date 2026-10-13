@@ -36,6 +36,7 @@ public struct SecretLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SecretLocation().with { $0.fileLocation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

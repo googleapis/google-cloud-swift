@@ -67,6 +67,7 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EntitlementChange().with { $0.suspensionReason = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -36,6 +36,7 @@ public struct HttpOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = HttpOptions().with { $0.authorizationHeader = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

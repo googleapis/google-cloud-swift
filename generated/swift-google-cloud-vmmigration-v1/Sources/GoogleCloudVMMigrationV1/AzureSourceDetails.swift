@@ -61,6 +61,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AzureSourceDetails().with { $0.clientSecretCreds = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -180,6 +181,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ClientSecretCredentials().with { $0.tenantId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

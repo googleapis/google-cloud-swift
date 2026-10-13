@@ -52,6 +52,7 @@ public struct CanaryDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CanaryDeployment().with { $0.percentages = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

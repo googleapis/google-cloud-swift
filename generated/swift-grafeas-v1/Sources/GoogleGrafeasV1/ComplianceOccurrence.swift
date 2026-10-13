@@ -41,6 +41,7 @@ public struct ComplianceOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ComplianceOccurrence().with { $0.nonCompliantFiles = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

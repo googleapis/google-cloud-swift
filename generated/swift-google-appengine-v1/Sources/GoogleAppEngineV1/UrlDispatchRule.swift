@@ -51,6 +51,7 @@ public struct UrlDispatchRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UrlDispatchRule().with { $0.domain = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

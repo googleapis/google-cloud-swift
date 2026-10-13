@@ -56,6 +56,7 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MetadataImport().with { $0.databaseDump = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -180,6 +181,7 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DatabaseDump().with { $0.databaseType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

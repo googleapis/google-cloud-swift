@@ -43,6 +43,7 @@ public struct ListServiceProjectAttachmentsResponse: Codable, Equatable, GoogleW
   /// ```
   /// let value = ListServiceProjectAttachmentsResponse().with { $0.serviceProjectAttachments = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

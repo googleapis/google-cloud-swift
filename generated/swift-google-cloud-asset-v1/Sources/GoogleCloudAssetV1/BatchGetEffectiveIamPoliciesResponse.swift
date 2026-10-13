@@ -48,6 +48,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleWK
   /// ```
   /// let value = BatchGetEffectiveIamPoliciesResponse().with { $0.policyResults = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -142,6 +143,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleWK
     /// ```
     /// let value = EffectiveIamPolicy().with { $0.fullResourceName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -217,6 +219,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleWK
       /// ```
       /// let value = PolicyInfo().with { $0.attachedResource = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

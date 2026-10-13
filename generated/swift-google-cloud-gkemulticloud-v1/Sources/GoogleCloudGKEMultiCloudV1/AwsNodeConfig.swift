@@ -102,6 +102,7 @@ public struct AwsNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AwsNodeConfig().with { $0.instanceType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

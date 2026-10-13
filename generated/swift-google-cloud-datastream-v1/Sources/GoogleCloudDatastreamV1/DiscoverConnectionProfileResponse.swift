@@ -36,6 +36,7 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = DiscoverConnectionProfileResponse().with { $0.oracleRdbms = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

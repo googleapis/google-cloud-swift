@@ -66,6 +66,7 @@ public struct SecurityProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SecurityProfile().with { $0.threatPreventionProfile = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

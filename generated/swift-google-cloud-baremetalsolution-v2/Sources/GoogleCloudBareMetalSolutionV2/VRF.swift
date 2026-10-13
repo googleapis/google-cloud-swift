@@ -48,6 +48,7 @@ public struct VRF: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = VRF().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -123,6 +124,7 @@ public struct VRF: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QosPolicy().with { $0.bandwidthGbps = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -222,6 +224,7 @@ public struct VRF: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VlanAttachment().with { $0.peerVlanId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

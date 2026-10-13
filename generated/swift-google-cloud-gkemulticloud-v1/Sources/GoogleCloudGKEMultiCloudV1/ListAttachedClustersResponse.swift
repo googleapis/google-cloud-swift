@@ -44,6 +44,7 @@ public struct ListAttachedClustersResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ListAttachedClustersResponse().with { $0.attachedClusters = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -43,6 +43,7 @@
     /// ```
     /// let value = FetchSitemapsResponse().with { $0.sitemapsMetadata = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -107,6 +108,7 @@
       /// ```
       /// let value = SitemapMetadata().with { $0.sitemap = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

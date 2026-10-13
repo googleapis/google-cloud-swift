@@ -48,6 +48,7 @@ public struct SlsaProvenance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SlsaProvenance().with { $0.builder = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -150,6 +151,7 @@ public struct SlsaProvenance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SlsaRecipe().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -259,6 +261,7 @@ public struct SlsaProvenance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SlsaCompleteness().with { $0.arguments = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -366,6 +369,7 @@ public struct SlsaProvenance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SlsaMetadata().with { $0.buildInvocationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -464,6 +468,7 @@ public struct SlsaProvenance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SlsaBuilder().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -543,6 +548,7 @@ public struct SlsaProvenance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Material().with { $0.uri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

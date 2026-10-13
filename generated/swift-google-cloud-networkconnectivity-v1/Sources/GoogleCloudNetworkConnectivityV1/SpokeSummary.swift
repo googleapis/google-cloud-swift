@@ -49,6 +49,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SpokeSummary().with { $0.spokeTypeCounts = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -130,6 +131,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SpokeTypeCount().with { $0.spokeType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -221,6 +223,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SpokeStateCount().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -312,6 +315,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SpokeStateReasonCount().with { $0.stateReasonCode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

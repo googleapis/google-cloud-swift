@@ -39,6 +39,7 @@ public struct BigQueryInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BigQueryInputConfig().with { $0.bigqueryTable = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

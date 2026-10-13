@@ -44,6 +44,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ConfigVariable().with { $0.stringValue = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -180,6 +181,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MultiSelectValues().with { $0.values = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -259,6 +261,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MultiStringValues().with { $0.values = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -338,6 +341,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MultiIntValues().with { $0.values = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

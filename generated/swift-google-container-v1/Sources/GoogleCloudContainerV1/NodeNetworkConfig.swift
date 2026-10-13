@@ -134,6 +134,7 @@ public struct NodeNetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NodeNetworkConfig().with { $0.createPodRange = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -263,6 +264,7 @@ public struct NodeNetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NetworkPerformanceConfig().with { $0.totalEgressBandwidthTier = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

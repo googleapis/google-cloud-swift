@@ -42,6 +42,7 @@ public struct UpdateReservationGroupRequest: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = UpdateReservationGroupRequest().with { $0.reservationGroup = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

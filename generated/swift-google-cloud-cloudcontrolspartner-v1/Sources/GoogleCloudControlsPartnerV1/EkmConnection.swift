@@ -43,6 +43,7 @@ public struct EkmConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EkmConnection().with { $0.connectionName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -117,6 +118,7 @@ public struct EkmConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConnectionError().with { $0.errorDomain = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

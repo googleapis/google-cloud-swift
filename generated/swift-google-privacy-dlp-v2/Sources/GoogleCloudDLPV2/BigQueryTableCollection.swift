@@ -37,6 +37,7 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = BigQueryTableCollection().with { $0.includeRegexes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

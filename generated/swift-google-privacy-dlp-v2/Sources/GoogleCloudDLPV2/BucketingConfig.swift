@@ -47,6 +47,7 @@ public struct BucketingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BucketingConfig().with { $0.buckets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -111,6 +112,7 @@ public struct BucketingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Bucket().with { $0.min = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -51,6 +51,7 @@ public struct OciConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OciConfig().with { $0.syncRepo = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -67,6 +67,7 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AppConnector().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -167,6 +168,7 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PrincipalInfo().with { $0.serviceAccount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -244,6 +246,7 @@ public struct AppConnector: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ServiceAccount().with { $0.email = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

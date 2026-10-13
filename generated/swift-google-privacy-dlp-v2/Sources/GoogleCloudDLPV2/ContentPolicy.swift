@@ -77,6 +77,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ContentPolicy().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -195,6 +196,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PolicyAction().with { $0.returnVerdict = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -305,6 +307,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PolicyRule().with { $0.conditions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -368,6 +371,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = PolicyCondition().with { $0.infoTypeCondition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -451,6 +455,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         /// ```
         /// let value = InfoTypeCondition().with { $0.minCount = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -544,6 +549,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           /// ```
           /// let value = InfoTypes().with { $0.infoTypeNames = ... }
           /// ```
+          @inlinable
           public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
             var copy = self
             try config(&copy)
@@ -708,6 +714,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LoggingConfig().with { $0.logToBigQuery = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -793,6 +800,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = LogToBigQuery().with { $0.projectId = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

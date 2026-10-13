@@ -35,6 +35,7 @@ public struct AnnotationValue: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AnnotationValue().with { $0.intValue = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

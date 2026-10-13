@@ -37,6 +37,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RecordCondition().with { $0.expressions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -117,6 +118,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Condition().with { $0.field = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -204,6 +206,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Conditions().with { $0.conditions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -290,6 +293,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Expressions().with { $0.logicalOperator = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

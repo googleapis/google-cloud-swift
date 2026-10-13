@@ -79,6 +79,7 @@ public struct BatchTranslateDocumentResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = BatchTranslateDocumentResponse().with { $0.totalPages = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

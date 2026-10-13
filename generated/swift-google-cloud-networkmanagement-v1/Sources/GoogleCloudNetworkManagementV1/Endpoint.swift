@@ -128,6 +128,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Endpoint().with { $0.ipAddress = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -298,6 +299,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudFunctionEndpoint().with { $0.uri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -379,6 +381,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AppEngineVersionEndpoint().with { $0.uri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -467,6 +470,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CloudRunRevisionEndpoint().with { $0.uri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

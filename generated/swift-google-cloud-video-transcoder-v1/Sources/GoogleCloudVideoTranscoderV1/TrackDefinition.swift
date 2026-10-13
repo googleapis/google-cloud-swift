@@ -53,6 +53,7 @@ public struct TrackDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TrackDefinition().with { $0.inputTrack = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

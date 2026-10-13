@@ -65,6 +65,7 @@ public struct PatchConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PatchConfig().with { $0.rebootConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

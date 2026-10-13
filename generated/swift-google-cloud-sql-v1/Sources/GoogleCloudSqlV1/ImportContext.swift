@@ -70,6 +70,7 @@
     /// ```
     /// let value = ImportContext().with { $0.uri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -176,6 +177,7 @@
       /// ```
       /// let value = SqlImportOptions().with { $0.threads = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -245,6 +247,7 @@
         /// ```
         /// let value = PostgresImportOptions().with { $0.clean = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -368,6 +371,7 @@
       /// ```
       /// let value = SqlCsvImportOptions().with { $0.table = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -506,6 +510,7 @@
       /// ```
       /// let value = SqlBakImportOptions().with { $0.encryptionOptions = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -604,6 +609,7 @@
         /// ```
         /// let value = EncryptionOptions().with { $0.certPath = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -738,6 +744,7 @@
       /// ```
       /// let value = SqlTdeImportOptions().with { $0.certificatePath = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

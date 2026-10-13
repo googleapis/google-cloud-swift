@@ -38,6 +38,7 @@ public struct TargetSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TargetSpec().with { $0.relativePath = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

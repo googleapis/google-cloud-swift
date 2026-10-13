@@ -37,6 +37,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = EchoErrorDetailsResponse().with { $0.singleDetail = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -96,6 +97,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = SingleDetail().with { $0.error = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -171,6 +173,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = MultipleDetails().with { $0.error = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

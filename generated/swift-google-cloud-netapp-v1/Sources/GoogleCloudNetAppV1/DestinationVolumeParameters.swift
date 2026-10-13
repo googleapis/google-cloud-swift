@@ -53,6 +53,7 @@ public struct DestinationVolumeParameters: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = DestinationVolumeParameters().with { $0.storagePool = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

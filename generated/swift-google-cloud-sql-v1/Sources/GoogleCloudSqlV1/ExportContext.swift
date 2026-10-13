@@ -80,6 +80,7 @@
     /// ```
     /// let value = ExportContext().with { $0.uri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -193,6 +194,7 @@
       /// ```
       /// let value = SqlCsvExportOptions().with { $0.selectQuery = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -313,6 +315,7 @@
       /// ```
       /// let value = SqlExportOptions().with { $0.tables = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -399,6 +402,7 @@
         /// ```
         /// let value = MysqlExportOptions().with { $0.masterData = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -484,6 +488,7 @@
         /// ```
         /// let value = PostgresExportOptions().with { $0.clean = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -619,6 +624,7 @@
       /// ```
       /// let value = SqlBakExportOptions().with { $0.striped = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -748,6 +754,7 @@
       /// ```
       /// let value = SqlTdeExportOptions().with { $0.certificatePath = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

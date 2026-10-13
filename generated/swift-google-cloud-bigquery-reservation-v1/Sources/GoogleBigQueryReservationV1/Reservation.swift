@@ -202,6 +202,7 @@ public struct Reservation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Reservation().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -377,6 +378,7 @@ public struct Reservation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Autoscale().with { $0.currentSlots = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -480,6 +482,7 @@ public struct Reservation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ReplicationStatus().with { $0.error = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

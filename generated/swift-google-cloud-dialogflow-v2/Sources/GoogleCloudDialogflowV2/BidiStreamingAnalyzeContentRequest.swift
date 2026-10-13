@@ -38,6 +38,7 @@
     /// ```
     /// let value = BidiStreamingAnalyzeContentRequest().with { $0.config = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -135,6 +136,7 @@
       /// ```
       /// let value = Config().with { $0.participant = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -259,6 +261,7 @@
         /// ```
         /// let value = VoiceSessionConfig().with { $0.inputAudioEncoding = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -428,6 +431,7 @@
       /// ```
       /// let value = TurnInput().with { $0.text = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -571,6 +575,7 @@
       /// ```
       /// let value = Input().with { $0.audio = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

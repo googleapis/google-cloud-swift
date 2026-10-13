@@ -46,6 +46,7 @@ public struct UpdateProjectIntelligenceConfigRequest: Codable, Equatable, Google
   /// ```
   /// let value = UpdateProjectIntelligenceConfigRequest().with { $0.intelligenceConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

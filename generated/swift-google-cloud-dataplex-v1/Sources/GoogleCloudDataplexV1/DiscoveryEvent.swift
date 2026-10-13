@@ -57,6 +57,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DiscoveryEvent().with { $0.message = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -213,6 +214,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConfigDetails().with { $0.parameters = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -298,6 +300,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EntityDetails().with { $0.entity = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -386,6 +389,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TableDetails().with { $0.table = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -483,6 +487,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PartitionDetails().with { $0.partition = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -586,6 +591,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ActionDetails().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

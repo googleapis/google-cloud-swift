@@ -48,6 +48,7 @@ public struct HttpOperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = HttpOperationDetails().with { $0.httpOperation = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -132,6 +133,7 @@ public struct HttpOperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PathParam().with { $0.position = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -226,6 +228,7 @@ public struct HttpOperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QueryParam().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -325,6 +328,7 @@ public struct HttpOperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Header().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -418,6 +422,7 @@ public struct HttpOperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HttpRequest().with { $0.headers = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -502,6 +507,7 @@ public struct HttpOperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HttpResponse().with { $0.headers = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

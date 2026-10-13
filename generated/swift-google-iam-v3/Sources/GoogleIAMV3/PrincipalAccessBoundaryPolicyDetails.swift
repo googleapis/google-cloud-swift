@@ -44,6 +44,7 @@ public struct PrincipalAccessBoundaryPolicyDetails: Codable, Equatable, GoogleWK
   /// ```
   /// let value = PrincipalAccessBoundaryPolicyDetails().with { $0.rules = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

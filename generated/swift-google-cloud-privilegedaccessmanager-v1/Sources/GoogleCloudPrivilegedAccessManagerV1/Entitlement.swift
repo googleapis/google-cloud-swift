@@ -82,6 +82,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Entitlement().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -199,6 +200,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RequesterJustificationConfig().with { $0.notMandatory = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -283,6 +285,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = NotMandatory().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -352,6 +355,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Unstructured().with { $0.<placeholder> = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -464,6 +468,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AdditionalNotificationTargets().with { $0.adminEmailRecipients = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

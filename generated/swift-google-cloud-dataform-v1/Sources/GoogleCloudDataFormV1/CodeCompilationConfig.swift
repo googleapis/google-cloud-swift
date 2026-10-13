@@ -77,6 +77,7 @@ public struct CodeCompilationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CodeCompilationConfig().with { $0.defaultDatabase = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

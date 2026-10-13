@@ -40,6 +40,7 @@ public struct ExtractionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ExtractionRule().with { $0.source = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -104,6 +105,7 @@ public struct ExtractionRule: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Source().with { $0.sourceType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

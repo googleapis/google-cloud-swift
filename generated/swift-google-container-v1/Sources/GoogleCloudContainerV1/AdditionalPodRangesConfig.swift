@@ -40,6 +40,7 @@ public struct AdditionalPodRangesConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = AdditionalPodRangesConfig().with { $0.podRangeNames = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

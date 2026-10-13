@@ -36,6 +36,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = VideoStream().with { $0.h264 = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -122,6 +123,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = H264ColorFormatSDR().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -190,6 +192,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = H264ColorFormatHLG().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -403,6 +406,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = H264CodecSettings().with { $0.widthPixels = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -678,6 +682,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = H265ColorFormatSDR().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -746,6 +751,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = H265ColorFormatHLG().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -814,6 +820,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = H265ColorFormatHDR10().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1031,6 +1038,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = H265CodecSettings().with { $0.widthPixels = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1311,6 +1319,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Vp9ColorFormatSDR().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1379,6 +1388,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Vp9ColorFormatHLG().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1529,6 +1539,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Vp9CodecSettings().with { $0.widthPixels = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

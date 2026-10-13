@@ -39,6 +39,7 @@ public struct JupyterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = JupyterConfig().with { $0.kernel = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

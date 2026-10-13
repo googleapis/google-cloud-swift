@@ -40,6 +40,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Overlay().with { $0.image = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -104,6 +105,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NormalizedCoordinate().with { $0.x = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -200,6 +202,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Image().with { $0.uri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -297,6 +300,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnimationStatic().with { $0.xy = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -393,6 +397,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnimationFade().with { $0.fadeType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -488,6 +493,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AnimationEnd().with { $0.startTimeOffset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -566,6 +572,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Animation().with { $0.animationStatic = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

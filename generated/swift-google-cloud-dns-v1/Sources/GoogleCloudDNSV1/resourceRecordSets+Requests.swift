@@ -46,6 +46,7 @@ extension ResourceRecordSetsClient {
     /// ```
     /// let value = CreateRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -152,6 +153,7 @@ extension ResourceRecordSetsClient {
     /// ```
     /// let value = DeleteRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -266,6 +268,7 @@ extension ResourceRecordSetsClient {
     /// ```
     /// let value = GetRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -386,6 +389,7 @@ extension ResourceRecordSetsClient {
     /// ```
     /// let value = ListRequest().with { $0.filter = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -506,6 +510,7 @@ extension ResourceRecordSetsClient {
     /// ```
     /// let value = PatchRequest().with { $0.clientOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

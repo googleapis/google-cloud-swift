@@ -50,6 +50,7 @@ public struct UpdateFindingRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UpdateFindingRequest().with { $0.finding = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

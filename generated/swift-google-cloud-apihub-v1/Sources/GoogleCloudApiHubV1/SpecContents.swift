@@ -40,6 +40,7 @@ public struct SpecContents: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SpecContents().with { $0.contents = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

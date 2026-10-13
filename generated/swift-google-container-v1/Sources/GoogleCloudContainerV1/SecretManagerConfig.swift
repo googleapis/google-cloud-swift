@@ -39,6 +39,7 @@ public struct SecretManagerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SecretManagerConfig().with { $0.enabled = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -103,6 +104,7 @@ public struct SecretManagerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RotationConfig().with { $0.enabled = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

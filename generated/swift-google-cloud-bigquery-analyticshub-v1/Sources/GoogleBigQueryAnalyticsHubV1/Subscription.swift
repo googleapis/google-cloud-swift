@@ -87,6 +87,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Subscription().with { $0.listing = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -252,6 +253,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LinkedResource().with { $0.linkedDataset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -376,6 +378,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CommercialInfo().with { $0.cloudMarketplace = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -432,6 +435,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = GoogleCloudMarketplaceInfo().with { $0.order = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

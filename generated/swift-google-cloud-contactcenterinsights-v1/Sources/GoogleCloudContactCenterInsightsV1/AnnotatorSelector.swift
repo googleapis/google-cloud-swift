@@ -81,6 +81,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AnnotatorSelector().with { $0.runInterruptionAnnotator = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -214,6 +215,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SummarizationConfig().with { $0.conversationProfile = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -451,6 +453,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = QaConfig().with { $0.scorecardList = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -528,6 +531,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ScorecardList().with { $0.qaScorecardRevisions = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

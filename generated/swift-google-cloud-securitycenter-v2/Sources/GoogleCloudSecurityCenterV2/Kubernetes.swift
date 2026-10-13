@@ -66,6 +66,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Kubernetes().with { $0.pods = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -171,6 +172,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Pod().with { $0.ns = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -271,6 +273,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Node().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -353,6 +356,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NodePool().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -444,6 +448,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Role().with { $0.kind = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -662,6 +667,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Binding().with { $0.ns = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -763,6 +769,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Subject().with { $0.kind = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1003,6 +1010,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AccessReview().with { $0.group = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1135,6 +1143,7 @@ public struct Kubernetes: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Object().with { $0.group = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

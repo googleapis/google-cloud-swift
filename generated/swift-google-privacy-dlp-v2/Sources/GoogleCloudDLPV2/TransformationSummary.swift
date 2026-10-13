@@ -58,6 +58,7 @@ public struct TransformationSummary: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TransformationSummary().with { $0.infoType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -158,6 +159,7 @@ public struct TransformationSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SummaryResult().with { $0.count = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -42,6 +42,7 @@ public struct MultiLanguageDetectionMetadata: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = MultiLanguageDetectionMetadata().with { $0.sourceLanguage = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

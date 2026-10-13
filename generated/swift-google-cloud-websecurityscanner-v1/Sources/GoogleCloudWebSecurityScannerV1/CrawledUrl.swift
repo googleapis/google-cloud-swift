@@ -45,6 +45,7 @@ public struct CrawledUrl: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CrawledUrl().with { $0.httpMethod = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

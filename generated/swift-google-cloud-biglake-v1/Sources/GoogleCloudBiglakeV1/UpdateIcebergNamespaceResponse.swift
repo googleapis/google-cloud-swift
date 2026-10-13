@@ -43,6 +43,7 @@ public struct UpdateIcebergNamespaceResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = UpdateIcebergNamespaceResponse().with { $0.removed = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

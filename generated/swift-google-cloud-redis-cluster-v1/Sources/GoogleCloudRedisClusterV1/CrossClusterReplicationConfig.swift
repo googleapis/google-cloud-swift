@@ -63,6 +63,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = CrossClusterReplicationConfig().with { $0.clusterRole = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -150,6 +151,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = RemoteCluster().with { $0.cluster = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -242,6 +244,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
     /// ```
     /// let value = Membership().with { $0.primaryCluster = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

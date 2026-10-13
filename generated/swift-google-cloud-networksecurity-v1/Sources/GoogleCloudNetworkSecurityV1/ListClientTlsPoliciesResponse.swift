@@ -42,6 +42,7 @@ public struct ListClientTlsPoliciesResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListClientTlsPoliciesResponse().with { $0.clientTlsPolicies = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

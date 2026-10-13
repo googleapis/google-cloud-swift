@@ -79,6 +79,7 @@ public struct EntryType: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EntryType().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -207,6 +208,7 @@ public struct EntryType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AspectInfo().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -288,6 +290,7 @@ public struct EntryType: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Authorization().with { $0.alternateUsePermission = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

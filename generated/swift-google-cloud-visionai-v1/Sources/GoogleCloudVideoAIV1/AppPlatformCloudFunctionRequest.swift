@@ -43,6 +43,7 @@ public struct AppPlatformCloudFunctionRequest: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = AppPlatformCloudFunctionRequest().with { $0.appPlatformMetadata = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -111,6 +112,7 @@ public struct AppPlatformCloudFunctionRequest: Codable, Equatable, GoogleWKT._An
     /// ```
     /// let value = StructedInputAnnotation().with { $0.ingestionTimeMicros = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

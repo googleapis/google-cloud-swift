@@ -37,6 +37,7 @@
     /// ```
     /// let value = RagEmbeddingModelConfig().with { $0.vertexPredictionEndpoint = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -128,6 +129,7 @@
       /// ```
       /// let value = VertexPredictionEndpoint().with { $0.endpoint = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

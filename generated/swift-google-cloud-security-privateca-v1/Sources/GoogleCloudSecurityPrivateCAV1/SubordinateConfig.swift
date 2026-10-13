@@ -40,6 +40,7 @@ public struct SubordinateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SubordinateConfig().with { $0.certificateAuthority = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -127,6 +128,7 @@ public struct SubordinateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SubordinateConfigChain().with { $0.pemCertificates = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -59,6 +59,7 @@ public struct PatchInstanceFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PatchInstanceFilter().with { $0.all = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -151,6 +152,7 @@ public struct PatchInstanceFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GroupLabel().with { $0.labels = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

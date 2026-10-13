@@ -36,6 +36,7 @@ public struct ReceiveEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReceiveEventsResponse().with { $0.eventUpdate = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

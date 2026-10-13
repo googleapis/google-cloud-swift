@@ -41,6 +41,7 @@ public struct AutoMlTextSentimentInputs: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = AutoMlTextSentimentInputs().with { $0.sentimentMax = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -45,6 +45,7 @@ public struct ListAzureNodePoolsResponse: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ListAzureNodePoolsResponse().with { $0.azureNodePools = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

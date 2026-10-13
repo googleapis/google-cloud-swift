@@ -69,6 +69,7 @@ public struct RestoreClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RestoreClusterRequest().with { $0.backupSource = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

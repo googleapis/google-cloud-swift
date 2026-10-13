@@ -37,6 +37,7 @@ public struct FetchReadWriteTokenRequest: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = FetchReadWriteTokenRequest().with { $0.repository = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

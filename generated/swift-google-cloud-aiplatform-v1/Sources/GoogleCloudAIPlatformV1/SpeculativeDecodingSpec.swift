@@ -40,6 +40,7 @@
     /// ```
     /// let value = SpeculativeDecodingSpec().with { $0.draftModelSpeculation = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -134,6 +135,7 @@
       /// ```
       /// let value = DraftModelSpeculation().with { $0.draftModel = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -219,6 +221,7 @@
       /// ```
       /// let value = NgramSpeculation().with { $0.ngramSize = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -47,6 +47,7 @@ public struct UpdateDataAccessScopeRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = UpdateDataAccessScopeRequest().with { $0.dataAccessScope = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

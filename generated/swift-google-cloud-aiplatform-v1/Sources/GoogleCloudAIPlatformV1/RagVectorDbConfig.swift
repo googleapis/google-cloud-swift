@@ -43,6 +43,7 @@
     /// ```
     /// let value = RagVectorDbConfig().with { $0.ragManagedDb = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -147,6 +148,7 @@
       /// ```
       /// let value = RagManagedDb().with { $0.knn = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -230,6 +232,7 @@
         /// ```
         /// let value = KNN().with { $0.<placeholder> = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -321,6 +324,7 @@
         /// ```
         /// let value = ANN().with { $0.treeDepth = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -439,6 +443,7 @@
       /// ```
       /// let value = Pinecone().with { $0.indexName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -525,6 +530,7 @@
       /// ```
       /// let value = VertexVectorSearch().with { $0.indexEndpoint = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

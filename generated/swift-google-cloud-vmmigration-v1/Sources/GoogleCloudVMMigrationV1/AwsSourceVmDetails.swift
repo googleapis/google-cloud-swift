@@ -50,6 +50,7 @@ public struct AwsSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AwsSourceVmDetails().with { $0.firmware = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -142,6 +143,7 @@ public struct AwsSourceVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AwsDiskDetails().with { $0.diskNumber = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

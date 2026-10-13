@@ -83,6 +83,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProcessorVersion().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -218,6 +219,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DeprecationInfo().with { $0.deprecationTime = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -306,6 +308,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GenAiModelInfo().with { $0.foundationGenAiModelInfo = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -397,6 +400,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = FoundationGenAiModelInfo().with { $0.finetuningAllowed = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -492,6 +496,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = CustomGenAiModelInfo().with { $0.customModelType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

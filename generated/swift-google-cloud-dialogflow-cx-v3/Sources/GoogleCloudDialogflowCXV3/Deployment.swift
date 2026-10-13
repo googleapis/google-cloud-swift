@@ -59,6 +59,7 @@
     /// ```
     /// let value = Deployment().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -148,6 +149,7 @@
       /// ```
       /// let value = Result().with { $0.deploymentTestResults = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

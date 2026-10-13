@@ -35,6 +35,7 @@
     /// ```
     /// let value = UrlMapReference().with { $0.urlMap = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -87,6 +87,7 @@ public struct CloudStorageRegexFileSet: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = CloudStorageRegexFileSet().with { $0.bucketName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

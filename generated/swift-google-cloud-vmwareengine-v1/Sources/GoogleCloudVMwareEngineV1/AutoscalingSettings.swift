@@ -63,6 +63,7 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AutoscalingSettings().with { $0.autoscalingPolicies = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -143,6 +144,7 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Thresholds().with { $0.scaleOut = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -253,6 +255,7 @@ public struct AutoscalingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AutoscalingPolicy().with { $0.nodeTypeId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

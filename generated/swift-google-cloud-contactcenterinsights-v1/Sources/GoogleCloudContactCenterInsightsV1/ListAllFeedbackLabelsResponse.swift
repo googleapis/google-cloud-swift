@@ -41,6 +41,7 @@ public struct ListAllFeedbackLabelsResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListAllFeedbackLabelsResponse().with { $0.feedbackLabels = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

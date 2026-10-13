@@ -53,6 +53,7 @@ public struct YumSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = YumSettings().with { $0.security = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

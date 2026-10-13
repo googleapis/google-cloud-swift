@@ -79,6 +79,7 @@ public struct EngineConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = EngineConfig().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -202,6 +203,7 @@ public struct EngineConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Tuning().with { $0.primaryDataset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -291,6 +293,7 @@ public struct EngineConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PerformanceTarget().with { $0.partyInvestigationsPerPeriodHint = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -382,6 +385,7 @@ public struct EngineConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HyperparameterSource().with { $0.sourceEngineConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

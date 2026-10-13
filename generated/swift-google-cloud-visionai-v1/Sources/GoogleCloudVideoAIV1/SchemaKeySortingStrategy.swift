@@ -36,6 +36,7 @@ public struct SchemaKeySortingStrategy: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = SchemaKeySortingStrategy().with { $0.options = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -102,6 +103,7 @@ public struct SchemaKeySortingStrategy: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = Option().with { $0.dataSchemaKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

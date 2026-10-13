@@ -42,6 +42,7 @@ public struct WeekDayOfMonth: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WeekDayOfMonth().with { $0.weekOfMonth = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

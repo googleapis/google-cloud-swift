@@ -35,6 +35,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PrivilegedAccess().with { $0.gcpIamAccess = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -120,6 +121,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GcpIamAccess().with { $0.resourceType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -202,6 +204,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RoleBinding().with { $0.role = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -36,6 +36,7 @@ public struct StartManualTransferRunsResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = StartManualTransferRunsResponse().with { $0.runs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

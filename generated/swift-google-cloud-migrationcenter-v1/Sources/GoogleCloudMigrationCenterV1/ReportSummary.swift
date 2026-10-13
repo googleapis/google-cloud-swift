@@ -41,6 +41,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReportSummary().with { $0.allAssetsStats = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -107,6 +108,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ChartData().with { $0.dataPoints = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -169,6 +171,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = DataPoint().with { $0.label = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -281,6 +284,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = UtilizationChartData().with { $0.used = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -372,6 +376,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HistogramChartData().with { $0.buckets = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -440,6 +445,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Bucket().with { $0.lowerBound = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -581,6 +587,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AssetAggregateStats().with { $0.totalMemoryBytes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -712,6 +719,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MachineSeriesAllocation().with { $0.machineSeries = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -805,6 +813,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ComputeEngineFinding().with { $0.allocatedRegions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -913,6 +922,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VmwareEngineFinding().with { $0.allocatedRegions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1012,6 +1022,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VmwareNodeAllocation().with { $0.vmwareNode = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1105,6 +1116,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = VmwareNode().with { $0.code = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1190,6 +1202,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SoleTenantFinding().with { $0.allocatedRegions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1289,6 +1302,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SoleTenantNodeAllocation().with { $0.node = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1412,6 +1426,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GroupPreferenceSetFinding().with { $0.displayName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1562,6 +1577,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GroupFinding().with { $0.displayName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

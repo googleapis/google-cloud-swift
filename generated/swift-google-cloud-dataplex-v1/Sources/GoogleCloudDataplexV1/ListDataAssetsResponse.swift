@@ -41,6 +41,7 @@ public struct ListDataAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = ListDataAssetsResponse().with { $0.dataAssets = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

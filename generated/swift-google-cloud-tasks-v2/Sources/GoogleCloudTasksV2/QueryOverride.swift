@@ -39,6 +39,7 @@ public struct QueryOverride: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = QueryOverride().with { $0.queryParams = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

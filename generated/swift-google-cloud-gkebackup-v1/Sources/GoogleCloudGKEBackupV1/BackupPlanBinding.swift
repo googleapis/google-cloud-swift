@@ -76,6 +76,7 @@ public struct BackupPlanBinding: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BackupPlanBinding().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -204,6 +205,7 @@ public struct BackupPlanBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = BackupPlanDetails().with { $0.protectedPodCount = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -326,6 +328,7 @@ public struct BackupPlanBinding: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = BackupConfigDetails().with { $0.allNamespaces = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -493,6 +496,7 @@ public struct BackupPlanBinding: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RetentionPolicyDetails().with { $0.backupDeleteLockDays = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

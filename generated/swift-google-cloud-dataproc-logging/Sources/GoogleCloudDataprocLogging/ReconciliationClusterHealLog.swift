@@ -36,6 +36,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = ReconciliationClusterHealLog().with { $0.outputs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -95,6 +96,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = Outputs().with { $0.repairOperationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

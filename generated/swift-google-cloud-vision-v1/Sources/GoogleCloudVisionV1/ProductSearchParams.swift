@@ -65,6 +65,7 @@ public struct ProductSearchParams: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProductSearchParams().with { $0.boundingPoly = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

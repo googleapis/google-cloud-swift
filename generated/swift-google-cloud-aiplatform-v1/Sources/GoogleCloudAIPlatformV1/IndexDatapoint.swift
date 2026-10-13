@@ -62,6 +62,7 @@
     /// ```
     /// let value = IndexDatapoint().with { $0.datapointId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -161,6 +162,7 @@
       /// ```
       /// let value = SparseEmbedding().with { $0.values = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -253,6 +255,7 @@
       /// ```
       /// let value = Restriction().with { $0.namespace = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -354,6 +357,7 @@
       /// ```
       /// let value = NumericRestriction().with { $0.valueInt = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -646,6 +650,7 @@
       /// ```
       /// let value = CrowdingTag().with { $0.crowdingAttribute = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

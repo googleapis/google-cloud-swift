@@ -62,6 +62,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MetadataJob().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -248,6 +249,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ImportJobResult().with { $0.deletedEntries = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -379,6 +381,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ExportJobResult().with { $0.exportedEntries = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -517,6 +520,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ImportJobSpec().with { $0.sourceStorageUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -679,6 +683,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ImportJobScope().with { $0.entryGroups = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1091,6 +1096,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ExportJobSpec().with { $0.scope = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1201,6 +1207,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = ExportJobScope().with { $0.organizationLevel = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1336,6 +1343,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Status().with { $0.state = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

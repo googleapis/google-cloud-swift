@@ -45,6 +45,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = MessageWithRecursion().with { $0.singular = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -122,6 +123,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Level0().with { $0.level1 = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -203,6 +205,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Level1().with { $0.recurse = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -279,6 +282,7 @@ public struct MessageWithRecursion: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NonRecursive().with { $0.value = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

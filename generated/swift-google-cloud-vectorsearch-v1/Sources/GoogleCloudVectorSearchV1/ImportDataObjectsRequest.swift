@@ -43,6 +43,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = ImportDataObjectsRequest().with { $0.gcsImport = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -136,6 +137,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     /// ```
     /// let value = GcsImportConfig().with { $0.contentsUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

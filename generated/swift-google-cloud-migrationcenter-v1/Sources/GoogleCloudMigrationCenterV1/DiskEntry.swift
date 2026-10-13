@@ -57,6 +57,7 @@ public struct DiskEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DiskEntry().with { $0.capacityBytes = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

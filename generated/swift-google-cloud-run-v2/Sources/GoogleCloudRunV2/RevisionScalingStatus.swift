@@ -36,6 +36,7 @@ public struct RevisionScalingStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RevisionScalingStatus().with { $0.desiredMinInstanceCount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

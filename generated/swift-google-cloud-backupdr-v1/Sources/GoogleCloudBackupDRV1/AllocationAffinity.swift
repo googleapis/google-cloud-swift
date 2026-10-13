@@ -43,6 +43,7 @@ public struct AllocationAffinity: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AllocationAffinity().with { $0.consumeAllocationType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

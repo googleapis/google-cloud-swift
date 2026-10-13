@@ -117,6 +117,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Instance().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -304,6 +305,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IOPSPerTB().with { $0.maxIopsPerTb = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -383,6 +385,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FixedIOPS().with { $0.maxIops = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -467,6 +470,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PerformanceConfig().with { $0.iopsPerTb = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -611,6 +615,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PerformanceLimits().with { $0.maxIops = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

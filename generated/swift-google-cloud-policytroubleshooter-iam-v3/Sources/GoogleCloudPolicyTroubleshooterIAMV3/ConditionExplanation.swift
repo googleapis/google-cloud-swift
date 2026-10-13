@@ -45,6 +45,7 @@ public struct ConditionExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ConditionExplanation().with { $0.value = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -126,6 +127,7 @@ public struct ConditionExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EvaluationState().with { $0.start = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -109,6 +109,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GrpcRoute().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -233,6 +234,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = MethodMatch().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -454,6 +456,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = HeaderMatch().with { $0.type = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -669,6 +672,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RouteMatch().with { $0.method = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -768,6 +772,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Destination().with { $0.serviceName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -884,6 +889,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FaultInjectionPolicy().with { $0.delay = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -951,6 +957,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Delay().with { $0.fixedDelay = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1042,6 +1049,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Abort().with { $0.httpStatus = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1158,6 +1166,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = StatefulSessionAffinityPolicy().with { $0.cookieTtl = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1257,6 +1266,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RetryPolicy().with { $0.retryConditions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1374,6 +1384,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RouteAction().with { $0.destinations = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -1486,6 +1497,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RouteRule().with { $0.matches = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

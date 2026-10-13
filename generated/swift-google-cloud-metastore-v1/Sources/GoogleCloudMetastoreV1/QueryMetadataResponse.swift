@@ -42,6 +42,7 @@ public struct QueryMetadataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = QueryMetadataResponse().with { $0.resultManifestUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

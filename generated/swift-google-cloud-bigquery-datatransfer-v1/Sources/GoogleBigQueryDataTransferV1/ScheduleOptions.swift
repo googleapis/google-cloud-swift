@@ -52,6 +52,7 @@ public struct ScheduleOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ScheduleOptions().with { $0.disableAutoScheduling = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

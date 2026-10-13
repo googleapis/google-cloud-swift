@@ -48,6 +48,7 @@ public struct ListCustomerRepricingConfigsResponse: Codable, Equatable, GoogleWK
   /// ```
   /// let value = ListCustomerRepricingConfigsResponse().with { $0.customerRepricingConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

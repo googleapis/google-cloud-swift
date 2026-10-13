@@ -51,6 +51,7 @@ public struct LoggedRestore: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = LoggedRestore().with { $0.backup = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

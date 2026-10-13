@@ -84,6 +84,7 @@ public struct DisksMigrationVmTargetDefaults: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = DisksMigrationVmTargetDefaults().with { $0.vmName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -42,6 +42,7 @@ public struct BackupFile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BackupFile().with { $0.fileName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

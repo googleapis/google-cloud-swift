@@ -39,6 +39,7 @@ public struct SaveSnapshotResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SaveSnapshotResponse().with { $0.snapshotPath = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

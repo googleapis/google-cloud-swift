@@ -41,6 +41,7 @@ public struct QAResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = QAResult().with { $0.highlights = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -108,6 +109,7 @@ public struct QAResult: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Highlight().with { $0.startIndex = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

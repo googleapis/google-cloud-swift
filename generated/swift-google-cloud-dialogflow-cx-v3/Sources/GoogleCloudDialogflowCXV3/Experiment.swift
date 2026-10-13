@@ -92,6 +92,7 @@
     /// ```
     /// let value = Experiment().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -229,6 +230,7 @@
       /// ```
       /// let value = Definition().with { $0.condition = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -346,6 +348,7 @@
       /// ```
       /// let value = Result().with { $0.versionMetrics = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -422,6 +425,7 @@
         /// ```
         /// let value = ConfidenceInterval().with { $0.confidenceLevel = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -533,6 +537,7 @@
         /// ```
         /// let value = Metric().with { $0.type = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -677,6 +682,7 @@
         /// ```
         /// let value = VersionMetrics().with { $0.version = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

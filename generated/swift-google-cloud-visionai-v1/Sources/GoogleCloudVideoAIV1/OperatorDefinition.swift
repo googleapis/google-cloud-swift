@@ -60,6 +60,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = OperatorDefinition().with { $0.`operator` = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -167,6 +168,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ArgumentDefinition().with { $0.argument = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -263,6 +265,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AttributeDefinition().with { $0.attribute = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

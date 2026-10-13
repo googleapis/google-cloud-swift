@@ -58,6 +58,7 @@ public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatabl
   /// ```
   /// let value = ExportTrustedKeyWrappedCryptoKeyVersionResponse().with { $0.wrappedKey = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

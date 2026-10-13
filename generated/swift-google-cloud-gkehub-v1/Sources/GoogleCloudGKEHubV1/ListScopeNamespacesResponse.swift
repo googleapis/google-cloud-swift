@@ -42,6 +42,7 @@ public struct ListScopeNamespacesResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListScopeNamespacesResponse().with { $0.scopeNamespaces = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

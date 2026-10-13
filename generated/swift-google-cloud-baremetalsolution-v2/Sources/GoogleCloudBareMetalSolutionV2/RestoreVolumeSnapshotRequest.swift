@@ -37,6 +37,7 @@ public struct RestoreVolumeSnapshotRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = RestoreVolumeSnapshotRequest().with { $0.volumeSnapshot = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

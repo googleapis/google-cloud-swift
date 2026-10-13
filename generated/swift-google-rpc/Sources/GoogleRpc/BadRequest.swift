@@ -37,6 +37,7 @@ public struct BadRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BadRequest().with { $0.fieldViolations = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -147,6 +148,7 @@ public struct BadRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FieldViolation().with { $0.field = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

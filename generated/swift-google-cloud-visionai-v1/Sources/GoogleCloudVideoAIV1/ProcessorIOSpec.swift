@@ -51,6 +51,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ProcessorIOSpec().with { $0.graphInputChannelSpecs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -160,6 +161,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GraphInputChannelSpec().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -273,6 +275,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = GraphOutputChannelSpec().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -371,6 +374,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstanceResourceInputBindingSpec().with { $0.configTypeUri = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -501,6 +505,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = InstanceResourceOutputBindingSpec().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

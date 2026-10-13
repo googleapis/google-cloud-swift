@@ -37,6 +37,7 @@ public struct CustomWeightsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CustomWeightsMetadata().with { $0.weightedSchemaProperties = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

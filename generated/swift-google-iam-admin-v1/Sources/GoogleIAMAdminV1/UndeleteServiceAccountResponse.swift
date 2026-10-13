@@ -35,6 +35,7 @@ public struct UndeleteServiceAccountResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = UndeleteServiceAccountResponse().with { $0.restoredAccount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

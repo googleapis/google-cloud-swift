@@ -56,6 +56,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RepricingConfig().with { $0.entitlementGranularity = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -173,6 +174,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = EntitlementGranularity().with { $0.entitlement = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -257,6 +259,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ChannelPartnerGranularity().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

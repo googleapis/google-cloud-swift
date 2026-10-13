@@ -36,6 +36,7 @@ public struct BulkCreateDataTableRowsResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = BulkCreateDataTableRowsResponse().with { $0.dataTableRows = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

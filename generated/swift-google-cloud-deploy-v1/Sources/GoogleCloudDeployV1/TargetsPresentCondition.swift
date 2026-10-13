@@ -44,6 +44,7 @@ public struct TargetsPresentCondition: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = TargetsPresentCondition().with { $0.status = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

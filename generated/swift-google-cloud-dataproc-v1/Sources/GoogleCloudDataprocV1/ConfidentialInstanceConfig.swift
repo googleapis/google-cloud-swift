@@ -43,6 +43,7 @@ public struct ConfidentialInstanceConfig: Codable, Equatable, GoogleWKT._AnyPack
   /// ```
   /// let value = ConfidentialInstanceConfig().with { $0.enableConfidentialCompute = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

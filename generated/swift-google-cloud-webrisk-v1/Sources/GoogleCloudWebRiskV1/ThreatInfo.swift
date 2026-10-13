@@ -43,6 +43,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ThreatInfo().with { $0.abuseType = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -109,6 +110,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Confidence().with { $0.score = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -351,6 +353,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ThreatJustification().with { $0.labels = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

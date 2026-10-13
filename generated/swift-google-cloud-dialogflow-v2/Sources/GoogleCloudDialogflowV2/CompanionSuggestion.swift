@@ -37,6 +37,7 @@
     /// ```
     /// let value = CompanionSuggestion().with { $0.guidances = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -122,6 +123,7 @@
       /// ```
       /// let value = Guidance().with { $0.suggestedReply = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -232,6 +234,7 @@
         /// ```
         /// let value = KnowledgeSource().with { $0.knowledgeArticleUrl = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

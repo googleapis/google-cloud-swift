@@ -37,6 +37,7 @@ public struct PolicyDns64ConfigScope: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = PolicyDns64ConfigScope().with { $0.allQueries = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

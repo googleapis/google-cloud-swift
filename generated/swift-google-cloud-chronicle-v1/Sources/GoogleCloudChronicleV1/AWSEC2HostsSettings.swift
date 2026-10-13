@@ -36,6 +36,7 @@ public struct AWSEC2HostsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AWSEC2HostsSettings().with { $0.authentication = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

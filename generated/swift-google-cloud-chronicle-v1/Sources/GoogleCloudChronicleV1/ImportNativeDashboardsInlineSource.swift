@@ -36,6 +36,7 @@ public struct ImportNativeDashboardsInlineSource: Codable, Equatable, GoogleWKT.
   /// ```
   /// let value = ImportNativeDashboardsInlineSource().with { $0.dashboards = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

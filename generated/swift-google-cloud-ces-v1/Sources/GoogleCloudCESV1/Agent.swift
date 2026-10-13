@@ -132,6 +132,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Agent().with { $0.llmAgent = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -336,6 +337,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = LlmAgent().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -447,6 +449,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = RemoteDialogflowAgent().with { $0.agent = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -576,6 +579,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AgentToolset().with { $0.toolset = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -67,6 +67,7 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ImportAppRequest().with { $0.gcsUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -182,6 +183,7 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ImportOptions().with { $0.conflictResolutionStrategy = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

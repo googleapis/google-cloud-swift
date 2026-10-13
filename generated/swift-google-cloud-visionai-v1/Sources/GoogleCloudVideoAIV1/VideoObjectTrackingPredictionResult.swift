@@ -45,6 +45,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
   /// ```
   /// let value = VideoObjectTrackingPredictionResult().with { $0.segmentStartTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -125,6 +126,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
     /// ```
     /// let value = BoundingBox().with { $0.xMin = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -241,6 +243,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleWKT
     /// ```
     /// let value = DetectedObject().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

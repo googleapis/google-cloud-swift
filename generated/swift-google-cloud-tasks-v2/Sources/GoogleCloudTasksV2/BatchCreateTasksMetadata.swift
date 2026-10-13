@@ -47,6 +47,7 @@ public struct BatchCreateTasksMetadata: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = BatchCreateTasksMetadata().with { $0.startTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

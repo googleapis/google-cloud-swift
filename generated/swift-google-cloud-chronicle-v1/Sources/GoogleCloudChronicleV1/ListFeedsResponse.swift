@@ -41,6 +41,7 @@ public struct ListFeedsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListFeedsResponse().with { $0.feeds = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

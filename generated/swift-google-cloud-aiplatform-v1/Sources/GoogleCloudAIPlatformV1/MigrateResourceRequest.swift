@@ -37,6 +37,7 @@
     /// ```
     /// let value = MigrateResourceRequest().with { $0.migrateMlEngineModelVersionConfig = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -163,6 +164,7 @@
       /// ```
       /// let value = MigrateMlEngineModelVersionConfig().with { $0.endpoint = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -261,6 +263,7 @@
       /// ```
       /// let value = MigrateAutomlModelConfig().with { $0.model = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -354,6 +357,7 @@
       /// ```
       /// let value = MigrateAutomlDatasetConfig().with { $0.dataset = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -455,6 +459,7 @@
       /// ```
       /// let value = MigrateDataLabelingDatasetConfig().with { $0.dataset = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -537,6 +542,7 @@
         /// ```
         /// let value = MigrateDataLabelingAnnotatedDatasetConfig().with { $0.annotatedDataset = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

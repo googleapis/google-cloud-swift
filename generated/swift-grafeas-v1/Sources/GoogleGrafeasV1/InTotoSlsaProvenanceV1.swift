@@ -42,6 +42,7 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = InTotoSlsaProvenanceV1().with { $0.type = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -119,6 +120,7 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = SlsaProvenanceV1().with { $0.buildDefinition = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -206,6 +208,7 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = BuildDefinition().with { $0.buildType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -313,6 +316,7 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = ResourceDescriptor().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -434,6 +438,7 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = RunDetails().with { $0.builder = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -527,6 +532,7 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = ProvenanceBuilder().with { $0.id = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -624,6 +630,7 @@ public struct InTotoSlsaProvenanceV1: Codable, Equatable, GoogleWKT._AnyPackable
     /// ```
     /// let value = BuildMetadata().with { $0.invocationId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

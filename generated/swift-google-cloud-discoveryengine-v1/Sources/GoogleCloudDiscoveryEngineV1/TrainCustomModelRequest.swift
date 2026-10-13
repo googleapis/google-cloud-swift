@@ -58,6 +58,7 @@
     /// ```
     /// let value = TrainCustomModelRequest().with { $0.gcsTrainingInput = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -187,6 +188,7 @@
       /// ```
       /// let value = GcsTrainingInput().with { $0.corpusDataPath = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

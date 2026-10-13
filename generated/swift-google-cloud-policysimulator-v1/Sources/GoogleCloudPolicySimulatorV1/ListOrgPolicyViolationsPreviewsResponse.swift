@@ -44,6 +44,7 @@ public struct ListOrgPolicyViolationsPreviewsResponse: Codable, Equatable, Googl
   /// ```
   /// let value = ListOrgPolicyViolationsPreviewsResponse().with { $0.orgPolicyViolationsPreviews = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -38,6 +38,7 @@ public struct DriveExtensionPoint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DriveExtensionPoint().with { $0.runFunction = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

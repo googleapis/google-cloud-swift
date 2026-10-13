@@ -64,6 +64,7 @@ public struct AutonomousDatabaseConnectionUrls: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = AutonomousDatabaseConnectionUrls().with { $0.apexUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

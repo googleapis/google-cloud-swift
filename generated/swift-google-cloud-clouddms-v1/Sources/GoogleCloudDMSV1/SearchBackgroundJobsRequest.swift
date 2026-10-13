@@ -51,6 +51,7 @@ public struct SearchBackgroundJobsRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = SearchBackgroundJobsRequest().with { $0.conversionWorkspace = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

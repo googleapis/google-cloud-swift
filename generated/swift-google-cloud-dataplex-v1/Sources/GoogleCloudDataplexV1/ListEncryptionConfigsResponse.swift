@@ -44,6 +44,7 @@ public struct ListEncryptionConfigsResponse: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = ListEncryptionConfigsResponse().with { $0.encryptionConfigs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

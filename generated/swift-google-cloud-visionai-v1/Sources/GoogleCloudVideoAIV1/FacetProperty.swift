@@ -62,6 +62,7 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FacetProperty().with { $0.fixedRangeBucketSpec = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -195,6 +196,7 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FixedRangeBucketSpec().with { $0.bucketStart = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -290,6 +292,7 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomRangeBucketSpec().with { $0.endpoints = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -370,6 +373,7 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DateTimeBucketSpec().with { $0.granularity = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

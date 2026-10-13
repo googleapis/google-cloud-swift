@@ -45,6 +45,7 @@
     /// ```
     /// let value = Form().with { $0.parameters = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -141,6 +142,7 @@
       /// ```
       /// let value = Parameter().with { $0.displayName = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -272,6 +274,7 @@
         /// ```
         /// let value = FillBehavior().with { $0.initialPromptFulfillment = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)

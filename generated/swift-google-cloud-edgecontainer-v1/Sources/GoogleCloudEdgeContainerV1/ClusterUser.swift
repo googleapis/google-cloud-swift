@@ -36,6 +36,7 @@ public struct ClusterUser: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ClusterUser().with { $0.username = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

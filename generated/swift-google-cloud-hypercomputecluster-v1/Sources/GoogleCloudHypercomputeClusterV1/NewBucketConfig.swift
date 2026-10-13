@@ -49,6 +49,7 @@ public struct NewBucketConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NewBucketConfig().with { $0.autoclass = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -41,6 +41,7 @@ public struct ListRepositoriesResponse: Codable, Equatable, GoogleWKT._AnyPackab
   /// ```
   /// let value = ListRepositoriesResponse().with { $0.repositories = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

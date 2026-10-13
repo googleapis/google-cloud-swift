@@ -64,6 +64,7 @@ public struct CustomConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CustomConfig().with { $0.predicate = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -149,6 +150,7 @@ public struct CustomConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = CustomOutputSpec().with { $0.properties = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -213,6 +215,7 @@ public struct CustomConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = Property().with { $0.name = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -321,6 +324,7 @@ public struct CustomConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ResourceSelector().with { $0.resourceTypes = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

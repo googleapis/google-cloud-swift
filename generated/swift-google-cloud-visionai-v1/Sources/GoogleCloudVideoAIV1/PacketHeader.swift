@@ -67,6 +67,7 @@ public struct PacketHeader: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PacketHeader().with { $0.captureTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

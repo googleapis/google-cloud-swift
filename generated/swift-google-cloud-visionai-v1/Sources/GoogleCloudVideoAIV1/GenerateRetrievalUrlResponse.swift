@@ -36,6 +36,7 @@ public struct GenerateRetrievalUrlResponse: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = GenerateRetrievalUrlResponse().with { $0.signedUri = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

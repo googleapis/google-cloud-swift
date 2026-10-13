@@ -90,6 +90,7 @@
     /// ```
     /// let value = PipelineTaskDetail().with { $0.taskId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -232,6 +233,7 @@
       /// ```
       /// let value = PipelineTaskStatus().with { $0.updateTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -322,6 +324,7 @@
       /// ```
       /// let value = ArtifactList().with { $0.artifacts = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

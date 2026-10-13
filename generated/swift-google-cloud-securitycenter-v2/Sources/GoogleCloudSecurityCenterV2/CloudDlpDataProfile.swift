@@ -41,6 +41,7 @@ public struct CloudDlpDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CloudDlpDataProfile().with { $0.dataProfile = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

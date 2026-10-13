@@ -37,6 +37,7 @@ public struct RestError: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = RestError().with { $0.error = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -100,6 +101,7 @@ public struct RestError: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Status().with { $0.code = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

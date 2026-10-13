@@ -43,6 +43,7 @@
     /// ```
     /// let value = AssistantContent().with { $0.text = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -167,6 +168,7 @@
       /// ```
       /// let value = Blob().with { $0.mimeType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -255,6 +257,7 @@
       /// ```
       /// let value = File().with { $0.mimeType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -340,6 +343,7 @@
       /// ```
       /// let value = ExecutableCode().with { $0.code = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -424,6 +428,7 @@
       /// ```
       /// let value = CodeExecutionResult().with { $0.outcome = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

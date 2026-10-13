@@ -40,6 +40,7 @@ public struct VerifyRuleTextResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = VerifyRuleTextResponse().with { $0.success = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

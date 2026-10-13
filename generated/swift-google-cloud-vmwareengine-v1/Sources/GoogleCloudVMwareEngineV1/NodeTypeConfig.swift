@@ -42,6 +42,7 @@ public struct NodeTypeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NodeTypeConfig().with { $0.nodeCount = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

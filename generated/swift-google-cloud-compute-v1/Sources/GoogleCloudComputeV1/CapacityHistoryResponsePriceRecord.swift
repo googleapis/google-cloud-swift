@@ -40,6 +40,7 @@
     /// ```
     /// let value = CapacityHistoryResponsePriceRecord().with { $0.interval = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

@@ -47,6 +47,7 @@ public struct ListVmwareEngineNetworksResponse: Codable, Equatable, GoogleWKT._A
   /// ```
   /// let value = ListVmwareEngineNetworksResponse().with { $0.vmwareEngineNetworks = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

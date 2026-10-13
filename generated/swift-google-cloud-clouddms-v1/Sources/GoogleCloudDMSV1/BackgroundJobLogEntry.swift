@@ -60,6 +60,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = BackgroundJobLogEntry().with { $0.id = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -205,6 +206,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = SeedJobDetails().with { $0.connectionProfile = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -287,6 +289,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ImportRulesJobDetails().with { $0.files = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -374,6 +377,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ConvertJobDetails().with { $0.filter = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -456,6 +460,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = ApplyJobDetails().with { $0.connectionProfile = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

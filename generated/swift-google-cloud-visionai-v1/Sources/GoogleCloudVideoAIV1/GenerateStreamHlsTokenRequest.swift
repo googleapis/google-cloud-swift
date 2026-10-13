@@ -36,6 +36,7 @@ public struct GenerateStreamHlsTokenRequest: Codable, Equatable, GoogleWKT._AnyP
   /// ```
   /// let value = GenerateStreamHlsTokenRequest().with { $0.stream = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

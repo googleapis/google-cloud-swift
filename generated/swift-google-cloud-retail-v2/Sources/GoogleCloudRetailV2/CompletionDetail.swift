@@ -53,6 +53,7 @@ public struct CompletionDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CompletionDetail().with { $0.completionAttributionToken = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

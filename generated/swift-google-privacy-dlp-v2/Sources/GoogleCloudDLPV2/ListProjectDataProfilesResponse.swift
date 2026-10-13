@@ -40,6 +40,7 @@ public struct ListProjectDataProfilesResponse: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = ListProjectDataProfilesResponse().with { $0.projectDataProfiles = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

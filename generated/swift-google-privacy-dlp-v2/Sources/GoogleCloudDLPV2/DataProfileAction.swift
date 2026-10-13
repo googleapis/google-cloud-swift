@@ -36,6 +36,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DataProfileAction().with { $0.exportData = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -195,6 +196,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Export().with { $0.profileTable = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -294,6 +296,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PubSubNotification().with { $0.topic = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -514,6 +517,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PublishToChronicle().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -583,6 +587,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PublishToSecurityCommandCenter().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -663,6 +668,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PublishToDataplexCatalog().with { $0.lowerDataRiskToLow = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -765,6 +771,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TagResources().with { $0.tagConditions = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -842,6 +849,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TagCondition().with { $0.tag = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -954,6 +962,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = TagValue().with { $0.namespacedValue = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

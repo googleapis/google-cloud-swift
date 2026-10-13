@@ -39,6 +39,7 @@ public struct NfsExport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = NfsExport().with { $0.exportDirectory = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

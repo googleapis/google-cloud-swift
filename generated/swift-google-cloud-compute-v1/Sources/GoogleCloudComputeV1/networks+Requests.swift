@@ -63,6 +63,7 @@
       /// ```
       /// let value = AddPeeringRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -181,6 +182,7 @@
       /// ```
       /// let value = CancelRequestRemovePeeringRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -296,6 +298,7 @@
       /// ```
       /// let value = DeleteRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -390,6 +393,7 @@
       /// ```
       /// let value = GetRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -480,6 +484,7 @@
       /// ```
       /// let value = GetEffectiveFirewallsRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -587,6 +592,7 @@
       /// ```
       /// let value = InsertRequest().with { $0.project = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -761,6 +767,7 @@
       /// ```
       /// let value = ListRequest().with { $0.filter = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -956,6 +963,7 @@
       /// ```
       /// let value = ListPeeringRoutesRequest().with { $0.direction = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1155,6 +1163,7 @@
       /// ```
       /// let value = PatchRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1273,6 +1282,7 @@
       /// ```
       /// let value = RemovePeeringRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1391,6 +1401,7 @@
       /// ```
       /// let value = RequestRemovePeeringRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1505,6 +1516,7 @@
       /// ```
       /// let value = SwitchToCustomModeRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -1619,6 +1631,7 @@
       /// ```
       /// let value = UpdatePeeringRequest().with { $0.network = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -39,6 +39,7 @@ public struct FetchGitRefsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FetchGitRefsResponse().with { $0.refNames = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

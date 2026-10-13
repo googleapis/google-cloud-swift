@@ -35,6 +35,7 @@ public struct DSSEAttestationNote: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DSSEAttestationNote().with { $0.hint = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -97,6 +98,7 @@ public struct DSSEAttestationNote: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = DSSEHint().with { $0.humanReadableName = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

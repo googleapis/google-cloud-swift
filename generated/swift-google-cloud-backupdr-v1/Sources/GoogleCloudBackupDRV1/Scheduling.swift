@@ -63,6 +63,7 @@ public struct Scheduling: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Scheduling().with { $0.onHostMaintenance = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -163,6 +164,7 @@ public struct Scheduling: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NodeAffinity().with { $0.key = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

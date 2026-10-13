@@ -36,6 +36,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SearchHint().with { $0.knnHint = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -125,6 +126,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = IndexHint().with { $0.denseScannParams = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -210,6 +212,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = DenseScannParams().with { $0.targetRecall = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -314,6 +317,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = KnnHint().with { $0.<placeholder> = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

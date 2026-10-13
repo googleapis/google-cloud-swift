@@ -53,6 +53,7 @@ public struct CertificateRawData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CertificateRawData().with { $0.publicCertificate = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

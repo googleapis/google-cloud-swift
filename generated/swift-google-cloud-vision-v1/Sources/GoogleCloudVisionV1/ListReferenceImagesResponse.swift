@@ -43,6 +43,7 @@ public struct ListReferenceImagesResponse: Codable, Equatable, GoogleWKT._AnyPac
   /// ```
   /// let value = ListReferenceImagesResponse().with { $0.referenceImages = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

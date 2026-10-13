@@ -40,6 +40,7 @@ public struct UpdateScopeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UpdateScopeRequest().with { $0.scope = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

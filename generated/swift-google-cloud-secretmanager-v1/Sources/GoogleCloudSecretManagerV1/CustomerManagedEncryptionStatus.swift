@@ -38,6 +38,7 @@ public struct CustomerManagedEncryptionStatus: Codable, Equatable, GoogleWKT._An
   /// ```
   /// let value = CustomerManagedEncryptionStatus().with { $0.kmsKeyVersionName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

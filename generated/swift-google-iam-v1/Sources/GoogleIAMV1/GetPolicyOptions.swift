@@ -53,6 +53,7 @@ public struct GetPolicyOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = GetPolicyOptions().with { $0.requestedPolicyVersion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

@@ -61,6 +61,7 @@
     /// ```
     /// let value = StreamingReactiveCompanionSuggestionsResponse().with { $0.responseChunk = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -198,6 +199,7 @@
       /// ```
       /// let value = ReactiveModeResponse().with { $0.response = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

@@ -40,6 +40,7 @@ public struct ContactInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ContactInfo().with { $0.displayName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

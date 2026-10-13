@@ -36,6 +36,7 @@ public struct FloatRangeArray: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = FloatRangeArray().with { $0.floatRanges = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

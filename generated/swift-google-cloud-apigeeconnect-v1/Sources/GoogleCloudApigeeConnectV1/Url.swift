@@ -47,6 +47,7 @@ public struct Url: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Url().with { $0.scheme = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

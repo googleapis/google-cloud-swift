@@ -41,6 +41,7 @@ public struct ListBlueprintsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// ```
   /// let value = ListBlueprintsResponse().with { $0.blueprints = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

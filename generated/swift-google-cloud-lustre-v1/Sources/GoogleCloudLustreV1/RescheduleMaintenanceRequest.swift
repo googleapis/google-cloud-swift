@@ -45,6 +45,7 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// ```
   /// let value = RescheduleMaintenanceRequest().with { $0.name = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -119,6 +120,7 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleWKT._AnyPa
     /// ```
     /// let value = Reschedule().with { $0.rescheduleType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

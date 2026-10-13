@@ -39,6 +39,7 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   /// let value = DiagnoseNetworkResponse().with { $0.updateTime = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -105,6 +106,7 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     /// ```
     /// let value = NetworkStatus().with { $0.subnetStatus = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

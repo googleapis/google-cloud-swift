@@ -45,6 +45,7 @@ public struct ExportAnalyticsMetricsResponse: Codable, Equatable, GoogleWKT._Any
   /// ```
   /// let value = ExportAnalyticsMetricsResponse().with { $0.errorSamples = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

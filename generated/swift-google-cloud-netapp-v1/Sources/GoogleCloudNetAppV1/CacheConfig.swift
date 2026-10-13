@@ -49,6 +49,7 @@ public struct CacheConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CacheConfig().with { $0.cachePrePopulate = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

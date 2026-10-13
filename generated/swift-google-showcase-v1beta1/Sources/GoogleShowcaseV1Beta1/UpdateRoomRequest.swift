@@ -41,6 +41,7 @@ public struct UpdateRoomRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = UpdateRoomRequest().with { $0.room = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

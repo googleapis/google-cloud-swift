@@ -85,6 +85,7 @@
     /// ```
     /// let value = Chunk().with { $0.name = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -211,6 +212,7 @@
       /// ```
       /// let value = DocumentMetadata().with { $0.uri = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -304,6 +306,7 @@
       /// ```
       /// let value = PageSpan().with { $0.pageStart = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -410,6 +413,7 @@
       /// ```
       /// let value = ChunkMetadata().with { $0.previousChunks = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -498,6 +502,7 @@
       /// ```
       /// let value = StructuredContent().with { $0.structureType = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -589,6 +594,7 @@
       /// ```
       /// let value = AnnotationMetadata().with { $0.structuredContent = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

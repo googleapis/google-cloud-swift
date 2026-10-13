@@ -64,6 +64,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AwsSourceDetails().with { $0.accessKeyCreds = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -195,6 +196,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = AccessKeyCredentials().with { $0.accessKeyId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -289,6 +291,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Tag().with { $0.key = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

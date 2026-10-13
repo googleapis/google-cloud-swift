@@ -61,6 +61,7 @@ public struct UpdateCertificateAuthorityRequest: Codable, Equatable, GoogleWKT._
   /// ```
   /// let value = UpdateCertificateAuthorityRequest().with { $0.certificateAuthority = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

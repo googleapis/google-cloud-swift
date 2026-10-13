@@ -48,6 +48,7 @@ public struct GuestInstalledApplication: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = GuestInstalledApplication().with { $0.applicationName = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

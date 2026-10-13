@@ -51,6 +51,7 @@ public struct SchemaConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SchemaConfig().with { $0.compatibility = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

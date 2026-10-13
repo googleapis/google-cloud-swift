@@ -37,6 +37,7 @@ public struct WeeklySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = WeeklySchedule().with { $0.dayOfWeek = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

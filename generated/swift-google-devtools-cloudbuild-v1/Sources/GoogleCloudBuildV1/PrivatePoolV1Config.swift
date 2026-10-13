@@ -42,6 +42,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = PrivatePoolV1Config().with { $0.workerConfig = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -123,6 +124,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = WorkerConfig().with { $0.machineType = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -235,6 +237,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = NetworkConfig().with { $0.peeredNetwork = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -472,6 +475,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = PrivateServiceConnect().with { $0.networkAttachment = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

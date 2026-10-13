@@ -96,6 +96,7 @@
     /// ```
     /// let value = Document().with { $0.structData = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -252,6 +253,7 @@
       /// ```
       /// let value = Content().with { $0.rawBytes = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -379,6 +381,7 @@
       /// ```
       /// let value = AclInfo().with { $0.readers = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -499,6 +502,7 @@
         /// ```
         /// let value = AccessRestriction().with { $0.principals = ... }
         /// ```
+        @inlinable
         public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
           var copy = self
           try config(&copy)
@@ -616,6 +620,7 @@
       /// ```
       /// let value = IndexStatus().with { $0.indexTime = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

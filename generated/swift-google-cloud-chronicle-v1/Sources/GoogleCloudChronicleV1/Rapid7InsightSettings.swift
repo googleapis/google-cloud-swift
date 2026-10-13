@@ -42,6 +42,7 @@ public struct Rapid7InsightSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = Rapid7InsightSettings().with { $0.authentication = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

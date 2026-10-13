@@ -42,6 +42,7 @@ public struct AndroidApplication: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = AndroidApplication().with { $0.sha1Fingerprint = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

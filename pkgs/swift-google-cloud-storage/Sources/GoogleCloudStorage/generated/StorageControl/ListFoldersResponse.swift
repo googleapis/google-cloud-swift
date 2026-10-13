@@ -41,6 +41,7 @@ public struct ListFoldersResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ListFoldersResponse().with { $0.folders = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

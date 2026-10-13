@@ -71,6 +71,7 @@ public struct VirtualMachinePreferences: Codable, Equatable, GoogleWKT._AnyPacka
   /// ```
   /// let value = VirtualMachinePreferences().with { $0.targetProduct = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

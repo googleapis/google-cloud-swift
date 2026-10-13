@@ -47,6 +47,7 @@
     /// ```
     /// let value = Connection().with { $0.connectionId = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -123,6 +124,7 @@
       /// ```
       /// let value = ErrorDetails().with { $0.certificateState = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

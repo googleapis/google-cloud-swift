@@ -36,6 +36,7 @@ public struct DeletePartition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = DeletePartition().with { $0.partitions = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)

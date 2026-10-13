@@ -63,6 +63,7 @@ public struct TextStream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = TextStream().with { $0.codec = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -159,6 +160,7 @@ public struct TextStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = TextMapping().with { $0.atomKey = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

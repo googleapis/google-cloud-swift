@@ -39,6 +39,7 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = ReconciliationLog().with { $0.inputs = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -108,6 +109,7 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Inputs().with { $0.idleDuration = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -202,6 +204,7 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = Outputs().with { $0.decision = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)

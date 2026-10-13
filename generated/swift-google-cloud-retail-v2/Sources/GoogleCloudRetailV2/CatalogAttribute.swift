@@ -150,6 +150,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = CatalogAttribute().with { $0.key = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -307,6 +308,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// ```
     /// let value = FacetConfig().with { $0.facetIntervals = ... }
     /// ```
+    @inlinable
     public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
       var copy = self
       try config(&copy)
@@ -414,6 +416,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = IgnoredFacetValues().with { $0.values = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -517,6 +520,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MergedFacetValue().with { $0.values = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -614,6 +618,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = MergedFacet().with { $0.mergedFacetKey = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)
@@ -706,6 +711,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
       /// ```
       /// let value = RerankConfig().with { $0.rerankFacet = ... }
       /// ```
+      @inlinable
       public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
         var copy = self
         try config(&copy)

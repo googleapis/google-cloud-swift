@@ -65,6 +65,7 @@ public struct SoftwareConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ```
   /// let value = SoftwareConfig().with { $0.imageVersion = ... }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
     try config(&copy)
