@@ -39,6 +39,7 @@ public struct WKTFieldMask: Codable, Equatable, Sendable {
   /// ```
   /// let value = WKTFieldMask().with { $0.paths = ["user.display_name", "photo"] }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)
