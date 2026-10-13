@@ -22,7 +22,7 @@ import GoogleRpc
 /// type to this policy.
 ///
 /// This struct may gain new fields in future versions of the client libraries.
-public struct PollingState: Sendable {
+public struct PollingState: Sendable, Equatable, Hashable {
   /// The start time for this retry loop.
   public var start: ContinuousClock.Instant
 
@@ -30,9 +30,16 @@ public struct PollingState: Sendable {
   public var attemptCount: Int
 
   /// Create a new instance.
-  public init() {
-    self.start = ContinuousClock.now
-    self.attemptCount = 0
+  ///
+  /// - Parameters:
+  ///   - start: The start time for this retry loop.
+  ///   - attemptCount: The number of times the request has been attempted.
+  public init(
+    start: ContinuousClock.Instant = .now,
+    attemptCount: Int = 0
+  ) {
+    self.start = start
+    self.attemptCount = attemptCount
   }
 
   /// Override specific values using the `Then` idiom.

@@ -23,7 +23,7 @@ import Foundation
 /// receive.
 ///
 /// This struct may gain new fields in future versions of the client libraries.
-public struct RetryState: Sendable {
+public struct RetryState: Sendable, Equatable, Hashable {
   /// If true, the request is idempotent and it is safe to retry.
   ///
   /// Some policies retry non-idempotent operations because they are safe for a given configuration
@@ -38,11 +38,18 @@ public struct RetryState: Sendable {
 
   /// Create a new instance.
   ///
-  /// - Parameter idempotent: If true, the request is idempotent and it is safe to retry.
-  public init(idempotent: Bool = false) {
+  /// - Parameters:
+  ///   - idempotent: If true, the request is idempotent and it is safe to retry.
+  ///   - start: The start time for this retry loop.
+  ///   - attemptCount: The number of times the request has been attempted.
+  public init(
+    idempotent: Bool = false,
+    start: ContinuousClock.Instant = .now,
+    attemptCount: Int = 0
+  ) {
     self.idempotent = idempotent
-    self.start = ContinuousClock.now
-    self.attemptCount = 0
+    self.start = start
+    self.attemptCount = attemptCount
   }
 
   /// Override specific values using the `Then` idiom.
