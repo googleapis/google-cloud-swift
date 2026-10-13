@@ -319,33 +319,30 @@ import Testing
       "Expected TokenCache to cache permanent HTTP 404 error, got \(secondCount) calls")
   }
 
-  @Test func isRetryableUnwrapsCredentialsError() {
-    let notFound = CredentialsError.cannotFetchToken(
-      message: "failed",
-      source: AuthHTTPError.unsuccessfulResponse(
-        response: HTTPClientResponse(version: .http2, status: .notFound))
-    )
-    #expect(!MDSAccessTokenProvider.isRetryable(notFound))
-
-    let forbidden = CredentialsError.cannotFetchToken(
-      message: "failed",
-      source: AuthHTTPError.unsuccessfulResponse(
-        response: HTTPClientResponse(version: .http2, status: .forbidden))
-    )
-    #expect(!MDSAccessTokenProvider.isRetryable(forbidden))
-
-    let serviceUnavailable = CredentialsError.cannotFetchToken(
-      message: "failed",
-      source: AuthHTTPError.unsuccessfulResponse(
-        response: HTTPClientResponse(version: .http2, status: .serviceUnavailable))
-    )
-    #expect(MDSAccessTokenProvider.isRetryable(serviceUnavailable))
-
-    let transportError = CredentialsError.cannotFetchToken(
-      message: "failed",
-      source: AuthHTTPError.transportError(URLError(.timedOut))
-    )
-    #expect(MDSAccessTokenProvider.isRetryable(transportError))
+  @Test(arguments: [
+    (
+      AuthHTTPError.unsuccessfulResponse(
+        response: HTTPClientResponse(version: .http2, status: .notFound)),
+      false
+    ),
+    (
+      AuthHTTPError.unsuccessfulResponse(
+        response: HTTPClientResponse(version: .http2, status: .forbidden)),
+      false
+    ),
+    (
+      AuthHTTPError.unsuccessfulResponse(
+        response: HTTPClientResponse(version: .http2, status: .serviceUnavailable)),
+      true
+    ),
+    (
+      AuthHTTPError.transportError(URLError(.timedOut)),
+      true
+    ),
+  ])
+  func isRetryableUnwrapsCredentialsError(source: AuthHTTPError, expected: Bool) {
+    let wrapped = CredentialsError.cannotFetchToken(message: "failed", source: source)
+    #expect(MDSAccessTokenProvider.isRetryable(wrapped) == expected)
   }
 
   @Test func tokenCaching() async throws {
