@@ -177,6 +177,7 @@ public struct StoragePreconditions: Sendable {
 
   public init() {}
 
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -318,6 +319,7 @@ public struct WriteObjectMetadata: Sendable, Codable, Equatable {
 
   public init() {}
 
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)
@@ -544,6 +546,7 @@ public struct WriteObjectOptions: Sendable {
 
   public init() {}
 
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)

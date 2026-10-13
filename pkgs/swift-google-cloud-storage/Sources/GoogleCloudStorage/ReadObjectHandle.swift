@@ -136,6 +136,7 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   public init() {}
 
   /// Builder pattern helper to modify configuration in place.
+  @inlinable
   public func with(_ config: (inout Self) -> Void) -> Self {
     var copy = self
     config(&copy)

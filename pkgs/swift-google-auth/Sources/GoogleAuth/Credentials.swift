@@ -325,6 +325,7 @@ public struct ExternalAccountConfig: Sendable {
   }
 
   /// Configures optional properties of `ExternalAccountConfig` using a fluent closure.
+  @inlinable
   public func with(_ configure: (inout ExternalAccountConfig) throws -> Void) rethrows
     -> ExternalAccountConfig
   {

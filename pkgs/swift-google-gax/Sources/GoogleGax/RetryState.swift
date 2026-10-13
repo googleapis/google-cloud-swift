@@ -51,6 +51,7 @@ public struct RetryState: Sendable {
   /// ```
   /// let state = RetryState(idempotent: true).with { $0.attemptCount = 1 }
   /// ```
+  @inlinable
   public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
     var copy = self
     try config(&copy)
