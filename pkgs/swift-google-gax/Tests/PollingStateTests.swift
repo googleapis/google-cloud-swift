@@ -30,6 +30,9 @@ import Testing
     let got = PollingState(start: start, attemptCount: 3)
     #expect(got.start == start)
     #expect(got.attemptCount == 3)
+
+    let partial = PollingState(attemptCount: 4)
+    #expect(partial.attemptCount == 4)
   }
 
   @Test func with() {

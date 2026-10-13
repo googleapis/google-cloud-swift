@@ -40,6 +40,10 @@ import GoogleGax
     #expect(got.idempotent == true)
     #expect(got.start == start)
     #expect(got.attemptCount == 3)
+
+    let partial = RetryState(attemptCount: 4)
+    #expect(partial.idempotent == false)
+    #expect(partial.attemptCount == 4)
   }
 
   @Test func with() {
