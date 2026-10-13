@@ -81,6 +81,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
   /// Determines whether an HTTP or network error encountered while contacting the metadata server is retryable.
   ///
+  /// Unwraps `CredentialsError.cannotFetchToken` to evaluate the underlying error when invoked by `TokenCache`.
+  ///
   /// - Parameter error: The error to evaluate.
   /// - Returns: `true` for HTTP 5xx, 429, 408, or network-level errors; `false` for 4xx client errors.
   static func isRetryable(_ error: any Error) -> Bool {
