@@ -108,11 +108,4 @@ struct ServiceAccountTokenProvider: TokenProvider, Sendable {
 
     return Token(accessToken: signedJWT, expirationDate: expDate)
   }
-
-  static func isRetryable(_ error: any Error) -> Bool {
-    if error is CredentialsError {
-      return false
-    }
-    return true
-  }
 }

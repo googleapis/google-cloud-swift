@@ -72,7 +72,7 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
 
     self.tokenProvider = TokenCache(
       provider: provider,
-      isRetryable: ServiceAccountTokenProvider.isRetryable
+      isRetryable: { _ in false }
     )
     self.quotaProjectID = quotaProjectID
     _ = universeDomain

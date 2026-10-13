@@ -236,13 +236,6 @@ struct ServiceAccountTests {
     }
   }
 
-  @Test("Service Account Token Provider classifies CredentialsError as non-retryable")
-  func isRetryableClassification() {
-    #expect(!ServiceAccountTokenProvider.isRetryable(CredentialsError.parseError("bad key")))
-    #expect(!ServiceAccountTokenProvider.isRetryable(CredentialsError.notSupported("unsupported")))
-    #expect(ServiceAccountTokenProvider.isRetryable(URLError(.timedOut)))
-  }
-
   @Test("Service Account credentials initialization throws decoding error when given invalid JSON")
   func invalidJSONParsingFailure() async throws {
     let invalidJSON = Data("{ \"invalid\": \"json\" }".utf8)
