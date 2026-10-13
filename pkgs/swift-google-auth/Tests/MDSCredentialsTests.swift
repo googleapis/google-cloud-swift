@@ -308,6 +308,44 @@ import Testing
     #expect(source is AuthHTTPError, "expected AuthHTTPError as the source, got \(source)")
     let count = attempts.getCount()
     #expect(count == 1, "Expected no retries on permanent HTTP 404 error, got \(count) calls")
+
+    // Subsequent calls must throw the cached permanent error without contacting MDS again.
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    let secondCount = attempts.getCount()
+    #expect(
+      secondCount == 1,
+      "Expected TokenCache to cache permanent HTTP 404 error, got \(secondCount) calls")
+  }
+
+  @Test func isRetryableUnwrapsCredentialsError() {
+    let notFound = CredentialsError.cannotFetchToken(
+      message: "failed",
+      source: AuthHTTPError.unsuccessfulResponse(
+        response: HTTPClientResponse(version: .http2, status: .notFound))
+    )
+    #expect(!MDSAccessTokenProvider.isRetryable(notFound))
+
+    let forbidden = CredentialsError.cannotFetchToken(
+      message: "failed",
+      source: AuthHTTPError.unsuccessfulResponse(
+        response: HTTPClientResponse(version: .http2, status: .forbidden))
+    )
+    #expect(!MDSAccessTokenProvider.isRetryable(forbidden))
+
+    let serviceUnavailable = CredentialsError.cannotFetchToken(
+      message: "failed",
+      source: AuthHTTPError.unsuccessfulResponse(
+        response: HTTPClientResponse(version: .http2, status: .serviceUnavailable))
+    )
+    #expect(MDSAccessTokenProvider.isRetryable(serviceUnavailable))
+
+    let transportError = CredentialsError.cannotFetchToken(
+      message: "failed",
+      source: AuthHTTPError.transportError(URLError(.timedOut))
+    )
+    #expect(MDSAccessTokenProvider.isRetryable(transportError))
   }
 
   @Test func tokenCaching() async throws {
