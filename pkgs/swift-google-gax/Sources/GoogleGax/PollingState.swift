@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import Foundation
-import GoogleRpc
 
 /// The input into a polling policy query.
 ///
