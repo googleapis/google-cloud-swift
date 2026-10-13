@@ -55,7 +55,7 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [WebServerNetworkAccessControl.AllowedIpRange].self, forKey: .allowedIpRanges)
@@ -68,7 +68,7 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.allowedIpRanges, forKey: .allowedIpRanges)
     for (key, value) in self._unknownFields.json {
@@ -127,7 +127,7 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .value) {
         self.value = value
@@ -141,7 +141,7 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.value, forKey: .value)
       try container.encode(self.description, forKey: .description)
@@ -150,25 +150,47 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
+    /// The type URL for `AllowedIpRange`: `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl.AllowedIpRange"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl.AllowedIpRange"
     }
+
+    /// Initialize an instance of `AllowedIpRange` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl.AllowedIpRange"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AllowedIpRange` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `WebServerNetworkAccessControl`: `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl"
   }
+
+  /// Initialize an instance of `WebServerNetworkAccessControl` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `WebServerNetworkAccessControl` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

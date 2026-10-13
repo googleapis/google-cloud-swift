@@ -85,7 +85,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .currentPage) {
         self.currentPage = value
@@ -100,7 +100,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.currentPage, forKey: .currentPage)
       try container.encode(self.displayName, forKey: .displayName)
@@ -155,7 +155,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [PageInfo.FormInfo.ParameterInfo].self, forKey: .parameterInfo)
@@ -168,7 +168,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.parameterInfo, forKey: .parameterInfo)
         for (key, value) in self._unknownFields.json {
@@ -276,7 +276,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
             self.displayName = value
@@ -299,7 +299,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.displayName, forKey: .displayName)
           try container.encode(self.`required`, forKey: .`required`)
@@ -406,7 +406,7 @@
             }
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             if let v = try? container.decode(Int.self) {
               self.init(intValue: v)
@@ -424,7 +424,7 @@
               in: container, debugDescription: "Expected enum value, must be integer or string.")
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
             case .unspecified: return try container.encode("PARAMETER_STATE_UNSPECIFIED")
@@ -437,34 +437,67 @@
           }
         }
 
+        /// The type URL for `ParameterInfo`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo.FormInfo.ParameterInfo"`.
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo.FormInfo.ParameterInfo"
         }
+
+        /// Initialize an instance of `ParameterInfo` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo.FormInfo.ParameterInfo"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `ParameterInfo` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `FormInfo`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo.FormInfo"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo.FormInfo"
       }
+
+      /// Initialize an instance of `FormInfo` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo.FormInfo"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `FormInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `PageInfo`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo"
     }
+
+    /// Initialize an instance of `PageInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PageInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

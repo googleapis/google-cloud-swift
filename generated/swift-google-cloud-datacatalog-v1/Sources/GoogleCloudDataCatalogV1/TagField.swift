@@ -86,7 +86,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
       self.displayName = value
@@ -133,7 +133,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.order, forKey: .order)
@@ -197,7 +197,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
         self.displayName = value
@@ -208,7 +208,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.displayName, forKey: .displayName)
       for (key, value) in self._unknownFields.json {
@@ -216,12 +216,23 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `EnumValue`: `"type.googleapis.com/google.cloud.datacatalog.v1.TagField.EnumValue"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.v1.TagField.EnumValue"
     }
+
+    /// Initialize an instance of `EnumValue` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.v1.TagField.EnumValue"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `EnumValue` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -251,12 +262,23 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
     case richtextValue(Swift.String)
   }
 
+  /// The type URL for `TagField`: `"type.googleapis.com/google.cloud.datacatalog.v1.TagField"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.TagField"
   }
+
+  /// Initialize an instance of `TagField` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.v1.TagField"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TagField` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -177,7 +177,7 @@ extension Clients.DashboardsServiceProtocol {
 
   public func listDashboardsByItems(
     request: ListDashboardsRequest
-  ) -> some AsyncSequence<Dashboard, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Dashboard, any Swift.Error> & Sendable {
     self.listDashboardsByItems(request: request, options: .init())
   }
 
@@ -190,7 +190,7 @@ extension Clients.DashboardsServiceProtocol {
   /// @Snippet(path: "DashboardsService_ListDashboards")
   public func listDashboardsByItems(
     request: ListDashboardsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Dashboard, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Dashboard, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse in
@@ -204,7 +204,7 @@ extension Clients.DashboardsServiceProtocol {
 
   public func listDashboardsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Dashboard, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Dashboard, any Swift.Error> & Sendable {
     let request = ListDashboardsRequest().with {
       $0.parent = parent
     }

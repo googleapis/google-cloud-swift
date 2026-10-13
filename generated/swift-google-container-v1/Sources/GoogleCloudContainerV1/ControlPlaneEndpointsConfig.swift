@@ -60,7 +60,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dnsEndpointConfig = try container.decodeIfPresent(
       ControlPlaneEndpointsConfig.DNSEndpointConfig.self, forKey: .dnsEndpointConfig)
@@ -72,7 +72,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.dnsEndpointConfig, forKey: .dnsEndpointConfig)
     try container.encodeIfPresent(self.ipEndpointsConfig, forKey: .ipEndpointsConfig)
@@ -141,7 +141,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .endpoint) {
         self.endpoint = value
@@ -158,7 +158,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.endpoint, forKey: .endpoint)
       try container.encodeIfPresent(self.allowExternalTraffic, forKey: .allowExternalTraffic)
@@ -169,12 +169,23 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `DNSEndpointConfig`: `"type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.DNSEndpointConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.DNSEndpointConfig"
     }
+
+    /// Initialize an instance of `DNSEndpointConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.DNSEndpointConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DNSEndpointConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -267,7 +278,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
       self.enablePublicEndpoint = try container.decodeIfPresent(
@@ -292,7 +303,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.enabled, forKey: .enabled)
       try container.encodeIfPresent(self.enablePublicEndpoint, forKey: .enablePublicEndpoint)
@@ -307,23 +318,45 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `IPEndpointsConfig`: `"type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig"
     }
+
+    /// Initialize an instance of `IPEndpointsConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IPEndpointsConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ControlPlaneEndpointsConfig`: `"type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig"
   }
+
+  /// Initialize an instance of `ControlPlaneEndpointsConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ControlPlaneEndpointsConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

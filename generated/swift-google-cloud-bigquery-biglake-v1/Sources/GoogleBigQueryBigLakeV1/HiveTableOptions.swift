@@ -65,7 +65,7 @@ public struct HiveTableOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [Swift.String: Swift.String].self, forKey: .parameters)
@@ -83,7 +83,7 @@ public struct HiveTableOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parameters, forKey: .parameters)
     try container.encode(self.tableType, forKey: .tableType)
@@ -131,7 +131,7 @@ public struct HiveTableOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serializationLib) {
         self.serializationLib = value
@@ -142,7 +142,7 @@ public struct HiveTableOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.serializationLib, forKey: .serializationLib)
       for (key, value) in self._unknownFields.json {
@@ -150,12 +150,23 @@ public struct HiveTableOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SerDeInfo`: `"type.googleapis.com/google.cloud.bigquery.biglake.v1.HiveTableOptions.SerDeInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.bigquery.biglake.v1.HiveTableOptions.SerDeInfo"
     }
+
+    /// Initialize an instance of `SerDeInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.biglake.v1.HiveTableOptions.SerDeInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SerDeInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -215,7 +226,7 @@ public struct HiveTableOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .locationUri) {
         self.locationUri = value
@@ -234,7 +245,7 @@ public struct HiveTableOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.locationUri, forKey: .locationUri)
       try container.encode(self.inputFormat, forKey: .inputFormat)
@@ -245,24 +256,46 @@ public struct HiveTableOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `StorageDescriptor`: `"type.googleapis.com/google.cloud.bigquery.biglake.v1.HiveTableOptions.StorageDescriptor"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.bigquery.biglake.v1.HiveTableOptions.StorageDescriptor"
     }
+
+    /// Initialize an instance of `StorageDescriptor` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.biglake.v1.HiveTableOptions.StorageDescriptor"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StorageDescriptor` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `HiveTableOptions`: `"type.googleapis.com/google.cloud.bigquery.biglake.v1.HiveTableOptions"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.biglake.v1.HiveTableOptions"
   }
+
+  /// Initialize an instance of `HiveTableOptions` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.biglake.v1.HiveTableOptions"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `HiveTableOptions` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

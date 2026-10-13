@@ -26,8 +26,8 @@
   /// @Snippet(path: "addressesQuickstart")
   public final class AddressesClient: Clients.AddressesProtocol, Sendable {
     let inner: any Clients.AddressesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `AddressesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -63,6 +63,11 @@
     }
 
     /// Deletes the specified address resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "addresses_delete")
     public func deletePollingUntilDone(
@@ -126,6 +131,11 @@
     /// Creates an address resource in the specified project by using the data
     /// included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "addresses_insert")
     public func insertPollingUntilDone(
       request: AddressesClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -187,6 +197,11 @@
 
     /// Moves the specified address resource.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "addresses_move")
     public func movePollingUntilDone(
       request: AddressesClient.MoveRequest, options: GoogleGax.RequestOptions
@@ -239,6 +254,11 @@
 
     /// Sets the labels on an Address. To learn more about labels, read theLabeling
     /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "addresses_setLabels")
     public func setLabelsPollingUntilDone(
@@ -317,6 +337,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `AddressesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: AddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -332,6 +357,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `AddressesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: AddressesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -347,6 +377,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `AddressesClient.move`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func movePollingUntilDone(
         request: AddressesClient.MoveRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -357,6 +392,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `AddressesClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: AddressesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -384,7 +424,7 @@
 
     public func aggregatedListByItems(
       request: AddressesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, AddressesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -396,7 +436,7 @@
     /// @Snippet(path: "addresses_aggregatedList")
     public func aggregatedListByItems(
       request: AddressesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, AddressesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressAggregatedList
         in
@@ -410,7 +450,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, AddressesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, AddressesScopedList), any Swift.Error> & Sendable {
       let request = AddressesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -530,7 +570,7 @@
 
     public func listByItems(
       request: AddressesClient.ListRequest
-    ) -> some AsyncSequence<Address, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Address, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -540,7 +580,7 @@
     /// @Snippet(path: "addresses_list")
     public func listByItems(
       request: AddressesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Address, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Address, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.AddressList in
         var request = request
@@ -554,7 +594,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<Address, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Address, any Swift.Error> & Sendable {
       let request = AddressesClient.ListRequest().with {
         $0.project = project
         $0.region = region

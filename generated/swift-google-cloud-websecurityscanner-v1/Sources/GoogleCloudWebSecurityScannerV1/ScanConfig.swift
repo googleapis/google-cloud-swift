@@ -127,7 +127,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -173,7 +173,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
@@ -239,7 +239,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var authentication: AuthenticationOneOf? = nil
@@ -277,7 +277,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.authentication {
@@ -340,7 +340,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
           self.username = value
@@ -354,7 +354,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.username, forKey: .username)
         try container.encode(self.password, forKey: .password)
@@ -363,13 +363,24 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `GoogleAccount`: `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.GoogleAccount"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.GoogleAccount"
       }
+
+      /// Initialize an instance of `GoogleAccount` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.GoogleAccount"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GoogleAccount` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -424,7 +435,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .username) {
           self.username = value
@@ -441,7 +452,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.username, forKey: .username)
         try container.encode(self.password, forKey: .password)
@@ -451,13 +462,24 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `CustomAccount`: `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.CustomAccount"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.CustomAccount"
       }
+
+      /// Initialize an instance of `CustomAccount` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.CustomAccount"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `CustomAccount` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -501,7 +523,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var iapCredentials: IapCredentialsOneOf? = nil
@@ -527,7 +549,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.iapCredentials {
@@ -581,7 +603,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             Swift.String.self, forKey: .targetAudienceClientId)
@@ -594,7 +616,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.targetAudienceClientId, forKey: .targetAudienceClientId)
           for (key, value) in self._unknownFields.json {
@@ -602,13 +624,24 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `IapTestServiceAccountInfo`: `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.IapCredential.IapTestServiceAccountInfo"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.IapCredential.IapTestServiceAccountInfo"
         }
+
+        /// Initialize an instance of `IapTestServiceAccountInfo` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.IapCredential.IapTestServiceAccountInfo"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `IapTestServiceAccountInfo` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -622,13 +655,24 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           ScanConfig.Authentication.IapCredential.IapTestServiceAccountInfo)
       }
 
+      /// The type URL for `IapCredential`: `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.IapCredential"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.IapCredential"
       }
+
+      /// Initialize an instance of `IapCredential` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication.IapCredential"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `IapCredential` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -646,12 +690,23 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case iapCredential(ScanConfig.Authentication.IapCredential)
     }
 
+    /// The type URL for `Authentication`: `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication"
     }
+
+    /// Initialize an instance of `Authentication` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Authentication"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Authentication` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -703,7 +758,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.scheduleTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .scheduleTime)
@@ -717,7 +772,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.scheduleTime, forKey: .scheduleTime)
       try container.encode(self.intervalDurationDays, forKey: .intervalDurationDays)
@@ -726,12 +781,23 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Schedule`: `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Schedule"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Schedule"
     }
+
+    /// Initialize an instance of `Schedule` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig.Schedule"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Schedule` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -830,7 +896,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -848,7 +914,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("USER_AGENT_UNSPECIFIED")
@@ -950,7 +1016,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -968,7 +1034,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("RISK_LEVEL_UNSPECIFIED")
@@ -1068,7 +1134,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1086,7 +1152,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified:
@@ -1099,12 +1165,23 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ScanConfig`: `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig"
   }
+
+  /// Initialize an instance of `ScanConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.websecurityscanner.v1.ScanConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ScanConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

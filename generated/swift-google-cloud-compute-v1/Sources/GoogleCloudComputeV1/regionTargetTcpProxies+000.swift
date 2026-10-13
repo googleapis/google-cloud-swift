@@ -27,8 +27,8 @@
   public final class RegionTargetTcpProxiesClient: Clients.RegionTargetTcpProxiesProtocol, Sendable
   {
     let inner: any Clients.RegionTargetTcpProxiesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionTargetTcpProxiesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -53,6 +53,11 @@
     }
 
     /// Deletes the specified TargetTcpProxy resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_delete")
     public func deletePollingUntilDone(
@@ -115,6 +120,11 @@
 
     /// Creates a TargetTcpProxy resource in the specified project and region using
     /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionTargetTcpProxies_insert")
     public func insertPollingUntilDone(
@@ -189,6 +199,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionTargetTcpProxiesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionTargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -204,6 +219,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionTargetTcpProxiesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionTargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -330,7 +350,7 @@
 
     public func listByItems(
       request: RegionTargetTcpProxiesClient.ListRequest
-    ) -> some AsyncSequence<TargetTcpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -340,7 +360,7 @@
     /// @Snippet(path: "regionTargetTcpProxies_list")
     public func listByItems(
       request: RegionTargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<TargetTcpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
         var request = request
@@ -354,7 +374,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<TargetTcpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
       let request = RegionTargetTcpProxiesClient.ListRequest().with {
         $0.project = project
         $0.region = region

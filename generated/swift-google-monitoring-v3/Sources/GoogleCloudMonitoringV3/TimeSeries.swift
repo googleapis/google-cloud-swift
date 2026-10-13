@@ -130,7 +130,7 @@ public struct TimeSeries: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.metric = try container.decodeIfPresent(GoogleApi.Metric.self, forKey: .metric)
     self.resource = try container.decodeIfPresent(
@@ -162,7 +162,7 @@ public struct TimeSeries: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.metric, forKey: .metric)
     try container.encodeIfPresent(self.resource, forKey: .resource)
@@ -177,12 +177,23 @@ public struct TimeSeries: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `TimeSeries`: `"type.googleapis.com/google.monitoring.v3.TimeSeries"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.TimeSeries"
   }
+
+  /// Initialize an instance of `TimeSeries` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.TimeSeries"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TimeSeries` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

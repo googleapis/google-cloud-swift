@@ -118,7 +118,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         AgentAssistantFeedback.AnswerRelevance.self, forKey: .answerRelevance)
@@ -149,7 +149,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.answerRelevance, forKey: .answerRelevance)
       try container.encode(self.documentCorrectness, forKey: .documentCorrectness)
@@ -216,7 +216,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -236,7 +236,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encodeIfPresent(self.submitTime, forKey: .submitTime)
@@ -247,13 +247,24 @@
         }
       }
 
+      /// The type URL for `SummarizationFeedback`: `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.SummarizationFeedback"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.SummarizationFeedback"
       }
+
+      /// Initialize an instance of `SummarizationFeedback` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.SummarizationFeedback"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SummarizationFeedback` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -314,7 +325,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .answerCopied) {
           self.answerCopied = value
@@ -328,7 +339,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.answerCopied, forKey: .answerCopied)
         try container.encode(self.clickedUris, forKey: .clickedUris)
@@ -337,13 +348,24 @@
         }
       }
 
+      /// The type URL for `KnowledgeSearchFeedback`: `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeSearchFeedback"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeSearchFeedback"
       }
+
+      /// Initialize an instance of `KnowledgeSearchFeedback` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeSearchFeedback"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `KnowledgeSearchFeedback` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -403,7 +425,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .answerCopied) {
           self.answerCopied = value
@@ -417,7 +439,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.answerCopied, forKey: .answerCopied)
         try container.encode(self.clickedUris, forKey: .clickedUris)
@@ -426,13 +448,24 @@
         }
       }
 
+      /// The type URL for `KnowledgeAssistFeedback`: `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeAssistFeedback"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeAssistFeedback"
       }
+
+      /// Initialize an instance of `KnowledgeAssistFeedback` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeAssistFeedback"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `KnowledgeAssistFeedback` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -469,7 +502,7 @@
         static let _knownKeys: Set<Swift.String> = []
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
@@ -477,20 +510,31 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
+      /// The type URL for `CompanionFeedback`: `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.CompanionFeedback"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.CompanionFeedback"
       }
+
+      /// Initialize an instance of `CompanionFeedback` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.CompanionFeedback"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `CompanionFeedback` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -583,7 +627,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -601,7 +645,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("ANSWER_RELEVANCE_UNSPECIFIED")
@@ -700,7 +744,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -718,7 +762,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("DOCUMENT_CORRECTNESS_UNSPECIFIED")
@@ -817,7 +861,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -835,7 +879,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("DOCUMENT_EFFICIENCY_UNSPECIFIED")
@@ -847,12 +891,23 @@
       }
     }
 
+    /// The type URL for `AgentAssistantFeedback`: `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback"
     }
+
+    /// Initialize an instance of `AgentAssistantFeedback` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AgentAssistantFeedback` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

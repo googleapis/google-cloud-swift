@@ -68,7 +68,7 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Tag].self, forKey: .presentTags) {
       self.presentTags = value
@@ -97,7 +97,7 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.presentTags, forKey: .presentTags)
     try container.encode(self.absentTags, forKey: .absentTags)
@@ -119,12 +119,23 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case v1Entry(Entry)
   }
 
+  /// The type URL for `TaggedEntry`: `"type.googleapis.com/google.cloud.datacatalog.v1.TaggedEntry"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.TaggedEntry"
   }
+
+  /// Initialize an instance of `TaggedEntry` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.v1.TaggedEntry"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TaggedEntry` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

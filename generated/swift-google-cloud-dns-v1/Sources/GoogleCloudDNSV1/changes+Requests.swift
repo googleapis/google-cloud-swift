@@ -71,7 +71,7 @@ extension ChangesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -88,7 +88,7 @@ extension ChangesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.managedZone, forKey: .managedZone)
@@ -99,12 +99,23 @@ extension ChangesClient {
       }
     }
 
+    /// The type URL for `CreateRequest`: `"type.googleapis.com/.changes.createRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.changes.createRequest"
     }
+
+    /// Initialize an instance of `CreateRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.changes.createRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CreateRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -163,7 +174,7 @@ extension ChangesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .changeId) {
         self.changeId = value
@@ -182,7 +193,7 @@ extension ChangesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.changeId, forKey: .changeId)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
@@ -193,12 +204,23 @@ extension ChangesClient {
       }
     }
 
+    /// The type URL for `GetRequest`: `"type.googleapis.com/.changes.getRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.changes.getRequest"
     }
+
+    /// Initialize an instance of `GetRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.changes.getRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GetRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -267,7 +289,7 @@ extension ChangesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .managedZone) {
         self.managedZone = value
@@ -286,7 +308,7 @@ extension ChangesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.managedZone, forKey: .managedZone)
       try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
@@ -336,13 +358,13 @@ extension ChangesClient {
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .changeSequence: return try container.encode("changeSequence")
@@ -351,12 +373,23 @@ extension ChangesClient {
       }
     }
 
+    /// The type URL for `ListRequest`: `"type.googleapis.com/.changes.listRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.changes.listRequest"
     }
+
+    /// Initialize an instance of `ListRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.changes.listRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ListRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

@@ -26,8 +26,8 @@
   /// @Snippet(path: "instanceGroupsQuickstart")
   public final class InstanceGroupsClient: Clients.InstanceGroupsProtocol, Sendable {
     let inner: any Clients.InstanceGroupsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstanceGroupsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -57,6 +57,11 @@
     /// instances in the instance group must be in the same network/subnetwork.
     /// Read
     /// Adding instances for more information.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroups_addInstances")
     public func addInstancesPollingUntilDone(
@@ -127,6 +132,11 @@
     /// Read
     /// Deleting an instance group for more information.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "instanceGroups_delete")
     public func deletePollingUntilDone(
       request: InstanceGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -193,6 +203,11 @@
 
     /// Creates an instance group in the specified project using the
     /// parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroups_insert")
     public func insertPollingUntilDone(
@@ -283,6 +298,11 @@
     /// connection draining, it can take up to 60 seconds after the connection
     /// draining duration before the VM instance is removed or deleted.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "instanceGroups_removeInstances")
     public func removeInstancesPollingUntilDone(
       request: InstanceGroupsClient.RemoveInstancesRequest, options: GoogleGax.RequestOptions
@@ -333,6 +353,11 @@
     }
 
     /// Sets the named ports for the specified instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroups_setNamedPorts")
     public func setNamedPortsPollingUntilDone(
@@ -406,6 +431,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceGroupsClient.addInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func addInstancesPollingUntilDone(
         request: InstanceGroupsClient.AddInstancesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -421,6 +451,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceGroupsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: InstanceGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -436,6 +471,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceGroupsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: InstanceGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -456,6 +496,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceGroupsClient.removeInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func removeInstancesPollingUntilDone(
         request: InstanceGroupsClient.RemoveInstancesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -466,6 +511,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceGroupsClient.setNamedPorts`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setNamedPortsPollingUntilDone(
         request: InstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -532,7 +582,7 @@
 
     public func aggregatedListByItems(
       request: InstanceGroupsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstanceGroupsScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -544,7 +594,7 @@
     /// @Snippet(path: "instanceGroups_aggregatedList")
     public func aggregatedListByItems(
       request: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstanceGroupsScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceGroupAggregatedList in
@@ -558,7 +608,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstanceGroupsScopedList), any Swift.Error> & Sendable {
       let request = InstanceGroupsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -678,7 +728,7 @@
 
     public func listByItems(
       request: InstanceGroupsClient.ListRequest
-    ) -> some AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -692,7 +742,7 @@
     /// @Snippet(path: "instanceGroups_list")
     public func listByItems(
       request: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupList in
         var request = request
@@ -706,7 +756,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
       let request = InstanceGroupsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
@@ -728,7 +778,7 @@
 
     public func listInstancesByItems(
       request: InstanceGroupsClient.ListInstancesRequest
-    ) -> some AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
       self.listInstancesByItems(request: request, options: .init())
     }
 
@@ -740,7 +790,7 @@
     /// @Snippet(path: "instanceGroups_listInstances")
     public func listInstancesByItems(
       request: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceGroupsListInstances in
@@ -757,7 +807,7 @@
       zone: Swift.String,
       instanceGroup: Swift.String,
       body: InstanceGroupsListInstancesRequest?,
-    ) -> some AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
       let request = InstanceGroupsClient.ListInstancesRequest().with {
         $0.project = project
         $0.zone = zone

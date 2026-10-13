@@ -34,7 +34,7 @@ public struct ExecuteOntapPostRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// ```
   public var body: GoogleWKT.WKTStruct? = nil
 
-  /// Required. The resource path of the ONTAP resource.
+  /// Required. The path of the ONTAP resource.
   /// Format:
   /// `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`.
   /// For example:
@@ -74,7 +74,7 @@ public struct ExecuteOntapPostRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.body = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .body)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .ontapPath) {
@@ -86,7 +86,7 @@ public struct ExecuteOntapPostRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.body, forKey: .body)
     try container.encode(self.ontapPath, forKey: .ontapPath)
@@ -95,12 +95,23 @@ public struct ExecuteOntapPostRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// The type URL for `ExecuteOntapPostRequest`: `"type.googleapis.com/google.cloud.netapp.v1.ExecuteOntapPostRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.ExecuteOntapPostRequest"
   }
+
+  /// Initialize an instance of `ExecuteOntapPostRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.netapp.v1.ExecuteOntapPostRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExecuteOntapPostRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -78,7 +78,7 @@ public struct ImageImportOsAdaptationParameters: Codable, Equatable, GoogleWKT._
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .generalize) {
       self.generalize = value
@@ -102,7 +102,7 @@ public struct ImageImportOsAdaptationParameters: Codable, Equatable, GoogleWKT._
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.generalize, forKey: .generalize)
     try container.encode(self.licenseType, forKey: .licenseType)
@@ -113,12 +113,23 @@ public struct ImageImportOsAdaptationParameters: Codable, Equatable, GoogleWKT._
     }
   }
 
+  /// The type URL for `ImageImportOsAdaptationParameters`: `"type.googleapis.com/google.cloud.vmmigration.v1.ImageImportOsAdaptationParameters"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.ImageImportOsAdaptationParameters"
   }
+
+  /// Initialize an instance of `ImageImportOsAdaptationParameters` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vmmigration.v1.ImageImportOsAdaptationParameters"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ImageImportOsAdaptationParameters` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

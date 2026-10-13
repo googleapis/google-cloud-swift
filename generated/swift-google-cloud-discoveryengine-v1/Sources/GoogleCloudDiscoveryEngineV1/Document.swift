@@ -135,7 +135,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -183,7 +183,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.id, forKey: .id)
@@ -275,7 +275,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .mimeType) {
           self.mimeType = value
@@ -304,7 +304,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.mimeType, forKey: .mimeType)
 
@@ -338,12 +338,23 @@
         case uri(Swift.String)
       }
 
+      /// The type URL for `Content`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Document.Content"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Document.Content"
       }
+
+      /// Initialize an instance of `Content` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Document.Content"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Content` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -387,7 +398,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [Document.AclInfo.AccessRestriction].self, forKey: .readers)
@@ -400,7 +411,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.readers, forKey: .readers)
         for (key, value) in self._unknownFields.json {
@@ -509,7 +520,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent([Principal].self, forKey: .principals) {
             self.principals = value
@@ -523,7 +534,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.principals, forKey: .principals)
           try container.encode(self.idpWide, forKey: .idpWide)
@@ -532,24 +543,46 @@
           }
         }
 
+        /// The type URL for `AccessRestriction`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Document.AclInfo.AccessRestriction"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.Document.AclInfo.AccessRestriction"
         }
+
+        /// Initialize an instance of `AccessRestriction` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Document.AclInfo.AccessRestriction"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `AccessRestriction` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `AclInfo`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Document.AclInfo"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Document.AclInfo"
       }
+
+      /// Initialize an instance of `AclInfo` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Document.AclInfo"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `AclInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -606,7 +639,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.indexTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .indexTime)
@@ -623,7 +656,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.indexTime, forKey: .indexTime)
         try container.encode(self.errorSamples, forKey: .errorSamples)
@@ -633,12 +666,23 @@
         }
       }
 
+      /// The type URL for `IndexStatus`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Document.IndexStatus"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Document.IndexStatus"
       }
+
+      /// Initialize an instance of `IndexStatus` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Document.IndexStatus"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `IndexStatus` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -666,12 +710,23 @@
       case jsonData(Swift.String)
     }
 
+    /// The type URL for `Document`: `"type.googleapis.com/google.cloud.discoveryengine.v1.Document"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Document"
     }
+
+    /// Initialize an instance of `Document` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.Document"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Document` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

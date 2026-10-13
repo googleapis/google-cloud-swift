@@ -99,6 +99,25 @@ user mocks, each service protocol provides default extension implementations
 that throw `RequestError.unimplemented`. Applications can mock only the RPC
 methods required for their test cases.
 
+### Client and credential lifecycle
+
+Clients and `Credentials` instances are thread-safe (`Sendable`) and are designed
+to be initialized at application startup and reused across requests:
+
+- **Synchronous ADC file resolution:** Initializing `Credentials` with `.adc()`
+  (the default when creating a client without custom credentials) performs
+  synchronous filesystem I/O (`Data(contentsOf:)`) to locate, read, and validate
+  local credential files (`GOOGLE_APPLICATION_CREDENTIALS` or the well-known
+  `gcloud` file, which are assumed to be small JSON configuration files).
+  Initializing clients at startup provides fail-fast validation of credential
+  configuration while avoiding synchronous file I/O on Swift's cooperative
+  thread pool during asynchronous request handling.
+- **Amortized caching and transport state:** Each client and `Credentials`
+  instance owns an in-memory `TokenCache` actor (with a proactive background
+  refresh `Task`), transport connection pools (`HTTPClientHolder` or
+  `_GRPCClient`), and adaptive retry throttling state (`AdaptiveThrottler`).
+  Creating a new client per request discards these caches and connections.
+
 ## Request configuration and the `.with` idiom
 
 Unlike languages that use builder objects or sprawling parameter lists, Swift
@@ -300,7 +319,7 @@ transport layer.
 ### Hidden HTTP client
 
 The HTTP transport in `GoogleGax` uses `AsyncHTTPClient` (from the Swift on
-Server ecosystem) internally via `_HTTPClientHolder`. However, this dependency
+Server ecosystem) internally via `HTTPClientHolder`. However, this dependency
 is entirely encapsulated and never exposed in public APIs:
 
 - The client manages connection lifecycle and background shutdown automatically

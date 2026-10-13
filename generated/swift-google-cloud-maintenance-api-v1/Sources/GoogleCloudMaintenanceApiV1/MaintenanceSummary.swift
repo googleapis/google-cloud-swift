@@ -117,7 +117,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .maintenanceName) {
       self.maintenanceName = value
@@ -154,7 +154,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.maintenanceName, forKey: .maintenanceName)
     try container.encode(self.title, forKey: .title)
@@ -220,7 +220,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .groupBy) {
         self.groupBy = value
@@ -236,7 +236,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.groupBy, forKey: .groupBy)
       try container.encode(self.aggregates, forKey: .aggregates)
@@ -245,12 +245,23 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Stats`: `"type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Stats"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Stats"
     }
+
+    /// Initialize an instance of `Stats` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Stats"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Stats` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -301,7 +312,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .group) {
         self.group = value
@@ -315,7 +326,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.group, forKey: .group)
       try container.encode(self.count, forKey: .count)
@@ -324,23 +335,45 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Aggregate`: `"type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Aggregate"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Aggregate"
     }
+
+    /// Initialize an instance of `Aggregate` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Aggregate"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Aggregate` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `MaintenanceSummary`: `"type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary"
   }
+
+  /// Initialize an instance of `MaintenanceSummary` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MaintenanceSummary` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

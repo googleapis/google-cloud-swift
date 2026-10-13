@@ -32,8 +32,8 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   Sendable
 {
   let inner: any Clients.SecurityProfileGroupServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `SecurityProfileGroupServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -567,7 +567,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func listSecurityProfileGroupsByItems(
     request: ListSecurityProfileGroupsRequest
-  ) -> some AsyncSequence<SecurityProfileGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityProfileGroup, any Swift.Error> & Sendable {
     self.listSecurityProfileGroupsByItems(request: request, options: .init())
   }
 
@@ -576,7 +576,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
   /// @Snippet(path: "SecurityProfileGroupService_ListSecurityProfileGroups")
   public func listSecurityProfileGroupsByItems(
     request: ListSecurityProfileGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SecurityProfileGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityProfileGroup, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListSecurityProfileGroupsResponse in
@@ -590,7 +590,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func listSecurityProfileGroupsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SecurityProfileGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityProfileGroup, any Swift.Error> & Sendable {
     let request = ListSecurityProfileGroupsRequest().with {
       $0.parent = parent
     }
@@ -739,7 +739,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func listSecurityProfilesByItems(
     request: ListSecurityProfilesRequest
-  ) -> some AsyncSequence<SecurityProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityProfile, any Swift.Error> & Sendable {
     self.listSecurityProfilesByItems(request: request, options: .init())
   }
 
@@ -748,7 +748,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
   /// @Snippet(path: "SecurityProfileGroupService_ListSecurityProfiles")
   public func listSecurityProfilesByItems(
     request: ListSecurityProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SecurityProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityProfile, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListSecurityProfilesResponse in
@@ -762,7 +762,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func listSecurityProfilesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SecurityProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityProfile, any Swift.Error> & Sendable {
     let request = ListSecurityProfilesRequest().with {
       $0.parent = parent
     }
@@ -909,7 +909,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -935,7 +935,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
   /// @Snippet(path: "SecurityProfileGroupService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1008,7 +1008,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1019,7 +1019,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
   /// @Snippet(path: "SecurityProfileGroupService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1033,7 +1033,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

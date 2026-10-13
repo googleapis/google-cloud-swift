@@ -126,7 +126,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -176,7 +176,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -236,7 +236,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAttachmentUri)
       {
@@ -248,7 +248,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.serviceAttachmentUri, forKey: .serviceAttachmentUri)
       for (key, value) in self._unknownFields.json {
@@ -256,13 +256,24 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ProducerPscConfig`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ProducerPscConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ProducerPscConfig"
     }
+
+    /// Initialize an instance of `ProducerPscConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ProducerPscConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ProducerPscConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -366,7 +377,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .project) {
         self.project = value
@@ -410,7 +421,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.project, forKey: .project)
       try container.encode(self.network, forKey: .network)
@@ -534,7 +545,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -552,7 +563,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("STATE_UNSPECIFIED")
@@ -567,13 +578,24 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ConsumerPscConfig`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConfig"
     }
+
+    /// Initialize an instance of `ConsumerPscConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConsumerPscConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -707,7 +729,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAttachmentUri)
       {
@@ -762,7 +784,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.serviceAttachmentUri, forKey: .serviceAttachmentUri)
       try container.encode(self.state, forKey: .state)
@@ -901,7 +923,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -919,7 +941,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("STATE_UNSPECIFIED")
@@ -935,24 +957,46 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ConsumerPscConnection`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConnection"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConnection"
     }
+
+    /// Initialize an instance of `ConsumerPscConnection` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConnection"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConsumerPscConnection` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ServiceConnectionMap`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap"
   }
+
+  /// Initialize an instance of `ServiceConnectionMap` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ServiceConnectionMap` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

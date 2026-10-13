@@ -62,7 +62,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceAccount) {
       self.serviceAccount = value
@@ -78,7 +78,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.findings, forKey: .findings)
@@ -125,7 +125,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var findingType: FindingTypeOneOf? = nil
@@ -150,7 +150,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.findingType {
@@ -205,7 +205,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [Swift.String].self, forKey: .missingPermissions)
@@ -218,7 +218,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.missingPermissions, forKey: .missingPermissions)
         for (key, value) in self._unknownFields.json {
@@ -226,13 +226,24 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
         }
       }
 
+      /// The type URL for `IAMAccessDenied`: `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding.IAMAccessDenied"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding.IAMAccessDenied"
       }
+
+      /// Initialize an instance of `IAMAccessDenied` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding.IAMAccessDenied"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `IAMAccessDenied` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -243,25 +254,47 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
       indirect case iamAccessDenied(CheckOnboardingStatusResponse.Finding.IAMAccessDenied)
     }
 
+    /// The type URL for `Finding`: `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding"
     }
+
+    /// Initialize an instance of `Finding` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Finding` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `CheckOnboardingStatusResponse`: `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse"
   }
+
+  /// Initialize an instance of `CheckOnboardingStatusResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CheckOnboardingStatusResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

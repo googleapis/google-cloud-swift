@@ -58,7 +58,7 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [LocationMetadata.HiveMetastoreVersion].self, forKey: .supportedHiveMetastoreVersions)
@@ -71,7 +71,7 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(
       self.supportedHiveMetastoreVersions, forKey: .supportedHiveMetastoreVersions)
@@ -124,7 +124,7 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .version) {
         self.version = value
@@ -138,7 +138,7 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.version, forKey: .version)
       try container.encode(self.isDefault, forKey: .isDefault)
@@ -147,23 +147,45 @@ public struct LocationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `HiveMetastoreVersion`: `"type.googleapis.com/google.cloud.metastore.v1.LocationMetadata.HiveMetastoreVersion"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.metastore.v1.LocationMetadata.HiveMetastoreVersion"
     }
+
+    /// Initialize an instance of `HiveMetastoreVersion` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.metastore.v1.LocationMetadata.HiveMetastoreVersion"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HiveMetastoreVersion` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `LocationMetadata`: `"type.googleapis.com/google.cloud.metastore.v1.LocationMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.metastore.v1.LocationMetadata"
   }
+
+  /// Initialize an instance of `LocationMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.metastore.v1.LocationMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `LocationMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

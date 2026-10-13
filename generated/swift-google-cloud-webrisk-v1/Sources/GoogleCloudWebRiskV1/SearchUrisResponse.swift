@@ -54,7 +54,7 @@ public struct SearchUrisResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.threat = try container.decodeIfPresent(SearchUrisResponse.ThreatUri.self, forKey: .threat)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -63,7 +63,7 @@ public struct SearchUrisResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.threat, forKey: .threat)
     for (key, value) in self._unknownFields.json {
@@ -115,7 +115,7 @@ public struct SearchUrisResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([ThreatType].self, forKey: .threatTypes) {
         self.threatTypes = value
@@ -128,7 +128,7 @@ public struct SearchUrisResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.threatTypes, forKey: .threatTypes)
       try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
@@ -137,23 +137,45 @@ public struct SearchUrisResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ThreatUri`: `"type.googleapis.com/google.cloud.webrisk.v1.SearchUrisResponse.ThreatUri"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.webrisk.v1.SearchUrisResponse.ThreatUri"
     }
+
+    /// Initialize an instance of `ThreatUri` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.webrisk.v1.SearchUrisResponse.ThreatUri"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ThreatUri` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `SearchUrisResponse`: `"type.googleapis.com/google.cloud.webrisk.v1.SearchUrisResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.webrisk.v1.SearchUrisResponse"
   }
+
+  /// Initialize an instance of `SearchUrisResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.webrisk.v1.SearchUrisResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SearchUrisResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

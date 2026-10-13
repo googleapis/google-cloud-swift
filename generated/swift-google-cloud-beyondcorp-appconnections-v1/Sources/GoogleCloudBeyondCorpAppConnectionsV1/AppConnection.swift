@@ -20,7 +20,7 @@ import Foundation
 /// A BeyondCorp AppConnection resource represents a BeyondCorp protected
 /// AppConnection to a remote application. It creates all the necessary GCP
 /// components needed for creating a BeyondCorp protected AppConnection. Multiple
-/// connectors can be authorised for a single AppConnection.
+/// connectors can be authorized for a single AppConnection.
 public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
@@ -53,7 +53,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   public var applicationEndpoint: AppConnection.ApplicationEndpoint? = nil
 
   /// Optional. List of [google.cloud.beyondcorp.v1main.Connector.name] that are
-  /// authorised to be associated with this AppConnection.
+  /// authorized to be associated with this AppConnection.
   public var connectors: [Swift.String] = []
 
   /// Output only. The current state of the AppConnection.
@@ -61,6 +61,12 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Optional. Gateway used by the AppConnection.
   public var gateway: AppConnection.Gateway? = nil
+
+  /// Output only. Reserved for future use.
+  public var satisfiesPzs: Swift.Bool? = nil
+
+  /// Output only. Reserved for future use.
+  public var satisfiesPzi: Swift.Bool? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,6 +103,8 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     static let connectors = CodingKeys(stringValue: "connectors")
     static let state = CodingKeys(stringValue: "state")
     static let gateway = CodingKeys(stringValue: "gateway")
+    static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
+    static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -110,10 +118,12 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       "connectors",
       "state",
       "gateway",
+      "satisfiesPzs",
+      "satisfiesPzi",
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -144,13 +154,15 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
     self.gateway = try container.decodeIfPresent(AppConnection.Gateway.self, forKey: .gateway)
+    self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
+    self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -163,6 +175,8 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.connectors, forKey: .connectors)
     try container.encode(self.state, forKey: .state)
     try container.encodeIfPresent(self.gateway, forKey: .gateway)
+    try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
+    try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -211,7 +225,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
         self.host = value
@@ -225,7 +239,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.host, forKey: .host)
       try container.encode(self.port, forKey: .port)
@@ -234,13 +248,24 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ApplicationEndpoint`: `"type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection.ApplicationEndpoint"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection.ApplicationEndpoint"
     }
+
+    /// Initialize an instance of `ApplicationEndpoint` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection.ApplicationEndpoint"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ApplicationEndpoint` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -264,6 +289,9 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Required. AppGateway name in following format:
     /// `projects/{project_id}/locations/{location_id}/appgateways/{gateway_id}`
     public var appGateway: Swift.String = Swift.String()
+
+    /// Output only. L7 private service connection for this resource.
+    public var l7Psc: Swift.String = Swift.String()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -293,16 +321,18 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       static let uri = CodingKeys(stringValue: "uri")
       static let ingressPort = CodingKeys(stringValue: "ingressPort")
       static let appGateway = CodingKeys(stringValue: "appGateway")
+      static let l7Psc = CodingKeys(stringValue: "l7psc")
 
       static let _knownKeys: Set<Swift.String> = [
         "type",
         "uri",
         "ingressPort",
         "appGateway",
+        "l7psc",
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(AppConnection.Gateway.Type_.self, forKey: .type)
       {
@@ -317,18 +347,22 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appGateway) {
         self.appGateway = value
       }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .l7Psc) {
+        self.l7Psc = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.type, forKey: .type)
       try container.encode(self.uri, forKey: .uri)
       try container.encode(self.ingressPort, forKey: .ingressPort)
       try container.encode(self.appGateway, forKey: .appGateway)
+      try container.encode(self.l7Psc, forKey: .l7Psc)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -415,7 +449,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -433,7 +467,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
@@ -444,12 +478,23 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Gateway`: `"type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection.Gateway"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection.Gateway"
     }
+
+    /// Initialize an instance of `Gateway` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection.Gateway"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Gateway` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -538,7 +583,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -556,7 +601,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
@@ -673,7 +718,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -691,7 +736,7 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("STATE_UNSPECIFIED")
@@ -706,12 +751,23 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `AppConnection`: `"type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection"
   }
+
+  /// Initialize an instance of `AppConnection` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AppConnection` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

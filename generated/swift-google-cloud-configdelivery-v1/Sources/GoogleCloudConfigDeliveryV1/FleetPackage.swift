@@ -127,7 +127,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -162,7 +162,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -221,7 +221,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var source: SourceOneOf? = nil
@@ -251,7 +251,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.source {
@@ -276,13 +276,24 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case cloudBuildRepository(FleetPackage.CloudBuildRepository)
     }
 
+    /// The type URL for `ResourceBundleSelector`: `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.ResourceBundleSelector"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.ResourceBundleSelector"
     }
+
+    /// Initialize an instance of `ResourceBundleSelector` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.ResourceBundleSelector"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ResourceBundleSelector` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -334,7 +345,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -348,7 +359,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.tag, forKey: .tag)
@@ -357,12 +368,23 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ResourceBundleTag`: `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.ResourceBundleTag"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.ResourceBundleTag"
     }
+
+    /// Initialize an instance of `ResourceBundleTag` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.ResourceBundleTag"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ResourceBundleTag` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -433,7 +455,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -470,7 +492,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.path, forKey: .path)
@@ -496,12 +518,23 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       case variantsPattern(Swift.String)
     }
 
+    /// The type URL for `CloudBuildRepository`: `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.CloudBuildRepository"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.CloudBuildRepository"
     }
+
+    /// Initialize an instance of `CloudBuildRepository` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.CloudBuildRepository"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CloudBuildRepository` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -545,7 +578,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var target: TargetOneOf? = nil
@@ -568,7 +601,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.target {
@@ -588,12 +621,23 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case fleet(Fleet)
     }
 
+    /// The type URL for `Target`: `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.Target"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.Target"
     }
+
+    /// Initialize an instance of `Target` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.Target"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Target` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -638,7 +682,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var strategy: StrategyOneOf? = nil
@@ -663,7 +707,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.strategy {
@@ -693,12 +737,23 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       case variantNameTemplate(Swift.String)
     }
 
+    /// The type URL for `VariantSelector`: `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.VariantSelector"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.VariantSelector"
     }
+
+    /// Initialize an instance of `VariantSelector` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.VariantSelector"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VariantSelector` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -794,7 +849,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -812,7 +867,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("STATE_UNSPECIFIED")
@@ -824,12 +879,23 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `FleetPackage`: `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage"
   }
+
+  /// Initialize an instance of `FleetPackage` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `FleetPackage` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

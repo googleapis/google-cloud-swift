@@ -63,7 +63,7 @@ public struct UpdateCapacityCommitmentRequest: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.capacityCommitment = try container.decodeIfPresent(
       CapacityCommitment.self, forKey: .capacityCommitment)
@@ -75,7 +75,7 @@ public struct UpdateCapacityCommitmentRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.capacityCommitment, forKey: .capacityCommitment)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -84,13 +84,24 @@ public struct UpdateCapacityCommitmentRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `UpdateCapacityCommitmentRequest`: `"type.googleapis.com/google.cloud.bigquery.reservation.v1.UpdateCapacityCommitmentRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.bigquery.reservation.v1.UpdateCapacityCommitmentRequest"
   }
+
+  /// Initialize an instance of `UpdateCapacityCommitmentRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.reservation.v1.UpdateCapacityCommitmentRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateCapacityCommitmentRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

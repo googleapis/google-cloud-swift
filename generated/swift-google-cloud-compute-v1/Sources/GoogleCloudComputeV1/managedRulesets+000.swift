@@ -114,7 +114,7 @@
 
     public func listByItems(
       request: ManagedRulesetsClient.ListRequest
-    ) -> some AsyncSequence<ManagedRuleset, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ManagedRuleset, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -123,7 +123,7 @@
     /// @Snippet(path: "managedRulesets_list")
     public func listByItems(
       request: ManagedRulesetsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ManagedRuleset, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ManagedRuleset, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ManagedRulesetList in
         var request = request
@@ -136,7 +136,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<ManagedRuleset, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ManagedRuleset, any Swift.Error> & Sendable {
       let request = ManagedRulesetsClient.ListRequest().with {
         $0.project = project
       }

@@ -69,7 +69,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .childAgent) {
       self.childAgent = value
@@ -105,7 +105,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.childAgent, forKey: .childAgent)
     try container.encode(self.direction, forKey: .direction)
@@ -164,7 +164,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var conditionType: ConditionTypeOneOf? = nil
@@ -194,7 +194,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.conditionType {
@@ -220,12 +220,23 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case pythonCodeCondition(PythonCodeCondition)
     }
 
+    /// The type URL for `DeterministicTransfer`: `"type.googleapis.com/google.cloud.ces.v1.TransferRule.DeterministicTransfer"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.TransferRule.DeterministicTransfer"
     }
+
+    /// Initialize an instance of `DeterministicTransfer` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.TransferRule.DeterministicTransfer"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DeterministicTransfer` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -270,7 +281,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.expressionCondition = try container.decodeIfPresent(
         ExpressionCondition.self, forKey: .expressionCondition)
@@ -280,7 +291,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.expressionCondition, forKey: .expressionCondition)
       for (key, value) in self._unknownFields.json {
@@ -288,12 +299,23 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `DisablePlannerTransfer`: `"type.googleapis.com/google.cloud.ces.v1.TransferRule.DisablePlannerTransfer"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.TransferRule.DisablePlannerTransfer"
     }
+
+    /// Initialize an instance of `DisablePlannerTransfer` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.TransferRule.DisablePlannerTransfer"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DisablePlannerTransfer` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -386,7 +408,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -404,7 +426,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("DIRECTION_UNSPECIFIED")
@@ -426,12 +448,23 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case disablePlannerTransfer(TransferRule.DisablePlannerTransfer)
   }
 
+  /// The type URL for `TransferRule`: `"type.googleapis.com/google.cloud.ces.v1.TransferRule"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.TransferRule"
   }
+
+  /// Initialize an instance of `TransferRule` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.TransferRule"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TransferRule` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

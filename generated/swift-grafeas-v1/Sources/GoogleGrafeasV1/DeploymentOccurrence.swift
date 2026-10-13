@@ -86,7 +86,7 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .userEmail) {
       self.userEmail = value
@@ -115,7 +115,7 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.userEmail, forKey: .userEmail)
     try container.encodeIfPresent(self.deployTime, forKey: .deployTime)
@@ -222,7 +222,7 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -240,7 +240,7 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("PLATFORM_UNSPECIFIED")
@@ -253,12 +253,23 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `DeploymentOccurrence`: `"type.googleapis.com/grafeas.v1.DeploymentOccurrence"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.DeploymentOccurrence"
   }
+
+  /// Initialize an instance of `DeploymentOccurrence` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.DeploymentOccurrence"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeploymentOccurrence` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -26,8 +26,8 @@
   /// @Snippet(path: "targetPoolsQuickstart")
   public final class TargetPoolsClient: Clients.TargetPoolsProtocol, Sendable {
     let inner: any Clients.TargetPoolsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `TargetPoolsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -51,6 +51,11 @@
     }
 
     /// Adds health check URLs to a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_addHealthCheck")
     public func addHealthCheckPollingUntilDone(
@@ -102,6 +107,11 @@
     }
 
     /// Adds an instance to a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_addInstance")
     public func addInstancePollingUntilDone(
@@ -165,6 +175,11 @@
     }
 
     /// Deletes the specified target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_delete")
     public func deletePollingUntilDone(
@@ -238,6 +253,11 @@
     /// Creates a target pool in the specified project and region using
     /// the data included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "targetPools_insert")
     public func insertPollingUntilDone(
       request: TargetPoolsClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -299,6 +319,11 @@
 
     /// Removes health check URL from a target pool.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "targetPools_removeHealthCheck")
     public func removeHealthCheckPollingUntilDone(
       request: TargetPoolsClient.RemoveHealthCheckRequest, options: GoogleGax.RequestOptions
@@ -350,6 +375,11 @@
 
     /// Removes instance URL from a target pool.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "targetPools_removeInstance")
     public func removeInstancePollingUntilDone(
       request: TargetPoolsClient.RemoveInstanceRequest, options: GoogleGax.RequestOptions
@@ -400,6 +430,11 @@
     }
 
     /// Changes a backup target pool's configurations.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_setBackup")
     public func setBackupPollingUntilDone(
@@ -455,6 +490,11 @@
     /// Sets the Google Cloud Armor security policy for the specified target pool.
     /// For more information, seeGoogle
     /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_setSecurityPolicy")
     public func setSecurityPolicyPollingUntilDone(
@@ -528,6 +568,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetPoolsClient.addHealthCheck`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func addHealthCheckPollingUntilDone(
         request: TargetPoolsClient.AddHealthCheckRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -538,6 +583,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetPoolsClient.addInstance`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func addInstancePollingUntilDone(
         request: TargetPoolsClient.AddInstanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -553,6 +603,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetPoolsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: TargetPoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -573,6 +628,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetPoolsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: TargetPoolsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -588,6 +648,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetPoolsClient.removeHealthCheck`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func removeHealthCheckPollingUntilDone(
         request: TargetPoolsClient.RemoveHealthCheckRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -598,6 +663,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetPoolsClient.removeInstance`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func removeInstancePollingUntilDone(
         request: TargetPoolsClient.RemoveInstanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -608,6 +678,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetPoolsClient.setBackup`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setBackupPollingUntilDone(
         request: TargetPoolsClient.SetBackupRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -618,6 +693,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetPoolsClient.setSecurityPolicy`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setSecurityPolicyPollingUntilDone(
         request: TargetPoolsClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -723,7 +803,7 @@
 
     public func aggregatedListByItems(
       request: TargetPoolsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetPoolsScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -735,7 +815,7 @@
     /// @Snippet(path: "targetPools_aggregatedList")
     public func aggregatedListByItems(
       request: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetPoolsScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.TargetPoolAggregatedList in
@@ -749,7 +829,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetPoolsScopedList), any Swift.Error> & Sendable {
       let request = TargetPoolsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -896,7 +976,7 @@
 
     public func listByItems(
       request: TargetPoolsClient.ListRequest
-    ) -> some AsyncSequence<TargetPool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetPool, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -906,7 +986,7 @@
     /// @Snippet(path: "targetPools_list")
     public func listByItems(
       request: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<TargetPool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetPool, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolList in
         var request = request
@@ -920,7 +1000,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<TargetPool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetPool, any Swift.Error> & Sendable {
       let request = TargetPoolsClient.ListRequest().with {
         $0.project = project
         $0.region = region

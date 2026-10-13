@@ -71,7 +71,7 @@ public struct ListChannelPartnerRepricingConfigsResponse: Codable, Equatable, Go
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ChannelPartnerRepricingConfig].self, forKey: .channelPartnerRepricingConfigs)
@@ -87,7 +87,7 @@ public struct ListChannelPartnerRepricingConfigsResponse: Codable, Equatable, Go
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(
       self.channelPartnerRepricingConfigs, forKey: .channelPartnerRepricingConfigs)
@@ -97,12 +97,23 @@ public struct ListChannelPartnerRepricingConfigsResponse: Codable, Equatable, Go
     }
   }
 
+  /// The type URL for `ListChannelPartnerRepricingConfigsResponse`: `"type.googleapis.com/google.cloud.channel.v1.ListChannelPartnerRepricingConfigsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.ListChannelPartnerRepricingConfigsResponse"
   }
+
+  /// Initialize an instance of `ListChannelPartnerRepricingConfigsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.ListChannelPartnerRepricingConfigsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListChannelPartnerRepricingConfigsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

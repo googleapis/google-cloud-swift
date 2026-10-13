@@ -27,8 +27,8 @@ import Foundation
 /// @Snippet(path: "MetricsScopesQuickstart")
 public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable {
   let inner: any Clients.MetricsScopesStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `MetricsScopesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

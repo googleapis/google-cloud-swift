@@ -154,7 +154,7 @@ public enum LoadBalancerType: Codable, Equatable, Hashable, Sendable {
     }
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.singleValueContainer()
     if let v = try? container.decode(Int.self) {
       self.init(intValue: v)
@@ -172,7 +172,7 @@ public enum LoadBalancerType: Codable, Equatable, Hashable, Sendable {
       in: container, debugDescription: "Expected enum value, must be integer or string.")
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
     case .unspecified: return try container.encode("LOAD_BALANCER_TYPE_UNSPECIFIED")

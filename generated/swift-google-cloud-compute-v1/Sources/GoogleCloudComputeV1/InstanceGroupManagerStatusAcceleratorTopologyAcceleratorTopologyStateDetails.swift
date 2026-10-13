@@ -64,7 +64,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.error = try container.decodeIfPresent(
         InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.Error.self,
@@ -77,7 +77,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
@@ -129,7 +129,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [
@@ -145,7 +145,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.errors, forKey: .errors)
         for (key, value) in self._unknownFields.json {
@@ -215,7 +215,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.code = try container.decodeIfPresent(Swift.String.self, forKey: .code)
           if let value = try container.decodeIfPresent(
@@ -234,7 +234,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.code, forKey: .code)
           try container.encode(self.errorDetails, forKey: .errorDetails)
@@ -300,7 +300,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.errorInfo = try container.decodeIfPresent(ErrorInfo.self, forKey: .errorInfo)
             self.help = try container.decodeIfPresent(Help.self, forKey: .help)
@@ -314,7 +314,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(self.errorInfo, forKey: .errorInfo)
             try container.encodeIfPresent(self.help, forKey: .help)
@@ -325,49 +325,93 @@
             }
           }
 
+          /// The type URL for `ErrorDetails`: `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error.errors.errorDetails"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error.errors.errorDetails"
           }
+
+          /// Initialize an instance of `ErrorDetails` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error.errors.errorDetails"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `ErrorDetails` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
 
+        /// The type URL for `Errors`: `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error.errors"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error.errors"
         }
+
+        /// Initialize an instance of `Errors` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error.errors"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `Errors` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `Error`: `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error"
       }
+
+      /// Initialize an instance of `Error` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails.error"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Error` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails`: `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails"
     }
+
+    /// Initialize an instance of `InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

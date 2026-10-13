@@ -72,7 +72,7 @@ public struct StatisticalTable: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.table = try container.decodeIfPresent(BigQueryTable.self, forKey: .table)
     if let value = try container.decodeIfPresent(
@@ -87,7 +87,7 @@ public struct StatisticalTable: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.table, forKey: .table)
     try container.encode(self.quasiIds, forKey: .quasiIds)
@@ -143,7 +143,7 @@ public struct StatisticalTable: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customTag) {
@@ -155,7 +155,7 @@ public struct StatisticalTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.field, forKey: .field)
       try container.encode(self.customTag, forKey: .customTag)
@@ -164,23 +164,45 @@ public struct StatisticalTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `QuasiIdentifierField`: `"type.googleapis.com/google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField"
     }
+
+    /// Initialize an instance of `QuasiIdentifierField` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `QuasiIdentifierField` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `StatisticalTable`: `"type.googleapis.com/google.privacy.dlp.v2.StatisticalTable"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.StatisticalTable"
   }
+
+  /// Initialize an instance of `StatisticalTable` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.StatisticalTable"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `StatisticalTable` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

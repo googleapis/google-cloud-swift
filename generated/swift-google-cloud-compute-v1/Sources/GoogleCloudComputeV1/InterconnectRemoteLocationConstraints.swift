@@ -91,7 +91,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.portPairRemoteLocation = try container.decodeIfPresent(
         InterconnectRemoteLocationConstraints.PortPairRemoteLocation.self,
@@ -106,7 +106,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.portPairRemoteLocation, forKey: .portPairRemoteLocation)
       try container.encodeIfPresent(self.portPairVlan, forKey: .portPairVlan)
@@ -164,13 +164,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .portPairMatchingRemoteLocation:
@@ -231,13 +231,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .portPairMatchingVlan: return try container.encode("PORT_PAIR_MATCHING_VLAN")
@@ -247,12 +247,23 @@
       }
     }
 
+    /// The type URL for `InterconnectRemoteLocationConstraints`: `"type.googleapis.com/google.cloud.compute.v1.InterconnectRemoteLocationConstraints"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InterconnectRemoteLocationConstraints"
     }
+
+    /// Initialize an instance of `InterconnectRemoteLocationConstraints` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InterconnectRemoteLocationConstraints"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InterconnectRemoteLocationConstraints` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

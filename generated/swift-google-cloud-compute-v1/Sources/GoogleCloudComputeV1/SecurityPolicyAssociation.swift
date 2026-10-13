@@ -89,7 +89,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.attachmentId = try container.decodeIfPresent(Swift.String.self, forKey: .attachmentId)
       self.displayName = try container.decodeIfPresent(Swift.String.self, forKey: .displayName)
@@ -112,7 +112,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.attachmentId, forKey: .attachmentId)
       try container.encodeIfPresent(self.displayName, forKey: .displayName)
@@ -126,12 +126,23 @@
       }
     }
 
+    /// The type URL for `SecurityPolicyAssociation`: `"type.googleapis.com/google.cloud.compute.v1.SecurityPolicyAssociation"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.SecurityPolicyAssociation"
     }
+
+    /// Initialize an instance of `SecurityPolicyAssociation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.SecurityPolicyAssociation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SecurityPolicyAssociation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

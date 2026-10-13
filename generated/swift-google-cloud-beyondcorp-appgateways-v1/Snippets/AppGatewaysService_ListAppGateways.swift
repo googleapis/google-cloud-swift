@@ -22,6 +22,9 @@ import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: AppGatewaysServiceClient, projectId: String, locationId: String) async throws {
   let items = client.listAppGatewaysByItems(
     request: ListAppGatewaysRequest()
@@ -37,6 +40,9 @@ func sample(client: AppGatewaysServiceClient, projectId: String, locationId: Str
 
 @main
 struct SnippetRunner {
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   static func main() async throws {
     do {
       let client = try GoogleCloudBeyondCorpAppGatewaysV1.AppGatewaysServiceClient()

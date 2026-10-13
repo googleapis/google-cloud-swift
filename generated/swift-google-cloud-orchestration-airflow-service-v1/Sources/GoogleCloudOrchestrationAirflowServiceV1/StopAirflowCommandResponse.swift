@@ -60,7 +60,7 @@ public struct StopAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .isDone) {
       self.isDone = value
@@ -74,7 +74,7 @@ public struct StopAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.isDone, forKey: .isDone)
     try container.encode(self.output, forKey: .output)
@@ -83,13 +83,24 @@ public struct StopAirflowCommandResponse: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `StopAirflowCommandResponse`: `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.StopAirflowCommandResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.StopAirflowCommandResponse"
   }
+
+  /// Initialize an instance of `StopAirflowCommandResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.orchestration.airflow.service.v1.StopAirflowCommandResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `StopAirflowCommandResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

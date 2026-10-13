@@ -73,7 +73,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .dryRun) {
       self.dryRun = value
@@ -115,7 +115,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dryRun, forKey: .dryRun)
     try container.encode(self.labels, forKey: .labels)
@@ -220,7 +220,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
         self.query = value
@@ -253,7 +253,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.query, forKey: .query)
       try container.encodeIfPresent(self.destinationTable, forKey: .destinationTable)
@@ -270,12 +270,23 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Query`: `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.Query"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.Query"
     }
+
+    /// Initialize an instance of `Query` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.Query"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Query` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -349,7 +360,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .sourceUris) {
         self.sourceUris = value
@@ -373,7 +384,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sourceUris, forKey: .sourceUris)
       try container.encode(self.schemaJson, forKey: .schemaJson)
@@ -387,12 +398,23 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Load`: `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.Load"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.Load"
     }
+
+    /// Initialize an instance of `Load` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.Load"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Load` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -442,7 +464,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destinationUris) {
         self.destinationUris = value
@@ -454,7 +476,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.destinationUris, forKey: .destinationUris)
       try container.encodeIfPresent(self.sourceTable, forKey: .sourceTable)
@@ -463,12 +485,23 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Extract`: `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.Extract"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.Extract"
     }
+
+    /// Initialize an instance of `Extract` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.Extract"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Extract` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -535,7 +568,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([TableName].self, forKey: .sourceTables) {
         self.sourceTables = value
@@ -556,7 +589,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sourceTables, forKey: .sourceTables)
       try container.encodeIfPresent(self.destinationTable, forKey: .destinationTable)
@@ -569,12 +602,23 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `TableCopy`: `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.TableCopy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.TableCopy"
     }
+
+    /// Initialize an instance of `TableCopy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration.TableCopy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TableCopy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -592,12 +636,23 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case tableCopy(JobConfiguration.TableCopy)
   }
 
+  /// The type URL for `JobConfiguration`: `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration"
   }
+
+  /// Initialize an instance of `JobConfiguration` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.logging.v1.JobConfiguration"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `JobConfiguration` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

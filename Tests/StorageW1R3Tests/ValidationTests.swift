@@ -86,13 +86,13 @@ import Testing
     ["--min-chunk-size=1MiB", "--max-chunk-size=1536KiB", "--chunk-size-quantum=1MiB"],
   ])
   func invalidConfigurationThrows(args: [String]) throws {
-    #expect(throws: Error.self) {
+    #expect(throws: (any Error).self) {
       let _ = try StorageW1R3.parseAsRoot(["--bucket-name=b"] + args)
     }
   }
 
   @Test func missingBucketName() throws {
-    #expect(throws: Error.self) {
+    #expect(throws: (any Error).self) {
       let _ = try StorageW1R3.parseAsRoot([])
     }
   }

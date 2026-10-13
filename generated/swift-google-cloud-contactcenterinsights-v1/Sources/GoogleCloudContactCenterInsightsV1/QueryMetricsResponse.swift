@@ -77,7 +77,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
       self.location = value
@@ -96,7 +96,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.location, forKey: .location)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
@@ -166,7 +166,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Dimension].self, forKey: .dimensions) {
         self.dimensions = value
@@ -181,7 +181,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dimensions, forKey: .dimensions)
       try container.encodeIfPresent(self.total, forKey: .total)
@@ -239,7 +239,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.interval = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .interval)
 
@@ -266,7 +266,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.interval, forKey: .interval)
 
@@ -373,7 +373,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.conversationCount = try container.decodeIfPresent(
             Swift.Int32.self, forKey: .conversationCount)
@@ -405,7 +405,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.conversationCount, forKey: .conversationCount)
           try container.encodeIfPresent(
@@ -472,7 +472,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
               self.tag = value
@@ -488,7 +488,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.tag, forKey: .tag)
             try container.encode(self.averageTagNormalizedScore, forKey: .averageTagNormalizedScore)
@@ -497,25 +497,47 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
+          /// The type URL for `QaTagScore`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure.QaTagScore"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure.QaTagScore"
           }
+
+          /// Initialize an instance of `QaTagScore` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure.QaTagScore"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `QaTagScore` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
 
+        /// The type URL for `ConversationMeasure`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure"
         }
+
+        /// Initialize an instance of `ConversationMeasure` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `ConversationMeasure` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -527,13 +549,24 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         indirect case conversationMeasure(QueryMetricsResponse.Slice.DataPoint.ConversationMeasure)
       }
 
+      /// The type URL for `DataPoint`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint"
       }
+
+      /// Initialize an instance of `DataPoint` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `DataPoint` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -577,7 +610,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [QueryMetricsResponse.Slice.DataPoint].self, forKey: .dataPoints)
@@ -590,7 +623,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.dataPoints, forKey: .dataPoints)
         for (key, value) in self._unknownFields.json {
@@ -598,35 +631,68 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `TimeSeries`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.TimeSeries"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.TimeSeries"
       }
+
+      /// Initialize an instance of `TimeSeries` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.TimeSeries"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `TimeSeries` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `Slice`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice"
     }
+
+    /// Initialize an instance of `Slice` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Slice` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `QueryMetricsResponse`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse"
   }
+
+  /// Initialize an instance of `QueryMetricsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `QueryMetricsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

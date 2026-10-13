@@ -68,7 +68,7 @@ public struct AdvancedMachineFeatures: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.threadsPerCore = try container.decodeIfPresent(Swift.Int64.self, forKey: .threadsPerCore)
     self.enableNestedVirtualization = try container.decodeIfPresent(
@@ -81,7 +81,7 @@ public struct AdvancedMachineFeatures: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.threadsPerCore, forKey: .threadsPerCore)
     try container.encodeIfPresent(
@@ -186,7 +186,7 @@ public struct AdvancedMachineFeatures: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -204,7 +204,7 @@ public struct AdvancedMachineFeatures: Codable, Equatable, GoogleWKT._AnyPackabl
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("PERFORMANCE_MONITORING_UNIT_UNSPECIFIED")
@@ -217,12 +217,23 @@ public struct AdvancedMachineFeatures: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// The type URL for `AdvancedMachineFeatures`: `"type.googleapis.com/google.container.v1.AdvancedMachineFeatures"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.AdvancedMachineFeatures"
   }
+
+  /// Initialize an instance of `AdvancedMachineFeatures` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.AdvancedMachineFeatures"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AdvancedMachineFeatures` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

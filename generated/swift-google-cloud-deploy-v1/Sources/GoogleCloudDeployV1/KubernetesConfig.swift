@@ -57,7 +57,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var serviceDefinition: ServiceDefinitionOneOf? = nil
@@ -87,7 +87,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.serviceDefinition {
@@ -182,7 +182,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .httpRoute) {
         self.httpRoute = value
@@ -208,7 +208,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.httpRoute, forKey: .httpRoute)
       try container.encode(self.service, forKey: .service)
@@ -272,7 +272,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .destinationIds) {
           self.destinationIds = value
@@ -286,7 +286,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.destinationIds, forKey: .destinationIds)
         try container.encode(self.propagateService, forKey: .propagateService)
@@ -295,24 +295,46 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `RouteDestinations`: `"type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh.RouteDestinations"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh.RouteDestinations"
       }
+
+      /// Initialize an instance of `RouteDestinations` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh.RouteDestinations"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `RouteDestinations` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `GatewayServiceMesh`: `"type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh"
     }
+
+    /// Initialize an instance of `GatewayServiceMesh` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GatewayServiceMesh` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -376,7 +398,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .service) {
         self.service = value
@@ -398,7 +420,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.service, forKey: .service)
       try container.encode(self.deployment, forKey: .deployment)
@@ -409,12 +431,23 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ServiceNetworking`: `"type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.ServiceNetworking"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.ServiceNetworking"
     }
+
+    /// Initialize an instance of `ServiceNetworking` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.ServiceNetworking"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ServiceNetworking` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -428,12 +461,23 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case serviceNetworking(KubernetesConfig.ServiceNetworking)
   }
 
+  /// The type URL for `KubernetesConfig`: `"type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig"
   }
+
+  /// Initialize an instance of `KubernetesConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `KubernetesConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

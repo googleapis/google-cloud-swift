@@ -68,7 +68,7 @@ public struct RegisterSubscriberRequest: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .account) {
       self.account = value
@@ -83,7 +83,7 @@ public struct RegisterSubscriberRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.account, forKey: .account)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
@@ -93,12 +93,23 @@ public struct RegisterSubscriberRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
+  /// The type URL for `RegisterSubscriberRequest`: `"type.googleapis.com/google.cloud.channel.v1.RegisterSubscriberRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.RegisterSubscriberRequest"
   }
+
+  /// Initialize an instance of `RegisterSubscriberRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.RegisterSubscriberRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RegisterSubscriberRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

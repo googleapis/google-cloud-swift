@@ -74,7 +74,7 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .targetProject) {
       self.targetProject = value
@@ -105,7 +105,7 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.targetProject, forKey: .targetProject)
     try container.encode(self.labels, forKey: .labels)
@@ -128,12 +128,23 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
     indirect case targetDisk(ComputeEngineDisk)
   }
 
+  /// The type URL for `DiskMigrationJobTargetDetails`: `"type.googleapis.com/google.cloud.vmmigration.v1.DiskMigrationJobTargetDetails"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.DiskMigrationJobTargetDetails"
   }
+
+  /// Initialize an instance of `DiskMigrationJobTargetDetails` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vmmigration.v1.DiskMigrationJobTargetDetails"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DiskMigrationJobTargetDetails` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -93,7 +93,7 @@ public struct CreatePolicyBasedRouteRequest: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -112,7 +112,7 @@ public struct CreatePolicyBasedRouteRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.policyBasedRouteId, forKey: .policyBasedRouteId)
@@ -123,12 +123,23 @@ public struct CreatePolicyBasedRouteRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `CreatePolicyBasedRouteRequest`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.CreatePolicyBasedRouteRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.CreatePolicyBasedRouteRequest"
   }
+
+  /// Initialize an instance of `CreatePolicyBasedRouteRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.CreatePolicyBasedRouteRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreatePolicyBasedRouteRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

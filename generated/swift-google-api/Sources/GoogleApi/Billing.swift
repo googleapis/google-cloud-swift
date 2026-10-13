@@ -89,7 +89,7 @@ public struct Billing: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [Billing.BillingDestination].self, forKey: .consumerDestinations)
@@ -102,7 +102,7 @@ public struct Billing: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.consumerDestinations, forKey: .consumerDestinations)
     for (key, value) in self._unknownFields.json {
@@ -162,7 +162,7 @@ public struct Billing: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .monitoredResource) {
         self.monitoredResource = value
@@ -176,7 +176,7 @@ public struct Billing: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.monitoredResource, forKey: .monitoredResource)
       try container.encode(self.metrics, forKey: .metrics)
@@ -185,23 +185,45 @@ public struct Billing: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `BillingDestination`: `"type.googleapis.com/google.api.Billing.BillingDestination"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.Billing.BillingDestination"
     }
+
+    /// Initialize an instance of `BillingDestination` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.Billing.BillingDestination"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BillingDestination` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `Billing`: `"type.googleapis.com/google.api.Billing"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.Billing"
   }
+
+  /// Initialize an instance of `Billing` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.Billing"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Billing` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -87,7 +87,7 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .initialDelaySeconds) {
       self.initialDelaySeconds = value
@@ -128,7 +128,7 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.initialDelaySeconds, forKey: .initialDelaySeconds)
     try container.encode(self.timeoutSeconds, forKey: .timeoutSeconds)
@@ -162,12 +162,23 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case grpc(GRPCAction)
   }
 
+  /// The type URL for `Probe`: `"type.googleapis.com/google.cloud.run.v2.Probe"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.Probe"
   }
+
+  /// Initialize an instance of `Probe` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.run.v2.Probe"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Probe` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

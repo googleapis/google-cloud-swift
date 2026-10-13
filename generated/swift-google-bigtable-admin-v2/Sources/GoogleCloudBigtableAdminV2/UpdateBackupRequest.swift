@@ -71,7 +71,7 @@ public struct UpdateBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.backup = try container.decodeIfPresent(Backup.self, forKey: .backup)
     self.updateMask = try container.decodeIfPresent(
@@ -82,7 +82,7 @@ public struct UpdateBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.backup, forKey: .backup)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -91,12 +91,23 @@ public struct UpdateBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `UpdateBackupRequest`: `"type.googleapis.com/google.bigtable.admin.v2.UpdateBackupRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.UpdateBackupRequest"
   }
+
+  /// Initialize an instance of `UpdateBackupRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.UpdateBackupRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateBackupRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

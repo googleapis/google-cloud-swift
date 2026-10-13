@@ -66,7 +66,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [TimeSeriesTable.TableDataSet].self, forKey: .dataSets)
@@ -89,7 +89,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dataSets, forKey: .dataSets)
     try container.encode(self.metricVisualization, forKey: .metricVisualization)
@@ -161,7 +161,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.timeSeriesQuery = try container.decodeIfPresent(
         TimeSeriesQuery.self, forKey: .timeSeriesQuery)
@@ -178,7 +178,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.timeSeriesQuery, forKey: .timeSeriesQuery)
       try container.encode(self.tableTemplate, forKey: .tableTemplate)
@@ -189,12 +189,23 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `TableDataSet`: `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable.TableDataSet"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable.TableDataSet"
     }
+
+    /// Initialize an instance of `TableDataSet` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable.TableDataSet"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TableDataSet` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -243,7 +254,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .column) {
         self.column = value
@@ -257,7 +268,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.column, forKey: .column)
       try container.encode(self.visible, forKey: .visible)
@@ -266,12 +277,23 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ColumnSettings`: `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable.ColumnSettings"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable.ColumnSettings"
     }
+
+    /// Initialize an instance of `ColumnSettings` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable.ColumnSettings"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ColumnSettings` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -364,7 +386,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -382,7 +404,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("METRIC_VISUALIZATION_UNSPECIFIED")
@@ -394,12 +416,23 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `TimeSeriesTable`: `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable"
   }
+
+  /// Initialize an instance of `TimeSeriesTable` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TimeSeriesTable` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -242,7 +242,7 @@ extension Clients.DocumentSchemaServiceProtocol {
 
   public func listDocumentSchemasByItems(
     request: ListDocumentSchemasRequest
-  ) -> some AsyncSequence<DocumentSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DocumentSchema, any Swift.Error> & Sendable {
     self.listDocumentSchemasByItems(request: request, options: .init())
   }
 
@@ -251,7 +251,7 @@ extension Clients.DocumentSchemaServiceProtocol {
   /// @Snippet(path: "DocumentSchemaService_ListDocumentSchemas")
   public func listDocumentSchemasByItems(
     request: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DocumentSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DocumentSchema, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse in
@@ -265,7 +265,7 @@ extension Clients.DocumentSchemaServiceProtocol {
 
   public func listDocumentSchemasByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DocumentSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DocumentSchema, any Swift.Error> & Sendable {
     let request = ListDocumentSchemasRequest().with {
       $0.parent = parent
     }

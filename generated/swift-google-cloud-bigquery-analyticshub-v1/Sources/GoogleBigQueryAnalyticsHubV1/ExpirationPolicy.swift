@@ -61,7 +61,7 @@ public struct ExpirationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.ttl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .ttl)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -70,7 +70,7 @@ public struct ExpirationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.ttl, forKey: .ttl)
     for (key, value) in self._unknownFields.json {
@@ -78,12 +78,23 @@ public struct ExpirationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ExpirationPolicy`: `"type.googleapis.com/google.cloud.bigquery.analyticshub.v1.ExpirationPolicy"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.ExpirationPolicy"
   }
+
+  /// Initialize an instance of `ExpirationPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.analyticshub.v1.ExpirationPolicy"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExpirationPolicy` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

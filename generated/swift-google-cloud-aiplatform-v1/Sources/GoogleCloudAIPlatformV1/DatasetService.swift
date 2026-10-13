@@ -30,8 +30,8 @@
   /// @Snippet(path: "DatasetServiceQuickstart")
   public final class DatasetServiceClient: Clients.DatasetServiceProtocol, Sendable {
     let inner: any Clients.DatasetServiceStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `DatasetServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -834,7 +834,7 @@
 
     public func listDatasetsByItems(
       request: ListDatasetsRequest
-    ) -> some AsyncSequence<Dataset, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Dataset, any Swift.Error> & Sendable {
       self.listDatasetsByItems(request: request, options: .init())
     }
 
@@ -843,7 +843,7 @@
     /// @Snippet(path: "DatasetService_ListDatasets")
     public func listDatasetsByItems(
       request: ListDatasetsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Dataset, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Dataset, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListDatasetsResponse
         in
@@ -857,7 +857,7 @@
 
     public func listDatasetsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Dataset, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Dataset, any Swift.Error> & Sendable {
       let request = ListDatasetsRequest().with {
         $0.parent = parent
       }
@@ -1087,7 +1087,7 @@
 
     public func listDatasetVersionsByItems(
       request: ListDatasetVersionsRequest
-    ) -> some AsyncSequence<DatasetVersion, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DatasetVersion, any Swift.Error> & Sendable {
       self.listDatasetVersionsByItems(request: request, options: .init())
     }
 
@@ -1096,7 +1096,7 @@
     /// @Snippet(path: "DatasetService_ListDatasetVersions")
     public func listDatasetVersionsByItems(
       request: ListDatasetVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<DatasetVersion, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DatasetVersion, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListDatasetVersionsResponse in
@@ -1110,7 +1110,7 @@
 
     public func listDatasetVersionsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<DatasetVersion, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DatasetVersion, any Swift.Error> & Sendable {
       let request = ListDatasetVersionsRequest().with {
         $0.parent = parent
       }
@@ -1165,7 +1165,7 @@
 
     public func listDataItemsByItems(
       request: ListDataItemsRequest
-    ) -> some AsyncSequence<DataItem, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DataItem, any Swift.Error> & Sendable {
       self.listDataItemsByItems(request: request, options: .init())
     }
 
@@ -1174,7 +1174,7 @@
     /// @Snippet(path: "DatasetService_ListDataItems")
     public func listDataItemsByItems(
       request: ListDataItemsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<DataItem, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DataItem, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListDataItemsResponse in
@@ -1188,7 +1188,7 @@
 
     public func listDataItemsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<DataItem, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DataItem, any Swift.Error> & Sendable {
       let request = ListDataItemsRequest().with {
         $0.parent = parent
       }
@@ -1209,7 +1209,7 @@
 
     public func searchDataItemsByItems(
       request: SearchDataItemsRequest
-    ) -> some AsyncSequence<DataItemView, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DataItemView, any Swift.Error> & Sendable {
       self.searchDataItemsByItems(request: request, options: .init())
     }
 
@@ -1221,7 +1221,7 @@
     #endif
     public func searchDataItemsByItems(
       request: SearchDataItemsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<DataItemView, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DataItemView, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.SearchDataItemsResponse in
@@ -1247,7 +1247,7 @@
 
     public func listSavedQueriesByItems(
       request: ListSavedQueriesRequest
-    ) -> some AsyncSequence<SavedQuery, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SavedQuery, any Swift.Error> & Sendable {
       self.listSavedQueriesByItems(request: request, options: .init())
     }
 
@@ -1256,7 +1256,7 @@
     /// @Snippet(path: "DatasetService_ListSavedQueries")
     public func listSavedQueriesByItems(
       request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<SavedQuery, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SavedQuery, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListSavedQueriesResponse in
@@ -1270,7 +1270,7 @@
 
     public func listSavedQueriesByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<SavedQuery, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SavedQuery, any Swift.Error> & Sendable {
       let request = ListSavedQueriesRequest().with {
         $0.parent = parent
       }
@@ -1343,7 +1343,7 @@
 
     public func listAnnotationsByItems(
       request: ListAnnotationsRequest
-    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, any Swift.Error> & Sendable {
       self.listAnnotationsByItems(request: request, options: .init())
     }
 
@@ -1352,7 +1352,7 @@
     /// @Snippet(path: "DatasetService_ListAnnotations")
     public func listAnnotationsByItems(
       request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListAnnotationsResponse in
@@ -1366,7 +1366,7 @@
 
     public func listAnnotationsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, any Swift.Error> & Sendable {
       let request = ListAnnotationsRequest().with {
         $0.parent = parent
       }
@@ -1387,7 +1387,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -1396,7 +1396,7 @@
     /// @Snippet(path: "DatasetService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -1469,7 +1469,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -1480,7 +1480,7 @@
     /// @Snippet(path: "DatasetService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -1494,7 +1494,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

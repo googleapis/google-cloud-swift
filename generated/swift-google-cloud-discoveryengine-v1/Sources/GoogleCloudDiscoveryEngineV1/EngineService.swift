@@ -31,8 +31,8 @@
   /// @Snippet(path: "EngineServiceQuickstart")
   public final class EngineServiceClient: Clients.EngineServiceProtocol, Sendable {
     let inner: any Clients.EngineServiceStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `EngineServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -375,7 +375,7 @@
 
     public func listEnginesByItems(
       request: ListEnginesRequest
-    ) -> some AsyncSequence<Engine, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Engine, any Swift.Error> & Sendable {
       self.listEnginesByItems(request: request, options: .init())
     }
 
@@ -387,7 +387,7 @@
     /// @Snippet(path: "EngineService_ListEngines")
     public func listEnginesByItems(
       request: ListEnginesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Engine, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Engine, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse in
@@ -401,7 +401,7 @@
 
     public func listEnginesByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Engine, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Engine, any Swift.Error> & Sendable {
       let request = ListEnginesRequest().with {
         $0.parent = parent
       }
@@ -422,7 +422,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -433,7 +433,7 @@
     /// @Snippet(path: "EngineService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -447,7 +447,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

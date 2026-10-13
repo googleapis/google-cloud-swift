@@ -68,7 +68,7 @@ public struct ResourceErrorDetail: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.resourceInfo = try container.decodeIfPresent(
       GoogleRpc.ResourceInfo.self, forKey: .resourceInfo)
@@ -84,7 +84,7 @@ public struct ResourceErrorDetail: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.resourceInfo, forKey: .resourceInfo)
     try container.encode(self.errorDetails, forKey: .errorDetails)
@@ -94,12 +94,23 @@ public struct ResourceErrorDetail: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ResourceErrorDetail`: `"type.googleapis.com/google.cloud.bigquery.migration.v2.ResourceErrorDetail"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.migration.v2.ResourceErrorDetail"
   }
+
+  /// Initialize an instance of `ResourceErrorDetail` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.migration.v2.ResourceErrorDetail"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ResourceErrorDetail` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

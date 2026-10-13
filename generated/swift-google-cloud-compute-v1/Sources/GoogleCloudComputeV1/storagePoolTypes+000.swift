@@ -109,7 +109,8 @@
 
     public func aggregatedListByItems(
       request: StoragePoolTypesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, StoragePoolTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, StoragePoolTypesScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -121,7 +122,8 @@
     /// @Snippet(path: "storagePoolTypes_aggregatedList")
     public func aggregatedListByItems(
       request: StoragePoolTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, StoragePoolTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, StoragePoolTypesScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.StoragePoolTypeAggregatedList in
@@ -135,7 +137,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, StoragePoolTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, StoragePoolTypesScopedList), any Swift.Error> & Sendable
+    {
       let request = StoragePoolTypesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -181,7 +184,7 @@
 
     public func listByItems(
       request: StoragePoolTypesClient.ListRequest
-    ) -> some AsyncSequence<StoragePoolType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePoolType, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -191,7 +194,7 @@
     /// @Snippet(path: "storagePoolTypes_list")
     public func listByItems(
       request: StoragePoolTypesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<StoragePoolType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePoolType, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolTypeList in
         var request = request
@@ -205,7 +208,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<StoragePoolType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePoolType, any Swift.Error> & Sendable {
       let request = StoragePoolTypesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

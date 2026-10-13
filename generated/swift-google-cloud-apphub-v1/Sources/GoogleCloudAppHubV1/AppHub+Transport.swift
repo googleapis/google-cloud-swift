@@ -1493,6 +1493,218 @@ extension Clients {
     }
 
     @concurrent
+    public func getBoundary(
+      request: GetBoundaryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.Boundary {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/boundary"),
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/boundary"),
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/boundary"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudAppHubV1.Boundary.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func updateBoundary(
+      request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.boundary.map({ $0.name }),
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/boundary"),
+              ],
+              fieldName: "boundary.name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+          query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.PATCH) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.boundary.map({ $0.name }),
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/boundary"),
+            ],
+            fieldName: "boundary.name",
+            expecting: "projects/*/locations/*/boundary"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      if let body = request.boundary {
+        try req.setBody(json: body)
+      }
+      return try await req.rpc(
+        GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func getExtendedMetadataSchema(
+      request: GetExtendedMetadataSchemaRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.ExtendedMetadataSchema {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/extendedMetadataSchemas"), .trailingMultiWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/extendedMetadataSchemas"), .trailingMultiWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/extendedMetadataSchemas/**"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudAppHubV1.ExtendedMetadataSchema.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func listExtendedMetadataSchemas(
+      request: ListExtendedMetadataSchemasRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.parent as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              ],
+              fieldName: "parent")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)/extendedMetadataSchemas"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+          query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.parent as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+            ],
+            fieldName: "parent",
+            expecting: "projects/*/locations/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse.self,
+        timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {

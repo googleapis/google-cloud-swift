@@ -26,8 +26,8 @@
   /// @Snippet(path: "backendBucketsQuickstart")
   public final class BackendBucketsClient: Clients.BackendBucketsProtocol, Sendable {
     let inner: any Clients.BackendBucketsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `BackendBucketsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -53,6 +53,11 @@
 
     /// Adds a key for validating requests with signed URLs for this backend
     /// bucket.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendBuckets_addSignedUrlKey")
     public func addSignedUrlKeyPollingUntilDone(
@@ -117,6 +122,11 @@
 
     /// Deletes the specified BackendBucket resource.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "backendBuckets_delete")
     public func deletePollingUntilDone(
       request: BackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
@@ -168,6 +178,11 @@
 
     /// Deletes a key for validating requests with signed URLs for this backend
     /// bucket.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendBuckets_deleteSignedUrlKey")
     public func deleteSignedUrlKeyPollingUntilDone(
@@ -239,6 +254,11 @@
 
     /// Creates a BackendBucket resource in the specified project using
     /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendBuckets_insert")
     public func insertPollingUntilDone(
@@ -315,6 +335,11 @@
     /// semantics and uses theJSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "backendBuckets_patch")
     public func patchPollingUntilDone(
       request: BackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -364,6 +389,11 @@
     }
 
     /// Sets the edge security policy for the specified backend bucket.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "backendBuckets_setEdgeSecurityPolicy")
     public func setEdgeSecurityPolicyPollingUntilDone(
@@ -436,6 +466,11 @@
     /// Updates the specified BackendBucket resource with the data included in the
     /// request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "backendBuckets_update")
     public func updatePollingUntilDone(
       request: BackendBucketsClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -498,6 +533,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `BackendBucketsClient.addSignedUrlKey`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func addSignedUrlKeyPollingUntilDone(
         request: BackendBucketsClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -513,6 +553,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `BackendBucketsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: BackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -523,6 +568,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `BackendBucketsClient.deleteSignedUrlKey`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deleteSignedUrlKeyPollingUntilDone(
         request: BackendBucketsClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -543,6 +593,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `BackendBucketsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: BackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -563,6 +618,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `BackendBucketsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: BackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -574,6 +634,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `BackendBucketsClient.setEdgeSecurityPolicy`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setEdgeSecurityPolicyPollingUntilDone(
         request: BackendBucketsClient.SetEdgeSecurityPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -595,6 +660,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `BackendBucketsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: BackendBucketsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -654,7 +724,7 @@
 
     public func aggregatedListByItems(
       request: BackendBucketsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -667,7 +737,7 @@
     /// @Snippet(path: "backendBuckets_aggregatedList")
     public func aggregatedListByItems(
       request: BackendBucketsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.BackendBucketAggregatedList in
@@ -681,7 +751,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendBucketsScopedList), any Swift.Error> & Sendable {
       let request = BackendBucketsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -855,7 +925,7 @@
 
     public func listByItems(
       request: BackendBucketsClient.ListRequest
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -865,7 +935,7 @@
     /// @Snippet(path: "backendBuckets_list")
     public func listByItems(
       request: BackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
         var request = request
@@ -878,7 +948,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let request = BackendBucketsClient.ListRequest().with {
         $0.project = project
       }
@@ -899,7 +969,7 @@
 
     public func listUsableByItems(
       request: BackendBucketsClient.ListUsableRequest
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       self.listUsableByItems(request: request, options: .init())
     }
 
@@ -908,7 +978,7 @@
     /// @Snippet(path: "backendBuckets_listUsable")
     public func listUsableByItems(
       request: BackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable
         in
@@ -922,7 +992,7 @@
 
     public func listUsableByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<BackendBucket, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendBucket, any Swift.Error> & Sendable {
       let request = BackendBucketsClient.ListUsableRequest().with {
         $0.project = project
       }

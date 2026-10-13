@@ -67,7 +67,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.options = try container.decodeIfPresent(ReconConfig.Options.self, forKey: .options)
     self.modelConfig = try container.decodeIfPresent(
@@ -100,7 +100,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.options, forKey: .options)
     try container.encodeIfPresent(self.modelConfig, forKey: .modelConfig)
@@ -162,7 +162,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableGeocodingSeparation)
@@ -175,7 +175,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enableGeocodingSeparation, forKey: .enableGeocodingSeparation)
       for (key, value) in self._unknownFields.json {
@@ -183,12 +183,23 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Options`: `"type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.ReconConfig.Options"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.ReconConfig.Options"
     }
+
+    /// Initialize an instance of `Options` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.ReconConfig.Options"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Options` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -239,7 +250,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelName) {
         self.modelName = value
@@ -253,7 +264,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.modelName, forKey: .modelName)
       try container.encode(self.versionTag, forKey: .versionTag)
@@ -262,12 +273,23 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ModelConfig`: `"type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.ReconConfig.ModelConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.ReconConfig.ModelConfig"
     }
+
+    /// Initialize an instance of `ModelConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.ReconConfig.ModelConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ModelConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -281,12 +303,23 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case affinityClusteringConfig(AffinityClusteringConfig)
   }
 
+  /// The type URL for `ReconConfig`: `"type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.ReconConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.ReconConfig"
   }
+
+  /// Initialize an instance of `ReconConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.ReconConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ReconConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

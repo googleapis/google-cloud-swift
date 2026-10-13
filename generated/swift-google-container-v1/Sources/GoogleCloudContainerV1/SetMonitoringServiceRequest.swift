@@ -98,7 +98,7 @@ public struct SetMonitoringServiceRequest: Codable, Equatable, GoogleWKT._AnyPac
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
       self.projectId = value
@@ -124,7 +124,7 @@ public struct SetMonitoringServiceRequest: Codable, Equatable, GoogleWKT._AnyPac
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.projectId, forKey: .projectId)
     try container.encode(self.zone, forKey: .zone)
@@ -136,12 +136,23 @@ public struct SetMonitoringServiceRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `SetMonitoringServiceRequest`: `"type.googleapis.com/google.container.v1.SetMonitoringServiceRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.SetMonitoringServiceRequest"
   }
+
+  /// Initialize an instance of `SetMonitoringServiceRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.SetMonitoringServiceRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SetMonitoringServiceRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

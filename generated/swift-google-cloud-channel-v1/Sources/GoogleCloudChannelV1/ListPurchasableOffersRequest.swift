@@ -82,7 +82,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .customer) {
       self.customer = value
@@ -125,7 +125,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.customer, forKey: .customer)
     try container.encode(self.pageSize, forKey: .pageSize)
@@ -190,7 +190,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .sku) {
         self.sku = value
@@ -204,7 +204,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sku, forKey: .sku)
       try container.encode(self.billingAccount, forKey: .billingAccount)
@@ -213,13 +213,24 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
+    /// The type URL for `CreateEntitlementPurchase`: `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest.CreateEntitlementPurchase"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest.CreateEntitlementPurchase"
     }
+
+    /// Initialize an instance of `CreateEntitlementPurchase` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest.CreateEntitlementPurchase"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CreateEntitlementPurchase` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -282,7 +293,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entitlement) {
         self.entitlement = value
@@ -299,7 +310,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entitlement, forKey: .entitlement)
       try container.encode(self.newSku, forKey: .newSku)
@@ -309,13 +320,24 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
+    /// The type URL for `ChangeOfferPurchase`: `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest.ChangeOfferPurchase"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest.ChangeOfferPurchase"
     }
+
+    /// Initialize an instance of `ChangeOfferPurchase` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest.ChangeOfferPurchase"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ChangeOfferPurchase` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -329,12 +351,23 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
     indirect case changeOfferPurchase(ListPurchasableOffersRequest.ChangeOfferPurchase)
   }
 
+  /// The type URL for `ListPurchasableOffersRequest`: `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest"
   }
+
+  /// Initialize an instance of `ListPurchasableOffersRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListPurchasableOffersRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

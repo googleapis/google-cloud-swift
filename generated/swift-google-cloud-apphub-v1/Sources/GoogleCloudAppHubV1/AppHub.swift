@@ -29,8 +29,8 @@ import Foundation
 /// @Snippet(path: "AppHubQuickstart")
 public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   let inner: any Clients.AppHubStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AppHubClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -593,7 +593,87 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     try await poller.wait()
   }
 
+  /// Gets a Boundary.
+  ///
+  /// @Snippet(path: "AppHub_GetBoundary")
+  public func getBoundary(
+    request: GetBoundaryRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppHubV1.Boundary {
+    try await self.inner.getBoundary(request: request, options: options)
+  }
+
+  /// Updates a Boundary.
+  ///
+  /// @Snippet(path: "AppHub_UpdateBoundary")
+  public func updateBoundary(
+    request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateBoundary(request: request, options: options)
+  }
+
+  /// Updates a Boundary.
+  ///
+  /// @Snippet(path: "AppHub_UpdateBoundary")
+  public func updateBoundaryPollingUntilDone(
+    request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Boundary {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Boundary>.State in
+      return try op._extractStatus(Boundary.self)
+    }
+    let rawOp = try await self.updateBoundary(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Boundary>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Gets an Extended Metadata Schema.
+  ///
+  /// @Snippet(path: "AppHub_GetExtendedMetadataSchema")
+  public func getExtendedMetadataSchema(
+    request: GetExtendedMetadataSchemaRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppHubV1.ExtendedMetadataSchema {
+    try await self.inner.getExtendedMetadataSchema(request: request, options: options)
+  }
+
+  /// Lists Extended Metadata Schemas available in a host project and location.
+  ///
+  /// @Snippet(path: "AppHub_ListExtendedMetadataSchemas")
+  public func listExtendedMetadataSchemas(
+    request: ListExtendedMetadataSchemasRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse {
+    try await self.inner.listExtendedMetadataSchemas(request: request, options: options)
+  }
+
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppHub_ListLocations")
   public func listLocations(
@@ -891,6 +971,31 @@ extension Clients {
       request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws
 
+    /// See `AppHubClient.getBoundary`.
+    func getBoundary(
+      request: GetBoundaryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.Boundary
+
+    /// See `AppHubClient.updateBoundary`.
+    func updateBoundary(
+      request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `AppHubClient.updateBoundary`.
+    func updateBoundaryPollingUntilDone(
+      request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> Boundary
+
+    /// See `AppHubClient.getExtendedMetadataSchema`.
+    func getExtendedMetadataSchema(
+      request: GetExtendedMetadataSchemaRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.ExtendedMetadataSchema
+
+    /// See `AppHubClient.listExtendedMetadataSchemas`.
+    func listExtendedMetadataSchemas(
+      request: ListExtendedMetadataSchemasRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse
+
     /// See `AppHubClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
@@ -970,7 +1075,7 @@ extension Clients.AppHubProtocol {
 
   public func listServiceProjectAttachmentsByItems(
     request: ListServiceProjectAttachmentsRequest
-  ) -> some AsyncSequence<ServiceProjectAttachment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceProjectAttachment, any Swift.Error> & Sendable {
     self.listServiceProjectAttachmentsByItems(request: request, options: .init())
   }
 
@@ -979,7 +1084,7 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListServiceProjectAttachments")
   public func listServiceProjectAttachmentsByItems(
     request: ListServiceProjectAttachmentsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ServiceProjectAttachment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceProjectAttachment, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudAppHubV1.ListServiceProjectAttachmentsResponse in
@@ -993,7 +1098,7 @@ extension Clients.AppHubProtocol {
 
   public func listServiceProjectAttachmentsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ServiceProjectAttachment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceProjectAttachment, any Swift.Error> & Sendable {
     let request = ListServiceProjectAttachmentsRequest().with {
       $0.parent = parent
     }
@@ -1128,7 +1233,7 @@ extension Clients.AppHubProtocol {
 
   public func listDiscoveredServicesByItems(
     request: ListDiscoveredServicesRequest
-  ) -> some AsyncSequence<DiscoveredService, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredService, any Swift.Error> & Sendable {
     self.listDiscoveredServicesByItems(request: request, options: .init())
   }
 
@@ -1138,7 +1243,7 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListDiscoveredServices")
   public func listDiscoveredServicesByItems(
     request: ListDiscoveredServicesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DiscoveredService, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredService, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudAppHubV1.ListDiscoveredServicesResponse in
@@ -1152,7 +1257,7 @@ extension Clients.AppHubProtocol {
 
   public func listDiscoveredServicesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DiscoveredService, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredService, any Swift.Error> & Sendable {
     let request = ListDiscoveredServicesRequest().with {
       $0.parent = parent
     }
@@ -1217,7 +1322,7 @@ extension Clients.AppHubProtocol {
 
   public func listServicesByItems(
     request: ListServicesRequest
-  ) -> some AsyncSequence<Service, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
     self.listServicesByItems(request: request, options: .init())
   }
 
@@ -1226,7 +1331,7 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListServices")
   public func listServicesByItems(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Service, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListServicesResponse in
       var request = request
@@ -1239,7 +1344,7 @@ extension Clients.AppHubProtocol {
 
   public func listServicesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Service, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
     let request = ListServicesRequest().with {
       $0.parent = parent
     }
@@ -1378,7 +1483,7 @@ extension Clients.AppHubProtocol {
 
   public func listDiscoveredWorkloadsByItems(
     request: ListDiscoveredWorkloadsRequest
-  ) -> some AsyncSequence<DiscoveredWorkload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredWorkload, any Swift.Error> & Sendable {
     self.listDiscoveredWorkloadsByItems(request: request, options: .init())
   }
 
@@ -1388,7 +1493,7 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListDiscoveredWorkloads")
   public func listDiscoveredWorkloadsByItems(
     request: ListDiscoveredWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DiscoveredWorkload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredWorkload, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudAppHubV1.ListDiscoveredWorkloadsResponse in
@@ -1402,7 +1507,7 @@ extension Clients.AppHubProtocol {
 
   public func listDiscoveredWorkloadsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DiscoveredWorkload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveredWorkload, any Swift.Error> & Sendable {
     let request = ListDiscoveredWorkloadsRequest().with {
       $0.parent = parent
     }
@@ -1467,7 +1572,7 @@ extension Clients.AppHubProtocol {
 
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest
-  ) -> some AsyncSequence<Workload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Workload, any Swift.Error> & Sendable {
     self.listWorkloadsByItems(request: request, options: .init())
   }
 
@@ -1476,7 +1581,7 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListWorkloads")
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Workload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Workload, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListWorkloadsResponse in
       var request = request
@@ -1489,7 +1594,7 @@ extension Clients.AppHubProtocol {
 
   public func listWorkloadsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Workload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Workload, any Swift.Error> & Sendable {
     let request = ListWorkloadsRequest().with {
       $0.parent = parent
     }
@@ -1633,7 +1738,7 @@ extension Clients.AppHubProtocol {
 
   public func listApplicationsByItems(
     request: ListApplicationsRequest
-  ) -> some AsyncSequence<Application, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Application, any Swift.Error> & Sendable {
     self.listApplicationsByItems(request: request, options: .init())
   }
 
@@ -1642,7 +1747,7 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListApplications")
   public func listApplicationsByItems(
     request: ListApplicationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Application, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Application, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListApplicationsResponse
       in
@@ -1656,7 +1761,7 @@ extension Clients.AppHubProtocol {
 
   public func listApplicationsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Application, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Application, any Swift.Error> & Sendable {
     let request = ListApplicationsRequest().with {
       $0.parent = parent
     }
@@ -1787,6 +1892,126 @@ extension Clients.AppHubProtocol {
     try await self.deleteApplicationPollingUntilDone(request: request)
   }
 
+  public func getBoundary(request: GetBoundaryRequest) async throws -> GoogleCloudAppHubV1.Boundary
+  {
+    try await self.getBoundary(request: request, options: .init())
+  }
+
+  public func getBoundary(
+    request: GetBoundaryRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppHubV1.Boundary {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getBoundary(
+    name: Swift.String,
+  ) async throws -> GoogleCloudAppHubV1.Boundary {
+    let request = GetBoundaryRequest().with {
+      $0.name = name
+    }
+    return try await self.getBoundary(request: request)
+  }
+
+  public func updateBoundary(request: UpdateBoundaryRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateBoundary(request: request, options: .init())
+  }
+
+  public func updateBoundary(
+    request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateBoundaryPollingUntilDone(request: UpdateBoundaryRequest) async throws
+    -> Boundary
+  {
+    return try await self.updateBoundaryPollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateBoundaryPollingUntilDone(
+    request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Boundary {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateBoundaryPollingUntilDone(
+    boundary: Boundary?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> Boundary {
+    let request = UpdateBoundaryRequest().with {
+      $0.boundary = boundary
+      $0.updateMask = updateMask
+    }
+    return try await self.updateBoundaryPollingUntilDone(request: request)
+  }
+
+  public func getExtendedMetadataSchema(request: GetExtendedMetadataSchemaRequest) async throws
+    -> GoogleCloudAppHubV1.ExtendedMetadataSchema
+  {
+    try await self.getExtendedMetadataSchema(request: request, options: .init())
+  }
+
+  public func getExtendedMetadataSchema(
+    request: GetExtendedMetadataSchemaRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppHubV1.ExtendedMetadataSchema {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getExtendedMetadataSchema(
+    name: Swift.String,
+  ) async throws -> GoogleCloudAppHubV1.ExtendedMetadataSchema {
+    let request = GetExtendedMetadataSchemaRequest().with {
+      $0.name = name
+    }
+    return try await self.getExtendedMetadataSchema(request: request)
+  }
+
+  public func listExtendedMetadataSchemas(request: ListExtendedMetadataSchemasRequest) async throws
+    -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse
+  {
+    try await self.listExtendedMetadataSchemas(request: request, options: .init())
+  }
+
+  public func listExtendedMetadataSchemas(
+    request: ListExtendedMetadataSchemasRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listExtendedMetadataSchemasByItems(
+    request: ListExtendedMetadataSchemasRequest
+  ) -> some AsyncSequence<ExtendedMetadataSchema, any Swift.Error> & Sendable {
+    self.listExtendedMetadataSchemasByItems(request: request, options: .init())
+  }
+
+  /// Lists Extended Metadata Schemas available in a host project and location.
+  ///
+  /// @Snippet(path: "AppHub_ListExtendedMetadataSchemas")
+  public func listExtendedMetadataSchemasByItems(
+    request: ListExtendedMetadataSchemasRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<ExtendedMetadataSchema, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listExtendedMetadataSchemas(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listExtendedMetadataSchemasByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<ExtendedMetadataSchema, any Swift.Error> & Sendable {
+    let request = ListExtendedMetadataSchemasRequest().with {
+      $0.parent = parent
+    }
+    return self.listExtendedMetadataSchemasByItems(request: request)
+  }
+
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1801,16 +2026,33 @@ extension Clients.AppHubProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
   /// @Snippet(path: "AppHub_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1883,7 +2125,7 @@ extension Clients.AppHubProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1894,7 +2136,7 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1908,7 +2150,7 @@ extension Clients.AppHubProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

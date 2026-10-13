@@ -90,7 +90,7 @@ public struct DeleteDeploymentGroupRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -113,7 +113,7 @@ public struct DeleteDeploymentGroupRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.requestId, forKey: .requestId)
@@ -225,7 +225,7 @@ public struct DeleteDeploymentGroupRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -243,7 +243,7 @@ public struct DeleteDeploymentGroupRequest: Codable, Equatable, GoogleWKT._AnyPa
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("DEPLOYMENT_REFERENCE_POLICY_UNSPECIFIED")
@@ -257,12 +257,23 @@ public struct DeleteDeploymentGroupRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
+  /// The type URL for `DeleteDeploymentGroupRequest`: `"type.googleapis.com/google.cloud.config.v1.DeleteDeploymentGroupRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.config.v1.DeleteDeploymentGroupRequest"
   }
+
+  /// Initialize an instance of `DeleteDeploymentGroupRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.config.v1.DeleteDeploymentGroupRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeleteDeploymentGroupRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

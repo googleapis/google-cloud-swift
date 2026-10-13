@@ -63,7 +63,7 @@ public struct ManagedZonePeeringConfigTargetNetwork: Codable, Equatable, GoogleW
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.deactivateTime = try container.decodeIfPresent(Swift.String.self, forKey: .deactivateTime)
     self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
@@ -74,7 +74,7 @@ public struct ManagedZonePeeringConfigTargetNetwork: Codable, Equatable, GoogleW
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.deactivateTime, forKey: .deactivateTime)
     try container.encodeIfPresent(self.kind, forKey: .kind)
@@ -84,12 +84,23 @@ public struct ManagedZonePeeringConfigTargetNetwork: Codable, Equatable, GoogleW
     }
   }
 
+  /// The type URL for `ManagedZonePeeringConfigTargetNetwork`: `"type.googleapis.com/.ManagedZonePeeringConfigTargetNetwork"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.ManagedZonePeeringConfigTargetNetwork"
   }
+
+  /// Initialize an instance of `ManagedZonePeeringConfigTargetNetwork` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.ManagedZonePeeringConfigTargetNetwork"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ManagedZonePeeringConfigTargetNetwork` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -79,7 +79,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -118,7 +118,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.filter, forKey: .filter)
@@ -190,7 +190,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .projectId) {
         self.projectId = value
@@ -207,7 +207,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.projectId, forKey: .projectId)
       try container.encode(self.dataset, forKey: .dataset)
@@ -217,13 +217,24 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `BigQueryDestination`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.ExportInsightsDataRequest.BigQueryDestination"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.ExportInsightsDataRequest.BigQueryDestination"
     }
+
+    /// Initialize an instance of `BigQueryDestination` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.ExportInsightsDataRequest.BigQueryDestination"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BigQueryDestination` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -317,7 +328,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -335,7 +346,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("WRITE_DISPOSITION_UNSPECIFIED")
@@ -353,12 +364,23 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
     indirect case bigQueryDestination(ExportInsightsDataRequest.BigQueryDestination)
   }
 
+  /// The type URL for `ExportInsightsDataRequest`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.ExportInsightsDataRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.ExportInsightsDataRequest"
   }
+
+  /// Initialize an instance of `ExportInsightsDataRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.ExportInsightsDataRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExportInsightsDataRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

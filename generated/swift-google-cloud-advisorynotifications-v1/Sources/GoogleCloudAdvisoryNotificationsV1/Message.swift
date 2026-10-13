@@ -70,7 +70,7 @@ public struct Message: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.body = try container.decodeIfPresent(Message.Body.self, forKey: .body)
     if let value = try container.decodeIfPresent([Attachment].self, forKey: .attachments) {
@@ -86,7 +86,7 @@ public struct Message: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.body, forKey: .body)
     try container.encode(self.attachments, forKey: .attachments)
@@ -135,7 +135,7 @@ public struct Message: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.text = try container.decodeIfPresent(Text.self, forKey: .text)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -144,7 +144,7 @@ public struct Message: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.text, forKey: .text)
       for (key, value) in self._unknownFields.json {
@@ -152,23 +152,45 @@ public struct Message: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Body`: `"type.googleapis.com/google.cloud.advisorynotifications.v1.Message.Body"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.advisorynotifications.v1.Message.Body"
     }
+
+    /// Initialize an instance of `Body` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.advisorynotifications.v1.Message.Body"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Body` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `Message`: `"type.googleapis.com/google.cloud.advisorynotifications.v1.Message"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.advisorynotifications.v1.Message"
   }
+
+  /// Initialize an instance of `Message` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.advisorynotifications.v1.Message"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Message` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

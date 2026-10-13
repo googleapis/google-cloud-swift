@@ -56,7 +56,7 @@ public struct ClipAssetResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ClipAssetResponse.TimeIndexedUri].self, forKey: .timeIndexedUris)
@@ -69,7 +69,7 @@ public struct ClipAssetResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.timeIndexedUris, forKey: .timeIndexedUris)
     for (key, value) in self._unknownFields.json {
@@ -120,7 +120,7 @@ public struct ClipAssetResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.temporalPartition = try container.decodeIfPresent(
         Partition.TemporalPartition.self, forKey: .temporalPartition)
@@ -133,7 +133,7 @@ public struct ClipAssetResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.temporalPartition, forKey: .temporalPartition)
       try container.encode(self.uri, forKey: .uri)
@@ -142,23 +142,45 @@ public struct ClipAssetResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `TimeIndexedUri`: `"type.googleapis.com/google.cloud.visionai.v1.ClipAssetResponse.TimeIndexedUri"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.ClipAssetResponse.TimeIndexedUri"
     }
+
+    /// Initialize an instance of `TimeIndexedUri` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.ClipAssetResponse.TimeIndexedUri"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TimeIndexedUri` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ClipAssetResponse`: `"type.googleapis.com/google.cloud.visionai.v1.ClipAssetResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ClipAssetResponse"
   }
+
+  /// Initialize an instance of `ClipAssetResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.ClipAssetResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ClipAssetResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

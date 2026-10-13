@@ -69,7 +69,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Page].self, forKey: .pages) {
       self.pages = value
@@ -83,7 +83,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.pages, forKey: .pages)
     try container.encode(self.text, forKey: .text)
@@ -137,7 +137,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
         self.languageCode = value
@@ -151,7 +151,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.languageCode, forKey: .languageCode)
       try container.encode(self.confidence, forKey: .confidence)
@@ -160,12 +160,23 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `DetectedLanguage`: `"type.googleapis.com/google.cloud.vision.v1.TextAnnotation.DetectedLanguage"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.TextAnnotation.DetectedLanguage"
     }
+
+    /// Initialize an instance of `DetectedLanguage` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vision.v1.TextAnnotation.DetectedLanguage"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DetectedLanguage` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -215,7 +226,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         TextAnnotation.DetectedBreak.BreakType.self, forKey: .type)
@@ -231,7 +242,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.type, forKey: .type)
       try container.encode(self.isPrefix, forKey: .isPrefix)
@@ -346,7 +357,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -364,7 +375,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unknown: return try container.encode("UNKNOWN")
@@ -379,12 +390,23 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `DetectedBreak`: `"type.googleapis.com/google.cloud.vision.v1.TextAnnotation.DetectedBreak"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.TextAnnotation.DetectedBreak"
     }
+
+    /// Initialize an instance of `DetectedBreak` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vision.v1.TextAnnotation.DetectedBreak"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DetectedBreak` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -433,7 +455,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [TextAnnotation.DetectedLanguage].self, forKey: .detectedLanguages)
@@ -448,7 +470,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.detectedLanguages, forKey: .detectedLanguages)
       try container.encodeIfPresent(self.detectedBreak, forKey: .detectedBreak)
@@ -457,23 +479,45 @@ public struct TextAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `TextProperty`: `"type.googleapis.com/google.cloud.vision.v1.TextAnnotation.TextProperty"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.TextAnnotation.TextProperty"
     }
+
+    /// Initialize an instance of `TextProperty` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vision.v1.TextAnnotation.TextProperty"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TextProperty` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `TextAnnotation`: `"type.googleapis.com/google.cloud.vision.v1.TextAnnotation"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vision.v1.TextAnnotation"
   }
+
+  /// Initialize an instance of `TextAnnotation` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vision.v1.TextAnnotation"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TextAnnotation` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

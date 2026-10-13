@@ -68,7 +68,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.stackFrames = try container.decodeIfPresent(
       StackTrace.StackFrames.self, forKey: .stackFrames)
@@ -81,7 +81,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.stackFrames, forKey: .stackFrames)
     try container.encode(self.stackTraceHashId, forKey: .stackTraceHashId)
@@ -164,7 +164,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.functionName = try container.decodeIfPresent(
         TruncatableString.self, forKey: .functionName)
@@ -186,7 +186,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.functionName, forKey: .functionName)
       try container.encodeIfPresent(self.originalFunctionName, forKey: .originalFunctionName)
@@ -200,12 +200,23 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `StackFrame`: `"type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace.StackFrame"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace.StackFrame"
     }
+
+    /// Initialize an instance of `StackFrame` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace.StackFrame"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StackFrame` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -256,7 +267,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([StackTrace.StackFrame].self, forKey: .frame) {
         self.frame = value
@@ -270,7 +281,7 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.frame, forKey: .frame)
       try container.encode(self.droppedFramesCount, forKey: .droppedFramesCount)
@@ -279,23 +290,45 @@ public struct StackTrace: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `StackFrames`: `"type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace.StackFrames"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace.StackFrames"
     }
+
+    /// Initialize an instance of `StackFrames` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace.StackFrames"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StackFrames` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `StackTrace`: `"type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace"
   }
+
+  /// Initialize an instance of `StackTrace` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `StackTrace` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

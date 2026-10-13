@@ -29,8 +29,8 @@ import Foundation
 /// @Snippet(path: "DataFusionQuickstart")
 public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   let inner: any Clients.DataFusionStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DataFusionClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -358,7 +358,7 @@ extension Clients.DataFusionProtocol {
 
   public func listAvailableVersionsByItems(
     request: ListAvailableVersionsRequest
-  ) -> some AsyncSequence<Version, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
     self.listAvailableVersionsByItems(request: request, options: .init())
   }
 
@@ -368,7 +368,7 @@ extension Clients.DataFusionProtocol {
   /// @Snippet(path: "DataFusion_ListAvailableVersions")
   public func listAvailableVersionsByItems(
     request: ListAvailableVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Version, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataFusionV1.ListAvailableVersionsResponse in
@@ -382,7 +382,7 @@ extension Clients.DataFusionProtocol {
 
   public func listAvailableVersionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Version, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
     let request = ListAvailableVersionsRequest().with {
       $0.parent = parent
     }
@@ -403,7 +403,7 @@ extension Clients.DataFusionProtocol {
 
   public func listInstancesByItems(
     request: ListInstancesRequest
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     self.listInstancesByItems(request: request, options: .init())
   }
 
@@ -412,7 +412,7 @@ extension Clients.DataFusionProtocol {
   /// @Snippet(path: "DataFusion_ListInstances")
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataFusionV1.ListInstancesResponse
       in
@@ -577,7 +577,7 @@ extension Clients.DataFusionProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -588,7 +588,7 @@ extension Clients.DataFusionProtocol {
   /// @Snippet(path: "DataFusion_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -602,7 +602,7 @@ extension Clients.DataFusionProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

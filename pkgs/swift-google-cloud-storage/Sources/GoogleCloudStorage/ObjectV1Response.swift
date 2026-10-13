@@ -18,7 +18,7 @@ package import GoogleWKT
 package struct StringOrInt64: Decodable, Sendable {
   package let value: Int64
 
-  package init(from decoder: Decoder) throws {
+  package init(from decoder: any Decoder) throws {
     let container = try decoder.singleValueContainer()
     if let intVal = try? container.decode(Int64.self) {
       self.value = intVal
@@ -33,7 +33,7 @@ package struct StringOrInt64: Decodable, Sendable {
 package struct StringOrInt32: Decodable, Sendable {
   package let value: Int32
 
-  package init(from decoder: Decoder) throws {
+  package init(from decoder: any Decoder) throws {
     let container = try decoder.singleValueContainer()
     if let intVal = try? container.decode(Int32.self) {
       self.value = intVal

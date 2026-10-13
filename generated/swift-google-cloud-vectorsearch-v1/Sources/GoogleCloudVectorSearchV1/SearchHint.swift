@@ -57,7 +57,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var indexType: IndexTypeOneOf? = nil
@@ -84,7 +84,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.indexType {
@@ -146,7 +146,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -174,7 +174,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
 
@@ -229,7 +229,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.targetRecall = try container.decodeIfPresent(Swift.Double.self, forKey: .targetRecall)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -238,7 +238,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.targetRecall, forKey: .targetRecall)
         for (key, value) in self._unknownFields.json {
@@ -246,13 +246,24 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `DenseScannParams`: `"type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.IndexHint.DenseScannParams"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.IndexHint.DenseScannParams"
       }
+
+      /// Initialize an instance of `DenseScannParams` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.IndexHint.DenseScannParams"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `DenseScannParams` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -264,12 +275,23 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case denseScannParams(SearchHint.IndexHint.DenseScannParams)
     }
 
+    /// The type URL for `IndexHint`: `"type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.IndexHint"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.IndexHint"
     }
+
+    /// Initialize an instance of `IndexHint` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.IndexHint"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IndexHint` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -307,7 +329,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -315,19 +337,30 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
+    /// The type URL for `KnnHint`: `"type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.KnnHint"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.KnnHint"
     }
+
+    /// Initialize an instance of `KnnHint` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint.KnnHint"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `KnnHint` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -342,12 +375,23 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case indexHint(SearchHint.IndexHint)
   }
 
+  /// The type URL for `SearchHint`: `"type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint"
   }
+
+  /// Initialize an instance of `SearchHint` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.SearchHint"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SearchHint` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

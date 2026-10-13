@@ -86,7 +86,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.assuredCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .assuredCount)
       self.count = try container.decodeIfPresent(Swift.Int64.self, forKey: .count)
@@ -101,7 +101,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.assuredCount, forKey: .assuredCount)
       try container.encodeIfPresent(self.count, forKey: .count)
@@ -113,12 +113,23 @@
       }
     }
 
+    /// The type URL for `AllocationSpecificSKUReservation`: `"type.googleapis.com/google.cloud.compute.v1.AllocationSpecificSKUReservation"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.AllocationSpecificSKUReservation"
     }
+
+    /// Initialize an instance of `AllocationSpecificSKUReservation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.AllocationSpecificSKUReservation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AllocationSpecificSKUReservation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

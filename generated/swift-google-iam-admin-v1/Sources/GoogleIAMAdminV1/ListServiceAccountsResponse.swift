@@ -65,7 +65,7 @@ public struct ListServiceAccountsResponse: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([ServiceAccount].self, forKey: .accounts) {
       self.accounts = value
@@ -79,7 +79,7 @@ public struct ListServiceAccountsResponse: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.accounts, forKey: .accounts)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -88,12 +88,23 @@ public struct ListServiceAccountsResponse: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `ListServiceAccountsResponse`: `"type.googleapis.com/google.iam.admin.v1.ListServiceAccountsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.admin.v1.ListServiceAccountsResponse"
   }
+
+  /// Initialize an instance of `ListServiceAccountsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.iam.admin.v1.ListServiceAccountsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListServiceAccountsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

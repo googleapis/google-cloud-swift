@@ -60,7 +60,7 @@ import Testing
     ["--iterations=-1"],
   ])
   func invalidConfigurationThrows(args: [String]) throws {
-    #expect(throws: Error.self) {
+    #expect(throws: (any Error).self) {
       let _ = try Endurance.parseAsRoot(args)
     }
   }

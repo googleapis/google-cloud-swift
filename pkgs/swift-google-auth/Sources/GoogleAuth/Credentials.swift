@@ -89,6 +89,11 @@ public enum CredentialsConfiguration: Sendable {
   /// 3. The link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview) (MDS) on
   ///    Google Cloud runtime environments (Google Compute Engine, GKE, Cloud Run).
   ///
+  /// When resolving `.adc()`, ``Credentials/init(configuration:)`` performs synchronous filesystem I/O to read and parse
+  /// local credential files (assuming small JSON configuration files). Avoid resolving `.adc()` repeatedly on the
+  /// hot path inside asynchronous request handlers; instead, initialize ``Credentials`` (or your service client) once
+  /// at application startup and reuse the instance across requests.
+  ///
   /// - Parameters:
   ///   - quotaProjectID: The Google Cloud project ID to bill and charge quota against (sent via `x-goog-user-project`).
   ///     Requires `serviceusage.services.use` permission on the project.
@@ -397,6 +402,16 @@ protocol CredentialsProvider: Sendable {
 /// before expiration in a proactive background loop. Callers invoking `headers()` experience minimal
 /// latency on the fast path.
 ///
+/// ### Lifecycle and Reuse
+/// ``Credentials`` instances are thread-safe (`Sendable`) and designed to be initialized once at
+/// application startup and shared across requests or clients.
+///
+/// Initializing ``Credentials`` with `.adc()` performs synchronous filesystem I/O to read and parse local
+/// credential files (assuming small JSON configuration files) and starts an in-memory token cache with
+/// a background refresh loop. Avoid creating new ``Credentials`` (or service client) instances inside
+/// asynchronous request handlers on the hot path, as doing so performs synchronous file I/O on Swift's
+/// cooperative thread pool and discards cached access tokens.
+///
 /// ### Usage Example
 /// ```swift
 /// // Automatically use Application Default Credentials (recommended):
@@ -412,6 +427,12 @@ public struct Credentials: Sendable {
   let credentialsProvider: any CredentialsProvider
 
   /// Initializes credentials using a specific configuration (defaults to automatic ADC resolution).
+  ///
+  /// When `configuration` is `.adc()`, this initializer performs synchronous filesystem I/O to locate,
+  /// read, and parse local credential files (such as `GOOGLE_APPLICATION_CREDENTIALS` or the well-known
+  /// `gcloud` credentials file, which are assumed to be small JSON configuration files). Prefer
+  /// initializing ``Credentials`` at application startup and reusing the instance rather than calling
+  /// this initializer repeatedly inside asynchronous request handlers.
   ///
   /// - Parameter configuration: The configuration describing the credential source and parameters.
   /// - Throws: A `CredentialsError` if the credentials cannot be loaded, parsed, or if the configuration is unsupported.
@@ -440,8 +461,6 @@ public struct Credentials: Sendable {
   public func headers() async throws -> AuthHeaders {
     return try await self.credentialsProvider.headers()
   }
-
-  // MARK: - Backend Resolvers
 
   private static func resolveCredentialsProvider(
     configuration: CredentialsConfiguration,

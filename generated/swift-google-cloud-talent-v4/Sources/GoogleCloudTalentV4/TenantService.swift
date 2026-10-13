@@ -227,7 +227,7 @@ extension Clients.TenantServiceProtocol {
 
   public func listTenantsByItems(
     request: ListTenantsRequest
-  ) -> some AsyncSequence<Tenant, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Tenant, any Swift.Error> & Sendable {
     self.listTenantsByItems(request: request, options: .init())
   }
 
@@ -236,7 +236,7 @@ extension Clients.TenantServiceProtocol {
   /// @Snippet(path: "TenantService_ListTenants")
   public func listTenantsByItems(
     request: ListTenantsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Tenant, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Tenant, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudTalentV4.ListTenantsResponse in
       var request = request
@@ -249,7 +249,7 @@ extension Clients.TenantServiceProtocol {
 
   public func listTenantsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Tenant, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Tenant, any Swift.Error> & Sendable {
     let request = ListTenantsRequest().with {
       $0.parent = parent
     }

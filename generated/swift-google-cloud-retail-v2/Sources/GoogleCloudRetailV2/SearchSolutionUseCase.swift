@@ -112,7 +112,7 @@ public enum SearchSolutionUseCase: Codable, Equatable, Hashable, Sendable {
     }
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.singleValueContainer()
     if let v = try? container.decode(Int.self) {
       self.init(intValue: v)
@@ -130,7 +130,7 @@ public enum SearchSolutionUseCase: Codable, Equatable, Hashable, Sendable {
       in: container, debugDescription: "Expected enum value, must be integer or string.")
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
     case .unspecified: return try container.encode("SEARCH_SOLUTION_USE_CASE_UNSPECIFIED")

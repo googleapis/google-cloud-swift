@@ -18,6 +18,7 @@ import Foundation
 ///
 /// Long-running operations are operations that take a significant amount of time to complete.
 /// This protocol defines the contract for waiting on the final result of such an operation.
+@_spi(GoogleCloudInternal)
 public protocol PollableOperation<ResponseType>: Sendable {
   /// The type of the response message returned when the long-running operation completes.
   associatedtype ResponseType: Sendable

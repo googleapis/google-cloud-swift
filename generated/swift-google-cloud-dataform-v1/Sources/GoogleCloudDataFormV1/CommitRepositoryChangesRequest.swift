@@ -73,7 +73,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -95,7 +95,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.commitMetadata, forKey: .commitMetadata)
@@ -146,7 +146,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var operation: OperationOneOf? = nil
@@ -176,7 +176,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.operation {
@@ -230,7 +230,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .contents) {
           self.contents = value
@@ -241,7 +241,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.contents, forKey: .contents)
         for (key, value) in self._unknownFields.json {
@@ -249,13 +249,24 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
         }
       }
 
+      /// The type URL for `WriteFile`: `"type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation.WriteFile"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation.WriteFile"
       }
+
+      /// Initialize an instance of `WriteFile` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation.WriteFile"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `WriteFile` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -292,7 +303,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
         static let _knownKeys: Set<Swift.String> = []
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
@@ -300,20 +311,31 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
       }
 
+      /// The type URL for `DeleteFile`: `"type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation.DeleteFile"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation.DeleteFile"
       }
+
+      /// Initialize an instance of `DeleteFile` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation.DeleteFile"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `DeleteFile` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -327,24 +349,46 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
       indirect case deleteFile(CommitRepositoryChangesRequest.FileOperation.DeleteFile)
     }
 
+    /// The type URL for `FileOperation`: `"type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation"
     }
+
+    /// Initialize an instance of `FileOperation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FileOperation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `CommitRepositoryChangesRequest`: `"type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest"
   }
+
+  /// Initialize an instance of `CommitRepositoryChangesRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CommitRepositoryChangesRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -100,7 +100,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .profileId) {
       self.profileId = value
@@ -134,7 +134,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.profileId, forKey: .profileId)
     try container.encode(self.channelType, forKey: .channelType)
@@ -189,7 +189,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         ChannelProfile.PersonaProperty.Persona.self, forKey: .persona)
@@ -202,7 +202,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.persona, forKey: .persona)
       for (key, value) in self._unknownFields.json {
@@ -297,7 +297,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -315,7 +315,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unknown: return try container.encode("UNKNOWN")
@@ -327,12 +327,23 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `PersonaProperty`: `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.PersonaProperty"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.ChannelProfile.PersonaProperty"
     }
+
+    /// Initialize an instance of `PersonaProperty` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.PersonaProperty"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PersonaProperty` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -392,7 +403,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         ChannelProfile.WebWidgetConfig.Modality.self, forKey: .modality)
@@ -415,7 +426,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.modality, forKey: .modality)
       try container.encode(self.theme, forKey: .theme)
@@ -489,7 +500,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enablePublicAccess) {
           self.enablePublicAccess = value
@@ -509,7 +520,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.enablePublicAccess, forKey: .enablePublicAccess)
         try container.encode(self.enableOriginCheck, forKey: .enableOriginCheck)
@@ -520,13 +531,24 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `SecuritySettings`: `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.WebWidgetConfig.SecuritySettings"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.ces.v1.ChannelProfile.WebWidgetConfig.SecuritySettings"
       }
+
+      /// Initialize an instance of `SecuritySettings` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.WebWidgetConfig.SecuritySettings"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SecuritySettings` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -631,7 +653,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -649,7 +671,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("MODALITY_UNSPECIFIED")
@@ -750,7 +772,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -768,7 +790,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("THEME_UNSPECIFIED")
@@ -780,12 +802,23 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `WebWidgetConfig`: `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.WebWidgetConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.ChannelProfile.WebWidgetConfig"
     }
+
+    /// Initialize an instance of `WebWidgetConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.WebWidgetConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `WebWidgetConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -854,7 +887,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .wabaId) {
         self.wabaId = value
@@ -880,7 +913,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.wabaId, forKey: .wabaId)
       try container.encode(self.phoneNumberId, forKey: .phoneNumberId)
@@ -893,12 +926,23 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `WhatsAppConfig`: `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.WhatsAppConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.ChannelProfile.WhatsAppConfig"
     }
+
+    /// Initialize an instance of `WhatsAppConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.WhatsAppConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `WhatsAppConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -957,7 +1001,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instagramAccountId) {
         self.instagramAccountId = value
@@ -977,7 +1021,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.instagramAccountId, forKey: .instagramAccountId)
       try container.encode(self.displayName, forKey: .displayName)
@@ -988,12 +1032,23 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `InstagramConfig`: `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.InstagramConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.ChannelProfile.InstagramConfig"
     }
+
+    /// Initialize an instance of `InstagramConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile.InstagramConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InstagramConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1134,7 +1189,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1152,7 +1207,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unknown: return try container.encode("UNKNOWN")
@@ -1173,12 +1228,23 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ChannelProfile`: `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ChannelProfile"
   }
+
+  /// Initialize an instance of `ChannelProfile` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.ChannelProfile"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ChannelProfile` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

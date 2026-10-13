@@ -107,7 +107,7 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .method) {
       self.method = value
@@ -150,7 +150,7 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.method, forKey: .method)
     try container.encodeIfPresent(self.insertTime, forKey: .insertTime)
@@ -177,12 +177,23 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case createVersionMetadata(CreateVersionMetadataV1)
   }
 
+  /// The type URL for `OperationMetadataV1`: `"type.googleapis.com/google.appengine.v1.OperationMetadataV1"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.OperationMetadataV1"
   }
+
+  /// Initialize an instance of `OperationMetadataV1` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.appengine.v1.OperationMetadataV1"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `OperationMetadataV1` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

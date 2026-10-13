@@ -60,7 +60,7 @@ public struct NetworkUsage: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.network = try container.decodeIfPresent(Network.self, forKey: .network)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .usedIps) {
@@ -72,7 +72,7 @@ public struct NetworkUsage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.network, forKey: .network)
     try container.encode(self.usedIps, forKey: .usedIps)
@@ -81,12 +81,23 @@ public struct NetworkUsage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `NetworkUsage`: `"type.googleapis.com/google.cloud.baremetalsolution.v2.NetworkUsage"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.baremetalsolution.v2.NetworkUsage"
   }
+
+  /// Initialize an instance of `NetworkUsage` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.baremetalsolution.v2.NetworkUsage"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `NetworkUsage` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

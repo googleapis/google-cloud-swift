@@ -66,7 +66,7 @@ public struct UpdateAspectTypeRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.aspectType = try container.decodeIfPresent(AspectType.self, forKey: .aspectType)
     self.updateMask = try container.decodeIfPresent(
@@ -80,7 +80,7 @@ public struct UpdateAspectTypeRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.aspectType, forKey: .aspectType)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -90,12 +90,23 @@ public struct UpdateAspectTypeRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// The type URL for `UpdateAspectTypeRequest`: `"type.googleapis.com/google.cloud.dataplex.v1.UpdateAspectTypeRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.UpdateAspectTypeRequest"
   }
+
+  /// Initialize an instance of `UpdateAspectTypeRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.UpdateAspectTypeRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateAspectTypeRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

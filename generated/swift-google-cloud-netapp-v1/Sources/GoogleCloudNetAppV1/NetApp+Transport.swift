@@ -733,6 +733,111 @@ extension Clients {
     }
 
     @concurrent
+    public func startSplit(
+      request: StartSplitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let (path, query, configure, omitted) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/volumes/"), .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):startSplit"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/volumes/"), .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/volumes/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      try req.setBody(json: request, omitting: omitted)
+      return try await req.rpc(
+        GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func getSplitStatus(
+      request: GetSplitStatusRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudNetAppV1.SplitStatus {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/volumes/"), .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):getSplitStatus"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/volumes/"), .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/volumes/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudNetAppV1.SplitStatus.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
     public func establishVolumePeering(
       request: EstablishVolumePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3847,6 +3952,170 @@ extension Clients {
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudNetAppV1.ExecuteOntapPatchResponse.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func restoreVolume(
+      request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let (path, query, configure, omitted) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/storagePools/"), .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):restoreVolume"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/storagePools/"), .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/storagePools/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      try req.setBody(json: request, omitting: omitted)
+      return try await req.rpc(
+        GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func listBackupConfigs(
+      request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudNetAppV1.ListBackupConfigsResponse {
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.parent as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/storagePools/"), .singleWildcard,
+              ],
+              fieldName: "parent")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)/backupConfigs"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+          query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+          query.append(contentsOf: try encoder.encode(request.orderBy, prefix: "orderBy"))
+          query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.parent as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/storagePools/"), .singleWildcard,
+            ],
+            fieldName: "parent",
+            expecting: "projects/*/locations/*/storagePools/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudNetAppV1.ListBackupConfigsResponse.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    @concurrent
+    public func updateBackupConfig(
+      request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let (path, query, configure, omitted) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/storagePools/"), .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):updateBackupConfig"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+        }
+        var paths: [GoogleGax.PathMismatch] = []
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/storagePools/"), .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/storagePools/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
+      }()
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
+      configure(&req)
+      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      try req.setBody(json: request, omitting: omitted)
+      return try await req.rpc(
+        GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
       ).get()
     }
 

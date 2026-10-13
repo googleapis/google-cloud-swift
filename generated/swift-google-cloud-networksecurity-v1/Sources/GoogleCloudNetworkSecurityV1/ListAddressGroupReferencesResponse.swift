@@ -63,7 +63,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ListAddressGroupReferencesResponse.AddressGroupReference].self,
@@ -80,7 +80,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.addressGroupReferences, forKey: .addressGroupReferences)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -137,7 +137,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .firewallPolicy) {
         self.firewallPolicy = value
@@ -154,7 +154,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.firewallPolicy, forKey: .firewallPolicy)
       try container.encode(self.securityPolicy, forKey: .securityPolicy)
@@ -164,24 +164,46 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleWKT.
       }
     }
 
+    /// The type URL for `AddressGroupReference`: `"type.googleapis.com/google.cloud.networksecurity.v1.ListAddressGroupReferencesResponse.AddressGroupReference"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.ListAddressGroupReferencesResponse.AddressGroupReference"
     }
+
+    /// Initialize an instance of `AddressGroupReference` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.ListAddressGroupReferencesResponse.AddressGroupReference"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AddressGroupReference` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ListAddressGroupReferencesResponse`: `"type.googleapis.com/google.cloud.networksecurity.v1.ListAddressGroupReferencesResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.ListAddressGroupReferencesResponse"
   }
+
+  /// Initialize an instance of `ListAddressGroupReferencesResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networksecurity.v1.ListAddressGroupReferencesResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListAddressGroupReferencesResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

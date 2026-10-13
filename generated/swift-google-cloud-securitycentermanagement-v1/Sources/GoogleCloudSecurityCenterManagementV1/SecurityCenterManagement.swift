@@ -532,7 +532,8 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
     request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest
-  ) -> some AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable
+  {
     self.listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
       request: request, options: .init())
   }
@@ -549,7 +550,8 @@ extension Clients.SecurityCenterManagementProtocol {
   public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
     request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable
+  {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
@@ -565,7 +567,8 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable
+  {
     let request = ListEffectiveSecurityHealthAnalyticsCustomModulesRequest().with {
       $0.parent = parent
     }
@@ -619,7 +622,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listSecurityHealthAnalyticsCustomModulesByItems(
     request: ListSecurityHealthAnalyticsCustomModulesRequest
-  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
     self.listSecurityHealthAnalyticsCustomModulesByItems(request: request, options: .init())
   }
 
@@ -634,7 +637,7 @@ extension Clients.SecurityCenterManagementProtocol {
   /// @Snippet(path: "SecurityCenterManagement_ListSecurityHealthAnalyticsCustomModules")
   public func listSecurityHealthAnalyticsCustomModulesByItems(
     request: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1.ListSecurityHealthAnalyticsCustomModulesResponse in
@@ -649,7 +652,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listSecurityHealthAnalyticsCustomModulesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
     let request = ListSecurityHealthAnalyticsCustomModulesRequest().with {
       $0.parent = parent
     }
@@ -678,7 +681,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
     request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest
-  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
     self.listDescendantSecurityHealthAnalyticsCustomModulesByItems(
       request: request, options: .init())
   }
@@ -694,7 +697,7 @@ extension Clients.SecurityCenterManagementProtocol {
   public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
     request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
@@ -710,7 +713,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
     let request = ListDescendantSecurityHealthAnalyticsCustomModulesRequest().with {
       $0.parent = parent
     }
@@ -856,7 +859,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listEffectiveEventThreatDetectionCustomModulesByItems(
     request: ListEffectiveEventThreatDetectionCustomModulesRequest
-  ) -> some AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EffectiveEventThreatDetectionCustomModule, any Swift.Error> & Sendable {
     self.listEffectiveEventThreatDetectionCustomModulesByItems(request: request, options: .init())
   }
 
@@ -868,7 +871,7 @@ extension Clients.SecurityCenterManagementProtocol {
   public func listEffectiveEventThreatDetectionCustomModulesByItems(
     request: ListEffectiveEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EffectiveEventThreatDetectionCustomModule, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
@@ -884,7 +887,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listEffectiveEventThreatDetectionCustomModulesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<EffectiveEventThreatDetectionCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EffectiveEventThreatDetectionCustomModule, any Swift.Error> & Sendable {
     let request = ListEffectiveEventThreatDetectionCustomModulesRequest().with {
       $0.parent = parent
     }
@@ -933,7 +936,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listEventThreatDetectionCustomModulesByItems(
     request: ListEventThreatDetectionCustomModulesRequest
-  ) -> some AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
     self.listEventThreatDetectionCustomModulesByItems(request: request, options: .init())
   }
 
@@ -944,7 +947,7 @@ extension Clients.SecurityCenterManagementProtocol {
   /// @Snippet(path: "SecurityCenterManagement_ListEventThreatDetectionCustomModules")
   public func listEventThreatDetectionCustomModulesByItems(
     request: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1.ListEventThreatDetectionCustomModulesResponse in
@@ -959,7 +962,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listEventThreatDetectionCustomModulesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
     let request = ListEventThreatDetectionCustomModulesRequest().with {
       $0.parent = parent
     }
@@ -986,7 +989,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listDescendantEventThreatDetectionCustomModulesByItems(
     request: ListDescendantEventThreatDetectionCustomModulesRequest
-  ) -> some AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
     self.listDescendantEventThreatDetectionCustomModulesByItems(request: request, options: .init())
   }
 
@@ -997,7 +1000,7 @@ extension Clients.SecurityCenterManagementProtocol {
   public func listDescendantEventThreatDetectionCustomModulesByItems(
     request: ListDescendantEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1
@@ -1013,7 +1016,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listDescendantEventThreatDetectionCustomModulesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<EventThreatDetectionCustomModule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
     let request = ListDescendantEventThreatDetectionCustomModulesRequest().with {
       $0.parent = parent
     }
@@ -1159,7 +1162,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listSecurityCenterServicesByItems(
     request: ListSecurityCenterServicesRequest
-  ) -> some AsyncSequence<SecurityCenterService, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityCenterService, any Swift.Error> & Sendable {
     self.listSecurityCenterServicesByItems(request: request, options: .init())
   }
 
@@ -1169,7 +1172,7 @@ extension Clients.SecurityCenterManagementProtocol {
   /// @Snippet(path: "SecurityCenterManagement_ListSecurityCenterServices")
   public func listSecurityCenterServicesByItems(
     request: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SecurityCenterService, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityCenterService, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse in
@@ -1183,7 +1186,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listSecurityCenterServicesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SecurityCenterService, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecurityCenterService, any Swift.Error> & Sendable {
     let request = ListSecurityCenterServicesRequest().with {
       $0.parent = parent
     }
@@ -1227,7 +1230,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1236,7 +1239,7 @@ extension Clients.SecurityCenterManagementProtocol {
   /// @Snippet(path: "SecurityCenterManagement_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

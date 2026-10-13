@@ -70,7 +70,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.generator = try container.decodeIfPresent(Generator.self, forKey: .generator)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .languageCode) {
@@ -84,7 +84,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.generator, forKey: .generator)
       try container.encode(self.languageCode, forKey: .languageCode)
@@ -94,12 +94,23 @@
       }
     }
 
+    /// The type URL for `UpdateGeneratorRequest`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.UpdateGeneratorRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.UpdateGeneratorRequest"
     }
+
+    /// Initialize an instance of `UpdateGeneratorRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.UpdateGeneratorRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UpdateGeneratorRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

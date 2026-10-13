@@ -84,7 +84,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.goldenEvaluationMetricsThresholds = try container.decodeIfPresent(
       EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.self,
@@ -116,7 +116,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(
       self.goldenEvaluationMetricsThresholds, forKey: .goldenEvaluationMetricsThresholds)
@@ -185,7 +185,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.turnLevelMetricsThresholds = try container.decodeIfPresent(
         EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.TurnLevelMetricsThresholds
@@ -201,7 +201,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.turnLevelMetricsThresholds, forKey: .turnLevelMetricsThresholds)
@@ -268,7 +268,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.semanticSimilaritySuccessThreshold = try container.decodeIfPresent(
           Swift.Int32.self, forKey: .semanticSimilaritySuccessThreshold)
@@ -286,7 +286,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(
           self.semanticSimilaritySuccessThreshold, forKey: .semanticSimilaritySuccessThreshold)
@@ -386,7 +386,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -404,7 +404,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED")
@@ -416,13 +416,24 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
+      /// The type URL for `TurnLevelMetricsThresholds`: `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.TurnLevelMetricsThresholds"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.TurnLevelMetricsThresholds"
       }
+
+      /// Initialize an instance of `TurnLevelMetricsThresholds` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.TurnLevelMetricsThresholds"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `TurnLevelMetricsThresholds` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -468,7 +479,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.toolInvocationParameterCorrectnessThreshold = try container.decodeIfPresent(
           Swift.Float.self, forKey: .toolInvocationParameterCorrectnessThreshold)
@@ -478,7 +489,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(
           self.toolInvocationParameterCorrectnessThreshold,
@@ -488,25 +499,47 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
+      /// The type URL for `ExpectationLevelMetricsThresholds`: `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.ExpectationLevelMetricsThresholds"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.ExpectationLevelMetricsThresholds"
       }
+
+      /// Initialize an instance of `ExpectationLevelMetricsThresholds` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.ExpectationLevelMetricsThresholds"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ExpectationLevelMetricsThresholds` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `GoldenEvaluationMetricsThresholds`: `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds"
     }
+
+    /// Initialize an instance of `GoldenEvaluationMetricsThresholds` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GoldenEvaluationMetricsThresholds` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -553,7 +586,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         EvaluationMetricsThresholds.ToolMatchingSettings.ExtraToolCallBehavior.self,
@@ -567,7 +600,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.extraToolCallBehavior, forKey: .extraToolCallBehavior)
       for (key, value) in self._unknownFields.json {
@@ -664,7 +697,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -682,7 +715,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("EXTRA_TOOL_CALL_BEHAVIOR_UNSPECIFIED")
@@ -694,13 +727,24 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `ToolMatchingSettings`: `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.ToolMatchingSettings"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.ToolMatchingSettings"
     }
+
+    /// Initialize an instance of `ToolMatchingSettings` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.ToolMatchingSettings"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ToolMatchingSettings` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -795,7 +839,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -813,7 +857,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED")
@@ -825,12 +869,23 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `EvaluationMetricsThresholds`: `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds"
   }
+
+  /// Initialize an instance of `EvaluationMetricsThresholds` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `EvaluationMetricsThresholds` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

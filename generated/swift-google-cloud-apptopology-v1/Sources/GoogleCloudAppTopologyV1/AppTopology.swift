@@ -63,6 +63,16 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
     try await self.inner.getSchema(request: request, options: options)
   }
 
+  /// Explores the topology schema starting from given node types or label names
+  /// up to a specified hop depth.
+  ///
+  /// @Snippet(path: "AppTopology_ExploreSchema")
+  public func exploreSchema(
+    request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse {
+    try await self.inner.exploreSchema(request: request, options: options)
+  }
+
   /// Retrieves the specified topology domain.
   ///
   /// @Snippet(path: "AppTopology_GetDomain")
@@ -179,6 +189,11 @@ extension Clients {
       request: GetSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppTopologyV1.Schema
 
+    /// See `AppTopologyClient.exploreSchema`.
+    func exploreSchema(
+      request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse
+
     /// See `AppTopologyClient.getDomain`.
     func getDomain(
       request: GetDomainRequest, options: GoogleGax.RequestOptions
@@ -260,6 +275,51 @@ extension Clients.AppTopologyProtocol {
     return try await self.getSchema(request: request)
   }
 
+  public func exploreSchema(request: ExploreSchemaRequest) async throws
+    -> GoogleCloudAppTopologyV1.ExploreSchemaResponse
+  {
+    try await self.exploreSchema(request: request, options: .init())
+  }
+
+  public func exploreSchema(
+    request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func exploreSchemaByItems(
+    request: ExploreSchemaRequest
+  ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
+    self.exploreSchemaByItems(request: request, options: .init())
+  }
+
+  /// Explores the topology schema starting from given node types or label names
+  /// up to a specified hop depth.
+  ///
+  /// @Snippet(path: "AppTopology_ExploreSchema")
+  public func exploreSchemaByItems(
+    request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse
+      in
+      var request = request
+      request.pageToken = token
+      return try await self.exploreSchema(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func exploreSchemaByItems(
+    name: Swift.String,
+  ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
+    let request = ExploreSchemaRequest().with {
+      $0.name = name
+    }
+    return self.exploreSchemaByItems(request: request)
+  }
+
   public func getDomain(request: GetDomainRequest) async throws -> GoogleCloudAppTopologyV1.Domain {
     try await self.getDomain(request: request, options: .init())
   }
@@ -293,7 +353,7 @@ extension Clients.AppTopologyProtocol {
 
   public func listDomainsByItems(
     request: ListDomainsRequest
-  ) -> some AsyncSequence<Domain, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Domain, any Swift.Error> & Sendable {
     self.listDomainsByItems(request: request, options: .init())
   }
 
@@ -303,7 +363,7 @@ extension Clients.AppTopologyProtocol {
   /// @Snippet(path: "AppTopology_ListDomains")
   public func listDomainsByItems(
     request: ListDomainsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Domain, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Domain, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudAppTopologyV1.ListDomainsResponse
       in
@@ -317,7 +377,7 @@ extension Clients.AppTopologyProtocol {
 
   public func listDomainsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Domain, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Domain, any Swift.Error> & Sendable {
     let request = ListDomainsRequest().with {
       $0.parent = parent
     }
@@ -338,7 +398,7 @@ extension Clients.AppTopologyProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -364,7 +424,7 @@ extension Clients.AppTopologyProtocol {
   /// @Snippet(path: "AppTopology_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -401,7 +461,7 @@ extension Clients.AppTopologyProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -412,7 +472,7 @@ extension Clients.AppTopologyProtocol {
   /// @Snippet(path: "AppTopology_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -426,7 +486,7 @@ extension Clients.AppTopologyProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

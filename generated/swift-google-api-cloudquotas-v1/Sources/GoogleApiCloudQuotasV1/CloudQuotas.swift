@@ -154,7 +154,7 @@ extension Clients.CloudQuotasProtocol {
 
   public func listQuotaInfosByItems(
     request: ListQuotaInfosRequest
-  ) -> some AsyncSequence<QuotaInfo, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QuotaInfo, any Swift.Error> & Sendable {
     self.listQuotaInfosByItems(request: request, options: .init())
   }
 
@@ -163,7 +163,7 @@ extension Clients.CloudQuotasProtocol {
   /// @Snippet(path: "CloudQuotas_ListQuotaInfos")
   public func listQuotaInfosByItems(
     request: ListQuotaInfosRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<QuotaInfo, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QuotaInfo, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleApiCloudQuotasV1.ListQuotaInfosResponse
       in
@@ -177,7 +177,7 @@ extension Clients.CloudQuotasProtocol {
 
   public func listQuotaInfosByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<QuotaInfo, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QuotaInfo, any Swift.Error> & Sendable {
     let request = ListQuotaInfosRequest().with {
       $0.parent = parent
     }
@@ -219,7 +219,7 @@ extension Clients.CloudQuotasProtocol {
 
   public func listQuotaPreferencesByItems(
     request: ListQuotaPreferencesRequest
-  ) -> some AsyncSequence<QuotaPreference, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QuotaPreference, any Swift.Error> & Sendable {
     self.listQuotaPreferencesByItems(request: request, options: .init())
   }
 
@@ -228,7 +228,7 @@ extension Clients.CloudQuotasProtocol {
   /// @Snippet(path: "CloudQuotas_ListQuotaPreferences")
   public func listQuotaPreferencesByItems(
     request: ListQuotaPreferencesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<QuotaPreference, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QuotaPreference, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleApiCloudQuotasV1.ListQuotaPreferencesResponse in
@@ -242,7 +242,7 @@ extension Clients.CloudQuotasProtocol {
 
   public func listQuotaPreferencesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<QuotaPreference, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QuotaPreference, any Swift.Error> & Sendable {
     let request = ListQuotaPreferencesRequest().with {
       $0.parent = parent
     }

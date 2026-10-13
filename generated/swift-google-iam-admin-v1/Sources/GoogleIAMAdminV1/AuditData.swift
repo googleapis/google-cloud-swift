@@ -57,7 +57,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.permissionDelta = try container.decodeIfPresent(
       AuditData.PermissionDelta.self, forKey: .permissionDelta)
@@ -67,7 +67,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.permissionDelta, forKey: .permissionDelta)
     for (key, value) in self._unknownFields.json {
@@ -119,7 +119,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .addedPermissions) {
         self.addedPermissions = value
@@ -134,7 +134,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.addedPermissions, forKey: .addedPermissions)
       try container.encode(self.removedPermissions, forKey: .removedPermissions)
@@ -143,23 +143,45 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `PermissionDelta`: `"type.googleapis.com/google.iam.admin.v1.AuditData.PermissionDelta"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.iam.admin.v1.AuditData.PermissionDelta"
     }
+
+    /// Initialize an instance of `PermissionDelta` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.iam.admin.v1.AuditData.PermissionDelta"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PermissionDelta` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `AuditData`: `"type.googleapis.com/google.iam.admin.v1.AuditData"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.admin.v1.AuditData"
   }
+
+  /// Initialize an instance of `AuditData` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.iam.admin.v1.AuditData"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AuditData` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

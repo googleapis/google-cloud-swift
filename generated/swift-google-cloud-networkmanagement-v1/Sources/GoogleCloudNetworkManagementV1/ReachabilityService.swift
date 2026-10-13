@@ -36,8 +36,8 @@ import Foundation
 /// @Snippet(path: "ReachabilityServiceQuickstart")
 public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtocol, Sendable {
   let inner: any Clients.ReachabilityServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ReachabilityServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -512,7 +512,7 @@ extension Clients.ReachabilityServiceProtocol {
 
   public func listConnectivityTestsByItems(
     request: ListConnectivityTestsRequest
-  ) -> some AsyncSequence<ConnectivityTest, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ConnectivityTest, any Swift.Error> & Sendable {
     self.listConnectivityTestsByItems(request: request, options: .init())
   }
 
@@ -521,7 +521,7 @@ extension Clients.ReachabilityServiceProtocol {
   /// @Snippet(path: "ReachabilityService_ListConnectivityTests")
   public func listConnectivityTestsByItems(
     request: ListConnectivityTestsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ConnectivityTest, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ConnectivityTest, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.ListConnectivityTestsResponse in
@@ -535,7 +535,7 @@ extension Clients.ReachabilityServiceProtocol {
 
   public func listConnectivityTestsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ConnectivityTest, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ConnectivityTest, any Swift.Error> & Sendable {
     let request = ListConnectivityTestsRequest().with {
       $0.parent = parent
     }
@@ -706,7 +706,7 @@ extension Clients.ReachabilityServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -722,7 +722,7 @@ extension Clients.ReachabilityServiceProtocol {
   /// @Snippet(path: "ReachabilityService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -795,7 +795,7 @@ extension Clients.ReachabilityServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -806,7 +806,7 @@ extension Clients.ReachabilityServiceProtocol {
   /// @Snippet(path: "ReachabilityService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -820,7 +820,7 @@ extension Clients.ReachabilityServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

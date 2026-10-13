@@ -17,6 +17,7 @@
 import PackageDescription
 
 let swiftSettings: [SwiftSetting] = [
+  .enableUpcomingFeature("ExistentialAny"),
   .enableUpcomingFeature("InternalImportsByDefault"),
   .enableUpcomingFeature("MemberImportVisibility"),
   .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
@@ -35,7 +36,7 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.28.2"),
   ],

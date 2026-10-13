@@ -124,7 +124,7 @@ public struct UpdateTransferConfigRequest: Codable, Equatable, GoogleWKT._AnyPac
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.transferConfig = try container.decodeIfPresent(
       TransferConfig.self, forKey: .transferConfig)
@@ -148,7 +148,7 @@ public struct UpdateTransferConfigRequest: Codable, Equatable, GoogleWKT._AnyPac
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.transferConfig, forKey: .transferConfig)
     try container.encode(self.authorizationCode, forKey: .authorizationCode)
@@ -160,12 +160,23 @@ public struct UpdateTransferConfigRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `UpdateTransferConfigRequest`: `"type.googleapis.com/google.cloud.bigquery.datatransfer.v1.UpdateTransferConfigRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.UpdateTransferConfigRequest"
   }
+
+  /// Initialize an instance of `UpdateTransferConfigRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.datatransfer.v1.UpdateTransferConfigRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateTransferConfigRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

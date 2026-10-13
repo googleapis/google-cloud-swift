@@ -68,7 +68,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.ipProtocol = try container.decodeIfPresent(Swift.String.self, forKey: .ipProtocol)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ports) {
@@ -80,7 +80,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.ipProtocol, forKey: .ipProtocol)
       try container.encode(self.ports, forKey: .ports)
@@ -89,12 +89,23 @@
       }
     }
 
+    /// The type URL for `FirewallPolicyRuleMatcherLayer4Config`: `"type.googleapis.com/google.cloud.compute.v1.FirewallPolicyRuleMatcherLayer4Config"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.FirewallPolicyRuleMatcherLayer4Config"
     }
+
+    /// Initialize an instance of `FirewallPolicyRuleMatcherLayer4Config` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.FirewallPolicyRuleMatcherLayer4Config"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FirewallPolicyRuleMatcherLayer4Config` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

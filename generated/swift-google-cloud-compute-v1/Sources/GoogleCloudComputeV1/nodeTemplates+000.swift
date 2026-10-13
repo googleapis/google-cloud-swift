@@ -26,8 +26,8 @@
   /// @Snippet(path: "nodeTemplatesQuickstart")
   public final class NodeTemplatesClient: Clients.NodeTemplatesProtocol, Sendable {
     let inner: any Clients.NodeTemplatesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `NodeTemplatesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -63,6 +63,11 @@
     }
 
     /// Deletes the specified NodeTemplate resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeTemplates_delete")
     public func deletePollingUntilDone(
@@ -135,6 +140,11 @@
 
     /// Creates a NodeTemplate resource in the specified project using the data
     /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeTemplates_insert")
     public func insertPollingUntilDone(
@@ -233,6 +243,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeTemplatesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: NodeTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -253,6 +268,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeTemplatesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: NodeTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -290,7 +310,7 @@
 
     public func aggregatedListByItems(
       request: NodeTemplatesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -302,7 +322,7 @@
     /// @Snippet(path: "nodeTemplates_aggregatedList")
     public func aggregatedListByItems(
       request: NodeTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NodeTemplateAggregatedList in
@@ -316,7 +336,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), any Swift.Error> & Sendable {
       let request = NodeTemplatesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -461,7 +481,7 @@
 
     public func listByItems(
       request: NodeTemplatesClient.ListRequest
-    ) -> some AsyncSequence<NodeTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeTemplate, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -471,7 +491,7 @@
     /// @Snippet(path: "nodeTemplates_list")
     public func listByItems(
       request: NodeTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<NodeTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeTemplate, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeTemplateList in
         var request = request
@@ -485,7 +505,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<NodeTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeTemplate, any Swift.Error> & Sendable {
       let request = NodeTemplatesClient.ListRequest().with {
         $0.project = project
         $0.region = region

@@ -68,7 +68,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.provisioningModelMix = try container.decodeIfPresent(
       InstanceFlexibilityPolicy.ProvisioningModelMix.self, forKey: .provisioningModelMix)
@@ -88,7 +88,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.provisioningModelMix, forKey: .provisioningModelMix)
     try container.encode(self.instanceSelectionList, forKey: .instanceSelectionList)
@@ -155,7 +155,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.standardCapacityBase = try container.decodeIfPresent(
         Swift.Int32.self, forKey: .standardCapacityBase)
@@ -167,7 +167,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.standardCapacityBase, forKey: .standardCapacityBase)
       try container.encodeIfPresent(
@@ -177,13 +177,24 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `ProvisioningModelMix`: `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.ProvisioningModelMix"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.ProvisioningModelMix"
     }
+
+    /// Initialize an instance of `ProvisioningModelMix` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.ProvisioningModelMix"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ProvisioningModelMix` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -244,7 +255,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .machineTypes) {
         self.machineTypes = value
@@ -259,7 +270,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.machineTypes, forKey: .machineTypes)
       try container.encode(self.rank, forKey: .rank)
@@ -269,13 +280,24 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `InstanceSelection`: `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelection"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelection"
     }
+
+    /// Initialize an instance of `InstanceSelection` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelection"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InstanceSelection` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -325,7 +347,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.machineType = try container.decodeIfPresent(Swift.String.self, forKey: .machineType)
       self.vmCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .vmCount)
@@ -335,7 +357,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.machineType, forKey: .machineType)
       try container.encodeIfPresent(self.vmCount, forKey: .vmCount)
@@ -344,24 +366,46 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `InstanceSelectionResult`: `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelectionResult"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelectionResult"
     }
+
+    /// Initialize an instance of `InstanceSelectionResult` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelectionResult"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InstanceSelectionResult` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `InstanceFlexibilityPolicy`: `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy"
   }
+
+  /// Initialize an instance of `InstanceFlexibilityPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `InstanceFlexibilityPolicy` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

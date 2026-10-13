@@ -59,7 +59,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var authConfig: AuthConfigOneOf? = nil
@@ -89,7 +89,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.authConfig {
@@ -144,7 +144,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .oauthToken) {
         self.oauthToken = value
@@ -155,7 +155,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.oauthToken, forKey: .oauthToken)
       for (key, value) in self._unknownFields.json {
@@ -163,12 +163,23 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Oauth2AuthCodeConfig`: `"type.googleapis.com/google.cloud.ces.v1.EndUserAuthConfig.Oauth2AuthCodeConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.EndUserAuthConfig.Oauth2AuthCodeConfig"
     }
+
+    /// Initialize an instance of `Oauth2AuthCodeConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EndUserAuthConfig.Oauth2AuthCodeConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Oauth2AuthCodeConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -225,7 +236,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .issuer) {
         self.issuer = value
@@ -242,7 +253,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.issuer, forKey: .issuer)
       try container.encode(self.subject, forKey: .subject)
@@ -252,12 +263,23 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Oauth2JwtBearerConfig`: `"type.googleapis.com/google.cloud.ces.v1.EndUserAuthConfig.Oauth2JwtBearerConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.EndUserAuthConfig.Oauth2JwtBearerConfig"
     }
+
+    /// Initialize an instance of `Oauth2JwtBearerConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EndUserAuthConfig.Oauth2JwtBearerConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Oauth2JwtBearerConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -271,12 +293,23 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case oauth2JwtBearerConfig(EndUserAuthConfig.Oauth2JwtBearerConfig)
   }
 
+  /// The type URL for `EndUserAuthConfig`: `"type.googleapis.com/google.cloud.ces.v1.EndUserAuthConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.EndUserAuthConfig"
   }
+
+  /// Initialize an instance of `EndUserAuthConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.EndUserAuthConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `EndUserAuthConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

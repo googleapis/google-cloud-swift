@@ -386,6 +386,37 @@ import Testing
     }
   }
 
+  @Test func neverRetryDoesNotPenalizeThrottlers() async throws {
+    let error = transient()
+    let circuitBreaker = try CircuitBreaker(tokens: 100, minTokens: 50, errorCost: 10)
+    let adaptiveThrottler = try AdaptiveThrottler(factor: 2.0)
+
+    let cbLoop = _RetryLoop(
+      retryPolicy: NeverRetry(),
+      backoffPolicy: MockBackoff(),
+      retryThrottler: circuitBreaker,
+      idempotent: true
+    )
+    let adaptiveLoop = _RetryLoop(
+      retryPolicy: NeverRetry(),
+      backoffPolicy: MockBackoff(),
+      retryThrottler: adaptiveThrottler,
+      idempotent: true
+    )
+
+    for _ in 0..<10 {
+      await #expect(throws: RequestError.self) {
+        try await cbLoop.run(inner: { _ in throw error }, sleep: { _ in })
+      }
+      await #expect(throws: RequestError.self) {
+        try await adaptiveLoop.run(inner: { _ in throw error }, sleep: { _ in })
+      }
+    }
+
+    #expect(!circuitBreaker.throttleRetryAttempt())
+    #expect(!adaptiveThrottler.throttleRetryAttemptImpl(gen: { 0.0 }))
+  }
+
   struct CustomDomainError: Error, Equatable {}
 
   @Test func nonRequestErrorThrownDirectly() async throws {
@@ -537,6 +568,77 @@ import Testing
       )
     }
     #expect(attempts == 1)
+  }
+
+  @Test func throttleIncrementsAttemptCountAndExhaustsAttemptLimit() async throws {
+    let transientError = transient()
+    var innerAttempts = 0
+    var sleeps = 0
+    // After the first attempt fails (cost 10), currentTokens drops to 0 (< minTokens 10),
+    // causing throttleRetryAttempt() to return true unconditionally on all subsequent attempts.
+    let circuitBreaker = try CircuitBreaker(tokens: 10, minTokens: 10, errorCost: 10)
+    let loop = _RetryLoop(
+      retryPolicy: AlwaysRetry.unbounded().withAttemptLimit(3),
+      backoffPolicy: MockBackoff(),
+      retryThrottler: circuitBreaker,
+      idempotent: true
+    )
+
+    let error = await #expect(throws: RequestError.self) {
+      try await loop.run(
+        inner: { _ in
+          innerAttempts += 1
+          throw transientError
+        },
+        sleep: { _ in sleeps += 1 }
+      )
+    }
+
+    #expect(error == transientError)
+    #expect(innerAttempts == 1)
+    // 1 sleep after attempt 1 fails, 1 sleep after throttled attempt 2;
+    // throttled attempt 3 exhausts the limit of 3 and throws immediately.
+    #expect(sleeps == 2)
+  }
+
+  @Test func throttleAdvancesBackoffState() async throws {
+    let transientError = transient()
+    let backoff = RecordingBackoff()
+
+    final class RecordingBackoff: BackoffPolicy, Sendable {
+      private let observed = Mutex<[Int]>([])
+      func backoffDelay(for state: RetryState) -> Duration {
+        observed.withLock { $0.append(state.attemptCount) }
+        return .zero
+      }
+      var attemptCounts: [Int] {
+        observed.withLock { $0 }
+      }
+    }
+
+    let loop = _RetryLoop(
+      retryPolicy: MockPolicy(
+        onError: { _, e in .retry(e) },
+        onThrottle: { _, e in .retry(e) }
+      ),
+      backoffPolicy: backoff,
+      retryThrottler: MockThrottler(shouldThrottle: [true, false]),
+      idempotent: true
+    )
+
+    var innerAttempts = 0
+    let response = try await loop.run(
+      inner: { _ in
+        innerAttempts += 1
+        if innerAttempts == 1 { throw transientError }
+        return "success"
+      },
+      sleep: { _ in }
+    )
+
+    #expect(response == "success")
+    #expect(innerAttempts == 2)
+    #expect(backoff.attemptCounts == [1, 2])
   }
 
   @Test func noSleepPastOverallTimeout() async throws {

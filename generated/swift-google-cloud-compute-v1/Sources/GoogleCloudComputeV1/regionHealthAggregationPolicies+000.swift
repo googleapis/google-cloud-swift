@@ -28,8 +28,8 @@
       .RegionHealthAggregationPoliciesProtocol, Sendable
   {
     let inner: any Clients.RegionHealthAggregationPoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionHealthAggregationPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -69,6 +69,11 @@
     }
 
     /// Deletes the specified HealthAggregationPolicy in the given region.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_delete")
     public func deletePollingUntilDone(
@@ -133,6 +138,11 @@
 
     /// Create a HealthAggregationPolicy in the specified project in the given
     /// region using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_insert")
     public func insertPollingUntilDone(
@@ -200,6 +210,11 @@
     /// resource with the data included in the request. This method supportsPATCH
     /// semantics and uses theJSON merge
     /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionHealthAggregationPolicies_patch")
     public func patchPollingUntilDone(
@@ -281,6 +296,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionHealthAggregationPoliciesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionHealthAggregationPoliciesClient.DeleteRequest,
         options: GoogleGax.RequestOptions
@@ -298,6 +318,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionHealthAggregationPoliciesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionHealthAggregationPoliciesClient.InsertRequest,
         options: GoogleGax.RequestOptions
@@ -316,6 +341,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionHealthAggregationPoliciesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: RegionHealthAggregationPoliciesClient.PatchRequest,
         options: GoogleGax.RequestOptions
@@ -346,7 +376,7 @@
 
     public func aggregatedListByItems(
       request: RegionHealthAggregationPoliciesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), any Swift.Error>
       & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
@@ -362,7 +392,7 @@
     public func aggregatedListByItems(
       request: RegionHealthAggregationPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), any Swift.Error>
       & Sendable
     {
       let listRpc = {
@@ -378,7 +408,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), any Swift.Error>
       & Sendable
     {
       let request = RegionHealthAggregationPoliciesClient.AggregatedListRequest().with {
@@ -504,7 +534,7 @@
 
     public func listByItems(
       request: RegionHealthAggregationPoliciesClient.ListRequest
-    ) -> some AsyncSequence<HealthAggregationPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthAggregationPolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -513,7 +543,7 @@
     /// @Snippet(path: "regionHealthAggregationPolicies_list")
     public func listByItems(
       request: RegionHealthAggregationPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<HealthAggregationPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthAggregationPolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.HealthAggregationPolicyList in
@@ -528,7 +558,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<HealthAggregationPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthAggregationPolicy, any Swift.Error> & Sendable {
       let request = RegionHealthAggregationPoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region

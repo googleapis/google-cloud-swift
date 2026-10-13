@@ -61,7 +61,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var strategy: StrategyOneOf? = nil
@@ -101,7 +101,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.strategy {
@@ -152,7 +152,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -160,19 +160,30 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
+    /// The type URL for `NoneStrategy`: `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.NoneStrategy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.NoneStrategy"
     }
+
+    /// Initialize an instance of `NoneStrategy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.NoneStrategy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `NoneStrategy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -223,7 +234,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .checkpointValuePath)
       {
@@ -238,7 +249,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.checkpointValuePath, forKey: .checkpointValuePath)
       try container.encode(self.checkpointVariable, forKey: .checkpointVariable)
@@ -247,13 +258,24 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `LatestTimestampStrategy`: `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.LatestTimestampStrategy"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.LatestTimestampStrategy"
     }
+
+    /// Initialize an instance of `LatestTimestampStrategy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.LatestTimestampStrategy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `LatestTimestampStrategy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -304,7 +326,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .checkpointValuePath)
       {
@@ -319,7 +341,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.checkpointValuePath, forKey: .checkpointValuePath)
       try container.encode(self.checkpointVariable, forKey: .checkpointVariable)
@@ -328,13 +350,24 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `LatestRecordStrategy`: `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.LatestRecordStrategy"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.LatestRecordStrategy"
     }
+
+    /// Initialize an instance of `LatestRecordStrategy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.LatestRecordStrategy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `LatestRecordStrategy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -385,7 +418,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .checkpointValuePath)
       {
@@ -400,7 +433,7 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.checkpointValuePath, forKey: .checkpointValuePath)
       try container.encode(self.checkpointVariable, forKey: .checkpointVariable)
@@ -409,13 +442,24 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       }
     }
 
+    /// The type URL for `IteratorStrategy`: `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.IteratorStrategy"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.IteratorStrategy"
     }
+
+    /// Initialize an instance of `IteratorStrategy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig.IteratorStrategy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IteratorStrategy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -433,12 +477,23 @@ public struct CustomAPICheckpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     indirect case iteratorStrategy(CustomAPICheckpointConfig.IteratorStrategy)
   }
 
+  /// The type URL for `CustomAPICheckpointConfig`: `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig"
   }
+
+  /// Initialize an instance of `CustomAPICheckpointConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPICheckpointConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CustomAPICheckpointConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

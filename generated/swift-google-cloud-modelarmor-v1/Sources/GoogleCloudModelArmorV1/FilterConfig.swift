@@ -71,7 +71,7 @@ public struct FilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.raiSettings = try container.decodeIfPresent(RaiFilterSettings.self, forKey: .raiSettings)
     self.sdpSettings = try container.decodeIfPresent(SdpFilterSettings.self, forKey: .sdpSettings)
@@ -85,7 +85,7 @@ public struct FilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.raiSettings, forKey: .raiSettings)
     try container.encodeIfPresent(self.sdpSettings, forKey: .sdpSettings)
@@ -98,12 +98,23 @@ public struct FilterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `FilterConfig`: `"type.googleapis.com/google.cloud.modelarmor.v1.FilterConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.modelarmor.v1.FilterConfig"
   }
+
+  /// Initialize an instance of `FilterConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.modelarmor.v1.FilterConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `FilterConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

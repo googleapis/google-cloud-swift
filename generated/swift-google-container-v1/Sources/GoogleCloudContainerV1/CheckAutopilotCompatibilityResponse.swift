@@ -60,7 +60,7 @@ public struct CheckAutopilotCompatibilityResponse: Codable, Equatable, GoogleWKT
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [AutopilotCompatibilityIssue].self, forKey: .issues)
@@ -76,7 +76,7 @@ public struct CheckAutopilotCompatibilityResponse: Codable, Equatable, GoogleWKT
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.issues, forKey: .issues)
     try container.encode(self.summary, forKey: .summary)
@@ -85,12 +85,23 @@ public struct CheckAutopilotCompatibilityResponse: Codable, Equatable, GoogleWKT
     }
   }
 
+  /// The type URL for `CheckAutopilotCompatibilityResponse`: `"type.googleapis.com/google.container.v1.CheckAutopilotCompatibilityResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.CheckAutopilotCompatibilityResponse"
   }
+
+  /// Initialize an instance of `CheckAutopilotCompatibilityResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.CheckAutopilotCompatibilityResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CheckAutopilotCompatibilityResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

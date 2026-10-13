@@ -79,7 +79,7 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.counters = try container.decodeIfPresent(TransferCounters.self, forKey: .counters)
     if let value = try container.decodeIfPresent(TransferType.self, forKey: .transferType) {
@@ -136,7 +136,7 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.counters, forKey: .counters)
     try container.encode(self.transferType, forKey: .transferType)
@@ -180,12 +180,23 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
     indirect case destinationLustrePath(LustrePath)
   }
 
+  /// The type URL for `TransferOperationMetadata`: `"type.googleapis.com/google.cloud.lustre.v1.TransferOperationMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.lustre.v1.TransferOperationMetadata"
   }
+
+  /// Initialize an instance of `TransferOperationMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.lustre.v1.TransferOperationMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TransferOperationMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

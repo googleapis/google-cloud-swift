@@ -109,7 +109,7 @@
 
     public func aggregatedListByItems(
       request: DiskTypesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, DiskTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, DiskTypesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -121,7 +121,7 @@
     /// @Snippet(path: "diskTypes_aggregatedList")
     public func aggregatedListByItems(
       request: DiskTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, DiskTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, DiskTypesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskTypeAggregatedList
         in
@@ -135,7 +135,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, DiskTypesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, DiskTypesScopedList), any Swift.Error> & Sendable {
       let request = DiskTypesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -181,7 +181,7 @@
 
     public func listByItems(
       request: DiskTypesClient.ListRequest
-    ) -> some AsyncSequence<DiskType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DiskType, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -191,7 +191,7 @@
     /// @Snippet(path: "diskTypes_list")
     public func listByItems(
       request: DiskTypesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<DiskType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DiskType, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskTypeList in
         var request = request
@@ -205,7 +205,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<DiskType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DiskType, any Swift.Error> & Sendable {
       let request = DiskTypesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

@@ -63,7 +63,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.maxDuration = try container.decodeIfPresent(
         GoogleCloudComputeV1.Duration.self, forKey: .maxDuration)
@@ -75,7 +75,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.maxDuration, forKey: .maxDuration)
       try container.encodeIfPresent(self.requestTimestamp, forKey: .requestTimestamp)
@@ -84,12 +84,23 @@
       }
     }
 
+    /// The type URL for `ManagedInstanceShutdownDetails`: `"type.googleapis.com/google.cloud.compute.v1.ManagedInstanceShutdownDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.ManagedInstanceShutdownDetails"
     }
+
+    /// Initialize an instance of `ManagedInstanceShutdownDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.ManagedInstanceShutdownDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ManagedInstanceShutdownDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

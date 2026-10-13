@@ -55,7 +55,7 @@ public struct MultiSpeakerMarkup: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([MultiSpeakerMarkup.Turn].self, forKey: .turns) {
       self.turns = value
@@ -66,7 +66,7 @@ public struct MultiSpeakerMarkup: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.turns, forKey: .turns)
     for (key, value) in self._unknownFields.json {
@@ -118,7 +118,7 @@ public struct MultiSpeakerMarkup: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .speaker) {
         self.speaker = value
@@ -132,7 +132,7 @@ public struct MultiSpeakerMarkup: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.speaker, forKey: .speaker)
       try container.encode(self.text, forKey: .text)
@@ -141,23 +141,45 @@ public struct MultiSpeakerMarkup: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Turn`: `"type.googleapis.com/google.cloud.texttospeech.v1.MultiSpeakerMarkup.Turn"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.texttospeech.v1.MultiSpeakerMarkup.Turn"
     }
+
+    /// Initialize an instance of `Turn` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.texttospeech.v1.MultiSpeakerMarkup.Turn"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Turn` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `MultiSpeakerMarkup`: `"type.googleapis.com/google.cloud.texttospeech.v1.MultiSpeakerMarkup"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.texttospeech.v1.MultiSpeakerMarkup"
   }
+
+  /// Initialize an instance of `MultiSpeakerMarkup` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.texttospeech.v1.MultiSpeakerMarkup"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MultiSpeakerMarkup` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

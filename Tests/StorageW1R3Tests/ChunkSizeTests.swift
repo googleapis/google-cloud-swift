@@ -30,7 +30,7 @@ import Testing
     "invalid",
   ])
   func parseChunkSizesInvalidThrows(input: String) {
-    #expect(throws: Error.self) {
+    #expect(throws: (any Error).self) {
       _ = try StorageW1R3.parseChunkSizes(input)
     }
   }

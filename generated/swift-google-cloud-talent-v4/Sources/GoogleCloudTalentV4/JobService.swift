@@ -27,8 +27,8 @@ import Foundation
 /// @Snippet(path: "JobServiceQuickstart")
 public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   let inner: any Clients.JobServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `JobServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -539,7 +539,7 @@ extension Clients.JobServiceProtocol {
 
   public func listJobsByItems(
     request: ListJobsRequest
-  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
     self.listJobsByItems(request: request, options: .init())
   }
 
@@ -548,7 +548,7 @@ extension Clients.JobServiceProtocol {
   /// @Snippet(path: "JobService_ListJobs")
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudTalentV4.ListJobsResponse in
       var request = request
@@ -562,7 +562,7 @@ extension Clients.JobServiceProtocol {
   public func listJobsByItems(
     parent: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
     let request = ListJobsRequest().with {
       $0.parent = parent
       $0.filter = filter

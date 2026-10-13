@@ -61,7 +61,7 @@ public struct HybridInspectJobTriggerRequest: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -73,7 +73,7 @@ public struct HybridInspectJobTriggerRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.hybridItem, forKey: .hybridItem)
@@ -82,12 +82,23 @@ public struct HybridInspectJobTriggerRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `HybridInspectJobTriggerRequest`: `"type.googleapis.com/google.privacy.dlp.v2.HybridInspectJobTriggerRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.HybridInspectJobTriggerRequest"
   }
+
+  /// Initialize an instance of `HybridInspectJobTriggerRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.HybridInspectJobTriggerRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `HybridInspectJobTriggerRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

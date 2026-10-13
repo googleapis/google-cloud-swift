@@ -55,7 +55,7 @@ public struct BillingAccountPurchaseInfo: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.billingAccount = try container.decodeIfPresent(
       BillingAccount.self, forKey: .billingAccount)
@@ -65,7 +65,7 @@ public struct BillingAccountPurchaseInfo: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.billingAccount, forKey: .billingAccount)
     for (key, value) in self._unknownFields.json {
@@ -73,12 +73,23 @@ public struct BillingAccountPurchaseInfo: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `BillingAccountPurchaseInfo`: `"type.googleapis.com/google.cloud.channel.v1.BillingAccountPurchaseInfo"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.BillingAccountPurchaseInfo"
   }
+
+  /// Initialize an instance of `BillingAccountPurchaseInfo` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.channel.v1.BillingAccountPurchaseInfo"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BillingAccountPurchaseInfo` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

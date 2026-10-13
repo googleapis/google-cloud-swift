@@ -68,7 +68,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.abort = try container.decodeIfPresent(HttpFaultAbort.self, forKey: .abort)
       self.delay = try container.decodeIfPresent(HttpFaultDelay.self, forKey: .delay)
@@ -78,7 +78,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.abort, forKey: .abort)
       try container.encodeIfPresent(self.delay, forKey: .delay)
@@ -87,12 +87,23 @@
       }
     }
 
+    /// The type URL for `HttpFaultInjection`: `"type.googleapis.com/google.cloud.compute.v1.HttpFaultInjection"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.HttpFaultInjection"
     }
+
+    /// Initialize an instance of `HttpFaultInjection` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.HttpFaultInjection"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HttpFaultInjection` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

@@ -168,7 +168,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .placement) {
       self.placement = value
@@ -208,7 +208,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.placement, forKey: .placement)
     try container.encode(self.branch, forKey: .branch)
@@ -298,7 +298,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
         self.filter = value
@@ -317,7 +317,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.filter, forKey: .filter)
       try container.encode(self.canonicalFilter, forKey: .canonicalFilter)
@@ -328,12 +328,23 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `SearchParams`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.SearchParams"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.SearchParams"
     }
+
+    /// Initialize an instance of `SearchParams` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.SearchParams"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SearchParams` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -381,7 +392,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var type: TypeOneOf? = nil
@@ -409,7 +420,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.type {
@@ -465,7 +476,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.productAttributeValue = try container.decodeIfPresent(
           ProductAttributeValue.self, forKey: .productAttributeValue)
@@ -475,7 +486,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.productAttributeValue, forKey: .productAttributeValue)
         for (key, value) in self._unknownFields.json {
@@ -483,13 +494,24 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
+      /// The type URL for `SelectedAnswer`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer.SelectedAnswer"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer.SelectedAnswer"
       }
+
+      /// Initialize an instance of `SelectedAnswer` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer.SelectedAnswer"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SelectedAnswer` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -506,12 +528,23 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       indirect case selectedAnswer(ConversationalSearchRequest.UserAnswer.SelectedAnswer)
     }
 
+    /// The type URL for `UserAnswer`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer"
     }
+
+    /// Initialize an instance of `UserAnswer` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UserAnswer` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -585,7 +618,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableConversationalFiltering)
@@ -609,7 +642,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(
         self.enableConversationalFiltering, forKey: .enableConversationalFiltering)
@@ -716,7 +749,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -734,7 +767,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("MODE_UNSPECIFIED")
@@ -747,24 +780,46 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `ConversationalFilteringSpec`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.ConversationalFilteringSpec"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.ConversationalFilteringSpec"
     }
+
+    /// Initialize an instance of `ConversationalFilteringSpec` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.ConversationalFilteringSpec"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConversationalFilteringSpec` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ConversationalSearchRequest`: `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest"
   }
+
+  /// Initialize an instance of `ConversationalSearchRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ConversationalSearchRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -26,8 +26,8 @@
   /// @Snippet(path: "storagePoolsQuickstart")
   public final class StoragePoolsClient: Clients.StoragePoolsProtocol, Sendable {
     let inner: any Clients.StoragePoolsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `StoragePoolsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -71,6 +71,11 @@
     /// storagePool does not delete any snapshots previously
     /// made from the storagePool. You must separately delete
     /// snapshots.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "storagePools_delete")
     public func deletePollingUntilDone(
@@ -144,6 +149,11 @@
 
     /// Creates a storage pool in the specified project using the data
     /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "storagePools_insert")
     public func insertPollingUntilDone(
@@ -242,6 +252,11 @@
     /// pool_provisioned_capacity_gb, pool_provisioned_iops and
     /// pool_provisioned_throughput.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "storagePools_update")
     public func updatePollingUntilDone(
       request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -310,6 +325,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `StoragePoolsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -330,6 +350,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `StoragePoolsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -360,6 +385,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `StoragePoolsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -382,7 +412,7 @@
 
     public func aggregatedListByItems(
       request: StoragePoolsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -394,7 +424,7 @@
     /// @Snippet(path: "storagePools_aggregatedList")
     public func aggregatedListByItems(
       request: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.StoragePoolAggregatedList in
@@ -408,7 +438,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), any Swift.Error> & Sendable {
       let request = StoragePoolsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -553,7 +583,7 @@
 
     public func listByItems(
       request: StoragePoolsClient.ListRequest
-    ) -> some AsyncSequence<StoragePool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePool, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -563,7 +593,7 @@
     /// @Snippet(path: "storagePools_list")
     public func listByItems(
       request: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<StoragePool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePool, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolList in
         var request = request
@@ -577,7 +607,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<StoragePool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePool, any Swift.Error> & Sendable {
       let request = StoragePoolsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
@@ -599,7 +629,7 @@
 
     public func listDisksByItems(
       request: StoragePoolsClient.ListDisksRequest
-    ) -> some AsyncSequence<StoragePoolDisk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePoolDisk, any Swift.Error> & Sendable {
       self.listDisksByItems(request: request, options: .init())
     }
 
@@ -608,7 +638,7 @@
     /// @Snippet(path: "storagePools_listDisks")
     public func listDisksByItems(
       request: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<StoragePoolDisk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePoolDisk, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolListDisks in
         var request = request
@@ -623,7 +653,7 @@
       project: Swift.String,
       zone: Swift.String,
       storagePool: Swift.String,
-    ) -> some AsyncSequence<StoragePoolDisk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePoolDisk, any Swift.Error> & Sendable {
       let request = StoragePoolsClient.ListDisksRequest().with {
         $0.project = project
         $0.zone = zone

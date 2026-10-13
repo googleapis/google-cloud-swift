@@ -163,7 +163,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -264,7 +264,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.format, forKey: .format)
@@ -353,7 +353,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .allowSnapshotOverwrites)
@@ -371,7 +371,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.allowSnapshotOverwrites, forKey: .allowSnapshotOverwrites)
       try container.encode(self.versionPolicy, forKey: .versionPolicy)
@@ -469,7 +469,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -487,7 +487,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("VERSION_POLICY_UNSPECIFIED")
@@ -499,13 +499,24 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `MavenRepositoryConfig`: `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.MavenRepositoryConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.Repository.MavenRepositoryConfig"
     }
+
+    /// Initialize an instance of `MavenRepositoryConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.MavenRepositoryConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MavenRepositoryConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -553,7 +564,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .immutableTags) {
         self.immutableTags = value
@@ -564,7 +575,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.immutableTags, forKey: .immutableTags)
       for (key, value) in self._unknownFields.json {
@@ -572,13 +583,24 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `DockerRepositoryConfig`: `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.DockerRepositoryConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.Repository.DockerRepositoryConfig"
     }
+
+    /// Initialize an instance of `DockerRepositoryConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.DockerRepositoryConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DockerRepositoryConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -642,7 +664,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Repository.VulnerabilityScanningConfig.EnablementConfig.self, forKey: .enablementConfig)
@@ -667,7 +689,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enablementConfig, forKey: .enablementConfig)
       try container.encodeIfPresent(self.lastEnableTime, forKey: .lastEnableTime)
@@ -767,7 +789,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -785,7 +807,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("ENABLEMENT_CONFIG_UNSPECIFIED")
@@ -891,7 +913,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -909,7 +931,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("ENABLEMENT_STATE_UNSPECIFIED")
@@ -922,13 +944,24 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `VulnerabilityScanningConfig`: `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.VulnerabilityScanningConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.Repository.VulnerabilityScanningConfig"
     }
+
+    /// Initialize an instance of `VulnerabilityScanningConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository.VulnerabilityScanningConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VulnerabilityScanningConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1069,7 +1102,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1087,7 +1120,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("FORMAT_UNSPECIFIED")
@@ -1201,7 +1234,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1219,7 +1252,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("MODE_UNSPECIFIED")
@@ -1251,12 +1284,23 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case remoteRepositoryConfig(RemoteRepositoryConfig)
   }
 
+  /// The type URL for `Repository`: `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.Repository"
   }
+
+  /// Initialize an instance of `Repository` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.artifactregistry.v1.Repository"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Repository` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

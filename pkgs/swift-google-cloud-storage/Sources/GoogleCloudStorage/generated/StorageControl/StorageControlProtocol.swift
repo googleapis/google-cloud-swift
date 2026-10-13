@@ -596,13 +596,13 @@ extension StorageControlProtocol {
 
   public func listBucketsByItems(
     request: ListBucketsRequest
-  ) -> some AsyncSequence<Bucket, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Bucket, any Swift.Error> & Sendable {
     self.listBucketsByItems(request: request, options: .init())
   }
 
   public func listBucketsByItems(
     request: ListBucketsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Bucket, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Bucket, any Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> ListBucketsResponse in
       var request = request
       request.pageToken = token
@@ -696,13 +696,13 @@ extension StorageControlProtocol {
 
   public func listObjectsByItems(
     request: ListObjectsRequest
-  ) -> some AsyncSequence<Object, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Object, any Swift.Error> & Sendable {
     self.listObjectsByItems(request: request, options: .init())
   }
 
   public func listObjectsByItems(
     request: ListObjectsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Object, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Object, any Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> ListObjectsResponse in
       var request = request
       request.pageToken = token
@@ -774,13 +774,13 @@ extension StorageControlProtocol {
 
   public func listFoldersByItems(
     request: ListFoldersRequest
-  ) -> some AsyncSequence<Folder, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Folder, any Swift.Error> & Sendable {
     self.listFoldersByItems(request: request, options: .init())
   }
 
   public func listFoldersByItems(
     request: ListFoldersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Folder, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Folder, any Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> ListFoldersResponse in
       var request = request
       request.pageToken = token
@@ -890,13 +890,13 @@ extension StorageControlProtocol {
 
   public func listManagedFoldersByItems(
     request: ListManagedFoldersRequest
-  ) -> some AsyncSequence<ManagedFolder, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ManagedFolder, any Swift.Error> & Sendable {
     self.listManagedFoldersByItems(request: request, options: .init())
   }
 
   public func listManagedFoldersByItems(
     request: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ManagedFolder, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ManagedFolder, any Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> ListManagedFoldersResponse in
       var request = request
       request.pageToken = token
@@ -1022,13 +1022,13 @@ extension StorageControlProtocol {
 
   public func listAnywhereCachesByItems(
     request: ListAnywhereCachesRequest
-  ) -> some AsyncSequence<AnywhereCache, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AnywhereCache, any Swift.Error> & Sendable {
     self.listAnywhereCachesByItems(request: request, options: .init())
   }
 
   public func listAnywhereCachesByItems(
     request: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AnywhereCache, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AnywhereCache, any Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> ListAnywhereCachesResponse in
       var request = request
       request.pageToken = token
@@ -1134,13 +1134,13 @@ extension StorageControlProtocol {
 
   public func listRapidCachesByItems(
     request: ListRapidCachesRequest
-  ) -> some AsyncSequence<RapidCache, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RapidCache, any Swift.Error> & Sendable {
     self.listRapidCachesByItems(request: request, options: .init())
   }
 
   public func listRapidCachesByItems(
     request: ListRapidCachesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<RapidCache, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RapidCache, any Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> ListRapidCachesResponse in
       var request = request
       request.pageToken = token
@@ -1284,13 +1284,13 @@ extension StorageControlProtocol {
 
   public func listIntelligenceFindingsByItems(
     request: ListIntelligenceFindingsRequest
-  ) -> some AsyncSequence<IntelligenceFinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IntelligenceFinding, any Swift.Error> & Sendable {
     self.listIntelligenceFindingsByItems(request: request, options: .init())
   }
 
   public func listIntelligenceFindingsByItems(
     request: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<IntelligenceFinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IntelligenceFinding, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> ListIntelligenceFindingsResponse in
       var request = request
@@ -1315,13 +1315,13 @@ extension StorageControlProtocol {
 
   public func summarizeIntelligenceFindingsByItems(
     request: SummarizeIntelligenceFindingsRequest
-  ) -> some AsyncSequence<FindingSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FindingSummary, any Swift.Error> & Sendable {
     self.summarizeIntelligenceFindingsByItems(request: request, options: .init())
   }
 
   public func summarizeIntelligenceFindingsByItems(
     request: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<FindingSummary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FindingSummary, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> SummarizeIntelligenceFindingsResponse in
       var request = request
@@ -1358,13 +1358,13 @@ extension StorageControlProtocol {
 
   public func listIntelligenceFindingRevisionsByItems(
     request: ListIntelligenceFindingRevisionsRequest
-  ) -> some AsyncSequence<IntelligenceFindingRevision, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IntelligenceFindingRevision, any Swift.Error> & Sendable {
     self.listIntelligenceFindingRevisionsByItems(request: request, options: .init())
   }
 
   public func listIntelligenceFindingRevisionsByItems(
     request: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<IntelligenceFindingRevision, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IntelligenceFindingRevision, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> ListIntelligenceFindingRevisionsResponse in
       var request = request

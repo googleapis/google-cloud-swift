@@ -26,8 +26,8 @@
   /// @Snippet(path: "targetHttpProxiesQuickstart")
   public final class TargetHttpProxiesClient: Clients.TargetHttpProxiesProtocol, Sendable {
     let inner: any Clients.TargetHttpProxiesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `TargetHttpProxiesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -64,6 +64,11 @@
     }
 
     /// Deletes the specified TargetHttpProxy resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetHttpProxies_delete")
     public func deletePollingUntilDone(
@@ -125,6 +130,11 @@
 
     /// Creates a TargetHttpProxy resource in the specified
     /// project using the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetHttpProxies_insert")
     public func insertPollingUntilDone(
@@ -192,6 +202,11 @@
     /// semantics and usesJSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "targetHttpProxies_patch")
     public func patchPollingUntilDone(
       request: TargetHttpProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -241,6 +256,11 @@
     }
 
     /// Changes the URL map for TargetHttpProxy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetHttpProxies_setUrlMap")
     public func setUrlMapPollingUntilDone(
@@ -309,6 +329,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetHttpProxiesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: TargetHttpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -324,6 +349,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetHttpProxiesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: TargetHttpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -339,6 +369,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetHttpProxiesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: TargetHttpProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -349,6 +384,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetHttpProxiesClient.setUrlMap`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setUrlMapPollingUntilDone(
         request: TargetHttpProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -371,7 +411,8 @@
 
     public func aggregatedListByItems(
       request: TargetHttpProxiesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -384,7 +425,8 @@
     /// @Snippet(path: "targetHttpProxies_aggregatedList")
     public func aggregatedListByItems(
       request: TargetHttpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.TargetHttpProxyAggregatedList in
@@ -398,7 +440,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), any Swift.Error> & Sendable
+    {
       let request = TargetHttpProxiesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -512,7 +555,7 @@
 
     public func listByItems(
       request: TargetHttpProxiesClient.ListRequest
-    ) -> some AsyncSequence<TargetHttpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetHttpProxy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -522,7 +565,7 @@
     /// @Snippet(path: "targetHttpProxies_list")
     public func listByItems(
       request: TargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<TargetHttpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetHttpProxy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpProxyList in
         var request = request
@@ -535,7 +578,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<TargetHttpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetHttpProxy, any Swift.Error> & Sendable {
       let request = TargetHttpProxiesClient.ListRequest().with {
         $0.project = project
       }

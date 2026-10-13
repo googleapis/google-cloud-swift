@@ -55,7 +55,7 @@ public struct ExternalValueSource: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var source: SourceOneOf? = nil
@@ -80,7 +80,7 @@ public struct ExternalValueSource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.source {
@@ -100,12 +100,23 @@ public struct ExternalValueSource: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case deploymentSource(DeploymentSource)
   }
 
+  /// The type URL for `ExternalValueSource`: `"type.googleapis.com/google.cloud.config.v1.ExternalValueSource"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.config.v1.ExternalValueSource"
   }
+
+  /// Initialize an instance of `ExternalValueSource` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.config.v1.ExternalValueSource"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExternalValueSource` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

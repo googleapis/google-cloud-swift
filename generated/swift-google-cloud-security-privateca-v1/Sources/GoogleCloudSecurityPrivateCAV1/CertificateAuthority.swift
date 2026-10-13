@@ -245,7 +245,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -304,7 +304,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.type, forKey: .type)
@@ -388,7 +388,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .caCertificateAccessUrl)
@@ -404,7 +404,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.caCertificateAccessUrl, forKey: .caCertificateAccessUrl)
       try container.encode(self.crlAccessUrls, forKey: .crlAccessUrls)
@@ -413,13 +413,24 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `AccessUrls`: `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.AccessUrls"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.AccessUrls"
     }
+
+    /// Initialize an instance of `AccessUrls` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.AccessUrls"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AccessUrls` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -468,7 +479,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var keyVersion: KeyVersionOneOf? = nil
@@ -498,7 +509,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.keyVersion {
@@ -527,13 +538,24 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       case algorithm(CertificateAuthority.SignHashAlgorithm)
     }
 
+    /// The type URL for `KeyVersionSpec`: `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.KeyVersionSpec"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.KeyVersionSpec"
     }
+
+    /// Initialize an instance of `KeyVersionSpec` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.KeyVersionSpec"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `KeyVersionSpec` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -599,7 +621,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [Swift.String].self, forKey: .aiaIssuingCertificateUrls)
@@ -615,7 +637,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.aiaIssuingCertificateUrls, forKey: .aiaIssuingCertificateUrls)
       try container.encode(self.crlAccessUrls, forKey: .crlAccessUrls)
@@ -624,13 +646,24 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `UserDefinedAccessUrls`: `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.UserDefinedAccessUrls"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.UserDefinedAccessUrls"
     }
+
+    /// Initialize an instance of `UserDefinedAccessUrls` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.UserDefinedAccessUrls"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UserDefinedAccessUrls` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -731,7 +764,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -749,7 +782,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
@@ -906,7 +939,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -924,7 +957,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("STATE_UNSPECIFIED")
@@ -1070,7 +1103,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1088,7 +1121,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("SIGN_HASH_ALGORITHM_UNSPECIFIED")
@@ -1106,12 +1139,23 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `CertificateAuthority`: `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority"
   }
+
+  /// Initialize an instance of `CertificateAuthority` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CertificateAuthority` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

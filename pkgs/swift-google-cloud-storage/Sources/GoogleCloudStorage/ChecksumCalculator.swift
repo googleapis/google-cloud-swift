@@ -55,7 +55,11 @@ struct CRC32CCalculator: ChecksumCalculator {
   }
 
   func finalize() -> String {
-    crc32cBase64(crc32c.finalize())
+    crc32cBase64(finalizeCRC32C())
+  }
+
+  func finalizeCRC32C() -> UInt32 {
+    crc32c.finalize()
   }
 }
 
@@ -73,7 +77,11 @@ struct MD5Calculator: ChecksumCalculator {
   }
 
   func finalize() -> String {
-    Data(md5.finalize()).base64EncodedString()
+    finalizeMD5().base64EncodedString()
+  }
+
+  func finalizeMD5() -> Data {
+    Data(md5.finalize())
   }
 }
 

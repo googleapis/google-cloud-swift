@@ -28,8 +28,8 @@
     Sendable
   {
     let inner: any Clients.ZoneVmExtensionPoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ZoneVmExtensionPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -54,6 +54,11 @@
     }
 
     /// Deletes a specified zone VM extension policy within a project.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "zoneVmExtensionPolicies_delete")
     public func deletePollingUntilDone(
@@ -115,6 +120,11 @@
 
     /// Creates a new zone-level VM extension policy within a project.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "zoneVmExtensionPolicies_insert")
     public func insertPollingUntilDone(
       request: ZoneVmExtensionPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -174,6 +184,11 @@
     }
 
     /// Modifies an existing zone VM extension policy within a project.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "zoneVmExtensionPolicies_update")
     public func updatePollingUntilDone(
@@ -238,6 +253,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ZoneVmExtensionPoliciesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: ZoneVmExtensionPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -253,6 +273,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ZoneVmExtensionPoliciesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: ZoneVmExtensionPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -268,6 +293,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ZoneVmExtensionPoliciesClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: ZoneVmExtensionPoliciesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -389,7 +419,7 @@
 
     public func listByItems(
       request: ZoneVmExtensionPoliciesClient.ListRequest
-    ) -> some AsyncSequence<VmExtensionPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<VmExtensionPolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -398,7 +428,7 @@
     /// @Snippet(path: "zoneVmExtensionPolicies_list")
     public func listByItems(
       request: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<VmExtensionPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<VmExtensionPolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.VmExtensionPolicyList
         in
@@ -413,7 +443,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<VmExtensionPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<VmExtensionPolicy, any Swift.Error> & Sendable {
       let request = ZoneVmExtensionPoliciesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

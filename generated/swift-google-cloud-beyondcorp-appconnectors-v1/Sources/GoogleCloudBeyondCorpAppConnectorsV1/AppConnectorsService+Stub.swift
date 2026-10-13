@@ -44,6 +44,10 @@ extension Clients {
       request: DeleteAppConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func resolveInstanceConfig(
+      request: ResolveInstanceConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudBeyondCorpAppConnectorsV1.ResolveInstanceConfigResponse
+
     func reportStatus(
       request: ReportStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation

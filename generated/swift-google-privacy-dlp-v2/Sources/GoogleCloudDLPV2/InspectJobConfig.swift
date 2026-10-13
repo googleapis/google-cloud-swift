@@ -72,7 +72,7 @@ public struct InspectJobConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.storageConfig = try container.decodeIfPresent(StorageConfig.self, forKey: .storageConfig)
     self.inspectConfig = try container.decodeIfPresent(InspectConfig.self, forKey: .inspectConfig)
@@ -88,7 +88,7 @@ public struct InspectJobConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.storageConfig, forKey: .storageConfig)
     try container.encodeIfPresent(self.inspectConfig, forKey: .inspectConfig)
@@ -99,12 +99,23 @@ public struct InspectJobConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `InspectJobConfig`: `"type.googleapis.com/google.privacy.dlp.v2.InspectJobConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.InspectJobConfig"
   }
+
+  /// Initialize an instance of `InspectJobConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.InspectJobConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `InspectJobConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

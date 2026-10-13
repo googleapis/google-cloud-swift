@@ -72,7 +72,7 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.baseKeyUsage = try container.decodeIfPresent(
       KeyUsage.KeyUsageOptions.self, forKey: .baseKeyUsage)
@@ -88,7 +88,7 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.baseKeyUsage, forKey: .baseKeyUsage)
     try container.encodeIfPresent(self.extendedKeyUsage, forKey: .extendedKeyUsage)
@@ -181,7 +181,7 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .digitalSignature) {
         self.digitalSignature = value
@@ -216,7 +216,7 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.digitalSignature, forKey: .digitalSignature)
       try container.encode(self.contentCommitment, forKey: .contentCommitment)
@@ -232,12 +232,23 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `KeyUsageOptions`: `"type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage.KeyUsageOptions"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage.KeyUsageOptions"
     }
+
+    /// Initialize an instance of `KeyUsageOptions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage.KeyUsageOptions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `KeyUsageOptions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -316,7 +327,7 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .serverAuth) {
         self.serverAuth = value
@@ -342,7 +353,7 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.serverAuth, forKey: .serverAuth)
       try container.encode(self.clientAuth, forKey: .clientAuth)
@@ -355,24 +366,46 @@ public struct KeyUsage: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ExtendedKeyUsageOptions`: `"type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions"
     }
+
+    /// Initialize an instance of `ExtendedKeyUsageOptions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ExtendedKeyUsageOptions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `KeyUsage`: `"type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage"
   }
+
+  /// Initialize an instance of `KeyUsage` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `KeyUsage` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

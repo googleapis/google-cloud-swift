@@ -77,7 +77,7 @@ public struct BatchGetEffectiveIamPoliciesRequest: Codable, Equatable, GoogleWKT
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
       self.scope = value
@@ -91,7 +91,7 @@ public struct BatchGetEffectiveIamPoliciesRequest: Codable, Equatable, GoogleWKT
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.scope, forKey: .scope)
     try container.encode(self.names, forKey: .names)
@@ -100,12 +100,23 @@ public struct BatchGetEffectiveIamPoliciesRequest: Codable, Equatable, GoogleWKT
     }
   }
 
+  /// The type URL for `BatchGetEffectiveIamPoliciesRequest`: `"type.googleapis.com/google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest"
   }
+
+  /// Initialize an instance of `BatchGetEffectiveIamPoliciesRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BatchGetEffectiveIamPoliciesRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

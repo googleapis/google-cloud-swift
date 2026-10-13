@@ -8,11 +8,12 @@ client and all the request, response, and model types needed to use that client.
 No traits are enabled by default. Specify the traits you need in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/googleapis/swift-google-cloud-sql-v1.git", from: "0.4.0", traits: ["<TraitName>"])
+.package(url: "https://github.com/googleapis/swift-google-cloud-sql-v1.git", from: "0.5.0", traits: ["<TraitName>"])
 ```
 
 | Trait | Default | Enabled Client |
 |---|:---:|---|
+| `BlueGreenDeploymentsService` | No | ``BlueGreenDeploymentsServiceClient`` |
 | `SqlAvailableDatabaseVersionsService` | No | ``SqlAvailableDatabaseVersionsServiceClient`` |
 | `SqlBackupRunsService` | No | ``SqlBackupRunsServiceClient`` |
 | `SqlBackupsService` | No | ``SqlBackupsServiceClient`` |
@@ -29,3 +30,4 @@ No traits are enabled by default. Specify the traits you need in `Package.swift`
 | `SqlSslCertsService` | No | ``SqlSslCertsServiceClient`` |
 | `SqlTiersService` | No | ``SqlTiersServiceClient`` |
 | `SqlUsersService` | No | ``SqlUsersServiceClient`` |
+| `SqlWorkloadCapturesService` | No | ``SqlWorkloadCapturesServiceClient`` |

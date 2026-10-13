@@ -216,6 +216,10 @@
     /// instance is initiated.
     public var includeReplicasForMajorVersionUpgrade: GoogleWKT.WKTBoolValue? = nil
 
+    /// Optional. Input only. Determines whether the precheck step is skipped
+    /// during a major version upgrade.
+    public var skipPrecheck: GoogleWKT.WKTBoolValue? = nil
+
     /// Optional. Input only. Immutable. Tag keys and tag values that are bound to
     /// this instance. You must represent each item in the map as:
     /// `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
@@ -239,6 +243,10 @@
 
     /// Output only. The list of DNS names used by this instance.
     public var dnsNames: [DnsNameMapping] = []
+
+    /// Output only. Deployment info for the instance. This is set if the instance
+    /// is currently part of any blue-green setup.
+    public var deploymentInfo: BlueGreenDeploymentInfo? = nil
 
     /// Optional. If true, instance metadata is sent to the Database Center. If
     /// false, instance metadata is not sent to the Database Center.
@@ -323,10 +331,12 @@
         stringValue: "switchTransactionLogsToCloudStorageEnabled")
       static let includeReplicasForMajorVersionUpgrade = CodingKeys(
         stringValue: "includeReplicasForMajorVersionUpgrade")
+      static let skipPrecheck = CodingKeys(stringValue: "skipPrecheck")
       static let tags = CodingKeys(stringValue: "tags")
       static let nodeCount = CodingKeys(stringValue: "nodeCount")
       static let nodes = CodingKeys(stringValue: "nodes")
       static let dnsNames = CodingKeys(stringValue: "dnsNames")
+      static let deploymentInfo = CodingKeys(stringValue: "deploymentInfo")
       static let databaseCenterIntegrationEnabled = CodingKeys(
         stringValue: "databaseCenterIntegrationEnabled")
       static let databaseCenterIntegration = CodingKeys(stringValue: "databaseCenterIntegration")
@@ -379,10 +389,12 @@
         "satisfiesPzi",
         "switchTransactionLogsToCloudStorageEnabled",
         "includeReplicasForMajorVersionUpgrade",
+        "skipPrecheck",
         "tags",
         "nodeCount",
         "nodes",
         "dnsNames",
+        "deploymentInfo",
         "databaseCenterIntegrationEnabled",
         "databaseCenterIntegration",
       ]
@@ -391,7 +403,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
         self.kind = value
@@ -521,6 +533,8 @@
         GoogleWKT.WKTBoolValue.self, forKey: .switchTransactionLogsToCloudStorageEnabled)
       self.includeReplicasForMajorVersionUpgrade = try container.decodeIfPresent(
         GoogleWKT.WKTBoolValue.self, forKey: .includeReplicasForMajorVersionUpgrade)
+      self.skipPrecheck = try container.decodeIfPresent(
+        GoogleWKT.WKTBoolValue.self, forKey: .skipPrecheck)
       if let value = try container.decodeIfPresent([Swift.String: Swift.String].self, forKey: .tags)
       {
         self.tags = value
@@ -534,6 +548,8 @@
       if let value = try container.decodeIfPresent([DnsNameMapping].self, forKey: .dnsNames) {
         self.dnsNames = value
       }
+      self.deploymentInfo = try container.decodeIfPresent(
+        BlueGreenDeploymentInfo.self, forKey: .deploymentInfo)
       self.databaseCenterIntegrationEnabled = try container.decodeIfPresent(
         GoogleWKT.WKTBoolValue.self, forKey: .databaseCenterIntegrationEnabled)
       self.databaseCenterIntegration = try container.decodeIfPresent(
@@ -547,7 +563,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kind, forKey: .kind)
       try container.encode(self.state, forKey: .state)
@@ -601,10 +617,12 @@
         forKey: .switchTransactionLogsToCloudStorageEnabled)
       try container.encodeIfPresent(
         self.includeReplicasForMajorVersionUpgrade, forKey: .includeReplicasForMajorVersionUpgrade)
+      try container.encodeIfPresent(self.skipPrecheck, forKey: .skipPrecheck)
       try container.encode(self.tags, forKey: .tags)
       try container.encodeIfPresent(self.nodeCount, forKey: .nodeCount)
       try container.encode(self.nodes, forKey: .nodes)
       try container.encode(self.dnsNames, forKey: .dnsNames)
+      try container.encodeIfPresent(self.deploymentInfo, forKey: .deploymentInfo)
       try container.encodeIfPresent(
         self.databaseCenterIntegrationEnabled, forKey: .databaseCenterIntegrationEnabled)
       try container.encodeIfPresent(
@@ -660,7 +678,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
           self.name = value
@@ -673,7 +691,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.name, forKey: .name)
         try container.encodeIfPresent(self.available, forKey: .available)
@@ -682,12 +700,23 @@
         }
       }
 
+      /// The type URL for `SqlFailoverReplica`: `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlFailoverReplica"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlFailoverReplica"
       }
+
+      /// Initialize an instance of `SqlFailoverReplica` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlFailoverReplica"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SqlFailoverReplica` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -749,7 +778,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -770,7 +799,7 @@
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encode(self.canDefer, forKey: .canDefer)
@@ -781,12 +810,23 @@
         }
       }
 
+      /// The type URL for `SqlScheduledMaintenance`: `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlScheduledMaintenance"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlScheduledMaintenance"
       }
+
+      /// Initialize an instance of `SqlScheduledMaintenance` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlScheduledMaintenance"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SqlScheduledMaintenance` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -845,7 +885,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.sqlOutOfDiskState = try container.decodeIfPresent(
           DatabaseInstance.SqlOutOfDiskReport.SqlOutOfDiskState.self, forKey: .sqlOutOfDiskState)
@@ -857,7 +897,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.sqlOutOfDiskState, forKey: .sqlOutOfDiskState)
         try container.encodeIfPresent(
@@ -955,7 +995,7 @@
           }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.singleValueContainer()
           if let v = try? container.decode(Int.self) {
             self.init(intValue: v)
@@ -973,7 +1013,7 @@
             in: container, debugDescription: "Expected enum value, must be integer or string.")
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
           case .unspecified: return try container.encode("SQL_OUT_OF_DISK_STATE_UNSPECIFIED")
@@ -985,12 +1025,23 @@
         }
       }
 
+      /// The type URL for `SqlOutOfDiskReport`: `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlOutOfDiskReport"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlOutOfDiskReport"
       }
+
+      /// Initialize an instance of `SqlOutOfDiskReport` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlOutOfDiskReport"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SqlOutOfDiskReport` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1074,7 +1125,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decodeIfPresent(Swift.String.self, forKey: .name)
         self.gceZone = try container.decodeIfPresent(Swift.String.self, forKey: .gceZone)
@@ -1100,7 +1151,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.gceZone, forKey: .gceZone)
@@ -1116,12 +1167,23 @@
         }
       }
 
+      /// The type URL for `PoolNodeConfig`: `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig"
       }
+
+      /// Initialize an instance of `PoolNodeConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `PoolNodeConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1259,7 +1321,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1277,7 +1339,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("SQL_INSTANCE_STATE_UNSPECIFIED")
@@ -1381,7 +1443,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1399,7 +1461,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("SQL_NETWORK_ARCHITECTURE_UNSPECIFIED")
@@ -1499,7 +1561,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1517,7 +1579,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("DATABASE_CENTER_INTEGRATION_UNSPECIFIED")
@@ -1529,12 +1591,23 @@
       }
     }
 
+    /// The type URL for `DatabaseInstance`: `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance"
     }
+
+    /// Initialize an instance of `DatabaseInstance` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.DatabaseInstance"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DatabaseInstance` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

@@ -28,8 +28,8 @@ import Foundation
 /// @Snippet(path: "SecurityPostureQuickstart")
 public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Sendable {
   let inner: any Clients.SecurityPostureStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `SecurityPostureClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -632,7 +632,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func listPosturesByItems(
     request: ListPosturesRequest
-  ) -> some AsyncSequence<Posture, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
     self.listPosturesByItems(request: request, options: .init())
   }
 
@@ -647,7 +647,7 @@ extension Clients.SecurityPostureProtocol {
   /// @Snippet(path: "SecurityPosture_ListPostures")
   public func listPosturesByItems(
     request: ListPosturesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Posture, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecuritypostureV1.ListPosturesResponse in
@@ -661,7 +661,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func listPosturesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Posture, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
     let request = ListPosturesRequest().with {
       $0.parent = parent
     }
@@ -682,7 +682,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func listPostureRevisionsByItems(
     request: ListPostureRevisionsRequest
-  ) -> some AsyncSequence<Posture, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
     self.listPostureRevisionsByItems(request: request, options: .init())
   }
 
@@ -691,7 +691,7 @@ extension Clients.SecurityPostureProtocol {
   /// @Snippet(path: "SecurityPosture_ListPostureRevisions")
   public func listPostureRevisionsByItems(
     request: ListPostureRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Posture, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecuritypostureV1.ListPostureRevisionsResponse in
@@ -873,7 +873,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func listPostureDeploymentsByItems(
     request: ListPostureDeploymentsRequest
-  ) -> some AsyncSequence<PostureDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PostureDeployment, any Swift.Error> & Sendable {
     self.listPostureDeploymentsByItems(request: request, options: .init())
   }
 
@@ -883,7 +883,7 @@ extension Clients.SecurityPostureProtocol {
   /// @Snippet(path: "SecurityPosture_ListPostureDeployments")
   public func listPostureDeploymentsByItems(
     request: ListPostureDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<PostureDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PostureDeployment, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecuritypostureV1.ListPostureDeploymentsResponse in
@@ -897,7 +897,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func listPostureDeploymentsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<PostureDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PostureDeployment, any Swift.Error> & Sendable {
     let request = ListPostureDeploymentsRequest().with {
       $0.parent = parent
     }
@@ -1046,7 +1046,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func listPostureTemplatesByItems(
     request: ListPostureTemplatesRequest
-  ) -> some AsyncSequence<PostureTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PostureTemplate, any Swift.Error> & Sendable {
     self.listPostureTemplatesByItems(request: request, options: .init())
   }
 
@@ -1056,7 +1056,7 @@ extension Clients.SecurityPostureProtocol {
   /// @Snippet(path: "SecurityPosture_ListPostureTemplates")
   public func listPostureTemplatesByItems(
     request: ListPostureTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<PostureTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PostureTemplate, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecuritypostureV1.ListPostureTemplatesResponse in
@@ -1070,7 +1070,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func listPostureTemplatesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<PostureTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PostureTemplate, any Swift.Error> & Sendable {
     let request = ListPostureTemplatesRequest().with {
       $0.parent = parent
     }
@@ -1112,7 +1112,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1121,7 +1121,7 @@ extension Clients.SecurityPostureProtocol {
   /// @Snippet(path: "SecurityPosture_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1158,7 +1158,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1169,7 +1169,7 @@ extension Clients.SecurityPostureProtocol {
   /// @Snippet(path: "SecurityPosture_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1183,7 +1183,7 @@ extension Clients.SecurityPostureProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

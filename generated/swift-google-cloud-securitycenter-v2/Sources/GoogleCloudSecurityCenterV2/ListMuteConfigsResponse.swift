@@ -62,7 +62,7 @@ public struct ListMuteConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([MuteConfig].self, forKey: .muteConfigs) {
       self.muteConfigs = value
@@ -76,7 +76,7 @@ public struct ListMuteConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.muteConfigs, forKey: .muteConfigs)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -85,12 +85,23 @@ public struct ListMuteConfigsResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
+  /// The type URL for `ListMuteConfigsResponse`: `"type.googleapis.com/google.cloud.securitycenter.v2.ListMuteConfigsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.ListMuteConfigsResponse"
   }
+
+  /// Initialize an instance of `ListMuteConfigsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycenter.v2.ListMuteConfigsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListMuteConfigsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

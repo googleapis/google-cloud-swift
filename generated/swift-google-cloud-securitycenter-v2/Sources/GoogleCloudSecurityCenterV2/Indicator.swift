@@ -75,7 +75,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Swift.String].self, forKey: .ipAddresses) {
       self.ipAddresses = value
@@ -97,7 +97,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.ipAddresses, forKey: .ipAddresses)
     try container.encode(self.domains, forKey: .domains)
@@ -154,7 +154,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Indicator.ProcessSignature.SignatureType.self, forKey: .signatureType)
@@ -189,7 +189,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.signatureType, forKey: .signatureType)
 
@@ -250,7 +250,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .binaryFamily) {
           self.binaryFamily = value
@@ -266,7 +266,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.binaryFamily, forKey: .binaryFamily)
         try container.encode(self.detections, forKey: .detections)
@@ -320,7 +320,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .binary) {
             self.binary = value
@@ -336,7 +336,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.binary, forKey: .binary)
           try container.encode(self.percentPagesMatched, forKey: .percentPagesMatched)
@@ -345,25 +345,47 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `Detection`: `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.MemoryHashSignature.Detection"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.MemoryHashSignature.Detection"
         }
+
+        /// Initialize an instance of `Detection` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.MemoryHashSignature.Detection"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `Detection` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `MemoryHashSignature`: `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.MemoryHashSignature"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.MemoryHashSignature"
       }
+
+      /// Initialize an instance of `MemoryHashSignature` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.MemoryHashSignature"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `MemoryHashSignature` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -407,7 +429,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .yaraRule) {
           self.yaraRule = value
@@ -418,7 +440,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.yaraRule, forKey: .yaraRule)
         for (key, value) in self._unknownFields.json {
@@ -426,13 +448,24 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `YaraRuleSignature`: `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.YaraRuleSignature"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.YaraRuleSignature"
       }
+
+      /// Initialize an instance of `YaraRuleSignature` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.YaraRuleSignature"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `YaraRuleSignature` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -525,7 +558,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -543,7 +576,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("SIGNATURE_TYPE_UNSPECIFIED")
@@ -563,23 +596,45 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case yaraRuleSignature(Indicator.ProcessSignature.YaraRuleSignature)
     }
 
+    /// The type URL for `ProcessSignature`: `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature"
     }
+
+    /// Initialize an instance of `ProcessSignature` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ProcessSignature` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `Indicator`: `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.Indicator"
   }
+
+  /// Initialize an instance of `Indicator` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycenter.v2.Indicator"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Indicator` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

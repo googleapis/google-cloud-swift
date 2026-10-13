@@ -22,3 +22,13 @@ type can be used to perform all operations on [buckets].
 
 Use ``StorageProtocol`` and ``StorageControlProtocol`` if you want
 to mock the clients in your tests.
+
+## Topics
+
+### Troubleshooting and Error Handling
+
+- <doc:Troubleshooting>
+- ``ReadObjectError``
+- ``WriteObjectError``
+- ``WriteObjectSourceError``
+- ``CustomerEncryptionKeyError``

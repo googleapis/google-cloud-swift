@@ -69,7 +69,7 @@ public struct PolicyAlternativeNameServerConfigTargetNameServer: Codable, Equata
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.forwardingPath = try container.decodeIfPresent(
       PolicyAlternativeNameServerConfigTargetNameServer.ForwardingPath.self, forKey: .forwardingPath
@@ -83,7 +83,7 @@ public struct PolicyAlternativeNameServerConfigTargetNameServer: Codable, Equata
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.forwardingPath, forKey: .forwardingPath)
     try container.encodeIfPresent(self.ipv4Address, forKey: .ipv4Address)
@@ -136,13 +136,13 @@ public struct PolicyAlternativeNameServerConfigTargetNameServer: Codable, Equata
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       let s = try container.decode(Swift.String.self)
       self.init(stringValue: s)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .`default`: return try container.encode("default")
@@ -152,12 +152,23 @@ public struct PolicyAlternativeNameServerConfigTargetNameServer: Codable, Equata
     }
   }
 
+  /// The type URL for `PolicyAlternativeNameServerConfigTargetNameServer`: `"type.googleapis.com/.PolicyAlternativeNameServerConfigTargetNameServer"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.PolicyAlternativeNameServerConfigTargetNameServer"
   }
+
+  /// Initialize an instance of `PolicyAlternativeNameServerConfigTargetNameServer` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.PolicyAlternativeNameServerConfigTargetNameServer"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PolicyAlternativeNameServerConfigTargetNameServer` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

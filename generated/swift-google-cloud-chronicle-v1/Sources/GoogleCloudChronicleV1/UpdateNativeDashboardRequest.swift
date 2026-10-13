@@ -73,7 +73,7 @@ public struct UpdateNativeDashboardRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.nativeDashboard = try container.decodeIfPresent(
       NativeDashboard.self, forKey: .nativeDashboard)
@@ -85,7 +85,7 @@ public struct UpdateNativeDashboardRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.nativeDashboard, forKey: .nativeDashboard)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -94,12 +94,23 @@ public struct UpdateNativeDashboardRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
+  /// The type URL for `UpdateNativeDashboardRequest`: `"type.googleapis.com/google.cloud.chronicle.v1.UpdateNativeDashboardRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.UpdateNativeDashboardRequest"
   }
+
+  /// Initialize an instance of `UpdateNativeDashboardRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.UpdateNativeDashboardRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateNativeDashboardRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -30,8 +30,8 @@
   /// @Snippet(path: "MetadataServiceQuickstart")
   public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Sendable {
     let inner: any Clients.MetadataServiceStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `MetadataServiceClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1017,7 +1017,7 @@
 
     public func listMetadataStoresByItems(
       request: ListMetadataStoresRequest
-    ) -> some AsyncSequence<MetadataStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MetadataStore, any Swift.Error> & Sendable {
       self.listMetadataStoresByItems(request: request, options: .init())
     }
 
@@ -1026,7 +1026,7 @@
     /// @Snippet(path: "MetadataService_ListMetadataStores")
     public func listMetadataStoresByItems(
       request: ListMetadataStoresRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<MetadataStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MetadataStore, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListMetadataStoresResponse in
@@ -1040,7 +1040,7 @@
 
     public func listMetadataStoresByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<MetadataStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MetadataStore, any Swift.Error> & Sendable {
       let request = ListMetadataStoresRequest().with {
         $0.parent = parent
       }
@@ -1143,7 +1143,7 @@
 
     public func listArtifactsByItems(
       request: ListArtifactsRequest
-    ) -> some AsyncSequence<Artifact, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Artifact, any Swift.Error> & Sendable {
       self.listArtifactsByItems(request: request, options: .init())
     }
 
@@ -1152,7 +1152,7 @@
     /// @Snippet(path: "MetadataService_ListArtifacts")
     public func listArtifactsByItems(
       request: ListArtifactsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Artifact, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Artifact, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListArtifactsResponse in
@@ -1166,7 +1166,7 @@
 
     public func listArtifactsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Artifact, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Artifact, any Swift.Error> & Sendable {
       let request = ListArtifactsRequest().with {
         $0.parent = parent
       }
@@ -1320,7 +1320,7 @@
 
     public func listContextsByItems(
       request: ListContextsRequest
-    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, any Swift.Error> & Sendable {
       self.listContextsByItems(request: request, options: .init())
     }
 
@@ -1329,7 +1329,7 @@
     /// @Snippet(path: "MetadataService_ListContexts")
     public func listContextsByItems(
       request: ListContextsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListContextsResponse
         in
@@ -1343,7 +1343,7 @@
 
     public func listContextsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, any Swift.Error> & Sendable {
       let request = ListContextsRequest().with {
         $0.parent = parent
       }
@@ -1589,7 +1589,7 @@
 
     public func listExecutionsByItems(
       request: ListExecutionsRequest
-    ) -> some AsyncSequence<Execution, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
       self.listExecutionsByItems(request: request, options: .init())
     }
 
@@ -1598,7 +1598,7 @@
     /// @Snippet(path: "MetadataService_ListExecutions")
     public func listExecutionsByItems(
       request: ListExecutionsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Execution, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListExecutionsResponse in
@@ -1612,7 +1612,7 @@
 
     public func listExecutionsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<Execution, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
       let request = ListExecutionsRequest().with {
         $0.parent = parent
       }
@@ -1810,7 +1810,7 @@
 
     public func listMetadataSchemasByItems(
       request: ListMetadataSchemasRequest
-    ) -> some AsyncSequence<MetadataSchema, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MetadataSchema, any Swift.Error> & Sendable {
       self.listMetadataSchemasByItems(request: request, options: .init())
     }
 
@@ -1819,7 +1819,7 @@
     /// @Snippet(path: "MetadataService_ListMetadataSchemas")
     public func listMetadataSchemasByItems(
       request: ListMetadataSchemasRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<MetadataSchema, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MetadataSchema, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListMetadataSchemasResponse in
@@ -1833,7 +1833,7 @@
 
     public func listMetadataSchemasByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<MetadataSchema, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MetadataSchema, any Swift.Error> & Sendable {
       let request = ListMetadataSchemasRequest().with {
         $0.parent = parent
       }
@@ -1875,7 +1875,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -1884,7 +1884,7 @@
     /// @Snippet(path: "MetadataService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -1957,7 +1957,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -1968,7 +1968,7 @@
     /// @Snippet(path: "MetadataService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -1982,7 +1982,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

@@ -55,7 +55,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.allowedPrincipalTags = try container.decodeIfPresent(
       AwsPrincipalTagsOptions.AllowedPrincipalTags.self, forKey: .allowedPrincipalTags)
@@ -65,7 +65,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.allowedPrincipalTags, forKey: .allowedPrincipalTags)
     for (key, value) in self._unknownFields.json {
@@ -113,7 +113,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.containerImageSignatures = try container.decodeIfPresent(
         AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures.self,
@@ -124,7 +124,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.containerImageSignatures, forKey: .containerImageSignatures)
@@ -174,7 +174,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .keyIds) {
           self.keyIds = value
@@ -185,7 +185,7 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.keyIds, forKey: .keyIds)
         for (key, value) in self._unknownFields.json {
@@ -193,36 +193,69 @@ public struct AwsPrincipalTagsOptions: Codable, Equatable, GoogleWKT._AnyPackabl
         }
       }
 
+      /// The type URL for `ContainerImageSignatures`: `"type.googleapis.com/google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures"
       }
+
+      /// Initialize an instance of `ContainerImageSignatures` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions.AllowedPrincipalTags.ContainerImageSignatures"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ContainerImageSignatures` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `AllowedPrincipalTags`: `"type.googleapis.com/google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions.AllowedPrincipalTags"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions.AllowedPrincipalTags"
     }
+
+    /// Initialize an instance of `AllowedPrincipalTags` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions.AllowedPrincipalTags"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AllowedPrincipalTags` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `AwsPrincipalTagsOptions`: `"type.googleapis.com/google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions"
   }
+
+  /// Initialize an instance of `AwsPrincipalTagsOptions` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.confidentialcomputing.v1.AwsPrincipalTagsOptions"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AwsPrincipalTagsOptions` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

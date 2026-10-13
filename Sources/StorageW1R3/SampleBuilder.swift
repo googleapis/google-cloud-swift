@@ -68,7 +68,7 @@ public struct SampleBuilder: Sendable {
     return sanitized
   }
 
-  public func success(transferSize: Int? = nil) -> Sample {
+  public func success(transferSize: Int? = nil, details: String = "") -> Sample {
     Sample(
       task: task,
       iteration: iteration,
@@ -80,7 +80,7 @@ public struct SampleBuilder: Sendable {
       object: object,
       crc32cEnabled: crc32cEnabled,
       result: .ok,
-      details: formatDetails("")
+      details: formatDetails(details)
     )
   }
 

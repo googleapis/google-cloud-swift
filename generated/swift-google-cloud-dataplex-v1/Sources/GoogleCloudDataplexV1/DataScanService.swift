@@ -31,8 +31,8 @@ import Foundation
 /// @Snippet(path: "DataScanServiceQuickstart")
 public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Sendable {
   let inner: any Clients.DataScanServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DataScanServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -592,7 +592,7 @@ extension Clients.DataScanServiceProtocol {
 
   public func listDataScansByItems(
     request: ListDataScansRequest
-  ) -> some AsyncSequence<DataScan, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataScan, any Swift.Error> & Sendable {
     self.listDataScansByItems(request: request, options: .init())
   }
 
@@ -601,7 +601,7 @@ extension Clients.DataScanServiceProtocol {
   /// @Snippet(path: "DataScanService_ListDataScans")
   public func listDataScansByItems(
     request: ListDataScansRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataScan, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataScan, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataScansResponse in
       var request = request
@@ -614,7 +614,7 @@ extension Clients.DataScanServiceProtocol {
 
   public func listDataScansByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DataScan, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataScan, any Swift.Error> & Sendable {
     let request = ListDataScansRequest().with {
       $0.parent = parent
     }
@@ -677,7 +677,7 @@ extension Clients.DataScanServiceProtocol {
 
   public func listDataScanJobsByItems(
     request: ListDataScanJobsRequest
-  ) -> some AsyncSequence<DataScanJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataScanJob, any Swift.Error> & Sendable {
     self.listDataScanJobsByItems(request: request, options: .init())
   }
 
@@ -686,7 +686,7 @@ extension Clients.DataScanServiceProtocol {
   /// @Snippet(path: "DataScanService_ListDataScanJobs")
   public func listDataScanJobsByItems(
     request: ListDataScanJobsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataScanJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataScanJob, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataScanJobsResponse
       in
@@ -700,7 +700,7 @@ extension Clients.DataScanServiceProtocol {
 
   public func listDataScanJobsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DataScanJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataScanJob, any Swift.Error> & Sendable {
     let request = ListDataScanJobsRequest().with {
       $0.parent = parent
     }
@@ -763,7 +763,7 @@ extension Clients.DataScanServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -789,7 +789,7 @@ extension Clients.DataScanServiceProtocol {
   /// @Snippet(path: "DataScanService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -862,7 +862,7 @@ extension Clients.DataScanServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -873,7 +873,7 @@ extension Clients.DataScanServiceProtocol {
   /// @Snippet(path: "DataScanService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -887,7 +887,7 @@ extension Clients.DataScanServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionBackendServicesQuickstart")
   public final class RegionBackendServicesClient: Clients.RegionBackendServicesProtocol, Sendable {
     let inner: any Clients.RegionBackendServicesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionBackendServicesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -52,6 +52,11 @@
     }
 
     /// Deletes the specified regional BackendService resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionBackendServices_delete")
     public func deletePollingUntilDone(
@@ -137,6 +142,11 @@
     /// the data included in the request. For more information, see
     /// Backend services overview.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionBackendServices_insert")
     public func insertPollingUntilDone(
       request: RegionBackendServicesClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -218,6 +228,11 @@
     /// supports PATCH semantics and uses the JSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionBackendServices_patch")
     public func patchPollingUntilDone(
       request: RegionBackendServicesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -283,6 +298,11 @@
     /// Sets the Google Cloud Armor security policy for the specified backend
     /// service. For more information, seeGoogle
     /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionBackendServices_setSecurityPolicy")
     public func setSecurityPolicyPollingUntilDone(
@@ -352,6 +372,11 @@
     /// see
     /// Backend services overview.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionBackendServices_update")
     public func updatePollingUntilDone(
       request: RegionBackendServicesClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -415,6 +440,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionBackendServicesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionBackendServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -440,6 +470,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionBackendServicesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionBackendServicesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -460,6 +495,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionBackendServicesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: RegionBackendServicesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -476,6 +516,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionBackendServicesClient.setSecurityPolicy`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setSecurityPolicyPollingUntilDone(
         request: RegionBackendServicesClient.SetSecurityPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -493,6 +538,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionBackendServicesClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: RegionBackendServicesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -666,7 +716,7 @@
 
     public func listByItems(
       request: RegionBackendServicesClient.ListRequest
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -676,7 +726,7 @@
     /// @Snippet(path: "regionBackendServices_list")
     public func listByItems(
       request: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceList in
         var request = request
@@ -690,7 +740,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       let request = RegionBackendServicesClient.ListRequest().with {
         $0.project = project
         $0.region = region
@@ -712,7 +762,7 @@
 
     public func listUsableByItems(
       request: RegionBackendServicesClient.ListUsableRequest
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       self.listUsableByItems(request: request, options: .init())
     }
 
@@ -724,7 +774,7 @@
     /// @Snippet(path: "regionBackendServices_listUsable")
     public func listUsableByItems(
       request: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.BackendServiceListUsable in
@@ -739,7 +789,7 @@
     public func listUsableByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, any Swift.Error> & Sendable {
       let request = RegionBackendServicesClient.ListUsableRequest().with {
         $0.project = project
         $0.region = region

@@ -56,7 +56,7 @@ public struct RestoreVolumeSnapshotRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .volumeSnapshot) {
       self.volumeSnapshot = value
@@ -67,7 +67,7 @@ public struct RestoreVolumeSnapshotRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.volumeSnapshot, forKey: .volumeSnapshot)
     for (key, value) in self._unknownFields.json {
@@ -75,12 +75,23 @@ public struct RestoreVolumeSnapshotRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
+  /// The type URL for `RestoreVolumeSnapshotRequest`: `"type.googleapis.com/google.cloud.baremetalsolution.v2.RestoreVolumeSnapshotRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.baremetalsolution.v2.RestoreVolumeSnapshotRequest"
   }
+
+  /// Initialize an instance of `RestoreVolumeSnapshotRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.baremetalsolution.v2.RestoreVolumeSnapshotRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RestoreVolumeSnapshotRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

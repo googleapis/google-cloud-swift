@@ -78,7 +78,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.artifact = try container.decodeIfPresent(Artifact.self, forKey: .artifact)
       self.updateMask = try container.decodeIfPresent(
@@ -92,7 +92,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.artifact, forKey: .artifact)
       try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -102,12 +102,23 @@
       }
     }
 
+    /// The type URL for `UpdateArtifactRequest`: `"type.googleapis.com/google.cloud.aiplatform.v1.UpdateArtifactRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.UpdateArtifactRequest"
     }
+
+    /// Initialize an instance of `UpdateArtifactRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.UpdateArtifactRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UpdateArtifactRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

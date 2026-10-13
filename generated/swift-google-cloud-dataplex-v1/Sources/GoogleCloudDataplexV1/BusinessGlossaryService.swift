@@ -35,8 +35,8 @@ import Foundation
 public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServiceProtocol, Sendable
 {
   let inner: any Clients.BusinessGlossaryServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `BusinessGlossaryServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -668,7 +668,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func listGlossariesByItems(
     request: ListGlossariesRequest
-  ) -> some AsyncSequence<Glossary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Glossary, any Swift.Error> & Sendable {
     self.listGlossariesByItems(request: request, options: .init())
   }
 
@@ -677,7 +677,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
   /// @Snippet(path: "BusinessGlossaryService_ListGlossaries")
   public func listGlossariesByItems(
     request: ListGlossariesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Glossary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Glossary, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListGlossariesResponse
       in
@@ -691,7 +691,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func listGlossariesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Glossary, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Glossary, any Swift.Error> & Sendable {
     let request = ListGlossariesRequest().with {
       $0.parent = parent
     }
@@ -800,7 +800,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func listGlossaryCategoriesByItems(
     request: ListGlossaryCategoriesRequest
-  ) -> some AsyncSequence<GlossaryCategory, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GlossaryCategory, any Swift.Error> & Sendable {
     self.listGlossaryCategoriesByItems(request: request, options: .init())
   }
 
@@ -809,7 +809,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
   /// @Snippet(path: "BusinessGlossaryService_ListGlossaryCategories")
   public func listGlossaryCategoriesByItems(
     request: ListGlossaryCategoriesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GlossaryCategory, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GlossaryCategory, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataplexV1.ListGlossaryCategoriesResponse in
@@ -823,7 +823,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func listGlossaryCategoriesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<GlossaryCategory, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GlossaryCategory, any Swift.Error> & Sendable {
     let request = ListGlossaryCategoriesRequest().with {
       $0.parent = parent
     }
@@ -932,7 +932,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func listGlossaryTermsByItems(
     request: ListGlossaryTermsRequest
-  ) -> some AsyncSequence<GlossaryTerm, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GlossaryTerm, any Swift.Error> & Sendable {
     self.listGlossaryTermsByItems(request: request, options: .init())
   }
 
@@ -941,7 +941,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
   /// @Snippet(path: "BusinessGlossaryService_ListGlossaryTerms")
   public func listGlossaryTermsByItems(
     request: ListGlossaryTermsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GlossaryTerm, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GlossaryTerm, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataplexV1.ListGlossaryTermsResponse in
@@ -955,7 +955,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func listGlossaryTermsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<GlossaryTerm, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GlossaryTerm, any Swift.Error> & Sendable {
     let request = ListGlossaryTermsRequest().with {
       $0.parent = parent
     }
@@ -976,7 +976,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1002,7 +1002,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
   /// @Snippet(path: "BusinessGlossaryService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1075,7 +1075,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1086,7 +1086,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
   /// @Snippet(path: "BusinessGlossaryService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1100,7 +1100,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

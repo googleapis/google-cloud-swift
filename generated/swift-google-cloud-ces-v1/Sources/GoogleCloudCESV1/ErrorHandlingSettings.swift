@@ -67,7 +67,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       ErrorHandlingSettings.ErrorHandlingStrategy.self, forKey: .errorHandlingStrategy)
@@ -84,7 +84,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.errorHandlingStrategy, forKey: .errorHandlingStrategy)
     try container.encodeIfPresent(self.fallbackResponseConfig, forKey: .fallbackResponseConfig)
@@ -142,7 +142,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .customFallbackMessages)
@@ -158,7 +158,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.customFallbackMessages, forKey: .customFallbackMessages)
       try container.encode(self.maxFallbackAttempts, forKey: .maxFallbackAttempts)
@@ -167,12 +167,23 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `FallbackResponseConfig`: `"type.googleapis.com/google.cloud.ces.v1.ErrorHandlingSettings.FallbackResponseConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.ErrorHandlingSettings.FallbackResponseConfig"
     }
+
+    /// Initialize an instance of `FallbackResponseConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.ErrorHandlingSettings.FallbackResponseConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FallbackResponseConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -225,7 +236,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.escalateSession = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .escalateSession)
@@ -235,7 +246,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.escalateSession, forKey: .escalateSession)
       for (key, value) in self._unknownFields.json {
@@ -243,12 +254,23 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `EndSessionConfig`: `"type.googleapis.com/google.cloud.ces.v1.ErrorHandlingSettings.EndSessionConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.ErrorHandlingSettings.EndSessionConfig"
     }
+
+    /// Initialize an instance of `EndSessionConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.ErrorHandlingSettings.EndSessionConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `EndSessionConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -351,7 +373,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -369,7 +391,7 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("ERROR_HANDLING_STRATEGY_UNSPECIFIED")
@@ -382,12 +404,23 @@ public struct ErrorHandlingSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ErrorHandlingSettings`: `"type.googleapis.com/google.cloud.ces.v1.ErrorHandlingSettings"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ErrorHandlingSettings"
   }
+
+  /// Initialize an instance of `ErrorHandlingSettings` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.ces.v1.ErrorHandlingSettings"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ErrorHandlingSettings` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -128,8 +128,7 @@ public struct WKTDuration: Codable, Comparable, Equatable, Hashable, Sendable {
 
     var nanos: Int32 = 0
     if parts.count == 2 {
-      let nanosStr = String(parts[1]).padding(toLength: 9, withPad: "0", startingAt: 0)
-      guard let pNanos = Int32(nanosStr) else {
+      guard let pNanos = parseNanos(from: parts[1]) else {
         throw WKTDurationError.invalidFormat
       }
       nanos = pNanos
@@ -156,12 +155,26 @@ func formatNanos(nanos: Int32) -> String {
   return result
 }
 
+func parseNanos(from frac: Substring) -> Int32? {
+  guard !frac.isEmpty && frac.count <= 9 else {
+    return nil
+  }
+  let padded = frac.padding(toLength: 9, withPad: "0", startingAt: 0)
+  return Int32(padded)
+}
+
 // Makes `WKTDuration` conform to the `_AnyPackable` protocol, so we can pack and unpack them from `WKTAny`.
 extension WKTDuration: _AnyPackable {
+  /// The type URL for `WKTDuration`: `"type.googleapis.com/google.protobuf.Duration"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.Duration"
   }
 
+  /// Initialize an instance of `WKTDuration` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.Duration"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -172,6 +185,7 @@ extension WKTDuration: _AnyPackable {
     self = try Self.fromString(string: v)
   }
 
+  /// Packs this `WKTDuration` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .string(try self.toString())]
   }

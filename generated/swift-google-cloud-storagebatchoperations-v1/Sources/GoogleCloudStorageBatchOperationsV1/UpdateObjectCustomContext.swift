@@ -57,7 +57,7 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var action: ActionOneOf? = nil
@@ -85,7 +85,7 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.action {
@@ -111,12 +111,23 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
     case clearAll(Swift.Bool)
   }
 
+  /// The type URL for `UpdateObjectCustomContext`: `"type.googleapis.com/google.cloud.storagebatchoperations.v1.UpdateObjectCustomContext"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.storagebatchoperations.v1.UpdateObjectCustomContext"
   }
+
+  /// Initialize an instance of `UpdateObjectCustomContext` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storagebatchoperations.v1.UpdateObjectCustomContext"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateObjectCustomContext` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

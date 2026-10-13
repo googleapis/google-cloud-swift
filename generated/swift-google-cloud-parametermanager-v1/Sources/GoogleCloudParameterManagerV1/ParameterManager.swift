@@ -417,7 +417,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func listParametersByItems(
     request: ListParametersRequest
-  ) -> some AsyncSequence<Parameter, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Parameter, any Swift.Error> & Sendable {
     self.listParametersByItems(request: request, options: .init())
   }
 
@@ -426,7 +426,7 @@ extension Clients.ParameterManagerProtocol {
   /// @Snippet(path: "ParameterManager_ListParameters")
   public func listParametersByItems(
     request: ListParametersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Parameter, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Parameter, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudParameterManagerV1.ListParametersResponse in
@@ -440,7 +440,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func listParametersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Parameter, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Parameter, any Swift.Error> & Sendable {
     let request = ListParametersRequest().with {
       $0.parent = parent
     }
@@ -549,7 +549,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func listParameterVersionsByItems(
     request: ListParameterVersionsRequest
-  ) -> some AsyncSequence<ParameterVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ParameterVersion, any Swift.Error> & Sendable {
     self.listParameterVersionsByItems(request: request, options: .init())
   }
 
@@ -558,7 +558,7 @@ extension Clients.ParameterManagerProtocol {
   /// @Snippet(path: "ParameterManager_ListParameterVersions")
   public func listParameterVersionsByItems(
     request: ListParameterVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ParameterVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ParameterVersion, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudParameterManagerV1.ListParameterVersionsResponse in
@@ -572,7 +572,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func listParameterVersionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ParameterVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ParameterVersion, any Swift.Error> & Sendable {
     let request = ListParameterVersionsRequest().with {
       $0.parent = parent
     }
@@ -702,7 +702,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func listTemplatesByItems(
     request: ListTemplatesRequest
-  ) -> some AsyncSequence<Template, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
     self.listTemplatesByItems(request: request, options: .init())
   }
 
@@ -711,7 +711,7 @@ extension Clients.ParameterManagerProtocol {
   /// @Snippet(path: "ParameterManager_ListTemplates")
   public func listTemplatesByItems(
     request: ListTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Template, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudParameterManagerV1.ListTemplatesResponse in
@@ -725,7 +725,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func listTemplatesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Template, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
     let request = ListTemplatesRequest().with {
       $0.parent = parent
     }
@@ -834,7 +834,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func listTemplateVersionsByItems(
     request: ListTemplateVersionsRequest
-  ) -> some AsyncSequence<TemplateVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TemplateVersion, any Swift.Error> & Sendable {
     self.listTemplateVersionsByItems(request: request, options: .init())
   }
 
@@ -843,7 +843,7 @@ extension Clients.ParameterManagerProtocol {
   /// @Snippet(path: "ParameterManager_ListTemplateVersions")
   public func listTemplateVersionsByItems(
     request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<TemplateVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TemplateVersion, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse in
@@ -857,7 +857,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func listTemplateVersionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<TemplateVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TemplateVersion, any Swift.Error> & Sendable {
     let request = ListTemplateVersionsRequest().with {
       $0.parent = parent
     }
@@ -987,7 +987,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1013,7 +1013,7 @@ extension Clients.ParameterManagerProtocol {
   /// @Snippet(path: "ParameterManager_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

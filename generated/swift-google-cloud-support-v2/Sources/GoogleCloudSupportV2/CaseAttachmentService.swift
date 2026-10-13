@@ -121,7 +121,7 @@ extension Clients.CaseAttachmentServiceProtocol {
 
   public func listAttachmentsByItems(
     request: ListAttachmentsRequest
-  ) -> some AsyncSequence<Attachment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Attachment, any Swift.Error> & Sendable {
     self.listAttachmentsByItems(request: request, options: .init())
   }
 
@@ -130,7 +130,7 @@ extension Clients.CaseAttachmentServiceProtocol {
   /// @Snippet(path: "CaseAttachmentService_ListAttachments")
   public func listAttachmentsByItems(
     request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Attachment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Attachment, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse
       in
@@ -144,7 +144,7 @@ extension Clients.CaseAttachmentServiceProtocol {
 
   public func listAttachmentsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Attachment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Attachment, any Swift.Error> & Sendable {
     let request = ListAttachmentsRequest().with {
       $0.parent = parent
     }

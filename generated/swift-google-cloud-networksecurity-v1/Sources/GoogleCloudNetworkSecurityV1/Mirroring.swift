@@ -29,8 +29,8 @@ import Foundation
 /// @Snippet(path: "MirroringQuickstart")
 public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   let inner: any Clients.MirroringStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `MirroringClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -938,7 +938,7 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringEndpointGroupsByItems(
     request: ListMirroringEndpointGroupsRequest
-  ) -> some AsyncSequence<MirroringEndpointGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringEndpointGroup, any Swift.Error> & Sendable {
     self.listMirroringEndpointGroupsByItems(request: request, options: .init())
   }
 
@@ -948,7 +948,7 @@ extension Clients.MirroringProtocol {
   /// @Snippet(path: "Mirroring_ListMirroringEndpointGroups")
   public func listMirroringEndpointGroupsByItems(
     request: ListMirroringEndpointGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<MirroringEndpointGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringEndpointGroup, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupsResponse in
@@ -962,7 +962,7 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringEndpointGroupsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<MirroringEndpointGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringEndpointGroup, any Swift.Error> & Sendable {
     let request = ListMirroringEndpointGroupsRequest().with {
       $0.parent = parent
     }
@@ -1111,7 +1111,7 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringEndpointGroupAssociationsByItems(
     request: ListMirroringEndpointGroupAssociationsRequest
-  ) -> some AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringEndpointGroupAssociation, any Swift.Error> & Sendable {
     self.listMirroringEndpointGroupAssociationsByItems(request: request, options: .init())
   }
 
@@ -1121,7 +1121,7 @@ extension Clients.MirroringProtocol {
   /// @Snippet(path: "Mirroring_ListMirroringEndpointGroupAssociations")
   public func listMirroringEndpointGroupAssociationsByItems(
     request: ListMirroringEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringEndpointGroupAssociation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupAssociationsResponse in
@@ -1136,7 +1136,7 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringEndpointGroupAssociationsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<MirroringEndpointGroupAssociation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringEndpointGroupAssociation, any Swift.Error> & Sendable {
     let request = ListMirroringEndpointGroupAssociationsRequest().with {
       $0.parent = parent
     }
@@ -1286,7 +1286,7 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringDeploymentGroupsByItems(
     request: ListMirroringDeploymentGroupsRequest
-  ) -> some AsyncSequence<MirroringDeploymentGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringDeploymentGroup, any Swift.Error> & Sendable {
     self.listMirroringDeploymentGroupsByItems(request: request, options: .init())
   }
 
@@ -1296,7 +1296,7 @@ extension Clients.MirroringProtocol {
   /// @Snippet(path: "Mirroring_ListMirroringDeploymentGroups")
   public func listMirroringDeploymentGroupsByItems(
     request: ListMirroringDeploymentGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<MirroringDeploymentGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringDeploymentGroup, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentGroupsResponse in
@@ -1310,7 +1310,7 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringDeploymentGroupsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<MirroringDeploymentGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringDeploymentGroup, any Swift.Error> & Sendable {
     let request = ListMirroringDeploymentGroupsRequest().with {
       $0.parent = parent
     }
@@ -1460,7 +1460,7 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringDeploymentsByItems(
     request: ListMirroringDeploymentsRequest
-  ) -> some AsyncSequence<MirroringDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringDeployment, any Swift.Error> & Sendable {
     self.listMirroringDeploymentsByItems(request: request, options: .init())
   }
 
@@ -1470,7 +1470,7 @@ extension Clients.MirroringProtocol {
   /// @Snippet(path: "Mirroring_ListMirroringDeployments")
   public func listMirroringDeploymentsByItems(
     request: ListMirroringDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<MirroringDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringDeployment, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentsResponse in
@@ -1484,7 +1484,7 @@ extension Clients.MirroringProtocol {
 
   public func listMirroringDeploymentsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<MirroringDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MirroringDeployment, any Swift.Error> & Sendable {
     let request = ListMirroringDeploymentsRequest().with {
       $0.parent = parent
     }
@@ -1633,7 +1633,7 @@ extension Clients.MirroringProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1659,7 +1659,7 @@ extension Clients.MirroringProtocol {
   /// @Snippet(path: "Mirroring_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1732,7 +1732,7 @@ extension Clients.MirroringProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1743,7 +1743,7 @@ extension Clients.MirroringProtocol {
   /// @Snippet(path: "Mirroring_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1757,7 +1757,7 @@ extension Clients.MirroringProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

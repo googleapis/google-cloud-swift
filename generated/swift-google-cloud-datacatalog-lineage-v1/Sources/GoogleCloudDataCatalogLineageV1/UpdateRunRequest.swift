@@ -74,7 +74,7 @@ public struct UpdateRunRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.run = try container.decodeIfPresent(Run.self, forKey: .run)
     self.updateMask = try container.decodeIfPresent(
@@ -88,7 +88,7 @@ public struct UpdateRunRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.run, forKey: .run)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -98,12 +98,23 @@ public struct UpdateRunRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `UpdateRunRequest`: `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.UpdateRunRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.UpdateRunRequest"
   }
+
+  /// Initialize an instance of `UpdateRunRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.UpdateRunRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateRunRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

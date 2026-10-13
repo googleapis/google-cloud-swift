@@ -72,6 +72,11 @@
     /// [google.cloud.dialogflow.cx.v3.WebhookRequest]: <doc:WebhookRequest>
     public var tag: Swift.String = Swift.String()
 
+    /// Optional. The name of the code block function to execute, if this is a code
+    /// block fulfillment. The code block itself is implied by the fulfillment's
+    /// parent, e.g. a playbook.
+    public var codeBlockFunction: Swift.String = Swift.String()
+
     /// Set parameter values before executing the webhook.
     public var setParameterActions: [Fulfillment.SetParameterAction] = []
 
@@ -122,6 +127,7 @@
       static let webhook = CodingKeys(stringValue: "webhook")
       static let returnPartialResponses = CodingKeys(stringValue: "returnPartialResponses")
       static let tag = CodingKeys(stringValue: "tag")
+      static let codeBlockFunction = CodingKeys(stringValue: "codeBlockFunction")
       static let setParameterActions = CodingKeys(stringValue: "setParameterActions")
       static let conditionalCases = CodingKeys(stringValue: "conditionalCases")
       static let advancedSettings = CodingKeys(stringValue: "advancedSettings")
@@ -133,6 +139,7 @@
         "webhook",
         "returnPartialResponses",
         "tag",
+        "codeBlockFunction",
         "setParameterActions",
         "conditionalCases",
         "advancedSettings",
@@ -141,7 +148,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([ResponseMessage].self, forKey: .messages) {
         self.messages = value
@@ -155,6 +162,9 @@
       }
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .tag) {
         self.tag = value
+      }
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .codeBlockFunction) {
+        self.codeBlockFunction = value
       }
       if let value = try container.decodeIfPresent(
         [Fulfillment.SetParameterAction].self, forKey: .setParameterActions)
@@ -184,12 +194,13 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.messages, forKey: .messages)
       try container.encode(self.webhook, forKey: .webhook)
       try container.encode(self.returnPartialResponses, forKey: .returnPartialResponses)
       try container.encode(self.tag, forKey: .tag)
+      try container.encode(self.codeBlockFunction, forKey: .codeBlockFunction)
       try container.encode(self.setParameterActions, forKey: .setParameterActions)
       try container.encode(self.conditionalCases, forKey: .conditionalCases)
       try container.encodeIfPresent(self.advancedSettings, forKey: .advancedSettings)
@@ -243,7 +254,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parameter) {
           self.parameter = value
@@ -255,7 +266,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.parameter, forKey: .parameter)
         try container.encodeIfPresent(self.value, forKey: .value)
@@ -264,12 +275,23 @@
         }
       }
 
+      /// The type URL for `SetParameterAction`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.SetParameterAction"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.SetParameterAction"
       }
+
+      /// Initialize an instance of `SetParameterAction` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.SetParameterAction"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SetParameterAction` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -314,7 +336,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [Fulfillment.ConditionalCases.Case].self, forKey: .cases)
@@ -327,7 +349,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.cases, forKey: .cases)
         for (key, value) in self._unknownFields.json {
@@ -388,7 +410,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
             self.condition = value
@@ -404,7 +426,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.condition, forKey: .condition)
           try container.encode(self.caseContent, forKey: .caseContent)
@@ -453,7 +475,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             var casesOrMessage: CasesOrMessageOneOf? = nil
@@ -481,7 +503,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             if let choice = self.casesOrMessage {
@@ -505,36 +527,69 @@
             indirect case additionalCases(Fulfillment.ConditionalCases)
           }
 
+          /// The type URL for `CaseContent`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case.CaseContent"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case.CaseContent"
           }
+
+          /// Initialize an instance of `CaseContent` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case.CaseContent"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `CaseContent` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
 
+        /// The type URL for `Case`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case"
         }
+
+        /// Initialize an instance of `Case` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `Case` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `ConditionalCases`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases"
       }
+
+      /// Initialize an instance of `ConditionalCases` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ConditionalCases` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -601,7 +656,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .generator) {
           self.generator = value
@@ -620,7 +675,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.generator, forKey: .generator)
         try container.encode(self.inputParameters, forKey: .inputParameters)
@@ -630,23 +685,45 @@
         }
       }
 
+      /// The type URL for `GeneratorSettings`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings"
       }
+
+      /// Initialize an instance of `GeneratorSettings` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GeneratorSettings` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `Fulfillment`: `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment"
     }
+
+    /// Initialize an instance of `Fulfillment` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Fulfillment` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

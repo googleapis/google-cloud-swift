@@ -136,7 +136,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
         self.parent = value
@@ -173,7 +173,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encodeIfPresent(self.query, forKey: .query)
@@ -242,7 +242,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [SearchKnowledgeRequest.SearchConfig.BoostSpecs].self, forKey: .boostSpecs)
@@ -260,7 +260,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.boostSpecs, forKey: .boostSpecs)
         try container.encode(self.filterSpecs, forKey: .filterSpecs)
@@ -315,7 +315,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataStores) {
             self.dataStores = value
@@ -331,7 +331,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.dataStores, forKey: .dataStores)
           try container.encode(self.spec, forKey: .spec)
@@ -385,7 +385,7 @@
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(
               [SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec].self,
@@ -399,7 +399,7 @@
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.conditionBoostSpecs, forKey: .conditionBoostSpecs)
             for (key, value) in self._unknownFields.json {
@@ -482,7 +482,7 @@
               ]
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
               let container = try decoder.container(keyedBy: CodingKeys.self)
               if let value = try container.decodeIfPresent(Swift.String.self, forKey: .condition) {
                 self.condition = value
@@ -499,7 +499,7 @@
               }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
               var container = encoder.container(keyedBy: CodingKeys.self)
               try container.encode(self.condition, forKey: .condition)
               try container.encode(self.boost, forKey: .boost)
@@ -583,7 +583,7 @@
                 ]
               }
 
-              public init(from decoder: Decoder) throws {
+              public init(from decoder: any Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fieldName)
                 {
@@ -616,7 +616,7 @@
                 }
               }
 
-              public func encode(to encoder: Encoder) throws {
+              public func encode(to encoder: any Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 try container.encode(self.fieldName, forKey: .fieldName)
                 try container.encode(self.attributeType, forKey: .attributeType)
@@ -679,7 +679,7 @@
                   ]
                 }
 
-                public init(from decoder: Decoder) throws {
+                public init(from decoder: any Decoder) throws {
                   let container = try decoder.container(keyedBy: CodingKeys.self)
                   if let value = try container.decodeIfPresent(
                     Swift.String.self, forKey: .attributeValue)
@@ -698,7 +698,7 @@
                   }
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                   var container = encoder.container(keyedBy: CodingKeys.self)
                   try container.encode(self.attributeValue, forKey: .attributeValue)
                   try container.encode(self.boostAmount, forKey: .boostAmount)
@@ -707,13 +707,24 @@
                   }
                 }
 
+                /// The type URL for `ControlPoint`: `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint"`.
                 public static var _anyTypeUrl: Swift.String {
                   return
                     "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint"
                 }
+
+                /// Initialize an instance of `ControlPoint` by unpacking from a `GoogleWKT.WKTAny`.
+                ///
+                /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+                /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint"`,
+                ///   or if deserialization fails.
                 public init(fromAny any: GoogleWKT.WKTAny) throws {
                   self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
                 }
+
+                /// Packs this `ControlPoint` into a `GoogleWKT.WKTStruct` representation.
+                ///
+                /// - Throws: An error if serialization fails.
                 public func _pack() throws -> GoogleWKT.WKTStruct {
                   return try GoogleWKT._slowAnySerialize(message: self)
                 }
@@ -815,7 +826,7 @@
                   }
                 }
 
-                public init(from decoder: Decoder) throws {
+                public init(from decoder: any Decoder) throws {
                   let container = try decoder.singleValueContainer()
                   if let v = try? container.decode(Int.self) {
                     self.init(intValue: v)
@@ -834,7 +845,7 @@
                     debugDescription: "Expected enum value, must be integer or string.")
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                   var container = encoder.singleValueContainer()
                   switch self {
                   case .unspecified: return try container.encode("ATTRIBUTE_TYPE_UNSPECIFIED")
@@ -929,7 +940,7 @@
                   }
                 }
 
-                public init(from decoder: Decoder) throws {
+                public init(from decoder: any Decoder) throws {
                   let container = try decoder.singleValueContainer()
                   if let v = try? container.decode(Int.self) {
                     self.init(intValue: v)
@@ -948,7 +959,7 @@
                     debugDescription: "Expected enum value, must be integer or string.")
                 }
 
-                public func encode(to encoder: Encoder) throws {
+                public func encode(to encoder: any Encoder) throws {
                   var container = encoder.singleValueContainer()
                   switch self {
                   case .unspecified: return try container.encode("INTERPOLATION_TYPE_UNSPECIFIED")
@@ -959,49 +970,93 @@
                 }
               }
 
+              /// The type URL for `BoostControlSpec`: `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec"`.
               public static var _anyTypeUrl: Swift.String {
                 return
                   "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec"
               }
+
+              /// Initialize an instance of `BoostControlSpec` by unpacking from a `GoogleWKT.WKTAny`.
+              ///
+              /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+              /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec"`,
+              ///   or if deserialization fails.
               public init(fromAny any: GoogleWKT.WKTAny) throws {
                 self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
               }
+
+              /// Packs this `BoostControlSpec` into a `GoogleWKT.WKTStruct` representation.
+              ///
+              /// - Throws: An error if serialization fails.
               public func _pack() throws -> GoogleWKT.WKTStruct {
                 return try GoogleWKT._slowAnySerialize(message: self)
               }
             }
 
+            /// The type URL for `ConditionBoostSpec`: `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec"`.
             public static var _anyTypeUrl: Swift.String {
               return
                 "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec"
             }
+
+            /// Initialize an instance of `ConditionBoostSpec` by unpacking from a `GoogleWKT.WKTAny`.
+            ///
+            /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+            /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec"`,
+            ///   or if deserialization fails.
             public init(fromAny any: GoogleWKT.WKTAny) throws {
               self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
             }
+
+            /// Packs this `ConditionBoostSpec` into a `GoogleWKT.WKTStruct` representation.
+            ///
+            /// - Throws: An error if serialization fails.
             public func _pack() throws -> GoogleWKT.WKTStruct {
               return try GoogleWKT._slowAnySerialize(message: self)
             }
           }
 
+          /// The type URL for `BoostSpec`: `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec"
           }
+
+          /// Initialize an instance of `BoostSpec` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `BoostSpec` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
 
+        /// The type URL for `BoostSpecs`: `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs"
         }
+
+        /// Initialize an instance of `BoostSpecs` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `BoostSpecs` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1055,7 +1110,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent([Swift.String].self, forKey: .dataStores) {
             self.dataStores = value
@@ -1069,7 +1124,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.dataStores, forKey: .dataStores)
           try container.encode(self.filter, forKey: .filter)
@@ -1078,24 +1133,46 @@
           }
         }
 
+        /// The type URL for `FilterSpecs`: `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.FilterSpecs"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.FilterSpecs"
         }
+
+        /// Initialize an instance of `FilterSpecs` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.FilterSpecs"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `FilterSpecs` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `SearchConfig`: `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig"
       }
+
+      /// Initialize an instance of `SearchConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SearchConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1197,7 +1274,7 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1215,7 +1292,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("QUERY_SOURCE_UNSPECIFIED")
@@ -1227,12 +1304,23 @@
       }
     }
 
+    /// The type URL for `SearchKnowledgeRequest`: `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest"
     }
+
+    /// Initialize an instance of `SearchKnowledgeRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SearchKnowledgeRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

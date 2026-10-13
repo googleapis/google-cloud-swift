@@ -91,7 +91,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
       self.scope = value
@@ -110,7 +110,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.scope, forKey: .scope)
     try container.encode(self.destinations, forKey: .destinations)
@@ -158,7 +158,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var eligibleDestinations: EligibleDestinationsOneOf? = nil
@@ -183,7 +183,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.eligibleDestinations {
@@ -208,24 +208,46 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       case eligibleGcsBucket(Swift.String)
     }
 
+    /// The type URL for `EligibleDestination`: `"type.googleapis.com/google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination"
     }
+
+    /// Initialize an instance of `EligibleDestination` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `EligibleDestination` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `EnrollResourceRequest`: `"type.googleapis.com/google.cloud.auditmanager.v1.EnrollResourceRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.auditmanager.v1.EnrollResourceRequest"
   }
+
+  /// Initialize an instance of `EnrollResourceRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.auditmanager.v1.EnrollResourceRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `EnrollResourceRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

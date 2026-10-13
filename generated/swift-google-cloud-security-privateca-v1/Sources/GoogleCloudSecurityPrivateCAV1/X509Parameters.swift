@@ -95,7 +95,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.keyUsage = try container.decodeIfPresent(KeyUsage.self, forKey: .keyUsage)
     self.caOptions = try container.decodeIfPresent(
@@ -119,7 +119,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.keyUsage, forKey: .keyUsage)
     try container.encodeIfPresent(self.caOptions, forKey: .caOptions)
@@ -182,7 +182,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.isCa = try container.decodeIfPresent(Swift.Bool.self, forKey: .isCa)
       self.maxIssuerPathLength = try container.decodeIfPresent(
@@ -193,7 +193,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.isCa, forKey: .isCa)
       try container.encodeIfPresent(self.maxIssuerPathLength, forKey: .maxIssuerPathLength)
@@ -202,12 +202,23 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `CaOptions`: `"type.googleapis.com/google.cloud.security.privateca.v1.X509Parameters.CaOptions"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.security.privateca.v1.X509Parameters.CaOptions"
     }
+
+    /// Initialize an instance of `CaOptions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.X509Parameters.CaOptions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CaOptions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -316,7 +327,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .critical) {
         self.critical = value
@@ -357,7 +368,7 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.critical, forKey: .critical)
       try container.encode(self.permittedDnsNames, forKey: .permittedDnsNames)
@@ -373,23 +384,45 @@ public struct X509Parameters: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `NameConstraints`: `"type.googleapis.com/google.cloud.security.privateca.v1.X509Parameters.NameConstraints"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.security.privateca.v1.X509Parameters.NameConstraints"
     }
+
+    /// Initialize an instance of `NameConstraints` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.X509Parameters.NameConstraints"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `NameConstraints` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `X509Parameters`: `"type.googleapis.com/google.cloud.security.privateca.v1.X509Parameters"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.X509Parameters"
   }
+
+  /// Initialize an instance of `X509Parameters` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.X509Parameters"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `X509Parameters` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

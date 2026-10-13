@@ -218,7 +218,7 @@ extension Clients.ModelArmorProtocol {
 
   public func listTemplatesByItems(
     request: ListTemplatesRequest
-  ) -> some AsyncSequence<Template, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
     self.listTemplatesByItems(request: request, options: .init())
   }
 
@@ -227,7 +227,7 @@ extension Clients.ModelArmorProtocol {
   /// @Snippet(path: "ModelArmor_ListTemplates")
   public func listTemplatesByItems(
     request: ListTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Template, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse
       in
@@ -241,7 +241,7 @@ extension Clients.ModelArmorProtocol {
 
   public func listTemplatesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Template, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Template, any Swift.Error> & Sendable {
     let request = ListTemplatesRequest().with {
       $0.parent = parent
     }
@@ -418,7 +418,7 @@ extension Clients.ModelArmorProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -427,7 +427,7 @@ extension Clients.ModelArmorProtocol {
   /// @Snippet(path: "ModelArmor_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

@@ -90,7 +90,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       ComputeThreatListDiffResponse.ResponseType.self, forKey: .responseType)
@@ -112,7 +112,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.responseType, forKey: .responseType)
     try container.encodeIfPresent(self.additions, forKey: .additions)
@@ -164,7 +164,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .sha256) {
         self.sha256 = value
@@ -175,7 +175,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sha256, forKey: .sha256)
       for (key, value) in self._unknownFields.json {
@@ -183,12 +183,23 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
+    /// The type URL for `Checksum`: `"type.googleapis.com/google.cloud.webrisk.v1.ComputeThreatListDiffResponse.Checksum"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.webrisk.v1.ComputeThreatListDiffResponse.Checksum"
     }
+
+    /// Initialize an instance of `Checksum` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.webrisk.v1.ComputeThreatListDiffResponse.Checksum"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Checksum` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -283,7 +294,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -301,7 +312,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("RESPONSE_TYPE_UNSPECIFIED")
@@ -313,12 +324,23 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `ComputeThreatListDiffResponse`: `"type.googleapis.com/google.cloud.webrisk.v1.ComputeThreatListDiffResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.webrisk.v1.ComputeThreatListDiffResponse"
   }
+
+  /// Initialize an instance of `ComputeThreatListDiffResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.webrisk.v1.ComputeThreatListDiffResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ComputeThreatListDiffResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

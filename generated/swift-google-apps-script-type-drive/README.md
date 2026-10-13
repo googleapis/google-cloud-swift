@@ -21,7 +21,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-apps-script-type-drive` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type-drive.git --from 0.4.0
+swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type-drive.git --from 0.5.0
 ```
 
 Then add `GoogleAppsScriptTypeDrive` to your target's dependencies:

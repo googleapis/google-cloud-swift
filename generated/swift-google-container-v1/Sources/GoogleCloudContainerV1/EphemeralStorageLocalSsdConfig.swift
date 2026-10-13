@@ -78,7 +78,7 @@ public struct EphemeralStorageLocalSsdConfig: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .localSsdCount) {
       self.localSsdCount = value
@@ -92,7 +92,7 @@ public struct EphemeralStorageLocalSsdConfig: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.localSsdCount, forKey: .localSsdCount)
     try container.encode(self.dataCacheCount, forKey: .dataCacheCount)
@@ -101,12 +101,23 @@ public struct EphemeralStorageLocalSsdConfig: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `EphemeralStorageLocalSsdConfig`: `"type.googleapis.com/google.container.v1.EphemeralStorageLocalSsdConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.EphemeralStorageLocalSsdConfig"
   }
+
+  /// Initialize an instance of `EphemeralStorageLocalSsdConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.EphemeralStorageLocalSsdConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `EphemeralStorageLocalSsdConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -63,7 +63,7 @@ public struct CustomPeriod: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.startDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .startDate)
     self.endDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .endDate)
@@ -73,7 +73,7 @@ public struct CustomPeriod: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.startDate, forKey: .startDate)
     try container.encodeIfPresent(self.endDate, forKey: .endDate)
@@ -82,12 +82,23 @@ public struct CustomPeriod: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `CustomPeriod`: `"type.googleapis.com/google.cloud.billing.budgets.v1.CustomPeriod"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.billing.budgets.v1.CustomPeriod"
   }
+
+  /// Initialize an instance of `CustomPeriod` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.billing.budgets.v1.CustomPeriod"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CustomPeriod` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -67,7 +67,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.state = try container.decodeIfPresent(
         VpnGatewayStatusHighAvailabilityRequirementState.State.self, forKey: .state)
@@ -80,7 +80,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.state, forKey: .state)
       try container.encodeIfPresent(self.unsatisfiedReason, forKey: .unsatisfiedReason)
@@ -139,13 +139,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .connectionRedundancyMet: return try container.encode("CONNECTION_REDUNDANCY_MET")
@@ -195,13 +195,13 @@
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let s = try container.decode(Swift.String.self)
         self.init(stringValue: s)
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .incompleteTunnelsCoverage: return try container.encode("INCOMPLETE_TUNNELS_COVERAGE")
@@ -210,13 +210,24 @@
       }
     }
 
+    /// The type URL for `VpnGatewayStatusHighAvailabilityRequirementState`: `"type.googleapis.com/google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState"
     }
+
+    /// Initialize an instance of `VpnGatewayStatusHighAvailabilityRequirementState` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VpnGatewayStatusHighAvailabilityRequirementState` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

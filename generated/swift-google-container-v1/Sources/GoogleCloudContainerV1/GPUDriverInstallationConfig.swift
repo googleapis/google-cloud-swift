@@ -56,7 +56,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.gpuDriverVersion = try container.decodeIfPresent(
       GPUDriverInstallationConfig.GPUDriverVersion.self, forKey: .gpuDriverVersion)
@@ -66,7 +66,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.gpuDriverVersion, forKey: .gpuDriverVersion)
     for (key, value) in self._unknownFields.json {
@@ -167,7 +167,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -185,7 +185,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("GPU_DRIVER_VERSION_UNSPECIFIED")
@@ -198,12 +198,23 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `GPUDriverInstallationConfig`: `"type.googleapis.com/google.container.v1.GPUDriverInstallationConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.GPUDriverInstallationConfig"
   }
+
+  /// Initialize an instance of `GPUDriverInstallationConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.GPUDriverInstallationConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GPUDriverInstallationConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

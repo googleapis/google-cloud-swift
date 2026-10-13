@@ -64,7 +64,7 @@ public struct SearchCloudLocationsResponse: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([CloudLocation].self, forKey: .cloudLocations) {
       self.cloudLocations = value
@@ -78,7 +78,7 @@ public struct SearchCloudLocationsResponse: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.cloudLocations, forKey: .cloudLocations)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -87,12 +87,23 @@ public struct SearchCloudLocationsResponse: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
+  /// The type URL for `SearchCloudLocationsResponse`: `"type.googleapis.com/google.cloud.locationfinder.v1.SearchCloudLocationsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.locationfinder.v1.SearchCloudLocationsResponse"
   }
+
+  /// Initialize an instance of `SearchCloudLocationsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.locationfinder.v1.SearchCloudLocationsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SearchCloudLocationsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -305,7 +305,7 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
 
   public func listTunnelDestGroupsByItems(
     request: ListTunnelDestGroupsRequest
-  ) -> some AsyncSequence<TunnelDestGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TunnelDestGroup, any Swift.Error> & Sendable {
     self.listTunnelDestGroupsByItems(request: request, options: .init())
   }
 
@@ -316,7 +316,7 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
   /// @Snippet(path: "IdentityAwareProxyAdminService_ListTunnelDestGroups")
   public func listTunnelDestGroupsByItems(
     request: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<TunnelDestGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TunnelDestGroup, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse
       in
@@ -330,7 +330,7 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
 
   public func listTunnelDestGroupsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<TunnelDestGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TunnelDestGroup, any Swift.Error> & Sendable {
     let request = ListTunnelDestGroupsRequest().with {
       $0.parent = parent
     }

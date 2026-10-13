@@ -26,8 +26,8 @@
   /// @Snippet(path: "projectsQuickstart")
   public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
     let inner: any Clients.ProjectsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ProjectsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -51,6 +51,11 @@
     }
 
     /// Disable this project as a shared VPC host project.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "projects_disableXpnHost")
     public func disableXpnHostPollingUntilDone(
@@ -104,6 +109,11 @@
     /// Disable a service resource (also known as service project) associated with
     /// this host project.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "projects_disableXpnResource")
     public func disableXpnResourcePollingUntilDone(
       request: ProjectsClient.DisableXpnResourceRequest, options: GoogleGax.RequestOptions
@@ -153,6 +163,11 @@
     }
 
     /// Enable this project as a shared VPC host project.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "projects_enableXpnHost")
     public func enableXpnHostPollingUntilDone(
@@ -207,6 +222,11 @@
     /// Enable service resource (a.k.a service project) for a host project, so that
     /// subnets in the host project can be used by instances in the service
     /// project.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "projects_enableXpnResource")
     public func enableXpnResourcePollingUntilDone(
@@ -331,6 +351,11 @@
     /// the response body about the upcoming deprecation. You can skip the message
     /// to continue using the service without interruption.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "projects_moveDisk")
     @available(*, deprecated)
     public func moveDiskPollingUntilDone(
@@ -395,6 +420,11 @@
     /// [Deprecated] This method is deprecated. See [moving instance across
     /// zones](/compute/docs/instances/moving-instance-across-zones) instead.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "projects_moveInstance")
     @available(*, deprecated)
     public func moveInstancePollingUntilDone(
@@ -452,6 +482,11 @@
     /// Enterprise. See Subscribing
     /// to Cloud Armor Enterprise for more information.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "projects_setCloudArmorTier")
     public func setCloudArmorTierPollingUntilDone(
       request: ProjectsClient.SetCloudArmorTierRequest, options: GoogleGax.RequestOptions
@@ -503,6 +538,11 @@
 
     /// Sets metadata common to all instances within the specified project using
     /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "projects_setCommonInstanceMetadata")
     public func setCommonInstanceMetadataPollingUntilDone(
@@ -558,6 +598,11 @@
     /// used when an address/forwardingRule/instance is created without specifying
     /// the network tier field.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "projects_setDefaultNetworkTier")
     public func setDefaultNetworkTierPollingUntilDone(
       request: ProjectsClient.SetDefaultNetworkTierRequest, options: GoogleGax.RequestOptions
@@ -611,6 +656,11 @@
     /// Enables the usage export feature and sets theusage export bucket
     /// where reports are stored. If you provide an empty request body using this
     /// method, the usage export feature will be disabled.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "projects_setUsageExportBucket")
     public func setUsageExportBucketPollingUntilDone(
@@ -674,6 +724,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.disableXpnHost`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func disableXpnHostPollingUntilDone(
         request: ProjectsClient.DisableXpnHostRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -684,6 +739,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.disableXpnResource`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func disableXpnResourcePollingUntilDone(
         request: ProjectsClient.DisableXpnResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -694,6 +754,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.enableXpnHost`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func enableXpnHostPollingUntilDone(
         request: ProjectsClient.EnableXpnHostRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -704,6 +769,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.enableXpnResource`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func enableXpnResourcePollingUntilDone(
         request: ProjectsClient.EnableXpnResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -735,6 +805,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.moveDisk`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       @available(*, deprecated)
       func moveDiskPollingUntilDone(
         request: ProjectsClient.MoveDiskRequest, options: GoogleGax.RequestOptions
@@ -747,6 +822,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.moveInstance`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       @available(*, deprecated)
       func moveInstancePollingUntilDone(
         request: ProjectsClient.MoveInstanceRequest, options: GoogleGax.RequestOptions
@@ -758,6 +838,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.setCloudArmorTier`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setCloudArmorTierPollingUntilDone(
         request: ProjectsClient.SetCloudArmorTierRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -768,6 +853,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.setCommonInstanceMetadata`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setCommonInstanceMetadataPollingUntilDone(
         request: ProjectsClient.SetCommonInstanceMetadataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -778,6 +868,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.setDefaultNetworkTier`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setDefaultNetworkTierPollingUntilDone(
         request: ProjectsClient.SetDefaultNetworkTierRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -788,6 +883,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ProjectsClient.setUsageExportBucket`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setUsageExportBucketPollingUntilDone(
         request: ProjectsClient.SetUsageExportBucketRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -988,7 +1088,7 @@
 
     public func getXpnResourcesByItems(
       request: ProjectsClient.GetXpnResourcesRequest
-    ) -> some AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<XpnResourceId, any Swift.Error> & Sendable {
       self.getXpnResourcesByItems(request: request, options: .init())
     }
 
@@ -998,7 +1098,7 @@
     /// @Snippet(path: "projects_getXpnResources")
     public func getXpnResourcesByItems(
       request: ProjectsClient.GetXpnResourcesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<XpnResourceId, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ProjectsGetXpnResources
         in
@@ -1012,7 +1112,7 @@
 
     public func getXpnResourcesByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<XpnResourceId, any Swift.Error> & Sendable {
       let request = ProjectsClient.GetXpnResourcesRequest().with {
         $0.project = project
       }
@@ -1033,7 +1133,7 @@
 
     public func listXpnHostsByItems(
       request: ProjectsClient.ListXpnHostsRequest
-    ) -> some AsyncSequence<Project, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Project, any Swift.Error> & Sendable {
       self.listXpnHostsByItems(request: request, options: .init())
     }
 
@@ -1042,7 +1142,7 @@
     /// @Snippet(path: "projects_listXpnHosts")
     public func listXpnHostsByItems(
       request: ProjectsClient.ListXpnHostsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Project, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Project, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.XpnHostList in
         var request = request
@@ -1056,7 +1156,7 @@
     public func listXpnHostsByItems(
       project: Swift.String,
       body: ProjectsListXpnHostsRequest?,
-    ) -> some AsyncSequence<Project, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Project, any Swift.Error> & Sendable {
       let request = ProjectsClient.ListXpnHostsRequest().with {
         $0.project = project
         $0.body = body

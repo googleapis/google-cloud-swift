@@ -35,8 +35,8 @@ import Foundation
 /// @Snippet(path: "BareMetalSolutionQuickstart")
 public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, Sendable {
   let inner: any Clients.BareMetalSolutionStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `BareMetalSolutionClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1271,7 +1271,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listInstancesByItems(
     request: ListInstancesRequest
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     self.listInstancesByItems(request: request, options: .init())
   }
 
@@ -1280,7 +1280,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListInstances")
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBareMetalSolutionV2.ListInstancesResponse in
@@ -1294,7 +1294,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listInstancesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
@@ -1591,7 +1591,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listSshkeysByItems(
     request: ListSSHKeysRequest
-  ) -> some AsyncSequence<SSHKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SSHKey, any Swift.Error> & Sendable {
     self.listSshkeysByItems(request: request, options: .init())
   }
 
@@ -1601,7 +1601,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListSSHKeys")
   public func listSshkeysByItems(
     request: ListSSHKeysRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SSHKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SSHKey, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBareMetalSolutionV2.ListSSHKeysResponse in
@@ -1615,7 +1615,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listSshkeysByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SSHKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SSHKey, any Swift.Error> & Sendable {
     let request = ListSSHKeysRequest().with {
       $0.parent = parent
     }
@@ -1680,7 +1680,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listVolumesByItems(
     request: ListVolumesRequest
-  ) -> some AsyncSequence<Volume, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Volume, any Swift.Error> & Sendable {
     self.listVolumesByItems(request: request, options: .init())
   }
 
@@ -1689,7 +1689,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListVolumes")
   public func listVolumesByItems(
     request: ListVolumesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Volume, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Volume, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBareMetalSolutionV2.ListVolumesResponse in
@@ -1703,7 +1703,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listVolumesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Volume, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Volume, any Swift.Error> & Sendable {
     let request = ListVolumesRequest().with {
       $0.parent = parent
     }
@@ -1861,7 +1861,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listNetworksByItems(
     request: ListNetworksRequest
-  ) -> some AsyncSequence<Network, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Network, any Swift.Error> & Sendable {
     self.listNetworksByItems(request: request, options: .init())
   }
 
@@ -1870,7 +1870,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListNetworks")
   public func listNetworksByItems(
     request: ListNetworksRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Network, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Network, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBareMetalSolutionV2.ListNetworksResponse in
@@ -1884,7 +1884,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listNetworksByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Network, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Network, any Swift.Error> & Sendable {
     let request = ListNetworksRequest().with {
       $0.parent = parent
     }
@@ -2076,7 +2076,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listVolumeSnapshotsByItems(
     request: ListVolumeSnapshotsRequest
-  ) -> some AsyncSequence<VolumeSnapshot, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<VolumeSnapshot, any Swift.Error> & Sendable {
     self.listVolumeSnapshotsByItems(request: request, options: .init())
   }
 
@@ -2087,7 +2087,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListVolumeSnapshots")
   public func listVolumeSnapshotsByItems(
     request: ListVolumeSnapshotsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<VolumeSnapshot, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<VolumeSnapshot, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBareMetalSolutionV2.ListVolumeSnapshotsResponse in
@@ -2101,7 +2101,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listVolumeSnapshotsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<VolumeSnapshot, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<VolumeSnapshot, any Swift.Error> & Sendable {
     let request = ListVolumeSnapshotsRequest().with {
       $0.parent = parent
     }
@@ -2141,7 +2141,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listLunsByItems(
     request: ListLunsRequest
-  ) -> some AsyncSequence<Lun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Lun, any Swift.Error> & Sendable {
     self.listLunsByItems(request: request, options: .init())
   }
 
@@ -2150,7 +2150,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListLuns")
   public func listLunsByItems(
     request: ListLunsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Lun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Lun, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBareMetalSolutionV2.ListLunsResponse in
@@ -2164,7 +2164,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listLunsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Lun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Lun, any Swift.Error> & Sendable {
     let request = ListLunsRequest().with {
       $0.parent = parent
     }
@@ -2235,7 +2235,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listNfsSharesByItems(
     request: ListNfsSharesRequest
-  ) -> some AsyncSequence<NfsShare, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<NfsShare, any Swift.Error> & Sendable {
     self.listNfsSharesByItems(request: request, options: .init())
   }
 
@@ -2244,7 +2244,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListNfsShares")
   public func listNfsSharesByItems(
     request: ListNfsSharesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<NfsShare, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<NfsShare, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBareMetalSolutionV2.ListNfsSharesResponse in
@@ -2258,7 +2258,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listNfsSharesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<NfsShare, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<NfsShare, any Swift.Error> & Sendable {
     let request = ListNfsSharesRequest().with {
       $0.parent = parent
     }
@@ -2403,7 +2403,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listProvisioningQuotasByItems(
     request: ListProvisioningQuotasRequest
-  ) -> some AsyncSequence<ProvisioningQuota, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProvisioningQuota, any Swift.Error> & Sendable {
     self.listProvisioningQuotasByItems(request: request, options: .init())
   }
 
@@ -2412,7 +2412,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListProvisioningQuotas")
   public func listProvisioningQuotasByItems(
     request: ListProvisioningQuotasRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ProvisioningQuota, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProvisioningQuota, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBareMetalSolutionV2.ListProvisioningQuotasResponse in
@@ -2426,7 +2426,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listProvisioningQuotasByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ProvisioningQuota, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProvisioningQuota, any Swift.Error> & Sendable {
     let request = ListProvisioningQuotasRequest().with {
       $0.parent = parent
     }
@@ -2560,7 +2560,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listOsimagesByItems(
     request: ListOSImagesRequest
-  ) -> some AsyncSequence<OSImage, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OSImage, any Swift.Error> & Sendable {
     self.listOsimagesByItems(request: request, options: .init())
   }
 
@@ -2569,7 +2569,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListOSImages")
   public func listOsimagesByItems(
     request: ListOSImagesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<OSImage, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OSImage, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBareMetalSolutionV2.ListOSImagesResponse in
@@ -2583,7 +2583,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listOsimagesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<OSImage, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OSImage, any Swift.Error> & Sendable {
     let request = ListOSImagesRequest().with {
       $0.parent = parent
     }
@@ -2604,7 +2604,7 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -2613,7 +2613,7 @@ extension Clients.BareMetalSolutionProtocol {
   /// @Snippet(path: "BareMetalSolution_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

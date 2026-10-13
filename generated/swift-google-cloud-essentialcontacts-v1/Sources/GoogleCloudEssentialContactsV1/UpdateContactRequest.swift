@@ -63,7 +63,7 @@ public struct UpdateContactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.contact = try container.decodeIfPresent(Contact.self, forKey: .contact)
     self.updateMask = try container.decodeIfPresent(
@@ -74,7 +74,7 @@ public struct UpdateContactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.contact, forKey: .contact)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -83,12 +83,23 @@ public struct UpdateContactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `UpdateContactRequest`: `"type.googleapis.com/google.cloud.essentialcontacts.v1.UpdateContactRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.essentialcontacts.v1.UpdateContactRequest"
   }
+
+  /// Initialize an instance of `UpdateContactRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.essentialcontacts.v1.UpdateContactRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateContactRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

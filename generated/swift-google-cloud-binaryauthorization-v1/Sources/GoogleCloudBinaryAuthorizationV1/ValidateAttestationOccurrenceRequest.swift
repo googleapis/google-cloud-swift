@@ -86,7 +86,7 @@ public struct ValidateAttestationOccurrenceRequest: Codable, Equatable, GoogleWK
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attestor) {
       self.attestor = value
@@ -106,7 +106,7 @@ public struct ValidateAttestationOccurrenceRequest: Codable, Equatable, GoogleWK
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.attestor, forKey: .attestor)
     try container.encodeIfPresent(self.attestation, forKey: .attestation)
@@ -117,13 +117,24 @@ public struct ValidateAttestationOccurrenceRequest: Codable, Equatable, GoogleWK
     }
   }
 
+  /// The type URL for `ValidateAttestationOccurrenceRequest`: `"type.googleapis.com/google.cloud.binaryauthorization.v1.ValidateAttestationOccurrenceRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.binaryauthorization.v1.ValidateAttestationOccurrenceRequest"
   }
+
+  /// Initialize an instance of `ValidateAttestationOccurrenceRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.binaryauthorization.v1.ValidateAttestationOccurrenceRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ValidateAttestationOccurrenceRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

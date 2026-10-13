@@ -86,7 +86,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.answer = try container.decodeIfPresent(Answer.self, forKey: .answer)
       self.session = try container.decodeIfPresent(Session.self, forKey: .session)
@@ -99,7 +99,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.answer, forKey: .answer)
       try container.encodeIfPresent(self.session, forKey: .session)
@@ -109,12 +109,23 @@
       }
     }
 
+    /// The type URL for `AnswerQueryResponse`: `"type.googleapis.com/google.cloud.discoveryengine.v1.AnswerQueryResponse"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.AnswerQueryResponse"
     }
+
+    /// Initialize an instance of `AnswerQueryResponse` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.AnswerQueryResponse"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AnswerQueryResponse` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

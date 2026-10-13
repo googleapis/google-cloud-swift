@@ -93,7 +93,7 @@ public struct UpdateSnoozeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.snooze = try container.decodeIfPresent(Snooze.self, forKey: .snooze)
     self.updateMask = try container.decodeIfPresent(
@@ -104,7 +104,7 @@ public struct UpdateSnoozeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.snooze, forKey: .snooze)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -113,12 +113,23 @@ public struct UpdateSnoozeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `UpdateSnoozeRequest`: `"type.googleapis.com/google.monitoring.v3.UpdateSnoozeRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.UpdateSnoozeRequest"
   }
+
+  /// Initialize an instance of `UpdateSnoozeRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.UpdateSnoozeRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateSnoozeRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -19,7 +19,6 @@
   public import GoogleRpc
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
-  /// Execute SQL statements response.
   public struct SqlInstancesExecuteSqlResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
@@ -77,7 +76,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [SqlInstancesExecuteSqlResponse.Message].self, forKey: .messages)
@@ -95,7 +94,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.messages, forKey: .messages)
       try container.encodeIfPresent(self.metadata, forKey: .metadata)
@@ -153,7 +152,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.message = try container.decodeIfPresent(Swift.String.self, forKey: .message)
         self.severity = try container.decodeIfPresent(Swift.String.self, forKey: .severity)
@@ -163,7 +162,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.message, forKey: .message)
         try container.encodeIfPresent(self.severity, forKey: .severity)
@@ -172,23 +171,45 @@
         }
       }
 
+      /// The type URL for `Message`: `"type.googleapis.com/google.cloud.sql.v1.SqlInstancesExecuteSqlResponse.Message"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.SqlInstancesExecuteSqlResponse.Message"
       }
+
+      /// Initialize an instance of `Message` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.SqlInstancesExecuteSqlResponse.Message"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Message` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `SqlInstancesExecuteSqlResponse`: `"type.googleapis.com/google.cloud.sql.v1.SqlInstancesExecuteSqlResponse"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.SqlInstancesExecuteSqlResponse"
     }
+
+    /// Initialize an instance of `SqlInstancesExecuteSqlResponse` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.SqlInstancesExecuteSqlResponse"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SqlInstancesExecuteSqlResponse` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

@@ -87,7 +87,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .createTime)
@@ -116,7 +116,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
@@ -181,7 +181,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .question) {
         self.question = value
@@ -202,7 +202,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.question, forKey: .question)
       try container.encode(self.datasetValidationWarnings, forKey: .datasetValidationWarnings)
@@ -212,13 +212,24 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       }
     }
 
+    /// The type URL for `QaQuestionDatasetValidationResult`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetValidationResult"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetValidationResult"
     }
+
+    /// Initialize an instance of `QaQuestionDatasetValidationResult` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetValidationResult"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `QaQuestionDatasetValidationResult` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -270,7 +281,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .question) {
         self.question = value
@@ -284,7 +295,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.question, forKey: .question)
       try container.encodeIfPresent(self.metrics, forKey: .metrics)
@@ -332,7 +343,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .accuracy) {
           self.accuracy = value
@@ -343,7 +354,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.accuracy, forKey: .accuracy)
         for (key, value) in self._unknownFields.json {
@@ -351,37 +362,70 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleWKT._An
         }
       }
 
+      /// The type URL for `Metrics`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics.Metrics"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics.Metrics"
       }
+
+      /// Initialize an instance of `Metrics` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics.Metrics"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Metrics` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `QaQuestionDatasetTuningMetrics`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics"
     }
+
+    /// Initialize an instance of `QaQuestionDatasetTuningMetrics` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `QaQuestionDatasetTuningMetrics` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `TuneQaScorecardRevisionMetadata`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata"
   }
+
+  /// Initialize an instance of `TuneQaScorecardRevisionMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TuneQaScorecardRevisionMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

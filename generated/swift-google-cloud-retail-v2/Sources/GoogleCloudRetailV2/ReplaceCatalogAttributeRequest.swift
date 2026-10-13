@@ -82,7 +82,7 @@ public struct ReplaceCatalogAttributeRequest: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .attributesConfig) {
       self.attributesConfig = value
@@ -97,7 +97,7 @@ public struct ReplaceCatalogAttributeRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.attributesConfig, forKey: .attributesConfig)
     try container.encodeIfPresent(self.catalogAttribute, forKey: .catalogAttribute)
@@ -107,12 +107,23 @@ public struct ReplaceCatalogAttributeRequest: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `ReplaceCatalogAttributeRequest`: `"type.googleapis.com/google.cloud.retail.v2.ReplaceCatalogAttributeRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ReplaceCatalogAttributeRequest"
   }
+
+  /// Initialize an instance of `ReplaceCatalogAttributeRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ReplaceCatalogAttributeRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ReplaceCatalogAttributeRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

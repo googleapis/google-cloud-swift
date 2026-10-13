@@ -42,10 +42,9 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// policy.
   public var backupType: Backup.Type_ = Backup.Type_()
 
-  /// Volume full name of this backup belongs to.
-  /// Either source_volume or ontap_source should be provided.
-  /// Format:
-  /// `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
+  /// The resource name of the volume that this backup belongs to. You must
+  /// provide either `source_volume` or `ontap_source`. Format:
+  /// `projects/{project_id}/locations/{location}/volumes/{volume_id}`
   public var sourceVolume: Swift.String = Swift.String()
 
   /// If specified, backup will be created from the given snapshot.
@@ -80,6 +79,10 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output only. The time until which the backup is not deletable.
   public var enforcedRetentionEndTime: GoogleWKT.WKTTimestamp? = nil
+
+  /// Optional. Represents source details for ONTAP backups.
+  /// Either source_volume or ontap_source should be provided.
+  public var ontapSource: OntapSource? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -120,6 +123,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     static let volumeRegion = CodingKeys(stringValue: "volumeRegion")
     static let backupRegion = CodingKeys(stringValue: "backupRegion")
     static let enforcedRetentionEndTime = CodingKeys(stringValue: "enforcedRetentionEndTime")
+    static let ontapSource = CodingKeys(stringValue: "ontapSource")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -137,10 +141,11 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       "volumeRegion",
       "backupRegion",
       "enforcedRetentionEndTime",
+      "ontapSource",
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -184,13 +189,14 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.enforcedRetentionEndTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .enforcedRetentionEndTime)
+    self.ontapSource = try container.decodeIfPresent(OntapSource.self, forKey: .ontapSource)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.state, forKey: .state)
@@ -207,6 +213,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.volumeRegion, forKey: .volumeRegion)
     try container.encode(self.backupRegion, forKey: .backupRegion)
     try container.encodeIfPresent(self.enforcedRetentionEndTime, forKey: .enforcedRetentionEndTime)
+    try container.encodeIfPresent(self.ontapSource, forKey: .ontapSource)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -327,7 +334,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -345,7 +352,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("STATE_UNSPECIFIED")
@@ -448,7 +455,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -466,7 +473,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
@@ -478,12 +485,23 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `Backup`: `"type.googleapis.com/google.cloud.netapp.v1.Backup"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.Backup"
   }
+
+  /// Initialize an instance of `Backup` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.netapp.v1.Backup"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Backup` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

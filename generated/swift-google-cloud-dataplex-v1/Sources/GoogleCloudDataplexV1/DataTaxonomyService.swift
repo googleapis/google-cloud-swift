@@ -31,8 +31,8 @@ import Foundation
 @available(*, deprecated)
 public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtocol, Sendable {
   let inner: any Clients.DataTaxonomyServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DataTaxonomyServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -911,7 +911,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataTaxonomiesByItems(
     request: ListDataTaxonomiesRequest
-  ) -> some AsyncSequence<DataTaxonomy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataTaxonomy, any Swift.Error> & Sendable {
     self.listDataTaxonomiesByItems(request: request, options: .init())
   }
 
@@ -921,7 +921,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataTaxonomiesByItems(
     request: ListDataTaxonomiesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataTaxonomy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataTaxonomy, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataplexV1.ListDataTaxonomiesResponse in
@@ -936,7 +936,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataTaxonomiesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DataTaxonomy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataTaxonomy, any Swift.Error> & Sendable {
     let request = ListDataTaxonomiesRequest().with {
       $0.parent = parent
     }
@@ -1106,7 +1106,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributeBindingsByItems(
     request: ListDataAttributeBindingsRequest
-  ) -> some AsyncSequence<DataAttributeBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAttributeBinding, any Swift.Error> & Sendable {
     self.listDataAttributeBindingsByItems(request: request, options: .init())
   }
 
@@ -1116,7 +1116,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributeBindingsByItems(
     request: ListDataAttributeBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataAttributeBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAttributeBinding, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataplexV1.ListDataAttributeBindingsResponse in
@@ -1131,7 +1131,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributeBindingsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DataAttributeBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAttributeBinding, any Swift.Error> & Sendable {
     let request = ListDataAttributeBindingsRequest().with {
       $0.parent = parent
     }
@@ -1298,7 +1298,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributesByItems(
     request: ListDataAttributesRequest
-  ) -> some AsyncSequence<DataAttribute, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAttribute, any Swift.Error> & Sendable {
     self.listDataAttributesByItems(request: request, options: .init())
   }
 
@@ -1308,7 +1308,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributesByItems(
     request: ListDataAttributesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataAttribute, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAttribute, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataplexV1.ListDataAttributesResponse in
@@ -1323,7 +1323,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   @available(*, deprecated)
   public func listDataAttributesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DataAttribute, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAttribute, any Swift.Error> & Sendable {
     let request = ListDataAttributesRequest().with {
       $0.parent = parent
     }
@@ -1368,7 +1368,7 @@ extension Clients.DataTaxonomyServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1394,7 +1394,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   /// @Snippet(path: "DataTaxonomyService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1467,7 +1467,7 @@ extension Clients.DataTaxonomyServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1478,7 +1478,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   /// @Snippet(path: "DataTaxonomyService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1492,7 +1492,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

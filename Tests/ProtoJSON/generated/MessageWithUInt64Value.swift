@@ -65,7 +65,7 @@ public struct MessageWithUInt64Value: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.singular = try container.decodeIfPresent(GoogleWKT.WKTUInt64Value.self, forKey: .singular)
     if let value = try container.decodeIfPresent([GoogleWKT.WKTUInt64Value].self, forKey: .repeated)
@@ -83,7 +83,7 @@ public struct MessageWithUInt64Value: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.singular, forKey: .singular)
     try container.encode(self.repeated, forKey: .repeated)
@@ -93,12 +93,23 @@ public struct MessageWithUInt64Value: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `MessageWithUInt64Value`: `"type.googleapis.com/google.swift.sdk.test.MessageWithUInt64Value"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithUInt64Value"
   }
+
+  /// Initialize an instance of `MessageWithUInt64Value` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.swift.sdk.test.MessageWithUInt64Value"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MessageWithUInt64Value` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

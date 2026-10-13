@@ -58,7 +58,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.tag8021Q = try container.decodeIfPresent(Swift.UInt32.self, forKey: .tag8021Q)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -67,7 +67,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.tag8021Q, forKey: .tag8021Q)
       for (key, value) in self._unknownFields.json {
@@ -75,12 +75,23 @@
       }
     }
 
+    /// The type URL for `InterconnectAttachmentPrivateInfo`: `"type.googleapis.com/google.cloud.compute.v1.InterconnectAttachmentPrivateInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InterconnectAttachmentPrivateInfo"
     }
+
+    /// Initialize an instance of `InterconnectAttachmentPrivateInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InterconnectAttachmentPrivateInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InterconnectAttachmentPrivateInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

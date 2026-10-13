@@ -18,10 +18,16 @@
 public typealias WKTDoubleValue = Swift.Double
 
 extension Swift.Double: _AnyPackable {
+  /// The type URL for `WKTDoubleValue`: `"type.googleapis.com/google.protobuf.DoubleValue"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.DoubleValue"
   }
 
+  /// Initialize an instance of `WKTDoubleValue` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.DoubleValue"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -35,6 +41,7 @@ extension Swift.Double: _AnyPackable {
     self = n
   }
 
+  /// Packs this `WKTDoubleValue` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .number(self)]
   }

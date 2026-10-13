@@ -26,8 +26,8 @@
   /// @Snippet(path: "futureReservationsQuickstart")
   public final class FutureReservationsClient: Clients.FutureReservationsProtocol, Sendable {
     let inner: any Clients.FutureReservationsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `FutureReservationsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -64,6 +64,11 @@
     }
 
     /// Cancel the specified future reservation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "futureReservations_cancel")
     public func cancelPollingUntilDone(
@@ -115,6 +120,11 @@
     }
 
     /// Deletes the specified future reservation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "futureReservations_delete")
     public func deletePollingUntilDone(
@@ -176,6 +186,11 @@
 
     /// Creates a new Future Reservation.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "futureReservations_insert")
     public func insertPollingUntilDone(
       request: FutureReservationsClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -236,6 +251,11 @@
     }
 
     /// Updates the specified future reservation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "futureReservations_update")
     public func updatePollingUntilDone(
@@ -305,6 +325,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FutureReservationsClient.cancel`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func cancelPollingUntilDone(
         request: FutureReservationsClient.CancelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -315,6 +340,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FutureReservationsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: FutureReservationsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -330,6 +360,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FutureReservationsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: FutureReservationsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -345,6 +380,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FutureReservationsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: FutureReservationsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -367,7 +407,9 @@
 
     public func aggregatedListByItems(
       request: FutureReservationsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), any Swift.Error>
+      & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -379,7 +421,9 @@
     /// @Snippet(path: "futureReservations_aggregatedList")
     public func aggregatedListByItems(
       request: FutureReservationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), any Swift.Error>
+      & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.FutureReservationsAggregatedListResponse in
@@ -393,7 +437,9 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, FutureReservationsScopedList), any Swift.Error>
+      & Sendable
+    {
       let request = FutureReservationsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -550,7 +596,7 @@
 
     public func listByItems(
       request: FutureReservationsClient.ListRequest
-    ) -> some AsyncSequence<FutureReservation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FutureReservation, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -560,7 +606,7 @@
     /// @Snippet(path: "futureReservations_list")
     public func listByItems(
       request: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<FutureReservation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FutureReservation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.FutureReservationsListResponse in
@@ -575,7 +621,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<FutureReservation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FutureReservation, any Swift.Error> & Sendable {
       let request = FutureReservationsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

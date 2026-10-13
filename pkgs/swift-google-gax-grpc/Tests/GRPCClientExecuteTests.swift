@@ -371,6 +371,7 @@ import Testing
     actor MetadataCollector {
       var idempotencyTokens: [String] = []
       var customHeaders: [String] = []
+      var multiHeaders: [String] = []
       var authorizations: [String] = []
       var apiKeys: [String] = []
       var userProjects: [String] = []
@@ -378,11 +379,12 @@ import Testing
       var requestParams: [String] = []
 
       func record(
-        token: [String], custom: [String], auth: [String], key: [String],
+        token: [String], custom: [String], multi: [String], auth: [String], key: [String],
         userProject: [String], apiClient: [String], params: [String]
       ) {
         idempotencyTokens = token
         customHeaders = custom
+        multiHeaders = multi
         authorizations = auth
         apiKeys = key
         userProjects = userProject
@@ -407,6 +409,7 @@ import Testing
             String($0)
           }
           let customValues = request.metadata[stringValues: "x-custom-header"].map { String($0) }
+          let multiValues = request.metadata[stringValues: "x-multi-header"].map { String($0) }
           let authValues = request.metadata[stringValues: "authorization"].map { String($0) }
           let keyValues = request.metadata[stringValues: "x-goog-api-key"].map { String($0) }
           let projectValues = request.metadata[stringValues: "x-goog-user-project"].map {
@@ -419,6 +422,7 @@ import Testing
           await collector.record(
             token: tokenValues,
             custom: customValues,
+            multi: multiValues,
             auth: authValues,
             key: keyValues,
             userProject: projectValues,
@@ -465,7 +469,12 @@ import Testing
       }
 
       let requestOptions = RequestOptions().with {
+        $0.headers = [
+          ("x-multi-header", "first"),
+          ("x-multi-header", "second"),
+        ]
         $0.headers["x-goog-gcs-idempotency-token"] = "token-12345"
+        $0.headers["X-Custom-Header"] = "overridden-val"
         $0.headers["x-custom-header"] = "custom-val"
         $0.headers["authorization"] = "Bearer bad-token"
         $0.headers["x-goog-api-key"] = "bad-key"
@@ -482,6 +491,7 @@ import Testing
       )
       #expect(await collector.idempotencyTokens == ["token-12345"])
       #expect(await collector.customHeaders == ["custom-val"])
+      #expect(await collector.multiHeaders == ["first", "second"])
       #expect(await collector.authorizations.isEmpty)
       #expect(await collector.apiKeys.isEmpty)
       #expect(await collector.userProjects.isEmpty)

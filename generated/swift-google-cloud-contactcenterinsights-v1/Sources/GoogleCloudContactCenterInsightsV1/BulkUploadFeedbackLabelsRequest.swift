@@ -68,7 +68,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -99,7 +99,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.validateOnly, forKey: .validateOnly)
@@ -160,7 +160,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         BulkUploadFeedbackLabelsRequest.GcsSource.Format.self, forKey: .format)
@@ -176,7 +176,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.format, forKey: .format)
       try container.encode(self.objectUri, forKey: .objectUri)
@@ -272,7 +272,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -290,7 +290,7 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("FORMAT_UNSPECIFIED")
@@ -302,13 +302,24 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
       }
     }
 
+    /// The type URL for `GcsSource`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkUploadFeedbackLabelsRequest.GcsSource"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkUploadFeedbackLabelsRequest.GcsSource"
     }
+
+    /// Initialize an instance of `GcsSource` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkUploadFeedbackLabelsRequest.GcsSource"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GcsSource` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -321,13 +332,24 @@ public struct BulkUploadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._An
     indirect case gcsSource(BulkUploadFeedbackLabelsRequest.GcsSource)
   }
 
+  /// The type URL for `BulkUploadFeedbackLabelsRequest`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkUploadFeedbackLabelsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkUploadFeedbackLabelsRequest"
   }
+
+  /// Initialize an instance of `BulkUploadFeedbackLabelsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkUploadFeedbackLabelsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BulkUploadFeedbackLabelsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

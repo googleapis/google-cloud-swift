@@ -84,7 +84,7 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .baseUrl) {
       self.baseUrl = value
@@ -130,7 +130,7 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.baseUrl, forKey: .baseUrl)
     try container.encode(self.pollingFrequency, forKey: .pollingFrequency)
@@ -170,12 +170,23 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case queryAuth(CustomAPIQueryAuth)
   }
 
+  /// The type URL for `CustomAPISettings`: `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPISettings"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.CustomAPISettings"
   }
+
+  /// Initialize an instance of `CustomAPISettings` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPISettings"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CustomAPISettings` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

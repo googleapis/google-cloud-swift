@@ -79,7 +79,7 @@ public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Foundation.Data.self, forKey: .wrappedKey) {
       self.wrappedKey = value
@@ -92,7 +92,7 @@ public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.wrappedKey, forKey: .wrappedKey)
     try container.encodeIfPresent(self.wrappedKeyCrc32C, forKey: .wrappedKeyCrc32C)
@@ -101,12 +101,23 @@ public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatabl
     }
   }
 
+  /// The type URL for `ExportTrustedKeyWrappedCryptoKeyVersionResponse`: `"type.googleapis.com/google.cloud.kms.v1.ExportTrustedKeyWrappedCryptoKeyVersionResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ExportTrustedKeyWrappedCryptoKeyVersionResponse"
   }
+
+  /// Initialize an instance of `ExportTrustedKeyWrappedCryptoKeyVersionResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.kms.v1.ExportTrustedKeyWrappedCryptoKeyVersionResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExportTrustedKeyWrappedCryptoKeyVersionResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

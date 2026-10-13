@@ -136,7 +136,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.diskCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .diskCount)
       self.exapoolMaxReadIops = try container.decodeIfPresent(
@@ -170,7 +170,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.diskCount, forKey: .diskCount)
       try container.encodeIfPresent(self.exapoolMaxReadIops, forKey: .exapoolMaxReadIops)
@@ -197,12 +197,23 @@
       }
     }
 
+    /// The type URL for `StoragePoolResourceStatus`: `"type.googleapis.com/google.cloud.compute.v1.StoragePoolResourceStatus"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.StoragePoolResourceStatus"
     }
+
+    /// Initialize an instance of `StoragePoolResourceStatus` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.StoragePoolResourceStatus"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StoragePoolResourceStatus` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

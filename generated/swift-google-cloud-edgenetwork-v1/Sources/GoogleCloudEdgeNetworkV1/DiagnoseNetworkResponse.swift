@@ -60,7 +60,7 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
@@ -72,7 +72,7 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.result, forKey: .result)
@@ -126,7 +126,7 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([SubnetStatus].self, forKey: .subnetStatus) {
         self.subnetStatus = value
@@ -142,7 +142,7 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.subnetStatus, forKey: .subnetStatus)
       try container.encode(self.macsecStatusInternalLinks, forKey: .macsecStatusInternalLinks)
@@ -238,7 +238,7 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleWKT._AnyPackabl
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -256,7 +256,7 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleWKT._AnyPackabl
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("MACSEC_STATUS_UNSPECIFIED")
@@ -268,23 +268,45 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `NetworkStatus`: `"type.googleapis.com/google.cloud.edgenetwork.v1.DiagnoseNetworkResponse.NetworkStatus"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgenetwork.v1.DiagnoseNetworkResponse.NetworkStatus"
     }
+
+    /// Initialize an instance of `NetworkStatus` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.edgenetwork.v1.DiagnoseNetworkResponse.NetworkStatus"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `NetworkStatus` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `DiagnoseNetworkResponse`: `"type.googleapis.com/google.cloud.edgenetwork.v1.DiagnoseNetworkResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.edgenetwork.v1.DiagnoseNetworkResponse"
   }
+
+  /// Initialize an instance of `DiagnoseNetworkResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.edgenetwork.v1.DiagnoseNetworkResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DiagnoseNetworkResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

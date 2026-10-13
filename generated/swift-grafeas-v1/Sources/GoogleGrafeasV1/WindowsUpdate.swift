@@ -89,7 +89,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.identity = try container.decodeIfPresent(WindowsUpdate.Identity.self, forKey: .identity)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .title) {
@@ -116,7 +116,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.identity, forKey: .identity)
     try container.encode(self.title, forKey: .title)
@@ -173,7 +173,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .updateId) {
         self.updateId = value
@@ -187,7 +187,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.updateId, forKey: .updateId)
       try container.encode(self.revision, forKey: .revision)
@@ -196,12 +196,23 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Identity`: `"type.googleapis.com/grafeas.v1.WindowsUpdate.Identity"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.WindowsUpdate.Identity"
     }
+
+    /// Initialize an instance of `Identity` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.WindowsUpdate.Identity"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Identity` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -250,7 +261,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .categoryId) {
         self.categoryId = value
@@ -264,7 +275,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.categoryId, forKey: .categoryId)
       try container.encode(self.name, forKey: .name)
@@ -273,23 +284,45 @@ public struct WindowsUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Category`: `"type.googleapis.com/grafeas.v1.WindowsUpdate.Category"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.WindowsUpdate.Category"
     }
+
+    /// Initialize an instance of `Category` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.WindowsUpdate.Category"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Category` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `WindowsUpdate`: `"type.googleapis.com/grafeas.v1.WindowsUpdate"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.WindowsUpdate"
   }
+
+  /// Initialize an instance of `WindowsUpdate` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/grafeas.v1.WindowsUpdate"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `WindowsUpdate` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

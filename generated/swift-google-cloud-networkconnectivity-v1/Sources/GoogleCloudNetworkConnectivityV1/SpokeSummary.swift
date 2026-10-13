@@ -72,7 +72,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [SpokeSummary.SpokeTypeCount].self, forKey: .spokeTypeCounts)
@@ -95,7 +95,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.spokeTypeCounts, forKey: .spokeTypeCounts)
     try container.encode(self.spokeStateCounts, forKey: .spokeStateCounts)
@@ -151,7 +151,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(SpokeType.self, forKey: .spokeType) {
         self.spokeType = value
@@ -165,7 +165,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.spokeType, forKey: .spokeType)
       try container.encode(self.count, forKey: .count)
@@ -174,12 +174,23 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SpokeTypeCount`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary.SpokeTypeCount"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary.SpokeTypeCount"
     }
+
+    /// Initialize an instance of `SpokeTypeCount` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary.SpokeTypeCount"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SpokeTypeCount` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -231,7 +242,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         GoogleCloudNetworkConnectivityV1.State.self, forKey: .state)
@@ -247,7 +258,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.state, forKey: .state)
       try container.encode(self.count, forKey: .count)
@@ -256,12 +267,23 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SpokeStateCount`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateCount"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateCount"
     }
+
+    /// Initialize an instance of `SpokeStateCount` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateCount"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SpokeStateCount` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -311,7 +333,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Spoke.StateReason.Code.self, forKey: .stateReasonCode)
@@ -327,7 +349,7 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.stateReasonCode, forKey: .stateReasonCode)
       try container.encode(self.count, forKey: .count)
@@ -336,24 +358,46 @@ public struct SpokeSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SpokeStateReasonCount`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateReasonCount"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateReasonCount"
     }
+
+    /// Initialize an instance of `SpokeStateReasonCount` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateReasonCount"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SpokeStateReasonCount` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `SpokeSummary`: `"type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary"
   }
+
+  /// Initialize an instance of `SpokeSummary` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkconnectivity.v1.SpokeSummary"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SpokeSummary` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

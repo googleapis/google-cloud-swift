@@ -153,7 +153,7 @@ extension StorageClient {
           metadata: effectiveOptions.metadata,
           uploadId: nil,
           initialStatus: .inprogress(0),
-          chunkSize: effectiveOptions.chunkSize ?? WriteObjectOptions.defaultChunkSize,
+          chunkSize: effectiveOptions.chunkSize,
           totalSize: source.totalSize,
           options: effectiveOptions,
           resumeLoop: resumeLoop
@@ -436,6 +436,56 @@ extension StorageClient {
     )
   }
 
+  fileprivate static func sendStreamAttempt<S: SeekableWriteObjectSource>(
+    httpClient: GoogleGax._HTTPClient,
+    uploadId: String,
+    source: ChecksummedSource<S>,
+    offset: UInt64,
+    totalSize: UInt64,
+    options: WriteObjectOptions
+  ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
+    let streamRequest = try await buildUploadStreamRequest(
+      httpClient: httpClient,
+      uploadId: uploadId,
+      source: source,
+      offset: offset,
+      totalSize: totalSize,
+      options: options
+    )
+
+    let uploadResponse: _HTTPClientResponse
+    do {
+      uploadResponse = try await streamRequest.execute()
+    } catch is CancellationError {
+      throw CancellationError()
+    } catch let uploadError as WriteObjectError {
+      throw uploadError
+    } catch let reqError as RequestError {
+      throw reqError
+    } catch {
+      throw RequestError.io(error)
+    }
+
+    let statusCode = Int(uploadResponse.status.code)
+    if statusCode == 200 || statusCode == 201 {
+      let object = try await handleObjectResponse(response: uploadResponse)
+      try source.validate(object: object)
+      return (.done(object), nil)
+    } else if statusCode == 308 {
+      let queryStatus = try parseResumableUploadQueryStatus(from: uploadResponse.headers)
+      await uploadResponse.drain()
+      return (.inprogress(queryStatus.nextOffset), queryStatus.crc32cSeed)
+    } else if uploadResponse.isError() {
+      throw await uploadResponse.decodeError()
+    } else {
+      let uploadData = try await uploadResponse.data()
+      throw WriteObjectError.unexpectedServerResponse(
+        statusCode: statusCode,
+        message: String(data: uploadData, encoding: .utf8) ?? ""
+      )
+    }
+  }
+
   private struct PendingChunk {
     var data: ByteChunk
     let isLast: Bool
@@ -668,6 +718,24 @@ extension StorageClient {
     }
   }
 
+  fileprivate static func prepareChecksummedSource<S: SeekableWriteObjectSource>(
+    existing: inout ChecksummedSource<S>?,
+    source: S,
+    options: WriteObjectOptions,
+    crc32cSeed: UInt32?,
+    committedBytes: UInt64
+  ) async throws -> ChecksummedSource<S> {
+    var cs =
+      existing
+      ?? ChecksummedSource(source: source, options: options.checksums ?? .default)
+    if let seed = crc32cSeed {
+      cs.seedCRC32C(seed: seed, bytesHashed: committedBytes)
+    }
+    try await cs.seek(to: committedBytes)
+    existing = cs
+    return cs
+  }
+
   fileprivate static func continueResumableSeekableUpload<S: SeekableWriteObjectSource>(
     httpClient: GoogleGax._HTTPClient,
     source: inout S,
@@ -677,7 +745,7 @@ extension StorageClient {
     uploadId: String?,
     initialStatus: ResumableUploadStatus,
     initialCrc32cSeed: UInt32? = nil,
-    chunkSize: Int,
+    chunkSize: Int?,
     totalSize: UInt64?,
     options: WriteObjectOptions,
     resumeLoop: _ResumeLoop<WriteObjectDetails>
@@ -731,9 +799,7 @@ extension StorageClient {
           let queryResult = try await queryUploadStatus(
             httpClient: httpClient, uploadId: activeUploadId, options: options)
           uploadStatus = queryResult.status
-          if let seed = queryResult.crc32cSeed {
-            crc32cSeed = seed
-          }
+          crc32cSeed = queryResult.crc32cSeed
           if case .inprogress(let committedBytes) = uploadStatus {
             if isResumedSession {
               maxBytesSent = committedBytes
@@ -781,54 +847,69 @@ extension StorageClient {
           options.checksums?.md5 = nil
         }
 
-        if checksummedSource == nil {
-          var cs = ChecksummedSource(source: source, options: options.checksums ?? .default)
-          if let seed = crc32cSeed {
-            cs.seedCRC32C(seed: seed, bytesHashed: committedBytes)
-          }
-          if committedBytes > 0 {
-            try await cs.seek(to: committedBytes)
-          }
-          checksummedSource = cs
-        } else {
-          if let seed = crc32cSeed {
-            checksummedSource!.seedCRC32C(seed: seed, bytesHashed: committedBytes)
-          }
-          try await checksummedSource!.seek(to: committedBytes)
-        }
-
         uploadStatus = .unknown
-        let chunkResult: (status: ResumableUploadStatus, crc32cSeed: UInt32?)
+        var cs = try await prepareChecksummedSource(
+          existing: &checksummedSource,
+          source: source,
+          options: options,
+          crc32cSeed: crc32cSeed,
+          committedBytes: committedBytes
+        )
+        let uploadResult: (status: ResumableUploadStatus, crc32cSeed: UInt32?)
         do {
-          chunkResult = try await sendNextChunk(
-            httpClient: httpClient,
-            checksummedSource: &checksummedSource!,
-            uploadId: activeUploadId,
-            committedBytes: committedBytes,
-            chunkSize: chunkSize,
-            totalSize: totalSize,
-            options: options,
-            maxBytesSent: &maxBytesSent
-          )
+          if chunkSize == nil, let total = totalSize {
+            if committedBytes == total {
+              uploadResult = try await sendChunk(
+                httpClient: httpClient,
+                uploadId: activeUploadId,
+                data: ByteChunk(),
+                offset: committedBytes,
+                totalSize: total,
+                options: options,
+                checksum: cs.finalizeChecksum()
+              )
+            } else {
+              maxBytesSent = max(maxBytesSent, total)
+              uploadResult = try await sendStreamAttempt(
+                httpClient: httpClient,
+                uploadId: activeUploadId,
+                source: cs,
+                offset: committedBytes,
+                totalSize: total,
+                options: options
+              )
+            }
+          } else {
+            let effectiveChunkSize = chunkSize ?? WriteObjectOptions.defaultChunkSize
+            uploadResult = try await sendNextChunk(
+              httpClient: httpClient,
+              checksummedSource: &cs,
+              uploadId: activeUploadId,
+              committedBytes: committedBytes,
+              chunkSize: effectiveChunkSize,
+              totalSize: totalSize,
+              options: options,
+              maxBytesSent: &maxBytesSent
+            )
+            checksummedSource = cs
+          }
         } catch {
           try await resumeLoop.handleError(state: &resumeState, error: error)
           continue
         }
 
-        if case .done(let object) = chunkResult.status {
+        if case .done(let object) = uploadResult.status {
           return object
         }
-        uploadStatus = chunkResult.status
-        if case .inprogress(let nextBytes) = chunkResult.status {
+        uploadStatus = uploadResult.status
+        if case .inprogress(let nextBytes) = uploadResult.status {
           lastCommittedBytes = nextBytes
           if nextBytes > resumeState.details.bytesWritten {
             resumeState.details.bytesWritten = nextBytes
             resumeLoop.onProgress(state: &resumeState)
           }
         }
-        if let seed = chunkResult.crc32cSeed {
-          crc32cSeed = seed
-        }
+        crc32cSeed = uploadResult.crc32cSeed
       }
     }
   }
@@ -865,7 +946,7 @@ extension StorageClient {
         metadata: nil,
         uploadId: uploadId,
         initialStatus: .unknown,
-        chunkSize: effectiveOptions.chunkSize ?? WriteObjectOptions.defaultChunkSize,
+        chunkSize: effectiveOptions.chunkSize,
         totalSize: totalSize,
         options: effectiveOptions,
         resumeLoop: resumeLoop
@@ -972,6 +1053,49 @@ extension StorageClient {
       request.setHeader(name: "Content-Range", value: "bytes \(offset)-\(end)/\(totalStr)")
     }
     request.setBody(byteChunk: data)
+    return request
+  }
+
+  private static let defaultStreamChunkSize = 2 * 1024 * 1024
+
+  fileprivate static func buildUploadStreamRequest<S: SeekableWriteObjectSource>(
+    httpClient: GoogleGax._HTTPClient,
+    uploadId: String,
+    source: ChecksummedSource<S>,
+    offset: UInt64,
+    totalSize: UInt64,
+    options: WriteObjectOptions
+  ) async throws -> GoogleGax._HTTPClientRequest {
+    var request = try await httpClient.newRequest(uri: uploadId, options: options.requestOptions)
+    request.setMethod(.PUT)
+    request.setHeader(name: "Content-Type", value: "application/octet-stream")
+
+    var precomputedHashes: [String] = []
+    if case .value(let val) = options.checksums?.crc32c {
+      precomputedHashes.append(
+        "crc32c=\(ProvidedChecksumCalculator(algorithmName: "crc32c", value: val).finalize())")
+    }
+    if case .value(let val) = options.checksums?.md5 {
+      precomputedHashes.append(
+        "md5=\(ProvidedChecksumCalculator(algorithmName: "md5", value: val).finalize())")
+    }
+    if !precomputedHashes.isEmpty {
+      request.setHeader(name: "x-goog-hash", value: precomputedHashes.joined(separator: ", "))
+    }
+
+    request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
+
+    let end = totalSize > 0 ? totalSize - 1 : 0
+    let contentLength = Int64(totalSize > offset ? totalSize - offset : 0)
+    request.setHeader(name: "Content-Range", value: "bytes \(offset)-\(end)/\(totalSize)")
+    request.setHeader(name: "Content-Length", value: String(contentLength))
+
+    var streamSource = source
+    streamSource.configureStream(
+      bytesToRead: UInt64(contentLength),
+      chunkSize: defaultStreamChunkSize
+    )
+    request.setBody(stream: streamSource, length: contentLength)
     return request
   }
 

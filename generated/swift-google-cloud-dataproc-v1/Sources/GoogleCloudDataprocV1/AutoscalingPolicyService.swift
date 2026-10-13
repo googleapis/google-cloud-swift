@@ -319,7 +319,7 @@ extension Clients.AutoscalingPolicyServiceProtocol {
 
   public func listAutoscalingPoliciesByItems(
     request: ListAutoscalingPoliciesRequest
-  ) -> some AsyncSequence<AutoscalingPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutoscalingPolicy, any Swift.Error> & Sendable {
     self.listAutoscalingPoliciesByItems(request: request, options: .init())
   }
 
@@ -328,7 +328,7 @@ extension Clients.AutoscalingPolicyServiceProtocol {
   /// @Snippet(path: "AutoscalingPolicyService_ListAutoscalingPolicies")
   public func listAutoscalingPoliciesByItems(
     request: ListAutoscalingPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AutoscalingPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutoscalingPolicy, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataprocV1.ListAutoscalingPoliciesResponse in
@@ -342,7 +342,7 @@ extension Clients.AutoscalingPolicyServiceProtocol {
 
   public func listAutoscalingPoliciesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<AutoscalingPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutoscalingPolicy, any Swift.Error> & Sendable {
     let request = ListAutoscalingPoliciesRequest().with {
       $0.parent = parent
     }
@@ -418,7 +418,7 @@ extension Clients.AutoscalingPolicyServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -429,7 +429,7 @@ extension Clients.AutoscalingPolicyServiceProtocol {
   /// @Snippet(path: "AutoscalingPolicyService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -443,7 +443,7 @@ extension Clients.AutoscalingPolicyServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

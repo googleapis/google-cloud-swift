@@ -78,7 +78,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.numerator = try container.decodeIfPresent(
       TimeSeriesFilterRatio.RatioPart.self, forKey: .numerator)
@@ -117,7 +117,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.numerator, forKey: .numerator)
     try container.encodeIfPresent(self.denominator, forKey: .denominator)
@@ -184,7 +184,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
         self.filter = value
@@ -196,7 +196,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.filter, forKey: .filter)
       try container.encodeIfPresent(self.aggregation, forKey: .aggregation)
@@ -205,12 +205,23 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `RatioPart`: `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesFilterRatio.RatioPart"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesFilterRatio.RatioPart"
     }
+
+    /// Initialize an instance of `RatioPart` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesFilterRatio.RatioPart"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RatioPart` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -227,12 +238,23 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case statisticalTimeSeriesFilter(StatisticalTimeSeriesFilter)
   }
 
+  /// The type URL for `TimeSeriesFilterRatio`: `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesFilterRatio"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesFilterRatio"
   }
+
+  /// Initialize an instance of `TimeSeriesFilterRatio` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesFilterRatio"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TimeSeriesFilterRatio` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

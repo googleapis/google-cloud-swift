@@ -70,7 +70,7 @@ public struct VodSessionAdBreak: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([ProgressEvent].self, forKey: .progressEvents) {
       self.progressEvents = value
@@ -88,7 +88,7 @@ public struct VodSessionAdBreak: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.progressEvents, forKey: .progressEvents)
     try container.encode(self.ads, forKey: .ads)
@@ -99,12 +99,23 @@ public struct VodSessionAdBreak: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `VodSessionAdBreak`: `"type.googleapis.com/google.cloud.video.stitcher.v1.VodSessionAdBreak"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.stitcher.v1.VodSessionAdBreak"
   }
+
+  /// Initialize an instance of `VodSessionAdBreak` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.video.stitcher.v1.VodSessionAdBreak"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `VodSessionAdBreak` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

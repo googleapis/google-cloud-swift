@@ -81,7 +81,7 @@ public struct RouteModifiers: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .avoidTolls) {
       self.avoidTolls = value
@@ -101,7 +101,7 @@ public struct RouteModifiers: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.avoidTolls, forKey: .avoidTolls)
     try container.encode(self.avoidHighways, forKey: .avoidHighways)
@@ -112,12 +112,23 @@ public struct RouteModifiers: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `RouteModifiers`: `"type.googleapis.com/google.cloud.optimization.v1.RouteModifiers"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.RouteModifiers"
   }
+
+  /// Initialize an instance of `RouteModifiers` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.optimization.v1.RouteModifiers"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RouteModifiers` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

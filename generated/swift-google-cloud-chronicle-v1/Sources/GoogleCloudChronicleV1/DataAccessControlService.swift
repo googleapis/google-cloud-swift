@@ -325,7 +325,7 @@ extension Clients.DataAccessControlServiceProtocol {
 
   public func listDataAccessLabelsByItems(
     request: ListDataAccessLabelsRequest
-  ) -> some AsyncSequence<DataAccessLabel, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAccessLabel, any Swift.Error> & Sendable {
     self.listDataAccessLabelsByItems(request: request, options: .init())
   }
 
@@ -334,7 +334,7 @@ extension Clients.DataAccessControlServiceProtocol {
   /// @Snippet(path: "DataAccessControlService_ListDataAccessLabels")
   public func listDataAccessLabelsByItems(
     request: ListDataAccessLabelsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataAccessLabel, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAccessLabel, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListDataAccessLabelsResponse in
@@ -348,7 +348,7 @@ extension Clients.DataAccessControlServiceProtocol {
 
   public func listDataAccessLabelsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DataAccessLabel, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAccessLabel, any Swift.Error> & Sendable {
     let request = ListDataAccessLabelsRequest().with {
       $0.parent = parent
     }
@@ -457,7 +457,7 @@ extension Clients.DataAccessControlServiceProtocol {
 
   public func listDataAccessScopesByItems(
     request: ListDataAccessScopesRequest
-  ) -> some AsyncSequence<DataAccessScope, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAccessScope, any Swift.Error> & Sendable {
     self.listDataAccessScopesByItems(request: request, options: .init())
   }
 
@@ -466,7 +466,7 @@ extension Clients.DataAccessControlServiceProtocol {
   /// @Snippet(path: "DataAccessControlService_ListDataAccessScopes")
   public func listDataAccessScopesByItems(
     request: ListDataAccessScopesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataAccessScope, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAccessScope, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListDataAccessScopesResponse in
@@ -480,7 +480,7 @@ extension Clients.DataAccessControlServiceProtocol {
 
   public func listDataAccessScopesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DataAccessScope, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAccessScope, any Swift.Error> & Sendable {
     let request = ListDataAccessScopesRequest().with {
       $0.parent = parent
     }
@@ -543,7 +543,7 @@ extension Clients.DataAccessControlServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -554,7 +554,7 @@ extension Clients.DataAccessControlServiceProtocol {
   /// @Snippet(path: "DataAccessControlService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -568,7 +568,7 @@ extension Clients.DataAccessControlServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

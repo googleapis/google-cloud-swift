@@ -26,8 +26,8 @@
   /// @Snippet(path: "resourcePoliciesQuickstart")
   public final class ResourcePoliciesClient: Clients.ResourcePoliciesProtocol, Sendable {
     let inner: any Clients.ResourcePoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ResourcePoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -63,6 +63,11 @@
     }
 
     /// Deletes the specified resource policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "resourcePolicies_delete")
     public func deletePollingUntilDone(
@@ -134,6 +139,11 @@
 
     /// Creates a new resource policy.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "resourcePolicies_insert")
     public func insertPollingUntilDone(
       request: ResourcePoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -194,6 +204,11 @@
     }
 
     /// Modify the specified resource policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "resourcePolicies_patch")
     public func patchPollingUntilDone(
@@ -282,6 +297,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ResourcePoliciesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: ResourcePoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -302,6 +322,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ResourcePoliciesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: ResourcePoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -317,6 +342,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ResourcePoliciesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: ResourcePoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -349,7 +379,8 @@
 
     public func aggregatedListByItems(
       request: ResourcePoliciesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, ResourcePoliciesScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -361,7 +392,8 @@
     /// @Snippet(path: "resourcePolicies_aggregatedList")
     public func aggregatedListByItems(
       request: ResourcePoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, ResourcePoliciesScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.ResourcePolicyAggregatedList in
@@ -375,7 +407,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, ResourcePoliciesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, ResourcePoliciesScopedList), any Swift.Error> & Sendable
+    {
       let request = ResourcePoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -520,7 +553,7 @@
 
     public func listByItems(
       request: ResourcePoliciesClient.ListRequest
-    ) -> some AsyncSequence<ResourcePolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ResourcePolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -530,7 +563,7 @@
     /// @Snippet(path: "resourcePolicies_list")
     public func listByItems(
       request: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ResourcePolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ResourcePolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ResourcePolicyList in
         var request = request
@@ -544,7 +577,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<ResourcePolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ResourcePolicy, any Swift.Error> & Sendable {
       let request = ResourcePoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region

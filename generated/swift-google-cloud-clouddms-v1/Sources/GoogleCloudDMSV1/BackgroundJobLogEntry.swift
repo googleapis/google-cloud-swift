@@ -99,7 +99,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
       self.id = value
@@ -159,7 +159,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.jobType, forKey: .jobType)
@@ -224,7 +224,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionProfile) {
         self.connectionProfile = value
@@ -235,7 +235,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.connectionProfile, forKey: .connectionProfile)
       for (key, value) in self._unknownFields.json {
@@ -243,12 +243,23 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SeedJobDetails`: `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.SeedJobDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.SeedJobDetails"
     }
+
+    /// Initialize an instance of `SeedJobDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.SeedJobDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SeedJobDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -297,7 +308,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .files) {
         self.files = value
@@ -312,7 +323,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.files, forKey: .files)
       try container.encode(self.fileFormat, forKey: .fileFormat)
@@ -321,13 +332,24 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ImportRulesJobDetails`: `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.ImportRulesJobDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.ImportRulesJobDetails"
     }
+
+    /// Initialize an instance of `ImportRulesJobDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.ImportRulesJobDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ImportRulesJobDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -371,7 +393,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .filter) {
         self.filter = value
@@ -382,7 +404,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.filter, forKey: .filter)
       for (key, value) in self._unknownFields.json {
@@ -390,12 +412,23 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ConvertJobDetails`: `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.ConvertJobDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.ConvertJobDetails"
     }
+
+    /// Initialize an instance of `ConvertJobDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.ConvertJobDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ConvertJobDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -444,7 +477,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .connectionProfile) {
         self.connectionProfile = value
@@ -458,7 +491,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.connectionProfile, forKey: .connectionProfile)
       try container.encode(self.filter, forKey: .filter)
@@ -467,12 +500,23 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ApplyJobDetails`: `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.ApplyJobDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.ApplyJobDetails"
     }
+
+    /// Initialize an instance of `ApplyJobDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry.ApplyJobDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ApplyJobDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -566,7 +610,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -584,7 +628,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("JOB_COMPLETION_STATE_UNSPECIFIED")
@@ -607,12 +651,23 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case applyJobDetails(BackgroundJobLogEntry.ApplyJobDetails)
   }
 
+  /// The type URL for `BackgroundJobLogEntry`: `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry"
   }
+
+  /// Initialize an instance of `BackgroundJobLogEntry` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.clouddms.v1.BackgroundJobLogEntry"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BackgroundJobLogEntry` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

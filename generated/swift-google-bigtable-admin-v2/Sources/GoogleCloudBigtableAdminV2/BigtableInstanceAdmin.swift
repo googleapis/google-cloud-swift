@@ -30,8 +30,8 @@ import Foundation
 /// @Snippet(path: "BigtableInstanceAdminQuickstart")
 public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminProtocol, Sendable {
   let inner: any Clients.BigtableInstanceAdminStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `BigtableInstanceAdminClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -1360,7 +1360,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listMemoryLayersByItems(
     request: ListMemoryLayersRequest
-  ) -> some AsyncSequence<MemoryLayer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MemoryLayer, any Swift.Error> & Sendable {
     self.listMemoryLayersByItems(request: request, options: .init())
   }
 
@@ -1369,7 +1369,7 @@ extension Clients.BigtableInstanceAdminProtocol {
   /// @Snippet(path: "BigtableInstanceAdmin_ListMemoryLayers")
   public func listMemoryLayersByItems(
     request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<MemoryLayer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MemoryLayer, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse in
@@ -1383,7 +1383,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listMemoryLayersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<MemoryLayer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MemoryLayer, any Swift.Error> & Sendable {
     let request = ListMemoryLayersRequest().with {
       $0.parent = parent
     }
@@ -1471,7 +1471,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listAppProfilesByItems(
     request: ListAppProfilesRequest
-  ) -> some AsyncSequence<AppProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AppProfile, any Swift.Error> & Sendable {
     self.listAppProfilesByItems(request: request, options: .init())
   }
 
@@ -1480,7 +1480,7 @@ extension Clients.BigtableInstanceAdminProtocol {
   /// @Snippet(path: "BigtableInstanceAdmin_ListAppProfiles")
   public func listAppProfilesByItems(
     request: ListAppProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AppProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AppProfile, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse in
@@ -1494,7 +1494,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listAppProfilesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<AppProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AppProfile, any Swift.Error> & Sendable {
     let request = ListAppProfilesRequest().with {
       $0.parent = parent
     }
@@ -1647,7 +1647,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listHotTabletsByItems(
     request: ListHotTabletsRequest
-  ) -> some AsyncSequence<HotTablet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<HotTablet, any Swift.Error> & Sendable {
     self.listHotTabletsByItems(request: request, options: .init())
   }
 
@@ -1657,7 +1657,7 @@ extension Clients.BigtableInstanceAdminProtocol {
   /// @Snippet(path: "BigtableInstanceAdmin_ListHotTablets")
   public func listHotTabletsByItems(
     request: ListHotTabletsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<HotTablet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<HotTablet, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse in
@@ -1671,7 +1671,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listHotTabletsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<HotTablet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<HotTablet, any Swift.Error> & Sendable {
     let request = ListHotTabletsRequest().with {
       $0.parent = parent
     }
@@ -1750,7 +1750,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listLogicalViewsByItems(
     request: ListLogicalViewsRequest
-  ) -> some AsyncSequence<LogicalView, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogicalView, any Swift.Error> & Sendable {
     self.listLogicalViewsByItems(request: request, options: .init())
   }
 
@@ -1759,7 +1759,7 @@ extension Clients.BigtableInstanceAdminProtocol {
   /// @Snippet(path: "BigtableInstanceAdmin_ListLogicalViews")
   public func listLogicalViewsByItems(
     request: ListLogicalViewsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<LogicalView, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogicalView, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse in
@@ -1773,7 +1773,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listLogicalViewsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<LogicalView, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogicalView, any Swift.Error> & Sendable {
     let request = ListLogicalViewsRequest().with {
       $0.parent = parent
     }
@@ -1906,7 +1906,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listMaterializedViewsByItems(
     request: ListMaterializedViewsRequest
-  ) -> some AsyncSequence<MaterializedView, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MaterializedView, any Swift.Error> & Sendable {
     self.listMaterializedViewsByItems(request: request, options: .init())
   }
 
@@ -1915,7 +1915,7 @@ extension Clients.BigtableInstanceAdminProtocol {
   /// @Snippet(path: "BigtableInstanceAdmin_ListMaterializedViews")
   public func listMaterializedViewsByItems(
     request: ListMaterializedViewsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<MaterializedView, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MaterializedView, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse in
@@ -1929,7 +1929,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listMaterializedViewsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<MaterializedView, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MaterializedView, any Swift.Error> & Sendable {
     let request = ListMaterializedViewsRequest().with {
       $0.parent = parent
     }
@@ -2004,7 +2004,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -2015,7 +2015,7 @@ extension Clients.BigtableInstanceAdminProtocol {
   /// @Snippet(path: "BigtableInstanceAdmin_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -2029,7 +2029,7 @@ extension Clients.BigtableInstanceAdminProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

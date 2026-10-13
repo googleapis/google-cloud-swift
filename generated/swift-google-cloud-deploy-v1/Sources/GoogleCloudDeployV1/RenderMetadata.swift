@@ -60,7 +60,7 @@ public struct RenderMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.cloudRun = try container.decodeIfPresent(CloudRunRenderMetadata.self, forKey: .cloudRun)
     self.custom = try container.decodeIfPresent(CustomMetadata.self, forKey: .custom)
@@ -70,7 +70,7 @@ public struct RenderMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.cloudRun, forKey: .cloudRun)
     try container.encodeIfPresent(self.custom, forKey: .custom)
@@ -79,12 +79,23 @@ public struct RenderMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `RenderMetadata`: `"type.googleapis.com/google.cloud.deploy.v1.RenderMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.RenderMetadata"
   }
+
+  /// Initialize an instance of `RenderMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.deploy.v1.RenderMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RenderMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

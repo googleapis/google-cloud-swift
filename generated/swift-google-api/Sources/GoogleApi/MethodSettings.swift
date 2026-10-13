@@ -111,7 +111,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .selector) {
       self.selector = value
@@ -129,7 +129,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.selector, forKey: .selector)
     try container.encodeIfPresent(self.longRunning, forKey: .longRunning)
@@ -202,7 +202,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.initialPollDelay = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .initialPollDelay)
@@ -219,7 +219,7 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.initialPollDelay, forKey: .initialPollDelay)
       try container.encode(self.pollDelayMultiplier, forKey: .pollDelayMultiplier)
@@ -230,23 +230,45 @@ public struct MethodSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `LongRunning`: `"type.googleapis.com/google.api.MethodSettings.LongRunning"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.MethodSettings.LongRunning"
     }
+
+    /// Initialize an instance of `LongRunning` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.MethodSettings.LongRunning"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `LongRunning` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `MethodSettings`: `"type.googleapis.com/google.api.MethodSettings"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.MethodSettings"
   }
+
+  /// Initialize an instance of `MethodSettings` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.MethodSettings"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MethodSettings` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

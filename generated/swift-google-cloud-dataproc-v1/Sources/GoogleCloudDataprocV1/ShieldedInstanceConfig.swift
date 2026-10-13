@@ -66,7 +66,7 @@ public struct ShieldedInstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.enableSecureBoot = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .enableSecureBoot)
@@ -79,7 +79,7 @@ public struct ShieldedInstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.enableSecureBoot, forKey: .enableSecureBoot)
     try container.encodeIfPresent(self.enableVtpm, forKey: .enableVtpm)
@@ -90,12 +90,23 @@ public struct ShieldedInstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `ShieldedInstanceConfig`: `"type.googleapis.com/google.cloud.dataproc.v1.ShieldedInstanceConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.ShieldedInstanceConfig"
   }
+
+  /// Initialize an instance of `ShieldedInstanceConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.v1.ShieldedInstanceConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ShieldedInstanceConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

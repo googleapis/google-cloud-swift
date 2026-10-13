@@ -107,7 +107,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
         self.location = value
@@ -134,7 +134,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.location, forKey: .location)
       try container.encodeIfPresent(self.systemInstruction, forKey: .systemInstruction)
@@ -226,7 +226,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .modelId) {
           self.modelId = value
@@ -250,7 +250,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.modelId, forKey: .modelId)
         try container.encode(self.languageCode, forKey: .languageCode)
@@ -266,13 +266,24 @@
         }
       }
 
+      /// The type URL for `GenerationSpec`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GenerationSpec"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GenerationSpec"
       }
+
+      /// Initialize an instance of `GenerationSpec` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GenerationSpec"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GenerationSpec` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -318,7 +329,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.predictor = try container.decodeIfPresent(
           GenerateGroundedContentRequest.DynamicRetrievalConfiguration.DynamicRetrievalPredictor
@@ -329,7 +340,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.predictor, forKey: .predictor)
         for (key, value) in self._unknownFields.json {
@@ -384,7 +395,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             GenerateGroundedContentRequest.DynamicRetrievalConfiguration.DynamicRetrievalPredictor
@@ -399,7 +410,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.version, forKey: .version)
           try container.encodeIfPresent(self.threshold, forKey: .threshold)
@@ -489,7 +500,7 @@
             }
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             if let v = try? container.decode(Int.self) {
               self.init(intValue: v)
@@ -507,7 +518,7 @@
               in: container, debugDescription: "Expected enum value, must be integer or string.")
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
             case .unspecified: return try container.encode("VERSION_UNSPECIFIED")
@@ -518,25 +529,47 @@
           }
         }
 
+        /// The type URL for `DynamicRetrievalPredictor`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.DynamicRetrievalConfiguration.DynamicRetrievalPredictor"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.DynamicRetrievalConfiguration.DynamicRetrievalPredictor"
         }
+
+        /// Initialize an instance of `DynamicRetrievalPredictor` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.DynamicRetrievalConfiguration.DynamicRetrievalPredictor"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `DynamicRetrievalPredictor` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `DynamicRetrievalConfiguration`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.DynamicRetrievalConfiguration"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.DynamicRetrievalConfiguration"
       }
+
+      /// Initialize an instance of `DynamicRetrievalConfiguration` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.DynamicRetrievalConfiguration"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `DynamicRetrievalConfiguration` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -587,7 +620,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var source: SourceOneOf? = nil
@@ -629,7 +662,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.source {
@@ -695,7 +728,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [GroundingFact].self, forKey: .groundingFacts)
@@ -713,7 +746,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.groundingFacts, forKey: .groundingFacts)
           try container.encode(self.attributes, forKey: .attributes)
@@ -722,13 +755,24 @@
           }
         }
 
+        /// The type URL for `InlineSource`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.InlineSource"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.InlineSource"
         }
+
+        /// Initialize an instance of `InlineSource` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.InlineSource"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `InlineSource` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -797,7 +841,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .servingConfig) {
             self.servingConfig = value
@@ -817,7 +861,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.servingConfig, forKey: .servingConfig)
           try container.encode(self.maxResultCount, forKey: .maxResultCount)
@@ -828,13 +872,24 @@
           }
         }
 
+        /// The type URL for `SearchSource`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.SearchSource"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.SearchSource"
         }
+
+        /// Initialize an instance of `SearchSource` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.SearchSource"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `SearchSource` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -880,7 +935,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.dynamicRetrievalConfig = try container.decodeIfPresent(
             GenerateGroundedContentRequest.DynamicRetrievalConfiguration.self,
@@ -891,7 +946,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(
             self.dynamicRetrievalConfig, forKey: .dynamicRetrievalConfig)
@@ -900,13 +955,24 @@
           }
         }
 
+        /// The type URL for `GoogleSearchSource`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.GoogleSearchSource"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.GoogleSearchSource"
         }
+
+        /// Initialize an instance of `GoogleSearchSource` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.GoogleSearchSource"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `GoogleSearchSource` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -943,7 +1009,7 @@
           static let _knownKeys: Set<Swift.String> = []
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
             self._unknownFields.json[key.stringValue] = try container.decode(
@@ -951,20 +1017,31 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
         }
 
+        /// The type URL for `EnterpriseWebRetrievalSource`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource"
         }
+
+        /// Initialize an instance of `EnterpriseWebRetrievalSource` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `EnterpriseWebRetrievalSource` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -984,13 +1061,24 @@
           GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource)
       }
 
+      /// The type URL for `GroundingSource`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource"
       }
+
+      /// Initialize an instance of `GroundingSource` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GroundingSource` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1034,7 +1122,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(
           [GenerateGroundedContentRequest.GroundingSource].self, forKey: .groundingSources)
@@ -1047,7 +1135,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.groundingSources, forKey: .groundingSources)
         for (key, value) in self._unknownFields.json {
@@ -1055,24 +1143,46 @@
         }
       }
 
+      /// The type URL for `GroundingSpec`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSpec"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSpec"
       }
+
+      /// Initialize an instance of `GroundingSpec` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSpec"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GroundingSpec` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `GenerateGroundedContentRequest`: `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest"
     }
+
+    /// Initialize an instance of `GenerateGroundedContentRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GenerateGroundedContentRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

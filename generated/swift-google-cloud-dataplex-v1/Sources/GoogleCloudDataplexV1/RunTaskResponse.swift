@@ -54,7 +54,7 @@ public struct RunTaskResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.job = try container.decodeIfPresent(Job.self, forKey: .job)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -63,7 +63,7 @@ public struct RunTaskResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.job, forKey: .job)
     for (key, value) in self._unknownFields.json {
@@ -71,12 +71,23 @@ public struct RunTaskResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `RunTaskResponse`: `"type.googleapis.com/google.cloud.dataplex.v1.RunTaskResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.RunTaskResponse"
   }
+
+  /// Initialize an instance of `RunTaskResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataplex.v1.RunTaskResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RunTaskResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

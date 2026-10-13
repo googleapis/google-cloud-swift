@@ -152,7 +152,7 @@ public struct BDRBackupPlanAssociationJobLog: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.jobId = try container.decodeIfPresent(Swift.String.self, forKey: .jobId)
     self.jobCategory = try container.decodeIfPresent(Swift.String.self, forKey: .jobCategory)
@@ -189,7 +189,7 @@ public struct BDRBackupPlanAssociationJobLog: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.jobId, forKey: .jobId)
     try container.encodeIfPresent(self.jobCategory, forKey: .jobCategory)
@@ -219,12 +219,23 @@ public struct BDRBackupPlanAssociationJobLog: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `BDRBackupPlanAssociationJobLog`: `"type.googleapis.com/google.cloud.backupdr.logging.v1.BDRBackupPlanAssociationJobLog"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.logging.v1.BDRBackupPlanAssociationJobLog"
   }
+
+  /// Initialize an instance of `BDRBackupPlanAssociationJobLog` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.backupdr.logging.v1.BDRBackupPlanAssociationJobLog"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BDRBackupPlanAssociationJobLog` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

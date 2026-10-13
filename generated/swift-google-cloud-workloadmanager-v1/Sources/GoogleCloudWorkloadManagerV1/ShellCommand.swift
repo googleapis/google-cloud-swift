@@ -65,7 +65,7 @@ public struct ShellCommand: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .command) {
       self.command = value
@@ -82,7 +82,7 @@ public struct ShellCommand: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.command, forKey: .command)
     try container.encode(self.args, forKey: .args)
@@ -92,12 +92,23 @@ public struct ShellCommand: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ShellCommand`: `"type.googleapis.com/google.cloud.workloadmanager.v1.ShellCommand"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workloadmanager.v1.ShellCommand"
   }
+
+  /// Initialize an instance of `ShellCommand` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workloadmanager.v1.ShellCommand"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ShellCommand` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

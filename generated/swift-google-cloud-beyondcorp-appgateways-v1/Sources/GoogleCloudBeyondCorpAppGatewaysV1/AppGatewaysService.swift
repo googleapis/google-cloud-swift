@@ -38,11 +38,16 @@ import Foundation
 /// The AppGatewaysService service provides methods to manage
 /// (create/read/update/delete) BeyondCorp AppGateways.
 ///
+///
+/// Deprecated: App Connector is deprecated and creation of new App Connector
+/// resources is no longer permitted. Use Security Gateway instead.
+///
 /// @Snippet(path: "AppGatewaysServiceQuickstart")
+@available(*, deprecated)
 public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol, Sendable {
   let inner: any Clients.AppGatewaysServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AppGatewaysServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -59,6 +64,7 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Lists AppGateways in a given project and location.
   ///
   /// @Snippet(path: "AppGatewaysService_ListAppGateways")
+  @available(*, deprecated)
   public func listAppGateways(
     request: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse {
@@ -68,6 +74,7 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Gets details of a single AppGateway.
   ///
   /// @Snippet(path: "AppGatewaysService_GetAppGateway")
+  @available(*, deprecated)
   public func getAppGateway(
     request: GetAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppGatewaysV1.AppGateway {
@@ -77,6 +84,7 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Creates a new AppGateway in a given project and location.
   ///
   /// @Snippet(path: "AppGatewaysService_CreateAppGateway")
+  @available(*, deprecated)
   public func createAppGateway(
     request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -86,6 +94,7 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Creates a new AppGateway in a given project and location.
   ///
   /// @Snippet(path: "AppGatewaysService_CreateAppGateway")
+  @available(*, deprecated)
   public func createAppGatewayPollingUntilDone(
     request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> AppGateway {
@@ -113,6 +122,7 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Deletes a single AppGateway.
   ///
   /// @Snippet(path: "AppGatewaysService_DeleteAppGateway")
+  @available(*, deprecated)
   public func deleteAppGateway(
     request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -122,6 +132,7 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Deletes a single AppGateway.
   ///
   /// @Snippet(path: "AppGatewaysService_DeleteAppGateway")
+  @available(*, deprecated)
   public func deleteAppGatewayPollingUntilDone(
     request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -147,6 +158,23 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   }
 
   /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppGatewaysService_ListLocations")
   public func listLocations(
@@ -253,33 +281,40 @@ extension Clients {
   /// To mock `AppGatewaysServiceClient` change your functions to receive
   /// `some AppGatewaysServiceProtocol` or `any AppGatewaysServiceProtocol`
   /// and pass a mock implementation in your tests.
+  @available(*, deprecated)
   public protocol AppGatewaysServiceProtocol: Sendable {
     /// See `AppGatewaysServiceClient.listAppGateways`.
+    @available(*, deprecated)
     func listAppGateways(
       request: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse
 
     /// See `AppGatewaysServiceClient.getAppGateway`.
+    @available(*, deprecated)
     func getAppGateway(
       request: GetAppGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBeyondCorpAppGatewaysV1.AppGateway
 
     /// See `AppGatewaysServiceClient.createAppGateway`.
+    @available(*, deprecated)
     func createAppGateway(
       request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppGatewaysServiceClient.createAppGateway`.
+    @available(*, deprecated)
     func createAppGatewayPollingUntilDone(
       request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> AppGateway
 
     /// See `AppGatewaysServiceClient.deleteAppGateway`.
+    @available(*, deprecated)
     func deleteAppGateway(
       request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
     /// See `AppGatewaysServiceClient.deleteAppGateway`.
+    @available(*, deprecated)
     func deleteAppGatewayPollingUntilDone(
       request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws
@@ -327,31 +362,36 @@ extension Clients {
 }
 
 // Default implementations
+@available(*, deprecated)
 extension Clients.AppGatewaysServiceProtocol {
+  @available(*, deprecated)
   public func listAppGateways(request: ListAppGatewaysRequest) async throws
     -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse
   {
     try await self.listAppGateways(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func listAppGateways(
     request: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func listAppGatewaysByItems(
     request: ListAppGatewaysRequest
-  ) -> some AsyncSequence<AppGateway, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AppGateway, any Swift.Error> & Sendable {
     self.listAppGatewaysByItems(request: request, options: .init())
   }
 
   /// Lists AppGateways in a given project and location.
   ///
   /// @Snippet(path: "AppGatewaysService_ListAppGateways")
+  @available(*, deprecated)
   public func listAppGatewaysByItems(
     request: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AppGateway, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AppGateway, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse in
@@ -363,27 +403,31 @@ extension Clients.AppGatewaysServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  @available(*, deprecated)
   public func listAppGatewaysByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<AppGateway, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AppGateway, any Swift.Error> & Sendable {
     let request = ListAppGatewaysRequest().with {
       $0.parent = parent
     }
     return self.listAppGatewaysByItems(request: request)
   }
 
+  @available(*, deprecated)
   public func getAppGateway(request: GetAppGatewayRequest) async throws
     -> GoogleCloudBeyondCorpAppGatewaysV1.AppGateway
   {
     try await self.getAppGateway(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func getAppGateway(
     request: GetAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpAppGatewaysV1.AppGateway {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func getAppGateway(
     name: Swift.String,
   ) async throws -> GoogleCloudBeyondCorpAppGatewaysV1.AppGateway {
@@ -393,30 +437,35 @@ extension Clients.AppGatewaysServiceProtocol {
     return try await self.getAppGateway(request: request)
   }
 
+  @available(*, deprecated)
   public func createAppGateway(request: CreateAppGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
     try await self.createAppGateway(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func createAppGateway(
     request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createAppGatewayPollingUntilDone(request: CreateAppGatewayRequest) async throws
     -> AppGateway
   {
     return try await self.createAppGatewayPollingUntilDone(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func createAppGatewayPollingUntilDone(
     request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> AppGateway {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createAppGatewayPollingUntilDone(
     parent: Swift.String,
     appGateway: AppGateway?,
@@ -430,28 +479,33 @@ extension Clients.AppGatewaysServiceProtocol {
     return try await self.createAppGatewayPollingUntilDone(request: request)
   }
 
+  @available(*, deprecated)
   public func deleteAppGateway(request: DeleteAppGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
     try await self.deleteAppGateway(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func deleteAppGateway(
     request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func deleteAppGatewayPollingUntilDone(request: DeleteAppGatewayRequest) async throws {
     try await self.deleteAppGatewayPollingUntilDone(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func deleteAppGatewayPollingUntilDone(
     request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func deleteAppGatewayPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -475,16 +529,33 @@ extension Clients.AppGatewaysServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
   /// Lists information about the supported locations for this service.
   ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
   /// @Snippet(path: "AppGatewaysService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -557,7 +628,7 @@ extension Clients.AppGatewaysServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -568,7 +639,7 @@ extension Clients.AppGatewaysServiceProtocol {
   /// @Snippet(path: "AppGatewaysService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -582,7 +653,7 @@ extension Clients.AppGatewaysServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

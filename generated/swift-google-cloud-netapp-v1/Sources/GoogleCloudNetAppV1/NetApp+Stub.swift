@@ -75,6 +75,14 @@ extension Clients {
       request: RevertVolumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func startSplit(
+      request: StartSplitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func getSplitStatus(
+      request: GetSplitStatusRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudNetAppV1.SplitStatus
+
     func establishVolumePeering(
       request: EstablishVolumePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
@@ -306,6 +314,18 @@ extension Clients {
     func executeOntapPatch(
       request: ExecuteOntapPatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetAppV1.ExecuteOntapPatchResponse
+
+    func restoreVolume(
+      request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    func listBackupConfigs(
+      request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudNetAppV1.ListBackupConfigsResponse
+
+    func updateBackupConfig(
+      request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
 
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions

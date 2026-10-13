@@ -111,7 +111,7 @@ extension Clients.DnsKeysProtocol {
 
   public func listByItems(
     request: DnsKeysClient.ListRequest
-  ) -> some AsyncSequence<DnsKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DnsKey, any Swift.Error> & Sendable {
     self.listByItems(request: request, options: .init())
   }
 
@@ -120,7 +120,7 @@ extension Clients.DnsKeysProtocol {
   /// @Snippet(path: "dnsKeys_list")
   public func listByItems(
     request: DnsKeysClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DnsKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DnsKey, any Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> DnsKeysListResponse in
       var request = request
       request.pageToken = token
@@ -133,7 +133,7 @@ extension Clients.DnsKeysProtocol {
   public func listByItems(
     project: Swift.String,
     managedZone: Swift.String,
-  ) -> some AsyncSequence<DnsKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DnsKey, any Swift.Error> & Sendable {
     let request = DnsKeysClient.ListRequest().with {
       $0.project = project
       $0.managedZone = managedZone

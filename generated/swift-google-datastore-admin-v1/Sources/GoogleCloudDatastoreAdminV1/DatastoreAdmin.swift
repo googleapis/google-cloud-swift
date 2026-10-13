@@ -72,8 +72,8 @@ import Foundation
 /// @Snippet(path: "DatastoreAdminQuickstart")
 public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendable {
   let inner: any Clients.DatastoreAdminStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `DatastoreAdminClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -595,7 +595,7 @@ extension Clients.DatastoreAdminProtocol {
 
   public func listIndexesByItems(
     request: ListIndexesRequest
-  ) -> some AsyncSequence<Index, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Index, any Swift.Error> & Sendable {
     self.listIndexesByItems(request: request, options: .init())
   }
 
@@ -606,7 +606,7 @@ extension Clients.DatastoreAdminProtocol {
   /// @Snippet(path: "DatastoreAdmin_ListIndexes")
   public func listIndexesByItems(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Index, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Index, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDatastoreAdminV1.ListIndexesResponse in
@@ -632,7 +632,7 @@ extension Clients.DatastoreAdminProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -643,7 +643,7 @@ extension Clients.DatastoreAdminProtocol {
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -657,7 +657,7 @@ extension Clients.DatastoreAdminProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -61,7 +61,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError].self,
@@ -75,7 +75,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.errors, forKey: .errors)
     for (key, value) in self._unknownFields.json {
@@ -143,7 +143,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .description) {
         self.description = value
@@ -161,7 +161,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.description, forKey: .description)
       try container.encode(self.fieldPath, forKey: .fieldPath)
@@ -172,13 +172,24 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       }
     }
 
+    /// The type URL for `CustomModuleValidationError`: `"type.googleapis.com/google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError"
     }
+
+    /// Initialize an instance of `CustomModuleValidationError` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CustomModuleValidationError` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -227,7 +238,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .lineNumber) {
         self.lineNumber = value
@@ -241,7 +252,7 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.lineNumber, forKey: .lineNumber)
       try container.encode(self.columnNumber, forKey: .columnNumber)
@@ -250,25 +261,47 @@ public struct ValidateEventThreatDetectionCustomModuleResponse: Codable, Equatab
       }
     }
 
+    /// The type URL for `Position`: `"type.googleapis.com/google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.Position"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.Position"
     }
+
+    /// Initialize an instance of `Position` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.Position"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Position` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ValidateEventThreatDetectionCustomModuleResponse`: `"type.googleapis.com/google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse"
   }
+
+  /// Initialize an instance of `ValidateEventThreatDetectionCustomModuleResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ValidateEventThreatDetectionCustomModuleResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

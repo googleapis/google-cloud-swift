@@ -26,8 +26,8 @@
   /// @Snippet(path: "sslCertificatesQuickstart")
   public final class SslCertificatesClient: Clients.SslCertificatesProtocol, Sendable {
     let inner: any Clients.SslCertificatesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `SslCertificatesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -64,6 +64,11 @@
     }
 
     /// Deletes the specified SslCertificate resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "sslCertificates_delete")
     public func deletePollingUntilDone(
@@ -125,6 +130,11 @@
 
     /// Creates a SslCertificate resource in the specified project using the data
     /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "sslCertificates_insert")
     public func insertPollingUntilDone(
@@ -203,6 +213,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SslCertificatesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: SslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -218,6 +233,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `SslCertificatesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: SslCertificatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -245,7 +265,7 @@
 
     public func aggregatedListByItems(
       request: SslCertificatesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, SslCertificatesScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -258,7 +278,7 @@
     /// @Snippet(path: "sslCertificates_aggregatedList")
     public func aggregatedListByItems(
       request: SslCertificatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, SslCertificatesScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.SslCertificateAggregatedList in
@@ -272,7 +292,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, SslCertificatesScopedList), any Swift.Error> & Sendable {
       let request = SslCertificatesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -386,7 +406,7 @@
 
     public func listByItems(
       request: SslCertificatesClient.ListRequest
-    ) -> some AsyncSequence<SslCertificate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslCertificate, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -396,7 +416,7 @@
     /// @Snippet(path: "sslCertificates_list")
     public func listByItems(
       request: SslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<SslCertificate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslCertificate, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateList in
         var request = request
@@ -409,7 +429,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<SslCertificate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslCertificate, any Swift.Error> & Sendable {
       let request = SslCertificatesClient.ListRequest().with {
         $0.project = project
       }

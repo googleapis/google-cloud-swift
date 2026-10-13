@@ -86,7 +86,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.samplingCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .samplingCount)
       self.flipEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .flipEnabled)
@@ -101,7 +101,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.samplingCount, forKey: .samplingCount)
       try container.encodeIfPresent(self.flipEnabled, forKey: .flipEnabled)
@@ -112,12 +112,23 @@
       }
     }
 
+    /// The type URL for `AutoraterConfig`: `"type.googleapis.com/google.cloud.aiplatform.v1.AutoraterConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.AutoraterConfig"
     }
+
+    /// Initialize an instance of `AutoraterConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.AutoraterConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AutoraterConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

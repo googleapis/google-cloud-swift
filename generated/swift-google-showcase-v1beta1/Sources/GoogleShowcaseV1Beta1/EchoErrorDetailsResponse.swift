@@ -58,7 +58,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.singleDetail = try container.decodeIfPresent(
       EchoErrorDetailsResponse.SingleDetail.self, forKey: .singleDetail)
@@ -70,7 +70,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.singleDetail, forKey: .singleDetail)
     try container.encodeIfPresent(self.multipleDetails, forKey: .multipleDetails)
@@ -115,7 +115,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.error = try container.decodeIfPresent(ErrorWithSingleDetail.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -124,7 +124,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.error, forKey: .error)
       for (key, value) in self._unknownFields.json {
@@ -132,12 +132,23 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
+    /// The type URL for `SingleDetail`: `"type.googleapis.com/google.showcase.v1beta1.EchoErrorDetailsResponse.SingleDetail"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.showcase.v1beta1.EchoErrorDetailsResponse.SingleDetail"
     }
+
+    /// Initialize an instance of `SingleDetail` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.showcase.v1beta1.EchoErrorDetailsResponse.SingleDetail"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SingleDetail` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -179,7 +190,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.error = try container.decodeIfPresent(ErrorWithMultipleDetails.self, forKey: .error)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -188,7 +199,7 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.error, forKey: .error)
       for (key, value) in self._unknownFields.json {
@@ -196,23 +207,45 @@ public struct EchoErrorDetailsResponse: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
+    /// The type URL for `MultipleDetails`: `"type.googleapis.com/google.showcase.v1beta1.EchoErrorDetailsResponse.MultipleDetails"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.showcase.v1beta1.EchoErrorDetailsResponse.MultipleDetails"
     }
+
+    /// Initialize an instance of `MultipleDetails` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.showcase.v1beta1.EchoErrorDetailsResponse.MultipleDetails"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MultipleDetails` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `EchoErrorDetailsResponse`: `"type.googleapis.com/google.showcase.v1beta1.EchoErrorDetailsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.EchoErrorDetailsResponse"
   }
+
+  /// Initialize an instance of `EchoErrorDetailsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.showcase.v1beta1.EchoErrorDetailsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `EchoErrorDetailsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

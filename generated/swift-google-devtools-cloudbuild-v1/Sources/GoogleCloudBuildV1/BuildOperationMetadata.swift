@@ -55,7 +55,7 @@ public struct BuildOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.build = try container.decodeIfPresent(Build.self, forKey: .build)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -64,7 +64,7 @@ public struct BuildOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.build, forKey: .build)
     for (key, value) in self._unknownFields.json {
@@ -72,12 +72,23 @@ public struct BuildOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `BuildOperationMetadata`: `"type.googleapis.com/google.devtools.cloudbuild.v1.BuildOperationMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.BuildOperationMetadata"
   }
+
+  /// Initialize an instance of `BuildOperationMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.BuildOperationMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BuildOperationMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

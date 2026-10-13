@@ -89,7 +89,7 @@ public struct FixedSizeBucketingConfig: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.lowerBound = try container.decodeIfPresent(Value.self, forKey: .lowerBound)
     self.upperBound = try container.decodeIfPresent(Value.self, forKey: .upperBound)
@@ -102,7 +102,7 @@ public struct FixedSizeBucketingConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.lowerBound, forKey: .lowerBound)
     try container.encodeIfPresent(self.upperBound, forKey: .upperBound)
@@ -112,12 +112,23 @@ public struct FixedSizeBucketingConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `FixedSizeBucketingConfig`: `"type.googleapis.com/google.privacy.dlp.v2.FixedSizeBucketingConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.FixedSizeBucketingConfig"
   }
+
+  /// Initialize an instance of `FixedSizeBucketingConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.FixedSizeBucketingConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `FixedSizeBucketingConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

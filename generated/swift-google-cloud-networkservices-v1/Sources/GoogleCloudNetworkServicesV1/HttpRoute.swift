@@ -139,7 +139,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -176,7 +176,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.selfLink, forKey: .selfLink)
@@ -251,7 +251,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .header) {
         self.header = value
@@ -297,7 +297,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.header, forKey: .header)
       try container.encode(self.invertMatch, forKey: .invertMatch)
@@ -366,7 +366,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .start) {
           self.start = value
@@ -380,7 +380,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.start, forKey: .start)
         try container.encode(self.end, forKey: .end)
@@ -389,13 +389,24 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `IntegerRange`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderMatch.IntegerRange"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderMatch.IntegerRange"
       }
+
+      /// Initialize an instance of `IntegerRange` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderMatch.IntegerRange"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `IntegerRange` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -421,12 +432,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case rangeMatch(HttpRoute.HeaderMatch.IntegerRange)
     }
 
+    /// The type URL for `HeaderMatch`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderMatch"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderMatch"
     }
+
+    /// Initialize an instance of `HeaderMatch` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderMatch"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HeaderMatch` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -478,7 +500,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .queryParameter) {
         self.queryParameter = value
@@ -510,7 +532,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.queryParameter, forKey: .queryParameter)
 
@@ -549,12 +571,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       case presentMatch(Swift.Bool)
     }
 
+    /// The type URL for `QueryParameterMatch`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.QueryParameterMatch"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.QueryParameterMatch"
     }
+
+    /// Initialize an instance of `QueryParameterMatch` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.QueryParameterMatch"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `QueryParameterMatch` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -621,7 +654,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .ignoreCase) {
         self.ignoreCase = value
@@ -663,7 +696,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.ignoreCase, forKey: .ignoreCase)
       try container.encode(self.headers, forKey: .headers)
@@ -706,12 +739,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       case regexMatch(Swift.String)
     }
 
+    /// The type URL for `RouteMatch`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteMatch"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteMatch"
     }
+
+    /// Initialize an instance of `RouteMatch` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteMatch"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RouteMatch` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -790,7 +834,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .serviceName) {
         self.serviceName = value
@@ -808,7 +852,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.serviceName, forKey: .serviceName)
       try container.encode(self.weight, forKey: .weight)
@@ -819,12 +863,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Destination`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.Destination"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.Destination"
     }
+
+    /// Initialize an instance of `Destination` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.Destination"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Destination` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -914,7 +969,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .hostRedirect) {
         self.hostRedirect = value
@@ -945,7 +1000,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.hostRedirect, forKey: .hostRedirect)
       try container.encode(self.pathRedirect, forKey: .pathRedirect)
@@ -1064,7 +1119,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1082,7 +1137,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("RESPONSE_CODE_UNSPECIFIED")
@@ -1097,12 +1152,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Redirect`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.Redirect"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.Redirect"
     }
+
+    /// Initialize an instance of `Redirect` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.Redirect"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Redirect` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1156,7 +1222,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.delay = try container.decodeIfPresent(
         HttpRoute.FaultInjectionPolicy.Delay.self, forKey: .delay)
@@ -1168,7 +1234,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.delay, forKey: .delay)
       try container.encodeIfPresent(self.abort, forKey: .abort)
@@ -1223,7 +1289,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.fixedDelay = try container.decodeIfPresent(
           GoogleWKT.WKTDuration.self, forKey: .fixedDelay)
@@ -1236,7 +1302,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.fixedDelay, forKey: .fixedDelay)
         try container.encode(self.percentage, forKey: .percentage)
@@ -1245,13 +1311,24 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Delay`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy.Delay"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy.Delay"
       }
+
+      /// Initialize an instance of `Delay` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy.Delay"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Delay` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1305,7 +1382,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .httpStatus) {
           self.httpStatus = value
@@ -1319,7 +1396,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.httpStatus, forKey: .httpStatus)
         try container.encode(self.percentage, forKey: .percentage)
@@ -1328,24 +1405,46 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Abort`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy.Abort"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy.Abort"
       }
+
+      /// Initialize an instance of `Abort` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy.Abort"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Abort` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `FaultInjectionPolicy`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy"
     }
+
+    /// Initialize an instance of `FaultInjectionPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FaultInjectionPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1401,7 +1500,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.cookieTtl = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .cookieTtl)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -1410,7 +1509,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.cookieTtl, forKey: .cookieTtl)
       for (key, value) in self._unknownFields.json {
@@ -1418,13 +1517,24 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `StatefulSessionAffinityPolicy`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.StatefulSessionAffinityPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.StatefulSessionAffinityPolicy"
     }
+
+    /// Initialize an instance of `StatefulSessionAffinityPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.StatefulSessionAffinityPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StatefulSessionAffinityPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1481,7 +1591,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.String].self, forKey: .`set`)
@@ -1501,7 +1611,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.`set`, forKey: .`set`)
       try container.encode(self.add, forKey: .add)
@@ -1511,12 +1621,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `HeaderModifier`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderModifier"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderModifier"
     }
+
+    /// Initialize an instance of `HeaderModifier` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderModifier"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HeaderModifier` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1568,7 +1689,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pathPrefixRewrite) {
         self.pathPrefixRewrite = value
@@ -1582,7 +1703,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.pathPrefixRewrite, forKey: .pathPrefixRewrite)
       try container.encode(self.hostRewrite, forKey: .hostRewrite)
@@ -1591,12 +1712,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `URLRewrite`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.URLRewrite"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.URLRewrite"
     }
+
+    /// Initialize an instance of `URLRewrite` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.URLRewrite"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `URLRewrite` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1672,7 +1804,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .retryConditions) {
         self.retryConditions = value
@@ -1688,7 +1820,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.retryConditions, forKey: .retryConditions)
       try container.encode(self.numRetries, forKey: .numRetries)
@@ -1698,12 +1830,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `RetryPolicy`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RetryPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RetryPolicy"
     }
+
+    /// Initialize an instance of `RetryPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RetryPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RetryPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1758,7 +1901,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.destination = try container.decodeIfPresent(
         HttpRoute.Destination.self, forKey: .destination)
@@ -1771,7 +1914,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.destination, forKey: .destination)
       try container.encode(self.mirrorPercent, forKey: .mirrorPercent)
@@ -1780,12 +1923,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `RequestMirrorPolicy`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RequestMirrorPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RequestMirrorPolicy"
     }
+
+    /// Initialize an instance of `RequestMirrorPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RequestMirrorPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RequestMirrorPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1874,7 +2028,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowOrigins) {
         self.allowOrigins = value
@@ -1907,7 +2061,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.allowOrigins, forKey: .allowOrigins)
       try container.encode(self.allowOriginRegexes, forKey: .allowOriginRegexes)
@@ -1922,12 +2076,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `CorsPolicy`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.CorsPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.CorsPolicy"
     }
+
+    /// Initialize an instance of `CorsPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.CorsPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CorsPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1979,7 +2144,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .status) {
         self.status = value
@@ -2008,7 +2173,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.status, forKey: .status)
 
@@ -2034,12 +2199,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       case bytesBody(Foundation.Data)
     }
 
+    /// The type URL for `HttpDirectResponse`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HttpDirectResponse"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HttpDirectResponse"
     }
+
+    /// Initialize an instance of `HttpDirectResponse` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HttpDirectResponse"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HttpDirectResponse` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -2169,7 +2345,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [HttpRoute.Destination].self, forKey: .destinations)
@@ -2204,7 +2380,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.destinations, forKey: .destinations)
       try container.encodeIfPresent(self.redirect, forKey: .redirect)
@@ -2224,12 +2400,23 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `RouteAction`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteAction"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteAction"
     }
+
+    /// Initialize an instance of `RouteAction` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteAction"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RouteAction` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -2287,7 +2474,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([HttpRoute.RouteMatch].self, forKey: .matches) {
         self.matches = value
@@ -2299,7 +2486,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.matches, forKey: .matches)
       try container.encodeIfPresent(self.action, forKey: .action)
@@ -2308,23 +2495,45 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `RouteRule`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteRule"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteRule"
     }
+
+    /// Initialize an instance of `RouteRule` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteRule"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RouteRule` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `HttpRoute`: `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute"
   }
+
+  /// Initialize an instance of `HttpRoute` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.networkservices.v1.HttpRoute"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `HttpRoute` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

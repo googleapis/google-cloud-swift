@@ -29,8 +29,8 @@ import Foundation
 /// @Snippet(path: "StorageTransferServiceQuickstart")
 public final class StorageTransferServiceClient: Clients.StorageTransferServiceProtocol, Sendable {
   let inner: any Clients.StorageTransferServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `StorageTransferServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -441,7 +441,7 @@ extension Clients.StorageTransferServiceProtocol {
 
   public func listTransferJobsByItems(
     request: ListTransferJobsRequest
-  ) -> some AsyncSequence<TransferJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TransferJob, any Swift.Error> & Sendable {
     self.listTransferJobsByItems(request: request, options: .init())
   }
 
@@ -450,7 +450,7 @@ extension Clients.StorageTransferServiceProtocol {
   /// @Snippet(path: "StorageTransferService_ListTransferJobs")
   public func listTransferJobsByItems(
     request: ListTransferJobsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<TransferJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TransferJob, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleStorageTransferV1.ListTransferJobsResponse in
@@ -597,7 +597,7 @@ extension Clients.StorageTransferServiceProtocol {
 
   public func listAgentPoolsByItems(
     request: ListAgentPoolsRequest
-  ) -> some AsyncSequence<AgentPool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AgentPool, any Swift.Error> & Sendable {
     self.listAgentPoolsByItems(request: request, options: .init())
   }
 
@@ -606,7 +606,7 @@ extension Clients.StorageTransferServiceProtocol {
   /// @Snippet(path: "StorageTransferService_ListAgentPools")
   public func listAgentPoolsByItems(
     request: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AgentPool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AgentPool, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleStorageTransferV1.ListAgentPoolsResponse
       in
@@ -620,7 +620,7 @@ extension Clients.StorageTransferServiceProtocol {
 
   public func listAgentPoolsByItems(
     projectId: Swift.String,
-  ) -> some AsyncSequence<AgentPool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AgentPool, any Swift.Error> & Sendable {
     let request = ListAgentPoolsRequest().with {
       $0.projectId = projectId
     }
@@ -660,7 +660,7 @@ extension Clients.StorageTransferServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -670,7 +670,7 @@ extension Clients.StorageTransferServiceProtocol {
   /// @Snippet(path: "StorageTransferService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -684,7 +684,7 @@ extension Clients.StorageTransferServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

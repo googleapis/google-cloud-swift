@@ -18,10 +18,16 @@
 public typealias WKTInt64Value = Swift.Int64
 
 extension Swift.Int64: _AnyPackable {
+  /// The type URL for `WKTInt64Value`: `"type.googleapis.com/google.protobuf.Int64Value"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.Int64Value"
   }
 
+  /// Initialize an instance of `WKTInt64Value` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.Int64Value"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -45,6 +51,7 @@ extension Swift.Int64: _AnyPackable {
     }
   }
 
+  /// Packs this `WKTInt64Value` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .string(String(self))]
   }

@@ -73,7 +73,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .messageUid) {
       self.messageUid = value
@@ -108,7 +108,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.messageUid, forKey: .messageUid)
     try container.encode(self.attributes, forKey: .attributes)
@@ -169,7 +169,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .details) {
         self.details = value
@@ -181,7 +181,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.details, forKey: .details)
       try container.encodeIfPresent(self.error, forKey: .error)
@@ -190,12 +190,23 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Received`: `"type.googleapis.com/google.cloud.eventarc.logging.v1.MessageBusActivity.Received"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.logging.v1.MessageBusActivity.Received"
     }
+
+    /// Initialize an instance of `Received` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.logging.v1.MessageBusActivity.Received"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Received` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -208,12 +219,23 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case received(MessageBusActivity.Received)
   }
 
+  /// The type URL for `MessageBusActivity`: `"type.googleapis.com/google.cloud.eventarc.logging.v1.MessageBusActivity"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.logging.v1.MessageBusActivity"
   }
+
+  /// Initialize an instance of `MessageBusActivity` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.logging.v1.MessageBusActivity"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MessageBusActivity` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

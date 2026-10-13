@@ -39,7 +39,7 @@
 
     /// Optional. The network attachment of the consumer network that the
     /// Private Service Connect enabled Cloud SQL instance is
-    /// authorized to connect via PSC interface.
+    /// authorized to connect using the PSC interface.
     /// format: projects/PROJECT/regions/REGION/networkAttachments/ID
     public var networkAttachmentUri: Swift.String = Swift.String()
 
@@ -107,7 +107,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.pscEnabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .pscEnabled)
       if let value = try container.decodeIfPresent(
@@ -136,7 +136,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.pscEnabled, forKey: .pscEnabled)
       try container.encode(self.allowedConsumerProjects, forKey: .allowedConsumerProjects)
@@ -152,12 +152,23 @@
       }
     }
 
+    /// The type URL for `PscConfig`: `"type.googleapis.com/google.cloud.sql.v1.PscConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.PscConfig"
     }
+
+    /// Initialize an instance of `PscConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.PscConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PscConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

@@ -18,10 +18,16 @@
 public typealias WKTBoolValue = Swift.Bool
 
 extension Swift.Bool: _AnyPackable {
+  /// The type URL for `WKTBoolValue`: `"type.googleapis.com/google.protobuf.BoolValue"`.
   public static var _anyTypeUrl: String {
     return "type.googleapis.com/google.protobuf.BoolValue"
   }
 
+  /// Initialize an instance of `WKTBoolValue` by unpacking from a `WKTAny`.
+  ///
+  /// - Parameter any: The `WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.protobuf.BoolValue"`,
+  ///   or if deserialization fails.
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
@@ -35,6 +41,7 @@ extension Swift.Bool: _AnyPackable {
     self = b
   }
 
+  /// Packs this `WKTBoolValue` into a `WKTStruct` representation.
   public func _pack() throws -> WKTStruct {
     return [WKTAny.valueField: .bool(self)]
   }

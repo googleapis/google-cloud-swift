@@ -102,6 +102,8 @@ import Foundation
         try await sleep(nextDelay)
 
         if retryThrottler.throttleRetryAttempt() {
+          attemptCount += 1
+          state.attemptCount = attemptCount
           let throttleResult = retryPolicy.onThrottle(state: state, error: prevError)
           switch throttleResult {
           case .exhausted(let e):

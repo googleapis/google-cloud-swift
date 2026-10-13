@@ -69,7 +69,7 @@ public struct AnnotationMatchingResult: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.criteria = try container.decodeIfPresent(Criteria.self, forKey: .criteria)
     if let value = try container.decodeIfPresent(
@@ -84,7 +84,7 @@ public struct AnnotationMatchingResult: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.criteria, forKey: .criteria)
     try container.encode(self.matchedAnnotations, forKey: .matchedAnnotations)
@@ -94,12 +94,23 @@ public struct AnnotationMatchingResult: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `AnnotationMatchingResult`: `"type.googleapis.com/google.cloud.visionai.v1.AnnotationMatchingResult"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.AnnotationMatchingResult"
   }
+
+  /// Initialize an instance of `AnnotationMatchingResult` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.AnnotationMatchingResult"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AnnotationMatchingResult` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

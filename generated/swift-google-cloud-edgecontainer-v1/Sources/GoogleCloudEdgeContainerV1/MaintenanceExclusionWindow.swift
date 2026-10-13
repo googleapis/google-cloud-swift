@@ -60,7 +60,7 @@ public struct MaintenanceExclusionWindow: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.window = try container.decodeIfPresent(TimeWindow.self, forKey: .window)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
@@ -72,7 +72,7 @@ public struct MaintenanceExclusionWindow: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.window, forKey: .window)
     try container.encode(self.id, forKey: .id)
@@ -81,12 +81,23 @@ public struct MaintenanceExclusionWindow: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `MaintenanceExclusionWindow`: `"type.googleapis.com/google.cloud.edgecontainer.v1.MaintenanceExclusionWindow"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.edgecontainer.v1.MaintenanceExclusionWindow"
   }
+
+  /// Initialize an instance of `MaintenanceExclusionWindow` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.edgecontainer.v1.MaintenanceExclusionWindow"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MaintenanceExclusionWindow` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

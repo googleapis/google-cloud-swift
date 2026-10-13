@@ -106,7 +106,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.infoType = try container.decodeIfPresent(InfoType.self, forKey: .infoType)
     if let value = try container.decodeIfPresent(Likelihood.self, forKey: .likelihood) {
@@ -168,7 +168,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.infoType, forKey: .infoType)
     try container.encode(self.likelihood, forKey: .likelihood)
@@ -259,7 +259,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var source: SourceOneOf? = nil
@@ -289,7 +289,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.source {
@@ -345,7 +345,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .words) {
           self.words = value
@@ -356,7 +356,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.words, forKey: .words)
         for (key, value) in self._unknownFields.json {
@@ -364,12 +364,23 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `WordList`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList"
       }
+
+      /// Initialize an instance of `WordList` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `WordList` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -384,12 +395,23 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case cloudStoragePath(CloudStoragePath)
     }
 
+    /// The type URL for `Dictionary`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Dictionary"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Dictionary"
     }
+
+    /// Initialize an instance of `Dictionary` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Dictionary"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Dictionary` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -441,7 +463,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .pattern) {
         self.pattern = value
@@ -455,7 +477,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.pattern, forKey: .pattern)
       try container.encode(self.groupIndexes, forKey: .groupIndexes)
@@ -464,12 +486,23 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Regex`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Regex"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Regex"
     }
+
+    /// Initialize an instance of `Regex` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Regex"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Regex` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -513,7 +546,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -521,19 +554,30 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
+    /// The type URL for `SurrogateType`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.SurrogateType"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.SurrogateType"
     }
+
+    /// Initialize an instance of `SurrogateType` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.SurrogateType"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SurrogateType` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -584,7 +628,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .keyRegex) {
         self.keyRegex = value
@@ -598,7 +642,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.keyRegex, forKey: .keyRegex)
       try container.encode(self.valueRegex, forKey: .valueRegex)
@@ -607,12 +651,23 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `MetadataKeyValueExpression`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.MetadataKeyValueExpression"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.MetadataKeyValueExpression"
     }
+
+    /// Initialize an instance of `MetadataKeyValueExpression` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.MetadataKeyValueExpression"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MetadataKeyValueExpression` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -658,7 +713,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var type: TypeOneOf? = nil
@@ -688,7 +743,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.type {
@@ -742,7 +797,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .guid) {
           self.guid = value
@@ -753,7 +808,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.guid, forKey: .guid)
         for (key, value) in self._unknownFields.json {
@@ -761,13 +816,24 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `SensitivityLabel`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.SensitivityLabel"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.SensitivityLabel"
       }
+
+      /// Initialize an instance of `SensitivityLabel` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.SensitivityLabel"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SensitivityLabel` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -819,7 +885,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .labelId) {
           self.labelId = value
@@ -836,7 +902,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.labelId, forKey: .labelId)
         try container.encode(self.labelFieldsToMatch, forKey: .labelFieldsToMatch)
@@ -888,7 +954,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
             self.id = value
@@ -902,7 +968,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.id, forKey: .id)
           try container.encode(self.value, forKey: .value)
@@ -911,25 +977,47 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `LabelField`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.GoogleDriveLabel.LabelField"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.GoogleDriveLabel.LabelField"
         }
+
+        /// Initialize an instance of `LabelField` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.GoogleDriveLabel.LabelField"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `LabelField` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `GoogleDriveLabel`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.GoogleDriveLabel"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.GoogleDriveLabel"
       }
+
+      /// Initialize an instance of `GoogleDriveLabel` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.GoogleDriveLabel"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GoogleDriveLabel` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -943,12 +1031,23 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case googleDriveLabel(CustomInfoType.FileLabelInfoType.GoogleDriveLabel)
     }
 
+    /// The type URL for `FileLabelInfoType`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType"
     }
+
+    /// Initialize an instance of `FileLabelInfoType` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FileLabelInfoType` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -995,7 +1094,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var type: TypeOneOf? = nil
@@ -1020,7 +1119,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.type {
@@ -1082,7 +1181,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .windowBefore) {
           self.windowBefore = value
@@ -1096,7 +1195,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.windowBefore, forKey: .windowBefore)
         try container.encode(self.windowAfter, forKey: .windowAfter)
@@ -1105,12 +1204,23 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Proximity`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity"
       }
+
+      /// Initialize an instance of `Proximity` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Proximity` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1157,7 +1267,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var adjustment: AdjustmentOneOf? = nil
@@ -1187,7 +1297,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.adjustment {
@@ -1218,13 +1328,24 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         case relativeLikelihood(Swift.Int32)
       }
 
+      /// The type URL for `LikelihoodAdjustment`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.LikelihoodAdjustment"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.LikelihoodAdjustment"
       }
+
+      /// Initialize an instance of `LikelihoodAdjustment` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.LikelihoodAdjustment"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `LikelihoodAdjustment` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1291,7 +1412,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.hotwordRegex = try container.decodeIfPresent(
           CustomInfoType.Regex.self, forKey: .hotwordRegex)
@@ -1305,7 +1426,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.hotwordRegex, forKey: .hotwordRegex)
         try container.encodeIfPresent(self.proximity, forKey: .proximity)
@@ -1315,12 +1436,23 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `HotwordRule`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule"
       }
+
+      /// Initialize an instance of `HotwordRule` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `HotwordRule` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1332,12 +1464,23 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule)
     }
 
+    /// The type URL for `DetectionRule`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule"
     }
+
+    /// Initialize an instance of `DetectionRule` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DetectionRule` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1425,7 +1568,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1443,7 +1586,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("EXCLUSION_TYPE_UNSPECIFIED")
@@ -1471,12 +1614,23 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case fileLabelInfoType(CustomInfoType.FileLabelInfoType)
   }
 
+  /// The type URL for `CustomInfoType`: `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType"
   }
+
+  /// Initialize an instance of `CustomInfoType` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.CustomInfoType"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CustomInfoType` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

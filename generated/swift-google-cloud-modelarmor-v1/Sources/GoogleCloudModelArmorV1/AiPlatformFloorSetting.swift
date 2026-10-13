@@ -62,7 +62,7 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableCloudLogging) {
       self.enableCloudLogging = value
@@ -93,7 +93,7 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.enableCloudLogging, forKey: .enableCloudLogging)
 
@@ -120,12 +120,23 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable
     case inspectAndBlock(Swift.Bool)
   }
 
+  /// The type URL for `AiPlatformFloorSetting`: `"type.googleapis.com/google.cloud.modelarmor.v1.AiPlatformFloorSetting"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.modelarmor.v1.AiPlatformFloorSetting"
   }
+
+  /// Initialize an instance of `AiPlatformFloorSetting` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.modelarmor.v1.AiPlatformFloorSetting"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AiPlatformFloorSetting` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

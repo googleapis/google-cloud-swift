@@ -62,7 +62,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.allAssetsStats = try container.decodeIfPresent(
       ReportSummary.AssetAggregateStats.self, forKey: .allAssetsStats)
@@ -77,7 +77,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.allAssetsStats, forKey: .allAssetsStats)
     try container.encode(self.groupFindings, forKey: .groupFindings)
@@ -126,7 +126,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [ReportSummary.ChartData.DataPoint].self, forKey: .dataPoints)
@@ -139,7 +139,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataPoints, forKey: .dataPoints)
       for (key, value) in self._unknownFields.json {
@@ -190,7 +190,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .label) {
           self.label = value
@@ -204,7 +204,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.label, forKey: .label)
         try container.encode(self.value, forKey: .value)
@@ -213,24 +213,46 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `DataPoint`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ChartData.DataPoint"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ChartData.DataPoint"
       }
+
+      /// Initialize an instance of `DataPoint` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ChartData.DataPoint"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `DataPoint` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `ChartData`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ChartData"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ChartData"
     }
+
+    /// Initialize an instance of `ChartData` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ChartData"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ChartData` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -280,7 +302,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .used) {
         self.used = value
@@ -294,7 +316,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.used, forKey: .used)
       try container.encode(self.free, forKey: .free)
@@ -303,13 +325,24 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `UtilizationChartData`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.UtilizationChartData"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.UtilizationChartData"
     }
+
+    /// Initialize an instance of `UtilizationChartData` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.UtilizationChartData"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UtilizationChartData` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -358,7 +391,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [ReportSummary.HistogramChartData.Bucket].self, forKey: .buckets)
@@ -371,7 +404,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.buckets, forKey: .buckets)
       for (key, value) in self._unknownFields.json {
@@ -430,7 +463,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .lowerBound) {
           self.lowerBound = value
@@ -447,7 +480,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.lowerBound, forKey: .lowerBound)
         try container.encode(self.upperBound, forKey: .upperBound)
@@ -457,24 +490,46 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Bucket`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.HistogramChartData.Bucket"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.HistogramChartData.Bucket"
       }
+
+      /// Initialize an instance of `Bucket` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.HistogramChartData.Bucket"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Bucket` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `HistogramChartData`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.HistogramChartData"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.HistogramChartData"
     }
+
+    /// Initialize an instance of `HistogramChartData` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.HistogramChartData"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HistogramChartData` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -563,7 +618,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalMemoryBytes) {
         self.totalMemoryBytes = value
@@ -595,7 +650,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.totalMemoryBytes, forKey: .totalMemoryBytes)
       try container.encode(self.totalStorageBytes, forKey: .totalStorageBytes)
@@ -612,12 +667,23 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `AssetAggregateStats`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.AssetAggregateStats"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.AssetAggregateStats"
     }
+
+    /// Initialize an instance of `AssetAggregateStats` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.AssetAggregateStats"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AssetAggregateStats` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -667,7 +733,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.machineSeries = try container.decodeIfPresent(MachineSeries.self, forKey: .machineSeries)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .allocatedAssetCount) {
@@ -679,7 +745,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.machineSeries, forKey: .machineSeries)
       try container.encode(self.allocatedAssetCount, forKey: .allocatedAssetCount)
@@ -688,13 +754,24 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `MachineSeriesAllocation`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.MachineSeriesAllocation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.MachineSeriesAllocation"
     }
+
+    /// Initialize an instance of `MachineSeriesAllocation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.MachineSeriesAllocation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MachineSeriesAllocation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -753,7 +830,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allocatedRegions) {
         self.allocatedRegions = value
@@ -777,7 +854,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.allocatedRegions, forKey: .allocatedRegions)
       try container.encode(self.allocatedAssetCount, forKey: .allocatedAssetCount)
@@ -788,13 +865,24 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ComputeEngineFinding`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ComputeEngineFinding"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ComputeEngineFinding"
     }
+
+    /// Initialize an instance of `ComputeEngineFinding` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ComputeEngineFinding"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ComputeEngineFinding` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -848,7 +936,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allocatedRegions) {
         self.allocatedRegions = value
@@ -867,7 +955,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.allocatedRegions, forKey: .allocatedRegions)
       try container.encode(self.allocatedAssetCount, forKey: .allocatedAssetCount)
@@ -877,12 +965,23 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `VmwareEngineFinding`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareEngineFinding"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareEngineFinding"
     }
+
+    /// Initialize an instance of `VmwareEngineFinding` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareEngineFinding"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VmwareEngineFinding` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -936,7 +1035,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.vmwareNode = try container.decodeIfPresent(
         ReportSummary.VmwareNode.self, forKey: .vmwareNode)
@@ -952,7 +1051,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.vmwareNode, forKey: .vmwareNode)
       try container.encode(self.nodeCount, forKey: .nodeCount)
@@ -962,13 +1061,24 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `VmwareNodeAllocation`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareNodeAllocation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareNodeAllocation"
     }
+
+    /// Initialize an instance of `VmwareNodeAllocation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareNodeAllocation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VmwareNodeAllocation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1014,7 +1124,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .code) {
         self.code = value
@@ -1025,7 +1135,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.code, forKey: .code)
       for (key, value) in self._unknownFields.json {
@@ -1033,12 +1143,23 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `VmwareNode`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareNode"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareNode"
     }
+
+    /// Initialize an instance of `VmwareNode` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareNode"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VmwareNode` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1092,7 +1213,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allocatedRegions) {
         self.allocatedRegions = value
@@ -1111,7 +1232,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.allocatedRegions, forKey: .allocatedRegions)
       try container.encode(self.allocatedAssetCount, forKey: .allocatedAssetCount)
@@ -1121,12 +1242,23 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SoleTenantFinding`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.SoleTenantFinding"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.SoleTenantFinding"
     }
+
+    /// Initialize an instance of `SoleTenantFinding` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.SoleTenantFinding"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SoleTenantFinding` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1180,7 +1312,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.node = try container.decodeIfPresent(SoleTenantNodeType.self, forKey: .node)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .nodeCount) {
@@ -1195,7 +1327,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.node, forKey: .node)
       try container.encode(self.nodeCount, forKey: .nodeCount)
@@ -1205,13 +1337,24 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SoleTenantNodeAllocation`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.SoleTenantNodeAllocation"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.SoleTenantNodeAllocation"
     }
+
+    /// Initialize an instance of `SoleTenantNodeAllocation` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.SoleTenantNodeAllocation"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SoleTenantNodeAllocation` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1310,7 +1453,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
         self.displayName = value
@@ -1344,7 +1487,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
@@ -1364,13 +1507,24 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `GroupPreferenceSetFinding`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.GroupPreferenceSetFinding"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.GroupPreferenceSetFinding"
     }
+
+    /// Initialize an instance of `GroupPreferenceSetFinding` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.GroupPreferenceSetFinding"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GroupPreferenceSetFinding` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1438,7 +1592,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
         self.displayName = value
@@ -1466,7 +1620,7 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
@@ -1478,23 +1632,45 @@ public struct ReportSummary: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `GroupFinding`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.GroupFinding"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.GroupFinding"
     }
+
+    /// Initialize an instance of `GroupFinding` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.GroupFinding"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GroupFinding` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ReportSummary`: `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary"
   }
+
+  /// Initialize an instance of `ReportSummary` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ReportSummary` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

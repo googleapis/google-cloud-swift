@@ -62,7 +62,7 @@ public struct ListSavedQueriesResponse: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([SavedQuery].self, forKey: .savedQueries) {
       self.savedQueries = value
@@ -76,7 +76,7 @@ public struct ListSavedQueriesResponse: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.savedQueries, forKey: .savedQueries)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -85,12 +85,23 @@ public struct ListSavedQueriesResponse: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `ListSavedQueriesResponse`: `"type.googleapis.com/google.cloud.asset.v1.ListSavedQueriesResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.ListSavedQueriesResponse"
   }
+
+  /// Initialize an instance of `ListSavedQueriesResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.ListSavedQueriesResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListSavedQueriesResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

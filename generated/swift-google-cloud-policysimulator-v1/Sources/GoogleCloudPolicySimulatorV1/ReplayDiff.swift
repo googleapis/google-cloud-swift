@@ -65,7 +65,7 @@ public struct ReplayDiff: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.accessDiff = try container.decodeIfPresent(AccessStateDiff.self, forKey: .accessDiff)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -74,7 +74,7 @@ public struct ReplayDiff: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.accessDiff, forKey: .accessDiff)
     for (key, value) in self._unknownFields.json {
@@ -82,12 +82,23 @@ public struct ReplayDiff: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ReplayDiff`: `"type.googleapis.com/google.cloud.policysimulator.v1.ReplayDiff"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policysimulator.v1.ReplayDiff"
   }
+
+  /// Initialize an instance of `ReplayDiff` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.policysimulator.v1.ReplayDiff"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ReplayDiff` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

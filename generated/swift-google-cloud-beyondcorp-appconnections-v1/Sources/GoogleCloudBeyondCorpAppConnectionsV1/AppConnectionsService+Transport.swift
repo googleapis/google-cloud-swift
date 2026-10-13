@@ -539,7 +539,7 @@ extension Clients {
               request.resource as Swift.String?,
               matching: [
                 .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                .literal("/clientConnectorServices/"), .singleWildcard,
+                .literal("/securityGateways/"), .singleWildcard,
               ],
               fieldName: "resource")
           else {
@@ -559,7 +559,8 @@ extension Clients {
               request.resource as Swift.String?,
               matching: [
                 .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                .literal("/clientGateways/"), .singleWildcard,
+                .literal("/securityGateways/"), .singleWildcard, .literal("/applications/"),
+                .singleWildcard,
               ],
               fieldName: "resource")
           else {
@@ -619,10 +620,10 @@ extension Clients {
             request.resource as Swift.String?,
             matching: [
               .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-              .literal("/clientConnectorServices/"), .singleWildcard,
+              .literal("/securityGateways/"), .singleWildcard,
             ],
             fieldName: "resource",
-            expecting: "projects/*/locations/*/clientConnectorServices/*"
+            expecting: "projects/*/locations/*/securityGateways/*"
           )
           paths.append(builder.build())
         }
@@ -632,10 +633,11 @@ extension Clients {
             request.resource as Swift.String?,
             matching: [
               .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-              .literal("/clientGateways/"), .singleWildcard,
+              .literal("/securityGateways/"), .singleWildcard, .literal("/applications/"),
+              .singleWildcard,
             ],
             fieldName: "resource",
-            expecting: "projects/*/locations/*/clientGateways/*"
+            expecting: "projects/*/locations/*/securityGateways/*/applications/*"
           )
           paths.append(builder.build())
         }
@@ -729,7 +731,7 @@ extension Clients {
               request.resource as Swift.String?,
               matching: [
                 .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                .literal("/clientConnectorServices/"), .singleWildcard,
+                .literal("/securityGateways/"), .singleWildcard,
               ],
               fieldName: "resource")
           else {
@@ -751,7 +753,8 @@ extension Clients {
               request.resource as Swift.String?,
               matching: [
                 .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                .literal("/clientGateways/"), .singleWildcard,
+                .literal("/securityGateways/"), .singleWildcard, .literal("/applications/"),
+                .singleWildcard,
               ],
               fieldName: "resource")
           else {
@@ -813,10 +816,10 @@ extension Clients {
             request.resource as Swift.String?,
             matching: [
               .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-              .literal("/clientConnectorServices/"), .singleWildcard,
+              .literal("/securityGateways/"), .singleWildcard,
             ],
             fieldName: "resource",
-            expecting: "projects/*/locations/*/clientConnectorServices/*"
+            expecting: "projects/*/locations/*/securityGateways/*"
           )
           paths.append(builder.build())
         }
@@ -826,10 +829,11 @@ extension Clients {
             request.resource as Swift.String?,
             matching: [
               .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-              .literal("/clientGateways/"), .singleWildcard,
+              .literal("/securityGateways/"), .singleWildcard, .literal("/applications/"),
+              .singleWildcard,
             ],
             fieldName: "resource",
-            expecting: "projects/*/locations/*/clientGateways/*"
+            expecting: "projects/*/locations/*/securityGateways/*/applications/*"
           )
           paths.append(builder.build())
         }
@@ -918,7 +922,7 @@ extension Clients {
               request.resource as Swift.String?,
               matching: [
                 .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                .literal("/clientConnectorServices/"), .singleWildcard,
+                .literal("/securityGateways/"), .singleWildcard,
               ],
               fieldName: "resource")
           else {
@@ -938,7 +942,8 @@ extension Clients {
               request.resource as Swift.String?,
               matching: [
                 .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                .literal("/clientGateways/"), .singleWildcard,
+                .literal("/securityGateways/"), .singleWildcard, .literal("/applications/"),
+                .singleWildcard,
               ],
               fieldName: "resource")
           else {
@@ -998,10 +1003,10 @@ extension Clients {
             request.resource as Swift.String?,
             matching: [
               .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-              .literal("/clientConnectorServices/"), .singleWildcard,
+              .literal("/securityGateways/"), .singleWildcard,
             ],
             fieldName: "resource",
-            expecting: "projects/*/locations/*/clientConnectorServices/*"
+            expecting: "projects/*/locations/*/securityGateways/*"
           )
           paths.append(builder.build())
         }
@@ -1011,10 +1016,11 @@ extension Clients {
             request.resource as Swift.String?,
             matching: [
               .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-              .literal("/clientGateways/"), .singleWildcard,
+              .literal("/securityGateways/"), .singleWildcard, .literal("/applications/"),
+              .singleWildcard,
             ],
             fieldName: "resource",
-            expecting: "projects/*/locations/*/clientGateways/*"
+            expecting: "projects/*/locations/*/securityGateways/*/applications/*"
           )
           paths.append(builder.build())
         }
@@ -1062,6 +1068,33 @@ extension Clients {
         }() {
           return (candidate.0, candidate.1, { $0.setMethod(.GET) })
         }
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("organizations/"), .singleWildcard, .literal("/locations/"),
+                .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)/operations"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
+          query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+          query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+          query.append(
+            contentsOf: try encoder.encode(
+              request.returnPartialSuccess, prefix: "returnPartialSuccess"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
         var paths: [GoogleGax.PathMismatch] = []
         do {
           var builder = GoogleGax._PathMismatchBuilder()
@@ -1072,6 +1105,18 @@ extension Clients {
             ],
             fieldName: "name",
             expecting: "projects/*/locations/*"
+          )
+          paths.append(builder.build())
+        }
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("organizations/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "organizations/*/locations/*"
           )
           paths.append(builder.build())
         }
@@ -1112,6 +1157,26 @@ extension Clients {
         }() {
           return (candidate.0, candidate.1, { $0.setMethod(.GET) })
         }
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("organizations/"), .singleWildcard, .literal("/locations/"),
+                .singleWildcard, .literal("/operations/"), .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
         var paths: [GoogleGax.PathMismatch] = []
         do {
           var builder = GoogleGax._PathMismatchBuilder()
@@ -1123,6 +1188,19 @@ extension Clients {
             ],
             fieldName: "name",
             expecting: "projects/*/locations/*/operations/*"
+          )
+          paths.append(builder.build())
+        }
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("organizations/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/operations/"), .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "organizations/*/locations/*/operations/*"
           )
           paths.append(builder.build())
         }
@@ -1163,6 +1241,26 @@ extension Clients {
         }() {
           return (candidate.0, candidate.1, { $0.setMethod(.DELETE) })
         }
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("organizations/"), .singleWildcard, .literal("/locations/"),
+                .singleWildcard, .literal("/operations/"), .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.DELETE) })
+        }
         var paths: [GoogleGax.PathMismatch] = []
         do {
           var builder = GoogleGax._PathMismatchBuilder()
@@ -1174,6 +1272,19 @@ extension Clients {
             ],
             fieldName: "name",
             expecting: "projects/*/locations/*/operations/*"
+          )
+          paths.append(builder.build())
+        }
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("organizations/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/operations/"), .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "organizations/*/locations/*/operations/*"
           )
           paths.append(builder.build())
         }
@@ -1216,6 +1327,26 @@ extension Clients {
         }() {
           return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
         }
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
+              request.name as Swift.String?,
+              matching: [
+                .literal("organizations/"), .singleWildcard, .literal("/locations/"),
+                .singleWildcard, .literal("/operations/"), .singleWildcard,
+              ],
+              fieldName: "name")
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):cancel"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+        }
         var paths: [GoogleGax.PathMismatch] = []
         do {
           var builder = GoogleGax._PathMismatchBuilder()
@@ -1227,6 +1358,19 @@ extension Clients {
             ],
             fieldName: "name",
             expecting: "projects/*/locations/*/operations/*"
+          )
+          paths.append(builder.build())
+        }
+        do {
+          var builder = GoogleGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("organizations/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/operations/"), .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "organizations/*/locations/*/operations/*"
           )
           paths.append(builder.build())
         }

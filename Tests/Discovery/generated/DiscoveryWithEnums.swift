@@ -55,7 +55,7 @@ public struct DiscoveryWithEnums: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.status = try container.decodeIfPresent(DiscoveryWithEnums.Status.self, forKey: .status)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -64,7 +64,7 @@ public struct DiscoveryWithEnums: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.status, forKey: .status)
     for (key, value) in self._unknownFields.json {
@@ -122,13 +122,13 @@ public struct DiscoveryWithEnums: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       let s = try container.decode(Swift.String.self)
       self.init(stringValue: s)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .active: return try container.encode("ACTIVE")
@@ -140,12 +140,23 @@ public struct DiscoveryWithEnums: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `DiscoveryWithEnums`: `"type.googleapis.com/.DiscoveryWithEnums"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.DiscoveryWithEnums"
   }
+
+  /// Initialize an instance of `DiscoveryWithEnums` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.DiscoveryWithEnums"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DiscoveryWithEnums` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

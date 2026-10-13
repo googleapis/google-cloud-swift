@@ -201,7 +201,7 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobsByItems(
     request: ListJobsRequest
-  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
     self.listJobsByItems(request: request, options: .init())
   }
 
@@ -210,7 +210,7 @@ extension Clients.TranscoderServiceProtocol {
   /// @Snippet(path: "TranscoderService_ListJobs")
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoTranscoderV1.ListJobsResponse
       in
@@ -224,7 +224,7 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
@@ -308,7 +308,7 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobTemplatesByItems(
     request: ListJobTemplatesRequest
-  ) -> some AsyncSequence<JobTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<JobTemplate, any Swift.Error> & Sendable {
     self.listJobTemplatesByItems(request: request, options: .init())
   }
 
@@ -317,7 +317,7 @@ extension Clients.TranscoderServiceProtocol {
   /// @Snippet(path: "TranscoderService_ListJobTemplates")
   public func listJobTemplatesByItems(
     request: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<JobTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<JobTemplate, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse in
@@ -331,7 +331,7 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobTemplatesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<JobTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<JobTemplate, any Swift.Error> & Sendable {
     let request = ListJobTemplatesRequest().with {
       $0.parent = parent
     }

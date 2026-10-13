@@ -26,8 +26,8 @@ import Foundation
 /// @Snippet(path: "PoliciesQuickstart")
 public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   let inner: any Clients.PoliciesStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `PoliciesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -272,7 +272,7 @@ extension Clients.PoliciesProtocol {
 
   public func listPoliciesByItems(
     request: ListPoliciesRequest
-  ) -> some AsyncSequence<Policy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
     self.listPoliciesByItems(request: request, options: .init())
   }
 
@@ -285,7 +285,7 @@ extension Clients.PoliciesProtocol {
   /// @Snippet(path: "Policies_ListPolicies")
   public func listPoliciesByItems(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Policy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleIAMV2.ListPoliciesResponse in
       var request = request
@@ -298,7 +298,7 @@ extension Clients.PoliciesProtocol {
 
   public func listPoliciesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Policy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
     let request = ListPoliciesRequest().with {
       $0.parent = parent
     }

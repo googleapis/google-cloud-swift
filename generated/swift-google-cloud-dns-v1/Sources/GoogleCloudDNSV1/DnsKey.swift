@@ -104,7 +104,7 @@ public struct DnsKey: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.algorithm = try container.decodeIfPresent(DnsKey.Algorithm.self, forKey: .algorithm)
     self.creationTime = try container.decodeIfPresent(Swift.String.self, forKey: .creationTime)
@@ -125,7 +125,7 @@ public struct DnsKey: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.algorithm, forKey: .algorithm)
     try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
@@ -192,13 +192,13 @@ public struct DnsKey: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       let s = try container.decode(Swift.String.self)
       self.init(stringValue: s)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .rsasha1: return try container.encode("rsasha1")
@@ -251,13 +251,13 @@ public struct DnsKey: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       let s = try container.decode(Swift.String.self)
       self.init(stringValue: s)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .keySigning: return try container.encode("keySigning")
@@ -267,12 +267,23 @@ public struct DnsKey: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `DnsKey`: `"type.googleapis.com/.DnsKey"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.DnsKey"
   }
+
+  /// Initialize an instance of `DnsKey` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.DnsKey"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DnsKey` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

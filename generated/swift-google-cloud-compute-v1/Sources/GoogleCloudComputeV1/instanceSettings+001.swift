@@ -26,8 +26,8 @@
   /// @Snippet(path: "instanceSettingsQuickstart")
   public final class InstanceSettingsClient: Clients.InstanceSettingsProtocol, Sendable {
     let inner: any Clients.InstanceSettingsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstanceSettingsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -60,6 +60,11 @@
     }
 
     /// Patch Instance settings
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceSettings_patch")
     public func patchPollingUntilDone(
@@ -129,6 +134,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceSettingsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: InstanceSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

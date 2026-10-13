@@ -68,7 +68,7 @@ public struct UpdateDatabaseRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.database = try container.decodeIfPresent(Database.self, forKey: .database)
     self.updateMask = try container.decodeIfPresent(
@@ -79,7 +79,7 @@ public struct UpdateDatabaseRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.database, forKey: .database)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -88,12 +88,23 @@ public struct UpdateDatabaseRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `UpdateDatabaseRequest`: `"type.googleapis.com/google.cloud.bigquery.biglake.v1.UpdateDatabaseRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.biglake.v1.UpdateDatabaseRequest"
   }
+
+  /// Initialize an instance of `UpdateDatabaseRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.biglake.v1.UpdateDatabaseRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateDatabaseRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

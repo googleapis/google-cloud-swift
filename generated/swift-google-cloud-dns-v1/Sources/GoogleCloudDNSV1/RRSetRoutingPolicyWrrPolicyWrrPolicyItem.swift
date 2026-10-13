@@ -73,7 +73,7 @@ public struct RRSetRoutingPolicyWrrPolicyWrrPolicyItem: Codable, Equatable, Goog
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.healthCheckedTargets = try container.decodeIfPresent(
       RRSetRoutingPolicyHealthCheckTargets.self, forKey: .healthCheckedTargets)
@@ -91,7 +91,7 @@ public struct RRSetRoutingPolicyWrrPolicyWrrPolicyItem: Codable, Equatable, Goog
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.healthCheckedTargets, forKey: .healthCheckedTargets)
     try container.encodeIfPresent(self.kind, forKey: .kind)
@@ -103,12 +103,23 @@ public struct RRSetRoutingPolicyWrrPolicyWrrPolicyItem: Codable, Equatable, Goog
     }
   }
 
+  /// The type URL for `RRSetRoutingPolicyWrrPolicyWrrPolicyItem`: `"type.googleapis.com/.RRSetRoutingPolicyWrrPolicyWrrPolicyItem"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.RRSetRoutingPolicyWrrPolicyWrrPolicyItem"
   }
+
+  /// Initialize an instance of `RRSetRoutingPolicyWrrPolicyWrrPolicyItem` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.RRSetRoutingPolicyWrrPolicyWrrPolicyItem"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RRSetRoutingPolicyWrrPolicyWrrPolicyItem` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

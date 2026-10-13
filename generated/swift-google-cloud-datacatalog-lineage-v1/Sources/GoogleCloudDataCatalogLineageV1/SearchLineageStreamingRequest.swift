@@ -83,7 +83,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -108,7 +108,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.locations, forKey: .locations)
@@ -174,7 +174,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([DependencyType].self, forKey: .dependencyTypes)
       {
@@ -192,7 +192,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dependencyTypes, forKey: .dependencyTypes)
       try container.encode(self.entitySet, forKey: .entitySet)
@@ -202,13 +202,24 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
+    /// The type URL for `SearchFilters`: `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchFilters"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchFilters"
     }
+
+    /// Initialize an instance of `SearchFilters` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchFilters"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SearchFilters` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -268,7 +279,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxDepth) {
         self.maxDepth = value
@@ -285,7 +296,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.maxDepth, forKey: .maxDepth)
       try container.encode(self.maxResults, forKey: .maxResults)
@@ -295,13 +306,24 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
+    /// The type URL for `SearchLimits`: `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchLimits"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchLimits"
     }
+
+    /// Initialize an instance of `SearchLimits` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchLimits"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SearchLimits` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -345,7 +367,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var criteria: CriteriaOneOf? = nil
@@ -370,7 +392,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.criteria {
@@ -392,13 +414,24 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       indirect case entities(MultipleEntityReference)
     }
 
+    /// The type URL for `RootCriteria`: `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.RootCriteria"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.RootCriteria"
     }
+
+    /// Initialize an instance of `RootCriteria` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.RootCriteria"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RootCriteria` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -491,7 +524,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -509,7 +542,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("SEARCH_DIRECTION_UNSPECIFIED")
@@ -603,7 +636,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -621,7 +654,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("ENTITY_SET_UNSPECIFIED")
@@ -632,12 +665,23 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `SearchLineageStreamingRequest`: `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest"
   }
+
+  /// Initialize an instance of `SearchLineageStreamingRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SearchLineageStreamingRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

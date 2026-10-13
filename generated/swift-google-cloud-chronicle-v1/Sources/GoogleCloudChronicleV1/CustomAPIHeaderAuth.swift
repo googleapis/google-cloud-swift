@@ -55,7 +55,7 @@ public struct CustomAPIHeaderAuth: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [CustomAPIHeaderKeyValue].self, forKey: .headerKeyValues)
@@ -68,7 +68,7 @@ public struct CustomAPIHeaderAuth: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.headerKeyValues, forKey: .headerKeyValues)
     for (key, value) in self._unknownFields.json {
@@ -76,12 +76,23 @@ public struct CustomAPIHeaderAuth: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `CustomAPIHeaderAuth`: `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPIHeaderAuth"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.CustomAPIHeaderAuth"
   }
+
+  /// Initialize an instance of `CustomAPIHeaderAuth` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.CustomAPIHeaderAuth"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CustomAPIHeaderAuth` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

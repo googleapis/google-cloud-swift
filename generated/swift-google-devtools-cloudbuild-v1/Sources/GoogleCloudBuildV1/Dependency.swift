@@ -58,7 +58,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var dep: DepOneOf? = nil
@@ -86,7 +86,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.dep {
@@ -169,7 +169,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.repository = try container.decodeIfPresent(
         Dependency.GitSourceRepository.self, forKey: .repository)
@@ -194,7 +194,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.repository, forKey: .repository)
       try container.encode(self.revision, forKey: .revision)
@@ -207,12 +207,23 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `GitSourceDependency`: `"type.googleapis.com/google.devtools.cloudbuild.v1.Dependency.GitSourceDependency"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Dependency.GitSourceDependency"
     }
+
+    /// Initialize an instance of `GitSourceDependency` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.Dependency.GitSourceDependency"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GitSourceDependency` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -258,7 +269,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var repotype: RepotypeOneOf? = nil
@@ -286,7 +297,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.repotype {
@@ -311,12 +322,23 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
       case developerConnect(Swift.String)
     }
 
+    /// The type URL for `GitSourceRepository`: `"type.googleapis.com/google.devtools.cloudbuild.v1.Dependency.GitSourceRepository"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Dependency.GitSourceRepository"
     }
+
+    /// Initialize an instance of `GitSourceRepository` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.Dependency.GitSourceRepository"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GitSourceRepository` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -331,12 +353,23 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case gitSource(Dependency.GitSourceDependency)
   }
 
+  /// The type URL for `Dependency`: `"type.googleapis.com/google.devtools.cloudbuild.v1.Dependency"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.Dependency"
   }
+
+  /// Initialize an instance of `Dependency` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.Dependency"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Dependency` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -163,7 +163,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .clusterName) {
       self.clusterName = value
@@ -234,7 +234,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.clusterName, forKey: .clusterName)
     try container.encode(self.gridImageId, forKey: .gridImageId)
@@ -347,7 +347,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -365,7 +365,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("LICENSE_MODEL_UNSPECIFIED")
@@ -494,7 +494,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -512,7 +512,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("EXADB_VM_CLUSTER_LIFECYCLE_STATE_UNSPECIFIED")
@@ -618,7 +618,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -636,7 +636,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("SHAPE_ATTRIBUTE_UNSPECIFIED")
@@ -648,12 +648,23 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `ExadbVmClusterProperties`: `"type.googleapis.com/google.cloud.oracledatabase.v1.ExadbVmClusterProperties"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.ExadbVmClusterProperties"
   }
+
+  /// Initialize an instance of `ExadbVmClusterProperties` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.oracledatabase.v1.ExadbVmClusterProperties"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExadbVmClusterProperties` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

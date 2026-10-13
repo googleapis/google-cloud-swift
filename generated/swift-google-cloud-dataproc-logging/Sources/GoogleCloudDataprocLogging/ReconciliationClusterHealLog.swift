@@ -55,7 +55,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.outputs = try container.decodeIfPresent(
       ReconciliationClusterHealLog.Outputs.self, forKey: .outputs)
@@ -65,7 +65,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.outputs, forKey: .outputs)
     for (key, value) in self._unknownFields.json {
@@ -116,7 +116,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .repairOperationId) {
         self.repairOperationId = value
@@ -130,7 +130,7 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.repairOperationId, forKey: .repairOperationId)
       try container.encode(self.decisionDetails, forKey: .decisionDetails)
@@ -139,24 +139,46 @@ public struct ReconciliationClusterHealLog: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
+    /// The type URL for `Outputs`: `"type.googleapis.com/google.cloud.dataproc.logging.ReconciliationClusterHealLog.Outputs"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataproc.logging.ReconciliationClusterHealLog.Outputs"
     }
+
+    /// Initialize an instance of `Outputs` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.logging.ReconciliationClusterHealLog.Outputs"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Outputs` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ReconciliationClusterHealLog`: `"type.googleapis.com/google.cloud.dataproc.logging.ReconciliationClusterHealLog"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.logging.ReconciliationClusterHealLog"
   }
+
+  /// Initialize an instance of `ReconciliationClusterHealLog` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataproc.logging.ReconciliationClusterHealLog"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ReconciliationClusterHealLog` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

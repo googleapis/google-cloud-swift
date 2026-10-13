@@ -64,7 +64,7 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var filter: FilterOneOf? = nil
@@ -97,7 +97,7 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.filter {
@@ -132,12 +132,23 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleWKT._AnyPackabl
     indirect case databaseResourceReference(DatabaseResourceReference)
   }
 
+  /// The type URL for `DiscoveryCloudSqlFilter`: `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlFilter"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlFilter"
   }
+
+  /// Initialize an instance of `DiscoveryCloudSqlFilter` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlFilter"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DiscoveryCloudSqlFilter` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

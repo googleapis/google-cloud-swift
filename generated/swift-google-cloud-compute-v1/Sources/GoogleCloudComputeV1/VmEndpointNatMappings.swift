@@ -60,7 +60,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.instanceName = try container.decodeIfPresent(Swift.String.self, forKey: .instanceName)
       if let value = try container.decodeIfPresent(
@@ -74,7 +74,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.instanceName, forKey: .instanceName)
       try container.encode(self.interfaceNatMappings, forKey: .interfaceNatMappings)
@@ -83,12 +83,23 @@
       }
     }
 
+    /// The type URL for `VmEndpointNatMappings`: `"type.googleapis.com/google.cloud.compute.v1.VmEndpointNatMappings"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.VmEndpointNatMappings"
     }
+
+    /// Initialize an instance of `VmEndpointNatMappings` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.VmEndpointNatMappings"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `VmEndpointNatMappings` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

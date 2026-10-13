@@ -92,7 +92,7 @@ public struct TransferStats: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.transferBytes = try container.decodeIfPresent(Swift.Int64.self, forKey: .transferBytes)
     self.totalTransferDuration = try container.decodeIfPresent(
@@ -115,7 +115,7 @@ public struct TransferStats: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.transferBytes, forKey: .transferBytes)
     try container.encodeIfPresent(self.totalTransferDuration, forKey: .totalTransferDuration)
@@ -130,12 +130,23 @@ public struct TransferStats: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `TransferStats`: `"type.googleapis.com/google.cloud.netapp.v1.TransferStats"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.TransferStats"
   }
+
+  /// Initialize an instance of `TransferStats` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.netapp.v1.TransferStats"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TransferStats` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

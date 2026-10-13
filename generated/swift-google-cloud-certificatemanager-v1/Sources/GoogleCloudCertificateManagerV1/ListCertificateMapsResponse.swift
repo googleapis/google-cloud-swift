@@ -68,7 +68,7 @@ public struct ListCertificateMapsResponse: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([CertificateMap].self, forKey: .certificateMaps) {
       self.certificateMaps = value
@@ -85,7 +85,7 @@ public struct ListCertificateMapsResponse: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.certificateMaps, forKey: .certificateMaps)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -95,12 +95,23 @@ public struct ListCertificateMapsResponse: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `ListCertificateMapsResponse`: `"type.googleapis.com/google.cloud.certificatemanager.v1.ListCertificateMapsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.certificatemanager.v1.ListCertificateMapsResponse"
   }
+
+  /// Initialize an instance of `ListCertificateMapsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.certificatemanager.v1.ListCertificateMapsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListCertificateMapsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

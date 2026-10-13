@@ -22,11 +22,20 @@
   public struct DiskEncryptionConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    /// Resource name of KMS key for disk encryption
+    /// Resource name of KMS key for disk encryption.
     public var kmsKeyName: Swift.String = Swift.String()
 
     /// This is always `sql#diskEncryptionConfiguration`.
     public var kind: Swift.String = Swift.String()
+
+    /// Optional. If true, enables Confidential Mode for the instance's Hyperdisk
+    /// Balanced volumes. Only supported for zonal C4A instances currently.
+    public var confidentialMode: Swift.Bool? = nil
+
+    /// Optional. Whether to enforce CMEK log encryption at source. When enforced,
+    /// transaction logs are encrypted prior to being uploaded to Cloud Storage. If
+    /// not enforced, then CMEK logs are encrypted by the Cloud Storage service.
+    public var cmekSourceLogEncryptionEnforced: Swift.Bool? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -54,14 +63,19 @@
 
       static let kmsKeyName = CodingKeys(stringValue: "kmsKeyName")
       static let kind = CodingKeys(stringValue: "kind")
+      static let confidentialMode = CodingKeys(stringValue: "confidentialMode")
+      static let cmekSourceLogEncryptionEnforced = CodingKeys(
+        stringValue: "cmekSourceLogEncryptionEnforced")
 
       static let _knownKeys: Set<Swift.String> = [
         "kmsKeyName",
         "kind",
+        "confidentialMode",
+        "cmekSourceLogEncryptionEnforced",
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName) {
         self.kmsKeyName = value
@@ -69,27 +83,45 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
         self.kind = value
       }
+      self.confidentialMode = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .confidentialMode)
+      self.cmekSourceLogEncryptionEnforced = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .cmekSourceLogEncryptionEnforced)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
       try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.confidentialMode, forKey: .confidentialMode)
+      try container.encodeIfPresent(
+        self.cmekSourceLogEncryptionEnforced, forKey: .cmekSourceLogEncryptionEnforced)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
+    /// The type URL for `DiskEncryptionConfiguration`: `"type.googleapis.com/google.cloud.sql.v1.DiskEncryptionConfiguration"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.DiskEncryptionConfiguration"
     }
+
+    /// Initialize an instance of `DiskEncryptionConfiguration` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.DiskEncryptionConfiguration"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DiskEncryptionConfiguration` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

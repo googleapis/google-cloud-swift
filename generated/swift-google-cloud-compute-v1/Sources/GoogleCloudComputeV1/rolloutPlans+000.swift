@@ -26,8 +26,8 @@
   /// @Snippet(path: "rolloutPlansQuickstart")
   public final class RolloutPlansClient: Clients.RolloutPlansProtocol, Sendable {
     let inner: any Clients.RolloutPlansStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RolloutPlansClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -51,6 +51,11 @@
     }
 
     /// Deletes a RolloutPlan.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "rolloutPlans_delete")
     public func deletePollingUntilDone(
@@ -110,6 +115,11 @@
     }
 
     /// Creates a new RolloutPlan in a given project and location.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "rolloutPlans_insert")
     public func insertPollingUntilDone(
@@ -182,6 +192,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RolloutPlansClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RolloutPlansClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -197,6 +212,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RolloutPlansClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RolloutPlansClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -317,7 +337,7 @@
 
     public func listByItems(
       request: RolloutPlansClient.ListRequest
-    ) -> some AsyncSequence<RolloutPlan, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<RolloutPlan, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -326,7 +346,7 @@
     /// @Snippet(path: "rolloutPlans_list")
     public func listByItems(
       request: RolloutPlansClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<RolloutPlan, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<RolloutPlan, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RolloutPlansListResponse in
@@ -340,7 +360,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<RolloutPlan, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<RolloutPlan, any Swift.Error> & Sendable {
       let request = RolloutPlansClient.ListRequest().with {
         $0.project = project
       }

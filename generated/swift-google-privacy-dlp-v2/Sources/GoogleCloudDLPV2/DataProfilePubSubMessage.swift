@@ -71,7 +71,7 @@ public struct DataProfilePubSubMessage: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.profile = try container.decodeIfPresent(TableDataProfile.self, forKey: .profile)
     self.fileStoreProfile = try container.decodeIfPresent(
@@ -85,7 +85,7 @@ public struct DataProfilePubSubMessage: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.profile, forKey: .profile)
     try container.encodeIfPresent(self.fileStoreProfile, forKey: .fileStoreProfile)
@@ -95,12 +95,23 @@ public struct DataProfilePubSubMessage: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `DataProfilePubSubMessage`: `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubMessage"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubMessage"
   }
+
+  /// Initialize an instance of `DataProfilePubSubMessage` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubMessage"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DataProfilePubSubMessage` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

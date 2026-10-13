@@ -79,7 +79,7 @@ public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       TroubleshootIamPolicyResponse.OverallAccessState.self, forKey: .overallAccessState)
@@ -97,7 +97,7 @@ public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.overallAccessState, forKey: .overallAccessState)
     try container.encodeIfPresent(self.accessTuple, forKey: .accessTuple)
@@ -210,7 +210,7 @@ public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -228,7 +228,7 @@ public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyP
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("OVERALL_ACCESS_STATE_UNSPECIFIED")
@@ -242,13 +242,24 @@ public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `TroubleshootIamPolicyResponse`: `"type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.TroubleshootIamPolicyResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.TroubleshootIamPolicyResponse"
   }
+
+  /// Initialize an instance of `TroubleshootIamPolicyResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.TroubleshootIamPolicyResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TroubleshootIamPolicyResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

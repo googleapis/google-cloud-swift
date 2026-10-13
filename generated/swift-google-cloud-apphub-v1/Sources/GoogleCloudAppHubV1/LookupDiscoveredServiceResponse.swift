@@ -55,7 +55,7 @@ public struct LookupDiscoveredServiceResponse: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.discoveredService = try container.decodeIfPresent(
       DiscoveredService.self, forKey: .discoveredService)
@@ -65,7 +65,7 @@ public struct LookupDiscoveredServiceResponse: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.discoveredService, forKey: .discoveredService)
     for (key, value) in self._unknownFields.json {
@@ -73,12 +73,23 @@ public struct LookupDiscoveredServiceResponse: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `LookupDiscoveredServiceResponse`: `"type.googleapis.com/google.cloud.apphub.v1.LookupDiscoveredServiceResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apphub.v1.LookupDiscoveredServiceResponse"
   }
+
+  /// Initialize an instance of `LookupDiscoveredServiceResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.apphub.v1.LookupDiscoveredServiceResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `LookupDiscoveredServiceResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

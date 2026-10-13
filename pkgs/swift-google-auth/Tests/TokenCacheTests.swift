@@ -22,11 +22,11 @@ import Testing
 private actor MockTokenProvider: TokenProvider {
   private var fetchCount = 0
   private var nextToken: Token?
-  private var nextError: Error?
+  private var nextError: (any Error)?
   private var fetchContinuations: [CheckedContinuation<Void, Never>] = []
   private var fetchIsStarted = false
 
-  func configure(token: Token?, error: Error? = nil) {
+  func configure(token: Token?, error: (any Error)? = nil) {
     self.nextToken = token
     self.nextError = error
   }
@@ -186,9 +186,9 @@ private actor DelayedTokenProvider: TokenProvider {
 
 private actor DelayedFailedTokenProvider: TokenProvider {
   private var fetchCount = 0
-  private let error: Error
+  private let error: any Error
 
-  init(error: Error) {
+  init(error: any Error) {
     self.error = error
   }
 
@@ -660,7 +660,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     )
 
     // Spawn 5 concurrent requests to token() simultaneously when empty and fails
-    let errors = await withTaskGroup(of: Result<Token, Error>.self) { group in
+    let errors = await withTaskGroup(of: Result<Token, any Error>.self) { group in
       for _ in 1...5 {
         group.addTask {
           do {
@@ -672,7 +672,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
         }
       }
 
-      var results: [Result<Token, Error>] = []
+      var results: [Result<Token, any Error>] = []
       for await res in group {
         results.append(res)
       }

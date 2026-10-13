@@ -97,7 +97,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`extension`) {
       self.`extension` = value
@@ -127,7 +127,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.`extension`, forKey: .`extension`)
 
@@ -201,7 +201,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .regionCode) {
         self.regionCode = value
@@ -215,7 +215,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.regionCode, forKey: .regionCode)
       try container.encode(self.number, forKey: .number)
@@ -224,12 +224,23 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ShortCode`: `"type.googleapis.com/google.type.PhoneNumber.ShortCode"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.type.PhoneNumber.ShortCode"
     }
+
+    /// Initialize an instance of `ShortCode` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.type.PhoneNumber.ShortCode"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ShortCode` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -267,12 +278,23 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case shortCode(PhoneNumber.ShortCode)
   }
 
+  /// The type URL for `PhoneNumber`: `"type.googleapis.com/google.type.PhoneNumber"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.type.PhoneNumber"
   }
+
+  /// Initialize an instance of `PhoneNumber` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.type.PhoneNumber"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PhoneNumber` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

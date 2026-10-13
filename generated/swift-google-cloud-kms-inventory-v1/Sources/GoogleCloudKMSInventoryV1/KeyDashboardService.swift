@@ -80,7 +80,7 @@ extension Clients.KeyDashboardServiceProtocol {
 
   public func listCryptoKeysByItems(
     request: ListCryptoKeysRequest
-  ) -> some AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudKMSV1.CryptoKey, any Swift.Error> & Sendable {
     self.listCryptoKeysByItems(request: request, options: .init())
   }
 
@@ -91,7 +91,7 @@ extension Clients.KeyDashboardServiceProtocol {
   /// @Snippet(path: "KeyDashboardService_ListCryptoKeys")
   public func listCryptoKeysByItems(
     request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudKMSV1.CryptoKey, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse in
@@ -105,7 +105,7 @@ extension Clients.KeyDashboardServiceProtocol {
 
   public func listCryptoKeysByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<GoogleCloudKMSV1.CryptoKey, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudKMSV1.CryptoKey, any Swift.Error> & Sendable {
     let request = ListCryptoKeysRequest().with {
       $0.parent = parent
     }

@@ -332,13 +332,13 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
   mutating func encode<T>(_ value: T, forKey key: K) throws where T: Encodable {
     guard !self.omits(key) else { return }
     if self.omitEmptyCollections {
-      if let checkable = value as? _EmptyCollectionProtocol, checkable._isEmptyCollection {
+      if let checkable = value as? any _EmptyCollectionProtocol, checkable._isEmptyCollection {
         return
       }
     }
-    if let opt = value as? _OptionalProtocol, opt._isNil {
+    if let opt = value as? any _OptionalProtocol, opt._isNil {
       try self.impl.encodeNil(forKey: key)
-    } else if let opt = value as? _OptionalProtocol, let unwrapped = opt._unwrappedValue {
+    } else if let opt = value as? any _OptionalProtocol, let unwrapped = opt._unwrappedValue {
       if let v = unwrapped as? Int64 {
         try self.impl.encode(String(v), forKey: key)
       } else if let v = unwrapped as? UInt64 {
@@ -494,9 +494,9 @@ fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
   }
 
   mutating func encode<T>(_ value: T) throws where T: Encodable {
-    if let opt = value as? _OptionalProtocol, opt._isNil {
+    if let opt = value as? any _OptionalProtocol, opt._isNil {
       try self.impl.encodeNil()
-    } else if let opt = value as? _OptionalProtocol, let unwrapped = opt._unwrappedValue {
+    } else if let opt = value as? any _OptionalProtocol, let unwrapped = opt._unwrappedValue {
       if let v = unwrapped as? Int64 {
         try self.impl.encode(String(v))
       } else if let v = unwrapped as? UInt64 {
@@ -639,9 +639,9 @@ fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingCont
   }
 
   mutating func encode<T>(_ value: T) throws where T: Encodable {
-    if let opt = value as? _OptionalProtocol, opt._isNil {
+    if let opt = value as? any _OptionalProtocol, opt._isNil {
       try self.impl.encodeNil()
-    } else if let opt = value as? _OptionalProtocol, let unwrapped = opt._unwrappedValue {
+    } else if let opt = value as? any _OptionalProtocol, let unwrapped = opt._unwrappedValue {
       if let v = unwrapped as? Int64 {
         try self.impl.encode(String(v))
       } else if let v = unwrapped as? UInt64 {

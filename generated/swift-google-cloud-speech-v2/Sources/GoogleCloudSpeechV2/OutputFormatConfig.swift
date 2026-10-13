@@ -69,7 +69,7 @@ public struct OutputFormatConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.native = try container.decodeIfPresent(NativeOutputFileFormatConfig.self, forKey: .native)
     self.vtt = try container.decodeIfPresent(VttOutputFileFormatConfig.self, forKey: .vtt)
@@ -80,7 +80,7 @@ public struct OutputFormatConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.native, forKey: .native)
     try container.encodeIfPresent(self.vtt, forKey: .vtt)
@@ -90,12 +90,23 @@ public struct OutputFormatConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `OutputFormatConfig`: `"type.googleapis.com/google.cloud.speech.v2.OutputFormatConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.OutputFormatConfig"
   }
+
+  /// Initialize an instance of `OutputFormatConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.speech.v2.OutputFormatConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `OutputFormatConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -23,6 +23,9 @@ import GoogleIAMV1
 import GoogleLongRunning
 import GoogleWKT
 
+#if hasAttribute(diagnose)
+  @diagnose(DeprecatedDeclaration, as: ignored)
+#endif
 func sample(client: AppConnectorsServiceClient) async throws {
   let items = client.listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest()
@@ -36,6 +39,9 @@ func sample(client: AppConnectorsServiceClient) async throws {
 
 @main
 struct SnippetRunner {
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   static func main() async throws {
     do {
       let client = try GoogleCloudBeyondCorpAppConnectorsV1.AppConnectorsServiceClient()

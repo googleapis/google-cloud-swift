@@ -71,7 +71,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.block = try container.decodeIfPresent(Swift.String.self, forKey: .block)
       self.cluster = try container.decodeIfPresent(Swift.String.self, forKey: .cluster)
@@ -83,7 +83,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.block, forKey: .block)
       try container.encodeIfPresent(self.cluster, forKey: .cluster)
@@ -94,12 +94,23 @@
       }
     }
 
+    /// The type URL for `HostPhysicalTopology`: `"type.googleapis.com/google.cloud.compute.v1.HostPhysicalTopology"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.HostPhysicalTopology"
     }
+
+    /// Initialize an instance of `HostPhysicalTopology` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.HostPhysicalTopology"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `HostPhysicalTopology` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

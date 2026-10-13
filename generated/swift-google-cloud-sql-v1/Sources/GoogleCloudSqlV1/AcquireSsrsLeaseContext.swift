@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService
+#if BlueGreenDeploymentsService || SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService || SqlWorkloadCapturesService
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
@@ -73,7 +73,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.setupLogin = try container.decodeIfPresent(Swift.String.self, forKey: .setupLogin)
       self.serviceLogin = try container.decodeIfPresent(Swift.String.self, forKey: .serviceLogin)
@@ -86,7 +86,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.setupLogin, forKey: .setupLogin)
       try container.encodeIfPresent(self.serviceLogin, forKey: .serviceLogin)
@@ -97,12 +97,23 @@
       }
     }
 
+    /// The type URL for `AcquireSsrsLeaseContext`: `"type.googleapis.com/google.cloud.sql.v1.AcquireSsrsLeaseContext"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.AcquireSsrsLeaseContext"
     }
+
+    /// Initialize an instance of `AcquireSsrsLeaseContext` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.AcquireSsrsLeaseContext"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `AcquireSsrsLeaseContext` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

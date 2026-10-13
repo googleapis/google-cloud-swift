@@ -55,7 +55,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.expressions = try container.decodeIfPresent(
       DataProfilePubSubCondition.PubSubExpressions.self, forKey: .expressions)
@@ -65,7 +65,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.expressions, forKey: .expressions)
     for (key, value) in self._unknownFields.json {
@@ -113,7 +113,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var value: ValueOneOf? = nil
@@ -143,7 +143,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.value {
@@ -167,12 +167,23 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       case minimumSensitivityScore(DataProfilePubSubCondition.ProfileScoreBucket)
     }
 
+    /// The type URL for `PubSubCondition`: `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubCondition"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubCondition"
     }
+
+    /// Initialize an instance of `PubSubCondition` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubCondition"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PubSubCondition` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -222,7 +233,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         DataProfilePubSubCondition.PubSubExpressions.PubSubLogicalOperator.self,
@@ -241,7 +252,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.logicalOperator, forKey: .logicalOperator)
       try container.encode(self.conditions, forKey: .conditions)
@@ -337,7 +348,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -355,7 +366,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .logicalOperatorUnspecified:
@@ -368,13 +379,24 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
+    /// The type URL for `PubSubExpressions`: `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubExpressions"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubExpressions"
     }
+
+    /// Initialize an instance of `PubSubExpressions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubExpressions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PubSubExpressions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -467,7 +489,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -485,7 +507,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("PROFILE_SCORE_BUCKET_UNSPECIFIED")
@@ -497,12 +519,23 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `DataProfilePubSubCondition`: `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition"
   }
+
+  /// Initialize an instance of `DataProfilePubSubCondition` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DataProfilePubSubCondition"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DataProfilePubSubCondition` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

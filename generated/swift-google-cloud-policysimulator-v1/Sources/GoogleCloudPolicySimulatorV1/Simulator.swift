@@ -39,8 +39,8 @@ import Foundation
 /// @Snippet(path: "SimulatorQuickstart")
 public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   let inner: any Clients.SimulatorStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `SimulatorClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -248,7 +248,7 @@ extension Clients.SimulatorProtocol {
 
   public func listReplayResultsByItems(
     request: ListReplayResultsRequest
-  ) -> some AsyncSequence<ReplayResult, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReplayResult, any Swift.Error> & Sendable {
     self.listReplayResultsByItems(request: request, options: .init())
   }
 
@@ -260,7 +260,7 @@ extension Clients.SimulatorProtocol {
   /// @Snippet(path: "Simulator_ListReplayResults")
   public func listReplayResultsByItems(
     request: ListReplayResultsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ReplayResult, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReplayResult, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudPolicySimulatorV1.ListReplayResultsResponse in
@@ -274,7 +274,7 @@ extension Clients.SimulatorProtocol {
 
   public func listReplayResultsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ReplayResult, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReplayResult, any Swift.Error> & Sendable {
     let request = ListReplayResultsRequest().with {
       $0.parent = parent
     }
@@ -295,7 +295,7 @@ extension Clients.SimulatorProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -306,7 +306,7 @@ extension Clients.SimulatorProtocol {
   /// @Snippet(path: "Simulator_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -320,7 +320,7 @@ extension Clients.SimulatorProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

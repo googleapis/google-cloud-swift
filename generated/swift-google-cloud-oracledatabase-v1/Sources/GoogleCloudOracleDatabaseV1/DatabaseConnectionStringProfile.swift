@@ -105,7 +105,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       DatabaseConnectionStringProfile.ConsumerGroup.self, forKey: .consumerGroup)
@@ -152,7 +152,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.consumerGroup, forKey: .consumerGroup)
     try container.encode(self.displayName, forKey: .displayName)
@@ -273,7 +273,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -291,7 +291,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("CONSUMER_GROUP_UNSPECIFIED")
@@ -393,7 +393,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -411,7 +411,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("HOST_FORMAT_UNSPECIFIED")
@@ -510,7 +510,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -528,7 +528,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("PROTOCOL_UNSPECIFIED")
@@ -627,7 +627,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -645,7 +645,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("SESSION_MODE_UNSPECIFIED")
@@ -750,7 +750,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -768,7 +768,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("SYNTAX_FORMAT_UNSPECIFIED")
@@ -868,7 +868,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -886,7 +886,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("TLS_AUTHENTICATION_UNSPECIFIED")
@@ -898,12 +898,23 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `DatabaseConnectionStringProfile`: `"type.googleapis.com/google.cloud.oracledatabase.v1.DatabaseConnectionStringProfile"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.DatabaseConnectionStringProfile"
   }
+
+  /// Initialize an instance of `DatabaseConnectionStringProfile` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.oracledatabase.v1.DatabaseConnectionStringProfile"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DatabaseConnectionStringProfile` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

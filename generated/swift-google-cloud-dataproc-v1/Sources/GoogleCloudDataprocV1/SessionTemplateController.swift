@@ -314,7 +314,7 @@ extension Clients.SessionTemplateControllerProtocol {
 
   public func listSessionTemplatesByItems(
     request: ListSessionTemplatesRequest
-  ) -> some AsyncSequence<SessionTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SessionTemplate, any Swift.Error> & Sendable {
     self.listSessionTemplatesByItems(request: request, options: .init())
   }
 
@@ -323,7 +323,7 @@ extension Clients.SessionTemplateControllerProtocol {
   /// @Snippet(path: "SessionTemplateController_ListSessionTemplates")
   public func listSessionTemplatesByItems(
     request: ListSessionTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SessionTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SessionTemplate, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataprocV1.ListSessionTemplatesResponse in
@@ -337,7 +337,7 @@ extension Clients.SessionTemplateControllerProtocol {
 
   public func listSessionTemplatesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SessionTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SessionTemplate, any Swift.Error> & Sendable {
     let request = ListSessionTemplatesRequest().with {
       $0.parent = parent
     }
@@ -413,7 +413,7 @@ extension Clients.SessionTemplateControllerProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -424,7 +424,7 @@ extension Clients.SessionTemplateControllerProtocol {
   /// @Snippet(path: "SessionTemplateController_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -438,7 +438,7 @@ extension Clients.SessionTemplateControllerProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

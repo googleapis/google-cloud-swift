@@ -30,8 +30,8 @@ import Foundation
 /// @Snippet(path: "InternalRangeServiceQuickstart")
 public final class InternalRangeServiceClient: Clients.InternalRangeServiceProtocol, Sendable {
   let inner: any Clients.InternalRangeServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `InternalRangeServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -380,7 +380,7 @@ extension Clients.InternalRangeServiceProtocol {
 
   public func listInternalRangesByItems(
     request: ListInternalRangesRequest
-  ) -> some AsyncSequence<InternalRange, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InternalRange, any Swift.Error> & Sendable {
     self.listInternalRangesByItems(request: request, options: .init())
   }
 
@@ -389,7 +389,7 @@ extension Clients.InternalRangeServiceProtocol {
   /// @Snippet(path: "InternalRangeService_ListInternalRanges")
   public func listInternalRangesByItems(
     request: ListInternalRangesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<InternalRange, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InternalRange, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListInternalRangesResponse in
@@ -403,7 +403,7 @@ extension Clients.InternalRangeServiceProtocol {
 
   public func listInternalRangesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<InternalRange, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InternalRange, any Swift.Error> & Sendable {
     let request = ListInternalRangesRequest().with {
       $0.parent = parent
     }
@@ -549,7 +549,7 @@ extension Clients.InternalRangeServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -558,7 +558,7 @@ extension Clients.InternalRangeServiceProtocol {
   /// @Snippet(path: "InternalRangeService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -631,7 +631,7 @@ extension Clients.InternalRangeServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -642,7 +642,7 @@ extension Clients.InternalRangeServiceProtocol {
   /// @Snippet(path: "InternalRangeService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -656,7 +656,7 @@ extension Clients.InternalRangeServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

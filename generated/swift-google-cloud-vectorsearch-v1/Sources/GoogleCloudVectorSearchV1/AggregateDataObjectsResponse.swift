@@ -58,7 +58,7 @@ public struct AggregateDataObjectsResponse: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [GoogleWKT.WKTStruct].self, forKey: .aggregateResults)
@@ -71,7 +71,7 @@ public struct AggregateDataObjectsResponse: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.aggregateResults, forKey: .aggregateResults)
     for (key, value) in self._unknownFields.json {
@@ -79,12 +79,23 @@ public struct AggregateDataObjectsResponse: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
+  /// The type URL for `AggregateDataObjectsResponse`: `"type.googleapis.com/google.cloud.vectorsearch.v1.AggregateDataObjectsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.AggregateDataObjectsResponse"
   }
+
+  /// Initialize an instance of `AggregateDataObjectsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.AggregateDataObjectsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AggregateDataObjectsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

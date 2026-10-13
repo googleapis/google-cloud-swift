@@ -85,7 +85,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataStore) {
         self.dataStore = value
@@ -120,7 +120,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataStore, forKey: .dataStore)
       try container.encode(self.modelType, forKey: .modelType)
@@ -212,7 +212,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .corpusDataPath) {
           self.corpusDataPath = value
@@ -232,7 +232,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.corpusDataPath, forKey: .corpusDataPath)
         try container.encode(self.queryDataPath, forKey: .queryDataPath)
@@ -243,13 +243,24 @@
         }
       }
 
+      /// The type URL for `GcsTrainingInput`: `"type.googleapis.com/google.cloud.discoveryengine.v1.TrainCustomModelRequest.GcsTrainingInput"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.TrainCustomModelRequest.GcsTrainingInput"
       }
+
+      /// Initialize an instance of `GcsTrainingInput` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.TrainCustomModelRequest.GcsTrainingInput"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GcsTrainingInput` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -261,12 +272,23 @@
       indirect case gcsTrainingInput(TrainCustomModelRequest.GcsTrainingInput)
     }
 
+    /// The type URL for `TrainCustomModelRequest`: `"type.googleapis.com/google.cloud.discoveryengine.v1.TrainCustomModelRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.TrainCustomModelRequest"
     }
+
+    /// Initialize an instance of `TrainCustomModelRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.discoveryengine.v1.TrainCustomModelRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TrainCustomModelRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

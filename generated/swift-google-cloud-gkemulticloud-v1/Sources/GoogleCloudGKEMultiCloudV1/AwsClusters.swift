@@ -29,8 +29,8 @@ import Foundation
 @available(*, deprecated)
 public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   let inner: any Clients.AwsClustersStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AwsClustersClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -853,7 +853,7 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsClustersByItems(
     request: ListAwsClustersRequest
-  ) -> some AsyncSequence<AwsCluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AwsCluster, any Swift.Error> & Sendable {
     self.listAwsClustersByItems(request: request, options: .init())
   }
 
@@ -866,7 +866,7 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsClustersByItems(
     request: ListAwsClustersRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AwsCluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AwsCluster, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudGKEMultiCloudV1.ListAwsClustersResponse in
@@ -881,7 +881,7 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsClustersByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<AwsCluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AwsCluster, any Swift.Error> & Sendable {
     let request = ListAwsClustersRequest().with {
       $0.parent = parent
     }
@@ -1114,7 +1114,7 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsNodePoolsByItems(
     request: ListAwsNodePoolsRequest
-  ) -> some AsyncSequence<AwsNodePool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AwsNodePool, any Swift.Error> & Sendable {
     self.listAwsNodePoolsByItems(request: request, options: .init())
   }
 
@@ -1129,7 +1129,7 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsNodePoolsByItems(
     request: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AwsNodePool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AwsNodePool, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudGKEMultiCloudV1.ListAwsNodePoolsResponse in
@@ -1144,7 +1144,7 @@ extension Clients.AwsClustersProtocol {
   @available(*, deprecated)
   public func listAwsNodePoolsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<AwsNodePool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AwsNodePool, any Swift.Error> & Sendable {
     let request = ListAwsNodePoolsRequest().with {
       $0.parent = parent
     }
@@ -1253,7 +1253,7 @@ extension Clients.AwsClustersProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1264,7 +1264,7 @@ extension Clients.AwsClustersProtocol {
   /// @Snippet(path: "AwsClusters_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1278,7 +1278,7 @@ extension Clients.AwsClustersProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

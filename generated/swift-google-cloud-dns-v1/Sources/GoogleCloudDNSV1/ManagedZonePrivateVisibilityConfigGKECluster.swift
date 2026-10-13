@@ -59,7 +59,7 @@ public struct ManagedZonePrivateVisibilityConfigGKECluster: Codable, Equatable, 
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.gkeClusterName = try container.decodeIfPresent(Swift.String.self, forKey: .gkeClusterName)
     self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
@@ -69,7 +69,7 @@ public struct ManagedZonePrivateVisibilityConfigGKECluster: Codable, Equatable, 
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.gkeClusterName, forKey: .gkeClusterName)
     try container.encodeIfPresent(self.kind, forKey: .kind)
@@ -78,12 +78,23 @@ public struct ManagedZonePrivateVisibilityConfigGKECluster: Codable, Equatable, 
     }
   }
 
+  /// The type URL for `ManagedZonePrivateVisibilityConfigGKECluster`: `"type.googleapis.com/.ManagedZonePrivateVisibilityConfigGKECluster"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.ManagedZonePrivateVisibilityConfigGKECluster"
   }
+
+  /// Initialize an instance of `ManagedZonePrivateVisibilityConfigGKECluster` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.ManagedZonePrivateVisibilityConfigGKECluster"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ManagedZonePrivateVisibilityConfigGKECluster` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

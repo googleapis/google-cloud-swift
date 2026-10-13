@@ -3,15 +3,18 @@
 
 ## Overview
 
-This client library was generated from the "20260915" revision of the API.
+This client library was generated from the "20261002" revision of the API.
 
 The following types provide methods to make RPCs. They are a good starting point
 to learn about this library.
 
 - ``ChangesClient``: Service for the changes resource.
 - ``DnsKeysClient``: Service for the dnsKeys resource.
+- ``LocationsClient``: Service for the locations resource.
 - ``ManagedZoneOperationsClient``: Service for the managedZoneOperations resource.
 - ``ManagedZonesClient``: Service for the managedZones resource.
+- ``OperationsClient``: Service for the operations resource.
+- ``OutboundEndpointsClient``: Service for the outboundEndpoints resource.
 - ``PoliciesClient``: Service for the policies resource.
 - ``ProjectsClient``: Service for the projects resource.
 - ``ResourceRecordSetsClient``: Service for the resourceRecordSets resource.

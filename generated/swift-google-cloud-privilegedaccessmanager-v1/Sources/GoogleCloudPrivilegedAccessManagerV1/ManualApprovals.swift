@@ -77,7 +77,7 @@ public struct ManualApprovals: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .requireApproverJustification)
@@ -93,7 +93,7 @@ public struct ManualApprovals: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.requireApproverJustification, forKey: .requireApproverJustification)
     try container.encode(self.steps, forKey: .steps)
@@ -154,7 +154,7 @@ public struct ManualApprovals: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([AccessControlEntry].self, forKey: .approvers) {
         self.approvers = value
@@ -173,7 +173,7 @@ public struct ManualApprovals: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.approvers, forKey: .approvers)
       try container.encode(self.approvalsNeeded, forKey: .approvalsNeeded)
@@ -183,23 +183,45 @@ public struct ManualApprovals: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Step`: `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.ManualApprovals.Step"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.ManualApprovals.Step"
     }
+
+    /// Initialize an instance of `Step` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.ManualApprovals.Step"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Step` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ManualApprovals`: `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.ManualApprovals"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.ManualApprovals"
   }
+
+  /// Initialize an instance of `ManualApprovals` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.privilegedaccessmanager.v1.ManualApprovals"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ManualApprovals` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

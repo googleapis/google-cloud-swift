@@ -61,7 +61,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [MaintenanceUpdatePolicy.MaintenanceWindow].self, forKey: .maintenanceWindows)
@@ -79,7 +79,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.maintenanceWindows, forKey: .maintenanceWindows)
     try container.encode(self.denyMaintenancePeriods, forKey: .denyMaintenancePeriods)
@@ -132,7 +132,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(GoogleType.DayOfWeek.self, forKey: .day) {
         self.day = value
@@ -144,7 +144,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.day, forKey: .day)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
@@ -153,12 +153,23 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `MaintenanceWindow`: `"type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy.MaintenanceWindow"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy.MaintenanceWindow"
     }
+
+    /// Initialize an instance of `MaintenanceWindow` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy.MaintenanceWindow"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `MaintenanceWindow` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -223,7 +234,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.startDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .startDate)
       self.endDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .endDate)
@@ -234,7 +245,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.startDate, forKey: .startDate)
       try container.encodeIfPresent(self.endDate, forKey: .endDate)
@@ -244,24 +255,46 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `DenyMaintenancePeriod`: `"type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy.DenyMaintenancePeriod"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy.DenyMaintenancePeriod"
     }
+
+    /// Initialize an instance of `DenyMaintenancePeriod` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy.DenyMaintenancePeriod"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DenyMaintenancePeriod` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `MaintenanceUpdatePolicy`: `"type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy"
   }
+
+  /// Initialize an instance of `MaintenanceUpdatePolicy` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MaintenanceUpdatePolicy` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

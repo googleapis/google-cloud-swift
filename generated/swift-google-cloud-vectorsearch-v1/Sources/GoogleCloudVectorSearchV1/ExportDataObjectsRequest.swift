@@ -76,7 +76,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -106,7 +106,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.fieldFilter, forKey: .fieldFilter)
@@ -167,7 +167,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .exportUri) {
         self.exportUri = value
@@ -183,7 +183,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.exportUri, forKey: .exportUri)
       try container.encode(self.format, forKey: .format)
@@ -273,7 +273,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -291,7 +291,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("FORMAT_UNSPECIFIED")
@@ -302,13 +302,24 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
+    /// The type URL for `GcsExportDestination`: `"type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.GcsExportDestination"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.GcsExportDestination"
     }
+
+    /// Initialize an instance of `GcsExportDestination` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.GcsExportDestination"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GcsExportDestination` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -354,7 +365,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var selector: SelectorOneOf? = nil
@@ -384,7 +395,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.selector {
@@ -441,7 +452,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .fields) {
           self.fields = value
@@ -452,7 +463,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.fields, forKey: .fields)
         for (key, value) in self._unknownFields.json {
@@ -460,13 +471,24 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
         }
       }
 
+      /// The type URL for `FieldList`: `"type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.FieldFilter.FieldList"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.FieldFilter.FieldList"
       }
+
+      /// Initialize an instance of `FieldList` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.FieldFilter.FieldList"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `FieldList` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -482,12 +504,23 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       indirect case excludedFields(ExportDataObjectsRequest.FieldFilter.FieldList)
     }
 
+    /// The type URL for `FieldFilter`: `"type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.FieldFilter"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.FieldFilter"
     }
+
+    /// Initialize an instance of `FieldFilter` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.FieldFilter"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FieldFilter` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -499,12 +532,23 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     indirect case gcsDestination(ExportDataObjectsRequest.GcsExportDestination)
   }
 
+  /// The type URL for `ExportDataObjectsRequest`: `"type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest"
   }
+
+  /// Initialize an instance of `ExportDataObjectsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExportDataObjectsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

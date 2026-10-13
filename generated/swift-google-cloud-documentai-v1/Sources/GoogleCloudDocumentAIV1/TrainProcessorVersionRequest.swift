@@ -94,7 +94,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -139,7 +139,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encodeIfPresent(self.processorVersion, forKey: .processorVersion)
@@ -206,7 +206,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.trainingDocuments = try container.decodeIfPresent(
         BatchDocumentsInputConfig.self, forKey: .trainingDocuments)
@@ -218,7 +218,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.trainingDocuments, forKey: .trainingDocuments)
       try container.encodeIfPresent(self.testDocuments, forKey: .testDocuments)
@@ -227,12 +227,23 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
+    /// The type URL for `InputData`: `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData"
     }
+
+    /// Initialize an instance of `InputData` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InputData` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -279,7 +290,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         TrainProcessorVersionRequest.CustomDocumentExtractionOptions.TrainingMethod.self,
@@ -293,7 +304,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.trainingMethod, forKey: .trainingMethod)
       for (key, value) in self._unknownFields.json {
@@ -386,7 +397,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -404,7 +415,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("TRAINING_METHOD_UNSPECIFIED")
@@ -416,13 +427,24 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
+    /// The type URL for `CustomDocumentExtractionOptions`: `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions"
     }
+
+    /// Initialize an instance of `CustomDocumentExtractionOptions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CustomDocumentExtractionOptions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -474,7 +496,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .trainSteps) {
         self.trainSteps = value
@@ -490,7 +512,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.trainSteps, forKey: .trainSteps)
       try container.encode(self.learningRateMultiplier, forKey: .learningRateMultiplier)
@@ -499,13 +521,24 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
+    /// The type URL for `FoundationModelTuningOptions`: `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.FoundationModelTuningOptions"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.FoundationModelTuningOptions"
     }
+
+    /// Initialize an instance of `FoundationModelTuningOptions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.FoundationModelTuningOptions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FoundationModelTuningOptions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -520,12 +553,23 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       TrainProcessorVersionRequest.FoundationModelTuningOptions)
   }
 
+  /// The type URL for `TrainProcessorVersionRequest`: `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest"
   }
+
+  /// Initialize an instance of `TrainProcessorVersionRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TrainProcessorVersionRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

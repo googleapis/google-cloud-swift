@@ -83,7 +83,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   ///
   /// - Parameter error: The error to evaluate.
   /// - Returns: `true` for HTTP 5xx, 429, 408, or network-level errors; `false` for 4xx client errors.
-  static func isRetryable(_ error: Error) -> Bool {
+  static func isRetryable(_ error: any Error) -> Bool {
     if let authError = error as? AuthHTTPError, let status = authError.statusCode {
       return status >= 500 || status == 429 || status == 408
     }

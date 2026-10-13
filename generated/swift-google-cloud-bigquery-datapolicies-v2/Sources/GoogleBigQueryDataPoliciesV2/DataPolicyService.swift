@@ -347,7 +347,7 @@ extension Clients.DataPolicyServiceProtocol {
 
   public func listDataPoliciesByItems(
     request: ListDataPoliciesRequest
-  ) -> some AsyncSequence<DataPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataPolicy, any Swift.Error> & Sendable {
     self.listDataPoliciesByItems(request: request, options: .init())
   }
 
@@ -356,7 +356,7 @@ extension Clients.DataPolicyServiceProtocol {
   /// @Snippet(path: "DataPolicyService_ListDataPolicies")
   public func listDataPoliciesByItems(
     request: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<DataPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataPolicy, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryDataPoliciesV2.ListDataPoliciesResponse in
@@ -370,7 +370,7 @@ extension Clients.DataPolicyServiceProtocol {
 
   public func listDataPoliciesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<DataPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataPolicy, any Swift.Error> & Sendable {
     let request = ListDataPoliciesRequest().with {
       $0.parent = parent
     }

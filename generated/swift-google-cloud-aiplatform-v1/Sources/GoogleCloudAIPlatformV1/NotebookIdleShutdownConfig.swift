@@ -64,7 +64,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.idleTimeout = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .idleTimeout)
@@ -77,7 +77,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.idleTimeout, forKey: .idleTimeout)
       try container.encode(self.idleShutdownDisabled, forKey: .idleShutdownDisabled)
@@ -86,12 +86,23 @@
       }
     }
 
+    /// The type URL for `NotebookIdleShutdownConfig`: `"type.googleapis.com/google.cloud.aiplatform.v1.NotebookIdleShutdownConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.NotebookIdleShutdownConfig"
     }
+
+    /// Initialize an instance of `NotebookIdleShutdownConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.NotebookIdleShutdownConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `NotebookIdleShutdownConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

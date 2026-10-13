@@ -27,8 +27,8 @@ import Foundation
 /// @Snippet(path: "EnvironmentsQuickstart")
 public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   let inner: any Clients.EnvironmentsStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `EnvironmentsClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -783,7 +783,7 @@ extension Clients.EnvironmentsProtocol {
 
   public func listEnvironmentsByItems(
     request: ListEnvironmentsRequest
-  ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
     self.listEnvironmentsByItems(request: request, options: .init())
   }
 
@@ -792,7 +792,7 @@ extension Clients.EnvironmentsProtocol {
   /// @Snippet(path: "Environments_ListEnvironments")
   public func listEnvironmentsByItems(
     request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse in
@@ -806,7 +806,7 @@ extension Clients.EnvironmentsProtocol {
 
   public func listEnvironmentsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Environment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Environment, any Swift.Error> & Sendable {
     let request = ListEnvironmentsRequest().with {
       $0.parent = parent
     }
@@ -931,7 +931,7 @@ extension Clients.EnvironmentsProtocol {
 
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest
-  ) -> some AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ListWorkloadsResponse.ComposerWorkload, any Swift.Error> & Sendable {
     self.listWorkloadsByItems(request: request, options: .init())
   }
 
@@ -944,7 +944,7 @@ extension Clients.EnvironmentsProtocol {
   /// @Snippet(path: "Environments_ListWorkloads")
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ListWorkloadsResponse.ComposerWorkload, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse in
@@ -958,7 +958,7 @@ extension Clients.EnvironmentsProtocol {
 
   public func listWorkloadsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ListWorkloadsResponse.ComposerWorkload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ListWorkloadsResponse.ComposerWorkload, any Swift.Error> & Sendable {
     let request = ListWorkloadsRequest().with {
       $0.parent = parent
     }
@@ -1046,7 +1046,7 @@ extension Clients.EnvironmentsProtocol {
 
   public func listUserWorkloadsSecretsByItems(
     request: ListUserWorkloadsSecretsRequest
-  ) -> some AsyncSequence<UserWorkloadsSecret, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<UserWorkloadsSecret, any Swift.Error> & Sendable {
     self.listUserWorkloadsSecretsByItems(request: request, options: .init())
   }
 
@@ -1058,7 +1058,7 @@ extension Clients.EnvironmentsProtocol {
   /// @Snippet(path: "Environments_ListUserWorkloadsSecrets")
   public func listUserWorkloadsSecretsByItems(
     request: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<UserWorkloadsSecret, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<UserWorkloadsSecret, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse in
@@ -1072,7 +1072,7 @@ extension Clients.EnvironmentsProtocol {
 
   public func listUserWorkloadsSecretsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<UserWorkloadsSecret, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<UserWorkloadsSecret, any Swift.Error> & Sendable {
     let request = ListUserWorkloadsSecretsRequest().with {
       $0.parent = parent
     }
@@ -1177,7 +1177,7 @@ extension Clients.EnvironmentsProtocol {
 
   public func listUserWorkloadsConfigMapsByItems(
     request: ListUserWorkloadsConfigMapsRequest
-  ) -> some AsyncSequence<UserWorkloadsConfigMap, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<UserWorkloadsConfigMap, any Swift.Error> & Sendable {
     self.listUserWorkloadsConfigMapsByItems(request: request, options: .init())
   }
 
@@ -1189,7 +1189,7 @@ extension Clients.EnvironmentsProtocol {
   /// @Snippet(path: "Environments_ListUserWorkloadsConfigMaps")
   public func listUserWorkloadsConfigMapsByItems(
     request: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<UserWorkloadsConfigMap, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<UserWorkloadsConfigMap, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse in
@@ -1203,7 +1203,7 @@ extension Clients.EnvironmentsProtocol {
 
   public func listUserWorkloadsConfigMapsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<UserWorkloadsConfigMap, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<UserWorkloadsConfigMap, any Swift.Error> & Sendable {
     let request = ListUserWorkloadsConfigMapsRequest().with {
       $0.parent = parent
     }
@@ -1348,7 +1348,7 @@ extension Clients.EnvironmentsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1359,7 +1359,7 @@ extension Clients.EnvironmentsProtocol {
   /// @Snippet(path: "Environments_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1373,7 +1373,7 @@ extension Clients.EnvironmentsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

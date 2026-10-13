@@ -67,7 +67,7 @@ public struct RetryInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.retryDelay = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .retryDelay)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
@@ -76,7 +76,7 @@ public struct RetryInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.retryDelay, forKey: .retryDelay)
     for (key, value) in self._unknownFields.json {
@@ -84,12 +84,23 @@ public struct RetryInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `RetryInfo`: `"type.googleapis.com/google.rpc.RetryInfo"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.rpc.RetryInfo"
   }
+
+  /// Initialize an instance of `RetryInfo` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.rpc.RetryInfo"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RetryInfo` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -74,7 +74,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [OrgPolicyOverlay.PolicyOverlay].self, forKey: .policies)
@@ -92,7 +92,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.policies, forKey: .policies)
     try container.encode(self.customConstraints, forKey: .customConstraints)
@@ -145,7 +145,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .policyParent) {
         self.policyParent = value
@@ -158,7 +158,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.policyParent, forKey: .policyParent)
       try container.encodeIfPresent(self.policy, forKey: .policy)
@@ -167,12 +167,23 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `PolicyOverlay`: `"type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay.PolicyOverlay"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay.PolicyOverlay"
     }
+
+    /// Initialize an instance of `PolicyOverlay` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay.PolicyOverlay"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PolicyOverlay` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -222,7 +233,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.String.self, forKey: .customConstraintParent)
@@ -237,7 +248,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.customConstraintParent, forKey: .customConstraintParent)
       try container.encodeIfPresent(self.customConstraint, forKey: .customConstraint)
@@ -246,24 +257,46 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `CustomConstraintOverlay`: `"type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay.CustomConstraintOverlay"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay.CustomConstraintOverlay"
     }
+
+    /// Initialize an instance of `CustomConstraintOverlay` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay.CustomConstraintOverlay"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CustomConstraintOverlay` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `OrgPolicyOverlay`: `"type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay"
   }
+
+  /// Initialize an instance of `OrgPolicyOverlay` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `OrgPolicyOverlay` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

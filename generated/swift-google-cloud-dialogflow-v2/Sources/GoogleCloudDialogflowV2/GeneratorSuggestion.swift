@@ -65,7 +65,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [GeneratorSuggestion.ToolCallInfo].self, forKey: .toolCallInfo)
@@ -105,7 +105,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.toolCallInfo, forKey: .toolCallInfo)
 
@@ -167,7 +167,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.toolCall = try container.decodeIfPresent(ToolCall.self, forKey: .toolCall)
         self.toolCallResult = try container.decodeIfPresent(
@@ -178,7 +178,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.toolCall, forKey: .toolCall)
         try container.encodeIfPresent(self.toolCallResult, forKey: .toolCallResult)
@@ -187,12 +187,23 @@
         }
       }
 
+      /// The type URL for `ToolCallInfo`: `"type.googleapis.com/google.cloud.dialogflow.v2.GeneratorSuggestion.ToolCallInfo"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.GeneratorSuggestion.ToolCallInfo"
       }
+
+      /// Initialize an instance of `ToolCallInfo` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.GeneratorSuggestion.ToolCallInfo"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ToolCallInfo` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -208,12 +219,23 @@
       indirect case agentCoachingSuggestion(AgentCoachingSuggestion)
     }
 
+    /// The type URL for `GeneratorSuggestion`: `"type.googleapis.com/google.cloud.dialogflow.v2.GeneratorSuggestion"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.GeneratorSuggestion"
     }
+
+    /// Initialize an instance of `GeneratorSuggestion` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.GeneratorSuggestion"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GeneratorSuggestion` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

@@ -29,8 +29,8 @@ import Foundation
 /// @Snippet(path: "BlockchainNodeEngineQuickstart")
 public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProtocol, Sendable {
   let inner: any Clients.BlockchainNodeEngineStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `BlockchainNodeEngineClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -326,7 +326,7 @@ extension Clients.BlockchainNodeEngineProtocol {
 
   public func listBlockchainNodesByItems(
     request: ListBlockchainNodesRequest
-  ) -> some AsyncSequence<BlockchainNode, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BlockchainNode, any Swift.Error> & Sendable {
     self.listBlockchainNodesByItems(request: request, options: .init())
   }
 
@@ -335,7 +335,7 @@ extension Clients.BlockchainNodeEngineProtocol {
   /// @Snippet(path: "BlockchainNodeEngine_ListBlockchainNodes")
   public func listBlockchainNodesByItems(
     request: ListBlockchainNodesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<BlockchainNode, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BlockchainNode, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBlockChainNodeEngineV1.ListBlockchainNodesResponse in
@@ -349,7 +349,7 @@ extension Clients.BlockchainNodeEngineProtocol {
 
   public func listBlockchainNodesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<BlockchainNode, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BlockchainNode, any Swift.Error> & Sendable {
     let request = ListBlockchainNodesRequest().with {
       $0.parent = parent
     }
@@ -496,7 +496,7 @@ extension Clients.BlockchainNodeEngineProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -505,7 +505,7 @@ extension Clients.BlockchainNodeEngineProtocol {
   /// @Snippet(path: "BlockchainNodeEngine_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -542,7 +542,7 @@ extension Clients.BlockchainNodeEngineProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -553,7 +553,7 @@ extension Clients.BlockchainNodeEngineProtocol {
   /// @Snippet(path: "BlockchainNodeEngine_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -567,7 +567,7 @@ extension Clients.BlockchainNodeEngineProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

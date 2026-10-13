@@ -90,7 +90,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       CrossClusterReplicationConfig.ClusterRole.self, forKey: .clusterRole)
@@ -114,7 +114,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.clusterRole, forKey: .clusterRole)
     try container.encodeIfPresent(self.primaryCluster, forKey: .primaryCluster)
@@ -171,7 +171,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .cluster) {
         self.cluster = value
@@ -185,7 +185,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.cluster, forKey: .cluster)
       try container.encode(self.uid, forKey: .uid)
@@ -194,13 +194,24 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
+    /// The type URL for `RemoteCluster`: `"type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.RemoteCluster"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.RemoteCluster"
     }
+
+    /// Initialize an instance of `RemoteCluster` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.RemoteCluster"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RemoteCluster` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -252,7 +263,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.primaryCluster = try container.decodeIfPresent(
         CrossClusterReplicationConfig.RemoteCluster.self, forKey: .primaryCluster)
@@ -267,7 +278,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.primaryCluster, forKey: .primaryCluster)
       try container.encode(self.secondaryClusters, forKey: .secondaryClusters)
@@ -276,13 +287,24 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
+    /// The type URL for `Membership`: `"type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.Membership"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.Membership"
     }
+
+    /// Initialize an instance of `Membership` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.Membership"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Membership` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -385,7 +407,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -403,7 +425,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("CLUSTER_ROLE_UNSPECIFIED")
@@ -416,12 +438,23 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `CrossClusterReplicationConfig`: `"type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig"
   }
+
+  /// Initialize an instance of `CrossClusterReplicationConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CrossClusterReplicationConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

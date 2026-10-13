@@ -31,8 +31,8 @@ import Foundation
 /// @Snippet(path: "AddressGroupServiceQuickstart")
 public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtocol, Sendable {
   let inner: any Clients.AddressGroupServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `AddressGroupServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -553,7 +553,7 @@ extension Clients.AddressGroupServiceProtocol {
 
   public func listAddressGroupsByItems(
     request: ListAddressGroupsRequest
-  ) -> some AsyncSequence<AddressGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AddressGroup, any Swift.Error> & Sendable {
     self.listAddressGroupsByItems(request: request, options: .init())
   }
 
@@ -562,7 +562,7 @@ extension Clients.AddressGroupServiceProtocol {
   /// @Snippet(path: "AddressGroupService_ListAddressGroups")
   public func listAddressGroupsByItems(
     request: ListAddressGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<AddressGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AddressGroup, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListAddressGroupsResponse in
@@ -576,7 +576,7 @@ extension Clients.AddressGroupServiceProtocol {
 
   public func listAddressGroupsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<AddressGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AddressGroup, any Swift.Error> & Sendable {
     let request = ListAddressGroupsRequest().with {
       $0.parent = parent
     }
@@ -827,7 +827,7 @@ extension Clients.AddressGroupServiceProtocol {
 
   public func listAddressGroupReferencesByItems(
     request: ListAddressGroupReferencesRequest
-  ) -> some AsyncSequence<ListAddressGroupReferencesResponse.AddressGroupReference, Swift.Error>
+  ) -> some AsyncSequence<ListAddressGroupReferencesResponse.AddressGroupReference, any Swift.Error>
     & Sendable
   {
     self.listAddressGroupReferencesByItems(request: request, options: .init())
@@ -838,7 +838,7 @@ extension Clients.AddressGroupServiceProtocol {
   /// @Snippet(path: "AddressGroupService_ListAddressGroupReferences")
   public func listAddressGroupReferencesByItems(
     request: ListAddressGroupReferencesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ListAddressGroupReferencesResponse.AddressGroupReference, Swift.Error>
+  ) -> some AsyncSequence<ListAddressGroupReferencesResponse.AddressGroupReference, any Swift.Error>
     & Sendable
   {
     let listRpc = {
@@ -854,7 +854,7 @@ extension Clients.AddressGroupServiceProtocol {
 
   public func listAddressGroupReferencesByItems(
     addressGroup: Swift.String,
-  ) -> some AsyncSequence<ListAddressGroupReferencesResponse.AddressGroupReference, Swift.Error>
+  ) -> some AsyncSequence<ListAddressGroupReferencesResponse.AddressGroupReference, any Swift.Error>
     & Sendable
   {
     let request = ListAddressGroupReferencesRequest().with {
@@ -877,7 +877,7 @@ extension Clients.AddressGroupServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -903,7 +903,7 @@ extension Clients.AddressGroupServiceProtocol {
   /// @Snippet(path: "AddressGroupService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -976,7 +976,7 @@ extension Clients.AddressGroupServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -987,7 +987,7 @@ extension Clients.AddressGroupServiceProtocol {
   /// @Snippet(path: "AddressGroupService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1001,7 +1001,7 @@ extension Clients.AddressGroupServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

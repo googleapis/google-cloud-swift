@@ -65,7 +65,7 @@ public struct DailyMaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .startTime) {
       self.startTime = value
@@ -79,7 +79,7 @@ public struct DailyMaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.startTime, forKey: .startTime)
     try container.encode(self.duration, forKey: .duration)
@@ -88,12 +88,23 @@ public struct DailyMaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `DailyMaintenanceWindow`: `"type.googleapis.com/google.container.v1.DailyMaintenanceWindow"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.DailyMaintenanceWindow"
   }
+
+  /// Initialize an instance of `DailyMaintenanceWindow` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.DailyMaintenanceWindow"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DailyMaintenanceWindow` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

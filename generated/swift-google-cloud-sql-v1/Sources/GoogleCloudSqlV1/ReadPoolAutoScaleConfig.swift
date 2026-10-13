@@ -87,7 +87,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
       self.minNodeCount = try container.decodeIfPresent(Swift.Int32.self, forKey: .minNodeCount)
@@ -108,7 +108,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.enabled, forKey: .enabled)
       try container.encodeIfPresent(self.minNodeCount, forKey: .minNodeCount)
@@ -165,7 +165,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.metric = try container.decodeIfPresent(Swift.String.self, forKey: .metric)
         self.targetValue = try container.decodeIfPresent(Swift.Float.self, forKey: .targetValue)
@@ -175,7 +175,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.metric, forKey: .metric)
         try container.encodeIfPresent(self.targetValue, forKey: .targetValue)
@@ -184,23 +184,45 @@
         }
       }
 
+      /// The type URL for `TargetMetric`: `"type.googleapis.com/google.cloud.sql.v1.ReadPoolAutoScaleConfig.TargetMetric"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.ReadPoolAutoScaleConfig.TargetMetric"
       }
+
+      /// Initialize an instance of `TargetMetric` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.ReadPoolAutoScaleConfig.TargetMetric"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `TargetMetric` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `ReadPoolAutoScaleConfig`: `"type.googleapis.com/google.cloud.sql.v1.ReadPoolAutoScaleConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.ReadPoolAutoScaleConfig"
     }
+
+    /// Initialize an instance of `ReadPoolAutoScaleConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.ReadPoolAutoScaleConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ReadPoolAutoScaleConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

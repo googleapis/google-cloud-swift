@@ -29,8 +29,10 @@ public struct ListAppConnectorsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// If not specified, a default value of 50 will be used by the service.
   /// Regardless of the page_size value, the response may include a partial list
   /// and a caller should only rely on response's
-  /// [next_page_token][BeyondCorp.ListAppConnectorsResponse.next_page_token] to
-  /// determine if there are more instances left to be queried.
+  /// [next_page_token][google.cloud.beyondcorp.appconnectors.v1.ListAppConnectorsResponse.next_page_token]
+  /// to determine if there are more instances left to be queried.
+  ///
+  /// [google.cloud.beyondcorp.appconnectors.v1.ListAppConnectorsResponse.next_page_token]: <doc:ListAppConnectorsResponse/nextPageToken>
   public var pageSize: Swift.Int32 = Swift.Int32()
 
   /// Optional. The next_page_token value returned from a previous
@@ -85,7 +87,7 @@ public struct ListAppConnectorsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -108,7 +110,7 @@ public struct ListAppConnectorsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.pageSize, forKey: .pageSize)
@@ -120,12 +122,23 @@ public struct ListAppConnectorsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  /// The type URL for `ListAppConnectorsRequest`: `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ListAppConnectorsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ListAppConnectorsRequest"
   }
+
+  /// Initialize an instance of `ListAppConnectorsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ListAppConnectorsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ListAppConnectorsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

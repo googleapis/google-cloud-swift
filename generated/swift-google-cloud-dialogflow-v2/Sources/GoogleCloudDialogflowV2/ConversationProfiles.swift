@@ -32,8 +32,8 @@
   /// @Snippet(path: "ConversationProfilesQuickstart")
   public final class ConversationProfilesClient: Clients.ConversationProfilesProtocol, Sendable {
     let inner: any Clients.ConversationProfilesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ConversationProfilesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -414,7 +414,7 @@
 
     public func listConversationProfilesByItems(
       request: ListConversationProfilesRequest
-    ) -> some AsyncSequence<ConversationProfile, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationProfile, any Swift.Error> & Sendable {
       self.listConversationProfilesByItems(request: request, options: .init())
     }
 
@@ -423,7 +423,7 @@
     /// @Snippet(path: "ConversationProfiles_ListConversationProfiles")
     public func listConversationProfilesByItems(
       request: ListConversationProfilesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ConversationProfile, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationProfile, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowV2.ListConversationProfilesResponse in
@@ -437,7 +437,7 @@
 
     public func listConversationProfilesByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<ConversationProfile, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationProfile, any Swift.Error> & Sendable {
       let request = ListConversationProfilesRequest().with {
         $0.parent = parent
       }
@@ -638,7 +638,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -664,7 +664,7 @@
     /// @Snippet(path: "ConversationProfiles_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -701,7 +701,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -712,7 +712,7 @@
     /// @Snippet(path: "ConversationProfiles_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -726,7 +726,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

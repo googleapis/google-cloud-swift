@@ -107,7 +107,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -142,7 +142,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
@@ -202,7 +202,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dashboardQuery) {
         self.dashboardQuery = value
@@ -216,7 +216,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dashboardQuery, forKey: .dashboardQuery)
       try container.encode(self.dataSources, forKey: .dataSources)
@@ -225,12 +225,23 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ChartDatasource`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.ChartDatasource"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.ChartDatasource"
     }
+
+    /// Initialize an instance of `ChartDatasource` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.ChartDatasource"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ChartDatasource` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -337,7 +348,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [DashboardChart.Visualization.Axis].self, forKey: .xAxes)
@@ -394,7 +405,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.xAxes, forKey: .xAxes)
       try container.encode(self.yAxes, forKey: .yAxes)
@@ -467,7 +478,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(AxisType.self, forKey: .axisType) {
           self.axisType = value
@@ -483,7 +494,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.axisType, forKey: .axisType)
         try container.encode(self.displayName, forKey: .displayName)
@@ -494,12 +505,23 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Axis`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Axis"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Axis"
       }
+
+      /// Initialize an instance of `Axis` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Axis"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Axis` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -615,7 +637,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(SeriesType.self, forKey: .seriesType) {
           self.seriesType = value
@@ -670,7 +692,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.seriesType, forKey: .seriesType)
         try container.encode(self.seriesName, forKey: .seriesName)
@@ -746,7 +768,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .x) {
             self.x = value
@@ -766,7 +788,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.x, forKey: .x)
           try container.encode(self.y, forKey: .y)
@@ -777,13 +799,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `Encode`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.Encode"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.Encode"
         }
+
+        /// Initialize an instance of `Encode` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.Encode"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `Encode` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -827,7 +860,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .show) {
             self.show = value
@@ -838,7 +871,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.show, forKey: .show)
           for (key, value) in self._unknownFields.json {
@@ -846,13 +879,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `DataLabel`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.DataLabel"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.DataLabel"
         }
+
+        /// Initialize an instance of `DataLabel` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.DataLabel"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `DataLabel` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -906,7 +950,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .borderWidth) {
             self.borderWidth = value
@@ -923,7 +967,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.borderWidth, forKey: .borderWidth)
           try container.encode(self.borderColor, forKey: .borderColor)
@@ -933,13 +977,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `ItemStyle`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ItemStyle"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ItemStyle"
         }
+
+        /// Initialize an instance of `ItemStyle` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ItemStyle"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `ItemStyle` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1013,7 +1068,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
             self.color = value
@@ -1042,7 +1097,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.color, forKey: .color)
           try container.encode(self.origin, forKey: .origin)
@@ -1056,13 +1111,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `AreaStyle`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.AreaStyle"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.AreaStyle"
         }
+
+        /// Initialize an instance of `AreaStyle` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.AreaStyle"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `AreaStyle` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1111,7 +1177,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .color) {
             self.color = value
@@ -1125,7 +1191,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.color, forKey: .color)
           try container.encode(self.label, forKey: .label)
@@ -1134,13 +1200,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `UserSelectedValues`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.UserSelectedValues"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.UserSelectedValues"
         }
+
+        /// Initialize an instance of `UserSelectedValues` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.UserSelectedValues"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `UserSelectedValues` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1189,7 +1266,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
             self.key = value
@@ -1202,7 +1279,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.key, forKey: .key)
           try container.encodeIfPresent(self.value, forKey: .value)
@@ -1211,13 +1288,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `ChartSliceColor`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ChartSliceColor"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ChartSliceColor"
         }
+
+        /// Initialize an instance of `ChartSliceColor` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ChartSliceColor"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `ChartSliceColor` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1261,7 +1349,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [DashboardChart.Visualization.Series.ChartSliceColor].self, forKey: .colors)
@@ -1274,7 +1362,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.colors, forKey: .colors)
           for (key, value) in self._unknownFields.json {
@@ -1282,13 +1370,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `ItemColors`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ItemColors"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ItemColors"
         }
+
+        /// Initialize an instance of `ItemColors` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ItemColors"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `ItemColors` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1337,7 +1436,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .value) {
             self.value = value
@@ -1351,7 +1450,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.value, forKey: .value)
           try container.encode(self.color, forKey: .color)
@@ -1360,13 +1459,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `GaugeValue`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.GaugeValue"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.GaugeValue"
         }
+
+        /// Initialize an instance of `GaugeValue` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.GaugeValue"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `GaugeValue` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1420,7 +1530,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.baseValue = try container.decodeIfPresent(
             DashboardChart.Visualization.Series.GaugeValue.self, forKey: .baseValue)
@@ -1437,7 +1547,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.baseValue, forKey: .baseValue)
           try container.encodeIfPresent(self.limitValue, forKey: .limitValue)
@@ -1447,13 +1557,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `GaugeConfig`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.GaugeConfig"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.GaugeConfig"
         }
+
+        /// Initialize an instance of `GaugeConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.GaugeConfig"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `GaugeConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1514,7 +1635,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(MetricFormat.self, forKey: .metricFormat) {
             self.metricFormat = value
@@ -1538,7 +1659,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.metricFormat, forKey: .metricFormat)
           try container.encode(self.showMetricTrend, forKey: .showMetricTrend)
@@ -1549,24 +1670,46 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `MetricTrendConfig`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.MetricTrendConfig"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.MetricTrendConfig"
         }
+
+        /// Initialize an instance of `MetricTrendConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.MetricTrendConfig"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `MetricTrendConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `Series`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series"
       }
+
+      /// Initialize an instance of `Series` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Series` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1612,7 +1755,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .show) {
           self.show = value
@@ -1626,7 +1769,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.show, forKey: .show)
         try container.encode(self.tooltipTrigger, forKey: .tooltipTrigger)
@@ -1635,12 +1778,23 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Tooltip`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Tooltip"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Tooltip"
       }
+
+      /// Initialize an instance of `Tooltip` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Tooltip"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Tooltip` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1722,7 +1876,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
           self.id = value
@@ -1763,7 +1917,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.show, forKey: .show)
@@ -1781,12 +1935,23 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `Legend`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Legend"`.
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Legend"
       }
+
+      /// Initialize an instance of `Legend` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Legend"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Legend` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1835,7 +2000,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
           self.field = value
@@ -1849,7 +2014,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.field, forKey: .field)
         try container.encode(self.header, forKey: .header)
@@ -1858,13 +2023,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ColumnDef`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnDef"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnDef"
       }
+
+      /// Initialize an instance of `ColumnDef` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnDef"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ColumnDef` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1914,7 +2090,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
           self.field = value
@@ -1928,7 +2104,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.field, forKey: .field)
         try container.encode(self.columnRenderType, forKey: .columnRenderType)
@@ -1937,13 +2113,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ColumnRenderTypeSettings`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnRenderTypeSettings"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnRenderTypeSettings"
       }
+
+      /// Initialize an instance of `ColumnRenderTypeSettings` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnRenderTypeSettings"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ColumnRenderTypeSettings` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1997,7 +2184,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .field) {
           self.field = value
@@ -2015,7 +2202,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.field, forKey: .field)
         try container.encode(self.headerTooltipText, forKey: .headerTooltipText)
@@ -2025,13 +2212,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `ColumnTooltipSettings`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnTooltipSettings"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnTooltipSettings"
       }
+
+      /// Initialize an instance of `ColumnTooltipSettings` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnTooltipSettings"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ColumnTooltipSettings` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -2086,7 +2284,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enableTextWrap) {
           self.enableTextWrap = value
@@ -2108,7 +2306,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.enableTextWrap, forKey: .enableTextWrap)
         try container.encode(self.columnRenderTypeSettings, forKey: .columnRenderTypeSettings)
@@ -2118,13 +2316,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `TableConfig`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.TableConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.TableConfig"
       }
+
+      /// Initialize an instance of `TableConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.TableConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `TableConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -2184,7 +2393,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.dataSettings = try container.decodeIfPresent(
           DashboardChart.Visualization.GoogleMapsConfig.DataSettings.self, forKey: .dataSettings)
@@ -2201,7 +2410,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.dataSettings, forKey: .dataSettings)
         try container.encode(self.plotMode, forKey: .plotMode)
@@ -2260,7 +2469,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .latitudeColumn) {
             self.latitudeColumn = value
@@ -2278,7 +2487,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.latitudeColumn, forKey: .latitudeColumn)
           try container.encode(self.longitudeColumn, forKey: .longitudeColumn)
@@ -2288,13 +2497,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `DataSettings`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.DataSettings"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.DataSettings"
         }
+
+        /// Initialize an instance of `DataSettings` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.DataSettings"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `DataSettings` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -2355,7 +2575,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .fitData) {
             self.fitData = value
@@ -2375,7 +2595,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.fitData, forKey: .fitData)
           try container.encode(self.latitudeValue, forKey: .latitudeValue)
@@ -2386,13 +2606,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `MapPosition`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.MapPosition"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.MapPosition"
         }
+
+        /// Initialize an instance of `MapPosition` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.MapPosition"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `MapPosition` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -2442,7 +2673,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(PointSizeType.self, forKey: .pointSizeType) {
             self.pointSizeType = value
@@ -2456,7 +2687,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.pointSizeType, forKey: .pointSizeType)
           try container.encode(self.color, forKey: .color)
@@ -2465,25 +2696,47 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `PointSettings`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.PointSettings"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.PointSettings"
         }
+
+        /// Initialize an instance of `PointSettings` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.PointSettings"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `PointSettings` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `GoogleMapsConfig`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig"
       }
+
+      /// Initialize an instance of `GoogleMapsConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `GoogleMapsConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -2534,7 +2787,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(VisualMapType.self, forKey: .visualMapType) {
           self.visualMapType = value
@@ -2550,7 +2803,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.visualMapType, forKey: .visualMapType)
         try container.encode(self.pieces, forKey: .pieces)
@@ -2614,7 +2867,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.min = try container.decodeIfPresent(Swift.Int64.self, forKey: .min)
           self.max = try container.decodeIfPresent(Swift.Int64.self, forKey: .max)
@@ -2630,7 +2883,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encodeIfPresent(self.min, forKey: .min)
           try container.encodeIfPresent(self.max, forKey: .max)
@@ -2641,36 +2894,69 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `VisualMapPiece`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.VisualMap.VisualMapPiece"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.VisualMap.VisualMapPiece"
         }
+
+        /// Initialize an instance of `VisualMapPiece` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.VisualMap.VisualMapPiece"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `VisualMapPiece` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
       }
 
+      /// The type URL for `VisualMap`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.VisualMap"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.VisualMap"
       }
+
+      /// Initialize an instance of `VisualMap` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.VisualMap"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `VisualMap` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `Visualization`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization"
     }
+
+    /// Initialize an instance of `Visualization` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Visualization` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -2719,7 +3005,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [DashboardChart.DrillDownConfig.DrillDown].self, forKey: .leftDrillDowns)
@@ -2737,7 +3023,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.leftDrillDowns, forKey: .leftDrillDowns)
       try container.encode(self.rightDrillDowns, forKey: .rightDrillDowns)
@@ -2796,7 +3082,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
           self.id = value
@@ -2834,7 +3120,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.displayName, forKey: .displayName)
@@ -2890,7 +3176,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
             self.enabled = value
@@ -2901,7 +3187,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.enabled, forKey: .enabled)
           for (key, value) in self._unknownFields.json {
@@ -2909,13 +3195,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `DefaultDrillDownSettings`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings"
         }
+
+        /// Initialize an instance of `DefaultDrillDownSettings` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `DefaultDrillDownSettings` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -2974,7 +3271,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .newTab) {
             self.newTab = value
@@ -3019,7 +3316,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.newTab, forKey: .newTab)
           try container.encode(self.leftClickColumn, forKey: .leftClickColumn)
@@ -3077,7 +3374,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
               self.query = value
@@ -3088,7 +3385,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.query, forKey: .query)
             for (key, value) in self._unknownFields.json {
@@ -3096,13 +3393,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
+          /// The type URL for `DrillDownQuery`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery"
           }
+
+          /// Initialize an instance of `DrillDownQuery` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `DrillDownQuery` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
@@ -3148,7 +3456,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(
               [
@@ -3164,7 +3472,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.dashboardFilters, forKey: .dashboardFilters)
             for (key, value) in self._unknownFields.json {
@@ -3217,7 +3525,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
               ]
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
               let container = try decoder.container(keyedBy: CodingKeys.self)
               if let value = try container.decodeIfPresent(
                 Swift.String.self, forKey: .dashboardFilterId)
@@ -3235,7 +3543,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
               }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
               var container = encoder.container(keyedBy: CodingKeys.self)
               try container.encode(self.dashboardFilterId, forKey: .dashboardFilterId)
               try container.encode(self.filterOperatorAndValues, forKey: .filterOperatorAndValues)
@@ -3244,25 +3552,47 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
               }
             }
 
+            /// The type URL for `DrillDownDashboardFilter`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter.DrillDownDashboardFilter"`.
             public static var _anyTypeUrl: Swift.String {
               return
                 "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter.DrillDownDashboardFilter"
             }
+
+            /// Initialize an instance of `DrillDownDashboardFilter` by unpacking from a `GoogleWKT.WKTAny`.
+            ///
+            /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+            /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter.DrillDownDashboardFilter"`,
+            ///   or if deserialization fails.
             public init(fromAny any: GoogleWKT.WKTAny) throws {
               self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
             }
+
+            /// Packs this `DrillDownDashboardFilter` into a `GoogleWKT.WKTStruct` representation.
+            ///
+            /// - Throws: An error if serialization fails.
             public func _pack() throws -> GoogleWKT.WKTStruct {
               return try GoogleWKT._slowAnySerialize(message: self)
             }
           }
 
+          /// The type URL for `DrillDownFilter`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter"
           }
+
+          /// Initialize an instance of `DrillDownFilter` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `DrillDownFilter` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
@@ -3311,7 +3641,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .link) {
               self.link = value
@@ -3325,7 +3655,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.link, forKey: .link)
             try container.encode(self.description, forKey: .description)
@@ -3334,13 +3664,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
+          /// The type URL for `DrillDownExternalLink`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownExternalLink"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownExternalLink"
           }
+
+          /// Initialize an instance of `DrillDownExternalLink` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownExternalLink"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `DrillDownExternalLink` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
@@ -3359,13 +3700,24 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownExternalLink)
         }
 
+        /// The type URL for `CustomDrillDownSettings`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings"
         }
+
+        /// Initialize an instance of `CustomDrillDownSettings` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `CustomDrillDownSettings` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -3381,35 +3733,68 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings)
       }
 
+      /// The type URL for `DrillDown`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown"
       }
+
+      /// Initialize an instance of `DrillDown` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `DrillDown` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `DrillDownConfig`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig"
     }
+
+    /// Initialize an instance of `DrillDownConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DrillDownConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `DashboardChart`: `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart"
   }
+
+  /// Initialize an instance of `DashboardChart` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.chronicle.v1.DashboardChart"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DashboardChart` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

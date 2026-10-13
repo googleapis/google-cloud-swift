@@ -28,8 +28,8 @@
   /// @Snippet(path: "ConversationModelsQuickstart")
   public final class ConversationModelsClient: Clients.ConversationModelsProtocol, Sendable {
     let inner: any Clients.ConversationModelsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ConversationModelsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -610,7 +610,7 @@
 
     public func listConversationModelsByItems(
       request: ListConversationModelsRequest
-    ) -> some AsyncSequence<ConversationModel, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationModel, any Swift.Error> & Sendable {
       self.listConversationModelsByItems(request: request, options: .init())
     }
 
@@ -619,7 +619,7 @@
     /// @Snippet(path: "ConversationModels_ListConversationModels")
     public func listConversationModelsByItems(
       request: ListConversationModelsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ConversationModel, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationModel, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowV2.ListConversationModelsResponse in
@@ -633,7 +633,7 @@
 
     public func listConversationModelsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<ConversationModel, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationModel, any Swift.Error> & Sendable {
       let request = ListConversationModelsRequest().with {
         $0.parent = parent
       }
@@ -756,7 +756,7 @@
 
     public func listConversationModelEvaluationsByItems(
       request: ListConversationModelEvaluationsRequest
-    ) -> some AsyncSequence<ConversationModelEvaluation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationModelEvaluation, any Swift.Error> & Sendable {
       self.listConversationModelEvaluationsByItems(request: request, options: .init())
     }
 
@@ -765,7 +765,7 @@
     /// @Snippet(path: "ConversationModels_ListConversationModelEvaluations")
     public func listConversationModelEvaluationsByItems(
       request: ListConversationModelEvaluationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ConversationModelEvaluation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationModelEvaluation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowV2.ListConversationModelEvaluationsResponse in
@@ -779,7 +779,7 @@
 
     public func listConversationModelEvaluationsByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<ConversationModelEvaluation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationModelEvaluation, any Swift.Error> & Sendable {
       let request = ListConversationModelEvaluationsRequest().with {
         $0.parent = parent
       }
@@ -836,7 +836,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -862,7 +862,7 @@
     /// @Snippet(path: "ConversationModels_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -899,7 +899,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -910,7 +910,7 @@
     /// @Snippet(path: "ConversationModels_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -924,7 +924,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

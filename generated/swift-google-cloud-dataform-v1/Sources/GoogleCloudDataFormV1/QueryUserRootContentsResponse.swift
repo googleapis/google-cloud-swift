@@ -62,7 +62,7 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [QueryUserRootContentsResponse.RootContentsEntry].self, forKey: .entries)
@@ -78,7 +78,7 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.entries, forKey: .entries)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -127,7 +127,7 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleWKT._AnyP
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var entry: EntryOneOf? = nil
@@ -153,7 +153,7 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.entry {
@@ -177,24 +177,46 @@ public struct QueryUserRootContentsResponse: Codable, Equatable, GoogleWKT._AnyP
       indirect case repository(Repository)
     }
 
+    /// The type URL for `RootContentsEntry`: `"type.googleapis.com/google.cloud.dataform.v1.QueryUserRootContentsResponse.RootContentsEntry"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataform.v1.QueryUserRootContentsResponse.RootContentsEntry"
     }
+
+    /// Initialize an instance of `RootContentsEntry` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.QueryUserRootContentsResponse.RootContentsEntry"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RootContentsEntry` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `QueryUserRootContentsResponse`: `"type.googleapis.com/google.cloud.dataform.v1.QueryUserRootContentsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.QueryUserRootContentsResponse"
   }
+
+  /// Initialize an instance of `QueryUserRootContentsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.QueryUserRootContentsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `QueryUserRootContentsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

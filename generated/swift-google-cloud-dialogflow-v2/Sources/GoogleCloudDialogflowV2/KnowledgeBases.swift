@@ -227,7 +227,7 @@
 
     public func listKnowledgeBasesByItems(
       request: ListKnowledgeBasesRequest
-    ) -> some AsyncSequence<KnowledgeBase, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<KnowledgeBase, any Swift.Error> & Sendable {
       self.listKnowledgeBasesByItems(request: request, options: .init())
     }
 
@@ -236,7 +236,7 @@
     /// @Snippet(path: "KnowledgeBases_ListKnowledgeBases")
     public func listKnowledgeBasesByItems(
       request: ListKnowledgeBasesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<KnowledgeBase, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<KnowledgeBase, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowV2.ListKnowledgeBasesResponse in
@@ -250,7 +250,7 @@
 
     public func listKnowledgeBasesByItems(
       parent: Swift.String,
-    ) -> some AsyncSequence<KnowledgeBase, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<KnowledgeBase, any Swift.Error> & Sendable {
       let request = ListKnowledgeBasesRequest().with {
         $0.parent = parent
       }
@@ -357,7 +357,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -383,7 +383,7 @@
     /// @Snippet(path: "KnowledgeBases_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -420,7 +420,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -431,7 +431,7 @@
     /// @Snippet(path: "KnowledgeBases_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -445,7 +445,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

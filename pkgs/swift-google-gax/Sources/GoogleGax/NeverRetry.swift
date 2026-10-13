@@ -23,7 +23,7 @@ public struct NeverRetry: RetryPolicy, Sendable, Equatable {
   public init() {}
 
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
-    .exhausted(error)
+    .permanent(error)
   }
 
   public func onThrottle(state: RetryState, error: RequestError) -> ThrottleResult {

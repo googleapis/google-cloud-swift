@@ -26,8 +26,8 @@
   /// @Snippet(path: "instantSnapshotsQuickstart")
   public final class InstantSnapshotsClient: Clients.InstantSnapshotsProtocol, Sendable {
     let inner: any Clients.InstantSnapshotsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstantSnapshotsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -77,6 +77,11 @@
     ///
     /// For more information, seeDeleting
     /// instantSnapshots.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instantSnapshots_delete")
     public func deletePollingUntilDone(
@@ -147,6 +152,11 @@
     }
 
     /// Creates an instant snapshot in the specified zone.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instantSnapshots_insert")
     public func insertPollingUntilDone(
@@ -222,6 +232,11 @@
     /// Sets the labels on a instantSnapshot in the given zone. To learn more about
     /// labels, read the Labeling
     /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instantSnapshots_setLabels")
     public func setLabelsPollingUntilDone(
@@ -300,6 +315,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstantSnapshotsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: InstantSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -320,6 +340,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstantSnapshotsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: InstantSnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -340,6 +365,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstantSnapshotsClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: InstantSnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -367,7 +397,8 @@
 
     public func aggregatedListByItems(
       request: InstantSnapshotsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstantSnapshotsScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -379,7 +410,8 @@
     /// @Snippet(path: "instantSnapshots_aggregatedList")
     public func aggregatedListByItems(
       request: InstantSnapshotsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstantSnapshotsScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstantSnapshotAggregatedList in
@@ -393,7 +425,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstantSnapshotsScopedList), any Swift.Error> & Sendable
+    {
       let request = InstantSnapshotsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -538,7 +571,7 @@
 
     public func listByItems(
       request: InstantSnapshotsClient.ListRequest
-    ) -> some AsyncSequence<InstantSnapshot, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstantSnapshot, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -548,7 +581,7 @@
     /// @Snippet(path: "instantSnapshots_list")
     public func listByItems(
       request: InstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstantSnapshot, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstantSnapshot, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotList in
         var request = request
@@ -562,7 +595,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<InstantSnapshot, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstantSnapshot, any Swift.Error> & Sendable {
       let request = InstantSnapshotsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

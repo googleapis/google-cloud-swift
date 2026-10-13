@@ -60,7 +60,7 @@ public struct SparseVector: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Swift.Float].self, forKey: .values) {
       self.values = value
@@ -74,7 +74,7 @@ public struct SparseVector: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.values, forKey: .values)
     try container.encode(self.indices, forKey: .indices)
@@ -83,12 +83,23 @@ public struct SparseVector: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `SparseVector`: `"type.googleapis.com/google.cloud.vectorsearch.v1.SparseVector"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.SparseVector"
   }
+
+  /// Initialize an instance of `SparseVector` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.vectorsearch.v1.SparseVector"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SparseVector` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

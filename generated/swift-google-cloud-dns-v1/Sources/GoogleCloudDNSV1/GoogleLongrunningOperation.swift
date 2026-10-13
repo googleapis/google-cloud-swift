@@ -75,7 +75,7 @@ public struct GoogleLongrunningOperation: Codable, Equatable, GoogleWKT._AnyPack
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.done = try container.decodeIfPresent(Swift.Bool.self, forKey: .done)
     self.error = try container.decodeIfPresent(GoogleCloudDNSV1.Status.self, forKey: .error)
@@ -88,7 +88,7 @@ public struct GoogleLongrunningOperation: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.done, forKey: .done)
     try container.encodeIfPresent(self.error, forKey: .error)
@@ -100,12 +100,23 @@ public struct GoogleLongrunningOperation: Codable, Equatable, GoogleWKT._AnyPack
     }
   }
 
+  /// The type URL for `GoogleLongrunningOperation`: `"type.googleapis.com/.GoogleLongrunningOperation"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.GoogleLongrunningOperation"
   }
+
+  /// Initialize an instance of `GoogleLongrunningOperation` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.GoogleLongrunningOperation"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GoogleLongrunningOperation` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

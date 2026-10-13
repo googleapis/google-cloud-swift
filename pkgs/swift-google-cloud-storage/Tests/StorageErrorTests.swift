@@ -55,6 +55,19 @@ import Testing
       error.debugDescription
         == "ReadObjectError.resumeFailed(bytesReceived: 1024, underlyingError: \(String(reflecting: underlying)))"
     )
+
+    if case .resumeFailed(let bytesReceived, _) = error,
+      let resumeRange = ReadObjectRange(fromOffset: bytesReceived)
+    {
+      let resumeOptions = ReadObjectOptions().with {
+        $0.range = resumeRange
+        $0.generation = 42
+      }
+      #expect(resumeOptions.range == ReadObjectRange(fromOffset: 1024))
+      #expect(resumeOptions.generation == 42)
+    } else {
+      Issue.record("Expected ReadObjectRange(fromOffset: bytesReceived) to succeed")
+    }
   }
 
   @Test func unexpectedServerResponse() {

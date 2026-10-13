@@ -26,8 +26,8 @@
   /// @Snippet(path: "targetTcpProxiesQuickstart")
   public final class TargetTcpProxiesClient: Clients.TargetTcpProxiesProtocol, Sendable {
     let inner: any Clients.TargetTcpProxiesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `TargetTcpProxiesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -64,6 +64,11 @@
     }
 
     /// Deletes the specified TargetTcpProxy resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetTcpProxies_delete")
     public func deletePollingUntilDone(
@@ -126,6 +131,11 @@
     /// Creates a TargetTcpProxy resource in the specified project using
     /// the data included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "targetTcpProxies_insert")
     public func insertPollingUntilDone(
       request: TargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -186,6 +196,11 @@
 
     /// Changes the BackendService for TargetTcpProxy.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "targetTcpProxies_setBackendService")
     public func setBackendServicePollingUntilDone(
       request: TargetTcpProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
@@ -235,6 +250,11 @@
     }
 
     /// Changes the ProxyHeaderType for TargetTcpProxy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetTcpProxies_setProxyHeader")
     public func setProxyHeaderPollingUntilDone(
@@ -312,6 +332,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetTcpProxiesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: TargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -327,6 +352,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetTcpProxiesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: TargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -342,6 +372,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetTcpProxiesClient.setBackendService`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setBackendServicePollingUntilDone(
         request: TargetTcpProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -352,6 +387,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetTcpProxiesClient.setProxyHeader`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setProxyHeaderPollingUntilDone(
         request: TargetTcpProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -379,7 +419,8 @@
 
     public func aggregatedListByItems(
       request: TargetTcpProxiesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -392,7 +433,8 @@
     /// @Snippet(path: "targetTcpProxies_aggregatedList")
     public func aggregatedListByItems(
       request: TargetTcpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.TargetTcpProxyAggregatedList in
@@ -406,7 +448,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), any Swift.Error> & Sendable
+    {
       let request = TargetTcpProxiesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -520,7 +563,7 @@
 
     public func listByItems(
       request: TargetTcpProxiesClient.ListRequest
-    ) -> some AsyncSequence<TargetTcpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -530,7 +573,7 @@
     /// @Snippet(path: "targetTcpProxies_list")
     public func listByItems(
       request: TargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<TargetTcpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetTcpProxyList in
         var request = request
@@ -543,7 +586,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<TargetTcpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
       let request = TargetTcpProxiesClient.ListRequest().with {
         $0.project = project
       }

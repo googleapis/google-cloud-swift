@@ -61,7 +61,7 @@ public struct HourlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.snapshotsToKeep = try container.decodeIfPresent(
       Swift.Double.self, forKey: .snapshotsToKeep)
@@ -72,7 +72,7 @@ public struct HourlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.snapshotsToKeep, forKey: .snapshotsToKeep)
     try container.encodeIfPresent(self.minute, forKey: .minute)
@@ -81,12 +81,23 @@ public struct HourlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `HourlySchedule`: `"type.googleapis.com/google.cloud.netapp.v1.HourlySchedule"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.HourlySchedule"
   }
+
+  /// Initialize an instance of `HourlySchedule` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.netapp.v1.HourlySchedule"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `HourlySchedule` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

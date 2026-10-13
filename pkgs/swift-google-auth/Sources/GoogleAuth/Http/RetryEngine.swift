@@ -105,7 +105,7 @@ enum RetryEngine: Sendable {
   /// - Throws: The last error encountered if attempts are exhausted or a non-retryable error occurs.
   static func retry<T: Sendable>(
     configuration: RetryConfiguration = .defaultConfiguration,
-    isRetryable: @Sendable (Error) -> Bool,
+    isRetryable: @Sendable (any Error) -> Bool,
     operation: @Sendable () async throws -> T
   ) async throws -> T {
     return try await retry(
@@ -126,7 +126,7 @@ enum RetryEngine: Sendable {
   static func retry<T: Sendable, C: Clock>(
     configuration: RetryConfiguration = .defaultConfiguration,
     clock: C,
-    isRetryable: @Sendable (Error) -> Bool,
+    isRetryable: @Sendable (any Error) -> Bool,
     operation: @Sendable () async throws -> T
   ) async throws -> T where C.Instant.Duration == Duration {
     var attempt = 1

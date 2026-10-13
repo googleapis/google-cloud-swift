@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionSslCertificatesQuickstart")
   public final class RegionSslCertificatesClient: Clients.RegionSslCertificatesProtocol, Sendable {
     let inner: any Clients.RegionSslCertificatesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionSslCertificatesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -52,6 +52,11 @@
     }
 
     /// Deletes the specified SslCertificate resource in the region.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSslCertificates_delete")
     public func deletePollingUntilDone(
@@ -116,6 +121,11 @@
 
     /// Creates a SslCertificate resource in the specified project and region using
     /// the data included in the request
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSslCertificates_insert")
     public func insertPollingUntilDone(
@@ -190,6 +200,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionSslCertificatesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionSslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -205,6 +220,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionSslCertificatesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionSslCertificatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -331,7 +351,7 @@
 
     public func listByItems(
       request: RegionSslCertificatesClient.ListRequest
-    ) -> some AsyncSequence<SslCertificate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslCertificate, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -341,7 +361,7 @@
     /// @Snippet(path: "regionSslCertificates_list")
     public func listByItems(
       request: RegionSslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<SslCertificate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslCertificate, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateList in
         var request = request
@@ -355,7 +375,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<SslCertificate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslCertificate, any Swift.Error> & Sendable {
       let request = RegionSslCertificatesClient.ListRequest().with {
         $0.project = project
         $0.region = region

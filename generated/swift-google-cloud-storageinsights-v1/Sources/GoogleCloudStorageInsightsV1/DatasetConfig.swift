@@ -164,7 +164,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -294,7 +294,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -383,7 +383,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .projectNumbers) {
         self.projectNumbers = value
@@ -394,7 +394,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.projectNumbers, forKey: .projectNumbers)
       for (key, value) in self._unknownFields.json {
@@ -402,12 +402,23 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SourceProjects`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.SourceProjects"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.SourceProjects"
     }
+
+    /// Initialize an instance of `SourceProjects` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.SourceProjects"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SourceProjects` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -451,7 +462,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.Int64].self, forKey: .folderNumbers) {
         self.folderNumbers = value
@@ -462,7 +473,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.folderNumbers, forKey: .folderNumbers)
       for (key, value) in self._unknownFields.json {
@@ -470,12 +481,23 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SourceFolders`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.SourceFolders"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.SourceFolders"
     }
+
+    /// Initialize an instance of `SourceFolders` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.SourceFolders"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SourceFolders` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -518,7 +540,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .locations) {
         self.locations = value
@@ -529,7 +551,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.locations, forKey: .locations)
       for (key, value) in self._unknownFields.json {
@@ -537,13 +559,24 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `CloudStorageLocations`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.CloudStorageLocations"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.CloudStorageLocations"
     }
+
+    /// Initialize an instance of `CloudStorageLocations` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.CloudStorageLocations"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CloudStorageLocations` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -586,7 +619,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [DatasetConfig.CloudStorageBuckets.CloudStorageBucket].self, forKey: .cloudStorageBuckets)
@@ -599,7 +632,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.cloudStorageBuckets, forKey: .cloudStorageBuckets)
       for (key, value) in self._unknownFields.json {
@@ -646,7 +679,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var cloudStorageBucket: CloudStorageBucketOneOf? = nil
@@ -674,7 +707,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.cloudStorageBucket {
@@ -698,24 +731,46 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         case bucketPrefixRegex(Swift.String)
       }
 
+      /// The type URL for `CloudStorageBucket`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.CloudStorageBuckets.CloudStorageBucket"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.CloudStorageBuckets.CloudStorageBucket"
       }
+
+      /// Initialize an instance of `CloudStorageBucket` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.CloudStorageBuckets.CloudStorageBucket"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `CloudStorageBucket` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `CloudStorageBuckets`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.CloudStorageBuckets"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.CloudStorageBuckets"
     }
+
+    /// Initialize an instance of `CloudStorageBuckets` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.CloudStorageBuckets"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CloudStorageBuckets` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -764,7 +819,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dataset) {
         self.dataset = value
@@ -778,7 +833,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.dataset, forKey: .dataset)
       try container.encode(self.linked, forKey: .linked)
@@ -787,12 +842,23 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `Link`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.Link"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.Link"
     }
+
+    /// Initialize an instance of `Link` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.Link"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Link` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -878,7 +944,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .validatedCount) {
         self.validatedCount = value
@@ -919,7 +985,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.validatedCount, forKey: .validatedCount)
       try container.encode(self.permissionDeniedCount, forKey: .permissionDeniedCount)
@@ -937,12 +1003,23 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `BucketErrors`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.BucketErrors"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.BucketErrors"
     }
+
+    /// Initialize an instance of `BucketErrors` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.BucketErrors"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BucketErrors` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1046,7 +1123,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.validatedCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .validatedCount)
       self.outsideOrgErrorCount = try container.decodeIfPresent(
@@ -1105,7 +1182,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.validatedCount, forKey: .validatedCount)
       try container.encodeIfPresent(self.outsideOrgErrorCount, forKey: .outsideOrgErrorCount)
@@ -1149,12 +1226,23 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       case destinationProjectCheckHasInternalError(Swift.Bool)
     }
 
+    /// The type URL for `ProjectErrors`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.ProjectErrors"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.ProjectErrors"
     }
+
+    /// Initialize an instance of `ProjectErrors` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.ProjectErrors"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ProjectErrors` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1203,7 +1291,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.bucketErrors = try container.decodeIfPresent(
         DatasetConfig.BucketErrors.self, forKey: .bucketErrors)
@@ -1215,7 +1303,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.bucketErrors, forKey: .bucketErrors)
       try container.encodeIfPresent(self.projectErrors, forKey: .projectErrors)
@@ -1224,13 +1312,24 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `ValidationErrorsBeforeIngestion`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.ValidationErrorsBeforeIngestion"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.ValidationErrorsBeforeIngestion"
     }
+
+    /// Initialize an instance of `ValidationErrorsBeforeIngestion` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig.ValidationErrorsBeforeIngestion"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ValidationErrorsBeforeIngestion` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1337,7 +1436,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -1355,7 +1454,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("CONFIG_STATE_UNSPECIFIED")
@@ -1405,12 +1504,23 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case excludeCloudStorageBuckets(DatasetConfig.CloudStorageBuckets)
   }
 
+  /// The type URL for `DatasetConfig`: `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig"
   }
+
+  /// Initialize an instance of `DatasetConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.storageinsights.v1.DatasetConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DatasetConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

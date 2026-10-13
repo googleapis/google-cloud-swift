@@ -26,8 +26,8 @@
   /// @Snippet(path: "firewallsQuickstart")
   public final class FirewallsClient: Clients.FirewallsProtocol, Sendable {
     let inner: any Clients.FirewallsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `FirewallsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -51,6 +51,11 @@
     }
 
     /// Deletes the specified firewall.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewalls_delete")
     public func deletePollingUntilDone(
@@ -112,6 +117,11 @@
 
     /// Creates a firewall rule in the specified project using the data
     /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewalls_insert")
     public func insertPollingUntilDone(
@@ -179,6 +189,11 @@
     /// semantics and uses theJSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "firewalls_patch")
     public func patchPollingUntilDone(
       request: FirewallsClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -244,6 +259,11 @@
     /// Note that all fields will be updated if using PUT, even fields that are not
     /// specified. To update individual fields, please use PATCH instead.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "firewalls_update")
     public func updatePollingUntilDone(
       request: FirewallsClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -306,6 +326,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FirewallsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: FirewallsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -321,6 +346,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FirewallsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: FirewallsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -336,6 +366,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FirewallsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: FirewallsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -351,6 +386,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `FirewallsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: FirewallsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -466,7 +506,7 @@
 
     public func listByItems(
       request: FirewallsClient.ListRequest
-    ) -> some AsyncSequence<Firewall, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Firewall, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -476,7 +516,7 @@
     /// @Snippet(path: "firewalls_list")
     public func listByItems(
       request: FirewallsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Firewall, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Firewall, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallList in
         var request = request
@@ -489,7 +529,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<Firewall, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Firewall, any Swift.Error> & Sendable {
       let request = FirewallsClient.ListRequest().with {
         $0.project = project
       }

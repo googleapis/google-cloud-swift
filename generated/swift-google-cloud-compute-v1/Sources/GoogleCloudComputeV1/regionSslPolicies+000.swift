@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionSslPoliciesQuickstart")
   public final class RegionSslPoliciesClient: Clients.RegionSslPoliciesProtocol, Sendable {
     let inner: any Clients.RegionSslPoliciesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionSslPoliciesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -55,6 +55,11 @@
     /// Deletes the specified SSL policy. The SSL policy resource can be deleted
     /// only if it is not in use by any TargetHttpsProxy or TargetSslProxy
     /// resources.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSslPolicies_delete")
     public func deletePollingUntilDone(
@@ -117,6 +122,11 @@
 
     /// Creates a new policy in the specified project and region using the data
     /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSslPolicies_insert")
     public func insertPollingUntilDone(
@@ -190,6 +200,11 @@
 
     /// Patches the specified SSL policy with the data included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionSslPolicies_patch")
     public func patchPollingUntilDone(
       request: RegionSslPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -253,6 +268,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionSslPoliciesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionSslPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -268,6 +288,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionSslPoliciesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionSslPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -289,6 +314,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionSslPoliciesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: RegionSslPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -410,7 +440,7 @@
 
     public func listByItems(
       request: RegionSslPoliciesClient.ListRequest
-    ) -> some AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslPolicy, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -420,7 +450,7 @@
     /// @Snippet(path: "regionSslPolicies_list")
     public func listByItems(
       request: RegionSslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslPolicy, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesList in
         var request = request
@@ -434,7 +464,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslPolicy, any Swift.Error> & Sendable {
       let request = RegionSslPoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region

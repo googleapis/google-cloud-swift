@@ -56,7 +56,7 @@ public struct FileHashes: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([Hash].self, forKey: .fileHash) {
       self.fileHash = value
@@ -67,7 +67,7 @@ public struct FileHashes: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.fileHash, forKey: .fileHash)
     for (key, value) in self._unknownFields.json {
@@ -75,12 +75,23 @@ public struct FileHashes: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `FileHashes`: `"type.googleapis.com/google.devtools.cloudbuild.v1.FileHashes"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.FileHashes"
   }
+
+  /// Initialize an instance of `FileHashes` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.FileHashes"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `FileHashes` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

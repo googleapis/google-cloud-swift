@@ -22,6 +22,9 @@ public struct ManagedZoneForwardingConfig: Codable, Equatable, GoogleWKT._AnyPac
 {
   public var kind: Swift.String? = nil
 
+  /// The list of outbound endpoints to use for queries.
+  public var outboundEndpoints: [ManagedZoneForwardingConfigOutboundEndpoint] = []
+
   /// List of target name servers to forward to. Cloud DNS selects the best available name server if more than one target is given.
   public var targetNameServers: [ManagedZoneForwardingConfigNameServerTarget] = []
 
@@ -50,17 +53,24 @@ public struct ManagedZoneForwardingConfig: Codable, Equatable, GoogleWKT._AnyPac
     init?(intValue: Swift.Int) { nil }
 
     static let kind = CodingKeys(stringValue: "kind")
+    static let outboundEndpoints = CodingKeys(stringValue: "outboundEndpoints")
     static let targetNameServers = CodingKeys(stringValue: "targetNameServers")
 
     static let _knownKeys: Set<Swift.String> = [
       "kind",
+      "outboundEndpoints",
       "targetNameServers",
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    if let value = try container.decodeIfPresent(
+      [ManagedZoneForwardingConfigOutboundEndpoint].self, forKey: .outboundEndpoints)
+    {
+      self.outboundEndpoints = value
+    }
     if let value = try container.decodeIfPresent(
       [ManagedZoneForwardingConfigNameServerTarget].self, forKey: .targetNameServers)
     {
@@ -72,21 +82,33 @@ public struct ManagedZoneForwardingConfig: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encode(self.outboundEndpoints, forKey: .outboundEndpoints)
     try container.encode(self.targetNameServers, forKey: .targetNameServers)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
+  /// The type URL for `ManagedZoneForwardingConfig`: `"type.googleapis.com/.ManagedZoneForwardingConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.ManagedZoneForwardingConfig"
   }
+
+  /// Initialize an instance of `ManagedZoneForwardingConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.ManagedZoneForwardingConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ManagedZoneForwardingConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

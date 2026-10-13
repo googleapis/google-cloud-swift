@@ -318,13 +318,13 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
 
     // First call throws the 403 error (permanent)
-    await #expect(throws: Error.self) {
+    await #expect(throws: (any Error).self) {
       _ = try await creds.headers()
     }
     #expect(attempts.getCount() == 1)
 
     // Second call should fail immediately WITHOUT calling the backend again (permanent error cached)
-    await #expect(throws: Error.self) {
+    await #expect(throws: (any Error).self) {
       _ = try await creds.headers()
     }
     #expect(attempts.getCount() == 1)
@@ -345,7 +345,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
 
     // First attempt should throw the provider error
-    await #expect(throws: Error.self) {
+    await #expect(throws: (any Error).self) {
       _ = try await creds.headers()
     }
 
@@ -354,7 +354,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(count1 >= 1)
 
     // Since it's retryable, second attempt should call provider again
-    await #expect(throws: Error.self) {
+    await #expect(throws: (any Error).self) {
       _ = try await creds.headers()
     }
 

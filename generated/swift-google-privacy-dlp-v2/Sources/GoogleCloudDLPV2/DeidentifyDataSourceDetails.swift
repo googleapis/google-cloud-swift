@@ -63,7 +63,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.requestedOptions = try container.decodeIfPresent(
       DeidentifyDataSourceDetails.RequestedDeidentifyOptions.self, forKey: .requestedOptions)
@@ -75,7 +75,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.requestedOptions, forKey: .requestedOptions)
     try container.encodeIfPresent(self.deidentifyStats, forKey: .deidentifyStats)
@@ -140,7 +140,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.snapshotDeidentifyTemplate = try container.decodeIfPresent(
         DeidentifyTemplate.self, forKey: .snapshotDeidentifyTemplate)
@@ -154,7 +154,7 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.snapshotDeidentifyTemplate, forKey: .snapshotDeidentifyTemplate)
@@ -167,24 +167,46 @@ public struct DeidentifyDataSourceDetails: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
+    /// The type URL for `RequestedDeidentifyOptions`: `"type.googleapis.com/google.privacy.dlp.v2.DeidentifyDataSourceDetails.RequestedDeidentifyOptions"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.privacy.dlp.v2.DeidentifyDataSourceDetails.RequestedDeidentifyOptions"
     }
+
+    /// Initialize an instance of `RequestedDeidentifyOptions` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DeidentifyDataSourceDetails.RequestedDeidentifyOptions"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RequestedDeidentifyOptions` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `DeidentifyDataSourceDetails`: `"type.googleapis.com/google.privacy.dlp.v2.DeidentifyDataSourceDetails"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DeidentifyDataSourceDetails"
   }
+
+  /// Initialize an instance of `DeidentifyDataSourceDetails` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DeidentifyDataSourceDetails"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DeidentifyDataSourceDetails` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

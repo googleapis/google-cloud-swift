@@ -88,7 +88,7 @@ public struct WKTRecursive<T: Codable & Sendable>: Codable, Sendable {
   ///
   /// - Parameter decoder: The decoder to read data from.
   /// - Throws: An error if decoding fails.
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     self.storage = Storage(try T(from: decoder))
   }
 
@@ -99,7 +99,7 @@ public struct WKTRecursive<T: Codable & Sendable>: Codable, Sendable {
   ///
   /// - Parameter encoder: The encoder to write data to.
   /// - Throws: An error if encoding fails.
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     try storage.value.encode(to: encoder)
   }
 }

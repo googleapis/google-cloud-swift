@@ -74,7 +74,7 @@ public struct UpdateWorkstationClusterRequest: Codable, Equatable, GoogleWKT._An
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.workstationCluster = try container.decodeIfPresent(
       WorkstationCluster.self, forKey: .workstationCluster)
@@ -92,7 +92,7 @@ public struct UpdateWorkstationClusterRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.workstationCluster, forKey: .workstationCluster)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -103,12 +103,23 @@ public struct UpdateWorkstationClusterRequest: Codable, Equatable, GoogleWKT._An
     }
   }
 
+  /// The type URL for `UpdateWorkstationClusterRequest`: `"type.googleapis.com/google.cloud.workstations.v1.UpdateWorkstationClusterRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workstations.v1.UpdateWorkstationClusterRequest"
   }
+
+  /// Initialize an instance of `UpdateWorkstationClusterRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.workstations.v1.UpdateWorkstationClusterRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateWorkstationClusterRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

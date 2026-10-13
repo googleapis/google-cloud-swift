@@ -96,7 +96,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .rolloutId) {
       self.rolloutId = value
@@ -140,7 +140,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.rolloutId, forKey: .rolloutId)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -230,7 +230,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [Swift.String: Swift.Double].self, forKey: .percentages)
@@ -243,7 +243,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.percentages, forKey: .percentages)
       for (key, value) in self._unknownFields.json {
@@ -251,12 +251,23 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `TrafficPercentStrategy`: `"type.googleapis.com/google.api.servicemanagement.v1.Rollout.TrafficPercentStrategy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.servicemanagement.v1.Rollout.TrafficPercentStrategy"
     }
+
+    /// Initialize an instance of `TrafficPercentStrategy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.servicemanagement.v1.Rollout.TrafficPercentStrategy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TrafficPercentStrategy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -294,7 +305,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -302,19 +313,30 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
+    /// The type URL for `DeleteServiceStrategy`: `"type.googleapis.com/google.api.servicemanagement.v1.Rollout.DeleteServiceStrategy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.servicemanagement.v1.Rollout.DeleteServiceStrategy"
     }
+
+    /// Initialize an instance of `DeleteServiceStrategy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.servicemanagement.v1.Rollout.DeleteServiceStrategy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DeleteServiceStrategy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -433,7 +455,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -451,7 +473,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("ROLLOUT_STATUS_UNSPECIFIED")
@@ -479,12 +501,23 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case deleteServiceStrategy(Rollout.DeleteServiceStrategy)
   }
 
+  /// The type URL for `Rollout`: `"type.googleapis.com/google.api.servicemanagement.v1.Rollout"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.servicemanagement.v1.Rollout"
   }
+
+  /// Initialize an instance of `Rollout` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.api.servicemanagement.v1.Rollout"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Rollout` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

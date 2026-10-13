@@ -92,7 +92,7 @@ public struct RoundCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .roundId) {
       self.roundId = value
@@ -123,7 +123,7 @@ public struct RoundCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.roundId, forKey: .roundId)
     try container.encode(self.validatorId, forKey: .validatorId)
@@ -137,12 +137,23 @@ public struct RoundCertificate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `RoundCertificate`: `"type.googleapis.com/google.cloud.universalledger.v1.RoundCertificate"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.universalledger.v1.RoundCertificate"
   }
+
+  /// Initialize an instance of `RoundCertificate` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.universalledger.v1.RoundCertificate"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RoundCertificate` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

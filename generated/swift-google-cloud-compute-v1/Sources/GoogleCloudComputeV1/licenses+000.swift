@@ -26,8 +26,8 @@
   /// @Snippet(path: "licensesQuickstart")
   public final class LicensesClient: Clients.LicensesProtocol, Sendable {
     let inner: any Clients.LicensesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `LicensesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -57,6 +57,11 @@
     ///  *Caution* This resource is intended
     /// for use only by third-party partners who are creatingCloud Marketplace
     /// images.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "licenses_delete")
     public func deletePollingUntilDone(
@@ -138,6 +143,11 @@
     ///  *Caution* This resource is intended
     /// for use only by third-party partners who are creatingCloud Marketplace
     /// images.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "licenses_insert")
     public func insertPollingUntilDone(
@@ -237,6 +247,11 @@
     /// for use only by third-party partners who are creatingCloud Marketplace
     /// images.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "licenses_update")
     public func updatePollingUntilDone(
       request: LicensesClient.UpdateRequest, options: GoogleGax.RequestOptions
@@ -299,6 +314,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `LicensesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: LicensesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -319,6 +339,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `LicensesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: LicensesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -344,6 +369,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `LicensesClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: LicensesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -482,7 +512,7 @@
 
     public func listByItems(
       request: LicensesClient.ListRequest
-    ) -> some AsyncSequence<License, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<License, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -499,7 +529,7 @@
     /// @Snippet(path: "licenses_list")
     public func listByItems(
       request: LicensesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<License, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<License, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.LicensesListResponse in
         var request = request
@@ -512,7 +542,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<License, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<License, any Swift.Error> & Sendable {
       let request = LicensesClient.ListRequest().with {
         $0.project = project
       }

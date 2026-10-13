@@ -66,7 +66,7 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([LogEntry].self, forKey: .entries) {
       self.entries = value
@@ -82,7 +82,7 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.entries, forKey: .entries)
     try container.encode(self.suppressionInfo, forKey: .suppressionInfo)
@@ -135,7 +135,7 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         TailLogEntriesResponse.SuppressionInfo.Reason.self, forKey: .reason)
@@ -151,7 +151,7 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.reason, forKey: .reason)
       try container.encode(self.suppressedCount, forKey: .suppressedCount)
@@ -251,7 +251,7 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -269,7 +269,7 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("REASON_UNSPECIFIED")
@@ -281,23 +281,45 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
+    /// The type URL for `SuppressionInfo`: `"type.googleapis.com/google.logging.v2.TailLogEntriesResponse.SuppressionInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.logging.v2.TailLogEntriesResponse.SuppressionInfo"
     }
+
+    /// Initialize an instance of `SuppressionInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.logging.v2.TailLogEntriesResponse.SuppressionInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SuppressionInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `TailLogEntriesResponse`: `"type.googleapis.com/google.logging.v2.TailLogEntriesResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.TailLogEntriesResponse"
   }
+
+  /// Initialize an instance of `TailLogEntriesResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.logging.v2.TailLogEntriesResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `TailLogEntriesResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

@@ -82,7 +82,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.status = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .status)
       if let value = try container.decodeIfPresent(
@@ -96,7 +96,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.status, forKey: .status)
       try container.encode(self.writeResponses, forKey: .writeResponses)
@@ -153,7 +153,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.dataKey = try container.decodeIfPresent(FeatureViewDataKey.self, forKey: .dataKey)
         self.onlineStoreWriteTime = try container.decodeIfPresent(
@@ -164,7 +164,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.dataKey, forKey: .dataKey)
         try container.encodeIfPresent(self.onlineStoreWriteTime, forKey: .onlineStoreWriteTime)
@@ -173,24 +173,46 @@
         }
       }
 
+      /// The type URL for `WriteResponse`: `"type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.WriteResponse"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.WriteResponse"
       }
+
+      /// Initialize an instance of `WriteResponse` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.WriteResponse"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `WriteResponse` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `FeatureViewDirectWriteResponse`: `"type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse"
     }
+
+    /// Initialize an instance of `FeatureViewDirectWriteResponse` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FeatureViewDirectWriteResponse` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

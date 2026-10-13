@@ -26,8 +26,8 @@
   /// @Snippet(path: "reservationBlocksQuickstart")
   public final class ReservationBlocksClient: Clients.ReservationBlocksProtocol, Sendable {
     let inner: any Clients.ReservationBlocksStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ReservationBlocksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -79,6 +79,11 @@
     }
 
     /// Allows customers to perform maintenance on a reservation block
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "reservationBlocks_performMaintenance")
     public func performMaintenancePollingUntilDone(
@@ -178,6 +183,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationBlocksClient.performMaintenance`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func performMaintenancePollingUntilDone(
         request: ReservationBlocksClient.PerformMaintenanceRequest,
         options: GoogleGax.RequestOptions
@@ -266,7 +276,7 @@
 
     public func listByItems(
       request: ReservationBlocksClient.ListRequest
-    ) -> some AsyncSequence<ReservationBlock, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReservationBlock, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -275,7 +285,7 @@
     /// @Snippet(path: "reservationBlocks_list")
     public func listByItems(
       request: ReservationBlocksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ReservationBlock, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReservationBlock, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.ReservationBlocksListResponse in
@@ -291,7 +301,7 @@
       project: Swift.String,
       zone: Swift.String,
       reservation: Swift.String,
-    ) -> some AsyncSequence<ReservationBlock, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReservationBlock, any Swift.Error> & Sendable {
       let request = ReservationBlocksClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

@@ -28,8 +28,8 @@
       .InstanceGroupManagerResizeRequestsProtocol, Sendable
   {
     let inner: any Clients.InstanceGroupManagerResizeRequestsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstanceGroupManagerResizeRequestsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -61,6 +61,11 @@
     /// Cancelled resize request does no longer wait for the resources to be
     /// provisioned. Cancel is only possible for requests that are accepted in the
     /// queue.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_cancel")
     public func cancelPollingUntilDone(
@@ -118,6 +123,11 @@
     /// Deletes the specified, inactive resize request. Requests that are still
     /// active cannot be deleted. Deleting request does not delete instances that
     /// were provisioned previously.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_delete")
     public func deletePollingUntilDone(
@@ -183,6 +193,11 @@
 
     /// Creates a new resize request that starts provisioning VMs immediately
     /// or queues VM creation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroupManagerResizeRequests_insert")
     public func insertPollingUntilDone(
@@ -260,6 +275,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceGroupManagerResizeRequestsClient.cancel`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func cancelPollingUntilDone(
         request: InstanceGroupManagerResizeRequestsClient.CancelRequest,
         options: GoogleGax.RequestOptions
@@ -272,6 +292,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceGroupManagerResizeRequestsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: InstanceGroupManagerResizeRequestsClient.DeleteRequest,
         options: GoogleGax.RequestOptions
@@ -290,6 +315,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceGroupManagerResizeRequestsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: InstanceGroupManagerResizeRequestsClient.InsertRequest,
         options: GoogleGax.RequestOptions
@@ -471,7 +501,7 @@
 
     public func listByItems(
       request: InstanceGroupManagerResizeRequestsClient.ListRequest
-    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -482,7 +512,7 @@
     public func listByItems(
       request: InstanceGroupManagerResizeRequestsClient.ListRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceGroupManagerResizeRequestsListResponse in
@@ -498,7 +528,7 @@
       project: Swift.String,
       zone: Swift.String,
       instanceGroupManager: Swift.String,
-    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManagerResizeRequest, any Swift.Error> & Sendable {
       let request = InstanceGroupManagerResizeRequestsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

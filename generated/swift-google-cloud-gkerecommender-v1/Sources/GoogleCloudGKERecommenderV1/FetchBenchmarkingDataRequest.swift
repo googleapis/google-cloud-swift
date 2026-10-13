@@ -79,7 +79,7 @@ public struct FetchBenchmarkingDataRequest: Codable, Equatable, GoogleWKT._AnyPa
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.modelServerInfo = try container.decodeIfPresent(
       ModelServerInfo.self, forKey: .modelServerInfo)
@@ -95,7 +95,7 @@ public struct FetchBenchmarkingDataRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.modelServerInfo, forKey: .modelServerInfo)
     try container.encode(self.instanceType, forKey: .instanceType)
@@ -105,12 +105,23 @@ public struct FetchBenchmarkingDataRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
+  /// The type URL for `FetchBenchmarkingDataRequest`: `"type.googleapis.com/google.cloud.gkerecommender.v1.FetchBenchmarkingDataRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkerecommender.v1.FetchBenchmarkingDataRequest"
   }
+
+  /// Initialize an instance of `FetchBenchmarkingDataRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.gkerecommender.v1.FetchBenchmarkingDataRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `FetchBenchmarkingDataRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

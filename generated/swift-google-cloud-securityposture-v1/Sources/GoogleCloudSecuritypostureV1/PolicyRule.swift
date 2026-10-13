@@ -77,7 +77,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
 
@@ -110,7 +110,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.condition, forKey: .condition)
 
@@ -190,7 +190,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent([Swift.String].self, forKey: .allowedValues) {
         self.allowedValues = value
@@ -204,7 +204,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.allowedValues, forKey: .allowedValues)
       try container.encode(self.deniedValues, forKey: .deniedValues)
@@ -213,12 +213,23 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `StringValues`: `"type.googleapis.com/google.cloud.securityposture.v1.PolicyRule.StringValues"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securityposture.v1.PolicyRule.StringValues"
     }
+
+    /// Initialize an instance of `StringValues` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securityposture.v1.PolicyRule.StringValues"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StringValues` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -240,12 +251,23 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     case enforce(Swift.Bool)
   }
 
+  /// The type URL for `PolicyRule`: `"type.googleapis.com/google.cloud.securityposture.v1.PolicyRule"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securityposture.v1.PolicyRule"
   }
+
+  /// Initialize an instance of `PolicyRule` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.securityposture.v1.PolicyRule"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PolicyRule` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

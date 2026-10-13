@@ -31,8 +31,8 @@ import Foundation
 /// @Snippet(path: "VpcFlowLogsServiceQuickstart")
 public final class VpcFlowLogsServiceClient: Clients.VpcFlowLogsServiceProtocol, Sendable {
   let inner: any Clients.VpcFlowLogsServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `VpcFlowLogsServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -473,7 +473,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
 
   public func listVpcFlowLogsConfigsByItems(
     request: ListVpcFlowLogsConfigsRequest
-  ) -> some AsyncSequence<VpcFlowLogsConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<VpcFlowLogsConfig, any Swift.Error> & Sendable {
     self.listVpcFlowLogsConfigsByItems(request: request, options: .init())
   }
 
@@ -482,7 +482,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
   /// @Snippet(path: "VpcFlowLogsService_ListVpcFlowLogsConfigs")
   public func listVpcFlowLogsConfigsByItems(
     request: ListVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<VpcFlowLogsConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<VpcFlowLogsConfig, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.ListVpcFlowLogsConfigsResponse in
@@ -496,7 +496,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
 
   public func listVpcFlowLogsConfigsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<VpcFlowLogsConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<VpcFlowLogsConfig, any Swift.Error> & Sendable {
     let request = ListVpcFlowLogsConfigsRequest().with {
       $0.parent = parent
     }
@@ -645,7 +645,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
 
   public func queryOrgVpcFlowLogsConfigsByItems(
     request: QueryOrgVpcFlowLogsConfigsRequest
-  ) -> some AsyncSequence<VpcFlowLogsConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<VpcFlowLogsConfig, any Swift.Error> & Sendable {
     self.queryOrgVpcFlowLogsConfigsByItems(request: request, options: .init())
   }
 
@@ -655,7 +655,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
   /// @Snippet(path: "VpcFlowLogsService_QueryOrgVpcFlowLogsConfigs")
   public func queryOrgVpcFlowLogsConfigsByItems(
     request: QueryOrgVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<VpcFlowLogsConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<VpcFlowLogsConfig, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.QueryOrgVpcFlowLogsConfigsResponse in
@@ -681,7 +681,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
 
   public func showEffectiveFlowLogsConfigsByItems(
     request: ShowEffectiveFlowLogsConfigsRequest
-  ) -> some AsyncSequence<EffectiveVpcFlowLogsConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EffectiveVpcFlowLogsConfig, any Swift.Error> & Sendable {
     self.showEffectiveFlowLogsConfigsByItems(request: request, options: .init())
   }
 
@@ -691,7 +691,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
   /// @Snippet(path: "VpcFlowLogsService_ShowEffectiveFlowLogsConfigs")
   public func showEffectiveFlowLogsConfigsByItems(
     request: ShowEffectiveFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<EffectiveVpcFlowLogsConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EffectiveVpcFlowLogsConfig, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkManagementV1.ShowEffectiveFlowLogsConfigsResponse in
@@ -717,7 +717,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -733,7 +733,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
   /// @Snippet(path: "VpcFlowLogsService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -806,7 +806,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -817,7 +817,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
   /// @Snippet(path: "VpcFlowLogsService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -831,7 +831,7 @@ extension Clients.VpcFlowLogsServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

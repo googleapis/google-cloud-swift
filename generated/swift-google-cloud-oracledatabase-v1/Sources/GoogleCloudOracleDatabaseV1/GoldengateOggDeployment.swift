@@ -100,7 +100,7 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deployment) {
       self.deployment = value
@@ -155,7 +155,7 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.deployment, forKey: .deployment)
     try container.encode(self.adminUsername, forKey: .adminUsername)
@@ -266,7 +266,7 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -284,7 +284,7 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("CREDENTIAL_STORE_UNSPECIFIED")
@@ -305,12 +305,23 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
     case adminPasswordSecretVersion(Swift.String)
   }
 
+  /// The type URL for `GoldengateOggDeployment`: `"type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateOggDeployment"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateOggDeployment"
   }
+
+  /// Initialize an instance of `GoldengateOggDeployment` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateOggDeployment"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GoldengateOggDeployment` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

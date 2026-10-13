@@ -26,8 +26,8 @@
   /// @Snippet(path: "packetMirroringsQuickstart")
   public final class PacketMirroringsClient: Clients.PacketMirroringsProtocol, Sendable {
     let inner: any Clients.PacketMirroringsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `PacketMirroringsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -63,6 +63,11 @@
     }
 
     /// Deletes the specified PacketMirroring resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "packetMirrorings_delete")
     public func deletePollingUntilDone(
@@ -125,6 +130,11 @@
 
     /// Creates a PacketMirroring resource in the specified project and region
     /// using the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "packetMirrorings_insert")
     public func insertPollingUntilDone(
@@ -192,6 +202,11 @@
     /// the request. This method supportsPATCH
     /// semantics and usesJSON merge
     /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "packetMirrorings_patch")
     public func patchPollingUntilDone(
@@ -270,6 +285,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `PacketMirroringsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: PacketMirroringsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -285,6 +305,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `PacketMirroringsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: PacketMirroringsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -300,6 +325,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `PacketMirroringsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: PacketMirroringsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -327,7 +357,8 @@
 
     public func aggregatedListByItems(
       request: PacketMirroringsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -339,7 +370,8 @@
     /// @Snippet(path: "packetMirrorings_aggregatedList")
     public func aggregatedListByItems(
       request: PacketMirroringsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PacketMirroringAggregatedList in
@@ -353,7 +385,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, PacketMirroringsScopedList), any Swift.Error> & Sendable
+    {
       let request = PacketMirroringsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -473,7 +506,7 @@
 
     public func listByItems(
       request: PacketMirroringsClient.ListRequest
-    ) -> some AsyncSequence<PacketMirroring, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PacketMirroring, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -483,7 +516,7 @@
     /// @Snippet(path: "packetMirrorings_list")
     public func listByItems(
       request: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<PacketMirroring, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PacketMirroring, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.PacketMirroringList in
         var request = request
@@ -497,7 +530,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<PacketMirroring, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PacketMirroring, any Swift.Error> & Sendable {
       let request = PacketMirroringsClient.ListRequest().with {
         $0.project = project
         $0.region = region

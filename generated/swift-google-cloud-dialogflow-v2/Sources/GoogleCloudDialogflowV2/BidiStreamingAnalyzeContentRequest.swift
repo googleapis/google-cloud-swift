@@ -59,7 +59,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var request: RequestOneOf? = nil
@@ -89,7 +89,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.request {
@@ -162,7 +162,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .participant) {
           self.participant = value
@@ -195,7 +195,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.participant, forKey: .participant)
         try container.encodeIfPresent(
@@ -296,7 +296,7 @@
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             AudioEncoding.self, forKey: .inputAudioEncoding)
@@ -337,7 +337,7 @@
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.inputAudioEncoding, forKey: .inputAudioEncoding)
           try container.encode(self.inputAudioSampleRateHertz, forKey: .inputAudioSampleRateHertz)
@@ -353,13 +353,24 @@
           }
         }
 
+        /// The type URL for `VoiceSessionConfig`: `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.Config.VoiceSessionConfig"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.Config.VoiceSessionConfig"
         }
+
+        /// Initialize an instance of `VoiceSessionConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.Config.VoiceSessionConfig"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `VoiceSessionConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -372,13 +383,24 @@
           BidiStreamingAnalyzeContentRequest.Config.VoiceSessionConfig)
       }
 
+      /// The type URL for `Config`: `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.Config"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.Config"
       }
+
+      /// Initialize an instance of `Config` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.Config"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Config` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -433,7 +455,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.virtualAgentParameters = try container.decodeIfPresent(
           GoogleWKT.WKTStruct.self, forKey: .virtualAgentParameters)
@@ -469,7 +491,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.virtualAgentParameters, forKey: .virtualAgentParameters)
 
@@ -508,13 +530,24 @@
         indirect case suggestionInput(SuggestionInput)
       }
 
+      /// The type URL for `TurnInput`: `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.TurnInput"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.TurnInput"
       }
+
+      /// Initialize an instance of `TurnInput` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.TurnInput"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `TurnInput` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -561,7 +594,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var input: InputOneOf? = nil
@@ -592,7 +625,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.input {
@@ -622,13 +655,24 @@
         indirect case turn(BidiStreamingAnalyzeContentRequest.TurnInput)
       }
 
+      /// The type URL for `Input`: `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.Input"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.Input"
       }
+
+      /// Initialize an instance of `Input` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest.Input"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Input` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -643,12 +687,23 @@
       indirect case input(BidiStreamingAnalyzeContentRequest.Input)
     }
 
+    /// The type URL for `BidiStreamingAnalyzeContentRequest`: `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest"
     }
+
+    /// Initialize an instance of `BidiStreamingAnalyzeContentRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.BidiStreamingAnalyzeContentRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `BidiStreamingAnalyzeContentRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

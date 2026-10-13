@@ -58,7 +58,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.topologyCapability = try container.decodeIfPresent(
         InterconnectGroupConfiguredTopologyCapability.self, forKey: .topologyCapability)
@@ -68,7 +68,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.topologyCapability, forKey: .topologyCapability)
       for (key, value) in self._unknownFields.json {
@@ -76,12 +76,23 @@
       }
     }
 
+    /// The type URL for `InterconnectGroupConfigured`: `"type.googleapis.com/google.cloud.compute.v1.InterconnectGroupConfigured"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InterconnectGroupConfigured"
     }
+
+    /// Initialize an instance of `InterconnectGroupConfigured` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InterconnectGroupConfigured"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InterconnectGroupConfigured` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

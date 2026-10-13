@@ -132,13 +132,6 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
     self.key = key
   }
 
-  /// Creates a `CustomerEncryptionKeyOptions` from Apple CryptoKit / Swift Crypto `SymmetricKey`.
-  public init(symmetricKey: SymmetricKey, algorithm: CustomerEncryptionAlgorithm = .aes256)
-    throws
-  {
-    try self.init(key: symmetricKey, algorithm: algorithm)
-  }
-
   /// Creates a `CustomerEncryptionKeyOptions` from raw key bytes (`Data`).
   ///
   /// For the default `.aes256` algorithm, the key must be exactly 32 bytes (256 bits).
@@ -467,8 +460,9 @@ public struct WriteObjectOptions: Sendable {
 
   /// The chunk size in bytes for resumable uploads.
   ///
-  /// When `nil`, the upload operation falls back to `StorageClientOptions.writeObject.chunkSize`
-  /// or the default chunk size (`defaultChunkSize`, 8 MB).
+  /// When `nil`, seekable uploads with a known total size stream the full payload in a single PUT request.
+  /// Non-seekable uploads or uploads of unknown size fall back to
+  /// `StorageClientOptions.writeObject.chunkSize` or the default chunk size (`defaultChunkSize`, 8 MB).
   public var chunkSize: Int?
 
   /// The threshold in bytes between simple and resumable uploads.
@@ -560,7 +554,7 @@ public struct WriteObjectOptions: Sendable {
 extension WriteObjectOptions {
   internal func withDefaults(_ defaults: Self) -> Self {
     var copy = self
-    copy.chunkSize = self.chunkSize ?? defaults.chunkSize ?? Self.defaultChunkSize
+    copy.chunkSize = self.chunkSize ?? defaults.chunkSize
     copy.resumableUploadThreshold =
       self.resumableUploadThreshold ?? defaults.resumableUploadThreshold
       ?? Self.defaultResumableUploadThreshold

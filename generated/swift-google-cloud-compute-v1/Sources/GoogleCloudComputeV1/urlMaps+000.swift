@@ -26,8 +26,8 @@
   /// @Snippet(path: "urlMapsQuickstart")
   public final class UrlMapsClient: Clients.UrlMapsProtocol, Sendable {
     let inner: any Clients.UrlMapsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `UrlMapsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -64,6 +64,11 @@
     }
 
     /// Deletes the specified UrlMap resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "urlMaps_delete")
     public func deletePollingUntilDone(
@@ -126,6 +131,11 @@
     /// Creates a UrlMap resource in the specified project using
     /// the data included in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "urlMaps_insert")
     public func insertPollingUntilDone(
       request: UrlMapsClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -183,6 +193,11 @@
     ///
     /// For more information, see [Invalidating cached
     /// content](/cdn/docs/invalidating-cached-content).
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "urlMaps_invalidateCache")
     public func invalidateCachePollingUntilDone(
@@ -250,6 +265,11 @@
     /// semantics and uses theJSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "urlMaps_patch")
     public func patchPollingUntilDone(
       request: UrlMapsClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -310,6 +330,11 @@
 
     /// Updates the specified UrlMap resource with the data included in the
     /// request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "urlMaps_update")
     public func updatePollingUntilDone(
@@ -389,6 +414,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `UrlMapsClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: UrlMapsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -404,6 +434,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `UrlMapsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: UrlMapsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -414,6 +449,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `UrlMapsClient.invalidateCache`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func invalidateCachePollingUntilDone(
         request: UrlMapsClient.InvalidateCacheRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -429,6 +469,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `UrlMapsClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: UrlMapsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -444,6 +489,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `UrlMapsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: UrlMapsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -471,7 +521,7 @@
 
     public func aggregatedListByItems(
       request: UrlMapsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -484,7 +534,7 @@
     /// @Snippet(path: "urlMaps_aggregatedList")
     public func aggregatedListByItems(
       request: UrlMapsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapsAggregatedList
         in
@@ -498,7 +548,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, UrlMapsScopedList), any Swift.Error> & Sendable {
       let request = UrlMapsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -648,7 +698,7 @@
 
     public func listByItems(
       request: UrlMapsClient.ListRequest
-    ) -> some AsyncSequence<UrlMap, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -658,7 +708,7 @@
     /// @Snippet(path: "urlMaps_list")
     public func listByItems(
       request: UrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<UrlMap, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
         var request = request
@@ -671,7 +721,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<UrlMap, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
       let request = UrlMapsClient.ListRequest().with {
         $0.project = project
       }

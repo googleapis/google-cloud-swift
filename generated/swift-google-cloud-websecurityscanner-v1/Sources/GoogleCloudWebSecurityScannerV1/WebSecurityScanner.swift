@@ -281,7 +281,7 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listScanConfigsByItems(
     request: ListScanConfigsRequest
-  ) -> some AsyncSequence<ScanConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ScanConfig, any Swift.Error> & Sendable {
     self.listScanConfigsByItems(request: request, options: .init())
   }
 
@@ -290,7 +290,7 @@ extension Clients.WebSecurityScannerProtocol {
   /// @Snippet(path: "WebSecurityScanner_ListScanConfigs")
   public func listScanConfigsByItems(
     request: ListScanConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ScanConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ScanConfig, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse in
@@ -352,7 +352,7 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listScanRunsByItems(
     request: ListScanRunsRequest
-  ) -> some AsyncSequence<ScanRun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ScanRun, any Swift.Error> & Sendable {
     self.listScanRunsByItems(request: request, options: .init())
   }
 
@@ -362,7 +362,7 @@ extension Clients.WebSecurityScannerProtocol {
   /// @Snippet(path: "WebSecurityScanner_ListScanRuns")
   public func listScanRunsByItems(
     request: ListScanRunsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ScanRun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ScanRun, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse in
@@ -400,7 +400,7 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listCrawledUrlsByItems(
     request: ListCrawledUrlsRequest
-  ) -> some AsyncSequence<CrawledUrl, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CrawledUrl, any Swift.Error> & Sendable {
     self.listCrawledUrlsByItems(request: request, options: .init())
   }
 
@@ -409,7 +409,7 @@ extension Clients.WebSecurityScannerProtocol {
   /// @Snippet(path: "WebSecurityScanner_ListCrawledUrls")
   public func listCrawledUrlsByItems(
     request: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<CrawledUrl, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CrawledUrl, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse in
@@ -447,7 +447,7 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listFindingsByItems(
     request: ListFindingsRequest
-  ) -> some AsyncSequence<Finding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Finding, any Swift.Error> & Sendable {
     self.listFindingsByItems(request: request, options: .init())
   }
 
@@ -456,7 +456,7 @@ extension Clients.WebSecurityScannerProtocol {
   /// @Snippet(path: "WebSecurityScanner_ListFindings")
   public func listFindingsByItems(
     request: ListFindingsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Finding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Finding, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse in

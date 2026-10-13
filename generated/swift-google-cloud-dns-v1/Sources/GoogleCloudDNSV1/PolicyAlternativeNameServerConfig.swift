@@ -22,6 +22,9 @@ public struct PolicyAlternativeNameServerConfig: Codable, Equatable, GoogleWKT._
 {
   public var kind: Swift.String? = nil
 
+  /// The list of outbound endpoints to use for queries.
+  public var outboundEndpoints: [PolicyAlternativeNameServerConfigOutboundEndpoint] = []
+
   /// Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded to a name server that you choose. Names such as .internal are not available when an alternative name server is specified.
   public var targetNameServers: [PolicyAlternativeNameServerConfigTargetNameServer] = []
 
@@ -50,17 +53,24 @@ public struct PolicyAlternativeNameServerConfig: Codable, Equatable, GoogleWKT._
     init?(intValue: Swift.Int) { nil }
 
     static let kind = CodingKeys(stringValue: "kind")
+    static let outboundEndpoints = CodingKeys(stringValue: "outboundEndpoints")
     static let targetNameServers = CodingKeys(stringValue: "targetNameServers")
 
     static let _knownKeys: Set<Swift.String> = [
       "kind",
+      "outboundEndpoints",
       "targetNameServers",
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
+    if let value = try container.decodeIfPresent(
+      [PolicyAlternativeNameServerConfigOutboundEndpoint].self, forKey: .outboundEndpoints)
+    {
+      self.outboundEndpoints = value
+    }
     if let value = try container.decodeIfPresent(
       [PolicyAlternativeNameServerConfigTargetNameServer].self, forKey: .targetNameServers)
     {
@@ -72,21 +82,33 @@ public struct PolicyAlternativeNameServerConfig: Codable, Equatable, GoogleWKT._
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.kind, forKey: .kind)
+    try container.encode(self.outboundEndpoints, forKey: .outboundEndpoints)
     try container.encode(self.targetNameServers, forKey: .targetNameServers)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
+  /// The type URL for `PolicyAlternativeNameServerConfig`: `"type.googleapis.com/.PolicyAlternativeNameServerConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.PolicyAlternativeNameServerConfig"
   }
+
+  /// Initialize an instance of `PolicyAlternativeNameServerConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.PolicyAlternativeNameServerConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PolicyAlternativeNameServerConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

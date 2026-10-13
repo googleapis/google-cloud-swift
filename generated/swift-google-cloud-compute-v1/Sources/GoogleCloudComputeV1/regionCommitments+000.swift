@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionCommitmentsQuickstart")
   public final class RegionCommitmentsClient: Clients.RegionCommitmentsProtocol, Sendable {
     let inner: any Clients.RegionCommitmentsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionCommitmentsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -74,6 +74,11 @@
 
     /// Creates a commitment in the specified project using the data
     /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionCommitments_insert")
     public func insertPollingUntilDone(
@@ -139,6 +144,11 @@
     /// Updates the specified commitment with the data included in the request.
     /// Update is performed only on selected fields included as part of
     /// update-mask. Only the following fields can be updated: auto_renew and plan.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionCommitments_update")
     public func updatePollingUntilDone(
@@ -213,6 +223,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionCommitmentsClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -228,6 +243,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionCommitmentsClient.update`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePollingUntilDone(
         request: RegionCommitmentsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -250,7 +270,7 @@
 
     public func aggregatedListByItems(
       request: RegionCommitmentsClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, CommitmentsScopedList), any Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -262,7 +282,7 @@
     /// @Snippet(path: "regionCommitments_aggregatedList")
     public func aggregatedListByItems(
       request: RegionCommitmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, CommitmentsScopedList), any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.CommitmentAggregatedList in
@@ -276,7 +296,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, CommitmentsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, CommitmentsScopedList), any Swift.Error> & Sendable {
       let request = RegionCommitmentsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -359,7 +379,7 @@
 
     public func listByItems(
       request: RegionCommitmentsClient.ListRequest
-    ) -> some AsyncSequence<Commitment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Commitment, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -369,7 +389,7 @@
     /// @Snippet(path: "regionCommitments_list")
     public func listByItems(
       request: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Commitment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Commitment, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.CommitmentList in
         var request = request
@@ -383,7 +403,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<Commitment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Commitment, any Swift.Error> & Sendable {
       let request = RegionCommitmentsClient.ListRequest().with {
         $0.project = project
         $0.region = region

@@ -25,8 +25,8 @@ import Foundation
 /// @Snippet(path: "managedZonesQuickstart")
 public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   let inner: any Clients.ManagedZonesStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ManagedZonesClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -96,6 +96,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
 
   /// Applies a partial update to an existing ManagedZone.
   ///
+  /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+  ///   resource, Discovery-based operations return the terminal `Operation`
+  ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+  ///   method once the operation completes.
+  ///
   /// @Snippet(path: "managedZones_patch")
   public func patchPollingUntilDone(
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -161,6 +166,11 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   }
 
   /// Updates an existing ManagedZone.
+  ///
+  /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+  ///   resource, Discovery-based operations return the terminal `Operation`
+  ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+  ///   method once the operation completes.
   ///
   /// @Snippet(path: "managedZones_update")
   public func updatePollingUntilDone(
@@ -247,6 +257,11 @@ extension Clients {
     ) async throws -> Operation
 
     /// See `ManagedZonesClient.patch`.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     func patchPollingUntilDone(
       request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation
@@ -267,6 +282,11 @@ extension Clients {
     ) async throws -> Operation
 
     /// See `ManagedZonesClient.update`.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     func updatePollingUntilDone(
       request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation
@@ -374,7 +394,7 @@ extension Clients.ManagedZonesProtocol {
 
   public func listByItems(
     request: ManagedZonesClient.ListRequest
-  ) -> some AsyncSequence<ManagedZone, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ManagedZone, any Swift.Error> & Sendable {
     self.listByItems(request: request, options: .init())
   }
 
@@ -383,7 +403,7 @@ extension Clients.ManagedZonesProtocol {
   /// @Snippet(path: "managedZones_list")
   public func listByItems(
     request: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ManagedZone, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ManagedZone, any Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> ManagedZonesListResponse in
       var request = request
       request.pageToken = token
@@ -395,7 +415,7 @@ extension Clients.ManagedZonesProtocol {
 
   public func listByItems(
     project: Swift.String,
-  ) -> some AsyncSequence<ManagedZone, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ManagedZone, any Swift.Error> & Sendable {
     let request = ManagedZonesClient.ListRequest().with {
       $0.project = project
     }

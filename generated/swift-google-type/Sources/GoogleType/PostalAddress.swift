@@ -180,7 +180,7 @@ public struct PostalAddress: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .revision) {
       self.revision = value
@@ -221,7 +221,7 @@ public struct PostalAddress: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.revision, forKey: .revision)
     try container.encode(self.regionCode, forKey: .regionCode)
@@ -239,12 +239,23 @@ public struct PostalAddress: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `PostalAddress`: `"type.googleapis.com/google.type.PostalAddress"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.type.PostalAddress"
   }
+
+  /// Initialize an instance of `PostalAddress` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.type.PostalAddress"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PostalAddress` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

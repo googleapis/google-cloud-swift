@@ -82,7 +82,7 @@ public struct CreateBlockchainNodeRequest: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .parent) {
       self.parent = value
@@ -101,7 +101,7 @@ public struct CreateBlockchainNodeRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.blockchainNodeId, forKey: .blockchainNodeId)
@@ -112,12 +112,23 @@ public struct CreateBlockchainNodeRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
+  /// The type URL for `CreateBlockchainNodeRequest`: `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.CreateBlockchainNodeRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.blockchainnodeengine.v1.CreateBlockchainNodeRequest"
   }
+
+  /// Initialize an instance of `CreateBlockchainNodeRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.blockchainnodeengine.v1.CreateBlockchainNodeRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CreateBlockchainNodeRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

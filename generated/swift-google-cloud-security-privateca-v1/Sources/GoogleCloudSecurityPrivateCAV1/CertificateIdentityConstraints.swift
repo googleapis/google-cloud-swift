@@ -90,7 +90,7 @@ public struct CertificateIdentityConstraints: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.celExpression = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .celExpression)
     self.allowSubjectPassthrough = try container.decodeIfPresent(
@@ -103,7 +103,7 @@ public struct CertificateIdentityConstraints: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.celExpression, forKey: .celExpression)
     try container.encodeIfPresent(self.allowSubjectPassthrough, forKey: .allowSubjectPassthrough)
@@ -114,12 +114,23 @@ public struct CertificateIdentityConstraints: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `CertificateIdentityConstraints`: `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateIdentityConstraints"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateIdentityConstraints"
   }
+
+  /// Initialize an instance of `CertificateIdentityConstraints` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.security.privateca.v1.CertificateIdentityConstraints"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CertificateIdentityConstraints` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

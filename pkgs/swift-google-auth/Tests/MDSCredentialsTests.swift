@@ -443,7 +443,7 @@ import Testing
     let provider = MDSCredentials(
       retryConfiguration: retryConfig, client: client, fromADC: false, environment: [:])
 
-    await #expect(throws: Error.self) {
+    await #expect(throws: (any Error).self) {
       _ = try await provider.headers()
     }
   }

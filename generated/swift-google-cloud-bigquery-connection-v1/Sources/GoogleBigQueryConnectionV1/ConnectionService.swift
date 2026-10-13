@@ -234,7 +234,7 @@ extension Clients.ConnectionServiceProtocol {
 
   public func listConnectionsByItems(
     request: ListConnectionsRequest
-  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
     self.listConnectionsByItems(request: request, options: .init())
   }
 
@@ -243,7 +243,7 @@ extension Clients.ConnectionServiceProtocol {
   /// @Snippet(path: "ConnectionService_ListConnections")
   public func listConnectionsByItems(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryConnectionV1.ListConnectionsResponse in
@@ -257,7 +257,7 @@ extension Clients.ConnectionServiceProtocol {
 
   public func listConnectionsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }

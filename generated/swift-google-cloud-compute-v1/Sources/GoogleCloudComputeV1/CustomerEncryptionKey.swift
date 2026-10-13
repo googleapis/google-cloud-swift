@@ -129,7 +129,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.kmsKeyName = try container.decodeIfPresent(Swift.String.self, forKey: .kmsKeyName)
       self.kmsKeyServiceAccount = try container.decodeIfPresent(
@@ -147,7 +147,7 @@
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.kmsKeyName, forKey: .kmsKeyName)
       try container.encodeIfPresent(self.kmsKeyServiceAccount, forKey: .kmsKeyServiceAccount)
@@ -159,12 +159,23 @@
       }
     }
 
+    /// The type URL for `CustomerEncryptionKey`: `"type.googleapis.com/google.cloud.compute.v1.CustomerEncryptionKey"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.CustomerEncryptionKey"
     }
+
+    /// Initialize an instance of `CustomerEncryptionKey` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.CustomerEncryptionKey"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CustomerEncryptionKey` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

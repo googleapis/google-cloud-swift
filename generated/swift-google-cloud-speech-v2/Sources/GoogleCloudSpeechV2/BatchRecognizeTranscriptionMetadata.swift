@@ -67,7 +67,7 @@ public struct BatchRecognizeTranscriptionMetadata: Codable, Equatable, GoogleWKT
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Int32.self, forKey: .progressPercent) {
       self.progressPercent = value
@@ -82,7 +82,7 @@ public struct BatchRecognizeTranscriptionMetadata: Codable, Equatable, GoogleWKT
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.progressPercent, forKey: .progressPercent)
     try container.encodeIfPresent(self.error, forKey: .error)
@@ -92,12 +92,23 @@ public struct BatchRecognizeTranscriptionMetadata: Codable, Equatable, GoogleWKT
     }
   }
 
+  /// The type URL for `BatchRecognizeTranscriptionMetadata`: `"type.googleapis.com/google.cloud.speech.v2.BatchRecognizeTranscriptionMetadata"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.BatchRecognizeTranscriptionMetadata"
   }
+
+  /// Initialize an instance of `BatchRecognizeTranscriptionMetadata` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.speech.v2.BatchRecognizeTranscriptionMetadata"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `BatchRecognizeTranscriptionMetadata` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

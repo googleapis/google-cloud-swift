@@ -75,7 +75,7 @@ public struct UpdateSchemaBundleRequest: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.schemaBundle = try container.decodeIfPresent(SchemaBundle.self, forKey: .schemaBundle)
     self.updateMask = try container.decodeIfPresent(
@@ -89,7 +89,7 @@ public struct UpdateSchemaBundleRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.schemaBundle, forKey: .schemaBundle)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -99,12 +99,23 @@ public struct UpdateSchemaBundleRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
+  /// The type URL for `UpdateSchemaBundleRequest`: `"type.googleapis.com/google.bigtable.admin.v2.UpdateSchemaBundleRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.UpdateSchemaBundleRequest"
   }
+
+  /// Initialize an instance of `UpdateSchemaBundleRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.bigtable.admin.v2.UpdateSchemaBundleRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateSchemaBundleRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

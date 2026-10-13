@@ -336,7 +336,7 @@ extension Clients.NativeDashboardServiceProtocol {
 
   public func listNativeDashboardsByItems(
     request: ListNativeDashboardsRequest
-  ) -> some AsyncSequence<NativeDashboard, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<NativeDashboard, any Swift.Error> & Sendable {
     self.listNativeDashboardsByItems(request: request, options: .init())
   }
 
@@ -345,7 +345,7 @@ extension Clients.NativeDashboardServiceProtocol {
   /// @Snippet(path: "NativeDashboardService_ListNativeDashboards")
   public func listNativeDashboardsByItems(
     request: ListNativeDashboardsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<NativeDashboard, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<NativeDashboard, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListNativeDashboardsResponse in
@@ -359,7 +359,7 @@ extension Clients.NativeDashboardServiceProtocol {
 
   public func listNativeDashboardsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<NativeDashboard, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<NativeDashboard, any Swift.Error> & Sendable {
     let request = ListNativeDashboardsRequest().with {
       $0.parent = parent
     }
@@ -585,7 +585,7 @@ extension Clients.NativeDashboardServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -596,7 +596,7 @@ extension Clients.NativeDashboardServiceProtocol {
   /// @Snippet(path: "NativeDashboardService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -610,7 +610,7 @@ extension Clients.NativeDashboardServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

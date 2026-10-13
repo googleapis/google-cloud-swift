@@ -73,7 +73,7 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleWKT.
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.schemaModifiedCadence = try container.decodeIfPresent(
       DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence.self, forKey: .schemaModifiedCadence)
@@ -90,7 +90,7 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleWKT.
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.schemaModifiedCadence, forKey: .schemaModifiedCadence)
     try container.encode(self.refreshFrequency, forKey: .refreshFrequency)
@@ -147,7 +147,7 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleWKT.
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence.CloudSqlSchemaModification].self,
@@ -166,7 +166,7 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleWKT.
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.types, forKey: .types)
       try container.encode(self.frequency, forKey: .frequency)
@@ -262,7 +262,7 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleWKT.
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -280,7 +280,7 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleWKT.
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .sqlSchemaModificationUnspecified:
@@ -293,24 +293,46 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleWKT.
       }
     }
 
+    /// The type URL for `SchemaModifiedCadence`: `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence"
     }
+
+    /// Initialize an instance of `SchemaModifiedCadence` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SchemaModifiedCadence` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `DiscoveryCloudSqlGenerationCadence`: `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence"
   }
+
+  /// Initialize an instance of `DiscoveryCloudSqlGenerationCadence` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DiscoveryCloudSqlGenerationCadence` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

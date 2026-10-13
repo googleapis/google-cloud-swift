@@ -50,12 +50,13 @@ public final class _GRPCClient: Sendable {
     let rawEndpoint = options.endpoint ?? defaultEndpoint
     let endpointWithScheme = rawEndpoint.contains("://") ? rawEndpoint : "https://\(rawEndpoint)"
     guard let components = URLComponents(string: endpointWithScheme),
+      let scheme = components.scheme?.lowercased(), scheme == "http" || scheme == "https",
       let host = components.host, !host.isEmpty
     else {
       throw ClientError.invalidEndpoint(rawEndpoint)
     }
 
-    let isSecure = components.scheme == "https"
+    let isSecure = scheme == "https"
     let port = components.port ?? (isSecure ? 443 : 80)
     let transportSecurity: HTTP2ClientTransport.Posix.TransportSecurity =
       isSecure ? .tls : .plaintext
@@ -119,7 +120,7 @@ public final class _GRPCClient: Sendable {
     let authHeaders = try await self.credentials.headers()
     let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
     for (key, value) in customHeaders {
-      metadata.replaceOrAddString(value, forKey: key)
+      metadata.addString(value, forKey: key)
     }
 
     for (key, value) in authHeaders {

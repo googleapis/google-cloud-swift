@@ -125,7 +125,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
       self.name = value
@@ -195,7 +195,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.description, forKey: .description)
@@ -279,7 +279,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .percentageIncrease) {
         self.percentageIncrease = value
@@ -300,7 +300,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
       try container.encode(self.totalOperationsCount, forKey: .totalOperationsCount)
@@ -366,7 +366,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
           self.bucket = value
@@ -407,7 +407,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.bucket, forKey: .bucket)
         try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -468,7 +468,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [
@@ -484,7 +484,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.topPrefixes, forKey: .topPrefixes)
           for (key, value) in self._unknownFields.json {
@@ -542,7 +542,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
               self.`prefix` = value
@@ -563,7 +563,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.`prefix`, forKey: .`prefix`)
             try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -573,25 +573,47 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
+          /// The type URL for `PrefixContribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution.PrefixContribution"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution.PrefixContribution"
           }
+
+          /// Initialize an instance of `PrefixContribution` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution.PrefixContribution"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `PrefixContribution` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
 
+        /// The type URL for `Contribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution"
         }
+
+        /// Initialize an instance of `Contribution` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution.Contribution"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `Contribution` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -609,25 +631,47 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         indirect case error(GoogleRpc.Status)
       }
 
+      /// The type URL for `BucketContribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution"
       }
+
+      /// Initialize an instance of `BucketContribution` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `BucketContribution` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `ColdlineAndArchivalStorageOperationsSpike`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike"
     }
+
+    /// Initialize an instance of `ColdlineAndArchivalStorageOperationsSpike` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ColdlineAndArchivalStorageOperationsSpike` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -686,7 +730,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .totalEgressBytes) {
         self.totalEgressBytes = value
@@ -705,7 +749,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.totalEgressBytes, forKey: .totalEgressBytes)
       try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -773,7 +817,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
           self.bucket = value
@@ -812,7 +856,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.bucket, forKey: .bucket)
         try container.encode(self.totalEgressBytes, forKey: .totalEgressBytes)
@@ -873,7 +917,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [
@@ -889,7 +933,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.topPrefixes, forKey: .topPrefixes)
           for (key, value) in self._unknownFields.json {
@@ -949,7 +993,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
               self.`prefix` = value
@@ -970,7 +1014,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.`prefix`, forKey: .`prefix`)
             try container.encode(self.totalEgressBytes, forKey: .totalEgressBytes)
@@ -980,25 +1024,47 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
+          /// The type URL for `PrefixContribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution.PrefixContribution"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution.PrefixContribution"
           }
+
+          /// Initialize an instance of `PrefixContribution` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution.PrefixContribution"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `PrefixContribution` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
 
+        /// The type URL for `Contribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution"
         }
+
+        /// Initialize an instance of `Contribution` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `Contribution` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1015,25 +1081,47 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         indirect case error(GoogleRpc.Status)
       }
 
+      /// The type URL for `BucketContribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution"
       }
+
+      /// Initialize an instance of `BucketContribution` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike.BucketContribution"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `BucketContribution` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `CrossRegionEgressSpike`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike"
     }
+
+    /// Initialize an instance of `CrossRegionEgressSpike` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.CrossRegionEgressSpike"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CrossRegionEgressSpike` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1091,7 +1179,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .throttledRequests) {
         self.throttledRequests = value
@@ -1110,7 +1198,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.throttledRequests, forKey: .throttledRequests)
       try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -1177,7 +1265,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
           self.bucket = value
@@ -1216,7 +1304,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.bucket, forKey: .bucket)
         try container.encode(self.throttledRequests, forKey: .throttledRequests)
@@ -1277,7 +1365,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(
             [
@@ -1293,7 +1381,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.topPrefixes, forKey: .topPrefixes)
           for (key, value) in self._unknownFields.json {
@@ -1351,7 +1439,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             ]
           }
 
-          public init(from decoder: Decoder) throws {
+          public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             if let value = try container.decodeIfPresent(Swift.String.self, forKey: .`prefix`) {
               self.`prefix` = value
@@ -1372,7 +1460,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
-          public func encode(to encoder: Encoder) throws {
+          public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.`prefix`, forKey: .`prefix`)
             try container.encode(self.throttledRequests, forKey: .throttledRequests)
@@ -1382,25 +1470,47 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
             }
           }
 
+          /// The type URL for `PrefixContribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution.PrefixContribution"`.
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution.PrefixContribution"
           }
+
+          /// Initialize an instance of `PrefixContribution` by unpacking from a `GoogleWKT.WKTAny`.
+          ///
+          /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+          /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution.PrefixContribution"`,
+          ///   or if deserialization fails.
           public init(fromAny any: GoogleWKT.WKTAny) throws {
             self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
           }
+
+          /// Packs this `PrefixContribution` into a `GoogleWKT.WKTStruct` representation.
+          ///
+          /// - Throws: An error if serialization fails.
           public func _pack() throws -> GoogleWKT.WKTStruct {
             return try GoogleWKT._slowAnySerialize(message: self)
           }
         }
 
+        /// The type URL for `Contribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution"
         }
+
+        /// Initialize an instance of `Contribution` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `Contribution` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -1417,25 +1527,47 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         indirect case error(GoogleRpc.Status)
       }
 
+      /// The type URL for `BucketContribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution"
       }
+
+      /// Initialize an instance of `BucketContribution` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike.BucketContribution"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `BucketContribution` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `ThrottledRequestSpike`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike"
     }
+
+    /// Initialize an instance of `ThrottledRequestSpike` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.ThrottledRequestSpike"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ThrottledRequestSpike` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1491,7 +1623,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .totalStorageGrowthBytes)
@@ -1512,7 +1644,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.totalStorageGrowthBytes, forKey: .totalStorageGrowthBytes)
       try container.encode(self.percentageIncrease, forKey: .percentageIncrease)
@@ -1576,7 +1708,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .bucket) {
           self.bucket = value
@@ -1611,7 +1743,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.bucket, forKey: .bucket)
         try container.encode(self.totalStorageGrowthBytes, forKey: .totalStorageGrowthBytes)
@@ -1636,25 +1768,47 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
         indirect case error(GoogleRpc.Status)
       }
 
+      /// The type URL for `BucketContribution`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution"
       }
+
+      /// Initialize an instance of `BucketContribution` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.StorageGrowthAboveTrend.BucketContribution"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `BucketContribution` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `StorageGrowthAboveTrend`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.StorageGrowthAboveTrend"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.storage.control.v2.IntelligenceFinding.StorageGrowthAboveTrend"
     }
+
+    /// Initialize an instance of `StorageGrowthAboveTrend` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding.StorageGrowthAboveTrend"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `StorageGrowthAboveTrend` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -1676,12 +1830,23 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case storageGrowthAboveTrend(IntelligenceFinding.StorageGrowthAboveTrend)
   }
 
+  /// The type URL for `IntelligenceFinding`: `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storage.control.v2.IntelligenceFinding"
   }
+
+  /// Initialize an instance of `IntelligenceFinding` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.storage.control.v2.IntelligenceFinding"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `IntelligenceFinding` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

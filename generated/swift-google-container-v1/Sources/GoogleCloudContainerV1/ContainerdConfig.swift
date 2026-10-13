@@ -69,7 +69,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.privateRegistryAccessConfig = try container.decodeIfPresent(
       ContainerdConfig.PrivateRegistryAccessConfig.self, forKey: .privateRegistryAccessConfig)
@@ -86,7 +86,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(
       self.privateRegistryAccessConfig, forKey: .privateRegistryAccessConfig)
@@ -143,7 +143,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
         self.enabled = value
@@ -160,7 +160,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enabled, forKey: .enabled)
       try container.encode(
@@ -221,7 +221,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent([Swift.String].self, forKey: .fqdns) {
           self.fqdns = value
@@ -251,7 +251,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.fqdns, forKey: .fqdns)
 
@@ -307,7 +307,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           ]
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           if let value = try container.decodeIfPresent(Swift.String.self, forKey: .secretUri) {
             self.secretUri = value
@@ -318,7 +318,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.secretUri, forKey: .secretUri)
           for (key, value) in self._unknownFields.json {
@@ -326,13 +326,24 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           }
         }
 
+        /// The type URL for `GCPSecretManagerCertificateConfig`: `"type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig.GCPSecretManagerCertificateConfig"`.
         public static var _anyTypeUrl: Swift.String {
           return
             "type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig.GCPSecretManagerCertificateConfig"
         }
+
+        /// Initialize an instance of `GCPSecretManagerCertificateConfig` by unpacking from a `GoogleWKT.WKTAny`.
+        ///
+        /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+        /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig.GCPSecretManagerCertificateConfig"`,
+        ///   or if deserialization fails.
         public init(fromAny any: GoogleWKT.WKTAny) throws {
           self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
         }
+
+        /// Packs this `GCPSecretManagerCertificateConfig` into a `GoogleWKT.WKTStruct` representation.
+        ///
+        /// - Throws: An error if serialization fails.
         public func _pack() throws -> GoogleWKT.WKTStruct {
           return try GoogleWKT._slowAnySerialize(message: self)
         }
@@ -347,24 +358,46 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
             .GCPSecretManagerCertificateConfig)
       }
 
+      /// The type URL for `CertificateAuthorityDomainConfig`: `"type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig"
       }
+
+      /// Initialize an instance of `CertificateAuthorityDomainConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `CertificateAuthorityDomainConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `PrivateRegistryAccessConfig`: `"type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig"
     }
+
+    /// Initialize an instance of `PrivateRegistryAccessConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PrivateRegistryAccessConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -408,7 +441,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled) {
         self.enabled = value
@@ -419,7 +452,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.enabled, forKey: .enabled)
       for (key, value) in self._unknownFields.json {
@@ -427,12 +460,23 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `WritableCgroups`: `"type.googleapis.com/google.container.v1.ContainerdConfig.WritableCgroups"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ContainerdConfig.WritableCgroups"
     }
+
+    /// Initialize an instance of `WritableCgroups` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig.WritableCgroups"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `WritableCgroups` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -493,7 +537,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .server) {
         self.server = value
@@ -509,7 +553,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.server, forKey: .server)
       try container.encode(self.hosts, forKey: .hosts)
@@ -556,7 +600,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         var certificate: CertificateOneOf? = nil
@@ -581,7 +625,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         if let choice = self.certificate {
@@ -607,13 +651,24 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         case gcpSecretManagerSecretUri(Swift.String)
       }
 
+      /// The type URL for `CertificateConfig`: `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfig"
       }
+
+      /// Initialize an instance of `CertificateConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `CertificateConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -663,7 +718,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.cert = try container.decodeIfPresent(
           ContainerdConfig.RegistryHostConfig.CertificateConfig.self, forKey: .cert)
@@ -675,7 +730,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.cert, forKey: .cert)
         try container.encodeIfPresent(self.key, forKey: .key)
@@ -684,13 +739,24 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `CertificateConfigPair`: `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfigPair"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfigPair"
       }
+
+      /// Initialize an instance of `CertificateConfigPair` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfigPair"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `CertificateConfigPair` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -739,7 +805,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .key) {
           self.key = value
@@ -753,7 +819,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.key, forKey: .key)
         try container.encode(self.value, forKey: .value)
@@ -762,13 +828,24 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `RegistryHeader`: `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.RegistryHeader"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.RegistryHeader"
       }
+
+      /// Initialize an instance of `RegistryHeader` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.RegistryHeader"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `RegistryHeader` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -860,7 +937,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .host) {
           self.host = value
@@ -896,7 +973,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.host, forKey: .host)
         try container.encode(self.capabilities, forKey: .capabilities)
@@ -910,13 +987,24 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
+      /// The type URL for `HostConfig`: `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.HostConfig"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.HostConfig"
       }
+
+      /// Initialize an instance of `HostConfig` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.HostConfig"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `HostConfig` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -1015,7 +1103,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -1033,7 +1121,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("HOST_CAPABILITY_UNSPECIFIED")
@@ -1046,23 +1134,45 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `RegistryHostConfig`: `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig"
     }
+
+    /// Initialize an instance of `RegistryHostConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RegistryHostConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `ContainerdConfig`: `"type.googleapis.com/google.container.v1.ContainerdConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.ContainerdConfig"
   }
+
+  /// Initialize an instance of `ContainerdConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.ContainerdConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ContainerdConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

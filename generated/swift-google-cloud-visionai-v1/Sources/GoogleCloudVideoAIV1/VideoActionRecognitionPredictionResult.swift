@@ -68,7 +68,7 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.segmentStartTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .segmentStartTime)
@@ -85,7 +85,7 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.segmentStartTime, forKey: .segmentStartTime)
     try container.encodeIfPresent(self.segmentEndTime, forKey: .segmentEndTime)
@@ -146,7 +146,7 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .id) {
         self.id = value
@@ -163,7 +163,7 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.id, forKey: .id)
       try container.encode(self.displayName, forKey: .displayName)
@@ -173,24 +173,46 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
       }
     }
 
+    /// The type URL for `IdentifiedAction`: `"type.googleapis.com/google.cloud.visionai.v1.VideoActionRecognitionPredictionResult.IdentifiedAction"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.visionai.v1.VideoActionRecognitionPredictionResult.IdentifiedAction"
     }
+
+    /// Initialize an instance of `IdentifiedAction` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.VideoActionRecognitionPredictionResult.IdentifiedAction"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IdentifiedAction` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `VideoActionRecognitionPredictionResult`: `"type.googleapis.com/google.cloud.visionai.v1.VideoActionRecognitionPredictionResult"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.VideoActionRecognitionPredictionResult"
   }
+
+  /// Initialize an instance of `VideoActionRecognitionPredictionResult` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.VideoActionRecognitionPredictionResult"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `VideoActionRecognitionPredictionResult` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

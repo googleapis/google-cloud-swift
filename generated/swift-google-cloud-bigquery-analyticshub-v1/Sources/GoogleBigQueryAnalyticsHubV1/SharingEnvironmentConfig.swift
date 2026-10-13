@@ -57,7 +57,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     var environment: EnvironmentOneOf? = nil
@@ -87,7 +87,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
 
     if let choice = self.environment {
@@ -134,7 +134,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       static let _knownKeys: Set<Swift.String> = []
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -142,20 +142,31 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
+    /// The type URL for `DefaultExchangeConfig`: `"type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DefaultExchangeConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DefaultExchangeConfig"
     }
+
+    /// Initialize an instance of `DefaultExchangeConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DefaultExchangeConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DefaultExchangeConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -215,7 +226,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.singleSelectedResourceSharingRestriction = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .singleSelectedResourceSharingRestriction)
@@ -227,7 +238,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(
         self.singleSelectedResourceSharingRestriction,
@@ -239,13 +250,24 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
       }
     }
 
+    /// The type URL for `DcrExchangeConfig`: `"type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DcrExchangeConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DcrExchangeConfig"
     }
+
+    /// Initialize an instance of `DcrExchangeConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DcrExchangeConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DcrExchangeConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -258,12 +280,23 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     indirect case dcrExchangeConfig(SharingEnvironmentConfig.DcrExchangeConfig)
   }
 
+  /// The type URL for `SharingEnvironmentConfig`: `"type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig"
   }
+
+  /// Initialize an instance of `SharingEnvironmentConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SharingEnvironmentConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

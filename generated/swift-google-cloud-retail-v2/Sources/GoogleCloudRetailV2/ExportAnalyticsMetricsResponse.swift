@@ -68,7 +68,7 @@ public struct ExportAnalyticsMetricsResponse: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent([GoogleRpc.Status].self, forKey: .errorSamples) {
       self.errorSamples = value
@@ -82,7 +82,7 @@ public struct ExportAnalyticsMetricsResponse: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.errorSamples, forKey: .errorSamples)
     try container.encodeIfPresent(self.errorsConfig, forKey: .errorsConfig)
@@ -92,12 +92,23 @@ public struct ExportAnalyticsMetricsResponse: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `ExportAnalyticsMetricsResponse`: `"type.googleapis.com/google.cloud.retail.v2.ExportAnalyticsMetricsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ExportAnalyticsMetricsResponse"
   }
+
+  /// Initialize an instance of `ExportAnalyticsMetricsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.retail.v2.ExportAnalyticsMetricsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ExportAnalyticsMetricsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

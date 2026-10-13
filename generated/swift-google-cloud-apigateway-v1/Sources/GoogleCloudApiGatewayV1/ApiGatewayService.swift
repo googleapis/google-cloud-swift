@@ -27,8 +27,8 @@ import Foundation
 /// @Snippet(path: "ApiGatewayServiceQuickstart")
 public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, Sendable {
   let inner: any Clients.ApiGatewayServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `ApiGatewayServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -625,7 +625,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func listGatewaysByItems(
     request: ListGatewaysRequest
-  ) -> some AsyncSequence<Gateway, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Gateway, any Swift.Error> & Sendable {
     self.listGatewaysByItems(request: request, options: .init())
   }
 
@@ -634,7 +634,7 @@ extension Clients.ApiGatewayServiceProtocol {
   /// @Snippet(path: "ApiGatewayService_ListGateways")
   public func listGatewaysByItems(
     request: ListGatewaysRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Gateway, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Gateway, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudApiGatewayV1.ListGatewaysResponse
       in
@@ -648,7 +648,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func listGatewaysByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Gateway, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Gateway, any Swift.Error> & Sendable {
     let request = ListGatewaysRequest().with {
       $0.parent = parent
     }
@@ -788,7 +788,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func listApisByItems(
     request: ListApisRequest
-  ) -> some AsyncSequence<Api, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Api, any Swift.Error> & Sendable {
     self.listApisByItems(request: request, options: .init())
   }
 
@@ -797,7 +797,7 @@ extension Clients.ApiGatewayServiceProtocol {
   /// @Snippet(path: "ApiGatewayService_ListApis")
   public func listApisByItems(
     request: ListApisRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Api, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Api, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudApiGatewayV1.ListApisResponse in
       var request = request
@@ -810,7 +810,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func listApisByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<Api, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Api, any Swift.Error> & Sendable {
     let request = ListApisRequest().with {
       $0.parent = parent
     }
@@ -943,7 +943,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func listApiConfigsByItems(
     request: ListApiConfigsRequest
-  ) -> some AsyncSequence<ApiConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ApiConfig, any Swift.Error> & Sendable {
     self.listApiConfigsByItems(request: request, options: .init())
   }
 
@@ -952,7 +952,7 @@ extension Clients.ApiGatewayServiceProtocol {
   /// @Snippet(path: "ApiGatewayService_ListApiConfigs")
   public func listApiConfigsByItems(
     request: ListApiConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ApiConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ApiConfig, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudApiGatewayV1.ListApiConfigsResponse
       in
@@ -966,7 +966,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func listApiConfigsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<ApiConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ApiConfig, any Swift.Error> & Sendable {
     let request = ListApiConfigsRequest().with {
       $0.parent = parent
     }
@@ -1111,7 +1111,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1122,7 +1122,7 @@ extension Clients.ApiGatewayServiceProtocol {
   /// @Snippet(path: "ApiGatewayService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1136,7 +1136,7 @@ extension Clients.ApiGatewayServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

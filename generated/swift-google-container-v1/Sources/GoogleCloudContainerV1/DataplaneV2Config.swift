@@ -55,7 +55,7 @@ public struct DataplaneV2Config: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.scalabilityMode = try container.decodeIfPresent(
       DataplaneV2Config.ScalabilityMode.self, forKey: .scalabilityMode)
@@ -65,7 +65,7 @@ public struct DataplaneV2Config: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.scalabilityMode, forKey: .scalabilityMode)
     for (key, value) in self._unknownFields.json {
@@ -160,7 +160,7 @@ public struct DataplaneV2Config: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -178,7 +178,7 @@ public struct DataplaneV2Config: Codable, Equatable, GoogleWKT._AnyPackable,
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("SCALABILITY_MODE_UNSPECIFIED")
@@ -190,12 +190,23 @@ public struct DataplaneV2Config: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `DataplaneV2Config`: `"type.googleapis.com/google.container.v1.DataplaneV2Config"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.DataplaneV2Config"
   }
+
+  /// Initialize an instance of `DataplaneV2Config` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.DataplaneV2Config"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `DataplaneV2Config` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

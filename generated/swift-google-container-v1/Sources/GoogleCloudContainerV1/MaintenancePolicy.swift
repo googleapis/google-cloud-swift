@@ -69,7 +69,7 @@ public struct MaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.window = try container.decodeIfPresent(MaintenanceWindow.self, forKey: .window)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .resourceVersion) {
@@ -83,7 +83,7 @@ public struct MaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.window, forKey: .window)
     try container.encode(self.resourceVersion, forKey: .resourceVersion)
@@ -93,12 +93,23 @@ public struct MaintenancePolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `MaintenancePolicy`: `"type.googleapis.com/google.container.v1.MaintenancePolicy"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.MaintenancePolicy"
   }
+
+  /// Initialize an instance of `MaintenancePolicy` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.container.v1.MaintenancePolicy"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MaintenancePolicy` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

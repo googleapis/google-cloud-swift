@@ -37,8 +37,8 @@ import Foundation
 /// @Snippet(path: "HsmManagementQuickstart")
 public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable {
   let inner: any Clients.HsmManagementStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `HsmManagementClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -486,7 +486,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listSingleTenantHsmInstancesByItems(
     request: ListSingleTenantHsmInstancesRequest
-  ) -> some AsyncSequence<SingleTenantHsmInstance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SingleTenantHsmInstance, any Swift.Error> & Sendable {
     self.listSingleTenantHsmInstancesByItems(request: request, options: .init())
   }
 
@@ -498,7 +498,7 @@ extension Clients.HsmManagementProtocol {
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
   public func listSingleTenantHsmInstancesByItems(
     request: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SingleTenantHsmInstance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SingleTenantHsmInstance, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse in
@@ -512,7 +512,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listSingleTenantHsmInstancesByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SingleTenantHsmInstance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SingleTenantHsmInstance, any Swift.Error> & Sendable {
     let request = ListSingleTenantHsmInstancesRequest().with {
       $0.parent = parent
     }
@@ -708,7 +708,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listSingleTenantHsmInstanceProposalsByItems(
     request: ListSingleTenantHsmInstanceProposalsRequest
-  ) -> some AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SingleTenantHsmInstanceProposal, any Swift.Error> & Sendable {
     self.listSingleTenantHsmInstanceProposalsByItems(request: request, options: .init())
   }
 
@@ -720,7 +720,7 @@ extension Clients.HsmManagementProtocol {
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
   public func listSingleTenantHsmInstanceProposalsByItems(
     request: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SingleTenantHsmInstanceProposal, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse in
@@ -734,7 +734,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listSingleTenantHsmInstanceProposalsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SingleTenantHsmInstanceProposal, any Swift.Error> & Sendable {
     let request = ListSingleTenantHsmInstanceProposalsRequest().with {
       $0.parent = parent
     }
@@ -776,7 +776,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -802,7 +802,7 @@ extension Clients.HsmManagementProtocol {
   /// @Snippet(path: "HsmManagement_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

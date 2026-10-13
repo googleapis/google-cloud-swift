@@ -67,7 +67,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.healthCheck = try container.decodeIfPresent(Swift.String.self, forKey: .healthCheck)
       self.initialDelaySec = try container.decodeIfPresent(
@@ -78,7 +78,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.healthCheck, forKey: .healthCheck)
       try container.encodeIfPresent(self.initialDelaySec, forKey: .initialDelaySec)
@@ -87,12 +87,23 @@
       }
     }
 
+    /// The type URL for `InstanceGroupManagerAutoHealingPolicy`: `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy"
     }
+
+    /// Initialize an instance of `InstanceGroupManagerAutoHealingPolicy` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InstanceGroupManagerAutoHealingPolicy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

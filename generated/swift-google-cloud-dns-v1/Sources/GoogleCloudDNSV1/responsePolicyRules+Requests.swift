@@ -71,7 +71,7 @@ extension ResponsePolicyRulesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -88,7 +88,7 @@ extension ResponsePolicyRulesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.project, forKey: .project)
@@ -99,12 +99,23 @@ extension ResponsePolicyRulesClient {
       }
     }
 
+    /// The type URL for `CreateRequest`: `"type.googleapis.com/.responsePolicyRules.createRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.createRequest"
     }
+
+    /// Initialize an instance of `CreateRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.responsePolicyRules.createRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `CreateRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -163,7 +174,7 @@ extension ResponsePolicyRulesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -182,7 +193,7 @@ extension ResponsePolicyRulesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.project, forKey: .project)
@@ -193,12 +204,23 @@ extension ResponsePolicyRulesClient {
       }
     }
 
+    /// The type URL for `DeleteRequest`: `"type.googleapis.com/.responsePolicyRules.deleteRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.deleteRequest"
     }
+
+    /// Initialize an instance of `DeleteRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.responsePolicyRules.deleteRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DeleteRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -257,7 +279,7 @@ extension ResponsePolicyRulesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -276,7 +298,7 @@ extension ResponsePolicyRulesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.project, forKey: .project)
@@ -287,12 +309,23 @@ extension ResponsePolicyRulesClient {
       }
     }
 
+    /// The type URL for `GetRequest`: `"type.googleapis.com/.responsePolicyRules.getRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.getRequest"
     }
+
+    /// Initialize an instance of `GetRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.responsePolicyRules.getRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GetRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -351,7 +384,7 @@ extension ResponsePolicyRulesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.maxResults = try container.decodeIfPresent(Swift.Int32.self, forKey: .maxResults)
       self.pageToken = try container.decodeIfPresent(Swift.String.self, forKey: .pageToken)
@@ -367,7 +400,7 @@ extension ResponsePolicyRulesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.maxResults, forKey: .maxResults)
       try container.encodeIfPresent(self.pageToken, forKey: .pageToken)
@@ -378,12 +411,23 @@ extension ResponsePolicyRulesClient {
       }
     }
 
+    /// The type URL for `ListRequest`: `"type.googleapis.com/.responsePolicyRules.listRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.listRequest"
     }
+
+    /// Initialize an instance of `ListRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.responsePolicyRules.listRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ListRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -447,7 +491,7 @@ extension ResponsePolicyRulesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -467,7 +511,7 @@ extension ResponsePolicyRulesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.project, forKey: .project)
@@ -479,12 +523,23 @@ extension ResponsePolicyRulesClient {
       }
     }
 
+    /// The type URL for `PatchRequest`: `"type.googleapis.com/.responsePolicyRules.patchRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.patchRequest"
     }
+
+    /// Initialize an instance of `PatchRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.responsePolicyRules.patchRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PatchRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -548,7 +603,7 @@ extension ResponsePolicyRulesClient {
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.clientOperationId = try container.decodeIfPresent(
         Swift.String.self, forKey: .clientOperationId)
@@ -568,7 +623,7 @@ extension ResponsePolicyRulesClient {
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.clientOperationId, forKey: .clientOperationId)
       try container.encode(self.project, forKey: .project)
@@ -580,12 +635,23 @@ extension ResponsePolicyRulesClient {
       }
     }
 
+    /// The type URL for `UpdateRequest`: `"type.googleapis.com/.responsePolicyRules.updateRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.updateRequest"
     }
+
+    /// Initialize an instance of `UpdateRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.responsePolicyRules.updateRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UpdateRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

@@ -62,7 +62,7 @@ public struct QueryFolderContentsResponse: Codable, Equatable, GoogleWKT._AnyPac
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [QueryFolderContentsResponse.FolderContentsEntry].self, forKey: .entries)
@@ -78,7 +78,7 @@ public struct QueryFolderContentsResponse: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.entries, forKey: .entries)
     try container.encode(self.nextPageToken, forKey: .nextPageToken)
@@ -127,7 +127,7 @@ public struct QueryFolderContentsResponse: Codable, Equatable, GoogleWKT._AnyPac
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
       var entry: EntryOneOf? = nil
@@ -153,7 +153,7 @@ public struct QueryFolderContentsResponse: Codable, Equatable, GoogleWKT._AnyPac
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
 
       if let choice = self.entry {
@@ -177,24 +177,46 @@ public struct QueryFolderContentsResponse: Codable, Equatable, GoogleWKT._AnyPac
       indirect case repository(Repository)
     }
 
+    /// The type URL for `FolderContentsEntry`: `"type.googleapis.com/google.cloud.dataform.v1.QueryFolderContentsResponse.FolderContentsEntry"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.dataform.v1.QueryFolderContentsResponse.FolderContentsEntry"
     }
+
+    /// Initialize an instance of `FolderContentsEntry` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.QueryFolderContentsResponse.FolderContentsEntry"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `FolderContentsEntry` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `QueryFolderContentsResponse`: `"type.googleapis.com/google.cloud.dataform.v1.QueryFolderContentsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.QueryFolderContentsResponse"
   }
+
+  /// Initialize an instance of `QueryFolderContentsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dataform.v1.QueryFolderContentsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `QueryFolderContentsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

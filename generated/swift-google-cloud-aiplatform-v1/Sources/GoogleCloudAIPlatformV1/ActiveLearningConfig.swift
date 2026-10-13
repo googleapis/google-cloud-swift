@@ -74,7 +74,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.sampleConfig = try container.decodeIfPresent(SampleConfig.self, forKey: .sampleConfig)
       self.trainingConfig = try container.decodeIfPresent(
@@ -107,7 +107,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.sampleConfig, forKey: .sampleConfig)
       try container.encodeIfPresent(self.trainingConfig, forKey: .trainingConfig)
@@ -134,12 +134,23 @@
       case maxDataItemPercentage(Swift.Int32)
     }
 
+    /// The type URL for `ActiveLearningConfig`: `"type.googleapis.com/google.cloud.aiplatform.v1.ActiveLearningConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ActiveLearningConfig"
     }
+
+    /// Initialize an instance of `ActiveLearningConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.ActiveLearningConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `ActiveLearningConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

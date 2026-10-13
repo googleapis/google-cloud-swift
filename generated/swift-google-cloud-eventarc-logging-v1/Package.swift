@@ -27,12 +27,12 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-rpc",
       path: "generated/swift-google-rpc",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.4.0"
+      from: "0.5.0"
     ),
   ],
   targets: [
@@ -43,6 +43,7 @@ let package = Package(
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
       ],
       swiftSettings: [
+        .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),

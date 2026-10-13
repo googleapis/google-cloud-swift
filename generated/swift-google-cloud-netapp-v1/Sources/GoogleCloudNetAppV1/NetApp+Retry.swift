@@ -246,6 +246,36 @@ extension Clients {
         })
     }
 
+    public func startSplit(
+      request: StartSplitRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: StartSplitRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.startSplit(request: r, options: o)
+        })
+    }
+
+    public func getSplitStatus(
+      request: GetSplitStatusRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudNetAppV1.SplitStatus {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetSplitStatusRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudNetAppV1.SplitStatus
+          in
+          return try await self.inner.getSplitStatus(request: r, options: o)
+        })
+    }
+
     public func establishVolumePeering(
       request: EstablishVolumePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1113,6 +1143,51 @@ extension Clients {
             -> GoogleCloudNetAppV1.ExecuteOntapPatchResponse
           in
           return try await self.inner.executeOntapPatch(request: r, options: o)
+        })
+    }
+
+    public func restoreVolume(
+      request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: RestoreVolumeRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.restoreVolume(request: r, options: o)
+        })
+    }
+
+    public func listBackupConfigs(
+      request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudNetAppV1.ListBackupConfigsResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListBackupConfigsRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudNetAppV1.ListBackupConfigsResponse
+          in
+          return try await self.inner.listBackupConfigs(request: r, options: o)
+        })
+    }
+
+    public func updateBackupConfig(
+      request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateBackupConfigRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateBackupConfig(request: r, options: o)
         })
     }
 

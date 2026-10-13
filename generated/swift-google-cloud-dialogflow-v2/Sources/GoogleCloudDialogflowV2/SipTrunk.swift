@@ -38,6 +38,12 @@
     /// Optional. Human readable alias for this trunk.
     public var displayName: Swift.String = Swift.String()
 
+    /// Required. Peer hostnames of the SIP trunk.
+    public var peerHostnames: [SipHostname] = []
+
+    /// Optional. The root certificate file to use for this SIP trunk.
+    public var googleRootCertFile: SipTrunk.GoogleRootCertFile = SipTrunk.GoogleRootCertFile()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `SipTrunk`.
@@ -66,16 +72,20 @@
       static let expectedHostname = CodingKeys(stringValue: "expectedHostname")
       static let connections = CodingKeys(stringValue: "connections")
       static let displayName = CodingKeys(stringValue: "displayName")
+      static let peerHostnames = CodingKeys(stringValue: "peerHostnames")
+      static let googleRootCertFile = CodingKeys(stringValue: "googleRootCertFile")
 
       static let _knownKeys: Set<Swift.String> = [
         "name",
         "expectedHostname",
         "connections",
         "displayName",
+        "peerHostnames",
+        "googleRootCertFile",
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .name) {
         self.name = value
@@ -89,29 +99,160 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .displayName) {
         self.displayName = value
       }
+      if let value = try container.decodeIfPresent([SipHostname].self, forKey: .peerHostnames) {
+        self.peerHostnames = value
+      }
+      if let value = try container.decodeIfPresent(
+        SipTrunk.GoogleRootCertFile.self, forKey: .googleRootCertFile)
+      {
+        self.googleRootCertFile = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.expectedHostname, forKey: .expectedHostname)
       try container.encode(self.connections, forKey: .connections)
       try container.encode(self.displayName, forKey: .displayName)
+      try container.encode(self.peerHostnames, forKey: .peerHostnames)
+      try container.encode(self.googleRootCertFile, forKey: .googleRootCertFile)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
+    /// The type of Google root certificate file used for mTLS.
+    ///
+    /// - Note: Adding cases to this enumeration is not considered a breaking change.
+    ///   Always include an `@unknown default:` case when switching over this type.
+    ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
+    ///   expecting specific values to remain unparsed; future releases may promote
+    ///   them to named cases.
+    public enum GoogleRootCertFile: Codable, Equatable, Hashable, Sendable {
+      /// Unspecified root certificate file.
+      case certFileUnspecified
+      /// Use external private CA.
+      case externalPrivateCa
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific integer values in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown value is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      ///
+      /// - Warning: Do not pattern-match specific string literals in this case;
+      ///   future releases may promote them to named enum cases.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .certFileUnspecified
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .certFileUnspecified: return 0
+        case .externalPrivateCa: return 5
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .certFileUnspecified: return "CERT_FILE_UNSPECIFIED"
+        case .externalPrivateCa: return "EXTERNAL_PRIVATE_CA"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:GoogleRootCertFile/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "CERT_FILE_UNSPECIFIED": self = .certFileUnspecified
+        case "EXTERNAL_PRIVATE_CA": self = .externalPrivateCa
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:GoogleRootCertFile/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .certFileUnspecified
+        case 5: self = .externalPrivateCa
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .certFileUnspecified: return try container.encode("CERT_FILE_UNSPECIFIED")
+        case .externalPrivateCa: return try container.encode("EXTERNAL_PRIVATE_CA")
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// The type URL for `SipTrunk`: `"type.googleapis.com/google.cloud.dialogflow.v2.SipTrunk"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SipTrunk"
     }
+
+    /// Initialize an instance of `SipTrunk` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.SipTrunk"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SipTrunk` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

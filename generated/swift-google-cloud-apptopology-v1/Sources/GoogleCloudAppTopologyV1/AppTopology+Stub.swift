@@ -30,6 +30,10 @@ extension Clients {
       request: GetSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppTopologyV1.Schema
 
+    func exploreSchema(
+      request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse
+
     func getDomain(
       request: GetDomainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAppTopologyV1.Domain

@@ -60,7 +60,7 @@ public struct MutationRecord: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.mutateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .mutateTime)
@@ -73,7 +73,7 @@ public struct MutationRecord: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.mutateTime, forKey: .mutateTime)
     try container.encode(self.mutatedBy, forKey: .mutatedBy)
@@ -82,12 +82,23 @@ public struct MutationRecord: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `MutationRecord`: `"type.googleapis.com/google.monitoring.v3.MutationRecord"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.MutationRecord"
   }
+
+  /// Initialize an instance of `MutationRecord` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.v3.MutationRecord"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `MutationRecord` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

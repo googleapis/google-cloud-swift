@@ -28,8 +28,8 @@
       .GlobalPublicDelegatedPrefixesProtocol, Sendable
   {
     let inner: any Clients.GlobalPublicDelegatedPrefixesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `GlobalPublicDelegatedPrefixesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -54,6 +54,11 @@
     }
 
     /// Deletes the specified global PublicDelegatedPrefix.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_delete")
     public func deletePollingUntilDone(
@@ -115,6 +120,11 @@
 
     /// Creates a global PublicDelegatedPrefix in the specified project using the
     /// parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_insert")
     public func insertPollingUntilDone(
@@ -181,6 +191,11 @@
     /// semantics and usesJSON merge
     /// patch format and processing rules.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_patch")
     public func patchPollingUntilDone(
       request: GlobalPublicDelegatedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -244,6 +259,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalPublicDelegatedPrefixesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: GlobalPublicDelegatedPrefixesClient.DeleteRequest,
         options: GoogleGax.RequestOptions
@@ -261,6 +281,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalPublicDelegatedPrefixesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: GlobalPublicDelegatedPrefixesClient.InsertRequest,
         options: GoogleGax.RequestOptions
@@ -277,6 +302,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `GlobalPublicDelegatedPrefixesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: GlobalPublicDelegatedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -392,7 +422,7 @@
 
     public func listByItems(
       request: GlobalPublicDelegatedPrefixesClient.ListRequest
-    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -401,7 +431,7 @@
     /// @Snippet(path: "globalPublicDelegatedPrefixes_list")
     public func listByItems(
       request: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
@@ -415,7 +445,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, any Swift.Error> & Sendable {
       let request = GlobalPublicDelegatedPrefixesClient.ListRequest().with {
         $0.project = project
       }

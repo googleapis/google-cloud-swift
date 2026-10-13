@@ -40,8 +40,8 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
     .OrgPolicyViolationsPreviewServiceProtocol, Sendable
 {
   let inner: any Clients.OrgPolicyViolationsPreviewServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `OrgPolicyViolationsPreviewServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -227,7 +227,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOrgPolicyViolationsPreviewsByItems(
     request: ListOrgPolicyViolationsPreviewsRequest
-  ) -> some AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OrgPolicyViolationsPreview, any Swift.Error> & Sendable {
     self.listOrgPolicyViolationsPreviewsByItems(request: request, options: .init())
   }
 
@@ -242,7 +242,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_ListOrgPolicyViolationsPreviews")
   public func listOrgPolicyViolationsPreviewsByItems(
     request: ListOrgPolicyViolationsPreviewsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OrgPolicyViolationsPreview, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsPreviewsResponse in
@@ -256,7 +256,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOrgPolicyViolationsPreviewsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<OrgPolicyViolationsPreview, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OrgPolicyViolationsPreview, any Swift.Error> & Sendable {
     let request = ListOrgPolicyViolationsPreviewsRequest().with {
       $0.parent = parent
     }
@@ -336,7 +336,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOrgPolicyViolationsByItems(
     request: ListOrgPolicyViolationsRequest
-  ) -> some AsyncSequence<OrgPolicyViolation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OrgPolicyViolation, any Swift.Error> & Sendable {
     self.listOrgPolicyViolationsByItems(request: request, options: .init())
   }
 
@@ -347,7 +347,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_ListOrgPolicyViolations")
   public func listOrgPolicyViolationsByItems(
     request: ListOrgPolicyViolationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<OrgPolicyViolation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OrgPolicyViolation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsResponse in
@@ -361,7 +361,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOrgPolicyViolationsByItems(
     parent: Swift.String,
-  ) -> some AsyncSequence<OrgPolicyViolation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OrgPolicyViolation, any Swift.Error> & Sendable {
     let request = ListOrgPolicyViolationsRequest().with {
       $0.parent = parent
     }
@@ -382,7 +382,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -393,7 +393,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -407,7 +407,7 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

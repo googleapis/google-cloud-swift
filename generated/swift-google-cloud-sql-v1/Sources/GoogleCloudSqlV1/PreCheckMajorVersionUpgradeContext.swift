@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService
+#if BlueGreenDeploymentsService || SqlBackupRunsService || SqlBackupsService || SqlDatabasesService || SqlInstancesService || SqlOperationsService || SqlSslCertsService || SqlUsersService || SqlWorkloadCapturesService
   import Foundation
   @_spi(GoogleCloudInternal) public import GoogleWKT
 
@@ -30,6 +30,9 @@
 
     /// Optional. This is always `sql#preCheckMajorVersionUpgradeContext`.
     public var kind: Swift.String = Swift.String()
+
+    /// Optional. The maximum allowed runtime for the precheck operation.
+    public var maxRuntime: GoogleWKT.WKTDuration? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,15 +61,17 @@
       static let targetDatabaseVersion = CodingKeys(stringValue: "targetDatabaseVersion")
       static let preCheckResponse = CodingKeys(stringValue: "preCheckResponse")
       static let kind = CodingKeys(stringValue: "kind")
+      static let maxRuntime = CodingKeys(stringValue: "maxRuntime")
 
       static let _knownKeys: Set<Swift.String> = [
         "targetDatabaseVersion",
         "preCheckResponse",
         "kind",
+        "maxRuntime",
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         SqlDatabaseVersion.self, forKey: .targetDatabaseVersion)
@@ -81,28 +86,42 @@
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
         self.kind = value
       }
+      self.maxRuntime = try container.decodeIfPresent(
+        GoogleWKT.WKTDuration.self, forKey: .maxRuntime)
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.targetDatabaseVersion, forKey: .targetDatabaseVersion)
       try container.encode(self.preCheckResponse, forKey: .preCheckResponse)
       try container.encode(self.kind, forKey: .kind)
+      try container.encodeIfPresent(self.maxRuntime, forKey: .maxRuntime)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
     }
 
+    /// The type URL for `PreCheckMajorVersionUpgradeContext`: `"type.googleapis.com/google.cloud.sql.v1.PreCheckMajorVersionUpgradeContext"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.PreCheckMajorVersionUpgradeContext"
     }
+
+    /// Initialize an instance of `PreCheckMajorVersionUpgradeContext` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.PreCheckMajorVersionUpgradeContext"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PreCheckMajorVersionUpgradeContext` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

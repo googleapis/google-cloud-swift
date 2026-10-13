@@ -26,8 +26,8 @@
   /// @Snippet(path: "instanceTemplatesQuickstart")
   public final class InstanceTemplatesClient: Clients.InstanceTemplatesProtocol, Sendable {
     let inner: any Clients.InstanceTemplatesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `InstanceTemplatesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -68,6 +68,11 @@
     /// Deletes the specified instance template. Deleting an instance template is
     /// permanent and cannot be undone. It is not possible to delete templates
     /// that are already in use by a managed instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceTemplates_delete")
     public func deletePollingUntilDone(
@@ -145,6 +150,11 @@
     /// update an existing instance group, your new instance template must use the
     /// same network or, if applicable, the same subnetwork as the original
     /// template.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceTemplates_insert")
     public func insertPollingUntilDone(
@@ -242,6 +252,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceTemplatesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: InstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -262,6 +277,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `InstanceTemplatesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: InstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -300,7 +320,8 @@
 
     public func aggregatedListByItems(
       request: InstanceTemplatesClient.AggregatedListRequest
-    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), any Swift.Error> & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -313,7 +334,8 @@
     /// @Snippet(path: "instanceTemplates_aggregatedList")
     public func aggregatedListByItems(
       request: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), any Swift.Error> & Sendable
+    {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InstanceTemplateAggregatedList in
@@ -327,7 +349,8 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), any Swift.Error> & Sendable
+    {
       let request = InstanceTemplatesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -464,7 +487,7 @@
 
     public func listByItems(
       request: InstanceTemplatesClient.ListRequest
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -474,7 +497,7 @@
     /// @Snippet(path: "instanceTemplates_list")
     public func listByItems(
       request: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
         var request = request
@@ -487,7 +510,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       let request = InstanceTemplatesClient.ListRequest().with {
         $0.project = project
       }

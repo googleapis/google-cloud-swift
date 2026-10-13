@@ -28,8 +28,8 @@
     Sendable
   {
     let inner: any Clients.RegionInstanceTemplatesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionInstanceTemplatesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -56,6 +56,11 @@
 
     /// Deletes the specified instance template. Deleting an instance template is
     /// permanent and cannot be undone.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceTemplates_delete")
     public func deletePollingUntilDone(
@@ -118,6 +123,11 @@
 
     /// Creates an instance template in the specified project and region using the
     /// global instance template whose URL is included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceTemplates_insert")
     public func insertPollingUntilDone(
@@ -192,6 +202,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceTemplatesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionInstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -207,6 +222,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceTemplatesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionInstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -333,7 +353,7 @@
 
     public func listByItems(
       request: RegionInstanceTemplatesClient.ListRequest
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -343,7 +363,7 @@
     /// @Snippet(path: "regionInstanceTemplates_list")
     public func listByItems(
       request: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
         var request = request
@@ -357,7 +377,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
       let request = RegionInstanceTemplatesClient.ListRequest().with {
         $0.project = project
         $0.region = region

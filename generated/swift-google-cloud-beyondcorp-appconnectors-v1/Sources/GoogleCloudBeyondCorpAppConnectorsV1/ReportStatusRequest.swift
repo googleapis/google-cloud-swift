@@ -33,8 +33,8 @@ public struct ReportStatusRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ignore the request if it has already been completed. The server will
   /// guarantee that for at least 60 minutes since the first request.
   ///
-  /// For example, consider a situation where you make an initial request and t
-  /// he request times out. If you make the request again with the same request
+  /// For example, consider a situation where you make an initial request and
+  /// the request times out. If you make the request again with the same request
   /// ID, the server can check if original operation with the same request ID
   /// was received, and if so, will ignore the second request. This prevents
   /// clients from accidentally creating duplicate commitments.
@@ -84,7 +84,7 @@ public struct ReportStatusRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .appConnector) {
       self.appConnector = value
@@ -102,7 +102,7 @@ public struct ReportStatusRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.appConnector, forKey: .appConnector)
     try container.encodeIfPresent(self.resourceInfo, forKey: .resourceInfo)
@@ -113,12 +113,23 @@ public struct ReportStatusRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  /// The type URL for `ReportStatusRequest`: `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ReportStatusRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ReportStatusRequest"
   }
+
+  /// Initialize an instance of `ReportStatusRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ReportStatusRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `ReportStatusRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

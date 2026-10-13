@@ -61,7 +61,7 @@ public struct UpdateBlueprintRequest: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.blueprint = try container.decodeIfPresent(Blueprint.self, forKey: .blueprint)
     self.updateMask = try container.decodeIfPresent(
@@ -72,7 +72,7 @@ public struct UpdateBlueprintRequest: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.blueprint, forKey: .blueprint)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -81,12 +81,23 @@ public struct UpdateBlueprintRequest: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `UpdateBlueprintRequest`: `"type.googleapis.com/google.cloud.telcoautomation.v1.UpdateBlueprintRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.telcoautomation.v1.UpdateBlueprintRequest"
   }
+
+  /// Initialize an instance of `UpdateBlueprintRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.telcoautomation.v1.UpdateBlueprintRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateBlueprintRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

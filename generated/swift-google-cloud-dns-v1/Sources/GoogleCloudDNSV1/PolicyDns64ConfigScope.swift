@@ -58,7 +58,7 @@ public struct PolicyDns64ConfigScope: Codable, Equatable, GoogleWKT._AnyPackable
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.allQueries = try container.decodeIfPresent(Swift.Bool.self, forKey: .allQueries)
     self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
@@ -68,7 +68,7 @@ public struct PolicyDns64ConfigScope: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.allQueries, forKey: .allQueries)
     try container.encodeIfPresent(self.kind, forKey: .kind)
@@ -77,12 +77,23 @@ public struct PolicyDns64ConfigScope: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
+  /// The type URL for `PolicyDns64ConfigScope`: `"type.googleapis.com/.PolicyDns64ConfigScope"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.PolicyDns64ConfigScope"
   }
+
+  /// Initialize an instance of `PolicyDns64ConfigScope` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/.PolicyDns64ConfigScope"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PolicyDns64ConfigScope` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

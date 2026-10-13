@@ -721,7 +721,7 @@ extension Clients.IAMProtocol {
 
   public func listServiceAccountsByItems(
     request: ListServiceAccountsRequest
-  ) -> some AsyncSequence<ServiceAccount, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceAccount, any Swift.Error> & Sendable {
     self.listServiceAccountsByItems(request: request, options: .init())
   }
 
@@ -732,7 +732,7 @@ extension Clients.IAMProtocol {
   /// @Snippet(path: "IAM_ListServiceAccounts")
   public func listServiceAccountsByItems(
     request: ListServiceAccountsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<ServiceAccount, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceAccount, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse
       in
@@ -746,7 +746,7 @@ extension Clients.IAMProtocol {
 
   public func listServiceAccountsByItems(
     name: Swift.String,
-  ) -> some AsyncSequence<ServiceAccount, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceAccount, any Swift.Error> & Sendable {
     let request = ListServiceAccountsRequest().with {
       $0.name = name
     }
@@ -1143,7 +1143,7 @@ extension Clients.IAMProtocol {
 
   public func queryGrantableRolesByItems(
     request: QueryGrantableRolesRequest
-  ) -> some AsyncSequence<Role, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
     self.queryGrantableRolesByItems(request: request, options: .init())
   }
 
@@ -1154,7 +1154,7 @@ extension Clients.IAMProtocol {
   /// @Snippet(path: "IAM_QueryGrantableRoles")
   public func queryGrantableRolesByItems(
     request: QueryGrantableRolesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Role, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse
       in
@@ -1168,7 +1168,7 @@ extension Clients.IAMProtocol {
 
   public func queryGrantableRolesByItems(
     fullResourceName: Swift.String,
-  ) -> some AsyncSequence<Role, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
     let request = QueryGrantableRolesRequest().with {
       $0.fullResourceName = fullResourceName
     }
@@ -1189,7 +1189,7 @@ extension Clients.IAMProtocol {
 
   public func listRolesByItems(
     request: ListRolesRequest
-  ) -> some AsyncSequence<Role, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
     self.listRolesByItems(request: request, options: .init())
   }
 
@@ -1201,7 +1201,7 @@ extension Clients.IAMProtocol {
   /// @Snippet(path: "IAM_ListRoles")
   public func listRolesByItems(
     request: ListRolesRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Role, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleIAMAdminV1.ListRolesResponse in
       var request = request
@@ -1276,7 +1276,7 @@ extension Clients.IAMProtocol {
 
   public func queryTestablePermissionsByItems(
     request: QueryTestablePermissionsRequest
-  ) -> some AsyncSequence<Permission, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Permission, any Swift.Error> & Sendable {
     self.queryTestablePermissionsByItems(request: request, options: .init())
   }
 
@@ -1287,7 +1287,7 @@ extension Clients.IAMProtocol {
   /// @Snippet(path: "IAM_QueryTestablePermissions")
   public func queryTestablePermissionsByItems(
     request: QueryTestablePermissionsRequest, options: GoogleGax.RequestOptions
-  ) -> some AsyncSequence<Permission, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Permission, any Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleIAMAdminV1.QueryTestablePermissionsResponse in

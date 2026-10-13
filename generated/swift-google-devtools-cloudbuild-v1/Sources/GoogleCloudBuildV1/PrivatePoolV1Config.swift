@@ -65,7 +65,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.workerConfig = try container.decodeIfPresent(
       PrivatePoolV1Config.WorkerConfig.self, forKey: .workerConfig)
@@ -79,7 +79,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.workerConfig, forKey: .workerConfig)
     try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
@@ -146,7 +146,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .machineType) {
         self.machineType = value
@@ -162,7 +162,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.machineType, forKey: .machineType)
       try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
@@ -173,12 +173,23 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `WorkerConfig`: `"type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.WorkerConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.WorkerConfig"
     }
+
+    /// Initialize an instance of `WorkerConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.WorkerConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `WorkerConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -247,7 +258,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .peeredNetwork) {
         self.peeredNetwork = value
@@ -267,7 +278,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.peeredNetwork, forKey: .peeredNetwork)
       try container.encode(self.egressOption, forKey: .egressOption)
@@ -366,7 +377,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -384,7 +395,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified: return try container.encode("EGRESS_OPTION_UNSPECIFIED")
@@ -396,12 +407,23 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `NetworkConfig`: `"type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.NetworkConfig"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.NetworkConfig"
     }
+
+    /// Initialize an instance of `NetworkConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.NetworkConfig"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `NetworkConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -473,7 +495,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkAttachment) {
         self.networkAttachment = value
@@ -492,7 +514,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.networkAttachment, forKey: .networkAttachment)
       try container.encode(self.publicIpAddressDisabled, forKey: .publicIpAddressDisabled)
@@ -502,24 +524,46 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `PrivateServiceConnect`: `"type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.PrivateServiceConnect"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.PrivateServiceConnect"
     }
+
+    /// Initialize an instance of `PrivateServiceConnect` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.PrivateServiceConnect"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `PrivateServiceConnect` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `PrivatePoolV1Config`: `"type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config"
   }
+
+  /// Initialize an instance of `PrivatePoolV1Config` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `PrivatePoolV1Config` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

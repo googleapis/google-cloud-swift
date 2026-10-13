@@ -73,7 +73,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       [AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer].self,
@@ -92,7 +92,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.governedContainers, forKey: .governedContainers)
     try container.encodeIfPresent(self.constraint, forKey: .constraint)
@@ -205,7 +205,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .fullResourceName) {
         self.fullResourceName = value
@@ -239,7 +239,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fullResourceName, forKey: .fullResourceName)
       try container.encode(self.parent, forKey: .parent)
@@ -254,24 +254,46 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
       }
     }
 
+    /// The type URL for `GovernedContainer`: `"type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer"
     }
+
+    /// Initialize an instance of `GovernedContainer` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GovernedContainer` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `AnalyzeOrgPolicyGovernedContainersResponse`: `"type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse"
   }
+
+  /// Initialize an instance of `AnalyzeOrgPolicyGovernedContainersResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AnalyzeOrgPolicyGovernedContainersResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

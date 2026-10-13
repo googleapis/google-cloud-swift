@@ -115,24 +115,32 @@ import NIOHTTP1
     let options = ClientOptions().with { $0.credentials = credentials }
     let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
     let reqOptions = RequestOptions().with {
+      $0.headers = [
+        ("x-multi-header", "first"),
+        ("x-multi-header", "second"),
+      ]
       $0.headers["x-goog-gcs-idempotency-token"] = "test-token"
+      $0.headers["Custom-Header"] = "overridden-val"
       $0.headers["custom-header"] = "custom-val"
     }
     let request = try await client.newRequest(path: "/test", query: [], options: reqOptions)
     #expect(request.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
     #expect(request.headers["custom-header"] == ["custom-val"])
+    #expect(request.headers["x-multi-header"] == ["first", "second"])
 
     let percentEncodedRequest = try await client.newRequest(
       percentEncodedPath: "/test", query: [], options: reqOptions
     )
     #expect(percentEncodedRequest.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
     #expect(percentEncodedRequest.headers["custom-header"] == ["custom-val"])
+    #expect(percentEncodedRequest.headers["x-multi-header"] == ["first", "second"])
 
     let componentsRequest = try await client.newRequest(
       uri: "http://localhost:1234/test", options: reqOptions
     )
     #expect(componentsRequest.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
     #expect(componentsRequest.headers["custom-header"] == ["custom-val"])
+    #expect(componentsRequest.headers["x-multi-header"] == ["first", "second"])
   }
 
   @Test func requestOptionsHeadersReservedHeadersIgnored() async throws {
@@ -141,16 +149,18 @@ import NIOHTTP1
     let options = ClientOptions().with { $0.credentials = credentials }
     let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
     let reqOptions = RequestOptions().with {
-      $0.headers["authorization"] = "Bearer bad-token"
-      $0.headers["Authorization"] = "Bearer bad-token-upper"
-      $0.headers["x-goog-api-key"] = "bad-key"
-      $0.headers["x-goog-user-project"] = "bad-project"
-      $0.headers["x-goog-api-client"] = "bad-client"
-      $0.headers["x-goog-request-params"] = "bad-params"
-      $0.headers["Host"] = "evil.com"
-      $0.headers["host"] = "evil-lower.com"
-      $0.headers["user-agent"] = "bad-agent"
-      $0.headers["x-goog-gcs-idempotency-token"] = "valid-token"
+      $0.headers = [
+        "authorization": "Bearer bad-token",
+        "Authorization": "Bearer bad-token-upper",
+        "x-goog-api-key": "bad-key",
+        "x-goog-user-project": "bad-project",
+        "x-goog-api-client": "bad-client",
+        "x-goog-request-params": "bad-params",
+        "Host": "evil.com",
+        "host": "evil-lower.com",
+        "user-agent": "bad-agent",
+        "x-goog-gcs-idempotency-token": "valid-token",
+      ]
     }
     let request = try await client.newRequest(path: "/test", query: [], options: reqOptions)
     #expect(request.headers["authorization"].isEmpty)
@@ -269,6 +279,24 @@ import NIOHTTP1
     #expect(response.status == .ok)
     let data = try await response.data(upTo: 1024)
     #expect(data == .init("{}".utf8))
+  }
+
+  @Test(
+    arguments: [
+      (.GET, .GET),
+      (.PUT, .PUT),
+      (.POST, .POST),
+      (.DELETE, .DELETE),
+      (.PATCH, .PATCH),
+      (.HEAD, .HEAD),
+      (.OPTIONS, .OPTIONS),
+    ] as [(_HTTPClientRequest.Method, NIOHTTP1.HTTPMethod)]
+  )
+  func setMethodMappings(
+    _ method: _HTTPClientRequest.Method,
+    _ want: NIOHTTP1.HTTPMethod
+  ) {
+    #expect(method.nioMethod == want)
   }
 
   @Test func postRequestBodyJSON() async throws {
@@ -403,6 +431,34 @@ import NIOHTTP1
     #expect(response == ResponseType(name: "test-name", value: "test-value"))
   }
 
+  @Test(arguments: [
+    "",
+    "not valid json",
+    #"{"name": 123, "value": "test-value"}"#,
+    #"[]"#,
+  ]) func rpcMalformedResponse(body: String) async throws {
+    let mock = MockHTTPClient { (_, _) in
+      HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json; charset=UTF-8")]),
+        body: .bytes(.init(string: body))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
+    let request = try await client.newRequest(
+      path: "/v1/projects/my-project/secrets",
+      query: [URLQueryItem(name: "$alt", value: "json")]
+    )
+    let result = await request.rpc(ResponseType.self, timeout: .seconds(1))
+    guard case .failure(.malformedResponse(let message)) = result else {
+      Issue.record("expected .failure(.malformedResponse), got=\(result)")
+      return
+    }
+    #expect(message.contains("ResponseType"))
+  }
+
   @Test func getErrorDetails() async throws {
     let endpoint = "http://localhost:8080"
     let path = "/v1/projects/test-only-project/locations/us-central1/orchestrationClusters"
@@ -460,6 +516,51 @@ import NIOHTTP1
       return
     }
     #expect(httpError.statusCode == 404)
+  }
+
+  @Test func getHttp300Error() async throws {
+    let endpoint = "http://localhost:8080"
+    let path = "/v1/projects/my-project/secrets"
+    let url = "\(endpoint)\(path)?$alt=json"
+
+    let mock = MockHTTPClient { (request, _) in
+      #expect(request.method == .GET)
+      #expect(request.url == url)
+
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .multipleChoices,
+        headers: .init([("Content-Type", "text/html; charset=UTF-8")]),
+        body: .bytes(
+          .init(string: "<!DOCTYPE html><html lang=en><title>300 Multiple Choices</title></html>"))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: endpoint)
+    let request = try await client.newRequest(
+      path: path, query: [URLQueryItem(name: "$alt", value: "json")])
+
+    let response = await request.rpc(ResponseType.self)
+    guard case let .failure(.http(httpError)) = response else {
+      Issue.record("expected an http error response, got=\(response)")
+      return
+    }
+    #expect(httpError.statusCode == 300)
+  }
+
+  @Test(arguments: [
+    (code: 199, wantIsError: true),
+    (code: 200, wantIsError: false),
+    (code: 299, wantIsError: false),
+    (code: 300, wantIsError: true),
+  ]) func responseIsErrorBoundary(code: Int, wantIsError: Bool) {
+    let rawResponse = HTTPClientResponse(
+      version: .http1_1,
+      status: HTTPResponseStatus(statusCode: code),
+      body: .bytes(.init(string: "{}"))
+    )
+    let response = _HTTPClientResponse(rawResponse)
+    #expect(response.isError() == wantIsError)
   }
 
   @Test("verify the client when used as GAPICs do for Create-like operations")

@@ -457,6 +457,66 @@ extension Clients {
         })
     }
 
+    public func getBoundary(
+      request: GetBoundaryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.Boundary {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetBoundaryRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudAppHubV1.Boundary
+          in
+          return try await self.inner.getBoundary(request: r, options: o)
+        })
+    }
+
+    public func updateBoundary(
+      request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateBoundaryRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.updateBoundary(request: r, options: o)
+        })
+    }
+
+    public func getExtendedMetadataSchema(
+      request: GetExtendedMetadataSchemaRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.ExtendedMetadataSchema {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetExtendedMetadataSchemaRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudAppHubV1.ExtendedMetadataSchema
+          in
+          return try await self.inner.getExtendedMetadataSchema(request: r, options: o)
+        })
+    }
+
+    public func listExtendedMetadataSchemas(
+      request: ListExtendedMetadataSchemasRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse {
+      return try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListExtendedMetadataSchemasRequest, o: GoogleGax.RequestOptions) async throws
+            -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse
+          in
+          return try await self.inner.listExtendedMetadataSchemas(request: r, options: o)
+        })
+    }
+
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {

@@ -109,7 +109,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.timeSeriesQuery = try container.decodeIfPresent(
       TimeSeriesQuery.self, forKey: .timeSeriesQuery)
@@ -145,7 +145,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.timeSeriesQuery, forKey: .timeSeriesQuery)
     try container.encode(self.thresholds, forKey: .thresholds)
@@ -212,7 +212,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Double.self, forKey: .lowerBound) {
         self.lowerBound = value
@@ -226,7 +226,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.lowerBound, forKey: .lowerBound)
       try container.encode(self.upperBound, forKey: .upperBound)
@@ -235,12 +235,23 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `GaugeView`: `"type.googleapis.com/google.monitoring.dashboard.v1.Scorecard.GaugeView"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.Scorecard.GaugeView"
     }
+
+    /// Initialize an instance of `GaugeView` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.dashboard.v1.Scorecard.GaugeView"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `GaugeView` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -296,7 +307,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(SparkChartType.self, forKey: .sparkChartType) {
         self.sparkChartType = value
@@ -309,7 +320,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.sparkChartType, forKey: .sparkChartType)
       try container.encodeIfPresent(self.minAlignmentPeriod, forKey: .minAlignmentPeriod)
@@ -318,12 +329,23 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// The type URL for `SparkChartView`: `"type.googleapis.com/google.monitoring.dashboard.v1.Scorecard.SparkChartView"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.Scorecard.SparkChartView"
     }
+
+    /// Initialize an instance of `SparkChartView` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.dashboard.v1.Scorecard.SparkChartView"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SparkChartView` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -341,12 +363,23 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case blankView(GoogleWKT.WKTEmpty)
   }
 
+  /// The type URL for `Scorecard`: `"type.googleapis.com/google.monitoring.dashboard.v1.Scorecard"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.Scorecard"
   }
+
+  /// Initialize an instance of `Scorecard` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.monitoring.dashboard.v1.Scorecard"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `Scorecard` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

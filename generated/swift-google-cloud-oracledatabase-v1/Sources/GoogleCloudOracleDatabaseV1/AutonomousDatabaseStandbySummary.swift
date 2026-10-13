@@ -81,7 +81,7 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.lagTimeDuration = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .lagTimeDuration)
@@ -103,7 +103,7 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.lagTimeDuration, forKey: .lagTimeDuration)
     try container.encode(self.lifecycleDetails, forKey: .lifecycleDetails)
@@ -116,12 +116,23 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleWKT._A
     }
   }
 
+  /// The type URL for `AutonomousDatabaseStandbySummary`: `"type.googleapis.com/google.cloud.oracledatabase.v1.AutonomousDatabaseStandbySummary"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.AutonomousDatabaseStandbySummary"
   }
+
+  /// Initialize an instance of `AutonomousDatabaseStandbySummary` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.oracledatabase.v1.AutonomousDatabaseStandbySummary"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `AutonomousDatabaseStandbySummary` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

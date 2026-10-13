@@ -74,7 +74,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .messageUid) {
       self.messageUid = value
@@ -109,7 +109,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.messageUid, forKey: .messageUid)
     try container.encode(self.attributes, forKey: .attributes)
@@ -180,7 +180,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .messageBus) {
         self.messageBus = value
@@ -198,7 +198,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.messageBus, forKey: .messageBus)
       try container.encode(self.eventProvider, forKey: .eventProvider)
@@ -209,13 +209,24 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
+    /// The type URL for `Published`: `"type.googleapis.com/google.cloud.eventarc.logging.v1.GoogleApiSourceActivity.Published"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.eventarc.logging.v1.GoogleApiSourceActivity.Published"
     }
+
+    /// Initialize an instance of `Published` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.logging.v1.GoogleApiSourceActivity.Published"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Published` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -228,12 +239,23 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
     indirect case published(GoogleApiSourceActivity.Published)
   }
 
+  /// The type URL for `GoogleApiSourceActivity`: `"type.googleapis.com/google.cloud.eventarc.logging.v1.GoogleApiSourceActivity"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.logging.v1.GoogleApiSourceActivity"
   }
+
+  /// Initialize an instance of `GoogleApiSourceActivity` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.eventarc.logging.v1.GoogleApiSourceActivity"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `GoogleApiSourceActivity` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

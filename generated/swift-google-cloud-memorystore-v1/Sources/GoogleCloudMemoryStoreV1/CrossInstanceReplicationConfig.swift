@@ -92,7 +92,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(
       CrossInstanceReplicationConfig.InstanceRole.self, forKey: .instanceRole)
@@ -116,7 +116,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.instanceRole, forKey: .instanceRole)
     try container.encodeIfPresent(self.primaryInstance, forKey: .primaryInstance)
@@ -173,7 +173,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .instance) {
         self.instance = value
@@ -187,7 +187,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.instance, forKey: .instance)
       try container.encode(self.uid, forKey: .uid)
@@ -196,13 +196,24 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       }
     }
 
+    /// The type URL for `RemoteInstance`: `"type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig.RemoteInstance"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig.RemoteInstance"
     }
+
+    /// Initialize an instance of `RemoteInstance` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig.RemoteInstance"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `RemoteInstance` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -254,7 +265,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.primaryInstance = try container.decodeIfPresent(
         CrossInstanceReplicationConfig.RemoteInstance.self, forKey: .primaryInstance)
@@ -269,7 +280,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.primaryInstance, forKey: .primaryInstance)
       try container.encode(self.secondaryInstances, forKey: .secondaryInstances)
@@ -278,13 +289,24 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       }
     }
 
+    /// The type URL for `Membership`: `"type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig.Membership"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig.Membership"
     }
+
+    /// Initialize an instance of `Membership` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig.Membership"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Membership` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -388,7 +410,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
       }
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.singleValueContainer()
       if let v = try? container.decode(Int.self) {
         self.init(intValue: v)
@@ -406,7 +428,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
         in: container, debugDescription: "Expected enum value, must be integer or string.")
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
       case .unspecified: return try container.encode("INSTANCE_ROLE_UNSPECIFIED")
@@ -419,12 +441,23 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleWKT._Any
     }
   }
 
+  /// The type URL for `CrossInstanceReplicationConfig`: `"type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig"
   }
+
+  /// Initialize an instance of `CrossInstanceReplicationConfig` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CrossInstanceReplicationConfig` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

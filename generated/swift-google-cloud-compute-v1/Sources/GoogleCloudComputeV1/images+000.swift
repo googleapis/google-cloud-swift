@@ -26,8 +26,8 @@
   /// @Snippet(path: "imagesQuickstart")
   public final class ImagesClient: Clients.ImagesProtocol, Sendable {
     let inner: any Clients.ImagesStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `ImagesClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -51,6 +51,11 @@
     }
 
     /// Deletes the specified image.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "images_delete")
     public func deletePollingUntilDone(
@@ -105,6 +110,11 @@
     /// Sets the deprecation status of an image.
     ///
     /// If an empty request body is given, clears the deprecation status instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "images_deprecate")
     public func deprecatePollingUntilDone(
@@ -188,6 +198,11 @@
     /// Creates an image in the specified project using the data included
     /// in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "images_insert")
     public func insertPollingUntilDone(
       request: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -257,6 +272,11 @@
     /// Only the following fields can be modified: family, description,
     /// deprecation status.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "images_patch")
     public func patchPollingUntilDone(
       request: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -318,6 +338,11 @@
 
     /// Sets the labels on an image. To learn more about labels, read theLabeling
     /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "images_setLabels")
     public func setLabelsPollingUntilDone(
@@ -390,6 +415,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ImagesClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -400,6 +430,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ImagesClient.deprecate`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deprecatePollingUntilDone(
         request: ImagesClient.DeprecateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -425,6 +460,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ImagesClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -440,6 +480,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ImagesClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -455,6 +500,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ImagesClient.setLabels`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setLabelsPollingUntilDone(
         request: ImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -656,7 +706,7 @@
 
     public func listByItems(
       request: ImagesClient.ListRequest
-    ) -> some AsyncSequence<Image, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Image, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -671,7 +721,7 @@
     /// @Snippet(path: "images_list")
     public func listByItems(
       request: ImagesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Image, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Image, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ImageList in
         var request = request
@@ -684,7 +734,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<Image, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Image, any Swift.Error> & Sendable {
       let request = ImagesClient.ListRequest().with {
         $0.project = project
       }

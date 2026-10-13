@@ -26,8 +26,8 @@
   /// @Snippet(path: "networksQuickstart")
   public final class NetworksClient: Clients.NetworksProtocol, Sendable {
     let inner: any Clients.NetworksStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `NetworksClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -51,6 +51,11 @@
     }
 
     /// Adds a peering to the specified network.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "networks_addPeering")
     public func addPeeringPollingUntilDone(
@@ -106,6 +111,11 @@
     /// only for PeeringConnection with update_strategy=CONSENSUS.  Cancels a
     /// request to remove a peering from the specified network.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "networks_cancelRequestRemovePeering")
     public func cancelRequestRemovePeeringPollingUntilDone(
       request: NetworksClient.CancelRequestRemovePeeringRequest, options: GoogleGax.RequestOptions
@@ -155,6 +165,11 @@
     }
 
     /// Deletes the specified network.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "networks_delete")
     public func deletePollingUntilDone(
@@ -226,6 +241,11 @@
     /// Creates a network in the specified project using the data included
     /// in the request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "networks_insert")
     public func insertPollingUntilDone(
       request: NetworksClient.InsertRequest, options: GoogleGax.RequestOptions
@@ -296,6 +316,11 @@
     /// Patches the specified network with the data included in the request.
     /// Only routingConfig can be modified.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "networks_patch")
     public func patchPollingUntilDone(
       request: NetworksClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -345,6 +370,11 @@
     }
 
     /// Removes a peering from the specified network.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "networks_removePeering")
     public func removePeeringPollingUntilDone(
@@ -398,6 +428,11 @@
     /// Requests to remove a peering from the specified network. Applicable only
     /// for PeeringConnection with update_strategy=CONSENSUS.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "networks_requestRemovePeering")
     public func requestRemovePeeringPollingUntilDone(
       request: NetworksClient.RequestRemovePeeringRequest, options: GoogleGax.RequestOptions
@@ -447,6 +482,11 @@
     }
 
     /// Switches the network mode from auto subnet mode to custom subnet mode.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "networks_switchToCustomMode")
     public func switchToCustomModePollingUntilDone(
@@ -501,6 +541,11 @@
     /// Updates the specified network peering with the data included in the
     /// request. You can only modify the NetworkPeering.export_custom_routes field
     /// and the NetworkPeering.import_custom_routes field.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "networks_updatePeering")
     public func updatePeeringPollingUntilDone(
@@ -564,6 +609,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworksClient.addPeering`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func addPeeringPollingUntilDone(
         request: NetworksClient.AddPeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -574,6 +624,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworksClient.cancelRequestRemovePeering`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func cancelRequestRemovePeeringPollingUntilDone(
         request: NetworksClient.CancelRequestRemovePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -584,6 +639,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworksClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: NetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -604,6 +664,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworksClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: NetworksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -624,6 +689,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworksClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: NetworksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -634,6 +704,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworksClient.removePeering`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func removePeeringPollingUntilDone(
         request: NetworksClient.RemovePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -644,6 +719,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworksClient.requestRemovePeering`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func requestRemovePeeringPollingUntilDone(
         request: NetworksClient.RequestRemovePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -654,6 +734,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworksClient.switchToCustomMode`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func switchToCustomModePollingUntilDone(
         request: NetworksClient.SwitchToCustomModeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -664,6 +749,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NetworksClient.updatePeering`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePeeringPollingUntilDone(
         request: NetworksClient.UpdatePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -877,7 +967,7 @@
 
     public func listByItems(
       request: NetworksClient.ListRequest
-    ) -> some AsyncSequence<Network, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Network, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -886,7 +976,7 @@
     /// @Snippet(path: "networks_list")
     public func listByItems(
       request: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Network, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Network, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkList in
         var request = request
@@ -899,7 +989,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> some AsyncSequence<Network, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Network, any Swift.Error> & Sendable {
       let request = NetworksClient.ListRequest().with {
         $0.project = project
       }
@@ -920,7 +1010,7 @@
 
     public func listPeeringRoutesByItems(
       request: NetworksClient.ListPeeringRoutesRequest
-    ) -> some AsyncSequence<ExchangedPeeringRoute, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ExchangedPeeringRoute, any Swift.Error> & Sendable {
       self.listPeeringRoutesByItems(request: request, options: .init())
     }
 
@@ -929,7 +1019,7 @@
     /// @Snippet(path: "networks_listPeeringRoutes")
     public func listPeeringRoutesByItems(
       request: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ExchangedPeeringRoute, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ExchangedPeeringRoute, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.ExchangedPeeringRoutesList in
@@ -944,7 +1034,7 @@
     public func listPeeringRoutesByItems(
       project: Swift.String,
       network: Swift.String,
-    ) -> some AsyncSequence<ExchangedPeeringRoute, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ExchangedPeeringRoute, any Swift.Error> & Sendable {
       let request = NetworksClient.ListPeeringRoutesRequest().with {
         $0.project = project
         $0.network = network

@@ -69,7 +69,7 @@ public struct SearchCaseClassificationsRequest: Codable, Equatable, GoogleWKT._A
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .query) {
       self.query = value
@@ -86,7 +86,7 @@ public struct SearchCaseClassificationsRequest: Codable, Equatable, GoogleWKT._A
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.query, forKey: .query)
     try container.encode(self.pageSize, forKey: .pageSize)
@@ -96,12 +96,23 @@ public struct SearchCaseClassificationsRequest: Codable, Equatable, GoogleWKT._A
     }
   }
 
+  /// The type URL for `SearchCaseClassificationsRequest`: `"type.googleapis.com/google.cloud.support.v2.SearchCaseClassificationsRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.support.v2.SearchCaseClassificationsRequest"
   }
+
+  /// Initialize an instance of `SearchCaseClassificationsRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.support.v2.SearchCaseClassificationsRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `SearchCaseClassificationsRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

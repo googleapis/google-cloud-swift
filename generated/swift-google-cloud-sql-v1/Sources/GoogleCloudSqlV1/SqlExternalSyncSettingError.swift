@@ -68,7 +68,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .kind) {
         self.kind = value
@@ -87,7 +87,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kind, forKey: .kind)
       try container.encode(self.type, forKey: .type)
@@ -256,6 +256,13 @@
       /// The replication user is missing specific privileges to setup DDL
       /// replication. (e.g. CREATE EVENT TRIGGER, CREATE SCHEMA) for PostgreSQL.
       case pgDdlReplicationInsufficientPrivilege
+      /// Read replicas of the Writable Destination instance will be recreated
+      /// after external synchronization is complete, causing downtime on read
+      /// replicas.
+      case writableDestinationReplicaRecreationDowntime
+      /// A warning that disk storage auto increase is disabled on the destination
+      /// instance for a Writable Destination migration.
+      case writableDestinationStorageAutoIncreaseDisabled
       /// Encodes an unknown integer value.
       ///
       /// The most common cause for an unknown value is for the service to send
@@ -343,6 +350,8 @@
         case .promptDeleteExisting: return 56
         case .willDeleteExisting: return 57
         case .pgDdlReplicationInsufficientPrivilege: return 58
+        case .writableDestinationReplicaRecreationDowntime: return 59
+        case .writableDestinationStorageAutoIncreaseDisabled: return 60
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -417,6 +426,10 @@
         case .willDeleteExisting: return "WILL_DELETE_EXISTING"
         case .pgDdlReplicationInsufficientPrivilege:
           return "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE"
+        case .writableDestinationReplicaRecreationDowntime:
+          return "WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME"
+        case .writableDestinationStorageAutoIncreaseDisabled:
+          return "WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
         }
@@ -491,6 +504,10 @@
         case "WILL_DELETE_EXISTING": self = .willDeleteExisting
         case "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE":
           self = .pgDdlReplicationInsufficientPrivilege
+        case "WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME":
+          self = .writableDestinationReplicaRecreationDowntime
+        case "WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED":
+          self = .writableDestinationStorageAutoIncreaseDisabled
         default: self = .unknownStringValue(stringValue)
         }
       }
@@ -559,11 +576,13 @@
         case 56: self = .promptDeleteExisting
         case 57: self = .willDeleteExisting
         case 58: self = .pgDdlReplicationInsufficientPrivilege
+        case 59: self = .writableDestinationReplicaRecreationDowntime
+        case 60: self = .writableDestinationStorageAutoIncreaseDisabled
         default: self = .unknownIntValue(intValue)
         }
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let v = try? container.decode(Int.self) {
           self.init(intValue: v)
@@ -581,7 +600,7 @@
           in: container, debugDescription: "Expected enum value, must be integer or string.")
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .unspecified:
@@ -665,18 +684,33 @@
         case .willDeleteExisting: return try container.encode("WILL_DELETE_EXISTING")
         case .pgDdlReplicationInsufficientPrivilege:
           return try container.encode("PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE")
+        case .writableDestinationReplicaRecreationDowntime:
+          return try container.encode("WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME")
+        case .writableDestinationStorageAutoIncreaseDisabled:
+          return try container.encode("WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
       }
     }
 
+    /// The type URL for `SqlExternalSyncSettingError`: `"type.googleapis.com/google.cloud.sql.v1.SqlExternalSyncSettingError"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.SqlExternalSyncSettingError"
     }
+
+    /// Initialize an instance of `SqlExternalSyncSettingError` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.sql.v1.SqlExternalSyncSettingError"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `SqlExternalSyncSettingError` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

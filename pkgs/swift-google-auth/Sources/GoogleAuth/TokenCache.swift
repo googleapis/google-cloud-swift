@@ -110,15 +110,15 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
 
   private let provider: any TokenProvider
   private var cachedToken: Token?
-  private var activeRefreshTask: Task<Token, Error>?
+  private var activeRefreshTask: Task<Token, any Error>?
   private let clock: C
   private let timeSource: any TimeSource
 
   private let normalRefreshSlack: Duration
   private let shortRefreshSlack: Duration
   private let jitter: JitterGenerator?
-  private let isRetryable: @Sendable (Error) -> Bool
-  private var permanentError: Error?
+  private let isRetryable: @Sendable (any Error) -> Bool
+  private var permanentError: (any Error)?
 
   private enum RefreshAction {
     case sleep(Duration)
@@ -143,7 +143,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     normalRefreshSlack: Duration = defaultNormalRefreshSlack,
     shortRefreshSlack: Duration = defaultShortRefreshSlack,
     jitter: JitterGenerator? = nil,
-    isRetryable: @Sendable @escaping (Error) -> Bool = { _ in true }
+    isRetryable: @Sendable @escaping (any Error) -> Bool = { _ in true }
   ) {
     self.provider = provider
     self.clock = clock
@@ -220,7 +220,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     return token.expirationDate <= thresholdDate
   }
 
-  private func triggerRefresh() -> Task<Token, Error> {
+  private func triggerRefresh() -> Task<Token, any Error> {
     if let task = self.activeRefreshTask {
       return task
     }
@@ -323,7 +323,7 @@ extension TokenCache where C == ContinuousClock {
     normalRefreshSlack: Duration = defaultNormalRefreshSlack,
     shortRefreshSlack: Duration = defaultShortRefreshSlack,
     jitter: JitterGenerator? = nil,
-    isRetryable: @Sendable @escaping (Error) -> Bool = { _ in true }
+    isRetryable: @Sendable @escaping (any Error) -> Bool = { _ in true }
   ) {
     self.init(
       provider: provider,

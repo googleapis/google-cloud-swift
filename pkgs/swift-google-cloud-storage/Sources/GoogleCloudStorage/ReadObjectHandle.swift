@@ -200,12 +200,12 @@ final class ReadObjectCoordinator: @unchecked Sendable {
 
   private let lock = NSLock()
   private var isInitialFetched: Bool = false
-  private var initialFetchTask: Task<ReadObjectMetadata, Error>?
+  private var initialFetchTask: Task<ReadObjectMetadata, any Error>?
   private var metadata: ReadObjectMetadata?
   private var expectedCrc32c: String?
   private var expectedMd5: String?
   private var bodyIterator: _HTTPResponseBody.AsyncIterator?
-  private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, Error>.AsyncIterator?
+  private var streamIterator: AsyncThrowingStream<NIOCore.ByteBuffer, any Error>.AsyncIterator?
   private var bytesReceived: UInt64 = 0
   private var resumeState: ResumeState<ReadObjectDetails>
   private var isFinished: Bool = false
@@ -240,7 +240,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
   }
 
   private func ensureInitialFetch() async throws -> ReadObjectMetadata {
-    let task = lock.withLock { () -> Task<ReadObjectMetadata, Error>? in
+    let task = lock.withLock { () -> Task<ReadObjectMetadata, any Error>? in
       if self.isCancelled {
         return nil
       }
@@ -466,7 +466,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     }
   }
 
-  private func resumeDownload(underlyingError: Error) async throws {
+  private func resumeDownload(underlyingError: any Error) async throws {
     let currentMetadata = lock.withLock { self.metadata } ?? ReadObjectMetadata()
     guard
       let resumeRange = calculateResumeRange(
@@ -544,7 +544,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
   }
 
   func cancel() {
-    let taskToCancel = lock.withLock { () -> Task<ReadObjectMetadata, Error>? in
+    let taskToCancel = lock.withLock { () -> Task<ReadObjectMetadata, any Error>? in
       isCancelled = true
       isFinished = true
       bodyIterator = nil

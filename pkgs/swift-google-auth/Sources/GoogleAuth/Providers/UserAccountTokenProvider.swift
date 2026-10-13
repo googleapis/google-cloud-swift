@@ -87,7 +87,7 @@ struct UserAccountTokenProvider: TokenProvider {
   ///
   /// - Parameter error: The error encountered.
   /// - Returns: `true` if the error should be retried, `false` otherwise.
-  static func isRetryable(_ error: Error) -> Bool {
+  static func isRetryable(_ error: any Error) -> Bool {
     if let authError = error as? AuthHTTPError, let status = authError.statusCode {
       return status >= 500 || status == 429 || status == 408
     }

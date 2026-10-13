@@ -32,8 +32,8 @@ import Foundation
 /// @Snippet(path: "CloudShellServiceQuickstart")
 public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, Sendable {
   let inner: any Clients.CloudShellServiceStub
-  let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-  let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+  let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
   /// Creates a new `CloudShellServiceClient` instance.
   public init(_ options: GoogleGax.ClientOptions = .init()) throws {

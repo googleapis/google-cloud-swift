@@ -18,7 +18,14 @@ public import Logging
 
 /// The configuration for a new client.
 ///
-/// Use this type to configure clients in the Google Cloud client libraries for Swift libraries.
+/// Use this type to configure clients in the Google Cloud client libraries for Swift.
+///
+/// Clients and their underlying `Credentials` are thread-safe (`Sendable`) and
+/// intended to be initialized at application startup and reused across requests. When ``credentials``
+/// is `nil`, initializing a client resolves [Application Default Credentials] synchronously (including
+/// reading local credential files from disk).
+///
+/// [Application Default Credentials]: https://docs.cloud.google.com/docs/authentication/client-libraries
 public struct ClientOptions: Sendable {
   /// Create an instance without any overrides.
   public init() {}
@@ -52,8 +59,13 @@ public struct ClientOptions: Sendable {
   /// Overrides the default credentials for the client.
   ///
   /// `Credentials` defines how the client authenticates to Google Cloud APIs. Without an override, the client uses
-  /// [Application Default Credentials]. This works well in most deployment and development environments, use this
-  /// override if your application cannot use the default.
+  /// [Application Default Credentials]. This works well in most deployment and development environments; use this
+  /// override if your application cannot use the default or if you want to share a single pre-initialized
+  /// `Credentials` instance across multiple clients.
+  ///
+  /// Note that resolving default credentials performs synchronous filesystem I/O to read local ADC configuration
+  /// files (assumed to be small JSON files). Prefer initializing clients (or shared `Credentials`) at application
+  /// startup rather than inside asynchronous request handlers.
   ///
   /// [Application Default Credentials]: https://docs.cloud.google.com/docs/authentication/client-libraries
   public var credentials: Credentials? = nil

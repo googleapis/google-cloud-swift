@@ -60,7 +60,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.etag = try container.decodeIfPresent(Swift.String.self, forKey: .etag)
       self.result = try container.decodeIfPresent(InterconnectMacsecConfig.self, forKey: .result)
@@ -70,7 +70,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.etag, forKey: .etag)
       try container.encodeIfPresent(self.result, forKey: .result)
@@ -79,12 +79,23 @@
       }
     }
 
+    /// The type URL for `InterconnectsGetMacsecConfigResponse`: `"type.googleapis.com/google.cloud.compute.v1.InterconnectsGetMacsecConfigResponse"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InterconnectsGetMacsecConfigResponse"
     }
+
+    /// Initialize an instance of `InterconnectsGetMacsecConfigResponse` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.compute.v1.InterconnectsGetMacsecConfigResponse"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `InterconnectsGetMacsecConfigResponse` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

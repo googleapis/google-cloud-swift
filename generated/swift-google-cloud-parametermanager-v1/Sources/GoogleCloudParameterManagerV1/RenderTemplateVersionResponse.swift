@@ -80,7 +80,7 @@ public struct RenderTemplateVersionResponse: Codable, Equatable, GoogleWKT._AnyP
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .templateVersion) {
       self.templateVersion = value
@@ -101,7 +101,7 @@ public struct RenderTemplateVersionResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.templateVersion, forKey: .templateVersion)
     try container.encodeIfPresent(self.payload, forKey: .payload)
@@ -113,12 +113,23 @@ public struct RenderTemplateVersionResponse: Codable, Equatable, GoogleWKT._AnyP
     }
   }
 
+  /// The type URL for `RenderTemplateVersionResponse`: `"type.googleapis.com/google.cloud.parametermanager.v1.RenderTemplateVersionResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.parametermanager.v1.RenderTemplateVersionResponse"
   }
+
+  /// Initialize an instance of `RenderTemplateVersionResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.parametermanager.v1.RenderTemplateVersionResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `RenderTemplateVersionResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

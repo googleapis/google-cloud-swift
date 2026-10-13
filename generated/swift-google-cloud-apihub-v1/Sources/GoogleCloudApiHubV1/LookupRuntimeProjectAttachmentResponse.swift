@@ -59,7 +59,7 @@ public struct LookupRuntimeProjectAttachmentResponse: Codable, Equatable, Google
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.runtimeProjectAttachment = try container.decodeIfPresent(
       RuntimeProjectAttachment.self, forKey: .runtimeProjectAttachment)
@@ -69,7 +69,7 @@ public struct LookupRuntimeProjectAttachmentResponse: Codable, Equatable, Google
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.runtimeProjectAttachment, forKey: .runtimeProjectAttachment)
     for (key, value) in self._unknownFields.json {
@@ -77,12 +77,23 @@ public struct LookupRuntimeProjectAttachmentResponse: Codable, Equatable, Google
     }
   }
 
+  /// The type URL for `LookupRuntimeProjectAttachmentResponse`: `"type.googleapis.com/google.cloud.apihub.v1.LookupRuntimeProjectAttachmentResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.LookupRuntimeProjectAttachmentResponse"
   }
+
+  /// Initialize an instance of `LookupRuntimeProjectAttachmentResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.apihub.v1.LookupRuntimeProjectAttachmentResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `LookupRuntimeProjectAttachmentResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

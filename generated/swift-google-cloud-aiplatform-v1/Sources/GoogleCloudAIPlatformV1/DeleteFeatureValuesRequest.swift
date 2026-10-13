@@ -69,7 +69,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entityType) {
         self.entityType = value
@@ -103,7 +103,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entityType, forKey: .entityType)
 
@@ -161,7 +161,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.entityIdSelector = try container.decodeIfPresent(
           EntityIdSelector.self, forKey: .entityIdSelector)
@@ -171,7 +171,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.entityIdSelector, forKey: .entityIdSelector)
         for (key, value) in self._unknownFields.json {
@@ -179,13 +179,24 @@
         }
       }
 
+      /// The type URL for `SelectEntity`: `"type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest.SelectEntity"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest.SelectEntity"
       }
+
+      /// Initialize an instance of `SelectEntity` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest.SelectEntity"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SelectEntity` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -248,7 +259,7 @@
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.timeRange = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .timeRange)
         self.featureSelector = try container.decodeIfPresent(
@@ -264,7 +275,7 @@
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.timeRange, forKey: .timeRange)
         try container.encodeIfPresent(self.featureSelector, forKey: .featureSelector)
@@ -274,13 +285,24 @@
         }
       }
 
+      /// The type URL for `SelectTimeRangeAndFeature`: `"type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest.SelectTimeRangeAndFeature"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest.SelectTimeRangeAndFeature"
       }
+
+      /// Initialize an instance of `SelectTimeRangeAndFeature` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest.SelectTimeRangeAndFeature"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `SelectTimeRangeAndFeature` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -295,12 +317,23 @@
       indirect case selectTimeRangeAndFeature(DeleteFeatureValuesRequest.SelectTimeRangeAndFeature)
     }
 
+    /// The type URL for `DeleteFeatureValuesRequest`: `"type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest"
     }
+
+    /// Initialize an instance of `DeleteFeatureValuesRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DeleteFeatureValuesRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

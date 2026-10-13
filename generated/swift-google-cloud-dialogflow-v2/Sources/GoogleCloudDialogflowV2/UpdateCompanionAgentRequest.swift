@@ -61,7 +61,7 @@
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.companionAgent = try container.decodeIfPresent(
         CompanionAgent.self, forKey: .companionAgent)
@@ -73,7 +73,7 @@
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.companionAgent, forKey: .companionAgent)
       try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
@@ -82,12 +82,23 @@
       }
     }
 
+    /// The type URL for `UpdateCompanionAgentRequest`: `"type.googleapis.com/google.cloud.dialogflow.v2.UpdateCompanionAgentRequest"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.UpdateCompanionAgentRequest"
     }
+
+    /// Initialize an instance of `UpdateCompanionAgentRequest` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.dialogflow.v2.UpdateCompanionAgentRequest"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `UpdateCompanionAgentRequest` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }

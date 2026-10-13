@@ -82,7 +82,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.currentTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .currentTime)
@@ -110,7 +110,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.currentTime, forKey: .currentTime)
     try container.encode(self.identifiedBoxes, forKey: .identifiedBoxes)
@@ -166,7 +166,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .labelId) {
         self.labelId = value
@@ -180,7 +180,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.labelId, forKey: .labelId)
       try container.encode(self.labelString, forKey: .labelString)
@@ -189,12 +189,23 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
+    /// The type URL for `Entity`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Entity"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Entity"
     }
+
+    /// Initialize an instance of `Entity` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Entity"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Entity` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -260,7 +271,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.Int64.self, forKey: .boxId) {
         self.boxId = value
@@ -282,7 +293,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.boxId, forKey: .boxId)
       try container.encodeIfPresent(self.normalizedBoundingBox, forKey: .normalizedBoundingBox)
@@ -347,7 +358,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.Float.self, forKey: .xmin) {
           self.xmin = value
@@ -367,7 +378,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.xmin, forKey: .xmin)
         try container.encode(self.ymin, forKey: .ymin)
@@ -378,25 +389,47 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
+      /// The type URL for `NormalizedBoundingBox`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox.NormalizedBoundingBox"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox.NormalizedBoundingBox"
       }
+
+      /// Initialize an instance of `NormalizedBoundingBox` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox.NormalizedBoundingBox"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `NormalizedBoundingBox` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `IdentifiedBox`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox"
     }
+
+    /// Initialize an instance of `IdentifiedBox` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `IdentifiedBox` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -450,7 +483,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(
         [OccupancyCountingPredictionResult.Stats.ObjectCount].self, forKey: .fullFrameCount)
@@ -474,7 +507,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fullFrameCount, forKey: .fullFrameCount)
       try container.encode(self.crossingLineCounts, forKey: .crossingLineCounts)
@@ -528,7 +561,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.entity = try container.decodeIfPresent(
           OccupancyCountingPredictionResult.Entity.self, forKey: .entity)
@@ -541,7 +574,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.entity, forKey: .entity)
         try container.encode(self.count, forKey: .count)
@@ -550,13 +583,24 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
+      /// The type URL for `ObjectCount`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount"
       }
+
+      /// Initialize an instance of `ObjectCount` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ObjectCount` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -606,7 +650,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -618,7 +662,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encodeIfPresent(self.objectCount, forKey: .objectCount)
@@ -627,13 +671,24 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
+      /// The type URL for `AccumulatedObjectCount`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.AccumulatedObjectCount"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.AccumulatedObjectCount"
       }
+
+      /// Initialize an instance of `AccumulatedObjectCount` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.AccumulatedObjectCount"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `AccumulatedObjectCount` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -701,7 +756,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.annotation = try container.decodeIfPresent(StreamAnnotation.self, forKey: .annotation)
         if let value = try container.decodeIfPresent(
@@ -734,7 +789,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.annotation, forKey: .annotation)
         try container.encode(self.positiveDirectionCounts, forKey: .positiveDirectionCounts)
@@ -748,13 +803,24 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
+      /// The type URL for `CrossingLineCount`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.CrossingLineCount"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.CrossingLineCount"
       }
+
+      /// Initialize an instance of `CrossingLineCount` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.CrossingLineCount"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `CrossingLineCount` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
@@ -803,7 +869,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.annotation = try container.decodeIfPresent(StreamAnnotation.self, forKey: .annotation)
         if let value = try container.decodeIfPresent(
@@ -817,7 +883,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.annotation, forKey: .annotation)
         try container.encode(self.counts, forKey: .counts)
@@ -826,24 +892,46 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
         }
       }
 
+      /// The type URL for `ActiveZoneCount`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ActiveZoneCount"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ActiveZoneCount"
       }
+
+      /// Initialize an instance of `ActiveZoneCount` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ActiveZoneCount"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `ActiveZoneCount` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `Stats`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats"`.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats"
     }
+
+    /// Initialize an instance of `Stats` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `Stats` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -892,7 +980,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trackId) {
         self.trackId = value
@@ -905,7 +993,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.trackId, forKey: .trackId)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
@@ -914,13 +1002,24 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
+    /// The type URL for `TrackInfo`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.TrackInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.TrackInfo"
     }
+
+    /// Initialize an instance of `TrackInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.TrackInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TrackInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
@@ -979,7 +1078,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let value = try container.decodeIfPresent(Swift.String.self, forKey: .trackId) {
         self.trackId = value
@@ -997,7 +1096,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.trackId, forKey: .trackId)
       try container.encode(self.zoneId, forKey: .zoneId)
@@ -1008,24 +1107,46 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleWKT._
       }
     }
 
+    /// The type URL for `DwellTimeInfo`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.DwellTimeInfo"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.DwellTimeInfo"
     }
+
+    /// Initialize an instance of `DwellTimeInfo` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.DwellTimeInfo"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `DwellTimeInfo` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `OccupancyCountingPredictionResult`: `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult"
   }
+
+  /// Initialize an instance of `OccupancyCountingPredictionResult` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `OccupancyCountingPredictionResult` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

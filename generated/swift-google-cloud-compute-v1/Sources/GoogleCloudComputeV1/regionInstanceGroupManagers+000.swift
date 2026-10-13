@@ -28,8 +28,8 @@
     Sendable
   {
     let inner: any Clients.RegionInstanceGroupManagersStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionInstanceGroupManagersClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -84,6 +84,11 @@
     ///
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroupManagers_abandonInstances")
     public func abandonInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
@@ -136,6 +141,11 @@
     }
 
     /// Apply updates to selected instances the managed instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_applyUpdatesToInstances")
     public func applyUpdatesToInstancesPollingUntilDone(
@@ -200,6 +210,11 @@
     /// actions take additional time. You must separately verify the status of thecreating or actions with the listmanagedinstances
     /// method.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroupManagers_createInstances")
     public func createInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.CreateInstancesRequest,
@@ -253,6 +268,11 @@
 
     /// Deletes the specified managed instance group and all of the instances
     /// in that group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_delete")
     public func deletePollingUntilDone(
@@ -334,6 +354,11 @@
     ///
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroupManagers_deleteInstances")
     public func deleteInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteInstancesRequest,
@@ -388,6 +413,11 @@
 
     /// Deletes selected per-instance configurations for the managed instance
     /// group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_deletePerInstanceConfigs")
     public func deletePerInstanceConfigsPollingUntilDone(
@@ -465,6 +495,11 @@
     /// method.
     ///
     /// A regional managed instance group can contain up to 2000 instances.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_insert")
     public func insertPollingUntilDone(
@@ -592,6 +627,11 @@
     /// to apply an updated configuration to the VMs in a MIG, seeUpdating instances in
     /// a MIG.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroupManagers_patch")
     public func patchPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
@@ -647,6 +687,11 @@
     /// Inserts or patches per-instance configurations for the managed instance
     /// group. perInstanceConfig.name serves as a key used to
     /// distinguish whether to perform insert or patch.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_patchPerInstanceConfigs")
     public func patchPerInstanceConfigsPollingUntilDone(
@@ -725,6 +770,11 @@
     ///
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroupManagers_recreateInstances")
     public func recreateInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest,
@@ -800,6 +850,11 @@
     /// service that has enabled
     /// connection draining, it can take up to 60 seconds after the connection
     /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_resize")
     public func resizePollingUntilDone(
@@ -883,6 +938,11 @@
     ///
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroupManagers_resumeInstances")
     public func resumeInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResumeInstancesRequest,
@@ -938,6 +998,11 @@
     /// Sets the instance template to use when creating new instances or recreating
     /// instances in this group. Existing instances are not affected.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroupManagers_setInstanceTemplate")
     public func setInstanceTemplatePollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest,
@@ -992,6 +1057,11 @@
 
     /// Modifies the target pools to which all new instances in this group are
     /// assigned. Existing instances in the group are not affected.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_setTargetPools")
     public func setTargetPoolsPollingUntilDone(
@@ -1075,6 +1145,11 @@
     /// instances will be verified as healthy after they are started.
     ///
     /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_startInstances")
     public func startInstancesPollingUntilDone(
@@ -1177,6 +1252,11 @@
     ///
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroupManagers_stopInstances")
     public func stopInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StopInstancesRequest,
@@ -1278,6 +1358,11 @@
     ///
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
     /// @Snippet(path: "regionInstanceGroupManagers_suspendInstances")
     public func suspendInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SuspendInstancesRequest,
@@ -1334,6 +1419,11 @@
     /// Inserts or updates per-instance configurations for the managed instance
     /// group. perInstanceConfig.name serves as a key used to
     /// distinguish whether to perform insert or patch.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_updatePerInstanceConfigs")
     public func updatePerInstanceConfigsPollingUntilDone(
@@ -1400,6 +1490,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.abandonInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func abandonInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
         options: GoogleGax.RequestOptions
@@ -1412,6 +1507,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.applyUpdatesToInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func applyUpdatesToInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest,
         options: GoogleGax.RequestOptions
@@ -1424,6 +1524,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.createInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func createInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.CreateInstancesRequest,
         options: GoogleGax.RequestOptions
@@ -1435,6 +1540,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.delete`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePollingUntilDone(
         request: RegionInstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -1446,6 +1556,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.deleteInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deleteInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.DeleteInstancesRequest,
         options: GoogleGax.RequestOptions
@@ -1458,6 +1573,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.deletePerInstanceConfigs`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func deletePerInstanceConfigsPollingUntilDone(
         request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
@@ -1474,6 +1594,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.insert`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func insertPollingUntilDone(
         request: RegionInstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -1507,6 +1632,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.patch`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPollingUntilDone(
         request: RegionInstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -1518,6 +1648,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.patchPerInstanceConfigs`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func patchPerInstanceConfigsPollingUntilDone(
         request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
@@ -1530,6 +1665,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.recreateInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func recreateInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.RecreateInstancesRequest,
         options: GoogleGax.RequestOptions
@@ -1541,6 +1681,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.resize`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func resizePollingUntilDone(
         request: RegionInstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -1552,6 +1697,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.resumeInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func resumeInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.ResumeInstancesRequest,
         options: GoogleGax.RequestOptions
@@ -1564,6 +1714,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.setInstanceTemplate`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setInstanceTemplatePollingUntilDone(
         request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest,
         options: GoogleGax.RequestOptions
@@ -1576,6 +1731,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.setTargetPools`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setTargetPoolsPollingUntilDone(
         request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest,
         options: GoogleGax.RequestOptions
@@ -1588,6 +1748,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.startInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func startInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.StartInstancesRequest,
         options: GoogleGax.RequestOptions
@@ -1600,6 +1765,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.stopInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func stopInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.StopInstancesRequest,
         options: GoogleGax.RequestOptions
@@ -1612,6 +1782,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.suspendInstances`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func suspendInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.SuspendInstancesRequest,
         options: GoogleGax.RequestOptions
@@ -1624,6 +1799,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.updatePerInstanceConfigs`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func updatePerInstanceConfigsPollingUntilDone(
         request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
@@ -1953,7 +2133,7 @@
 
     public func listByItems(
       request: RegionInstanceGroupManagersClient.ListRequest
-    ) -> some AsyncSequence<InstanceGroupManager, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManager, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1963,7 +2143,7 @@
     /// @Snippet(path: "regionInstanceGroupManagers_list")
     public func listByItems(
       request: RegionInstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceGroupManager, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManager, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagerList in
@@ -1978,7 +2158,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<InstanceGroupManager, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroupManager, any Swift.Error> & Sendable {
       let request = RegionInstanceGroupManagersClient.ListRequest().with {
         $0.project = project
         $0.region = region
@@ -2001,7 +2181,7 @@
 
     public func listErrorsByItems(
       request: RegionInstanceGroupManagersClient.ListErrorsRequest
-    ) -> some AsyncSequence<InstanceManagedByIgmError, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceManagedByIgmError, any Swift.Error> & Sendable {
       self.listErrorsByItems(request: request, options: .init())
     }
 
@@ -2012,7 +2192,7 @@
     public func listErrorsByItems(
       request: RegionInstanceGroupManagersClient.ListErrorsRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceManagedByIgmError, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceManagedByIgmError, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListErrorsResponse in
@@ -2028,7 +2208,7 @@
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
-    ) -> some AsyncSequence<InstanceManagedByIgmError, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceManagedByIgmError, any Swift.Error> & Sendable {
       let request = RegionInstanceGroupManagersClient.ListErrorsRequest().with {
         $0.project = project
         $0.region = region
@@ -2052,7 +2232,7 @@
 
     public func listManagedInstancesByItems(
       request: RegionInstanceGroupManagersClient.ListManagedInstancesRequest
-    ) -> some AsyncSequence<ManagedInstance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ManagedInstance, any Swift.Error> & Sendable {
       self.listManagedInstancesByItems(request: request, options: .init())
     }
 
@@ -2067,7 +2247,7 @@
     public func listManagedInstancesByItems(
       request: RegionInstanceGroupManagersClient.ListManagedInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<ManagedInstance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ManagedInstance, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstancesResponse in
@@ -2083,7 +2263,7 @@
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
-    ) -> some AsyncSequence<ManagedInstance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ManagedInstance, any Swift.Error> & Sendable {
       let request = RegionInstanceGroupManagersClient.ListManagedInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -2107,7 +2287,7 @@
 
     public func listPerInstanceConfigsByItems(
       request: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest
-    ) -> some AsyncSequence<PerInstanceConfig, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PerInstanceConfig, any Swift.Error> & Sendable {
       self.listPerInstanceConfigsByItems(request: request, options: .init())
     }
 
@@ -2118,7 +2298,7 @@
     public func listPerInstanceConfigsByItems(
       request: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<PerInstanceConfig, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PerInstanceConfig, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstanceConfigsResp in
@@ -2134,7 +2314,7 @@
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
-    ) -> some AsyncSequence<PerInstanceConfig, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PerInstanceConfig, any Swift.Error> & Sendable {
       let request = RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest().with {
         $0.project = project
         $0.region = region

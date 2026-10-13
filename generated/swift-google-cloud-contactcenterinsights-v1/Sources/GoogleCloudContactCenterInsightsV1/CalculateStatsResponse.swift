@@ -103,7 +103,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.averageDuration = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .averageDuration)
@@ -144,7 +144,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.averageDuration, forKey: .averageDuration)
     try container.encode(self.averageTurnCount, forKey: .averageTurnCount)
@@ -205,7 +205,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       ]
     }
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.intervalDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .intervalDuration)
@@ -220,7 +220,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.intervalDuration, forKey: .intervalDuration)
       try container.encode(self.points, forKey: .points)
@@ -272,7 +272,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
         ]
       }
 
-      public init(from decoder: Decoder) throws {
+      public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .startTime)
@@ -285,7 +285,7 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
-      public func encode(to encoder: Encoder) throws {
+      public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.startTime, forKey: .startTime)
         try container.encode(self.conversationCount, forKey: .conversationCount)
@@ -294,36 +294,69 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleWKT._AnyPackable
         }
       }
 
+      /// The type URL for `Interval`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries.Interval"`.
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries.Interval"
       }
+
+      /// Initialize an instance of `Interval` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries.Interval"`,
+      ///   or if deserialization fails.
       public init(fromAny any: GoogleWKT.WKTAny) throws {
         self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
       }
+
+      /// Packs this `Interval` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
       public func _pack() throws -> GoogleWKT.WKTStruct {
         return try GoogleWKT._slowAnySerialize(message: self)
       }
     }
 
+    /// The type URL for `TimeSeries`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries"`.
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries"
     }
+
+    /// Initialize an instance of `TimeSeries` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries"`,
+    ///   or if deserialization fails.
     public init(fromAny any: GoogleWKT.WKTAny) throws {
       self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
     }
+
+    /// Packs this `TimeSeries` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {
       return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 
+  /// The type URL for `CalculateStatsResponse`: `"type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse"
   }
+
+  /// Initialize an instance of `CalculateStatsResponse` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `CalculateStatsResponse` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }

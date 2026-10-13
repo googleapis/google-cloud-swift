@@ -26,8 +26,8 @@
   /// @Snippet(path: "regionInstanceGroupsQuickstart")
   public final class RegionInstanceGroupsClient: Clients.RegionInstanceGroupsProtocol, Sendable {
     let inner: any Clients.RegionInstanceGroupsStub
-    let pollingErrorPolicy: GoogleGax.PollingErrorPolicy
-    let pollingBackoffPolicy: GoogleGax.PollingBackoffPolicy
+    let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
+    let pollingBackoffPolicy: any GoogleGax.PollingBackoffPolicy
 
     /// Creates a new `RegionInstanceGroupsClient` instance.
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
@@ -83,6 +83,11 @@
     }
 
     /// Sets the named ports for the specified regional instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroups_setNamedPorts")
     public func setNamedPortsPollingUntilDone(
@@ -172,6 +177,11 @@
       ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupsClient.setNamedPorts`.
+      ///
+      /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+      ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+      ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+      ///   method once the operation completes.
       func setNamedPortsPollingUntilDone(
         request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
@@ -225,7 +235,7 @@
 
     public func listByItems(
       request: RegionInstanceGroupsClient.ListRequest
-    ) -> some AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -235,7 +245,7 @@
     /// @Snippet(path: "regionInstanceGroups_list")
     public func listByItems(
       request: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList
         in
@@ -250,7 +260,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> some AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
       let request = RegionInstanceGroupsClient.ListRequest().with {
         $0.project = project
         $0.region = region
@@ -272,7 +282,7 @@
 
     public func listInstancesByItems(
       request: RegionInstanceGroupsClient.ListInstancesRequest
-    ) -> some AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
       self.listInstancesByItems(request: request, options: .init())
     }
 
@@ -284,7 +294,7 @@
     /// @Snippet(path: "regionInstanceGroups_listInstances")
     public func listInstancesByItems(
       request: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances in
@@ -301,7 +311,7 @@
       region: Swift.String,
       instanceGroup: Swift.String,
       body: RegionInstanceGroupsListInstancesRequest?,
-    ) -> some AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
       let request = RegionInstanceGroupsClient.ListInstancesRequest().with {
         $0.project = project
         $0.region = region

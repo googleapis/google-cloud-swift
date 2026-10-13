@@ -182,7 +182,7 @@
 
     public func listByItems(
       request: ZoneOperationsClient.ListRequest
-    ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -192,7 +192,7 @@
     /// @Snippet(path: "zoneOperations_list")
     public func listByItems(
       request: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
         var request = request
@@ -206,7 +206,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> some AsyncSequence<Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
       let request = ZoneOperationsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

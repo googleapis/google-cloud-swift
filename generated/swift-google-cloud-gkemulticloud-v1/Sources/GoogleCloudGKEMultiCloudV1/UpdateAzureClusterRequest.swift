@@ -91,7 +91,7 @@ public struct UpdateAzureClusterRequest: Codable, Equatable, GoogleWKT._AnyPacka
     ]
   }
 
-  public init(from decoder: Decoder) throws {
+  public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.azureCluster = try container.decodeIfPresent(AzureCluster.self, forKey: .azureCluster)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
@@ -105,7 +105,7 @@ public struct UpdateAzureClusterRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.azureCluster, forKey: .azureCluster)
     try container.encode(self.validateOnly, forKey: .validateOnly)
@@ -115,12 +115,23 @@ public struct UpdateAzureClusterRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
+  /// The type URL for `UpdateAzureClusterRequest`: `"type.googleapis.com/google.cloud.gkemulticloud.v1.UpdateAzureClusterRequest"`.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.UpdateAzureClusterRequest"
   }
+
+  /// Initialize an instance of `UpdateAzureClusterRequest` by unpacking from a `GoogleWKT.WKTAny`.
+  ///
+  /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+  /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.gkemulticloud.v1.UpdateAzureClusterRequest"`,
+  ///   or if deserialization fails.
   public init(fromAny any: GoogleWKT.WKTAny) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
   }
+
+  /// Packs this `UpdateAzureClusterRequest` into a `GoogleWKT.WKTStruct` representation.
+  ///
+  /// - Throws: An error if serialization fails.
   public func _pack() throws -> GoogleWKT.WKTStruct {
     return try GoogleWKT._slowAnySerialize(message: self)
   }
