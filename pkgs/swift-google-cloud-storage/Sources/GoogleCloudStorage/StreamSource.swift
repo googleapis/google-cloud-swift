@@ -17,10 +17,16 @@ import NIOCore
 
 /// A write object source that wraps an arbitrary AsyncSequence of ByteChunk or Data chunks.
 public struct StreamSource: WriteObjectSource {
+  /// Type-erased actor interface so `StreamSource` does not need a generic parameter for the underlying sequence.
   private protocol StreamReading: Actor {
     func read(maxBytes: Int) async throws -> ByteChunk?
   }
 
+  /// Actor that owns both the sequence iterator and the unread byte buffer.
+  ///
+  /// Storing both in a single reference-typed actor ensures that copying a `StreamSource` value
+  /// shares the buffered unread bytes as well as the iterator, while actor isolation protects
+  /// against concurrent data races.
   private actor SequenceReader<S: AsyncSequence & Sendable>: StreamReading
   where S.Element: Sendable {
     private var iterator: S.AsyncIterator?
@@ -48,6 +54,9 @@ public struct StreamSource: WriteObjectSource {
     func read(maxBytes: Int) async throws -> ByteChunk? {
       guard maxBytes > 0 else { return nil }
 
+      // Swift actors are reentrant across suspension points (`await iter.next(isolation: self)`).
+      // Queue concurrent callers in FIFO order so only one read operation pulls from the iterator
+      // and mutates `buffer` at a time, while still allowing queued callers to exit early if cancelled.
       while isReading {
         try Task.checkCancellation()
         let waiterID = nextWaiterID
@@ -76,10 +85,16 @@ public struct StreamSource: WriteObjectSource {
       }
       try Task.checkCancellation()
 
+      // Reclaim already-read prefix bytes before appending new chunks. Doing this here (rather than
+      // unconditionally right after `readSlice` while `slice` is still in scope) avoids triggering a
+      // Copy-on-Write reallocation when there are unread bytes remaining in `buffer`.
       if buffer.readableBytes < maxBytes {
         buffer.discardReadBytes()
       }
       while buffer.readableBytes < maxBytes {
+        // Move `iterator` into a local variable before suspending so actor property exclusivity is
+        // preserved across `await`. Leave `self.iterator` as `nil` until a non-nil element is produced
+        // so that exhaustion (`nil`) or a thrown error permanently terminates future reads.
         guard var iter = iterator else {
           break
         }
@@ -110,6 +125,8 @@ public struct StreamSource: WriteObjectSource {
       guard let slice = buffer.readSlice(length: chunkSize) else {
         return nil
       }
+      // When the buffer is completely drained, `discardReadBytes()` resets `readerIndex` and
+      // `writerIndex` to 0 in O(1) without checking storage uniqueness or reallocating.
       if buffer.readableBytes == 0 {
         buffer.discardReadBytes()
       }
