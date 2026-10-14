@@ -111,6 +111,18 @@ import Testing
     }
   }
 
+  /// Tests that CancellationError thrown by the underlying sequence is rethrown directly without wrapping.
+  @Test func cancellationErrorIsRethrownDirectly() async throws {
+    let stream = AsyncThrowingStream<Data, any Error> { continuation in
+      continuation.finish(throwing: CancellationError())
+    }
+
+    var source = StreamSource(sequence: stream)
+    await #expect(throws: CancellationError.self) {
+      _ = try await source.read(maxBytes: 10)
+    }
+  }
+
   /// Tests that copying a StreamSource shares buffered unread bytes as well as the underlying iterator.
   @Test func copySharesBufferedState() async throws {
     let stream = AsyncStream<ByteChunk> { continuation in

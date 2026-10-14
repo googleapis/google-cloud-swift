@@ -66,6 +66,8 @@ public struct StreamSource: WriteObjectSource {
         let element: S.Element?
         do {
           element = try await iter.next(isolation: self)
+        } catch let error as CancellationError {
+          throw error
         } catch let error as WriteObjectSourceError {
           throw error
         } catch {
