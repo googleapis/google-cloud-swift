@@ -38,11 +38,7 @@ import GoogleAuth
   @Test func thenThrowing() throws {
     let got = try RequestOptions().with {
       $0.retryPolicy = NeverRetry()
-      $0.backoffPolicy = try ExponentialBackoff(
-        config: ExponentialBackoffConfig().with {
-          $0.initialDelay = .milliseconds(100)
-        }
-      )
+      $0.backoffPolicy = try ExponentialBackoff(initialDelay: .milliseconds(100))
       $0.pollingBackoffPolicy = MockBackoff(delay: .seconds(2))
     }
     #expect(got.retryPolicy != nil)

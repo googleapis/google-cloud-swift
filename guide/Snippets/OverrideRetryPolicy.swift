@@ -34,11 +34,10 @@ func sample(projectId: String) async throws {
     ClientOptions().with {
       $0.retryPolicy = BaseRetryPolicy.unbounded().withTimeLimit(.seconds(10)).withAttemptLimit(3)
       $0.backoffPolicy = ExponentialBackoff(
-        clamping: ExponentialBackoffConfig().with {
-          $0.initialDelay = .milliseconds(250)
-          $0.maximumDelay = .seconds(5)
-          $0.scaling = 1.5
-        })
+        clamping: .milliseconds(250),
+        maximumDelay: .seconds(5),
+        scaling: 1.5
+      )
     })
   // snippet.end [END swift_override_retry_policy_backoff]
   // snippet.request [START swift_override_retry_policy_request]

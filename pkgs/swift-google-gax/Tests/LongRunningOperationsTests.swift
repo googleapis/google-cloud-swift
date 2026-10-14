@@ -395,11 +395,9 @@ import GoogleRpc
     pollProvider.responses = results
     let recordedDelays = Mutex<[Duration]>([])
     let backoff = try ExponentialBackoff(
-      config: ExponentialBackoffConfig().with {
-        $0.initialDelay = .seconds(1)
-        $0.maximumDelay = .seconds(10)
-        $0.scaling = 2.0
-      }
+      initialDelay: .seconds(1),
+      maximumDelay: .seconds(10),
+      scaling: 2.0
     )
 
     let op = _PollableOperationImpl<String>(

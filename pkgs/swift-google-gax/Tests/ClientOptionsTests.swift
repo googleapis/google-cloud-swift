@@ -42,11 +42,9 @@ import GoogleGax
         .withAttemptLimit(5)
         .withTimeLimit(.seconds(60))
       $0.backoffPolicy = try ExponentialBackoff(
-        config: ExponentialBackoffConfig().with {
-          $0.initialDelay = .milliseconds(200)
-          $0.maximumDelay = .seconds(15)
-          $0.scaling = 1.5
-        }
+        initialDelay: .milliseconds(200),
+        maximumDelay: .seconds(15),
+        scaling: 1.5
       )
       $0.pollingBackoffPolicy = MockBackoff(delay: .seconds(2))
     }
@@ -78,11 +76,9 @@ import GoogleGax
 
         // Configure exponential backoff
         $0.backoffPolicy = try ExponentialBackoff(
-          config: ExponentialBackoffConfig().with {
-            $0.initialDelay = .milliseconds(200)
-            $0.maximumDelay = .seconds(15)
-            $0.scaling = 1.5
-          }
+          initialDelay: .milliseconds(200),
+          maximumDelay: .seconds(15),
+          scaling: 1.5
         )
       }
       return options

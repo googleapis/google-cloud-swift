@@ -2822,11 +2822,7 @@ import Testing
       for: sessionInitUrl)
 
     let client = try makeClient(registry: registry)
-    let backoff = try ExponentialBackoff(
-      config: ExponentialBackoffConfig().with {
-        $0.initialDelay = .seconds(10)
-        $0.maximumDelay = .seconds(30)
-      })
+    let backoff = try ExponentialBackoff(initialDelay: .seconds(10), maximumDelay: .seconds(30))
     let options = WriteObjectOptions().with {
       $0.backoffPolicy = backoff
     }

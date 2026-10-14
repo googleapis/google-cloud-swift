@@ -96,8 +96,7 @@ import Testing
   static func makeClient() throws -> StorageControlClient {
     try StorageControlClient(
       .init().with {
-        $0.backoffPolicy = ExponentialBackoff(
-          clamping: .init().with { $0.initialDelay = .seconds(2) })
+        $0.backoffPolicy = ExponentialBackoff(clamping: .seconds(2))
       })
   }
 
