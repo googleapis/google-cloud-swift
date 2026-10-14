@@ -27,7 +27,8 @@ public struct StreamSource: WriteObjectSource {
     private let toByteBuffer: @Sendable (S.Element) -> NIOCore.ByteBuffer
     private var buffer = NIOCore.ByteBuffer()
     private var isReading = false
-    private var waiters: [CheckedContinuation<Void, Never>] = []
+    private var nextWaiterID: UInt64 = 0
+    private var waiters: [(id: UInt64, continuation: CheckedContinuation<Void, Never>)] = []
 
     init(
       sequence: S,
@@ -37,12 +38,32 @@ public struct StreamSource: WriteObjectSource {
       self.toByteBuffer = toByteBuffer
     }
 
+    private func cancelWaiter(id: UInt64) {
+      if let index = waiters.firstIndex(where: { $0.id == id }) {
+        let waiter = waiters.remove(at: index)
+        waiter.continuation.resume()
+      }
+    }
+
     func read(maxBytes: Int) async throws -> ByteChunk? {
       guard maxBytes > 0 else { return nil }
 
       while isReading {
-        await withCheckedContinuation { continuation in
-          waiters.append(continuation)
+        try Task.checkCancellation()
+        let waiterID = nextWaiterID
+        nextWaiterID &+= 1
+        await withTaskCancellationHandler {
+          await withCheckedContinuation { continuation in
+            if Task.isCancelled {
+              continuation.resume()
+            } else {
+              waiters.append((id: waiterID, continuation: continuation))
+            }
+          }
+        } onCancel: {
+          Task {
+            await self.cancelWaiter(id: waiterID)
+          }
         }
       }
       isReading = true
@@ -50,7 +71,7 @@ public struct StreamSource: WriteObjectSource {
         isReading = false
         if !waiters.isEmpty {
           let nextWaiter = waiters.removeFirst()
-          nextWaiter.resume()
+          nextWaiter.continuation.resume()
         }
       }
       try Task.checkCancellation()

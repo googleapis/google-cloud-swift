@@ -189,38 +189,70 @@ import Testing
     #expect(collectedChunks.sorted() == expectedBytes.sorted())
   }
 
-  /// Tests that a cancelled task waiting in the queue throws CancellationError without consuming from the sequence.
+  /// Tests that a cancelled task waiting in the queue throws CancellationError immediately without waiting for the active read or consuming from the sequence.
   @Test func cancelledWaiterThrowsAndPreservesStream() async throws {
-    let (stream, continuation) = AsyncStream<ByteChunk>.makeStream()
-    let source = StreamSource(sequence: stream)
+    let (enteredStream, enteredContinuation) = AsyncStream<Void>.makeStream()
+    let (dataStream, dataContinuation) = AsyncStream<ByteChunk>.makeStream()
 
-    // Start first read which will suspend waiting for elements from `stream`.
+    struct SignalingSequence: AsyncSequence, Sendable {
+      typealias Element = ByteChunk
+      let enteredContinuation: AsyncStream<Void>.Continuation
+      let dataStream: AsyncStream<ByteChunk>
+
+      struct AsyncIterator: AsyncIteratorProtocol {
+        var enteredContinuation: AsyncStream<Void>.Continuation?
+        var inner: AsyncStream<ByteChunk>.AsyncIterator
+
+        @concurrent mutating func next() async -> ByteChunk? {
+          enteredContinuation?.yield()
+          enteredContinuation?.finish()
+          enteredContinuation = nil
+          return await inner.next()
+        }
+      }
+
+      func makeAsyncIterator() -> AsyncIterator {
+        AsyncIterator(
+          enteredContinuation: enteredContinuation,
+          inner: dataStream.makeAsyncIterator()
+        )
+      }
+    }
+
+    let source = StreamSource(
+      sequence: SignalingSequence(
+        enteredContinuation: enteredContinuation,
+        dataStream: dataStream
+      )
+    )
+
+    // Start first read and wait until it is deterministically suspended inside `next()`.
     let firstTask = Task {
       var s = source
       return try await s.read(maxBytes: 4)
     }
+    var enteredIter = enteredStream.makeAsyncIterator()
+    _ = await enteredIter.next()
 
-    // Give firstTask a moment to enter `read` and suspend on `iter.next()`.
-    try await Task.sleep(for: .milliseconds(20))
-
-    // Start second read which will queue in `waiters`, then cancel it.
+    // Start second read which queues in `waiters`, then cancel it while `firstTask` is still suspended.
     let secondTask = Task {
       var s = source
       return try await s.read(maxBytes: 4)
     }
-    try await Task.sleep(for: .milliseconds(20))
+    try await Task.sleep(for: .milliseconds(10))
     secondTask.cancel()
 
-    // Yield 8 bytes and finish.
-    continuation.yield(ByteChunk([1, 2, 3, 4, 5, 6, 7, 8]))
-    continuation.finish()
-
-    let chunk1 = try await firstTask.value
-    #expect(chunk1 == [1, 2, 3, 4])
-
+    // `secondTask` should throw CancellationError immediately even before `dataContinuation` yields.
     await #expect(throws: CancellationError.self) {
       _ = try await secondTask.value
     }
+
+    // Now yield 8 bytes and finish `dataStream`.
+    dataContinuation.yield(ByteChunk([1, 2, 3, 4, 5, 6, 7, 8]))
+    dataContinuation.finish()
+
+    let chunk1 = try await firstTask.value
+    #expect(chunk1 == [1, 2, 3, 4])
 
     // Subsequent read should still receive the remaining [5, 6, 7, 8].
     var remainingSource = source
