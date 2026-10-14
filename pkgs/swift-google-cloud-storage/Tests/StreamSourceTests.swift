@@ -110,4 +110,70 @@ import Testing
       Issue.record("Expected WriteObjectSourceError.readFailed, got \(String(describing: err))")
     }
   }
+
+  /// Tests that copying a StreamSource shares buffered unread bytes as well as the underlying iterator.
+  @Test func copySharesBufferedState() async throws {
+    let stream = AsyncStream<ByteChunk> { continuation in
+      continuation.yield(ByteChunk([1, 2, 3, 4]))
+      continuation.yield(ByteChunk([5, 6]))
+      continuation.finish()
+    }
+
+    var sourceA = StreamSource(sequence: stream)
+    let first = try await sourceA.read(maxBytes: 2)
+    #expect(first == [1, 2])
+
+    // Copy after sourceA has buffered [3, 4].
+    var sourceB = sourceA
+    let second = try await sourceB.read(maxBytes: 3)
+    #expect(second == [3, 4, 5])
+
+    let third = try await sourceA.read(maxBytes: 10)
+    #expect(third == [6])
+
+    let fourth = try await sourceB.read(maxBytes: 10)
+    #expect(fourth == nil)
+  }
+
+  /// Tests that concurrent reads on copies of a StreamSource are serialized without data races or lost bytes.
+  @Test func concurrentReadsAreSerialized() async throws {
+    let chunkCount = 50
+    let bytesPerChunk = 16
+    let expectedBytes = (0..<(chunkCount * bytesPerChunk)).map { UInt8($0 & 0xFF) }
+
+    let stream = AsyncStream<ByteChunk> { continuation in
+      for i in 0..<chunkCount {
+        let start = i * bytesPerChunk
+        let slice = Array(expectedBytes[start..<(start + bytesPerChunk)])
+        continuation.yield(ByteChunk(slice))
+      }
+      continuation.finish()
+    }
+
+    let source = StreamSource(sequence: stream, totalSize: UInt64(expectedBytes.count))
+
+    let collectedChunks = try await withThrowingTaskGroup(of: [[UInt8]].self) { group in
+      for _ in 0..<8 {
+        group.addTask {
+          var localSource = source
+          var readChunks: [[UInt8]] = []
+          while let chunk = try await localSource.read(maxBytes: 7) {
+            readChunks.append(Array(chunk))
+          }
+          return readChunks
+        }
+      }
+
+      var all: [UInt8] = []
+      for try await workerChunks in group {
+        for chunk in workerChunks {
+          all.append(contentsOf: chunk)
+        }
+      }
+      return all
+    }
+
+    #expect(collectedChunks.count == expectedBytes.count)
+    #expect(collectedChunks.sorted() == expectedBytes.sorted())
+  }
 }
