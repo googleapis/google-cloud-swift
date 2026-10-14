@@ -29,6 +29,11 @@ import Testing
 
     let defaultedClamping = ExponentialBackoff(clamping: .seconds(1))
     #expect(defaultedClamping == backoff)
+
+    let customMaxOnly = try ExponentialBackoff(maximumDelay: .seconds(30))
+    #expect(customMaxOnly.initialDelay == .seconds(1))
+    #expect(customMaxOnly.maximumDelay == .seconds(30))
+    #expect(customMaxOnly.scaling == 2.0)
   }
 
   @Test func customParameters() throws {
