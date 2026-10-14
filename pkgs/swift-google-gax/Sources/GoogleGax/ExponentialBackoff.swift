@@ -67,18 +67,21 @@ extension ExponentialBackoffError: CustomDebugStringConvertible {
 ///
 /// [Exponential backoff]: https://en.wikipedia.org/wiki/Exponential_backoff
 public struct ExponentialBackoff: Sendable, Equatable {
+  /// The initial delay before the first retry.
   public let initialDelay: Duration
+  /// The maximum delay between retries.
   public let maximumDelay: Duration
+  /// The scaling factor for each subsequent retry.
   public let scaling: Double
 
-  /// Create a new exponential backoff policy with the default configuration.
+  /// Creates a new exponential backoff policy with the default configuration.
   public init() {
     self.initialDelay = .seconds(1)
     self.maximumDelay = .seconds(60)
     self.scaling = 2.0
   }
 
-  /// Create a new exponential backoff policy.
+  /// Creates a new exponential backoff policy.
   ///
   /// - Parameters:
   ///   - initialDelay: The initial delay before the first retry. Defaults to 1 second.
