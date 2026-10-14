@@ -53,6 +53,7 @@ public struct StreamSource: WriteObjectSource {
           nextWaiter.resume()
         }
       }
+      try Task.checkCancellation()
 
       while buffer.readableBytes < maxBytes {
         guard var iter = iterator else {
@@ -83,6 +84,7 @@ public struct StreamSource: WriteObjectSource {
       guard let slice = buffer.readSlice(length: chunkSize) else {
         return nil
       }
+      buffer.discardReadBytes()
       return ByteChunk(slice)
     }
   }

@@ -176,4 +176,43 @@ import Testing
     #expect(collectedChunks.count == expectedBytes.count)
     #expect(collectedChunks.sorted() == expectedBytes.sorted())
   }
+
+  /// Tests that a cancelled task waiting in the queue throws CancellationError without consuming from the sequence.
+  @Test func cancelledWaiterThrowsAndPreservesStream() async throws {
+    let (stream, continuation) = AsyncStream<ByteChunk>.makeStream()
+    let source = StreamSource(sequence: stream)
+
+    // Start first read which will suspend waiting for elements from `stream`.
+    let firstTask = Task {
+      var s = source
+      return try await s.read(maxBytes: 4)
+    }
+
+    // Give firstTask a moment to enter `read` and suspend on `iter.next()`.
+    try await Task.sleep(for: .milliseconds(20))
+
+    // Start second read which will queue in `waiters`, then cancel it.
+    let secondTask = Task {
+      var s = source
+      return try await s.read(maxBytes: 4)
+    }
+    try await Task.sleep(for: .milliseconds(20))
+    secondTask.cancel()
+
+    // Yield 8 bytes and finish.
+    continuation.yield(ByteChunk([1, 2, 3, 4, 5, 6, 7, 8]))
+    continuation.finish()
+
+    let chunk1 = try await firstTask.value
+    #expect(chunk1 == [1, 2, 3, 4])
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await secondTask.value
+    }
+
+    // Subsequent read should still receive the remaining [5, 6, 7, 8].
+    var remainingSource = source
+    let chunk2 = try await remainingSource.read(maxBytes: 4)
+    #expect(chunk2 == [5, 6, 7, 8])
+  }
 }
