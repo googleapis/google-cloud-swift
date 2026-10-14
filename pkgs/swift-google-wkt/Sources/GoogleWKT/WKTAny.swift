@@ -81,7 +81,10 @@ extension WKTAny: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
-    guard case var .object(fields)? = any.fields["value"] else {
+    guard let v = any.fields[Self.valueField] else {
+      throw WKTAnyError.missingValueField
+    }
+    guard case var .object(fields) = v else {
       throw WKTAnyError.invalidValueField
     }
     guard case let .string(_type)? = fields.removeValue(forKey: Self.typeURLField) else {

@@ -87,6 +87,30 @@ import Testing
     #expect(error == .mismatchedTypeURL)
   }
 
+  @Test func fieldMaskAnyUnpackMissingValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.FieldMask"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.missingValueField) {
+      let _ = try WKTFieldMask(fromAny: any)
+    }
+  }
+
+  @Test func fieldMaskAnyUnpackInvalidValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.FieldMask","value":123}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.invalidValueField) {
+      let _ = try WKTFieldMask(fromAny: any)
+    }
+  }
+
   @Test("Pack FieldMask into Any")
   func fieldMaskAnyPack() throws {
     let input = WKTFieldMask(paths: ["a", "b", "c_d"])

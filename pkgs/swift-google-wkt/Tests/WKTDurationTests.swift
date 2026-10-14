@@ -202,6 +202,30 @@ import Testing
     #expect(error == .mismatchedTypeURL)
   }
 
+  @Test func durationAnyUnpackMissingValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Duration"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.missingValueField) {
+      let _ = try WKTDuration(fromAny: any)
+    }
+  }
+
+  @Test func durationAnyUnpackInvalidValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Duration","value":123}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.invalidValueField) {
+      let _ = try WKTDuration(fromAny: any)
+    }
+  }
+
   @Test("Pack Duration into Any")
   func durationAnyPack() throws {
     let input = try WKTDuration(seconds: 123, nanos: 450_000_000)

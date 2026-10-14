@@ -103,10 +103,13 @@ extension WKTFieldMask: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
-    guard case let .string(v)? = any.fields[WKTAny.valueField] else {
+    guard let v = any.fields[WKTAny.valueField] else {
+      throw WKTAnyError.missingValueField
+    }
+    guard case let .string(s) = v else {
       throw WKTAnyError.invalidValueField
     }
-    self.paths = try Self.pathsFromString(string: v)
+    self.paths = try Self.pathsFromString(string: s)
   }
 
   /// Packs this `WKTFieldMask` into a `WKTStruct` representation.

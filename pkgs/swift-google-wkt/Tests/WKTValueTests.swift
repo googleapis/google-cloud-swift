@@ -244,6 +244,29 @@ import Testing
     #expect(error == .mismatchedTypeURL)
   }
 
+  @Test func structAnyUnpackMissingValue() throws {
+    let jsonString = #"{"content":{"@type":"type.googleapis.com/google.protobuf.Struct"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.missingValueField) {
+      let _ = try WKTStruct(fromAny: any)
+    }
+  }
+
+  @Test func structAnyUnpackInvalidValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Struct","value":"not-an-object"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.invalidValueField) {
+      let _ = try WKTStruct(fromAny: any)
+    }
+  }
+
   @Test(
     "Pack Struct into Any",
     arguments: [
@@ -298,6 +321,29 @@ import Testing
       let _ = try WKTListValue(fromAny: any)
     }
     #expect(error == .mismatchedTypeURL)
+  }
+
+  @Test func listValueAnyUnpackMissingValue() throws {
+    let jsonString = #"{"content":{"@type":"type.googleapis.com/google.protobuf.ListValue"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.missingValueField) {
+      let _ = try WKTListValue(fromAny: any)
+    }
+  }
+
+  @Test func listValueAnyUnpackInvalidValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.ListValue","value":"not-an-array"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.invalidValueField) {
+      let _ = try WKTListValue(fromAny: any)
+    }
   }
 
   @Test(

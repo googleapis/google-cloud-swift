@@ -204,6 +204,30 @@ import Testing
     #expect(error == .mismatchedTypeURL)
   }
 
+  @Test func timestampAnyUnpackMissingValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Timestamp"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.missingValueField) {
+      let _ = try WKTTimestamp(fromAny: any)
+    }
+  }
+
+  @Test func timestampAnyUnpackInvalidValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Timestamp","value":123}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = _ProtoJSONDecoder()
+    let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(throws: WKTAnyError.invalidValueField) {
+      let _ = try WKTTimestamp(fromAny: any)
+    }
+  }
+
   @Test("Pack Timestamp into Any")
   func timestampAnyPack() throws {
     let input = try WKTTimestamp(fromString: "2026-04-21T12:34:56.789123456Z")
