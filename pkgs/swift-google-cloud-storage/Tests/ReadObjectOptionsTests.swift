@@ -77,7 +77,7 @@ import Testing
     }
 
     #expect(options.generation == 456)
-    #expect(options.preconditions?.ifGenerationMatch == 123)
+    #expect(options.preconditions == preconditions)
     #expect(options.customerEncryptionKey == csek)
     #expect(options.range == ReadObjectRange(range: 0...1024)!)
     #expect(options.enableDecompressiveTranscoding == false)
@@ -278,7 +278,7 @@ import Testing
 
     let resolved = ReadObjectOptions().withDefaults(defaults)
     #expect(resolved.generation == 100)
-    #expect(resolved.preconditions?.ifGenerationMatch == 100)
+    #expect(resolved.preconditions == StoragePreconditions().with { $0.ifGenerationMatch = 100 })
     #expect(resolved.customerEncryptionKey == defaultCsek)
     #expect(resolved.range == ReadObjectRange(prefix: 512))
     #expect(resolved.enableDecompressiveTranscoding == false)
@@ -317,7 +317,7 @@ import Testing
 
     let resolved = options.withDefaults(defaults)
     #expect(resolved.generation == 200)
-    #expect(resolved.preconditions?.ifGenerationMatch == 200)
+    #expect(resolved.preconditions == StoragePreconditions().with { $0.ifGenerationMatch = 200 })
     #expect(resolved.customerEncryptionKey == overrideCsek)
     #expect(resolved.range == .entire)
     #expect(resolved.enableDecompressiveTranscoding == true)
