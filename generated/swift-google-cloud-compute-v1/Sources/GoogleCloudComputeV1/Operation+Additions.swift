@@ -30,6 +30,13 @@
       return self.name ?? ""
     }
 
+    /// Inspects the terminal `Operation` for failure indicators and throws a
+    /// `GoogleGax.RequestError.service` if the operation failed.
+    ///
+    /// Compute Engine operations can report failure in three ways:
+    /// 1. Top-level error fields (`error`, `httpErrorStatusCode`, or `httpErrorMessage`).
+    /// 2. Per-location VM creation failures in `instancesBulkInsertOperationMetadata`.
+    /// 3. Per-location errors in `setCommonInstanceMetadataOperationMetadata`.
     func _detectErrors() throws {
       if self.error != nil || (self.httpErrorStatusCode ?? 0) != 0 || self.httpErrorMessage != nil {
         throw GoogleGax.RequestError.service(self._parseServiceError())
@@ -60,6 +67,8 @@
       }
     }
 
+    /// Constructs a `GoogleGax.ServiceError` from the operation's HTTP status,
+    /// error message, and structured `error.errors` entries.
     private func _parseServiceError() -> GoogleGax.ServiceError {
       let code: GoogleRpc.Code
       let httpStatusCode: Int?
@@ -72,6 +81,9 @@
         httpStatusCode = nil
       }
 
+      // Prefer `httpErrorMessage` when present and non-empty. Otherwise, build a
+      // summary from the `code` and `message` fields of each `error.errors` entry
+      // before falling back to a generic message.
       let message: Swift.String
       if let httpMessage = self.httpErrorMessage, !httpMessage.isEmpty {
         message = httpMessage
@@ -104,6 +116,16 @@
       )
     }
 
+    /// Extracts `GoogleGax.StatusDetail` values from a single Compute `Operation.Error.Errors` entry.
+    ///
+    /// Compute Engine's Discovery schema defines its own `ErrorInfo`, `Help`, and
+    /// `LocalizedMessage` types inside `Operation.Error.Errors.ErrorDetails`. We convert
+    /// those into their standard `GoogleRpc` counterparts so callers can pattern-match on
+    /// `.errorInfo`, `.help`, and `.localizedMessage` just like standard gRPC/HTTP errors.
+    ///
+    /// Compute-specific details (`QuotaExceededInfo` and the enclosing `Operation.Error.Errors`
+    /// entry itself, which carries `code`, `location`, and `message`) do not have dedicated
+    /// `StatusDetail` enum cases and are packed as `WKTAny` in `.other(...)`.
     private static func _extractStatusDetails(
       from entry: Operation.Error.Errors
     ) -> [GoogleGax.StatusDetail] {
@@ -115,6 +137,8 @@
               GoogleRpc.ErrorInfo().with {
                 $0.reason = info.reason ?? ""
                 $0.domain = info.domain ?? ""
+                // Note: Compute's Discovery schema names this field `metadatas` (plural),
+                // whereas `google.rpc.ErrorInfo` names it `metadata`.
                 $0.metadata = info.metadatas
               }
             )
@@ -150,6 +174,8 @@
           details.append(.other(packedQuota))
         }
       }
+      // Preserve the raw `Operation.Error.Errors` entry so callers can still inspect
+      // Compute-specific fields such as `code`, `location`, and `message`.
       if let packedEntry = try? GoogleWKT.WKTAny(fromMessage: entry) {
         details.append(.other(packedEntry))
       }
