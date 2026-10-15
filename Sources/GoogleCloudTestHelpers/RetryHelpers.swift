@@ -16,14 +16,81 @@ import Foundation
 public import GoogleGax
 import GoogleRpc
 
+/// A retry and polling error policy for integration tests that retries transient service flakes,
+/// including `INTERNAL` (HTTP 500), `UNKNOWN`, `DEADLINE_EXCEEDED` (HTTP 504),
+/// `RESOURCE_EXHAUSTED` (HTTP 429), `UNAVAILABLE` (HTTP 503), and HTTP 408 / 5xx errors.
+public struct TestRetryPolicy: RetryPolicy, PollingErrorPolicy, Sendable, Equatable {
+  public init() {}
+
+  /// The default retry policy for integration tests, with a 60-second time limit and 10-attempt limit.
+  public static var defaultRetryPolicy: some RetryPolicy {
+    let policy: some RetryPolicy = TestRetryPolicy().retryOnIO()
+    return policy.withTimeLimit(.seconds(60)).withAttemptLimit(10)
+  }
+
+  /// The default polling error policy for integration tests, with a 30-minute time limit.
+  public static var defaultPollingErrorPolicy: some PollingErrorPolicy {
+    let policy: some PollingErrorPolicy = TestRetryPolicy().continueOnIO()
+    return policy.withTimeLimit(.seconds(30 * 60))
+  }
+
+  public func onError(state: RetryState, error: RequestError) -> RetryResult {
+    if error.isTransientTestError {
+      return .retry(error)
+    }
+    return .permanent(error)
+  }
+
+  public func onError(state: PollingState, error: RequestError) -> PollingResult {
+    if error.isTransientTestError {
+      return .retry(error)
+    }
+    return .permanent(error)
+  }
+}
+
+/// Shared ClientOptions for integration tests that configure resilient retry and polling error
+/// policies and enforce a 15-second per-attempt timeout.
+public let testClientOptions = ClientOptions().with {
+  $0.attemptTimeout = .seconds(15)
+  $0.retryPolicy = TestRetryPolicy.defaultRetryPolicy
+  $0.pollingErrorPolicy = TestRetryPolicy.defaultPollingErrorPolicy
+}
+
 /// Shared RequestOptions for integration tests that retry non-idempotent operations
 /// and enforce a 15-second attempt timeout to prevent premature exhaustion of retry loop budgets.
 public let testRetryOptions = RequestOptions().with {
   $0.idempotent = true
   $0.attemptTimeout = .seconds(15)
+  $0.retryPolicy = TestRetryPolicy.defaultRetryPolicy
+  $0.pollingErrorPolicy = TestRetryPolicy.defaultPollingErrorPolicy
 }
 
 extension RequestError {
+  /// Returns `true` if the error represents a transient network, HTTP, or service error in tests.
+  public var isTransientTestError: Bool {
+    switch self {
+    case .io:
+      return true
+    case .http(let details):
+      let code = details.statusCode
+      return code == 408 || code == 429 || (500...599).contains(code)
+    case .service(let err):
+      if let httpCode = err.httpStatusCode,
+        httpCode == 408 || httpCode == 429 || (500...599).contains(httpCode)
+      {
+        return true
+      }
+      let code = err.code
+      return code == .unavailable || code == .resourceExhausted || code == .deadlineExceeded
+        || code == .internal || code == .unknown
+    case .exhausted(let details):
+      return details.source?.isTransientTestError ?? false
+    default:
+      return false
+    }
+  }
+
   public var isAlreadyExists: Bool {
     switch self {
     case .service(let err):
@@ -66,6 +133,9 @@ extension RequestError {
 }
 
 extension Swift.Error {
+  public var isTransientTestError: Bool {
+    (self as? RequestError)?.isTransientTestError ?? false
+  }
   public var isAlreadyExists: Bool {
     (self as? RequestError)?.isAlreadyExists ?? false
   }

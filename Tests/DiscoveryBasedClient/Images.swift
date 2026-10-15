@@ -23,7 +23,7 @@ public enum Images {
   static public func run(_ logger: Logger) async throws {
     let projectId = try projectId()
 
-    let client = try ImagesClient(ClientOptions().with { $0.logger = logger })
+    let client = try ImagesClient(testClientOptions.with { $0.logger = logger })
     try await ImageSamples.list(client: client, projectId: projectId, logger: logger)
     try await ImageSamples.listPages(client: client, projectId: projectId, logger: logger)
   }

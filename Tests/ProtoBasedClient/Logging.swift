@@ -28,11 +28,13 @@ public enum Logging {
     var clientLogger = Logger(label: "logging.test", factory: { (_: String) in handler })
     clientLogger.logLevel = .debug
     let client = try SecretManagerServiceClient(
-      ClientOptions().with { $0.logger = clientLogger })
+      testClientOptions.with { $0.logger = clientLogger })
 
     logger.info("\nTesting listLocations()")
     let _ = try await client.listLocations(
-      request: .init().with { $0.name = "projects/\(projectId)" })
+      request: .init().with { $0.name = "projects/\(projectId)" },
+      options: testRetryOptions
+    )
 
     let enter = try #require(
       handler.entries.first(where: { $0.message.description.starts(with: "enter  : ") }),

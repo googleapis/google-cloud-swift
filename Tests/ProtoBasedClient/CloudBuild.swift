@@ -23,7 +23,7 @@ import Testing
 public enum CloudBuild {
   static public func run(_ logger: Logger) async throws {
     let project = try projectId()
-    let client = try CloudBuildClient()
+    let client = try CloudBuildClient(testClientOptions)
 
     logger.info("Testing listBuilds with projectId (binding 1)")
     let byProject = try await testListBuildsByProject(
@@ -50,7 +50,9 @@ public enum CloudBuild {
       request: ListBuildsRequest().with {
         $0.projectId = projectId
         $0.pageSize = 5
-      })
+      },
+      options: testRetryOptions
+    )
     logger.info("listBuilds(projectId) returned \(response.builds.count) builds")
     return response
   }
@@ -64,7 +66,9 @@ public enum CloudBuild {
       request: ListBuildsRequest().with {
         $0.parent = "projects/\(projectId)/locations/global"
         $0.pageSize = 5
-      })
+      },
+      options: testRetryOptions
+    )
     logger.info("listBuilds(parent) returned \(response.builds.count) builds")
     return response
   }
@@ -81,7 +85,9 @@ public enum CloudBuild {
           request: GetBuildRequest().with {
             $0.projectId = projectId
             $0.id = existingBuild.id
-          })
+          },
+          options: testRetryOptions
+        )
         #expect(build1.id == existingBuild.id)
         logger.info("Successfully fetched build via binding 1 (projectId + id)")
       } catch {
@@ -98,7 +104,9 @@ public enum CloudBuild {
         let build2 = try await client.getBuild(
           request: GetBuildRequest().with {
             $0.name = name
-          })
+          },
+          options: testRetryOptions
+        )
         #expect(build2.id == existingBuild.id)
         logger.info("Successfully fetched build via binding 2 (name)")
       } catch {
@@ -114,7 +122,9 @@ public enum CloudBuild {
           request: GetBuildRequest().with {
             $0.projectId = projectId
             $0.id = fakeId
-          })
+          },
+          options: testRetryOptions
+        )
         Issue.record("Expected getBuild to throw RequestError.service, but it succeeded")
       } catch let RequestError.service(error) {
         #expect(error.httpStatusCode == 404)
@@ -129,7 +139,9 @@ public enum CloudBuild {
         _ = try await client.getBuild(
           request: GetBuildRequest().with {
             $0.name = fakeName
-          })
+          },
+          options: testRetryOptions
+        )
         Issue.record("Expected getBuild to throw RequestError.service, but it succeeded")
       } catch let RequestError.service(error) {
         #expect(error.httpStatusCode == 404)

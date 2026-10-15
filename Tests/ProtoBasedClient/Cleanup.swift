@@ -28,7 +28,7 @@ func cleanupStaleSecrets() async {
 
 func cleanupStaleSecretsImpl() async throws {
   let projectId = try projectId()
-  let client = try SecretManagerServiceClient()
+  let client = try SecretManagerServiceClient(testClientOptions)
   let secrets = client.listSecretsByItems(
     request: .init().with { $0.parent = "projects/\(projectId)" },
     options: testRetryOptions
@@ -70,7 +70,7 @@ func cleanUpStaleWorkflows() async {
 func cleanUpStaleWorkflowsImpl() async throws {
   let projectId = try projectId()
   let location = locationId()
-  let client = try WorkflowsClient()
+  let client = try WorkflowsClient(testClientOptions)
   let workflows = client.listWorkflowsByItems(
     request: .init().with {
       $0.parent = "projects/\(projectId)/locations/\(location)"

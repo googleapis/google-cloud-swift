@@ -23,7 +23,7 @@ public enum Instances {
   static public func run(_ logger: Logger) async throws {
     let projectId = try projectId()
 
-    let client = try InstancesClient(ClientOptions().with { $0.logger = logger })
+    let client = try InstancesClient(testClientOptions.with { $0.logger = logger })
     let name = randomVMId()
     let zone = "us-central1-a"
     try await InstanceSamples.create(

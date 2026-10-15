@@ -30,7 +30,7 @@ public enum GlobalEndpoint {
     let projectId = try projectId()
     let secretId = randomSecretId()
     let secretName = "projects/\(projectId)/secrets/\(secretId)"
-    let client = try SecretManagerServiceClient()
+    let client = try SecretManagerServiceClient(testClientOptions)
 
     logger.info("Testing createSecret()")
     let create: Secret
