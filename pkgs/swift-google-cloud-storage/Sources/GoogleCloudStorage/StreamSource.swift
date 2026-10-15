@@ -21,7 +21,12 @@ struct StreamSourceConcurrentReadError: Error, Sendable, CustomStringConvertible
   }
 }
 
-/// A write object source that wraps an arbitrary AsyncSequence of ByteChunk or Data chunks.
+/// A write object source that wraps an arbitrary `AsyncSequence` of `ByteChunk` or `Data` chunks.
+///
+/// `StreamSource` is designed to be consumed sequentially by a single reader (such as a single
+/// object upload operation) and does not support multiple concurrent readers. Copying a
+/// `StreamSource` value shares the same underlying sequence iterator and unread byte buffer;
+/// overlapping concurrent calls to ``read(maxBytes:)`` throw ``WriteObjectSourceError/readFailed(underlyingError:)``.
 public struct StreamSource: WriteObjectSource {
   /// Type-erased actor interface so `StreamSource` does not need a generic parameter for the underlying sequence.
   private protocol StreamReading: Actor {
@@ -141,6 +146,11 @@ public struct StreamSource: WriteObjectSource {
     self.reader = SequenceReader(sequence: sequence) { $0 }
   }
 
+  /// Reads the next chunk of data, up to `maxBytes`, or returns `nil` when the sequence is exhausted.
+  ///
+  /// - Important: `StreamSource` does not support concurrent readers. Calling `read(maxBytes:)`
+  ///   while another `read(maxBytes:)` call is already in progress on the same `StreamSource` (or a
+  ///   copy of it) throws ``WriteObjectSourceError/readFailed(underlyingError:)``.
   public mutating func read(maxBytes: Int) async throws -> ByteChunk? {
     try await reader.read(maxBytes: maxBytes)
   }
