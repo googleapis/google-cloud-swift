@@ -15,6 +15,12 @@
 public import Foundation
 import NIOCore
 
+struct StreamSourceConcurrentReadError: Error, Sendable, CustomStringConvertible {
+  var description: String {
+    "StreamSource does not support concurrent reads."
+  }
+}
+
 /// A write object source that wraps an arbitrary AsyncSequence of ByteChunk or Data chunks.
 public struct StreamSource: WriteObjectSource {
   /// Type-erased actor interface so `StreamSource` does not need a generic parameter for the underlying sequence.
@@ -33,12 +39,6 @@ public struct StreamSource: WriteObjectSource {
     private let toByteBuffer: @Sendable (S.Element) -> NIOCore.ByteBuffer
     private var buffer = NIOCore.ByteBuffer()
     private var isReading = false
-    // `CheckedContinuation` is not `Equatable`, and `withTaskCancellationHandler`'s `onCancel`
-    // closure is registered before `withCheckedContinuation` creates the continuation. Assigning
-    // each queued caller a monotonic ID allows `onCancel` to capture `waiterID` and locate the
-    // exact continuation to remove and resume if that specific task is cancelled while waiting.
-    private var nextWaiterID: UInt64 = 0
-    private var waiters: [(id: UInt64, continuation: CheckedContinuation<Void, Never>)] = []
 
     init(
       sequence: S,
@@ -48,45 +48,20 @@ public struct StreamSource: WriteObjectSource {
       self.toByteBuffer = toByteBuffer
     }
 
-    private func cancelWaiter(id: UInt64) {
-      if let index = waiters.firstIndex(where: { $0.id == id }) {
-        let waiter = waiters.remove(at: index)
-        waiter.continuation.resume()
-      }
-    }
-
     func read(maxBytes: Int) async throws -> ByteChunk? {
       guard maxBytes > 0 else { return nil }
 
-      // Swift actors are reentrant across suspension points (`await iter.next(isolation: self)`).
-      // Queue concurrent callers in FIFO order so only one read operation pulls from the iterator
-      // and mutates `buffer` at a time, while still allowing queued callers to exit early if cancelled.
-      while isReading {
-        try Task.checkCancellation()
-        let waiterID = nextWaiterID
-        nextWaiterID &+= 1
-        await withTaskCancellationHandler {
-          await withCheckedContinuation { continuation in
-            if Task.isCancelled {
-              continuation.resume()
-            } else {
-              waiters.append((id: waiterID, continuation: continuation))
-            }
-          }
-        } onCancel: {
-          Task {
-            await self.cancelWaiter(id: waiterID)
-          }
-        }
+      // `StreamSource` is intended to be consumed sequentially by a single upload operation.
+      // Because Swift actors are reentrant across `await` suspension points, reject overlapping
+      // concurrent `read(maxBytes:)` calls rather than interleaving access to `buffer` and `iterator`.
+      guard !isReading else {
+        throw WriteObjectSourceError.readFailed(
+          underlyingError: StreamSourceConcurrentReadError()
+        )
       }
       isReading = true
-      defer {
-        isReading = false
-        if !waiters.isEmpty {
-          let nextWaiter = waiters.removeFirst()
-          nextWaiter.continuation.resume()
-        }
-      }
+      defer { isReading = false }
+
       try Task.checkCancellation()
 
       // Reclaim already-read prefix bytes before appending new chunks. Doing this here (rather than
