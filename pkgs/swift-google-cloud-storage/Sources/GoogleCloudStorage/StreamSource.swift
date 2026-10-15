@@ -33,6 +33,10 @@ public struct StreamSource: WriteObjectSource {
     private let toByteBuffer: @Sendable (S.Element) -> NIOCore.ByteBuffer
     private var buffer = NIOCore.ByteBuffer()
     private var isReading = false
+    // `CheckedContinuation` is not `Equatable`, and `withTaskCancellationHandler`'s `onCancel`
+    // closure is registered before `withCheckedContinuation` creates the continuation. Assigning
+    // each queued caller a monotonic ID allows `onCancel` to capture `waiterID` and locate the
+    // exact continuation to remove and resume if that specific task is cancelled while waiting.
     private var nextWaiterID: UInt64 = 0
     private var waiters: [(id: UInt64, continuation: CheckedContinuation<Void, Never>)] = []
 
