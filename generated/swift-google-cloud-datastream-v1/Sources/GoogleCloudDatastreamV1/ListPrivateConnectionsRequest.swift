@@ -31,18 +31,18 @@ public struct ListPrivateConnectionsRequest: Codable, Equatable, GoogleWKT._AnyP
   /// 1000.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// Page token received from a previous `ListPrivateConnections` call.
-  /// Provide this to retrieve the subsequent page.
+  /// Optional. Page token received from a previous `ListPrivateConnections`
+  /// call. Provide this to retrieve the subsequent page.
   ///
   /// When paginating, all other parameters provided to
   /// `ListPrivateConnections` must match the call that provided the page
   /// token.
   public var pageToken: Swift.String = Swift.String()
 
-  /// Filter request.
+  /// Optional. Filter request.
   public var filter: Swift.String = Swift.String()
 
-  /// Order by fields for the result.
+  /// Optional. Order by fields for the result.
   public var orderBy: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

@@ -495,8 +495,13 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
       /// The agent's name.
       public var displayName: Swift.String = Swift.String()
 
-      /// A user-specified string representing the agent's team.
+      /// A user-specified string representing the agent's team. Deprecated in
+      /// favor of the `teams` field.
+      @available(*, deprecated)
       public var team: Swift.String = Swift.String()
+
+      /// User-specified strings representing the agent's teams.
+      public var teams: [Swift.String] = []
 
       /// A user-provided string indicating the outcome of the agent's segment of
       /// the call.
@@ -504,6 +509,28 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The agent type, e.g. HUMAN_AGENT.
       public var agentType: ConversationParticipant.Role = ConversationParticipant.Role()
+
+      /// The agent's location.
+      public var location: Swift.String = Swift.String()
+
+      /// The agent's deployment ID. Only applicable to automated agents.
+      public var deploymentId: Swift.String = Swift.String()
+
+      /// The agent's deployment display name. Only applicable to automated
+      /// agents.
+      public var deploymentDisplayName: Swift.String = Swift.String()
+
+      /// The agent's version ID. Only applicable to automated agents.
+      public var versionId: Swift.String = Swift.String()
+
+      /// The agent's version display name. Only applicable to automated agents.
+      public var versionDisplayName: Swift.String = Swift.String()
+
+      /// The entry subagent's display name.
+      public var entrySubagentDisplayName: Swift.String = Swift.String()
+
+      /// The entry subagent's ID.
+      public var entrySubagentId: Swift.String = Swift.String()
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -533,18 +560,37 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
         static let agentId = CodingKeys(stringValue: "agentId")
         static let displayName = CodingKeys(stringValue: "displayName")
         static let team = CodingKeys(stringValue: "team")
+        static let teams = CodingKeys(stringValue: "teams")
         static let dispositionCode = CodingKeys(stringValue: "dispositionCode")
         static let agentType = CodingKeys(stringValue: "agentType")
+        static let location = CodingKeys(stringValue: "location")
+        static let deploymentId = CodingKeys(stringValue: "deploymentId")
+        static let deploymentDisplayName = CodingKeys(stringValue: "deploymentDisplayName")
+        static let versionId = CodingKeys(stringValue: "versionId")
+        static let versionDisplayName = CodingKeys(stringValue: "versionDisplayName")
+        static let entrySubagentDisplayName = CodingKeys(stringValue: "entrySubagentDisplayName")
+        static let entrySubagentId = CodingKeys(stringValue: "entrySubagentId")
 
         static let _knownKeys: Set<Swift.String> = [
           "agentId",
           "displayName",
           "team",
+          "teams",
           "dispositionCode",
           "agentType",
+          "location",
+          "deploymentId",
+          "deploymentDisplayName",
+          "versionId",
+          "versionDisplayName",
+          "entrySubagentDisplayName",
+          "entrySubagentId",
         ]
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .agentId) {
@@ -556,6 +602,9 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .team) {
           self.team = value
         }
+        if let value = try container.decodeIfPresent([Swift.String].self, forKey: .teams) {
+          self.teams = value
+        }
         if let value = try container.decodeIfPresent(Swift.String.self, forKey: .dispositionCode) {
           self.dispositionCode = value
         }
@@ -564,19 +613,56 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
         {
           self.agentType = value
         }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .location) {
+          self.location = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .deploymentId) {
+          self.deploymentId = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .deploymentDisplayName)
+        {
+          self.deploymentDisplayName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionId) {
+          self.versionId = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .versionDisplayName)
+        {
+          self.versionDisplayName = value
+        }
+        if let value = try container.decodeIfPresent(
+          Swift.String.self, forKey: .entrySubagentDisplayName)
+        {
+          self.entrySubagentDisplayName = value
+        }
+        if let value = try container.decodeIfPresent(Swift.String.self, forKey: .entrySubagentId) {
+          self.entrySubagentId = value
+        }
         for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
           self._unknownFields.json[key.stringValue] = try container.decode(
             GoogleWKT.WKTValue.self, forKey: key)
         }
       }
 
+      #if hasAttribute(diagnose)
+        @diagnose(DeprecatedDeclaration, as: ignored)
+      #endif
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.agentId, forKey: .agentId)
         try container.encode(self.displayName, forKey: .displayName)
         try container.encode(self.team, forKey: .team)
+        try container.encode(self.teams, forKey: .teams)
         try container.encode(self.dispositionCode, forKey: .dispositionCode)
         try container.encode(self.agentType, forKey: .agentType)
+        try container.encode(self.location, forKey: .location)
+        try container.encode(self.deploymentId, forKey: .deploymentId)
+        try container.encode(self.deploymentDisplayName, forKey: .deploymentDisplayName)
+        try container.encode(self.versionId, forKey: .versionId)
+        try container.encode(self.versionDisplayName, forKey: .versionDisplayName)
+        try container.encode(self.entrySubagentDisplayName, forKey: .entrySubagentDisplayName)
+        try container.encode(self.entrySubagentId, forKey: .entrySubagentId)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

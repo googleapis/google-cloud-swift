@@ -64,6 +64,9 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Reserved for future use.
   public var satisfiesPzi: Swift.Bool? = nil
 
+  /// Optional. Rule sets to apply to the stream.
+  public var ruleSets: [Stream.RuleSet] = []
+
   /// Stream backfill strategy.
   public var backfillStrategy: BackfillStrategyOneOf? = nil
 
@@ -108,6 +111,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     static let lastRecoveryTime = CodingKeys(stringValue: "lastRecoveryTime")
     static let satisfiesPzs = CodingKeys(stringValue: "satisfiesPzs")
     static let satisfiesPzi = CodingKeys(stringValue: "satisfiesPzi")
+    static let ruleSets = CodingKeys(stringValue: "ruleSets")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -125,6 +129,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
       "lastRecoveryTime",
       "satisfiesPzs",
       "satisfiesPzi",
+      "ruleSets",
     ]
   }
 
@@ -159,6 +164,9 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
       GoogleWKT.WKTTimestamp.self, forKey: .lastRecoveryTime)
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
     self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
+    if let value = try container.decodeIfPresent([Stream.RuleSet].self, forKey: .ruleSets) {
+      self.ruleSets = value
+    }
 
     var backfillStrategy: BackfillStrategyOneOf? = nil
     let backfillStrategyCheckAndSet = {
@@ -203,6 +211,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.lastRecoveryTime, forKey: .lastRecoveryTime)
     try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
+    try container.encode(self.ruleSets, forKey: .ruleSets)
 
     if let choice = self.backfillStrategy {
       switch choice {
@@ -256,6 +265,8 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
       static let sqlServerExcludedObjects = CodingKeys(stringValue: "sqlServerExcludedObjects")
       static let salesforceExcludedObjects = CodingKeys(stringValue: "salesforceExcludedObjects")
       static let mongodbExcludedObjects = CodingKeys(stringValue: "mongodbExcludedObjects")
+      static let spannerExcludedObjects = CodingKeys(stringValue: "spannerExcludedObjects")
+      static let saasExcludedObjects = CodingKeys(stringValue: "saasExcludedObjects")
 
       static let _knownKeys: Set<Swift.String> = [
         "oracleExcludedObjects",
@@ -264,6 +275,8 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
         "sqlServerExcludedObjects",
         "salesforceExcludedObjects",
         "mongodbExcludedObjects",
+        "spannerExcludedObjects",
+        "saasExcludedObjects",
       ]
     }
 
@@ -310,6 +323,16 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
       {
         try excludedObjectsCheckAndSet(.mongodbExcludedObjects(mongodbExcludedObjects))
       }
+      if let spannerExcludedObjects = try container.decodeIfPresent(
+        SpannerDatabase.self, forKey: .spannerExcludedObjects)
+      {
+        try excludedObjectsCheckAndSet(.spannerExcludedObjects(spannerExcludedObjects))
+      }
+      if let saasExcludedObjects = try container.decodeIfPresent(
+        SourceCatalog.self, forKey: .saasExcludedObjects)
+      {
+        try excludedObjectsCheckAndSet(.saasExcludedObjects(saasExcludedObjects))
+      }
       self.excludedObjects = excludedObjects
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -334,6 +357,10 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
           try container.encode(value, forKey: .salesforceExcludedObjects)
         case .mongodbExcludedObjects(let value):
           try container.encode(value, forKey: .mongodbExcludedObjects)
+        case .spannerExcludedObjects(let value):
+          try container.encode(value, forKey: .spannerExcludedObjects)
+        case .saasExcludedObjects(let value):
+          try container.encode(value, forKey: .saasExcludedObjects)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -355,6 +382,11 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case salesforceExcludedObjects(SalesforceOrg)
       /// MongoDB data source objects to avoid backfilling
       indirect case mongodbExcludedObjects(MongodbCluster)
+      /// Spanner data source objects to avoid backfilling.
+      indirect case spannerExcludedObjects(SpannerDatabase)
+      /// Source catalog data source objects to avoid backfilling. This is mainly
+      /// used to represent SaaS applications objects.
+      indirect case saasExcludedObjects(SourceCatalog)
     }
 
     /// The type URL for `BackfillAllStrategy`: `"type.googleapis.com/google.cloud.datastream.v1.Stream.BackfillAllStrategy"`.
@@ -441,6 +473,319 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Packs this `BackfillNoneStrategy` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
+    }
+  }
+
+  /// A set of rules to apply to a set of objects.
+  public struct RuleSet: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Required. List of customization rules to apply.
+    public var customizationRules: [Stream.RuleSet.CustomizationRule] = []
+
+    /// Required. Object filter to apply the customization rules to.
+    public var objectFilter: Stream.RuleSet.ObjectFilter? = nil
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `RuleSet`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = RuleSet().with { $0.customizationRules = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let customizationRules = CodingKeys(stringValue: "customizationRules")
+      static let objectFilter = CodingKeys(stringValue: "objectFilter")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "customizationRules",
+        "objectFilter",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        [Stream.RuleSet.CustomizationRule].self, forKey: .customizationRules)
+      {
+        self.customizationRules = value
+      }
+      self.objectFilter = try container.decodeIfPresent(
+        Stream.RuleSet.ObjectFilter.self, forKey: .objectFilter)
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(self.customizationRules, forKey: .customizationRules)
+      try container.encodeIfPresent(self.objectFilter, forKey: .objectFilter)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// Object filter to apply the rules to.
+    public struct ObjectFilter: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// The filter to apply.
+      public var filterType: FilterTypeOneOf? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `ObjectFilter`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = ObjectFilter().with { $0.sourceObjectIdentifier = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let sourceObjectIdentifier = CodingKeys(stringValue: "sourceObjectIdentifier")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "sourceObjectIdentifier"
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        var filterType: FilterTypeOneOf? = nil
+        let filterTypeCheckAndSet = {
+          if filterType != nil {
+            throw DecodingError.dataCorrupted(
+              DecodingError.Context(
+                codingPath: decoder.codingPath,
+                debugDescription: "Multiple values set for oneof 'filterType'"))
+          }
+          filterType = $0
+        }
+        if let sourceObjectIdentifier = try container.decodeIfPresent(
+          SourceObjectIdentifier.self, forKey: .sourceObjectIdentifier)
+        {
+          try filterTypeCheckAndSet(.sourceObjectIdentifier(sourceObjectIdentifier))
+        }
+        self.filterType = filterType
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        if let choice = self.filterType {
+          switch choice {
+          case .sourceObjectIdentifier(let value):
+            try container.encode(value, forKey: .sourceObjectIdentifier)
+          }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The filter to apply.
+      public enum FilterTypeOneOf: Codable, Equatable, Sendable {
+        /// Specific source object identifier.
+        indirect case sourceObjectIdentifier(SourceObjectIdentifier)
+      }
+
+      /// The type URL for `ObjectFilter`: `"type.googleapis.com/google.cloud.datastream.v1.Stream.RuleSet.ObjectFilter"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.datastream.v1.Stream.RuleSet.ObjectFilter"
+      }
+
+      /// Initialize an instance of `ObjectFilter` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.Stream.RuleSet.ObjectFilter"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `ObjectFilter` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// A customization rule to apply to a set of objects.
+    public struct CustomizationRule: Codable, Equatable, GoogleWKT._AnyPackable,
+      Sendable
+    {
+      /// The rule to apply.
+      public var rule: RuleOneOf? = nil
+
+      @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+      /// Initialize a new instance of `CustomizationRule`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = CustomizationRule().with { $0.bigqueryPartitioning = ... }
+      /// ```
+      @inlinable
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      private struct CodingKeys: CodingKey {
+        var stringValue: Swift.String
+        var intValue: Swift.Int? { nil }
+        init(stringValue: Swift.String) { self.stringValue = stringValue }
+        init?(intValue: Swift.Int) { nil }
+
+        static let bigqueryPartitioning = CodingKeys(stringValue: "bigqueryPartitioning")
+        static let bigqueryClustering = CodingKeys(stringValue: "bigqueryClustering")
+
+        static let _knownKeys: Set<Swift.String> = [
+          "bigqueryPartitioning",
+          "bigqueryClustering",
+        ]
+      }
+
+      public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        var rule: RuleOneOf? = nil
+        let ruleCheckAndSet = {
+          if rule != nil {
+            throw DecodingError.dataCorrupted(
+              DecodingError.Context(
+                codingPath: decoder.codingPath,
+                debugDescription: "Multiple values set for oneof 'rule'"))
+          }
+          rule = $0
+        }
+        if let bigqueryPartitioning = try container.decodeIfPresent(
+          BigQueryPartitioning.self, forKey: .bigqueryPartitioning)
+        {
+          try ruleCheckAndSet(.bigqueryPartitioning(bigqueryPartitioning))
+        }
+        if let bigqueryClustering = try container.decodeIfPresent(
+          BigQueryClustering.self, forKey: .bigqueryClustering)
+        {
+          try ruleCheckAndSet(.bigqueryClustering(bigqueryClustering))
+        }
+        self.rule = rule
+        for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+          self._unknownFields.json[key.stringValue] = try container.decode(
+            GoogleWKT.WKTValue.self, forKey: key)
+        }
+      }
+
+      public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        if let choice = self.rule {
+          switch choice {
+          case .bigqueryPartitioning(let value):
+            try container.encode(value, forKey: .bigqueryPartitioning)
+          case .bigqueryClustering(let value):
+            try container.encode(value, forKey: .bigqueryClustering)
+          }
+        }
+        for (key, value) in self._unknownFields.json {
+          try container.encode(value, forKey: CodingKeys(stringValue: key))
+        }
+      }
+
+      /// The rule to apply.
+      public enum RuleOneOf: Codable, Equatable, Sendable {
+        /// BigQuery partitioning rule.
+        indirect case bigqueryPartitioning(BigQueryPartitioning)
+        /// BigQuery clustering rule.
+        indirect case bigqueryClustering(BigQueryClustering)
+      }
+
+      /// The type URL for `CustomizationRule`: `"type.googleapis.com/google.cloud.datastream.v1.Stream.RuleSet.CustomizationRule"`.
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.datastream.v1.Stream.RuleSet.CustomizationRule"
+      }
+
+      /// Initialize an instance of `CustomizationRule` by unpacking from a `GoogleWKT.WKTAny`.
+      ///
+      /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+      /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.Stream.RuleSet.CustomizationRule"`,
+      ///   or if deserialization fails.
+      public init(fromAny any: GoogleWKT.WKTAny) throws {
+        self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+
+      /// Packs this `CustomizationRule` into a `GoogleWKT.WKTStruct` representation.
+      ///
+      /// - Throws: An error if serialization fails.
+      public func _pack() throws -> GoogleWKT.WKTStruct {
+        return try GoogleWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// The type URL for `RuleSet`: `"type.googleapis.com/google.cloud.datastream.v1.Stream.RuleSet"`.
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.cloud.datastream.v1.Stream.RuleSet"
+    }
+
+    /// Initialize an instance of `RuleSet` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.Stream.RuleSet"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `RuleSet` into a `GoogleWKT.WKTStruct` representation.
     ///
     /// - Throws: An error if serialization fails.
     public func _pack() throws -> GoogleWKT.WKTStruct {

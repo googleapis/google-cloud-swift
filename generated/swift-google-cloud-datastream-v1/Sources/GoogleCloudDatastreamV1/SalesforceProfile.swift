@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// Salesforce profile
+/// Profile for connecting to a Salesforce source.
 public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
@@ -63,6 +63,9 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .domain) {
@@ -96,6 +99,9 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.domain, forKey: .domain)
@@ -113,7 +119,9 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  /// Username-password credentials.
+  /// Deprecated: Salesforce is retiring Username-Password authentication.
+  /// Use `Oauth2ClientCredentials` instead.
+  @available(*, deprecated)
   public struct UserCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
@@ -350,7 +358,9 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Credentials for Salesforce connection.
   public enum CredentialsOneOf: Codable, Equatable, Sendable {
-    /// User-password authentication.
+    /// Deprecated: Salesforce is retiring Username-Password authentication.
+    /// Use `oauth2_client_credentials` instead.
+    @available(*, deprecated)
     indirect case userCredentials(SalesforceProfile.UserCredentials)
     /// Connected app authentication.
     indirect case oauth2ClientCredentials(SalesforceProfile.Oauth2ClientCredentials)

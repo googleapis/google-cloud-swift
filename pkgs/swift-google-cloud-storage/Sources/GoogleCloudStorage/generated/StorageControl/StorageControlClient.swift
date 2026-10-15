@@ -390,7 +390,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func listFolders(
     request: ListFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListFoldersResponse {
-    try await self.control.listFolders(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.listFolders(request: request, options: options)
   }
 
   /// Renames a source folder to a destination folder. This operation is only
@@ -533,7 +537,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func updateManagedFolder(
     request: UpdateManagedFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedFolder {
-    try await self.control.updateManagedFolder(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.updateManagedFolder(request: request, options: options)
   }
 
   /// Creates an Anywhere Cache instance.
@@ -674,7 +682,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func createRapidCache(
     request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
-    try await self.control.createRapidCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.createRapidCache(request: request, options: options)
   }
 
   /// Creates a Rapid Cache instance.
@@ -706,7 +718,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func updateRapidCache(
     request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
-    try await self.control.updateRapidCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.updateRapidCache(request: request, options: options)
   }
 
   /// Updates a Rapid Cache instance.
@@ -738,7 +754,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func disableRapidCache(
     request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
-    try await self.control.disableRapidCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.disableRapidCache(request: request, options: options)
   }
 
   /// Disables a Rapid Cache instance.
@@ -770,14 +790,22 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func getRapidCache(
     request: GetRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> RapidCache {
-    try await self.control.getRapidCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.getRapidCache(request: request, options: options)
   }
 
   /// Lists Rapid Cache instances for a given bucket.
   public func listRapidCaches(
     request: ListRapidCachesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListRapidCachesResponse {
-    try await self.control.listRapidCaches(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.listRapidCaches(request: request, options: options)
   }
 
   /// Returns the Project scoped singleton IntelligenceConfig resource.
@@ -791,7 +819,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func updateProjectIntelligenceConfig(
     request: UpdateProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceConfig {
-    try await self.control.updateProjectIntelligenceConfig(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.updateProjectIntelligenceConfig(
+      request: request, options: options)
   }
 
   /// Returns the Folder scoped singleton IntelligenceConfig resource.
@@ -805,7 +838,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func updateFolderIntelligenceConfig(
     request: UpdateFolderIntelligenceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceConfig {
-    try await self.control.updateFolderIntelligenceConfig(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.updateFolderIntelligenceConfig(request: request, options: options)
   }
 
   /// Returns the Organization scoped singleton IntelligenceConfig resource.
@@ -819,7 +856,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func updateOrganizationIntelligenceConfig(
     request: UpdateOrganizationIntelligenceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceConfig {
-    try await self.control.updateOrganizationIntelligenceConfig(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.updateOrganizationIntelligenceConfig(
+      request: request, options: options)
   }
 
   /// Gets the IAM policy for a specified bucket.

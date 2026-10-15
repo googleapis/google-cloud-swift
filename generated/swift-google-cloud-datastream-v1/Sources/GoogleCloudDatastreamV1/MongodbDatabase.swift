@@ -21,7 +21,7 @@ import Foundation
 public struct MongodbDatabase: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Database name.
+  /// The database name.
   public var database: Swift.String = Swift.String()
 
   /// Collections in the database.

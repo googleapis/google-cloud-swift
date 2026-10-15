@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// MySQL database profile.
+/// Profile for connecting to a MySQL source.
 public struct MysqlProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

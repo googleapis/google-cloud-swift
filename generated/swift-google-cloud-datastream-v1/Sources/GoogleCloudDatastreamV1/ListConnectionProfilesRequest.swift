@@ -24,22 +24,22 @@ public struct ListConnectionProfilesRequest: Codable, Equatable, GoogleWKT._AnyP
   /// Required. The parent that owns the collection of connection profiles.
   public var parent: Swift.String = Swift.String()
 
-  /// Maximum number of connection profiles to return.
+  /// Optional. Maximum number of connection profiles to return.
   /// If unspecified, at most 50 connection profiles will be returned.
   /// The maximum value is 1000; values above 1000 will be coerced to 1000.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// Page token received from a previous `ListConnectionProfiles` call.
-  /// Provide this to retrieve the subsequent page.
+  /// Optional. Page token received from a previous `ListConnectionProfiles`
+  /// call. Provide this to retrieve the subsequent page.
   ///
   /// When paginating, all other parameters provided to `ListConnectionProfiles`
   /// must match the call that provided the page token.
   public var pageToken: Swift.String = Swift.String()
 
-  /// Filter request.
+  /// Optional. Filter request.
   public var filter: Swift.String = Swift.String()
 
-  /// Order by fields for the result.
+  /// Optional. Order by fields for the result.
   public var orderBy: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

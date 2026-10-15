@@ -17,20 +17,23 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// MongoDB source configuration.
+/// Configuration for syncing data from a MongoDB source.
 public struct MongodbSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// MongoDB collections to include in the stream.
+  /// The MongoDB collections to include in the stream.
   public var includeObjects: MongodbCluster? = nil
 
-  /// MongoDB collections to exclude from the stream.
+  /// The MongoDB collections to exclude from the stream.
   public var excludeObjects: MongodbCluster? = nil
 
   /// Optional. Maximum number of concurrent backfill tasks. The number should be
   /// non-negative and less than or equal to 50. If not set (or set to 0), the
   /// system's default value is used
   public var maxConcurrentBackfillTasks: Swift.Int32 = Swift.Int32()
+
+  /// Optional. MongoDB JSON mode to use for the stream.
+  public var jsonMode: MongodbJsonMode = MongodbJsonMode()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,11 +63,13 @@ public struct MongodbSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     static let includeObjects = CodingKeys(stringValue: "includeObjects")
     static let excludeObjects = CodingKeys(stringValue: "excludeObjects")
     static let maxConcurrentBackfillTasks = CodingKeys(stringValue: "maxConcurrentBackfillTasks")
+    static let jsonMode = CodingKeys(stringValue: "jsonMode")
 
     static let _knownKeys: Set<Swift.String> = [
       "includeObjects",
       "excludeObjects",
       "maxConcurrentBackfillTasks",
+      "jsonMode",
     ]
   }
 
@@ -79,6 +84,9 @@ public struct MongodbSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.maxConcurrentBackfillTasks = value
     }
+    if let value = try container.decodeIfPresent(MongodbJsonMode.self, forKey: .jsonMode) {
+      self.jsonMode = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -90,6 +98,7 @@ public struct MongodbSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.includeObjects, forKey: .includeObjects)
     try container.encodeIfPresent(self.excludeObjects, forKey: .excludeObjects)
     try container.encode(self.maxConcurrentBackfillTasks, forKey: .maxConcurrentBackfillTasks)
+    try container.encode(self.jsonMode, forKey: .jsonMode)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -17,14 +17,14 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// Cloud Storage bucket profile.
+/// Profile for connecting to a Cloud Storage destination.
 public struct GcsProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. The Cloud Storage bucket name.
   public var bucket: Swift.String = Swift.String()
 
-  /// The root path inside the Cloud Storage bucket.
+  /// Optional. The root path inside the Cloud Storage bucket.
   public var rootPath: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

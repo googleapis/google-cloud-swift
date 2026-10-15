@@ -21,7 +21,7 @@ import Foundation
 public struct SalesforceObject: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Object name.
+  /// The object name.
   public var objectName: Swift.String = Swift.String()
 
   /// Salesforce fields.

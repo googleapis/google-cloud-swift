@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// PostgreSQL database profile.
+/// Profile for connecting to a PostgreSQL source.
 public struct PostgresqlProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

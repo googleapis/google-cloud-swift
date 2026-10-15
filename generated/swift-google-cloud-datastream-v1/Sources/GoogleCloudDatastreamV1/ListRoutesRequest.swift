@@ -24,13 +24,13 @@ public struct ListRoutesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. The parent that owns the collection of Routess.
   public var parent: Swift.String = Swift.String()
 
-  /// Maximum number of Routes to return. The service may return
+  /// Optional. Maximum number of Routes to return. The service may return
   /// fewer than this value. If unspecified, at most 50 Routes
   /// will be returned. The maximum value is 1000; values above 1000 will be
   /// coerced to 1000.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// Page token received from a previous `ListRoutes` call.
+  /// Optional. Page token received from a previous `ListRoutes` call.
   /// Provide this to retrieve the subsequent page.
   ///
   /// When paginating, all other parameters provided to
@@ -38,10 +38,10 @@ public struct ListRoutesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// token.
   public var pageToken: Swift.String = Swift.String()
 
-  /// Filter request.
+  /// Optional. Filter request.
   public var filter: Swift.String = Swift.String()
 
-  /// Order by fields for the result.
+  /// Optional. Order by fields for the result.
   public var orderBy: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

@@ -17,14 +17,14 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// Oracle data source configuration
+/// Configuration for syncing data from an Oracle source.
 public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Oracle objects to include in the stream.
+  /// The Oracle objects to include in the stream.
   public var includeObjects: OracleRdbms? = nil
 
-  /// Oracle objects to exclude from the stream.
+  /// The Oracle objects to exclude from the stream.
   public var excludeObjects: OracleRdbms? = nil
 
   /// Maximum number of concurrent CDC tasks. The number should be non-negative.

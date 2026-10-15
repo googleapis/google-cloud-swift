@@ -21,7 +21,7 @@ import Foundation
 public struct OracleColumn: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Column name.
+  /// The column name.
   public var column: Swift.String = Swift.String()
 
   /// The Oracle data type.

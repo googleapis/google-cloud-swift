@@ -17,19 +17,19 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// Salesforce source configuration
+/// Configuration for syncing data from a Salesforce source.
 public struct SalesforceSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Salesforce objects to retrieve from the source.
+  /// The Salesforce objects to retrieve from the source.
   public var includeObjects: SalesforceOrg? = nil
 
-  /// Salesforce objects to exclude from the stream.
+  /// The Salesforce objects to exclude from the stream.
   public var excludeObjects: SalesforceOrg? = nil
 
   /// Required. Salesforce objects polling interval. The interval at which new
-  /// changes will be polled for each object. The duration must be between 5
-  /// minutes and 24 hours.
+  /// changes will be polled for each object. The duration must be from `5
+  /// minutes` to `24 hours`, inclusive.
   public var pollingInterval: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

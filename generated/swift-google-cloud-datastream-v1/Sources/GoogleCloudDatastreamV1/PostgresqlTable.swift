@@ -21,7 +21,7 @@ import Foundation
 public struct PostgresqlTable: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Table name.
+  /// The table name.
   public var table: Swift.String = Swift.String()
 
   /// PostgreSQL columns in the schema.

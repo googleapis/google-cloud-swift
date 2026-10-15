@@ -50,6 +50,11 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// updated.
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
+  /// Optional. Indicates whether the notifications will be sent for deleted
+  /// findings. When enabled, the filter defined in the streaming config is still
+  /// respected when sending deletion notifications.
+  public var deletionNotificationsEnabled: Swift.Bool = Swift.Bool()
+
   /// The config for triggering notifications.
   public var notifyConfig: NotifyConfigOneOf? = nil
 
@@ -84,6 +89,8 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     static let serviceAccount = CodingKeys(stringValue: "serviceAccount")
     static let streamingConfig = CodingKeys(stringValue: "streamingConfig")
     static let updateTime = CodingKeys(stringValue: "updateTime")
+    static let deletionNotificationsEnabled = CodingKeys(
+      stringValue: "deletionNotificationsEnabled")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -92,6 +99,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       "serviceAccount",
       "streamingConfig",
       "updateTime",
+      "deletionNotificationsEnabled",
     ]
   }
 
@@ -111,6 +119,11 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .deletionNotificationsEnabled)
+    {
+      self.deletionNotificationsEnabled = value
+    }
 
     var notifyConfig: NotifyConfigOneOf? = nil
     let notifyConfigCheckAndSet = {
@@ -141,6 +154,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.pubsubTopic, forKey: .pubsubTopic)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
+    try container.encode(self.deletionNotificationsEnabled, forKey: .deletionNotificationsEnabled)
 
     if let choice = self.notifyConfig {
       switch choice {

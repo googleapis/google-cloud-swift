@@ -259,6 +259,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct SpecificStartPosition: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
+    /// Change Data Capture (CDC) read position.
     public var position: PositionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -290,12 +291,18 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
       static let oracleScnPosition = CodingKeys(stringValue: "oracleScnPosition")
       static let sqlServerLsnPosition = CodingKeys(stringValue: "sqlServerLsnPosition")
       static let mysqlGtidPosition = CodingKeys(stringValue: "mysqlGtidPosition")
+      static let mongodbChangeStreamPosition = CodingKeys(
+        stringValue: "mongodbChangeStreamPosition")
+      static let spannerChangeStreamPosition = CodingKeys(
+        stringValue: "spannerChangeStreamPosition")
 
       static let _knownKeys: Set<Swift.String> = [
         "mysqlLogPosition",
         "oracleScnPosition",
         "sqlServerLsnPosition",
         "mysqlGtidPosition",
+        "mongodbChangeStreamPosition",
+        "spannerChangeStreamPosition",
       ]
     }
 
@@ -332,6 +339,16 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
       {
         try positionCheckAndSet(.mysqlGtidPosition(mysqlGtidPosition))
       }
+      if let mongodbChangeStreamPosition = try container.decodeIfPresent(
+        MongodbChangeStreamPosition.self, forKey: .mongodbChangeStreamPosition)
+      {
+        try positionCheckAndSet(.mongodbChangeStreamPosition(mongodbChangeStreamPosition))
+      }
+      if let spannerChangeStreamPosition = try container.decodeIfPresent(
+        SpannerChangeStreamPosition.self, forKey: .spannerChangeStreamPosition)
+      {
+        try positionCheckAndSet(.spannerChangeStreamPosition(spannerChangeStreamPosition))
+      }
       self.position = position
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
@@ -352,6 +369,10 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
           try container.encode(value, forKey: .sqlServerLsnPosition)
         case .mysqlGtidPosition(let value):
           try container.encode(value, forKey: .mysqlGtidPosition)
+        case .mongodbChangeStreamPosition(let value):
+          try container.encode(value, forKey: .mongodbChangeStreamPosition)
+        case .spannerChangeStreamPosition(let value):
+          try container.encode(value, forKey: .spannerChangeStreamPosition)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -359,6 +380,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
+    /// Change Data Capture (CDC) read position.
     public enum PositionOneOf: Codable, Equatable, Sendable {
       /// MySQL specific log position to start replicating from.
       indirect case mysqlLogPosition(MysqlLogPosition)
@@ -368,6 +390,10 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
       indirect case sqlServerLsnPosition(SqlServerLsnPosition)
       /// MySQL GTID set to start replicating from.
       indirect case mysqlGtidPosition(MysqlGtidPosition)
+      /// MongoDB change stream position to start replicating from.
+      indirect case mongodbChangeStreamPosition(MongodbChangeStreamPosition)
+      /// Optional. Spanner change stream position to start replicating from.
+      indirect case spannerChangeStreamPosition(SpannerChangeStreamPosition)
     }
 
     /// The type URL for `SpecificStartPosition`: `"type.googleapis.com/google.cloud.datastream.v1.CdcStrategy.SpecificStartPosition"`.

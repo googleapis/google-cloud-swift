@@ -211,7 +211,7 @@ extension Clients {
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateManagedFolderRequest, o: GoogleGax.RequestOptions) async throws -> ManagedFolder
           in
@@ -327,7 +327,7 @@ extension Clients {
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: CreateRapidCacheRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -342,7 +342,7 @@ extension Clients {
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateRapidCacheRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -357,7 +357,7 @@ extension Clients {
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: DisableRapidCacheRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -372,7 +372,7 @@ extension Clients {
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: GetRapidCacheRequest, o: GoogleGax.RequestOptions) async throws -> RapidCache
           in
@@ -386,7 +386,7 @@ extension Clients {
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: ListRapidCachesRequest, o: GoogleGax.RequestOptions) async throws
             -> ListRapidCachesResponse
@@ -416,7 +416,7 @@ extension Clients {
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateProjectIntelligenceConfigRequest, o: GoogleGax.RequestOptions) async throws
             -> IntelligenceConfig
@@ -446,7 +446,7 @@ extension Clients {
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateFolderIntelligenceConfigRequest, o: GoogleGax.RequestOptions) async throws
             -> IntelligenceConfig
@@ -476,7 +476,7 @@ extension Clients {
       return try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateOrganizationIntelligenceConfigRequest, o: GoogleGax.RequestOptions) async throws
             -> IntelligenceConfig

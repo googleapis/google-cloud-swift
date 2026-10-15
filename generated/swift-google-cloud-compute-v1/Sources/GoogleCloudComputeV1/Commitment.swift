@@ -534,6 +534,8 @@
       case computeOptimizedC3D
       case computeOptimizedH3
       case computeOptimizedH4D
+      /// CUD bucket for COMPUTE_OPTIMIZED_H4D_3TB machines.
+      case computeOptimizedH4D3Tb
       case generalPurpose
       case generalPurposeC4
       case generalPurposeC4A
@@ -612,6 +614,7 @@
         case .computeOptimizedC3D: return "COMPUTE_OPTIMIZED_C3D"
         case .computeOptimizedH3: return "COMPUTE_OPTIMIZED_H3"
         case .computeOptimizedH4D: return "COMPUTE_OPTIMIZED_H4D"
+        case .computeOptimizedH4D3Tb: return "COMPUTE_OPTIMIZED_H4D_3TB"
         case .generalPurpose: return "GENERAL_PURPOSE"
         case .generalPurposeC4: return "GENERAL_PURPOSE_C4"
         case .generalPurposeC4A: return "GENERAL_PURPOSE_C4A"
@@ -669,6 +672,7 @@
         case "COMPUTE_OPTIMIZED_C3D": self = .computeOptimizedC3D
         case "COMPUTE_OPTIMIZED_H3": self = .computeOptimizedH3
         case "COMPUTE_OPTIMIZED_H4D": self = .computeOptimizedH4D
+        case "COMPUTE_OPTIMIZED_H4D_3TB": self = .computeOptimizedH4D3Tb
         case "GENERAL_PURPOSE": self = .generalPurpose
         case "GENERAL_PURPOSE_C4": self = .generalPurposeC4
         case "GENERAL_PURPOSE_C4A": self = .generalPurposeC4A
@@ -732,6 +736,7 @@
         case .computeOptimizedC3D: return try container.encode("COMPUTE_OPTIMIZED_C3D")
         case .computeOptimizedH3: return try container.encode("COMPUTE_OPTIMIZED_H3")
         case .computeOptimizedH4D: return try container.encode("COMPUTE_OPTIMIZED_H4D")
+        case .computeOptimizedH4D3Tb: return try container.encode("COMPUTE_OPTIMIZED_H4D_3TB")
         case .generalPurpose: return try container.encode("GENERAL_PURPOSE")
         case .generalPurposeC4: return try container.encode("GENERAL_PURPOSE_C4")
         case .generalPurposeC4A: return try container.encode("GENERAL_PURPOSE_C4A")

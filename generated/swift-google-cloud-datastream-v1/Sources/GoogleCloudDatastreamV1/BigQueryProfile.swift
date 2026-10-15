@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// BigQuery warehouse profile.
+/// Profile for connecting to a BigQuery destination.
 public struct BigQueryProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

@@ -30,6 +30,8 @@ public enum AuthorizationMode: Codable, Equatable, Hashable, Sendable {
   case authModeIamAuth
   /// Authorization disabled mode
   case authModeDisabled
+  /// Token based authorization mode
+  case authModeTokenAuth
   /// Encodes an unknown integer value.
   ///
   /// The most common cause for an unknown value is for the service to send
@@ -61,6 +63,7 @@ public enum AuthorizationMode: Codable, Equatable, Hashable, Sendable {
     case .authModeUnspecified: return 0
     case .authModeIamAuth: return 1
     case .authModeDisabled: return 2
+    case .authModeTokenAuth: return 3
     case .unknownIntValue(let v): return v
     case .unknownStringValue: return nil
     }
@@ -74,6 +77,7 @@ public enum AuthorizationMode: Codable, Equatable, Hashable, Sendable {
     case .authModeUnspecified: return "AUTH_MODE_UNSPECIFIED"
     case .authModeIamAuth: return "AUTH_MODE_IAM_AUTH"
     case .authModeDisabled: return "AUTH_MODE_DISABLED"
+    case .authModeTokenAuth: return "AUTH_MODE_TOKEN_AUTH"
     case .unknownIntValue: return nil
     case .unknownStringValue(let v): return v
     }
@@ -87,6 +91,7 @@ public enum AuthorizationMode: Codable, Equatable, Hashable, Sendable {
     case "AUTH_MODE_UNSPECIFIED": self = .authModeUnspecified
     case "AUTH_MODE_IAM_AUTH": self = .authModeIamAuth
     case "AUTH_MODE_DISABLED": self = .authModeDisabled
+    case "AUTH_MODE_TOKEN_AUTH": self = .authModeTokenAuth
     default: self = .unknownStringValue(stringValue)
     }
   }
@@ -99,6 +104,7 @@ public enum AuthorizationMode: Codable, Equatable, Hashable, Sendable {
     case 0: self = .authModeUnspecified
     case 1: self = .authModeIamAuth
     case 2: self = .authModeDisabled
+    case 3: self = .authModeTokenAuth
     default: self = .unknownIntValue(intValue)
     }
   }
@@ -127,6 +133,7 @@ public enum AuthorizationMode: Codable, Equatable, Hashable, Sendable {
     case .authModeUnspecified: return try container.encode("AUTH_MODE_UNSPECIFIED")
     case .authModeIamAuth: return try container.encode("AUTH_MODE_IAM_AUTH")
     case .authModeDisabled: return try container.encode("AUTH_MODE_DISABLED")
+    case .authModeTokenAuth: return try container.encode("AUTH_MODE_TOKEN_AUTH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

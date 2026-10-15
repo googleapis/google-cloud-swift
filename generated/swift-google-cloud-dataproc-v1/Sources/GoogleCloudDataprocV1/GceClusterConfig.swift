@@ -33,6 +33,11 @@ public struct GceClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// * `[zone]`
   public var zoneUri: Swift.String = Swift.String()
 
+  /// Optional. Controls how instances within this Cluster are allowed to exist
+  /// in multiple Zones within the Region. Only one of `zone_uri` or
+  /// `multi_zone_config` must be set.
+  public var multiZoneConfig: MultiZoneConfig? = nil
+
   /// Optional. The Compute Engine network to be used for machine
   /// communications. Cannot be specified with subnetwork_uri. If neither
   /// `network_uri` nor `subnetwork_uri` is specified, the "default" network of
@@ -164,6 +169,7 @@ public struct GceClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     init?(intValue: Swift.Int) { nil }
 
     static let zoneUri = CodingKeys(stringValue: "zoneUri")
+    static let multiZoneConfig = CodingKeys(stringValue: "multiZoneConfig")
     static let networkUri = CodingKeys(stringValue: "networkUri")
     static let subnetworkUri = CodingKeys(stringValue: "subnetworkUri")
     static let internalIpOnly = CodingKeys(stringValue: "internalIpOnly")
@@ -180,6 +186,7 @@ public struct GceClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     static let _knownKeys: Set<Swift.String> = [
       "zoneUri",
+      "multiZoneConfig",
       "networkUri",
       "subnetworkUri",
       "internalIpOnly",
@@ -201,6 +208,8 @@ public struct GceClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .zoneUri) {
       self.zoneUri = value
     }
+    self.multiZoneConfig = try container.decodeIfPresent(
+      MultiZoneConfig.self, forKey: .multiZoneConfig)
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .networkUri) {
       self.networkUri = value
     }
@@ -250,6 +259,7 @@ public struct GceClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.zoneUri, forKey: .zoneUri)
+    try container.encodeIfPresent(self.multiZoneConfig, forKey: .multiZoneConfig)
     try container.encode(self.networkUri, forKey: .networkUri)
     try container.encode(self.subnetworkUri, forKey: .subnetworkUri)
     try container.encodeIfPresent(self.internalIpOnly, forKey: .internalIpOnly)

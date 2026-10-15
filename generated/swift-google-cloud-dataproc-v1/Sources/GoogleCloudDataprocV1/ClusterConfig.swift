@@ -115,6 +115,67 @@ public struct ClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. The node group settings.
   public var auxiliaryNodeGroups: [AuxiliaryNodeGroup] = []
 
+  /// Optional. The High Obtainability (HO) config settings for the cluster's
+  /// master instances.
+  ///
+  /// In High Obtainability (HO) mode, flexible configs are the single source of
+  /// truth for desired cluster configuration across node groups:
+  /// * For single-node clusters: `master_flexible_config` must be specified, and
+  ///   no worker configs should be set.
+  /// * For multi-node (standard) clusters: both `master_flexible_config` and
+  ///   [worker_flexible_config][google.cloud.dataproc.v1.ClusterConfig.worker_flexible_config]
+  ///   must be specified. Mixing standard and flexible configs across node
+  ///   groups is not allowed.
+  ///
+  /// Only one of
+  /// [master_config][google.cloud.dataproc.v1.ClusterConfig.master_config] or
+  /// `master_flexible_config` can be set.
+  ///
+  /// [google.cloud.dataproc.v1.ClusterConfig.master_config]: <doc:ClusterConfig/masterConfig>
+  /// [google.cloud.dataproc.v1.ClusterConfig.worker_flexible_config]: <doc:ClusterConfig/workerFlexibleConfig>
+  public var masterFlexibleConfig: FlexibleInstanceGroupConfig? = nil
+
+  /// Optional. The High Obtainability (HO) config settings for the cluster's
+  /// worker instances.
+  ///
+  /// In High Obtainability (HO) mode, flexible configs are the single source of
+  /// truth for desired cluster configuration. `num_instances` represents the
+  /// desired capacity of the worker group and is mutable via cluster updates and
+  /// autoscaling.
+  ///
+  /// Only one of
+  /// [worker_config][google.cloud.dataproc.v1.ClusterConfig.worker_config] or
+  /// `worker_flexible_config` can be set.
+  ///
+  /// In High Obtainability (HO) mode, for multi-node (standard) clusters, both
+  /// [master_flexible_config][google.cloud.dataproc.v1.ClusterConfig.master_flexible_config]
+  /// and `worker_flexible_config` must be specified. Mixing standard and
+  /// flexible configs across node groups is not allowed. Single-node clusters do
+  /// not specify worker configs.
+  ///
+  /// [google.cloud.dataproc.v1.ClusterConfig.master_flexible_config]: <doc:ClusterConfig/masterFlexibleConfig>
+  /// [google.cloud.dataproc.v1.ClusterConfig.worker_config]: <doc:ClusterConfig/workerConfig>
+  public var workerFlexibleConfig: FlexibleInstanceGroupConfig? = nil
+
+  /// Optional. The High Obtainability (HO) config settings for a cluster's
+  /// secondary worker instances.
+  ///
+  /// In High Obtainability (HO) mode, flexible configs are the single source of
+  /// truth for desired cluster configuration. `num_instances` represents the
+  /// desired capacity of the secondary worker group and is mutable via cluster
+  /// updates and autoscaling.
+  ///
+  /// Only one of
+  /// [secondary_worker_config][google.cloud.dataproc.v1.ClusterConfig.secondary_worker_config]
+  /// or `secondary_worker_flexible_config` can be set.
+  ///
+  /// In High Obtainability (HO) mode, secondary workers are optional. If
+  /// secondary workers are used in an HO cluster, they must be configured using
+  /// `secondary_worker_flexible_config` (not `secondary_worker_config`).
+  ///
+  /// [google.cloud.dataproc.v1.ClusterConfig.secondary_worker_config]: <doc:ClusterConfig/secondaryWorkerConfig>
+  public var secondaryWorkerFlexibleConfig: FlexibleInstanceGroupConfig? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `ClusterConfig`.
@@ -159,6 +220,10 @@ public struct ClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     static let metastoreConfig = CodingKeys(stringValue: "metastoreConfig")
     static let dataprocMetricConfig = CodingKeys(stringValue: "dataprocMetricConfig")
     static let auxiliaryNodeGroups = CodingKeys(stringValue: "auxiliaryNodeGroups")
+    static let masterFlexibleConfig = CodingKeys(stringValue: "masterFlexibleConfig")
+    static let workerFlexibleConfig = CodingKeys(stringValue: "workerFlexibleConfig")
+    static let secondaryWorkerFlexibleConfig = CodingKeys(
+      stringValue: "secondaryWorkerFlexibleConfig")
 
     static let _knownKeys: Set<Swift.String> = [
       "clusterType",
@@ -180,6 +245,9 @@ public struct ClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       "metastoreConfig",
       "dataprocMetricConfig",
       "auxiliaryNodeGroups",
+      "masterFlexibleConfig",
+      "workerFlexibleConfig",
+      "secondaryWorkerFlexibleConfig",
     ]
   }
 
@@ -238,6 +306,12 @@ public struct ClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       self.auxiliaryNodeGroups = value
     }
+    self.masterFlexibleConfig = try container.decodeIfPresent(
+      FlexibleInstanceGroupConfig.self, forKey: .masterFlexibleConfig)
+    self.workerFlexibleConfig = try container.decodeIfPresent(
+      FlexibleInstanceGroupConfig.self, forKey: .workerFlexibleConfig)
+    self.secondaryWorkerFlexibleConfig = try container.decodeIfPresent(
+      FlexibleInstanceGroupConfig.self, forKey: .secondaryWorkerFlexibleConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -265,6 +339,10 @@ public struct ClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.metastoreConfig, forKey: .metastoreConfig)
     try container.encodeIfPresent(self.dataprocMetricConfig, forKey: .dataprocMetricConfig)
     try container.encode(self.auxiliaryNodeGroups, forKey: .auxiliaryNodeGroups)
+    try container.encodeIfPresent(self.masterFlexibleConfig, forKey: .masterFlexibleConfig)
+    try container.encodeIfPresent(self.workerFlexibleConfig, forKey: .workerFlexibleConfig)
+    try container.encodeIfPresent(
+      self.secondaryWorkerFlexibleConfig, forKey: .secondaryWorkerFlexibleConfig)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

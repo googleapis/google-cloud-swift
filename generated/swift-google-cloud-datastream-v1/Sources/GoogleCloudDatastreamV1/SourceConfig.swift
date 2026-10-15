@@ -60,6 +60,12 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     static let sqlServerSourceConfig = CodingKeys(stringValue: "sqlServerSourceConfig")
     static let salesforceSourceConfig = CodingKeys(stringValue: "salesforceSourceConfig")
     static let mongodbSourceConfig = CodingKeys(stringValue: "mongodbSourceConfig")
+    static let spannerSourceConfig = CodingKeys(stringValue: "spannerSourceConfig")
+    static let dataverseSourceConfig = CodingKeys(stringValue: "dataverseSourceConfig")
+    static let salesforceMarketingCloudSourceConfig = CodingKeys(
+      stringValue: "salesforceMarketingCloudSourceConfig")
+    static let serviceNowSourceConfig = CodingKeys(stringValue: "serviceNowSourceConfig")
+    static let workdaySourceConfig = CodingKeys(stringValue: "workdaySourceConfig")
 
     static let _knownKeys: Set<Swift.String> = [
       "sourceConnectionProfile",
@@ -69,6 +75,11 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       "sqlServerSourceConfig",
       "salesforceSourceConfig",
       "mongodbSourceConfig",
+      "spannerSourceConfig",
+      "dataverseSourceConfig",
+      "salesforceMarketingCloudSourceConfig",
+      "serviceNowSourceConfig",
+      "workdaySourceConfig",
     ]
   }
 
@@ -120,6 +131,32 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       try sourceStreamConfigCheckAndSet(.mongodbSourceConfig(mongodbSourceConfig))
     }
+    if let spannerSourceConfig = try container.decodeIfPresent(
+      SpannerSourceConfig.self, forKey: .spannerSourceConfig)
+    {
+      try sourceStreamConfigCheckAndSet(.spannerSourceConfig(spannerSourceConfig))
+    }
+    if let dataverseSourceConfig = try container.decodeIfPresent(
+      DataverseSourceConfig.self, forKey: .dataverseSourceConfig)
+    {
+      try sourceStreamConfigCheckAndSet(.dataverseSourceConfig(dataverseSourceConfig))
+    }
+    if let salesforceMarketingCloudSourceConfig = try container.decodeIfPresent(
+      SalesforceMarketingCloudSourceConfig.self, forKey: .salesforceMarketingCloudSourceConfig)
+    {
+      try sourceStreamConfigCheckAndSet(
+        .salesforceMarketingCloudSourceConfig(salesforceMarketingCloudSourceConfig))
+    }
+    if let serviceNowSourceConfig = try container.decodeIfPresent(
+      ServiceNowSourceConfig.self, forKey: .serviceNowSourceConfig)
+    {
+      try sourceStreamConfigCheckAndSet(.serviceNowSourceConfig(serviceNowSourceConfig))
+    }
+    if let workdaySourceConfig = try container.decodeIfPresent(
+      WorkdaySourceConfig.self, forKey: .workdaySourceConfig)
+    {
+      try sourceStreamConfigCheckAndSet(.workdaySourceConfig(workdaySourceConfig))
+    }
     self.sourceStreamConfig = sourceStreamConfig
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -145,6 +182,16 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encode(value, forKey: .salesforceSourceConfig)
       case .mongodbSourceConfig(let value):
         try container.encode(value, forKey: .mongodbSourceConfig)
+      case .spannerSourceConfig(let value):
+        try container.encode(value, forKey: .spannerSourceConfig)
+      case .dataverseSourceConfig(let value):
+        try container.encode(value, forKey: .dataverseSourceConfig)
+      case .salesforceMarketingCloudSourceConfig(let value):
+        try container.encode(value, forKey: .salesforceMarketingCloudSourceConfig)
+      case .serviceNowSourceConfig(let value):
+        try container.encode(value, forKey: .serviceNowSourceConfig)
+      case .workdaySourceConfig(let value):
+        try container.encode(value, forKey: .workdaySourceConfig)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -166,6 +213,16 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case salesforceSourceConfig(SalesforceSourceConfig)
     /// MongoDB data source configuration.
     indirect case mongodbSourceConfig(MongodbSourceConfig)
+    /// Spanner data source configuration.
+    indirect case spannerSourceConfig(SpannerSourceConfig)
+    /// Dataverse data source configuration.
+    indirect case dataverseSourceConfig(DataverseSourceConfig)
+    /// Salesforce Marketing Cloud data source configuration.
+    indirect case salesforceMarketingCloudSourceConfig(SalesforceMarketingCloudSourceConfig)
+    /// ServiceNow data source configuration.
+    indirect case serviceNowSourceConfig(ServiceNowSourceConfig)
+    /// Optional. Workday data source configuration.
+    indirect case workdaySourceConfig(WorkdaySourceConfig)
   }
 
   /// The type URL for `SourceConfig`: `"type.googleapis.com/google.cloud.datastream.v1.SourceConfig"`.

@@ -74,6 +74,23 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     try await self.inner.listClusters(request: request, options: options)
   }
 
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicies")
+  public func listAclPolicies(
+    request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse {
+    try await self.inner.listAclPolicies(request: request, options: options)
+  }
+
   /// Gets the details of a specific Redis cluster.
   ///
   /// @Snippet(path: "CloudRedisCluster_GetCluster")
@@ -81,6 +98,15 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisClusterV1.Cluster {
     try await self.inner.getCluster(request: request, options: options)
+  }
+
+  /// Gets the details of a specific Redis Cluster ACL policy.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetAclPolicy")
+  public func getAclPolicy(
+    request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
+    try await self.inner.getAclPolicy(request: request, options: options)
   }
 
   /// Updates the metadata and configuration of a specific Redis cluster.
@@ -114,6 +140,60 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     let rawOp = try await self.updateCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Updates the ACL policy.
+  ///
+  /// The operation applies the updated ACL policy to all of the linked clusters.
+  /// If Memorystore can apply the policy to all clusters, then the operation
+  /// returns a SUCCESS status. If Memorystore can't apply the policy to all
+  /// clusters, then to ensure eventual consistency, Memorystore uses
+  /// reconciliation to apply the policy to the failed clusters.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object in
+  /// the response field.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_UpdateAclPolicy")
+  public func updateAclPolicy(
+    request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.updateAclPolicy(request: request, options: options)
+  }
+
+  /// Updates the ACL policy.
+  ///
+  /// The operation applies the updated ACL policy to all of the linked clusters.
+  /// If Memorystore can apply the policy to all clusters, then the operation
+  /// returns a SUCCESS status. If Memorystore can't apply the policy to all
+  /// clusters, then to ensure eventual consistency, Memorystore uses
+  /// reconciliation to apply the policy to the failed clusters.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object in
+  /// the response field.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_UpdateAclPolicy")
+  public func updateAclPolicyPollingUntilDone(
+    request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AclPolicy {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AclPolicy>.State in
+      return try op._extractStatus(AclPolicy.self)
+    }
+    let rawOp = try await self.updateAclPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AclPolicy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -165,6 +245,64 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     try await poller.wait()
   }
 
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to a cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAclPolicy")
+  public func deleteAclPolicy(
+    request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteAclPolicy(request: request, options: options)
+  }
+
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to a cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAclPolicy")
+  public func deleteAclPolicyPollingUntilDone(
+    request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteAclPolicy(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Gets details of a specific ACL policy revision.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetAclPolicyRevision")
+  public func getAclPolicyRevision(
+    request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.AclPolicyRevision {
+    try await self.inner.getAclPolicyRevision(request: request, options: options)
+  }
+
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicyRevisions")
+  public func listAclPolicyRevisions(
+    request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse {
+    try await self.inner.listAclPolicyRevisions(request: request, options: options)
+  }
+
   /// Creates a Redis cluster based on the specified properties.
   /// The creation is executed asynchronously and callers may check the returned
   /// operation to track its progress. Once the operation is completed the Redis
@@ -213,6 +351,17 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
       poll: poll,
     )
     return try await poller.wait()
+  }
+
+  /// Creates an ACL policy.
+  /// The creation is executed synchronously and the policy is available for use
+  /// immediately after the RPC returns.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_CreateAclPolicy")
+  public func createAclPolicy(
+    request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
+    try await self.inner.createAclPolicy(request: request, options: options)
   }
 
   /// Gets the details of certificate authority information for Redis cluster.
@@ -440,6 +589,187 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
     return try await poller.wait()
   }
 
+  /// Lists all the token auth users for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListTokenAuthUsers")
+  public func listTokenAuthUsers(
+    request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse {
+    try await self.inner.listTokenAuthUsers(request: request, options: options)
+  }
+
+  /// Gets a specific token auth user for a basic auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetTokenAuthUser")
+  public func getTokenAuthUser(
+    request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.TokenAuthUser {
+    try await self.inner.getTokenAuthUser(request: request, options: options)
+  }
+
+  /// Lists all the auth tokens for a specific token auth user.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAuthTokens")
+  public func listAuthTokens(
+    request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.ListAuthTokensResponse {
+    try await self.inner.listAuthTokens(request: request, options: options)
+  }
+
+  /// Gets a specific auth token for a specific token auth user.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_GetAuthToken")
+  public func getAuthToken(
+    request: GetAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.AuthToken {
+    try await self.inner.getAuthToken(request: request, options: options)
+  }
+
+  /// Adds a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddTokenAuthUser")
+  public func addTokenAuthUser(
+    request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.addTokenAuthUser(request: request, options: options)
+  }
+
+  /// Adds a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddTokenAuthUser")
+  public func addTokenAuthUserPollingUntilDone(
+    request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Cluster {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Cluster>.State in
+      return try op._extractStatus(Cluster.self)
+    }
+    let rawOp = try await self.addTokenAuthUser(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Deletes a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteTokenAuthUser")
+  public func deleteTokenAuthUser(
+    request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteTokenAuthUser(request: request, options: options)
+  }
+
+  /// Deletes a token auth user for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteTokenAuthUser")
+  public func deleteTokenAuthUserPollingUntilDone(
+    request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteTokenAuthUser(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
+  /// Adds a auth token for a user of a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddAuthToken")
+  public func addAuthToken(
+    request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.addAuthToken(request: request, options: options)
+  }
+
+  /// Adds a auth token for a user of a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_AddAuthToken")
+  public func addAuthTokenPollingUntilDone(
+    request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws -> TokenAuthUser {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<TokenAuthUser>.State in
+      return try op._extractStatus(TokenAuthUser.self)
+    }
+    let rawOp = try await self.addAuthToken(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<TokenAuthUser>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    return try await poller.wait()
+  }
+
+  /// Removes a auth token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAuthToken")
+  public func deleteAuthToken(
+    request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.inner.deleteAuthToken(request: request, options: options)
+  }
+
+  /// Removes a auth token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_DeleteAuthToken")
+  public func deleteAuthTokenPollingUntilDone(
+    request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    let extractStatus = {
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteAuthToken(request: request, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    let poller = GoogleGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+    try await poller.wait()
+  }
+
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudRedisCluster_ListLocations")
@@ -515,10 +845,20 @@ extension Clients {
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRedisClusterV1.ListClustersResponse
 
+    /// See `CloudRedisClusterClient.listAclPolicies`.
+    func listAclPolicies(
+      request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse
+
     /// See `CloudRedisClusterClient.getCluster`.
     func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRedisClusterV1.Cluster
+
+    /// See `CloudRedisClusterClient.getAclPolicy`.
+    func getAclPolicy(
+      request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AclPolicy
 
     /// See `CloudRedisClusterClient.updateCluster`.
     func updateCluster(
@@ -530,6 +870,16 @@ extension Clients {
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> Cluster
 
+    /// See `CloudRedisClusterClient.updateAclPolicy`.
+    func updateAclPolicy(
+      request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `CloudRedisClusterClient.updateAclPolicy`.
+    func updateAclPolicyPollingUntilDone(
+      request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> AclPolicy
+
     /// See `CloudRedisClusterClient.deleteCluster`.
     func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
@@ -540,6 +890,26 @@ extension Clients {
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws
 
+    /// See `CloudRedisClusterClient.deleteAclPolicy`.
+    func deleteAclPolicy(
+      request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `CloudRedisClusterClient.deleteAclPolicy`.
+    func deleteAclPolicyPollingUntilDone(
+      request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `CloudRedisClusterClient.getAclPolicyRevision`.
+    func getAclPolicyRevision(
+      request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AclPolicyRevision
+
+    /// See `CloudRedisClusterClient.listAclPolicyRevisions`.
+    func listAclPolicyRevisions(
+      request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse
+
     /// See `CloudRedisClusterClient.createCluster`.
     func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
@@ -549,6 +919,11 @@ extension Clients {
     func createClusterPollingUntilDone(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> Cluster
+
+    /// See `CloudRedisClusterClient.createAclPolicy`.
+    func createAclPolicy(
+      request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AclPolicy
 
     /// See `CloudRedisClusterClient.getClusterCertificateAuthority`.
     func getClusterCertificateAuthority(
@@ -619,6 +994,66 @@ extension Clients {
     func backupClusterPollingUntilDone(
       request: BackupClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> Cluster
+
+    /// See `CloudRedisClusterClient.listTokenAuthUsers`.
+    func listTokenAuthUsers(
+      request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse
+
+    /// See `CloudRedisClusterClient.getTokenAuthUser`.
+    func getTokenAuthUser(
+      request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.TokenAuthUser
+
+    /// See `CloudRedisClusterClient.listAuthTokens`.
+    func listAuthTokens(
+      request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.ListAuthTokensResponse
+
+    /// See `CloudRedisClusterClient.getAuthToken`.
+    func getAuthToken(
+      request: GetAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleCloudRedisClusterV1.AuthToken
+
+    /// See `CloudRedisClusterClient.addTokenAuthUser`.
+    func addTokenAuthUser(
+      request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `CloudRedisClusterClient.addTokenAuthUser`.
+    func addTokenAuthUserPollingUntilDone(
+      request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> Cluster
+
+    /// See `CloudRedisClusterClient.deleteTokenAuthUser`.
+    func deleteTokenAuthUser(
+      request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `CloudRedisClusterClient.deleteTokenAuthUser`.
+    func deleteTokenAuthUserPollingUntilDone(
+      request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+    ) async throws
+
+    /// See `CloudRedisClusterClient.addAuthToken`.
+    func addAuthToken(
+      request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `CloudRedisClusterClient.addAuthToken`.
+    func addAuthTokenPollingUntilDone(
+      request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws -> TokenAuthUser
+
+    /// See `CloudRedisClusterClient.deleteAuthToken`.
+    func deleteAuthToken(
+      request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
+    /// See `CloudRedisClusterClient.deleteAuthToken`.
+    func deleteAuthTokenPollingUntilDone(
+      request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+    ) async throws
 
     /// See `CloudRedisClusterClient.listLocations`.
     func listLocations(
@@ -701,6 +1136,58 @@ extension Clients.CloudRedisClusterProtocol {
     return self.listClustersByItems(request: request)
   }
 
+  public func listAclPolicies(request: ListAclPoliciesRequest) async throws
+    -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse
+  {
+    try await self.listAclPolicies(request: request, options: .init())
+  }
+
+  public func listAclPolicies(
+    request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAclPoliciesByItems(
+    request: ListAclPoliciesRequest
+  ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
+    self.listAclPoliciesByItems(request: request, options: .init())
+  }
+
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicies")
+  public func listAclPoliciesByItems(
+    request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudRedisClusterV1.ListAclPoliciesResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAclPolicies(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAclPoliciesByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
+    let request = ListAclPoliciesRequest().with {
+      $0.parent = parent
+    }
+    return self.listAclPoliciesByItems(request: request)
+  }
+
   public func getCluster(request: GetClusterRequest) async throws
     -> GoogleCloudRedisClusterV1.Cluster
   {
@@ -720,6 +1207,27 @@ extension Clients.CloudRedisClusterProtocol {
       $0.name = name
     }
     return try await self.getCluster(request: request)
+  }
+
+  public func getAclPolicy(request: GetAclPolicyRequest) async throws
+    -> GoogleCloudRedisClusterV1.AclPolicy
+  {
+    try await self.getAclPolicy(request: request, options: .init())
+  }
+
+  public func getAclPolicy(
+    request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAclPolicy(
+    name: Swift.String,
+  ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
+    let request = GetAclPolicyRequest().with {
+      $0.name = name
+    }
+    return try await self.getAclPolicy(request: request)
   }
 
   public func updateCluster(request: UpdateClusterRequest) async throws
@@ -755,6 +1263,41 @@ extension Clients.CloudRedisClusterProtocol {
     return try await self.updateClusterPollingUntilDone(request: request)
   }
 
+  public func updateAclPolicy(request: UpdateAclPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateAclPolicy(request: request, options: .init())
+  }
+
+  public func updateAclPolicy(
+    request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateAclPolicyPollingUntilDone(request: UpdateAclPolicyRequest) async throws
+    -> AclPolicy
+  {
+    return try await self.updateAclPolicyPollingUntilDone(request: request, options: .init())
+  }
+
+  public func updateAclPolicyPollingUntilDone(
+    request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> AclPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func updateAclPolicyPollingUntilDone(
+    aclPolicy: AclPolicy?,
+    updateMask: GoogleWKT.WKTFieldMask?,
+  ) async throws -> AclPolicy {
+    let request = UpdateAclPolicyRequest().with {
+      $0.aclPolicy = aclPolicy
+      $0.updateMask = updateMask
+    }
+    return try await self.updateAclPolicyPollingUntilDone(request: request)
+  }
+
   public func deleteCluster(request: DeleteClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -784,6 +1327,102 @@ extension Clients.CloudRedisClusterProtocol {
       $0.name = name
     }
     try await self.deleteClusterPollingUntilDone(request: request)
+  }
+
+  public func deleteAclPolicy(request: DeleteAclPolicyRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteAclPolicy(request: request, options: .init())
+  }
+
+  public func deleteAclPolicy(
+    request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAclPolicyPollingUntilDone(request: DeleteAclPolicyRequest) async throws {
+    try await self.deleteAclPolicyPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteAclPolicyPollingUntilDone(
+    request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAclPolicyPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteAclPolicyRequest().with {
+      $0.name = name
+    }
+    try await self.deleteAclPolicyPollingUntilDone(request: request)
+  }
+
+  public func getAclPolicyRevision(request: GetAclPolicyRevisionRequest) async throws
+    -> GoogleCloudRedisClusterV1.AclPolicyRevision
+  {
+    try await self.getAclPolicyRevision(request: request, options: .init())
+  }
+
+  public func getAclPolicyRevision(
+    request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.AclPolicyRevision {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAclPolicyRevision(
+    name: Swift.String,
+  ) async throws -> GoogleCloudRedisClusterV1.AclPolicyRevision {
+    let request = GetAclPolicyRevisionRequest().with {
+      $0.name = name
+    }
+    return try await self.getAclPolicyRevision(request: request)
+  }
+
+  public func listAclPolicyRevisions(request: ListAclPolicyRevisionsRequest) async throws
+    -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse
+  {
+    try await self.listAclPolicyRevisions(request: request, options: .init())
+  }
+
+  public func listAclPolicyRevisions(
+    request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAclPolicyRevisionsByItems(
+    request: ListAclPolicyRevisionsRequest
+  ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
+    self.listAclPolicyRevisionsByItems(request: request, options: .init())
+  }
+
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAclPolicyRevisions")
+  public func listAclPolicyRevisionsByItems(
+    request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudRedisClusterV1.ListAclPolicyRevisionsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAclPolicyRevisions(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAclPolicyRevisionsByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
+    let request = ListAclPolicyRevisionsRequest().with {
+      $0.parent = parent
+    }
+    return self.listAclPolicyRevisionsByItems(request: request)
   }
 
   public func createCluster(request: CreateClusterRequest) async throws
@@ -819,6 +1458,31 @@ extension Clients.CloudRedisClusterProtocol {
       $0.clusterId = clusterId
     }
     return try await self.createClusterPollingUntilDone(request: request)
+  }
+
+  public func createAclPolicy(request: CreateAclPolicyRequest) async throws
+    -> GoogleCloudRedisClusterV1.AclPolicy
+  {
+    try await self.createAclPolicy(request: request, options: .init())
+  }
+
+  public func createAclPolicy(
+    request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func createAclPolicy(
+    parent: Swift.String,
+    aclPolicy: AclPolicy?,
+    aclPolicyId: Swift.String,
+  ) async throws -> GoogleCloudRedisClusterV1.AclPolicy {
+    let request = CreateAclPolicyRequest().with {
+      $0.parent = parent
+      $0.aclPolicy = aclPolicy
+      $0.aclPolicyId = aclPolicyId
+    }
+    return try await self.createAclPolicy(request: request)
   }
 
   public func getClusterCertificateAuthority(request: GetClusterCertificateAuthorityRequest)
@@ -1114,6 +1778,268 @@ extension Clients.CloudRedisClusterProtocol {
       $0.name = name
     }
     return try await self.backupClusterPollingUntilDone(request: request)
+  }
+
+  public func listTokenAuthUsers(request: ListTokenAuthUsersRequest) async throws
+    -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse
+  {
+    try await self.listTokenAuthUsers(request: request, options: .init())
+  }
+
+  public func listTokenAuthUsers(
+    request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listTokenAuthUsersByItems(
+    request: ListTokenAuthUsersRequest
+  ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
+    self.listTokenAuthUsersByItems(request: request, options: .init())
+  }
+
+  /// Lists all the token auth users for a token based auth enabled cluster.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListTokenAuthUsers")
+  public func listTokenAuthUsersByItems(
+    request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudRedisClusterV1.ListTokenAuthUsersResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listTokenAuthUsers(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listTokenAuthUsersByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
+    let request = ListTokenAuthUsersRequest().with {
+      $0.parent = parent
+    }
+    return self.listTokenAuthUsersByItems(request: request)
+  }
+
+  public func getTokenAuthUser(request: GetTokenAuthUserRequest) async throws
+    -> GoogleCloudRedisClusterV1.TokenAuthUser
+  {
+    try await self.getTokenAuthUser(request: request, options: .init())
+  }
+
+  public func getTokenAuthUser(
+    request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.TokenAuthUser {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getTokenAuthUser(
+    name: Swift.String,
+  ) async throws -> GoogleCloudRedisClusterV1.TokenAuthUser {
+    let request = GetTokenAuthUserRequest().with {
+      $0.name = name
+    }
+    return try await self.getTokenAuthUser(request: request)
+  }
+
+  public func listAuthTokens(request: ListAuthTokensRequest) async throws
+    -> GoogleCloudRedisClusterV1.ListAuthTokensResponse
+  {
+    try await self.listAuthTokens(request: request, options: .init())
+  }
+
+  public func listAuthTokens(
+    request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.ListAuthTokensResponse {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func listAuthTokensByItems(
+    request: ListAuthTokensRequest
+  ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
+    self.listAuthTokensByItems(request: request, options: .init())
+  }
+
+  /// Lists all the auth tokens for a specific token auth user.
+  ///
+  /// @Snippet(path: "CloudRedisCluster_ListAuthTokens")
+  public func listAuthTokensByItems(
+    request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
+  ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudRedisClusterV1.ListAuthTokensResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listAuthTokens(request: request, options: options)
+    }
+    return GoogleGax.PaginatedResponseSequence(
+      listRpc: listRpc, initialPageToken: request.pageToken)
+  }
+
+  public func listAuthTokensByItems(
+    parent: Swift.String,
+  ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
+    let request = ListAuthTokensRequest().with {
+      $0.parent = parent
+    }
+    return self.listAuthTokensByItems(request: request)
+  }
+
+  public func getAuthToken(request: GetAuthTokenRequest) async throws
+    -> GoogleCloudRedisClusterV1.AuthToken
+  {
+    try await self.getAuthToken(request: request, options: .init())
+  }
+
+  public func getAuthToken(
+    request: GetAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleCloudRedisClusterV1.AuthToken {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func getAuthToken(
+    name: Swift.String,
+  ) async throws -> GoogleCloudRedisClusterV1.AuthToken {
+    let request = GetAuthTokenRequest().with {
+      $0.name = name
+    }
+    return try await self.getAuthToken(request: request)
+  }
+
+  public func addTokenAuthUser(request: AddTokenAuthUserRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.addTokenAuthUser(request: request, options: .init())
+  }
+
+  public func addTokenAuthUser(
+    request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func addTokenAuthUserPollingUntilDone(request: AddTokenAuthUserRequest) async throws
+    -> Cluster
+  {
+    return try await self.addTokenAuthUserPollingUntilDone(request: request, options: .init())
+  }
+
+  public func addTokenAuthUserPollingUntilDone(
+    request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws -> Cluster {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func addTokenAuthUserPollingUntilDone(
+    cluster: Swift.String,
+    tokenAuthUser: Swift.String,
+  ) async throws -> Cluster {
+    let request = AddTokenAuthUserRequest().with {
+      $0.cluster = cluster
+      $0.tokenAuthUser = tokenAuthUser
+    }
+    return try await self.addTokenAuthUserPollingUntilDone(request: request)
+  }
+
+  public func deleteTokenAuthUser(request: DeleteTokenAuthUserRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteTokenAuthUser(request: request, options: .init())
+  }
+
+  public func deleteTokenAuthUser(
+    request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteTokenAuthUserPollingUntilDone(request: DeleteTokenAuthUserRequest) async throws
+  {
+    try await self.deleteTokenAuthUserPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteTokenAuthUserPollingUntilDone(
+    request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteTokenAuthUserPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteTokenAuthUserRequest().with {
+      $0.name = name
+    }
+    try await self.deleteTokenAuthUserPollingUntilDone(request: request)
+  }
+
+  public func addAuthToken(request: AddAuthTokenRequest) async throws -> GoogleLongRunning.Operation
+  {
+    try await self.addAuthToken(request: request, options: .init())
+  }
+
+  public func addAuthToken(
+    request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func addAuthTokenPollingUntilDone(request: AddAuthTokenRequest) async throws
+    -> TokenAuthUser
+  {
+    return try await self.addAuthTokenPollingUntilDone(request: request, options: .init())
+  }
+
+  public func addAuthTokenPollingUntilDone(
+    request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws -> TokenAuthUser {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func addAuthTokenPollingUntilDone(
+    tokenAuthUser: Swift.String,
+    authToken: AuthToken?,
+  ) async throws -> TokenAuthUser {
+    let request = AddAuthTokenRequest().with {
+      $0.tokenAuthUser = tokenAuthUser
+      $0.authToken = authToken
+    }
+    return try await self.addAuthTokenPollingUntilDone(request: request)
+  }
+
+  public func deleteAuthToken(request: DeleteAuthTokenRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteAuthToken(request: request, options: .init())
+  }
+
+  public func deleteAuthToken(
+    request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAuthTokenPollingUntilDone(request: DeleteAuthTokenRequest) async throws {
+    try await self.deleteAuthTokenPollingUntilDone(request: request, options: .init())
+  }
+
+  public func deleteAuthTokenPollingUntilDone(
+    request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
+  }
+
+  public func deleteAuthTokenPollingUntilDone(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteAuthTokenRequest().with {
+      $0.name = name
+    }
+    try await self.deleteAuthTokenPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

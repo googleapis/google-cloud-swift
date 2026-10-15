@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// SQLServer database profile.
+/// Profile for connecting to a SQLServer source.
 public struct SqlServerProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
@@ -36,6 +36,9 @@ public struct SqlServerProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. Database for the SQLServer connection.
   public var database: Swift.String = Swift.String()
+
+  /// Optional. SSL configuration for the SQLServer connection.
+  public var sslConfig: SqlServerSslConfig? = nil
 
   /// Optional. A reference to a Secret Manager resource name storing the
   /// SQLServer connection password. Mutually exclusive with the `password`
@@ -72,6 +75,7 @@ public struct SqlServerProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     static let username = CodingKeys(stringValue: "username")
     static let password = CodingKeys(stringValue: "password")
     static let database = CodingKeys(stringValue: "database")
+    static let sslConfig = CodingKeys(stringValue: "sslConfig")
     static let secretManagerStoredPassword = CodingKeys(stringValue: "secretManagerStoredPassword")
 
     static let _knownKeys: Set<Swift.String> = [
@@ -80,6 +84,7 @@ public struct SqlServerProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       "username",
       "password",
       "database",
+      "sslConfig",
       "secretManagerStoredPassword",
     ]
   }
@@ -101,6 +106,7 @@ public struct SqlServerProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .database) {
       self.database = value
     }
+    self.sslConfig = try container.decodeIfPresent(SqlServerSslConfig.self, forKey: .sslConfig)
     if let value = try container.decodeIfPresent(
       Swift.String.self, forKey: .secretManagerStoredPassword)
     {
@@ -119,6 +125,7 @@ public struct SqlServerProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.username, forKey: .username)
     try container.encode(self.password, forKey: .password)
     try container.encode(self.database, forKey: .database)
+    try container.encodeIfPresent(self.sslConfig, forKey: .sslConfig)
     try container.encode(self.secretManagerStoredPassword, forKey: .secretManagerStoredPassword)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

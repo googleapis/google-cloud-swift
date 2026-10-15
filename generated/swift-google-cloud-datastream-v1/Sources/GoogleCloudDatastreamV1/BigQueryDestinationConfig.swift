@@ -33,6 +33,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
   /// Target dataset(s) configuration.
   public var datasetConfig: DatasetConfigOneOf? = nil
 
+  /// Destination write mode.
   public var writeMode: WriteModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -934,6 +935,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     indirect case sourceHierarchyDatasets(BigQueryDestinationConfig.SourceHierarchyDatasets)
   }
 
+  /// Destination write mode.
   public enum WriteModeOneOf: Codable, Equatable, Sendable {
     /// The standard mode
     indirect case merge(BigQueryDestinationConfig.Merge)

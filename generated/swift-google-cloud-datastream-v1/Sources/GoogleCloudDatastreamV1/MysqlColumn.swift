@@ -21,7 +21,7 @@ import Foundation
 public struct MysqlColumn: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Column name.
+  /// The column name.
   public var column: Swift.String = Swift.String()
 
   /// The MySQL data type. Full data types list can be found here:

@@ -21,6 +21,9 @@ import Foundation
 public struct SqlServerChangeTables: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
+  /// Optional. DDL configuration for change tables.
+  public var ddlConfig: SqlServerChangeTables.SqlServerDdlConfig? = nil
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `SqlServerChangeTables`.
@@ -31,7 +34,7 @@ public struct SqlServerChangeTables: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = SqlServerChangeTables().with { $0.<placeholder> = ... }
+  /// let value = SqlServerChangeTables().with { $0.ddlConfig = ... }
   /// ```
   @inlinable
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
@@ -46,11 +49,17 @@ public struct SqlServerChangeTables: Codable, Equatable, GoogleWKT._AnyPackable,
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let _knownKeys: Set<Swift.String> = []
+    static let ddlConfig = CodingKeys(stringValue: "ddlConfig")
+
+    static let _knownKeys: Set<Swift.String> = [
+      "ddlConfig"
+    ]
   }
 
   public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.ddlConfig = try container.decodeIfPresent(
+      SqlServerChangeTables.SqlServerDdlConfig.self, forKey: .ddlConfig)
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -59,8 +68,112 @@ public struct SqlServerChangeTables: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(self.ddlConfig, forKey: .ddlConfig)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
+    }
+  }
+
+  /// DDL configuration for change tables.
+  public struct SqlServerDdlConfig: Codable, Equatable, GoogleWKT._AnyPackable,
+    Sendable
+  {
+    /// Optional. If set to true, Datastream will automatically create a new
+    /// capture instance when DDL is detected on a table.The customer will be
+    /// responsible for deleting it so that the next set of DDLs can be handled.
+    /// The default is false and it means that DDL's will not be handled .
+    public var autoCreateNewCaptureInstanceOnDdl: Swift.Bool = Swift.Bool()
+
+    /// Optional. If set to true, Datastream will automatically delete the old
+    /// capture instance after creating a new one to support a DDL change. The
+    /// default is false and means that the customer has to delete the old
+    /// capture instance manually.
+    public var autoDeleteOldCaptureInstance: Swift.Bool = Swift.Bool()
+
+    @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
+
+    /// Initialize a new instance of `SqlServerDdlConfig`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = SqlServerDdlConfig().with { $0.autoCreateNewCaptureInstanceOnDdl = ... }
+    /// ```
+    @inlinable
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private struct CodingKeys: CodingKey {
+      var stringValue: Swift.String
+      var intValue: Swift.Int? { nil }
+      init(stringValue: Swift.String) { self.stringValue = stringValue }
+      init?(intValue: Swift.Int) { nil }
+
+      static let autoCreateNewCaptureInstanceOnDdl = CodingKeys(
+        stringValue: "autoCreateNewCaptureInstanceOnDdl")
+      static let autoDeleteOldCaptureInstance = CodingKeys(
+        stringValue: "autoDeleteOldCaptureInstance")
+
+      static let _knownKeys: Set<Swift.String> = [
+        "autoCreateNewCaptureInstanceOnDdl",
+        "autoDeleteOldCaptureInstance",
+      ]
+    }
+
+    public init(from decoder: any Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .autoCreateNewCaptureInstanceOnDdl)
+      {
+        self.autoCreateNewCaptureInstanceOnDdl = value
+      }
+      if let value = try container.decodeIfPresent(
+        Swift.Bool.self, forKey: .autoDeleteOldCaptureInstance)
+      {
+        self.autoDeleteOldCaptureInstance = value
+      }
+      for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
+        self._unknownFields.json[key.stringValue] = try container.decode(
+          GoogleWKT.WKTValue.self, forKey: key)
+      }
+    }
+
+    public func encode(to encoder: any Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+      try container.encode(
+        self.autoCreateNewCaptureInstanceOnDdl, forKey: .autoCreateNewCaptureInstanceOnDdl)
+      try container.encode(self.autoDeleteOldCaptureInstance, forKey: .autoDeleteOldCaptureInstance)
+      for (key, value) in self._unknownFields.json {
+        try container.encode(value, forKey: CodingKeys(stringValue: key))
+      }
+    }
+
+    /// The type URL for `SqlServerDdlConfig`: `"type.googleapis.com/google.cloud.datastream.v1.SqlServerChangeTables.SqlServerDdlConfig"`.
+    public static var _anyTypeUrl: Swift.String {
+      return
+        "type.googleapis.com/google.cloud.datastream.v1.SqlServerChangeTables.SqlServerDdlConfig"
+    }
+
+    /// Initialize an instance of `SqlServerDdlConfig` by unpacking from a `GoogleWKT.WKTAny`.
+    ///
+    /// - Parameter any: The `GoogleWKT.WKTAny` instance to unpack.
+    /// - Throws: An error if the type URL in `any` does not match `"type.googleapis.com/google.cloud.datastream.v1.SqlServerChangeTables.SqlServerDdlConfig"`,
+    ///   or if deserialization fails.
+    public init(fromAny any: GoogleWKT.WKTAny) throws {
+      self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+
+    /// Packs this `SqlServerDdlConfig` into a `GoogleWKT.WKTStruct` representation.
+    ///
+    /// - Throws: An error if serialization fails.
+    public func _pack() throws -> GoogleWKT.WKTStruct {
+      return try GoogleWKT._slowAnySerialize(message: self)
     }
   }
 

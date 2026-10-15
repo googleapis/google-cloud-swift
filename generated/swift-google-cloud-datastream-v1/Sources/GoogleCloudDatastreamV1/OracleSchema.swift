@@ -21,7 +21,7 @@ import Foundation
 public struct OracleSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Schema name.
+  /// The schema name.
   public var schema: Swift.String = Swift.String()
 
   /// Tables in the schema.

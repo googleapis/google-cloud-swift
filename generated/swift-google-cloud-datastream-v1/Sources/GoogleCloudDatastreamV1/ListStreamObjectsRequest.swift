@@ -24,12 +24,12 @@ public struct ListStreamObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   /// Required. The parent stream that owns the collection of objects.
   public var parent: Swift.String = Swift.String()
 
-  /// Maximum number of objects to return. Default is 50.
+  /// Optional. Maximum number of objects to return. Default is 50.
   /// The maximum value is 1000; values above 1000 will be coerced to 1000.
   public var pageSize: Swift.Int32 = Swift.Int32()
 
-  /// Page token received from a previous `ListStreamObjectsRequest` call.
-  /// Provide this to retrieve the subsequent page.
+  /// Optional. Page token received from a previous `ListStreamObjectsRequest`
+  /// call. Provide this to retrieve the subsequent page.
   ///
   /// When paginating, all other parameters provided to
   /// `ListStreamObjectsRequest` must match the call that provided the page

@@ -70,6 +70,8 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
     static let sqlServerRdbms = CodingKeys(stringValue: "sqlServerRdbms")
     static let salesforceOrg = CodingKeys(stringValue: "salesforceOrg")
     static let mongodbCluster = CodingKeys(stringValue: "mongodbCluster")
+    static let spannerDatabase = CodingKeys(stringValue: "spannerDatabase")
+    static let sourceCatalog = CodingKeys(stringValue: "sourceCatalog")
 
     static let _knownKeys: Set<Swift.String> = [
       "parent",
@@ -83,6 +85,8 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
       "sqlServerRdbms",
       "salesforceOrg",
       "mongodbCluster",
+      "spannerDatabase",
+      "sourceCatalog",
     ]
   }
 
@@ -168,6 +172,15 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
     {
       try dataObjectCheckAndSet(.mongodbCluster(mongodbCluster))
     }
+    if let spannerDatabase = try container.decodeIfPresent(
+      SpannerDatabase.self, forKey: .spannerDatabase)
+    {
+      try dataObjectCheckAndSet(.spannerDatabase(spannerDatabase))
+    }
+    if let sourceCatalog = try container.decodeIfPresent(SourceCatalog.self, forKey: .sourceCatalog)
+    {
+      try dataObjectCheckAndSet(.sourceCatalog(sourceCatalog))
+    }
     self.dataObject = dataObject
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -211,6 +224,10 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
         try container.encode(value, forKey: .salesforceOrg)
       case .mongodbCluster(let value):
         try container.encode(value, forKey: .mongodbCluster)
+      case .spannerDatabase(let value):
+        try container.encode(value, forKey: .spannerDatabase)
+      case .sourceCatalog(let value):
+        try container.encode(value, forKey: .sourceCatalog)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -220,35 +237,44 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
 
   /// The connection profile on which to run discover.
   public enum TargetOneOf: Codable, Equatable, Sendable {
-    /// An ad-hoc connection profile configuration.
+    /// Optional. An ad-hoc connection profile configuration.
     indirect case connectionProfile(ConnectionProfile)
-    /// A reference to an existing connection profile.
+    /// Optional. A reference to an existing connection profile.
     case connectionProfileName(Swift.String)
   }
 
   /// The depth of the retrieved hierarchy of data objects.
   public enum HierarchyOneOf: Codable, Equatable, Sendable {
-    /// Whether to retrieve the full hierarchy of data objects (TRUE) or only the
-    /// current level (FALSE).
+    /// Optional. Whether to retrieve the full hierarchy of data objects (TRUE)
+    /// or only the current level (FALSE).
     case fullHierarchy(Swift.Bool)
-    /// The number of hierarchy levels below the current level to be retrieved.
+    /// Optional. The number of hierarchy levels below the current level to be
+    /// retrieved.
     case hierarchyDepth(Swift.Int32)
   }
 
   /// The data object to populate with child data objects and metadata.
   public enum DataObjectOneOf: Codable, Equatable, Sendable {
-    /// Oracle RDBMS to enrich with child data objects and metadata.
+    /// Optional. Oracle RDBMS to enrich with child data objects and metadata.
     indirect case oracleRdbms(OracleRdbms)
-    /// MySQL RDBMS to enrich with child data objects and metadata.
+    /// Optional. MySQL RDBMS to enrich with child data objects and metadata.
     indirect case mysqlRdbms(MysqlRdbms)
-    /// PostgreSQL RDBMS to enrich with child data objects and metadata.
+    /// Optional. PostgreSQL RDBMS to enrich with child data objects and
+    /// metadata.
     indirect case postgresqlRdbms(PostgresqlRdbms)
-    /// SQLServer RDBMS to enrich with child data objects and metadata.
+    /// Optional. SQLServer RDBMS to enrich with child data objects and metadata.
     indirect case sqlServerRdbms(SqlServerRdbms)
-    /// Salesforce organization to enrich with child data objects and metadata.
+    /// Optional. Salesforce organization to enrich with child data objects and
+    /// metadata.
     indirect case salesforceOrg(SalesforceOrg)
-    /// MongoDB cluster to enrich with child data objects and metadata.
+    /// Optional. MongoDB cluster to enrich with child data objects and metadata.
     indirect case mongodbCluster(MongodbCluster)
+    /// Optional. Spanner database to enrich with child data objects and
+    /// metadata.
+    indirect case spannerDatabase(SpannerDatabase)
+    /// Optional. Source catalog to enrich with child data objects and metadata.
+    /// This is mainly used to represent SaaS sources databases.
+    indirect case sourceCatalog(SourceCatalog)
   }
 
   /// The type URL for `DiscoverConnectionProfileRequest`: `"type.googleapis.com/google.cloud.datastream.v1.DiscoverConnectionProfileRequest"`.

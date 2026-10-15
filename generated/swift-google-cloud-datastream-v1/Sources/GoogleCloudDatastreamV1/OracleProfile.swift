@@ -17,7 +17,7 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// Oracle database profile.
+/// Profile for connecting to an Oracle source.
 public struct OracleProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

@@ -85,6 +85,11 @@ public struct BigQueryExport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// upload data to the BigQuery dataset.
   public var principal: Swift.String = Swift.String()
 
+  /// Optional. Indicates whether the notifications will be sent for deleted
+  /// findings. When enabled, the filter is still respected when sending deletion
+  /// notifications.
+  public var deletionNotificationsEnabled: Swift.Bool = Swift.Bool()
+
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
   /// Initialize a new instance of `BigQueryExport`.
@@ -118,6 +123,8 @@ public struct BigQueryExport: Codable, Equatable, GoogleWKT._AnyPackable,
     static let updateTime = CodingKeys(stringValue: "updateTime")
     static let mostRecentEditor = CodingKeys(stringValue: "mostRecentEditor")
     static let principal = CodingKeys(stringValue: "principal")
+    static let deletionNotificationsEnabled = CodingKeys(
+      stringValue: "deletionNotificationsEnabled")
 
     static let _knownKeys: Set<Swift.String> = [
       "name",
@@ -128,6 +135,7 @@ public struct BigQueryExport: Codable, Equatable, GoogleWKT._AnyPackable,
       "updateTime",
       "mostRecentEditor",
       "principal",
+      "deletionNotificationsEnabled",
     ]
   }
 
@@ -155,6 +163,11 @@ public struct BigQueryExport: Codable, Equatable, GoogleWKT._AnyPackable,
     if let value = try container.decodeIfPresent(Swift.String.self, forKey: .principal) {
       self.principal = value
     }
+    if let value = try container.decodeIfPresent(
+      Swift.Bool.self, forKey: .deletionNotificationsEnabled)
+    {
+      self.deletionNotificationsEnabled = value
+    }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
         GoogleWKT.WKTValue.self, forKey: key)
@@ -171,6 +184,7 @@ public struct BigQueryExport: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.mostRecentEditor, forKey: .mostRecentEditor)
     try container.encode(self.principal, forKey: .principal)
+    try container.encode(self.deletionNotificationsEnabled, forKey: .deletionNotificationsEnabled)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -17,14 +17,14 @@
 import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 
-/// MySQL source configuration
+/// Configuration for syncing data from a MySQL source.
 public struct MysqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// MySQL objects to retrieve from the source.
+  /// The MySQL objects to retrieve from the source.
   public var includeObjects: MysqlRdbms? = nil
 
-  /// MySQL objects to exclude from the stream.
+  /// The MySQL objects to exclude from the stream.
   public var excludeObjects: MysqlRdbms? = nil
 
   /// Maximum number of concurrent CDC tasks. The number should be non negative.

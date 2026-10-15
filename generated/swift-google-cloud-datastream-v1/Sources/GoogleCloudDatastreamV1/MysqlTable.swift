@@ -21,7 +21,7 @@ import Foundation
 public struct MysqlTable: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Table name.
+  /// The table name.
   public var table: Swift.String = Swift.String()
 
   /// MySQL columns in the database.

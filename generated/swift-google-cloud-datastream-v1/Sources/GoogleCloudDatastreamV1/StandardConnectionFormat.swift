@@ -21,8 +21,12 @@ import Foundation
 public struct StandardConnectionFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Optional. Specifies whether the client connects directly to the host[:port]
-  /// in the connection URI.
+  /// Optional. Deprecated: Use the `additional_options` map to specify the
+  /// `directConnection` parameter instead.
+  /// For example: `additional_options = {"directConnection": "true"}`.
+  /// Specifies whether the client connects directly to the host[:port] in the
+  /// connection URI.
+  @available(*, deprecated)
   public var directConnection: Swift.Bool = Swift.Bool()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -57,6 +61,9 @@ public struct StandardConnectionFormat: Codable, Equatable, GoogleWKT._AnyPackab
     ]
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public init(from decoder: any Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .directConnection) {
@@ -68,6 +75,9 @@ public struct StandardConnectionFormat: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
+  #if hasAttribute(diagnose)
+    @diagnose(DeprecatedDeclaration, as: ignored)
+  #endif
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.directConnection, forKey: .directConnection)

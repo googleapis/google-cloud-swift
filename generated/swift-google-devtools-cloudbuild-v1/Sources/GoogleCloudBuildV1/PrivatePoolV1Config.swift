@@ -112,6 +112,10 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     /// machine type. By default, nested virtualization is disabled.
     public var enableNestedVirtualization: Swift.Bool? = nil
 
+    /// Optional. Option to specify which release or release channel
+    /// (rapid|regular|stable) to use to run this build.
+    public var workerRelease: Swift.String = Swift.String()
+
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
     /// Initialize a new instance of `WorkerConfig`.
@@ -140,11 +144,13 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       static let machineType = CodingKeys(stringValue: "machineType")
       static let diskSizeGb = CodingKeys(stringValue: "diskSizeGb")
       static let enableNestedVirtualization = CodingKeys(stringValue: "enableNestedVirtualization")
+      static let workerRelease = CodingKeys(stringValue: "workerRelease")
 
       static let _knownKeys: Set<Swift.String> = [
         "machineType",
         "diskSizeGb",
         "enableNestedVirtualization",
+        "workerRelease",
       ]
     }
 
@@ -158,6 +164,9 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.enableNestedVirtualization = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableNestedVirtualization)
+      if let value = try container.decodeIfPresent(Swift.String.self, forKey: .workerRelease) {
+        self.workerRelease = value
+      }
       for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
         self._unknownFields.json[key.stringValue] = try container.decode(
           GoogleWKT.WKTValue.self, forKey: key)
@@ -170,6 +179,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
       try container.encodeIfPresent(
         self.enableNestedVirtualization, forKey: .enableNestedVirtualization)
+      try container.encode(self.workerRelease, forKey: .workerRelease)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

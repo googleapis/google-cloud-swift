@@ -21,7 +21,7 @@ import Foundation
 public struct MongodbCollection: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Collection name.
+  /// The collection name.
   public var collection: Swift.String = Swift.String()
 
   /// Fields in the collection.
