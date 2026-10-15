@@ -16,7 +16,6 @@ import struct DequeModule.Deque
 import GoogleCloudStorage
 import GoogleGax
 import Synchronization
-import Testing
 
 /// Mock `ReadObjectHandleProtocol` returning preconfigured metadata and streaming chunks.
 struct MockReadObjectHandle: ReadObjectHandleProtocol {
@@ -39,8 +38,9 @@ private struct UnimplementedMockReadObjectHandle: ReadObjectHandleProtocol {}
 /// Mock `StorageProtocol` backed by deques of handler closures for seekable writes and reads.
 ///
 /// Each operation pops and invokes the next queued handler from its corresponding deque, or falls
-/// back to throwing/returning `GoogleGax.RequestError.unimplemented` if no handler remains. Call
-/// `verify()` at the end of a test to assert that all queued handlers were consumed.
+/// back to throwing/returning `GoogleGax.RequestError.unimplemented` if no handler remains. Assert
+/// `#expect(mock.isExhausted)` at the end of a test to verify that all queued handlers were
+/// consumed.
 final class MockStorage: StorageProtocol, Sendable {
   typealias WriteSeekableHandler =
     @Sendable (any SeekableWriteObjectSource, String, String, WriteObjectOptions) async throws ->
@@ -59,10 +59,10 @@ final class MockStorage: StorageProtocol, Sendable {
     self.readHandlers = Mutex(Deque(read))
   }
 
-  /// Asserts that all queued write and read handlers have been consumed.
-  func verify(sourceLocation: SourceLocation = #_sourceLocation) {
-    #expect(writeSeekableHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
-    #expect(readHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
+  /// Whether all queued write and read handlers have been consumed.
+  var isExhausted: Bool {
+    writeSeekableHandlers.withLock { $0.isEmpty }
+      && readHandlers.withLock { $0.isEmpty }
   }
 
   func writeObject(
@@ -102,9 +102,9 @@ final class UnseekableMockStorage: StorageProtocol, Sendable {
     self.writeHandlers = Mutex(Deque(write))
   }
 
-  /// Asserts that all queued write handlers have been consumed.
-  func verify(sourceLocation: SourceLocation = #_sourceLocation) {
-    #expect(writeHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
+  /// Whether all queued write handlers have been consumed.
+  var isExhausted: Bool {
+    writeHandlers.withLock { $0.isEmpty }
   }
 
   func writeObject(

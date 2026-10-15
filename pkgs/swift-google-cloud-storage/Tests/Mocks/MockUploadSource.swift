@@ -15,13 +15,13 @@
 import struct DequeModule.Deque
 import GoogleCloudStorage
 import Synchronization
-import Testing
 
 /// Mock `SeekableWriteObjectSource` backed by deques of closures for `read` and `seek`.
 ///
 /// Each `read(maxBytes:)` or `seek(to:)` call pops and invokes the next queued handler from its
-/// corresponding deque, or throws `MockError.empty` if no handler remains. Call `verify()` at the
-/// end of a test to assert that all queued read and seek handlers were consumed.
+/// corresponding deque, or throws `MockError.empty` if no handler remains. Assert
+/// `#expect(source.isExhausted)` at the end of a test to verify that all queued read and seek
+/// handlers were consumed.
 final class MockUploadSource: SeekableWriteObjectSource, Sendable {
   typealias ReadHandler = @Sendable (Int) async throws -> ByteChunk?
   typealias SeekHandler = @Sendable (UInt64) async throws -> Void
@@ -44,10 +44,10 @@ final class MockUploadSource: SeekableWriteObjectSource, Sendable {
     self.seekHandlers = Mutex(Deque(seek))
   }
 
-  /// Asserts that all queued `read` and `seek` handlers have been consumed.
-  func verify(sourceLocation: SourceLocation = #_sourceLocation) {
-    #expect(readHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
-    #expect(seekHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
+  /// Whether all queued `read` and `seek` handlers have been consumed.
+  var isExhausted: Bool {
+    readHandlers.withLock { $0.isEmpty }
+      && seekHandlers.withLock { $0.isEmpty }
   }
 
   func read(maxBytes: Int) async throws -> ByteChunk? {

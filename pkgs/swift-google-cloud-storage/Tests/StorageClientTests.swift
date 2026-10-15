@@ -83,7 +83,7 @@ import Testing
     await #expect(throws: GoogleGax.RequestError.self) {
       for try await _ in readHandle.body {}
     }
-    mock.verify()
+    #expect(mock.isExhausted)
   }
 
   @Test func mockStorageReadObjectDelegation() async throws {
@@ -113,7 +113,7 @@ import Testing
       received.append(chunk.data)
     }
     #expect(received == Data("hello world".utf8))
-    mock.verify()
+    #expect(mock.isExhausted)
   }
 
   @Test func mockStorageConvenienceOverloadDelegation() async throws {
@@ -168,7 +168,7 @@ import Testing
       #expect(r2.name == "test-file-object")
     }
     try await uploadGeneric(mock)
-    mock.verify()
+    #expect(mock.isExhausted)
   }
 
   @Test func mockStorageSeekableDelegatesToWriteObjectSourceByDefault() async throws {
@@ -186,7 +186,7 @@ import Testing
       Data("hello".utf8), to: "fallback-bucket", as: "fallback-object")
     #expect(result.bucket == "fallback-bucket")
     #expect(result.name == "fallback-object")
-    mock.verify()
+    #expect(mock.isExhausted)
   }
 
   @Test(arguments: [

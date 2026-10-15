@@ -154,7 +154,7 @@ import Testing
       names.append(bucket.name)
     }
     #expect(names == ["bucket-1", "bucket-2"])
-    mock.verify()
+    #expect(mock.isExhausted)
   }
 
   @Test func mockConvenienceOverloadDelegation() async throws {
@@ -173,7 +173,7 @@ import Testing
     let response = try await client.listBuckets(
       request: .init().with { $0.parent = "projects/test-project" })
     #expect(response.buckets.count == 1)
-    mock.verify()
+    #expect(mock.isExhausted)
   }
 
   @MainActor
@@ -220,7 +220,7 @@ import Testing
     let task = await model.streamBucketNamesInBackground()
     let names = try await task.value
     #expect(names == ["bucket-1", "bucket-2"])
-    mock.verify()
+    #expect(mock.isExhausted)
   }
 
   @Test func mockLROConvenienceOverloadDelegation() async throws {
@@ -235,6 +235,6 @@ import Testing
     let folder = try await client.renameFolderPollingUntilDone(
       request: .init().with { $0.name = "projects/_/buckets/b/folders/f1" })
     #expect(folder.name == "projects/_/buckets/b/folders/f2")
-    mock.verify()
+    #expect(mock.isExhausted)
   }
 }

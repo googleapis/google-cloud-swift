@@ -175,7 +175,7 @@ import Testing
     } else {
       Issue.record("Expected .internalError, got \(String(describing: error))")
     }
-    source.verify()
+    #expect(source.isExhausted)
   }
 
   /// Tests that MultipartUploadStream can be iterated multiple times when using struct-based sources because the stored source is not mutated by iteration.

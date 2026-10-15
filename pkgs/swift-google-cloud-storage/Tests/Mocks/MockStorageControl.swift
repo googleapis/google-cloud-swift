@@ -16,13 +16,12 @@ import struct DequeModule.Deque
 import GoogleCloudStorage
 import GoogleGax
 import Synchronization
-import Testing
 
 /// Mock `StorageControlProtocol` backed by deques of handler closures for each RPC.
 ///
 /// Each RPC call pops and invokes the next queued handler from its corresponding deque, or throws
-/// `GoogleGax.RequestError.unimplemented` if no handler remains. Call `verify()` at the end of a
-/// test to assert that all queued handlers were consumed.
+/// `GoogleGax.RequestError.unimplemented` if no handler remains. Assert `#expect(mock.isExhausted)`
+/// at the end of a test to verify that all queued handlers were consumed.
 final class MockStorageControl: StorageControlProtocol, Sendable {
   typealias ListBucketsHandler =
     @Sendable (ListBucketsRequest, GoogleGax.RequestOptions) async throws -> ListBucketsResponse
@@ -45,11 +44,11 @@ final class MockStorageControl: StorageControlProtocol, Sendable {
     self.rewriteHandlers = Mutex(Deque(rewriteObject))
   }
 
-  /// Asserts that all queued RPC handlers have been consumed.
-  func verify(sourceLocation: SourceLocation = #_sourceLocation) {
-    #expect(listBucketsHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
-    #expect(renameFolderHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
-    #expect(rewriteHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
+  /// Whether all queued RPC handlers have been consumed.
+  var isExhausted: Bool {
+    listBucketsHandlers.withLock { $0.isEmpty }
+      && renameFolderHandlers.withLock { $0.isEmpty }
+      && rewriteHandlers.withLock { $0.isEmpty }
   }
 
   func listBuckets(
