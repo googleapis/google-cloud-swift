@@ -22,6 +22,14 @@ In Google Cloud Storage, rewriting an object (`RewriteObject`) copies a source o
 
 As established in [Google Cloud Storage Swift Client Surface Area Design](storage.md), `rewriteObject` is exposed on `StorageControlProtocol` / `StorageControlClient`. To eliminate boilerplate while supporting both simple "await final result" workflows and fine-grained progress/checkpointing workflows, we provide two helper methods as protocol extensions on `StorageControlProtocol`.
 
+### Why `StorageControlProtocol` / `StorageControlClient` (and not `StorageProtocol` / `StorageClient`)
+
+Although the `RewriteObject` RPC is defined in the `google.storage.v2.Storage` protobuf service, `GoogleCloudStorage` intentionally splits client responsibilities by transport and operation shape (matching `google-cloud-rust`):
+
+- **`StorageProtocol` / `StorageClient` (Handwritten Data-Plane Veneer):** Exclusively handles streaming object payload transfers (`readObject` and `writeObject`) over JSON/REST using the resumable upload and ranged download protocols. No object payload bytes flow between the client and GCS during a `RewriteObject` operation—all data movement occurs server-side within Cloud Storage.
+- **`StorageControlProtocol` / `StorageControlClient` (Unified Control & Unary gRPC Client):** Consolidates `google.storage.control.v2.StorageControl`, `google.iam.v1.IAMPolicy`, and all unary bucket and object metadata/lifecycle RPCs from `google.storage.v2.Storage` (`deleteObject`, `getObject`, `listObjects`, `updateObject`, `composeObject`, `rewriteObject`, and `moveObject`) over gRPC.
+- Because the underlying `rewriteObject(request:options:)` method is generated on `StorageControlProtocol` and `StorageControlClient`, the multi-step helpers `rewriteObjectUntilDone` and `rewriteObjectProgress` belong directly alongside it on `StorageControlProtocol`.
+
 ### Decision
 
 1. **`rewriteObjectUntilDone(request:options:onProgress:)`** — Drives the rewrite loop to completion and returns the final destination `Object`, optionally invoking an async progress closure after each step:
@@ -115,7 +123,7 @@ Each call to `self.rewriteObject(request:options:)` on `StorageControlClient` is
 3. **Consistent `x-goog-gcs-idempotency-token` per step:**
    - `RewriteObjectRequest.resolveIdempotency(options:)` stamps a UUID `x-goog-gcs-idempotency-token` header for each step before entering `_RetryLoop`, ensuring all retry attempts of the same step share the same idempotency token while each new step gets a fresh token.
 4. **Preconditions and idempotency (`ifGenerationMatch`):**
-   - `StorageBaseRetryPolicy` enforces `StrictIdempotency`. `RewriteObjectRequest.resolveIdempotency(options:)` marks the request as idempotent when `ifGenerationMatch != nil` (or when `options.idempotent = true` is explicitly set in `RequestOptions`).
+   - `StorageBaseRetryPolicy` enforces `StrictIdempotency`. `RewriteObjectRequest.resolveIdempotency(options:)` marks the request as idempotent only when `ifGenerationMatch != nil` (or when `options.idempotent = true` is explicitly set in `RequestOptions`). Source preconditions such as `ifSourceGenerationMatch` only constrain the source object being copied from and do not prevent overwriting a concurrently modified destination object.
    - Callers who want automatic transient retries during `rewriteObjectUntilDone` or `rewriteObjectProgress` should set `ifGenerationMatch` on `RewriteObjectRequest` (or set `options.idempotent = true`).
 5. **Checkpointing and manual resumption on exhausted retries:**
    - Because `rewriteObjectProgress` yields each `RewriteResponse` (and `rewriteObjectUntilDone` passes each `RewriteResponse` to `onProgress`), callers always receive the latest `rewriteToken` after every successful step. If a subsequent step exhausts its retry budget and throws, the caller can resume the rewrite later by setting `request.rewriteToken` to the last yielded token.
