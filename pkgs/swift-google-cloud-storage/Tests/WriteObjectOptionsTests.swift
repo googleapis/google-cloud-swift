@@ -159,8 +159,10 @@ import Testing
     #expect(resolved.requestOptions.quotaProject == "override-upload-quota")
     #expect(resolved.idempotent == false)
   }
+}
 
-  @Test func storagePreconditionsEquatableAndHashable() {
+@Suite struct StoragePreconditionsTests {
+  @Test func equatableAndHashable() {
     let empty1 = StoragePreconditions()
     let empty2 = StoragePreconditions()
     #expect(empty1 == empty2)
