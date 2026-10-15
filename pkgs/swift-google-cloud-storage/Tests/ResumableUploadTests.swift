@@ -147,6 +147,7 @@ import Testing
       Issue.record(
         "Expected WriteObjectError.sourceError(DummyError), got \(String(describing: error))")
     }
+    source.verify()
   }
 
   /// Tests error propagation when network connection fails during resumable session initialization.
@@ -344,6 +345,7 @@ import Testing
     } else {
       Issue.record("Expected .sourceError(DummyError), got \(String(describing: error))")
     }
+    source.verify()
   }
 
   /// Tests a multi-chunk resumable upload (20MB payload) streaming progress updates and uploading across multiple intermediate 308 Range acknowledgments.

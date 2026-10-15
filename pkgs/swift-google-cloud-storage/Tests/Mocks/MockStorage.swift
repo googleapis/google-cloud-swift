@@ -18,6 +18,7 @@ import GoogleGax
 import Synchronization
 import Testing
 
+/// Mock `ReadObjectHandleProtocol` returning preconfigured metadata and streaming chunks.
 struct MockReadObjectHandle: ReadObjectHandleProtocol {
   var metadata: ReadObjectMetadata
   var chunks: [ByteChunk]
@@ -35,6 +36,11 @@ struct MockReadObjectHandle: ReadObjectHandleProtocol {
 
 private struct UnimplementedMockReadObjectHandle: ReadObjectHandleProtocol {}
 
+/// Mock `StorageProtocol` backed by deques of handler closures for seekable writes and reads.
+///
+/// Each operation pops and invokes the next queued handler from its corresponding deque, or falls
+/// back to throwing/returning `GoogleGax.RequestError.unimplemented` if no handler remains. Call
+/// `verify()` at the end of a test to assert that all queued handlers were consumed.
 final class MockStorage: StorageProtocol, Sendable {
   typealias WriteSeekableHandler =
     @Sendable (any SeekableWriteObjectSource, String, String, WriteObjectOptions) async throws ->
@@ -53,9 +59,10 @@ final class MockStorage: StorageProtocol, Sendable {
     self.readHandlers = Mutex(Deque(read))
   }
 
-  deinit {
-    #expect(writeSeekableHandlers.withLock { $0.isEmpty })
-    #expect(readHandlers.withLock { $0.isEmpty })
+  /// Asserts that all queued write and read handlers have been consumed.
+  func verify(sourceLocation: SourceLocation = #_sourceLocation) {
+    #expect(writeSeekableHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
+    #expect(readHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
   }
 
   func writeObject(
@@ -82,6 +89,9 @@ final class MockStorage: StorageProtocol, Sendable {
   }
 }
 
+/// Mock `StorageProtocol` that only implements the non-seekable `writeObject(_:to:as:options:)`
+/// requirement so tests can exercise the protocol extension's default delegation from
+/// `SeekableWriteObjectSource` to `WriteObjectSource`.
 final class UnseekableMockStorage: StorageProtocol, Sendable {
   typealias WriteHandler =
     @Sendable (any WriteObjectSource, String, String, WriteObjectOptions) async throws -> Object
@@ -92,8 +102,9 @@ final class UnseekableMockStorage: StorageProtocol, Sendable {
     self.writeHandlers = Mutex(Deque(write))
   }
 
-  deinit {
-    #expect(writeHandlers.withLock { $0.isEmpty })
+  /// Asserts that all queued write handlers have been consumed.
+  func verify(sourceLocation: SourceLocation = #_sourceLocation) {
+    #expect(writeHandlers.withLock { $0.isEmpty }, sourceLocation: sourceLocation)
   }
 
   func writeObject(

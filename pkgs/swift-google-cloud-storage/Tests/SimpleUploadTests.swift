@@ -101,6 +101,7 @@ import Testing
       Issue.record(
         "Expected WriteObjectError.sourceError(DummyError), got \(String(describing: error))")
     }
+    source.verify()
   }
 
   /// Tests handling of network failure (URLError) during a simple upload.
@@ -215,6 +216,7 @@ import Testing
     if case .internalError(let message) = error {
       #expect(message == "Failed to read data from source")
     }
+    source.verify()
   }
 
   @Test func simpleUploadWithCSEKHeaders() async throws {
