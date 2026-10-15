@@ -179,6 +179,8 @@ extension WKTDuration: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
+    // Duration uses custom JSON encoding and is packed under the "value" field as a JSON
+    // string. Check for the presence of "value" first before validating that it is a string.
     guard let v = any.fields[WKTAny.valueField] else {
       throw WKTAnyError.missingValueField
     }

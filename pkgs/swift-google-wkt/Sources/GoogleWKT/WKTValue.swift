@@ -170,6 +170,8 @@ extension WKTStruct: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
+    // Struct uses custom JSON encoding and is packed under the "value" field as a JSON object.
+    // Check for the presence of "value" first before validating that it is an object.
     guard let v = any.fields[WKTAny.valueField] else {
       throw WKTAnyError.missingValueField
     }
@@ -204,6 +206,8 @@ extension WKTListValue: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
+    // ListValue uses custom JSON encoding and is packed under the "value" field as a JSON array.
+    // Check for the presence of "value" first before validating that it is an array.
     guard let v = any.fields[WKTAny.valueField] else {
       throw WKTAnyError.missingValueField
     }

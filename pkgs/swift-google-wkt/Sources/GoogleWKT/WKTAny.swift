@@ -81,6 +81,9 @@ extension WKTAny: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
+    // A nested Any uses custom JSON encoding and is packed under the "value" field as a JSON
+    // object containing "@type" and the inner message's fields. Check for the presence of
+    // "value" first before validating its JSON type and inner "@type".
     guard let v = any.fields[Self.valueField] else {
       throw WKTAnyError.missingValueField
     }

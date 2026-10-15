@@ -103,6 +103,9 @@ extension WKTFieldMask: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
+    // FieldMask uses custom JSON encoding and is packed under the "value" field as a
+    // comma-separated JSON string. Check for the presence of "value" first before validating
+    // that it is a string.
     guard let v = any.fields[WKTAny.valueField] else {
       throw WKTAnyError.missingValueField
     }
