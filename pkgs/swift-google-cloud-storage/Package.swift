@@ -79,6 +79,7 @@ let package = Package(
       from: "0.5.0"
     ),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
+    .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
     .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.38.1"),
     .package(url: "https://github.com/apple/swift-crypto.git", from: "4.0.0"),
     .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
@@ -116,6 +117,7 @@ let package = Package(
         "GoogleCloudStorage",
         "StorageControlProtos",
         "StorageProtos",
+        .product(name: "DequeModule", package: "swift-collections"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),

@@ -85,7 +85,10 @@ import Testing
     let objectName = "test-object"
     let data = Data(repeating: 1, count: 1 * 1024 * 1024)
     struct DummyError: Error {}
-    let source = MockUploadSource(data: data, readError: DummyError())
+    let source = MockUploadSource(
+      totalSize: UInt64(data.count),
+      read: [{ _ in throw DummyError() }]
+    )
 
     let client = try makeClient(registry: registry)
 
@@ -192,7 +195,17 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let source = MockUploadSource(data: Data(), totalSize: 1024)
+    let source = MockUploadSource(
+      totalSize: 1024,
+      read: [
+        { _ in nil },
+        { _ in nil },
+      ],
+      seek: [
+        { offset in #expect(offset == 0) },
+        { offset in #expect(offset == 0) },
+      ]
+    )
 
     let client = try makeClient(registry: registry)
 

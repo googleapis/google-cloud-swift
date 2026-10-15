@@ -120,7 +120,11 @@ import Testing
     let objectName = "test-object"
     let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     struct DummyError: Error {}
-    let source = MockUploadSource(data: data, readError: DummyError())
+    let source = MockUploadSource(
+      totalSize: UInt64(data.count),
+      read: [{ _ in throw DummyError() }],
+      seek: [{ offset in #expect(offset == 0) }]
+    )
 
     let startUrl = registry.url(
       "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
@@ -312,7 +316,15 @@ import Testing
     let bucket = "test-bucket"
     let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     struct DummyError: Error {}
-    let source = MockUploadSource(data: data, seekError: DummyError())
+    let source = MockUploadSource(
+      totalSize: UInt64(data.count),
+      seek: [
+        { offset in
+          #expect(offset == 0)
+          throw DummyError()
+        }
+      ]
+    )
 
     let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=test-id")
 
