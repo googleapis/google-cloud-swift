@@ -41,6 +41,11 @@ let package = Package(
       from: "0.5.0"
     ),
     localOrRemotePackage(
+      url: "https://github.com/googleapis/swift-google-iam-v1",
+      path: "generated/swift-google-iam-v1",
+      from: "0.5.0"
+    ),
+    localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-secretmanager-v1",
       path: "generated/swift-google-cloud-secretmanager-v1",
       from: "0.5.0"
@@ -70,6 +75,7 @@ let package = Package(
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleWKT", package: "swift-google-wkt"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudLanguageV2", package: "swift-google-cloud-language-v2"),
