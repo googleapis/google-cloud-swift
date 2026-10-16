@@ -96,7 +96,7 @@ import GoogleWKT
       try opCodeAndMessage._detectErrors()
       Issue.record("Expected RequestError.service to be thrown")
     } catch RequestError.service(let serviceError) {
-      #expect(serviceError.message == "QUOTA_EXCEEDED: Quota 'CPUS' exceeded., RESOURCE_NOT_READY")
+      #expect(serviceError.message == "QUOTA_EXCEEDED: Quota 'CPUS' exceeded.\nRESOURCE_NOT_READY")
     } catch {
       Issue.record("Unexpected error: \(error)")
     }

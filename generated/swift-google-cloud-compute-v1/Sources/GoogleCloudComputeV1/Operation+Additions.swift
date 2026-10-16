@@ -101,7 +101,7 @@
           case (nil, nil):
             return nil
           }
-        }.joined(separator: ", ")
+        }.joined(separator: "\n")
         message = formatted.isEmpty ? "Operation failed" : formatted
       } else {
         message = "Operation failed"
