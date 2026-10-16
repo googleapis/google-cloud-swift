@@ -32,11 +32,10 @@ func addIamMember(
   // snippet.client [START swift_occ_iam_client]
   let client = try SecretManagerServiceClient()
   let backoff = ExponentialBackoff(
-    clamping: ExponentialBackoffConfig().with {
-      $0.initialDelay = .milliseconds(250)
-      $0.maximumDelay = .seconds(5)
-      $0.scaling = 2.0
-    })
+    clamping: .milliseconds(250),
+    maximumDelay: .seconds(5),
+    scaling: 2.0
+  )
   let maxAttempts = 5
   let resource = "projects/\(projectId)/secrets/\(secretId)"
   // snippet.end [END swift_occ_iam_client]
