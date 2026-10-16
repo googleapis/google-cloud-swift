@@ -738,10 +738,8 @@ import Testing
     var clientOptions = ClientOptions()
     clientOptions.retryPolicy = StorageBaseRetryPolicy.defaultPolicy
     clientOptions.backoffPolicy = try ExponentialBackoff(
-      config: .init().with {
-        $0.initialDelay = .milliseconds(1)
-        $0.maximumDelay = .milliseconds(2)
-      }
+      initialDelay: .milliseconds(1),
+      maximumDelay: .milliseconds(2)
     )
 
     let tracker = ControlCallTracker()
