@@ -17,16 +17,16 @@
 [swift-google-gax]: https://github.com/googleapis/swift-google-gax
 
 Modifying Identity and Access Management (IAM) policies across Google Cloud
-services requires a read-modify-write cycle guarded by [optimistic concurrency
-control] (OCC). This guide shows you how to safely update an IAM policy using an
+services requires a read-modify-write cycle guarded by optimistic concurrency
+control (OCC). This guide shows you how to safely update an IAM policy using an
 OCC retry loop in Swift.
 
 ## Prerequisites
 
 This guide uses the [Secret Manager API] as an example, though the same pattern
 applies to any Google Cloud service that exposes `getIamPolicy` and
-`setIamPolicy`. To enable the Secret Manager API, follow the [service
-quickstart].
+`setIamPolicy`. To enable the Secret Manager API, follow the
+[service quickstart].
 
 For complete setup instructions for the Swift client libraries, see
 [Getting started with Swift].
@@ -57,8 +57,9 @@ updating IAM policies and handling OCC conflicts requires types from
 ## Why IAM policy updates require an OCC loop
 
 Google Cloud IAM policies are updated as a whole document rather than by
-patching individual role bindings on the server. Updating a policy involves
-three steps:
+patching individual role bindings on the server. To prevent concurrent writers
+from overwriting each other's changes, IAM uses
+[optimistic concurrency control] across three steps:
 
 1. **Read**: Call `getIamPolicy` to fetch the current `Policy`, which includes an
    [`etag`][IAM etag] identifying the exact version of the policy stored on the
@@ -83,7 +84,9 @@ newly updated policy.
 > Important: Always request policy version `3` (`requestedPolicyVersion = 3`) in
 > `getIamPolicy` and preserve the `etag` in `setIamPolicy`. If a policy uses
 > [IAM Conditions] and you omit the `etag`, IAM may overwrite a version `3`
-> policy with a version `1` policy and drop existing conditions.
+> policy with a version `1` policy and drop existing conditions. If you add or
+> modify conditional role bindings, also set `policy.version = 3` before calling
+> `setIamPolicy`.
 
 ## Write an OCC read-modify-write loop
 

@@ -113,5 +113,8 @@ leave the field set to its default value on the provided resource.
   paginated API responses.
 * [Override the default retry policies](<doc:override-retry-policy>) describes how
   to change how the Swift client libraries retry failed requests.
+* [Update IAM policies using optimistic concurrency control](<doc:optimistic-concurrency-control-iam>)
+  describes how to handle concurrent modification conflicts in a
+  read-modify-write loop.
 * [Override the default polling policies](<doc:override-polling-policy>) describes
   how to change how the Swift client libraries poll long-running operations.

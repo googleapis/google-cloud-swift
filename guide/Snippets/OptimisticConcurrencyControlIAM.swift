@@ -42,7 +42,9 @@ func addIamMember(
   // snippet.end [END swift_occ_iam_client]
 
   // snippet.loop [START swift_occ_iam_loop]
-  for attempt in 1...maxAttempts {
+  var attempt = 0
+  while true {
+    attempt += 1
     var policy = try await client.getIamPolicy(
       request: GetIamPolicyRequest().with {
         $0.resource = resource
@@ -52,9 +54,10 @@ func addIamMember(
       })
 
     if let index = policy.bindings.firstIndex(where: { $0.role == role && $0.condition == nil }) {
-      if !policy.bindings[index].members.contains(member) {
-        policy.bindings[index].members.append(member)
+      if policy.bindings[index].members.contains(member) {
+        return policy
       }
+      policy.bindings[index].members.append(member)
     } else {
       policy.bindings.append(
         Binding().with {
@@ -70,17 +73,16 @@ func addIamMember(
           $0.policy = policy
         })
     } catch RequestError.service(let serviceError) where serviceError.code == .aborted {
-      if attempt == maxAttempts {
+      guard attempt < maxAttempts else {
         throw RequestError.service(serviceError)
       }
       let delay = backoff.backoffDelay(
-        for: RetryState(idempotent: true).with {
+        for: RetryState().with {
           $0.attemptCount = attempt
         })
       try await Task.sleep(for: delay)
     }
   }
-  fatalError("Unreachable: loop always returns or throws within 1...maxAttempts")
   // snippet.end [END swift_occ_iam_loop]
 }
 // snippet.hide [END swift_occ_iam_full]
