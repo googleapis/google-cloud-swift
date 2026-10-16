@@ -66,7 +66,6 @@ import Testing
       $0.ifGenerationMatch = 123
     }
     let keyData = Data(repeating: 0x42, count: 32)
-    let csek = try CustomerEncryptionKeyOptions(key: keyData)
     let options = try ReadObjectOptions().with {
       $0.generation = 456
       $0.preconditions = preconditions
@@ -79,7 +78,7 @@ import Testing
 
     #expect(options.generation == 456)
     #expect(options.preconditions?.ifGenerationMatch == 123)
-    #expect(options.customerEncryptionKey == csek)
+    #expect(options.customerEncryptionKey?.keyBase64 == keyData.base64EncodedString())
     #expect(options.range == ReadObjectRange(range: 0...1024)!)
     #expect(options.enableDecompressiveTranscoding == false)
     #expect(options.resumePolicy != nil)
@@ -93,7 +92,6 @@ import Testing
   }
 
   @Test func readObjectMetadataProperties() throws {
-    let timestamp = try GoogleWKT.WKTTimestamp(seconds: 1_700_000_000, nanos: 500_000_000)
     let checksums = ObjectChecksums().with {
       $0.crc32C = 0x1234_5678
       $0.md5Hash = Data([0xAA, 0xBB, 0xCC, 0xDD])
@@ -126,7 +124,8 @@ import Testing
     #expect(metadata.contentEncoding == "gzip")
     #expect(metadata.contentDisposition == "inline")
     #expect(metadata.storageClass == "STANDARD")
-    #expect(metadata.updateTime == timestamp)
+    #expect(metadata.updateTime?.seconds == 1_700_000_000)
+    #expect(metadata.updateTime?.nanos == 500_000_000)
 
     let set: Set<ReadObjectMetadata> = [metadata]
     #expect(set.contains(metadata))
