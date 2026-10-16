@@ -606,7 +606,11 @@ import NIOHTTP1
     }
 
     let client = try _HTTPClient(
-      mock, endpoint: "https://test-only.googleapis.com", credentials: mockCredentials)
+      mock,
+      endpoint: "https://test-only.googleapis.com",
+      credentials: mockCredentials,
+      clientHeader: .gapic(packageVersion: "1.2.3")
+    )
 
     let path = "/v1/projects/p/things"
     var query = [
@@ -616,7 +620,6 @@ import NIOHTTP1
     query.append(contentsOf: try encoder.encode("test-only-thing-id", prefix: "thingId"))
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.POST)
-    req.addHeader(name: _HeaderNames.apiClient, value: clientHeader)
     req.setBody(data: requestBody, ofContentType: "application/json")
     let response = try await req.rpc(ResponseType.self).get()
     #expect(response == ResponseType(name: "projects/p/things/test-only-thing-id", value: ""))
@@ -661,7 +664,11 @@ import NIOHTTP1
     }
 
     let client = try _HTTPClient(
-      mock, endpoint: "https://test-only.googleapis.com", credentials: mockCredentials)
+      mock,
+      endpoint: "https://test-only.googleapis.com",
+      credentials: mockCredentials,
+      clientHeader: .gapic(packageVersion: "1.2.3")
+    )
 
     let path = "/v1/projects/p/things/test-only-thing-id"
     let query = [
@@ -669,7 +676,6 @@ import NIOHTTP1
     ]
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
-    req.addHeader(name: _HeaderNames.apiClient, value: clientHeader)
     let response = try await req.rpc(ResponseType.self).get()
     #expect(
       response == ResponseType(name: "projects/p/things/test-only-thing-id", value: "test-value"))
@@ -713,7 +719,11 @@ import NIOHTTP1
     }
 
     let client = try _HTTPClient(
-      mock, endpoint: "https://test-only.googleapis.com", credentials: mockCredentials)
+      mock,
+      endpoint: "https://test-only.googleapis.com",
+      credentials: mockCredentials,
+      clientHeader: .gapic(packageVersion: "1.2.3")
+    )
 
     let path = "/v1/projects/p/things/test-only-thing-id"
     let query = [
@@ -721,7 +731,6 @@ import NIOHTTP1
     ]
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
-    req.addHeader(name: _HeaderNames.apiClient, value: clientHeader)
     _ = try await req.rpc(GoogleWKT.WKTEmpty.self).get()
   }
 
@@ -763,7 +772,11 @@ import NIOHTTP1
     }
 
     let client = try _HTTPClient(
-      mock, endpoint: "https://test-only.googleapis.com", credentials: mockCredentials)
+      mock,
+      endpoint: "https://test-only.googleapis.com",
+      credentials: mockCredentials,
+      clientHeader: .gapic(packageVersion: "1.2.3")
+    )
 
     let path = "/v1/projects/p/things/test-only-thing-id"
     let query = [
@@ -771,7 +784,6 @@ import NIOHTTP1
     ]
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
-    req.addHeader(name: _HeaderNames.apiClient, value: clientHeader)
     let e = await #expect(throws: GoogleGax.RequestError.self) {
       _ = try (await req.rpc(GoogleWKT.WKTEmpty.self)).get()
     }
@@ -828,7 +840,11 @@ import NIOHTTP1
     }
 
     let client = try _HTTPClient(
-      mock, endpoint: "https://test-only.googleapis.com", credentials: mockCredentials)
+      mock,
+      endpoint: "https://test-only.googleapis.com",
+      credentials: mockCredentials,
+      clientHeader: .gapic(packageVersion: "1.2.3")
+    )
 
     let path = "/invalid/path"
     let query = [
@@ -836,7 +852,6 @@ import NIOHTTP1
     ]
     var req = try await client.newRequest(path: path, query: query)
     req.setMethod(.GET)
-    req.addHeader(name: _HeaderNames.apiClient, value: clientHeader)
     let e = await #expect(throws: GoogleGax.RequestError.self) {
       _ = try (await req.rpc(GoogleWKT.WKTEmpty.self)).get()
     }
@@ -1092,16 +1107,6 @@ import NIOHTTP1
     #expect(header?.contains("gapic/1.2.3") == true)
     #expect(header?.contains("rest/") == true)
     #expect(header?.contains("gl-swift/") == true)
-  }
-
-  @Test func clientHeaderAddHeaderReplaces() async throws {
-    let endpoint = "http://localhost:1234"
-    let credentials = try Credentials(configuration: .anonymous)
-    let options = ClientOptions().with { $0.credentials = credentials }
-    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
-    var request = try await client.newRequest(path: "/test", query: [])
-    request.addHeader(name: _HeaderNames.apiClient, value: "legacy/1.0.0")
-    #expect(request.headers[_HeaderNames.apiClient] == ["legacy/1.0.0"])
   }
 
   /// A test response type.

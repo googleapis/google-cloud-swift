@@ -129,8 +129,7 @@ import Testing
       let _: Google_Protobuf_Empty = try await client.execute(
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
-        options: RequestOptions(),
-        clientHeader: ""
+        options: RequestOptions()
       )
     }
   }
@@ -171,8 +170,7 @@ import Testing
         let _: Google_Protobuf_Empty = try await client.execute(
           path: "/test.Echo/FailWithDetails",
           request: Google_Protobuf_Empty(),
-          options: RequestOptions(),
-          clientHeader: ""
+          options: RequestOptions()
         )
         Issue.record("Expected execute to throw RequestError")
       } catch let requestError as RequestError {
@@ -231,8 +229,7 @@ import Testing
         let _: Google_Protobuf_Empty = try await client.execute(
           path: "/test.Echo/FailWithoutDetails",
           request: Google_Protobuf_Empty(),
-          options: RequestOptions(),
-          clientHeader: ""
+          options: RequestOptions()
         )
         Issue.record("Expected execute to throw RequestError")
       } catch let requestError as RequestError {
@@ -265,8 +262,7 @@ import Testing
       let _: Google_Protobuf_Empty = try await client.execute(
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
-        options: RequestOptions(),
-        clientHeader: ""
+        options: RequestOptions()
       )
       Issue.record("Expected execute to fail")
     } catch let requestError as RequestError {
@@ -360,8 +356,7 @@ import Testing
       let _: Google_Protobuf_Empty = try await client.execute(
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
-        options: requestOptions,
-        clientHeader: ""
+        options: requestOptions
       )
       #expect(await collector.userProjects == [expected])
     }
@@ -486,7 +481,6 @@ import Testing
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
         options: requestOptions,
-        clientHeader: "test-client-header",
         routingParams: ["foo=bar"]
       )
       #expect(await collector.idempotencyTokens == ["token-12345"])
@@ -495,7 +489,7 @@ import Testing
       #expect(await collector.authorizations.isEmpty)
       #expect(await collector.apiKeys.isEmpty)
       #expect(await collector.userProjects.isEmpty)
-      #expect(await collector.apiClients == ["test-client-header"])
+      #expect(await collector.apiClients == [client.clientHeader.build()])
       #expect(await collector.requestParams == ["foo=bar"])
     }
   }

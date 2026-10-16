@@ -31,7 +31,7 @@ import GoogleAuth
 ///   - If ``close()`` is not explicitly called, the background connection task is automatically shut down
 ///     when the `_GRPCClient` instance is deallocated (`deinit`).
 /// - **Async Invariants & Lifetimes**:
-///   - Calls to ``execute(path:request:options:clientHeader:routingParams:)`` retain the `_GRPCClient`
+///   - Calls to ``execute(path:request:options:routingParams:)`` retain the `_GRPCClient`
 ///     instance for the duration of the asynchronous execution, so the instance will not be deallocated
 ///     while an RPC is in flight.
 ///   - Calling ``close()`` will allow active in-flight RPCs to drain, but any subsequent calls to
@@ -108,7 +108,6 @@ public final class _GRPCClient: Sendable {
   ///   - path: The gRPC method path (e.g. `"/google.storage.control.v2.StorageControl/CreateFolder"`).
   ///   - request: The protobuf request message.
   ///   - options: Request-level options (such as attempt timeout).
-  ///   - clientHeader: The `x-goog-api-client` header value. If omitted, uses the client's configured `clientHeader`.
   ///   - routingParams: A list of `key=value` routing parameters (per AIP-4222) to send in the `x-goog-request-params` header. The parameters must already be percent-encoded by the caller.
   /// - Returns: The protobuf response message.
   @concurrent
@@ -116,7 +115,6 @@ public final class _GRPCClient: Sendable {
     path: String,
     request: Req,
     options: RequestOptions,
-    clientHeader: String? = nil,
     routingParams: [String] = []
   ) async throws -> Resp {
     var callOptions = CallOptions.defaults
@@ -142,8 +140,7 @@ public final class _GRPCClient: Sendable {
       metadata.replaceOrAddString(effectiveQuotaProject, forKey: _HeaderNames.userProject)
     }
 
-    let effectiveClientHeader = clientHeader ?? self.clientHeader.build()
-    metadata.replaceOrAddString(effectiveClientHeader, forKey: GoogleGax._HeaderNames.apiClient)
+    metadata.replaceOrAddString(self.clientHeader.build(), forKey: GoogleGax._HeaderNames.apiClient)
     if !routingParams.isEmpty {
       metadata.replaceOrAddString(
         routingParams.joined(separator: "&"),
