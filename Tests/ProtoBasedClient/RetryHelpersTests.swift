@@ -18,6 +18,9 @@ import GoogleGax
 import Testing
 
 @Suite struct RetryHelpersTests {
+  // Verifies that `TestRetryPolicy` retries transient service errors—especially `INTERNAL`
+  // (HTTP 500), which strict `AIP194` treats as permanent—both as a `RetryPolicy` and as a
+  // `PollingErrorPolicy`.
   @Test func retriesTransientServiceErrors() {
     let policy = TestRetryPolicy()
     let retryState = RetryState(idempotent: false)

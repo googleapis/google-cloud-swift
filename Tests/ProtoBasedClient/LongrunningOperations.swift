@@ -74,6 +74,17 @@ public enum LongrunningOperations {
       client: client, workflowName: workflow.name, logger: logger)
   }
 
+  /// Starts a `createWorkflow` LRO and polls it to completion, retrying if the completed LRO
+  /// operation payload itself reports a transient backend failure.
+  ///
+  /// While `testRetryOptions` (via `TestRetryPolicy`) automatically retries transient HTTP/RPC
+  /// errors during the initial `createWorkflow` request and during `getOperation` polling calls,
+  /// an LRO can also fail asynchronously on the backend after starting: `getOperation` returns
+  /// HTTP 200 OK with `Operation(done: true, result: .error(status))` containing a transient code
+  /// such as `INTERNAL` or `UNAVAILABLE`. Because the HTTP poll succeeded, the client's retry and
+  /// polling error policies are not invoked, and `_PollableOperationImpl.wait()` throws the
+  /// operation's `RequestError.service` directly. This helper catches such transient LRO errors
+  /// and re-runs the operation.
   static private func createWorkflowWithRetry(
     client: WorkflowsClient,
     request: CreateWorkflowRequest,
@@ -87,15 +98,17 @@ public enum LongrunningOperations {
         return try await client.createWorkflowPollingUntilDone(
           request: request, options: testRetryOptions)
       } catch let error where error.isAlreadyExists {
-        // This error is acceptable because we retry a non-idempotent operation, the alternative is flakes in our CI.
+        // If an earlier attempt succeeded on the backend before timing out or returning a
+        // transient error, the retry with the same `workflowId` will receive `ALREADY_EXISTS`.
+        // Fetch the existing workflow to continue the test.
         logger.info("createWorkflow() returned alreadyExists; fetching existing workflow")
         return try await client.getWorkflow(
           request: .init().with { $0.name = workflowName },
           options: testRetryOptions
         )
       } catch let error where error.isTransientTestError && attempt < maxAttempts {
-        // An LRO may complete with a transient error in `Operation.error` (where the HTTP poll
-        // itself returned 200 OK). Retry the LRO after a short delay.
+        // The LRO completed with a transient error in `Operation.error` (or exhausted its per-call
+        // retry budget on a transient error). Back off briefly and retry initiating the LRO.
         lastError = error
         logger.info(
           "createWorkflow() LRO failed with transient error on attempt \(attempt): \(error); retrying"
@@ -106,6 +119,8 @@ public enum LongrunningOperations {
     throw lastError!
   }
 
+  /// Starts a `deleteWorkflow` LRO and polls it to completion, retrying if the completed LRO
+  /// operation payload reports a transient backend failure.
   static private func deleteWorkflowWithRetry(
     client: WorkflowsClient,
     workflowName: String,
@@ -122,10 +137,13 @@ public enum LongrunningOperations {
         logger.info("deleteWorkflow() was successful")
         return
       } catch let error where error.isNotFound {
-        // This error is acceptable because we retry a non-idempotent operation, the alternative is flakes in our CI.
+        // If an earlier attempt already deleted the workflow on the backend before failing or
+        // timing out, a subsequent retry will return `NOT_FOUND`. Treat this as success.
         logger.info("deleteWorkflow() returned notFound (already deleted)")
         return
       } catch let error where error.isTransientTestError && attempt < maxAttempts {
+        // The LRO completed with a transient error in `Operation.error` (or exhausted its per-call
+        // retry budget on a transient error). Back off briefly and retry initiating the deletion.
         lastError = error
         logger.info(
           "deleteWorkflow() LRO failed with transient error on attempt \(attempt): \(error); retrying"

@@ -23,6 +23,8 @@ public enum Instances {
   static public func run(_ logger: Logger) async throws {
     let projectId = try projectId()
 
+    // Use `testClientOptions` so the sample functions (which pass `options: .init()` because they
+    // double as documentation snippets) inherit resilient retry and polling policies in CI.
     let client = try InstancesClient(testClientOptions.with { $0.logger = logger })
     let name = randomVMId()
     let zone = "us-central1-a"

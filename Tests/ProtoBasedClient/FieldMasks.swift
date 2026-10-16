@@ -27,6 +27,8 @@ enum FieldMasks {
   static func run(_ logger: Logger) async throws {
     let projectId = try projectId()
     let secretId = randomSecretId()
+    // Configure the client with `testClientOptions` so that even flattened convenience overloads
+    // (such as `updateSecret(secret:updateMask:)` in `testPartialUpdate`) inherit `TestRetryPolicy`.
     let client = try SecretManagerServiceClient(testClientOptions)
 
     try await withTestSecret(
@@ -49,6 +51,7 @@ enum FieldMasks {
           options: retryOptions
         )
       } catch let error where error.isAlreadyExists {
+        // Acceptable when retrying a non-idempotent operation after the first attempt succeeded.
         version1 = try await client.getSecretVersion(
           request: .init().with { $0.name = "\(initialSecret.name)/versions/latest" },
           options: retryOptions
@@ -162,6 +165,9 @@ enum FieldMasks {
         updateMask: ["annotations"]
       )
     } catch let error where error.isFailedPreconditionOrAborted {
+      // Because `secret.etag` is set on the request, retrying `updateSecret` after a prior
+      // attempt already succeeded on the server will fail with a stale-etag precondition/aborted
+      // error. Fetch the current secret and verify the expected state below.
       logger.info("updateSecret() returned precondition/aborted; fetching current secret")
       updatedSecret = try await client.getSecret(
         request: .init().with { $0.name = secret.name },
@@ -205,6 +211,8 @@ enum FieldMasks {
         options: retryOptions
       )
     } catch let error where error.isFailedPreconditionOrAborted {
+      // If a prior retry attempt already applied the update and mutated the secret's `etag`,
+      // fetch the current secret and verify the expected fields below.
       logger.info("updateSecret() returned precondition/aborted; fetching current secret")
       updatedSecret = try await client.getSecret(
         request: .init().with { $0.name = secret.name },
@@ -241,6 +249,8 @@ enum FieldMasks {
         options: retryOptions
       )
     } catch let error where error.isFailedPreconditionOrAborted {
+      // If a prior retry attempt already cleared the annotations and mutated the secret's `etag`,
+      // fetch the current secret and verify the expected fields below.
       logger.info("updateSecret() returned precondition/aborted; fetching current secret")
       updatedSecret = try await client.getSecret(
         request: .init().with { $0.name = secret.name },
