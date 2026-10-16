@@ -92,7 +92,6 @@ public enum LongrunningOperations {
     logger: Logger,
     maxAttempts: Int = 3
   ) async throws -> Workflow {
-    var lastError: (any Error)?
     for attempt in 1...maxAttempts {
       do {
         return try await client.createWorkflowPollingUntilDone(
@@ -109,14 +108,13 @@ public enum LongrunningOperations {
       } catch let error where error.isTransientTestError && attempt < maxAttempts {
         // The LRO completed with a transient error in `Operation.error` (or exhausted its per-call
         // retry budget on a transient error). Back off briefly and retry initiating the LRO.
-        lastError = error
         logger.info(
           "createWorkflow() LRO failed with transient error on attempt \(attempt): \(error); retrying"
         )
         try await Task.sleep(for: .seconds(attempt))
       }
     }
-    throw lastError!
+    preconditionFailure("maxAttempts must be greater than 0")
   }
 
   /// Starts a `deleteWorkflow` LRO and polls it to completion, retrying if the completed LRO
@@ -127,7 +125,6 @@ public enum LongrunningOperations {
     logger: Logger,
     maxAttempts: Int = 3
   ) async throws {
-    var lastError: (any Error)?
     for attempt in 1...maxAttempts {
       do {
         try await client.deleteWorkflowPollingUntilDone(
@@ -144,13 +141,12 @@ public enum LongrunningOperations {
       } catch let error where error.isTransientTestError && attempt < maxAttempts {
         // The LRO completed with a transient error in `Operation.error` (or exhausted its per-call
         // retry budget on a transient error). Back off briefly and retry initiating the deletion.
-        lastError = error
         logger.info(
           "deleteWorkflow() LRO failed with transient error on attempt \(attempt): \(error); retrying"
         )
         try await Task.sleep(for: .seconds(attempt))
       }
     }
-    throw lastError!
+    preconditionFailure("maxAttempts must be greater than 0")
   }
 }
