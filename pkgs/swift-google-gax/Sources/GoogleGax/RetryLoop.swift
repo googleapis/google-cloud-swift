@@ -89,10 +89,11 @@ import Foundation
     var nextDelay: Duration = .zero
 
     while true {
-      var state = RetryState(idempotent: idempotent).with {
-        $0.start = loopStart
-        $0.attemptCount = attemptCount
-      }
+      var state = RetryState(
+        idempotent: idempotent,
+        start: loopStart,
+        attemptCount: attemptCount
+      )
       var remainingTime = retryPolicy.remainingTime(state: state)
 
       if let prevError = lastError {

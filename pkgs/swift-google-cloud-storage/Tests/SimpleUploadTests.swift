@@ -85,7 +85,10 @@ import Testing
     let objectName = "test-object"
     let data = Data(repeating: 1, count: 1 * 1024 * 1024)
     struct DummyError: Error {}
-    let source = MockUploadSource(data: data, readError: DummyError())
+    let source = MockUploadSource(
+      totalSize: UInt64(data.count),
+      read: [{ _ in throw DummyError() }]
+    )
 
     let client = try makeClient(registry: registry)
 
@@ -98,6 +101,7 @@ import Testing
       Issue.record(
         "Expected WriteObjectError.sourceError(DummyError), got \(String(describing: error))")
     }
+    #expect(source.isExhausted)
   }
 
   /// Tests handling of network failure (URLError) during a simple upload.
@@ -192,7 +196,17 @@ import Testing
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
     let objectName = "test-object"
-    let source = MockUploadSource(data: Data(), totalSize: 1024)
+    let source = MockUploadSource(
+      totalSize: 1024,
+      read: [
+        { _ in nil },
+        { _ in nil },
+      ],
+      seek: [
+        { offset in #expect(offset == 0) },
+        { offset in #expect(offset == 0) },
+      ]
+    )
 
     let client = try makeClient(registry: registry)
 
@@ -202,6 +216,7 @@ import Testing
     if case .internalError(let message) = error {
       #expect(message == "Failed to read data from source")
     }
+    #expect(source.isExhausted)
   }
 
   @Test func simpleUploadWithCSEKHeaders() async throws {
@@ -952,11 +967,7 @@ import Testing
       for: uploadUrl)
 
     let client = try makeClient(registry: registry)
-    let backoff = try ExponentialBackoff(
-      config: ExponentialBackoffConfig().with {
-        $0.initialDelay = .seconds(10)
-        $0.maximumDelay = .seconds(30)
-      })
+    let backoff = try ExponentialBackoff(initialDelay: .seconds(10), maximumDelay: .seconds(30))
     let options = WriteObjectOptions().with {
       $0.idempotent = true
       $0.backoffPolicy = backoff

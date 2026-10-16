@@ -149,7 +149,13 @@ import Testing
   @Test func multipartUploadStreamFewerBytesError() async throws {
     let boundary = "TestBoundaryErr"
     let metadataJson = Data("{}".utf8)
-    let source = MockUploadSource(data: Data([1, 2, 3]), totalSize: 100)
+    let source = MockUploadSource(
+      totalSize: 100,
+      read: [
+        { _ in ByteChunk(Data([1, 2, 3])) },
+        { _ in nil },
+      ]
+    )
 
     let stream = MultipartUploadStream(
       source: source,
@@ -169,6 +175,7 @@ import Testing
     } else {
       Issue.record("Expected .internalError, got \(String(describing: error))")
     }
+    #expect(source.isExhausted)
   }
 
   /// Tests that MultipartUploadStream can be iterated multiple times when using struct-based sources because the stored source is not mutated by iteration.

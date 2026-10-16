@@ -1023,6 +1023,7 @@ libraries:
           api_path: google/storage/control/v2
           module_type: grpc-client
           module_path: StorageControlProtos
+          idempotency_hook: resolveIdempotency
         - output: pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/StorageControl
           api_path: google/storage/control/v2
           module_type: convert-swift

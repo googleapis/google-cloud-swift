@@ -23,7 +23,9 @@ public enum Images {
   static public func run(_ logger: Logger) async throws {
     let projectId = try projectId()
 
-    let client = try ImagesClient(ClientOptions().with { $0.logger = logger })
+    // Use `testClientOptions` so the sample functions (which pass `options: .init()` because they
+    // double as documentation snippets) inherit resilient retry policies in CI.
+    let client = try ImagesClient(testClientOptions.with { $0.logger = logger })
     try await ImageSamples.list(client: client, projectId: projectId, logger: logger)
     try await ImageSamples.listPages(client: client, projectId: projectId, logger: logger)
   }

@@ -125,48 +125,27 @@ import Testing
     Self.assertSendable((any StorageControlProtocol).self)
   }
 
-  final class MockStorageControl: StorageControlProtocol, @unchecked Sendable {
-    var listBucketsHandler:
-      ((ListBucketsRequest, GoogleGax.RequestOptions) async throws -> ListBucketsResponse)?
-    var renameFolderHandler:
-      ((RenameFolderRequest, GoogleGax.RequestOptions) async throws -> Folder)?
-
-    func listBuckets(
-      request: ListBucketsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> ListBucketsResponse {
-      if let handler = listBucketsHandler {
-        return try await handler(request, options)
-      }
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    func renameFolderPollingUntilDone(
-      request: RenameFolderRequest, options: GoogleGax.RequestOptions
-    ) async throws -> Folder {
-      if let handler = renameFolderHandler {
-        return try await handler(request, options)
-      }
-      throw GoogleGax.RequestError.unimplemented
-    }
-  }
-
   @Test func mockPaginationDelegation() async throws {
-    let mock = MockStorageControl()
-    mock.listBucketsHandler = { req, opts in
-      var response = ListBucketsResponse()
-      if req.pageToken.isEmpty {
+    let mock = MockStorageControl(listBuckets: [
+      { req, _ in
+        #expect(req.pageToken.isEmpty)
+        var response = ListBucketsResponse()
         var b = Bucket()
         b.name = "bucket-1"
         response.buckets = [b]
         response.nextPageToken = "token-page-2"
-      } else if req.pageToken == "token-page-2" {
+        return response
+      },
+      { req, _ in
+        #expect(req.pageToken == "token-page-2")
+        var response = ListBucketsResponse()
         var b = Bucket()
         b.name = "bucket-2"
         response.buckets = [b]
         response.nextPageToken = ""
-      }
-      return response
-    }
+        return response
+      },
+    ])
 
     let client: any StorageControlProtocol = mock
     let sequence = client.listBucketsByItems(request: .init())
@@ -175,23 +154,26 @@ import Testing
       names.append(bucket.name)
     }
     #expect(names == ["bucket-1", "bucket-2"])
+    #expect(mock.isExhausted)
   }
 
   @Test func mockConvenienceOverloadDelegation() async throws {
-    let mock = MockStorageControl()
-    mock.listBucketsHandler = { req, opts in
-      #expect(req.parent == "projects/test-project")
-      var response = ListBucketsResponse()
-      var b = Bucket()
-      b.name = "bucket-1"
-      response.buckets = [b]
-      return response
-    }
+    let mock = MockStorageControl(listBuckets: [
+      { req, _ in
+        #expect(req.parent == "projects/test-project")
+        var response = ListBucketsResponse()
+        var b = Bucket()
+        b.name = "bucket-1"
+        response.buckets = [b]
+        return response
+      }
+    ])
 
     let client: any StorageControlProtocol = mock
     let response = try await client.listBuckets(
       request: .init().with { $0.parent = "projects/test-project" })
     #expect(response.buckets.count == 1)
+    #expect(mock.isExhausted)
   }
 
   @MainActor
@@ -213,39 +195,46 @@ import Testing
   }
 
   @Test func mockPaginationStreamedInDetachedTaskFromMainActor() async throws {
-    let mock = MockStorageControl()
-    mock.listBucketsHandler = { req, _ in
-      var response = ListBucketsResponse()
-      if req.pageToken.isEmpty {
+    let mock = MockStorageControl(listBuckets: [
+      { req, _ in
+        #expect(req.pageToken.isEmpty)
+        var response = ListBucketsResponse()
         var b = Bucket()
         b.name = "bucket-1"
         response.buckets = [b]
         response.nextPageToken = "token-page-2"
-      } else if req.pageToken == "token-page-2" {
+        return response
+      },
+      { req, _ in
+        #expect(req.pageToken == "token-page-2")
+        var response = ListBucketsResponse()
         var b = Bucket()
         b.name = "bucket-2"
         response.buckets = [b]
         response.nextPageToken = ""
-      }
-      return response
-    }
+        return response
+      },
+    ])
 
     let model = BucketListModel(client: mock)
     let task = await model.streamBucketNamesInBackground()
     let names = try await task.value
     #expect(names == ["bucket-1", "bucket-2"])
+    #expect(mock.isExhausted)
   }
 
   @Test func mockLROConvenienceOverloadDelegation() async throws {
-    let mock = MockStorageControl()
-    mock.renameFolderHandler = { req, opts in
-      #expect(req.name == "projects/_/buckets/b/folders/f1")
-      return Folder().with { $0.name = "projects/_/buckets/b/folders/f2" }
-    }
+    let mock = MockStorageControl(renameFolder: [
+      { req, _ in
+        #expect(req.name == "projects/_/buckets/b/folders/f1")
+        return Folder().with { $0.name = "projects/_/buckets/b/folders/f2" }
+      }
+    ])
 
     let client: any StorageControlProtocol = mock
     let folder = try await client.renameFolderPollingUntilDone(
       request: .init().with { $0.name = "projects/_/buckets/b/folders/f1" })
     #expect(folder.name == "projects/_/buckets/b/folders/f2")
+    #expect(mock.isExhausted)
   }
 }

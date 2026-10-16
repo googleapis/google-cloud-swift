@@ -25,10 +25,7 @@ public struct WKTAny: Codable, Equatable, Sendable {
   let _type: String
   let fields: WKTStruct
 
-  /// Return the type URL of the contents, or `nil` if it is unknown.
-  ///
-  /// Values without a typeURL indicate a decoding error. The contents
-  /// cannot be extracted.
+  /// The type URL that uniquely identifies the type of the serialized protocol buffer message.
   public var typeURL: String {
     get {
       return self._type
@@ -81,7 +78,13 @@ extension WKTAny: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
-    guard case var .object(fields)? = any.fields["value"] else {
+    // A nested Any uses custom JSON encoding and is packed under the "value" field as a JSON
+    // object containing "@type" and the inner message's fields. Check for the presence of
+    // "value" first before validating its JSON type and inner "@type".
+    guard let v = any.fields[Self.valueField] else {
+      throw WKTAnyError.missingValueField
+    }
+    guard case var .object(fields) = v else {
       throw WKTAnyError.invalidValueField
     }
     guard case let .string(_type)? = fields.removeValue(forKey: Self.typeURLField) else {

@@ -27,7 +27,9 @@ enum FieldMasks {
   static func run(_ logger: Logger) async throws {
     let projectId = try projectId()
     let secretId = randomSecretId()
-    let client = try SecretManagerServiceClient()
+    // Configure the client with `testClientOptions` so that even flattened convenience overloads
+    // (such as `updateSecret(secret:updateMask:)` in `testPartialUpdate`) inherit `TestRetryPolicy`.
+    let client = try SecretManagerServiceClient(testClientOptions)
 
     try await withTestSecret(
       client: client, projectId: projectId, secretId: secretId, logger: logger
@@ -37,15 +39,24 @@ enum FieldMasks {
 
       // Add a secret version so version 1 exists for version alias testing.
       logger.info("Adding secret version to \(initialSecret.name)")
-      let version1 = try await client.addSecretVersion(
-        request: .init().with {
-          $0.parent = initialSecret.name
-          $0.payload = SecretPayload().with {
-            $0.data = Data("test-data".utf8)
-          }
-        },
-        options: retryOptions
-      )
+      let version1: SecretVersion
+      do {
+        version1 = try await client.addSecretVersion(
+          request: .init().with {
+            $0.parent = initialSecret.name
+            $0.payload = SecretPayload().with {
+              $0.data = Data("test-data".utf8)
+            }
+          },
+          options: retryOptions
+        )
+      } catch let error where error.isAlreadyExists {
+        // Acceptable when retrying a non-idempotent operation after the first attempt succeeded.
+        version1 = try await client.getSecretVersion(
+          request: .init().with { $0.name = "\(initialSecret.name)/versions/latest" },
+          options: retryOptions
+        )
+      }
       logger.info("Added secret version: \(version1.name)")
       let versionNumber = Int64(version1.name.split(separator: "/").last ?? "1") ?? 1
 
@@ -142,15 +153,27 @@ enum FieldMasks {
     var candidateAnnotations = secret.annotations
     candidateAnnotations["annotation1"] = "updated1"
 
-    let updatedSecret = try await client.updateSecret(
-      secret: Secret().with {
-        $0.name = secret.name
-        $0.etag = secret.etag
-        $0.labels = candidateLabels
-        $0.annotations = candidateAnnotations
-      },
-      updateMask: ["annotations"]
-    )
+    let updatedSecret: Secret
+    do {
+      updatedSecret = try await client.updateSecret(
+        secret: Secret().with {
+          $0.name = secret.name
+          $0.etag = secret.etag
+          $0.labels = candidateLabels
+          $0.annotations = candidateAnnotations
+        },
+        updateMask: ["annotations"]
+      )
+    } catch let error where error.isFailedPreconditionOrAborted {
+      // Because `secret.etag` is set on the request, retrying `updateSecret` after a prior
+      // attempt already succeeded on the server will fail with a stale-etag precondition/aborted
+      // error. Fetch the current secret and verify the expected state below.
+      logger.info("updateSecret() returned precondition/aborted; fetching current secret")
+      updatedSecret = try await client.getSecret(
+        request: .init().with { $0.name = secret.name },
+        options: retryOptions
+      )
+    }
     logger.info("Result of updating annotations only: \(updatedSecret)")
 
     #expect(updatedSecret.annotations["annotation1"] == "updated1")
@@ -172,19 +195,30 @@ enum FieldMasks {
     var nextLabels = secret.labels
     nextLabels["key1"] = "value1-updated"
 
-    let updatedSecret = try await client.updateSecret(
-      request: .init().with {
-        $0.updateMask = ["labels", "version_aliases"]
-        $0.secret = Secret().with {
-          $0.name = secret.name
-          $0.etag = secret.etag
-          $0.labels = nextLabels
-          $0.versionAliases = ["alias1": versionNumber]
-          $0.annotations = ["annotation1": "SHOULD_NOT_CHANGE"]
-        }
-      },
-      options: retryOptions
-    )
+    let updatedSecret: Secret
+    do {
+      updatedSecret = try await client.updateSecret(
+        request: .init().with {
+          $0.updateMask = ["labels", "version_aliases"]
+          $0.secret = Secret().with {
+            $0.name = secret.name
+            $0.etag = secret.etag
+            $0.labels = nextLabels
+            $0.versionAliases = ["alias1": versionNumber]
+            $0.annotations = ["annotation1": "SHOULD_NOT_CHANGE"]
+          }
+        },
+        options: retryOptions
+      )
+    } catch let error where error.isFailedPreconditionOrAborted {
+      // If a prior retry attempt already applied the update and mutated the secret's `etag`,
+      // fetch the current secret and verify the expected fields below.
+      logger.info("updateSecret() returned precondition/aborted; fetching current secret")
+      updatedSecret = try await client.getSecret(
+        request: .init().with { $0.name = secret.name },
+        options: retryOptions
+      )
+    }
     logger.info("Result of updating labels and version_aliases: \(updatedSecret)")
 
     #expect(updatedSecret.labels["key1"] == "value1-updated")
@@ -201,17 +235,28 @@ enum FieldMasks {
     logger: Logger
   ) async throws -> Secret {
     logger.info("Testing update with explicit WKTFieldMask(paths:) to clear annotations")
-    let updatedSecret = try await client.updateSecret(
-      request: .init().with {
-        $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["annotations"])
-        $0.secret = Secret().with {
-          $0.name = secret.name
-          $0.etag = secret.etag
-          $0.annotations = [:]
-        }
-      },
-      options: retryOptions
-    )
+    let updatedSecret: Secret
+    do {
+      updatedSecret = try await client.updateSecret(
+        request: .init().with {
+          $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["annotations"])
+          $0.secret = Secret().with {
+            $0.name = secret.name
+            $0.etag = secret.etag
+            $0.annotations = [:]
+          }
+        },
+        options: retryOptions
+      )
+    } catch let error where error.isFailedPreconditionOrAborted {
+      // If a prior retry attempt already cleared the annotations and mutated the secret's `etag`,
+      // fetch the current secret and verify the expected fields below.
+      logger.info("updateSecret() returned precondition/aborted; fetching current secret")
+      updatedSecret = try await client.getSecret(
+        request: .init().with { $0.name = secret.name },
+        options: retryOptions
+      )
+    }
     logger.info("Result of resetting annotations: \(updatedSecret)")
 
     #expect(updatedSecret.annotations.isEmpty)

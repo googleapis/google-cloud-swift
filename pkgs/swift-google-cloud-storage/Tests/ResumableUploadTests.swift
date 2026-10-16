@@ -120,7 +120,11 @@ import Testing
     let objectName = "test-object"
     let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     struct DummyError: Error {}
-    let source = MockUploadSource(data: data, readError: DummyError())
+    let source = MockUploadSource(
+      totalSize: UInt64(data.count),
+      read: [{ _ in throw DummyError() }],
+      seek: [{ offset in #expect(offset == 0) }]
+    )
 
     let startUrl = registry.url(
       "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
@@ -143,6 +147,7 @@ import Testing
       Issue.record(
         "Expected WriteObjectError.sourceError(DummyError), got \(String(describing: error))")
     }
+    #expect(source.isExhausted)
   }
 
   /// Tests error propagation when network connection fails during resumable session initialization.
@@ -312,7 +317,15 @@ import Testing
     let bucket = "test-bucket"
     let data = Data(repeating: 1, count: 10 * 1024 * 1024)  // 10MiB
     struct DummyError: Error {}
-    let source = MockUploadSource(data: data, seekError: DummyError())
+    let source = MockUploadSource(
+      totalSize: UInt64(data.count),
+      seek: [
+        { offset in
+          #expect(offset == 0)
+          throw DummyError()
+        }
+      ]
+    )
 
     let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=test-id")
 
@@ -332,6 +345,7 @@ import Testing
     } else {
       Issue.record("Expected .sourceError(DummyError), got \(String(describing: error))")
     }
+    #expect(source.isExhausted)
   }
 
   /// Tests a multi-chunk resumable upload (20MB payload) streaming progress updates and uploading across multiple intermediate 308 Range acknowledgments.
@@ -2822,11 +2836,7 @@ import Testing
       for: sessionInitUrl)
 
     let client = try makeClient(registry: registry)
-    let backoff = try ExponentialBackoff(
-      config: ExponentialBackoffConfig().with {
-        $0.initialDelay = .seconds(10)
-        $0.maximumDelay = .seconds(30)
-      })
+    let backoff = try ExponentialBackoff(initialDelay: .seconds(10), maximumDelay: .seconds(30))
     let options = WriteObjectOptions().with {
       $0.backoffPolicy = backoff
     }

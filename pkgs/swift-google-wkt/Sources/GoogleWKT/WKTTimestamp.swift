@@ -352,10 +352,15 @@ extension WKTTimestamp: _AnyPackable {
     if Self._anyTypeUrl != any._type {
       throw WKTAnyError.mismatchedTypeURL
     }
-    guard case let .string(v)? = any.fields[WKTAny.valueField] else {
+    // Timestamp uses custom JSON encoding and is packed under the "value" field as an RFC 3339
+    // JSON string. Check for the presence of "value" first before validating that it is a string.
+    guard let v = any.fields[WKTAny.valueField] else {
+      throw WKTAnyError.missingValueField
+    }
+    guard case let .string(s) = v else {
       throw WKTAnyError.invalidValueField
     }
-    self = try Self(fromString: v)
+    self = try Self(fromString: s)
   }
 
   /// Packs this `WKTTimestamp` into a `WKTStruct` representation.

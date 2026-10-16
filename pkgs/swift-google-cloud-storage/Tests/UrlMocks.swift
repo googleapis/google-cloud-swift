@@ -58,55 +58,6 @@ struct RecordedRequest: Sendable {
   }
 }
 
-/// Mock WriteObjectSource that can throw errors
-struct MockUploadSource: SeekableWriteObjectSource {
-  var data: ByteChunk
-  var totalSize: UInt64?
-  var readError: (any Error)?
-  var seekError: (any Error)?
-  private var offset: UInt64 = 0
-
-  init(
-    data: ByteChunk, totalSize: UInt64? = nil, readError: (any Error)? = nil,
-    seekError: (any Error)? = nil
-  ) {
-    self.data = data
-    self.totalSize = totalSize ?? UInt64(data.count)
-    self.readError = readError
-    self.seekError = seekError
-  }
-
-  init(
-    data: Data, totalSize: UInt64? = nil, readError: (any Error)? = nil,
-    seekError: (any Error)? = nil
-  ) {
-    self.init(
-      data: ByteChunk(data), totalSize: totalSize, readError: readError,
-      seekError: seekError)
-  }
-
-  mutating func read(maxBytes: Int) async throws -> ByteChunk? {
-    if let error = readError {
-      throw error
-    }
-    guard offset < UInt64(data.count) else { return nil }
-    let end = min(offset + UInt64(maxBytes), UInt64(data.count))
-    let chunk = data.subdata(in: Int(offset)..<Int(end))
-    offset = end
-    return chunk
-  }
-
-  mutating func seek(to offset: UInt64) async throws {
-    if let error = seekError {
-      throw error
-    }
-    guard offset <= UInt64(data.count) else {
-      throw WriteObjectError.internalError("Invalid seek offset: \(offset)")
-    }
-    self.offset = offset
-  }
-}
-
 func makeObjectJSON(
   name: String = "test-object",
   bucket: String = "test-bucket",

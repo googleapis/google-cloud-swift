@@ -23,11 +23,9 @@ public func configureRetries(bucketId: String) async throws {
   // [0, 3] seconds, then [0, 9] seconds, etc. The backoff time never grows
   // larger than 1 minute.
   let backoffPolicy = try ExponentialBackoff(
-    config: ExponentialBackoffConfig().with {
-      $0.initialDelay = .seconds(1)
-      $0.maximumDelay = .seconds(60)
-      $0.scaling = 3.0
-    }
+    initialDelay: .seconds(1),
+    maximumDelay: .seconds(60),
+    scaling: 3.0
   )
 
   let control = try StorageControlClient(
@@ -50,11 +48,9 @@ public func configureRetries(bucketId: String) async throws {
   // [0, 3] seconds, then [0, 9] seconds, etc. The backoff time never grows
   // larger than 1 minute.
   let dataBackoffPolicy = try ExponentialBackoff(
-    config: ExponentialBackoffConfig().with {
-      $0.initialDelay = .seconds(1)
-      $0.maximumDelay = .seconds(60)
-      $0.scaling = 3.0
-    }
+    initialDelay: .seconds(1),
+    maximumDelay: .seconds(60),
+    scaling: 3.0
   )
 
   let objectName = "hello-world.txt"

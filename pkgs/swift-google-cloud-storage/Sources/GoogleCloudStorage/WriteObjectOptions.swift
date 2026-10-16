@@ -162,7 +162,7 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
 }
 
 /// Preconditions for GCS operations.
-public struct StoragePreconditions: Sendable {
+public struct StoragePreconditions: Sendable, Hashable, Equatable {
   /// Makes the operation succeed only if the object's current generation matches this value.
   public var ifGenerationMatch: Int64?
 

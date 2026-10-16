@@ -50,23 +50,6 @@ import Testing
     Self.assertSendable(type(of: holder))
   }
 
-  final class MockStorage: StorageProtocol, @unchecked Sendable {
-    var writeSeekableHandler:
-      ((any SeekableWriteObjectSource, String, String, WriteObjectOptions) async throws -> Object)?
-
-    func writeObject(
-      _ source: some SeekableWriteObjectSource,
-      to bucket: String,
-      as objectName: String,
-      options: WriteObjectOptions
-    ) async throws -> Object {
-      if let handler = writeSeekableHandler {
-        return try await handler(source, bucket, objectName, options)
-      }
-      throw GoogleGax.RequestError.unimplemented
-    }
-  }
-
   @Test func mockStorageDefaultImplementationsThrowUnimplemented() async throws {
     let mock = MockStorage()
     let client: any StorageProtocol = mock
@@ -100,51 +83,23 @@ import Testing
     await #expect(throws: GoogleGax.RequestError.self) {
       for try await _ in readHandle.body {}
     }
-  }
-
-  struct MockReadObjectHandle: ReadObjectHandleProtocol {
-    var metadata: ReadObjectMetadata
-    var chunks: [ByteChunk]
-
-    var body: any AsyncSequence<ByteChunk, any Error> & Sendable {
-      let chunks = self.chunks
-      return AsyncThrowingStream { continuation in
-        for chunk in chunks {
-          continuation.yield(chunk)
-        }
-        continuation.finish()
-      }
-    }
-  }
-
-  final class MockReadableStorage: StorageProtocol, @unchecked Sendable {
-    var readHandler: ((String, String, ReadObjectOptions) -> any ReadObjectHandleProtocol)?
-
-    func readObject(
-      from bucket: String,
-      object: String,
-      options: ReadObjectOptions
-    ) -> any ReadObjectHandleProtocol {
-      if let handler = readHandler {
-        return handler(bucket, object, options)
-      }
-      return MockReadObjectHandle(metadata: .init(), chunks: [])
-    }
+    #expect(mock.isExhausted)
   }
 
   @Test func mockStorageReadObjectDelegation() async throws {
-    let mock = MockReadableStorage()
-    mock.readHandler = { bucket, object, options in
-      let metadata = ReadObjectMetadata().with {
-        $0.bucket = bucket
-        $0.name = object
-        $0.size = 11
+    let mock = MockStorage(read: [
+      { bucket, object, _ in
+        let metadata = ReadObjectMetadata().with {
+          $0.bucket = bucket
+          $0.name = object
+          $0.size = 11
+        }
+        return MockReadObjectHandle(
+          metadata: metadata,
+          chunks: [ByteChunk(Data("hello ".utf8)), ByteChunk(Data("world".utf8))]
+        )
       }
-      return MockReadObjectHandle(
-        metadata: metadata,
-        chunks: [ByteChunk(Data("hello ".utf8)), ByteChunk(Data("world".utf8))]
-      )
-    }
+    ])
 
     let client: any StorageProtocol = mock
     let download = client.readObject(from: "test-bucket", object: "test-object")
@@ -158,26 +113,40 @@ import Testing
       received.append(chunk.data)
     }
     #expect(received == Data("hello world".utf8))
+    #expect(mock.isExhausted)
   }
 
   @Test func mockStorageConvenienceOverloadDelegation() async throws {
-    let mock = MockStorage()
-    mock.writeSeekableHandler = { source, bucket, objectName, options in
-      if let bytesSource = source as? BytesSource {
-        #expect(Data(bytesSource.buffer) == Data("hello".utf8))
-        #expect(bucket == "test-bucket")
-        #expect(objectName == "test-object")
-      } else if let fileSource = source as? FileSource {
-        #expect(fileSource.fileURL.lastPathComponent == "test-upload.txt")
-        #expect(bucket == "test-bucket")
-        #expect(objectName == "test-file-object")
-      } else {
-        Issue.record("Unexpected source type: \(type(of: source))")
+    let expectBytes: MockStorage.WriteSeekableHandler = { source, bucket, objectName, _ in
+      guard let bytesSource = source as? BytesSource else {
+        Issue.record("Expected BytesSource, got \(type(of: source))")
+        return Object()
       }
+      #expect(Data(bytesSource.buffer) == Data("hello".utf8))
+      #expect(bucket == "test-bucket")
+      #expect(objectName == "test-object")
       var obj = Object()
       obj.name = objectName
       return obj
     }
+    let expectFile: MockStorage.WriteSeekableHandler = { source, bucket, objectName, _ in
+      guard let fileSource = source as? FileSource else {
+        Issue.record("Expected FileSource, got \(type(of: source))")
+        return Object()
+      }
+      #expect(fileSource.fileURL.lastPathComponent == "test-upload.txt")
+      #expect(bucket == "test-bucket")
+      #expect(objectName == "test-file-object")
+      var obj = Object()
+      obj.name = objectName
+      return obj
+    }
+    let mock = MockStorage(writeSeekable: [
+      expectBytes,
+      expectFile,
+      expectBytes,
+      expectFile,
+    ])
 
     let client: any StorageProtocol = mock
     let dataResult = try await client.writeObject(
@@ -199,39 +168,25 @@ import Testing
       #expect(r2.name == "test-file-object")
     }
     try await uploadGeneric(mock)
-  }
-
-  final class UnseekableMockStorage: StorageProtocol, @unchecked Sendable {
-    var writeHandler:
-      ((any WriteObjectSource, String, String, WriteObjectOptions) async throws -> Object)?
-
-    func writeObject(
-      _ source: some WriteObjectSource,
-      to bucket: String,
-      as objectName: String,
-      options: WriteObjectOptions
-    ) async throws -> Object {
-      if let handler = writeHandler {
-        return try await handler(source, bucket, objectName, options)
-      }
-      throw GoogleGax.RequestError.unimplemented
-    }
+    #expect(mock.isExhausted)
   }
 
   @Test func mockStorageSeekableDelegatesToWriteObjectSourceByDefault() async throws {
-    let mock = UnseekableMockStorage()
-    mock.writeHandler = { _, bucket, objectName, _ in
-      var obj = Object()
-      obj.bucket = bucket
-      obj.name = objectName
-      return obj
-    }
+    let mock = UnseekableMockStorage(write: [
+      { _, bucket, objectName, _ in
+        var obj = Object()
+        obj.bucket = bucket
+        obj.name = objectName
+        return obj
+      }
+    ])
 
     let client: any StorageProtocol = mock
     let result = try await client.writeObject(
       Data("hello".utf8), to: "fallback-bucket", as: "fallback-object")
     #expect(result.bucket == "fallback-bucket")
     #expect(result.name == "fallback-object")
+    #expect(mock.isExhausted)
   }
 
   @Test(arguments: [

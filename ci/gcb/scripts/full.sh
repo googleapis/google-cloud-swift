@@ -52,7 +52,7 @@ mapfile -t packages < <(find . \( -name Sources -o -name .build -o -name .build-
 if [[ "${trigger_name}" != gcb-pm-* && "${shard_count}" -le 1 ]]; then
     echo "--- Building a subset because this is a PR (trigger: ${trigger_name:-none})"
     # Add some standard packages.
-    packages=('.')
+    packages=('.' './guide')
     mapfile -t always < <(find pkgs -type f -name 'Package.swift' | xargs -I{} dirname {} | sort)
     packages+=("${always[@]}")
     if [[ -d .git ]]; then
