@@ -28,6 +28,7 @@ extension Clients {
       self.inner = try GoogleGax._HTTPClient(
         from: options,
         withDefaultEndpoint: "https://apigeeconnect.googleapis.com",
+        clientHeader: Clients.clientHeader
       )
     }
   }

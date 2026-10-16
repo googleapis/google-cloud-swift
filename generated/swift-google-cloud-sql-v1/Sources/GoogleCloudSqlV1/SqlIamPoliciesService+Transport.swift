@@ -29,6 +29,7 @@
         self.inner = try GoogleGax._HTTPClient(
           from: options,
           withDefaultEndpoint: "https://sqladmin.googleapis.com",
+          clientHeader: Clients.clientHeader
         )
       }
     }

@@ -129,8 +129,7 @@ import Testing
       let _: Google_Protobuf_Empty = try await client.execute(
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
-        options: RequestOptions(),
-        clientHeader: ""
+        options: RequestOptions()
       )
     }
   }
@@ -171,8 +170,7 @@ import Testing
         let _: Google_Protobuf_Empty = try await client.execute(
           path: "/test.Echo/FailWithDetails",
           request: Google_Protobuf_Empty(),
-          options: RequestOptions(),
-          clientHeader: ""
+          options: RequestOptions()
         )
         Issue.record("Expected execute to throw RequestError")
       } catch let requestError as RequestError {
@@ -231,8 +229,7 @@ import Testing
         let _: Google_Protobuf_Empty = try await client.execute(
           path: "/test.Echo/FailWithoutDetails",
           request: Google_Protobuf_Empty(),
-          options: RequestOptions(),
-          clientHeader: ""
+          options: RequestOptions()
         )
         Issue.record("Expected execute to throw RequestError")
       } catch let requestError as RequestError {
@@ -265,8 +262,7 @@ import Testing
       let _: Google_Protobuf_Empty = try await client.execute(
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
-        options: RequestOptions(),
-        clientHeader: ""
+        options: RequestOptions()
       )
       Issue.record("Expected execute to fail")
     } catch let requestError as RequestError {
@@ -360,8 +356,7 @@ import Testing
       let _: Google_Protobuf_Empty = try await client.execute(
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
-        options: requestOptions,
-        clientHeader: ""
+        options: requestOptions
       )
       #expect(await collector.userProjects == [expected])
     }
@@ -486,7 +481,6 @@ import Testing
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
         options: requestOptions,
-        clientHeader: "test-client-header",
         routingParams: ["foo=bar"]
       )
       #expect(await collector.idempotencyTokens == ["token-12345"])
@@ -495,8 +489,173 @@ import Testing
       #expect(await collector.authorizations.isEmpty)
       #expect(await collector.apiKeys.isEmpty)
       #expect(await collector.userProjects.isEmpty)
-      #expect(await collector.apiClients == ["test-client-header"])
+      #expect(await collector.apiClients == [client.clientHeader.build()])
       #expect(await collector.requestParams == ["foo=bar"])
+    }
+  }
+
+  @Test func executeDefaultClientHeader() async throws {
+    actor MetadataCollector {
+      var apiClients: [String] = []
+      func record(_ values: [String]) {
+        apiClients = values
+      }
+    }
+    let collector = MetadataCollector()
+
+    struct InspectingEchoService: RegistrableRPCService {
+      let collector: MetadataCollector
+      func registerMethods<Transport: ServerTransport>(with router: inout RPCRouter<Transport>) {
+        router.registerHandler(
+          forMethod: MethodDescriptor(
+            service: ServiceDescriptor(package: "test", service: "Echo"),
+            method: "Echo"
+          ),
+          deserializer: ProtobufDeserializer<Google_Protobuf_Empty>(),
+          serializer: ProtobufSerializer<Google_Protobuf_Empty>()
+        ) { request, _ in
+          let values = request.metadata[stringValues: GoogleGax._HeaderNames.apiClient].map {
+            String($0)
+          }
+          await collector.record(values)
+          return StreamingServerResponse(metadata: [:]) { writer in
+            try await writer.write(Google_Protobuf_Empty())
+            return [:]
+          }
+        }
+      }
+    }
+
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [InspectingEchoService(collector: collector)]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await server.serve()
+      }
+
+      let listeningAddress = try await server.listeningAddress?.ipv4
+      guard let port = listeningAddress?.port else {
+        Issue.record("Failed to get listening port")
+        server.beginGracefulShutdown()
+        return
+      }
+
+      let endpoint = "http://127.0.0.1:\(port)"
+      var clientOptions = ClientOptions()
+      clientOptions.endpoint = endpoint
+      clientOptions.credentials = try Credentials(configuration: .anonymous)
+
+      let client = try _GRPCClient(from: clientOptions, withDefaultEndpoint: endpoint)
+      defer {
+        client.close()
+        server.beginGracefulShutdown()
+      }
+
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+      let recorded = await collector.apiClients
+      #expect(recorded.count == 1)
+      if let header = recorded.first {
+        #expect(header.contains("gl-swift/"))
+        #expect(header.contains("gax/"))
+        #expect(header.contains("grpc/"))
+        #expect(header.contains("pb/"))
+        #expect(!header.contains("rest/"))
+      }
+    }
+  }
+
+  @Test func executeClientHeaderConfiguredAtInit() async throws {
+    actor MetadataCollector {
+      var apiClients: [String] = []
+      func record(_ values: [String]) {
+        apiClients = values
+      }
+    }
+    let collector = MetadataCollector()
+
+    struct InspectingEchoService: RegistrableRPCService {
+      let collector: MetadataCollector
+      func registerMethods<Transport: ServerTransport>(with router: inout RPCRouter<Transport>) {
+        router.registerHandler(
+          forMethod: MethodDescriptor(
+            service: ServiceDescriptor(package: "test", service: "Echo"),
+            method: "Echo"
+          ),
+          deserializer: ProtobufDeserializer<Google_Protobuf_Empty>(),
+          serializer: ProtobufSerializer<Google_Protobuf_Empty>()
+        ) { request, _ in
+          let values = request.metadata[stringValues: GoogleGax._HeaderNames.apiClient].map {
+            String($0)
+          }
+          await collector.record(values)
+          return StreamingServerResponse(metadata: [:]) { writer in
+            try await writer.write(Google_Protobuf_Empty())
+            return [:]
+          }
+        }
+      }
+    }
+
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [InspectingEchoService(collector: collector)]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await server.serve()
+      }
+
+      let listeningAddress = try await server.listeningAddress?.ipv4
+      guard let port = listeningAddress?.port else {
+        Issue.record("Failed to get listening port")
+        server.beginGracefulShutdown()
+        return
+      }
+
+      let endpoint = "http://127.0.0.1:\(port)"
+      var clientOptions = ClientOptions()
+      clientOptions.endpoint = endpoint
+      clientOptions.credentials = try Credentials(configuration: .anonymous)
+
+      let client = try _GRPCClient(
+        from: clientOptions,
+        withDefaultEndpoint: endpoint,
+        clientHeader: .gapic(packageVersion: "2.3.4")
+      )
+      defer {
+        client.close()
+        server.beginGracefulShutdown()
+      }
+
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions()
+      )
+      let recorded = await collector.apiClients
+      #expect(recorded.count == 1)
+      if let header = recorded.first {
+        #expect(header.contains("gapic/2.3.4"))
+        #expect(header.contains("gl-swift/"))
+        #expect(header.contains("gax/"))
+        #expect(header.contains("grpc/"))
+        #expect(header.contains("pb/"))
+        #expect(!header.contains("rest/"))
+      }
     }
   }
 }

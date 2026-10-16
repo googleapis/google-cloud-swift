@@ -30,7 +30,8 @@ extension Clients {
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
       self.inner = try GoogleGaxGRPC._GRPCClient(
         from: options,
-        withDefaultEndpoint: "https://storage.googleapis.com"
+        withDefaultEndpoint: "https://storage.googleapis.com",
+        clientHeader: Clients.clientHeader
       )
     }
 
@@ -59,7 +60,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/DeleteBucket",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
     }
@@ -85,7 +85,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/GetBucket",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try Bucket(proto: protoResponse)
@@ -118,7 +117,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/CreateBucket",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try Bucket(proto: protoResponse)
@@ -146,7 +144,6 @@ extension Clients {
           path: "/google.storage.v2.Storage/ListBuckets",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ListBucketsResponse(proto: protoResponse)
@@ -173,7 +170,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/LockBucketRetentionPolicy",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try Bucket(proto: protoResponse)
@@ -200,7 +196,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/UpdateBucket",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try Bucket(proto: protoResponse)
@@ -227,7 +222,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/ComposeObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try Object(proto: protoResponse)
@@ -254,7 +248,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/DeleteObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
     }
@@ -280,7 +273,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/RestoreObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try Object(proto: protoResponse)
@@ -307,7 +299,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/GetObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try Object(proto: protoResponse)
@@ -334,7 +325,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/UpdateObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try Object(proto: protoResponse)
@@ -362,7 +352,6 @@ extension Clients {
           path: "/google.storage.v2.Storage/ListObjects",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ListObjectsResponse(proto: protoResponse)
@@ -399,7 +388,6 @@ extension Clients {
           path: "/google.storage.v2.Storage/RewriteObject",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try RewriteResponse(proto: protoResponse)
@@ -426,7 +414,6 @@ extension Clients {
         path: "/google.storage.v2.Storage/MoveObject",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try Object(proto: protoResponse)

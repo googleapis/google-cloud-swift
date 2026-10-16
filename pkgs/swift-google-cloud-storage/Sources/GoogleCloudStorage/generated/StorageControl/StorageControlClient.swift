@@ -37,7 +37,8 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     }
     let sharedGrpcClient = try GoogleGaxGRPC._GRPCClient(
       from: options,
-      withDefaultEndpoint: "https://storage.googleapis.com"
+      withDefaultEndpoint: "https://storage.googleapis.com",
+      clientHeader: Clients.clientHeader
     )
 
     var storageStub: any Clients.StorageStub = Clients.StorageTransport(sharedGrpcClient)

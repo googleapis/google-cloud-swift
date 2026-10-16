@@ -1115,6 +1115,9 @@ libraries:
             - policy.proto
             - options.proto
           module_path: StorageControlProtos
+        - output: pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/version
+          api_path: ""
+          module_type: package-version
       name_overrides:
         .google.storage.v2.Storage: StorageControl
       lro_any_converter: StorageControlLROAnyConverter
