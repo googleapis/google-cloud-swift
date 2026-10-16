@@ -52,7 +52,6 @@ public final class _GRPCClient: Sendable {
     self.credentials = try options.credentials ?? GoogleAuth.Credentials()
     self.quotaProject = options.quotaProject
     var header = clientHeader
-    header.removeToken(.rest)
     header.setToken(.grpc, version: PackageVersion.version)
     header.setToken(.protobuf, version: SwiftProtobuf.Version.versionString)
     self.clientHeader = header

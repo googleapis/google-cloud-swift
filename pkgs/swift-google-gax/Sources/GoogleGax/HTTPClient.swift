@@ -46,9 +46,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
     )
     self.inner = HTTPClientHolder()
     var header = clientHeader
-    if header[.rest] == nil && header[.grpc] == nil {
-      header.setToken(.rest, version: gaxVersion())
-    }
+    header.setToken(.rest, version: gaxVersion())
     self.clientHeader = header
   }
 
@@ -71,9 +69,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
       defaultEndpoint: defaultEndpoint ?? endpoint
     )
     var header = clientHeader
-    if header[.rest] == nil && header[.grpc] == nil {
-      header.setToken(.rest, version: gaxVersion())
-    }
+    header.setToken(.rest, version: gaxVersion())
     self.clientHeader = header
   }
 

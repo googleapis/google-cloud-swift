@@ -100,25 +100,6 @@ public struct _ApiClientHeader: Sendable, Equatable, CustomStringConvertible {
     self.tokens[token.normalized] = version
   }
 
-  /// Removes a token.
-  public mutating func removeToken(_ token: Token) {
-    self.tokens.removeValue(forKey: token.normalized)
-  }
-
-  /// Accesses the version string associated with the given token.
-  public subscript(token: Token) -> String? {
-    get {
-      self.tokens[token.normalized]
-    }
-    set {
-      if let newValue {
-        self.tokens[token.normalized] = newValue
-      } else {
-        self.tokens.removeValue(forKey: token.normalized)
-      }
-    }
-  }
-
   /// Formats the header into its canonical space-separated string representation.
   public func build() -> String {
     self.tokens
