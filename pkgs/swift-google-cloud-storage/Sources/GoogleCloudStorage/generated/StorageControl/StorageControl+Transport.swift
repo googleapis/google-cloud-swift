@@ -33,7 +33,8 @@ extension Clients {
     public init(_ options: GoogleGax.ClientOptions = .init()) throws {
       self.inner = try GoogleGaxGRPC._GRPCClient(
         from: options,
-        withDefaultEndpoint: "https://storage.googleapis.com"
+        withDefaultEndpoint: "https://storage.googleapis.com",
+        clientHeader: Clients.clientHeader
       )
     }
 
@@ -63,7 +64,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/CreateFolder",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try Folder(proto: protoResponse)
@@ -92,7 +92,6 @@ extension Clients {
         path: "/google.storage.control.v2.StorageControl/DeleteFolder",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
     }
@@ -121,7 +120,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/GetFolder",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try Folder(proto: protoResponse)
@@ -149,7 +147,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/ListFolders",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ListFoldersResponse(proto: protoResponse)
@@ -179,7 +176,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/RenameFolder",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
@@ -209,7 +205,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/DeleteFolderRecursive",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
@@ -239,7 +234,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/GetStorageLayout",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try StorageLayout(proto: protoResponse)
@@ -267,7 +261,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/CreateManagedFolder",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ManagedFolder(proto: protoResponse)
@@ -296,7 +289,6 @@ extension Clients {
         path: "/google.storage.control.v2.StorageControl/DeleteManagedFolder",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
     }
@@ -325,7 +317,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/GetManagedFolder",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ManagedFolder(proto: protoResponse)
@@ -353,7 +344,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/ListManagedFolders",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ListManagedFoldersResponse(proto: protoResponse)
@@ -383,7 +373,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/UpdateManagedFolder",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ManagedFolder(proto: protoResponse)
@@ -411,7 +400,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/CreateAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
@@ -441,7 +429,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/UpdateAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
@@ -471,7 +458,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/DisableAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try AnywhereCache(proto: protoResponse)
@@ -501,7 +487,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/PauseAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try AnywhereCache(proto: protoResponse)
@@ -531,7 +516,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/ResumeAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try AnywhereCache(proto: protoResponse)
@@ -561,7 +545,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/GetAnywhereCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try AnywhereCache(proto: protoResponse)
@@ -589,7 +572,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/ListAnywhereCaches",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ListAnywhereCachesResponse(proto: protoResponse)
@@ -617,7 +599,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/CreateRapidCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
@@ -647,7 +628,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/UpdateRapidCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
@@ -677,7 +657,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/DisableRapidCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)
@@ -707,7 +686,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/GetRapidCache",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try RapidCache(proto: protoResponse)
@@ -735,7 +713,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/ListRapidCaches",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ListRapidCachesResponse(proto: protoResponse)
@@ -763,7 +740,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/GetProjectIntelligenceConfig",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try IntelligenceConfig(proto: protoResponse)
@@ -791,7 +767,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/UpdateProjectIntelligenceConfig",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try IntelligenceConfig(proto: protoResponse)
@@ -819,7 +794,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/GetFolderIntelligenceConfig",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try IntelligenceConfig(proto: protoResponse)
@@ -847,7 +821,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/UpdateFolderIntelligenceConfig",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try IntelligenceConfig(proto: protoResponse)
@@ -875,7 +848,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/GetOrganizationIntelligenceConfig",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try IntelligenceConfig(proto: protoResponse)
@@ -903,7 +875,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/UpdateOrganizationIntelligenceConfig",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try IntelligenceConfig(proto: protoResponse)
@@ -938,7 +909,6 @@ extension Clients {
         path: "/google.storage.control.v2.StorageControl/GetIamPolicy",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try GoogleIAMV1.Policy(proto: protoResponse)
@@ -973,7 +943,6 @@ extension Clients {
         path: "/google.storage.control.v2.StorageControl/SetIamPolicy",
         request: protoRequest,
         options: options,
-        clientHeader: Clients.clientHeader,
         routingParams: routingParams
       )
       return try GoogleIAMV1.Policy(proto: protoResponse)
@@ -1016,7 +985,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/TestIamPermissions",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try GoogleIAMV1.TestIamPermissionsResponse(proto: protoResponse)
@@ -1044,7 +1012,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/GetIntelligenceFinding",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try IntelligenceFinding(proto: protoResponse)
@@ -1073,7 +1040,6 @@ extension Clients {
             path: "/google.storage.control.v2.StorageControl/ListIntelligenceFindings",
             request: protoRequest,
             options: options,
-            clientHeader: Clients.clientHeader,
             routingParams: routingParams
           )
       return try ListIntelligenceFindingsResponse(proto: protoResponse)
@@ -1102,7 +1068,6 @@ extension Clients {
             path: "/google.storage.control.v2.StorageControl/SummarizeIntelligenceFindings",
             request: protoRequest,
             options: options,
-            clientHeader: Clients.clientHeader,
             routingParams: routingParams
           )
       return try SummarizeIntelligenceFindingsResponse(proto: protoResponse)
@@ -1131,7 +1096,6 @@ extension Clients {
             path: "/google.storage.control.v2.StorageControl/GetIntelligenceFindingRevision",
             request: protoRequest,
             options: options,
-            clientHeader: Clients.clientHeader,
             routingParams: routingParams
           )
       return try IntelligenceFindingRevision(proto: protoResponse)
@@ -1160,7 +1124,6 @@ extension Clients {
             path: "/google.storage.control.v2.StorageControl/ListIntelligenceFindingRevisions",
             request: protoRequest,
             options: options,
-            clientHeader: Clients.clientHeader,
             routingParams: routingParams
           )
       return try ListIntelligenceFindingRevisionsResponse(proto: protoResponse)
@@ -1190,7 +1153,6 @@ extension Clients {
           path: "/google.storage.control.v2.StorageControl/ViewObjectFullContext",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try ObjectFullContext(proto: protoResponse)
@@ -1218,7 +1180,6 @@ extension Clients {
           path: "/google.longrunning.Operations/GetOperation",
           request: protoRequest,
           options: options,
-          clientHeader: Clients.clientHeader,
           routingParams: routingParams
         )
       return try GoogleLongRunning.Operation(proto: protoResponse)

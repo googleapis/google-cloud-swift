@@ -30,6 +30,7 @@ extension Clients {
       self.inner = try GoogleGax._HTTPClient(
         from: options,
         withDefaultEndpoint: "https://biglake.googleapis.com",
+        clientHeader: Clients.clientHeader
       )
     }
 
@@ -59,7 +60,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudBiglakeV1.IcebergCatalogConfig.self, timeout: options.attemptTimeout
       ).get()
@@ -112,7 +112,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudBiglakeV1.ListIcebergNamespacesResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -163,7 +162,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudBiglakeV1.IcebergNamespace.self, timeout: options.attemptTimeout
       ).get()
@@ -212,7 +210,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.icebergNamespace {
         try req.setBody(json: body)
       }
@@ -266,7 +263,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -350,7 +346,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.icebergNamespaceUpdate {
         try req.setBody(json: body)
       }
@@ -407,7 +402,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudBiglakeV1.ListIcebergTableIdentifiersResponse.self,
         timeout: options.attemptTimeout
@@ -418,10 +412,8 @@ extension Clients {
     public func createIcebergTable(
       request: CreateIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      let (path, query, configure, omitted) = try {
-        () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
-        ) in
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
             let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
@@ -440,7 +432,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["parent"])
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
         }
         var paths: [GoogleGax.PathMismatch] = []
         do {
@@ -461,8 +453,9 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request, omitting: omitted)
+      if let body = request.httpBody {
+        try req.setBody(json: body)
+      }
       return try await req.rpc(
         GoogleApi.HttpBody.self, timeout: options.attemptTimeout
       ).get()
@@ -516,7 +509,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -569,7 +561,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleApi.HttpBody.self, timeout: options.attemptTimeout
       ).get()
@@ -622,7 +613,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudBiglakeV1.LoadIcebergTableCredentialsResponse.self,
         timeout: options.attemptTimeout
@@ -633,10 +623,8 @@ extension Clients {
     public func updateIcebergTable(
       request: UpdateIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      let (path, query, configure, omitted) = try {
-        () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
-        ) in
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
             let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
@@ -655,7 +643,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
         }
         var paths: [GoogleGax.PathMismatch] = []
         do {
@@ -676,8 +664,9 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request, omitting: omitted)
+      if let body = request.httpBody {
+        try req.setBody(json: body)
+      }
       return try await req.rpc(
         GoogleApi.HttpBody.self, timeout: options.attemptTimeout
       ).get()
@@ -730,7 +719,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleApi.HttpBody.self, timeout: options.attemptTimeout
@@ -741,10 +729,8 @@ extension Clients {
     public func reportIcebergTableMetrics(
       request: ReportIcebergTableMetricsRequest, options: GoogleGax.RequestOptions
     ) async throws {
-      let (path, query, configure, omitted) = try {
-        () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
-        ) in
+      let (path, query, configure) = try {
+        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
         if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
           guard
             let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
@@ -763,7 +749,7 @@ extension Clients {
           ]
           return (path, query)
         }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
+          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
         }
         var paths: [GoogleGax.PathMismatch] = []
         do {
@@ -784,8 +770,9 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request, omitting: omitted)
+      if let body = request.httpBody {
+        try req.setBody(json: body)
+      }
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -834,7 +821,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudBiglakeV1.IcebergCatalog.self, timeout: options.attemptTimeout
       ).get()
@@ -884,7 +870,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudBiglakeV1.ListIcebergCatalogsResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -933,7 +918,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
         GoogleWKT.WKTEmpty.self, timeout: options.attemptTimeout
       ).get()
@@ -984,7 +968,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.icebergCatalog {
         try req.setBody(json: body)
       }
@@ -1037,7 +1020,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.icebergCatalog {
         try req.setBody(json: body)
       }
@@ -1091,7 +1073,6 @@ extension Clients {
       var req = try await self.inner.newRequest(
         percentEncodedPath: path, query: query, options: options)
       configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request, omitting: omitted)
       return try await req.rpc(
         GoogleCloudBiglakeV1.FailoverIcebergCatalogResponse.self, timeout: options.attemptTimeout
