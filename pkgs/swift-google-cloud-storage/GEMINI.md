@@ -37,13 +37,13 @@ In `librarian.yaml`, code generation for `google-cloud-storage` configures:
 idempotency_hook: resolveIdempotency
 ```
 
-This directive instructs the generator to inject custom idempotency resolution at the beginning of each generated RPC method in `Sources/GoogleCloudStorage/generated/Storage/Storage+Retry.swift`:
+This directive instructs the generator to inject custom idempotency resolution at the beginning of each generated RPC method in `Sources/GoogleCloudStorage/generated/Storage/Storage+Retry.swift` and `Sources/GoogleCloudStorage/generated/StorageControl/StorageControl+Retry.swift`:
 
 ```swift
 let options = request.resolveIdempotency(options: options)
 ```
 
-Consequently, every request type handled by the generated `Storage` client must provide an extension conforming to:
+Consequently, every request type handled by the generated `Storage` and `StorageControl` clients must provide an extension conforming to:
 
 ```swift
 extension <RequestType> {
@@ -57,35 +57,34 @@ These extensions reside in `Sources/GoogleCloudStorage/StorageIdempotency.swift`
 
 ## Idempotency Rules
 
-When implementing or updating `resolveIdempotency(options:)` for a request type, follow these rules:
+When implementing or updating `resolveIdempotency(options:)` for a request type, follow the [Cloud Storage Retry Strategy — Idempotency Operations specification](https://docs.cloud.google.com/storage/docs/retry-strategy#idempotency-operations) and these rules:
 
 1. **Read-Only Operations**:
    - The request is idempotent by default.
    - Use `resolveStorageIdempotency(isIdempotent: true, isMutating: false, options: options)`.
-   - Examples: `GetBucketRequest`, `ListBucketsRequest`, `GetObjectRequest`, `ListObjectsRequest`.
+   - Examples: `GetBucketRequest`, `ListBucketsRequest`, `GetObjectRequest`, `ListObjectsRequest`, `GetIamPolicyRequest`, `TestIamPermissionsRequest`, `GetFolderRequest`, `ListFoldersRequest`, `GetRapidCacheRequest`, `ListRapidCachesRequest`, `GetOperationRequest`.
 
-2. **Metadata Modifications (Buckets and Objects)**:
+2. **Metadata Modifications (Buckets, Objects, and Managed Folders)**:
    - The operation is idempotent **if and only if** there are preconditions on the metageneration (e.g., `self.ifMetagenerationMatch != nil` or `self.ifMetagenerationMatch > 0`).
-   - For objects, specifying a generation match (`self.ifGenerationMatch != nil`) also targets a specific generation.
-   - Use `isMutating: true`.
-   - Examples: `UpdateBucketRequest`, `LockBucketRetentionPolicyRequest`, `UpdateObjectRequest`.
+   - Use `isMutating: true` for `Storage` requests and `isMutating: false` for `StorageControl` requests (which pass `requestId` in the request body).
+   - Examples: `UpdateBucketRequest`, `LockBucketRetentionPolicyRequest`, `UpdateObjectRequest`, `UpdateManagedFolderRequest`.
 
 3. **Delete Operations**:
-   - Operations that delete objects, buckets, or other resources are idempotent **if and only if** there are preconditions on the generation or they affect a single, specific generation.
-   - For buckets: `self.ifMetagenerationMatch != nil`.
-   - For objects: `self.generation != 0 || self.ifGenerationMatch != nil`.
-   - Use `isMutating: true`.
-   - Examples: `DeleteBucketRequest`, `DeleteObjectRequest`.
+   - `DeleteBucketRequest`: Always idempotent per the retry strategy specification (`isIdempotent: true, isMutating: true`).
+   - `DeleteObjectRequest`: Idempotent when `self.generation != 0 || self.ifGenerationMatch != nil` (`isMutating: true`).
+   - `DeleteFolderRequest`, `DeleteManagedFolderRequest`, `DeleteFolderRecursiveRequest`: Idempotent when `self.ifMetagenerationMatch != nil` (`isMutating: false`).
 
-4. **Resource Creation and Transformations**:
+4. **Resource Creation, Transformations, and Control-Plane Mutations**:
    - `CreateBucketRequest`: Idempotent by default (`isIdempotent: true, isMutating: true`).
-   - `ComposeObjectRequest` & `RewriteObjectRequest`: Idempotent if generation match precondition is present (`self.ifGenerationMatch != nil`).
-   - `MoveObjectRequest`: Idempotent only when preconditions are set on both source and destination (`self.ifGenerationMatch != nil && self.ifSourceGenerationMatch != nil`).
-   - `RestoreObjectRequest`: Idempotent if generation or metageneration match is present (`self.ifGenerationMatch != nil || self.ifMetagenerationMatch != nil`).
+   - `ComposeObjectRequest` & `RewriteObjectRequest`: Idempotent if generation match precondition is present (`self.ifGenerationMatch != nil`, `isMutating: true`).
+   - `MoveObjectRequest`: Idempotent only when preconditions are set on both source and destination (`self.ifGenerationMatch != nil && self.ifSourceGenerationMatch != nil`, `isMutating: true`).
+   - `RestoreObjectRequest`: Idempotent if generation or metageneration match is present (`self.ifGenerationMatch != nil || self.ifMetagenerationMatch != nil`, `isMutating: true`).
+   - `RenameFolderRequest`: Idempotent when `self.ifMetagenerationMatch != nil` (`isMutating: false`).
+   - `StorageControl` `requestId`-backed mutations (`CreateFolderRequest`, `CreateManagedFolderRequest`, `*AnywhereCacheRequest`, `*RapidCacheRequest`, `Update*IntelligenceConfigRequest`): Idempotent when `!self.requestId.isEmpty` (`isMutating: false`).
 
-5. **Exclusion of the `etag` Field**:
-   - **The `etag` field is not useful for idempotency determinations in Google Cloud Storage**.
-   - **Never** use `ifEtagMatch` or `ifEtagNotMatch` to determine whether an operation is idempotent.
+5. **IAM Policy Modifications (`SetIamPolicyRequest`) and `etag` Preconditions**:
+   - `GoogleIAMV1.SetIamPolicyRequest` is conditionally idempotent when `!(self.policy?.etag.isEmpty ?? true)` (`isMutating: true`) per the retry strategy specification.
+   - For bucket and object operations, **never** use `ifEtagMatch` or `ifEtagNotMatch` to determine whether an operation is idempotent.
 
 ---
 
