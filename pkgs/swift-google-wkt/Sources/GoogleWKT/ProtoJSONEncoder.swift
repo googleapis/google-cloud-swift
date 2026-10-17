@@ -114,55 +114,113 @@ extension Optional: _OptionalProtocol where Wrapped: Encodable {
   }
 }
 
-/// The result of preparing an arbitrary `Encodable` value for ProtoJSON encoding.
-fileprivate enum BoxedValue {
-  /// The value was an `Optional` (possibly multi-layered) whose underlying value was `nil`.
-  case nilValue
-  /// The non-nil value transformed for the underlying `JSONEncoder` container.
-  case value(any Encodable)
+/// Abstracts over a concrete encoding destination (keyed at a specific key, unkeyed, or
+/// single-value) so the ProtoJSON type-dispatch logic is written once while still invoking
+/// specialized primitive overloads on the underlying `JSONEncoder` container and avoiding
+/// existential boxing of `Interceptor<T>`.
+fileprivate protocol _EncodingSink {
+  mutating func sinkNil() throws
+  mutating func sink(_ value: Bool) throws
+  mutating func sink(_ value: String) throws
+  mutating func sink(_ value: Double) throws
+  mutating func sink(_ value: Float) throws
+  mutating func sink(_ value: Int) throws
+  mutating func sink(_ value: Int8) throws
+  mutating func sink(_ value: Int16) throws
+  mutating func sink(_ value: Int32) throws
+  mutating func sink(_ value: UInt) throws
+  mutating func sink(_ value: UInt8) throws
+  mutating func sink(_ value: UInt16) throws
+  mutating func sink(_ value: UInt32) throws
+  mutating func sink<T: Encodable>(_ value: T) throws
 }
 
-/// Unwraps any optional layers from `value` and applies ProtoJSON encoding rules:
-/// - `Int64` and `UInt64` are converted to `String`.
-/// - `Data` is converted to a base64-encoded `String`.
-/// - Standard JSON scalar types (`String`, `Bool`, `Double`, `Float`, and <=32-bit integers) are
-///   passed directly to `JSONEncoder` so its native strategies (such as non-conforming float
-///   conversion) apply.
-/// - Composite types (structs, arrays, dictionaries, and custom `Encodable` wrappers) are wrapped
-///   in `Interceptor` so nested fields and elements are recursively intercepted with `omit` and
-///   `omitEmptyCollections`.
-fileprivate func box(
-  _ value: any Encodable, omit: OmitNode? = nil, omitEmptyCollections: Bool = true
-) -> BoxedValue {
-  let unwrapped: any Encodable
-  if let opt = value as? any _OptionalProtocol {
-    guard let inner = opt._unwrappedEncodable else { return .nilValue }
-    unwrapped = inner
-  } else {
-    unwrapped = value
-  }
-  switch unwrapped {
-  case let v as Int64:
-    return .value(String(v))
-  case let v as UInt64:
-    return .value(String(v))
-  case let v as Data:
-    return .value(v.base64EncodedString())
-  case is String, is Bool, is Double, is Float,
-    is Int, is Int8, is Int16, is Int32,
-    is UInt, is UInt8, is UInt16, is UInt32:
-    return .value(unwrapped)
-  default:
-    return .value(
-      makeInterceptor(unwrapped, omit: omit, omitEmptyCollections: omitEmptyCollections))
+extension _EncodingSink {
+  /// Applies ProtoJSON encoding rules to `value` and writes it to `self`:
+  /// - `Int64` and `UInt64` are converted to `String`.
+  /// - `Data` is converted to a base64-encoded `String`.
+  /// - Standard JSON scalar types (`String`, `Bool`, `Double`, `Float`, and <=32-bit integers)
+  ///   dispatch directly to the concrete primitive overloads on the underlying `JSONEncoder`
+  ///   container so its native strategies (such as non-conforming float conversion) apply.
+  /// - `Optional` values (checked after concrete scalar casts to avoid a protocol conformance
+  ///   lookup on non-optional scalars in `encodeIfPresent`) are recursively unwrapped; if any
+  ///   layer is `nil`, either `sinkNil()` is called or the value is omitted depending on
+  ///   `encodeNilWhenNil`.
+  /// - Composite types (structs, arrays, dictionaries, and custom `Encodable` wrappers) are
+  ///   wrapped in `Interceptor` so nested fields and elements are recursively intercepted with
+  ///   `omit` and `omitEmptyCollections`.
+  @inline(__always)
+  mutating func encodeProtoJSON<T: Encodable>(
+    _ value: T, omit: OmitNode?, omitEmptyCollections: Bool, encodeNilWhenNil: Bool
+  ) throws {
+    if let v = value as? Int64 {
+      try self.sink(String(v))
+    } else if let v = value as? UInt64 {
+      try self.sink(String(v))
+    } else if let v = value as? String {
+      try self.sink(v)
+    } else if let v = value as? Bool {
+      try self.sink(v)
+    } else if let v = value as? Double {
+      try self.sink(v)
+    } else if let v = value as? Float {
+      try self.sink(v)
+    } else if let v = value as? Int {
+      try self.sink(v)
+    } else if let v = value as? Int8 {
+      try self.sink(v)
+    } else if let v = value as? Int16 {
+      try self.sink(v)
+    } else if let v = value as? Int32 {
+      try self.sink(v)
+    } else if let v = value as? UInt {
+      try self.sink(v)
+    } else if let v = value as? UInt8 {
+      try self.sink(v)
+    } else if let v = value as? UInt16 {
+      try self.sink(v)
+    } else if let v = value as? UInt32 {
+      try self.sink(v)
+    } else if let v = value as? Data {
+      try self.sink(v.base64EncodedString())
+    } else if let opt = value as? any _OptionalProtocol {
+      guard let unwrapped = opt._unwrappedEncodable else {
+        if encodeNilWhenNil {
+          try self.sinkNil()
+        }
+        return
+      }
+      try self.encodeProtoJSON(
+        unwrapped, omit: omit, omitEmptyCollections: omitEmptyCollections,
+        encodeNilWhenNil: encodeNilWhenNil)
+    } else {
+      try self.sink(
+        Interceptor(inner: value, omit: omit, omitEmptyCollections: omitEmptyCollections))
+    }
   }
 }
 
-/// Opens the existential `any Encodable` to construct a generic `Interceptor<T>`.
-fileprivate func makeInterceptor<T: Encodable>(
-  _ value: T, omit: OmitNode?, omitEmptyCollections: Bool
-) -> any Encodable {
-  Interceptor(inner: value, omit: omit, omitEmptyCollections: omitEmptyCollections)
+/// Adapts a `KeyedEncodingContainer<K>` bound to a single `key` to `_EncodingSink`.
+fileprivate struct _KeyedSink<K: CodingKey>: _EncodingSink {
+  var impl: KeyedEncodingContainer<K>
+  let key: K
+
+  mutating func sinkNil() throws { try self.impl.encodeNil(forKey: self.key) }
+  mutating func sink(_ value: Bool) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: String) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: Double) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: Float) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: Int) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: Int8) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: Int16) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: Int32) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: UInt) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: UInt8) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: UInt16) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink(_ value: UInt32) throws { try self.impl.encode(value, forKey: self.key) }
+  mutating func sink<T: Encodable>(_ value: T) throws {
+    try self.impl.encode(value, forKey: self.key)
+  }
 }
 
 fileprivate protocol _EmptyCollectionProtocol {
@@ -349,14 +407,10 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
   mutating func encodeIfPresent<T>(_ value: T?, forKey key: K) throws where T: Encodable {
     guard !self.omits(key) else { return }
     guard let value = value else { return }
-    switch box(
-      value, omit: self.omitted(below: key), omitEmptyCollections: self.omitEmptyCollections)
-    {
-    case .nilValue:
-      return
-    case .value(let boxed):
-      try self.impl.encode(boxed, forKey: key)
-    }
+    var sink = _KeyedSink(impl: self.impl, key: key)
+    try sink.encodeProtoJSON(
+      value, omit: self.omitted(below: key), omitEmptyCollections: self.omitEmptyCollections,
+      encodeNilWhenNil: false)
   }
 
   /// Encodes a non-optional value.
@@ -372,14 +426,10 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
         return
       }
     }
-    switch box(
-      value, omit: self.omitted(below: key), omitEmptyCollections: self.omitEmptyCollections)
-    {
-    case .nilValue:
-      try self.impl.encodeNil(forKey: key)
-    case .value(let boxed):
-      try self.impl.encode(boxed, forKey: key)
-    }
+    var sink = _KeyedSink(impl: self.impl, key: key)
+    try sink.encodeProtoJSON(
+      value, omit: self.omitted(below: key), omitEmptyCollections: self.omitEmptyCollections,
+      encodeNilWhenNil: true)
   }
 
   mutating func encodeConditional<T>(_ object: T, forKey key: K) throws
@@ -416,7 +466,7 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
   }
 }
 
-fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
+fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer, _EncodingSink {
   var impl: any UnkeyedEncodingContainer
   var omitEmptyCollections: Bool
 
@@ -427,6 +477,21 @@ fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
 
   var codingPath: [any CodingKey] { self.impl.codingPath }
   var count: Int { self.impl.count }
+
+  mutating func sinkNil() throws { try self.impl.encodeNil() }
+  mutating func sink(_ value: Bool) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: String) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Double) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Float) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Int) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Int8) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Int16) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Int32) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: UInt) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: UInt8) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: UInt16) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: UInt32) throws { try self.impl.encode(value) }
+  mutating func sink<T: Encodable>(_ value: T) throws { try self.impl.encode(value) }
 
   mutating func encodeNil() throws {
     try self.impl.encodeNil()
@@ -489,12 +554,8 @@ fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
   }
 
   mutating func encode<T>(_ value: T) throws where T: Encodable {
-    switch box(value, omitEmptyCollections: self.omitEmptyCollections) {
-    case .nilValue:
-      try self.impl.encodeNil()
-    case .value(let boxed):
-      try self.impl.encode(boxed)
-    }
+    try self.encodeProtoJSON(
+      value, omit: nil, omitEmptyCollections: self.omitEmptyCollections, encodeNilWhenNil: true)
   }
 
   mutating func encodeConditional<T>(_ object: T) throws
@@ -523,7 +584,8 @@ fileprivate struct InternalUnkeyedEncodingContainer: UnkeyedEncodingContainer {
   }
 }
 
-fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingContainer {
+fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingContainer, _EncodingSink
+{
   var impl: any SingleValueEncodingContainer
   var omit: OmitNode?
   var omitEmptyCollections: Bool
@@ -538,6 +600,21 @@ fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingCont
   }
 
   var codingPath: [any CodingKey] { self.impl.codingPath }
+
+  mutating func sinkNil() throws { try self.impl.encodeNil() }
+  mutating func sink(_ value: Bool) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: String) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Double) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Float) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Int) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Int8) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Int16) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: Int32) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: UInt) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: UInt8) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: UInt16) throws { try self.impl.encode(value) }
+  mutating func sink(_ value: UInt32) throws { try self.impl.encode(value) }
+  mutating func sink<T: Encodable>(_ value: T) throws { try self.impl.encode(value) }
 
   mutating func encodeNil() throws {
     try self.impl.encodeNil()
@@ -600,11 +677,8 @@ fileprivate struct InternalSingleValueEncodingContainer: SingleValueEncodingCont
   }
 
   mutating func encode<T>(_ value: T) throws where T: Encodable {
-    switch box(value, omit: self.omit, omitEmptyCollections: self.omitEmptyCollections) {
-    case .nilValue:
-      try self.impl.encodeNil()
-    case .value(let boxed):
-      try self.impl.encode(boxed)
-    }
+    try self.encodeProtoJSON(
+      value, omit: self.omit, omitEmptyCollections: self.omitEmptyCollections,
+      encodeNilWhenNil: true)
   }
 }
