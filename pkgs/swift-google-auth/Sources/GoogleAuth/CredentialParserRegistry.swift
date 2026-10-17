@@ -12,13 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import Synchronization
 
+/// Parses a specific credential JSON format (identified by `type`) into a `CredentialsProvider`.
+///
+/// Conforming parsers receive the raw JSON `Data` read from the ADC file and decode their own
+/// strongly-typed `Decodable` configuration models directly.
 internal protocol CredentialSourceParser: Sendable {
+  /// The `"type"` discriminator value in the credential JSON file (e.g., `"service_account"`).
   static var type: String { get }
   init()
+  /// Parses raw credential JSON `Data` into a configured `CredentialsProvider`.
   func parse(
-    config: [String: Any],
+    data: Data,
     quotaProjectID: String?,
     universeDomain: String?,
     scopes: [String],
@@ -26,6 +33,7 @@ internal protocol CredentialSourceParser: Sendable {
   ) throws -> any CredentialsProvider
 }
 
+/// A thread-safe registry mapping credential `"type"` identifiers to their `CredentialSourceParser` implementations.
 internal final class CredentialParserRegistry: Sendable {
   internal static let shared = CredentialParserRegistry()
 
@@ -37,9 +45,11 @@ internal final class CredentialParserRegistry: Sendable {
     parsers.withLock { $0[parser.type] = parser }
   }
 
+  /// Dispatches the raw credential JSON `Data` to the parser registered for `type`,
+  /// or returns `nil` if no parser is registered for that type.
   internal func parse(
     type: String,
-    config: [String: Any],
+    data: Data,
     quotaProjectID: String?,
     universeDomain: String?,
     scopes: [String],
@@ -48,7 +58,7 @@ internal final class CredentialParserRegistry: Sendable {
     return try parsers.withLock { parsers in
       guard let parserType = parsers[type] else { return nil }
       return try parserType.init().parse(
-        config: config,
+        data: data,
         quotaProjectID: quotaProjectID,
         universeDomain: universeDomain,
         scopes: scopes,

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Dispatch
+import Foundation
 import Testing
 
 @testable import GoogleAuth
@@ -27,7 +28,7 @@ struct MockParser: CredentialSourceParser {
   static let type = "mock_type"
   init() {}
   func parse(
-    config: [String: Any],
+    data: Data,
     quotaProjectID: String?,
     universeDomain: String?,
     scopes: [String],
@@ -46,7 +47,7 @@ struct CredentialParserRegistryTests {
     // Unregistered type should return nil
     let nilResult = try registry.parse(
       type: "unregistered_mock",
-      config: [:],
+      data: Data(),
       quotaProjectID: nil,
       universeDomain: nil,
       scopes: [],
@@ -60,7 +61,7 @@ struct CredentialParserRegistryTests {
     // Registered type should return valid source
     let source = try registry.parse(
       type: "mock_type",
-      config: [:],
+      data: Data(),
       quotaProjectID: nil,
       universeDomain: nil,
       scopes: [],
@@ -84,7 +85,7 @@ struct CredentialParserRegistryTests {
 
     let source = try registry.parse(
       type: "mock_type",
-      config: [:],
+      data: Data(),
       quotaProjectID: nil,
       universeDomain: nil,
       scopes: [],
