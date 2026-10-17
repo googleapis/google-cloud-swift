@@ -79,22 +79,6 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     self.environment = environment
   }
 
-  /// Determines whether an HTTP or network error encountered while contacting the metadata server is retryable.
-  ///
-  /// Unwraps `CredentialsError.cannotFetchToken` to evaluate the underlying error when invoked by `TokenCache`.
-  ///
-  /// - Parameter error: The error to evaluate.
-  /// - Returns: `true` for HTTP 5xx, 429, 408, or network-level errors; `false` for 4xx client errors.
-  static func isRetryable(_ error: any Error) -> Bool {
-    if case .cannotFetchToken(_, let source) = error as? CredentialsError {
-      return isRetryable(source)
-    }
-    if let authError = error as? AuthHTTPError, let status = authError.statusCode {
-      return status >= 500 || status == 429 || status == 408
-    }
-    return true
-  }
-
   /// Resolves the metadata server base URL.
   ///
   /// Precedence: the explicit `endpoint`, then `GCE_METADATA_HOST`, then `defaultEndpoint`.
@@ -189,7 +173,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       } else {
         return try await RetryEngine.retry(
           configuration: self.retryConfiguration ?? .defaultConfiguration,
-          isRetryable: Self.isRetryable,
+          isRetryable: AuthHTTPError.isRetryable,
           operation: fetchOperation
         )
       }

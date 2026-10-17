@@ -61,9 +61,7 @@ struct UserAccountTokenProvider: TokenProvider {
     // Wrap active POST request in exponential backoff retry loop
     let response: Oauth2RefreshResponse = try await RetryEngine.retry(
       configuration: retryConfiguration,
-      isRetryable: { error in
-        return Self.isRetryable(error)
-      }
+      isRetryable: AuthHTTPError.isRetryable
     ) {
       return try await httpClient.post(
         url: tokenUri,
@@ -78,20 +76,6 @@ struct UserAccountTokenProvider: TokenProvider {
       tokenType: response.tokenType,
       expirationDate: expirationDate
     )
-  }
-
-  /// Evaluates whether an error encountered during token refresh is eligible for retry.
-  ///
-  /// Server errors (HTTP status >= 500), rate limiting (HTTP 429), request timeouts (HTTP 408),
-  /// and non-HTTP network errors are considered transient and retryable.
-  ///
-  /// - Parameter error: The error encountered.
-  /// - Returns: `true` if the error should be retried, `false` otherwise.
-  static func isRetryable(_ error: any Error) -> Bool {
-    if let authError = error as? AuthHTTPError, let status = authError.statusCode {
-      return status >= 500 || status == 429 || status == 408
-    }
-    return true
   }
 }
 

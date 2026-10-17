@@ -81,4 +81,71 @@ import Testing
     #expect(error.bodyData == nil)
     #expect(error.headers == nil)
   }
+
+  @Test(arguments: [
+    (HTTPResponseStatus.internalServerError, true),
+    (.notImplemented, true),
+    (.badGateway, true),
+    (.serviceUnavailable, true),
+    (.gatewayTimeout, true),
+    (.tooManyRequests, true),
+    (.requestTimeout, true),
+    (.badRequest, false),
+    (.unauthorized, false),
+    (.forbidden, false),
+    (.notFound, false),
+  ])
+  func isRetryableStatusCodes(status: HTTPResponseStatus, expected: Bool) {
+    let error = AuthHTTPError.unsuccessfulResponse(
+      response: HTTPClientResponse(version: .http2, status: status)
+    )
+    #expect(error.isRetryable == expected)
+    #expect(AuthHTTPError.isRetryable(error) == expected)
+
+    let wrapped = CredentialsError.cannotFetchToken(message: "failed", source: error)
+    #expect(AuthHTTPError.isRetryable(wrapped) == expected)
+  }
+
+  @Test func isRetryableErrorCases() {
+    let decodingError = AuthHTTPError.decodingError(
+      error: DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "corrupted"))
+    )
+    #expect(decodingError.isRetryable == false)
+    #expect(AuthHTTPError.isRetryable(decodingError) == false)
+    #expect(
+      AuthHTTPError.isRetryable(
+        CredentialsError.cannotFetchToken(message: "failed", source: decodingError)
+      ) == false
+    )
+
+    let invalidUTF8 = AuthHTTPError.invalidUTF8Response
+    #expect(invalidUTF8.isRetryable == false)
+    #expect(AuthHTTPError.isRetryable(invalidUTF8) == false)
+    #expect(
+      AuthHTTPError.isRetryable(
+        CredentialsError.cannotFetchToken(message: "failed", source: invalidUTF8)
+      ) == false
+    )
+
+    let transportError = AuthHTTPError.transportError(URLError(.timedOut))
+    #expect(transportError.isRetryable == true)
+    #expect(AuthHTTPError.isRetryable(transportError) == true)
+    #expect(
+      AuthHTTPError.isRetryable(
+        CredentialsError.cannotFetchToken(message: "failed", source: transportError)
+      ) == true
+    )
+
+    let unknownError = AuthHTTPError.unknown(URLError(.unknown))
+    #expect(unknownError.isRetryable == true)
+    #expect(AuthHTTPError.isRetryable(unknownError) == true)
+    #expect(
+      AuthHTTPError.isRetryable(
+        CredentialsError.cannotFetchToken(message: "failed", source: unknownError)
+      ) == true
+    )
+
+    // Non-AuthHTTPError errors default to retryable
+    #expect(AuthHTTPError.isRetryable(URLError(.cannotConnectToHost)) == true)
+  }
 }

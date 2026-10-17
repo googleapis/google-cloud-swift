@@ -330,6 +330,53 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(attempts.getCount() == 1)
   }
 
+  @Test("Programmatic credentials do not retry on malformed response")
+  func programmaticCredentialsDoesNotRetryOnMalformedResponse() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let attempts = CallCounter()
+    let malformedData = Data("invalid-json".utf8)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: malformedData))
+        )
+      }
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3,
+      initialDelay: .milliseconds(1),
+      multiplier: 1.0,
+      maxDelay: .milliseconds(1)
+    )
+
+    let httpClient = AuthHTTPClient(mock: mock)
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      retryConfiguration: retryConfig,
+      httpClient: httpClient
+    )
+
+    await #expect(throws: AuthHTTPError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(attempts.getCount() == 1)
+
+    await #expect(throws: AuthHTTPError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(attempts.getCount() == 1)
+  }
+
   @Test("Programmatic credentials retry on custom provider errors")
   func programmaticCredentialsRetriesOnProviderErrors() async throws {
     let provider = MockFailingSubjectTokenProvider()

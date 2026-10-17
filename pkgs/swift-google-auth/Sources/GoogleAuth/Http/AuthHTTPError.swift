@@ -97,4 +97,37 @@ extension AuthHTTPError {
       return nil
     }
   }
+
+  /// Indicates whether this HTTP error is transient and eligible for retry.
+  ///
+  /// Server errors (HTTP status >= 500), rate limiting (HTTP 429), request timeouts (HTTP 408),
+  /// transport errors, and unknown errors are considered transient and retryable. Client errors
+  /// (other 4xx statuses) and payload decoding errors are considered permanent.
+  var isRetryable: Bool {
+    switch self {
+    case .unsuccessfulResponse(let response):
+      let status = response.status.code
+      return status >= 500 || status == 429 || status == 408
+    case .decodingError, .invalidUTF8Response:
+      return false
+    case .transportError, .unknown:
+      return true
+    }
+  }
+
+  /// Evaluates whether an error encountered during a token request is transient and eligible for retry.
+  ///
+  /// Unwraps `CredentialsError.cannotFetchToken` to evaluate the underlying error when invoked by `TokenCache`.
+  ///
+  /// - Parameter error: The error to evaluate.
+  /// - Returns: `true` if the error is transient and should be retried; `false` if it is permanent.
+  static func isRetryable(_ error: any Error) -> Bool {
+    if case .cannotFetchToken(_, let source) = error as? CredentialsError {
+      return isRetryable(source)
+    }
+    if let authError = error as? AuthHTTPError {
+      return authError.isRetryable
+    }
+    return true
+  }
 }

@@ -339,10 +339,60 @@ import Testing
       AuthHTTPError.transportError(URLError(.timedOut)),
       true
     ),
+    (
+      AuthHTTPError.decodingError(
+        error: DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "corrupted"))),
+      false
+    ),
+    (
+      AuthHTTPError.invalidUTF8Response,
+      false
+    ),
   ])
   func isRetryableUnwrapsCredentialsError(source: AuthHTTPError, expected: Bool) {
     let wrapped = CredentialsError.cannotFetchToken(message: "failed", source: source)
-    #expect(MDSAccessTokenProvider.isRetryable(wrapped) == expected)
+    #expect(AuthHTTPError.isRetryable(wrapped) == expected)
+  }
+
+  @Test func doesNotRetryOnMalformedResponse() async throws {
+    let attempts = CallCounter()
+    let malformedData = Data("invalid-json".utf8)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        Self.checkRequest(request)
+        let _ = attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: malformedData))
+        )
+      }
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(retryConfiguration: retryConfig, client: client, environment: [:])
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    guard case let .cannotFetchToken(_, source) = error else {
+      Issue.record("expected a .cannotFetchToken error, got=\(error)")
+      return
+    }
+    guard case .decodingError = source as? AuthHTTPError else {
+      Issue.record("expected AuthHTTPError.decodingError as the source, got \(source)")
+      return
+    }
+    #expect(attempts.getCount() == 1, "Expected no retries on decoding error")
+
+    await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(attempts.getCount() == 1, "Expected TokenCache to cache permanent decoding error")
   }
 
   @Test func tokenCaching() async throws {
