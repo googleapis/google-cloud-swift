@@ -205,13 +205,25 @@ import Testing
     #expect(data == expected)
   }
 
-  struct CollectionModel: Codable, Equatable {
+  struct CollectionModel: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.CollectionModel" }
+
     var name: String = "test"
     var emptyList: [String] = []
     var populatedList: [String] = ["a", "b"]
     var emptyMap: [String: String] = [:]
     var populatedMap: [String: String] = ["k": "v"]
     var matrix: [[Int]] = [[], [1, 2]]
+
+    init() {}
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
+    }
   }
 
   @Test func encodeOmitEmptyCollectionsByDefault() throws {

@@ -19,7 +19,9 @@ import Testing
 extension ProtoJSONDecoderTest {
   // Only test the types that appear in sidekick messages
   // `Int` and `UInt` may be used with enums.
-  struct OptionalPrimitives: Decodable, Equatable {
+  struct OptionalPrimitives: Codable, Equatable, _AnyPackable, Sendable {
+    static var _anyTypeUrl: String { "type.googleapis.com/test.OptionalPrimitives" }
+
     var fieldBool: Bool? = nil
     var fieldInt: Int? = nil
     var fieldInt32: Int32? = nil
@@ -37,70 +39,80 @@ extension ProtoJSONDecoderTest {
       config(&copy)
       return copy
     }
+
+    init() {}
+
+    init(fromAny any: WKTAny) throws {
+      self = try _anyDeserialize(Self.self, from: any)
+    }
+
+    func _pack() throws -> WKTStruct {
+      return try _anySerialize(message: self)
+    }
   }
 
-  @Test(
-    "decode optionals",
-    arguments: [
-      (#"{}"#, OptionalPrimitives()),
-      (#"{"fieldBool":   null }"#, OptionalPrimitives()),
-      (#"{"fieldInt":    null }"#, OptionalPrimitives()),
-      (#"{"fieldInt32":  null }"#, OptionalPrimitives()),
-      (#"{"fieldInt64":  null }"#, OptionalPrimitives()),
-      (#"{"fieldUInt":   null }"#, OptionalPrimitives()),
-      (#"{"fieldUInt32": null }"#, OptionalPrimitives()),
-      (#"{"fieldUInt64": null }"#, OptionalPrimitives()),
-      (#"{"fieldFloat":  null }"#, OptionalPrimitives()),
-      (#"{"fieldDouble": null }"#, OptionalPrimitives()),
-      (#"{"fieldString": null }"#, OptionalPrimitives()),
-      (#"{"fieldData":   null }"#, OptionalPrimitives()),
-      (#"{"fieldBool":   true }"#, OptionalPrimitives().with { $0.fieldBool = true }),
-      (#"{"fieldInt":    42   }"#, OptionalPrimitives().with { $0.fieldInt = 42 }),
-      (#"{"fieldInt32":  42   }"#, OptionalPrimitives().with { $0.fieldInt32 = 42 }),
-      (#"{"fieldInt64":  42   }"#, OptionalPrimitives().with { $0.fieldInt64 = 42 }),
-      (#"{"fieldUInt":   42   }"#, OptionalPrimitives().with { $0.fieldUInt = 42 }),
-      (#"{"fieldUInt32": 42   }"#, OptionalPrimitives().with { $0.fieldUInt32 = 42 }),
-      (#"{"fieldUInt64": 42   }"#, OptionalPrimitives().with { $0.fieldUInt64 = 42 }),
-      (#"{"fieldFloat":  42   }"#, OptionalPrimitives().with { $0.fieldFloat = 42 }),
-      (#"{"fieldDouble": 42   }"#, OptionalPrimitives().with { $0.fieldDouble = 42 }),
-      (#"{"fieldString": "42" }"#, OptionalPrimitives().with { $0.fieldString = "42" }),
-      (
-        #"{"fieldData":   "NDI=" }"#,
-        OptionalPrimitives().with {
-          $0.fieldData = Data(base64Encoded: "NDI=")!
-        }
-      ),
-      (#"{"fieldBool":   "true" }"#, OptionalPrimitives().with { $0.fieldBool = true }),
-      (#"{"fieldInt":    "42"   }"#, OptionalPrimitives().with { $0.fieldInt = 42 }),
-      (#"{"fieldInt32":  "42"   }"#, OptionalPrimitives().with { $0.fieldInt32 = 42 }),
-      (#"{"fieldInt64":  "42"   }"#, OptionalPrimitives().with { $0.fieldInt64 = 42 }),
-      (#"{"fieldUInt":   "42"   }"#, OptionalPrimitives().with { $0.fieldUInt = 42 }),
-      (#"{"fieldUInt32": "42"   }"#, OptionalPrimitives().with { $0.fieldUInt32 = 42 }),
-      (#"{"fieldUInt64": "42"   }"#, OptionalPrimitives().with { $0.fieldUInt64 = 42 }),
-      (#"{"fieldFloat":  "42"   }"#, OptionalPrimitives().with { $0.fieldFloat = 42 }),
-      (#"{"fieldDouble": "42"   }"#, OptionalPrimitives().with { $0.fieldDouble = 42 }),
-    ])
+  static let optionalInputs: [(String, OptionalPrimitives)] = [
+    (#"{}"#, OptionalPrimitives()),
+    (#"{"fieldBool":   null }"#, OptionalPrimitives()),
+    (#"{"fieldInt":    null }"#, OptionalPrimitives()),
+    (#"{"fieldInt32":  null }"#, OptionalPrimitives()),
+    (#"{"fieldInt64":  null }"#, OptionalPrimitives()),
+    (#"{"fieldUInt":   null }"#, OptionalPrimitives()),
+    (#"{"fieldUInt32": null }"#, OptionalPrimitives()),
+    (#"{"fieldUInt64": null }"#, OptionalPrimitives()),
+    (#"{"fieldFloat":  null }"#, OptionalPrimitives()),
+    (#"{"fieldDouble": null }"#, OptionalPrimitives()),
+    (#"{"fieldString": null }"#, OptionalPrimitives()),
+    (#"{"fieldData":   null }"#, OptionalPrimitives()),
+    (#"{"fieldBool":   true }"#, OptionalPrimitives().with { $0.fieldBool = true }),
+    (#"{"fieldInt":    42   }"#, OptionalPrimitives().with { $0.fieldInt = 42 }),
+    (#"{"fieldInt32":  42   }"#, OptionalPrimitives().with { $0.fieldInt32 = 42 }),
+    (#"{"fieldInt64":  42   }"#, OptionalPrimitives().with { $0.fieldInt64 = 42 }),
+    (#"{"fieldUInt":   42   }"#, OptionalPrimitives().with { $0.fieldUInt = 42 }),
+    (#"{"fieldUInt32": 42   }"#, OptionalPrimitives().with { $0.fieldUInt32 = 42 }),
+    (#"{"fieldUInt64": 42   }"#, OptionalPrimitives().with { $0.fieldUInt64 = 42 }),
+    (#"{"fieldFloat":  42   }"#, OptionalPrimitives().with { $0.fieldFloat = 42 }),
+    (#"{"fieldDouble": 42   }"#, OptionalPrimitives().with { $0.fieldDouble = 42 }),
+    (#"{"fieldString": "42" }"#, OptionalPrimitives().with { $0.fieldString = "42" }),
+    (
+      #"{"fieldData":   "NDI=" }"#,
+      OptionalPrimitives().with {
+        $0.fieldData = Data(base64Encoded: "NDI=")!
+      }
+    ),
+    (#"{"fieldBool":   "true" }"#, OptionalPrimitives().with { $0.fieldBool = true }),
+    (#"{"fieldInt":    "42"   }"#, OptionalPrimitives().with { $0.fieldInt = 42 }),
+    (#"{"fieldInt32":  "42"   }"#, OptionalPrimitives().with { $0.fieldInt32 = 42 }),
+    (#"{"fieldInt64":  "42"   }"#, OptionalPrimitives().with { $0.fieldInt64 = 42 }),
+    (#"{"fieldUInt":   "42"   }"#, OptionalPrimitives().with { $0.fieldUInt = 42 }),
+    (#"{"fieldUInt32": "42"   }"#, OptionalPrimitives().with { $0.fieldUInt32 = 42 }),
+    (#"{"fieldUInt64": "42"   }"#, OptionalPrimitives().with { $0.fieldUInt64 = 42 }),
+    (#"{"fieldFloat":  "42"   }"#, OptionalPrimitives().with { $0.fieldFloat = 42 }),
+    (#"{"fieldDouble": "42"   }"#, OptionalPrimitives().with { $0.fieldDouble = 42 }),
+  ]
+
+  static let optionalBadInputs: [String] = [
+    #"{"fieldBool":   "bad" }"#,
+    #"{"fieldInt":    "bad" }"#,
+    #"{"fieldInt32":  "bad" }"#,
+    #"{"fieldInt64":  "bad" }"#,
+    #"{"fieldUInt":   "bad" }"#,
+    #"{"fieldUInt32": "bad" }"#,
+    #"{"fieldUInt64": "bad" }"#,
+    #"{"fieldFloat":  "bad" }"#,
+    #"{"fieldDouble": "bad" }"#,
+    // #"{"fieldString": 42 }"#, TReturns a different error
+    #"{"fieldData":   "bad" }"#,
+  ]
+
+  @Test("decode optionals", arguments: optionalInputs)
   func decodeOptionals(input: String, want: OptionalPrimitives) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(OptionalPrimitives.self, from: Data(input.utf8))
     #expect(got == want)
   }
 
-  @Test(
-    "decode optional bad inputs",
-    arguments: [
-      #"{"fieldBool":   "bad" }"#,
-      #"{"fieldInt":    "bad" }"#,
-      #"{"fieldInt32":  "bad" }"#,
-      #"{"fieldInt64":  "bad" }"#,
-      #"{"fieldUInt":   "bad" }"#,
-      #"{"fieldUInt32": "bad" }"#,
-      #"{"fieldUInt64": "bad" }"#,
-      #"{"fieldFloat":  "bad" }"#,
-      #"{"fieldDouble": "bad" }"#,
-      // #"{"fieldString": 42 }"#, TReturns a different error
-      #"{"fieldData":   "bad" }"#,
-    ])
+  @Test("decode optional bad inputs", arguments: optionalBadInputs)
   func decodeOptionalBad(input: String) throws {
     let decoder = _ProtoJSONDecoder()
     let error = #expect(throws: DecodingError.self) {

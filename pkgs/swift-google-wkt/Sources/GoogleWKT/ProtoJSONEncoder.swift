@@ -91,7 +91,7 @@ fileprivate struct OmitNode {
   }
 }
 
-fileprivate protocol _OptionalProtocol {
+protocol _OptionalProtocol {
   var _isNil: Bool { get }
   var _unwrappedValue: Any? { get }
 }
@@ -106,7 +106,7 @@ extension Optional: _OptionalProtocol {
   }
 }
 
-fileprivate protocol _EmptyCollectionProtocol {
+protocol _EmptyCollectionProtocol {
   var _isEmptyCollection: Bool { get }
 }
 

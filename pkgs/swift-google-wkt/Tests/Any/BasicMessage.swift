@@ -14,7 +14,49 @@
 
 import Foundation
 import Testing
-@_spi(GoogleCloudInternal) import GoogleWKT
+@testable @_spi(GoogleCloudInternal) import GoogleWKT
+
+enum AnyCodingMode: String, CaseIterable, Sendable, CustomTestStringConvertible {
+  case slow
+  case fast
+
+  var testDescription: String { self.rawValue }
+
+  func serialize<M: Encodable>(_ message: M) throws -> WKTStruct {
+    switch self {
+    case .slow:
+      return try _slowAnySerialize(message: message)
+    case .fast:
+      return try _anySerialize(message: message)
+    }
+  }
+
+  func deserialize<M: Decodable & _AnyPackable>(_ type: M.Type, from any: WKTAny) throws -> M {
+    switch self {
+    case .slow:
+      return try _slowAnyDeserialize(type, from: any)
+    case .fast:
+      return try _anyDeserialize(type, from: any)
+    }
+  }
+
+  func pack<M: Encodable & _AnyPackable>(_ message: M) throws -> WKTAny {
+    let fields = try self.serialize(message)
+    return try Self.makeAny(for: M.self, fields: fields)
+  }
+
+  static func makeAny<M: _AnyPackable>(for type: M.Type, fields: WKTStruct) throws -> WKTAny {
+    var fieldsWithType = fields
+    fieldsWithType["@type"] = .string(M._anyTypeUrl)
+    return try WKTStructDecoder().decode(WKTAny.self, from: fieldsWithType)
+  }
+
+  static func makeAny<M: _AnyPackable>(jsonObject: String, for type: M.Type) throws -> WKTAny {
+    let decoder = _ProtoJSONDecoder()
+    let fields = try decoder.decode(WKTStruct.self, from: Data(jsonObject.utf8))
+    return try Self.makeAny(for: type, fields: fields)
+  }
+}
 
 extension WKTAnyTests {
   struct BasicMessage: Codable, Equatable, Sendable {
@@ -22,7 +64,8 @@ extension WKTAnyTests {
     let field1: String
   }
 
-  @Test func decodeBasicMessage() throws {
+  @Test(arguments: AnyCodingMode.allCases)
+  func decodeBasicMessage(mode: AnyCodingMode) throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/test.BasicMessage","field0":"0","field1":"1"}}"#
     let data = Data(jsonString.utf8)
@@ -31,11 +74,12 @@ extension WKTAnyTests {
     let any = wrapped.content
     #expect(any.typeURL == "type.googleapis.com/test.BasicMessage")
 
-    let inner = try BasicMessage(fromAny: any)
+    let inner = try mode.deserialize(BasicMessage.self, from: any)
     #expect(inner == BasicMessage(field0: "0", field1: "1"))
   }
 
-  @Test func decodeBasicMessageMismatchedUrl() throws {
+  @Test(arguments: AnyCodingMode.allCases)
+  func decodeBasicMessageMismatchedUrl(mode: AnyCodingMode) throws {
     let jsonString =
       #"{"content":{"@type":"bad","field0":"0","field1":"1"}}"#
     let data = Data(jsonString.utf8)
@@ -43,12 +87,13 @@ extension WKTAnyTests {
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: WKTAnyError.self) {
-      let _ = try BasicMessage(fromAny: any)
+      let _ = try mode.deserialize(BasicMessage.self, from: any)
     }
     #expect(error == .mismatchedTypeURL)
   }
 
-  @Test func decodeBasicMessageMissing() throws {
+  @Test(arguments: AnyCodingMode.allCases)
+  func decodeBasicMessageMissing(mode: AnyCodingMode) throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/test.BasicMessage","field0":"0"}}"#
     let data = Data(jsonString.utf8)
@@ -57,8 +102,15 @@ extension WKTAnyTests {
     let any = wrapped.content
     #expect(any.typeURL == "type.googleapis.com/test.BasicMessage")
 
-    let inner = try BasicMessage(fromAny: any)
+    let inner = try mode.deserialize(BasicMessage.self, from: any)
     #expect(inner == BasicMessage(field0: "0", field1: ""))
+  }
+
+  @Test(arguments: AnyCodingMode.allCases)
+  func encodeBasicMessage(mode: AnyCodingMode) throws {
+    let message = BasicMessage(field0: "0", field1: "1")
+    let packed = try mode.serialize(message)
+    #expect(packed == ["field0": .string("0"), "field1": .string("1")])
   }
 }
 
