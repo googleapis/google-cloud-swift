@@ -264,6 +264,8 @@ import Testing
     )
   }
 
+  // Custom `Encodable` that encodes an optional property using `encode(_:forKey:)` rather than
+  // `encodeIfPresent(_:forKey:)`.
   struct NonIfPresentOptionalModel: Encodable {
     var child: OmitChild?
 
@@ -278,6 +280,8 @@ import Testing
   }
 
   @Test func encodeOmittingNestedFieldInOptionalEncodedDirectly() throws {
+    // Verifies that field omission paths (`child.name`) still apply when a non-nil `Optional` is
+    // passed through `encode(_:forKey:)` instead of `encodeIfPresent(_:forKey:)`.
     let encoder = Self.omittingEncoder()
     let model = NonIfPresentOptionalModel(child: OmitChild(name: "nested", value: 3))
     let data = try encoder.encode(model, omitting: ["child.name"])
@@ -285,6 +289,7 @@ import Testing
     #expect(jsonString == #"{"child":{"value":3}}"#)
   }
 
+  // Wrapper type that delegates encoding to a `SingleValueEncodingContainer`.
   struct SingleValueWrapper<T: Encodable>: Encodable {
     var inner: T
 
@@ -299,6 +304,8 @@ import Testing
   }
 
   @Test func encodeOmittingThroughSingleValueContainer() throws {
+    // Verifies that `OmitNode` is forwarded through `SingleValueEncodingContainer` both at the
+    // top level and when nested under a keyed property.
     let encoder = Self.omittingEncoder()
     let topLevel = SingleValueWrapper(inner: OmitChild(name: "nested", value: 3))
     let topData = try encoder.encode(topLevel, omitting: ["name"])
@@ -330,12 +337,14 @@ import Testing
   @Test func encodeDoubleOptionalInEncodeIfPresent() throws {
     let encoder = Self.omittingEncoder()
 
-    // .some(nil) should be omitted by encodeIfPresent, not encoded as null.
+    // `.some(nil)` unwraps to `nil` at the inner optional layer and should be omitted by
+    // `encodeIfPresent`, not encoded as `null`.
     let innerNil = DoubleOptionalModel(int64Val: .some(nil), child: .some(nil))
     let nilData = try encoder.encode(innerNil)
     #expect(try #require(String(data: nilData, encoding: .utf8)) == "{}")
 
-    // .some(.some(value)) should unwrap both layers, applying Int64 string conversion and field omission.
+    // `.some(.some(value))` should unwrap both optional layers, applying `Int64` string conversion
+    // and nested field omission.
     let present = DoubleOptionalModel(
       int64Val: .some(42),
       child: .some(OmitChild(name: "omit-me", value: 9))

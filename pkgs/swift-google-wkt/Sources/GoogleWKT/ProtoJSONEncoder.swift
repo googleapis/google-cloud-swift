@@ -91,7 +91,12 @@ fileprivate struct OmitNode {
   }
 }
 
+/// Type-erased protocol used to detect and unwrap `Optional` values passed through generic
+/// `encode(_:)` or `encodeIfPresent(_:forKey:)` overloads where the static type `T` is only known
+/// to conform to `Encodable` (including nested optionals like `U??`).
 fileprivate protocol _OptionalProtocol {
+  /// Returns the innermost wrapped value if non-nil at every optional layer, or `nil` if any layer
+  /// is `.none`.
   var _unwrappedEncodable: (any Encodable)? { get }
 }
 
@@ -109,11 +114,23 @@ extension Optional: _OptionalProtocol where Wrapped: Encodable {
   }
 }
 
+/// The result of preparing an arbitrary `Encodable` value for ProtoJSON encoding.
 fileprivate enum BoxedValue {
+  /// The value was an `Optional` (possibly multi-layered) whose underlying value was `nil`.
   case nilValue
+  /// The non-nil value transformed for the underlying `JSONEncoder` container.
   case value(any Encodable)
 }
 
+/// Unwraps any optional layers from `value` and applies ProtoJSON encoding rules:
+/// - `Int64` and `UInt64` are converted to `String`.
+/// - `Data` is converted to a base64-encoded `String`.
+/// - Standard JSON scalar types (`String`, `Bool`, `Double`, `Float`, and <=32-bit integers) are
+///   passed directly to `JSONEncoder` so its native strategies (such as non-conforming float
+///   conversion) apply.
+/// - Composite types (structs, arrays, dictionaries, and custom `Encodable` wrappers) are wrapped
+///   in `Interceptor` so nested fields and elements are recursively intercepted with `omit` and
+///   `omitEmptyCollections`.
 fileprivate func box(
   _ value: any Encodable, omit: OmitNode? = nil, omitEmptyCollections: Bool = true
 ) -> BoxedValue {
@@ -141,6 +158,7 @@ fileprivate func box(
   }
 }
 
+/// Opens the existential `any Encodable` to construct a generic `Interceptor<T>`.
 fileprivate func makeInterceptor<T: Encodable>(
   _ value: T, omit: OmitNode?, omitEmptyCollections: Bool
 ) -> any Encodable {
