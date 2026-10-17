@@ -460,7 +460,8 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
 
   mutating func superEncoder() -> any Encoder {
     return InternalEncoder(
-      impl: self.impl.superEncoder(), omitEmptyCollections: self.omitEmptyCollections)
+      impl: self.impl.superEncoder(), omit: self.omit?.child("super"),
+      omitEmptyCollections: self.omitEmptyCollections)
   }
 
   mutating func superEncoder(forKey key: K) -> any Encoder {
