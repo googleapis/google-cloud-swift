@@ -906,4 +906,38 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     #expect(await provider.count == 2)
   }
+
+  /// Verifies that deallocating `TokenCache` while its proactive refresh loop is suspended in
+  /// `clock.sleep(for:)` immediately cancels the background `Task` via `deinit`, rather than
+  /// leaving it suspended in the clock's timer queue until the sleep duration elapses.
+  @Test func deinitCancelsBackgroundRefreshTask() async throws {
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    let now = Date()
+    let timeSource = MockTimeSource(currentDate: now)
+
+    let token = Token(
+      accessToken: "token-1", expirationDate: timeSource.now.addingTimeInterval(3600.0))
+    await provider.configure(token: token)
+
+    var cache: TokenCache<TestClock>? = TokenCache(
+      provider: provider,
+      clock: clock,
+      timeSource: timeSource
+    )
+
+    // Wait for the initial fetch to complete and the background refresh loop to enter sleep.
+    // At this point the inner closure in the loop has released its strong reference to `self`,
+    // so `cache` is the only remaining strong reference.
+    await clock.sleeperWaiting()
+    #expect(clock.hasSleepers)
+    #expect(cache != nil)
+
+    // Deallocate TokenCache while the background refresh task is sleeping on the clock.
+    cache = nil
+
+    // `TokenCache.deinit` cancels `backgroundTask`, which synchronously triggers `TestClock.sleep`'s
+    // `onCancel` handler and removes the sleeper from the clock's queue.
+    #expect(!clock.hasSleepers)
+  }
 }
