@@ -447,4 +447,48 @@ struct StorageControlClientIntegrationTests: Sendable {
       options: .init()
     )
   }
+
+  @Test func testRewriteObjectUntilDone() async throws {
+    let uniquePrefix = "test-ctrl-rewrite-\(UUID().uuidString)"
+    let sourceName = "\(uniquePrefix)/source.txt"
+    let destName = "\(uniquePrefix)/dest.txt"
+    let data = Data("Hello gRPC RewriteObjectUntilDone!".utf8)
+
+    let storageClient = try StorageClient()
+    let controlClient = try StorageControlClient()
+
+    _ = try await storageClient.writeObject(data, to: bucketName, as: sourceName)
+
+    do {
+      let rewriteReq = RewriteObjectRequest().with {
+        $0.sourceBucket = bucketResource
+        $0.sourceObject = sourceName
+        $0.destinationBucket = bucketResource
+        $0.destinationName = destName
+        $0.ifGenerationMatch = 0
+      }
+      let rewritten = try await controlClient.rewriteObjectUntilDone(request: rewriteReq)
+      #expect(rewritten.name == destName)
+      #expect(rewritten.size == Int64(data.count))
+    } catch {
+      for name in [sourceName, destName] {
+        _ = try? await controlClient.deleteObject(
+          request: DeleteObjectRequest().with {
+            $0.bucket = bucketResource
+            $0.object = name
+          }
+        )
+      }
+      throw error
+    }
+
+    for name in [sourceName, destName] {
+      try? await controlClient.deleteObject(
+        request: DeleteObjectRequest().with {
+          $0.bucket = bucketResource
+          $0.object = name
+        }
+      )
+    }
+  }
 }
