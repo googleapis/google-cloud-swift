@@ -96,6 +96,7 @@ import Testing
   static func makeClient() throws -> StorageControlClient {
     try StorageControlClient(
       .init().with {
+        $0.retryPolicy = StorageBaseRetryPolicy.unbounded().withTimeLimit(.seconds(300))
         $0.backoffPolicy = ExponentialBackoff(clamping: .seconds(2))
       })
   }
