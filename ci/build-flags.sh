@@ -43,11 +43,19 @@ resolve_flags=(
 
 resolve_package() {
     local dir="${1:-.}"
+    shift || true
     local pkg_resolve_flags=("${resolve_flags[@]}")
     if [[ "${dir}" == "." || "${dir}" == "${REPO_ROOT}" ]]; then
         pkg_resolve_flags+=(--disable-automatic-resolution)
     fi
-    swift package resolve "${pkg_resolve_flags[@]}" --package-path "${dir}" || \
-        (sleep 5 ; swift package resolve "${pkg_resolve_flags[@]}" --package-path "${dir}") || \
-        (sleep 10; swift package resolve "${pkg_resolve_flags[@]}" --package-path "${dir}")
+    local delay
+    for delay in 0 5 10; do
+        if (( delay > 0 )); then
+            sleep "${delay}"
+        fi
+        if swift package resolve "${pkg_resolve_flags[@]}" --package-path "${dir}" "$@"; then
+            return 0
+        fi
+    done
+    return 1
 }
