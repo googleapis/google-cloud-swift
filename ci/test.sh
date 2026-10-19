@@ -43,7 +43,7 @@ for dir in "${packages[@]}"; do
     fi
 
     echo "::group::--- Building ${dir} ---"
-    if swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}"; then
+    if resolve_package "${dir}" && swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}"; then
         echo "::info:: ✓ ${dir} built"
     else
         echo "::endgroup::"

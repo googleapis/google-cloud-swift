@@ -92,7 +92,7 @@ for dir in "${packages[@]}"; do
     fi
 
     echo; echo "--- Building ${name} ---"
-    if swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}" >"${dir}/.test.log" 2>&1; then
+    if { resolve_package "${dir}" && swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}"; } >"${dir}/.test.log" 2>&1; then
         echo "✓ ${name} built successfully"
     else
         cat "${dir}/.test.log"

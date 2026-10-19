@@ -36,3 +36,18 @@ source "${_BUILD_FLAGS_SCRIPT_DIR}/glinux-flags.sh"
 add_glinux_flags
 
 flags=("${build_flags[@]}")
+
+resolve_flags=(
+    --scratch-path "${GOOGLE_CLOUD_SWIFT_SCRATCH_PATH:-${REPO_ROOT}/.build-cache}"
+)
+
+resolve_package() {
+    local dir="${1:-.}"
+    local pkg_resolve_flags=("${resolve_flags[@]}")
+    if [[ "${dir}" == "." || "${dir}" == "${REPO_ROOT}" ]]; then
+        pkg_resolve_flags+=(--disable-automatic-resolution)
+    fi
+    swift package resolve "${pkg_resolve_flags[@]}" --package-path "${dir}" || \
+        (sleep 5 ; swift package resolve "${pkg_resolve_flags[@]}" --package-path "${dir}") || \
+        (sleep 10; swift package resolve "${pkg_resolve_flags[@]}" --package-path "${dir}")
+}
