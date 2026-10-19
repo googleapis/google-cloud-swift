@@ -117,13 +117,19 @@ extension AuthHTTPError {
 
   /// Evaluates whether an error encountered during a token request is transient and eligible for retry.
   ///
-  /// Unwraps `CredentialsError.cannotFetchToken` to evaluate the underlying error when invoked by `TokenCache`.
+  /// Unwraps `CredentialsError.cannotFetchToken` to evaluate the underlying error when invoked by `TokenCache`,
+  /// and treats other `CredentialsError` cases as permanent.
   ///
   /// - Parameter error: The error to evaluate.
   /// - Returns: `true` if the error is transient and should be retried; `false` if it is permanent.
   static func isRetryable(_ error: any Error) -> Bool {
-    if case .cannotFetchToken(_, let source) = error as? CredentialsError {
-      return isRetryable(source)
+    if let credentialsError = error as? CredentialsError {
+      switch credentialsError {
+      case .cannotFetchToken(_, let source):
+        return isRetryable(source)
+      case .parseError, .notSupported:
+        return false
+      }
     }
     if let authError = error as? AuthHTTPError {
       return authError.isRetryable
