@@ -124,6 +124,8 @@ import Testing
   }
 
   static func anywhereCacheEnabled() -> Bool {
+    // Anywhere Cache LROs take 15-60+ minutes to complete and prevent bucket cleanup for an hour,
+    // so they are gated behind an explicit opt-in environment variable.
     Self.enabled()
       && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ENABLE_ANYWHERE_CACHE"]
         == "true"

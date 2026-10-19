@@ -52,6 +52,11 @@ public func runControlSamples(
   try await managedFolderDelete(client: client, bucketId: id)
 }
 
+/// Runs Anywhere Cache control-plane samples.
+///
+/// Provisioning and updating an Anywhere Cache is a long-running operation that can take
+/// 15–60+ minutes and prevents bucket deletion for an hour after disablement, so these samples
+/// are separated from `runControlSamples`.
 public func runAnywhereCacheSamples(
   client: StorageControlClient, projectId: String, zone: String, bucketNames: inout [String]
 ) async throws {
